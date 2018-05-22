@@ -49,12 +49,6 @@ namespace DungeonRun
             {   //randomly move in a direction + dash
                 Actor.compInput.direction = (Direction)Functions_Random.Int(0, 8);
                 if (Functions_Random.Int(0, 100) > 80) { Actor.compInput.dash = true; }
-
-                if (Actor.type == ActorType.Boss)
-                {   //randomly spawn a blob mob at boss location
-                    if (Functions_Random.Int(0, 100) > 50)
-                    { Functions_Actor.SpawnActor(ActorType.Blob, actorPos); }
-                }
             }
 
             #endregion
@@ -69,58 +63,100 @@ namespace DungeonRun
 
                 //if the hero's underwater (hidden), just bail from rest of method
                 if (Pool.hero.underwater) { return; }
-                
-                //if the hero's alive, determine if actor should chase/attack hero
-                if (Pool.hero.state != ActorState.Dead)
-                {   //if the actor is an enemy, and the hero is on other team (ally)
-                    if (Actor.enemy & Pool.hero.enemy == false)
-                    {   
-                        ChaseHero(); //this method will chase hero using diagonal movement only
-                        //determine if actor is close enough to attack hero
-                        if (yDistance < Actor.attackRadius && xDistance < Actor.attackRadius)
-                        {   //actor is close enough to hero to attack
-                            if (Functions_Random.Int(0, 100) > 50) //randomly proceed
-                            {   //set the cardinal direction towards hero, attack, cancel any dash
-                                Actor.compInput.direction = Functions_Direction.GetCardinalDirectionToHero(actorPos); // HERE
+                //if hero's dead, bail
+                if (Pool.hero.state == ActorState.Dead) { return; }
+
+                //if the actor is an enemy, and the hero is on other team (ally)
+                if (Actor.enemy & Pool.hero.enemy == false)
+                {   
+                    ChaseHero(); //this method will chase hero using diagonal movement only
+                    //determine if actor is close enough to attack hero
+                    if (yDistance < Actor.attackRadius && xDistance < Actor.attackRadius)
+                    {   //actor is close enough to hero to attack
+                        if (Functions_Random.Int(0, 100) > 50) //randomly proceed
+                        {
+
+
+
+                            //enemies vary their attacks based on type
+
+                            #region Enemies that attack with weapons / items
+
+                            if(Actor.type == ActorType.Blob)
+                            {
+                                //set the cardinal direction towards hero, attack, cancel any dash
+                                Actor.compInput.direction = 
+                                    Functions_Direction.GetCardinalDirectionToHero(actorPos);
                                 Actor.compInput.attack = true;
                                 Actor.compInput.dash = false;
                             }
+
+                            #endregion
+
+
+                            #region Enemies that suicide bomb
+
+                            else if(Actor.type == ActorType.Boss_BigEye_Mob)
+                            {
+                                Functions_Actor.SetDeathState(Actor);
+                            }
+
+                            #endregion
+
+
                         }
                     }
-                    else if(Actor.enemy == false)
-                    {   //if actor is an ally, then chase the hero
-                        ChaseHero();
-                        //determine if actor is close enough to stop chasing hero
-                        if (yDistance < Actor.attackRadius && xDistance < Actor.attackRadius)
-                        {   
-                            Actor.compInput.dash = false;
-                            Actor.compInput.direction = Direction.None;
-                        }
+                }
+                else if(Actor.enemy == false)
+                {   //if actor is an ally, then chase the hero
+                    ChaseHero();
+                    //determine if actor is close enough to stop chasing hero
+                    if (yDistance < Actor.attackRadius && xDistance < Actor.attackRadius)
+                    {   
+                        Actor.compInput.dash = false;
+                        Actor.compInput.direction = Direction.None;
                     }
+                }
+                
+            }
+
+            #endregion
+
+
+            #region Boss AI
+
+            else if (Actor.aiType == ActorAI.Boss_BigEye)
+            {
+                //by default, choose a random direction to move in & randomly dash
+                Actor.compInput.direction = (Direction)Functions_Random.Int(0, 8);
+                if (Functions_Random.Int(0, 100) > 90) { Actor.compInput.dash = true; }
+
+                if (Functions_Random.Int(0, 100) > 90)
+                {   //push boss towards center of room
+                    Functions_Movement.Push(Actor.compMove,
+                        Functions_Direction.GetDiagonalToCenterOfRoom(
+                            Actor.compSprite.position), 10.00f);
+                    //note this correcting push with fire
+                    Functions_Projectile.Spawn(ObjType.ProjectileGroundFire,
+                      Actor.compSprite.position.X,
+                      Actor.compSprite.position.Y);
+                }
+
+                //if boss is low on health, speed him up
+                if (Actor.health < 3) { Actor.compMove.speed *= 1.06f; } 
+
+                //rarely spawn a blob mob at boss location
+                if (Functions_Random.Int(0, 100) > 80)
+                {
+                    Functions_Actor.SpawnActor(ActorType.Boss_BigEye_Mob, actorPos);
+                    Actor.compInput.attack = true;
                 }
             }
 
             #endregion
 
 
-            
 
-
-            //slightly more advanced AI
-
-            //if wounded, try to heal
-            //else...
-
-            //if offensive...
-            //if very close, attack/use/dash hero
-            //if nearby, dash towards hero
-            //if in visibility range, move towards hero
-            //else, wander around
-
-            //if defensive...
-            //if very close or nearby, move away from hero
-            //if in visibility range, ranged attack hero
-            //else, wander around
         }
 
         public static void ChaseHero()
@@ -131,7 +167,6 @@ namespace DungeonRun
 
         public static void HandleObj(GameObject Obj)
         {   //keep in mind this method is called every frame
-
 
             //Obj.group checks
 
@@ -181,11 +216,6 @@ namespace DungeonRun
             }
 
             #endregion
-
-
-
-
-
 
 
 
@@ -416,7 +446,6 @@ namespace DungeonRun
             #endregion
 
             
-
         }
 
     }

@@ -508,7 +508,10 @@ namespace DungeonRun
 
         public static void FinishBossRoom(Room Room)
         {   //spawn boss in center of room
-            Functions_Actor.SpawnActor(ActorType.Boss, Room.center.X + 8, Room.center.Y + 8);
+            Functions_Actor.SpawnActor(
+                ActorType.Boss_BigEye, 
+                Room.center.X + 8, 
+                Room.center.Y + 8);
         }
 
         public static void FinishKeyRoom(Room Room)

@@ -129,7 +129,7 @@ namespace DungeonRun
 
             else if (Type == ObjType.ProjectileFireball)
             {
-                //initially place the arrow outside of the caster
+                //initially place outside of caster
                 if (Dir == Direction.Down)
                 {
                     Functions_Movement.Teleport(pro.compMove,

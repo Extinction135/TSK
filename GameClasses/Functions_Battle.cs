@@ -31,8 +31,8 @@ namespace DungeonRun
             #region Projectiles
 
             if (Obj.type == ObjType.ProjectileArrow)
-            {   //arrows deal 2 damage, push 4, and die
-                damage = 2; force = 4.0f; direction = Obj.direction;
+            {   //arrows deal 1 damage, push 4, and die
+                damage = 1; force = 4.0f; direction = Obj.direction;
                 Obj.lifeCounter = Obj.lifetime;
             }
             else if (Obj.type == ObjType.ProjectileBomb)
@@ -40,9 +40,9 @@ namespace DungeonRun
                 return;
             }
             else if (Obj.type == ObjType.ProjectileFireball)
-            {   //fireballs deal 3 damage, push 10, and die
-                damage = 3; force = 10.0f; direction = Obj.direction;
+            {   //fireballs die creating explosions
                 Obj.lifeCounter = Obj.lifetime;
+                return;
             }
             else if (Obj.type == ObjType.ProjectileBoomerang)
             {   //boomerangs deal 0 damage, push 10, flip to return state
@@ -50,8 +50,8 @@ namespace DungeonRun
                 Obj.lifeCounter = 200; //return to caster
             }
             else if (Obj.type == ObjType.ProjectileExplosion)
-            {   //explosions deal 3 damage, push 10
-                damage = 3; force = 10.0f;
+            {   //explosions deal 2 damage, push 10
+                damage = 2; force = 10.0f;
                 //push actor in their opposite direction
                 direction = Functions_Direction.GetOppositeDirection(Actor.direction);
             }

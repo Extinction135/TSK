@@ -131,14 +131,9 @@ namespace DungeonRun
                 else
                 { Functions_Actor.Transform(Pool.hero, ActorType.Hero); }
             }
-            
+
             #endregion
 
-
-            else//unknown case: return actor to idle
-            { 
-                Functions_Actor.SetIdleState(Actor);
-            }
         }
 
         static Boolean CheckMagic(int castingCost)

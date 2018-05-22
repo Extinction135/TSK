@@ -124,7 +124,15 @@ namespace DungeonRun
 
 
 
-    public enum ActorType { Hero, Blob, Boss }
+    public enum ActorType
+    {
+        Hero,
+        Blob,
+
+        Boss_BigEye,
+        Boss_BigEye_Mob,
+
+    }
 
     public enum ActorState
     {
@@ -136,7 +144,12 @@ namespace DungeonRun
         Pickup, Throw //actions++
     }
 
-    public enum ActorAI { Random, Basic }
+    public enum ActorAI
+    {
+        Random,
+        Basic,
+        Boss_BigEye
+    }
 
 
 
@@ -343,7 +356,6 @@ namespace DungeonRun
         ProjectileNet,
         ProjectileBow,
         ProjectileShovel,
-
 
         //Projectiles - object
         ProjectileExplosion,

@@ -80,8 +80,7 @@ namespace DungeonRun
         public static void SetDeathState(Actor Actor)
         {
             //prior to hero dying, he must return to being link/hero
-            if (Actor == Pool.hero)
-            { Transform(Pool.hero, ActorType.Hero); }
+            if (Actor == Pool.hero) { Transform(Pool.hero, ActorType.Hero); }
             //link is only actor with correct death animation for gameover
             
             //and switching hero back also makes it easy to track enemy deaths
@@ -95,22 +94,32 @@ namespace DungeonRun
             Assets.Play(Actor.sfx.kill); //play actor death sound fx
             Actor.compCollision.blocking = false; //make dead actor's corpse passable
 
-            //Enemy Specific Death Effects
-            if (Actor.type == ActorType.Blob)
+            //Actor Specific Death Effects
+            if(Actor.type == ActorType.Hero)
             {
-                Actor.compSprite.zOffset = -16; //sort to floor
-                Functions_Particle.Spawn(ObjType.Particle_Blast, Actor);
-                Actor.compCollision.rec.X = -1000; //hide actor collisionRec
-                Functions_Loot.SpawnLoot(Actor.compSprite.position);
+                return; //done with hero
             }
-            else if (Actor.type == ActorType.Boss)
+            else if (Actor.type == ActorType.Boss_BigEye)
             {
-                DungeonRecord.beatDungeon = true; //player has beat the dungeon
+                DungeonRecord.beatDungeon = true; //player beat dungeon
                 Functions_Level.CloseLevel(ExitAction.Summary);
-                Actor.compSprite.zOffset = -16; //sort to floor
-                Actor.compCollision.rec.X = -1000; //hide actor collisionRec
                 Assets.Play(Assets.sfxExplosionsMultiple); //play explosions
             }
+            else if(Actor.type == ActorType.Boss_BigEye_Mob)
+            {
+                Functions_Projectile.Spawn(
+                    ObjType.ProjectileExplosion,
+                    Actor.compMove, Direction.Down);
+                Functions_Loot.SpawnLoot(Actor.compSprite.position); //loot!
+                Functions_Pool.Release(Actor);
+            }
+            else
+            {   //this is all other actor types!
+                Functions_Particle.Spawn(ObjType.Particle_Blast, Actor);
+                Functions_Loot.SpawnLoot(Actor.compSprite.position); //loot!
+                Functions_Pool.Release(Actor);
+            }
+            
         }
 
         public static void SetRewardState(Actor Actor)
@@ -139,15 +148,15 @@ namespace DungeonRun
 
         public static void SetCollisionRec(Actor Actor)
         {   //set the collisionRec parameters based on the Type
-            if (Actor.type == ActorType.Boss)
+            if (Actor.type == ActorType.Boss_BigEye)
             {
                 Actor.compCollision.rec.Width = 24;
                 Actor.compCollision.rec.Height = 16;
                 Actor.compCollision.offsetX = -12;
-                Actor.compCollision.offsetY = -2;
+                Actor.compCollision.offsetY = 0;
             }
             else
-            {
+            {   //hero and blob actors have same hitBox
                 Actor.compCollision.rec.Width = 12;
                 Actor.compCollision.rec.Height = 8;
                 Actor.compCollision.offsetX = -6;
@@ -479,7 +488,7 @@ namespace DungeonRun
             Actor.type = Type;
 
 
-            #region Actor Specific Fields
+            #region Hero
 
             if (Type == ActorType.Hero)
             {
@@ -494,13 +503,19 @@ namespace DungeonRun
                 Actor.sfx.hit = Assets.sfxHeroHit;
                 Actor.sfx.kill = Assets.sfxHeroKill;
             }
+
+            #endregion
+
+
+            #region Blob
+
             else if (Type == ActorType.Blob)
             {
                 Actor.aiType = ActorAI.Basic;
                 Actor.enemy = true;
                 Actor.compSprite.texture = Assets.blobSheet;
                 Actor.animList = AnimationFrames.Hero_Animations; //actor is hero
-                Actor.health = 1;
+                Actor.health = 3;
                 ResetActorLoadout(Actor);
                 Actor.weapon = MenuItemType.WeaponSword;
                 Actor.walkSpeed = 0.05f;
@@ -510,27 +525,53 @@ namespace DungeonRun
                 Actor.sfx.hit = Assets.sfxEnemyHit;
                 Actor.sfx.kill = Assets.sfxEnemyKill;
             }
-            else if (Type == ActorType.Boss)
+
+            #endregion
+
+
+            #region BigEye Boss
+
+            else if (Type == ActorType.Boss_BigEye)
             {
-                Actor.aiType = ActorAI.Random;
+                Actor.aiType = ActorAI.Boss_BigEye;
                 Actor.enemy = true;
-                Actor.compSprite.texture = Assets.bossSheet;
-                Actor.animList = AnimationFrames.Boss_Blob_Animations;
-                Actor.health = 10;
+                Actor.compSprite.texture = Assets.forestLevelSheet;
+                Actor.animList = AnimationFrames.Boss_BigEye_Animations;
+                Actor.health = 30;
                 ResetActorLoadout(Actor);
                 Actor.walkSpeed = 0.50f;
                 Actor.dashSpeed = 1.00f;
-
                 //this actor is a boss (double size)
-                Actor.compSprite.cellSize.X = 32;
-                Actor.compSprite.cellSize.Y = 32;
-                //the boss actor has a lower sorting point that normal actors
-                Actor.compSprite.zOffset = 12;
-
+                Actor.compSprite.cellSize.X = 16 * 2;
+                Actor.compSprite.cellSize.Y = 16 * 3;
+                //actor is floating in air
+                Actor.compSprite.zOffset = 16;
                 //set actor sound effects
-                Actor.sfxDash = Assets.sfxBlobDash;
                 Actor.sfx.hit = Assets.sfxBossHit;
                 Actor.sfx.kill = Assets.sfxBossHitDeath;
+            }
+
+            #endregion
+
+
+            #region BigEye Boss Mob
+
+            else if (Type == ActorType.Boss_BigEye_Mob)
+            {
+                Actor.aiType = ActorAI.Basic;
+                Actor.enemy = true;
+                Actor.compSprite.texture = Assets.forestLevelSheet;
+                Actor.animList = AnimationFrames.Boss_BigEye_Mob_Animations; 
+                Actor.health = 1;
+                ResetActorLoadout(Actor);
+                Actor.walkSpeed = 0.25f;
+                Actor.dashSpeed = 0.4f;
+                //set actor sound effects
+                Actor.sfxDash = null; //silent dash
+                Actor.sfx.hit = Assets.sfxEnemyHit;
+                Actor.sfx.kill = Assets.sfxEnemyKill;
+                //big chase radius so they almost always see hero
+                Actor.chaseRadius = 16 * 10; //16*5 = default
             }
 
             #endregion
@@ -781,11 +822,7 @@ namespace DungeonRun
                     Actor.health = 0; //lock actor's health at 0
 
                     //Death Effects
-                    if (Actor == Pool.hero)
-                    {
-                        Functions_Hero.HandleDeath();
-                    }
-                    else if (Actor.type == ActorType.Boss)
+                    if (Actor.type == ActorType.Boss_BigEye)
                     {   //dead bosses perpetually explode
                         if (Functions_Random.Int(0, 100) > 75) //randomly create explosions
                         {   //randomly place explosions around boss
@@ -794,6 +831,10 @@ namespace DungeonRun
                                 Actor.compSprite.position.X + Functions_Random.Int(-16, 16),
                                 Actor.compSprite.position.Y + Functions_Random.Int(-16, 16));
                         }
+                    }
+                    else if (Actor == Pool.hero)
+                    {
+                        Functions_Hero.HandleDeath();
                     }
                 }
             }

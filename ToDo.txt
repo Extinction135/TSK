@@ -161,16 +161,50 @@ TODAY:
 
 
 
+Boss: Big Eye with Tentacles
+
+created BigBossEye actor type value.
+added animFrames, actor def, added to boss
+room spawn routine. created new ai type: boss.
+implemented boss ai for big eye. improved
+big eye's attack animation.
+
+fixed a bug with UseItem() that defaulted
+the actors state to idle if the function didn't
+find a useable item - sometimes we want to be
+able to put the actor into an attack state
+without using an item! like the big eye boss.
+so, when trying to set the big eye boss into
+an attack state, he would default to idle unless
+he was using an actual weapon.
+
+Actors++
+updated SetDeathState() to handle hero and boss, then
+by default handle all other actors, which makes this
+routine much easier to maintain and expand later on.
+
+Big Eye Boss' Mob : Exploding Seekers
+created actorType enum value.
+added animFrames, actor def.
+updated AI to split enemy attacks between
+blob and new seeker enemy: seekers explode,
+while blobs use the traditional weapon system.
+updated big eye boss to spawn exploding seekers.
+playtested, working but needs polish.
+
+seekers can now chain explosions, because they
+create explosions in their death state.
+
+updated SetDeathState() to release non-hero and non-boss
+actors - these actors are transitory and their corpses
+should not remain on the ground post-mortem. the hero and
+any boss corpse should remain for screen closing ceremonies.
+
+Improvements++
+fixed opacity on boss's shadow.
+updated explosions to deal 2 damage, instead of 3.
 
 
-Sprites ++
-
-added forest enemies to forest sheet, causing 
-a repack and a resizing. migrated sprite sheets
-to new formats. added sprites for eye boss, eye
-miniboss, eye mob1, eye mob2, bigger eye mob,
-rats, eye statues, floating small eye mob, turtles,
-and crabs.
 
 
 
@@ -184,49 +218,10 @@ and crabs.
 
 
 
-
-
-
-
-
-
-
-
-Tuesday
-
-
-
-
-Forest Dungeon Enemy Rework
-
-
-
-
-
-BigBoss - BigEye
-
-has 4 states:
-1. idle / move : this is tentacles moving around
-2. attack : this is the blink 2 frame anim
-3. hit : this is bloodshot eye frame
-4. death : eye shut + bloodshot frames, looped
-
-idle, move, attack, hit, death
-this boss has 10 hp, not much health, because his attacks
-are so deadly. it's also a 1v1 fight.
-
-the boss has two attacks:
-standard: spawn 4 bombs at boss pos with random directions with 10 force push.
-special: spawn 8 bombs in cardinal + diagonal directions at boss pos with 10 force push.
-*while moving, there is a 1% chance each frame to spawn a bomb
-at boss pos - this means boss 'leaves' bombs behind as he moves.
-these orphans dont have a direction and aren't pushed with any force.
-
-when boss is low on health (<5), he switches to using special attacks,
-and his movement speed increases slightly (* 1.06).
-otherwise, he uses standard attacks, and tries to avoid the hero (moves away).
-this boss is invincible to explosions.
-
+add miniboss to hub room.
+upgrade enemy spawns to create 2 mob types.
+create a flying mob and a grounded mob for forest dungeon.
+floater is angry eye (16x32), grounded is squishy single (16x16)
 
 
 Miniboss - Blackeye
@@ -241,22 +236,12 @@ has 4 states:
 
 
 
-
-
 MOB+
 primary mob - spawns bombs as it's attack and it's hit
 is immue to explosions too. this means they spawn bombs
 when near hero and when they are hit. these smaller mobs
 have 4 hp.
 
-
-
-
-
-MOB
-1 hit mob - the floating eye thing. if it gets close enough to hero
-it just explodes (kills itself creating an explosion) after it completes
-a warning / tension animation telling player to kill it or gtfo.
 
 
 

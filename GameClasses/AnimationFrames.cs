@@ -528,7 +528,9 @@ namespace DungeonRun
 
         //actor animation frames
         public static ActorAnimationList Hero_Animations;
-        public static ActorAnimationList Boss_Blob_Animations;
+
+        public static ActorAnimationList Boss_BigEye_Animations;
+        public static ActorAnimationList Boss_BigEye_Mob_Animations;
 
         //actor fx anim frames
         public static List<Byte4> ActorFX_GrassyFeet = new List<Byte4>
@@ -539,7 +541,6 @@ namespace DungeonRun
 
         static AnimationFrames()
         {
-
 
             #region Hero Animations
 
@@ -709,55 +710,86 @@ namespace DungeonRun
             #endregion
 
 
-            #region Boss Blob Animations
+            #region Boss Big Eye Animations
 
-            Boss_Blob_Animations = new ActorAnimationList();
+            Boss_BigEye_Animations = new ActorAnimationList();
 
             //movement
-            Boss_Blob_Animations.idle = new AnimationGroup();
-            Boss_Blob_Animations.idle.down = new List<Byte4> { new Byte4(0, 0, 0, 0) };
-            Boss_Blob_Animations.idle.up = new List<Byte4> { new Byte4(0, 1, 0, 0) };
-            Boss_Blob_Animations.idle.right = new List<Byte4> { new Byte4(0, 2, 0, 0) };
-            Boss_Blob_Animations.idle.left = new List<Byte4> { new Byte4(0, 2, 1, 0) };
+            Boss_BigEye_Animations.idle = new AnimationGroup();
+            Boss_BigEye_Animations.idle.down = new List<Byte4> { new Byte4(8, 0, 0, 0), new Byte4(9, 0, 0, 0) };
+            Boss_BigEye_Animations.idle.up = Boss_BigEye_Animations.idle.down;
+            Boss_BigEye_Animations.idle.right = Boss_BigEye_Animations.idle.down;
+            Boss_BigEye_Animations.idle.left = Boss_BigEye_Animations.idle.down;
 
-            Boss_Blob_Animations.move = new AnimationGroup();
-            Boss_Blob_Animations.move.down = new List<Byte4> { new Byte4(1, 0, 0, 0), new Byte4(1, 0, 1, 0) };
-            Boss_Blob_Animations.move.up = new List<Byte4> { new Byte4(1, 1, 0, 0), new Byte4(1, 1, 1, 0) };
-            Boss_Blob_Animations.move.right = new List<Byte4> { new Byte4(0, 2, 0, 0), new Byte4(1, 2, 0, 0) };
-            Boss_Blob_Animations.move.left = new List<Byte4> { new Byte4(0, 2, 1, 0), new Byte4(1, 2, 1, 0) };
+            Boss_BigEye_Animations.move = Boss_BigEye_Animations.idle;
+            Boss_BigEye_Animations.dash = Boss_BigEye_Animations.idle;
 
-            //actions
-            Boss_Blob_Animations.dash = new AnimationGroup();
-            Boss_Blob_Animations.dash.down = new List<Byte4> { new Byte4(2, 0, 0, 0) };
-            Boss_Blob_Animations.dash.up = new List<Byte4> { new Byte4(2, 1, 0, 0) };
-            Boss_Blob_Animations.dash.right = new List<Byte4> { new Byte4(2, 2, 0, 0) };
-            Boss_Blob_Animations.dash.left = new List<Byte4> { new Byte4(2, 2, 1, 0) };
+            Boss_BigEye_Animations.attack = new AnimationGroup();
+            Boss_BigEye_Animations.attack.down = new List<Byte4>
+            {
+                new Byte4(10, 0, 0, 0), new Byte4(11, 0, 0, 0),
+                new Byte4(10, 0, 0, 0), new Byte4(11, 0, 0, 0)
+            };
+            Boss_BigEye_Animations.attack.up = Boss_BigEye_Animations.attack.down;
+            Boss_BigEye_Animations.attack.right = Boss_BigEye_Animations.attack.down;
+            Boss_BigEye_Animations.attack.left = Boss_BigEye_Animations.attack.down;
 
-            Boss_Blob_Animations.attack = new AnimationGroup();
-            Boss_Blob_Animations.attack.down = new List<Byte4> { new Byte4(3, 0, 0, 0) };
-            Boss_Blob_Animations.attack.up = new List<Byte4> { new Byte4(3, 1, 0, 0) };
-            Boss_Blob_Animations.attack.right = new List<Byte4> { new Byte4(3, 2, 0, 0) };
-            Boss_Blob_Animations.attack.left = new List<Byte4> { new Byte4(3, 2, 1, 0) };
+            Boss_BigEye_Animations.hit = new AnimationGroup();
+            Boss_BigEye_Animations.hit.down = new List<Byte4> { new Byte4(12, 0, 0, 0), new Byte4(12, 0, 1, 0) };
+            Boss_BigEye_Animations.hit.up = Boss_BigEye_Animations.hit.down;
+            Boss_BigEye_Animations.hit.right = Boss_BigEye_Animations.hit.down;
+            Boss_BigEye_Animations.hit.left = Boss_BigEye_Animations.hit.down;
+
+            Boss_BigEye_Animations.reward = Boss_BigEye_Animations.hit;
+
+            Boss_BigEye_Animations.death_blank = new AnimationGroup();
+            Boss_BigEye_Animations.death_blank.down = new List<Byte4>
+            {   //repeating hit frames
+                new Byte4(11, 0, 0, 0), new Byte4(12, 0, 0, 0),
+                new Byte4(11, 0, 0, 0), new Byte4(12, 0, 0, 0),
+                new Byte4(11, 0, 0, 0), new Byte4(12, 0, 0, 0),
+                new Byte4(11, 0, 0, 0), new Byte4(12, 0, 0, 0),
+                new Byte4(11, 0, 0, 0), new Byte4(12, 0, 0, 0),
+                new Byte4(11, 0, 0, 0), new Byte4(12, 0, 0, 0),
+                new Byte4(11, 0, 0, 0), new Byte4(12, 0, 0, 0),
+                new Byte4(11, 0, 0, 0), new Byte4(12, 0, 0, 0),
+                new Byte4(11, 0, 0, 0), new Byte4(12, 0, 0, 0),
+                new Byte4(11, 0, 0, 0), new Byte4(12, 0, 0, 0),
+                new Byte4(11, 0, 0, 0), new Byte4(12, 0, 0, 0)
+            };
+            Boss_BigEye_Animations.death_blank.up = Boss_BigEye_Animations.death_blank.down;
+            Boss_BigEye_Animations.death_blank.right = Boss_BigEye_Animations.death_blank.down;
+            Boss_BigEye_Animations.death_blank.left = Boss_BigEye_Animations.death_blank.down;
 
 
-            //reward (cast in this case) list
-            Boss_Blob_Animations.reward = new AnimationGroup();
-            Boss_Blob_Animations.reward.down = new List<Byte4> { new Byte4(0, 3, 0, 0) };
-            Boss_Blob_Animations.reward.up = Hero_Animations.reward.down;
-            Boss_Blob_Animations.reward.right = Hero_Animations.reward.down;
-            Boss_Blob_Animations.reward.left = Hero_Animations.reward.down;
+            #endregion
 
-            Boss_Blob_Animations.hit = new AnimationGroup();
-            Boss_Blob_Animations.hit.down = new List<Byte4> { new Byte4(1, 3, 0, 0) };
-            Boss_Blob_Animations.hit.up = Hero_Animations.hit.down;
-            Boss_Blob_Animations.hit.right = Hero_Animations.hit.down;
-            Boss_Blob_Animations.hit.left = Hero_Animations.hit.down;
 
-            Boss_Blob_Animations.death_blank = new AnimationGroup();
-            Boss_Blob_Animations.death_blank.down = new List<Byte4> { new Byte4(3, 3, 0, 0) };
-            Boss_Blob_Animations.death_blank.up = Hero_Animations.death_blank.down;
-            Boss_Blob_Animations.death_blank.right = Hero_Animations.death_blank.down;
-            Boss_Blob_Animations.death_blank.left = Hero_Animations.death_blank.down;
+            #region Boss Big Eye Mob Animations
+
+            Boss_BigEye_Mob_Animations = new ActorAnimationList();
+
+            Boss_BigEye_Mob_Animations.idle = new AnimationGroup();
+            Boss_BigEye_Mob_Animations.idle.down = new List<Byte4>
+            {
+                new Byte4(16, 3, 0, 0), new Byte4(17, 3, 0, 0),
+                new Byte4(16, 3, 0, 0), new Byte4(17, 3, 1, 0)
+            };
+            Boss_BigEye_Mob_Animations.idle.up = Boss_BigEye_Mob_Animations.idle.down;
+            Boss_BigEye_Mob_Animations.idle.right = Boss_BigEye_Mob_Animations.idle.down;
+            Boss_BigEye_Mob_Animations.idle.left = Boss_BigEye_Mob_Animations.idle.down;
+            //all point to idle
+            Boss_BigEye_Mob_Animations.move = Boss_BigEye_Mob_Animations.idle;
+            Boss_BigEye_Mob_Animations.dash = Boss_BigEye_Mob_Animations.idle;
+            Boss_BigEye_Mob_Animations.attack = Boss_BigEye_Mob_Animations.idle;
+            Boss_BigEye_Mob_Animations.hit = Boss_BigEye_Mob_Animations.idle;
+            Boss_BigEye_Mob_Animations.reward = Boss_BigEye_Mob_Animations.idle;
+            //death sprite
+            Boss_BigEye_Mob_Animations.death_blank = new AnimationGroup();
+            Boss_BigEye_Mob_Animations.death_blank.down = new List<Byte4> { new Byte4(18, 3, 0, 0) };
+            Boss_BigEye_Mob_Animations.death_blank.up = Boss_BigEye_Mob_Animations.death_blank.down;
+            Boss_BigEye_Mob_Animations.death_blank.right = Boss_BigEye_Mob_Animations.death_blank.down;
+            Boss_BigEye_Mob_Animations.death_blank.left = Boss_BigEye_Mob_Animations.death_blank.down;
 
             #endregion
 
