@@ -162,12 +162,6 @@ TODAY:
 
 
 
-Dialogs++
-
-updated most dialogs to use Link as the speaker,
-either speaking to himself or to the player. this
-makes more sense in the context of the story, since
-everyone else eventually will die. playtested.
 
 
 
@@ -175,10 +169,15 @@ everyone else eventually will die. playtested.
 
 
 
+HubRoom++
 
 dont add wall statues to HUB room, because the arrows they
 shoot would damage the miniboss that will be spawning there
-in the future.
+in the future. updated dungeon functions.procedurallyFinish()
+to not add wall statues to hub rooms.
+
+
+
 
 
 

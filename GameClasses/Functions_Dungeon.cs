@@ -305,7 +305,8 @@ namespace DungeonRun
             else if (Room.roomID == RoomID.Hub)
             {
                 FinishHubRoom(Room);
-                AddWallStatues(Room);
+                //dont add wall statues, cause they damage miniboss
+                //AddWallStatues(Room);
                 AddCrackedWalls(Room);
                 ScatterDebris(Room);
             }
@@ -313,6 +314,8 @@ namespace DungeonRun
             {
                 ShutDoors(Room);
                 FinishBossRoom(Room);
+                //dont add wall statues, cause they damage boss
+                //AddWallStatues(Room);
                 AddCrackedWalls(Room);
                 ScatterDebris(Room);
             }
