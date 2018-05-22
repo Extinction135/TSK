@@ -161,32 +161,15 @@ TODAY:
 
 
 
-Improvements
+Signposts
 
-bug: not all pushable objs fall into water.
-if an obj is pushable and collides with a water tile,
-then that obj splashes is released().
-ok, but that causes some unwanted behavior:
-
-projectiles splash into water upon collision.
-this means link can throw his boomerang into water.
-and it's gone until a new room / level load. lol.
-fixed a bug where all kinds of moveable objects were 
-sinking into water, like projectiles.
-
-Push++
-updated switches & levers to not be moveable. 
-otherwise they can be pushed into water, breaking
-puzzels - plus they dont visually look like they
-should be able to be pushed.
-
-however, this caused some room puzzels to be updated.
-also, improved exit rooms again.
-
-Spikeblock++
-fixed spike block to not have shadows on sprite.
-it gets rotated to the direction it's moving and
-looks dumb when the shadows are completely wrong.
+created generic signpost object for hero to 
+interact with. upon interaction, a standard dialog
+is popped for player to read saying signpost is
+empty - because I dont know what to put here
+right now. placed signposts in exit rooms.
+exit rooms are looking more interesting now,
+even tho there is only two of them.
 
 
 
@@ -198,17 +181,7 @@ looks dumb when the shadows are completely wrong.
 
 
 
-
-
-add dungeon signpost.
-dungeon signposts should only exist inside
-the exit room of the current dungeon. interacting
-with this obj should tell hero about the dungeon
-he's in: how many rooms, the size, the name.
-world signposts exist outside of dungeons on overworld
-levels, usually right next to where hero spawns,
-so he knows where he is. again, this just pops
-info about the level, like it's name.
+should be link speaker in dialog for map or key.
 
 
 
@@ -217,7 +190,7 @@ info about the level, like it's name.
 
 
 
-
+Tuesday
 
 
 Boss & Miniboss
@@ -229,8 +202,30 @@ into the hub as a miniBoss, which would be awesome.
 the eye boss should spawn throw bombs towards hero with great force.
 while also defensively moving away from hero. also, boss should be
 invincible to bombs, because that's his main weapon, and we wouldn't 
-want him killing himself. he should also have alot of health.
+want him killing himself. he should also have alot of health, 
+and spawn his own kind of mob.
 
+
+later on, we should update the forest dungeon to use the boss's mobs
+instead of blobs. blobs should only exist in the underground dungeon.
+which means we need a forest dungeon miniboss, which should be
+eye-themed.
+
+
+easy underground dungeon idea:
+we have an overworld pit with stairs sprite.
+hide this randomly under an object that can be destroyed,
+like a bush on a level. for now, this object will
+create a new type of dungeon, an underground dungeon.
+this is just a single critical path from hub room to exit room.
+just a hub room, then an exit room south of it.
+in the hub room, a miniboss will spawn, with a chest.
+the chest will have the dungeon map, in case we decide to expand
+this dugneon algorithm to be more than 2 rooms in the future.
+but, this reverses the dungeon - leading to the exit.
+upon exit, we simply return hero to his last overworld location,
+which should be stored in save data.
+*these dungeons should be blob enemy only, because this is story*
 
 
 
@@ -279,39 +274,6 @@ that direction. this allows us to 'peek' beyond a levels bounds.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-record a new play through video with developer commentary (via obs + astro a20s).
-create a new video channel just for dungeonRun / loz:tsk.
-post video to this channel, link back to repo.readme.
-
-
-record gifs:
-digging ditches and filling
-
-
-
-
-
-
 we can handle plot/level changes like this:
 we have a boolean that represents this levels state.
 false loads xml data A. true loads xml data B.
@@ -320,14 +282,6 @@ that happened in the story, or something the player did.
 -perhaps the player killed an NPC.
 -perhaps the player irrigated a farmers crops (B would have filled ditches, A wouldn't).
 -theres alot we can do here.
-
-
-
-
-
-
-
-
 
 
 
@@ -350,17 +304,7 @@ objs from certain angles / directions.
 
 
 
-
-
-
-
-
-
-
-
-
 Metal Gear ++
-
 if you're carrying an obj and press B while not moving, link
 should squat down and the heldObj should sort mostly over his head,
 and he should flip the actor.hidden boolean. then update functions_AI
@@ -374,46 +318,11 @@ than being able to dive while holding an obj. lol.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 in hard mode, pits should deal 1 damage.
 in normal mode, pits deal no damage.
 
 
 
-
-
-
-
-
-
-
-
-
-easy underground dungeon idea:
-we have an overworld pit with stairs sprite.
-hide this randomly under an object that can be destroyed,
-like a bush on a level. for now, this object will
-create a new type of dungeon, an underground dungeon.
-this is just a single critical path from hub room to exit room.
-just a hub room, then an exit room south of it.
-in the hub room, a miniboss will spawn, with a chest.
-the chest will have the dungeon map, in case we decide to expand
-this dugneon algorithm to be more than 2 rooms in the future.
-but, this reverses the dungeon - leading to the exit.
-upon exit, we simply return hero to his last overworld location,
-which should be stored in save data.
-*these dungeons should be blob enemy only, because this is story*
 
 
 

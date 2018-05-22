@@ -85,6 +85,23 @@ namespace DungeonRun
 
 
 
+        #region Signpost Dialogs
+
+        public static List<Dialog> Signpost_Standard = new List<Dialog>
+        {
+            new Dialog(ObjType.Hero_Idle, "Hmm..",
+                "There doesn't seem to be anything written down..\n" +
+                "It's just empty.",
+                Assets.sfxTextLetter, false, false, false)
+        };
+
+        #endregion
+
+
+
+
+
+
 
         #region Dungeon dialogs
 

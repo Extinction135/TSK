@@ -484,6 +484,20 @@ namespace DungeonRun
             #endregion
 
 
+            #region Dungeon_Signpost
+
+            else if (Type == ObjType.Dungeon_Signpost)
+            {
+                Obj.compCollision.offsetY = +4; Obj.compCollision.rec.Height = 4;
+                Obj.compSprite.zOffset = +4;
+                Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_Signpost;
+                Obj.sfx.hit = Assets.sfxTapMetallic;
+                Obj.canBeSaved = true;
+            }
+
+            #endregion
+
+
             #region Blocks
 
             else if (Type == ObjType.Dungeon_BlockDark || Type == ObjType.Dungeon_BlockLight)

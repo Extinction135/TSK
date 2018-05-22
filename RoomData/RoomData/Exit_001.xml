@@ -3,6 +3,12 @@
   <type>Exit</type>
   <objs>
     <ObjXmlData>
+      <type>Dungeon_Signpost</type>
+      <direction>Down</direction>
+      <posX>88</posX>
+      <posY>88</posY>
+    </ObjXmlData>
+    <ObjXmlData>
       <type>Dungeon_Statue</type>
       <direction>Down</direction>
       <posX>56</posX>

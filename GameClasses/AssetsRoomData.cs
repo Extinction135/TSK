@@ -1839,6 +1839,7 @@ namespace DungeonRun
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Exit;
 				room.objs = new List<ObjXmlData>();
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Signpost; Obj.direction = Direction.Down; Obj.posX = 88; Obj.posY = 88; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Statue; Obj.direction = Direction.Down; Obj.posX = 56; Obj.posY = 40; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Statue; Obj.direction = Direction.Down; Obj.posX = 120; Obj.posY = 56; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Statue; Obj.direction = Direction.Down; Obj.posX = 56; Obj.posY = 120; room.objs.Add(Obj);}
@@ -1855,6 +1856,7 @@ namespace DungeonRun
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Exit;
 				room.objs = new List<ObjXmlData>();
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Signpost; Obj.direction = Direction.Down; Obj.posX = 88; Obj.posY = 88; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Coastline_Corner_Exterior; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 24; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Coastline_Corner_Exterior; Obj.direction = Direction.Left; Obj.posX = 152; Obj.posY = 24; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Coastline_Corner_Exterior; Obj.direction = Direction.Right; Obj.posX = 24; Obj.posY = 152; room.objs.Add(Obj);}

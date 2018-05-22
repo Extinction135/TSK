@@ -231,9 +231,67 @@ namespace DungeonRun
         public static void InteractRecWith(GameObject Obj)
         {   //this is the hero's interactionRec colliding with Obj
             //we know this is hero, and hero is in ActorState.Interact
-
-
             //Objects that can be interacted with from Land & Water
+
+
+            //obj.group checks
+
+            #region Chests
+
+            if (Obj.group == ObjGroup.Chest)
+            {
+
+                #region Reward the hero with chest contents
+
+                if (Obj.type == ObjType.Dungeon_ChestKey)
+                {
+                    Functions_Particle.Spawn(ObjType.Particle_RewardKey, Pool.hero);
+                    Level.bigKey = true;
+                    if (Flags.ShowDialogs)
+                    { ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.HeroGotKey)); }
+                }
+                else if (Obj.type == ObjType.Dungeon_ChestMap)
+                {
+                    Functions_Particle.Spawn(ObjType.Particle_RewardMap, Pool.hero);
+                    Level.map = true;
+                    if (Flags.ShowDialogs)
+                    { ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.HeroGotMap)); }
+                }
+
+                #endregion
+
+
+                if (Obj.type != ObjType.Dungeon_ChestEmpty)
+                {   //if the chest is not empty, play the reward animation
+                    Assets.Play(Assets.sfxChestOpen);
+                    Functions_GameObject.SetType(Obj, ObjType.Dungeon_ChestEmpty);
+                    Functions_Particle.Spawn( //show the chest was opened
+                        ObjType.Particle_Attention,
+                        Obj.compSprite.position.X,
+                        Obj.compSprite.position.Y);
+                    Functions_Actor.SetRewardState(Pool.hero);
+                }
+            }
+
+            #endregion
+
+
+            #region Vendors
+
+            else if (Obj.group == ObjGroup.Vendor)
+            {   //some vendors do not sell items, so check vendor types
+                if (Obj.type == ObjType.Vendor_NPC_Story) //for now this is default dialog
+                {   //figure out what part of the story the hero is at, pass this dialog
+                    ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Guide));
+                }
+                else { ScreenManager.AddScreen(new ScreenVendor(Obj)); }
+                //vendor ad objects are ignored, because they aren't of Group.Vendor
+            }
+
+            #endregion
+
+
+            //obj.type checks
 
             #region Dungeon Entrances
 
@@ -294,69 +352,26 @@ namespace DungeonRun
             #endregion
 
 
-            #region Chests
+            #region Signposts
 
-            else if (Obj.group == ObjGroup.Chest)
+            else if (Obj.type == ObjType.Dungeon_Signpost)
             {
-
-                #region Reward the hero with chest contents
-
-                if (Obj.type == ObjType.Dungeon_ChestKey)
-                {
-                    Functions_Particle.Spawn(ObjType.Particle_RewardKey, Pool.hero);
-                    Level.bigKey = true;
-                    if (Flags.ShowDialogs)
-                    { ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.HeroGotKey)); }
-                }
-                else if (Obj.type == ObjType.Dungeon_ChestMap)
-                {
-                    Functions_Particle.Spawn(ObjType.Particle_RewardMap, Pool.hero);
-                    Level.map = true;
-                    if (Flags.ShowDialogs)
-                    { ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.HeroGotMap)); }
-                }
-
-                #endregion
-
-
-                if (Obj.type != ObjType.Dungeon_ChestEmpty)
-                {   //if the chest is not empty, play the reward animation
-                    Assets.Play(Assets.sfxChestOpen);
-                    Functions_GameObject.SetType(Obj, ObjType.Dungeon_ChestEmpty);
-                    Functions_Particle.Spawn( //show the chest was opened
-                        ObjType.Particle_Attention,
-                        Obj.compSprite.position.X,
-                        Obj.compSprite.position.Y);
-                    Functions_Actor.SetRewardState(Pool.hero);
-                }
+                if (Flags.ShowDialogs)
+                { ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Signpost_Standard)); }
             }
 
             #endregion
 
 
-            #region Vendors
-
-            else if (Obj.group == ObjGroup.Vendor)
-            {   //some vendors do not sell items, so check vendor types
-                if (Obj.type == ObjType.Vendor_NPC_Story) //for now this is default dialog
-                {   //figure out what part of the story the hero is at, pass this dialog
-                    ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Guide));
-                }
-                else { ScreenManager.AddScreen(new ScreenVendor(Obj)); }
-                //vendor ad objects are ignored, because they aren't of Group.Vendor
-            }
-
-            #endregion
 
 
             if (Pool.hero.swimming) { return; }
-
 
             //Objects that can only be interacted with from Land
 
             #region Carry-able Objects
 
-            else if (Obj.type == ObjType.Dungeon_Pot
+            if (Obj.type == ObjType.Dungeon_Pot
                 || Obj.type == ObjType.Wor_Pot
                 || Obj.type == ObjType.Wor_Bush)
             {
@@ -367,20 +382,6 @@ namespace DungeonRun
 
 
             #region Push-able Objects
-
-            /*
-            else if (Obj.type == ObjType.Dungeon_BlockLight
-                || Obj.type == ObjType.Dungeon_Barrel
-                || Obj.type == ObjType.Dungeon_Statue
-                || Obj.type == ObjType.Wor_TableStone
-                || Obj.type == ObjType.Wor_TableWood
-                || Obj.type == ObjType.Wor_Bookcase
-                || Obj.type == ObjType.Wor_Shelf)
-            {
-                Functions_Actor.Grab(Obj, Pool.hero);
-            }
-            */
-
 
             if(Obj.compMove.moveable)
             {

@@ -576,6 +576,7 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Pot; obj.direction = Direction.Down; obj.posX = 472; obj.posY = 344; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Pot; obj.direction = Direction.Down; obj.posX = 408; obj.posY = 456; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Pot; obj.direction = Direction.Down; obj.posX = 424; obj.posY = 472; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Signpost; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 488; Colliseum.objs.Add(obj);}
 			#endregion
 
 

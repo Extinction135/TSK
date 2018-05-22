@@ -203,6 +203,7 @@ namespace DungeonRun
         Dungeon_ChestMap, //not placeable, procedurally set
         Dungeon_ChestEmpty, //just empty
 
+        Dungeon_Signpost,
 
         Dungeon_BlockDark,
         Dungeon_BlockLight,

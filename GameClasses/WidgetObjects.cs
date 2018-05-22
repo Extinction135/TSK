@@ -162,7 +162,7 @@ namespace DungeonRun
             //row 8
             Functions_GameObject.SetType(objList[28], ObjType.Dungeon_PitTrap);
             Functions_GameObject.SetType(objList[29], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[30], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[30], ObjType.Dungeon_Signpost);
             Functions_GameObject.SetType(objList[31], ObjType.Dungeon_LeverOff);
 
             //row 9

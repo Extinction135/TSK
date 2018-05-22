@@ -95,10 +95,7 @@ namespace DungeonRun
         public static List<Byte4> Dungeon_Pot = new List<Byte4> { new Byte4(8, 6, 0, 0) };
         public static List<Byte4> Dungeon_ChestClosed = new List<Byte4> { new Byte4(9, 6, 0, 0) };
         public static List<Byte4> Dungeon_ChestOpened = new List<Byte4> { new Byte4(10, 6, 0, 0) };
-        //
-
-
-
+        public static List<Byte4> Dungeon_Signpost = new List<Byte4> { new Byte4(6, 6, 0, 0) };
 
 
         public static List<Byte4> Dungeon_Pit = new List<Byte4> { new Byte4(8, 7, 0, 0) };
