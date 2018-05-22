@@ -161,48 +161,17 @@ TODAY:
 
 
 
-Boss: Big Eye with Tentacles
 
-created BigBossEye actor type value.
-added animFrames, actor def, added to boss
-room spawn routine. created new ai type: boss.
-implemented boss ai for big eye. improved
-big eye's attack animation.
 
-fixed a bug with UseItem() that defaulted
-the actors state to idle if the function didn't
-find a useable item - sometimes we want to be
-able to put the actor into an attack state
-without using an item! like the big eye boss.
-so, when trying to set the big eye boss into
-an attack state, he would default to idle unless
-he was using an actual weapon.
+Textures++
 
-Actors++
-updated SetDeathState() to handle hero and boss, then
-by default handle all other actors, which makes this
-routine much easier to maintain and expand later on.
+removed blob boss texture from game.
+updated forest dungeon texture in Dx & UWP.
+playtested.
 
-Big Eye Boss' Mob : Exploding Seekers
-created actorType enum value.
-added animFrames, actor def.
-updated AI to split enemy attacks between
-blob and new seeker enemy: seekers explode,
-while blobs use the traditional weapon system.
-updated big eye boss to spawn exploding seekers.
-playtested, working but needs polish.
 
-seekers can now chain explosions, because they
-create explosions in their death state.
 
-updated SetDeathState() to release non-hero and non-boss
-actors - these actors are transitory and their corpses
-should not remain on the ground post-mortem. the hero and
-any boss corpse should remain for screen closing ceremonies.
 
-Improvements++
-fixed opacity on boss's shadow.
-updated explosions to deal 2 damage, instead of 3.
 
 
 
