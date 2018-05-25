@@ -138,52 +138,16 @@ TODAY:
 
 
 
-Bug - Miniboss Reward
 
-when link defeats the blackeye miniboss, he should be placed
-into a reward state, with the map sprite over his head. this
-doesn't happen properly right now. >> and thats because I wasn't
-calling SetRewardState() on the hero, instead choosing to
-partially re-implement it and then wonder why it doesn't work.
+Bosses++
 
-fixed, tested, working as expected now.
-
-Miniboss++
-below 50% health, blackeye often creates ground fires 
-where he goes, as a visual tell that his health is low.
-raised blackeye's health to 15, from 10.
-
-Boss Phases++
-moved responsibility for boss dash and move speed out of
-Actor.SetType() and into Functions_Ai(), so the dash and
-move speeds can be changed based on the actor's health.
-this allows bosses to get faster, both in base movement
-and dash speeds, without adding in some weird multiplier.
-
-Bug: BlackEye's hitBox is 16x16, which exposes a flaw
-in the Projectile.Spawn() method: doesn't consider the
-actor's hitBox when spawning a fireball, leading to an
-interaction the following frame, leading to damage. the
-fix is to refactor Pro.Spawn(), but for now we'll just
-comment out blackeye's hitbox code so it defaults to 
-the hero's hitbox, so blackeye can safely shoot fireballs.
-it also makes him harder to hit, thus harder to kill.
-
-increased the sorting offset for rising smoke particles
-from 16 to 32. this means they will sort 'over' things
-more often. this is to fix an issue where smoke doesn't 
-sort over the miniboss when he enters his 2nd phase.
-
-lots of playtesting minibosses 2nd phase smoking
-effect, looking good. should be a hard, fun battle.
-note that you dont have to defeat the miniboss to
-exit the hubroom or progress thru the dungeon,
-he is entirely optional - but you won't get the map!
-
-
-
-
-
+improved distinction between phases for boss
+and miniboss. now both bosses 'smoke' when
+they are at low health, visually signaling
+to player that the boss is 'enraged'. this
+assumption makes sense because the bosses
+both become faster and more aggressive in 
+their attacks towards the hero.
 
 
 

@@ -130,13 +130,13 @@ namespace DungeonRun
                 if (Functions_Random.Int(0, 100) > 80) { Actor.compInput.dash = true; }
 
                 //2 Phase - based on health, change how actor behaves
-                if (Actor.health > 10) //hardline of 10
+                if (Actor.health > 5) //hardline of 5
                 {
                     //move slowly
                     Actor.walkSpeed = 0.05f;
                     Actor.dashSpeed = 0.30f;
 
-                    if (Functions_Random.Int(0, 100) > 85)
+                    if (Functions_Random.Int(0, 100) > 95)
                     {   //shoot fireballs at hero
                         Functions_Projectile.Spawn(ObjType.ProjectileFireball,
                             Actor.compMove,
@@ -144,17 +144,17 @@ namespace DungeonRun
                         Actor.compInput.attack = true;
                     }
                 }
-                else //actor is below 50% health
+                else //actor is at low health
                 {
                     //move very fast
-                    Actor.walkSpeed = 0.25f;
-                    Actor.dashSpeed = 0.80f;
+                    Actor.walkSpeed = 0.20f;
+                    Actor.dashSpeed = 0.50f;
 
                     //smoke (each frame) as a sign of nearing defeat
                     Functions_Particle.Spawn(
-                        ObjType.Particle_RisingSmoke,
-                        Actor.compSprite.position.X + 6 + Functions_Random.Int(-6, 6),
-                        Actor.compSprite.position.Y - 12 + Functions_Random.Int(-4, 4)
+                        ObjType.Particle_ImpactDust,
+                        Actor.compSprite.position.X + 6 + Functions_Random.Int(-8, 8),
+                        Actor.compSprite.position.Y - 10 + Functions_Random.Int(-5, 5)
                     );
 
                     if (Functions_Random.Int(0, 100) > 75)
@@ -180,41 +180,48 @@ namespace DungeonRun
 
 
                 //3 Phase - based on health, change how actor behaves
-                if(Actor.health > (Actor.health / 3) * 2) //>60%
+                if(Actor.health > 20) 
                 {
                     //move slowly
                     Actor.walkSpeed = 0.05f;
                     Actor.dashSpeed = 0.30f;
 
-                    if (Functions_Random.Int(0, 100) > 95)
+                    if (Functions_Random.Int(0, 100) > 90)
                     {   //rarely spawn mob
                         Functions_Actor.SpawnActor(ActorType.Boss_BigEye_Mob, actorPos);
                         Actor.compInput.attack = true;
                     }
                 }
-                else if(Actor.health > Actor.health / 3) //>30%
+                else if(Actor.health > 10) 
                 {
                     //move faster
                     Actor.walkSpeed = 0.25f;
                     Actor.dashSpeed = 0.30f;
 
-                    if (Functions_Random.Int(0, 100) > 75)
+                    if (Functions_Random.Int(0, 100) > 70)
                     {   //regularly spawn mob
                         Functions_Actor.SpawnActor(ActorType.Boss_BigEye_Mob, actorPos);
                         Actor.compInput.attack = true;
                     }
                 }
-                else //actor is below 30% health
+                else //actor is below 10 health
                 {
                     //dash faster too
                     Actor.walkSpeed = 0.25f;
                     Actor.dashSpeed = 0.80f;
                     
-                    if (Functions_Random.Int(0, 100) > 50)
+                    if (Functions_Random.Int(0, 100) > 40)
                     {   //often spawn mob
                         Functions_Actor.SpawnActor(ActorType.Boss_BigEye_Mob, actorPos);
                         Actor.compInput.attack = true;
                     }
+
+                    //smoke (each frame) as a sign of nearing defeat
+                    Functions_Particle.Spawn(
+                        ObjType.Particle_ImpactDust,
+                        Actor.compSprite.position.X + 6 + Functions_Random.Int(-8, 8),
+                        Actor.compSprite.position.Y - 10 + Functions_Random.Int(-5, 5)
+                    );
                 }
             }
 

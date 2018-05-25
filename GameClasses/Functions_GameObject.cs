@@ -1406,7 +1406,7 @@ namespace DungeonRun
             else if (Type == ObjType.Particle_ImpactDust)
             {
                 Obj.compSprite.cellSize.X = 8; Obj.compSprite.cellSize.Y = 8; //nonstandard size
-                Obj.compSprite.zOffset = 16;
+                Obj.compSprite.zOffset = 32;
                 Obj.group = ObjGroup.Particle;
                 Obj.lifetime = 24; //in frames
                 Obj.compAnim.speed = 5; //in frames
