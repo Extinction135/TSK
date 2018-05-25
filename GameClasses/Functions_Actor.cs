@@ -14,6 +14,10 @@ namespace DungeonRun
 {
     public static class Functions_Actor
     {
+        static ObjType throwType;
+
+
+
         public static void ResetActor(Actor Actor)
         {   //reset actor to default living state
             Actor.stateLocked = false;
@@ -27,13 +31,17 @@ namespace DungeonRun
             Actor.compMove.grounded = true; //most actors move on ground
             //reset actor's collisions
             Actor.compCollision.blocking = true;
-            SetCollisionRec(Actor);
             //reset actor's sprite 
             Actor.compSprite.zOffset = 0;
             Actor.compSprite.scale = 1.0f;
             //assume standard actor
             Actor.compSprite.cellSize.X = 16;
             Actor.compSprite.cellSize.Y = 16;
+            //setup hitbox for standard 16x16 actor
+            Actor.compCollision.rec.Width = 12;
+            Actor.compCollision.rec.Height = 8;
+            Actor.compCollision.offsetX = -6;
+            Actor.compCollision.offsetY = 0;
             //assume standard search/attack radius
             Actor.chaseRadius = 16 * 5;
             Actor.attackRadius = 14;
@@ -106,12 +114,26 @@ namespace DungeonRun
                 Assets.Play(Assets.sfxExplosionsMultiple); //play explosions
             }
             else if(Actor.type == ActorType.Boss_BigEye_Mob)
-            {
+            {   //these enemies explode upon death
                 Functions_Projectile.Spawn(
                     ObjType.ProjectileExplosion,
                     Actor.compMove, Direction.Down);
                 Functions_Loot.SpawnLoot(Actor.compSprite.position); //loot!
                 Functions_Pool.Release(Actor);
+            }
+            else if(Actor.type == ActorType.MiniBoss_BlackEye)
+            {
+                if(Level.map == false) //make sure hero doesn't already have map
+                {
+                    Level.map = true; //flip map true
+                    //pause hero into map reward state
+                    Functions_Movement.StopMovement(Pool.hero.compMove);
+                    Pool.hero.stateLocked = true;
+                    Pool.hero.lockTotal = 10; //required to show the pickup animation
+                    Functions_Particle.Spawn(ObjType.Particle_RewardMap, Pool.hero);
+                    if (Flags.ShowDialogs)
+                    { ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.HeroGotMap)); }
+                }
             }
             else
             {   //this is all other actor types!
@@ -155,8 +177,15 @@ namespace DungeonRun
                 Actor.compCollision.offsetX = -12;
                 Actor.compCollision.offsetY = 0;
             }
+            else if(Actor.type == ActorType.MiniBoss_BlackEye)
+            {
+                Actor.compCollision.rec.Width = 16;
+                Actor.compCollision.rec.Height = 16;
+                Actor.compCollision.offsetX = -8;
+                Actor.compCollision.offsetY = 0;
+            }
             else
-            {   //hero and blob actors have same hitBox
+            {   //hero/blob/etc actors have same hitBox (for 16x16 sprite)
                 Actor.compCollision.rec.Width = 12;
                 Actor.compCollision.rec.Height = 8;
                 Actor.compCollision.offsetX = -6;
@@ -171,9 +200,6 @@ namespace DungeonRun
             Actor.armor = MenuItemType.Unknown;
             Actor.equipment = MenuItemType.Unknown;
         }
-
-
-
 
         public static void SetAnimationGroup(Actor Actor)
         {
@@ -350,8 +376,6 @@ namespace DungeonRun
             else if (Actor.direction == Direction.UpLeft) { Actor.compAnim.currentAnimation = Actor.animGroup.left; }
         }
 
-
-
         public static void DisplayWetFeet(Actor Actor)
         {
             //bail if actor is dead, most dead actors dont display anything
@@ -364,11 +388,6 @@ namespace DungeonRun
                 { Assets.Play(Assets.sfxWaterWalk); }
             }
         }
-
-
-
-
-
 
         public static void Breathe(Actor Actor)
         {
@@ -383,9 +402,6 @@ namespace DungeonRun
                 }
             }
         }
-
-
-
 
         public static void Pickup(GameObject Obj, Actor Act)
         {
@@ -420,8 +436,6 @@ namespace DungeonRun
             Assets.Play(Assets.sfxActorLand); //temp sfx
         }
 
-
-        static ObjType throwType;
         public static void Throw(Actor Act)
         {   //put actor into throw state
             Act.carrying = false;
@@ -450,19 +464,14 @@ namespace DungeonRun
             Act.heldObj = null; //has to be last line, we lose ref to Obj
         }
 
-
         public static void Grab(GameObject Obj, Actor Act)
         {
             Act.grabbing = true;
             Act.grabbedObj = Obj;
         }
-        
-
-
-
 
         public static void Transform(Actor Actor, ActorType Type)
-        {
+        {   //transforms one actor into another
             SetType(Actor, Type);
             //update hero's loadout
             if (Actor == Pool.hero)
@@ -475,17 +484,11 @@ namespace DungeonRun
 
 
 
-
-
-
-
-
-
-
         public static void SetType(Actor Actor, ActorType Type)
         {
             ResetActor(Actor);
             Actor.type = Type;
+            SetCollisionRec(Actor);
 
 
             #region Hero
@@ -529,24 +532,27 @@ namespace DungeonRun
             #endregion
 
 
-            #region BigEye Boss
+            #region Boss - BigEye
 
             else if (Type == ActorType.Boss_BigEye)
             {
                 Actor.aiType = ActorAI.Boss_BigEye;
+                Actor.compMove.grounded = false; //is flying
+
                 Actor.enemy = true;
                 Actor.compSprite.texture = Assets.forestLevelSheet;
                 Actor.animList = AnimationFrames.Boss_BigEye_Animations;
                 Actor.health = 30;
                 ResetActorLoadout(Actor);
-                Actor.walkSpeed = 0.50f;
-                Actor.dashSpeed = 1.00f;
-                //this actor is a boss (double size)
+                Actor.walkSpeed = 0.25f;
+                Actor.dashSpeed = 0.80f;
+                //this actor is a 2x3 boss 
                 Actor.compSprite.cellSize.X = 16 * 2;
                 Actor.compSprite.cellSize.Y = 16 * 3;
                 //actor is floating in air
                 Actor.compSprite.zOffset = 16;
                 //set actor sound effects
+                Actor.sfxDash = null; //silent dash
                 Actor.sfx.hit = Assets.sfxBossHit;
                 Actor.sfx.kill = Assets.sfxBossHitDeath;
             }
@@ -572,6 +578,36 @@ namespace DungeonRun
                 Actor.sfx.kill = Assets.sfxEnemyKill;
                 //big chase radius so they almost always see hero
                 Actor.chaseRadius = 16 * 10; //16*5 = default
+            }
+
+            #endregion
+
+
+            #region Miniboss - Blackeye
+
+            else if (Type == ActorType.MiniBoss_BlackEye)
+            {
+                Actor.aiType = ActorAI.Miniboss_Blackeye;
+                Actor.compMove.grounded = false; //is flying
+
+                Actor.enemy = true;
+                Actor.compSprite.texture = Assets.forestLevelSheet;
+                Actor.animList = AnimationFrames.MiniBoss_BlackEye_Animations;
+                Actor.health = 10;
+                ResetActorLoadout(Actor);
+                Actor.walkSpeed = 0.25f;
+                Actor.dashSpeed = 0.80f;
+                //this actor is a 2x2 miniboss
+                Actor.compSprite.cellSize.X = 16 * 2;
+                Actor.compSprite.cellSize.Y = 16 * 2;
+
+                Actor.compCollision.offsetY = -4;
+                //actor is floating in air
+                Actor.compSprite.zOffset = 16;
+                //set actor sound effects
+                Actor.sfxDash = null; //silent dash
+                Actor.sfx.hit = Assets.sfxBossHit;
+                Actor.sfx.kill = Assets.sfxEnemyKill;
             }
 
             #endregion

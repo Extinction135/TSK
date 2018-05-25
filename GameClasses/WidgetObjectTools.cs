@@ -224,11 +224,6 @@ namespace DungeonRun
                                 currentObjRef.type = ObjType.Dungeon_ChestKey;
 
                             }
-                            else if (Functions_Level.currentRoom.roomID == RoomID.Hub ||
-                                Functions_Level.currentRoom.roomID == RoomID.DEV_Hub)
-                            {   //convert to map chest
-                                currentObjRef.type = ObjType.Dungeon_ChestMap;
-                            }
                             else
                             {   //tell user we cant add a chest to this type of room
                                 ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.CantAddChests));

@@ -75,9 +75,6 @@ namespace DungeonRun
                     {   //actor is close enough to hero to attack
                         if (Functions_Random.Int(0, 100) > 50) //randomly proceed
                         {
-
-
-
                             //enemies vary their attacks based on type
 
                             #region Enemies that attack with weapons / items
@@ -94,7 +91,7 @@ namespace DungeonRun
                             #endregion
 
 
-                            #region Enemies that suicide bomb
+                            #region Enemies that explode when near target
 
                             else if(Actor.type == ActorType.Boss_BigEye_Mob)
                             {
@@ -102,7 +99,6 @@ namespace DungeonRun
                             }
 
                             #endregion
-
 
                         }
                     }
@@ -123,39 +119,83 @@ namespace DungeonRun
             #endregion
 
 
+            //cooler ai
+
+            #region Miniboss AI
+
+            else if (Actor.aiType == ActorAI.Miniboss_Blackeye)
+            {
+                //by default, choose a random direction to move in & randomly dash
+                Actor.compInput.direction = (Direction)Functions_Random.Int(0, 8);
+                if (Functions_Random.Int(0, 100) > 80) { Actor.compInput.dash = true; }
+
+
+                //2 Phase - based on health, change how actor behaves
+                if (Actor.health > Actor.health / 2) //>50%
+                {
+                    if (Functions_Random.Int(0, 100) > 95)
+                    {
+                        Functions_Projectile.Spawn(ObjType.ProjectileFireball,
+                            Actor.compMove,
+                            Functions_Direction.GetCardinalDirectionToHero(Actor.compSprite.position));
+                        Actor.compInput.attack = true;
+                    }
+                }
+                else //actor is below 50% health
+                {
+                    Actor.compMove.speed *= 1.06f; //speed bonus
+                    if (Functions_Random.Int(0, 100) > 85)
+                    {
+                        Functions_Projectile.Spawn(ObjType.ProjectileFireball,
+                            Actor.compMove,
+                            Functions_Direction.GetCardinalDirectionToHero(Actor.compSprite.position));
+                        Actor.compInput.attack = true;
+                    }
+                }
+
+            }
+
+            #endregion
+
+
             #region Boss AI
 
             else if (Actor.aiType == ActorAI.Boss_BigEye)
             {
                 //by default, choose a random direction to move in & randomly dash
                 Actor.compInput.direction = (Direction)Functions_Random.Int(0, 8);
-                if (Functions_Random.Int(0, 100) > 90) { Actor.compInput.dash = true; }
+                if (Functions_Random.Int(0, 100) > 70) { Actor.compInput.dash = true; }
 
-                if (Functions_Random.Int(0, 100) > 90)
-                {   //push boss towards center of room
-                    Functions_Movement.Push(Actor.compMove,
-                        Functions_Direction.GetDiagonalToCenterOfRoom(
-                            Actor.compSprite.position), 10.00f);
-                    //note this correcting push with fire
-                    Functions_Projectile.Spawn(ObjType.ProjectileGroundFire,
-                      Actor.compSprite.position.X,
-                      Actor.compSprite.position.Y);
-                }
 
-                //if boss is low on health, speed him up
-                if (Actor.health < 3) { Actor.compMove.speed *= 1.06f; } 
-
-                //rarely spawn a blob mob at boss location
-                if (Functions_Random.Int(0, 100) > 80)
+                //3 Phase - based on health, change how actor behaves
+                if(Actor.health > (Actor.health / 3) * 2) //>60%
                 {
-                    Functions_Actor.SpawnActor(ActorType.Boss_BigEye_Mob, actorPos);
-                    Actor.compInput.attack = true;
+                    if (Functions_Random.Int(0, 100) > 95)
+                    {   //rarely spawn mob
+                        Functions_Actor.SpawnActor(ActorType.Boss_BigEye_Mob, actorPos);
+                        Actor.compInput.attack = true;
+                    }
+                }
+                else if(Actor.health > Actor.health / 3) //>30%
+                {
+                    if (Functions_Random.Int(0, 100) > 75)
+                    {   //regularly spawn mob
+                        Functions_Actor.SpawnActor(ActorType.Boss_BigEye_Mob, actorPos);
+                        Actor.compInput.attack = true;
+                    }
+                }
+                else //actor is below 30% health
+                {
+                    Actor.compMove.speed *= 1.06f; //speed bonus
+                    if (Functions_Random.Int(0, 100) > 50)
+                    {   //often spawn mob
+                        Functions_Actor.SpawnActor(ActorType.Boss_BigEye_Mob, actorPos);
+                        Actor.compInput.attack = true;
+                    }
                 }
             }
 
             #endregion
-
-
 
         }
 

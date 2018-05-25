@@ -1919,7 +1919,15 @@ namespace DungeonRun
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Hub;
 				room.objs = new List<ObjXmlData>();
-				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_ChestMap; Obj.direction = Direction.Down; Obj.posX = 152; Obj.posY = 152; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 264; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 40; Obj.posY = 280; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 264; Obj.posY = 280; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 280; Obj.posY = 264; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 280; Obj.posY = 40; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 264; Obj.posY = 24; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 40; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 40; Obj.posY = 24; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 136; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Coastline_Straight; Obj.direction = Direction.Down; Obj.posX = 152; Obj.posY = 184; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Coastline_Straight; Obj.direction = Direction.Down; Obj.posX = 136; Obj.posY = 184; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Coastline_Straight; Obj.direction = Direction.Down; Obj.posX = 168; Obj.posY = 184; room.objs.Add(Obj);}
@@ -2032,18 +2040,60 @@ namespace DungeonRun
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Coastline_Corner_Exterior; Obj.direction = Direction.Left; Obj.posX = 232; Obj.posY = 72; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Coastline_Corner_Exterior; Obj.direction = Direction.Up; Obj.posX = 232; Obj.posY = 232; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Coastline_Corner_Exterior; Obj.direction = Direction.Right; Obj.posX = 72; Obj.posY = 232; room.objs.Add(Obj);}
-				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Bush; Obj.direction = Direction.Down; Obj.posX = 136; Obj.posY = 136; room.objs.Add(Obj);}
-				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Bush; Obj.direction = Direction.Down; Obj.posX = 168; Obj.posY = 136; room.objs.Add(Obj);}
-				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Bush; Obj.direction = Direction.Down; Obj.posX = 136; Obj.posY = 168; room.objs.Add(Obj);}
-				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Bush; Obj.direction = Direction.Down; Obj.posX = 168; Obj.posY = 168; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 152; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 168; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 280; Obj.posY = 136; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 280; Obj.posY = 152; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_TorchUnlit; Obj.direction = Direction.Down; Obj.posX = 184; Obj.posY = 24; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 280; room.objs.Add(Obj);}
-				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 280; Obj.posY = 280; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 24; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 280; Obj.posY = 24; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_TorchLit; Obj.direction = Direction.Down; Obj.posX = 120; Obj.posY = 8; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_TorchLit; Obj.direction = Direction.Down; Obj.posX = 120; Obj.posY = 24; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_TorchLit; Obj.direction = Direction.Down; Obj.posX = 184; Obj.posY = 8; room.objs.Add(Obj);}
-				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 24; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 280; Obj.posY = 280; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 280; Obj.posY = 168; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 152; Obj.posY = 280; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 136; Obj.posY = 280; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 168; Obj.posY = 280; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 56; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 72; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 88; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 248; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 232; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 216; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 200; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 184; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 120; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 104; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 184; Obj.posY = 280; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 200; Obj.posY = 280; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 216; Obj.posY = 280; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 232; Obj.posY = 280; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 248; Obj.posY = 280; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 56; Obj.posY = 280; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 72; Obj.posY = 280; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 88; Obj.posY = 280; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 104; Obj.posY = 280; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 120; Obj.posY = 280; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 280; Obj.posY = 248; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 280; Obj.posY = 232; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 280; Obj.posY = 216; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 280; Obj.posY = 200; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 280; Obj.posY = 184; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 280; Obj.posY = 56; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 280; Obj.posY = 72; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 280; Obj.posY = 88; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 280; Obj.posY = 104; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 280; Obj.posY = 120; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 56; Obj.posY = 24; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 72; Obj.posY = 24; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 88; Obj.posY = 24; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 104; Obj.posY = 24; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 200; Obj.posY = 24; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 216; Obj.posY = 24; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 232; Obj.posY = 24; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 248; Obj.posY = 24; room.objs.Add(Obj);}
 				 hubRooms.Add(room);
 			}
 			#endregion
@@ -2055,7 +2105,15 @@ namespace DungeonRun
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Hub;
 				room.objs = new List<ObjXmlData>();
-				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_ChestMap; Obj.direction = Direction.Down; Obj.posX = 152; Obj.posY = 152; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 264; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 40; Obj.posY = 280; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 264; Obj.posY = 280; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 280; Obj.posY = 264; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 280; Obj.posY = 40; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 264; Obj.posY = 24; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 40; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 40; Obj.posY = 24; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 136; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Coastline_Straight; Obj.direction = Direction.Down; Obj.posX = 152; Obj.posY = 184; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Coastline_Straight; Obj.direction = Direction.Down; Obj.posX = 136; Obj.posY = 184; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Coastline_Straight; Obj.direction = Direction.Down; Obj.posX = 168; Obj.posY = 184; room.objs.Add(Obj);}
@@ -2168,18 +2226,60 @@ namespace DungeonRun
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Coastline_Corner_Exterior; Obj.direction = Direction.Left; Obj.posX = 232; Obj.posY = 72; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Coastline_Corner_Exterior; Obj.direction = Direction.Up; Obj.posX = 232; Obj.posY = 232; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Coastline_Corner_Exterior; Obj.direction = Direction.Right; Obj.posX = 72; Obj.posY = 232; room.objs.Add(Obj);}
-				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Bush; Obj.direction = Direction.Down; Obj.posX = 136; Obj.posY = 136; room.objs.Add(Obj);}
-				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Bush; Obj.direction = Direction.Down; Obj.posX = 168; Obj.posY = 136; room.objs.Add(Obj);}
-				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Bush; Obj.direction = Direction.Down; Obj.posX = 136; Obj.posY = 168; room.objs.Add(Obj);}
-				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Bush; Obj.direction = Direction.Down; Obj.posX = 168; Obj.posY = 168; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 152; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 168; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 280; Obj.posY = 136; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 280; Obj.posY = 152; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_TorchUnlit; Obj.direction = Direction.Down; Obj.posX = 184; Obj.posY = 24; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 280; room.objs.Add(Obj);}
-				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 280; Obj.posY = 280; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 24; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 280; Obj.posY = 24; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_TorchLit; Obj.direction = Direction.Down; Obj.posX = 120; Obj.posY = 8; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_TorchLit; Obj.direction = Direction.Down; Obj.posX = 120; Obj.posY = 24; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_TorchLit; Obj.direction = Direction.Down; Obj.posX = 184; Obj.posY = 8; room.objs.Add(Obj);}
-				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 24; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 280; Obj.posY = 280; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 280; Obj.posY = 168; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 152; Obj.posY = 280; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 136; Obj.posY = 280; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 168; Obj.posY = 280; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 56; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 72; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 88; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 248; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 232; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 216; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 200; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 184; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 120; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 104; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 184; Obj.posY = 280; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 200; Obj.posY = 280; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 216; Obj.posY = 280; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 232; Obj.posY = 280; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 248; Obj.posY = 280; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 56; Obj.posY = 280; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 72; Obj.posY = 280; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 88; Obj.posY = 280; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 104; Obj.posY = 280; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 120; Obj.posY = 280; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 280; Obj.posY = 248; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 280; Obj.posY = 232; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 280; Obj.posY = 216; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 280; Obj.posY = 200; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 280; Obj.posY = 184; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 280; Obj.posY = 56; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 280; Obj.posY = 72; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 280; Obj.posY = 88; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 280; Obj.posY = 104; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 280; Obj.posY = 120; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 56; Obj.posY = 24; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 72; Obj.posY = 24; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 88; Obj.posY = 24; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 104; Obj.posY = 24; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 200; Obj.posY = 24; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 216; Obj.posY = 24; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 232; Obj.posY = 24; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pot; Obj.direction = Direction.Down; Obj.posX = 248; Obj.posY = 24; room.objs.Add(Obj);}
 				 hubRooms.Add(room);
 			}
 			#endregion

@@ -126,29 +126,34 @@ namespace DungeonRun
 
     public enum ActorType
     {
+        //playable heros
         Hero,
         Blob,
 
-        Boss_BigEye,
+        //basic enemies
         Boss_BigEye_Mob,
 
+        //minibosses
+        MiniBoss_BlackEye,
+
+        //bosses
+        Boss_BigEye
     }
 
     public enum ActorState
     {
-        Idle, Move, Dash, //movement
-        Interact, Attack, Use, //action
-        Hit, Dead, Reward, //consequence
-
-
-        Pickup, Throw //actions++
+        Idle, Move, Dash, //movements
+        Interact, Attack, Use, //actions
+        Hit, Dead, Reward, //consequences
+        Pickup, Throw //actions
     }
 
     public enum ActorAI
     {
         Random,
         Basic,
-        Boss_BigEye
+        Boss_BigEye,
+        Miniboss_Blackeye
     }
 
 
@@ -213,7 +218,6 @@ namespace DungeonRun
 
         Dungeon_Chest, //placeable in editor, becomes key or map chest
         Dungeon_ChestKey, //not placeable, procedurally set
-        Dungeon_ChestMap, //not placeable, procedurally set
         Dungeon_ChestEmpty, //just empty
 
         Dungeon_Signpost,

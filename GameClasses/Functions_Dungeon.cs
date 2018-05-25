@@ -533,18 +533,19 @@ namespace DungeonRun
 
         public static void FinishHubRoom(Room Room)
         {
+            //spawn miniboss in center of room
+            Functions_Actor.SpawnActor(
+                ActorType.MiniBoss_BlackEye,
+                Room.center.X + 8,
+                Room.center.Y + 8);
+
+            //check the map chest, create the boss welcome mat
             for (i = 0; i < Pool.roomObjCount; i++)
             {   //loop thru all active roomObjects
                 if (Pool.roomObjPool[i].active)
-                {   //find any chest objects in the hub room
-                    if (Pool.roomObjPool[i].group == ObjGroup.Chest)
-                    {   //check the dungeon.map boolean to see if this chest should be filled
-                        if (Level.map)
-                        { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_ChestEmpty); }
-                        else //if hero has found the map, this chest is empty, else it has a map
-                        { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_ChestMap); }
-                    }
-                    else if (Pool.roomObjPool[i].type == ObjType.Dungeon_DoorBoss)
+                {   
+                    //create the boss welcome mat (zelda staple, grabs players attention)
+                    if (Pool.roomObjPool[i].type == ObjType.Dungeon_DoorBoss)
                     {   //build the boss welcome mat (left)
                         Functions_GameObject.Spawn(ObjType.Dungeon_FloorDecal,
                             Pool.roomObjPool[i].compSprite.position.X - 8,

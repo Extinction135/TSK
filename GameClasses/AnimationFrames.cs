@@ -532,6 +532,8 @@ namespace DungeonRun
         public static ActorAnimationList Boss_BigEye_Animations;
         public static ActorAnimationList Boss_BigEye_Mob_Animations;
 
+        public static ActorAnimationList MiniBoss_BlackEye_Animations;
+
         //actor fx anim frames
         public static List<Byte4> ActorFX_GrassyFeet = new List<Byte4>
         { new Byte4(4, 1, 0, 0), new Byte4(4, 1, 1, 0) };
@@ -542,7 +544,7 @@ namespace DungeonRun
         static AnimationFrames()
         {
 
-            #region Hero Animations
+            #region Hero Animations - Link and Blob
 
             Hero_Animations = new ActorAnimationList();
 
@@ -792,6 +794,52 @@ namespace DungeonRun
             Boss_BigEye_Mob_Animations.death_blank.left = Boss_BigEye_Mob_Animations.death_blank.down;
 
             #endregion
+
+
+            #region Miniboss - Blackeye
+
+            MiniBoss_BlackEye_Animations = new ActorAnimationList();
+
+            //movement
+            MiniBoss_BlackEye_Animations.idle = new AnimationGroup();
+            MiniBoss_BlackEye_Animations.idle.down = new List<Byte4> { new Byte4(8, 2, 0, 0), new Byte4(9, 2, 0, 0) };
+            MiniBoss_BlackEye_Animations.idle.up = MiniBoss_BlackEye_Animations.idle.down;
+            MiniBoss_BlackEye_Animations.idle.right = MiniBoss_BlackEye_Animations.idle.down;
+            MiniBoss_BlackEye_Animations.idle.left = MiniBoss_BlackEye_Animations.idle.down;
+
+            MiniBoss_BlackEye_Animations.move = MiniBoss_BlackEye_Animations.idle;
+
+            //dash is semi-shut eye
+            MiniBoss_BlackEye_Animations.dash = new AnimationGroup();
+            MiniBoss_BlackEye_Animations.dash.down = new List<Byte4> { new Byte4(10, 2, 0, 0) };
+            MiniBoss_BlackEye_Animations.dash.up = MiniBoss_BlackEye_Animations.dash.down;
+            MiniBoss_BlackEye_Animations.dash.right = MiniBoss_BlackEye_Animations.dash.down;
+            MiniBoss_BlackEye_Animations.dash.left = MiniBoss_BlackEye_Animations.dash.down;
+
+            //attack is semi-shut eye too
+            MiniBoss_BlackEye_Animations.attack = MiniBoss_BlackEye_Animations.dash;
+
+            MiniBoss_BlackEye_Animations.hit = new AnimationGroup();
+            MiniBoss_BlackEye_Animations.hit.down = new List<Byte4> { new Byte4(12, 2, 0, 0) };
+            MiniBoss_BlackEye_Animations.hit.up = MiniBoss_BlackEye_Animations.hit.down;
+            MiniBoss_BlackEye_Animations.hit.right = MiniBoss_BlackEye_Animations.hit.down;
+            MiniBoss_BlackEye_Animations.hit.left = MiniBoss_BlackEye_Animations.hit.down;
+
+            MiniBoss_BlackEye_Animations.reward = MiniBoss_BlackEye_Animations.hit;
+
+            MiniBoss_BlackEye_Animations.death_blank = new AnimationGroup();
+            MiniBoss_BlackEye_Animations.death_blank.down = new List<Byte4>
+            { new Byte4(10, 2, 0, 0), new Byte4(12, 2, 0, 0) };
+
+            MiniBoss_BlackEye_Animations.death_blank.up = MiniBoss_BlackEye_Animations.death_blank.down;
+            MiniBoss_BlackEye_Animations.death_blank.right = MiniBoss_BlackEye_Animations.death_blank.down;
+            MiniBoss_BlackEye_Animations.death_blank.left = MiniBoss_BlackEye_Animations.death_blank.down;
+
+            MiniBoss_BlackEye_Animations.death_heroic = MiniBoss_BlackEye_Animations.death_blank;
+
+            #endregion
+
+
 
 
         }

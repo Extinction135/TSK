@@ -240,9 +240,7 @@ namespace DungeonRun
 
             if (Obj.group == ObjGroup.Chest)
             {
-
-                #region Reward the hero with chest contents
-
+                //Reward the hero with chest contents
                 if (Obj.type == ObjType.Dungeon_ChestKey)
                 {
                     Functions_Particle.Spawn(ObjType.Particle_RewardKey, Pool.hero);
@@ -250,17 +248,6 @@ namespace DungeonRun
                     if (Flags.ShowDialogs)
                     { ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.HeroGotKey)); }
                 }
-                else if (Obj.type == ObjType.Dungeon_ChestMap)
-                {
-                    Functions_Particle.Spawn(ObjType.Particle_RewardMap, Pool.hero);
-                    Level.map = true;
-                    if (Flags.ShowDialogs)
-                    { ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.HeroGotMap)); }
-                }
-
-                #endregion
-
-
                 if (Obj.type != ObjType.Dungeon_ChestEmpty)
                 {   //if the chest is not empty, play the reward animation
                     Assets.Play(Assets.sfxChestOpen);

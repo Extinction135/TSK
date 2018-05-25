@@ -119,40 +119,10 @@ namespace DungeonRun
 
                 #endregion
 
-
-                #region PitTrap
-
-                else if (Obj.type == ObjType.Dungeon_PitTrap)
-                {   //if hero collides with a PitTrapReady, it starts to open
-                    Functions_GameObject.SetType(Obj, ObjType.Dungeon_Pit);
-                    Assets.Play(Assets.sfxShatter); //play collapse sound
-                    Functions_Particle.Spawn(ObjType.Particle_Attention,
-                        Obj.compSprite.position.X,
-                        Obj.compSprite.position.Y);
-                    Functions_Particle.Spawn(ObjType.Particle_ImpactDust,
-                        Obj.compSprite.position.X + 4,
-                        Obj.compSprite.position.Y - 8);
-                    //Functions_Particle.ScatterDebris(Obj.compSprite.position);
-                    //create pit teeth over new pit obj
-                    Functions_GameObject.Spawn(ObjType.Dungeon_PitTeethTop,
-                        Obj.compSprite.position.X,
-                        Obj.compSprite.position.Y,
-                        Direction.Down);
-                    Functions_GameObject.Spawn(ObjType.Dungeon_PitTeethBottom,
-                        Obj.compSprite.position.X,
-                        Obj.compSprite.position.Y,
-                        Direction.Down);
-                    return; //required
-                    //otherwise code below will evaluate this obj as a pitTrap
-                    //and will lock hero into being pulled into pit, no recourse
-                }
-
-                #endregion
-
             }
 
             //these objects interact with ALL ACTORS
-            //note that some objs, like floor switches. are handled by Functions_Ai.HandleObj()
+            //note that some objs, like floor switches, are handled by Functions_Ai.HandleObj()
 
 
             #region Projectiles
@@ -219,25 +189,67 @@ namespace DungeonRun
             #endregion
 
 
-            //other objects
+            #region Ditches
+
+            else if (Obj.group == ObjGroup.Ditch)
+            {   //if the actor is flying, ignore interaction with ditch
+                if (Actor.compMove.grounded == false) { return; }
+                //if ditch getsAI, then ditch is in it's filled state
+                if (Obj.getsAI)
+                {   //display animated ripple at actor's feet
+                    Functions_Actor.DisplayWetFeet(Actor);
+                }
+            }
+
+            #endregion
+
+
+            //Objects
             else if (Obj.group == ObjGroup.Object)
             {
+                //Phase 1 - objects that interact with flying and grounded actors
+
+                #region SpikeBlocks
+
+                if (Obj.type == ObjType.Dungeon_BlockSpike)
+                {   //damage push actors (on ground or in air) away from spikes
+                    Functions_Battle.Damage(Actor, Obj);
+                }
+
+                #endregion
+
+
+                #region Bumpers
+
+                else if (Obj.type == ObjType.Dungeon_Bumper)
+                {   //limit bumper to bouncing only if it's returned to 100% scale
+                    if (Obj.compSprite.scale == 1.0f)
+                    { Functions_GameObject_Dungeon.BounceOffBumper(Actor.compMove, Obj); }
+                }
+
+                #endregion
+
+
+                #region SwitchBlock UP
+
+                else if (Obj.type == ObjType.Dungeon_SwitchBlockUp)
+                {   //if actor is colliding with up block, convert up to down
+                    Functions_GameObject.SetType(Obj, ObjType.Dungeon_SwitchBlockDown);
+                }   //this is done because block just popped up and would block actor
+
+                #endregion
+
+
+                //Phase 2 - all flying actors bail from method - they're done
+                if (Actor.compMove.grounded == false) { return; }
+
+                //Phase 3 - objects that interact with grounded actors only (all remaining)
 
                 #region FloorSpikes
 
                 if (Obj.type == ObjType.Dungeon_SpikesFloorOn)
                 {   //damage push actors (on ground) away from spikes
                     if (Actor.compMove.grounded) { Functions_Battle.Damage(Actor, Obj); }
-                }
-
-                #endregion
-
-
-                #region SpikeBlocks
-
-                else if (Obj.type == ObjType.Dungeon_BlockSpike)
-                {   //damage push actors (on ground or in air) away from spikes
-                    Functions_Battle.Damage(Actor, Obj);
                 }
 
                 #endregion
@@ -259,17 +271,6 @@ namespace DungeonRun
                 #endregion
 
 
-                #region Bumpers
-
-                else if (Obj.type == ObjType.Dungeon_Bumper)
-                {   //limit bumper to bouncing only if it's returned to 100% scale
-                    if (Obj.compSprite.scale == 1.0f)
-                    { Functions_GameObject_Dungeon.BounceOffBumper(Actor.compMove, Obj); }
-                }
-
-                #endregion
-
-
                 #region Pits
 
                 else if (Obj.type == ObjType.Dungeon_Pit)
@@ -283,7 +284,7 @@ namespace DungeonRun
                             Functions_Movement.Push(Actor.compMove,
                                 Functions_Direction.GetOppositeCardinal(
                                     Actor.compMove.position,
-                                    Obj.compSprite.position), 
+                                    Obj.compSprite.position),
                                 3.0f);
 
                         }
@@ -363,16 +364,6 @@ namespace DungeonRun
                 #endregion
 
 
-                #region SwitchBlock UP
-
-                else if (Obj.type == ObjType.Dungeon_SwitchBlockUp)
-                {   //if actor is colliding with up block, convert up to down
-                    Functions_GameObject.SetType(Obj, ObjType.Dungeon_SwitchBlockDown);
-                }   //this is done because block just popped up and would block actor
-
-                #endregion
-
-
                 #region Tall grass
 
                 else if (Obj.type == ObjType.Wor_Grass_Tall)
@@ -423,15 +414,37 @@ namespace DungeonRun
                 #endregion
 
 
-                //bridge doesn't really do anything, it just doesn't cause actor to fall into a pit
-            }
+                #region PitTrap
 
-            else if(Obj.group == ObjGroup.Ditch)
-            {   //if ditch getsAI, then ditch is in it's filled state
-                if(Obj.getsAI)
-                {   //display animated ripple at actor's feet
-                    Functions_Actor.DisplayWetFeet(Actor);
+                else if (Obj.type == ObjType.Dungeon_PitTrap)
+                {   //if hero collides with a PitTrapReady, it starts to open
+                    Functions_GameObject.SetType(Obj, ObjType.Dungeon_Pit);
+                    Assets.Play(Assets.sfxShatter); //play collapse sound
+                    Functions_Particle.Spawn(ObjType.Particle_Attention,
+                        Obj.compSprite.position.X,
+                        Obj.compSprite.position.Y);
+                    Functions_Particle.Spawn(ObjType.Particle_ImpactDust,
+                        Obj.compSprite.position.X + 4,
+                        Obj.compSprite.position.Y - 8);
+                    //Functions_Particle.ScatterDebris(Obj.compSprite.position);
+                    //create pit teeth over new pit obj
+                    Functions_GameObject.Spawn(ObjType.Dungeon_PitTeethTop,
+                        Obj.compSprite.position.X,
+                        Obj.compSprite.position.Y,
+                        Direction.Down);
+                    Functions_GameObject.Spawn(ObjType.Dungeon_PitTeethBottom,
+                        Obj.compSprite.position.X,
+                        Obj.compSprite.position.Y,
+                        Direction.Down);
+                    return; //required
+                    //otherwise code below will evaluate this obj as a pitTrap
+                    //and will lock hero into being pulled into pit, no recourse
                 }
+
+                #endregion
+
+
+                //bridge just doesn't cause actor to fall into pit
             }
         }
 

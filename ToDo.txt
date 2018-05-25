@@ -131,76 +131,240 @@ and heldObj is released().
 
 
 
-
-
-Friday
-	- record playthrus and examples of gameplay, post. 
-	- release v0.72.
-	- update readme.
-
-	- create archive releases for v0.1 - v0.7. (fork, revert, release, delete.)
-	- later, we can compare gameplay across versions.
-	- note this is only for Dx version. UWP version tracking should start with v0.7.
-	- these version archives should remain local, outside of repo folder.
-	- *we should be able to record via the a20s just fine, via obs.
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
-
-
-
 TODAY:
 
 
 
-
-
-
-Textures++
-
-removed blob boss texture from game.
-updated forest dungeon texture in Dx & UWP.
-playtested.
+commit:
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-add miniboss to hub room.
-upgrade enemy spawns to create 2 mob types.
-create a flying mob and a grounded mob for forest dungeon.
-floater is angry eye (16x32), grounded is squishy single (16x16)
 
 
 Miniboss - Blackeye
 
 has 4 states:
-1. idle/move - this is floating, or chomping on ground
-2. attack - this is bloodshot eye anim
-3. hit - this is bloodshot eye anim
-4. death - this is bloodshot eye anim
-???
+1. idle/move - this is floating in place
+2. dash/attack - this is squinting frame
+3. hit - this is bloodshot eye frame
+4. death - bloodshot eye, then moved off screen.
+
+blackeye's hitbox is 16x16, centered.
+this means blackeye can create fireballs to shoot at hero.
+this is blackeye's attack. playtested blackeye as primary
+boss in boss room - working great.
+
+HubRoom++
+updated hub roomData - removed center chest, added
+additional skulls around the edge of water area, both
+as visual clue that this enemy is a boss of sorts, plus
+the skulls serve as throwable projectiles against a fast
+moving enemy with deadly distance attacks - which should
+make for a fun battle. blackeye only has 10 health,
+but it's his movement and attack that make him challenging.
+
+HubRoom++
+updated hub room to spawn miniboss in the center of the room.
+now player has introductory challenge prior to harder boss.
+
+Map--
+removed ObjType.Dungeon_ChestMap from game.
+
+Map++
+migrated the functionality of opening a map chest
+to killing the miniboss blackeye. this happens in
+blackeye's SetDeathState(), where he automagically
+sets the hero into a reward state, and gives him
+the map. how nice of that monster!
+
+- dev note -
+this helps to separate map vs key rewards - 
+the key is earned by completing a puzzle, 
+while map is earned by defeating the miniboss.
+
+Swimming Bug
+the swim checks are causing blackeye to want to switch
+to the swimming animations - which we dont have. and
+we aren't going to have, because he's a floating eye!
+the best way to solve, is to implement flying actors.
+
+Flying Actors! 
+updated Actor.SetType() to set actor.compMove.grounded
+to be true, which tells various systems the actor is flying. 
+
+Game System Rules for Flying Actors:
+1. anything that is blocking, stays blocking (= collision system untouched).
+2. things on the ground dont affect actors in the air (interactions only).
+3. should have consistent 'flying' feel while moving, similar to swimming.
+
+In order to fullfill #2, we need to update 
+systems to make sure flying actors:
+- arent pushed by conveyor belts
+- cant fall into pits / water
+- dont trigger feetfx of any kind
+- aren't affected by ice tiles
+- aren't affected by floor spike tiles
+- can't trigger floor switches
+
+For #3 we need to update systems to make sure flying actors
+have their friction set to air friction just prior to movement.
+
+Interactions++
+pitTrap interactions were limited to hero only.
+upon closer inspection, they should be triggered
+by any grounded actor. moved that triggering
+routine into the section of actor vs obj.
+
+refactored InteractActor() to handle rule #2.
+modified Pool.Update() to set Actor's friction
+based on their flying "state", just like objects.
+
+Boss & MiniBoss++
+updated boss and miniboss move and dash speeds,
+based on relationship to world air friction value.
+updated how often miniboss and boss dash, to make
+boss a better/more deadlier version of miniboss.
+
+playtested blackeye - working, with bugs.
+playtested bigEye - working, no bugs.
+
+BigEye++
+implemented basic 3 phase system based on boss's health.
+when boss has > 60% hp, he spawns mobs slowly.
+below 60% he spawns mobs faster. below 30% he spawns
+mobs the fastest, and gets a bonus to movement.
+
+BlackEye++
+implemented basic 2 phase system based on boss's health.
+when boss has less than 50% hp, he moves faster and shoots
+fireballs more often.
+
+updated UWP project folder.
+recompiled roomData.
+^ that was a small commit. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*miniboss cant shoot fireballs south - why?
+?= pro.spawn() assumes that the actor's collRec is 16x16 - it shouldn't.
+this means only 16x16 actors can safely shoot fireballs without damaging
+themselves, which is some valve level stupid. this method should take
+the actor as a parameter, and then we should base the offsets FOR ALL
+PROJECTILES off of the actor's collision rec width and height. this
+would allow larger actors, like bosses, to SHOOT FIREBALLS. geez.
+
+
+
+
+
+*miniboss didn't disappear post death
+- where do we handle moving the enemies post death? because it's a type check.
+
+
+*link wasn't set into the reward animation prior to dialog,
+do we need to push a frame of animation? did we update the animation group
+prior to popping a dialog? did we think at all? luls.
+
+
+
+
+
+
+test how boss and miniboss move and feel. test BOSS PHASES!
+can we pop dialogs for the boss, when he switches phases?
+
+
+
+
+
+
+
+
+
+* we could always spawn a miniboss in boss room too...
+ - on hard mode, you fight the miniboss and boss at same time in boss room.. ooof!
+
+
+
+
+
+
+
+ 
+ Death Animations++
+ for blackeye, he should fall to the ground and 'crack' open like an explosive egg.
+ for bigeye, he should fall to the ground and 'cave in' like an old pumpkin.
+ both of these should be very graphic.
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+Special Attacks / Boss "USE"
+
+blackeye switches to his shut eye frame for his special.
+bigeye uses the shut + bloodshot frames for his special.
+
+bigeye: spawns A TON of exploding seekers while in his special.
+blackeye: spawns fireballs in all cardinal directions around him,
+at the *END* of the animation - meaning the player has time to read
+his animation and move out of the way.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+upgrade enemy spawns to create 2 mob types.
+create a flying mob and a grounded mob for forest dungeon.
 
 
 
@@ -214,34 +378,10 @@ have 4 hp.
 
 
 
-
-
-
 we'll need to change the enemy spawn 2, or miniboss spawn to be
 Enemy_Spawn_Weak, Enemy_Spawn_Strong. later on, it's likely this 
 will expand to also include Enemy_Spawn_Ranged, Enemy_Spawn_Healer,
 etc...
-
-
-
-
-
-
-
-
-
-Map++
-*if you defeat the miniboss, he drops the map as loot.
-this is the only way to get the map. remove chests from
-hub rooms, remove map chest from game. update loot routine
-with method to spawn a map gameObj pickup, create map pickup
-obj, add to hero's interaction routine. this also helps
-to separate map vs key rewards - key is earned by completing
-a puzzle, while map is earned by defeating a miniboss.
-
-
-
-
 
 
 
@@ -260,9 +400,6 @@ but, this reverses the dungeon - leading to the exit.
 upon exit, we simply return hero to his last overworld location,
 which should be stored in save data.
 *these dungeons should be blob enemy only, because this is story*
-
-
-
 
 
 

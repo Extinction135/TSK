@@ -457,8 +457,7 @@ namespace DungeonRun
             #region Chests
 
             else if (Type == ObjType.Dungeon_Chest || 
-                Type == ObjType.Dungeon_ChestKey || 
-                Type == ObjType.Dungeon_ChestMap)
+                Type == ObjType.Dungeon_ChestKey)
             {
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 11;

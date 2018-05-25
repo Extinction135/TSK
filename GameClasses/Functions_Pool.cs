@@ -205,14 +205,16 @@ namespace DungeonRun
                 if (Pool.actorPool[i].active)
                 {
                     Functions_Input.SetInputState(Pool.actorPool[i].compInput, Pool.actorPool[i]);
-                    
-                    Pool.actorPool[i].compMove.friction = World.friction; //reset friction
+
+                    //set actors that are in the air to world air friction
+                    if (Pool.actorPool[i].compMove.grounded == false)
+                    { Pool.actorPool[i].compMove.friction = World.frictionAir; }
+                    //actors not in the air get set the world ground friction
+                    else { Pool.actorPool[i].compMove.friction = World.friction; }
+
                     Pool.actorPool[i].feetFX.visible = false; //reset feetFX
                     Pool.actorPool[i].swimming = false; //reset swimming
-
-
                     Functions_Actor.Breathe(Pool.actorPool[i]); //check underwater state
-
 
                     Functions_Interaction.CheckInteractions(Pool.actorPool[i], true, true);
                     Functions_Actor.Update(Pool.actorPool[i]);
