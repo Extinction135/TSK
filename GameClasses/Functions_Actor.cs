@@ -126,11 +126,12 @@ namespace DungeonRun
                 if(Level.map == false) //make sure hero doesn't already have map
                 {
                     Level.map = true; //flip map true
-                    //pause hero into map reward state
-                    Functions_Movement.StopMovement(Pool.hero.compMove);
-                    Pool.hero.stateLocked = true;
-                    Pool.hero.lockTotal = 10; //required to show the pickup animation
+                    SetRewardState(Pool.hero); //stop + put hero into reward state
+                    SetAnimationGroup(Actor); //update hero's animGroup to reward
+                    SetAnimationDirection(Actor); //finally, set the anim direction
                     Functions_Particle.Spawn(ObjType.Particle_RewardMap, Pool.hero);
+                    Assets.Play(Assets.sfxReward); //play reward / boss defeat sfx
+
                     if (Flags.ShowDialogs)
                     { ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.HeroGotMap)); }
                 }
@@ -177,6 +178,11 @@ namespace DungeonRun
                 Actor.compCollision.offsetX = -12;
                 Actor.compCollision.offsetY = 0;
             }
+
+            /*
+            //this doesn't work, because pro.spawn() doesn't
+            //take into account the actor's hitBox when creating a fireball
+            //so this will cause self-interaction upon spawn, leading to death.
             else if(Actor.type == ActorType.MiniBoss_BlackEye)
             {
                 Actor.compCollision.rec.Width = 16;
@@ -184,6 +190,8 @@ namespace DungeonRun
                 Actor.compCollision.offsetX = -8;
                 Actor.compCollision.offsetY = 0;
             }
+            */
+
             else
             {   //hero/blob/etc actors have same hitBox (for 16x16 sprite)
                 Actor.compCollision.rec.Width = 12;
@@ -544,8 +552,10 @@ namespace DungeonRun
                 Actor.animList = AnimationFrames.Boss_BigEye_Animations;
                 Actor.health = 30;
                 ResetActorLoadout(Actor);
-                Actor.walkSpeed = 0.25f;
-                Actor.dashSpeed = 0.80f;
+
+                //walk and dash speeds are set in Functions_Ai
+                //because they change based on this actor's health
+
                 //this actor is a 2x3 boss 
                 Actor.compSprite.cellSize.X = 16 * 2;
                 Actor.compSprite.cellSize.Y = 16 * 3;
@@ -593,10 +603,12 @@ namespace DungeonRun
                 Actor.enemy = true;
                 Actor.compSprite.texture = Assets.forestLevelSheet;
                 Actor.animList = AnimationFrames.MiniBoss_BlackEye_Animations;
-                Actor.health = 10;
+                Actor.health = 15;
                 ResetActorLoadout(Actor);
-                Actor.walkSpeed = 0.25f;
-                Actor.dashSpeed = 0.80f;
+
+                //walk and dash speeds are set in Functions_Ai
+                //because they change based on this actor's health
+
                 //this actor is a 2x2 miniboss
                 Actor.compSprite.cellSize.X = 16 * 2;
                 Actor.compSprite.cellSize.Y = 16 * 2;

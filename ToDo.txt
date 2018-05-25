@@ -135,114 +135,50 @@ TODAY:
 
 
 
-commit:
 
 
 
+Bug - Miniboss Reward
 
+when link defeats the blackeye miniboss, he should be placed
+into a reward state, with the map sprite over his head. this
+doesn't happen properly right now. >> and thats because I wasn't
+calling SetRewardState() on the hero, instead choosing to
+partially re-implement it and then wonder why it doesn't work.
 
+fixed, tested, working as expected now.
 
-Miniboss - Blackeye
+Miniboss++
+below 50% health, blackeye often creates ground fires 
+where he goes, as a visual tell that his health is low.
+raised blackeye's health to 15, from 10.
 
-has 4 states:
-1. idle/move - this is floating in place
-2. dash/attack - this is squinting frame
-3. hit - this is bloodshot eye frame
-4. death - bloodshot eye, then moved off screen.
+Boss Phases++
+moved responsibility for boss dash and move speed out of
+Actor.SetType() and into Functions_Ai(), so the dash and
+move speeds can be changed based on the actor's health.
+this allows bosses to get faster, both in base movement
+and dash speeds, without adding in some weird multiplier.
 
-blackeye's hitbox is 16x16, centered.
-this means blackeye can create fireballs to shoot at hero.
-this is blackeye's attack. playtested blackeye as primary
-boss in boss room - working great.
+Bug: BlackEye's hitBox is 16x16, which exposes a flaw
+in the Projectile.Spawn() method: doesn't consider the
+actor's hitBox when spawning a fireball, leading to an
+interaction the following frame, leading to damage. the
+fix is to refactor Pro.Spawn(), but for now we'll just
+comment out blackeye's hitbox code so it defaults to 
+the hero's hitbox, so blackeye can safely shoot fireballs.
+it also makes him harder to hit, thus harder to kill.
 
-HubRoom++
-updated hub roomData - removed center chest, added
-additional skulls around the edge of water area, both
-as visual clue that this enemy is a boss of sorts, plus
-the skulls serve as throwable projectiles against a fast
-moving enemy with deadly distance attacks - which should
-make for a fun battle. blackeye only has 10 health,
-but it's his movement and attack that make him challenging.
+increased the sorting offset for rising smoke particles
+from 16 to 32. this means they will sort 'over' things
+more often. this is to fix an issue where smoke doesn't 
+sort over the miniboss when he enters his 2nd phase.
 
-HubRoom++
-updated hub room to spawn miniboss in the center of the room.
-now player has introductory challenge prior to harder boss.
-
-Map--
-removed ObjType.Dungeon_ChestMap from game.
-
-Map++
-migrated the functionality of opening a map chest
-to killing the miniboss blackeye. this happens in
-blackeye's SetDeathState(), where he automagically
-sets the hero into a reward state, and gives him
-the map. how nice of that monster!
-
-- dev note -
-this helps to separate map vs key rewards - 
-the key is earned by completing a puzzle, 
-while map is earned by defeating the miniboss.
-
-Swimming Bug
-the swim checks are causing blackeye to want to switch
-to the swimming animations - which we dont have. and
-we aren't going to have, because he's a floating eye!
-the best way to solve, is to implement flying actors.
-
-Flying Actors! 
-updated Actor.SetType() to set actor.compMove.grounded
-to be true, which tells various systems the actor is flying. 
-
-Game System Rules for Flying Actors:
-1. anything that is blocking, stays blocking (= collision system untouched).
-2. things on the ground dont affect actors in the air (interactions only).
-3. should have consistent 'flying' feel while moving, similar to swimming.
-
-In order to fullfill #2, we need to update 
-systems to make sure flying actors:
-- arent pushed by conveyor belts
-- cant fall into pits / water
-- dont trigger feetfx of any kind
-- aren't affected by ice tiles
-- aren't affected by floor spike tiles
-- can't trigger floor switches
-
-For #3 we need to update systems to make sure flying actors
-have their friction set to air friction just prior to movement.
-
-Interactions++
-pitTrap interactions were limited to hero only.
-upon closer inspection, they should be triggered
-by any grounded actor. moved that triggering
-routine into the section of actor vs obj.
-
-refactored InteractActor() to handle rule #2.
-modified Pool.Update() to set Actor's friction
-based on their flying "state", just like objects.
-
-Boss & MiniBoss++
-updated boss and miniboss move and dash speeds,
-based on relationship to world air friction value.
-updated how often miniboss and boss dash, to make
-boss a better/more deadlier version of miniboss.
-
-playtested blackeye - working, with bugs.
-playtested bigEye - working, no bugs.
-
-BigEye++
-implemented basic 3 phase system based on boss's health.
-when boss has > 60% hp, he spawns mobs slowly.
-below 60% he spawns mobs faster. below 30% he spawns
-mobs the fastest, and gets a bonus to movement.
-
-BlackEye++
-implemented basic 2 phase system based on boss's health.
-when boss has less than 50% hp, he moves faster and shoots
-fireballs more often.
-
-updated UWP project folder.
-recompiled roomData.
-^ that was a small commit. 
+lots of playtesting minibosses 2nd phase smoking
+effect, looking good. should be a hard, fun battle.
+note that you dont have to defeat the miniboss to
+exit the hubroom or progress thru the dungeon,
+he is entirely optional - but you won't get the map!
 
 
 
@@ -250,37 +186,6 @@ recompiled roomData.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-*miniboss cant shoot fireballs south - why?
-?= pro.spawn() assumes that the actor's collRec is 16x16 - it shouldn't.
-this means only 16x16 actors can safely shoot fireballs without damaging
-themselves, which is some valve level stupid. this method should take
-the actor as a parameter, and then we should base the offsets FOR ALL
-PROJECTILES off of the actor's collision rec width and height. this
-would allow larger actors, like bosses, to SHOOT FIREBALLS. geez.
-
-
-
-
-
-*miniboss didn't disappear post death
-- where do we handle moving the enemies post death? because it's a type check.
-
-
-*link wasn't set into the reward animation prior to dialog,
-do we need to push a frame of animation? did we update the animation group
-prior to popping a dialog? did we think at all? luls.
 
 
 
@@ -294,30 +199,58 @@ can we pop dialogs for the boss, when he switches phases?
 
 
 
-
-
-
-
 * we could always spawn a miniboss in boss room too...
- - on hard mode, you fight the miniboss and boss at same time in boss room.. ooof!
+- on hard mode, you fight the miniboss and boss at same time in boss room.. ooof!
 
 
 
 
 
+Death Animations++
+for blackeye, he should fall to the ground and 'crack' open like an explosive egg.
+for bigeye, he should fall to the ground and 'cave in' like an old pumpkin.
+both of these should be very graphic.
+*miniboss didn't disappear post death
+- where do we handle moving the enemies post death? because it's a type check.
+  
+ 
+ 
+Boss SoundFX++
+we need a boss soundfx that plays randomly when the boss
+is low on health. this should be some kind of intimidation
+soundfx, and there should be a push sprite spawned over the boss
+facing down, as if the boss was speaking the sound fx.
+
+
 
 
  
- Death Animations++
- for blackeye, he should fall to the ground and 'crack' open like an explosive egg.
- for bigeye, he should fall to the ground and 'cave in' like an old pumpkin.
- both of these should be very graphic.
  
  
  
  
  
  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+Improve Projectile.Spawn()
+
+*miniboss cant shoot fireballs south - why?
+?= pro.spawn() assumes that the actor's collRec is 16x16 - it shouldn't.
+this means only 16x16 actors can safely shoot fireballs without damaging
+themselves, which is some valve level stupid. this method should take
+the actor as a parameter, and then we should base the offsets FOR ALL
+PROJECTILES off of the actor's collision rec width and height. this
+would allow larger actors, like bosses, to SHOOT FIREBALLS. geez.
+
 
 
 
@@ -340,8 +273,7 @@ his animation and move out of the way.
 
 
 
-
-
+if the hero is swimming, he shouldn't make water walking splash noises.
 
 
 

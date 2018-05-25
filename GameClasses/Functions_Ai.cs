@@ -129,12 +129,15 @@ namespace DungeonRun
                 Actor.compInput.direction = (Direction)Functions_Random.Int(0, 8);
                 if (Functions_Random.Int(0, 100) > 80) { Actor.compInput.dash = true; }
 
-
                 //2 Phase - based on health, change how actor behaves
-                if (Actor.health > Actor.health / 2) //>50%
+                if (Actor.health > 10) //hardline of 10
                 {
-                    if (Functions_Random.Int(0, 100) > 95)
-                    {
+                    //move slowly
+                    Actor.walkSpeed = 0.05f;
+                    Actor.dashSpeed = 0.30f;
+
+                    if (Functions_Random.Int(0, 100) > 85)
+                    {   //shoot fireballs at hero
                         Functions_Projectile.Spawn(ObjType.ProjectileFireball,
                             Actor.compMove,
                             Functions_Direction.GetCardinalDirectionToHero(Actor.compSprite.position));
@@ -143,16 +146,25 @@ namespace DungeonRun
                 }
                 else //actor is below 50% health
                 {
-                    Actor.compMove.speed *= 1.06f; //speed bonus
-                    if (Functions_Random.Int(0, 100) > 85)
-                    {
+                    //move very fast
+                    Actor.walkSpeed = 0.25f;
+                    Actor.dashSpeed = 0.80f;
+
+                    //smoke (each frame) as a sign of nearing defeat
+                    Functions_Particle.Spawn(
+                        ObjType.Particle_RisingSmoke,
+                        Actor.compSprite.position.X + 6 + Functions_Random.Int(-6, 6),
+                        Actor.compSprite.position.Y - 12 + Functions_Random.Int(-4, 4)
+                    );
+
+                    if (Functions_Random.Int(0, 100) > 75)
+                    {   //shoot fireballs at hero more often
                         Functions_Projectile.Spawn(ObjType.ProjectileFireball,
                             Actor.compMove,
                             Functions_Direction.GetCardinalDirectionToHero(Actor.compSprite.position));
                         Actor.compInput.attack = true;
                     }
                 }
-
             }
 
             #endregion
@@ -170,6 +182,10 @@ namespace DungeonRun
                 //3 Phase - based on health, change how actor behaves
                 if(Actor.health > (Actor.health / 3) * 2) //>60%
                 {
+                    //move slowly
+                    Actor.walkSpeed = 0.05f;
+                    Actor.dashSpeed = 0.30f;
+
                     if (Functions_Random.Int(0, 100) > 95)
                     {   //rarely spawn mob
                         Functions_Actor.SpawnActor(ActorType.Boss_BigEye_Mob, actorPos);
@@ -178,6 +194,10 @@ namespace DungeonRun
                 }
                 else if(Actor.health > Actor.health / 3) //>30%
                 {
+                    //move faster
+                    Actor.walkSpeed = 0.25f;
+                    Actor.dashSpeed = 0.30f;
+
                     if (Functions_Random.Int(0, 100) > 75)
                     {   //regularly spawn mob
                         Functions_Actor.SpawnActor(ActorType.Boss_BigEye_Mob, actorPos);
@@ -186,7 +206,10 @@ namespace DungeonRun
                 }
                 else //actor is below 30% health
                 {
-                    Actor.compMove.speed *= 1.06f; //speed bonus
+                    //dash faster too
+                    Actor.walkSpeed = 0.25f;
+                    Actor.dashSpeed = 0.80f;
+                    
                     if (Functions_Random.Int(0, 100) > 50)
                     {   //often spawn mob
                         Functions_Actor.SpawnActor(ActorType.Boss_BigEye_Mob, actorPos);

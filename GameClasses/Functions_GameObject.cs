@@ -1391,7 +1391,7 @@ namespace DungeonRun
             else if (Type == ObjType.Particle_RisingSmoke)
             {
                 Obj.compSprite.cellSize.X = 8; Obj.compSprite.cellSize.Y = 8; //nonstandard size
-                Obj.compSprite.zOffset = 16;
+                Obj.compSprite.zOffset = 32;
                 Obj.group = ObjGroup.Particle;
                 Obj.lifetime = 24; //in frames
                 Obj.compAnim.speed = 6; //in frames
