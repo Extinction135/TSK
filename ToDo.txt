@@ -139,46 +139,37 @@ TODAY:
 
 
 
-Bosses++
-
-improved distinction between phases for boss
-and miniboss. now both bosses 'smoke' when
-they are at low health, visually signaling
-to player that the boss is 'enraged'. this
-assumption makes sense because the bosses
-both become faster and more aggressive in 
-their attacks towards the hero.
 
 
 
+Miniboss Death++
 
+upon death, blackeye should fall to the 
+ground and 'crack' open like an egg. added
+these sprites into the level sheet, updated
+miniboss's death animFrames.
 
+upgraded miniboss's death to create an explosion
+of debris, to visually sell his explosive end.
+*also updated boss's exploding mob enemies to
+create debris explosions upon death too.
 
-
-
-test how boss and miniboss move and feel. test BOSS PHASES!
-can we pop dialogs for the boss, when he switches phases?
+playtested, bug: miniboss doesn't sort to
+floor when he dies. fixed.
 
 
 
 
 
-* we could always spawn a miniboss in boss room too...
-- on hard mode, you fight the miniboss and boss at same time in boss room.. ooof!
 
 
 
 
 
-Death Animations++
-for blackeye, he should fall to the ground and 'crack' open like an explosive egg.
-for bigeye, he should fall to the ground and 'cave in' like an old pumpkin.
-both of these should be very graphic.
 *miniboss didn't disappear post death
 - where do we handle moving the enemies post death? because it's a type check.
-  
- 
- 
+
+
 Boss SoundFX++
 we need a boss soundfx that plays randomly when the boss
 is low on health. this should be some kind of intimidation

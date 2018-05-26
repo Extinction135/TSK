@@ -118,6 +118,9 @@ namespace DungeonRun
                 Functions_Projectile.Spawn(
                     ObjType.ProjectileExplosion,
                     Actor.compMove, Direction.Down);
+                //decorate this death as special / explosive
+                Functions_Particle.Spawn_Explosion(ObjType.Particle_Debris,
+                    Actor.compSprite.position.X, Actor.compSprite.position.Y, true);
                 Functions_Loot.SpawnLoot(Actor.compSprite.position); //loot!
                 Functions_Pool.Release(Actor);
             }
@@ -135,6 +138,13 @@ namespace DungeonRun
                     if (Flags.ShowDialogs)
                     { ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.HeroGotMap)); }
                 }
+
+                //decorate this death as special / explosive
+                Functions_Particle.Spawn_Explosion(ObjType.Particle_Debris,
+                    Actor.compSprite.position.X, Actor.compSprite.position.Y, true);
+                //this actor becomes debris on floor, sort to floor.
+                Actor.compSprite.zOffset = -8;
+                Functions_Component.SetZdepth(Actor.compSprite);
             }
             else
             {   //this is all other actor types!

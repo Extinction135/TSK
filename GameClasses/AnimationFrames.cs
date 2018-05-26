@@ -820,7 +820,7 @@ namespace DungeonRun
             MiniBoss_BlackEye_Animations.attack = MiniBoss_BlackEye_Animations.dash;
 
             MiniBoss_BlackEye_Animations.hit = new AnimationGroup();
-            MiniBoss_BlackEye_Animations.hit.down = new List<Byte4> { new Byte4(12, 2, 0, 0) };
+            MiniBoss_BlackEye_Animations.hit.down = new List<Byte4> { new Byte4(11, 2, 0, 0) };
             MiniBoss_BlackEye_Animations.hit.up = MiniBoss_BlackEye_Animations.hit.down;
             MiniBoss_BlackEye_Animations.hit.right = MiniBoss_BlackEye_Animations.hit.down;
             MiniBoss_BlackEye_Animations.hit.left = MiniBoss_BlackEye_Animations.hit.down;
@@ -829,7 +829,11 @@ namespace DungeonRun
 
             MiniBoss_BlackEye_Animations.death_blank = new AnimationGroup();
             MiniBoss_BlackEye_Animations.death_blank.down = new List<Byte4>
-            { new Byte4(10, 2, 0, 0), new Byte4(12, 2, 0, 0) };
+            {
+                new Byte4(11, 2, 0, 0), new Byte4(12, 2, 0, 0),
+                new Byte4(13, 2, 0, 0), new Byte4(14, 2, 0, 0),
+                new Byte4(15, 2, 0, 0) //leftover cracked debris
+            };
 
             MiniBoss_BlackEye_Animations.death_blank.up = MiniBoss_BlackEye_Animations.death_blank.down;
             MiniBoss_BlackEye_Animations.death_blank.right = MiniBoss_BlackEye_Animations.death_blank.down;
