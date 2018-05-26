@@ -22,6 +22,7 @@ namespace DungeonRun
         static Boolean overlap;
 
 
+
         public static void SetActorInput()
         {
             Pool.activeActor++; //increment the active actor

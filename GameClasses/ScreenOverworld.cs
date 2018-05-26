@@ -93,7 +93,7 @@ namespace DungeonRun
             locations.Add(leftTown1);
 
             //bottom left building (church)
-            MapLocation leftTownChurch = new MapLocation(true, new Vector2(174, 255));
+            MapLocation leftTownChurch = new MapLocation(false, new Vector2(174, 255));
             locations.Add(leftTownChurch);
             MapLocation leftIslandConnector = new MapLocation(false, new Vector2(175, 296));
             locations.Add(leftIslandConnector);
@@ -113,7 +113,9 @@ namespace DungeonRun
             locations.Add(monumentConnector);
             MapLocation monument = new MapLocation(false, new Vector2(543, 298));
             locations.Add(monument);
-            MapLocation centerIsland = new MapLocation(false, new Vector2(344, 293));
+
+            //The Farm
+            MapLocation centerIsland = new MapLocation(true, new Vector2(344, 293));
             locations.Add(centerIsland);
 
             #endregion
@@ -121,6 +123,12 @@ namespace DungeonRun
 
             #region Set maplocation's neighbors
 
+
+            //dev neighbors - this may remain
+            ship.neighborDown = centerIsland;
+            centerIsland.neighborUp = ship;
+
+            //standard neighbors
             rightCastleTown.neighborLeft = castle;
             castle.neighborRight = rightCastleTown;
             leftCastleTown.neighborRight = castle;
@@ -195,35 +203,28 @@ namespace DungeonRun
             //requires that the 'true' boolean is passed into the MapLocation
             //constructor for the location created above. else, ignored.
 
-            //setup accessible levels
+            //1. Setup accessible level's ID
             colliseum.ID = LevelID.Colliseum;
             forestDungeon.ID = LevelID.Forest_Entrance;
-            leftTownChurch.ID = LevelID.Church;
+            centerIsland.ID = LevelID.TheFarm;
 
-
-
-
-            //hero may of exited a dungeon, setup current location based on level id
+            //2. Setup current location based on level id
+            // -> because hero may of exited a dungeon
             if (PlayerData.current.lastLocation == LevelID.Colliseum)
             { currentLocation = colliseum; }
             else if (PlayerData.current.lastLocation == LevelID.Forest_Entrance)
             { currentLocation = forestDungeon; }
-            else if (PlayerData.current.lastLocation == LevelID.Church)
-            { currentLocation = leftTownChurch; }
-
+            else if (PlayerData.current.lastLocation == LevelID.TheFarm)
+            { currentLocation = centerIsland; }
 
             else //default to colliseum if unknown
             { currentLocation = colliseum; }
-
-
-
-
-
-
             //set target to current (no initial target)
             targetLocation = currentLocation;
 
             #endregion
+
+
 
             //setup hero overworld actor
             hero = Pool.hero;
@@ -421,6 +422,11 @@ namespace DungeonRun
                             hero.compSprite.position.Y + 6);
                         //play arrival sound fx
                         Assets.Play(Assets.sfxMapLocation);
+
+                        if(Flags.PrintOutput)
+                        {
+                            Debug.WriteLine("location: " + currentLocation.ID);
+                        }
                     }
                 }
 

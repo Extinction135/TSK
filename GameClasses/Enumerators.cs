@@ -65,7 +65,7 @@ namespace DungeonRun
     {
         //overworld levels
         Colliseum, //field with vendors
-        Church, //no purpose rn
+        TheFarm, 
 
         //dungeon levels + entrance levels
         Forest_Entrance, //field with dungeon entrance
@@ -90,7 +90,7 @@ namespace DungeonRun
         //these OVERWORLD rooms are non-procedural (handmade)
         Colliseum,
         ForestEntrance,
-        Church,
+        TheFarm,
 
         //these DEV rooms are used for testing
         DEV_Field, //represents any 'outdoor' / overworld level

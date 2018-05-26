@@ -107,10 +107,10 @@ namespace DungeonRun
                 Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.ForestEntrance);
                 Level.rooms.Add(field);
             }
-            else if (Level.ID == LevelID.Church)
+            else if (Level.ID == LevelID.TheFarm)
             {
                 Functions_Music.PlayMusic(Music.LightWorld);
-                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.Church);
+                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.TheFarm);
                 Level.rooms.Add(field);
             }
 
@@ -568,7 +568,7 @@ namespace DungeonRun
             //overworld levels
             else if (ID == LevelID.Forest_Entrance) { Texture = Assets.forestLevelSheet; }
             else if (ID == LevelID.Colliseum) { Texture = Assets.forestLevelSheet; }
-            else if (ID == LevelID.Church) { Texture = Assets.forestLevelSheet; }
+            else if (ID == LevelID.TheFarm) { Texture = Assets.forestLevelSheet; }
 
             //dev levels
             //else if (ID == LevelID.DEV_Field) { Texture = Assets.forestLevelSheet; }

@@ -16,7 +16,7 @@ namespace DungeonRun
     
     public static class Flags
     {   // **********************************************************************************************************
-        public static Boolean Release = true; //puts game in release mode, overwrites other flags
+        public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.73f; //the version of the game
         public static BootRoutine bootRoutine = BootRoutine.Editor; //boot to game or editor?
@@ -230,7 +230,7 @@ namespace DungeonRun
             //set pool sizes
             actorCount = 30;
             floorCount = 500;
-            roomObjCount = 750;
+            roomObjCount = 3000;
             particleCount = 250;
             projectileCount = 40;
             pickupCount = 25;
