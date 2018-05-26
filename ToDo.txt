@@ -136,94 +136,107 @@ TODAY:
 
 
 
+Xbox One Testing
 
-The Farm
+rebuilt roomData to cs, deployed to xbox via uwp.
+did a full release playtest on xbox one,
+with stress test Farm level. results:
 
-create The Farm level.
-this is Link's new house, as an adult.
-for now, it's just open property.
-in the future, it will be locked off 
-until link completes a questline to 
-open it up. this is entirely optional
-to the main story line.
+colliseum level: 450 objs @ 2 ms.
+forest entrance level: 541 obj, 10 enemies, @ 5-6 ms.
+farm: 1134 objs @ 4-5 ms.
 
-Why?
-1. primary reason is to give player a level
-to call home. eventually there should be a
-carpenter NPC that allows the player to buy
-new blueprints for different building styles.
-how big the building is affects how much land
-crops can be grown on, which affects how much
-profit and loot the player can harvest at once.
-2. to introduce the idea of farming, which uses
-ditches + water tiles to irrigate crops (bushes).
-all we need to do is make a bush stump obj
-become a bush obj - if a filled ditch is a
-neighboring tile. this allows for "farming" of
-bushes for loot - quite literally. perfect.
+from this I can see that actors affect frametimes
+much more than overall roomObj count, which means 
+we can have big, filled levels, but we can't have
+alot of enemies roaming around these levels. less
+populated levels can have more enemies, or we can
+have a single enemy (boss) in a very populated level.
+//foreshadowing to the max//
 
-The Setup / Puzzle - The Dead Farm 
-initially, each time hero enters the farm level,
-there is a series of ditches dug around some bushes,
-near a body of water - but there is no connecting
-ditch, and thus the ditches are dry.
-the bushes are actually bush stumps (upgraded 
-with grow routines, via obj.GetsAi = true).
-the puzzle is "solved" by digging a ditch
-from the pond to the irrigation ditches,
-filling them with water. once this happens,
-the bush stumps grow into bushes.
-when link cuts a bush, loot may drop,
-but the bush will always create a stump,
-which will then be evaluated to grow
-again - leading to a state where player
-can farm the bushes for loot. we want the
-player to have loot. we want loot to be
-easy to get. grinding doesn't have to be
-hard - it can be fun.
-Bonus: leetle tribute to Stardew Valley.
-
-created farm level.
-changed Church levelID value to TheFarm.
-changed Church roomID to TheFarm.
-updated RoomData.
-Church level is now Farm level.
-changed active location on overworld map.
-created a shortcut on map to get to
-TheFarm, for quick testing. 
-
-Design++
-design the farm level better based on the map sprite.
-..and based on this design, we need ALOT more roomObjs.
-this maybe the level that tests the limits of the pool.
-which is good. let's get this out of the way NOW.
-
-Pool++
-doubles roomObj max from 750 to 1500.
-let's see how my systems scale! ... no real change.
-increased to 3000. and we'll need to check this on the
-xbox one too, due to decreased cpu power,
-large levels like the farm may test the 60fps rule.
-
-improved farm level with coastlines and a
-small farm of 80 bushes, with irrigation
-ditches already dug. farm roomObj total
-is now at 1219, a factor of 10 larger than
-previous levels. so we're testing what the
-systems are capable of now. on the pc,
-we're STILL at around 1ms.
-
-
-
-
-
-next up: testing on xbox one. timing mostly.
+*got a null reference exception when 
+entering hub room on uwp on xbox one,
+but upon a replay / rebuild error did
+not occur. can't reproduce. hmm. 
 
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Exploit : Trap Door Pit Teleport
+
+the majority of what i do as a game developer is deal
+with cause and effect, how systems interact, and designing
+systems that do their job BUT ALSO get along with the
+other systems that exist in the global namespace (ecosphere).
+
+currently the system designed to track what door link
+went thru last is causing a problem with the system that
+represents the pit's functionality. this occurs in this
+particular state, and likely in others:
+
+hero enters a puzzle room where the doors become trap
+doors (this is only way to get trap doors). hero moves
+to a different trap door, touching it, activating it
+as the last door 'entered'. hero is then pushed, or
+falls into a pit (maybe with a certain direction).
+this causes the pit to pull hero in, then call 
+RespawnInCurrentRoom() on the hero, teleporting him
+to the last touched door, the 2nd trap door. with
+enough inertia, the hero can overcome the trap door's
+initial frame of pushing, and link can pop out into
+the room on the other side of the 2nd trap door.
+i experienced this exploit personally. not sure if
+it would work on vertical North/South doors, as
+it only happened to me for East/West doors.
+this is *likely* what's happening, tho I'm not
+exactly sure - but I do know how to fix it.
+
+the fix is simply to remove trap doors from the
+routine that sets the last 'touched' door / active door.
+in fact, only open doors or bombed doors should be
+set as the last / active door.
+
+
+
+
+
+
+
+
+
+Ditches
+
+*bug: the ditches dont load properly,
+any ditch that should be flipped horizontally
+isn't, because we dont save that data.
+we dont need to save that data, we can 
+actually 'rebuild' the ditches once we
+complete loading a room. or we can never
+really build ditch connections, just single
+ditches here and there to give player a clue.
+add the single ditch obj into editor, so
+editors know what can be saved / used in a level.
+in addition, we should only let single ditches
+be saved - no other ditches can be saved!
+this makes ditches primarily an interactive
+system, and not a system used when loading
+rooms or levels.
 
 
 
@@ -259,7 +272,9 @@ test on farm level.
 
 Fences
 add fence objs (should be destroyable via explosion).
-this is straight piece vert, horizontal, + corner bottom, corner top.
+this is straight piece vert + horizontal.
+corners are created by overlapping a vert and hori obj.
+this means the 'pillars' must line up in the same spot in sprite!
 we need a gate entrance for these fence objs too.
 this way we can decorate the farm, among other things,
 with fences.
@@ -279,9 +294,6 @@ when we press F3, the top menu is hidden, but we can
 still click on the buttons, which is bad when we're 
 trying to complete a level. until then we can't complete
 the farm level's water tiles.
-
-
-
 
 
 

@@ -6,10 +6,10 @@
     <UseAuthentication>false</UseAuthentication>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <RemoteDebugEnabled>false</RemoteDebugEnabled>
+    <RemoteDebugEnabled>true</RemoteDebugEnabled>
     <AuthenticationMode>Universal</AuthenticationMode>
-    <CreateCleanLayout>false</CreateCleanLayout>
-    <RemoteDebugMachine>XboxOne</RemoteDebugMachine>
+    <CreateCleanLayout>true</CreateCleanLayout>
+    <RemoteDebugMachine>192.168.0.6</RemoteDebugMachine>
     <LayoutDir>C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRunUWP\DungeonRun\bin\WindowsUniversal\x64\Debug\AppX</LayoutDir>
     <AllowLocalNetworkLoopback>false</AllowLocalNetworkLoopback>
   </PropertyGroup>
