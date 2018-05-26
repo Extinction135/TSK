@@ -140,6 +140,8 @@ namespace DungeonRun
         public static SoundEffectInstance sfxWaterWalk;
         public static SoundEffectInstance sfxWaterSwim;
 
+        public static SoundEffectInstance sfxEnemyTaunt;
+
         #endregion
 
 
@@ -347,6 +349,9 @@ namespace DungeonRun
             sfxWaterWalk = waterWalkSrc.CreateInstance();
             SoundEffect waterSwimSrc = content.Load<SoundEffect>(@"SoundWaterSwim");
             sfxWaterSwim = waterSwimSrc.CreateInstance();
+            //
+            SoundEffect enemyTauntSrc = content.Load<SoundEffect>(@"SoundEnemyTaunt");
+            sfxEnemyTaunt = enemyTauntSrc.CreateInstance();
             //
 
             #endregion

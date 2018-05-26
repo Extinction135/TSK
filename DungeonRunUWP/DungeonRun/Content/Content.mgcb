@@ -509,3 +509,9 @@
 /processorParam:Quality=Best
 /build:SoundWaterSwim.wav
 
+#begin SoundEnemyTaunt.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEnemyTaunt.wav
+

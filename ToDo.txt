@@ -142,54 +142,49 @@ TODAY:
 
 
 
-Miniboss Death++
+Bosses++
 
-upon death, blackeye should fall to the 
-ground and 'crack' open like an egg. added
-these sprites into the level sheet, updated
-miniboss's death animFrames.
+slowed down minibosses death animation.
+changed death sound fx to shatter for miniboss.
 
-upgraded miniboss's death to create an explosion
-of debris, to visually sell his explosive end.
-*also updated boss's exploding mob enemies to
-create debris explosions upon death too.
-
-playtested, bug: miniboss doesn't sort to
-floor when he dies. fixed.
-
-
-
-
-
-
-
-
-
-
-*miniboss didn't disappear post death
-- where do we handle moving the enemies post death? because it's a type check.
-
-
-Boss SoundFX++
-we need a boss soundfx that plays randomly when the boss
-is low on health. this should be some kind of intimidation
-soundfx, and there should be a push sprite spawned over the boss
-facing down, as if the boss was speaking the sound fx.
+added SoundEnemyTaunt to project and assets,
+both Dx and UWP. added a 5% chance each frame to 
+taunt the player (play soundfx) for both boss
+and mini-bosses. in addition to the new soundfx,
+a push particle is created facing south, centered
+to the boss/miniboss, so it looks like the actor
+is speaking the taunt. for now, the taunt is 
+simply the actor chase sound fx from LttP,
+which happens when an armored soldier notices
+you - this will def change in the future to be
+much more taunt-like. perhaps an evil laugh,
+or some liquid-y sucking / breathing sound,
+an insect late at night.. etc...
+just something creepy will probably work.
 
 
 
 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
+
+
+
+
+
+
+
+
+
+ran into lost boomerang bug again.
+simply left a room with it bouncing around.
+
+
+
+when water spreads to other tiles, it shouldn't play
+the water splash soundfx, this takes waaay too long.
+it should play the water walk sfx, or we should shorten
+the water splash sound fx dramatically. either or.
+
+
  
  
  

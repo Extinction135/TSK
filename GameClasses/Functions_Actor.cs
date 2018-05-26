@@ -134,6 +134,7 @@ namespace DungeonRun
                     SetAnimationDirection(Actor); //finally, set the anim direction
                     Functions_Particle.Spawn(ObjType.Particle_RewardMap, Pool.hero);
                     Assets.Play(Assets.sfxReward); //play reward / boss defeat sfx
+                    Actor.compAnim.speed = 15; //slow down death animation
 
                     if (Flags.ShowDialogs)
                     { ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.HeroGotMap)); }
@@ -629,7 +630,7 @@ namespace DungeonRun
                 //set actor sound effects
                 Actor.sfxDash = null; //silent dash
                 Actor.sfx.hit = Assets.sfxBossHit;
-                Actor.sfx.kill = Assets.sfxEnemyKill;
+                Actor.sfx.kill = Assets.sfxShatter; //sounds good
             }
 
             #endregion

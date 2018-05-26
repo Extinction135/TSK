@@ -164,6 +164,17 @@ namespace DungeonRun
                             Functions_Direction.GetCardinalDirectionToHero(Actor.compSprite.position));
                         Actor.compInput.attack = true;
                     }
+
+                    //rarely taunt the player
+                    if (Functions_Random.Int(0, 100) > 95)
+                    {
+                        Assets.Play(Assets.sfxEnemyTaunt);
+                        Functions_Particle.Spawn(
+                            ObjType.Particle_Push,
+                            Actor.compSprite.position.X,
+                            Actor.compSprite.position.Y,
+                            Direction.Down);
+                    }
                 }
             }
 
@@ -222,6 +233,17 @@ namespace DungeonRun
                         Actor.compSprite.position.X + 6 + Functions_Random.Int(-8, 8),
                         Actor.compSprite.position.Y - 10 + Functions_Random.Int(-5, 5)
                     );
+
+                    //rarely taunt the player
+                    if (Functions_Random.Int(0, 100) > 95)
+                    {
+                        Assets.Play(Assets.sfxEnemyTaunt);
+                        Functions_Particle.Spawn(
+                            ObjType.Particle_Push,
+                            Actor.compSprite.position.X, 
+                            Actor.compSprite.position.Y, 
+                            Direction.Down);
+                    }
                 }
             }
 
