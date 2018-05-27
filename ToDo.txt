@@ -136,32 +136,79 @@ TODAY:
 
 
 
-Xbox One Testing
 
-rebuilt roomData to cs, deployed to xbox via uwp.
-did a full release playtest on xbox one,
-with stress test Farm level. results:
 
-colliseum level: 450 objs @ 2 ms.
-forest entrance level: 541 obj, 10 enemies, @ 5-6 ms.
-farm: 1134 objs @ 4-5 ms.
 
-from this I can see that actors affect frametimes
-much more than overall roomObj count, which means 
-we can have big, filled levels, but we can't have
-alot of enemies roaming around these levels. less
-populated levels can have more enemies, or we can
-have a single enemy (boss) in a very populated level.
-//foreshadowing to the max//
+World Sprites ++
 
-*got a null reference exception when 
-entering hub room on uwp on xbox one,
-but upon a replay / rebuild error did
-not occur. can't reproduce. hmm. 
+added sprites for buildings, fences, gate shut
+and gate open, along with door open and shut,
+chimneys, and a welcome mat. buildings also
+have windows with transparency, so player can
+see link thru the window. cool.
 
 
 
 
+
+
+
+
+
+
+
+Bushes++
+upgrade bushes to grow if water tiles are neighbors.
+this is done by expanding bushes collrec just like fire
+or water. this is done on the bushes interactive frame,
+which should happen very near 255, so bushes 'regrow'
+once about every 4 seconds. this should be long enough 
+for the player to destroy some bushes, but not all of
+them - leading to the implied challenge "can you cut
+all the bushes down before one regrows?" and the answer
+is no. no, you cannot. but have fun trying.
+
+this completes the farm implementation, and gives
+digging ditches a purpose, shovel a purpose, and 
+filled ditches a purpose. finally.
+
+
+test on farm level.
+
+
+
+
+
+
+
+
+
+Fences
+add fence objs (should be destroyable via explosion).
+this is straight piece vert + horizontal.
+corners are created by overlapping a vert and hori obj.
+this means the 'pillars' must line up in the same spot in sprite!
+we need a gate entrance for these fence objs too.
+this way we can decorate the farm, among other things,
+with fences.
+
+
+
+
+Building Objects
+this is the non-destroyed version of buildings pioneered in CC.
+interactions with closed doors convert them to open doors.
+
+
+
+
+
+Water Tiles Optimization
+What if WaterTiles were 32x32 objects instead of 16x16?
+thats a reduction of 4 on water tiles, and we want them to be
+larger than a single tile anyway. this is a very smart optimization.
+this will save alot of objects on farm level.
+*however, this does require editing every level that has water tiles.
 
 
 
@@ -244,40 +291,7 @@ rooms or levels.
 
 
 
-Bushes++
-upgrade bushes to grow if water tiles are neighbors.
-this is done by expanding bushes collrec just like fire
-or water. this is done on the bushes interactive frame,
-which should happen very near 255, so bushes 'regrow'
-once about every 4 seconds. this should be long enough 
-for the player to destroy some bushes, but not all of
-them - leading to the implied challenge "can you cut
-all the bushes down before one regrows?" and the answer
-is no. no, you cannot. but have fun trying.
 
-this completes the farm implementation, and gives
-digging ditches a purpose, shovel a purpose, and 
-filled ditches a purpose. finally.
-
-
-test on farm level.
-
-
-
-
-
-
-
-
-
-Fences
-add fence objs (should be destroyable via explosion).
-this is straight piece vert + horizontal.
-corners are created by overlapping a vert and hori obj.
-this means the 'pillars' must line up in the same spot in sprite!
-we need a gate entrance for these fence objs too.
-this way we can decorate the farm, among other things,
-with fences.
 
 
 
