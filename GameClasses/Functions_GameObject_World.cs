@@ -55,8 +55,7 @@ namespace DungeonRun
             Functions_Particle.Spawn(ObjType.Particle_Attention,
                 Bush.compSprite.position.X, Bush.compSprite.position.Y);
             //rarely spawn loot
-            if (Functions_Random.Int(0,101) > 90)
-            { Functions_Loot.SpawnLoot(Bush.compSprite.position); }
+            Functions_Loot.SpawnLoot(Bush.compSprite.position, 20);
         }
 
         public static void BurnTree(GameObject Tree)

@@ -139,41 +139,40 @@ TODAY:
 
 
 
-World Sprites ++
-
-added sprites for buildings, fences, gate shut
-and gate open, along with door open and shut,
-chimneys, and a welcome mat. buildings also
-have windows with transparency, so player can
-see link thru the window. cool.
 
 
 
+Bushes
 
+bushes now getAi, with an interactive frame of
+60 * 4, which 60fps * 4 for 4 second wait time.
 
+updated bush stumps to expand and check for nearby
+filled ditch objects, upon which the stump becomes
+a bush object. this happens every 4 seconds, which
+makes groups of bushes farm-able (assuming they
+are properly irrigated).
 
-
-
-
-
-
-Bushes++
-upgrade bushes to grow if water tiles are neighbors.
-this is done by expanding bushes collrec just like fire
-or water. this is done on the bushes interactive frame,
-which should happen very near 255, so bushes 'regrow'
-once about every 4 seconds. this should be long enough 
-for the player to destroy some bushes, but not all of
-them - leading to the implied challenge "can you cut
-all the bushes down before one regrows?" and the answer
-is no. no, you cannot. but have fun trying.
-
-this completes the farm implementation, and gives
+**this completes the farm implementation, and gives
 digging ditches a purpose, shovel a purpose, and 
-filled ditches a purpose. finally.
+filled ditches a purpose. finally.**
+
+tested on farm level, working perfectly.
+
+edge case: bush can regrow ontop of hero, locking him.
+fix: check if expanded stump's hitbox touches hero,
+if so, reset stumps hitBox and bail from method. done.
+
+increased bushes drop rate from 10% to 15%.
+this is to encourage farming of bushes via TheFarm.
+still doesn't feel reward enough, so further 
+increased to 20% drop rate. i'm sure it's fine now.
 
 
-test on farm level.
+
+
+
+
 
 
 
@@ -223,6 +222,27 @@ this will save alot of objects on farm level.
 
 
 
+Fire++
+when fire expands, it should expand further vertically,
+because it doesn't always transfer from bush to bush,
+because bush hitboxes are small.
+
+
+
+
+
+
+
+HitBoxes++
+we're always expanding and contracting the hitBox.
+we need dedicated methods for doing this.
+we need to override/replace/rewrite xna's rectangle class.
+but we need to keep the intersects() and contains() methods,
+as they are, as fast as they are.
+
+
+
+
 
 
 Exploit : Trap Door Pit Teleport
@@ -264,9 +284,6 @@ set as the last / active door.
 
 
 
-
-
-
 Ditches
 
 *bug: the ditches dont load properly,
@@ -290,19 +307,6 @@ rooms or levels.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 Editor ++
 when we press F3, the top menu is hidden, but we can
 still click on the buttons, which is bad when we're 
@@ -312,24 +316,7 @@ the farm level's water tiles.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Commentary
 test recording playthru using astro a20s.
 can we hook this into OBS? why not?
 
@@ -338,7 +325,7 @@ can we hook this into OBS? why not?
 
 
 
-
+Boomerang Bug?
 ran into lost boomerang bug again.
 simply left a room with it bouncing around.
 
@@ -348,7 +335,8 @@ when water spreads to other tiles, it shouldn't play
 the water splash soundfx, this takes waaay too long.
 it should play the water walk sfx, or we should shorten
 the water splash sound fx dramatically. either or.
-
+or we should create a water spreading soundfx,
+then use the splash fx shortened. i dunno.
 
  
  
@@ -372,15 +360,8 @@ would allow larger actors, like bosses, to SHOOT FIREBALLS. geez.
 
 
 Special Attacks / Boss "USE"
-
-blackeye switches to his shut eye frame for his special.
 bigeye uses the shut + bloodshot frames for his special.
-
 bigeye: spawns A TON of exploding seekers while in his special.
-blackeye: spawns fireballs in all cardinal directions around him,
-at the *END* of the animation - meaning the player has time to read
-his animation and move out of the way.
-
 
 
 
@@ -397,31 +378,42 @@ if the hero is swimming, he shouldn't make water walking splash noises.
 
 
 
+Standard MOB
+
+create the standard 3 hit floating eye mob for forest dungeon.
+this will replace the blob's currently being spawned.
+this actor is FLYING btw.
 
 
 
 
+Enemy Spawns
+
+standard - usually 3 hit.
+
+easy - 1 hit, usually many or they explode.
+- we have seekers, they need to be renamed.
+- we also have fun floaty eye that should be mob outside of boss room
+
+*hard - more than 3 hits, less than 10.
+-we dont have a hard boss for forest dungeon yet.
+-make one
 
 
 
+Enemies++
 
+Seeker : seeks towards player, exlodes (done)
+Standard : 3 hits, with a melee attack (usually sword).
 
+OneHit : fast moving, low melee, low health.
+Distance : projectile attack (unlimited), med move, low health.
+Healing : healing magic (set amount), med move, no attack.
+Aggro : tank, slow, strong melee attack.
+Flanking : rogue, weak, fast, with strong attack.
 
-
-
-
-upgrade enemy spawns to create 2 mob types.
-create a flying mob and a grounded mob for forest dungeon.
-
-
-
-
-MOB+
-primary mob - spawns bombs as it's attack and it's hit
-is immue to explosions too. this means they spawn bombs
-when near hero and when they are hit. these smaller mobs
-have 4 hp.
-
+Miniboss : done
+Boss : done
 
 
 
@@ -464,31 +456,6 @@ like this: actor.type == ActorType.Hero or ActorType.Blob.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Editor++
 Update editor to allow for development of complete field rooms.
 when we hold down an arrow key, offset the camera by 64 pixels in
@@ -507,12 +474,6 @@ that happened in the story, or something the player did.
 
 
 
-
-
-Swimming++
-while in the water, pressing X should Push() things infront of you.
-pressing Y should Dive(). this gives hero some non lethal attack
-to get enemies in the water away from him.
 
 
 
@@ -553,29 +514,6 @@ in normal mode, pits deal no damage.
 *needed if actors want to pickup or dig, and it would be nice to see that
 with more advanced enemies later on*
 migrate hero's interaction rec and interaction rec functions into actor class.
-
-*we could also consolidate gameobj_dungeon and gameobj_world into gameobj class.
-while the compartmentalization is organized, its easier to just
-recall the methods exist under the fun_gameObj class than split them between 3.
-
-
-
-
-
-
-
-
-
-Objs that check for Filled Ditches
-
-whatever these objs are, they will getAI, with an interactive
-frame defined in obj.settype(). they will expand on that intFrame,
-checking roomObjs, doing what they need to do, just like filled
-ditches already do. copy their implementation.
-
-the watermill idea is the only one I have right now, and it
-only makes sense that it 'power' something - which is a much
-more ripe field for development than ditches I think.
 
 
 

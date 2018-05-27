@@ -792,6 +792,10 @@ namespace DungeonRun
                 Obj.compAnim.currentAnimation = AnimationFrames.World_BushStump;
                 Obj.compCollision.offsetX = -2; Obj.compCollision.offsetY = -2;
                 Obj.compCollision.rec.Width = 5; Obj.compCollision.rec.Height = 5;
+
+                Obj.getsAI = true; //stumps grow to become bushes if irrigated
+                //how quickly stumps check for nearby filled ditches
+                Obj.interactiveFrame = 254; //last possible frame
             }
             else if (Type == ObjType.Wor_Tree 
                 || Type == ObjType.Wor_Tree_Burning 

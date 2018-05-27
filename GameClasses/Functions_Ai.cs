@@ -390,6 +390,61 @@ namespace DungeonRun
 
 
             #region World Objects
+            
+
+            //bush stump obj growing back into a bush
+            else if(Obj.type == ObjType.Wor_Bush_Stump)
+            {
+                Obj.lifeCounter++; //this isn't being used on roomObjs, so we steal it
+                if (Obj.lifeCounter == Obj.interactiveFrame)
+                {   //reset timer
+                    Obj.lifeCounter = 0;
+
+                    //dramatically expand stump's hitBox
+                    Obj.compCollision.rec.Width = 32;
+                    Obj.compCollision.rec.Height = 32;
+                    Obj.compCollision.rec.X = (int)Obj.compSprite.position.X - 16;
+                    Obj.compCollision.rec.Y = (int)Obj.compSprite.position.Y - 16;
+
+                    //bail from this check if stump touches hero
+                    //we dont want to regrow a bush ontop of hero, locking him
+                    if(Pool.hero.compCollision.rec.Intersects(Obj.compCollision.rec))
+                    {   //reset hitBox, bail from method
+                        Functions_GameObject.SetType(Obj, ObjType.Wor_Bush_Stump);
+                        return;
+                    }
+
+                    //loop over all active roomObjs, looking at filled ditches
+                    for (i = 0; i < Pool.roomObjCount; i++)
+                    {
+                        if (Pool.roomObjPool[i].active &
+                            Pool.roomObjPool[i].group == ObjGroup.Ditch &
+                            Pool.roomObjPool[i].getsAI == true) //filled
+                        {
+                            //check collisions
+                            if (Pool.roomObjPool[i].compCollision.rec.Intersects(Obj.compCollision.rec))
+                            {   //regrow into bush, with a pop
+                                Functions_Particle.Spawn(
+                                    ObjType.Particle_Attention,
+                                    Obj.compSprite.position.X,
+                                    Obj.compSprite.position.Y);
+                                Functions_GameObject.SetType(Obj, ObjType.Wor_Bush);
+                                Assets.Play(Assets.sfxGrassWalk); //sounds kinda grow-y
+                                return; //this only needs to happen once
+                            }
+                        }
+                    }
+
+                    //if the stump has reached this code, it never reached
+                    //a filled ditch, so it should remain a stump - BUT,
+                    //we need to reset it's hitBox. safe way of doing this:
+                    Functions_GameObject.SetType(Obj, ObjType.Wor_Bush_Stump);
+                }
+            }
+
+
+
+
 
             else if (Obj.type == ObjType.Wor_Tree_Burning)
             {   //check to see if tree should still burn
