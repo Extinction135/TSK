@@ -301,7 +301,6 @@ namespace DungeonRun
         //ditch objs
         Wor_Ditch_META, //becomes one of the ditch objs below upon placement
 
-        //empty
         Wor_Ditch_Empty_Single,
         Wor_Ditch_Empty_4UP,
         Wor_Ditch_Empty_Vertical,
@@ -316,6 +315,14 @@ namespace DungeonRun
         Wor_Ditch_Empty_Endcap_South,
         Wor_Ditch_Empty_Endcap_Horizontal,
         Wor_Ditch_Empty_Endcap_North,
+
+        //fence and gate
+        Wor_Fence_Horizontal,
+        Wor_Fence_Vertical_Left,
+        Wor_Fence_Vertical_Right,
+        Wor_Fence_Gate,
+
+
 
         #endregion
 

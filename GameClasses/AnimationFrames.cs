@@ -213,6 +213,13 @@ namespace DungeonRun
         public static List<Byte4> Wor_Ditch_Filled_Endcap_Horizontal = new List<Byte4> { new Byte4(5, 10, 0, 0) };
         public static List<Byte4> Wor_Ditch_Filled_Endcap_North = new List<Byte4> { new Byte4(5, 11, 0, 0) };
 
+        //fence and gate
+        public static List<Byte4> Wor_Fence_Horizontal = new List<Byte4> { new Byte4(4, 7, 0, 0) }; 
+        public static List<Byte4> Wor_Fence_Vertical_Left = new List<Byte4> { new Byte4(4, 6, 0, 0) };
+        public static List<Byte4> Wor_Fence_Vertical_Right = new List<Byte4> { new Byte4(4, 6, 1, 0) };
+        public static List<Byte4> Wor_Fence_Gate = new List<Byte4> { new Byte4(5, 7, 0, 0) };
+
+
         #endregion
 
 

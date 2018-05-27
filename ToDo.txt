@@ -135,40 +135,32 @@ TODAY:
 
 
 
+Fences and Gate
+
+added vertical and horizontal fences, plus a gate obj.
+tested, hitBoxes lining up along with sprites. this
+one was a little tricky. 
+
+created Functions_GameObject_World.OpenFencedGate(Obj).
+this is the single point of responsibility for opening
+a fenced gate, all interactions with gate are handled thru
+this method. then this method was added to HandleCommon().
+tested, sword, shovel, arrows, explosions all trigger
+then opening of the gate.
 
 
+Farm++
+added gate and fence to farm level.
 
+improved sprites for fences and gate.
+improved sprites moar. then moar. with testing.
+added left and right versions of vertical fence.
+improved fence sprites even more. 
+playtested, finally looking good.
 
-
-
-
-Bushes
-
-bushes now getAi, with an interactive frame of
-60 * 4, which 60fps * 4 for 4 second wait time.
-
-updated bush stumps to expand and check for nearby
-filled ditch objects, upon which the stump becomes
-a bush object. this happens every 4 seconds, which
-makes groups of bushes farm-able (assuming they
-are properly irrigated).
-
-**this completes the farm implementation, and gives
-digging ditches a purpose, shovel a purpose, and 
-filled ditches a purpose. finally.**
-
-tested on farm level, working perfectly.
-
-edge case: bush can regrow ontop of hero, locking him.
-fix: check if expanded stump's hitbox touches hero,
-if so, reset stumps hitBox and bail from method. done.
-
-increased bushes drop rate from 10% to 15%.
-this is to encourage farming of bushes via TheFarm.
-still doesn't feel reward enough, so further 
-increased to 20% drop rate. i'm sure it's fine now.
-
-
+updated OpenFencedGate() to remove the gate
+obj - this is so hero can dig ditches thru the
+"opened gate". tested, working.
 
 
 
@@ -179,17 +171,6 @@ increased to 20% drop rate. i'm sure it's fine now.
 
 
 
-
-
-
-Fences
-add fence objs (should be destroyable via explosion).
-this is straight piece vert + horizontal.
-corners are created by overlapping a vert and hori obj.
-this means the 'pillars' must line up in the same spot in sprite!
-we need a gate entrance for these fence objs too.
-this way we can decorate the farm, among other things,
-with fences.
 
 
 

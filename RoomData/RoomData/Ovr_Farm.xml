@@ -5981,12 +5981,6 @@
     <ObjXmlData>
       <type>Wor_Coastline_Corner_Interior</type>
       <direction>Down</direction>
-      <posX>920</posX>
-      <posY>584</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Coastline_Corner_Interior</type>
-      <direction>Down</direction>
       <posX>1064</posX>
       <posY>568</posY>
     </ObjXmlData>
@@ -6687,16 +6681,16 @@
       <posY>440</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Wor_Bush_Stump</type>
+      <type>Wor_Bush</type>
       <direction>Down</direction>
-      <posX>552</posX>
-      <posY>424</posY>
+      <posX>520</posX>
+      <posY>472</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Wor_Bush_Stump</type>
+      <type>Wor_Bush</type>
       <direction>Down</direction>
-      <posX>552</posX>
-      <posY>440</posY>
+      <posX>536</posX>
+      <posY>488</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Bush_Stump</type>
@@ -6713,31 +6707,31 @@
     <ObjXmlData>
       <type>Wor_Ditch_Empty_Endcap_South</type>
       <direction>Down</direction>
-      <posX>536</posX>
+      <posX>552</posX>
       <posY>456</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Ditch_Empty_Vertical</type>
       <direction>Down</direction>
-      <posX>536</posX>
+      <posX>552</posX>
       <posY>440</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Ditch_Empty_Vertical</type>
       <direction>Down</direction>
-      <posX>536</posX>
+      <posX>552</posX>
       <posY>424</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Ditch_Empty_Endcap_North</type>
       <direction>Down</direction>
-      <posX>536</posX>
+      <posX>552</posX>
       <posY>408</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Ditch_Empty_Single</type>
       <direction>Down</direction>
-      <posX>648</posX>
+      <posX>632</posX>
       <posY>456</posY>
     </ObjXmlData>
     <ObjXmlData>
@@ -6759,16 +6753,16 @@
       <posY>408</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Wor_Ditch_Empty_Single</type>
+      <type>Wor_Bush</type>
       <direction>Down</direction>
-      <posX>568</posX>
-      <posY>408</posY>
+      <posX>712</posX>
+      <posY>488</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Wor_Ditch_Empty_Single</type>
+      <type>Wor_Bush</type>
       <direction>Down</direction>
-      <posX>568</posX>
-      <posY>456</posY>
+      <posX>728</posX>
+      <posY>488</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Ditch_Empty_Single</type>
@@ -6785,7 +6779,7 @@
     <ObjXmlData>
       <type>Wor_Ditch_Empty_Single</type>
       <direction>Down</direction>
-      <posX>648</posX>
+      <posX>632</posX>
       <posY>408</posY>
     </ObjXmlData>
     <ObjXmlData>
@@ -6796,15 +6790,441 @@
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Ditch_Empty_Single</type>
+      <direction>Down</direction>
+      <posX>584</posX>
+      <posY>456</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Ditch_Empty_Single</type>
+      <direction>Down</direction>
+      <posX>584</posX>
+      <posY>408</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Fence_Gate</type>
+      <direction>Down</direction>
+      <posX>632</posX>
+      <posY>472</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Fence_Horizontal</type>
       <direction>Down</direction>
       <posX>616</posX>
+      <posY>472</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Fence_Horizontal</type>
+      <direction>Down</direction>
+      <posX>600</posX>
+      <posY>472</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Fence_Horizontal</type>
+      <direction>Down</direction>
+      <posX>584</posX>
+      <posY>472</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Fence_Horizontal</type>
+      <direction>Down</direction>
+      <posX>568</posX>
+      <posY>472</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Fence_Horizontal</type>
+      <direction>Down</direction>
+      <posX>552</posX>
+      <posY>472</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Fence_Horizontal</type>
+      <direction>Down</direction>
+      <posX>536</posX>
+      <posY>472</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Fence_Horizontal</type>
+      <direction>Down</direction>
+      <posX>648</posX>
+      <posY>472</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Fence_Horizontal</type>
+      <direction>Down</direction>
+      <posX>664</posX>
+      <posY>472</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Fence_Horizontal</type>
+      <direction>Down</direction>
+      <posX>680</posX>
+      <posY>472</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Fence_Horizontal</type>
+      <direction>Down</direction>
+      <posX>696</posX>
+      <posY>472</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Fence_Horizontal</type>
+      <direction>Down</direction>
+      <posX>712</posX>
+      <posY>472</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Fence_Horizontal</type>
+      <direction>Down</direction>
+      <posX>728</posX>
+      <posY>472</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Bush</type>
+      <direction>Down</direction>
+      <posX>520</posX>
+      <posY>376</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Fence_Horizontal</type>
+      <direction>Down</direction>
+      <posX>536</posX>
+      <posY>376</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Fence_Horizontal</type>
+      <direction>Down</direction>
+      <posX>552</posX>
+      <posY>376</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Fence_Horizontal</type>
+      <direction>Down</direction>
+      <posX>568</posX>
+      <posY>376</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Fence_Horizontal</type>
+      <direction>Down</direction>
+      <posX>584</posX>
+      <posY>376</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Fence_Horizontal</type>
+      <direction>Down</direction>
+      <posX>600</posX>
+      <posY>376</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Fence_Horizontal</type>
+      <direction>Down</direction>
+      <posX>616</posX>
+      <posY>376</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Fence_Horizontal</type>
+      <direction>Down</direction>
+      <posX>632</posX>
+      <posY>376</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Fence_Horizontal</type>
+      <direction>Down</direction>
+      <posX>648</posX>
+      <posY>376</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Fence_Horizontal</type>
+      <direction>Down</direction>
+      <posX>664</posX>
+      <posY>376</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Fence_Horizontal</type>
+      <direction>Down</direction>
+      <posX>680</posX>
+      <posY>376</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Fence_Horizontal</type>
+      <direction>Down</direction>
+      <posX>696</posX>
+      <posY>376</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Fence_Horizontal</type>
+      <direction>Down</direction>
+      <posX>712</posX>
+      <posY>376</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Fence_Horizontal</type>
+      <direction>Down</direction>
+      <posX>728</posX>
+      <posY>376</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Tree</type>
+      <direction>Down</direction>
+      <posX>728</posX>
+      <posY>376</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Tree</type>
+      <direction>Down</direction>
+      <posX>536</posX>
+      <posY>376</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Tree</type>
+      <direction>Down</direction>
+      <posX>536</posX>
       <posY>456</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Wor_Ditch_Empty_Single</type>
+      <type>Wor_Tree</type>
+      <direction>Down</direction>
+      <posX>728</posX>
+      <posY>456</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_Signpost</type>
+      <direction>Down</direction>
+      <posX>632</posX>
+      <posY>392</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Grass_Cut</type>
+      <direction>Down</direction>
+      <posX>568</posX>
+      <posY>408</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Grass_Cut</type>
       <direction>Down</direction>
       <posX>600</posX>
+      <posY>456</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Grass_Cut</type>
+      <direction>Down</direction>
+      <posX>648</posX>
       <posY>408</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Grass_Cut</type>
+      <direction>Down</direction>
+      <posX>664</posX>
+      <posY>456</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Grass_Cut</type>
+      <direction>Down</direction>
+      <posX>696</posX>
+      <posY>408</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Grass_Cut</type>
+      <direction>Down</direction>
+      <posX>728</posX>
+      <posY>440</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Grass_Cut</type>
+      <direction>Down</direction>
+      <posX>680</posX>
+      <posY>392</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Grass_Cut</type>
+      <direction>Down</direction>
+      <posX>584</posX>
+      <posY>392</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Flowers</type>
+      <direction>Down</direction>
+      <posX>552</posX>
+      <posY>392</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Flowers</type>
+      <direction>Down</direction>
+      <posX>728</posX>
+      <posY>408</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Flowers</type>
+      <direction>Down</direction>
+      <posX>568</posX>
+      <posY>456</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Flowers</type>
+      <direction>Down</direction>
+      <posX>488</posX>
+      <posY>392</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Flowers</type>
+      <direction>Down</direction>
+      <posX>728</posX>
+      <posY>504</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Flowers</type>
+      <direction>Down</direction>
+      <posX>728</posX>
+      <posY>360</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Flowers</type>
+      <direction>Down</direction>
+      <posX>792</posX>
+      <posY>440</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Flowers</type>
+      <direction>Down</direction>
+      <posX>504</posX>
+      <posY>472</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Grass_2</type>
+      <direction>Down</direction>
+      <posX>568</posX>
+      <posY>392</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Grass_2</type>
+      <direction>Down</direction>
+      <posX>600</posX>
+      <posY>392</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Grass_2</type>
+      <direction>Down</direction>
+      <posX>664</posX>
+      <posY>392</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Grass_2</type>
+      <direction>Down</direction>
+      <posX>520</posX>
+      <posY>408</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Grass_2</type>
+      <direction>Down</direction>
+      <posX>504</posX>
+      <posY>440</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Grass_2</type>
+      <direction>Down</direction>
+      <posX>760</posX>
+      <posY>472</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Grass_2</type>
+      <direction>Down</direction>
+      <posX>632</posX>
+      <posY>360</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Grass_2</type>
+      <direction>Down</direction>
+      <posX>568</posX>
+      <posY>520</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Grass_2</type>
+      <direction>Down</direction>
+      <posX>600</posX>
+      <posY>488</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Grass_2</type>
+      <direction>Down</direction>
+      <posX>680</posX>
+      <posY>488</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Fence_Vertical_Left</type>
+      <direction>Down</direction>
+      <posX>536</posX>
+      <posY>472</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Fence_Vertical_Left</type>
+      <direction>Down</direction>
+      <posX>536</posX>
+      <posY>456</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Fence_Vertical_Left</type>
+      <direction>Down</direction>
+      <posX>536</posX>
+      <posY>440</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Fence_Vertical_Left</type>
+      <direction>Down</direction>
+      <posX>536</posX>
+      <posY>424</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Fence_Vertical_Left</type>
+      <direction>Down</direction>
+      <posX>536</posX>
+      <posY>408</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Fence_Vertical_Left</type>
+      <direction>Down</direction>
+      <posX>536</posX>
+      <posY>392</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Fence_Vertical_Right</type>
+      <direction>Down</direction>
+      <posX>728</posX>
+      <posY>472</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Fence_Vertical_Right</type>
+      <direction>Down</direction>
+      <posX>728</posX>
+      <posY>456</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Fence_Vertical_Right</type>
+      <direction>Down</direction>
+      <posX>728</posX>
+      <posY>440</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Fence_Vertical_Right</type>
+      <direction>Down</direction>
+      <posX>728</posX>
+      <posY>424</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Fence_Vertical_Right</type>
+      <direction>Down</direction>
+      <posX>728</posX>
+      <posY>408</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Fence_Vertical_Right</type>
+      <direction>Down</direction>
+      <posX>728</posX>
+      <posY>392</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Coastline_Corner_Interior</type>
+      <direction>Down</direction>
+      <posX>920</posX>
+      <posY>584</posY>
     </ObjXmlData>
   </objs>
 </RoomXmlData>

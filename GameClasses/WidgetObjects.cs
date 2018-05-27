@@ -238,13 +238,13 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[19], ObjType.Wor_Coastline_Corner_Interior);
 
             //row 6
-            Functions_GameObject.SetType(objList[20], ObjType.Wor_Debris);
-            Functions_GameObject.SetType(objList[21], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[22], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[23], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[20], ObjType.Wor_Fence_Vertical_Left);
+            Functions_GameObject.SetType(objList[21], ObjType.Wor_Fence_Horizontal);
+            Functions_GameObject.SetType(objList[22], ObjType.Wor_Fence_Gate);
+            Functions_GameObject.SetType(objList[23], ObjType.Wor_Fence_Vertical_Right);
 
             //row 7
-            Functions_GameObject.SetType(objList[24], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[24], ObjType.Wor_Debris);
             Functions_GameObject.SetType(objList[25], ObjType.Unknown);
             Functions_GameObject.SetType(objList[26], ObjType.Unknown);
             Functions_GameObject.SetType(objList[27], ObjType.Unknown);
