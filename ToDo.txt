@@ -134,46 +134,28 @@ and heldObj is released().
 TODAY:
 
 
-
-
-
-
-
-
-Roofs
-
-added top and bottom roofs to game.
-implemented basic roof hiding routine.
-working as expected, needs polish.
-
-created pair of methods, HideRoofs() and
-ShowRoofs(), which loop over all roomObjs,
-finding active roof objs, and setting their
-sprite.visible to true or false.
-
-in Pool.Update, we added a section to reset
-roomObjs, like roofs. since we assume roof
-objs should be reset each frame, the only
-way to trigger roofs being hidden is by
-the hero constantly colliding with a roof
-obj each frame, which is exactly the desired
-behavior. upgraded hide and show methods to
-gradually increase or decrease all roof obj
-alpha values, so the roofs fade in and out
-as the hero enters or exits buildings. cool.
-
-
-
-
-
 Fences++
 why are the fences/gates filled in? they should just
 be wrought iron gates (see thru, black pixels).
+this looked ok, but not better.
+
+changed fences to look like chain link fences,
+diagonal pattern. looks VERY GOOD, but theres a
+strong moire effect. reduced the opacity of the
+chain link pixels to 50%, which completely stopped
+the moire effect (for me), while still displaying
+the fence sprite just fine. looking good.
+
+
+
+
+
+
+
 
 
 
 Chimney++
-
 chimney should hide like a roof obj,
 but it should create rising smoke particles
 if it's sprite is visible (if roofs are visible).
@@ -191,17 +173,9 @@ if it's sprite is visible (if roofs are visible).
 
 FarmHaus ++
 
+link's house should still be smaller.
 need chair, sink, stove, bed to complete
 link's farmhouse.
-
-
-
-
-
-
-
-
-
 
 
 
@@ -237,10 +211,21 @@ which seems barbaric and crude.
 
 
 
+Fences ++
+if link hits a fence obj, it should play an animation
+with two frames: fence straight, and fence bent (rounded).
+this will make it look like the fence was bouncing from the hit.
+this can be done by creating a fence bouncing obj,
+then switching the fence to bouncing version, then after
+60/120 frames, the bouncing version switches to the normal
+fence. should also have a fence bouncing sound effect.
+we can also do this with the vertical fences. which would
+be a very nice type of interaction polish.
 
-Chairs++
-need chairs, because we have tables.
-should be pushable.
+
+
+
+
 
 
 
