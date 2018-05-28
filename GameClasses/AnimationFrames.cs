@@ -174,14 +174,13 @@ namespace DungeonRun
         public static List<Byte4> Wor_Pot = new List<Byte4> { new Byte4(7, 6, 0, 0) };
 
         //water tiles
-        public static List<Byte4> Wor_Water = new List<Byte4> { new Byte4(3, 2, 0, 0) };
+        public static List<Byte4> Wor_Water = new List<Byte4> { new Byte4(3, 1, 0, 0) };
         public static List<Byte4> Wor_Coastline_Straight_A = new List<Byte4> { new Byte4(4, 2, 0, 0) };
         public static List<Byte4> Wor_Coastline_Straight_B = new List<Byte4> { new Byte4(4, 3, 0, 0) };
         public static List<Byte4> Wor_Coastline_Corner_Exterior = new List<Byte4> { new Byte4(5, 2, 0, 0) };
         public static List<Byte4> Wor_Coastline_Corner_Interior = new List<Byte4> { new Byte4(5, 3, 0, 0) };
 
         //ditches
-        //empty
         public static List<Byte4> Wor_Ditch_Empty_Single = new List<Byte4> { new Byte4(0, 8, 0, 0) };
         public static List<Byte4> Wor_Ditch_Empty_4UP = new List<Byte4> { new Byte4(0, 9, 0, 0) };
         public static List<Byte4> Wor_Ditch_Empty_Vertical = new List<Byte4> { new Byte4(1, 8, 0, 0) };

@@ -986,22 +986,31 @@ namespace DungeonRun
 
             #region Water Objects
 
+            else if(Type == ObjType.Wor_Water)
+            {   //use less pool objs by making water tiles 2x2
+                Obj.compSprite.zOffset = -40;
+                Obj.compCollision.blocking = false;
+                Obj.canBeSaved = true;
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Water;
+                //double size
+                Obj.compSprite.cellSize.X = 16 * 2; 
+                Obj.compSprite.cellSize.Y = 16 * 2; 
+                Obj.compCollision.rec.Width = 16 * 2;
+                Obj.compCollision.rec.Height = 16 * 2;
+                Obj.compCollision.offsetX = -8;
+                Obj.compCollision.offsetY = -8;
+            }
 
-            else if (Type == ObjType.Wor_Water
-                || Type == ObjType.Wor_Coastline_Straight
+            else if (Type == ObjType.Wor_Coastline_Straight
                 || Type == ObjType.Wor_Coastline_Corner_Exterior
                 || Type == ObjType.Wor_Coastline_Corner_Interior)
             {
                 Obj.compSprite.zOffset = -40;
                 Obj.compCollision.blocking = false;
                 Obj.canBeSaved = true;
-                Obj.compAnim.loop = true; //no anim, but we should for coastline in the future
+                Obj.compAnim.loop = true;
 
-                if (Type == ObjType.Wor_Water)
-                {
-                    Obj.compAnim.currentAnimation = AnimationFrames.Wor_Water;
-                }
-                else if (Type == ObjType.Wor_Coastline_Straight)
+                if (Type == ObjType.Wor_Coastline_Straight)
                 {
                     if (Functions_Random.Int(0, 100) > 50) //randomly choose coastline
                     { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Coastline_Straight_A; }

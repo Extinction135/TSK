@@ -233,15 +233,15 @@ namespace DungeonRun
 
             //row 5
             Functions_GameObject.SetType(objList[16], ObjType.Wor_Water);
-            Functions_GameObject.SetType(objList[17], ObjType.Wor_Coastline_Straight);
+            Functions_GameObject.SetType(objList[17], ObjType.Unknown);
             Functions_GameObject.SetType(objList[18], ObjType.Wor_Coastline_Corner_Exterior);
             Functions_GameObject.SetType(objList[19], ObjType.Wor_Coastline_Corner_Interior);
 
             //row 6
-            Functions_GameObject.SetType(objList[20], ObjType.Wor_Fence_Vertical_Left);
-            Functions_GameObject.SetType(objList[21], ObjType.Wor_Fence_Horizontal);
-            Functions_GameObject.SetType(objList[22], ObjType.Wor_Fence_Gate);
-            Functions_GameObject.SetType(objList[23], ObjType.Wor_Fence_Vertical_Right);
+            Functions_GameObject.SetType(objList[20], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[21], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[22], ObjType.Wor_Coastline_Straight);
+            Functions_GameObject.SetType(objList[23], ObjType.Unknown);
 
             //row 7
             Functions_GameObject.SetType(objList[24], ObjType.Wor_Debris);
@@ -250,22 +250,22 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[27], ObjType.Unknown);
 
             //row 8
-            Functions_GameObject.SetType(objList[28], ObjType.Wor_Build_Wall_Side_Left);
-            Functions_GameObject.SetType(objList[29], ObjType.Wor_Build_Wall_Back);
-            Functions_GameObject.SetType(objList[30], ObjType.Wor_Build_Door_Open);
-            Functions_GameObject.SetType(objList[31], ObjType.Wor_Build_Wall_Side_Right);
+            Functions_GameObject.SetType(objList[28], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[29], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[30], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[31], ObjType.Unknown);
 
             //row 9
-            Functions_GameObject.SetType(objList[32], ObjType.Wor_Build_Wall_FrontA);
-            Functions_GameObject.SetType(objList[33], ObjType.Wor_Build_Wall_FrontB);
-            Functions_GameObject.SetType(objList[34], ObjType.Wor_Build_Door_Shut);
-            Functions_GameObject.SetType(objList[35], ObjType.Wor_Build_Roof_Top);
+            Functions_GameObject.SetType(objList[32], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[33], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[34], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[35], ObjType.Unknown);
 
             //row 10
             Functions_GameObject.SetType(objList[36], ObjType.Unknown);
             Functions_GameObject.SetType(objList[37], ObjType.Unknown);
             Functions_GameObject.SetType(objList[38], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[39], ObjType.Wor_Build_Roof_Bottom);
+            Functions_GameObject.SetType(objList[39], ObjType.Unknown);
 
             //row 11
             Functions_GameObject.SetType(objList[40], ObjType.Unknown);
@@ -291,6 +291,11 @@ namespace DungeonRun
             Functions_Widget.HideObj(objList[13]);
             Functions_Widget.HideObj(objList[14]);
             Functions_Widget.HideObj(objList[15]);
+
+            //water tile hides these
+            Functions_Widget.HideObj(objList[17]);
+            Functions_Widget.HideObj(objList[20]);
+            Functions_Widget.HideObj(objList[21]);
         }
     }
 
@@ -312,28 +317,28 @@ namespace DungeonRun
             for (i = 0; i < 4 * 12; i++) { objList.Add(new GameObject()); }
 
             //row 1
-            Functions_GameObject.SetType(objList[0], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[1], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[2], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[3], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[0], ObjType.Wor_Build_Wall_Side_Left);
+            Functions_GameObject.SetType(objList[1], ObjType.Wor_Build_Wall_Back);
+            Functions_GameObject.SetType(objList[2], ObjType.Wor_Build_Door_Open);
+            Functions_GameObject.SetType(objList[3], ObjType.Wor_Build_Wall_Side_Right);
 
             //row 2
-            Functions_GameObject.SetType(objList[4], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[5], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[6], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[7], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[4], ObjType.Wor_Build_Wall_FrontA);
+            Functions_GameObject.SetType(objList[5], ObjType.Wor_Build_Wall_FrontB);
+            Functions_GameObject.SetType(objList[6], ObjType.Wor_Build_Door_Shut);
+            Functions_GameObject.SetType(objList[7], ObjType.Wor_Build_Roof_Top);
 
             //row 3
             Functions_GameObject.SetType(objList[8], ObjType.Unknown);
             Functions_GameObject.SetType(objList[9], ObjType.Unknown);
             Functions_GameObject.SetType(objList[10], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[11], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[11], ObjType.Wor_Build_Roof_Bottom);
 
             //row 4
-            Functions_GameObject.SetType(objList[12], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[13], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[14], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[15], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[12], ObjType.Wor_Fence_Vertical_Left);
+            Functions_GameObject.SetType(objList[13], ObjType.Wor_Fence_Horizontal);
+            Functions_GameObject.SetType(objList[14], ObjType.Wor_Fence_Gate);
+            Functions_GameObject.SetType(objList[15], ObjType.Wor_Fence_Vertical_Right);
 
             //row 5
             Functions_GameObject.SetType(objList[16], ObjType.Unknown);

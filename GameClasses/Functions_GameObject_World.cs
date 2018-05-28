@@ -122,8 +122,6 @@ namespace DungeonRun
             Assets.Play(Assets.sfxDoorOpen); //could be better
         }
 
-
-
         public static void HideRoofs()
         {   //for over active roomObjs, hide any roof obj found
             for (i = 0; i < Pool.roomObjCount; i++)
@@ -165,9 +163,6 @@ namespace DungeonRun
                 }
             }
         }
-
-
-
 
     }
 }

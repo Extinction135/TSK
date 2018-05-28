@@ -134,17 +134,37 @@ and heldObj is released().
 TODAY:
 
 
-Fences++
-why are the fences/gates filled in? they should just
-be wrought iron gates (see thru, black pixels).
-this looked ok, but not better.
 
-changed fences to look like chain link fences,
-diagonal pattern. looks VERY GOOD, but theres a
-strong moire effect. reduced the opacity of the
-chain link pixels to 50%, which completely stopped
-the moire effect (for me), while still displaying
-the fence sprite just fine. looking good.
+
+Water Tile Optimization
+
+What if WaterTiles were 32x32 objects instead of 16x16?
+thats a reduction by a factor of 4 for water tiles, 
+and we want them to be larger than a single tile anyway. 
+this will save alot of objects on farm level.
+however, this does require editing EVERY 
+level & ROOM that has water tiles. 
+
+okgo >>> fixed farm, colliseum, 
+forest entrance levels. updated all 
+rooms with proper water tiles.
+recompiled roomdata. <<< okdone.
+
+how many objs are on farm level now? 578.
+(with the addition of a house and fenced garden)
+the previous amount was 1134. so water tile
+optimization was good good good.
+
+plus, redesign of the levels was good too.
+they are becoming more focused.
+
+
+
+
+
+
+
+
 
 
 
@@ -161,23 +181,16 @@ but it should create rising smoke particles
 if it's sprite is visible (if roofs are visible).
 
 
-
-
-
-
-
-
-
-
-
-
 FarmHaus ++
-
 link's house should still be smaller.
 need chair, sink, stove, bed to complete
 link's farmhouse.
 
 
+Levels++
+Create additional "TOWN" levels, with various vendors,
+and buildings. these should connected via the overworld.
+this is a BIG player-facing commit.
 
 
 
@@ -185,13 +198,45 @@ link's farmhouse.
 
 
 
-Water Tiles Optimization
 
-What if WaterTiles were 32x32 objects instead of 16x16?
-thats a reduction of 4 on water tiles, and we want them to be
-larger than a single tile anyway. this is a very smart optimization.
-this will save alot of objects on farm level.
-*however, this does require editing every level that has water tiles.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -221,6 +266,12 @@ then switching the fence to bouncing version, then after
 fence. should also have a fence bouncing sound effect.
 we can also do this with the vertical fences. which would
 be a very nice type of interaction polish.
+
+
+
+
+
+
 
 
 
