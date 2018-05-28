@@ -251,21 +251,21 @@ namespace DungeonRun
 
             //row 8
             Functions_GameObject.SetType(objList[28], ObjType.Wor_Build_Wall_Side_Left);
-            Functions_GameObject.SetType(objList[29], ObjType.Wor_Build_Wall_FrontA);
-            Functions_GameObject.SetType(objList[30], ObjType.Wor_Build_Wall_FrontB);
+            Functions_GameObject.SetType(objList[29], ObjType.Wor_Build_Wall_Back);
+            Functions_GameObject.SetType(objList[30], ObjType.Wor_Build_Door_Open);
             Functions_GameObject.SetType(objList[31], ObjType.Wor_Build_Wall_Side_Right);
 
             //row 9
-            Functions_GameObject.SetType(objList[32], ObjType.Wor_Build_Wall_Back);
-            Functions_GameObject.SetType(objList[33], ObjType.Wor_Build_Door_Shut);
-            Functions_GameObject.SetType(objList[34], ObjType.Wor_Build_Door_Open);
-            Functions_GameObject.SetType(objList[35], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[32], ObjType.Wor_Build_Wall_FrontA);
+            Functions_GameObject.SetType(objList[33], ObjType.Wor_Build_Wall_FrontB);
+            Functions_GameObject.SetType(objList[34], ObjType.Wor_Build_Door_Shut);
+            Functions_GameObject.SetType(objList[35], ObjType.Wor_Build_Roof_Top);
 
             //row 10
             Functions_GameObject.SetType(objList[36], ObjType.Unknown);
             Functions_GameObject.SetType(objList[37], ObjType.Unknown);
             Functions_GameObject.SetType(objList[38], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[39], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[39], ObjType.Wor_Build_Roof_Bottom);
 
             //row 11
             Functions_GameObject.SetType(objList[40], ObjType.Unknown);

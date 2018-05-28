@@ -140,36 +140,71 @@ TODAY:
 
 
 
-
-
-
-
-
-Buildings!
-
-added building walls and doors to game.
-added OpenBuildingDoor() to world object functions.
-this converts a close door to an open door. 
-
-added building to farm level, with lots of testing.
-looks ok, but needs roofs and interior floor tiles.
-interaction with building doors working as expected.
-
-
-
-
-
-
-
 Roofs
 
-if hero touches a roof obj, ALL roof objs become invisible.
-this quickly hides the roofs, but we want them to fade out.
-then we want them fade in when hero isn't touching a roof obj.
-this requires a target alpha, and a method that alters all
-the roof alphas over a series of frames. this either adds or 
-subtracts all roof alphas until all alphas are at target alpha.
-this way hero touches roof = target = 0, else target = 100.
+added top and bottom roofs to game.
+implemented basic roof hiding routine.
+working as expected, needs polish.
+
+created pair of methods, HideRoofs() and
+ShowRoofs(), which loop over all roomObjs,
+finding active roof objs, and setting their
+sprite.visible to true or false.
+
+in Pool.Update, we added a section to reset
+roomObjs, like roofs. since we assume roof
+objs should be reset each frame, the only
+way to trigger roofs being hidden is by
+the hero constantly colliding with a roof
+obj each frame, which is exactly the desired
+behavior. upgraded hide and show methods to
+gradually increase or decrease all roof obj
+alpha values, so the roofs fade in and out
+as the hero enters or exits buildings. cool.
+
+
+
+
+
+Fences++
+why are the fences/gates filled in? they should just
+be wrought iron gates (see thru, black pixels).
+
+
+
+Chimney++
+
+chimney should hide like a roof obj,
+but it should create rising smoke particles
+if it's sprite is visible (if roofs are visible).
+
+
+
+
+
+
+
+
+
+
+
+
+FarmHaus ++
+
+need chair, sink, stove, bed to complete
+link's farmhouse.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

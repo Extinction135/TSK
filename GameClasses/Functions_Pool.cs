@@ -193,6 +193,11 @@ namespace DungeonRun
             Pool.collisionsCount = 0;
             Pool.interactionsCount = 0;
 
+            //reset hero - assume hero is not under roof
+            Functions_Hero.underRoof = false;
+
+
+
             //the following phases affect actors, room objects, and projectiles all at once
 
             #region Phase 1 - Get Input, Update, Animate, & Check Interactions
@@ -206,17 +211,18 @@ namespace DungeonRun
                 {
                     Functions_Input.SetInputState(Pool.actorPool[i].compInput, Pool.actorPool[i]);
 
+                    //here we are essentially resetting the actor for interactions below
                     //set actors that are in the air to world air friction
                     if (Pool.actorPool[i].compMove.grounded == false)
                     { Pool.actorPool[i].compMove.friction = World.frictionAir; }
                     //actors not in the air get set the world ground friction
                     else { Pool.actorPool[i].compMove.friction = World.friction; }
-
                     Pool.actorPool[i].feetFX.visible = false; //reset feetFX
                     Pool.actorPool[i].swimming = false; //reset swimming
                     Functions_Actor.Breathe(Pool.actorPool[i]); //check underwater state
-
+                    //then finally handle any interactions the actor has
                     Functions_Interaction.CheckInteractions(Pool.actorPool[i], true, true);
+
                     Functions_Actor.Update(Pool.actorPool[i]);
                     Functions_Animation.Animate(Pool.actorPool[i].compAnim, Pool.actorPool[i].compSprite);
                     Functions_Animation.ScaleSpriteDown(Pool.actorPool[i].compSprite);

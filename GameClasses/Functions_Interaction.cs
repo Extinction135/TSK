@@ -103,6 +103,7 @@ namespace DungeonRun
                         if (Math.Abs(Pool.hero.compSprite.position.Y - Obj.compSprite.position.Y) < 2)
                         { Pool.hero.compMove.newPosition.Y = Obj.compSprite.position.Y; }
                     }
+                    return;
                 }
 
                 #endregion
@@ -115,9 +116,24 @@ namespace DungeonRun
                 if (Obj.type == ObjType.Dungeon_Fairy)
                 {
                     Functions_GameObject_Dungeon.UseFairy(Obj);
+                    return;
                 }
 
                 #endregion
+
+
+                #region Roofs
+
+                else if (Obj.type == ObjType.Wor_Build_Roof_Bottom
+                    || Obj.type == ObjType.Wor_Build_Roof_Top)
+                {   //if hero touches a roof, hide all the roofs
+                    //Functions_GameObject_World.HideRoofs();
+                    Functions_Hero.underRoof = true;
+                    return;
+                }
+
+                #endregion
+
 
             }
 

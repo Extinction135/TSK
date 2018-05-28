@@ -230,6 +230,9 @@ namespace DungeonRun
         public static List<Byte4> Wor_Build_Door_Shut = new List<Byte4> { new Byte4(6, 10, 0, 0) };
         public static List<Byte4> Wor_Build_Door_Open = new List<Byte4> { new Byte4(7, 10, 0, 0) };
 
+        //roofs
+        public static List<Byte4> Wor_Build_Roof_Top = new List<Byte4> { new Byte4(7, 7, 0, 0) };
+        public static List<Byte4> Wor_Build_Roof_Bottom = new List<Byte4> { new Byte4(7, 8, 0, 0) };
 
         #endregion
 

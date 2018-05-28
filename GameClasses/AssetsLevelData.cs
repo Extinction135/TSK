@@ -1454,7 +1454,6 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Down; obj.posX = 888; obj.posY = 584; TheFarm.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Corner_Exterior; obj.direction = Direction.Down; obj.posX = 920; obj.posY = 568; TheFarm.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Corner_Exterior; obj.direction = Direction.Down; obj.posX = 1064; obj.posY = 552; TheFarm.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Corner_Interior; obj.direction = Direction.Down; obj.posX = 920; obj.posY = 584; TheFarm.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Corner_Interior; obj.direction = Direction.Down; obj.posX = 1064; obj.posY = 568; TheFarm.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Down; obj.posX = 904; obj.posY = 584; TheFarm.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Down; obj.posX = 936; obj.posY = 568; TheFarm.objs.Add(obj);}
@@ -1572,26 +1571,175 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush_Stump; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 440; TheFarm.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush_Stump; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 424; TheFarm.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush_Stump; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 440; TheFarm.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush_Stump; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 424; TheFarm.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush_Stump; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 440; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 520; obj.posY = 472; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 488; TheFarm.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush_Stump; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 424; TheFarm.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush_Stump; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 440; TheFarm.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Ditch_Empty_Endcap_South; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 456; TheFarm.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Ditch_Empty_Vertical; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 440; TheFarm.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Ditch_Empty_Vertical; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 424; TheFarm.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Ditch_Empty_Endcap_North; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 408; TheFarm.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Ditch_Empty_Single; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 456; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Ditch_Empty_Endcap_South; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 456; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Ditch_Empty_Vertical; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 440; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Ditch_Empty_Vertical; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 424; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Ditch_Empty_Endcap_North; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 408; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Ditch_Empty_Single; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 456; TheFarm.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Ditch_Empty_Vertical; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 440; TheFarm.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Ditch_Empty_Vertical; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 424; TheFarm.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Ditch_Empty_Endcap_North; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 408; TheFarm.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Ditch_Empty_Single; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 408; TheFarm.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Ditch_Empty_Single; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 456; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 488; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 488; TheFarm.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Ditch_Empty_Single; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 408; TheFarm.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Ditch_Empty_Single; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 456; TheFarm.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Ditch_Empty_Single; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 408; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Ditch_Empty_Single; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 408; TheFarm.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Ditch_Empty_Endcap_South; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 456; TheFarm.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Ditch_Empty_Single; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 456; TheFarm.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Ditch_Empty_Single; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 408; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Ditch_Empty_Single; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 456; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Ditch_Empty_Single; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 408; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Wall_FrontB; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 312; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Fence_Horizontal; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 472; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Fence_Horizontal; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 472; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Fence_Horizontal; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 472; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Fence_Horizontal; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 472; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Fence_Horizontal; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 472; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Fence_Horizontal; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 472; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Fence_Horizontal; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 472; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Fence_Horizontal; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 472; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Fence_Horizontal; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 472; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Fence_Horizontal; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 472; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Fence_Horizontal; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 472; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Fence_Horizontal; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 472; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 520; obj.posY = 376; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Fence_Horizontal; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 376; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Fence_Horizontal; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 376; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Fence_Horizontal; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 376; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Fence_Horizontal; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 376; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Fence_Horizontal; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 376; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Fence_Horizontal; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 376; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Wall_FrontA; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 312; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Fence_Horizontal; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 376; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Fence_Horizontal; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 376; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Fence_Horizontal; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 376; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Fence_Horizontal; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 376; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Fence_Horizontal; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 376; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Fence_Horizontal; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 376; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 376; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 376; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 456; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 456; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Signpost; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 488; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 408; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 456; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 408; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 456; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 408; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 440; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 392; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 392; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 392; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 408; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 456; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 488; obj.posY = 392; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 504; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 360; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 792; obj.posY = 440; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 504; obj.posY = 472; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 392; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 392; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 392; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 520; obj.posY = 408; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 504; obj.posY = 440; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 472; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 360; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 520; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 488; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 488; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Fence_Vertical_Left; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 472; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Fence_Vertical_Left; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 456; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Fence_Vertical_Left; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 440; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Fence_Vertical_Left; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 424; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Fence_Vertical_Left; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 408; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Fence_Vertical_Left; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 392; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Fence_Vertical_Right; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 472; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Fence_Vertical_Right; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 456; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Fence_Vertical_Right; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 440; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Fence_Vertical_Right; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 424; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Fence_Vertical_Right; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 408; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Fence_Vertical_Right; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 392; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Corner_Interior; obj.direction = Direction.Down; obj.posX = 920; obj.posY = 584; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Wall_FrontB; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 312; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Wall_FrontB; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 312; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Wall_FrontA; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 312; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Wall_FrontB; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 312; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Door_Shut; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 312; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Wall_Side_Left; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 312; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Wall_Side_Left; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 296; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Wall_Side_Left; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 280; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Wall_Side_Left; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 264; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Wall_Side_Right; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 312; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Wall_Side_Right; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 296; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Wall_Side_Right; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 280; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Wall_Side_Right; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 264; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Wall_Side_Right; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 248; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Wall_Side_Left; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 248; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Wall_Back; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 232; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Wall_Back; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 232; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Wall_Back; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 232; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Wall_Back; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 232; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Wall_Back; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 232; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Wall_Back; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 232; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Wall_Back; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 232; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Roof_Top; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 232; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Roof_Top; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 232; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Roof_Top; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 232; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Roof_Top; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 232; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Roof_Top; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 232; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Roof_Top; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 232; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Roof_Top; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 232; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Roof_Bottom; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 248; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Roof_Bottom; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 248; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Roof_Bottom; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 248; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Roof_Bottom; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 248; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Roof_Bottom; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 248; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Roof_Bottom; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 248; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Roof_Bottom; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 248; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Roof_Bottom; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 264; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Roof_Bottom; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 264; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Roof_Bottom; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 264; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Roof_Bottom; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 264; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Roof_Bottom; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 264; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Roof_Bottom; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 264; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Roof_Bottom; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 280; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Roof_Bottom; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 296; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Roof_Bottom; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 296; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Roof_Bottom; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 280; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 328; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 328; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 328; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 328; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 328; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 328; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Roof_Bottom; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 280; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 824; obj.posY = 248; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 776; obj.posY = 280; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Roof_Bottom; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 296; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 456; obj.posY = 280; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 776; obj.posY = 216; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 824; obj.posY = 328; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 488; obj.posY = 232; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 456; obj.posY = 376; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 808; obj.posY = 408; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree_Stump; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 312; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree_Stump; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 312; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Roof_Bottom; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 296; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Roof_Bottom; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 296; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Roof_Bottom; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 296; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Roof_Bottom; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 296; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Roof_Bottom; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 280; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Roof_Bottom; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 280; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Roof_Bottom; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 280; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Roof_Bottom; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 264; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Roof_Bottom; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 280; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Fence_Gate; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 376; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Fence_Gate; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 472; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bookcase; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 248; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Shelf; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 248; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_TableWood; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 280; TheFarm.objs.Add(obj);}
 			#endregion
 
 

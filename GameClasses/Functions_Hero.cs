@@ -21,6 +21,10 @@ namespace DungeonRun
         public static Rectangle heroRec; //16x16 px rec that matches hero's sprite
         public static Boolean boomerangInPlay = false; //only 1 boomerang on screen at once
 
+        public static Boolean underRoof = false; //is hero under a roofObj?
+
+
+
 
 
         static Functions_Hero()
@@ -446,6 +450,12 @@ namespace DungeonRun
 
             #endregion
 
+
+            //if the hero is under a roof, then hide all roofs
+            if (underRoof)
+            { Functions_GameObject_World.HideRoofs(); }
+            //else game should display all roofs
+            else { Functions_GameObject_World.ShowRoofs(); }
         }
 
         public static void SetLoadout()

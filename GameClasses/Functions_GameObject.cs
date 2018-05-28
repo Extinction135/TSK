@@ -1195,6 +1195,20 @@ namespace DungeonRun
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Build_Door_Open;
             }
 
+            //roofs
+            else if (Type == ObjType.Wor_Build_Roof_Bottom
+                || Type == ObjType.Wor_Build_Roof_Top)
+            {
+                Obj.canBeSaved = true;
+                Obj.compSprite.zOffset = 128; //sort over most other things
+                Obj.compCollision.blocking = false;
+
+                if (Type == ObjType.Wor_Build_Roof_Bottom)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Build_Roof_Bottom; }
+                else { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Build_Roof_Top; }
+            }
+
+
             #endregion
 
 

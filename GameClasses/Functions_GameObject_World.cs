@@ -14,7 +14,7 @@ namespace DungeonRun
 {
     public static class Functions_GameObject_World
     {
-        //static int i;
+        static int i;
 
 
 
@@ -121,6 +121,52 @@ namespace DungeonRun
             //play an unlocking sound effect
             Assets.Play(Assets.sfxDoorOpen); //could be better
         }
+
+
+
+        public static void HideRoofs()
+        {   //for over active roomObjs, hide any roof obj found
+            for (i = 0; i < Pool.roomObjCount; i++)
+            {
+                if (Pool.roomObjPool[i].active)
+                {
+                    if (Pool.roomObjPool[i].type == ObjType.Wor_Build_Roof_Bottom
+                        || Pool.roomObjPool[i].type == ObjType.Wor_Build_Roof_Top)
+                    {
+                        //instantly hide
+                        //Pool.roomObjPool[i].compSprite.visible = false;
+                        //fade hide
+                        if (Pool.roomObjPool[i].compSprite.alpha > 0f)
+                        { Pool.roomObjPool[i].compSprite.alpha -= 0.05f; }
+                        if (Pool.roomObjPool[i].compSprite.alpha < 0f)
+                        { Pool.roomObjPool[i].compSprite.alpha = 0f; }
+                    }
+                }
+            }
+        }
+
+        public static void ShowRoofs()
+        {   //for over active roomObjs, show any roof obj found
+            for (i = 0; i < Pool.roomObjCount; i++)
+            {
+                if (Pool.roomObjPool[i].active)
+                {
+                    if (Pool.roomObjPool[i].type == ObjType.Wor_Build_Roof_Bottom
+                        || Pool.roomObjPool[i].type == ObjType.Wor_Build_Roof_Top)
+                    {
+                        //instantly show
+                        //Pool.roomObjPool[i].compSprite.visible = true;
+                        //fade show
+                        if (Pool.roomObjPool[i].compSprite.alpha < 1f)
+                        { Pool.roomObjPool[i].compSprite.alpha += 0.05f; }
+                        if (Pool.roomObjPool[i].compSprite.alpha > 1f)
+                        { Pool.roomObjPool[i].compSprite.alpha = 1f; }
+                    }
+                }
+            }
+        }
+
+
 
 
     }
