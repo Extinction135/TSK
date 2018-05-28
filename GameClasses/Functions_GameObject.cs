@@ -1209,12 +1209,20 @@ namespace DungeonRun
                 || Type == ObjType.Wor_Build_Roof_Top)
             {
                 Obj.canBeSaved = true;
-                Obj.compSprite.zOffset = 128; //sort over most other things
+                Obj.compSprite.zOffset = 48; //sort over most other things
                 Obj.compCollision.blocking = false;
 
                 if (Type == ObjType.Wor_Build_Roof_Bottom)
                 { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Build_Roof_Bottom; }
                 else { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Build_Roof_Top; }
+            }
+            else if(Type == ObjType.Wor_Build_Roof_Chimney)
+            {
+                Obj.canBeSaved = true;
+                Obj.compSprite.zOffset = 48; //sort over most other things
+                Obj.compCollision.blocking = false;
+                Obj.getsAI = true; //handle this later
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Build_Roof_Chimney;
             }
 
 
@@ -1535,7 +1543,7 @@ namespace DungeonRun
             else if (Type == ObjType.Particle_RisingSmoke)
             {
                 Obj.compSprite.cellSize.X = 8; Obj.compSprite.cellSize.Y = 8; //nonstandard size
-                Obj.compSprite.zOffset = 32;
+                Obj.compSprite.zOffset = 64;
                 Obj.group = ObjGroup.Particle;
                 Obj.lifetime = 24; //in frames
                 Obj.compAnim.speed = 6; //in frames

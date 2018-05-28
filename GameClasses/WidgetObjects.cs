@@ -331,7 +331,7 @@ namespace DungeonRun
             //row 3
             Functions_GameObject.SetType(objList[8], ObjType.Unknown);
             Functions_GameObject.SetType(objList[9], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[10], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[10], ObjType.Wor_Build_Roof_Chimney);
             Functions_GameObject.SetType(objList[11], ObjType.Wor_Build_Roof_Bottom);
 
             //row 4

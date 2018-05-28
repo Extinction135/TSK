@@ -129,7 +129,8 @@ namespace DungeonRun
                 if (Pool.roomObjPool[i].active)
                 {
                     if (Pool.roomObjPool[i].type == ObjType.Wor_Build_Roof_Bottom
-                        || Pool.roomObjPool[i].type == ObjType.Wor_Build_Roof_Top)
+                        || Pool.roomObjPool[i].type == ObjType.Wor_Build_Roof_Top
+                        || Pool.roomObjPool[i].type == ObjType.Wor_Build_Roof_Chimney)
                     {
                         //instantly hide
                         //Pool.roomObjPool[i].compSprite.visible = false;
@@ -150,7 +151,8 @@ namespace DungeonRun
                 if (Pool.roomObjPool[i].active)
                 {
                     if (Pool.roomObjPool[i].type == ObjType.Wor_Build_Roof_Bottom
-                        || Pool.roomObjPool[i].type == ObjType.Wor_Build_Roof_Top)
+                        || Pool.roomObjPool[i].type == ObjType.Wor_Build_Roof_Top
+                        || Pool.roomObjPool[i].type == ObjType.Wor_Build_Roof_Chimney)
                     {
                         //instantly show
                         //Pool.roomObjPool[i].compSprite.visible = true;

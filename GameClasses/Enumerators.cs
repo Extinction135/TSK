@@ -335,6 +335,9 @@ namespace DungeonRun
         //roofs
         Wor_Build_Roof_Top,
         Wor_Build_Roof_Bottom,
+        Wor_Build_Roof_Chimney,
+
+
 
         //chimney - spawns rising smoke particles (getsAI)
 

@@ -336,7 +336,12 @@ namespace DungeonRun
                 { Functions_Particle.Spawn(ObjType.Particle_PitBubble, Obj); }
             }
 
-            else if(Obj.type == ObjType.Dungeon_Switch || Obj.type == ObjType.Dungeon_SwitchDown)
+            #endregion
+
+
+            #region Switches
+
+            else if (Obj.type == ObjType.Dungeon_Switch || Obj.type == ObjType.Dungeon_SwitchDown)
             {
                 overlap = false; //assume no hit
 
@@ -386,14 +391,40 @@ namespace DungeonRun
                 }
             }
 
+
             #endregion
 
 
-            #region World Objects
-            
+            #region Fairy
+
+            else if (Obj.type == ObjType.Dungeon_Fairy)
+            {
+                if (Functions_Random.Int(0, 101) > 93) //float around
+                {   //randomly push fairy a direction
+                    Functions_Movement.Push(Obj.compMove,
+                        Functions_Direction.GetRandomDirection(), 1.0f);
+                    //check that the fairy overlaps the current room rec,
+                    //otherwise the fairy has strayed too far and must be killed
+                    if (!Functions_Level.currentRoom.rec.Contains(Obj.compSprite.position))
+                    {
+                        Functions_Particle.Spawn(
+                            ObjType.Particle_Attention,
+                            Obj.compSprite.position.X + 0,
+                            Obj.compSprite.position.Y + 0);
+                        Functions_Pool.Release(Obj);
+                    }
+                }
+            }
+
+            #endregion
+
+
+            //world objects
+
+            #region Bush Stump
 
             //bush stump obj growing back into a bush
-            else if(Obj.type == ObjType.Wor_Bush_Stump)
+            else if (Obj.type == ObjType.Wor_Bush_Stump)
             {
                 Obj.lifeCounter++; //this isn't being used on roomObjs, so we steal it
                 if (Obj.lifeCounter == Obj.interactiveFrame)
@@ -442,9 +473,10 @@ namespace DungeonRun
                 }
             }
 
+            #endregion
 
 
-
+            #region Tree - Burning
 
             else if (Obj.type == ObjType.Wor_Tree_Burning)
             {   //check to see if tree should still burn
@@ -489,29 +521,25 @@ namespace DungeonRun
 
             #endregion
 
+            
+            #region Chimney - smoke
 
-            #region Fairy
-
-            else if (Obj.type == ObjType.Dungeon_Fairy)
-            {
-                if (Functions_Random.Int(0, 101) > 93) //float around
-                {   //randomly push fairy a direction
-                    Functions_Movement.Push(Obj.compMove,
-                        Functions_Direction.GetRandomDirection(), 1.0f);
-                    //check that the fairy overlaps the current room rec,
-                    //otherwise the fairy has strayed too far and must be killed
-                    if(!Functions_Level.currentRoom.rec.Contains(Obj.compSprite.position))
-                    {
+            else if(Obj.type == ObjType.Wor_Build_Roof_Chimney)
+            {   //chimney is a roof
+                if(Obj.compSprite.alpha > 0) //chimney is visible
+                {   //roofs switch between visible and non-visible via alpha
+                    if (Functions_Random.Int(0, 100) > 90)
+                    {   //often spawn rising smoke particles from obj
                         Functions_Particle.Spawn(
-                            ObjType.Particle_Attention,
-                            Obj.compSprite.position.X + 0,
-                            Obj.compSprite.position.Y + 0);
-                        Functions_Pool.Release(Obj);
+                            ObjType.Particle_RisingSmoke,
+                            Obj.compSprite.position.X + 4 + Functions_Random.Int(-3, 3),
+                            Obj.compSprite.position.Y - 2 + Functions_Random.Int(-5, 3));
                     }
                 }
             }
 
             #endregion
+
 
 
             #region Pet - Dog

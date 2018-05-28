@@ -232,6 +232,8 @@ namespace DungeonRun
         //roofs
         public static List<Byte4> Wor_Build_Roof_Top = new List<Byte4> { new Byte4(7, 7, 0, 0) };
         public static List<Byte4> Wor_Build_Roof_Bottom = new List<Byte4> { new Byte4(7, 8, 0, 0) };
+        public static List<Byte4> Wor_Build_Roof_Chimney = new List<Byte4> { new Byte4(7, 11, 0, 0) };
+
 
         #endregion
 

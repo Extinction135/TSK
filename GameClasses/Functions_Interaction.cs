@@ -125,7 +125,8 @@ namespace DungeonRun
                 #region Roofs
 
                 else if (Obj.type == ObjType.Wor_Build_Roof_Bottom
-                    || Obj.type == ObjType.Wor_Build_Roof_Top)
+                    || Obj.type == ObjType.Wor_Build_Roof_Top
+                    || Obj.type == ObjType.Wor_Build_Roof_Chimney)
                 {   //if hero touches a roof, hide all the roofs
                     //Functions_GameObject_World.HideRoofs();
                     Functions_Hero.underRoof = true;
