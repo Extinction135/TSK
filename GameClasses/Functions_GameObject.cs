@@ -45,6 +45,10 @@ namespace DungeonRun
             {
                 Functions_GameObject_World.OpenFencedGate(RoomObj);
             }
+            else if (RoomObj.type == ObjType.Wor_Build_Door_Shut)
+            {
+                Functions_GameObject_World.OpenBuildingDoor(RoomObj);
+            }
 
             #endregion
 
@@ -1136,6 +1140,66 @@ namespace DungeonRun
             }
 
             #endregion
+
+
+            #region Building Objects
+
+            else if (Type == ObjType.Wor_Build_Wall_FrontA 
+                || Type == ObjType.Wor_Build_Wall_FrontB
+                || Type == ObjType.Wor_Build_Wall_Back)
+            {
+                Obj.canBeSaved = true;
+                Obj.sfx.hit = Assets.sfxTapMetallic;
+                Obj.compSprite.zOffset = 4;
+                //note - these hitboxes are custom for a reason
+                Obj.compCollision.rec.Width = 16; Obj.compCollision.offsetX = -8;
+                Obj.compCollision.rec.Height = 4; Obj.compCollision.offsetY = +4;
+                //set anim frame based on type
+                if (Type == ObjType.Wor_Build_Wall_FrontA)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Build_Wall_FrontA; }
+                else if (Type == ObjType.Wor_Build_Wall_FrontB)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Build_Wall_FrontB; }
+                else { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Build_Wall_Back; }
+            }
+            else if(Type == ObjType.Wor_Build_Wall_Side_Left)
+            {
+                Obj.canBeSaved = true;
+                Obj.sfx.hit = Assets.sfxTapMetallic;
+                Obj.compSprite.zOffset = 4;
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Build_Wall_Side_Left;
+                //note - these hitboxes are custom for a reason
+                Obj.compCollision.rec.Width = 3; Obj.compCollision.offsetX = -8;
+                Obj.compCollision.rec.Height = 16; Obj.compCollision.offsetY = -8;
+            }
+            else if(Type == ObjType.Wor_Build_Wall_Side_Right)
+            {
+                Obj.canBeSaved = true;
+                Obj.sfx.hit = Assets.sfxTapMetallic;
+                Obj.compSprite.zOffset = 4;
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Build_Wall_Side_Right;
+                //note - these hitboxes are custom for a reason
+                Obj.compCollision.rec.Width = 3; Obj.compCollision.offsetX = +5;
+                Obj.compCollision.rec.Height = 16; Obj.compCollision.offsetY = -8;
+            }
+            else if (Type == ObjType.Wor_Build_Door_Shut)
+            {
+                Obj.canBeSaved = true;
+                Obj.compSprite.zOffset = 4;
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Build_Door_Shut;
+            }
+            else if (Type == ObjType.Wor_Build_Door_Open)
+            {
+                Obj.canBeSaved = true;
+                Obj.compSprite.zOffset = 0;
+                Obj.compCollision.blocking = false;
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Build_Door_Open;
+            }
+
+            #endregion
+
+
+
+
 
 
             //Entities

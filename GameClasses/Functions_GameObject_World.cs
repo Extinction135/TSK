@@ -99,17 +99,29 @@ namespace DungeonRun
         }
 
         public static void OpenFencedGate(GameObject Gate)
-        {
-            //pop attention particle
+        {   //pop attention particle
             Functions_Particle.Spawn(
                 ObjType.Particle_Attention,
                 Gate.compSprite.position.X,
                 Gate.compSprite.position.Y);
-            //release the gate
+            //remove the gate
             Functions_Pool.Release(Gate);
             //play an unlocking sound effect
             Assets.Play(Assets.sfxDoorOpen); //could be better
         }
+
+        public static void OpenBuildingDoor(GameObject Door)
+        {   //pop attention particle
+            Functions_Particle.Spawn(
+                ObjType.Particle_Attention,
+                Door.compSprite.position.X,
+                Door.compSprite.position.Y);
+            //switch to open door
+            Functions_GameObject.SetType(Door, ObjType.Wor_Build_Door_Open);
+            //play an unlocking sound effect
+            Assets.Play(Assets.sfxDoorOpen); //could be better
+        }
+
 
     }
 }

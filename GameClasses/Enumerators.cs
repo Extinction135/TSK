@@ -322,7 +322,18 @@ namespace DungeonRun
         Wor_Fence_Vertical_Right,
         Wor_Fence_Gate,
 
+        //building objs
+        Wor_Build_Wall_FrontA,
+        Wor_Build_Wall_FrontB,
+        Wor_Build_Wall_Back,
+        Wor_Build_Wall_Side_Left,
+        Wor_Build_Wall_Side_Right,
 
+        Wor_Build_Door_Shut,
+        Wor_Build_Door_Open,
+
+        //roofs
+        //chimney - spawns rising smoke particles (getsAI)
 
         #endregion
 

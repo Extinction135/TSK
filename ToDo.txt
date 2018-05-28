@@ -135,32 +135,6 @@ TODAY:
 
 
 
-Fences and Gate
-
-added vertical and horizontal fences, plus a gate obj.
-tested, hitBoxes lining up along with sprites. this
-one was a little tricky. 
-
-created Functions_GameObject_World.OpenFencedGate(Obj).
-this is the single point of responsibility for opening
-a fenced gate, all interactions with gate are handled thru
-this method. then this method was added to HandleCommon().
-tested, sword, shovel, arrows, explosions all trigger
-then opening of the gate.
-
-
-Farm++
-added gate and fence to farm level.
-
-improved sprites for fences and gate.
-improved sprites moar. then moar. with testing.
-added left and right versions of vertical fence.
-improved fence sprites even more. 
-playtested, finally looking good.
-
-updated OpenFencedGate() to remove the gate
-obj - this is so hero can dig ditches thru the
-"opened gate". tested, working.
 
 
 
@@ -171,19 +145,39 @@ obj - this is so hero can dig ditches thru the
 
 
 
+Buildings!
+
+added building walls and doors to game.
+added OpenBuildingDoor() to world object functions.
+this converts a close door to an open door. 
+
+added building to farm level, with lots of testing.
+looks ok, but needs roofs and interior floor tiles.
+interaction with building doors working as expected.
 
 
 
 
-Building Objects
-this is the non-destroyed version of buildings pioneered in CC.
-interactions with closed doors convert them to open doors.
+
+
+
+Roofs
+
+if hero touches a roof obj, ALL roof objs become invisible.
+this quickly hides the roofs, but we want them to fade out.
+then we want them fade in when hero isn't touching a roof obj.
+this requires a target alpha, and a method that alters all
+the roof alphas over a series of frames. this either adds or 
+subtracts all roof alphas until all alphas are at target alpha.
+this way hero touches roof = target = 0, else target = 100.
+
 
 
 
 
 
 Water Tiles Optimization
+
 What if WaterTiles were 32x32 objects instead of 16x16?
 thats a reduction of 4 on water tiles, and we want them to be
 larger than a single tile anyway. this is a very smart optimization.
@@ -194,7 +188,24 @@ this will save alot of objects on farm level.
 
 
 
+Civility++
+hero's interaction rec should open gate, and building doors.
+this means he doesn't have to destroy them to remove them,
+which seems barbaric and crude.
 
+
+
+
+
+
+
+
+
+
+
+Chairs++
+need chairs, because we have tables.
+should be pushable.
 
 
 
