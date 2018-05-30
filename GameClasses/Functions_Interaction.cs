@@ -19,6 +19,9 @@ namespace DungeonRun
 
         public static void CheckInteractions(Actor Actor, Boolean checkProjectiles, Boolean checkRoomObjs)
         {
+            //if actor is hero, and clipping is enabled, then no interactions happen
+            if(Actor == Pool.hero & Flags.Clipping) { return; }
+
             if (checkProjectiles)
             {   //loop thru projectile list, check overlaps, pass to Interact()
                 for (i = 0; i < Pool.projectileCount; i++)

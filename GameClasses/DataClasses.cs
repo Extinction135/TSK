@@ -20,26 +20,28 @@ namespace DungeonRun
         // **********************************************************************************************************
         public static float Version = 0.73f; //the version of the game
         public static BootRoutine bootRoutine = BootRoutine.Editor; //boot to game or editor?
-        //game flags
+        
+        //dev flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
         public static Boolean EnableDebugInfo = false; //rightside debug info
         public static Boolean DrawUItime = false; //draw build times next to world ui?
         public static Boolean DrawCollisions = false; //draw/hide collision rec components
         public static Boolean DrawInput = false; //draw the input display
         public static Boolean DrawWatermark = true; //top right link (for capturing purposes)
-
         public static Boolean Paused = false; //controlled by topMenu 'play/pause' button
-        public static Boolean PlayMusic = false; //turns music on/off
-        public static Boolean PlaySoundFX = true; //turns soundfx on/off
         public static Boolean SpawnMobs = true; //toggles the spawning of lesser enemies (not bosses)
         public static Boolean ProcessAI = true; //apply AI input to enemies / actors
-        public static Boolean CameraTracksHero = false; //camera tracks hero or centers to dungeon room
         public static Boolean ShowEnemySpawns = false; //create & draw enemySpawn gameObjects?
         public static Boolean PrintOutput = true; //print output to the debugger
+
+        //option flags
+        public static Boolean PlayMusic = false; //turns music on/off
+        public static Boolean PlaySoundFX = true; //turns soundfx on/off
+        public static Boolean HardMode = false; //makes the game harder
+        public static Boolean CameraTracksHero = false; //camera tracks hero or centers to dungeon room
         public static Boolean ShowDialogs = true; //turn dialogs on/off
 
-        public static Boolean HardMode = false; //makes the game harder
-        //cheats
+        //cheat flags
         public static Boolean Invincibility = true; //does hero ignore damage?
         public static Boolean InfiniteMagic = true; //does hero ignore magic costs?
         public static Boolean InfiniteGold = true; //does hero ignore item/vendor costs?
@@ -48,6 +50,9 @@ namespace DungeonRun
         public static Boolean MapCheat = false; //sets dungeon.map true when dungeon is built
         public static Boolean KeyCheat = true; //sets dungeon.key true when dungeon is built
         public static Boolean UnlockAll = true; //unlocks all items for hero
+        public static Boolean Clipping = false; //removes hero from collision/interaction/exit routines
+
+
 
         static Flags()
         {

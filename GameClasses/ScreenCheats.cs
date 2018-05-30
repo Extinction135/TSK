@@ -111,9 +111,13 @@ namespace DungeonRun
             labels[7].text = "unlck\nall";
             Functions_MenuItem.SetType(MenuItemType.CheatsUnlockAll, menuItems[7]);
 
+            //CheatsClipping
+            labels[8].text = "clip\nping";
+            Functions_MenuItem.SetType(MenuItemType.CheatsClipping, menuItems[8]);
+
             #endregion
 
-            
+
 
 
             #region Finish Up, prep for screen opening
@@ -199,7 +203,11 @@ namespace DungeonRun
                     Flags.UnlockAll = true;
                     Functions_Hero.UnlockAll();
                 }
-
+                else if (currentlySelected.type == MenuItemType.CheatsClipping)
+                {
+                    if (Flags.Clipping) { Flags.Clipping = false; }
+                    else { Flags.Clipping = true; }
+                }
 
 
 
@@ -351,6 +359,7 @@ namespace DungeonRun
             if (Flags.MapCheat) { menuItems[5].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
             if (Flags.KeyCheat) { menuItems[6].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
             if (Flags.UnlockAll) { menuItems[7].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
+            if (Flags.Clipping) { menuItems[8].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
             //expand this to include additional cheats
         }
 

@@ -122,18 +122,37 @@ Prep for 0.72 release and media (target: tmrw night).
 
 
 
-
-
-
-
-
 Editor++
-when we press F3, the top menu is hidden, but we can
-still click on the buttons, which is bad when we're 
-trying to complete a level. fixed. input now returns
-from the handleInput method post F1-5 key evaluation.
-modified update to still allow for mouse input.
-that is a super useful editor addition.
+
+turn off overworld exit routine from editor.
+this can be the new F4 toggle. this will allow
+hero to walk outside of field levels, so we can
+fill them up with objs. thinking about this more,
+we will also need clipping, the ability to walk
+thru objects, so we can conceptually combine
+these two ideas into one flag: the clipping flag.
+this also creates a new cheat in game: clipping.
+
+Clipping Flag
+this simply removes hero from any type of collision
+or interaction check. this also removes hero from
+the routine checking to see if he exits a field level.
+
+added clipping boolean. 
+
+implemented check into functions_hero.CheckRoomCollision(), 
+which bails from the method's field section if 
+clipping is true. implemented check into
+functions_interaction.checkInteractions(), bailing
+from method if player has enabled clipping.
+implemented clipping check into Pool.Update(),
+when pool checks collisions for hero, post movement.
+this completes implementation of clipping.
+
+added clipping menuItem to cheats screen.
+playtested, working as expected.
+
+improved debug output for XMLtoCS conversion routine.
 
 
 
@@ -141,11 +160,17 @@ that is a super useful editor addition.
 
 
 
-Editor++
-we also need to implement the editor's camera push routine:
-pressing a direction on the keyboard offsets the camera by
-64 pixels. we should also be centering the camera to dungeon
-rooms in editor.
+
+
+
+
+
+Optimization
+overworld enemies should NOT be actors.
+these simple enemies should just be roomObjs.
+this will cut down on frame times for packed 
+field levels with lots of objs.
+
 
 
 

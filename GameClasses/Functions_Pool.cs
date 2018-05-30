@@ -357,11 +357,22 @@ namespace DungeonRun
                 if (Pool.actorPool[i].active)
                 {
                     if(Pool.actorPool[i] == Pool.hero)
-                    {   //hero checks v roomObjs + enemies
-                        Functions_Collision.CheckCollisions(
-                            Pool.actorPool[i].compMove,
-                            Pool.actorPool[i].compCollision,
-                            true, true, false);
+                    {
+                        if (Flags.Clipping) //if clipping, there are no collisions
+                        {
+                            Functions_Collision.CheckCollisions(
+                                Pool.actorPool[i].compMove,
+                                Pool.actorPool[i].compCollision,
+                                false, false, false);
+                        }
+                        else
+                        {
+                            //hero checks v roomObjs + enemies
+                            Functions_Collision.CheckCollisions(
+                                Pool.actorPool[i].compMove,
+                                Pool.actorPool[i].compCollision,
+                                true, true, false);
+                        }
                     }
                     else
                     {   //enemies check v roomObjs + hero

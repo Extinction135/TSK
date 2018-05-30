@@ -39,6 +39,10 @@ namespace DungeonRun
             if (Level.isField)
             {   //hero is in level
 
+                if (Flags.Clipping) //if player has enabled clipping
+                { return; } //prevent exit of field level (for editing)
+
+
                 #region Handle hero transferring back to overworld screen
 
                 if(heroRec.Intersects(Functions_Level.currentRoom.rec) == false)

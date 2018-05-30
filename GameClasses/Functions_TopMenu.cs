@@ -179,8 +179,7 @@ namespace DungeonRun
             #endregion
 
 
-            //this needs to be moved elsewhere
-            #region F4 - Convert XML to CS
+            #region F4 - xml to cs
 
             if (Functions_Input.IsNewKeyPress(Keys.F4))
             {

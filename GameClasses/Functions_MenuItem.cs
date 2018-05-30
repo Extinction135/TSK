@@ -496,6 +496,12 @@ namespace DungeonRun
                 MenuItem.description = "Unlocks all items,\nweapons, etc..";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_CheatOn;
             }
+            else if (Type == MenuItemType.CheatsClipping)
+            {
+                MenuItem.name = "Clipping";
+                MenuItem.description = "Toggles interactions\nand collisions on/off.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_CheatOn;
+            }
 
             #endregion
 

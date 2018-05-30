@@ -58,9 +58,6 @@ namespace DungeonRun
             #endregion
 
 
-            Debug.WriteLine("...writing level data...");
-
-
             #region Write Level Data
 
             string csOutput = "";
@@ -88,6 +85,8 @@ namespace DungeonRun
 
             for (int i = 0; i < levelData.Count(); i++)
             {
+                Debug.WriteLine("writing FIELD " + i + " of " + levelData.Count);
+
                 csOutput += "\n";
                 csOutput += "\t\t\t#region " + levelData[i].type + "\n\n";
 
@@ -126,9 +125,6 @@ namespace DungeonRun
             #endregion
 
 
-            Debug.WriteLine("...writing room data...");
-
-
             #region Write Room Data
 
             csOutput = "";
@@ -158,6 +154,8 @@ namespace DungeonRun
 
             for (int i = 0; i < roomData.Count(); i++)
             {
+                Debug.WriteLine("writing ROOM " + i + " of " + roomData.Count);
+
                 csOutput += "\n";
                 csOutput += "\t\t\t#region Room - " + roomData[i].type + "\n\n";
                 csOutput += "\t\t\t{\n";
@@ -197,12 +195,6 @@ namespace DungeonRun
                 csOutput += "\t\t\t}\n";
                 csOutput += "\t\t\t#endregion\n\n";
             }
-
-
-
-
-
-
 
             csOutput += "\t\t}\n";
             csOutput += "\t}\n";

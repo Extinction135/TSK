@@ -505,12 +505,10 @@ namespace DungeonRun
         CheatsInfiniteMagic,
         CheatsInfiniteArrows,
         CheatsInfiniteBombs,
-
         CheatsMap,
         CheatsKey,
-
         CheatsUnlockAll,
-
+        CheatsClipping,
 
         //loadout menuItems
         InventoryGold,

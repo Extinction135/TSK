@@ -406,17 +406,17 @@ namespace DungeonRun
                 SetActiveTool(moveObj);
                 TopDebugMenu.objToolState = ObjToolState.MoveObj;
             }
-            if (Functions_Input.IsNewKeyPress(Keys.OemMinus)) //right of 0
+            else if (Functions_Input.IsNewKeyPress(Keys.OemMinus)) //right of 0
             {
                 SetActiveTool(deleteObj);
                 TopDebugMenu.objToolState = ObjToolState.DeleteObj;
             }
-            if (Functions_Input.IsNewKeyPress(Keys.OemPlus)) //right of -
+            else if (Functions_Input.IsNewKeyPress(Keys.OemPlus)) //right of -
             {
                 SetActiveTool(addObj);
                 TopDebugMenu.objToolState = ObjToolState.AddObj;
             }
-            if (Functions_Input.IsNewKeyPress(Keys.D9)) //left of 0
+            else if (Functions_Input.IsNewKeyPress(Keys.D9)) //left of 0
             {
                 SetActiveTool(rotateObj);
                 TopDebugMenu.objToolState = ObjToolState.RotateObj;
