@@ -1,6 +1,18 @@
 
 
 
+Colliseum
+
+what is this? we need npcs and unique sprites here too.
+define what colliseum is and how hero interacts with it.
+i dont know what this is right now. there's ideas, but not
+enough to execute on, so it's going on the backburner.
+
+
+
+
+
+
 
 
 - create 'boat' level, with boat captain, who has dialog with link
@@ -253,7 +265,9 @@ facing direction to the cardinal casting direction of the arrow projectile, for 
 
 
 
-
+The Wolf
+should be able to get a wolf pet, which actually attacks
+enemies. have to tame him by defeating him as a miniboss tho.
 
 
 because the blob boss has a cast sprite, he should be able to cast

@@ -53,6 +53,17 @@ namespace DungeonRun
             #endregion
 
 
+            #region World Enemies
+
+            else if (RoomObj.type == ObjType.Wor_Enemy_Turtle)
+            {
+                Functions_Particle.Spawn(ObjType.Particle_Attention, RoomObj);
+                Kill(RoomObj, true, false);
+            }
+
+            #endregion
+
+
             #region Dungeon Objects
 
             else if (RoomObj.type == ObjType.Dungeon_Pot)
@@ -1261,6 +1272,31 @@ namespace DungeonRun
 
             #endregion
 
+
+            #region Enemies
+
+            //these enemies are roomObj enemies, simple ai, 1 hit mobs
+            //standard, miniboss, and boss enemies are ACTORS and handled
+            //via Ai Functions.
+
+            else if(Type == ObjType.Wor_Enemy_Turtle)
+            {
+                Obj.getsAI = true; //roomObj enemy
+                Obj.canBeSaved = true;
+                Obj.compSprite.zOffset = 0;
+                Obj.compMove.moveable = true;
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Enemy_Turtle;
+                //setup hitbox
+                Obj.compCollision.blocking = true;
+                Obj.compCollision.offsetX = -6; Obj.compCollision.rec.Width = 12;
+                Obj.compCollision.offsetY = -3; Obj.compCollision.rec.Height = 8;
+                //setup sfx
+                Obj.sfx.hit = Assets.sfxEnemyHit;
+                Obj.sfx.kill = Assets.sfxEnemyKill;
+            }
+
+
+            #endregion
 
 
 

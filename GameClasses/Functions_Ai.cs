@@ -602,8 +602,6 @@ namespace DungeonRun
                     Functions_Movement.Push(Obj.compMove,
                         Functions_Direction.GetRandomDirection(), 
                         2.0f);
-
-                    
                 }
 
                 //set the facing direction based on X magnitude
@@ -622,7 +620,23 @@ namespace DungeonRun
 
             #endregion
 
-            
+
+
+
+            #region Enemy - Turtle
+
+            else if(Obj.type == ObjType.Wor_Enemy_Turtle)
+            {   //rarely gently push in a direction
+                if (Functions_Random.Int(0, 1001) > 900)
+                {
+                    Functions_Movement.Push(Obj.compMove,
+                        Functions_Direction.GetRandomDirection(), 0.5f);
+                }
+            }
+
+            #endregion
+
+
         }
 
     }

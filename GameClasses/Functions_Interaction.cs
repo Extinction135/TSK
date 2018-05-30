@@ -401,18 +401,6 @@ namespace DungeonRun
                 #endregion
 
 
-                #region Coastlines
-
-                else if (Obj.type == ObjType.Wor_Coastline_Corner_Exterior
-                    || Obj.type == ObjType.Wor_Coastline_Corner_Interior
-                    || Obj.type == ObjType.Wor_Coastline_Straight)
-                {   //display animated ripple at actor's feet
-                    Functions_Actor.DisplayWetFeet(Actor);
-                }
-
-                #endregion
-
-
                 #region Water
 
                 else if(Obj.type == ObjType.Wor_Water)
@@ -427,8 +415,22 @@ namespace DungeonRun
                         //kill the actor's momentum, adding weight to splash
                         Functions_Movement.StopMovement(Actor.compMove);
                     }
-                    Actor.swimming = true;
+
+                    //note water interaction comes before coastline interaction
+                    Actor.swimming = true; 
                     Actor.compMove.friction = World.frictionWater;
+                }
+
+                #endregion
+
+
+                #region Coastlines
+
+                else if (Obj.type == ObjType.Wor_Coastline_Corner_Exterior
+                    || Obj.type == ObjType.Wor_Coastline_Corner_Interior
+                    || Obj.type == ObjType.Wor_Coastline_Straight)
+                {   //display animated ripple at actor's feet
+                    Functions_Actor.DisplayWetFeet(Actor);
                 }
 
                 #endregion

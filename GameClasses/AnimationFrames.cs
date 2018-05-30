@@ -245,6 +245,10 @@ namespace DungeonRun
         public static List<Byte4> Wor_Build_Roof_Bottom = new List<Byte4> { new Byte4(7, 8, 0, 0) };
         public static List<Byte4> Wor_Build_Roof_Chimney = new List<Byte4> { new Byte4(7, 11, 0, 0) };
 
+        //enemies
+        public static List<Byte4> Wor_Enemy_Turtle = new List<Byte4>
+        { new Byte4(0, 13, 0, 0), new Byte4(1, 13, 0, 0) };
+
 
         #endregion
 

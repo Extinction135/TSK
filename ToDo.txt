@@ -112,67 +112,48 @@ and clear that inventory item when link enters a new room (pre-build).
 TODAY:
 
 
-
-
-
-
 Prep for 0.72 release and media (target: tmrw night).
 
 
 
 
 
-Editor++
+RoomObj Enemies
 
-turn off overworld exit routine from editor.
-this can be the new F4 toggle. this will allow
-hero to walk outside of field levels, so we can
-fill them up with objs. thinking about this more,
-we will also need clipping, the ability to walk
-thru objects, so we can conceptually combine
-these two ideas into one flag: the clipping flag.
-this also creates a new cheat in game: clipping.
+removed blob actors from dungeon entrance level.
+this is in prep for implementing roomObj enemies.
 
-Clipping Flag
-this simply removes hero from any type of collision
-or interaction check. this also removes hero from
-the routine checking to see if he exits a field level.
+Turtle
 
-added clipping boolean. 
+create turtle roomObj. takes 1 hit from anything.
+if turtle runs into the water, he becomes a sunk 
+roomObj and is released with a splash, just like
+any other pushed roomObj. loops his movement anim.
 
-implemented check into functions_hero.CheckRoomCollision(), 
-which bails from the method's field section if 
-clipping is true. implemented check into
-functions_interaction.checkInteractions(), bailing
-from method if player has enabled clipping.
-implemented clipping check into Pool.Update(),
-when pool checks collisions for hero, post movement.
-this completes implementation of clipping.
+turtles implemented. and now they're pushable.
+and they don't hurt hero, so they're not really
+enemies? but link can still kill them, spawning
+loot. and now he can also push them. push them
+into the water, where they will sink, gone forever.
+also, turtles can 'wander' into the water, 
+killing themselves, but depriving player of loot.
 
-added clipping menuItem to cheats screen.
-playtested, working as expected.
+added many turtles to dungeon entrance level.
+frametimes on pc dropped to @1ms. so, this 
+implementation is very good - optimized, plus
+turtles act as any other roomObj, appearing
+in editor (without the need for enemy spawns).
 
-improved debug output for XMLtoCS conversion routine.
+lots of playtesting here.
 
 
 
 
 
-
-
-
-
-
-
-
-Optimization
-overworld enemies should NOT be actors.
-these simple enemies should just be roomObjs.
-this will cut down on frame times for packed 
-field levels with lots of objs.
-
-
-
+why cant we pick turtles up?
+i want to be able to pick turtles up.
+and throw them at other turtles.
+because why not?
 
 
 
@@ -231,6 +212,129 @@ so the shadow is always sorting (down) properly.
 
 
 
+
+
+
+
+
+
+
+
+TMRW
+
+
+
+
+ENEMIES ++++
+
+Optimization
+overworld enemies should NOT be actors.
+these simple enemies should just be roomObjs.
+this will cut down on frame times for packed 
+field levels with lots of objs.
+
+create overworld enemy (with ai that randomly moves)
+that is destroyed upon interaction with most
+projectiles (explosions, swords, arrows, etc...)
+
+spawns loot too.
+
+
+
+Hero Eyeball
+we should have "hero eyeballs" for the main mob
+in the forest dungeon. this is essentially a big 
+eyeball with the proper feet and hand sprites to
+fulfill the hero sheet reqs. however, link cannot
+become this hero normally in-game.
+
+
+Enemy Spawns
+
+standard - usually 3 hit.
+
+easy - 1 hit, usually many or they explode.
+- we have seekers, they need to be renamed.
+- we also have fun floaty eye that should be mob outside of boss room
+
+*hard - more than 3 hits, less than 10.
+-we dont have a hard boss for forest dungeon yet.
+-make one
+
+
+
+Enemies++
+
+Seeker : seeks towards player, exlodes (done)
+Standard : 3 hits, with a melee attack (usually sword).
+
+OneHit : fast moving, low melee, low health.
+Distance : projectile attack (unlimited), med move, low health.
+Healing : healing magic (set amount), med move, no attack.
+Aggro : tank, slow, strong melee attack.
+Flanking : rogue, weak, fast, with strong attack.
+
+Miniboss : done
+Boss : done
+
+
+
+we'll need to change the enemy spawn 2, or miniboss spawn to be
+Enemy_Spawn_Weak, Enemy_Spawn_Strong. later on, it's likely this 
+will expand to also include Enemy_Spawn_Ranged, Enemy_Spawn_Healer,
+etc...
+
+
+
+
+
+
+
+
+
+Underground Blob Dungeon:
+we have an overworld pit sprite.
+hide this randomly under an object that can be destroyed,
+like a bush on a level. for now, this object will
+create a new type of dungeon, an underground dungeon.
+this is just a single critical path from hub room to exit room.
+just a hub room, then an exit room south of it.
+in the hub room, a miniboss will spawn, with a chest.
+the chest will have the dungeon map, in case we decide to expand
+this dugneon algorithm to be more than 2 rooms in the future.
+but, this reverses the dungeon - leading to the exit.
+upon exit, we simply return hero to his last overworld location,
+which should be stored in save data.
+*these dungeons should be blob enemy only, because this is story*
+
+
+Blobs need to have more weapons & items to attack and use.
+can throw bombs. can attack with swords.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Sneaking
 
 link picks up an obj. holding X while carrying this obj
@@ -258,6 +362,29 @@ Fire++
 when fire expands, it should expand further vertically,
 because it doesn't always transfer from bush to bush,
 because bush hitboxes are small.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -375,11 +502,6 @@ the actor as a parameter, and then we should base the offsets FOR ALL
 PROJECTILES off of the actor's collision rec width and height. this
 would allow larger actors, like bosses, to SHOOT FIREBALLS. geez.
 
-
-
-
-
-
 Special Attacks / Boss "USE"
 bigeye uses the shut + bloodshot frames for his special.
 bigeye: spawns A TON of exploding seekers while in his special.
@@ -390,97 +512,7 @@ bigeye: spawns A TON of exploding seekers while in his special.
 
 
 
-if the hero is swimming, he shouldn't make water walking splash noises.
 
-
-
-
-
-
-
-
-Standard MOB
-
-create the standard 3 hit floating eye mob for forest dungeon.
-this will replace the blob's currently being spawned.
-this actor is FLYING btw.
-
-
-
-
-Enemy Spawns
-
-standard - usually 3 hit.
-
-easy - 1 hit, usually many or they explode.
-- we have seekers, they need to be renamed.
-- we also have fun floaty eye that should be mob outside of boss room
-
-*hard - more than 3 hits, less than 10.
--we dont have a hard boss for forest dungeon yet.
--make one
-
-
-
-Enemies++
-
-Seeker : seeks towards player, exlodes (done)
-Standard : 3 hits, with a melee attack (usually sword).
-
-OneHit : fast moving, low melee, low health.
-Distance : projectile attack (unlimited), med move, low health.
-Healing : healing magic (set amount), med move, no attack.
-Aggro : tank, slow, strong melee attack.
-Flanking : rogue, weak, fast, with strong attack.
-
-Miniboss : done
-Boss : done
-
-
-
-we'll need to change the enemy spawn 2, or miniboss spawn to be
-Enemy_Spawn_Weak, Enemy_Spawn_Strong. later on, it's likely this 
-will expand to also include Enemy_Spawn_Ranged, Enemy_Spawn_Healer,
-etc...
-
-
-
-
-Underground Blob Dungeon:
-we have an overworld pit sprite.
-hide this randomly under an object that can be destroyed,
-like a bush on a level. for now, this object will
-create a new type of dungeon, an underground dungeon.
-this is just a single critical path from hub room to exit room.
-just a hub room, then an exit room south of it.
-in the hub room, a miniboss will spawn, with a chest.
-the chest will have the dungeon map, in case we decide to expand
-this dugneon algorithm to be more than 2 rooms in the future.
-but, this reverses the dungeon - leading to the exit.
-upon exit, we simply return hero to his last overworld location,
-which should be stored in save data.
-*these dungeons should be blob enemy only, because this is story*
-
-
-
-
-
-Blobs need to have more weapons & items to attack and use.
-Plus, we need to expand the AI to use more items.
-this also means we need to change some of the use checks for pool.hero
-into checks for actors with those animFrames, by actor type,
-like this: actor.type == ActorType.Hero or ActorType.Blob.
-
-
-
-
-
-
-
-Editor++
-Update editor to allow for development of complete field rooms.
-when we hold down an arrow key, offset the camera by 64 pixels in
-that direction. this allows us to 'peek' beyond a levels bounds.
 
 
 

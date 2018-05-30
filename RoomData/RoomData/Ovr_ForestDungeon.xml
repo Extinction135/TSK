@@ -681,12 +681,6 @@
       <posY>328</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_SpawnMob</type>
-      <direction>Down</direction>
-      <posX>568</posX>
-      <posY>360</posY>
-    </ObjXmlData>
-    <ObjXmlData>
       <type>Wor_Tree</type>
       <direction>Down</direction>
       <posX>952</posX>
@@ -703,12 +697,6 @@
       <direction>Down</direction>
       <posX>904</posX>
       <posY>536</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpawnMob</type>
-      <direction>Down</direction>
-      <posX>728</posX>
-      <posY>360</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Tree</type>
@@ -1059,7 +1047,7 @@
       <posY>424</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Wor_Bush</type>
+      <type>Wor_Bush_Stump</type>
       <direction>Down</direction>
       <posX>728</posX>
       <posY>440</posY>
@@ -1107,22 +1095,10 @@
       <posY>216</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_SpawnMob</type>
-      <direction>Down</direction>
-      <posX>568</posX>
-      <posY>392</posY>
-    </ObjXmlData>
-    <ObjXmlData>
       <type>Wor_Bush</type>
       <direction>Down</direction>
       <posX>856</posX>
       <posY>296</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpawnMob</type>
-      <direction>Down</direction>
-      <posX>728</posX>
-      <posY>392</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Bush</type>
@@ -1443,52 +1419,10 @@
       <posY>312</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Wor_Flowers</type>
-      <direction>Down</direction>
-      <posX>568</posX>
-      <posY>360</posY>
-    </ObjXmlData>
-    <ObjXmlData>
       <type>Wor_Tree</type>
       <direction>Down</direction>
       <posX>712</posX>
       <posY>568</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpawnMob</type>
-      <direction>Down</direction>
-      <posX>728</posX>
-      <posY>424</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpawnMob</type>
-      <direction>Down</direction>
-      <posX>568</posX>
-      <posY>424</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpawnMob</type>
-      <direction>Down</direction>
-      <posX>552</posX>
-      <posY>152</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpawnMob</type>
-      <direction>Down</direction>
-      <posX>760</posX>
-      <posY>152</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpawnMob</type>
-      <direction>Down</direction>
-      <posX>504</posX>
-      <posY>232</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpawnMob</type>
-      <direction>Down</direction>
-      <posX>824</posX>
-      <posY>232</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Tree</type>
@@ -2861,12 +2795,6 @@
     <ObjXmlData>
       <type>Wor_Grass_2</type>
       <direction>Down</direction>
-      <posX>728</posX>
-      <posY>360</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Grass_2</type>
-      <direction>Down</direction>
       <posX>712</posX>
       <posY>360</posY>
     </ObjXmlData>
@@ -4185,7 +4113,7 @@
       <posY>424</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Wor_Bush</type>
+      <type>Wor_Bush_Stump</type>
       <direction>Down</direction>
       <posX>712</posX>
       <posY>424</posY>
@@ -4237,6 +4165,144 @@
       <direction>Down</direction>
       <posX>792</posX>
       <posY>472</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Turtle</type>
+      <direction>Down</direction>
+      <posX>733</posX>
+      <posY>397</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Turtle</type>
+      <direction>Down</direction>
+      <posX>518</posX>
+      <posY>373</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Turtle</type>
+      <direction>Down</direction>
+      <posX>421</posX>
+      <posY>425</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Turtle</type>
+      <direction>Down</direction>
+      <posX>535</posX>
+      <posY>482</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Turtle</type>
+      <direction>Down</direction>
+      <posX>711</posX>
+      <posY>544</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Turtle</type>
+      <direction>Down</direction>
+      <posX>538</posX>
+      <posY>545</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Turtle</type>
+      <direction>Down</direction>
+      <posX>663</posX>
+      <posY>385</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Turtle</type>
+      <direction>Down</direction>
+      <posX>745</posX>
+      <posY>459</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Turtle</type>
+      <direction>Down</direction>
+      <posX>826</posX>
+      <posY>332</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Turtle</type>
+      <direction>Down</direction>
+      <posX>581</posX>
+      <posY>262</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Turtle</type>
+      <direction>Down</direction>
+      <posX>706</posX>
+      <posY>202</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Turtle</type>
+      <direction>Down</direction>
+      <posX>647</posX>
+      <posY>178</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Turtle</type>
+      <direction>Down</direction>
+      <posX>511</posX>
+      <posY>227</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Turtle</type>
+      <direction>Down</direction>
+      <posX>392</posX>
+      <posY>272</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Turtle</type>
+      <direction>Down</direction>
+      <posX>464</posX>
+      <posY>347</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Turtle</type>
+      <direction>Down</direction>
+      <posX>674</posX>
+      <posY>324</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Turtle</type>
+      <direction>Down</direction>
+      <posX>757</posX>
+      <posY>146</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Turtle</type>
+      <direction>Down</direction>
+      <posX>556</posX>
+      <posY>147</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Turtle</type>
+      <direction>Down</direction>
+      <posX>823</posX>
+      <posY>183</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Turtle</type>
+      <direction>Down</direction>
+      <posX>878</posX>
+      <posY>258</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Turtle</type>
+      <direction>Down</direction>
+      <posX>570</posX>
+      <posY>417</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Turtle</type>
+      <direction>Down</direction>
+      <posX>734</posX>
+      <posY>271</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Turtle</type>
+      <direction>Down</direction>
+      <posX>523</posX>
+      <posY>296</posY>
     </ObjXmlData>
   </objs>
 </RoomXmlData>

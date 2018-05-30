@@ -419,7 +419,7 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[7], ObjType.Dungeon_SpawnMiniBoss);
 
             //row 3
-            Functions_GameObject.SetType(objList[8], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[8], ObjType.Wor_Enemy_Turtle);
             Functions_GameObject.SetType(objList[9], ObjType.Unknown);
             Functions_GameObject.SetType(objList[10], ObjType.Unknown);
             Functions_GameObject.SetType(objList[11], ObjType.Unknown);
