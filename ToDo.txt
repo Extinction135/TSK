@@ -119,28 +119,20 @@ Prep for 0.72 release and media (target: tmrw night).
 
 
 
-Sprites++
-
-added transparent shadows for:
-rat, turtle, crab, all vendors.
-
-
-
-
-
-
-
-
-
-
 Pushing Objs++
+
 only certain objects can be pushed.
-this should be modeled via type checks
-in the actor.push() / grab method.
+this should be modeled via type checks.
 right now, we check obj.compMove.moveable,
 which is really used to tell if the obj
 can be pushed by other objects, like belts.
 
+updated Hero.InteractRecWith(Obj) to use
+type checks instead of .moveable boolean check.
+this means player can no longer push rats,
+turtles, crabs, etc.. fixing that weirdness.
+
+ 
 
 
 

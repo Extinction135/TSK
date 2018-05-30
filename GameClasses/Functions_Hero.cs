@@ -380,6 +380,9 @@ namespace DungeonRun
 
             if (Pool.hero.swimming) { return; }
 
+
+
+
             //Objects that can only be interacted with from Land
 
             #region Carry-able Objects
@@ -399,12 +402,24 @@ namespace DungeonRun
 
             #region Push-able Objects
 
-            if(Obj.compMove.moveable)
+            //what hero can push is limited by this check
+            else if(Obj.type == ObjType.Dungeon_Barrel
+                || Obj.type == ObjType.Dungeon_BlockLight
+                || Obj.type == ObjType.Dungeon_Statue
+                || Obj.type == ObjType.Dungeon_TorchLit
+                || Obj.type == ObjType.Dungeon_TorchUnlit
+                || Obj.type == ObjType.Wor_Bookcase
+                || Obj.type == ObjType.Wor_Chair
+                || Obj.type == ObjType.Wor_Shelf
+                || Obj.type == ObjType.Wor_Sink
+                || Obj.type == ObjType.Wor_Stove
+                || Obj.type == ObjType.Wor_TableSingle)
             {
                 Functions_Actor.Grab(Obj, Pool.hero);
             }
 
             #endregion
+
 
         }
 
