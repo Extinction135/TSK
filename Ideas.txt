@@ -1,25 +1,8 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
 We still need a stationary spike block obj.
 this is super easy to do, btw.
-
-
-
-
-
-
-
 
 
 
@@ -516,11 +499,6 @@ perfect on all monitors / tvs / displays.
 
 
 
-
-
-- implement picking up, carrying, throwing bushes, pots, skulls
-hero throws obj upon leaving room, falling into pit, getting hit, etc..
-
 *** we could have a massive tree trunk without a top for the entrance ***
 the trunk would just keep going all the way up to the top of the sprite sheet,
 and we'd place the dungeon entrance near the top of the level, always.
@@ -530,7 +508,7 @@ plus, this tree looks like it belongs in the dark world. rt.
 
 
 
-
+Editor Widgets++
 i want to put portals / entrances in their own widget, because they have
 various sizes, and we only need to display them occasionally, unlike shared objs
 which we display more often, plus we're just wasting widget objs by covering
@@ -577,12 +555,6 @@ add animated floating clouds to the overworld screen
 
 
 
-*we could also add a frame counter right next to button input, showing fps
-
-
-
-
-
 quad black rectangle transitions
 4 black rectangles converge onto link, simulating Lttp's circular black transition
 between levels, etc.. 
@@ -608,64 +580,8 @@ dripping/shiny particles randomly on the trunk.
 
 
 
-when hero interacts with the dungeon entrance, a mysterious stranger
-asks them if they choose to enter the dungeon *name*.. this is actually
-zelda, and she's tracking how many times link has entered this dungeon, 
-and how many times he's beaten it. this affects zelda's 'judgements' later on.
-
-
-
-
 
 freeze an enemy, sprinkle magic powder on them, smash with a hammer = full magic pot
-
-
-
-
-Picking Up Objects++
-picking up a pot puts hero into a carry state, but leaves the roomObj drawing on the sreen, but nonblocking
-hero doesn't display anything over his head
-setting the obj down doesn't move the roomObj, but instead makes it blocking again.
-we need to be altering ROOMOBJECTS only, we dont need to abstract it into a thrown / carrying obj
-if hero collides with a door, simply destroy the carrying obj reference
-
-all related to picking up/carrying/throwing/pushing/pulling
-{
-
-*currently the obj hero picks up doesn't appear over his head
-the obj stays in it's picked up spot
-
-	hero should be able to pickup and throw enemy corpses
-	which means we need to abstract the carrying obj into something that could ref an obj or actor
-	or we have both, one for objs and one for actors
-
-	what if the obj the hero picks up simply assumes the target obj's texture and frame, etc..?
-	this would work for actors as well, which sets the ground work for allowing the hero to pickup 
-	blob corpses and use them in some interesting way... like dropping them on a switch!
-	we already do this with pots essentially, but we need to abstract the carrying/throwing solution
-	to be more generalized and handle roomObjs, actors, or whatever we throw at it in the future..
-
-	Dragging/Pushing/Pulling
-
-	hero should be able to 'grab' objects
-	if the object is draggable, then hero should be able to push and pull on it
-	this 'grabbing' state should last until player releases the A button
-	objects should inherit the movement of hero, 
-	and check collisions with all roomObjs, entities, & actors (expensive)
-	if a draggable object would collide, it doesn't move
-	this would have to be done per axis too, so we could drag along walls
-
-	in order to accomplish these two things, we will need to be able to compare a gameobj against the roomObjs
-	this starts with a collision check, then an interaction upon an overlap
-	we would call this from dragging / pushing / pulling, and conveyor belt checks
-	
-	when we throw an object, should we create an entity?
-	and should this entity be a projectile with a caster?
-	so the game would know who threw the object, if we had effects later
-	for example, lifesteal or something else that targets the caster upon obj collision.
-}
-
-
 
 
 
@@ -685,7 +601,16 @@ this also means we need to 'unbake' the shadows from ALL objects and actors.
 
 
 
-
+Fences ++
+if link hits a fence obj, it should play an animation
+with two frames: fence straight, and fence bent (rounded).
+this will make it look like the fence was bouncing from the hit.
+this can be done by creating a fence bouncing obj,
+then switching the fence to bouncing version, then after
+60/120 frames, the bouncing version switches to the normal
+fence. should also have a fence bouncing sound effect.
+we can also do this with the vertical fences. which would
+be a very nice type of interaction polish.
 
 
 

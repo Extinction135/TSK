@@ -284,19 +284,11 @@ namespace DungeonRun
 
             //obj.type checks
 
-            #region Dungeon Entrances
+            //dungeon objects
 
-            if (Obj.type == ObjType.Wor_Entrance_ForestDungeon)
-            {   //give player choice to enter dungeon
-                ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Enter_ForestDungeon));
-            }
+            #region Torches, Levers, Switches
 
-            #endregion
-
-
-            #region Dungeon Objects
-
-            else if (Obj.type == ObjType.Dungeon_TorchUnlit)
+            if (Obj.type == ObjType.Dungeon_TorchUnlit)
             {   //light any unlit torch  //git lit *
                 Functions_GameObject_Dungeon.LightTorch(Obj);
             }
@@ -343,12 +335,39 @@ namespace DungeonRun
             #endregion
 
 
+
+            //world objects
+
             #region Signposts
 
             else if (Obj.type == ObjType.Dungeon_Signpost)
             {
                 if (Flags.ShowDialogs)
                 { ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Signpost_Standard)); }
+            }
+
+            #endregion
+
+
+            #region Dungeon Entrances
+
+            else if (Obj.type == ObjType.Wor_Entrance_ForestDungeon)
+            {   //give player choice to enter dungeon
+                ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Enter_ForestDungeon));
+            }
+
+            #endregion
+
+
+            #region Gate and House Doors
+
+            else if (Obj.type == ObjType.Wor_Fence_Gate)
+            {
+                Functions_GameObject_World.OpenFencedGate(Obj);
+            }
+            else if (Obj.type == ObjType.Wor_Build_Door_Shut)
+            {
+                Functions_GameObject_World.OpenBuildingDoor(Obj);
             }
 
             #endregion

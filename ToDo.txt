@@ -138,30 +138,11 @@ TODAY:
 
 
 
+Civility++
 
-Homes
-
-upgraded table sprites.
-now we have a table that serves as a
-double table. added sink and stove
-sprites, along with bed sprite.
-added chair sprite. this completes
-the basic objs necessary to represent
-a living space.
-
-changed wood and stone table enum values
-to table single and double. 
-
-added stove, sink, bed, and chair objs.
-added objs (minus bed) into explosion interaction
-routine - so all these objects can be destroyed.
-except for beds. because these objs would
-be destroyed separately and would look weird.
-
-double tables cannot be destoryed for the
-same reason. created table double left and 
-right, tested. added bed, table, and 
-chair to farm house.
+hero's interaction rec should open gate, and building doors.
+this means he doesn't have to destroy them to remove them,
+which seems barbaric and crude.
 
 
 
@@ -169,8 +150,19 @@ chair to farm house.
 
 
 
+chimney smoke should only happen
+if chimney sprite alpha is at 1.0.
+any value below that is ignored.
+why? because chimney creates smoke
+as it's fading in/out, leaving
+smoke particles on their own once
+chimney completes it's fade.
 
 
+
+building side walls should sort under
+building front walls - we're getting
+visual sorting bugs.
 
 
 
@@ -190,6 +182,30 @@ items should be located elsewhere.
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 We need dirt paths, without using alot of sprite space up.
 we could do vert transition to dirt + hori trans to dirt,
 but never actually have a dirt tile. putting two of these
@@ -202,71 +218,6 @@ so, minimum of 4 - likely 6.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Civility++
-hero's interaction rec should open gate, and building doors.
-this means he doesn't have to destroy them to remove them,
-which seems barbaric and crude.
-
-
-
-
-
-
-
-
-
-
-Fences ++
-if link hits a fence obj, it should play an animation
-with two frames: fence straight, and fence bent (rounded).
-this will make it look like the fence was bouncing from the hit.
-this can be done by creating a fence bouncing obj,
-then switching the fence to bouncing version, then after
-60/120 frames, the bouncing version switches to the normal
-fence. should also have a fence bouncing sound effect.
-we can also do this with the vertical fences. which would
-be a very nice type of interaction polish.
 
 
 
