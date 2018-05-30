@@ -177,8 +177,9 @@ namespace DungeonRun
             }
 
             #endregion
-            
 
+
+            //this needs to be moved elsewhere
             #region F4 - Convert XML to CS
 
             if (Functions_Input.IsNewKeyPress(Keys.F4))
@@ -206,6 +207,14 @@ namespace DungeonRun
             }
 
             #endregion
+
+
+            //editor should be able to use cursor in expected manner
+            Widgets.ObjectTools.HandleInput();
+
+            //allow F1-5 keyboard & mouse input while in "playtest" mode
+            if (TopDebugMenu.display == WidgetDisplaySet.None) { return; }
+
 
 
             #region F6 - Set Dungeon Widgets Display
@@ -287,10 +296,6 @@ namespace DungeonRun
             #endregion
 
 
-
-
-
-
             #region Handle User Clicking Editor Widget Objects
 
             if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
@@ -357,9 +362,6 @@ namespace DungeonRun
 
             #endregion
 
-
-            //editor should be able to use cursor in expected manner
-            Widgets.ObjectTools.HandleInput();
         }
 
 

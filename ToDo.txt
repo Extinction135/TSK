@@ -69,37 +69,40 @@ Phase 2 - version 0.8 to 1.0
 	
 v0.8 goals
 
-- the "shadow system"
-every actor has a shadow, based on the actor size and flying state.
-larger actor = large shadow, flying actor = smaller shadow (due to height off ground)
-every object has a shadow, based on the obj type, size, and state.
-these shadows maybe visible or not. these shadows should track to the
-objects/actors each frame, AFTER the compMove component has finished processing.
-these shadows are sprites that are added to actors and gameobj classes.
-this will likely be part of pool, possibly just prior to drawing to ensure
-they are always aligned to their obj/actor (altho this does pollute Draw)..
+- mountain dungeon (diff enemies, boss, dungeon sprites)
 
 - Non-room repeating Dungeon, additional rooms
-- Flying Dungeon Enemy, Minor Overworld Enemies
-- Blob AI improvements - sword, arrow, bomb based on weapon / item loadout 
-- blob loadouts could be randomized when room is built()
-
-- mountain dungeon (diff enemies, boss, dungeon sprites - but same rooms)
+- Blob AI improvements - sword, bomb based on weapon / item loadout 
 
 - room keys - these only work for the room and only unlock 1 door, and
 these rooms turn all their doors into locked doors upon close, similar to puzzled rooms
-link doesn't put them into inventory, he literally picks them up and takes
-them to the door to unlock it. this is super mario style key gameplay.
-if link's heldObj == small key, then link's interaction with locked door makes it open.
-and heldObj is released().
+link doesn't put them into inventory - he literally picks them up and walks over
+to a locked door then throws the key at it.
+this is kinda like super mario world style key gameplay.
+
+if obj.type == key & obj.hitBox.intersects lockedDoor.hitBox,
+convert lockedDoor to openDoor, release() key.
+- or - we put the key as a menuItem in inventory,
+and clear that inventory item when link enters a new room (pre-build).
+
+
+
+
+
 
 
 
 
 0.9
+
 - LIGHT WORLD & DARK WORLD
 - this is different overworld map + different levels + diff sprites
 - this is NOT A SEPARATE SYSTEM (needless complexity)
+
+
+
+
+
 
 
 
@@ -113,95 +116,115 @@ TODAY:
 
 
 
+Prep for 0.72 release and media (target: tmrw night).
 
-Grassy FeetFx ++
 
-improved the grassy feet fx sprite.
 
 
-move gass feetfx sprite up 1 on y axis in sprite sheet.
-this will align better to hero and blob actors.
 
 
 
 
 
 
+Editor++
+when we press F3, the top menu is hidden, but we can
+still click on the buttons, which is bad when we're 
+trying to complete a level. fixed. input now returns
+from the handleInput method post F1-5 key evaluation.
+modified update to still allow for mouse input.
+that is a super useful editor addition.
 
 
 
 
-colliseum level
-what is this? we need npcs and unique sprites here too.
-define what colliseum is and how hero interacts with it.
 
 
-town level
-has houses and shops, with NPCs
 
+Editor++
+we also need to implement the editor's camera push routine:
+pressing a direction on the keyboard offsets the camera by
+64 pixels. we should also be centering the camera to dungeon
+rooms in editor.
 
 
 
 
 
-weapons and equipment should be located in the same large building.
-items should be located elsewhere.
 
 
+Town
+create town level on left side of map.
+town level should have a center shop with npcs.
 
 
 
 
+Farmer
+we need a farmer npc on the farm level that complains
+that his crops are too dry to grow. if he only had a 
+shovel..
 
 
+DungeonMap++
+miniboss should drop the dungeon map object.
+upon touching this obj, hero should be set into reward
+state, with map overhead.
 
 
 
+Dash++
+holding down B should trigger dashing in the input
+direction across frames - this imitates lttps screen
+dashing ability, but still keeps the quick tactical
+dash from hyper light drifter.
 
 
 
 
 
+SHADOWS
 
+- hero needs a shadow. this should track to him prior to draw.
 
+- boomerang needs a shadow < this should be done in sprite,
+we need to have a spinning animation for boomerang with shadow
+added in. this means we dont double up sprites in game for projectiles,
+just so a few of them can have shadows. it's more efficient to
+just bake the shadows into the sprite sheets.
+**problem** the boomerang shadow will sort with the boomerang,
+not underneath objects that the boomerang hits.
 
+- fireball should have a shadow too, because the shadow would
+help to visually distinguish the fireball in-room, allowing for
+an easier visual track for the player (me).
+*should probably have cardinal directions for the fireball sprite,
+so the shadow is always sorting (down) properly.
 
 
 
 
 
 
+Sneaking
 
+link picks up an obj. holding X while carrying this obj
+puts link into the 'sneaking' state, which means link
+crouches down and the held obj mostly covers him, except 
+for his feet. link moves at a much slower pace, but
+enemies cant see him and dont attack him.
 
 
 
-We need dirt paths, without using alot of sprite space up.
-we could do vert transition to dirt + hori trans to dirt,
-but never actually have a dirt tile. putting two of these
-together could build a path, and then we just need corners.
-so, minimum of 4 - likely 6.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Bombos
+this is a series of explosions across the screen, rapidly.
+this is left to right, top to bottom, with no explosions
+touching link or dealing him damage. this magic allows players
+to destroy entire levels of objects in a second.
+which is awesome.
 
 
 
@@ -210,6 +233,24 @@ Fire++
 when fire expands, it should expand further vertically,
 because it doesn't always transfer from bush to bush,
 because bush hitboxes are small.
+
+
+
+
+
+
+
+
+
+
+
+Pathing
+
+We need dirt paths, without using alot of sprite space up.
+we could do vert transition to dirt + hori trans to dirt,
+but never actually have a dirt tile. putting two of these
+together could build a path, and then we just need corners.
+so, minimum of 4 - likely 6.
 
 
 
@@ -267,35 +308,6 @@ set as the last / active door.
 
 
 
-
-Ditches
-
-*bug: the ditches dont load properly,
-any ditch that should be flipped horizontally
-isn't, because we dont save that data.
-we dont need to save that data, we can 
-actually 'rebuild' the ditches once we
-complete loading a room. or we can never
-really build ditch connections, just single
-ditches here and there to give player a clue.
-add the single ditch obj into editor, so
-editors know what can be saved / used in a level.
-in addition, we should only let single ditches
-be saved - no other ditches can be saved!
-this makes ditches primarily an interactive
-system, and not a system used when loading
-rooms or levels.
-
-
-
-
-
-
-Editor ++
-when we press F3, the top menu is hidden, but we can
-still click on the buttons, which is bad when we're 
-trying to complete a level. until then we can't complete
-the farm level's water tiles.
 
 
 
