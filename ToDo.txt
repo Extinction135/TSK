@@ -117,28 +117,33 @@ Prep for 0.72 release and media (target: tmrw night).
 
 
 
+Enemies & Levels++
+
+added rats to dungeon rooms, and forest entrance level.
+improved farm level with beyond level edge water tiles,
+so hero doesn't splash out of water walking off screen.
+
+Miniboss++
+
+fixed a bug where miniboss didnt have swim animFrames,
+leading to a null ref exception. this bug is likely happening
+because the miniboss spawns in, then is evaluated to be in a
+swimming state. he shouldn't be evaluating to be in a swimming
+state, because he's flying.
+
+changed miniboss to shoot arrows, because shooting
+fireballs was too powerful (for a miniboss).
 
 
-Pushing Objs++
-
-only certain objects can be pushed.
-this should be modeled via type checks.
-right now, we check obj.compMove.moveable,
-which is really used to tell if the obj
-can be pushed by other objects, like belts.
-
-updated Hero.InteractRecWith(Obj) to use
-type checks instead of .moveable boolean check.
-this means player can no longer push rats,
-turtles, crabs, etc.. fixing that weirdness.
-
- 
 
 
 
 
 
-add turtles, crabs, and rats to dungeon rooms.
+
+
+
+
 
 
 
@@ -238,28 +243,35 @@ TMRW
 
 
 
-ENEMIES ++++
-
-Optimization
-overworld enemies should NOT be actors.
-these simple enemies should just be roomObjs.
-this will cut down on frame times for packed 
-field levels with lots of objs.
-
-create overworld enemy (with ai that randomly moves)
-that is destroyed upon interaction with most
-projectiles (explosions, swords, arrows, etc...)
-
-spawns loot too.
 
 
 
-Hero Eyeball
-we should have "hero eyeballs" for the main mob
-in the forest dungeon. this is essentially a big 
-eyeball with the proper feet and hand sprites to
-fulfill the hero sheet reqs. however, link cannot
-become this hero normally in-game.
+
+
+
+
+
+
+
+
+
+
+
+trap doors no longer push hero, and allow him to walk thru them?
+
+
+
+
+Rat Hole
+we should have a 'rat hole' that randomly spawns
+rats in front of it. we can add this to a room,
+and the room now has constant enemies.
+
+
+
+seekers need to be renamed
+
+
 
 
 Enemy Spawns
@@ -501,7 +513,13 @@ then use the splash fx shortened. i dunno.
 
  
  
- 
+ Destruction++
+
+i want the ability to to burn houses down,
+and destroy them, with explosions or fire.
+and as a house burns, it should be engulfed
+in fire projectiles, which spread across the 
+house objects.
  
  
 

@@ -3581,8 +3581,8 @@
     <ObjXmlData>
       <type>Wor_Tree</type>
       <direction>Down</direction>
-      <posX>440</posX>
-      <posY>200</posY>
+      <posX>424</posX>
+      <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Tree</type>
@@ -4167,142 +4167,94 @@
       <posY>472</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Wor_Enemy_Turtle</type>
+      <type>Wor_Enemy_Rat</type>
+      <direction>Left</direction>
+      <posX>605</posX>
+      <posY>289</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Rat</type>
       <direction>Down</direction>
-      <posX>733</posX>
-      <posY>397</posY>
+      <posX>766</posX>
+      <posY>210</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Rat</type>
+      <direction>Down</direction>
+      <posX>665</posX>
+      <posY>319</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Bush</type>
+      <direction>Down</direction>
+      <posX>408</posX>
+      <posY>344</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Bush</type>
+      <direction>Down</direction>
+      <posX>904</posX>
+      <posY>264</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Bush</type>
+      <direction>Down</direction>
+      <posX>840</posX>
+      <posY>328</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Enemy_Turtle</type>
       <direction>Down</direction>
-      <posX>518</posX>
-      <posY>373</posY>
+      <posX>672</posX>
+      <posY>384</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Enemy_Turtle</type>
       <direction>Down</direction>
-      <posX>421</posX>
-      <posY>425</posY>
+      <posX>582</posX>
+      <posY>287</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Enemy_Turtle</type>
       <direction>Down</direction>
-      <posX>535</posX>
-      <posY>482</posY>
+      <posX>684</posX>
+      <posY>195</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Enemy_Turtle</type>
       <direction>Down</direction>
-      <posX>711</posX>
-      <posY>544</posY>
+      <posX>645</posX>
+      <posY>184</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Enemy_Turtle</type>
       <direction>Down</direction>
-      <posX>538</posX>
-      <posY>545</posY>
+      <posX>388</posX>
+      <posY>254</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Enemy_Turtle</type>
       <direction>Down</direction>
-      <posX>663</posX>
-      <posY>385</posY>
+      <posX>683</posX>
+      <posY>316</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Enemy_Turtle</type>
       <direction>Down</direction>
-      <posX>745</posX>
-      <posY>459</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Enemy_Turtle</type>
-      <direction>Down</direction>
-      <posX>826</posX>
-      <posY>332</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Enemy_Turtle</type>
-      <direction>Down</direction>
-      <posX>581</posX>
-      <posY>262</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Enemy_Turtle</type>
-      <direction>Down</direction>
-      <posX>706</posX>
-      <posY>202</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Enemy_Turtle</type>
-      <direction>Down</direction>
-      <posX>647</posX>
+      <posX>836</posX>
       <posY>178</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Enemy_Turtle</type>
       <direction>Down</direction>
-      <posX>511</posX>
-      <posY>227</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Enemy_Turtle</type>
-      <direction>Down</direction>
-      <posX>392</posX>
-      <posY>272</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Enemy_Turtle</type>
-      <direction>Down</direction>
-      <posX>464</posX>
-      <posY>347</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Enemy_Turtle</type>
-      <direction>Down</direction>
-      <posX>674</posX>
-      <posY>324</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Enemy_Turtle</type>
-      <direction>Down</direction>
-      <posX>757</posX>
-      <posY>146</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Enemy_Turtle</type>
-      <direction>Down</direction>
-      <posX>556</posX>
-      <posY>147</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Enemy_Turtle</type>
-      <direction>Down</direction>
-      <posX>823</posX>
-      <posY>183</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Enemy_Turtle</type>
-      <direction>Down</direction>
-      <posX>878</posX>
-      <posY>258</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Enemy_Turtle</type>
-      <direction>Down</direction>
-      <posX>570</posX>
-      <posY>417</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Enemy_Turtle</type>
-      <direction>Down</direction>
-      <posX>734</posX>
-      <posY>271</posY>
+      <posX>737</posX>
+      <posY>263</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Enemy_Turtle</type>
       <direction>Down</direction>
       <posX>523</posX>
-      <posY>296</posY>
+      <posY>291</posY>
     </ObjXmlData>
   </objs>
 </RoomXmlData>

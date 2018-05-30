@@ -3,6 +3,54 @@
   <type>Column</type>
   <objs>
     <ObjXmlData>
+      <type>Wor_Enemy_Rat</type>
+      <direction>Down</direction>
+      <posX>168</posX>
+      <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Rat</type>
+      <direction>Down</direction>
+      <posX>8</posX>
+      <posY>88</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Rat</type>
+      <direction>Down</direction>
+      <posX>8</posX>
+      <posY>248</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Rat</type>
+      <direction>Down</direction>
+      <posX>168</posX>
+      <posY>216</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Turtle</type>
+      <direction>Down</direction>
+      <posX>104</posX>
+      <posY>88</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Turtle</type>
+      <direction>Down</direction>
+      <posX>40</posX>
+      <posY>136</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Turtle</type>
+      <direction>Down</direction>
+      <posX>72</posX>
+      <posY>184</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Turtle</type>
+      <direction>Down</direction>
+      <posX>120</posX>
+      <posY>168</posY>
+    </ObjXmlData>
+    <ObjXmlData>
       <type>Dungeon_Switch</type>
       <direction>Down</direction>
       <posX>88</posX>

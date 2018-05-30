@@ -3,6 +3,54 @@
   <type>Square</type>
   <objs>
     <ObjXmlData>
+      <type>Wor_Enemy_Rat</type>
+      <direction>Down</direction>
+      <posX>168</posX>
+      <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Rat</type>
+      <direction>Down</direction>
+      <posX>136</posX>
+      <posY>56</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Rat</type>
+      <direction>Down</direction>
+      <posX>88</posX>
+      <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Rat</type>
+      <direction>Down</direction>
+      <posX>40</posX>
+      <posY>72</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Rat</type>
+      <direction>Down</direction>
+      <posX>72</posX>
+      <posY>136</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Rat</type>
+      <direction>Down</direction>
+      <posX>104</posX>
+      <posY>136</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Rat</type>
+      <direction>Down</direction>
+      <posX>24</posX>
+      <posY>168</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Rat</type>
+      <direction>Down</direction>
+      <posX>40</posX>
+      <posY>8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
       <type>Dungeon_ConveyorBeltOn</type>
       <direction>Down</direction>
       <posX>152</posX>
@@ -23,14 +71,14 @@
     <ObjXmlData>
       <type>Dungeon_Pot</type>
       <direction>Down</direction>
-      <posX>88</posX>
+      <posX>87</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_Pot</type>
       <direction>Down</direction>
       <posX>120</posX>
-      <posY>88</posY>
+      <posY>87</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_Pot</type>
@@ -42,7 +90,7 @@
       <type>Dungeon_Statue</type>
       <direction>Down</direction>
       <posX>24</posX>
-      <posY>152</posY>
+      <posY>151</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_Statue</type>
@@ -59,7 +107,7 @@
     <ObjXmlData>
       <type>Dungeon_Statue</type>
       <direction>Down</direction>
-      <posX>152</posX>
+      <posX>151</posX>
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
@@ -263,13 +311,13 @@
     <ObjXmlData>
       <type>Dungeon_Pot</type>
       <direction>Down</direction>
-      <posX>54</posX>
+      <posX>53</posX>
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_Pot</type>
       <direction>Down</direction>
-      <posX>86</posX>
+      <posX>85</posX>
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
@@ -306,7 +354,7 @@
       <type>Dungeon_Barrel</type>
       <direction>Down</direction>
       <posX>120</posX>
-      <posY>116</posY>
+      <posY>115</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_BlockDark</type>
@@ -431,7 +479,7 @@
     <ObjXmlData>
       <type>Dungeon_Barrel</type>
       <direction>Down</direction>
-      <posX>118</posX>
+      <posX>117</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
@@ -449,14 +497,14 @@
     <ObjXmlData>
       <type>Dungeon_Pot</type>
       <direction>Down</direction>
-      <posX>118</posX>
+      <posX>117</posX>
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_Pot</type>
       <direction>Down</direction>
       <posX>24</posX>
-      <posY>54</posY>
+      <posY>53</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_Pot</type>
@@ -474,13 +522,13 @@
       <type>Dungeon_Pot</type>
       <direction>Down</direction>
       <posX>24</posX>
-      <posY>118</posY>
+      <posY>117</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_Pot</type>
       <direction>Down</direction>
       <posX>24</posX>
-      <posY>86</posY>
+      <posY>85</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_Pot</type>

@@ -139,7 +139,7 @@ namespace DungeonRun
 
                     if (Functions_Random.Int(0, 100) > 95)
                     {   //shoot fireballs at hero
-                        Functions_Projectile.Spawn(ObjType.ProjectileFireball,
+                        Functions_Projectile.Spawn(ObjType.ProjectileArrow,
                             Actor.compMove,
                             Functions_Direction.GetCardinalDirectionToHero(Actor.compSprite.position));
                         Actor.compInput.attack = true;
@@ -160,7 +160,7 @@ namespace DungeonRun
 
                     if (Functions_Random.Int(0, 100) > 75)
                     {   //shoot fireballs at hero more often
-                        Functions_Projectile.Spawn(ObjType.ProjectileFireball,
+                        Functions_Projectile.Spawn(ObjType.ProjectileArrow,
                             Actor.compMove,
                             Functions_Direction.GetCardinalDirectionToHero(Actor.compSprite.position));
                         Actor.compInput.attack = true;

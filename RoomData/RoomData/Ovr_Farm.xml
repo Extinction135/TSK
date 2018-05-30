@@ -419,7 +419,7 @@
     <ObjXmlData>
       <type>Wor_Water</type>
       <direction>Down</direction>
-      <posX>1256</posX>
+      <posX>1288</posX>
       <posY>472</posY>
     </ObjXmlData>
     <ObjXmlData>
@@ -473,8 +473,8 @@
     <ObjXmlData>
       <type>Wor_Water</type>
       <direction>Down</direction>
-      <posX>1256</posX>
-      <posY>568</posY>
+      <posX>1288</posX>
+      <posY>600</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Water</type>
@@ -485,7 +485,7 @@
     <ObjXmlData>
       <type>Wor_Water</type>
       <direction>Down</direction>
-      <posX>1256</posX>
+      <posX>1288</posX>
       <posY>504</posY>
     </ObjXmlData>
     <ObjXmlData>
@@ -551,7 +551,7 @@
     <ObjXmlData>
       <type>Wor_Water</type>
       <direction>Down</direction>
-      <posX>1256</posX>
+      <posX>1288</posX>
       <posY>216</posY>
     </ObjXmlData>
     <ObjXmlData>
@@ -1776,7 +1776,7 @@
       <type>Wor_Water</type>
       <direction>Down</direction>
       <posX>296</posX>
-      <posY>696</posY>
+      <posY>728</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Water</type>
@@ -2261,26 +2261,26 @@
     <ObjXmlData>
       <type>Wor_Water</type>
       <direction>Down</direction>
-      <posX>1256</posX>
-      <posY>600</posY>
+      <posX>1288</posX>
+      <posY>568</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Water</type>
       <direction>Down</direction>
-      <posX>1256</posX>
+      <posX>1288</posX>
       <posY>632</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Water</type>
       <direction>Down</direction>
-      <posX>1256</posX>
+      <posX>1288</posX>
       <posY>664</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Water</type>
       <direction>Down</direction>
-      <posX>1256</posX>
-      <posY>696</posY>
+      <posX>1288</posX>
+      <posY>728</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Water</type>
@@ -2315,7 +2315,7 @@
     <ObjXmlData>
       <type>Wor_Water</type>
       <direction>Down</direction>
-      <posX>1256</posX>
+      <posX>1288</posX>
       <posY>536</posY>
     </ObjXmlData>
     <ObjXmlData>
@@ -2351,13 +2351,13 @@
     <ObjXmlData>
       <type>Wor_Water</type>
       <direction>Down</direction>
-      <posX>1256</posX>
+      <posX>1288</posX>
       <posY>408</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Water</type>
       <direction>Down</direction>
-      <posX>1256</posX>
+      <posX>1288</posX>
       <posY>344</posY>
     </ObjXmlData>
     <ObjXmlData>
@@ -2369,7 +2369,7 @@
     <ObjXmlData>
       <type>Wor_Water</type>
       <direction>Down</direction>
-      <posX>1256</posX>
+      <posX>1288</posX>
       <posY>280</posY>
     </ObjXmlData>
     <ObjXmlData>
@@ -2381,7 +2381,7 @@
     <ObjXmlData>
       <type>Wor_Water</type>
       <direction>Down</direction>
-      <posX>1256</posX>
+      <posX>1288</posX>
       <posY>440</posY>
     </ObjXmlData>
     <ObjXmlData>
@@ -2393,7 +2393,7 @@
     <ObjXmlData>
       <type>Wor_Water</type>
       <direction>Down</direction>
-      <posX>1256</posX>
+      <posX>1288</posX>
       <posY>376</posY>
     </ObjXmlData>
     <ObjXmlData>
@@ -2405,13 +2405,13 @@
     <ObjXmlData>
       <type>Wor_Water</type>
       <direction>Down</direction>
-      <posX>1256</posX>
+      <posX>1288</posX>
       <posY>312</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Water</type>
       <direction>Down</direction>
-      <posX>1256</posX>
+      <posX>1288</posX>
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
@@ -2423,7 +2423,7 @@
     <ObjXmlData>
       <type>Wor_Water</type>
       <direction>Down</direction>
-      <posX>1256</posX>
+      <posX>1288</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
@@ -2435,7 +2435,7 @@
     <ObjXmlData>
       <type>Wor_Water</type>
       <direction>Down</direction>
-      <posX>1256</posX>
+      <posX>1288</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
@@ -2507,25 +2507,25 @@
     <ObjXmlData>
       <type>Wor_Water</type>
       <direction>Down</direction>
-      <posX>1256</posX>
+      <posX>1288</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Water</type>
       <direction>Down</direction>
-      <posX>1256</posX>
+      <posX>1288</posX>
       <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Water</type>
       <direction>Down</direction>
-      <posX>1256</posX>
+      <posX>1288</posX>
       <posY>184</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Water</type>
       <direction>Down</direction>
-      <posX>1256</posX>
+      <posX>1288</posX>
       <posY>248</posY>
     </ObjXmlData>
     <ObjXmlData>
@@ -3447,28 +3447,28 @@
       <posY>296</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Wor_Enemy_Crab</type>
+      <type>Wor_Water</type>
       <direction>Down</direction>
-      <posX>744</posX>
-      <posY>552</posY>
+      <posX>1256</posX>
+      <posY>376</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Enemy_Crab</type>
       <direction>Down</direction>
-      <posX>904</posX>
-      <posY>504</posY>
+      <posX>797</posX>
+      <posY>502</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Enemy_Crab</type>
       <direction>Down</direction>
-      <posX>536</posX>
-      <posY>600</posY>
+      <posX>534</posX>
+      <posY>609</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Wor_Enemy_Crab</type>
-      <direction>Down</direction>
-      <posX>328</posX>
-      <posY>632</posY>
+      <type>Wor_Coastline_Straight</type>
+      <direction>Right</direction>
+      <posX>280</posX>
+      <posY>744</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Bush</type>
@@ -3793,6 +3793,528 @@
       <direction>Down</direction>
       <posX>744</posX>
       <posY>440</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>328</posX>
+      <posY>728</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>360</posX>
+      <posY>728</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>392</posX>
+      <posY>728</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>296</posX>
+      <posY>696</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>424</posX>
+      <posY>728</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>456</posX>
+      <posY>728</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>488</posX>
+      <posY>728</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>520</posX>
+      <posY>728</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>552</posX>
+      <posY>728</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>584</posX>
+      <posY>728</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>616</posX>
+      <posY>728</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>648</posX>
+      <posY>728</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>680</posX>
+      <posY>728</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>712</posX>
+      <posY>728</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>744</posX>
+      <posY>728</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Coastline_Straight</type>
+      <direction>Right</direction>
+      <posX>280</posX>
+      <posY>728</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>776</posX>
+      <posY>728</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>808</posX>
+      <posY>728</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>840</posX>
+      <posY>728</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>872</posX>
+      <posY>728</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>904</posX>
+      <posY>728</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>936</posX>
+      <posY>728</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>968</posX>
+      <posY>728</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>1000</posX>
+      <posY>728</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>1032</posX>
+      <posY>728</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>1064</posX>
+      <posY>728</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>1096</posX>
+      <posY>728</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>1128</posX>
+      <posY>728</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>1160</posX>
+      <posY>728</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>1192</posX>
+      <posY>728</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>1224</posX>
+      <posY>728</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>1256</posX>
+      <posY>728</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>1256</posX>
+      <posY>696</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>1288</posX>
+      <posY>696</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>1256</posX>
+      <posY>664</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>1256</posX>
+      <posY>632</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>1256</posX>
+      <posY>600</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>1256</posX>
+      <posY>568</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>1256</posX>
+      <posY>536</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>1256</posX>
+      <posY>504</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>1256</posX>
+      <posY>472</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>1256</posX>
+      <posY>440</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>1256</posX>
+      <posY>408</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>1256</posX>
+      <posY>344</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>1256</posX>
+      <posY>312</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>1256</posX>
+      <posY>280</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>1256</posX>
+      <posY>248</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>1256</posX>
+      <posY>216</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>1256</posX>
+      <posY>184</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>1256</posX>
+      <posY>152</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>1256</posX>
+      <posY>120</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>1256</posX>
+      <posY>88</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>1256</posX>
+      <posY>56</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>1256</posX>
+      <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>424</posX>
+      <posY>-8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Coastline_Straight</type>
+      <direction>Right</direction>
+      <posX>408</posX>
+      <posY>8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Coastline_Straight</type>
+      <direction>Right</direction>
+      <posX>408</posX>
+      <posY>-8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>456</posX>
+      <posY>-8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>488</posX>
+      <posY>-8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>520</posX>
+      <posY>-8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>552</posX>
+      <posY>-8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>584</posX>
+      <posY>-8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>616</posX>
+      <posY>-8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>648</posX>
+      <posY>-8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>680</posX>
+      <posY>-8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>712</posX>
+      <posY>-8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>744</posX>
+      <posY>-8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>776</posX>
+      <posY>-8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>808</posX>
+      <posY>-8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>840</posX>
+      <posY>-8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>872</posX>
+      <posY>-8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>904</posX>
+      <posY>-8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>936</posX>
+      <posY>-8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>968</posX>
+      <posY>-8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>1000</posX>
+      <posY>-8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>1032</posX>
+      <posY>-8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>1064</posX>
+      <posY>-8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>1096</posX>
+      <posY>-8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>1128</posX>
+      <posY>-8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>1160</posX>
+      <posY>-8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>1192</posX>
+      <posY>-8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>1224</posX>
+      <posY>-8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>1288</posX>
+      <posY>-8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>1256</posX>
+      <posY>-8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Crab</type>
+      <direction>Down</direction>
+      <posX>909</posX>
+      <posY>575</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Crab</type>
+      <direction>Down</direction>
+      <posX>530</posX>
+      <posY>525</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Crab</type>
+      <direction>Down</direction>
+      <posX>380</posX>
+      <posY>534</posY>
     </ObjXmlData>
   </objs>
 </RoomXmlData>

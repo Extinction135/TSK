@@ -3,6 +3,42 @@
   <type>Column</type>
   <objs>
     <ObjXmlData>
+      <type>Wor_Enemy_Rat</type>
+      <direction>Down</direction>
+      <posX>104</posX>
+      <posY>232</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Rat</type>
+      <direction>Down</direction>
+      <posX>88</posX>
+      <posY>232</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Rat</type>
+      <direction>Down</direction>
+      <posX>72</posX>
+      <posY>232</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Rat</type>
+      <direction>Down</direction>
+      <posX>72</posX>
+      <posY>72</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Rat</type>
+      <direction>Down</direction>
+      <posX>88</posX>
+      <posY>72</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Rat</type>
+      <direction>Down</direction>
+      <posX>104</posX>
+      <posY>72</posY>
+    </ObjXmlData>
+    <ObjXmlData>
       <type>Dungeon_LeverOff</type>
       <direction>Down</direction>
       <posX>88</posX>
@@ -487,42 +523,6 @@
       <direction>Down</direction>
       <posX>24</posX>
       <posY>168</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpawnMob</type>
-      <direction>Down</direction>
-      <posX>72</posX>
-      <posY>72</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpawnMob</type>
-      <direction>Down</direction>
-      <posX>88</posX>
-      <posY>72</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpawnMob</type>
-      <direction>Down</direction>
-      <posX>104</posX>
-      <posY>72</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpawnMob</type>
-      <direction>Down</direction>
-      <posX>72</posX>
-      <posY>232</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpawnMob</type>
-      <direction>Down</direction>
-      <posX>88</posX>
-      <posY>232</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpawnMob</type>
-      <direction>Down</direction>
-      <posX>104</posX>
-      <posY>232</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_Pit</type>

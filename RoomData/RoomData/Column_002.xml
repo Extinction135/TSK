@@ -3,6 +3,54 @@
   <type>Column</type>
   <objs>
     <ObjXmlData>
+      <type>Wor_Enemy_Rat</type>
+      <direction>Down</direction>
+      <posX>136</posX>
+      <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Rat</type>
+      <direction>Down</direction>
+      <posX>152</posX>
+      <posY>56</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Rat</type>
+      <direction>Down</direction>
+      <posX>24</posX>
+      <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Rat</type>
+      <direction>Down</direction>
+      <posX>152</posX>
+      <posY>152</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Rat</type>
+      <direction>Down</direction>
+      <posX>104</posX>
+      <posY>88</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Rat</type>
+      <direction>Down</direction>
+      <posX>40</posX>
+      <posY>152</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Rat</type>
+      <direction>Down</direction>
+      <posX>104</posX>
+      <posY>232</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Rat</type>
+      <direction>Down</direction>
+      <posX>40</posX>
+      <posY>248</posY>
+    </ObjXmlData>
+    <ObjXmlData>
       <type>Dungeon_IceTile</type>
       <direction>Down</direction>
       <posX>56</posX>
@@ -535,6 +583,18 @@
       <direction>Down</direction>
       <posX>24</posX>
       <posY>264</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Rat</type>
+      <direction>Down</direction>
+      <posX>40</posX>
+      <posY>264</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Enemy_Rat</type>
+      <direction>Down</direction>
+      <posX>152</posX>
+      <posY>280</posY>
     </ObjXmlData>
   </objs>
 </RoomXmlData>

@@ -263,13 +263,14 @@ namespace DungeonRun
                 //Phase 2 - all flying actors bail from method - they're done
                 if (Actor.compMove.grounded == false) { return; }
 
+
                 //Phase 3 - objects that interact with grounded actors only (all remaining)
 
                 #region FloorSpikes
 
                 if (Obj.type == ObjType.Dungeon_SpikesFloorOn)
                 {   //damage push actors (on ground) away from spikes
-                    if (Actor.compMove.grounded) { Functions_Battle.Damage(Actor, Obj); }
+                    Functions_Battle.Damage(Actor, Obj);
                 }
 
                 #endregion
@@ -278,14 +279,13 @@ namespace DungeonRun
                 #region ConveyorBelts
 
                 else if (Obj.type == ObjType.Dungeon_ConveyorBeltOn)
-                {   //belt move actors (on ground)
-                    if (Actor.compMove.grounded)
-                    {   //halt actor movement based on certain states
-                        if (Actor.state == ActorState.Reward)
-                        { Functions_Movement.StopMovement(Actor.compMove); }
-                        else
-                        { Functions_GameObject_Dungeon.ConveyorBeltPush(Actor.compMove, Obj); }
-                    }
+                {
+                    //halt actor movement based on certain states
+                    if (Actor.state == ActorState.Reward)
+                    { Functions_Movement.StopMovement(Actor.compMove); }
+                    else
+                    { Functions_GameObject_Dungeon.ConveyorBeltPush(Actor.compMove, Obj); }
+                    
                 }
 
                 #endregion
@@ -295,80 +295,78 @@ namespace DungeonRun
 
                 else if (Obj.type == ObjType.Dungeon_Pit)
                 {   //actors (on ground) fall into pits
-                    if (Actor.compMove.grounded)
+                    //if an actor wasn't hit into the pit, push the actor away
+                    if (Actor != Pool.hero & Actor.state != ActorState.Hit)
                     {
-                        //if an actor wasn't hit into the pit, push the actor away
-                        if (Actor != Pool.hero & Actor.state != ActorState.Hit)
-                        {
-                            //push actor away from pit
-                            Functions_Movement.Push(Actor.compMove,
-                                Functions_Direction.GetOppositeCardinal(
-                                    Actor.compMove.position,
-                                    Obj.compSprite.position),
-                                3.0f);
+                        //push actor away from pit
+                        Functions_Movement.Push(Actor.compMove,
+                            Functions_Direction.GetOppositeCardinal(
+                                Actor.compMove.position,
+                                Obj.compSprite.position),
+                            3.0f);
 
-                        }
-                        else//pull actor into pit
-                        {   //this is hero, or any enemy in hit state
-                            if (Actor.carrying) //toss whatever actor might be carrying
-                            { Functions_Actor.Throw(Actor); }
-
-                            //set actor's state
-                            //dead actors simply stay dead as they fall into a pit
-                            //else actors are set into a hit state as they fall
-                            // **we actually only need to do this once, instead of every frame**
-                            if (Actor.state != ActorState.Dead) { Actor.state = ActorState.Hit; }
-                            Actor.stateLocked = true;
-                            Actor.lockCounter = 0;
-                            Actor.lockTotal = 45;
-                            Actor.compMove.speed = 0.0f;
-
-
-                            #region Continuous collision (each frame) - ALL ACTORS
-
-                            //gradually pull actor into pit's center, manually update the actor's position
-                            Actor.compMove.magnitude = (Obj.compSprite.position - Actor.compSprite.position) * 0.25f;
-
-                            //if actor is near to pit center, begin/continue falling state
-                            if (Math.Abs(Actor.compSprite.position.X - Obj.compSprite.position.X) < 2)
-                            {
-                                if (Math.Abs(Actor.compSprite.position.Y - Obj.compSprite.position.Y) < 2)
-                                {   //begin actor falling state
-                                    if (Actor.compSprite.scale == 1.0f) { Assets.Play(Assets.sfxActorFall); }
-                                    //continue falling state, scaling actor down
-                                    Actor.compSprite.scale -= 0.03f;
-                                }
-                            }
-
-                            #endregion
-
-
-                            #region End State of actor -> pit collision - ALL ACTORS
-
-                            if (Actor.compSprite.scale < 0.8f)
-                            {   //actor has reached scale, fallen into pit completely
-                                Functions_GameObject_Dungeon.PlayPitFx(Obj);
-                                if (Actor == Pool.hero)
-                                {   //send hero back to last door he passed thru
-                                    Assets.Play(Assets.sfxActorLand); //play actor land sfx
-                                    Functions_Hero.SpawnInCurrentRoom();
-                                    //direct player's attention to hero's respawn pos
-                                    Functions_Particle.Spawn(
-                                        ObjType.Particle_Attention,
-                                        Functions_Level.currentRoom.spawnPos.X,
-                                        Functions_Level.currentRoom.spawnPos.Y);
-                                }
-                                else
-                                {   //handle enemy pit death (no loot, insta-death)
-                                    Assets.Play(Actor.sfx.kill); //play actor death sfx
-                                    Functions_Pool.Release(Actor); //release this actor back to pool
-                                }
-                            }
-
-                            #endregion
-
-                        }
                     }
+                    else//pull actor into pit
+                    {   //this is hero, or any enemy in hit state
+                        if (Actor.carrying) //toss whatever actor might be carrying
+                        { Functions_Actor.Throw(Actor); }
+
+                        //set actor's state
+                        //dead actors simply stay dead as they fall into a pit
+                        //else actors are set into a hit state as they fall
+                        // **we actually only need to do this once, instead of every frame**
+                        if (Actor.state != ActorState.Dead) { Actor.state = ActorState.Hit; }
+                        Actor.stateLocked = true;
+                        Actor.lockCounter = 0;
+                        Actor.lockTotal = 45;
+                        Actor.compMove.speed = 0.0f;
+
+
+                        #region Continuous collision (each frame) - ALL ACTORS
+
+                        //gradually pull actor into pit's center, manually update the actor's position
+                        Actor.compMove.magnitude = (Obj.compSprite.position - Actor.compSprite.position) * 0.25f;
+
+                        //if actor is near to pit center, begin/continue falling state
+                        if (Math.Abs(Actor.compSprite.position.X - Obj.compSprite.position.X) < 2)
+                        {
+                            if (Math.Abs(Actor.compSprite.position.Y - Obj.compSprite.position.Y) < 2)
+                            {   //begin actor falling state
+                                if (Actor.compSprite.scale == 1.0f) { Assets.Play(Assets.sfxActorFall); }
+                                //continue falling state, scaling actor down
+                                Actor.compSprite.scale -= 0.03f;
+                            }
+                        }
+
+                        #endregion
+
+
+                        #region End State of actor -> pit collision - ALL ACTORS
+
+                        if (Actor.compSprite.scale < 0.8f)
+                        {   //actor has reached scale, fallen into pit completely
+                            Functions_GameObject_Dungeon.PlayPitFx(Obj);
+                            if (Actor == Pool.hero)
+                            {   //send hero back to last door he passed thru
+                                Assets.Play(Assets.sfxActorLand); //play actor land sfx
+                                Functions_Hero.SpawnInCurrentRoom();
+                                //direct player's attention to hero's respawn pos
+                                Functions_Particle.Spawn(
+                                    ObjType.Particle_Attention,
+                                    Functions_Level.currentRoom.spawnPos.X,
+                                    Functions_Level.currentRoom.spawnPos.Y);
+                            }
+                            else
+                            {   //handle enemy pit death (no loot, insta-death)
+                                Assets.Play(Actor.sfx.kill); //play actor death sfx
+                                Functions_Pool.Release(Actor); //release this actor back to pool
+                            }
+                        }
+
+                        #endregion
+
+                    }
+                    
                 }
 
                 #endregion
@@ -387,8 +385,7 @@ namespace DungeonRun
                 #region Tall grass
 
                 else if (Obj.type == ObjType.Wor_Grass_Tall)
-                {
-                    //unhide + place grassy feet at actor's feet
+                {   //unhide + place grassy feet at actor's feet
                     Actor.feetFX.visible = true;
                     Actor.feetAnim.currentAnimation = AnimationFrames.ActorFX_GrassyFeet;
                     if (Actor == Pool.hero)

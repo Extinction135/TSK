@@ -815,6 +815,12 @@ namespace DungeonRun
             Boss_BigEye_Animations.death_blank.right = Boss_BigEye_Animations.death_blank.down;
             Boss_BigEye_Animations.death_blank.left = Boss_BigEye_Animations.death_blank.down;
 
+            //set all swim anims to idle
+            Boss_BigEye_Animations.swim_dash = Boss_BigEye_Animations.idle;
+            Boss_BigEye_Animations.swim_hit = Boss_BigEye_Animations.idle;
+            Boss_BigEye_Animations.swim_idle = Boss_BigEye_Animations.idle;
+            Boss_BigEye_Animations.swim_move = Boss_BigEye_Animations.idle;
+            Boss_BigEye_Animations.swim_reward = Boss_BigEye_Animations.idle;
 
             #endregion
 
@@ -844,6 +850,13 @@ namespace DungeonRun
             Boss_BigEye_Mob_Animations.death_blank.up = Boss_BigEye_Mob_Animations.death_blank.down;
             Boss_BigEye_Mob_Animations.death_blank.right = Boss_BigEye_Mob_Animations.death_blank.down;
             Boss_BigEye_Mob_Animations.death_blank.left = Boss_BigEye_Mob_Animations.death_blank.down;
+
+            //set all swim anims to idle
+            Boss_BigEye_Mob_Animations.swim_dash = Boss_BigEye_Mob_Animations.idle;
+            Boss_BigEye_Mob_Animations.swim_hit = Boss_BigEye_Mob_Animations.idle;
+            Boss_BigEye_Mob_Animations.swim_idle = Boss_BigEye_Mob_Animations.idle;
+            Boss_BigEye_Mob_Animations.swim_move = Boss_BigEye_Mob_Animations.idle;
+            Boss_BigEye_Mob_Animations.swim_reward = Boss_BigEye_Mob_Animations.idle;
 
             #endregion
 
@@ -892,6 +905,14 @@ namespace DungeonRun
             MiniBoss_BlackEye_Animations.death_blank.left = MiniBoss_BlackEye_Animations.death_blank.down;
 
             MiniBoss_BlackEye_Animations.death_heroic = MiniBoss_BlackEye_Animations.death_blank;
+            MiniBoss_BlackEye_Animations.death_heroic_water = MiniBoss_BlackEye_Animations.death_blank;
+
+            //set all swim anims to idle
+            MiniBoss_BlackEye_Animations.swim_dash = MiniBoss_BlackEye_Animations.idle;
+            MiniBoss_BlackEye_Animations.swim_hit = MiniBoss_BlackEye_Animations.idle;
+            MiniBoss_BlackEye_Animations.swim_idle = MiniBoss_BlackEye_Animations.idle;
+            MiniBoss_BlackEye_Animations.swim_move = MiniBoss_BlackEye_Animations.idle;
+            MiniBoss_BlackEye_Animations.swim_reward = MiniBoss_BlackEye_Animations.idle;
 
             #endregion
 
