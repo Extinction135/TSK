@@ -527,7 +527,7 @@ namespace DungeonRun
 
             else if(Obj.type == ObjType.Wor_Build_Roof_Chimney)
             {   //chimney is a roof
-                if(Obj.compSprite.alpha > 0) //chimney is visible
+                if(Obj.compSprite.alpha == 1.0f) //chimney is visible
                 {   //roofs switch between visible and non-visible via alpha
                     if (Functions_Random.Int(0, 100) > 90)
                     {   //often spawn rising smoke particles from obj

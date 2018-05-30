@@ -1,6 +1,29 @@
 
 
 
+
+
+- create 'boat' level, with boat captain, who has dialog with link
+- offers to take link to a variety of locations, using vendor screen
+- only available location is water temple, for low gold price (since link 'hires' crew)
+- this level is the boat obj + a dungeon entrance obj + a bunch of water tiles (maybe a small island)
+- links path is to/from the boat to the dungeon entrance
+
+- water temple / swamp dungeon: 
+	build crit path to hub, crit path to key, crit path to boss, 
+	*crit path to water switch (pullable lever)
+	*place water switch randomly in room/hub room
+	water pullable lever flips high/low water level boolean
+	when rooms are built they build high or low water levels, 
+	low water levels prevent hero from passing thru rooms 
+	there are low water levels in rooms along the key or boss crit path.
+	hero must flip switch to access key or boss rooms, or not.
+	boss is tentacles squid
+	
+	
+	
+	
+
 We still need a stationary spike block obj.
 this is super easy to do, btw.
 
@@ -562,6 +585,13 @@ this will replace the level screen's overlay fading in/out
 
 
 
+- EndlessForest Demo (shows off gameplay, complete on it's own, camera tracks to hero).
+- this is randomly placed bushes / trees / grass + ANY enemy type
+- room rec tracks to hero, expanded room rec cleans up anything that doesn't touch it
+- as room moves, *generate random stuff just OUTSIDE of room rec*
+- this means, as hero moves he is always 'finding' new stuff, even if he doubles back
+- npc outside endless forest dialog = "once you go in, there's no way out..."
+- later on implement magic mirror, which returns hero to overworld screen
 
 
 

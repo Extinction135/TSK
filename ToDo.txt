@@ -79,41 +79,11 @@ these shadows are sprites that are added to actors and gameobj classes.
 this will likely be part of pool, possibly just prior to drawing to ensure
 they are always aligned to their obj/actor (altho this does pollute Draw)..
 
-- houses, includes buildings, beds, interior objs
-
 - Non-room repeating Dungeon, additional rooms
 - Flying Dungeon Enemy, Minor Overworld Enemies
 - Blob AI improvements - sword, arrow, bomb based on weapon / item loadout 
 - blob loadouts could be randomized when room is built()
 
-- EndlessForest Demo (shows off gameplay, complete on it's own, camera tracks to hero).
-- this is randomly placed bushes / trees / grass + ANY enemy type
-- room rec tracks to hero, expanded room rec cleans up anything that doesn't touch it
-- as room moves, *generate random stuff just OUTSIDE of room rec*
-- this means, as hero moves he is always 'finding' new stuff, even if he doubles back
-- npc outside endless forest dialog = "once you go in, there's no way out..."
-- later on implement magic mirror, which returns hero to overworld screen
-
-- LIGHT WORLD & DARK WORLD
-- implement enumFields for building rooms (big optimization)
-
-- create 'boat' level, with boat captain, who has dialog with link
-- offers to take link to a variety of locations, using vendor screen
-- only available location is water temple, for low gold price (since link 'hires' crew)
-- this level is the boat obj + a dungeon entrance obj + a bunch of water tiles (maybe a small island)
-- links path is to/from the boat to the dungeon entrance
-
-- water temple / swamp dungeon: 
-	build crit path to hub, crit path to key, crit path to boss, 
-	*crit path to water switch (pullable lever)
-	*place water switch randomly in room/hub room
-	water pullable lever flips high/low water level boolean
-	when rooms are built they build high or low water levels, 
-	low water levels prevent hero from passing thru rooms 
-	there are low water levels in rooms along the key or boss crit path.
-	hero must flip switch to access key or boss rooms, or not.
-	boss is tentacles squid
-	
 - mountain dungeon (diff enemies, boss, dungeon sprites - but same rooms)
 
 - room keys - these only work for the room and only unlock 1 door, and
@@ -125,6 +95,11 @@ and heldObj is released().
 
 
 
+
+0.9
+- LIGHT WORLD & DARK WORLD
+- this is different overworld map + different levels + diff sprites
+- this is NOT A SEPARATE SYSTEM (needless complexity)
 
 
 
@@ -138,17 +113,12 @@ TODAY:
 
 
 
-Civility++
-
-hero's interaction rec should open gate, and building doors.
-this means he doesn't have to destroy them to remove them,
-which seems barbaric and crude.
 
 
 
 
 
-
+Chimney++
 
 chimney smoke should only happen
 if chimney sprite alpha is at 1.0.
@@ -156,7 +126,12 @@ any value below that is ignored.
 why? because chimney creates smoke
 as it's fading in/out, leaving
 smoke particles on their own once
-chimney completes it's fade.
+chimney completes it's fade,
+looksBadMan.jpg. fixed.
+
+
+
+
 
 
 
@@ -166,12 +141,28 @@ visual sorting bugs.
 
 
 
+move gass feetfx sprite up 1 on y axis in sprite sheet.
+this will align better to hero and blob actors.
 
 
 
-we need to create a 2nd town level on the left.
-this should have a few NPCs in it.
-the rest of the NPCs should stay on the colliseum level for now.
+
+
+
+
+
+
+
+colliseum level
+what is this? we need npcs and unique sprites here too.
+define what colliseum is and how hero interacts with it.
+
+
+town level
+has houses and shops, with NPCs
+
+
+
 
 
 
