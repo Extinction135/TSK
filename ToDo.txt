@@ -118,42 +118,40 @@ Prep for 0.72 release and media (target: tmrw night).
 
 
 
-RoomObj Enemies
 
-removed blob actors from dungeon entrance level.
-this is in prep for implementing roomObj enemies.
 
-Turtle
+Turtles++
 
-create turtle roomObj. takes 1 hit from anything.
-if turtle runs into the water, he becomes a sunk 
-roomObj and is released with a splash, just like
-any other pushed roomObj. loops his movement anim.
+turtles can now be picked up, carried,
+and thrown - and the turtle doesn't get
+hurt during this process.
 
-turtles implemented. and now they're pushable.
-and they don't hurt hero, so they're not really
-enemies? but link can still kill them, spawning
-loot. and now he can also push them. push them
-into the water, where they will sink, gone forever.
-also, turtles can 'wander' into the water, 
-killing themselves, but depriving player of loot.
-
-added many turtles to dungeon entrance level.
-frametimes on pc dropped to @1ms. so, this 
-implementation is very good - optimized, plus
-turtles act as any other roomObj, appearing
-in editor (without the need for enemy spawns).
-
-lots of playtesting here.
+Bug: held turtles + water
+if we carry turtles into water, they want 
+to be released, and create splash particles.
+so we need to check and see if obj.compCollision 
+is false, and if so - dont create splashes or
+release the obj. done. link can now pickup
+and carry turtles into the water with him,
+and hide underwater with a turtle over his
+head, allowing him to sneak as a turtle.
+turtle power.
 
 
 
 
 
-why cant we pick turtles up?
-i want to be able to pick turtles up.
-and throw them at other turtles.
-because why not?
+
+
+add turtles to farm?
+
+
+
+rat movement:
+randomly choose a direction for the rat to face.
+randomly apply a push in that direction, more often than dir change.
+
+
 
 
 

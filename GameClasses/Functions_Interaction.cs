@@ -957,8 +957,11 @@ namespace DungeonRun
 
                 //if an obj is moveable, then hero can push it, then it should sink in water
                 if (Object.compMove.moveable)
-                {   
-                    //if the object's sprite center touches the water tile, sink it
+                {
+                    //if object's hitBox is disabled, then obj shouldn't sink, ignore
+                    if (Object.compCollision.blocking == false) { return; }
+
+                    //if object's sprite center touches the water tile, sink it
                     if (RoomObj.compCollision.rec.Contains(Object.compSprite.position))
                     {
                         //release the obj, create a splash particle centered to object

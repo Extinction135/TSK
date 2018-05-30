@@ -15,6 +15,7 @@ namespace DungeonRun
     public static class Functions_Particle
     {
         static Vector2 posRef = new Vector2();
+        static Vector2 pushOffset = new Vector2();
 
 
 
@@ -175,7 +176,6 @@ namespace DungeonRun
             Functions_Pool.Release(Obj);
         }
 
-
         public static void Spawn_Explosion(ObjType Type, float X, float Y, Boolean circular = false)
         {  
             if(circular == false)
@@ -200,6 +200,20 @@ namespace DungeonRun
                 Spawn(Type, X, Y, Direction.Left);
                 Spawn(Type, X, Y, Direction.UpLeft);
             }
+        }
+
+        public static void SpawnPushFX(ComponentMovement Caster, Direction Dir)
+        {
+            pushOffset.X = 0; pushOffset.Y = 0; //reset offset
+            if (Dir == Direction.Down) { pushOffset.X = 4; pushOffset.Y = +6; }
+            else if (Dir == Direction.Up) { pushOffset.X = -4; pushOffset.Y = -7; }
+            else if (Dir == Direction.Right) { pushOffset.X = +5; pushOffset.Y = -2; }
+            else if (Dir == Direction.Left) { pushOffset.X = -5; pushOffset.Y = 6; }
+            //place push lines 'after' projectile
+            //a diagonal direction will hide the push line
+            Spawn(ObjType.Particle_Push,
+                Caster.position.X + pushOffset.X,
+                Caster.position.Y + pushOffset.Y, Dir);
         }
 
     }

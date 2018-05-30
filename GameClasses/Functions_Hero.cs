@@ -218,7 +218,6 @@ namespace DungeonRun
                         { } //ignore these objects for hero rec interaction
                         else
                         {   //all other objects are tested for interaction
-
                             Functions_Movement.StopMovement(Pool.hero.compMove);
                             Pool.hero.stateLocked = true;
                             Pool.hero.lockTotal = 10; //required to show the pickup animation
@@ -387,7 +386,8 @@ namespace DungeonRun
 
             if (Obj.type == ObjType.Dungeon_Pot
                 || Obj.type == ObjType.Wor_Pot
-                || Obj.type == ObjType.Wor_Bush)
+                || Obj.type == ObjType.Wor_Bush
+                || Obj.type == ObjType.Wor_Enemy_Turtle)
             {
                 Functions_Actor.Pickup(Obj, Pool.hero);
             }

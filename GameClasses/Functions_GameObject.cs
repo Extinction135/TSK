@@ -908,7 +908,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Objects
+            #region Pot
 
             else if (Type == ObjType.Wor_Pot) //same as Dungeon_Pot
             {

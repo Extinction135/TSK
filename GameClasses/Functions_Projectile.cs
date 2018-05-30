@@ -17,7 +17,7 @@ namespace DungeonRun
         static Vector2 offset = new Vector2();
         static Projectile pro;
         static Boolean pushLines;
-        static Vector2 pushOffset = new Vector2();
+        //
 
 
 
@@ -42,7 +42,6 @@ namespace DungeonRun
         public static void Spawn(ObjType Type, ComponentMovement Caster, Direction Dir)
         {
             pushLines = false; //assume this pro doesn't have push lines
-            pushOffset.X = 0; pushOffset.Y = 0;
 
             //Dir is usually the actor's / object's facing direction
             //create projectile of TYPE using CASTER, projectile gets DIRECTION
@@ -298,38 +297,22 @@ namespace DungeonRun
                 }
                 Functions_Component.Align(pro); //align the arrows comps
                 Functions_Movement.Push(pro.compMove, Dir, 5.0f);
-                Assets.Play(Assets.sfxActorFall); //throw sfx
-                pushLines = true;
+                //pushLines = true; //this is handled in Throw()
             }
 
             #endregion
-
-
-
 
 
             HandleBehavior(pro);
-
-
-            #region Add Decorative 'push' lines
-
-            if (pushLines)
-            {
-                if (Dir == Direction.Down) { pushOffset.X = 4; pushOffset.Y = +6; }
-                else if (Dir == Direction.Up) { pushOffset.X = -4; pushOffset.Y = -7; }
-                else if (Dir == Direction.Right) { pushOffset.X = +5; pushOffset.Y = -2; }
-                else if (Dir == Direction.Left) { pushOffset.X = -5; pushOffset.Y = 6; }
-                //place push lines 'after' projectile
-                //a diagonal direction will hide the push line
-                Functions_Particle.Spawn(
-                    ObjType.Particle_Push,
-                    Caster.position.X + pushOffset.X,
-                    Caster.position.Y + pushOffset.Y, Dir);
-            }
-
-            #endregion
-
+            if (pushLines) { Functions_Particle.SpawnPushFX(Caster, Dir); }
         }
+
+
+        
+
+
+
+
 
         public static void Update(Projectile Pro)
         {   //projectiles do have lifetimes

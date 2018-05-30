@@ -462,24 +462,62 @@ namespace DungeonRun
             Act.lockTotal = 10;
             SetAnimationGroup(Act);
 
-            //for now, just destroy the obj
-            //Functions_GameObject.HandleCommon(Act.heldObj, Act.direction);
 
-            //create a thrown version of heldObj
-            //assume we're throwing a bush
-            throwType = ObjType.ProjectileBush;
-            //if (Act.heldObj.type == ObjType.Wor_Bush)
-            //{ throwType = ObjType.ProjectileBush; }
-
-            //check for pot
-            if (Act.heldObj.type == ObjType.Dungeon_Pot)
-            { throwType = ObjType.ProjectilePotSkull; }
-            else if (Act.heldObj.type == ObjType.Wor_Pot)
-            { throwType = ObjType.ProjectilePot; }
-
-            Functions_Projectile.Spawn(throwType, Act.compMove, Act.direction);
-            Functions_Pool.Release(Act.heldObj);
-            Act.heldObj = null; //has to be last line, we lose ref to Obj
+            
+            //check if we're throwing an enemy or object
+            if(Act.heldObj.type == ObjType.Wor_Enemy_Turtle)
+            {
+                //resolve act.direction to cardinal
+                Act.direction = Functions_Direction.GetCardinalDirection(Act.direction);
+                //place enemy outside of hero's hitbox
+                if (Act.direction == Direction.Left)
+                {
+                    Functions_Movement.Teleport(Act.heldObj.compMove,
+                        Act.compSprite.position.X - 8,
+                        Act.compSprite.position.Y);
+                }
+                else if (Act.direction == Direction.Up)
+                {
+                    Functions_Movement.Teleport(Act.heldObj.compMove,
+                        Act.compSprite.position.X,
+                        Act.compSprite.position.Y - 8);
+                }
+                else if (Act.direction == Direction.Right)
+                {
+                    Functions_Movement.Teleport(Act.heldObj.compMove,
+                        Act.compSprite.position.X + 8,
+                        Act.compSprite.position.Y);
+                }
+                else if (Act.direction == Direction.Down)
+                {
+                    Functions_Movement.Teleport(Act.heldObj.compMove,
+                        Act.compSprite.position.X,
+                        Act.compSprite.position.Y + 8);
+                }
+                //strongly push enemy in actor's facing direction
+                Functions_Movement.Push(
+                    Act.heldObj.compMove,
+                    Act.direction, 10.0f);
+                //reset hitbox, sorting offsets, etc...
+                Functions_GameObject.SetType(Act.heldObj, Act.heldObj.type);
+            }
+            else
+            {   //create a thrown version of heldObj
+                //assume we're throwing a bush
+                throwType = ObjType.ProjectileBush;
+                //check for pots
+                if (Act.heldObj.type == ObjType.Dungeon_Pot)
+                { throwType = ObjType.ProjectilePotSkull; }
+                else if (Act.heldObj.type == ObjType.Wor_Pot)
+                { throwType = ObjType.ProjectilePot; }
+                //spawn the thrown projectile obj
+                Functions_Projectile.Spawn(throwType, Act.compMove, Act.direction);
+                Functions_Pool.Release(Act.heldObj);
+            }
+            
+            Act.heldObj = null; //release reference to roomObj
+            Assets.Play(Assets.sfxActorFall); //play throw sfx
+            Functions_Particle.SpawnPushFX(Act.compMove, Act.direction);
         }
 
         public static void Grab(GameObject Obj, Actor Act)
@@ -741,9 +779,8 @@ namespace DungeonRun
 
                     #region Carrying state
 
-                    //cant attack, dash, or use
+                    //cant attack or use
                     //interact throws held obj
-                    //for now, just destroy the obj in actor's hands
 
                     if (Actor.state == ActorState.Interact)
                     {
