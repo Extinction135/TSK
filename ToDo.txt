@@ -110,36 +110,22 @@ TODAY:
 
 
 
+Bed++
+
+so when bed objects are placed in a building,
+they can be placed along the backwall. if this is done,
+then it looks like link should be able to walk behind
+the top of the bed between the bed and wall.
+
+however, link cannot do this because a single pixel
+from the bed's hitbox prevents him from doing so.
+updated the bed's hitbox to allow link to walk
+behind it, if alongside the backwall of a house.
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-Buildings ++
-
-building side walls should sort under
-building front walls - we're getting
-visual sorting bugs, where two sprites
-"compete" for the same layer. fixed.
-it's amazing how just that little change
-really sells how real the building looks
-and feels.
-
-
-
-
-
-move bed top hitbox down 1 on y axis.
-make 1 pix shorter.
 
 
 

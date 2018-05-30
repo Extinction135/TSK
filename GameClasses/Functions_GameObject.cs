@@ -968,8 +968,8 @@ namespace DungeonRun
             else if(Type == ObjType.Wor_Bed_Top)
             {
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Bed_Top;
-                Obj.compCollision.offsetX = -8; Obj.compCollision.offsetY = -1;
-                Obj.compCollision.rec.Width = 16; Obj.compCollision.rec.Height = 4;
+                Obj.compCollision.offsetX = -8; Obj.compCollision.offsetY = 0;
+                Obj.compCollision.rec.Width = 16; Obj.compCollision.rec.Height = 3;
                 Obj.compSprite.zOffset = 0;
                 Obj.canBeSaved = true;
                 Obj.sfx.hit = null;
