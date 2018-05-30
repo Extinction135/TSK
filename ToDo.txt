@@ -118,26 +118,28 @@ TODAY:
 
 
 
-Chimney++
-
-chimney smoke should only happen
-if chimney sprite alpha is at 1.0.
-any value below that is ignored.
-why? because chimney creates smoke
-as it's fading in/out, leaving
-smoke particles on their own once
-chimney completes it's fade,
-looksBadMan.jpg. fixed.
 
 
 
 
 
 
+Buildings ++
 
 building side walls should sort under
 building front walls - we're getting
-visual sorting bugs.
+visual sorting bugs, where two sprites
+"compete" for the same layer. fixed.
+it's amazing how just that little change
+really sells how real the building looks
+and feels.
+
+
+
+
+
+move bed top hitbox down 1 on y axis.
+make 1 pix shorter.
 
 
 

@@ -1192,7 +1192,7 @@ namespace DungeonRun
             {
                 Obj.canBeSaved = true;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
-                Obj.compSprite.zOffset = 4;
+                Obj.compSprite.zOffset = 4; //sort over sidewalls
                 //note - these hitboxes are custom for a reason
                 Obj.compCollision.rec.Width = 16; Obj.compCollision.offsetX = -8;
                 Obj.compCollision.rec.Height = 4; Obj.compCollision.offsetY = +4;
@@ -1207,7 +1207,7 @@ namespace DungeonRun
             {
                 Obj.canBeSaved = true;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
-                Obj.compSprite.zOffset = 4;
+                Obj.compSprite.zOffset = 0;
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Build_Wall_Side_Left;
                 //note - these hitboxes are custom for a reason
                 Obj.compCollision.rec.Width = 3; Obj.compCollision.offsetX = -8;
@@ -1217,7 +1217,7 @@ namespace DungeonRun
             {
                 Obj.canBeSaved = true;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
-                Obj.compSprite.zOffset = 4;
+                Obj.compSprite.zOffset = 0;
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Build_Wall_Side_Right;
                 //note - these hitboxes are custom for a reason
                 Obj.compCollision.rec.Width = 3; Obj.compCollision.offsetX = +5;
@@ -1226,7 +1226,7 @@ namespace DungeonRun
             else if (Type == ObjType.Wor_Build_Door_Shut)
             {
                 Obj.canBeSaved = true;
-                Obj.compSprite.zOffset = 4;
+                Obj.compSprite.zOffset = 0;
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Build_Door_Shut;
             }
             else if (Type == ObjType.Wor_Build_Door_Open)
