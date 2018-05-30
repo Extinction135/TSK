@@ -739,7 +739,7 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Fence_Gate; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 472; TheFarm.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bookcase; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 248; TheFarm.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Shelf; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 248; TheFarm.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_TableWood; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 280; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_TableSingle; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 280; TheFarm.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 600; TheFarm.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 296; obj.posY = 696; TheFarm.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 424; obj.posY = 664; TheFarm.objs.Add(obj);}

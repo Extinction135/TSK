@@ -164,8 +164,19 @@ namespace DungeonRun
         //interior building objs
         public static List<Byte4> World_Bookcase = new List<Byte4> { new Byte4(0, 15, 0, 0) };
         public static List<Byte4> World_Shelf = new List<Byte4> { new Byte4(1, 15, 0, 0) };
-        public static List<Byte4> World_TableWood = new List<Byte4> { new Byte4(2, 15, 0, 0) };
-        public static List<Byte4> World_TableStone = new List<Byte4> { new Byte4(3, 15, 0, 0) };
+        public static List<Byte4> World_TableSingle = new List<Byte4> { new Byte4(2, 15, 0, 0) };
+        public static List<Byte4> World_TableDoubleLeft = new List<Byte4> { new Byte4(3, 15, 0, 0) };
+        public static List<Byte4> World_TableDoubleRight = new List<Byte4> { new Byte4(3, 15, 1, 0) };
+
+        public static List<Byte4> Wor_Stove = new List<Byte4> { new Byte4(5, 15, 0, 0) };
+        public static List<Byte4> Wor_Sink = new List<Byte4> { new Byte4(4, 15, 0, 0) };
+        public static List<Byte4> Wor_Chair = new List<Byte4> { new Byte4(6, 15, 0, 0) };
+
+        public static List<Byte4> Wor_Bed_Top = new List<Byte4> { new Byte4(1, 6, 0, 0) };
+        public static List<Byte4> Wor_Bed_Bottom = new List<Byte4> { new Byte4(1, 7, 0, 0) };
+
+
+
 
         //dungeon entrances
         public static List<Byte4> Wor_Entrance_ForestDungeon = new List<Byte4> { new Byte4(0, 0, 0, 0) };

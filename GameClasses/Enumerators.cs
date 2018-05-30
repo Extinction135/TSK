@@ -265,8 +265,18 @@ namespace DungeonRun
         //interior building objects
         Wor_Bookcase, 
         Wor_Shelf, 
-        Wor_TableStone,
-        Wor_TableWood,
+        Wor_TableSingle,
+        Wor_TableDoubleLeft,
+        Wor_TableDoubleRight,
+
+        Wor_Stove,
+        Wor_Sink,
+        Wor_Chair,
+
+        Wor_Bed_Top,
+        Wor_Bed_Bottom,
+
+
 
         //grass objects
         Wor_Grass_Tall,
@@ -336,10 +346,6 @@ namespace DungeonRun
         Wor_Build_Roof_Top,
         Wor_Build_Roof_Bottom,
         Wor_Build_Roof_Chimney,
-
-
-
-        //chimney - spawns rising smoke particles (getsAI)
 
         #endregion
 

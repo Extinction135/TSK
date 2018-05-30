@@ -916,7 +916,11 @@ namespace DungeonRun
 
             #region Interior Building Objects
 
-            else if (Type == ObjType.Wor_Bookcase || Type == ObjType.Wor_Shelf)
+            else if (Type == ObjType.Wor_Bookcase 
+                || Type == ObjType.Wor_Shelf
+                || Type == ObjType.Wor_Stove
+                || Type == ObjType.Wor_Sink
+                || Type == ObjType.Wor_Chair)
             {
                 Obj.compCollision.offsetY = 0; Obj.compCollision.rec.Height = 8;
                 Obj.compSprite.zOffset = -7;
@@ -925,33 +929,62 @@ namespace DungeonRun
 
                 if (Type == ObjType.Wor_Bookcase)
                 { Obj.compAnim.currentAnimation = AnimationFrames.World_Bookcase; }
-                else { Obj.compAnim.currentAnimation = AnimationFrames.World_Shelf; }
+                else if(Type == ObjType.Wor_Shelf)
+                { Obj.compAnim.currentAnimation = AnimationFrames.World_Shelf; }
+
+                else if (Type == ObjType.Wor_Stove)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Stove; }
+                else if (Type == ObjType.Wor_Sink)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Sink; }
+                else if (Type == ObjType.Wor_Chair)
+                {
+                    Obj.compAnim.currentAnimation = AnimationFrames.Wor_Chair;
+                    Obj.compCollision.offsetX = -5; Obj.compCollision.rec.Width = 10;
+                    Obj.compCollision.offsetY = -5; Obj.compCollision.rec.Height = 10;
+                }
+
                 Obj.sfx.hit = Assets.sfxTapMetallic;
                 Obj.sfx.kill = Assets.sfxShatter;
             }
-            else if (Type == ObjType.Wor_TableStone || Type == ObjType.Wor_TableWood)
+            else if (Type == ObjType.Wor_TableSingle 
+                || Type == ObjType.Wor_TableDoubleLeft
+                || Type == ObjType.Wor_TableDoubleRight)
             {
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -6;
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 12;
                 Obj.compSprite.zOffset = -7;
                 Obj.canBeSaved = true;
                 Obj.compMove.moveable = true;
+                Obj.sfx.hit = Assets.sfxTapMetallic;
+                Obj.sfx.kill = Assets.sfxShatter;
 
-                if (Type == ObjType.Wor_TableStone)
-                {
-                    Obj.compAnim.currentAnimation = AnimationFrames.World_TableStone;
-                    Obj.sfx.hit = Assets.sfxTapMetallic;
-                    Obj.sfx.kill = Assets.sfxShatter;
-                }
+                if (Type == ObjType.Wor_TableSingle)
+                { Obj.compAnim.currentAnimation = AnimationFrames.World_TableSingle; }
+                else if(Type == ObjType.Wor_TableDoubleLeft)
+                { Obj.compAnim.currentAnimation = AnimationFrames.World_TableDoubleLeft; }
                 else
-                {   //wood table
-                    Obj.compAnim.currentAnimation = AnimationFrames.World_TableWood;
-                    Obj.sfx.hit = Assets.sfxEnemyHit;
-                    Obj.sfx.kill = Assets.sfxShatter;
-                }
+                { Obj.compAnim.currentAnimation = AnimationFrames.World_TableDoubleRight; }
             }
-
-            //Wor_TableWood
+            else if(Type == ObjType.Wor_Bed_Top)
+            {
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Bed_Top;
+                Obj.compCollision.offsetX = -8; Obj.compCollision.offsetY = -1;
+                Obj.compCollision.rec.Width = 16; Obj.compCollision.rec.Height = 4;
+                Obj.compSprite.zOffset = 0;
+                Obj.canBeSaved = true;
+                Obj.sfx.hit = null;
+                Obj.sfx.kill = null;
+            }
+            else if(Type == ObjType.Wor_Bed_Bottom)
+            {
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Bed_Bottom;
+                Obj.compCollision.offsetX = -8; Obj.compCollision.offsetY = -4;
+                Obj.compCollision.rec.Width = 16; Obj.compCollision.rec.Height = 12;
+                Obj.compSprite.zOffset = 0;
+                Obj.canBeSaved = true;
+                Obj.sfx.hit = null;
+                Obj.sfx.kill = null;
+            }
 
             #endregion
 

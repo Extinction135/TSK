@@ -552,11 +552,14 @@ namespace DungeonRun
                             {   //blow up tree, no leaf explosion
                                 Functions_GameObject_World.BlowUpTree(RoomObj, false);
                             }
-                            else if (RoomObj.type == ObjType.Dungeon_Statue
+                            else if (
+                                RoomObj.type == ObjType.Dungeon_Statue
                                 || RoomObj.type == ObjType.Wor_Bookcase
                                 || RoomObj.type == ObjType.Wor_Shelf
-                                || RoomObj.type == ObjType.Wor_TableStone
-                                || RoomObj.type == ObjType.Wor_TableWood)
+                                || RoomObj.type == ObjType.Wor_TableSingle
+                                || RoomObj.type == ObjType.Wor_Stove
+                                || RoomObj.type == ObjType.Wor_Sink
+                                || RoomObj.type == ObjType.Wor_Chair)
                             {   
                                 Functions_GameObject.Kill(RoomObj, true, true);
                             }
@@ -608,15 +611,8 @@ namespace DungeonRun
                             Assets.Play(RoomObj.sfx.hit);
                         }
                         else if (Object.lifeCounter == 4)
-                        {   //these interactions happen early-mid animation
-                            if (RoomObj.type == ObjType.Wor_TableWood)
-                            {
-                                Functions_GameObject.Kill(RoomObj, true, true);
-                            }
-                            else
-                            {
-                                Functions_GameObject.HandleCommon(RoomObj, Object.compMove.direction);
-                            }
+                        {   //these interactions happen mid-swing
+                            Functions_GameObject.HandleCommon(RoomObj, Object.compMove.direction);
                         }
                     }
 

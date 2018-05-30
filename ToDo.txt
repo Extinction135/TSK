@@ -136,50 +136,58 @@ TODAY:
 
 
 
-Chimney++
-
-chimney should hide like roofs.
-chimney should smoke (emit smoke particles).
-chimney should only smoke if visible,
-if hero is in a house with a roof,
-don't display random smoke particles
-coming from thin air. done.
-
-changed sorting of roofs to be lower,
-changed sorting of rising smoke particles 
-to be higher. fixed sorting issue where 
-smoke particles weren't being displayed
-properly. playtested, looking great.
-
-FarmHouse++
-made link's farm house smaller, added chimney.
-looking great.
 
 
 
+Homes
 
+upgraded table sprites.
+now we have a table that serves as a
+double table. added sink and stove
+sprites, along with bed sprite.
+added chair sprite. this completes
+the basic objs necessary to represent
+a living space.
 
+changed wood and stone table enum values
+to table single and double. 
 
+added stove, sink, bed, and chair objs.
+added objs (minus bed) into explosion interaction
+routine - so all these objects can be destroyed.
+except for beds. because these objs would
+be destroyed separately and would look weird.
 
-
-
-
+double tables cannot be destoryed for the
+same reason. created table double left and 
+right, tested. added bed, table, and 
+chair to farm house.
 
 
 
 
-Buildings++
-need chair, sink, stove, bed to complete houses.
-stores should have tables + shelves + chairs + npcs.
-peoples homes should have all that plus beds, sink, stove.
 
 
 
 
-Levels++
-Create additional "LEFT TOWN" levels, with various vendors,
-and buildings. these should be connected via the overworld.
-this is a BIG player-facing commit.
+
+
+
+
+
+
+
+we need to create a 2nd town level on the left.
+this should have a few NPCs in it.
+the rest of the NPCs should stay on the colliseum level for now.
+
+
+
+weapons and equipment should be located in the same large building.
+items should be located elsewhere.
+
+
+
 
 
 We need dirt paths, without using alot of sprite space up.

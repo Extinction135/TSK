@@ -371,22 +371,22 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[35], ObjType.Unknown);
 
             //row 10
-            Functions_GameObject.SetType(objList[36], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[37], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[38], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[39], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[36], ObjType.Wor_TableSingle);
+            Functions_GameObject.SetType(objList[37], ObjType.Wor_TableDoubleLeft);
+            Functions_GameObject.SetType(objList[38], ObjType.Wor_TableDoubleRight);
+            Functions_GameObject.SetType(objList[39], ObjType.Wor_Bed_Top);
 
             //row 11
             Functions_GameObject.SetType(objList[40], ObjType.Unknown);
             Functions_GameObject.SetType(objList[41], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[42], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[43], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[42], ObjType.Wor_Chair);
+            Functions_GameObject.SetType(objList[43], ObjType.Wor_Bed_Bottom);
 
             //row 12
             Functions_GameObject.SetType(objList[44], ObjType.Wor_Bookcase);
             Functions_GameObject.SetType(objList[45], ObjType.Wor_Shelf);
-            Functions_GameObject.SetType(objList[46], ObjType.Wor_TableStone);
-            Functions_GameObject.SetType(objList[47], ObjType.Wor_TableWood);
+            Functions_GameObject.SetType(objList[46], ObjType.Wor_Stove);
+            Functions_GameObject.SetType(objList[47], ObjType.Wor_Sink);
 
             //position the objs relative to the window frame
             Functions_Widget.PositionObjs(this);

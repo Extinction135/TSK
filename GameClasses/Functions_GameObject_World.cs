@@ -31,17 +31,6 @@ namespace DungeonRun
             { Functions_Loot.SpawnLoot(TallGrass.compSprite.position); }
         }
 
-        public static void CreateVendor(ObjType VendorType, Vector2 Position)
-        {
-            //place vendor
-            Functions_GameObject.Spawn(VendorType, 
-                Position.X, Position.Y, Direction.Down);
-            //place stone table
-            Functions_GameObject.Spawn(ObjType.Wor_TableStone, 
-                Position.X + 16, Position.Y, Direction.Down);
-            //we could spawn other stuff around the vendor too (thematically appropriate)
-        }
-
         public static void DestroyBush(GameObject Bush)
         {   //pop leaf explosion
             Functions_Particle.Spawn_Explosion(
