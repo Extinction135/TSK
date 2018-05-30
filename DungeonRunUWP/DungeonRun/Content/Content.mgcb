@@ -515,3 +515,9 @@
 /processorParam:Quality=Best
 /build:SoundEnemyTaunt.wav
 
+#begin SoundRatSqueak.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundRatSqueak.wav
+

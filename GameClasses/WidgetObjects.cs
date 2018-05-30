@@ -421,7 +421,7 @@ namespace DungeonRun
             //row 3
             Functions_GameObject.SetType(objList[8], ObjType.Wor_Enemy_Turtle);
             Functions_GameObject.SetType(objList[9], ObjType.Wor_Enemy_Crab);
-            Functions_GameObject.SetType(objList[10], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[10], ObjType.Wor_Enemy_Rat);
             Functions_GameObject.SetType(objList[11], ObjType.Unknown);
 
             //row 4

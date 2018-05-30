@@ -116,26 +116,34 @@ Prep for 0.72 release and media (target: tmrw night).
 
 
 
-Crab
-
-added crab world enemy, just like turtle.
-added crabs to farm. playtested, working great.
 
 
 
 
+Rat Enemy
 
-
-
-
+this is based on turtle, but with directional frames.
+implemented based on lttp, moving around perfectly.
+added sound rat squeak to projects.
+updated rat ai to very rarely play rat squeak sfx.
 
 
 
 
 
-rat movement:
-randomly choose a direction for the rat to face.
-randomly apply a push in that direction, more often than dir change.
+
+
+
+only certain objects can be pushed.
+this should be modeled via type checks
+in the actor.push() / grab method.
+right now, we check obj.compMove.moveable,
+which is really used to tell if the obj
+can be pushed by other objects, like belts.
+
+
+
+
 
 
 add turtles, crabs, and rats to dungeon rooms.
@@ -143,9 +151,12 @@ add turtles, crabs, and rats to dungeon rooms.
 
 
 
+
+
 Town
 create town level on left side of map.
 town level should have a center shop with npcs.
+add rats randomly outside around town.
 
 
 
@@ -154,6 +165,8 @@ Farmer
 we need a farmer npc on the farm level that complains
 that his crops are too dry to grow. if he only had a 
 shovel..
+
+
 
 
 

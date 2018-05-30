@@ -638,6 +638,40 @@ namespace DungeonRun
             #endregion
 
 
+            #region Enemy - Rats
+
+            else if (Obj.type == ObjType.Wor_Enemy_Rat)
+            {
+                //very rarely play rat soundfx
+                if (Functions_Random.Int(0, 1001) > 999)
+                { Assets.Play(Assets.sfxRatSqueak); }
+
+                //rarely choose a random cardinal direction
+                if (Functions_Random.Int(0, 1001) > 990)
+                {
+                    Obj.direction = Functions_Direction.GetRandomCardinal();
+                    //set animation frame based on direction
+                    if (Obj.direction == Direction.Up)
+                    { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Enemy_Rat_Up; }
+                    else if (Obj.direction == Direction.Right)
+                    { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Enemy_Rat_Right; }
+                    else if (Obj.direction == Direction.Down)
+                    { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Enemy_Rat_Down; }
+                    else if (Obj.direction == Direction.Left)
+                    { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Enemy_Rat_Left; }
+                }
+
+                //often push in current direction
+                if (Functions_Random.Int(0, 1001) > 700)
+                { Functions_Movement.Push(Obj.compMove, Obj.direction, 1.0f); }
+            }
+
+            #endregion
+
+
+
+
+
         }
 
     }

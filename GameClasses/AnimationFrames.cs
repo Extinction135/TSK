@@ -252,6 +252,19 @@ namespace DungeonRun
         public static List<Byte4> Wor_Enemy_Crab = new List<Byte4>
         { new Byte4(2, 13, 0, 0), new Byte4(3, 13, 0, 0) };
 
+        //rat enemy has directional animFrames
+        public static List<Byte4> Wor_Enemy_Rat_Up = new List<Byte4>
+        { new Byte4(3, 12, 0, 0), new Byte4(3, 12, 1, 0) };
+        public static List<Byte4> Wor_Enemy_Rat_Right = new List<Byte4>
+        { new Byte4(1, 12, 0, 0), new Byte4(2, 12, 0, 0) };
+        public static List<Byte4> Wor_Enemy_Rat_Down = new List<Byte4>
+        { new Byte4(0, 12, 0, 0), new Byte4(0, 12, 1, 0) };
+        public static List<Byte4> Wor_Enemy_Rat_Left = new List<Byte4>
+        { new Byte4(1, 12, 1, 0), new Byte4(2, 12, 1, 0) };
+
+
+
+
         #endregion
 
 

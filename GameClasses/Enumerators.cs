@@ -347,12 +347,11 @@ namespace DungeonRun
         Wor_Build_Roof_Bottom,
         Wor_Build_Roof_Chimney,
 
-
-
-
         //enemies
         Wor_Enemy_Turtle,
         Wor_Enemy_Crab,
+        Wor_Enemy_Rat,
+
 
 
         #endregion

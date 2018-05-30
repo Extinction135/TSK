@@ -56,7 +56,8 @@ namespace DungeonRun
             #region World Enemies
 
             else if (RoomObj.type == ObjType.Wor_Enemy_Turtle
-                || RoomObj.type == ObjType.Wor_Enemy_Crab)
+                || RoomObj.type == ObjType.Wor_Enemy_Crab
+                || RoomObj.type == ObjType.Wor_Enemy_Rat)
             {
                 Functions_Particle.Spawn(ObjType.Particle_Attention, RoomObj);
                 Kill(RoomObj, true, false);
@@ -1301,6 +1302,22 @@ namespace DungeonRun
                 { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Enemy_Crab; }
             }
 
+            else if(Type == ObjType.Wor_Enemy_Rat)
+            {
+                Obj.getsAI = true; //roomObj enemy
+                Obj.canBeSaved = true;
+                Obj.compSprite.zOffset = 0;
+                Obj.compMove.moveable = true;
+                //setup hitbox
+                Obj.compCollision.blocking = true;
+                Obj.compCollision.offsetX = -5; Obj.compCollision.rec.Width = 10;
+                Obj.compCollision.offsetY = -5; Obj.compCollision.rec.Height = 10;
+                //setup sfx
+                Obj.sfx.hit = Assets.sfxEnemyHit;
+                Obj.sfx.kill = Assets.sfxEnemyKill;
+                //setup animFrame - defaults to down
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Enemy_Rat_Down;
+            }
 
             #endregion
 
