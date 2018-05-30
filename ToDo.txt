@@ -110,23 +110,13 @@ TODAY:
 
 
 
-Bed++
-
-so when bed objects are placed in a building,
-they can be placed along the backwall. if this is done,
-then it looks like link should be able to walk behind
-the top of the bed between the bed and wall.
-
-however, link cannot do this because a single pixel
-from the bed's hitbox prevents him from doing so.
-updated the bed's hitbox to allow link to walk
-behind it, if alongside the backwall of a house.
 
 
 
 
+Grassy FeetFx ++
 
-
+improved the grassy feet fx sprite.
 
 
 move gass feetfx sprite up 1 on y axis in sprite sheet.
