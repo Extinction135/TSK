@@ -119,13 +119,10 @@ Prep for 0.72 release and media (target: tmrw night).
 
 
 
+Sprites++
 
-Rat Enemy
-
-this is based on turtle, but with directional frames.
-implemented based on lttp, moving around perfectly.
-added sound rat squeak to projects.
-updated rat ai to very rarely play rat squeak sfx.
+added transparent shadows for:
+rat, turtle, crab, all vendors.
 
 
 
@@ -134,6 +131,9 @@ updated rat ai to very rarely play rat squeak sfx.
 
 
 
+
+
+Pushing Objs++
 only certain objects can be pushed.
 this should be modeled via type checks
 in the actor.push() / grab method.
@@ -165,6 +165,15 @@ Farmer
 we need a farmer npc on the farm level that complains
 that his crops are too dry to grow. if he only had a 
 shovel..
+
+
+
+
+
+
+
+
+
 
 
 
@@ -568,6 +577,19 @@ than being able to dive while holding an obj. lol.
 
 in hard mode, pits should deal 1 damage.
 in normal mode, pits deal no damage.
+
+
+
+A ReThink
+
+Do minibosses and bosses need to be actors? they could be roomObjs.
+seekers def should be roomObjs instead of actors. then we can
+place them easily inside rooms.
+
+it seems the only enemies that need to be actors are
+enemies that can chase hero thru water. if an enemy flys,
+then they should be a roomObj enemy. so for now, only blobs
+and link are actors. everything else is a roomObj.
 
 
 
