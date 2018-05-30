@@ -623,9 +623,10 @@ namespace DungeonRun
 
 
 
-            #region Enemy - Turtle
+            #region Enemy - Turtles & Crabs
 
-            else if(Obj.type == ObjType.Wor_Enemy_Turtle)
+            else if(Obj.type == ObjType.Wor_Enemy_Turtle
+                || Obj.type == ObjType.Wor_Enemy_Crab)
             {   //rarely gently push in a direction
                 if (Functions_Random.Int(0, 1001) > 900)
                 {

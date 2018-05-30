@@ -17,8 +17,6 @@ namespace DungeonRun
         static Vector2 offset = new Vector2();
         static Projectile pro;
         static Boolean pushLines;
-        //
-
 
 
         
@@ -306,11 +304,6 @@ namespace DungeonRun
             HandleBehavior(pro);
             if (pushLines) { Functions_Particle.SpawnPushFX(Caster, Dir); }
         }
-
-
-        
-
-
 
 
 

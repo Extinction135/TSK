@@ -442,7 +442,7 @@ namespace DungeonRun
             //handle picking up obj
             Act.carrying = true;
             Act.heldObj = Obj;
-            //'hide' roomObject far away from level/room
+            //'hide' roomObject offscreen - temporary, necessary
             Functions_Movement.Teleport(Obj.compMove, 4096, 4096);
             //put actor into pickup state
             Act.state = ActorState.Pickup;
@@ -463,9 +463,9 @@ namespace DungeonRun
             SetAnimationGroup(Act);
 
 
-            
             //check if we're throwing an enemy or object
-            if(Act.heldObj.type == ObjType.Wor_Enemy_Turtle)
+            if(Act.heldObj.type == ObjType.Wor_Enemy_Turtle
+                || Act.heldObj.type == ObjType.Wor_Enemy_Crab)
             {
                 //resolve act.direction to cardinal
                 Act.direction = Functions_Direction.GetCardinalDirection(Act.direction);

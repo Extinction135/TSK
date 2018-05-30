@@ -116,26 +116,10 @@ Prep for 0.72 release and media (target: tmrw night).
 
 
 
+Crab
 
-
-
-
-Turtles++
-
-turtles can now be picked up, carried,
-and thrown - and the turtle doesn't get
-hurt during this process.
-
-Bug: held turtles + water
-if we carry turtles into water, they want 
-to be released, and create splash particles.
-so we need to check and see if obj.compCollision 
-is false, and if so - dont create splashes or
-release the obj. done. link can now pickup
-and carry turtles into the water with him,
-and hide underwater with a turtle over his
-head, allowing him to sneak as a turtle.
-turtle power.
+added crab world enemy, just like turtle.
+added crabs to farm. playtested, working great.
 
 
 
@@ -143,7 +127,9 @@ turtle power.
 
 
 
-add turtles to farm?
+
+
+
 
 
 
@@ -152,7 +138,7 @@ randomly choose a direction for the rat to face.
 randomly apply a push in that direction, more often than dir change.
 
 
-
+add turtles, crabs, and rats to dungeon rooms.
 
 
 
@@ -168,6 +154,21 @@ Farmer
 we need a farmer npc on the farm level that complains
 that his crops are too dry to grow. if he only had a 
 shovel..
+
+
+
+*we need a sunken obj particle
+this should be created whenever an object is 
+sunk into water. the sprite is the underwater
+sprite, particle has a life of 255 frames, then
+creates an attention particle and releases().
+this creates the illusion of an object sinking.
+we could even have the sprite animated to get smaller!
+
+
+
+
+
 
 
 DungeonMap++

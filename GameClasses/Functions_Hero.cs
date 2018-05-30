@@ -387,7 +387,9 @@ namespace DungeonRun
             if (Obj.type == ObjType.Dungeon_Pot
                 || Obj.type == ObjType.Wor_Pot
                 || Obj.type == ObjType.Wor_Bush
-                || Obj.type == ObjType.Wor_Enemy_Turtle)
+                //enemies
+                || Obj.type == ObjType.Wor_Enemy_Turtle
+                || Obj.type == ObjType.Wor_Enemy_Crab)
             {
                 Functions_Actor.Pickup(Obj, Pool.hero);
             }

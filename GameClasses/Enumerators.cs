@@ -352,7 +352,7 @@ namespace DungeonRun
 
         //enemies
         Wor_Enemy_Turtle,
-
+        Wor_Enemy_Crab,
 
 
         #endregion

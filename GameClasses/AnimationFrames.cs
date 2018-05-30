@@ -249,6 +249,8 @@ namespace DungeonRun
         public static List<Byte4> Wor_Enemy_Turtle = new List<Byte4>
         { new Byte4(0, 13, 0, 0), new Byte4(1, 13, 0, 0) };
 
+        public static List<Byte4> Wor_Enemy_Crab = new List<Byte4>
+        { new Byte4(2, 13, 0, 0), new Byte4(3, 13, 0, 0) };
 
         #endregion
 

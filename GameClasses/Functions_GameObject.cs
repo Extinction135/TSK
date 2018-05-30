@@ -55,7 +55,8 @@ namespace DungeonRun
 
             #region World Enemies
 
-            else if (RoomObj.type == ObjType.Wor_Enemy_Turtle)
+            else if (RoomObj.type == ObjType.Wor_Enemy_Turtle
+                || RoomObj.type == ObjType.Wor_Enemy_Crab)
             {
                 Functions_Particle.Spawn(ObjType.Particle_Attention, RoomObj);
                 Kill(RoomObj, true, false);
@@ -1279,13 +1280,13 @@ namespace DungeonRun
             //standard, miniboss, and boss enemies are ACTORS and handled
             //via Ai Functions.
 
-            else if(Type == ObjType.Wor_Enemy_Turtle)
+            else if(Type == ObjType.Wor_Enemy_Turtle
+                || Type == ObjType.Wor_Enemy_Crab)
             {
                 Obj.getsAI = true; //roomObj enemy
                 Obj.canBeSaved = true;
                 Obj.compSprite.zOffset = 0;
                 Obj.compMove.moveable = true;
-                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Enemy_Turtle;
                 //setup hitbox
                 Obj.compCollision.blocking = true;
                 Obj.compCollision.offsetX = -6; Obj.compCollision.rec.Width = 12;
@@ -1293,6 +1294,11 @@ namespace DungeonRun
                 //setup sfx
                 Obj.sfx.hit = Assets.sfxEnemyHit;
                 Obj.sfx.kill = Assets.sfxEnemyKill;
+                //setup animFrame
+                if (Type == ObjType.Wor_Enemy_Turtle)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Enemy_Turtle; }
+                else if(Type == ObjType.Wor_Enemy_Crab)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Enemy_Crab; }
             }
 
 
