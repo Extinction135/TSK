@@ -106,7 +106,6 @@ namespace DungeonRun
                         if (Math.Abs(Pool.hero.compSprite.position.Y - Obj.compSprite.position.Y) < 2)
                         { Pool.hero.compMove.newPosition.Y = Obj.compSprite.position.Y; }
                     }
-                    return;
                 }
 
                 #endregion
@@ -203,6 +202,8 @@ namespace DungeonRun
                 if (Obj.type == ObjType.Dungeon_DoorTrap)
                 {   //trap doors push ALL actors
                     Functions_Movement.Push(Actor.compMove, Obj.direction, 1.0f);
+
+                    Debug.WriteLine("fuck");
                 }
             }
 

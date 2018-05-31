@@ -41,29 +41,7 @@ Phase 2 - version 0.8 to 1.0
 + all desired functionality from other games.
 + mature, dark story + endgame content.	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	
@@ -79,18 +57,10 @@ these rooms turn all their doors into locked doors upon close, similar to puzzle
 link doesn't put them into inventory - he literally picks them up and walks over
 to a locked door then throws the key at it.
 this is kinda like super mario world style key gameplay.
-
 if obj.type == key & obj.hitBox.intersects lockedDoor.hitBox,
 convert lockedDoor to openDoor, release() key.
 - or - we put the key as a menuItem in inventory,
 and clear that inventory item when link enters a new room (pre-build).
-
-
-
-
-
-
-
 
 
 0.9
@@ -109,59 +79,43 @@ and clear that inventory item when link enters a new room (pre-build).
 
 
 
+
 TODAY:
 
 
-Prep for 0.72 release and media (target: tmrw night).
+Prep for 0.73 release and media (target: tmrw night).
 
+
+
+I might be Dumb - Part 1
+
+So, I added a return; to the end of InteractActor()
+in the hero vs door routine, which bailed from the method,
+preventing trap doors from ever evaluating against
+the hero - which allowed hero to freely walk thru trap
+doors, completely breaking rooms + puzzles + dungeons.
+and since I'm a AAA developer, I haven't noticed this
+until now, and I don't remember when I put the return;
+statement in there - so the game may of been in this broken
+state for a while. but that's not from laziness, it's
+simply because there is so much to do and fix. 
+
+anyway, I removed the return and trap doors work again.
+sorry about that.
+
+
+
+
+
+
+
+BUG: 
+trap doors no longer push hero, and allow him to walk thru them?
 
 
 Levels++
-
-created left town 2, to contain the npcs for now.
-this has a ton of objects, buildings, etc...
-colliseum level updated to be mostly blank,
-except for central house. in dev.
-
-Editor++
-improved editor to prevent modifying objs/data
-behind widgets while in editor.
-
-Objects++
-improved shut door's hitbox to align with 
-wall obj's hitboxes surrounding it. this allows
-the hero to slide easily along the front or
-back wall of a building, instead of getting
-snagged on the door.
-
-Roofs + Digging
-when hero digs with shovel, he removes most
-objects the shovel touches. including roofs.
-so hero can 'dig' roofs away, which makes no
-sense at all. include roofs in the dig routine,
-preventing hero from digging inside of a building.
-which seems socially correct too - you wouldn't
-want someone coming into your home, digging up
-ditches, flooding your house with water..
-
-lots of playtesting, working great.
-
-
-
-
-
-
-
-BUG: trap doors no longer push hero, and allow him to walk thru them?
-
-
 remake forest dungeon entrance to look more like a forest.
 look more like map.
-
-
-
-
-
 
 
 Destruktor
@@ -176,14 +130,6 @@ this makes the table destructible too, which means
 we can destroy the entire house now.
 
 
-Destruction++
-i want the ability to to burn houses down,
-and destroy them, with fire.
-and as a house burns, it should be engulfed
-in fire projectiles, which spread across the 
-house objects.
-
-
 Bombos
 this is a series of explosions across the screen, rapidly.
 this is left to right, top to bottom, with no explosions
@@ -192,12 +138,10 @@ to destroy entire levels of objects in a second.
 which is awesome. and will look amazing in gifs.
 
 
-
 Farmer
 we need a farmer npc on the farm level that complains
 that his crops are too dry to grow. if he only had a 
 shovel..
-
 
 
 DungeonMap++
@@ -206,12 +150,30 @@ upon touching this obj, hero should be set into reward
 state, with map overhead.
 
 
-
 Dash++
 holding down B should trigger dashing in the input
 direction across frames - this imitates lttps screen
 dashing ability, but still keeps the quick tactical
 dash from hyper light drifter.
+
+
+
+Record playthru, create gifs for readme.
+soft release v0.73 to readme + dropbox.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -255,25 +217,6 @@ Fire++
 when fire expands, it should expand further vertically,
 because it doesn't always transfer from bush to bush,
 because bush hitboxes are small.
-
-
-
-ReadMe++
-Record GIFS + video playthru via obs with vo for ReadMe.
-soft release v0.73 to readme + dropbox.
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
