@@ -374,13 +374,13 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[36], ObjType.Wor_TableSingle);
             Functions_GameObject.SetType(objList[37], ObjType.Wor_TableDoubleLeft);
             Functions_GameObject.SetType(objList[38], ObjType.Wor_TableDoubleRight);
-            Functions_GameObject.SetType(objList[39], ObjType.Wor_Bed_Top);
+            Functions_GameObject.SetType(objList[39], ObjType.Wor_Bed);
 
             //row 11
             Functions_GameObject.SetType(objList[40], ObjType.Unknown);
             Functions_GameObject.SetType(objList[41], ObjType.Unknown);
             Functions_GameObject.SetType(objList[42], ObjType.Wor_Chair);
-            Functions_GameObject.SetType(objList[43], ObjType.Wor_Bed_Bottom);
+            Functions_GameObject.SetType(objList[43], ObjType.Unknown); //hidden by bed
 
             //row 12
             Functions_GameObject.SetType(objList[44], ObjType.Wor_Bookcase);
@@ -390,6 +390,8 @@ namespace DungeonRun
 
             //position the objs relative to the window frame
             Functions_Widget.PositionObjs(this);
+
+            Functions_Widget.HideObj(objList[43]);
         }
     }
 

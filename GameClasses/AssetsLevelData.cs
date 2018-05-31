@@ -670,8 +670,6 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Wall_Back; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 264; TheFarm.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Wall_Back; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 264; TheFarm.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Wall_Back; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 264; TheFarm.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bed_Top; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 280; TheFarm.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bed_Bottom; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 296; TheFarm.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_TableSingle; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 280; TheFarm.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Chair; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 296; TheFarm.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Shelf; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 280; TheFarm.objs.Add(obj);}
@@ -971,8 +969,8 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Roof_Bottom; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 296; TheFarm.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Roof_Bottom; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 296; TheFarm.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 1256; obj.posY = 376; TheFarm.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Enemy_Crab; obj.direction = Direction.Down; obj.posX = 797; obj.posY = 502; TheFarm.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Enemy_Crab; obj.direction = Direction.Down; obj.posX = 534; obj.posY = 609; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Enemy_Crab; obj.direction = Direction.Down; obj.posX = 806; obj.posY = 519; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Enemy_Crab; obj.direction = Direction.Down; obj.posX = 544; obj.posY = 593; TheFarm.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Right; obj.posX = 280; obj.posY = 744; TheFarm.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 536; TheFarm.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 472; obj.posY = 536; TheFarm.objs.Add(obj);}
@@ -1112,9 +1110,9 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 1224; obj.posY = -8; TheFarm.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 1288; obj.posY = -8; TheFarm.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 1256; obj.posY = -8; TheFarm.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Enemy_Crab; obj.direction = Direction.Down; obj.posX = 909; obj.posY = 575; TheFarm.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Enemy_Crab; obj.direction = Direction.Down; obj.posX = 530; obj.posY = 525; TheFarm.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Enemy_Crab; obj.direction = Direction.Down; obj.posX = 380; obj.posY = 534; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Enemy_Crab; obj.direction = Direction.Down; obj.posX = 912; obj.posY = 563; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Enemy_Crab; obj.direction = Direction.Down; obj.posX = 516; obj.posY = 528; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Enemy_Crab; obj.direction = Direction.Down; obj.posX = 374; obj.posY = 538; TheFarm.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.NPC_Farmer; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 424; TheFarm.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 472; obj.posY = 408; TheFarm.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 424; obj.posY = 408; TheFarm.objs.Add(obj);}
@@ -1145,6 +1143,7 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 792; obj.posY = 296; TheFarm.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 488; obj.posY = 296; TheFarm.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 792; obj.posY = 376; TheFarm.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bed; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 280; TheFarm.objs.Add(obj);}
 			#endregion
 
 

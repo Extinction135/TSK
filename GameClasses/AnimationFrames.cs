@@ -172,8 +172,7 @@ namespace DungeonRun
         public static List<Byte4> Wor_Sink = new List<Byte4> { new Byte4(4, 15, 0, 0) };
         public static List<Byte4> Wor_Chair = new List<Byte4> { new Byte4(6, 15, 0, 0) };
 
-        public static List<Byte4> Wor_Bed_Top = new List<Byte4> { new Byte4(1, 6, 0, 0) };
-        public static List<Byte4> Wor_Bed_Bottom = new List<Byte4> { new Byte4(1, 7, 0, 0) };
+        public static List<Byte4> Wor_Bed = new List<Byte4> { new Byte4(1, 3, 0, 0) };
 
 
 

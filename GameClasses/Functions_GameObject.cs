@@ -1046,22 +1046,12 @@ namespace DungeonRun
                 }
             }
 
-
-            else if(Type == ObjType.Wor_Bed_Top)
+            else if(Type == ObjType.Wor_Bed)
             {
-                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Bed_Top;
+                Obj.compSprite.cellSize.Y = 16*2; //non standard cellsize
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Bed;
                 Obj.compCollision.offsetX = -8; Obj.compCollision.offsetY = 0;
-                Obj.compCollision.rec.Width = 16; Obj.compCollision.rec.Height = 3;
-                Obj.compSprite.zOffset = 0;
-                Obj.canBeSaved = true;
-                Obj.sfx.hit = null;
-                Obj.sfx.kill = null;
-            }
-            else if(Type == ObjType.Wor_Bed_Bottom)
-            {
-                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Bed_Bottom;
-                Obj.compCollision.offsetX = -8; Obj.compCollision.offsetY = -4;
-                Obj.compCollision.rec.Width = 16; Obj.compCollision.rec.Height = 12;
+                Obj.compCollision.rec.Width = 16; Obj.compCollision.rec.Height = 3 + 16;
                 Obj.compSprite.zOffset = 0;
                 Obj.canBeSaved = true;
                 Obj.sfx.hit = null;

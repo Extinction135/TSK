@@ -1647,18 +1647,6 @@
       <posY>264</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Wor_Bed_Top</type>
-      <direction>Down</direction>
-      <posX>600</posX>
-      <posY>280</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Bed_Bottom</type>
-      <direction>Down</direction>
-      <posX>600</posX>
-      <posY>296</posY>
-    </ObjXmlData>
-    <ObjXmlData>
       <type>Wor_TableSingle</type>
       <direction>Down</direction>
       <posX>648</posX>
@@ -3455,14 +3443,14 @@
     <ObjXmlData>
       <type>Wor_Enemy_Crab</type>
       <direction>Down</direction>
-      <posX>797</posX>
-      <posY>502</posY>
+      <posX>806</posX>
+      <posY>519</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Enemy_Crab</type>
       <direction>Down</direction>
-      <posX>534</posX>
-      <posY>609</posY>
+      <posX>544</posX>
+      <posY>593</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Coastline_Straight</type>
@@ -4301,20 +4289,20 @@
     <ObjXmlData>
       <type>Wor_Enemy_Crab</type>
       <direction>Down</direction>
-      <posX>909</posX>
-      <posY>575</posY>
+      <posX>912</posX>
+      <posY>563</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Enemy_Crab</type>
       <direction>Down</direction>
-      <posX>530</posX>
-      <posY>525</posY>
+      <posX>516</posX>
+      <posY>528</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Enemy_Crab</type>
       <direction>Down</direction>
-      <posX>380</posX>
-      <posY>534</posY>
+      <posX>374</posX>
+      <posY>538</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>NPC_Farmer</type>
@@ -4495,6 +4483,12 @@
       <direction>Down</direction>
       <posX>792</posX>
       <posY>376</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Bed</type>
+      <direction>Down</direction>
+      <posX>600</posX>
+      <posY>280</posY>
     </ObjXmlData>
   </objs>
 </RoomXmlData>

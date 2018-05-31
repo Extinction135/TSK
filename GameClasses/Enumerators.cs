@@ -279,8 +279,7 @@ namespace DungeonRun
         Wor_Sink,
         Wor_Chair,
 
-        Wor_Bed_Top,
-        Wor_Bed_Bottom,
+        Wor_Bed,
 
 
 

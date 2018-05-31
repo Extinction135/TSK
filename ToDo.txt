@@ -88,53 +88,35 @@ Prep for 0.73 release and media (target: tonight).
 
 
 
-
-
-
-
-
-
-
-Collapsing Roofs++
-
-improved collapsing roofs to always become permanent debris.
-when the debris 'falls' to the ground, it does a collision
-check, to determine if it should exist or not. if the debris
-overlaps other debris, or certain decorative objs like flowers,
-or blocking objs, then the debris removes itself.
-
-added editor option to left ctrl + left click to inspect
-any obj touching cursors pos.
-
-Debris++
-whenever something becomes debris, the debris should check to see
-if it should exist, using the routine developed for collapsing roofs.
-created Functions_GameObject.BecomeDebris(Obj) to do exactly that.
-BecomeDebris() is then called from roof collapse routine,
-and then it was integrated into GameObject.Kill(), which is
-where most of the objects end up after they've been set into
-the codepath of destruction.
-
-this essentially creates a system for debris, where debris will
-only allow itself to exist if it's aesthetic to the surrounding
-roomobjs. debris wont overlap or bunch up. this makes roof
-collapses look much better and more realistic for the gameworld.
-
-
-
-
-
-
-
-
-
-
-
 Beds++
 
 make beds one object, and then we can destroy them.
 the illusion of sleeping in them is less valuable
 than the ability to destroy them.
+
+removed bed from farm house.
+removed 2 bed objs, consolidated to 1 bed obj.
+update all codepaths to use 1 bed obj.
+tested, working + hitbox feels good.
+
+updated beds to be included in the explosion
+interaction routine, now they can be destroyed.
+that means every obj meant to be inside a building
+can be destroyed via explosions. which is nice.
+
+recompiled roomdata.
+playtested, working very well.
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -170,6 +152,23 @@ soft release v0.73 to readme + dropbox.
 
 
 
+
+
+
+
+
+
+
+
+
+editor++
+it would be nice to be able to toggle roofs on/off.
+and hide their collisionrecs too, so we can't accidentally pick them up.
+it would also be nice to "lock" water tiles somehow, so we can't
+mess them up. maybe different selection modes: landscape, building.
+it would be nice to be able to drag select a rec around a set of objects,
+then move them with the arrow keys, in 16 pixel increments. this would allow
+us to edit parts of rooms just like we edit pixels in photoshop.
 
 
 

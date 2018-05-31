@@ -589,6 +589,7 @@ namespace DungeonRun
                                 || RoomObj.type == ObjType.Wor_TableDoubleLeft
                                 || RoomObj.type == ObjType.Wor_TableDoubleRight
                                 || RoomObj.type == ObjType.Wor_Chair
+                                || RoomObj.type == ObjType.Wor_Bed
                                 //fences and gates
                                 || RoomObj.type == ObjType.Wor_Fence_Horizontal
                                 || RoomObj.type == ObjType.Wor_Fence_Vertical_Left
@@ -1025,8 +1026,6 @@ namespace DungeonRun
 
 
 
-
-
             #region Debris - debris removal
 
             //if debris roomObj overlaps other objs, remove it
@@ -1049,10 +1048,6 @@ namespace DungeonRun
             }
 
             #endregion
-
-
-
-
 
         }
 
