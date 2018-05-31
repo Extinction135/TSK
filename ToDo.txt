@@ -89,27 +89,12 @@ Prep for 0.73 release and media (target: tmrw night).
 
 
 
-Side-Quest #1
 
-now we need to implement farmer as a side-quest.
-farmer should getAi, and periodically check (expand rec)
-to see if he touches a bush. this means hero has regrown
-a nearby stump, completing the irrigation side-quest.
+Story NPC
 
-if this happens, the NPC farmer becomes the NPC farmer reward obj,
-which is the farmer which his hands raised up in the air, triumphant.
-if link talks to this version of the farmer, then he gets a
-reward of 10 arrows and 10 bombs, and the farmer becomes the
-post-reward version of the farmer, which again thanks link for his help.
-
-so 3 versions of farmer, two frames of animation.
-implemented. added farmer to farm level, remade garden
-to better suit and present the farming / irrigation side-quest.
-
-playtested, working really well. really well.
-
-
-
+migrated story object from being a vendor (?)
+to being a general NPC alongside the farmer.
+playtested in editor, working as expected.
 
 
 

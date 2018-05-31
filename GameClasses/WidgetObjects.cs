@@ -549,7 +549,7 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[31], ObjType.Unknown);
 
             //row 9
-            Functions_GameObject.SetType(objList[32], ObjType.Vendor_NPC_Story);
+            Functions_GameObject.SetType(objList[32], ObjType.NPC_Story);
             Functions_GameObject.SetType(objList[33], ObjType.Unknown);
             Functions_GameObject.SetType(objList[34], ObjType.NPC_Farmer);
             Functions_GameObject.SetType(objList[35], ObjType.NPC_Farmer_Reward);

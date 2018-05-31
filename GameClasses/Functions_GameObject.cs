@@ -1002,13 +1002,13 @@ namespace DungeonRun
             #endregion
 
 
-            #region Vendors & NPCs
+            #region Vendors
 
             //Vendors
             else if (Type == ObjType.Vendor_NPC_Items || Type == ObjType.Vendor_NPC_Potions ||
                 Type == ObjType.Vendor_NPC_Magic || Type == ObjType.Vendor_NPC_Weapons ||
                 Type == ObjType.Vendor_NPC_Armor || Type == ObjType.Vendor_NPC_Equipment
-                || Type == ObjType.Vendor_NPC_Pets || Type == ObjType.Vendor_NPC_Story)
+                || Type == ObjType.Vendor_NPC_Pets)
             {
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 11;
@@ -1024,9 +1024,25 @@ namespace DungeonRun
                 else if (Type == ObjType.Vendor_NPC_Armor) { Obj.compAnim.currentAnimation = AnimationFrames.Vendor_Armor; }
                 else if (Type == ObjType.Vendor_NPC_Equipment) { Obj.compAnim.currentAnimation = AnimationFrames.Vendor_Equipment; }
                 else if (Type == ObjType.Vendor_NPC_Pets) { Obj.compAnim.currentAnimation = AnimationFrames.Vendor_Pets; }
-                else if (Type == ObjType.Vendor_NPC_Story) { Obj.compAnim.currentAnimation = AnimationFrames.Vendor_Story; }
             }
 
+            #endregion
+
+
+            #region NPCs
+
+            //story NPC
+            else if (Type == ObjType.NPC_Story)
+            {
+                Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;
+                Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 11;
+                Obj.compSprite.zOffset = 0;
+                Obj.compAnim.speed = 20; //slow animation
+                Obj.group = ObjGroup.NPC;
+                Obj.canBeSaved = true;
+                Obj.compAnim.currentAnimation = AnimationFrames.Vendor_Story;
+            }
+            
             //farmer NPC
             else if(Type == ObjType.NPC_Farmer || Type == ObjType.NPC_Farmer_Reward || Type == ObjType.NPC_Farmer_EndDialog)
             {

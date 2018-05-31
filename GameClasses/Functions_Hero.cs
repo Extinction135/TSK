@@ -270,18 +270,9 @@ namespace DungeonRun
             #endregion
 
 
-            #region Vendors
-
+            //Vendors
             else if (Obj.group == ObjGroup.Vendor)
-            {   //some vendors do not sell items, so check vendor types
-                if (Obj.type == ObjType.Vendor_NPC_Story) //for now this is default dialog
-                {   //figure out what part of the story the hero is at, pass this dialog
-                    ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Guide));
-                }
-                else { ScreenManager.AddScreen(new ScreenVendor(Obj)); }
-            }
-
-            #endregion
+            { ScreenManager.AddScreen(new ScreenVendor(Obj)); }
 
 
             #region NPCs
@@ -291,9 +282,16 @@ namespace DungeonRun
                 //based on obj.type, select dialog
 
 
+                //story/guide
+                if(Obj.type == ObjType.NPC_Story)
+                {   //figure out what part of the story the hero is at, pass this dialog
+                    ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Guide));
+                }
+
+
                 #region Farmer
 
-                if (Obj.type == ObjType.NPC_Farmer)
+                else if (Obj.type == ObjType.NPC_Farmer)
                 {
                     ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Farmer_Setup));
                 }

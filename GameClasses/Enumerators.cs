@@ -374,7 +374,7 @@ namespace DungeonRun
         Vendor_NPC_Equipment,
         Vendor_NPC_Pets,
 
-        Vendor_NPC_Story, //technically NOT a vendor
+        NPC_Story,
 
         NPC_Farmer,
         NPC_Farmer_Reward,

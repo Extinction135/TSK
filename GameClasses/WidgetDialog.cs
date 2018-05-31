@@ -25,7 +25,7 @@ namespace DungeonRun
         {
             window = new MenuWindow(new Point(-100, -100), new Point(100, 100), "");
             speaker = new GameObject();
-            Functions_GameObject.SetType(speaker, ObjType.Vendor_NPC_Story);
+            Functions_GameObject.SetType(speaker, ObjType.NPC_Story);
             dialog = new ComponentText(Assets.font, "", new Vector2(0, 0), Assets.colorScheme.textDark);
         }
 
