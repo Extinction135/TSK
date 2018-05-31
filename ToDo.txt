@@ -88,57 +88,72 @@ Prep for 0.73 release and media (target: tonight).
 
 
 
-Bombos
 
-updated ui items sheet with bombos magic sprite.
-created magicBombos menuItem value.
-added magicBombos saveData boolean.
-implemented a temporary version of bombos
-that creates a line of explosions in the
-caster's direction - which isnt exactly
-what I want, but it will work for now.
+Bombos, Actually
 
-Magic++
-improved description for fireball and bombos
-magic menuItems.
+here's how we're gonna do bombos:
+create a projectile called bombos, with a life of 255.
+this bombos pro tracks over the hero's head, for it's duration.
 
-Thoughts
-so, we implemented a series of destructive
-projectiles that exist for only a moment (explosions).
-if we replace the sprite with a lightning bolt,
-and the sound fx with lighting, and implement
-the lighting menuItem, then plug it into vendor,
-then we've just added BOLT magic to the game.
-which is nice.
+as this pro ages, it creates bombs randomly around
+the hero, roughly for the size of the screen. this
+is nice, because it tracks the hero as he moves, so
+he can take his rain of bombs with him.
 
+while testing, it became necessary to increase the
+projectile pool to 500. upon further testing,
+with bombos against the town level, it became 
+necessary to raise particles to 750, but lower
+projectiles to 300. raised pickups to 50, due
+to so much destruction and potential loot creation.
 
-
-
-
-
-
-
-Bolt
-if we replace the sprite with a lightning bolt,
-and the sound fx with lighting, and implement
-the lighting menuItem, then plug it into vendor,
-then we've just added BOLT magic to the game.
-
-
-
-
+lots of very fun playtesting.
 
 Bombos++
+upon more playtesting, i feel like bombos should center
+to the screen, so it should be based off the camera's
+current position, instead of caster's position.
 
-this is a series of explosions across the screen, rapidly.
-this is left to right, with no explosions touching caster.
-this magic allows players to destroy levels of objects in a second.
-which is awesome. and will look amazing in gifs.
-but, this happens OVERTIME, so we need to implement
-a counter or sometype of object that exists for 255 frames,
-which causes random explosions all over screen.
-or we could spawn random bombs all over screen, 
-so hero has to dodge them! lol!
+implemented, working great - but i want MOAR bombs.
+this cast is awesomely powerful. improved bombos
+to create bombs slightly beyond the edge of the level,
+maintaining the illusion of endless bombs everywhere.
+
+note - 
+bombos can be spammed. but only if the infinite magic
+cheat is enabled. and if this happens, frametimes can
+rise to dramatic levels, like around 10-11ms on the pc.
+on the xbox one, i'm sure this drops frame times below
+30fps, which actually doesn't bother me that much because
+it emulates the old school snes stutter when too much
+stuff was happening at once. i'm sure there are some 
+optimizations i could do here, but i like the simplicity
+of the systems, so i'm going to consider spamming bombos
+to be the max test case / breaking point for the
+projectile and particle systems. togther they churn thru
+almost a thousand objects in a few seconds, while
+bombos is active on a heavily populated level (@1500objs).
+
+whats great about this version of bombos is that
+it makes the player feel INSANELY powerful. good.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Cast_Bombos =  Cast_Bolt
+if we replace the sprite with a lightning bolt,
+and the sound fx with lighting, and implement
+the lighting menuItem, then plug it into vendor,
+then we've just added BOLT magic to the game.
 
 
 

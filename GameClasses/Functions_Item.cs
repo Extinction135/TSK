@@ -88,11 +88,25 @@ namespace DungeonRun
                 if (Actor == Pool.hero & !CheckMagic(5)) //check if hero has enough
                 { Assets.Play(Assets.sfxError); Actor.lockTotal = 0; return; }
                 //cast bombos
-                Functions_Projectile.Cast_Bombos(Pool.hero);
-                //we need a 'reward' particle for bombos, like bottles
-                Functions_Particle.Spawn(ObjType.Particle_MagicCast_Bombos, Pool.hero);
+                Functions_Projectile.Spawn(ObjType.ProjectileBombos, Actor.compMove, Actor.direction);
+                Functions_Actor.SetRewardState(Pool.hero);
+                Assets.Play(Assets.sfxExplosionsMultiple);
+            }
+
+
+            /*
+            else if (Type == MenuItemType.MagicBolt)
+            {
+                if (Actor == Pool.hero & !CheckMagic(2)) //check if hero has enough
+                { Assets.Play(Assets.sfxError); Actor.lockTotal = 0; return; }
+                
+                //cast bolt
+                //Functions_Projectile.Cast_Bolt(Pool.hero);
                 Functions_Actor.SetRewardState(Pool.hero);
             }
+            */
+
+
             #endregion
 
 

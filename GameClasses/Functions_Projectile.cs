@@ -518,6 +518,25 @@ namespace DungeonRun
             #endregion
 
 
+            #region Bombos 
+
+            else if (Pro.type == ObjType.ProjectileBombos)
+            {   //casted magic tracks over hero's head
+                Pro.compMove.newPosition.X = Pro.caster.newPosition.X;
+                Pro.compMove.newPosition.Y = Pro.caster.newPosition.Y - 12;
+                if (Functions_Random.Int(0, 100) > 40)
+                {   //create bombs most frames, for the entire screen
+                    Spawn(ObjType.ProjectileBomb,
+                        Camera2D.currentPosition.X + Functions_Random.Int(-16 * 22, 16 * 22),
+                        Camera2D.currentPosition.Y + Functions_Random.Int(-16 * 12, 16 * 12));
+                }
+            }
+
+            #endregion
+
+
+
+
             //teleport the projectile to it's new position
             Functions_Movement.Teleport(Pro.compMove,
                 Pro.compMove.newPosition.X,
@@ -577,11 +596,18 @@ namespace DungeonRun
 
 
 
+        
 
-        public static void Cast_Bombos(Actor Caster)
+
+
+
+        public static void Cast_Lightning(Actor Caster)
         {
             //this is basically lightning BTW!!!!
             //replace the sprite, damage, and soundfx, and we just implemented bolt
+
+
+            
 
 
 

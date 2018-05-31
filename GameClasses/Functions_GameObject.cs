@@ -1513,6 +1513,17 @@ namespace DungeonRun
                 Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Fireball;
                 Obj.compSprite.texture = Assets.entitiesSheet;
             }
+            else if (Type == ObjType.ProjectileBombos)
+            {
+                Obj.compSprite.zOffset = 32;
+                Obj.compCollision.offsetX = -1; Obj.compCollision.offsetY = -1;
+                Obj.compCollision.rec.Width = 3; Obj.compCollision.rec.Height = 3;
+                Obj.group = ObjGroup.Projectile;
+                Obj.lifetime = 255; //in frames
+                Obj.compMove.grounded = false; //obj is airborne
+                Obj.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Magic_Bombos;
+                Obj.compSprite.texture = Assets.uiItemsSheet; //reuse bombos ui sprite
+            }
 
             #endregion
 
@@ -1895,9 +1906,7 @@ namespace DungeonRun
                 Type == ObjType.Particle_BottleMagic ||
                 Type == ObjType.Particle_BottleCombo ||
                 Type == ObjType.Particle_BottleFairy ||
-                Type == ObjType.Particle_BottleBlob ||
-
-                Type == ObjType.Particle_MagicCast_Bombos)
+                Type == ObjType.Particle_BottleBlob)
             {
                 Obj.compSprite.zOffset = 32;
                 Obj.group = ObjGroup.Particle;
@@ -1928,9 +1937,6 @@ namespace DungeonRun
                 { Obj.compAnim.currentAnimation = AnimationFrames.Bottle_Fairy; }
                 else if (Type == ObjType.Particle_BottleBlob)
                 { Obj.compAnim.currentAnimation = AnimationFrames.Bottle_Blob; }
-                //magic casts
-                else if (Type == ObjType.Particle_MagicCast_Bombos)
-                { Obj.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Magic_Bombos; }
             }
 
             #endregion

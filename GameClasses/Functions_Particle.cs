@@ -91,9 +91,7 @@ namespace DungeonRun
                 Type == ObjType.Particle_BottleMagic ||
                 Type == ObjType.Particle_BottleCombo ||
                 Type == ObjType.Particle_BottleFairy ||
-                Type == ObjType.Particle_BottleBlob ||
-
-                Type == ObjType.Particle_MagicCast_Bombos)
+                Type == ObjType.Particle_BottleBlob)
             { posRef.Y -= 14; }
 
             Spawn(Type, posRef.X, posRef.Y);

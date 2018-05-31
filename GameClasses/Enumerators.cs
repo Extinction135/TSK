@@ -420,6 +420,10 @@ namespace DungeonRun
         ProjectilePot,
         ProjectilePotSkull,
 
+        //Projectiles - casted magic
+        ProjectileBombos,
+
+
 
         #endregion
 
@@ -462,9 +466,6 @@ namespace DungeonRun
         //Particles - rewards
         Particle_RewardKey,
         Particle_RewardMap,
-
-        //Particles - magic casts
-        Particle_MagicCast_Bombos,
 
         #endregion
 
