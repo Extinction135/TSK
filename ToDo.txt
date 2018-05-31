@@ -88,23 +88,13 @@ Prep for 0.73 release and media (target: tmrw night).
 
 
 
-Farmer++
 
-reward farmer should pop an exclamation point bubble 
-over his head periodically, when he has a reward for
-the player. this is to let the player know "hey, come
-over here and get this loot I have for you".
+Forest++
 
-added exclamation point bubble sprite to entities sheet.
-created exclamation bubble particle, modified farmer reward
-state to create exclamation bubbles. relaxed the timing 
-of the bubbles created. changed farmer's reward to 10 
-bombs, changed reward dialog to mention 10 bomb reward.
-this was done because there was no visual indication of
-what was rewarded, so it seemed like player may of not
-been properly rewarded for their efforts.
-
-playtested, looking & working great.
+remade forest dungeon entrance level to look MUCH better.
+also, it has a ton of destructible objects on screen.
+fixed a bug where gameobjects could have their texture
+unset, or rather set to a previous state's texture.
 
 
 
@@ -112,16 +102,6 @@ playtested, looking & working great.
 
 
 
-
-
-
-
-
-
-
-Levels++
-remake forest dungeon entrance to look more like a forest.
-look more like map.
 
 
 

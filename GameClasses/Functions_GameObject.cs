@@ -156,6 +156,7 @@ namespace DungeonRun
             Obj.compSprite.flipHorizontally = false;
             Obj.compSprite.rotation = Rotation.None;
             Obj.compSprite.scale = 1.0f;
+            Obj.compSprite.texture = Assets.forestLevelSheet;
             //reset the animation component
             Obj.compAnim.speed = 10; //set obj's animation speed to default value
             Obj.compAnim.loop = true; //assume obj's animation loops
@@ -1949,7 +1950,6 @@ namespace DungeonRun
             {   //entities never block
                 Obj.compCollision.blocking = false;
             } 
-
             else if (Obj.group == ObjGroup.Wall)
             {   //all wall objs have same sfx
                 Obj.sfx.hit = Assets.sfxTapMetallic;
