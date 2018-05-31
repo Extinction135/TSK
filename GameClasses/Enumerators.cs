@@ -463,6 +463,9 @@ namespace DungeonRun
         Particle_RewardKey,
         Particle_RewardMap,
 
+        //Particles - magic casts
+        Particle_MagicCast_Bombos,
+
         #endregion
 
 
@@ -487,10 +490,6 @@ namespace DungeonRun
     public enum MenuItemType
     {
         Unknown,
-
-
-
-
 
 
         //options menu
@@ -555,7 +554,8 @@ namespace DungeonRun
         BottleBlob,
         
         MagicFireball,
-
+        MagicBombos,
+        
         WeaponSword,
         WeaponNet, 
         WeaponShovel,

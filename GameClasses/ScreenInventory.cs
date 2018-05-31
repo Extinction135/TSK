@@ -180,6 +180,7 @@ namespace DungeonRun
                         || currentlySelected.type == MenuItemType.BottleMagic
                         //magics
                         || currentlySelected.type == MenuItemType.MagicFireball
+                        || currentlySelected.type == MenuItemType.MagicBombos
                         )
                     {
                         PlayerData.current.currentItem = currentlySelected.type;

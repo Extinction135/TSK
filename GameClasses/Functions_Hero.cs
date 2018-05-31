@@ -572,6 +572,7 @@ namespace DungeonRun
             PlayerData.current.itemBow = true;
             //set magic
             PlayerData.current.magicFireball = true;
+            PlayerData.current.magicBombos = true;
             //set weapons
             PlayerData.current.weaponNet = true;
             PlayerData.current.weaponShovel = true;

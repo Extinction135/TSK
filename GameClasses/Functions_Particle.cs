@@ -82,15 +82,18 @@ namespace DungeonRun
             {   //center horizontally, place near actor's feet
                 posRef.X += 4; posRef.Y += 8;
             }
-            else if ( //place reward/bottle particles above actor's head
+            else if ( //place reward/bottle/cast particles above actor's head
                 Type == ObjType.Particle_RewardKey ||
                 Type == ObjType.Particle_RewardMap ||
+
                 Type == ObjType.Particle_BottleEmpty ||
                 Type == ObjType.Particle_BottleHealth ||
                 Type == ObjType.Particle_BottleMagic ||
                 Type == ObjType.Particle_BottleCombo ||
                 Type == ObjType.Particle_BottleFairy ||
-                Type == ObjType.Particle_BottleBlob)
+                Type == ObjType.Particle_BottleBlob ||
+
+                Type == ObjType.Particle_MagicCast_Bombos)
             { posRef.Y -= 14; }
 
             Spawn(Type, posRef.X, posRef.Y);

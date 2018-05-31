@@ -88,47 +88,57 @@ Prep for 0.73 release and media (target: tonight).
 
 
 
-Beds++
-
-make beds one object, and then we can destroy them.
-the illusion of sleeping in them is less valuable
-than the ability to destroy them.
-
-removed bed from farm house.
-removed 2 bed objs, consolidated to 1 bed obj.
-update all codepaths to use 1 bed obj.
-tested, working + hitbox feels good.
-
-updated beds to be included in the explosion
-interaction routine, now they can be destroyed.
-that means every obj meant to be inside a building
-can be destroyed via explosions. which is nice.
-
-recompiled roomdata.
-playtested, working very well.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Bombos
 
+updated ui items sheet with bombos magic sprite.
+created magicBombos menuItem value.
+added magicBombos saveData boolean.
+implemented a temporary version of bombos
+that creates a line of explosions in the
+caster's direction - which isnt exactly
+what I want, but it will work for now.
+
+Magic++
+improved description for fireball and bombos
+magic menuItems.
+
+Thoughts
+so, we implemented a series of destructive
+projectiles that exist for only a moment (explosions).
+if we replace the sprite with a lightning bolt,
+and the sound fx with lighting, and implement
+the lighting menuItem, then plug it into vendor,
+then we've just added BOLT magic to the game.
+which is nice.
+
+
+
+
+
+
+
+
+Bolt
+if we replace the sprite with a lightning bolt,
+and the sound fx with lighting, and implement
+the lighting menuItem, then plug it into vendor,
+then we've just added BOLT magic to the game.
+
+
+
+
+
+Bombos++
+
 this is a series of explosions across the screen, rapidly.
-this is left to right, top to bottom, with no explosions
-touching link or dealing him damage. this magic allows players
-to destroy entire levels of objects in a second.
+this is left to right, with no explosions touching caster.
+this magic allows players to destroy levels of objects in a second.
 which is awesome. and will look amazing in gifs.
-we get this magic from the kid in the garden in town level.
+but, this happens OVERTIME, so we need to implement
+a counter or sometype of object that exists for 255 frames,
+which causes random explosions all over screen.
+or we could spawn random bombs all over screen, 
+so hero has to dodge them! lol!
 
 
 

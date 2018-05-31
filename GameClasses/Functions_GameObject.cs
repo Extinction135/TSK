@@ -1889,12 +1889,15 @@ namespace DungeonRun
             else if (
                 Type == ObjType.Particle_RewardKey ||
                 Type == ObjType.Particle_RewardMap ||
+
                 Type == ObjType.Particle_BottleEmpty ||
                 Type == ObjType.Particle_BottleHealth ||
                 Type == ObjType.Particle_BottleMagic ||
                 Type == ObjType.Particle_BottleCombo ||
                 Type == ObjType.Particle_BottleFairy ||
-                Type == ObjType.Particle_BottleBlob)
+                Type == ObjType.Particle_BottleBlob ||
+
+                Type == ObjType.Particle_MagicCast_Bombos)
             {
                 Obj.compSprite.zOffset = 32;
                 Obj.group = ObjGroup.Particle;
@@ -1925,6 +1928,9 @@ namespace DungeonRun
                 { Obj.compAnim.currentAnimation = AnimationFrames.Bottle_Fairy; }
                 else if (Type == ObjType.Particle_BottleBlob)
                 { Obj.compAnim.currentAnimation = AnimationFrames.Bottle_Blob; }
+                //magic casts
+                else if (Type == ObjType.Particle_MagicCast_Bombos)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Magic_Bombos; }
             }
 
             #endregion

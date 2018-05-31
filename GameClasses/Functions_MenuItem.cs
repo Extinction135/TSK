@@ -209,8 +209,15 @@ namespace DungeonRun
             else if (Type == MenuItemType.MagicFireball)
             {
                 MenuItem.name = "Fireball Magic";
-                MenuItem.description = "deals 2 magical damage, \ncosts 1 magic.";
+                MenuItem.description = "shoots a fireball. \ncosts 1 magic.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Magic_Fireball;
+                MenuItem.price = 99;
+            }
+            else if (Type == MenuItemType.MagicBombos)
+            {
+                MenuItem.name = "Bombos Magic";
+                MenuItem.description = "creates many bombs.\ncosts 5 magic.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Magic_Bombos;
                 MenuItem.price = 99;
             }
 
