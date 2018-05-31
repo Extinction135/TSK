@@ -113,6 +113,12 @@ namespace DungeonRun
                 Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.TheFarm);
                 Level.rooms.Add(field);
             }
+            else if (Level.ID == LevelID.LeftTown2)
+            {
+                Functions_Music.PlayMusic(Music.LightWorld);
+                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.LeftTown2);
+                Level.rooms.Add(field);
+            }
 
             #endregion
 
@@ -569,6 +575,7 @@ namespace DungeonRun
             else if (ID == LevelID.Forest_Entrance) { Texture = Assets.forestLevelSheet; }
             else if (ID == LevelID.Colliseum) { Texture = Assets.forestLevelSheet; }
             else if (ID == LevelID.TheFarm) { Texture = Assets.forestLevelSheet; }
+            else if (ID == LevelID.LeftTown2) { Texture = Assets.forestLevelSheet; }
 
             //dev levels
             //else if (ID == LevelID.DEV_Field) { Texture = Assets.forestLevelSheet; }

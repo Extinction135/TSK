@@ -116,45 +116,80 @@ Prep for 0.72 release and media (target: tmrw night).
 
 
 
+Levels++
 
-Enemies & Levels++
+created left town 2, to contain the npcs for now.
+this has a ton of objects, buildings, etc...
+colliseum level updated to be mostly blank,
+except for central house. in dev.
 
-added rats to dungeon rooms, and forest entrance level.
-improved farm level with beyond level edge water tiles,
-so hero doesn't splash out of water walking off screen.
+Editor++
+improved editor to prevent modifying objs/data
+behind widgets while in editor.
 
-Miniboss++
+Objects++
+improved shut door's hitbox to align with 
+wall obj's hitboxes surrounding it. this allows
+the hero to slide easily along the front or
+back wall of a building, instead of getting
+snagged on the door.
 
-fixed a bug where miniboss didnt have swim animFrames,
-leading to a null ref exception. this bug is likely happening
-because the miniboss spawns in, then is evaluated to be in a
-swimming state. he shouldn't be evaluating to be in a swimming
-state, because he's flying.
+Roofs + Digging
+when hero digs with shovel, he removes most
+objects the shovel touches. including roofs.
+so hero can 'dig' roofs away, which makes no
+sense at all. include roofs in the dig routine,
+preventing hero from digging inside of a building.
+which seems socially correct too - you wouldn't
+want someone coming into your home, digging up
+ditches, flooding your house with water..
 
-changed miniboss to shoot arrows, because shooting
-fireballs was too powerful (for a miniboss).
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+lots of playtesting, working great.
 
 
 
-Town
-create town level on left side of map.
-town level should have a center shop with npcs.
-add rats randomly outside around town.
 
+
+
+
+BUG: trap doors no longer push hero, and allow him to walk thru them?
+
+
+remake forest dungeon entrance to look more like a forest.
+look more like map.
+
+
+
+
+
+
+
+Destruktor
+
+should be able to destroy gates, fences, and all building
+objects (including roofs) with explosions.
+
+double tables should extend their collision recs
+onto each other, so what happens to one happens to 
+the other! this means we can push two objs at once.
+this makes the table destructible too, which means
+we can destroy the entire house now.
+
+
+Destruction++
+i want the ability to to burn houses down,
+and destroy them, with fire.
+and as a house burns, it should be engulfed
+in fire projectiles, which spread across the 
+house objects.
+
+
+Bombos
+this is a series of explosions across the screen, rapidly.
+this is left to right, top to bottom, with no explosions
+touching link or dealing him damage. this magic allows players
+to destroy entire levels of objects in a second.
+which is awesome. and will look amazing in gifs.
 
 
 
@@ -162,31 +197,6 @@ Farmer
 we need a farmer npc on the farm level that complains
 that his crops are too dry to grow. if he only had a 
 shovel..
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-*we need a sunken obj particle
-this should be created whenever an object is 
-sunk into water. the sprite is the underwater
-sprite, particle has a life of 255 frames, then
-creates an attention particle and releases().
-this creates the illusion of an object sinking.
-we could even have the sprite animated to get smaller!
-
-
-
-
 
 
 
@@ -205,10 +215,7 @@ dash from hyper light drifter.
 
 
 
-
-
 SHADOWS
-
 - hero needs a shadow. this should track to him prior to draw.
 
 - boomerang needs a shadow < this should be done in sprite,
@@ -227,41 +234,6 @@ so the shadow is always sorting (down) properly.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-TMRW
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-trap doors no longer push hero, and allow him to walk thru them?
-
-
-
-
 Rat Hole
 we should have a 'rat hole' that randomly spawns
 rats in front of it. we can add this to a room,
@@ -269,7 +241,40 @@ and the room now has constant enemies.
 
 
 
+Boss + Mobs++
 seekers need to be renamed
+seekers should also be ROOM OBJS, not actors.
+also, the boss should spawn more seekers sooner, so
+the initial boss fight seems more impressive and hard.
+it's a little lack-luster right now.
+there should be an initial wave of enemies the boss spawns.
+
+
+
+Fire++
+when fire expands, it should expand further vertically,
+because it doesn't always transfer from bush to bush,
+because bush hitboxes are small.
+
+
+
+ReadMe++
+Record GIFS + video playthru via obs with vo for ReadMe.
+soft release v0.73 to readme + dropbox.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -286,8 +291,6 @@ easy - 1 hit, usually many or they explode.
 -we dont have a hard boss for forest dungeon yet.
 -make one
 
-
-
 Enemies++
 
 Seeker : seeks towards player, exlodes (done)
@@ -302,15 +305,10 @@ Flanking : rogue, weak, fast, with strong attack.
 Miniboss : done
 Boss : done
 
-
-
 we'll need to change the enemy spawn 2, or miniboss spawn to be
 Enemy_Spawn_Weak, Enemy_Spawn_Strong. later on, it's likely this 
 will expand to also include Enemy_Spawn_Ranged, Enemy_Spawn_Healer,
 etc...
-
-
-
 
 
 
@@ -338,28 +336,6 @@ can throw bombs. can attack with swords.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Sneaking
 
 link picks up an obj. holding X while carrying this obj
@@ -367,56 +343,6 @@ puts link into the 'sneaking' state, which means link
 crouches down and the held obj mostly covers him, except 
 for his feet. link moves at a much slower pace, but
 enemies cant see him and dont attack him.
-
-
-
-
-
-
-Bombos
-this is a series of explosions across the screen, rapidly.
-this is left to right, top to bottom, with no explosions
-touching link or dealing him damage. this magic allows players
-to destroy entire levels of objects in a second.
-which is awesome.
-
-
-
-
-Fire++
-when fire expands, it should expand further vertically,
-because it doesn't always transfer from bush to bush,
-because bush hitboxes are small.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -432,18 +358,12 @@ so, minimum of 4 - likely 6.
 
 
 
-
-
-
 HitBoxes++
 we're always expanding and contracting the hitBox.
 we need dedicated methods for doing this.
 we need to override/replace/rewrite xna's rectangle class.
 but we need to keep the intersects() and contains() methods,
 as they are, as fast as they are.
-
-
-
 
 
 
@@ -484,20 +404,6 @@ set as the last / active door.
 
 
 
-
-
-
-
-
-Commentary
-test recording playthru using astro a20s.
-can we hook this into OBS? why not?
-
-
-
-
-
-
 Boomerang Bug?
 ran into lost boomerang bug again.
 simply left a room with it bouncing around.
@@ -513,13 +419,7 @@ then use the splash fx shortened. i dunno.
 
  
  
- Destruction++
 
-i want the ability to to burn houses down,
-and destroy them, with explosions or fire.
-and as a house burns, it should be engulfed
-in fire projectiles, which spread across the 
-house objects.
  
  
 
@@ -587,19 +487,6 @@ than being able to dive while holding an obj. lol.
 
 in hard mode, pits should deal 1 damage.
 in normal mode, pits deal no damage.
-
-
-
-A ReThink
-
-Do minibosses and bosses need to be actors? they could be roomObjs.
-seekers def should be roomObjs instead of actors. then we can
-place them easily inside rooms.
-
-it seems the only enemies that need to be actors are
-enemies that can chase hero thru water. if an enemy flys,
-then they should be a roomObj enemy. so for now, only blobs
-and link are actors. everything else is a roomObj.
 
 
 

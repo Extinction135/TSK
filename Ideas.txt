@@ -297,6 +297,14 @@ when hero dies in water, he sinks undewater..
 
 
 
+*we need a sunken obj particle
+this should be created whenever an object is 
+sunk into water. the sprite is the underwater
+sprite, particle has a life of 255 frames, then
+creates an attention particle and releases().
+this creates the illusion of an object sinking.
+we could even have the sprite animated to get smaller!
+
 
 
 
@@ -313,6 +321,30 @@ hero between floors. this is  easiest, ad we can have as many floors as needed p
 plus these rooms form a set, so we can build puzzles across floors, using an int or byte to 
 track the room's floor level (basement, ground, 1st, etc...). plus pits can just drop hero to
 a lower floor/room, unless it's the lowest floor which the spawns hero back at last door.
+
+
+
+
+
+Samurai Training + Musashi's Blade
+1 heart, 1 hit kill for both contestants.
+this heightens the stakes and makes every move matter,
+like in a real sword fight. there is a ladder of
+samurai link must defeat. at the end, he is awarded
+musashi's blade, after defeating multiple samurai
+at once. musashi's blade deals 5 damage when link
+is under 3 hearts. risk vs reward.
+this samurai training takes place in the shadow temple.
+The Shadow Temple
+a dark, holy place devoid of enemies or npcs, except
+one - the eternal warrior. he rests before the entrance
+to the trials. he explains the trials, and grants entry.
+
+
+
+
+
+
 
 
 

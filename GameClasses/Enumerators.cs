@@ -66,6 +66,7 @@ namespace DungeonRun
         //overworld levels
         Colliseum, //field with vendors
         TheFarm, 
+        LeftTown2,
 
         //dungeon levels + entrance levels
         Forest_Entrance, //field with dungeon entrance
@@ -91,6 +92,8 @@ namespace DungeonRun
         Colliseum,
         ForestEntrance,
         TheFarm,
+        LeftTown2,
+
 
         //these DEV rooms are used for testing
         DEV_Field, //represents any 'outdoor' / overworld level

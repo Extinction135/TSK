@@ -3,46 +3,16 @@
   <type>Colliseum</type>
   <objs>
     <ObjXmlData>
-      <type>Vendor_NPC_Equipment</type>
-      <direction>Down</direction>
-      <posX>584</posX>
-      <posY>248</posY>
-    </ObjXmlData>
-    <ObjXmlData>
       <type>Vendor_NPC_Items</type>
       <direction>Down</direction>
       <posX>648</posX>
       <posY>392</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Vendor_NPC_Magic</type>
-      <direction>Down</direction>
-      <posX>728</posX>
-      <posY>264</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Vendor_NPC_Pets</type>
-      <direction>Down</direction>
-      <posX>488</posX>
-      <posY>312</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Vendor_NPC_Potions</type>
-      <direction>Down</direction>
-      <posX>504</posX>
-      <posY>456</posY>
-    </ObjXmlData>
-    <ObjXmlData>
       <type>Wor_Flowers</type>
       <direction>Down</direction>
       <posX>520</posX>
       <posY>280</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Vendor_NPC_Weapons</type>
-      <direction>Down</direction>
-      <posX>792</posX>
-      <posY>408</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Tree</type>

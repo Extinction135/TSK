@@ -87,7 +87,7 @@ namespace DungeonRun
             locations.Add(caveDungeon);
 
             //top left town and town south of it
-            MapLocation leftTown2 = new MapLocation(false, new Vector2(126, 182));
+            MapLocation leftTown2 = new MapLocation(true, new Vector2(126, 182));
             locations.Add(leftTown2);
             MapLocation leftTown1 = new MapLocation(false, new Vector2(115, 219));
             locations.Add(leftTown1);
@@ -207,6 +207,8 @@ namespace DungeonRun
             colliseum.ID = LevelID.Colliseum;
             forestDungeon.ID = LevelID.Forest_Entrance;
             centerIsland.ID = LevelID.TheFarm;
+            leftTown2.ID = LevelID.LeftTown2;
+
 
             //2. Setup current location based on level id
             // -> because hero may of exited a dungeon
@@ -216,6 +218,8 @@ namespace DungeonRun
             { currentLocation = forestDungeon; }
             else if (PlayerData.current.lastLocation == LevelID.TheFarm)
             { currentLocation = centerIsland; }
+            else if (PlayerData.current.lastLocation == LevelID.LeftTown2)
+            { currentLocation = leftTown2; }
 
             else //default to colliseum if unknown
             { currentLocation = colliseum; }

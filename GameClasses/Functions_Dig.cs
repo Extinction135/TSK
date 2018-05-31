@@ -305,9 +305,21 @@ namespace DungeonRun
                     }
                     //type checks
                     else if (
-                        //world objs
+
+                        //dungeon entrances
                         Pool.roomObjPool[d].type == ObjType.Wor_Entrance_ForestDungeon
+
+
+                        //world objs
                         || Pool.roomObjPool[d].type == ObjType.Wor_Bookcase
+                        || Pool.roomObjPool[d].type == ObjType.Wor_Shelf
+                        || Pool.roomObjPool[d].type == ObjType.Wor_Sink
+                        || Pool.roomObjPool[d].type == ObjType.Wor_Stove
+                        
+                        //roofs
+                        || Pool.roomObjPool[d].type == ObjType.Wor_Build_Roof_Bottom
+                        || Pool.roomObjPool[d].type == ObjType.Wor_Build_Roof_Top
+                        || Pool.roomObjPool[d].type == ObjType.Wor_Build_Roof_Chimney
 
                         //water objs
                         || Pool.roomObjPool[d].type == ObjType.Wor_Water

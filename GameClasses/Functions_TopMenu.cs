@@ -208,159 +208,157 @@ namespace DungeonRun
             #endregion
 
 
-            //editor should be able to use cursor in expected manner
-            Widgets.ObjectTools.HandleInput();
-
-            //allow F1-5 keyboard & mouse input while in "playtest" mode
-            if (TopDebugMenu.display == WidgetDisplaySet.None) { return; }
 
 
 
-            #region F6 - Set Dungeon Widgets Display
 
-            if (Functions_Input.IsNewKeyPress(Keys.F6))
-            {
-                TopDebugMenu.display = WidgetDisplaySet.Dungeon;
-                ResetEditorWidgets();
-                //set buttons correctly - dungeon = down, world = up
-                TopDebugMenu.buttons[5].currentColor = Assets.colorScheme.buttonDown;
-                TopDebugMenu.buttons[6].currentColor = Assets.colorScheme.buttonUp;
+            //"playtest" mode
+            if (TopDebugMenu.display == WidgetDisplaySet.None)
+            {   //allow editor to use cursor tool
+                Widgets.ObjectTools.HandleInput();
             }
 
-            #endregion
-
-
-            #region F7 - Set World Widgets Display
-
-            if (Functions_Input.IsNewKeyPress(Keys.F7))
+            //"edit" mode
+            else
             {
-                TopDebugMenu.display = WidgetDisplaySet.World;
-                ResetEditorWidgets();
-                //set buttons correctly - dungeon = up, world = down
-                TopDebugMenu.buttons[6].currentColor = Assets.colorScheme.buttonDown;
-                TopDebugMenu.buttons[5].currentColor = Assets.colorScheme.buttonUp;
-            }
 
-            #endregion
+                #region F6 - Set Dungeon Widgets Display
 
-
-            #region F8 - Set SharedObjs Widget Display
-
-            if (Functions_Input.IsNewKeyPress(Keys.F8))
-            {
-                if (TopDebugMenu.displaySharedObjsWidget)
-                {   //set released state
-                    TopDebugMenu.displaySharedObjsWidget = false;
-                    TopDebugMenu.buttons[7].currentColor = Assets.colorScheme.buttonUp;
-                }
-                else
-                {   //set down state
-                    TopDebugMenu.displaySharedObjsWidget = true;
-                    TopDebugMenu.buttons[7].currentColor = Assets.colorScheme.buttonDown;
-                }
-            }
-
-            #endregion
-
-
-            #region Handle User Clicking TopMenu Buttons
-
-            if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
-            {
-                //button - level editor
-                if (TopDebugMenu.buttons[TopDebugMenu.buttons.Count-1].rec.Contains(Input.cursorPos))
-                {   //switch to level/world mode
-                    ScreenManager.ExitAndLoad(new ScreenLevelEditor());
-                    TopDebugMenu.display = WidgetDisplaySet.World;
-                    ResetEditorWidgets();
-                    //display the editor state
-                    TopDebugMenu.buttons[TopDebugMenu.buttons.Count - 1].currentColor = Assets.colorScheme.buttonDown;
-                    TopDebugMenu.buttons[TopDebugMenu.buttons.Count - 2].currentColor = Assets.colorScheme.buttonUp;
-                }
-                //button - room editor
-                else if (TopDebugMenu.buttons[TopDebugMenu.buttons.Count-2].rec.Contains(Input.cursorPos))
-                {   //switch to room/dungeon mode
-                    ScreenManager.ExitAndLoad(new ScreenRoomEditor());
+                if (Functions_Input.IsNewKeyPress(Keys.F6))
+                {
                     TopDebugMenu.display = WidgetDisplaySet.Dungeon;
                     ResetEditorWidgets();
-                    //display the editor state
-                    TopDebugMenu.buttons[TopDebugMenu.buttons.Count - 1].currentColor = Assets.colorScheme.buttonUp;
-                    TopDebugMenu.buttons[TopDebugMenu.buttons.Count - 2].currentColor = Assets.colorScheme.buttonDown;
+                    //set buttons correctly - dungeon = down, world = up
+                    TopDebugMenu.buttons[5].currentColor = Assets.colorScheme.buttonDown;
+                    TopDebugMenu.buttons[6].currentColor = Assets.colorScheme.buttonUp;
                 }
 
-                //hold down left ctrl button to call Inspect() on anything touching cursor
-                if (Functions_Input.IsKeyDown(Keys.LeftControl)) { Functions_Debug.Inspect(); }
-            }
-
-            #endregion
+                #endregion
 
 
-            #region Handle User Clicking Editor Widget Objects
+                #region F7 - Set World Widgets Display
 
-            if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
-            {
-                //here is the thought process behind why we return; in the code below:
-
-                //if we dont return, then objTools path gets checked, which then may
-                //add or delete or rotate an object BEHIND the object widget we just
-                //selected an object from. that's unintentional, so we bail from the
-                //method before it reaches objTools, if we click on a widget's window
-
-                if (TopDebugMenu.display == WidgetDisplaySet.Dungeon)
+                if (Functions_Input.IsNewKeyPress(Keys.F7))
                 {
-                    //Handle Dungeon Objs Widget 
-                    if (Widgets.WidgetObjects_Dungeon.window.interior.rec.Contains(Input.cursorPos))
-                    {
-                        Widgets.ObjectTools.CheckObjList(Widgets.WidgetObjects_Dungeon.objList);
-                        return;
-                    }
-
-                    //Handle Enemy Spawns Widget
-                    if (Widgets.WidgetObjects_Enemy.window.interior.rec.Contains(Input.cursorPos))
-                    {
-                        Widgets.ObjectTools.CheckObjList(Widgets.WidgetObjects_Enemy.objList);
-                        return;
-                    }
+                    TopDebugMenu.display = WidgetDisplaySet.World;
+                    ResetEditorWidgets();
+                    //set buttons correctly - dungeon = up, world = down
+                    TopDebugMenu.buttons[6].currentColor = Assets.colorScheme.buttonDown;
+                    TopDebugMenu.buttons[5].currentColor = Assets.colorScheme.buttonUp;
                 }
-                else if (TopDebugMenu.display == WidgetDisplaySet.World)
+
+                #endregion
+
+
+                #region F8 - Set SharedObjs Widget Display
+
+                if (Functions_Input.IsNewKeyPress(Keys.F8))
                 {
-                    //Handle Environment Objs Widget 
-                    if (Widgets.WidgetObjects_Environment.window.interior.rec.Contains(Input.cursorPos))
-                    {
-                        Widgets.ObjectTools.CheckObjList(Widgets.WidgetObjects_Environment.objList);
-                        return;
+                    if (TopDebugMenu.displaySharedObjsWidget)
+                    {   //set released state
+                        TopDebugMenu.displaySharedObjsWidget = false;
+                        TopDebugMenu.buttons[7].currentColor = Assets.colorScheme.buttonUp;
                     }
-
-                    //Handle Building Objs Widget 
-                    if (Widgets.WidgetObjects_Building.window.interior.rec.Contains(Input.cursorPos))
-                    {
-                        Widgets.ObjectTools.CheckObjList(Widgets.WidgetObjects_Building.objList);
-                        return;
+                    else
+                    {   //set down state
+                        TopDebugMenu.displaySharedObjsWidget = true;
+                        TopDebugMenu.buttons[7].currentColor = Assets.colorScheme.buttonDown;
                     }
                 }
-                if (TopDebugMenu.displaySharedObjsWidget)
+
+                #endregion
+
+
+                if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
                 {
-                    //Handle Shared Objs Widget 
-                    if (Widgets.WidgetObjects_Shared.window.interior.rec.Contains(Input.cursorPos))
-                    {
-                        Widgets.ObjectTools.CheckObjList(Widgets.WidgetObjects_Shared.objList);
+                    //if mouse clicks on ANY button/widget, return; from method
+                    //this prevents modifying objs/data BEHIND widgets, which is annoying
+
+
+                    #region Handle User Clicking TopMenu Buttons
+
+                    //button - level editor
+                    if (TopDebugMenu.buttons[TopDebugMenu.buttons.Count - 1].rec.Contains(Input.cursorPos))
+                    {   //switch to level/world mode
+                        ScreenManager.ExitAndLoad(new ScreenLevelEditor());
+                        TopDebugMenu.display = WidgetDisplaySet.World;
+                        ResetEditorWidgets();
+                        //display the editor state
+                        TopDebugMenu.buttons[TopDebugMenu.buttons.Count - 1].currentColor = Assets.colorScheme.buttonDown;
+                        TopDebugMenu.buttons[TopDebugMenu.buttons.Count - 2].currentColor = Assets.colorScheme.buttonUp;
                         return;
                     }
+                    //button - room editor
+                    else if (TopDebugMenu.buttons[TopDebugMenu.buttons.Count - 2].rec.Contains(Input.cursorPos))
+                    {   //switch to room/dungeon mode
+                        ScreenManager.ExitAndLoad(new ScreenRoomEditor());
+                        TopDebugMenu.display = WidgetDisplaySet.Dungeon;
+                        ResetEditorWidgets();
+                        //display the editor state
+                        TopDebugMenu.buttons[TopDebugMenu.buttons.Count - 1].currentColor = Assets.colorScheme.buttonUp;
+                        TopDebugMenu.buttons[TopDebugMenu.buttons.Count - 2].currentColor = Assets.colorScheme.buttonDown;
+                        return;
+                    }
+
+                    #endregion
+
+
+                    #region Handle User Clicking Editor Widget Objects
+
+                    if (TopDebugMenu.display == WidgetDisplaySet.Dungeon)
+                    {
+                        //Handle Dungeon Objs Widget 
+                        if (Widgets.WidgetObjects_Dungeon.window.interior.rec.Contains(Input.cursorPos))
+                        {
+                            Widgets.ObjectTools.CheckObjList(Widgets.WidgetObjects_Dungeon.objList);
+                            return;
+                        }
+
+                        //Handle Enemy Spawns Widget
+                        if (Widgets.WidgetObjects_Enemy.window.interior.rec.Contains(Input.cursorPos))
+                        {
+                            Widgets.ObjectTools.CheckObjList(Widgets.WidgetObjects_Enemy.objList);
+                            return;
+                        }
+                    }
+                    else if (TopDebugMenu.display == WidgetDisplaySet.World)
+                    {
+                        //Handle Environment Objs Widget 
+                        if (Widgets.WidgetObjects_Environment.window.interior.rec.Contains(Input.cursorPos))
+                        {
+                            Widgets.ObjectTools.CheckObjList(Widgets.WidgetObjects_Environment.objList);
+                            return;
+                        }
+
+                        //Handle Building Objs Widget 
+                        if (Widgets.WidgetObjects_Building.window.interior.rec.Contains(Input.cursorPos))
+                        {
+                            Widgets.ObjectTools.CheckObjList(Widgets.WidgetObjects_Building.objList);
+                            return;
+                        }
+                    }
+
+                    if (TopDebugMenu.displaySharedObjsWidget)
+                    {
+                        //Handle Shared Objs Widget 
+                        if (Widgets.WidgetObjects_Shared.window.interior.rec.Contains(Input.cursorPos))
+                        {
+                            Widgets.ObjectTools.CheckObjList(Widgets.WidgetObjects_Shared.objList);
+                            return;
+                        }
+                    }
+
+                    #endregion
+
+
+                    //hold down left ctrl button to call Inspect() on anything touching cursor
+                    //if (Functions_Input.IsKeyDown(Keys.LeftControl)) { Functions_Debug.Inspect(); }
                 }
-            }
 
-            #endregion
-
-
-            #region Pass Input to RoomTools, if it's being displayed
-
-            if (TopDebugMenu.display != WidgetDisplaySet.None)
-            {
                 Widgets.RoomTools.HandleInput();
+                //allow editor to use cursor tool
+                Widgets.ObjectTools.HandleInput();
             }
-
-            #endregion
-
         }
 
 

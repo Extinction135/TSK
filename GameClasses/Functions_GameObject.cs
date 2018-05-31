@@ -1241,6 +1241,9 @@ namespace DungeonRun
                 Obj.canBeSaved = true;
                 Obj.compSprite.zOffset = 0;
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Build_Door_Shut;
+                //note - these hitboxes are custom for a reason
+                Obj.compCollision.rec.Width = 16; Obj.compCollision.offsetX = -8;
+                Obj.compCollision.rec.Height = 4; Obj.compCollision.offsetY = +4;
             }
             else if (Type == ObjType.Wor_Build_Door_Open)
             {

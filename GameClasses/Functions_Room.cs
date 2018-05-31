@@ -154,6 +154,11 @@ namespace DungeonRun
                     RoomXmlData = LevelData.TheFarm;
                     Level.isField = true;
                 }
+                else if (Room.roomID == RoomID.LeftTown2)
+                {
+                    RoomXmlData = LevelData.LeftTown2;
+                    Level.isField = true;
+                }
 
                 #endregion
 
