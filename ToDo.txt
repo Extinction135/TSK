@@ -87,51 +87,76 @@ Prep for 0.73 release and media (target: tonight).
 
 
 
-Destruction++
-
-explosions can now destroy fences, gates, and ALL
-building objects, from walls to doors.
-double tables can be destroyed as well.
-signposts as well. no NPCs are destructible tho.
-
-roofs are being destroyed if they touch explosions,
-but they don't always touch explosions, leaving orphaned
-roof objs behind. we have a solution for this, next commit.
-
-notes -
-beds cannot be destroyed, because they are two
-objects and destroying one without destroying the
-other would break the illusion of the gameworld.
-so, beds are indestructible (for now).
-
-playtested, objs getting destroyed as expected,
-still need to fix roofs tho.
-
-
-
-
-
-
-
 
 
 
 Cascading Roof Collapse
 
-this is done by making the roof obj getsAI = true.
-if this is true, the hitBox expands on it's interactive frame,
-checks for nearby roof tiles and collapses them.
-this means that destroying a single roof obj will collapse
-all the roof objs across the building in a cascading manner
-over time. this also eliminates the problem of roofs not
-being destroyed if they dont touch an explosion but their
-neighbors do (which looks weird).
+the problem with roofs now is that they only collapse
+if they touch an explosion, which means some roof objs
+get left behind (dont collapse) after their neighbors
+have - leading to a state where a single roof can float
+in mid-air. which obvs makes no sense and breaks immersion.
 
+the solution presented is pretty spicy:
+when an explosion touches a roof obj, that roof obj
+becomes a meta "collapsing" roof obj (looks the same).
+this collapsing roof obj has AI and an interactive frame.
+on the interactive frame, the collapsing roof obj
+expands it's hitbox and checks to see if it overlaps
+nearby roof objects. if it does, those roof objs become
+their collapsing versions and the collapse spreads.
+once the spread routine completes, the collapsing obj
+finishes it's collapse by spawning various particles,
+like debris. it also has a chance to convert to a 
+permanent debris object, so some debris is left after
+an entire roof collapses - otherwise the ground remains
+clean and it doesn't look right, after such a tremendous
+event.
+
+Particles++
+increased particle pool count from 250 to 500,
+due to increased demand from various interactions.
+
+Debris++
+fixed a bug where debris hitboxes were the wrong size.
+which led to a closer inspection of debris objs.
+
+
+
+
+
+
+
+
+
+Debris
+
+debris objs that overlap other debris objs should remove 
+themselves. otherwise we get flickering. if a debris obj
+overlaps flowers, or tall grass, remove the debris obj.
+
+
+
+
+
+
+
+
+
+
+
+Beds++
+
+make beds one object, and then we can destroy them.
+the illusion of sleeping in them is less valuable
+than the ability to destroy them.
 
 
 
 
 Bombos
+
 this is a series of explosions across the screen, rapidly.
 this is left to right, top to bottom, with no explosions
 touching link or dealing him damage. this magic allows players

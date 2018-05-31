@@ -522,10 +522,62 @@ namespace DungeonRun
 
             #endregion
 
-            
+
+
+            #region Collapsing Roofs
+
+            else if (Obj.type == ObjType.Wor_Build_Roof_Collapsing)
+            {
+                Obj.lifeCounter++;
+                if (Obj.lifeCounter == Obj.interactiveFrame)
+                {
+                    //Obj.lifeCounter = 0; //no need to reset, this only happens once
+                    //expand to check surrounding tiles
+                    Obj.compCollision.rec.Width = 32;
+                    Obj.compCollision.rec.Height = 32;
+                    Obj.compCollision.rec.X = (int)Obj.compSprite.position.X - 16;
+                    Obj.compCollision.rec.Y = (int)Obj.compSprite.position.Y - 16;
+                    //loop over all active roomObjs, collapse any nearby roofs
+                    for (i = 0; i < Pool.roomObjCount; i++)
+                    {
+                        if (Pool.roomObjPool[i].active)
+                        {
+                            if (Pool.roomObjPool[i].type == ObjType.Wor_Build_Roof_Bottom
+                                || Pool.roomObjPool[i].type == ObjType.Wor_Build_Roof_Top
+                                || Pool.roomObjPool[i].type == ObjType.Wor_Build_Roof_Chimney)
+                            {   //check for overlap / interaction
+                                if (Pool.roomObjPool[i].compCollision.rec.Intersects(Obj.compCollision.rec))
+                                { Functions_GameObject_World.CollapseRoof(Pool.roomObjPool[i]); }
+                            }
+                        }
+                    }
+                    //pop attention and debris
+                    Functions_Particle.Spawn(ObjType.Particle_Attention, Obj);
+                    Functions_Particle.Spawn_Explosion(
+                        ObjType.Particle_Debris,
+                        Obj.compSprite.position.X, 
+                        Obj.compSprite.position.Y, false);
+                    //choose between leaving debris or disappearing
+                    if(Functions_Random.Int(0, 100) > 50)
+                    {   //roof falls to ground as debris
+                        Functions_GameObject.SetType(Obj, ObjType.Wor_Debris);
+                    }
+                    else
+                    {   //else, just release the obj
+                        Functions_Pool.Release(Obj);
+                    }
+                }
+            }
+
+            #endregion
+
+
+
+
+
             #region Chimney - smoke
 
-            else if(Obj.type == ObjType.Wor_Build_Roof_Chimney)
+            else if (Obj.type == ObjType.Wor_Build_Roof_Chimney)
             {   //chimney is a roof
                 if(Obj.compSprite.alpha == 1.0f) //chimney is visible
                 {   //roofs switch between visible and non-visible via alpha

@@ -1013,8 +1013,8 @@ namespace DungeonRun
                 || RoomObj.type == ObjType.Wor_Build_Roof_Chimney)
             {
                 if (Object.type == ObjType.ProjectileExplosion)
-                {   //destroy roofs that touch explosions, no debris/loot
-                    Functions_GameObject.Kill(RoomObj, false, false);
+                {   //begin cascading roof collapse
+                    Functions_GameObject_World.CollapseRoof(RoomObj);
                 }
             }
 

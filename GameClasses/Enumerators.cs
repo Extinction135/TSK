@@ -352,6 +352,7 @@ namespace DungeonRun
         Wor_Build_Roof_Top,
         Wor_Build_Roof_Bottom,
         Wor_Build_Roof_Chimney,
+        Wor_Build_Roof_Collapsing, //meta obj for collapsing roofs
 
         //enemies
         Wor_Enemy_Turtle,

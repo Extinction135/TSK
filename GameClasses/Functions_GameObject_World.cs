@@ -155,5 +155,16 @@ namespace DungeonRun
             }
         }
 
+
+        public static void CollapseRoof(GameObject Roof)
+        {
+            Assets.Play(Assets.sfxShatter); //play shatter sfx
+            //turn roof into it's collapsing version
+            Functions_GameObject.SetType(Roof, ObjType.Wor_Build_Roof_Collapsing);
+        }
+
+
+
+
     }
 }

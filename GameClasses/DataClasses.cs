@@ -236,7 +236,7 @@ namespace DungeonRun
             actorCount = 30;
             floorCount = 500;
             roomObjCount = 3000;
-            particleCount = 250;
+            particleCount = 500;
             projectileCount = 40;
             pickupCount = 25;
 

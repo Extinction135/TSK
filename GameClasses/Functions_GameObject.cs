@@ -879,6 +879,12 @@ namespace DungeonRun
 
             else if (Type == ObjType.Wor_Debris)
             {
+                //reset hitbox
+                Obj.compCollision.rec.Width = 16;
+                Obj.compCollision.rec.Height = 16;
+                Obj.compCollision.offsetX = -8;
+                Obj.compCollision.offsetY = -8;
+
                 Obj.canBeSaved = true;
                 Obj.compSprite.zOffset = -24;
                 Obj.compCollision.blocking = false;
@@ -1332,10 +1338,17 @@ namespace DungeonRun
                 Obj.canBeSaved = true;
                 Obj.compSprite.zOffset = 48; //sort over most other things
                 Obj.compCollision.blocking = false;
-                Obj.getsAI = true; //handle this later
+                Obj.getsAI = true; //create smoke
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Build_Roof_Chimney;
             }
-
+            else if(Type == ObjType.Wor_Build_Roof_Collapsing)
+            {
+                //this obj inherits the attributes of the previous roof obj it once was
+                //this means we dont modify the attributes at all
+                Obj.getsAI = true; //but collapsing roofs always get AI
+                Obj.interactiveFrame = 20; //base speed of collapse spread
+                Obj.interactiveFrame += Functions_Random.Int(-10, 10); //vary spreadtime
+            }
 
             #endregion
 
