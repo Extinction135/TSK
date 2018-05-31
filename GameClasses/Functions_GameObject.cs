@@ -199,7 +199,8 @@ namespace DungeonRun
                 || Obj.type == ObjType.ProjectileExplodingBarrel
                 || Obj.type == ObjType.ProjectilePot
                 || Obj.type == ObjType.ProjectilePotSkull
-                || Obj.type == ObjType.ProjectileBush)
+                || Obj.type == ObjType.ProjectileBush
+                || Obj.type == ObjType.ProjectileBoomerang)
             {   //some objects only face Direction.Down
                 Obj.direction = Direction.Down;
             }
@@ -211,6 +212,9 @@ namespace DungeonRun
             {   //some objects are randomly flipped horizontally
                 Obj.compSprite.flipHorizontally = true;
             }
+
+
+
             //set sprite's rotation based on direction & flipHorizontally boolean
             Functions_Component.SetSpriteRotation(Obj.compSprite, Obj.direction);
         }
@@ -1421,7 +1425,7 @@ namespace DungeonRun
                 Obj.group = ObjGroup.Projectile;
                 Obj.lifetime = 255; //in frames
                 Obj.compMove.friction = 0.96f; //some air friction
-                Obj.compAnim.speed = 5; //in frames
+                Obj.compAnim.speed = 2; //in frames
                 Obj.compMove.moveable = true;
                 Obj.compMove.grounded = false; //obj is airborne
                 Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Boomerang;

@@ -60,6 +60,7 @@ namespace DungeonRun
             pro = Functions_Pool.GetProjectile();
             //set the projectile's caster reference
             pro.caster = Caster;
+
             //determine the direction the projectile should inherit
             if (Type == ObjType.ProjectileBomb
                 || Type == ObjType.ProjectileBoomerang)
@@ -68,8 +69,8 @@ namespace DungeonRun
             {   //set the projectiles direction to a cardinal one
                 Dir = Functions_Direction.GetCardinalDirection(Dir);
             }
-            pro.direction = Dir;
             pro.compMove.direction = Dir;
+            pro.direction = Dir;
 
             //teleport the object to the caster's location
             Functions_Movement.Teleport(pro.compMove,
@@ -176,6 +177,8 @@ namespace DungeonRun
                 else//diagonal push half
                 { Functions_Movement.Push(pro.compMove, Dir, 2.5f); }
                 pushLines = true;
+
+                //pro.direction = Direction.Down; //boomerangs always face down
             }
 
             #endregion
@@ -454,17 +457,6 @@ namespace DungeonRun
 
 
                 #region Behavior Each Frame
-
-                //rotate boomerang - this is waaaay too fast
-                //this is something that should be handled in a spritesheet
-                if (Pro.compSprite.rotation == Rotation.None)
-                { Pro.compSprite.rotation = Rotation.Clockwise90; }
-                else if (Pro.compSprite.rotation == Rotation.Clockwise90)
-                { Pro.compSprite.rotation = Rotation.Clockwise180; }
-                else if (Pro.compSprite.rotation == Rotation.Clockwise180)
-                { Pro.compSprite.rotation = Rotation.Clockwise270; }
-                else if (Pro.compSprite.rotation == Rotation.Clockwise270)
-                { Pro.compSprite.rotation = Rotation.None; }
 
                 //check if the projectile overlaps any pickups, collect them if so
                 Functions_Pickup.CheckOverlap(Pro);

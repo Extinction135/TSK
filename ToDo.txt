@@ -88,36 +88,11 @@ Prep for 0.73 release and media (target: tmrw night).
 
 
 
-Shadows++
+Boomerang++
 
-added transparent shadows to hero sheet.
-this solution was chosen over using a shadow
-sprite, which tracked to hero actor. that was
-previous implementation. the 'baked' shadows
-are fine in the actor texture sheet.
-
-
-
-
-
-
-
-
-SHADOWS
-
-- boomerang needs a shadow < this should be done in sprite,
-we need to have a spinning animation for boomerang with shadow
-added in. this means we dont double up sprites in game for projectiles,
-just so a few of them can have shadows. it's more efficient to
-just bake the shadows into the sprite sheets.
-**problem** the boomerang shadow will sort with the boomerang,
-not underneath objects that the boomerang hits.
-
-- fireball should have a shadow too, because the shadow would
-help to visually distinguish the fireball in-room, allowing for
-an easier visual track for the player (me).
-*should probably have cardinal directions for the fireball sprite,
-so the shadow is always sorting (down) properly.
+improved boomerang's sprite, added shadow.
+changed how boomerang's rotation is handled.
+playtested, boomerang is looking much better.
 
 
 
