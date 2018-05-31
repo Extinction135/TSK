@@ -401,6 +401,7 @@ namespace DungeonRun
         //Projectiles - items
         ProjectileBomb,
         ProjectileFireball,
+        ProjectileLightningBolt,
         ProjectileBoomerang,
 
         //Projectiles - weapons
@@ -556,7 +557,8 @@ namespace DungeonRun
         
         MagicFireball,
         MagicBombos,
-        
+        MagicBolt,
+
         WeaponSword,
         WeaponNet, 
         WeaponShovel,

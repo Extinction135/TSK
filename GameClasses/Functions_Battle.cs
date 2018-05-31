@@ -30,12 +30,9 @@ namespace DungeonRun
 
             #region Projectiles
 
-            if (Obj.type == ObjType.ProjectileArrow)
-            {   //arrows deal 1 damage, push 4, and die
-                damage = 1; force = 4.0f; direction = Obj.direction;
-                Obj.lifeCounter = Obj.lifetime;
-            }
-            else if (Obj.type == ObjType.ProjectileBomb)
+
+            //power level 0 projectiles
+            if (Obj.type == ObjType.ProjectileBomb)
             {   //bombs don't push or hurt actors
                 return;
             }
@@ -49,25 +46,26 @@ namespace DungeonRun
                 damage = 0; force = 10.0f; direction = Obj.direction;
                 Obj.lifeCounter = 200; //return to caster
             }
-            else if (Obj.type == ObjType.ProjectileExplosion)
-            {   //explosions deal 2 damage, push 10
-                damage = 2; force = 10.0f;
-                //push actor in their opposite direction
-                direction = Functions_Direction.GetOppositeDirection(Actor.direction);
+            else if (Obj.type == ObjType.ProjectileNet)
+            {   //net deals 0 damage, push 6
+                damage = 0; force = 6.0f; direction = Obj.direction;
+            }
+
+
+            //power level 1 projectiles
+            else if(Obj.type == ObjType.ProjectileArrow)
+            {   //arrows deal 1 damage, push 4, and die
+                damage = 1; force = 4.0f; direction = Obj.direction;
+                Obj.lifeCounter = Obj.lifetime;
             }
             else if (Obj.type == ObjType.ProjectileSword)
             {   //swords deal 1 damage, push 6
                 damage = 1; force = 6.0f; direction = Obj.direction;
             }
-            else if(Obj.type == ObjType.ProjectileNet)
-            {   //net deals 0 damage, push 6
-                damage = 0; force = 6.0f; direction = Obj.direction;
-            }
             else if (Obj.type == ObjType.ProjectileShovel)
             {   //matches swords damage, less push
                 damage = 1; force = 3.0f; direction = Obj.direction;
             }
-
             else if (Obj.type == ObjType.ProjectileBush
                 || Obj.type == ObjType.ProjectilePot
                 || Obj.type == ObjType.ProjectilePotSkull)
@@ -75,11 +73,27 @@ namespace DungeonRun
                 damage = 1; force = 4.0f; direction = Obj.direction;
             }
 
+
+            //power level 2 projectiles
+            else if (Obj.type == ObjType.ProjectileExplosion)
+            {   //explosions deal 2 damage, push 10
+                damage = 2; force = 10.0f;
+                //push actor in their opposite direction
+                direction = Functions_Direction.GetOppositeDirection(Actor.direction);
+            }
+            else if (Obj.type == ObjType.ProjectileLightningBolt)
+            {   //match explosions attributes
+                damage = 2; force = 10.0f;
+                //push actor in their opposite direction
+                direction = Functions_Direction.GetOppositeDirection(Actor.direction);
+            }
+
             #endregion
 
 
             #region Objects
 
+            //dungeon objs are always power level 1 or 0 
             else if(Obj.type == ObjType.Dungeon_SpikesFloorOn)
             {   //med push actors away from spikes
                 damage = 1; force = 7.5f;

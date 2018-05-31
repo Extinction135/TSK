@@ -521,3 +521,9 @@
 /processorParam:Quality=Best
 /build:SoundRatSqueak.wav
 
+#begin SoundShock.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundShock.wav
+

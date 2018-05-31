@@ -28,9 +28,14 @@ namespace DungeonRun
             return obj;
         }
 
+
+
+
+        //power level 1 obj destruction
+
         public static void HandleCommon(GameObject RoomObj, Direction HitDirection)
         {
-            //roomObj is blocking, interacted with arrow, explosion, sword/shovel, thrown bush/pot
+            //roomObj is blocking, interacted with arrow, explosion, sword/shovel, thrown bush/pot, etc..
             //hitDirection is used to push some objects in the direction they were hit
 
             #region World Objects
@@ -96,6 +101,115 @@ namespace DungeonRun
 
         }
         
+
+        //power level 2 obj destruction
+
+        public static void BlowUp(GameObject Obj, GameObject Pro)
+        {
+            //note: only explosion and lightning bolt projectiles call this method
+            //they are the only power level 2 projectiles
+
+
+            #region Dungeon Objs - special cases
+
+            if (Obj.type == ObjType.Dungeon_DoorBombable)
+            {   //collapse doors
+                Functions_GameObject_Dungeon.CollapseDungeonDoor(Obj, Pro);
+            }
+            else if (Obj.type == ObjType.Dungeon_WallStraight)
+            {   //'crack' normal walls
+                Functions_GameObject.SetType(Obj,
+                    ObjType.Dungeon_WallStraightCracked);
+                Functions_Particle.Spawn(ObjType.Particle_Blast,
+                    Obj.compSprite.position.X,
+                    Obj.compSprite.position.Y);
+                Assets.Play(Assets.sfxShatter);
+            }
+            else if (Obj.type == ObjType.Dungeon_TorchUnlit)
+            {   //light torches on fire
+                Functions_GameObject_Dungeon.LightTorch(Obj);
+            }
+
+            #endregion
+            
+
+            #region World Objs - special cases
+
+            else if (Obj.type == ObjType.Wor_Bush)
+            {   //destroy the bush
+                Functions_GameObject_World.DestroyBush(Obj);
+                //set a ground fire ON the stump sprite
+                Functions_Projectile.Spawn(
+                    ObjType.ProjectileGroundFire,
+                    Obj.compSprite.position.X,
+                    Obj.compSprite.position.Y - 4);
+            }
+            else if (Obj.type == ObjType.Wor_Tree)
+            {   //blow up tree, showing leaf explosion
+                Functions_GameObject_World.BlowUpTree(Obj, true);
+            }
+            else if (Obj.type == ObjType.Wor_Tree_Burnt)
+            {   //blow up tree, no leaf explosion
+                Functions_GameObject_World.BlowUpTree(Obj, false);
+            }
+
+            #endregion
+
+
+            #region Objs - General cases
+
+            else if (
+                //dungeon objs
+                Obj.type == ObjType.Dungeon_Statue
+                || Obj.type == ObjType.Dungeon_Signpost
+
+                //world objs
+
+                //building objs
+                || Obj.type == ObjType.Wor_Build_Wall_FrontA
+                || Obj.type == ObjType.Wor_Build_Wall_FrontB
+                || Obj.type == ObjType.Wor_Build_Wall_Back
+                || Obj.type == ObjType.Wor_Build_Wall_Side_Left
+                || Obj.type == ObjType.Wor_Build_Wall_Side_Right
+                || Obj.type == ObjType.Wor_Build_Door_Shut
+                || Obj.type == ObjType.Wor_Build_Door_Open
+                //building interior objs
+                || Obj.type == ObjType.Wor_Bookcase
+                || Obj.type == ObjType.Wor_Shelf
+                || Obj.type == ObjType.Wor_Stove
+                || Obj.type == ObjType.Wor_Sink
+                || Obj.type == ObjType.Wor_TableSingle
+                || Obj.type == ObjType.Wor_TableDoubleLeft
+                || Obj.type == ObjType.Wor_TableDoubleRight
+                || Obj.type == ObjType.Wor_Chair
+                || Obj.type == ObjType.Wor_Bed
+                //fences and gates
+                || Obj.type == ObjType.Wor_Fence_Horizontal
+                || Obj.type == ObjType.Wor_Fence_Vertical_Left
+                || Obj.type == ObjType.Wor_Fence_Vertical_Right
+                || Obj.type == ObjType.Wor_Fence_Gate
+                )
+            {
+                Kill(Obj, true, true);
+            }
+
+            #endregion
+
+
+            else
+            {   //trigger common obj interactions too
+                HandleCommon(Obj, //get direction towards roomObj from pro/explosion
+                    Functions_Direction.GetOppositeCardinal(
+                        Obj.compSprite.position,
+                        Pro.compSprite.position)
+                );
+            }
+        }
+
+
+
+
+
         public static void Kill(GameObject Obj, Boolean spawnLoot, Boolean becomeDebris)
         {   //pop an attention particle
             Functions_Particle.Spawn(
@@ -185,10 +299,8 @@ namespace DungeonRun
 
         public static void SetRotation(GameObject Obj)
         {   
-            
             //we could split this out into pro/pick/part SetRotations()
             //but there isn't enough complexity to warrant that split, yet
-
             
             //handle object/projectile specific cases
             if (Obj.type == ObjType.ProjectileSword 
@@ -216,10 +328,16 @@ namespace DungeonRun
                 Obj.compSprite.flipHorizontally = true;
             }
 
-
-
             //set sprite's rotation based on direction & flipHorizontally boolean
             Functions_Component.SetSpriteRotation(Obj.compSprite, Obj.direction);
+
+            //some objects override the sprite rotation set above
+            if (Obj.type == ObjType.ProjectileLightningBolt)
+            {   //align lightning bolts vertically or horizontally
+                if (Obj.direction == Direction.Left || Obj.direction == Direction.Right)
+                { Obj.compSprite.rotation = Rotation.Clockwise90; }
+                else { Obj.compSprite.rotation = Rotation.None; }
+            }
         }
 
         public static void Update(GameObject Obj)
@@ -228,7 +346,6 @@ namespace DungeonRun
             if (Obj.getsAI) { Functions_Ai.HandleObj(Obj); }
         }
 
-        
         public static void BecomeDebris(GameObject Obj)
         {
             //become permanent debris w/ 16x16 collisions
@@ -1506,13 +1623,28 @@ namespace DungeonRun
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
                 Obj.group = ObjGroup.Projectile;
                 Obj.lifetime = 50; //in frames
-                Obj.compMove.friction = 0.984f; //some air friction
+                Obj.compMove.friction = World.frictionIce;
                 Obj.compAnim.speed = 5; //in frames
                 Obj.compMove.moveable = true;
                 Obj.compMove.grounded = false; //obj is airborne
                 Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Fireball;
                 Obj.compSprite.texture = Assets.entitiesSheet;
             }
+
+            else if (Type == ObjType.ProjectileLightningBolt)
+            {
+                Obj.compSprite.zOffset = 16;
+                Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -7;
+                Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 14;
+                Obj.group = ObjGroup.Projectile;
+                Obj.lifetime = 25; //in frames
+                Obj.compMove.friction = World.frictionIce;
+                Obj.compAnim.speed = 1; //in frames
+                Obj.compMove.grounded = false; //obj is airborne
+                Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Bolt;
+                Obj.compSprite.texture = Assets.entitiesSheet;
+            }
+
             else if (Type == ObjType.ProjectileBombos)
             {
                 Obj.compSprite.zOffset = 32;

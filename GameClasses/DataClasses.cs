@@ -16,7 +16,7 @@ namespace DungeonRun
     
     public static class Flags
     {   // **********************************************************************************************************
-        public static Boolean Release = true; //puts game in release mode, overwrites other flags
+        public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.73f; //the version of the game
         public static BootRoutine bootRoutine = BootRoutine.Editor; //boot to game or editor?
@@ -1182,8 +1182,10 @@ namespace DungeonRun
 
         public Boolean itemBoomerang = false;
         public Boolean itemBow = false;
+
         public Boolean magicFireball = false;
         public Boolean magicBombos = false;
+        public Boolean magicBolt = false;
 
         //bottles - hero just always has 3 bottles
         public MenuItemType bottleA = MenuItemType.BottleEmpty;

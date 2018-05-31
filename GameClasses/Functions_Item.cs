@@ -82,7 +82,6 @@ namespace DungeonRun
                 Functions_Projectile.Spawn(ObjType.ProjectileFireball, Actor.compMove, Actor.direction);
                 Functions_Actor.SetItemUseState(Actor);
             }
-
             else if (Type == MenuItemType.MagicBombos)
             {
                 if (Actor == Pool.hero & !CheckMagic(5)) //check if hero has enough
@@ -92,20 +91,14 @@ namespace DungeonRun
                 Functions_Actor.SetRewardState(Pool.hero);
                 Assets.Play(Assets.sfxExplosionsMultiple);
             }
-
-
-            /*
             else if (Type == MenuItemType.MagicBolt)
             {
                 if (Actor == Pool.hero & !CheckMagic(2)) //check if hero has enough
                 { Assets.Play(Assets.sfxError); Actor.lockTotal = 0; return; }
-                
                 //cast bolt
-                //Functions_Projectile.Cast_Bolt(Pool.hero);
-                Functions_Actor.SetRewardState(Pool.hero);
+                Functions_Projectile.Cast_Bolt(Pool.hero);
+                Functions_Actor.SetItemUseState(Actor);
             }
-            */
-
 
             #endregion
 

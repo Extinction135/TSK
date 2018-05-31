@@ -508,113 +508,10 @@ namespace DungeonRun
                     #region Explosions
 
                     else if (Object.type == ObjType.ProjectileExplosion)
-                    {   //explosions alter some roomObjects
+                    {   
                         if (Object.lifeCounter == 1) //perform these interactions only once
-                        {
-
-
-                            #region Objs that ONLY get altered by explosions
-
-                            if (RoomObj.type == ObjType.Dungeon_DoorBombable)
-                            {   //explosions collapse doors
-                                Functions_GameObject_Dungeon.CollapseDungeonDoor(RoomObj, Object);
-                            }
-                            else if (RoomObj.type == ObjType.Dungeon_WallStraight)
-                            {   //explosions 'crack' normal walls
-                                Functions_GameObject.SetType(RoomObj,
-                                    ObjType.Dungeon_WallStraightCracked);
-                                Functions_Particle.Spawn(ObjType.Particle_Blast,
-                                    RoomObj.compSprite.position.X,
-                                    RoomObj.compSprite.position.Y);
-                                Assets.Play(Assets.sfxShatter);
-                                //drop debris particles
-                            }
-                            else if (RoomObj.type == ObjType.Dungeon_TorchUnlit)
-                            {   //explosions light torches on fire
-                                Functions_GameObject_Dungeon.LightTorch(RoomObj);
-                            }
-
-                            #endregion
-
-
-                            //Objs that ONLY get destroyed by explosions
-
-
-                            #region Special cases
-
-                            else if (RoomObj.type == ObjType.Wor_Bush)
-                            {   //destroy the bush
-                                Functions_GameObject_World.DestroyBush(RoomObj);
-                                //set a ground fire ON the stump sprite
-                                Functions_Projectile.Spawn(
-                                    ObjType.ProjectileGroundFire,
-                                    RoomObj.compSprite.position.X,
-                                    RoomObj.compSprite.position.Y - 4);
-                            }
-                            else if (RoomObj.type == ObjType.Wor_Tree)
-                            {   //blow up tree, showing leaf explosion
-                                Functions_GameObject_World.BlowUpTree(RoomObj, true);
-                            }
-                            else if (RoomObj.type == ObjType.Wor_Tree_Burnt)
-                            {   //blow up tree, no leaf explosion
-                                Functions_GameObject_World.BlowUpTree(RoomObj, false);
-                            }
-
-                            #endregion
-
-
-                            #region General cases
-
-                            else if (
-                                //dungeon objs
-                                RoomObj.type == ObjType.Dungeon_Statue
-                                || RoomObj.type == ObjType.Dungeon_Signpost
-
-                                //world objs
-
-                                //building objs
-                                || RoomObj.type == ObjType.Wor_Build_Wall_FrontA
-                                || RoomObj.type == ObjType.Wor_Build_Wall_FrontB
-                                || RoomObj.type == ObjType.Wor_Build_Wall_Back
-                                || RoomObj.type == ObjType.Wor_Build_Wall_Side_Left
-                                || RoomObj.type == ObjType.Wor_Build_Wall_Side_Right
-                                || RoomObj.type == ObjType.Wor_Build_Door_Shut
-                                || RoomObj.type == ObjType.Wor_Build_Door_Open
-                                //building interior objs
-                                || RoomObj.type == ObjType.Wor_Bookcase
-                                || RoomObj.type == ObjType.Wor_Shelf
-                                || RoomObj.type == ObjType.Wor_Stove
-                                || RoomObj.type == ObjType.Wor_Sink
-                                || RoomObj.type == ObjType.Wor_TableSingle
-                                || RoomObj.type == ObjType.Wor_TableDoubleLeft
-                                || RoomObj.type == ObjType.Wor_TableDoubleRight
-                                || RoomObj.type == ObjType.Wor_Chair
-                                || RoomObj.type == ObjType.Wor_Bed
-                                //fences and gates
-                                || RoomObj.type == ObjType.Wor_Fence_Horizontal
-                                || RoomObj.type == ObjType.Wor_Fence_Vertical_Left
-                                || RoomObj.type == ObjType.Wor_Fence_Vertical_Right
-                                || RoomObj.type == ObjType.Wor_Fence_Gate
-                                )
-                            {   
-                                Functions_GameObject.Kill(RoomObj, true, true);
-                            }
-
-                            #endregion
-                            
-
-                            else
-                            {   //explosions trigger common obj interactions
-                                Functions_GameObject.HandleCommon(RoomObj,
-                                    //get the direction towards the roomObj from the explosion
-                                    Functions_Direction.GetOppositeCardinal(
-                                        RoomObj.compSprite.position,
-                                        Object.compSprite.position)
-                                );
-                            }
-                            
-                            //leave a 'burn mark' particle, with life 255
-                            //this is just a darker spot on the ground that looks like a blast mark
+                        {   //explosions call power level 2 destruction routines
+                            Functions_GameObject.BlowUp(RoomObj, Object);
                         }
                     }
 
@@ -750,6 +647,20 @@ namespace DungeonRun
                     }
 
                     #endregion
+
+
+                    #region Lightning Bolt
+
+                    else if (Object.type == ObjType.ProjectileLightningBolt)
+                    {   
+                        if (Object.lifeCounter == 1) //perform these interactions only once
+                        {   //bolts call power level 2 destruction routines
+                            Functions_GameObject.BlowUp(RoomObj, Object);
+                        }
+                    }
+
+                    #endregion
+
 
 
                     #region Thrown Objects (Bush, Pot)
@@ -1007,13 +918,14 @@ namespace DungeonRun
             #endregion
 
 
-            #region Roofs - collapse from explosions
+            #region Roofs - collapse from explosions + bolts
 
             else if (RoomObj.type == ObjType.Wor_Build_Roof_Bottom
                 || RoomObj.type == ObjType.Wor_Build_Roof_Top
                 || RoomObj.type == ObjType.Wor_Build_Roof_Chimney)
             {
-                if (Object.type == ObjType.ProjectileExplosion)
+                if (Object.type == ObjType.ProjectileExplosion 
+                    || Object.type == ObjType.ProjectileLightningBolt)
                 {   //begin cascading roof collapse
                     Functions_GameObject_World.CollapseRoof(RoomObj);
                 }

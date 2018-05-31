@@ -164,6 +164,9 @@ namespace DungeonRun
             if (PlayerData.current.magicBombos)
             { Functions_MenuItem.SetType(MenuItemType.MagicBombos, menuItems[12]); }
 
+            if (PlayerData.current.magicBolt)
+            { Functions_MenuItem.SetType(MenuItemType.MagicBolt, menuItems[13]); }
+
             #endregion
 
 

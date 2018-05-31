@@ -20,20 +20,29 @@ namespace DungeonRun
         static int i;
 
         
-        public static void Spawn(ObjType Type, float X, float Y)
+        public static void Spawn(ObjType Type, float X, float Y, Direction Dir = Direction.None)
         {
             //this method is used for projectiles that dont have casters, like groundfires
             //get a projectile to spawn
             pro = Functions_Pool.GetProjectile();
             pro.caster = Pool.hero.compMove; //caster defaults to hero
             
-            pro.direction = Direction.None;
+            //some projectiles rely on their direction being none,
+            //otherwise they move in the set direction upon spawn
+            pro.direction = Dir;
             pro.compMove.direction = pro.direction;
 
             //teleport projectile to X, Y
             Functions_Movement.Teleport(pro.compMove, X, Y);
             pro.compMove.moving = true;
             Functions_GameObject.SetType(pro, Type);
+
+            if(Type == ObjType.ProjectileLightningBolt)
+            {   //push bolts a little bit, play sfx
+                Functions_Movement.Push(pro.compMove, Dir, 2.0f);
+                Assets.Play(Assets.sfxShock);
+            }
+
             HandleBehavior(pro);
         }
  
@@ -153,7 +162,7 @@ namespace DungeonRun
                         Caster.newPosition.Y + 1);
                 }
                 Functions_Component.Align(pro); //align the arrows comps
-                Functions_Movement.Push(pro.compMove, Dir, 5.0f);
+                Functions_Movement.Push(pro.compMove, Dir, 4.0f);
                 Assets.Play(Assets.sfxFireballCast);
                 pushLines = true;
             }
@@ -345,13 +354,6 @@ namespace DungeonRun
                 //create loot
                 Functions_Loot.SpawnLoot(Obj.compSprite.position);
             }
-
-
-
-
-
-
-
             else if(Obj.type == ObjType.ProjectileBush)
             {
                 Functions_Loot.SpawnLoot(Obj.compSprite.position);
@@ -373,14 +375,6 @@ namespace DungeonRun
                     Obj.compSprite.position.Y,
                     true);
             }
-
-
-
-
-
-
-
-
 
             //all objects are released upon death
             if (Obj.sfx.kill != null) { Assets.Play(Obj.sfx.kill); }
@@ -535,8 +529,6 @@ namespace DungeonRun
             #endregion
 
 
-
-
             //teleport the projectile to it's new position
             Functions_Movement.Teleport(Pro.compMove,
                 Pro.compMove.newPosition.X,
@@ -601,56 +593,30 @@ namespace DungeonRun
 
 
 
-        public static void Cast_Lightning(Actor Caster)
+        public static void Cast_Bolt(Actor Caster)
         {
-            //this is basically lightning BTW!!!!
-            //replace the sprite, damage, and soundfx, and we just implemented bolt
-
-
-            
-
-
-
-
-            //create a series of explosions in the facing direction of the caster
+            //create a series of bolts in the facing direction of caster
 
             //resolve caster's direction to a cardinal one
             Caster.direction = Functions_Direction.GetCardinalDirection(Caster.direction);
-
             //setup offsets based on resolved caster's direction
             if(Caster.direction == Direction.Up) { offset.X = 0; offset.Y = -16; }
             else if (Caster.direction == Direction.Right) { offset.X = +16; offset.Y = 0; }
             else if (Caster.direction == Direction.Down) { offset.X = 0; offset.Y = +16; }
             else if (Caster.direction == Direction.Left) { offset.X = -16; offset.Y = 0; }
 
-            //using the offset, loop create explosions, multiplying the offset as we go
-            for(i = 1; i < 10; i++)
+            //using the offset, loop create explosions, multiplying offset
+            for(i = 1; i < 8; i++)
             {
-                if (Caster.direction == Direction.Down)
-                {   //apply big additional down offset
-                    Spawn(ObjType.ProjectileExplosion,
+                Spawn(ObjType.ProjectileLightningBolt,
                         Caster.compSprite.position.X + offset.X * i,
-                        Caster.compSprite.position.Y + 8 + offset.Y * i);
-                }
-                else if(Caster.direction == Direction.Right)
-                {   //apply sm additional offset
-                    Spawn(ObjType.ProjectileExplosion,
-                        Caster.compSprite.position.X + 4 + offset.X * i,
-                        Caster.compSprite.position.Y + offset.Y * i);
-                }
-                else if (Caster.direction == Direction.Left)
-                {   //apply sm additional offset
-                    Spawn(ObjType.ProjectileExplosion,
-                        Caster.compSprite.position.X - 4 + offset.X * i,
-                        Caster.compSprite.position.Y + offset.Y * i);
-                }
-                else
-                {
-                    Spawn(ObjType.ProjectileExplosion,
-                        Caster.compSprite.position.X + offset.X * i,
-                        Caster.compSprite.position.Y + offset.Y * i);
-                }
+                        Caster.compSprite.position.Y + offset.Y * i,
+                        Caster.direction);
             }
+
+            //play the lightning bolt soundfx
+
+
         }
 
 

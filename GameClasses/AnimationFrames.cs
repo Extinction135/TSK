@@ -332,6 +332,9 @@ namespace DungeonRun
 
         public static List<Byte4> Projectile_Fireball = new List<Byte4> { new Byte4(5, 8, 0, 0) };
 
+        public static List<Byte4> Projectile_Bolt = new List<Byte4>
+        { new Byte4(6, 8, 0, 0),new Byte4(6, 8, 1, 0) };
+
         public static List<Byte4> Projectile_FireGround = new List<Byte4>
         {
             new Byte4(5, 2, 0, 0), new Byte4(6, 2, 0, 0),
@@ -568,6 +571,7 @@ namespace DungeonRun
 
         public static List<Byte4> Ui_MenuItem_Magic_Fireball = new List<Byte4> { new Byte4(2, 5, 0, 0) };
         public static List<Byte4> Ui_MenuItem_Magic_Bombos = new List<Byte4> { new Byte4(2, 6, 0, 0) };
+        public static List<Byte4> Ui_MenuItem_Magic_Bolt = new List<Byte4> { new Byte4(2, 7, 0, 0) };
 
         public static List<Byte4> Ui_MenuItem_Weapon_Sword = new List<Byte4> { new Byte4(3, 5, 0, 0) };
         public static List<Byte4> Ui_MenuItem_Weapon_Net = new List<Byte4> { new Byte4(3, 7, 0, 0) };

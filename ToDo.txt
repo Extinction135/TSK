@@ -89,53 +89,37 @@ Prep for 0.73 release and media (target: tonight).
 
 
 
-Bombos, Actually
 
-here's how we're gonna do bombos:
-create a projectile called bombos, with a life of 255.
-this bombos pro tracks over the hero's head, for it's duration.
+LightningBolt
 
-as this pro ages, it creates bombs randomly around
-the hero, roughly for the size of the screen. this
-is nice, because it tracks the hero as he moves, so
-he can take his rain of bombs with him.
+added lightning bolt sprite into entities spritesheet.
+added projectile objType value, added animFrames.
+added into obj.setType, battle(), interactions().
 
-while testing, it became necessary to increase the
-projectile pool to 500. upon further testing,
-with bombos against the town level, it became 
-necessary to raise particles to 750, but lower
-projectiles to 300. raised pickups to 50, due
-to so much destruction and potential loot creation.
+created power level 1 and 2 concepts of destruction.
+level 1 = Obj.HandleCommon().
+level 2 = Obj.BlowUp().
 
-lots of very fun playtesting.
+explosions and lightning bolts seem like they would
+be on the same power level, so we need to move 
+explosion's destruction routines into a more general
+method, that explosions AND lightning bolt can call,
+named Obj.BlowUp(). done.
 
-Bombos++
-upon more playtesting, i feel like bombos should center
-to the screen, so it should be based off the camera's
-current position, instead of caster's position.
+added in savedata boolean for bolt magic.
+now for sale. added into useItem().
+added menuItem sprite + obj.
 
-implemented, working great - but i want MOAR bombs.
-this cast is awesomely powerful. improved bombos
-to create bombs slightly beyond the edge of the level,
-maintaining the illusion of endless bombs everywhere.
+tested, working as expected.
+fixed bug not rotating bolt projectile
+properly. fixed bug putting caster into
+reward state instead of use state.
 
-note - 
-bombos can be spammed. but only if the infinite magic
-cheat is enabled. and if this happens, frametimes can
-rise to dramatic levels, like around 10-11ms on the pc.
-on the xbox one, i'm sure this drops frame times below
-30fps, which actually doesn't bother me that much because
-it emulates the old school snes stutter when too much
-stuff was happening at once. i'm sure there are some 
-optimizations i could do here, but i like the simplicity
-of the systems, so i'm going to consider spamming bombos
-to be the max test case / breaking point for the
-projectile and particle systems. togther they churn thru
-almost a thousand objects in a few seconds, while
-bombos is active on a heavily populated level (@1500objs).
+added sound shock to projects.
+linked up bolt to play shocksfx.
 
-whats great about this version of bombos is that
-it makes the player feel INSANELY powerful. good.
+Roof Bug: if roof touches lightning bolt, 
+roof should collapse. done. working as expected.
 
 
 
@@ -149,11 +133,29 @@ it makes the player feel INSANELY powerful. good.
 
 
 
-Cast_Bombos =  Cast_Bolt
-if we replace the sprite with a lightning bolt,
-and the sound fx with lighting, and implement
-the lighting menuItem, then plug it into vendor,
-then we've just added BOLT magic to the game.
+SoundFX++
+
+boss tailwhip = cast bolt initial
+ether = sound fx for casting bombos
+
+whenever bombos PLACES a bomb, play the same
+soundfx that we play when hero places a bomb down.
+there should be tons of them. *dont play the initial
+explosions sfx anymore.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

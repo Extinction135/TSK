@@ -159,6 +159,7 @@ namespace DungeonRun
             {
                 Functions_MenuItem.SetType(MenuItemType.MagicFireball, menuItems[0]);
                 Functions_MenuItem.SetType(MenuItemType.MagicBombos, menuItems[1]);
+                Functions_MenuItem.SetType(MenuItemType.MagicBolt, menuItems[2]);
             }
             else if (VendorType == ObjType.Vendor_NPC_Weapons)
             {
