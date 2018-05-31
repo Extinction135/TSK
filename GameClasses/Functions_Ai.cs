@@ -537,6 +537,7 @@ namespace DungeonRun
                     Obj.compCollision.rec.Height = 32;
                     Obj.compCollision.rec.X = (int)Obj.compSprite.position.X - 16;
                     Obj.compCollision.rec.Y = (int)Obj.compSprite.position.Y - 16;
+
                     //loop over all active roomObjs, collapse any nearby roofs
                     for (i = 0; i < Pool.roomObjCount; i++)
                     {
@@ -551,21 +552,19 @@ namespace DungeonRun
                             }
                         }
                     }
+
                     //pop attention and debris
-                    Functions_Particle.Spawn(ObjType.Particle_Attention, Obj);
+                    Functions_Particle.Spawn(
+                        ObjType.Particle_Attention, 
+                        Obj.compSprite.position.X,
+                        Obj.compSprite.position.Y);
                     Functions_Particle.Spawn_Explosion(
                         ObjType.Particle_Debris,
                         Obj.compSprite.position.X, 
                         Obj.compSprite.position.Y, false);
-                    //choose between leaving debris or disappearing
-                    if(Functions_Random.Int(0, 100) > 50)
-                    {   //roof falls to ground as debris
-                        Functions_GameObject.SetType(Obj, ObjType.Wor_Debris);
-                    }
-                    else
-                    {   //else, just release the obj
-                        Functions_Pool.Release(Obj);
-                    }
+                    
+                    //turn this roof obj into debris
+                    Functions_GameObject.BecomeDebris(Obj);
                 }
             }
 

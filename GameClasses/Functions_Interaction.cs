@@ -1021,6 +1021,39 @@ namespace DungeonRun
             #endregion
 
 
+
+
+
+
+
+
+            #region Debris - debris removal
+
+            //if debris roomObj overlaps other objs, remove it
+            else if (RoomObj.type == ObjType.Wor_Debris)
+            {
+                if(Object.compCollision.blocking)
+                {   //any blocking obj takes priority over debris
+                    Functions_Pool.Release(RoomObj);
+                }
+                //these objs take priority over debris
+                if (Object.type == ObjType.Wor_Debris //there can be only one
+                    || Object.type == ObjType.Wor_Flowers
+                    || Object.type == ObjType.Wor_Grass_Tall
+                    || Object.type == ObjType.Wor_Bush_Stump
+                    || Object.type == ObjType.Wor_Tree_Stump
+                    )
+                {
+                    Functions_Pool.Release(RoomObj);
+                }
+            }
+
+            #endregion
+
+
+
+
+
         }
 
     }

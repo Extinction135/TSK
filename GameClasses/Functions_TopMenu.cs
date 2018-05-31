@@ -352,7 +352,7 @@ namespace DungeonRun
 
 
                     //hold down left ctrl button to call Inspect() on anything touching cursor
-                    //if (Functions_Input.IsKeyDown(Keys.LeftControl)) { Functions_Debug.Inspect(); }
+                    if (Functions_Input.IsKeyDown(Keys.LeftControl)) { Functions_Debug.Inspect(); }
                 }
 
                 Widgets.RoomTools.HandleInput();

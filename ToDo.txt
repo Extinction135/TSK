@@ -90,51 +90,35 @@ Prep for 0.73 release and media (target: tonight).
 
 
 
-Cascading Roof Collapse
 
-the problem with roofs now is that they only collapse
-if they touch an explosion, which means some roof objs
-get left behind (dont collapse) after their neighbors
-have - leading to a state where a single roof can float
-in mid-air. which obvs makes no sense and breaks immersion.
 
-the solution presented is pretty spicy:
-when an explosion touches a roof obj, that roof obj
-becomes a meta "collapsing" roof obj (looks the same).
-this collapsing roof obj has AI and an interactive frame.
-on the interactive frame, the collapsing roof obj
-expands it's hitbox and checks to see if it overlaps
-nearby roof objects. if it does, those roof objs become
-their collapsing versions and the collapse spreads.
-once the spread routine completes, the collapsing obj
-finishes it's collapse by spawning various particles,
-like debris. it also has a chance to convert to a 
-permanent debris object, so some debris is left after
-an entire roof collapses - otherwise the ground remains
-clean and it doesn't look right, after such a tremendous
-event.
 
-Particles++
-increased particle pool count from 250 to 500,
-due to increased demand from various interactions.
+
+
+Collapsing Roofs++
+
+improved collapsing roofs to always become permanent debris.
+when the debris 'falls' to the ground, it does a collision
+check, to determine if it should exist or not. if the debris
+overlaps other debris, or certain decorative objs like flowers,
+or blocking objs, then the debris removes itself.
+
+added editor option to left ctrl + left click to inspect
+any obj touching cursors pos.
 
 Debris++
-fixed a bug where debris hitboxes were the wrong size.
-which led to a closer inspection of debris objs.
+whenever something becomes debris, the debris should check to see
+if it should exist, using the routine developed for collapsing roofs.
+created Functions_GameObject.BecomeDebris(Obj) to do exactly that.
+BecomeDebris() is then called from roof collapse routine,
+and then it was integrated into GameObject.Kill(), which is
+where most of the objects end up after they've been set into
+the codepath of destruction.
 
-
-
-
-
-
-
-
-
-Debris
-
-debris objs that overlap other debris objs should remove 
-themselves. otherwise we get flickering. if a debris obj
-overlaps flowers, or tall grass, remove the debris obj.
+this essentially creates a system for debris, where debris will
+only allow itself to exist if it's aesthetic to the surrounding
+roomobjs. debris wont overlap or bunch up. this makes roof
+collapses look much better and more realistic for the gameworld.
 
 
 

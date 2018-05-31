@@ -14,6 +14,9 @@ namespace DungeonRun
 {
     public static class Functions_GameObject
     {
+        static int i;
+
+
 
         public static GameObject Spawn(ObjType Type, float X, float Y, Direction Direction)
         {   //spawns obj at the X, Y location, with direction
@@ -111,8 +114,7 @@ namespace DungeonRun
                     Obj.compSprite.position.X,
                     Obj.compSprite.position.Y, 
                     true);
-                //become debris
-                SetType(Obj, ObjType.Wor_Debris);
+                BecomeDebris(Obj);
             }
             else { Functions_Pool.Release(Obj); }
         }
@@ -227,6 +229,44 @@ namespace DungeonRun
         }
 
         
+        public static void BecomeDebris(GameObject Obj)
+        {
+            //become permanent debris w/ 16x16 collisions
+            SetType(Obj, ObjType.Wor_Debris);
+            Obj.compCollision.rec.Width = 16;
+            Obj.compCollision.rec.Height = 16;
+            Obj.compCollision.rec.X = (int)Obj.compSprite.position.X - 8;
+            Obj.compCollision.rec.Y = (int)Obj.compSprite.position.Y - 8;
+
+            //check to see if this debris can be placed here, if not - release
+            for (i = 0; i < Pool.roomObjCount; i++)
+            {
+                if (Pool.roomObjPool[i].active & Pool.roomObjPool[i] != Obj)
+                {
+                    //check for overlap / interaction
+                    if (Pool.roomObjPool[i].compCollision.rec.Intersects(Obj.compCollision.rec))
+                    {
+                        //blocking objs take visual priority over debris
+                        if (Pool.roomObjPool[i].compCollision.blocking)
+                        { Functions_Pool.Release(Obj); }
+                        if (
+                            //there can only be one debris obj at a tile at a time
+                            Pool.roomObjPool[i].type == ObjType.Wor_Debris
+                            //these objs take visual priority over debris
+                            || Pool.roomObjPool[i].type == ObjType.Wor_Flowers
+                            || Pool.roomObjPool[i].type == ObjType.Wor_Grass_Tall
+                            || Pool.roomObjPool[i].type == ObjType.Wor_Bush_Stump
+                            || Pool.roomObjPool[i].type == ObjType.Wor_Tree_Stump
+                        )
+                        { Functions_Pool.Release(Obj); }
+                    }
+                }
+            }
+        }
+
+
+
+
         
         public static void SetType(GameObject Obj, ObjType Type)
         {   //Obj.direction should be set prior to this method running - important
@@ -1348,6 +1388,7 @@ namespace DungeonRun
                 Obj.getsAI = true; //but collapsing roofs always get AI
                 Obj.interactiveFrame = 20; //base speed of collapse spread
                 Obj.interactiveFrame += Functions_Random.Int(-10, 10); //vary spreadtime
+                Obj.lifeCounter = 0; //reset counter
             }
 
             #endregion
