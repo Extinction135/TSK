@@ -24,15 +24,34 @@ namespace DungeonRun
                 Assets.sfxTextLetter, false, false, false),
         };
 
-        public static List<Dialog> Farmer = new List<Dialog>
-        {
+
+        #region Farmer NPC Dialogs
+
+        public static List<Dialog> Farmer_Setup = new List<Dialog>
+        {   
             new Dialog(ObjType.NPC_Farmer, "Help!",
-                "My crops are too dry to grow!\n" +
+                "My bushes are too dry! Without water, they won't grow..\n" +
                 "If only I had a shovel, I'd finish these ditches..",
                 Assets.sfxTextLetter, false, false, false),
         };
 
+        public static List<Dialog> Farmer_Reward = new List<Dialog>
+        {
+            new Dialog(ObjType.NPC_Farmer, "Thank you!",
+                "You did it! You got some of my bushes to grow.\n" +
+                "I can eat again! I don't have much, but take this as a reward..",
+                Assets.sfxTextLetter, false, false, false),
+        };
 
+        public static List<Dialog> Farmer_EndDialog = new List<Dialog>
+        {
+            new Dialog(ObjType.NPC_Farmer, "Thanks again!",
+                "Thanks again for helping me with my crops.\n" +
+                "I'm sure I'll need more help again, as I'm old and tired.",
+                Assets.sfxTextLetter, false, false, false),
+        };
+
+        #endregion
 
 
 

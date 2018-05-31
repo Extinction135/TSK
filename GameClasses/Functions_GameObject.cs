@@ -1026,16 +1026,26 @@ namespace DungeonRun
                 else if (Type == ObjType.Vendor_NPC_Pets) { Obj.compAnim.currentAnimation = AnimationFrames.Vendor_Pets; }
                 else if (Type == ObjType.Vendor_NPC_Story) { Obj.compAnim.currentAnimation = AnimationFrames.Vendor_Story; }
             }
-            else if(Type == ObjType.NPC_Farmer)
+
+            //farmer NPC
+            else if(Type == ObjType.NPC_Farmer || Type == ObjType.NPC_Farmer_Reward || Type == ObjType.NPC_Farmer_EndDialog)
             {
+                //only end state of farmer is 'dumb'
+                if (Type == ObjType.NPC_Farmer_EndDialog) { Obj.getsAI = false; }
+                else { Obj.getsAI = true; } //initial + reward states get AI!
+
+                Obj.interactiveFrame = 30; //check every 30 frames
+
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 11;
                 Obj.compSprite.zOffset = 0;
                 Obj.compAnim.speed = 20; //slow animation
                 Obj.group = ObjGroup.NPC;
                 Obj.canBeSaved = true;
-
-                if (Type == ObjType.NPC_Farmer) { Obj.compAnim.currentAnimation = AnimationFrames.NPC_Farmer; }
+                
+                if (Type == ObjType.NPC_Farmer_Reward) //only reward has unique anim
+                { Obj.compAnim.currentAnimation = AnimationFrames.NPC_Farmer_HandsUp; }
+                else  { Obj.compAnim.currentAnimation = AnimationFrames.NPC_Farmer; }
             }
 
             #endregion

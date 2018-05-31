@@ -377,6 +377,9 @@ namespace DungeonRun
         Vendor_NPC_Story, //technically NOT a vendor
 
         NPC_Farmer,
+        NPC_Farmer_Reward,
+        NPC_Farmer_EndDialog,
+
 
         #endregion
 

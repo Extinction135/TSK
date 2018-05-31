@@ -672,6 +672,66 @@ namespace DungeonRun
 
 
 
+            #region NPC - Farmer
+
+            else if (Obj.type == ObjType.NPC_Farmer)
+            {
+                //SETUP state
+                //periodically expand hitbox to check for nearby bushes
+                //if a bush is nearby, obj becomes farmer reward obj
+
+                Obj.lifeCounter++;
+                if (Obj.lifeCounter == Obj.interactiveFrame)
+                {   //reset timer
+                    Obj.lifeCounter = 0;
+                    //expand to check surrounding tiles
+                    Obj.compCollision.rec.Width = 32;
+                    Obj.compCollision.rec.Height = 32;
+                    Obj.compCollision.rec.X = (int)Obj.compSprite.position.X - 16;
+                    Obj.compCollision.rec.Y = (int)Obj.compSprite.position.Y - 16;
+                    //loop over all active roomObjs, locate any nearby bush
+                    for (i = 0; i < Pool.roomObjCount; i++)
+                    {
+                        if (Pool.roomObjPool[i].active &
+                            Pool.roomObjPool[i].type == ObjType.Wor_Bush)
+                        {   //if farmer touches neighboring bush, convert farmer to reward state
+                            if (Pool.roomObjPool[i].compCollision.rec.Intersects(Obj.compCollision.rec))
+                            {
+                                Assets.Play(Assets.sfxKeyPickup); //audibly cue player
+                                Functions_GameObject.SetType(Obj, ObjType.NPC_Farmer_Reward);
+                                return; //bail, no need to continue
+                            }
+                        }
+                    }
+                    //if this section of code is reached, no bush was found, reset hitbox/obj
+                    Functions_GameObject.SetType(Obj, ObjType.NPC_Farmer);
+                }
+            }
+            else if(Obj.type == ObjType.NPC_Farmer_Reward)
+            {
+                //REWARD state
+
+                //periodically create an exclamation particle
+
+                Obj.lifeCounter++;
+                if (Obj.lifeCounter == Obj.interactiveFrame)
+                {   //reset timer
+                    Obj.lifeCounter = 0;
+
+                    //testing
+                    Functions_Particle.Spawn(ObjType.Particle_RisingSmoke,
+                        Obj.compSprite.position.X,
+                        Obj.compSprite.position.Y - 8);
+                }
+            }
+
+            #endregion
+
+
+
+
+
+
         }
 
     }

@@ -463,7 +463,9 @@ namespace DungeonRun
         public static List<Byte4> Vendor_Pets = new List<Byte4> { new Byte4(6, 14, 0, 0), new Byte4(6, 14, 1, 0) };
 
         public static List<Byte4> Vendor_Story = new List<Byte4> { new Byte4(7, 14, 0, 0), new Byte4(7, 14, 1, 0) };
+
         public static List<Byte4> NPC_Farmer = new List<Byte4> { new Byte4(8, 14, 0, 0), new Byte4(8, 14, 1, 0) };
+        public static List<Byte4> NPC_Farmer_HandsUp = new List<Byte4> { new Byte4(8, 14, 0, 0), new Byte4(9, 14, 0, 0) };
 
         #endregion
 
