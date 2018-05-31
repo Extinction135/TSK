@@ -512,7 +512,8 @@ namespace DungeonRun
                         if (Object.lifeCounter == 1) //perform these interactions only once
                         {
 
-                            #region Objs that get altered
+
+                            #region Objs that ONLY get altered by explosions
 
                             if (RoomObj.type == ObjType.Dungeon_DoorBombable)
                             {   //explosions collapse doors
@@ -536,7 +537,10 @@ namespace DungeonRun
                             #endregion
 
 
-                            #region Objs that just get destroyed
+                            //Objs that ONLY get destroyed by explosions
+
+
+                            #region Special cases
 
                             else if (RoomObj.type == ObjType.Wor_Bush)
                             {   //destroy the bush
@@ -555,19 +559,48 @@ namespace DungeonRun
                             {   //blow up tree, no leaf explosion
                                 Functions_GameObject_World.BlowUpTree(RoomObj, false);
                             }
+
+                            #endregion
+
+
+                            #region General cases
+
                             else if (
+                                //dungeon objs
                                 RoomObj.type == ObjType.Dungeon_Statue
+                                || RoomObj.type == ObjType.Dungeon_Signpost
+
+                                //world objs
+
+                                //building objs
+                                || RoomObj.type == ObjType.Wor_Build_Wall_FrontA
+                                || RoomObj.type == ObjType.Wor_Build_Wall_FrontB
+                                || RoomObj.type == ObjType.Wor_Build_Wall_Back
+                                || RoomObj.type == ObjType.Wor_Build_Wall_Side_Left
+                                || RoomObj.type == ObjType.Wor_Build_Wall_Side_Right
+                                || RoomObj.type == ObjType.Wor_Build_Door_Shut
+                                || RoomObj.type == ObjType.Wor_Build_Door_Open
+                                //building interior objs
                                 || RoomObj.type == ObjType.Wor_Bookcase
                                 || RoomObj.type == ObjType.Wor_Shelf
-                                || RoomObj.type == ObjType.Wor_TableSingle
                                 || RoomObj.type == ObjType.Wor_Stove
                                 || RoomObj.type == ObjType.Wor_Sink
-                                || RoomObj.type == ObjType.Wor_Chair)
+                                || RoomObj.type == ObjType.Wor_TableSingle
+                                || RoomObj.type == ObjType.Wor_TableDoubleLeft
+                                || RoomObj.type == ObjType.Wor_TableDoubleRight
+                                || RoomObj.type == ObjType.Wor_Chair
+                                //fences and gates
+                                || RoomObj.type == ObjType.Wor_Fence_Horizontal
+                                || RoomObj.type == ObjType.Wor_Fence_Vertical_Left
+                                || RoomObj.type == ObjType.Wor_Fence_Vertical_Right
+                                || RoomObj.type == ObjType.Wor_Fence_Gate
+                                )
                             {   
                                 Functions_GameObject.Kill(RoomObj, true, true);
                             }
 
                             #endregion
+                            
 
                             else
                             {   //explosions trigger common obj interactions
@@ -579,7 +612,6 @@ namespace DungeonRun
                                 );
                             }
                             
-
                             //leave a 'burn mark' particle, with life 255
                             //this is just a darker spot on the ground that looks like a blast mark
                         }
@@ -968,6 +1000,21 @@ namespace DungeonRun
                     }
                     //otherwise the obj sinks as soon as it touches a water tile,
                     //which looks early. and bad. cause we tried it. no good.
+                }
+            }
+
+            #endregion
+
+
+            #region Roofs - collapse from explosions
+
+            else if (RoomObj.type == ObjType.Wor_Build_Roof_Bottom
+                || RoomObj.type == ObjType.Wor_Build_Roof_Top
+                || RoomObj.type == ObjType.Wor_Build_Roof_Chimney)
+            {
+                if (Object.type == ObjType.ProjectileExplosion)
+                {   //destroy roofs that touch explosions, no debris/loot
+                    Functions_GameObject.Kill(RoomObj, false, false);
                 }
             }
 

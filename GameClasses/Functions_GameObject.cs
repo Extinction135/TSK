@@ -27,6 +27,7 @@ namespace DungeonRun
 
         public static void HandleCommon(GameObject RoomObj, Direction HitDirection)
         {
+            //roomObj is blocking, interacted with arrow, explosion, sword/shovel, thrown bush/pot
             //hitDirection is used to push some objects in the direction they were hit
 
             #region World Objects

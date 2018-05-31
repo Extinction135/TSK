@@ -83,16 +83,29 @@ and clear that inventory item when link enters a new room (pre-build).
 TODAY:
 
 
-Prep for 0.73 release and media (target: tmrw night).
+Prep for 0.73 release and media (target: tonight).
 
 
 
-Tables++
+Destruction++
 
-double tables should extend their collision recs
-onto each other, so what happens to one happens to 
-the other! this means we can destroy both at once.
-which means we can destroy entire buildings now...
+explosions can now destroy fences, gates, and ALL
+building objects, from walls to doors.
+double tables can be destroyed as well.
+signposts as well. no NPCs are destructible tho.
+
+roofs are being destroyed if they touch explosions,
+but they don't always touch explosions, leaving orphaned
+roof objs behind. we have a solution for this, next commit.
+
+notes -
+beds cannot be destroyed, because they are two
+objects and destroying one without destroying the
+other would break the illusion of the gameworld.
+so, beds are indestructible (for now).
+
+playtested, objs getting destroyed as expected,
+still need to fix roofs tho.
 
 
 
@@ -103,9 +116,18 @@ which means we can destroy entire buildings now...
 
 
 
-Destruktor
-should be able to destroy gates, fences, and all building
-objects (including roofs) with explosions.
+Cascading Roof Collapse
+
+this is done by making the roof obj getsAI = true.
+if this is true, the hitBox expands on it's interactive frame,
+checks for nearby roof tiles and collapses them.
+this means that destroying a single roof obj will collapse
+all the roof objs across the building in a cascading manner
+over time. this also eliminates the problem of roofs not
+being destroyed if they dont touch an explosion but their
+neighbors do (which looks weird).
+
+
 
 
 
