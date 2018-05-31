@@ -24,7 +24,20 @@ namespace DungeonRun
                 Assets.sfxTextLetter, false, false, false),
         };
 
-        
+        public static List<Dialog> Farmer = new List<Dialog>
+        {
+            new Dialog(ObjType.NPC_Farmer, "Help!",
+                "My crops are too dry to grow!\n" +
+                "If only I had a shovel, I'd finish these ditches..",
+                Assets.sfxTextLetter, false, false, false),
+        };
+
+
+
+
+
+
+
         #region Utility dialogs
 
         public static List<Dialog> GameSaved = new List<Dialog>
@@ -69,8 +82,6 @@ namespace DungeonRun
         #endregion
 
 
-
-
         #region Dungeon Entrance Dialogs
 
         public static List<Dialog> Enter_ForestDungeon = new List<Dialog>
@@ -82,7 +93,6 @@ namespace DungeonRun
         };
 
         #endregion
-
 
 
         #region Signpost Dialogs

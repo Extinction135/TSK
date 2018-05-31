@@ -167,7 +167,10 @@ namespace DungeonRun
         Door,
         Chest,
         Object,
+
         Vendor,
+        NPC,
+
         EnemySpawn,
         Ditch,
         //entities
@@ -360,7 +363,7 @@ namespace DungeonRun
         #endregion
 
 
-        #region Vendors
+        #region Vendors & NPCs
 
         //Vendor NPCs
         Vendor_NPC_Items,
@@ -370,7 +373,10 @@ namespace DungeonRun
         Vendor_NPC_Armor,
         Vendor_NPC_Equipment,
         Vendor_NPC_Pets,
-        Vendor_NPC_Story,
+
+        Vendor_NPC_Story, //technically NOT a vendor
+
+        NPC_Farmer,
 
         #endregion
 

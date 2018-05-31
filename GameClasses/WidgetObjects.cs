@@ -549,8 +549,8 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[31], ObjType.Unknown);
 
             //row 9
-            Functions_GameObject.SetType(objList[32], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[33], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[32], ObjType.Vendor_NPC_Story);
+            Functions_GameObject.SetType(objList[33], ObjType.NPC_Farmer);
             Functions_GameObject.SetType(objList[34], ObjType.Unknown);
             Functions_GameObject.SetType(objList[35], ObjType.Unknown);
 
@@ -569,7 +569,7 @@ namespace DungeonRun
             //row 12
             Functions_GameObject.SetType(objList[44], ObjType.Vendor_NPC_Pets);
             Functions_GameObject.SetType(objList[45], ObjType.Vendor_NPC_Potions);
-            Functions_GameObject.SetType(objList[46], ObjType.Vendor_NPC_Story);
+            Functions_GameObject.SetType(objList[46], ObjType.Unknown);
             Functions_GameObject.SetType(objList[47], ObjType.Vendor_NPC_Weapons);
 
             //position the objs relative to the window frame

@@ -4316,5 +4316,11 @@
       <posX>380</posX>
       <posY>534</posY>
     </ObjXmlData>
+    <ObjXmlData>
+      <type>NPC_Farmer</type>
+      <direction>Down</direction>
+      <posX>616</posX>
+      <posY>392</posY>
+    </ObjXmlData>
   </objs>
 </RoomXmlData>

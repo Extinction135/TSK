@@ -279,10 +279,22 @@ namespace DungeonRun
                     ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Guide));
                 }
                 else { ScreenManager.AddScreen(new ScreenVendor(Obj)); }
-                //vendor ad objects are ignored, because they aren't of Group.Vendor
             }
 
             #endregion
+
+
+            #region NPCs
+
+            else if (Obj.group == ObjGroup.NPC)
+            {
+                //based on obj.type, select dialog
+                if (Obj.type == ObjType.NPC_Farmer)
+                { ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Farmer)); }
+            }
+
+            #endregion
+
 
 
             //obj.type checks

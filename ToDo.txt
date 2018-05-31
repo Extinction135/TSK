@@ -88,40 +88,57 @@ Prep for 0.73 release and media (target: tmrw night).
 
 
 
-Lttp AND Hld Dashing
+Farmer
 
-in hyper light drifter, pressing the dash button
-quickly moves the hero in the input direction for a
-brief period of time. it's tactical.
-
-in lttp, pressing and holding the dash button
-"winds up" link to do a long-term dash in a single
-direction. not tactical, more used to traverse
-large areas quickly.
-
-both of these dashing approaches have their own
-pros and cons. currently, the game implements hld
-style dashing, but if change the input slightly,
-then we can get a unique version of lttp's dashing too.
-
-Dash Upgrade
-if player holds down the B button while pressing
-an input direction, then link will dash in that
-direction. this isn't a new button press - we're
-now checking to see if the B button is down, which
-essentially spams dash, while still allowing for
-directional control. this is an instant tactical
-dash combined with distance dashing - plus player
-can change direction while dashing. I see this new
-dashing system as superior to lttp & hld, and almost
-feels overpowered. so we'll scale the challenges up
-to meet the new powerful skill introduced - instead
-of nerfing the skill and killing the fun.
+we need a farmer npc on the farm level that complains
+that his crops are too dry to grow. if he only had a 
+shovel! this is subtle hint to player on what to do.
+done.
 
 
 
 
 
+Side-Quest #1
+
+now we need to implement farmer as a side-quest.
+farmer should getAi, and periodically check (expand rec)
+to see if he touches a bush. this means hero has regrown
+a nearby stump, completing the irrigation side-quest.
+if this happens, the NPC farmer becomes the NPC farmer done obj,
+which is the farmer which his hands raised up in the air, triumphant.
+if link talks to this version of the farmer, then he gets a
+reward of 10 arrows and 10 bombs, and the farmer becomes the
+post-reward version of the farmer, which again thanks link for his help.
+3 versions of farmer, two frames of animation.
+
+
+Farmer++
+initial farmer should pop an exclamation point bubble particle
+over his head periodically. this particle should exist
+for a few frames, then disappear.
+
+
+
+the reward should be farmable, not an unlockable item.
+a reward of 10 arrows and 10 bombs should be good enough.
+if link talks to farmer
+
+
+
+place and test farmer on farm level.
+improve farm level a bit more.
+
+
+
+migrate guide to be NPC
+test that guide still works as npc.
+
+
+
+when hero pushes a shelf against a back wall,
+the backwall sorts over the shelf. and all other sinks, stoves, etc..
+so fix this.
 
 
 
@@ -153,17 +170,25 @@ to destroy entire levels of objects in a second.
 which is awesome. and will look amazing in gifs.
 
 
-Farmer
-we need a farmer npc on the farm level that complains
-that his crops are too dry to grow. if he only had a 
-shovel..
 
 
-DungeonMap++
-miniboss should drop the dungeon map object.
-upon touching this obj, hero should be set into reward
-state, with map overhead.
 
+SHADOWS
+- hero needs a shadow. this should track to him prior to draw.
+
+- boomerang needs a shadow < this should be done in sprite,
+we need to have a spinning animation for boomerang with shadow
+added in. this means we dont double up sprites in game for projectiles,
+just so a few of them can have shadows. it's more efficient to
+just bake the shadows into the sprite sheets.
+**problem** the boomerang shadow will sort with the boomerang,
+not underneath objects that the boomerang hits.
+
+- fireball should have a shadow too, because the shadow would
+help to visually distinguish the fireball in-room, allowing for
+an easier visual track for the player (me).
+*should probably have cardinal directions for the fireball sprite,
+so the shadow is always sorting (down) properly.
 
 
 
@@ -188,22 +213,16 @@ soft release v0.73 to readme + dropbox.
 
 
 
-SHADOWS
-- hero needs a shadow. this should track to him prior to draw.
 
-- boomerang needs a shadow < this should be done in sprite,
-we need to have a spinning animation for boomerang with shadow
-added in. this means we dont double up sprites in game for projectiles,
-just so a few of them can have shadows. it's more efficient to
-just bake the shadows into the sprite sheets.
-**problem** the boomerang shadow will sort with the boomerang,
-not underneath objects that the boomerang hits.
 
-- fireball should have a shadow too, because the shadow would
-help to visually distinguish the fireball in-room, allowing for
-an easier visual track for the player (me).
-*should probably have cardinal directions for the fireball sprite,
-so the shadow is always sorting (down) properly.
+
+
+
+DungeonMap++
+miniboss should drop the dungeon map object.
+upon touching this obj, hero should be set into reward
+state, with map overhead.
+
 
 
 

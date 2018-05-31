@@ -452,17 +452,18 @@ namespace DungeonRun
         #endregion
 
 
-        #region Vendors
+        #region Vendors & NPCs
 
         public static List<Byte4> Vendor_Items = new List<Byte4> { new Byte4(0, 14, 0, 0), new Byte4(0, 14, 1, 0) };
         public static List<Byte4> Vendor_Potions = new List<Byte4> { new Byte4(1, 14, 0, 0), new Byte4(1, 14, 1, 0) };
         public static List<Byte4> Vendor_Magic = new List<Byte4> { new Byte4(2, 14, 0, 0), new Byte4(2, 14, 1, 0) };
         public static List<Byte4> Vendor_Weapons = new List<Byte4> { new Byte4(3, 14, 0, 0), new Byte4(3, 14, 1, 0) };
-
         public static List<Byte4> Vendor_Armor = new List<Byte4> { new Byte4(4, 14, 0, 0), new Byte4(4, 14, 1, 0) };
         public static List<Byte4> Vendor_Equipment = new List<Byte4> { new Byte4(5, 14, 0, 0), new Byte4(5, 14, 1, 0) };
         public static List<Byte4> Vendor_Pets = new List<Byte4> { new Byte4(6, 14, 0, 0), new Byte4(6, 14, 1, 0) };
+
         public static List<Byte4> Vendor_Story = new List<Byte4> { new Byte4(7, 14, 0, 0), new Byte4(7, 14, 1, 0) };
+        public static List<Byte4> NPC_Farmer = new List<Byte4> { new Byte4(8, 14, 0, 0), new Byte4(8, 14, 1, 0) };
 
         #endregion
 

@@ -1002,7 +1002,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Vendors
+            #region Vendors & NPCs
 
             //Vendors
             else if (Type == ObjType.Vendor_NPC_Items || Type == ObjType.Vendor_NPC_Potions ||
@@ -1025,6 +1025,17 @@ namespace DungeonRun
                 else if (Type == ObjType.Vendor_NPC_Equipment) { Obj.compAnim.currentAnimation = AnimationFrames.Vendor_Equipment; }
                 else if (Type == ObjType.Vendor_NPC_Pets) { Obj.compAnim.currentAnimation = AnimationFrames.Vendor_Pets; }
                 else if (Type == ObjType.Vendor_NPC_Story) { Obj.compAnim.currentAnimation = AnimationFrames.Vendor_Story; }
+            }
+            else if(Type == ObjType.NPC_Farmer)
+            {
+                Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;
+                Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 11;
+                Obj.compSprite.zOffset = 0;
+                Obj.compAnim.speed = 20; //slow animation
+                Obj.group = ObjGroup.NPC;
+                Obj.canBeSaved = true;
+
+                if (Type == ObjType.NPC_Farmer) { Obj.compAnim.currentAnimation = AnimationFrames.NPC_Farmer; }
             }
 
             #endregion
