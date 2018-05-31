@@ -88,15 +88,13 @@ Prep for 0.73 release and media (target: tmrw night).
 
 
 
+Shadows++
 
-Forest++
-
-remade forest dungeon entrance level to look MUCH better.
-also, it has a ton of destructible objects on screen.
-fixed a bug where gameobjects could have their texture
-unset, or rather set to a previous state's texture.
-
-
+added transparent shadows to hero sheet.
+this solution was chosen over using a shadow
+sprite, which tracked to hero actor. that was
+previous implementation. the 'baked' shadows
+are fine in the actor texture sheet.
 
 
 
@@ -106,7 +104,6 @@ unset, or rather set to a previous state's texture.
 
 
 SHADOWS
-- hero needs a shadow. this should track to him prior to draw.
 
 - boomerang needs a shadow < this should be done in sprite,
 we need to have a spinning animation for boomerang with shadow
@@ -121,6 +118,10 @@ help to visually distinguish the fireball in-room, allowing for
 an easier visual track for the player (me).
 *should probably have cardinal directions for the fireball sprite,
 so the shadow is always sorting (down) properly.
+
+
+
+
 
 
 

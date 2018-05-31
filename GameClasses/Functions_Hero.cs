@@ -16,13 +16,10 @@ namespace DungeonRun
     {
         static int i;
 
-
         public static Point interactionPoint;
         public static Rectangle heroRec; //16x16 px rec that matches hero's sprite
         public static Boolean boomerangInPlay = false; //only 1 boomerang on screen at once
-
         public static Boolean underRoof = false; //is hero under a roofObj?
-
 
 
 
@@ -272,21 +269,23 @@ namespace DungeonRun
 
             //Vendors
             else if (Obj.group == ObjGroup.Vendor)
-            { ScreenManager.AddScreen(new ScreenVendor(Obj)); }
-
-
-            #region NPCs
-
-            else if (Obj.group == ObjGroup.NPC)
             {
-                //based on obj.type, select dialog
+                ScreenManager.AddScreen(new ScreenVendor(Obj));
+            }
 
 
-                //story/guide
+            //NPCs
+            else if (Obj.group == ObjGroup.NPC)
+            {   //based on obj.type, select dialog
+
+                #region Story/Guide
+
                 if(Obj.type == ObjType.NPC_Story)
                 {   //figure out what part of the story the hero is at, pass this dialog
                     ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Guide));
                 }
+
+                #endregion
 
 
                 #region Farmer
@@ -312,10 +311,7 @@ namespace DungeonRun
 
                 #endregion
 
-
             }
-
-            #endregion
 
 
 
