@@ -419,6 +419,8 @@ namespace DungeonRun
             new Byte4(2, 1, 0, 0), new Byte4(3, 1, 0, 0)
         };
 
+        public static List<Byte4> Particle_ExclamationBubble = new List<Byte4> { new Byte4(4, 1, 0, 0) };
+
         public static List<Byte4> Particle_Hit = new List<Byte4>
         {
             new Byte4(5, 1, 0, 0), new Byte4(6, 1, 0, 0),

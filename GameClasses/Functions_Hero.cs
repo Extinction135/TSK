@@ -296,17 +296,10 @@ namespace DungeonRun
                     ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Farmer_Setup));
                 }
                 else if (Obj.type == ObjType.NPC_Farmer_Reward)
-                {
-                    //convert farmer to end state
+                {   //convert farmer to end state
                     Functions_GameObject.SetType(Obj, ObjType.NPC_Farmer_EndDialog);
                     //reward player
                     PlayerData.current.bombsCurrent += 10;
-                    PlayerData.current.arrowsCurrent += 10;
-                    //^^^
-                    //we aren't checking for overflow past max values here
-                    //we should write methods for adding bombs/arrows/hearts/magic
-                    //that handle overflow
-
                     //play reward sfx
                     Assets.Play(Assets.sfxReward);
                     //display reward dialog

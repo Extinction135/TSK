@@ -39,7 +39,7 @@ namespace DungeonRun
         {
             new Dialog(ObjType.NPC_Farmer, "Thank you!",
                 "You did it! You got some of my bushes to grow.\n" +
-                "I can eat again! I don't have much, but take this as a reward..",
+                "I can eat again! I don't have much, but take 10 bombs as a reward..",
                 Assets.sfxTextLetter, false, false, false),
         };
 

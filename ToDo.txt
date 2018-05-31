@@ -88,23 +88,23 @@ Prep for 0.73 release and media (target: tmrw night).
 
 
 
-
-
-Story NPC
-
-migrated story object from being a vendor (?)
-to being a general NPC alongside the farmer.
-playtested in editor, working as expected.
-
-
-
-
-
-
 Farmer++
-reward farmer should pop an exclamation point bubble particle
-over his head periodically. this particle should exist
-for a few frames, then disappear.
+
+reward farmer should pop an exclamation point bubble 
+over his head periodically, when he has a reward for
+the player. this is to let the player know "hey, come
+over here and get this loot I have for you".
+
+added exclamation point bubble sprite to entities sheet.
+created exclamation bubble particle, modified farmer reward
+state to create exclamation bubbles. relaxed the timing 
+of the bubbles created. changed farmer's reward to 10 
+bombs, changed reward dialog to mention 10 bomb reward.
+this was done because there was no visual indication of
+what was rewarded, so it seemed like player may of not
+been properly rewarded for their efforts.
+
+playtested, looking & working great.
 
 
 
@@ -113,23 +113,6 @@ for a few frames, then disappear.
 
 
 
-
-
-
-
-
-
-
-
-
-migrate guide to be NPC
-test that guide still works as npc.
-
-
-
-when hero pushes a shelf against a back wall,
-the backwall sorts over the shelf. and all other sinks, stoves, etc..
-so fix this.
 
 
 
@@ -139,28 +122,6 @@ so fix this.
 Levels++
 remake forest dungeon entrance to look more like a forest.
 look more like map.
-
-
-Destruktor
-
-should be able to destroy gates, fences, and all building
-objects (including roofs) with explosions.
-
-double tables should extend their collision recs
-onto each other, so what happens to one happens to 
-the other! this means we can push two objs at once.
-this makes the table destructible too, which means
-we can destroy the entire house now.
-
-
-Bombos
-this is a series of explosions across the screen, rapidly.
-this is left to right, top to bottom, with no explosions
-touching link or dealing him damage. this magic allows players
-to destroy entire levels of objects in a second.
-which is awesome. and will look amazing in gifs.
-
-
 
 
 
@@ -180,6 +141,34 @@ help to visually distinguish the fireball in-room, allowing for
 an easier visual track for the player (me).
 *should probably have cardinal directions for the fireball sprite,
 so the shadow is always sorting (down) properly.
+
+
+
+
+
+Destruktor
+
+should be able to destroy gates, fences, and all building
+objects (including roofs) with explosions.
+
+double tables should extend their collision recs
+onto each other, so what happens to one happens to 
+the other! this means we can push two objs at once.
+this makes the table destructible too, which means
+we can destroy the entire house now.
+
+
+
+
+Bombos
+this is a series of explosions across the screen, rapidly.
+this is left to right, top to bottom, with no explosions
+touching link or dealing him damage. this magic allows players
+to destroy entire levels of objects in a second.
+which is awesome. and will look amazing in gifs.
+we get this magic from the kid in the garden in town level.
+
+
 
 
 
@@ -328,6 +317,14 @@ we need dedicated methods for doing this.
 we need to override/replace/rewrite xna's rectangle class.
 but we need to keep the intersects() and contains() methods,
 as they are, as fast as they are.
+
+
+
+Sorting++
+when hero pushes a shelf against a back wall,
+the backwall sorts over the shelf. 
+and all other sinks, stoves, etc..
+so fix this.
 
 
 

@@ -679,7 +679,6 @@ namespace DungeonRun
                 //SETUP state
                 //periodically expand hitbox to check for nearby bushes
                 //if a bush is nearby, obj becomes farmer reward obj
-
                 Obj.lifeCounter++;
                 if (Obj.lifeCounter == Obj.interactiveFrame)
                 {   //reset timer
@@ -710,18 +709,15 @@ namespace DungeonRun
             else if(Obj.type == ObjType.NPC_Farmer_Reward)
             {
                 //REWARD state
-
                 //periodically create an exclamation particle
-
                 Obj.lifeCounter++;
                 if (Obj.lifeCounter == Obj.interactiveFrame)
                 {   //reset timer
                     Obj.lifeCounter = 0;
-
-                    //testing
-                    Functions_Particle.Spawn(ObjType.Particle_RisingSmoke,
-                        Obj.compSprite.position.X,
-                        Obj.compSprite.position.Y - 8);
+                    Functions_Particle.Spawn(
+                        ObjType.Particle_ExclamationBubble,
+                        Obj.compSprite.position.X - 3,
+                        Obj.compSprite.position.Y - 16);
                 }
             }
 

@@ -1048,9 +1048,11 @@ namespace DungeonRun
             {
                 //only end state of farmer is 'dumb'
                 if (Type == ObjType.NPC_Farmer_EndDialog) { Obj.getsAI = false; }
-                else { Obj.getsAI = true; } //initial + reward states get AI!
+                else { Obj.getsAI = true; } //initial + reward states get AI
 
-                Obj.interactiveFrame = 30; //check every 30 frames
+                if (Type == ObjType.NPC_Farmer) //initial farmer checks often for
+                { Obj.interactiveFrame = 30; } //completion condition, while reward
+                else { Obj.interactiveFrame = 60; } //farmer gently spams exclamation point
 
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 11;
@@ -1762,6 +1764,16 @@ namespace DungeonRun
                 Obj.compAnim.speed = 6; //in frames
                 Obj.compAnim.loop = false;
                 Obj.compAnim.currentAnimation = AnimationFrames.Particle_Attention;
+                Obj.compSprite.texture = Assets.entitiesSheet;
+            }
+            else if(Type == ObjType.Particle_ExclamationBubble)
+            {
+                Obj.compSprite.zOffset = 1024;
+                Obj.group = ObjGroup.Particle;
+                Obj.lifetime = 45; //in frames
+                Obj.compAnim.speed = 5; //in frames
+                Obj.compAnim.loop = false;
+                Obj.compAnim.currentAnimation = AnimationFrames.Particle_ExclamationBubble;
                 Obj.compSprite.texture = Assets.entitiesSheet;
             }
             else if (Type == ObjType.Particle_Splash)
