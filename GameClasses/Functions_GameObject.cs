@@ -964,25 +964,42 @@ namespace DungeonRun
                 Obj.sfx.hit = Assets.sfxTapMetallic;
                 Obj.sfx.kill = Assets.sfxShatter;
             }
-            else if (Type == ObjType.Wor_TableSingle 
-                || Type == ObjType.Wor_TableDoubleLeft
-                || Type == ObjType.Wor_TableDoubleRight)
+            else if (Type == ObjType.Wor_TableSingle )
             {
-                Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -6;
-                Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 12;
-                Obj.compSprite.zOffset = -7;
                 Obj.canBeSaved = true;
                 Obj.compMove.moveable = true;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
                 Obj.sfx.kill = Assets.sfxShatter;
-
-                if (Type == ObjType.Wor_TableSingle)
-                { Obj.compAnim.currentAnimation = AnimationFrames.World_TableSingle; }
-                else if(Type == ObjType.Wor_TableDoubleLeft)
-                { Obj.compAnim.currentAnimation = AnimationFrames.World_TableDoubleLeft; }
-                else
-                { Obj.compAnim.currentAnimation = AnimationFrames.World_TableDoubleRight; }
+                Obj.compSprite.zOffset = -7;
+                Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -6;
+                Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 12;
+                Obj.compAnim.currentAnimation = AnimationFrames.World_TableSingle;
             }
+
+            else if(Type == ObjType.Wor_TableDoubleLeft
+                || Type == ObjType.Wor_TableDoubleRight)
+            {
+                Obj.canBeSaved = true;
+                //Obj.compMove.moveable = true;
+                Obj.sfx.hit = Assets.sfxTapMetallic;
+                Obj.sfx.kill = Assets.sfxShatter;
+                Obj.compSprite.zOffset = -7;
+                
+                if (Type == ObjType.Wor_TableDoubleLeft)
+                {
+                    Obj.compAnim.currentAnimation = AnimationFrames.World_TableDoubleLeft;
+                    Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -6;
+                    Obj.compCollision.rec.Width = 14 + 16; Obj.compCollision.rec.Height = 12;
+                }
+                else
+                {
+                    Obj.compAnim.currentAnimation = AnimationFrames.World_TableDoubleRight;
+                    Obj.compCollision.offsetX = -7-16; Obj.compCollision.offsetY = -6;
+                    Obj.compCollision.rec.Width = 14+16; Obj.compCollision.rec.Height = 12;
+                }
+            }
+
+
             else if(Type == ObjType.Wor_Bed_Top)
             {
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Bed_Top;
