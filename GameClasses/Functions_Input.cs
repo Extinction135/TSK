@@ -29,11 +29,16 @@ namespace DungeonRun
             ResetInputData(CompInput); //reset the input component
             CompInput.direction = Input.gamePadDirection; //map direction
 
-            //map attack, use item, dash, and interact button presses
+            //map attack, use item, and interact button presses
             if (IsNewButtonPress(Buttons.X)) { CompInput.attack = true; }
             else if (IsNewButtonPress(Buttons.Y)) { CompInput.use = true; }
-            else if (IsNewButtonPress(Buttons.B)) { CompInput.dash = true; }
             else if (IsNewButtonPress(Buttons.A)) { CompInput.interact = true; }
+
+            //method 1 : hyper light drifter style dashing
+            //if (IsNewButtonPress(Buttons.B)) { CompInput.dash = true; }
+            //method 2 : lttp style-dashing + hyper light drifter style dashing
+            if (IsButtonDown(Buttons.B)) { CompInput.dash = true; }
+            //this essentially spams dash
 
             //open inventory with start button only
             else if (IsNewButtonPress(Buttons.Start))
