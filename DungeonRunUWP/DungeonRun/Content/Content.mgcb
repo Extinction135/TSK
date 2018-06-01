@@ -527,3 +527,9 @@
 /processorParam:Quality=Best
 /build:SoundShock.wav
 
+#begin SoundCastBolt.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundCastBolt.wav
+

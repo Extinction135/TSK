@@ -143,6 +143,7 @@ namespace DungeonRun
         public static SoundEffectInstance sfxEnemyTaunt;
         public static SoundEffectInstance sfxRatSqueak;
         public static SoundEffectInstance sfxShock;
+        public static SoundEffectInstance sfxCastBolt;
 
         #endregion
 
@@ -356,11 +357,12 @@ namespace DungeonRun
             sfxEnemyTaunt = enemyTauntSrc.CreateInstance();
             SoundEffect ratSqueakSrc = content.Load<SoundEffect>(@"SoundRatSqueak");
             sfxRatSqueak = ratSqueakSrc.CreateInstance();
-            //
             SoundEffect shockSrc = content.Load<SoundEffect>(@"SoundShock");
             sfxShock = shockSrc.CreateInstance();
+            SoundEffect castBoltSrc = content.Load<SoundEffect>(@"SoundCastBolt");
+            sfxCastBolt = castBoltSrc.CreateInstance();
+            //sfxCastBolt
 
-            //sfxShock
 
             #endregion
 

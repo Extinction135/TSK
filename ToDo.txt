@@ -88,41 +88,13 @@ Prep for 0.73 release and media (target: tonight).
 
 
 
+CastBolt Sfx++
 
-
-LightningBolt
-
-added lightning bolt sprite into entities spritesheet.
-added projectile objType value, added animFrames.
-added into obj.setType, battle(), interactions().
-
-created power level 1 and 2 concepts of destruction.
-level 1 = Obj.HandleCommon().
-level 2 = Obj.BlowUp().
-
-explosions and lightning bolts seem like they would
-be on the same power level, so we need to move 
-explosion's destruction routines into a more general
-method, that explosions AND lightning bolt can call,
-named Obj.BlowUp(). done.
-
-added in savedata boolean for bolt magic.
-now for sale. added into useItem().
-added menuItem sprite + obj.
-
-tested, working as expected.
-fixed bug not rotating bolt projectile
-properly. fixed bug putting caster into
-reward state instead of use state.
-
-added sound shock to projects.
-linked up bolt to play shocksfx.
-
-Roof Bug: if roof touches lightning bolt, 
-roof should collapse. done. working as expected.
-
-
-
+added SoundCastBolt to projects.
+added to assets. linked up to casting
+bolt - aaaaaand it sounds bad. so, we'll
+leave it around for now, and maybe reuse 
+it in the future.
 
 
 
@@ -135,8 +107,8 @@ roof should collapse. done. working as expected.
 
 SoundFX++
 
-boss tailwhip = cast bolt initial
-ether = sound fx for casting bombos
+(from sfx library)
+ether = sound fx for initial casting bombos
 
 whenever bombos PLACES a bomb, play the same
 soundfx that we play when hero places a bomb down.
@@ -150,18 +122,15 @@ explosions sfx anymore.
 
 
 
+Playtest + Release 0.73
 
+update uwp project.
+playtest dx and uwp projects.
+playtest uwp on xbox one.
+setup v0.73 for release.
 
-
-
-
-
-
-
-
-
-Record playthru, create gifs for readme.
-soft release v0.73 to readme + dropbox.
+record playthru, create gifs for readme.
+release v0.73 to readme + dropbox.
 
 
 

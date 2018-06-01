@@ -609,14 +609,14 @@ namespace DungeonRun
             for(i = 1; i < 8; i++)
             {
                 Spawn(ObjType.ProjectileLightningBolt,
-                        Caster.compSprite.position.X + offset.X * i,
-                        Caster.compSprite.position.Y + offset.Y * i,
-                        Caster.direction);
+                    Caster.compSprite.position.X + offset.X * i,
+                    Caster.compSprite.position.Y + offset.Y * i,
+                    Caster.direction);
             }
 
             //play the lightning bolt soundfx
-
-
+            //Assets.Play(Assets.sfxCastBolt);
+            //this actually sounds bad, oops
         }
 
 
