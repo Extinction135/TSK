@@ -87,33 +87,13 @@ Prep for 0.73 release and media (target: tonight).
 
 
 
+Readme++
+
+updated readme again with latest additions.
+recorded v0.73 playthru, posted to youtube
+privately, linked to via readme.
 
 
-Test & Release 0.73
-
-playtested on pc, working fine.
-playtested on xbox one, working fine,
-with a few notes...
-
-dungeon entrance level frametime: 7-8ms.
-town frametime: 5-6ms.
-bombos on town/forest put frametimes >32ms,
-causing significant slowdown and stuttering,
-but the game always recovered post-bombos.
-
-ram grows to 422mb whenever a level is first
-loaded - is this delayed loading of xml / conversion
-to roomData? i dunno. but not sure if it happens
-on pc. grew to 479mb when creating dungeon.
-
-at full aggro boss pushes frametimes up to
-12-14ms per frame - due to the seeker enemies
-being actors. this frametime shouldl drop
-dramatically when these enemies are converted
-to roomObjects.
-
-updated readme with 0.73 links.
-removed 0.7 links.
 
 
 
@@ -121,12 +101,17 @@ removed 0.7 links.
 
 Readme++
 
-record playthru via obs with voiceover.
 create gifs for readme.
-create youtube video for readme.
 
-
-
+how to create better gifs:
+instead of editing gifs together in photoshop (long
+and slow process) lets just do it as a video edit in
+afx, which means we can leverage motiongraphics into
+the gifs (animated text anyone?). once we're happy 
+with the short video, render it out, then simply
+SCREEN CAPTURE THE VIDEO using licecap, which has
+great compression already, but we can re-comp it
+via photoshop if we want to.. perfect!
 
 
 

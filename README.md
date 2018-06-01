@@ -9,11 +9,13 @@
 ![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/0p72miyamoto.gif)  
 more gifs coming soon..  
 
+v0.73 video: https://youtu.be/armZUYhgC6E   
+
 
 ## Overview  
-+ Gameplay and Design is discussed in Design.md.
-+ Daily tasks/commits are planned and organized in ToDo.txt.
-+ The history of commits is available back to the initial push.
++ Gameplay and Design is discussed in Design.md.  
++ Daily tasks/commits are planned and organized in ToDo.txt.  
++ The history of commits is available back to the initial push.  
 
 
 ## Playing the Game
@@ -43,16 +45,17 @@ more gifs coming soon..
 
 
 ## What's Available in the Current Version
-+ 1 Randomly Generated Dungeon with 1 enemy type and boss.  
-+ 5 items, 3 weapons, 2 armor pieces, 1 equipment piece.  
-+ 1 shop level, with 5 vendors, and a dog companion.  
++ 1 Randomly Generated Dungeon (with about 35 handmade rooms) with multiple enemies, a miniboss, and a 3 phase dungeon boss.  
++ 15 items (boomerang, bomb, bow + arrow, 3 bottles, fireball magic, bombos magic, lightning bolt magic, sword, net, shovel, tunic, shawl, & ring).  
++ 3 levels, with vendors, npcs, and 1 side quest. And a dog companion. And chickens.  
 
 
 ## Contributing 
 + Development is very active and messy right now.  
-+ PLEASE do not contribute to or discuss this project.
-+ Nintendo has a habit of sending Cease & Desist letters.
-+ So Rule #1 is Dont Discuss DungeonRun. Or this will go private.
++ This is a passion project of mine, I'm not doing this for money.  
++ Please, please, please help me keep this quiet until it's done (version 1.0).  
++ If too many people notice this, it's likely Nintendo will notice this as well.   
++ And Nintendo has a habit of sending Cease & Desist letters to fan games...  
 + For Real: https://gamingreinvented.com/nintendoarticles/top-ten-nintendo-fanworks-cancelled-due-legal-complaints/  
 
 
