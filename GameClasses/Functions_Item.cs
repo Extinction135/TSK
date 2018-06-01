@@ -89,7 +89,6 @@ namespace DungeonRun
                 //cast bombos
                 Functions_Projectile.Spawn(ObjType.ProjectileBombos, Actor.compMove, Actor.direction);
                 Functions_Actor.SetRewardState(Pool.hero);
-                Assets.Play(Assets.sfxExplosionsMultiple);
             }
             else if (Type == MenuItemType.MagicBolt)
             {

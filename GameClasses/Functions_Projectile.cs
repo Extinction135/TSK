@@ -37,11 +37,19 @@ namespace DungeonRun
             pro.compMove.moving = true;
             Functions_GameObject.SetType(pro, Type);
 
+            //certain projectiles are only spawned using this spawn method
             if(Type == ObjType.ProjectileLightningBolt)
             {   //push bolts a little bit, play sfx
                 Functions_Movement.Push(pro.compMove, Dir, 2.0f);
                 Assets.Play(Assets.sfxShock);
             }
+            //other projectiles partially-impement spawn routines from other spawn method
+            else if (Type == ObjType.ProjectileBomb)
+            {
+                Assets.Play(Assets.sfxBombDrop);
+            }
+
+
 
             HandleBehavior(pro);
         }
@@ -313,6 +321,16 @@ namespace DungeonRun
             #endregion
 
 
+            #region Bombos
+
+            else if (Type == ObjType.ProjectileBombos)
+            {   //play casting soundfx
+                Assets.Play(Assets.sfxCastBombos);
+            }
+
+            #endregion
+
+
             HandleBehavior(pro);
             if (pushLines) { Functions_Particle.SpawnPushFX(Caster, Dir); }
         }
@@ -524,6 +542,12 @@ namespace DungeonRun
                         Camera2D.currentPosition.X + Functions_Random.Int(-16 * 22, 16 * 22),
                         Camera2D.currentPosition.Y + Functions_Random.Int(-16 * 12, 16 * 12));
                 }
+                //when bombos reaches a certain age, play multiple explosions sfx
+                //this plays right around the time bombs should start exploding
+                //and again when the first sfx ends, keeping bombs sounds going on
+                //this helps to increase the overall awesomeness of bombos
+                if(Pro.lifeCounter == 60 || Pro.lifeCounter == 160)
+                { Assets.Play(Assets.sfxExplosionsMultiple); }
             }
 
             #endregion

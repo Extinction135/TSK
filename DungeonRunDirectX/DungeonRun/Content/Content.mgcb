@@ -533,3 +533,9 @@
 /processorParam:Quality=Best
 /build:SoundCastBolt.wav
 
+#begin SoundCastBombos.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundCastBombos.wav
+

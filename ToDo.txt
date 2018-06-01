@@ -88,32 +88,35 @@ Prep for 0.73 release and media (target: tonight).
 
 
 
-CastBolt Sfx++
-
-added SoundCastBolt to projects.
-added to assets. linked up to casting
-bolt - aaaaaand it sounds bad. so, we'll
-leave it around for now, and maybe reuse 
-it in the future.
-
-
-
-
-
-
-
-
-
-
 SoundFX++
 
-(from sfx library)
-ether = sound fx for initial casting bombos
+added SoundCastBombos to projects.
+added to assets, linked up to casting
+routines in game. sounds good.
 
-whenever bombos PLACES a bomb, play the same
-soundfx that we play when hero places a bomb down.
-there should be tons of them. *dont play the initial
-explosions sfx anymore.
+upgraded Projectile.Spawn() to play
+bomb dropping sfx each time a bomb is
+created via the B spawn method.
+this drastically improves the soundfx
+for bombos, which now sounds like a 
+autorifle firing for a bit, then
+just explosions.
+
+shortened explosion soundfx.
+upgraded bombos projectile to play
+multiple explosions sfx twice during 
+it's lifetime: once early when bombs
+start exploding, and then again when
+the first multi-explosion sfx ends.
+this has the effect of making it sound
+like there are multiple bombs going off
+at once - because spamming the explosion
+sfx via explosion comes across as a 
+rhythmic, monotonous drumbeat - instead
+of a chaotic frenzy of noise.
+
+
+
 
 
 
