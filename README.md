@@ -5,7 +5,7 @@
 + OpenGL port coming soon.  
 
 
-## Version 0.7.2 - 2018.05.18  
+## Version 0.7.3 - 2018.05.31  
 ![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/0p72miyamoto.gif)  
 more gifs coming soon..  
 
@@ -17,9 +17,9 @@ more gifs coming soon..
 
 
 ## Playing the Game
-+ Version 0.7 is now available and awesome.  
-+ DirectX: https://www.dropbox.com/s/7xbn0gc85kkt73c/DungeonRun0p7_DirectX.zip?dl=0  
-+ UWP: https://www.dropbox.com/s/hf63o4mg0xa6hmk/DungeonRun0p7_UWP.zip?dl=0  
++ Version 0.73 is now available and awesome.  
++ DirectX: https://www.dropbox.com/s/myzz0h6y0v7vjgp/DungeonRun0p73_DirectX.zip?dl=0   
++ UWP: https://www.dropbox.com/s/8iormmmm5yjo8aq/DungeonRun0p73_UWP.zip?dl=0  
 + You can sideload the UWP version onto your Xbox one using this guide: https://gbatemp.net/threads/how-to-sideload-dungeonrun-indie-game-on-xbox-one.470374/  
 
 

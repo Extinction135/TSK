@@ -6,7 +6,7 @@
     <UseAuthentication>false</UseAuthentication>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <RemoteDebugEnabled>true</RemoteDebugEnabled>
+    <RemoteDebugEnabled>false</RemoteDebugEnabled>
     <AuthenticationMode>Universal</AuthenticationMode>
     <CreateCleanLayout>true</CreateCleanLayout>
     <RemoteDebugMachine>192.168.0.6</RemoteDebugMachine>
@@ -14,7 +14,7 @@
     <AllowLocalNetworkLoopback>false</AllowLocalNetworkLoopback>
   </PropertyGroup>
   <PropertyGroup>
-    <AppxPackageIsForStore>True</AppxPackageIsForStore>
+    <AppxPackageIsForStore>False</AppxPackageIsForStore>
     <AppxShowAllApps>True</AppxShowAllApps>
     <AppxBuildConfigurationSelection>x64</AppxBuildConfigurationSelection>
   </PropertyGroup>

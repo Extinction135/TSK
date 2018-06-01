@@ -88,52 +88,42 @@ Prep for 0.73 release and media (target: tonight).
 
 
 
-SoundFX++
 
-added SoundCastBombos to projects.
-added to assets, linked up to casting
-routines in game. sounds good.
+Test & Release 0.73
 
-upgraded Projectile.Spawn() to play
-bomb dropping sfx each time a bomb is
-created via the B spawn method.
-this drastically improves the soundfx
-for bombos, which now sounds like a 
-autorifle firing for a bit, then
-just explosions.
+playtested on pc, working fine.
+playtested on xbox one, working fine,
+with a few notes...
 
-shortened explosion soundfx.
-upgraded bombos projectile to play
-multiple explosions sfx twice during 
-it's lifetime: once early when bombs
-start exploding, and then again when
-the first multi-explosion sfx ends.
-this has the effect of making it sound
-like there are multiple bombs going off
-at once - because spamming the explosion
-sfx via explosion comes across as a 
-rhythmic, monotonous drumbeat - instead
-of a chaotic frenzy of noise.
+dungeon entrance level frametime: 7-8ms.
+town frametime: 5-6ms.
+bombos on town/forest put frametimes >32ms,
+causing significant slowdown and stuttering,
+but the game always recovered post-bombos.
 
+ram grows to 422mb whenever a level is first
+loaded - is this delayed loading of xml / conversion
+to roomData? i dunno. but not sure if it happens
+on pc. grew to 479mb when creating dungeon.
 
+at full aggro boss pushes frametimes up to
+12-14ms per frame - due to the seeker enemies
+being actors. this frametime shouldl drop
+dramatically when these enemies are converted
+to roomObjects.
+
+updated readme with 0.73 links.
+removed 0.7 links.
 
 
 
 
 
+Readme++
 
-
-
-
-Playtest + Release 0.73
-
-update uwp project.
-playtest dx and uwp projects.
-playtest uwp on xbox one.
-setup v0.73 for release.
-
-record playthru, create gifs for readme.
-release v0.73 to readme + dropbox.
+record playthru via obs with voiceover.
+create gifs for readme.
+create youtube video for readme.
 
 
 
