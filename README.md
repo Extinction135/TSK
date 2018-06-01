@@ -6,8 +6,7 @@
 
 
 ## Version 0.7.3 - 2018.05.31  
-![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/0p72miyamoto.gif)  
-more gifs coming soon..  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/0p73.gif)  
 
 v0.73 video: https://youtu.be/armZUYhgC6E   
 

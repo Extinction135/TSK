@@ -83,35 +83,17 @@ and clear that inventory item when link enters a new room (pre-build).
 TODAY:
 
 
-Prep for 0.73 release and media (target: tonight).
 
+v0.73 Gif
 
-
-Readme++
-
-updated readme again with latest additions.
-recorded v0.73 playthru, posted to youtube
-privately, linked to via readme.
+created gif for readme.
+updated readme.
 
 
 
 
 
 
-
-Readme++
-
-create gifs for readme.
-
-how to create better gifs:
-instead of editing gifs together in photoshop (long
-and slow process) lets just do it as a video edit in
-afx, which means we can leverage motiongraphics into
-the gifs (animated text anyone?). once we're happy 
-with the short video, render it out, then simply
-SCREEN CAPTURE THE VIDEO using licecap, which has
-great compression already, but we can re-comp it
-via photoshop if we want to.. perfect!
 
 
 
