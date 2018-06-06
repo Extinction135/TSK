@@ -79,26 +79,20 @@ v0.74 - The Colliseum
 
 
 
-Editor+++
+Editor++
 
-designed a new editor, created mockups.
-the design goal of this change was simply to be able
-to handle more roomObjects in an easier way, based on
-the discovery of many workflow problems, like adding
-or modifying objects underneath widgets while still
-trying to control their input.
+added buttons for forest, colliseum level types.
+added mockup buttons for additional level types.
+split notes into notes + controls.
+using controls widget, added button for light
+world / dark world setting for levels.
+added button mockups for health and magic
+modifiers (per room), an idea that may/not
+be implemented later...
 
-the new approach is to move the object widgets into
-their own screen, which can be shown based on a button
-press, removing the various obj widget states,
-simplifying that - plus input will only be processed
-on the screen and could never affect objects in the
-game world, which solves two problems. the redesign
-also allows for two new obj widgets, for which we 
-don't have objects for yet - and it adds a nice 'notes'
-section to let editors know there is a faster way 
-to work using shortcut keys along the top row of
-a standard us keyboard.
+added a dedicated widget for developing objects.
+this makes it a bit easier to test certain things
+that don't fit into other categories.
 
 
 
@@ -107,7 +101,11 @@ a standard us keyboard.
 
 
 
-this should implement the editor ui screen idea.
+
+
+
+
+implement the editor ui screen idea.
 
 press & HOLD spacebar to show a screen, where objs
 can be selected, and displayed objs can be changed,
