@@ -73,29 +73,13 @@ v0.74 - The Colliseum
 
 
 
+Colliseum Sheet
 
-
-Repack++
-
-based on current colliseum planning, we need a
-2nd level sheet to properly implement it, which 
-means we need to really plan what the world and
-dungeon sections contain. based on this new plan,
-certain objects need to be moved around in the
-level sheet, prior to creating colliseum sheet.
-
-moved skull pillar & bed objs out of new
-"reserved" area in level sprite sheet.
-moved world enemies past room obj area into 
-designated enemy area. moved NPCs to be
-located underneath world enemies.
-
-Bed++ 
-created animFrame for dungeon bed, which is
-the dirty sprite version of the normal clean
-bed object. 
-
-updated sheets for Dx + UWP + animFrame defs.
+added colliseum sheet to project + assets.
+however, we can't really use anything on the
+colliseum sheet until we figure out a better way 
+to handle editing level types in editor.
+so - we need to drastically upgrade editor.
 
 
 
@@ -104,74 +88,15 @@ updated sheets for Dx + UWP + animFrame defs.
 
 
 
+we need to update / redesign the editor to allow
+for creation of different level types, along with
+light world and dark world level types.
 
-
-
-
-
-
-
-
-
-
-
-
-
-Dreams (Ideas)
-
-clean beds appear in overworld levels (only
-light world). dirty beds appear in dungeons
-and in dark world. based on what level
-the bed is on, it can cause different 
-kinds of dreams.
-
-clean bed: premonition dreams, which guide the
-player towards the intended objective or goal
-functioning similar to lttp's fortune teller.
-this is concept art + music + dialog.
-
-dirty bed, light world dungeon: creepy to weird
-dreams, no premonitions, music / sounds with
-black screen, concept art, random NPCs saying
-random things or having non-sensical conversations.
-mostly harmless and just kinda weird.
-
-dirty bed, darkworld level: entrance to a randomly
-generated dream-world dungeon, where link's objective
-is to escape (find exit). Random enemies are chosen
-for rooms, along with random dungeon textures for
-each room. NPCs may be added to rooms randomly too,
-which would spout gibberish from randomly combined
-sentences and words. dying in the dungeon would
-end the dream, as would finding the exit.
-
-dirty bed, darkworld dungeon: why would you sleep
-there? WHY? because this bed creates nightmares.
-nightmares are special boss fights that are only 
-accessible via this manner, and are incredibly
-overpowered and meant to be unbeatable (unless
-using cheats, lol) - but they don't affect hero's
-rating or inventory post-dream. not all dreams
-in these beds are nightmares, only rarely does
-a nightmare appear - most of the time it's just 
-the creepy dreams.
-
-this makes beds become actually interesting 
-objects, instead of just interior building decorations.
-note that modifiers can be applied to dreams,
-and ceertainly will be to nightmares, where the hero
-only has certain equipment, or can only have 1
-heatlh max, or has infinite health, or inf magic,
-etc...
-
-
-
-
-
-
-
-
-
+we can model light/dark with a boolean in the level data.
+this is something we'll need to add to existing levels, 
+defaulting to light world (since we dont have any dark 
+world levels yet!) which means we'll need to update the
+level xml and the routines that write the xmlt to cs.
 
 
 

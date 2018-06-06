@@ -32,10 +32,15 @@ namespace DungeonRun
         //pets sheet
         public static Texture2D petsSheet;
 
-        //world/ui/screen sheets
+        //ui/screen sheets
         public static Texture2D entitiesSheet;
-        public static Texture2D forestLevelSheet;
         public static Texture2D uiItemsSheet;
+
+        //world sheets
+        public static Texture2D forestLevelSheet;
+        public static Texture2D colliseumLevelSheet;
+
+
 
         public static Texture2D bigTextSheet;
         public static Texture2D overworldSheet;
@@ -181,16 +186,17 @@ namespace DungeonRun
             //pets sheet
             petsSheet = content.Load<Texture2D>(@"PetsSheet");
 
-            //world/ui/screen sheets
+            //ui + screen sheets
             bigTextSheet = content.Load<Texture2D>(@"BigTextSheet");
             overworldSheet = content.Load<Texture2D>(@"OverworldTexture");
             titleBkgSheet = content.Load<Texture2D>(@"TitleBkg");
-
-            //dungeon textures
             entitiesSheet = content.Load<Texture2D>(@"EntitiesSheet");
-            forestLevelSheet = content.Load<Texture2D>(@"ForestLevelSheet");
             uiItemsSheet = content.Load<Texture2D>(@"UiItemsSheet");
 
+            //world sheets
+            forestLevelSheet = content.Load<Texture2D>(@"ForestLevelSheet");
+            colliseumLevelSheet = content.Load<Texture2D>(@"ColliseumLevelSheet");
+            
             //load all roomData
             //Functions_Backend.LoadAllRoomData();
 
