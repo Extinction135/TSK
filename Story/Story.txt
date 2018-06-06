@@ -73,8 +73,9 @@ Link arrives at the Coliseum. This is where 'training' happens.
 Quest: Complete Training
 
 "you know what you're doing, right?" - colliseum npc
-A) yes B) no -> training dialog
+A) yes B) no, teach me -> training dialog
 
+*modifier active: infinite health
 this teaches the player the basics of the game, like movement, attacking, item usage.
 player fights thru a few rooms leading up to a simple boss.
 these rooms teach the player BASICS about items too - using boomerangs to trigger things for example.
@@ -83,6 +84,8 @@ upon beating the boss, link is rewarded with the Colliseum Pass.
 this gives Link access to the other features of the Colliseum.
 more importantly, this ends the level and opens the overworld map up to the player.
 link spawns at the colliseum.
+
+***this is where we 'jump' to if we skip the tutorial.
 
 
 #Scene3 - OPEN MAP

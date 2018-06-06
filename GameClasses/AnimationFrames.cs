@@ -49,7 +49,7 @@ namespace DungeonRun
 
 
         public static List<Byte4> Dungeon_Statue = new List<Byte4> { new Byte4(8, 3, 0, 0) };
-        public static List<Byte4> Dungeon_SkullPillar = new List<Byte4> { new Byte4(0, 3, 0, 0) };
+        public static List<Byte4> Dungeon_SkullPillar = new List<Byte4> { new Byte4(15, 3, 0, 0) };
 
         public static List<Byte4> Dungeon_Fairy = new List<Byte4> { new Byte4(9, 3, 0, 0), new Byte4(10, 3, 0, 0) };
         public static List<Byte4> Dungeon_BossKey = new List<Byte4> { new Byte4(12, 3, 0, 0) };
@@ -131,10 +131,17 @@ namespace DungeonRun
         public static List<Byte4> Dungeon_ConveyorBeltOn = new List<Byte4> { new Byte4(11, 9, 0, 0), new Byte4(12, 9, 0, 0) };
         public static List<Byte4> Dungeon_ConveyorBeltOff = new List<Byte4> { new Byte4(12, 9, 0, 0) };
 
+        public static List<Byte4> Dungeon_Bed = new List<Byte4> { new Byte4(8, 6, 0, 0) };
+
+
+
+
+
+
+
         public static List<Byte4> Dungeon_SpawnMob = new List<Byte4> { new Byte4(13, 9, 0, 0) };
         public static List<Byte4> Dungeon_SpawnMiniBoss = new List<Byte4> { new Byte4(14, 9, 0, 0) };
-
-        //public static List<Byte4> Dungeon_DebrisSmall = new List<Byte4> { new Byte4(15*2, 9*2, 0, 0) }; //modified later
+        
 
 
         #endregion
@@ -172,7 +179,7 @@ namespace DungeonRun
         public static List<Byte4> Wor_Sink = new List<Byte4> { new Byte4(4, 15, 0, 0) };
         public static List<Byte4> Wor_Chair = new List<Byte4> { new Byte4(6, 15, 0, 0) };
 
-        public static List<Byte4> Wor_Bed = new List<Byte4> { new Byte4(1, 3, 0, 0) };
+        public static List<Byte4> Wor_Bed = new List<Byte4> { new Byte4(7, 6, 0, 0) };
 
 
 
@@ -244,27 +251,36 @@ namespace DungeonRun
         public static List<Byte4> Wor_Build_Roof_Bottom = new List<Byte4> { new Byte4(7, 8, 0, 0) };
         public static List<Byte4> Wor_Build_Roof_Chimney = new List<Byte4> { new Byte4(7, 11, 0, 0) };
 
+
+        #endregion
+
+
+
+
+        #region World Enemies
+
         //enemies
         public static List<Byte4> Wor_Enemy_Turtle = new List<Byte4>
-        { new Byte4(0, 13, 0, 0), new Byte4(1, 13, 0, 0) };
+        { new Byte4(16, 13, 0, 0), new Byte4(17, 13, 0, 0) };
 
         public static List<Byte4> Wor_Enemy_Crab = new List<Byte4>
-        { new Byte4(2, 13, 0, 0), new Byte4(3, 13, 0, 0) };
+        { new Byte4(18, 13, 0, 0), new Byte4(19, 13, 0, 0) };
 
         //rat enemy has directional animFrames
         public static List<Byte4> Wor_Enemy_Rat_Up = new List<Byte4>
-        { new Byte4(3, 12, 0, 0), new Byte4(3, 12, 1, 0) };
+        { new Byte4(19, 12, 0, 0), new Byte4(19, 12, 1, 0) };
         public static List<Byte4> Wor_Enemy_Rat_Right = new List<Byte4>
-        { new Byte4(1, 12, 0, 0), new Byte4(2, 12, 0, 0) };
+        { new Byte4(17, 12, 0, 0), new Byte4(18, 12, 0, 0) };
         public static List<Byte4> Wor_Enemy_Rat_Down = new List<Byte4>
-        { new Byte4(0, 12, 0, 0), new Byte4(0, 12, 1, 0) };
+        { new Byte4(16, 12, 0, 0), new Byte4(16, 12, 1, 0) };
         public static List<Byte4> Wor_Enemy_Rat_Left = new List<Byte4>
-        { new Byte4(1, 12, 1, 0), new Byte4(2, 12, 1, 0) };
-
-
+        { new Byte4(17, 12, 1, 0), new Byte4(18, 12, 1, 0) };
 
 
         #endregion
+
+
+
 
 
 
@@ -463,18 +479,18 @@ namespace DungeonRun
 
         #region Vendors & NPCs
 
-        public static List<Byte4> Vendor_Items = new List<Byte4> { new Byte4(0, 14, 0, 0), new Byte4(0, 14, 1, 0) };
-        public static List<Byte4> Vendor_Potions = new List<Byte4> { new Byte4(1, 14, 0, 0), new Byte4(1, 14, 1, 0) };
-        public static List<Byte4> Vendor_Magic = new List<Byte4> { new Byte4(2, 14, 0, 0), new Byte4(2, 14, 1, 0) };
-        public static List<Byte4> Vendor_Weapons = new List<Byte4> { new Byte4(3, 14, 0, 0), new Byte4(3, 14, 1, 0) };
-        public static List<Byte4> Vendor_Armor = new List<Byte4> { new Byte4(4, 14, 0, 0), new Byte4(4, 14, 1, 0) };
-        public static List<Byte4> Vendor_Equipment = new List<Byte4> { new Byte4(5, 14, 0, 0), new Byte4(5, 14, 1, 0) };
-        public static List<Byte4> Vendor_Pets = new List<Byte4> { new Byte4(6, 14, 0, 0), new Byte4(6, 14, 1, 0) };
+        public static List<Byte4> Vendor_Items = new List<Byte4> { new Byte4(16, 14, 0, 0), new Byte4(16, 14, 1, 0) };
+        public static List<Byte4> Vendor_Potions = new List<Byte4> { new Byte4(17, 14, 0, 0), new Byte4(17, 14, 1, 0) };
+        public static List<Byte4> Vendor_Magic = new List<Byte4> { new Byte4(18, 14, 0, 0), new Byte4(18, 14, 1, 0) };
+        public static List<Byte4> Vendor_Weapons = new List<Byte4> { new Byte4(19, 14, 0, 0), new Byte4(19, 14, 1, 0) };
+        public static List<Byte4> Vendor_Armor = new List<Byte4> { new Byte4(20, 14, 0, 0), new Byte4(20, 14, 1, 0) };
+        public static List<Byte4> Vendor_Equipment = new List<Byte4> { new Byte4(21, 14, 0, 0), new Byte4(21, 14, 1, 0) };
+        public static List<Byte4> Vendor_Pets = new List<Byte4> { new Byte4(22, 14, 0, 0), new Byte4(22, 14, 1, 0) };
 
-        public static List<Byte4> Vendor_Story = new List<Byte4> { new Byte4(7, 14, 0, 0), new Byte4(7, 14, 1, 0) };
+        public static List<Byte4> Vendor_Story = new List<Byte4> { new Byte4(23, 14, 0, 0), new Byte4(23, 14, 1, 0) };
 
-        public static List<Byte4> NPC_Farmer = new List<Byte4> { new Byte4(8, 14, 0, 0), new Byte4(8, 14, 1, 0) };
-        public static List<Byte4> NPC_Farmer_HandsUp = new List<Byte4> { new Byte4(8, 14, 0, 0), new Byte4(9, 14, 0, 0) };
+        public static List<Byte4> NPC_Farmer = new List<Byte4> { new Byte4(24, 14, 0, 0), new Byte4(24, 14, 1, 0) };
+        public static List<Byte4> NPC_Farmer_HandsUp = new List<Byte4> { new Byte4(24, 14, 0, 0), new Byte4(25, 14, 0, 0) };
 
         #endregion
 

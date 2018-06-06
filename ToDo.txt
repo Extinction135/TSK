@@ -45,25 +45,270 @@ Phase 2 - version 0.8 to 1.0
 	
 	
 	
-v0.8 goals
+Milestones
 
-- mountain dungeon (diff enemies, boss, dungeon sprites)
-
-- Non-room repeating Dungeon, additional rooms
-- Blob AI improvements - sword, bomb based on weapon / item loadout 
-
-- room keys - these only work for the room and only unlock 1 door, and
-these rooms turn all their doors into locked doors upon close, similar to puzzled rooms
-link doesn't put them into inventory - he literally picks them up and walks over
-to a locked door then throws the key at it.
-this is kinda like super mario world style key gameplay.
-if obj.type == key & obj.hitBox.intersects lockedDoor.hitBox,
-convert lockedDoor to openDoor, release() key.
-- or - we put the key as a menuItem in inventory,
-and clear that inventory item when link enters a new room (pre-build).
+colliseum implemented
+farming + seeds + crops implemented
+dark world, transitions to and from
+mountain levels and dungeons (diff sprite sheet)
+tutorial intro
+basic narrative structure up to fight with king
+king boss
+modifiers - like cheats, but enabled by game
+(this allows us to do stuff like make sure player
+can't die in the tutorial section, or ensure that
+player's health never goes above 1 in the trials).
 
 
-0.9
+
+
+
+
+
+
+
+
+
+v0.74 - The Colliseum
+
+
+
+
+
+Repack++
+
+based on current colliseum planning, we need a
+2nd level sheet to properly implement it, which 
+means we need to really plan what the world and
+dungeon sections contain. based on this new plan,
+certain objects need to be moved around in the
+level sheet, prior to creating colliseum sheet.
+
+moved skull pillar & bed objs out of new
+"reserved" area in level sprite sheet.
+moved world enemies past room obj area into 
+designated enemy area. moved NPCs to be
+located underneath world enemies.
+
+Bed++ 
+created animFrame for dungeon bed, which is
+the dirty sprite version of the normal clean
+bed object. 
+
+updated sheets for Dx + UWP + animFrame defs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Dreams (Ideas)
+
+clean beds appear in overworld levels (only
+light world). dirty beds appear in dungeons
+and in dark world. based on what level
+the bed is on, it can cause different 
+kinds of dreams.
+
+clean bed: premonition dreams, which guide the
+player towards the intended objective or goal
+functioning similar to lttp's fortune teller.
+this is concept art + music + dialog.
+
+dirty bed, light world dungeon: creepy to weird
+dreams, no premonitions, music / sounds with
+black screen, concept art, random NPCs saying
+random things or having non-sensical conversations.
+mostly harmless and just kinda weird.
+
+dirty bed, darkworld level: entrance to a randomly
+generated dream-world dungeon, where link's objective
+is to escape (find exit). Random enemies are chosen
+for rooms, along with random dungeon textures for
+each room. NPCs may be added to rooms randomly too,
+which would spout gibberish from randomly combined
+sentences and words. dying in the dungeon would
+end the dream, as would finding the exit.
+
+dirty bed, darkworld dungeon: why would you sleep
+there? WHY? because this bed creates nightmares.
+nightmares are special boss fights that are only 
+accessible via this manner, and are incredibly
+overpowered and meant to be unbeatable (unless
+using cheats, lol) - but they don't affect hero's
+rating or inventory post-dream. not all dreams
+in these beds are nightmares, only rarely does
+a nightmare appear - most of the time it's just 
+the creepy dreams.
+
+this makes beds become actually interesting 
+objects, instead of just interior building decorations.
+note that modifiers can be applied to dreams,
+and ceertainly will be to nightmares, where the hero
+only has certain equipment, or can only have 1
+heatlh max, or has infinite health, or inf magic,
+etc...
+
+
+
+
+
+
+
+
+
+
+
+
+(two) entrance to the colliseum.
+one is obvs, the other is hidden behind a tree!
+
+we need a obj widget for colliseum objs!
+which means we need a button to switch obj widget displays to colliseum.
+which means we need to migrate the shortcuts to buttons.
+we could do this much easier with an editor options screen,
+available by pressing the spacebar... which would
+also prevent any unplanned world input under the widgets..
+because the input would be limited to the screen.
+
+
+
+
+Colliseum
+
+contains NPCs and objects which lead to challenges or
+sub-games within the main overall game. these challenges
+are separate from the main game and do not / cannot affect
+plotlines in any meaningful way. there will also be a dark
+world colliseum, with darker and different challenges.
+
+
+
+
+colliseum needs to be on a separate sheet.
+this means we will be implementing the 2nd level sheet.
+
+this means editor needs to be able to switch between
+outside and colliseum sprite sheets. THE OBJECTS STAY
+THE SAME.
+
+
+
+
+
+NPCs are implemented uniquely.
+roomObjects are implemented generally, against a sprite sheet.
+
+
+
+
+
+
+
+
+Training / Instructor NPC
+
+initially trains link - setup the training NPC.
+this is the only NPC outside the colliseum entrance.
+without the colliseum pass, link cannot enter the colliseum.
+this is an object (colliseum door) that link interacts with.
+plus, we need a facade of building sprites/objs outside
+to indicate that the colliseum is a large structure.
+when link interacts with the colliseum door, the
+colliseum interior level is loaded. 
+
+this is the first non-dungeon chain of levels.
+and this can go on for as long as we want, adding
+entrances to different levels/dungeons to the
+interior colliseum level, along with tons of NPCs.
+
+these colliseum NPCs can each represent a different
+sub-game within the normal game, like The Trials.
+
+
+
+
+
+
+
+
+Battle Instructor NPC
+
+we need a battle instructor NPC that stands in front of an object
+that spawns blob actors on a regular cycle.
+NPC has dialog like:
+wanna learn how to fight? A/B
+to attack, equip a weapon from your inventory and press X.
+to use or cast, equip an item from your inventory and press Y.
+while moving, press B to dash.
+it's important to master this dashing skill.
+try dashing into an attack, then dashing out.
+the quicker you are, the less likely to be killed.
+
+
+
+
+
+
+
+
+
+
+Mob Challenges NPC
+
+this is a series of room battles with increasing challenging creature mobs,
+culminating in a battle with Wovles, the only *actually* useful pet in the game.
+this is started by the Mob Challenges NPC.
+this takes place in special 'spectator' rooms, where the walls
+look different and there are animated spectators beyond them.
+anim specs have no collisions/interactions and sort above hero,
+so hero walks under spectators to the next room, via a door.
+
+populate this with enemies
+we have many sprites in dev for this exact challenge
+
+The Wolves
+16x16 wolf actors, with stats similar to link.
+aggressive if health is high, defensive if health is low.
+regenerates 1 health (up to 3) every 255 frames.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+v0.75 - Farming
+
+cut grass should grow into tall grass if near coastlines,
+or filled ditches. implement the idea of seeds, sold by the
+farmer - AFTER link fixes his crops (each time).
+
+
 
 - LIGHT WORLD & DARK WORLD
 - this is different overworld map + different levels + diff sprites
@@ -81,38 +326,6 @@ and clear that inventory item when link enters a new room (pre-build).
 
 
 TODAY:
-
-
-
-v0.73 Gif
-
-created gif for readme.
-updated readme.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
