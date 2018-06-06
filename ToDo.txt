@@ -47,8 +47,8 @@ Phase 2 - version 0.8 to 1.0
 	
 Milestones
 
-colliseum implemented
-farming + seeds + crops implemented
+colliseum implemented, with sub-games + side-quests.
+farming + seeds + crops implemented.
 dark world, transitions to and from
 mountain levels and dungeons (diff sprite sheet)
 tutorial intro
@@ -73,18 +73,63 @@ v0.74 - The Colliseum
 
 
 
-Colliseum Sheet
-
-added colliseum sheet to project + assets.
-however, we can't really use anything on the
-colliseum sheet until we figure out a better way 
-to handle editing level types in editor.
-so - we need to drastically upgrade editor.
 
 
 
 
 
+
+Editor+++
+
+designed a new editor, created mockups.
+the design goal of this change was simply to be able
+to handle more roomObjects in an easier way, based on
+the discovery of many workflow problems, like adding
+or modifying objects underneath widgets while still
+trying to control their input.
+
+the new approach is to move the object widgets into
+their own screen, which can be shown based on a button
+press, removing the various obj widget states,
+simplifying that - plus input will only be processed
+on the screen and could never affect objects in the
+game world, which solves two problems. the redesign
+also allows for two new obj widgets, for which we 
+don't have objects for yet - and it adds a nice 'notes'
+section to let editors know there is a faster way 
+to work using shortcut keys along the top row of
+a standard us keyboard.
+
+
+
+
+
+
+
+
+this should implement the editor ui screen idea.
+
+press & HOLD spacebar to show a screen, where objs
+can be selected, and displayed objs can be changed,
+based on level type, & dark/light world buttons.
+everything on this screen is button based.
+
+
+the screen underneath it displays the top menu, 
+and the obj tools and room tools widgets. the obj
+widgets are gone, replaced with the screen.
+the obj + room tools widgets forcibly take
+input over the game world, so objs can't be
+accessed behind them - same with top menu.
+
+
+
+top menu should become button based, without
+function button input. shortcuts are bad.
+the only shortcuts should be: f1 - display editor
+widgets (top menu, obj, and room tools).
+everything else is accessible from clicking on
+the top menu. 
 
 
 
@@ -100,21 +145,42 @@ level xml and the routines that write the xmlt to cs.
 
 
 
-(two) entrance to the colliseum.
-one is obvs, the other is hidden behind a tree!
 
-we need a obj widget for colliseum objs!
-which means we need a button to switch obj widget displays to colliseum.
-which means we need to migrate the shortcuts to buttons.
-we could do this much easier with an editor options screen,
-available by pressing the spacebar... which would
-also prevent any unplanned world input under the widgets..
-because the input would be limited to the screen.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 
 Colliseum
+
+BUILD THE COLLISEUM LEVEL USING COLLISUM OBJECTS.
+should look like the map representation and seem really
+big. we want buildings larger, more impressive than lttp.
+
+
+
+(two) entrance to the colliseum.
+one is obvs, the other is hidden behind a tree!
+
+
+
 
 contains NPCs and objects which lead to challenges or
 sub-games within the main overall game. these challenges
@@ -211,6 +277,25 @@ The Wolves
 16x16 wolf actors, with stats similar to link.
 aggressive if health is high, defensive if health is low.
 regenerates 1 health (up to 3) every 255 frames.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
