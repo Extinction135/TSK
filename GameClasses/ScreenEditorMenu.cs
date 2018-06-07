@@ -16,11 +16,16 @@ namespace DungeonRun
 {
     public class ScreenEditorMenu : Screen
     {
+        public ScreenRec bkgRec = new ScreenRec();
+
         public ScreenEditorMenu() { this.name = "Editor Menu Screen"; }
 
         public override void LoadContent()
         {
-
+            bkgRec.alpha = 0.0f;
+            bkgRec.fadeInSpeed = 0.12f;
+            bkgRec.maxAlpha = 0.5f;
+            bkgRec.fadeState = FadeState.FadeIn;
         }
 
         public override void HandleInput(GameTime GameTime)
@@ -64,6 +69,12 @@ namespace DungeonRun
 
         public override void Update(GameTime GameTime)
         {
+            //fade overlay in
+            Functions_ScreenRec.Fade(bkgRec);
+            //if (bkgRec.fadeState == FadeState.FadeComplete) { }
+
+
+
             Widgets.ObjectTools.Update();
             Widgets.RoomTools.Update();
 
@@ -77,6 +88,8 @@ namespace DungeonRun
         public override void Draw(GameTime GameTime)
         {
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
+
+            Functions_Draw.Draw(bkgRec);
 
             //draw obj widgets
             Widgets.WidgetObjects_Dungeon.Draw();

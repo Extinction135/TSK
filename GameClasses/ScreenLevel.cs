@@ -61,9 +61,6 @@ namespace DungeonRun
                 }
                 //map player input to hero
                 Functions_Input.MapPlayerInput(Pool.hero.compInput);
-
-
-                if (Flags.EnableTopMenu) { Functions_TopMenu.HandleInput(); }
             }
             else
             {   //screen is not opened, prevent all input mapping
@@ -214,7 +211,6 @@ namespace DungeonRun
             //Draw UI, top menu, debug, & screen fading in/out overlay
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
             Functions_WorldUI.Draw();
-            if (Flags.EnableTopMenu) { Functions_TopMenu.Draw(); } //draw top menu, etc..
 
 
             #region Debug Info

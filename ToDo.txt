@@ -74,15 +74,27 @@ v0.74 - The Colliseum
 
 
 
-Mockups++
 
-updated mockups to match game implementation.
+EditorMenu Screen - Part 5
+
+consolidated functions_topMenu into
+ScreenEditor, removing it from projects.
+
+added bkgRec to editor menu screen, which
+quickly fades in to cover the gameworld.
+this helps to visually reinforce the idea
+that the editor can't add/modify objs
+while on the editor menu screen.
 
 
 
 
 
-EditorMenu Screen - Part 4
+
+
+
+
+EditorMenu Screen - Part 6
 
 add a black overlay to editor menu screen, to help separate it
 from the editor screen.
