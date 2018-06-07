@@ -19,35 +19,6 @@ namespace DungeonRun
 {
     public static class Functions_TopMenu
     {
-        static WidgetDisplaySet prevSet; //allows us to 'unhide' widgets with f3
-
-
-
-        public static void DisplayWidgets(WidgetDisplaySet Set)
-        {
-            if (Set == WidgetDisplaySet.Dungeon)
-            {
-                TopDebugMenu.display = WidgetDisplaySet.Dungeon;
-                //set buttons correctly - dungeon = down, world = up
-                TopDebugMenu.buttons[5].currentColor = Assets.colorScheme.buttonDown;
-                TopDebugMenu.buttons[6].currentColor = Assets.colorScheme.buttonUp;
-            }
-            else if (Set == WidgetDisplaySet.World)
-            {
-                TopDebugMenu.display = WidgetDisplaySet.World;
-                //set buttons correctly - dungeon = up, world = down
-                TopDebugMenu.buttons[6].currentColor = Assets.colorScheme.buttonDown;
-                TopDebugMenu.buttons[5].currentColor = Assets.colorScheme.buttonUp;
-            }
-        }
-
-        
-
-
-
-        
-
-
 
 
         public static void HandleInput()
@@ -103,22 +74,14 @@ namespace DungeonRun
             #region F3 - Hide/Unhide Widgets
 
             if (Functions_Input.IsNewKeyPress(Keys.F3))
-            {   
-                if (TopDebugMenu.display != WidgetDisplaySet.None)
-                {   
-                    //grab the 'previous display set' reference
-                    prevSet = TopDebugMenu.display; 
-                    //set the 'current display set' to none
-                    TopDebugMenu.display = WidgetDisplaySet.None;
-                    //set down state
-                    TopDebugMenu.buttons[2].currentColor = Assets.colorScheme.buttonDown;
+            {
+                if (TopDebugMenu.hideAll == false)
+                {
+                    TopDebugMenu.hideAll = true; //enable hide
                 }
                 else
                 {
-                    //set 'current display set' to previous value
-                    TopDebugMenu.display = prevSet;
-                    //set up state
-                    TopDebugMenu.buttons[2].currentColor = Assets.colorScheme.buttonUp;
+                    TopDebugMenu.hideAll = false;
                 }
             }
 
@@ -155,65 +118,32 @@ namespace DungeonRun
 
 
 
-            //"playtest" mode
-            if (TopDebugMenu.display == WidgetDisplaySet.None)
-            {   //allow editor to use cursor tool
-                Widgets.ObjectTools.HandleInput();
-            }
 
-            //"edit" mode
+
+
+            if (TopDebugMenu.hideAll)
+            {   
+                //all widgets are hidden
+
+                //allow editor to use objTools keyboard shortcuts
+                //pull these out of roomTools input section
+            }
             else
             {
+                //widgets are displayed, allow all cursor input
 
-                #region F6 - Set Dungeon Widgets Display
-
-                if (Functions_Input.IsNewKeyPress(Keys.F6))
-                {
-                    TopDebugMenu.display = WidgetDisplaySet.Dungeon;
-                    //ResetEditorWidgets();
-                    //set buttons correctly - dungeon = down, world = up
-                    TopDebugMenu.buttons[5].currentColor = Assets.colorScheme.buttonDown;
-                    TopDebugMenu.buttons[6].currentColor = Assets.colorScheme.buttonUp;
-                }
-
-                #endregion
+                //allow editor to use cursor tool
+                Widgets.ObjectTools.HandleInput();
+                Widgets.ObjectTools.Update();
 
 
-                #region F7 - Set World Widgets Display
 
-                if (Functions_Input.IsNewKeyPress(Keys.F7))
-                {
-                    TopDebugMenu.display = WidgetDisplaySet.World;
-                    //ResetEditorWidgets();
-                    //set buttons correctly - dungeon = up, world = down
-                    TopDebugMenu.buttons[6].currentColor = Assets.colorScheme.buttonDown;
-                    TopDebugMenu.buttons[5].currentColor = Assets.colorScheme.buttonUp;
-                }
-
-                #endregion
-
-
-                #region F8 - Set SharedObjs Widget Display
-
-                if (Functions_Input.IsNewKeyPress(Keys.F8))
-                {
-                    if (TopDebugMenu.displaySharedObjsWidget)
-                    {   //set released state
-                        TopDebugMenu.displaySharedObjsWidget = false;
-                        TopDebugMenu.buttons[7].currentColor = Assets.colorScheme.buttonUp;
-                    }
-                    else
-                    {   //set down state
-                        TopDebugMenu.displaySharedObjsWidget = true;
-                        TopDebugMenu.buttons[7].currentColor = Assets.colorScheme.buttonDown;
-                    }
-                }
-
-                #endregion
-
+                #region Move Between Level and Rooom Modes
 
                 if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
                 {
+
+                    /*
                     //button - level editor
                     if (TopDebugMenu.buttons[TopDebugMenu.buttons.Count - 1].rec.Contains(Input.cursorPos))
                     {   //switch to level/world mode
@@ -236,32 +166,27 @@ namespace DungeonRun
                         TopDebugMenu.buttons[TopDebugMenu.buttons.Count - 2].currentColor = Assets.colorScheme.buttonDown;
                         return;
                     }
+                    */
+
+
+
 
                     //hold down left ctrl button to call Inspect() on anything touching cursor
                     if (Functions_Input.IsKeyDown(Keys.LeftControl)) { Functions_Debug.Inspect(); }
                 }
 
-
-
-
-
-                if(TopDebugMenu.display != WidgetDisplaySet.None)
-                {   //allow editor to use cursor tool
-                    Widgets.ObjectTools.HandleInput();
-                    Widgets.ObjectTools.Update();
-                }
-                
-
-
+                #endregion
 
 
             }
+
+            
         }
 
 
         public static void Draw()
         {
-            if (TopDebugMenu.display != WidgetDisplaySet.None)
+            if (TopDebugMenu.hideAll == false)
             {   //draw the top bkgRec rec
                 ScreenManager.spriteBatch.Draw(
                     Assets.dummyTexture,

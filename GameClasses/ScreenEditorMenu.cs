@@ -20,16 +20,7 @@ namespace DungeonRun
 
         public override void LoadContent()
         {
-            //position obj widgets
-            Widgets.WidgetObjects_Dungeon.Reset(16 * 1, 16 * 2);
-            Widgets.WidgetObjects_Enemy.Reset(16 * 6 + 8, 16 * 2);
-            Widgets.WidgetObjects_Shared.Reset(16 * 12, 16 * 2);
-            Widgets.WidgetObjects_Environment.Reset(16 * 17 + 8, 16 * 2); //left
-            Widgets.WidgetObjects_Building.Reset(16 * 23, 16 * 2); //right
 
-            //position tools widgets
-            Widgets.ObjectTools.Reset(16 * 1, 16 * 17 + 8); //bot left
-            Widgets.RoomTools.Reset(16 * 33, 16 * 17 + 8); //bot right
         }
 
         public override void HandleInput(GameTime GameTime)

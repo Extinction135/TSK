@@ -46,8 +46,6 @@ namespace DungeonRun
             Functions_Hero.SetLoadout();
             //open the screen
             displayState = DisplayState.Opening;
-            //close all topMenu widgets, if any are visible
-            TopDebugMenu.display = WidgetDisplaySet.None;
         }
 
         public override void HandleInput(GameTime GameTime)

@@ -19,7 +19,7 @@ namespace DungeonRun
         public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.73f; //the version of the game
-        public static BootRoutine bootRoutine = BootRoutine.Editor; //boot to game or editor?
+        public static BootRoutine bootRoutine = BootRoutine.Editor_Room; //boot to game or editor?
         
         //dev flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
@@ -97,7 +97,7 @@ namespace DungeonRun
 
             else
             {
-                if (bootRoutine == BootRoutine.Editor)
+                if (bootRoutine != BootRoutine.Game)
                 {
                     //set dev mode cheats
                     Invincibility = true; //hero cannot die in editor
@@ -665,13 +665,12 @@ namespace DungeonRun
     {
         public static ComponentSprite cursor;
         public static ObjToolState objToolState;
-
-        public static WidgetDisplaySet display;
-        public static Boolean displaySharedObjsWidget = false;
+        public static Boolean hideAll = false;
 
         public static Rectangle rec; //background rec
         public static List<ComponentButton> buttons;
         public static int counter;
+
 
         public static DebugDisplay DebugDisplay_Ram;
         public static DebugDisplay DebugDisplay_HeroState;
@@ -686,6 +685,8 @@ namespace DungeonRun
                 new Vector2(0, 0),new Byte4(10, 2, 0, 0),new Point(16, 16));
 
             rec = new Rectangle(0, 0, 640, 13);
+
+            
             buttons = new List<ComponentButton>();
             buttons.Add(new ComponentButton(
                 "f1 draw recs", new Point(2, 2)));
@@ -699,19 +700,7 @@ namespace DungeonRun
                 "f5 pause", new Point(buttons[3].rec.X + buttons[3].rec.Width + 2, 2)));
 
             buttons.Add(new ComponentButton(
-                "f6 dung objs", new Point(buttons[4].rec.X + buttons[4].rec.Width + 2, 2)));
-            buttons.Add(new ComponentButton(
-                "f7 wrld objs", new Point(buttons[5].rec.X + buttons[5].rec.Width + 2, 2)));
-            buttons.Add(new ComponentButton(
-                "f8 shared objs", new Point(buttons[6].rec.X + buttons[6].rec.Width + 2, 2)));
-
-            buttons.Add(new ComponentButton(
-                "room editor", new Point(640 - 104, 2)));
-            buttons.Add(new ComponentButton(
-                "level editor", new Point(buttons[8].rec.X + buttons[8].rec.Width + 2, 2)));
-
-            display = WidgetDisplaySet.World; //will be overwritten by editor screen
-
+                "backspace = menu", new Point(buttons[4].rec.X + buttons[4].rec.Width + 2, 2)));
 
             #region Setup Debug Displays
 

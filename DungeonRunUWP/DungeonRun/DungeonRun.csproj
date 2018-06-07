@@ -247,6 +247,9 @@
     <Compile Include="..\..\GameClasses\ScreenDialog.cs">
       <Link>Classes\ScreenDialog.cs</Link>
     </Compile>
+    <Compile Include="..\..\GameClasses\ScreenEditor.cs">
+      <Link>Classes\ScreenEditor.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\ScreenEditorMenu.cs">
       <Link>Classes\ScreenEditorMenu.cs</Link>
     </Compile>
@@ -255,9 +258,6 @@
     </Compile>
     <Compile Include="..\..\GameClasses\ScreenLevel.cs">
       <Link>Classes\ScreenLevel.cs</Link>
-    </Compile>
-    <Compile Include="..\..\GameClasses\ScreenLevelEditor.cs">
-      <Link>Classes\ScreenLevelEditor.cs</Link>
     </Compile>
     <Compile Include="..\..\GameClasses\ScreenLevelMap.cs">
       <Link>Classes\ScreenLevelMap.cs</Link>
@@ -273,9 +273,6 @@
     </Compile>
     <Compile Include="..\..\GameClasses\ScreenOverworld.cs">
       <Link>Classes\ScreenOverworld.cs</Link>
-    </Compile>
-    <Compile Include="..\..\GameClasses\ScreenRoomEditor.cs">
-      <Link>Classes\ScreenRoomEditor.cs</Link>
     </Compile>
     <Compile Include="..\..\GameClasses\ScreenSummary.cs">
       <Link>Classes\ScreenSummary.cs</Link>

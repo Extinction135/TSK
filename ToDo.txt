@@ -75,43 +75,52 @@ v0.74 - The Colliseum
 
 
 
-EditorMenu Screen - Part 1
+EditorMenu Screen - Part 2
 
-added backspace shortcut to create editor menu screen.
-added editor menu screen to projects. 
-setup editor menu screen to position and draw obj 
-and tool widgets.
+fixed bug where objs inside obj widgets didn't 
+position properly - due to a reset() call on each one.
+removed top menu buttons for obj widgets sets.
+setup default positions for objTools and roomTools widgets.
 
-fixed a bug where cursor wasn't drawn over screens
-properly - now cursor is printed alongside draw input
-and watermark, as the final thing drawn to the screen.
+Consolidate / Simplify Editor Screens
+we have two screens: level and room editors, which in hindsight
+were implemented poorly, or for the wrong reasons - because its
+created a dark bug that has eluded inspection so far. 
+basically, what happens is switching from level to room
+editor and back can cause the screen to go black and
+become unresponsive. the fix is to make a new, better system
+and the bug will be killed in the demolishing process.
 
-added path to exit editor menu screen via backspace.
-fixed a bug where cursor didn't track to mouse properly.
-this now happens in screenmanager's draw(), as a final
-step, prior to draw the cursor and toolTip. the end
-result being the cursor sprite feels like it tracks
-more accurately and displays across all screens by
-default, if the game isn't in release mode.
+screen level editor has been removed from all projects.
+screen room editor has been renamed to screen editor.
+editor screen now checks boot routine (which was expanded)
+to determine if level or room codepaths need to be run.
 
-
-
-
-
-
-
-
-
-objs inside of obj widget sets should set themselves 
-relative to the window frames 0,0 - not absolute
-positioning themselves on screen!!!
+this means editing levels is done by changing the bootroutine
+to editor_level, same with rooms, editor_room. 
+lots of testing, working as expected again.
 
 
 
 
+EditorMenu Screen - Part 3
+
+include a button to compile xml to cs.
+the compile should never be shortcut called, 
+this should be button pressed. remove f4 button.
+what data is compiled is based on the boot routine, and will
+compile roomData or levelData, but never both at the same time.
+this is because we have separated level and room editing.
 
 
-set position for obj tools widget (missing reset upon editor load)
+
+
+
+
+
+
+
+
 
 
 

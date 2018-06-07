@@ -26,7 +26,12 @@ namespace DungeonRun
 
     public enum MouseButtons { LeftButton, RightButton }
 
-    public enum BootRoutine { Game, Editor }
+    public enum BootRoutine
+    {
+        Game,   //loads title screen
+        Editor_Room,  //loads editor in room mode
+        Editor_Level,  //loads editor in level mode
+    }
 
     public enum WidgetDisplaySet { World, Dungeon, None }
 

@@ -118,6 +118,7 @@ namespace DungeonRun
             SetActiveTool(moveObj);
             TopDebugMenu.objToolState = ObjToolState.MoveObj;
             grabbedObj = null;
+            Reset(16 * 1, 16 * 17 + 8); //bottom left
         }
 
         public override void Reset(int X, int Y)
