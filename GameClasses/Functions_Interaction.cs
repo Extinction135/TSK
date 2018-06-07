@@ -202,8 +202,6 @@ namespace DungeonRun
                 if (Obj.type == ObjType.Dungeon_DoorTrap)
                 {   //trap doors push ALL actors
                     Functions_Movement.Push(Actor.compMove, Obj.direction, 1.0f);
-
-                    Debug.WriteLine("fuck");
                 }
             }
 

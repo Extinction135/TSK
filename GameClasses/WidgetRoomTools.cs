@@ -38,7 +38,7 @@ namespace DungeonRun
         public List<ComponentButton> buttons; //save, new, load buttons
         public ComponentButton saveBtn;
         public ComponentButton loadBtn;
-        public ComponentButton newRoomBtn;
+        public ComponentButton newBtn;
         public ComponentButton roomTypeBtn;
         
 
@@ -54,12 +54,12 @@ namespace DungeonRun
             buttons = new List<ComponentButton>();
             saveBtn = new ComponentButton("save", new Point(0, 0));
             loadBtn = new ComponentButton("load", new Point(0, 0));
-            newRoomBtn = new ComponentButton("new room", new Point(0, 0));
+            newBtn = new ComponentButton("new", new Point(0, 0));
             roomTypeBtn = new ComponentButton("-------", new Point(0, 0));
             
             buttons.Add(saveBtn);
             buttons.Add(loadBtn);
-            buttons.Add(newRoomBtn);
+            buttons.Add(newBtn);
             buttons.Add(roomTypeBtn);
 
             roomTypeBtn.compText.text = "" + roomID;
@@ -75,42 +75,32 @@ namespace DungeonRun
         {
             Functions_MenuWindow.ResetAndMove(window, X, Y, window.size, window.title.text);
             
-            //Move Buttons
+            //buttons
             saveBtn.rec.X = X + 16 * 1 - 8;
             saveBtn.rec.Y = Y + 16 * 1 + 8 - 2;
             Functions_Component.CenterText(saveBtn);
+            saveBtn.rec.Width = 39; //
 
-            loadBtn.rec.X = X + 16 * 4 + 10 - 8;
-            loadBtn.rec.Y = Y + 16 * 1 + 8 - 2;
+            loadBtn.rec.X = saveBtn.rec.X + saveBtn.rec.Width + 2;
+            loadBtn.rec.Y = saveBtn.rec.Y;
             Functions_Component.CenterText(loadBtn);
+            loadBtn.rec.Width = 39; //
 
-            newRoomBtn.rec.X = X + 16 * 1 - 8;
-            newRoomBtn.rec.Y = Y + 16 * 2 - 0 + 2;
-            Functions_Component.CenterText(newRoomBtn);
-
-
-            #region RoomType Button
-
-            roomTypeBtn.rec.X = X + 16 * 4 - 8 - 1;
-            roomTypeBtn.rec.Y = Y + 16 * 2 - 0 + 2;
+            newBtn.rec.X = X + 16 * 1 - 8;
+            newBtn.rec.Y = Y + 16 * 2 - 0 + 2;
+            Functions_Component.CenterText(newBtn);
+            newBtn.rec.Width = 20; //
 
             //determine what default room to display
             if (state == WidgetRoomToolsState.Room)
             { roomID = RoomID.DEV_Row; }
             else { roomID = RoomID.DEV_Field; }
-
-            //set the room types button correctly
             roomTypeBtn.compText.text = "" + roomID;
 
-            //center text to button, prevent half pixel offsets
-            roomTypeBtn.compText.position.X =
-                (int)(roomTypeBtn.rec.Location.X + roomTypeBtn.rec.Width / 2) 
-                - (roomTypeBtn.textWidth / 2);
-            //center text vertically
-            roomTypeBtn.compText.position.Y = roomTypeBtn.rec.Location.Y - 3;
-
-            #endregion
-
+            roomTypeBtn.rec.X = newBtn.rec.X + newBtn.rec.Width + 2;
+            roomTypeBtn.rec.Y = newBtn.rec.Y;
+            Functions_Component.CenterText(roomTypeBtn);
+            roomTypeBtn.rec.Width = 16 * 3 +10; //
         }
 
         public void HandleInput()
@@ -149,7 +139,7 @@ namespace DungeonRun
 
                             #region New Room 
 
-                            else if (buttons[i] == newRoomBtn)
+                            else if (buttons[i] == newBtn)
                             {
                                 //based on state, set level id
                                 if (state == WidgetRoomToolsState.Room)

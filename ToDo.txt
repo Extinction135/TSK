@@ -72,75 +72,21 @@ player's health never goes above 1 in the trials).
 v0.74 - The Colliseum
 
 
+Prep for Colliseum Objs
 
-EditorMenu Screen - Part 6
-
-created functions_texture to contain responsibility
-for managing changing textures of floors and objects,
-based on the current level.id. this is done via two 
-methods, GetObjTexture() and GetFloorTexture().
-this was done to handle switching between the
-standard texture (forest) and the new colliseum
-texture.
-
-created the level type button above dungeon objs
-widget, which toggles thru 'forest' and 'colliseum'
-values, calling the above functions_texture methods
-as needed for floors and objects.
-
-update various objects to use forest sheet,
-because these objects don't exist on other sheets.
-created Dev widget, empty for now.
-
-
-
-created colliseum widget object set.
-updated level type button to switch between
-forest and colliseum widget object sets.
+deleted all objects from colliseum xml room data.
+recompiled level data.
+fixed button displays of room/level tools.
+removed some debug profanity I forgot about. 
 
 
 
 
 
+Colliseum Objs
 
-
-
-
-
-
-
-
-
-
-Notes widget - local to editor menu
-
-fix the button displays of room/level tools.
-
-remove reload button. and its functionality.
-it doesn't work as is, anyway.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+create colliseum building objects, put them in the
+colliseum building widget.
 
 
 
@@ -151,8 +97,6 @@ Colliseum
 BUILD THE COLLISEUM LEVEL USING COLLISUM OBJECTS.
 should look like the map representation and seem really
 big. we want buildings larger, more impressive than lttp.
-
-
 
 (two) entrance to the colliseum.
 one is obvs, the other is hidden behind a tree!

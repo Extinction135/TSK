@@ -1,7 +1,7 @@
 
 
 
-
+Notes widget - local to editor menu
 
 
 Floors++
