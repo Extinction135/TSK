@@ -73,44 +73,62 @@ v0.74 - The Colliseum
 
 
 
-
-
-EditorMenu Screen - Part 2
-
-fixed bug where objs inside obj widgets didn't 
-position properly - due to a reset() call on each one.
-removed top menu buttons for obj widgets sets.
-setup default positions for objTools and roomTools widgets.
-
-Consolidate / Simplify Editor Screens
-we have two screens: level and room editors, which in hindsight
-were implemented poorly, or for the wrong reasons - because its
-created a dark bug that has eluded inspection so far. 
-basically, what happens is switching from level to room
-editor and back can cause the screen to go black and
-become unresponsive. the fix is to make a new, better system
-and the bug will be killed in the demolishing process.
-
-screen level editor has been removed from all projects.
-screen room editor has been renamed to screen editor.
-editor screen now checks boot routine (which was expanded)
-to determine if level or room codepaths need to be run.
-
-this means editing levels is done by changing the bootroutine
-to editor_level, same with rooms, editor_room. 
-lots of testing, working as expected again.
-
-
-
-
 EditorMenu Screen - Part 3
 
-include a button to compile xml to cs.
-the compile should never be shortcut called, 
-this should be button pressed. remove f4 button.
-what data is compiled is based on the boot routine, and will
-compile roomData or levelData, but never both at the same time.
-this is because we have separated level and room editing.
+split F4 compile xml to cs functionality into
+two paths, one for level and one for room. what
+path is traveled is determined by checking the
+bootRoutine value in Flags. this separates level
+and room compilations, because both would never
+occur at the same time, and it takes many seconds
+to complete each codepath. 
+
+ToolTip++
+obj tools sets position of tooltip + it's state.
+this should be done by topmenu, just prior to drawing.
+this ensures it's drawn over every screen, with
+the proper sprite and offset.
+
+
+ToolTip++
+in top menu, we should be able to change objTools state
+using keyboard shortcuts - this is done current in objtools.
+but when we hide objtools, we can't change tools anymore.
+updated and fixed.
+
+ObjTools++
+we dont want clicking on the obj tools widget
+to alter any roomObjs behind the widget. split
+objTools.handleInput() into handleInput_Widget(),
+and handleInput_World(). while in editor,
+both the widget and world are input handled by
+objTools, but while in editor menu objTools
+is only allowed widget input, so we don't accidentally
+modify / add objects to the game world by clicking on 
+obj widgets, which would be frustrating.
+
+tons of playtesting in editor.
+
+
+
+
+
+
+
+
+
+EditorMenu Screen - Part 4
+
+add a black overlay to editor menu screen, to help separate it
+from the editor screen.
+
+Level Type Buttons - along top of widgets
+this is where we will switch between the forest widget and colliseum widget.
+we simply change what widget is drawn, updat'd, annd input'd.
+
+Notes widget - local to editor menu
+
+Controls widget - local to editor menu
 
 
 
@@ -131,25 +149,13 @@ this is because we have separated level and room editing.
 
 
 
-Implement New Editor
 
-this starts with creating a new screen, and then
-adding all the widgets to it, & getting it linked
-up to the backspace being held from editor.
-be sure to draw the obj tools widget.
 
-add the level type buttons to the top.
-add the notes widget + controls widget.
 
-remove the top menu buttons for shared, dungeon, world objs.
-including shortcuts. add new button "backspace=ui".
 
-the obj tools widget takes input over the game world, 
-so objs can't be accessed behind it - same with top menu.
 
-f3 hide widgets now only hides the obj tools widget, and
-the top menu. while hidden, the obj tools widget refuses
-input, update, and draw calls.
+
+
 
 
 

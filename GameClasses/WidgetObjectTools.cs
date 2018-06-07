@@ -16,7 +16,6 @@ namespace DungeonRun
     public class WidgetObjectTools : Widget
     {
         //handles the selection, grabbing, dragging, releasing, adding, and deleting of roomObjects
-        
         int j;
 
         public GameObject moveObj;
@@ -27,8 +26,6 @@ namespace DungeonRun
         //move these into Input class or Functions_Input
         public Point worldPos; //used to translate screen to world position
         public Point screenPos; //used to translate world to screen position
-
-        public ComponentSprite toolTipSprite;
 
         public GameObject currentObjRef;
         public ComponentText currentObjDirectionText;
@@ -48,11 +45,6 @@ namespace DungeonRun
                 new Point(0, 0),
                 new Point(16 * 6, 16 * 4),
                 "Object Tools");
-            toolTipSprite = new ComponentSprite(
-                Assets.uiItemsSheet,
-                new Vector2(0, 0),
-                new Byte4(10, 4, 0, 0),
-                new Point(16, 16));
 
 
             #region Add Toolbar objs
@@ -135,35 +127,57 @@ namespace DungeonRun
             Functions_Component.Align(addObj);
             Functions_Component.Align(deleteObj);
 
-
-            #region Set current object components
-
             Functions_Movement.Teleport(currentObjRef.compMove, X + 16 * 5, Y + 16 * 2);
             Functions_Component.Align(currentObjRef);
             //place direction text in footer of window
             currentObjDirectionText.position.X = window.interior.rec.X + 5;
             currentObjDirectionText.position.Y = window.interior.rec.Y + 45;
-
-            #endregion
-
         }
 
-        public void HandleInput()
+
+
+
+
+        public Boolean HandleInput_Widget()
+        {
+            if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
+            {
+                if (TopDebugMenu.hideAll == false)
+                {   //Set Active Tool (Move, Rotate, Add, Delete)
+                    if (window.interior.rec.Contains(Input.cursorPos))
+                    {
+                        //check cursorPos contains with individual tool objs
+                        if (moveObj.compCollision.rec.Contains(Input.cursorPos))
+                        {
+                            SetActiveTool(moveObj);
+                            TopDebugMenu.objToolState = ObjToolState.MoveObj;
+                        }
+                        else if (rotateObj.compCollision.rec.Contains(Input.cursorPos))
+                        {
+                            SetActiveTool(rotateObj);
+                            TopDebugMenu.objToolState = ObjToolState.RotateObj;
+                        }
+                        else if (addObj.compCollision.rec.Contains(Input.cursorPos))
+                        {
+                            SetActiveTool(addObj);
+                            TopDebugMenu.objToolState = ObjToolState.AddObj;
+                        }
+                        else if (deleteObj.compCollision.rec.Contains(Input.cursorPos))
+                        {
+                            SetActiveTool(deleteObj);
+                            TopDebugMenu.objToolState = ObjToolState.DeleteObj;
+                        }
+                        return true; //click was on widget
+                    }
+                }
+            }
+            return false;
+        }
+
+        public void HandleInput_World()
         {
             //convert cursor Pos to world pos
             worldPos = Functions_Camera2D.ConvertScreenToWorld(Input.cursorPos.X, Input.cursorPos.Y);
-            
-            //Match position of cursor sprite to cursor
-            toolTipSprite.position.X = Input.cursorPos.X + 12;
-            toolTipSprite.position.Y = Input.cursorPos.Y - 0;
-            
-            //Set toolTip's animation frame based on objToolState
-            if (TopDebugMenu.objToolState == ObjToolState.AddObj)
-            { toolTipSprite.currentFrame = AnimationFrames.Ui_Add[0]; }
-            else if (TopDebugMenu.objToolState == ObjToolState.DeleteObj)
-            { toolTipSprite.currentFrame = AnimationFrames.Ui_Delete[0]; }
-            else { toolTipSprite.currentFrame = AnimationFrames.Ui_Rotate[0]; }
-
 
             //mouse button states
 
@@ -171,41 +185,7 @@ namespace DungeonRun
 
             if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
             {
-                if (window.interior.rec.Contains(Input.cursorPos))
-                {
-
-                    #region Set Active Tool (Move, Rotate, Add, Delete)
-
-                    //check cursorPos contains with individual tool objs
-                    if (moveObj.compCollision.rec.Contains(Input.cursorPos))
-                    {
-                        SetActiveTool(moveObj);
-                        TopDebugMenu.objToolState = ObjToolState.MoveObj;
-                    }
-
-                    else if (rotateObj.compCollision.rec.Contains(Input.cursorPos))
-                    {
-                        SetActiveTool(rotateObj);
-                        TopDebugMenu.objToolState = ObjToolState.RotateObj;
-                    }
-
-                    else if (addObj.compCollision.rec.Contains(Input.cursorPos))
-                    {
-                        SetActiveTool(addObj);
-                        TopDebugMenu.objToolState = ObjToolState.AddObj;
-                    }
-
-                    else if (deleteObj.compCollision.rec.Contains(Input.cursorPos))
-                    {
-                        SetActiveTool(deleteObj);
-                        TopDebugMenu.objToolState = ObjToolState.DeleteObj;
-                    }
-
-                    #endregion
-
-                    return; //prevent grabbing of obj underneath widget/window
-                }
-                else if (Functions_Level.currentRoom.rec.Contains(worldPos))
+                if (Functions_Level.currentRoom.rec.Contains(worldPos))
                 {   //if mouse worldPos is within room, allow adding of active object
 
 
@@ -217,7 +197,7 @@ namespace DungeonRun
                         #region Check to see if we can add this type of Obj to this type of Room
 
                         if (currentObjRef.type == ObjType.Dungeon_Chest)
-                        {   
+                        {
                             //we convert the 'safe' chest into a key or hub chest here
                             if (Functions_Level.currentRoom.roomID == RoomID.Key ||
                                 Functions_Level.currentRoom.roomID == RoomID.DEV_Key)
@@ -241,7 +221,7 @@ namespace DungeonRun
                                 }
                             }
                         }
-                        
+
                         else if (currentObjRef.type == ObjType.Dungeon_Switch)
                         {   //we cannot have more than one switch in a room
                             for (j = 0; j < Pool.roomObjCount; j++)
@@ -303,8 +283,6 @@ namespace DungeonRun
 
                     #endregion
 
-
-                    //dont return; here, continue to objToolState check below on purpose
                 }
 
 
@@ -393,34 +371,6 @@ namespace DungeonRun
             if (Functions_Input.IsNewMouseButtonRelease(MouseButtons.LeftButton))
             {
                 grabbedObj = null; //release grabbed obj
-            }
-
-            #endregion
-
-
-            //editor shortcuts
-
-            #region Editor Keyboard Shortcuts
-
-            if(Functions_Input.IsNewKeyPress(Keys.D0)) //0 right of 9
-            {
-                SetActiveTool(moveObj);
-                TopDebugMenu.objToolState = ObjToolState.MoveObj;
-            }
-            else if (Functions_Input.IsNewKeyPress(Keys.OemMinus)) //right of 0
-            {
-                SetActiveTool(deleteObj);
-                TopDebugMenu.objToolState = ObjToolState.DeleteObj;
-            }
-            else if (Functions_Input.IsNewKeyPress(Keys.OemPlus)) //right of -
-            {
-                SetActiveTool(addObj);
-                TopDebugMenu.objToolState = ObjToolState.AddObj;
-            }
-            else if (Functions_Input.IsNewKeyPress(Keys.D9)) //left of 0
-            {
-                SetActiveTool(rotateObj);
-                TopDebugMenu.objToolState = ObjToolState.RotateObj;
             }
 
             #endregion

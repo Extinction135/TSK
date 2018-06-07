@@ -43,7 +43,7 @@ namespace DungeonRun
                 {
                     RoomData = (RoomXmlData)serializer.Deserialize(stream);
                     //place roomData onto level or room list based on type
-                    if(RoomData.type == RoomID.Boss ||
+                    if (RoomData.type == RoomID.Boss ||
                        RoomData.type == RoomID.Column ||
                        RoomData.type == RoomID.Exit ||
                        RoomData.type == RoomID.Hub ||
@@ -58,155 +58,162 @@ namespace DungeonRun
             #endregion
 
 
-            #region Write Level Data
-
-            string csOutput = "";
-            csOutput += "using System.Collections.Generic;\n";
-            csOutput += "\n";
-            csOutput += "namespace DungeonRun\n";
-            csOutput += "{\n";
-
-            csOutput += "\tpublic static class LevelData\n";
-            csOutput += "\t{\n";
-
-            //create fields
-            csOutput += "\t\t//all levels in game\n";
-            for (int i = 0; i < levelData.Count(); i++)
+            if (Flags.bootRoutine == BootRoutine.Editor_Level)
             {
-                csOutput += "\t\tpublic static RoomXmlData " + levelData[i].type + " = new RoomXmlData();\n";
-            }
 
-            csOutput += "\n";
+                #region Write Level Data
 
-            //populate fields
-            csOutput += "\t\t//level data\n";
-            csOutput += "\t\tstatic LevelData()\n";
-            csOutput += "\t\t{\n";
-
-            for (int i = 0; i < levelData.Count(); i++)
-            {
-                Debug.WriteLine("writing FIELD " + i + " of " + levelData.Count);
-
+                string csOutput = "";
+                csOutput += "using System.Collections.Generic;\n";
                 csOutput += "\n";
-                csOutput += "\t\t\t#region " + levelData[i].type + "\n\n";
+                csOutput += "namespace DungeonRun\n";
+                csOutput += "{\n";
 
-                csOutput += "\t\t\t" + levelData[i].type + ".type = RoomID." + levelData[i].type + ";\n"; //lol
-                csOutput += "\t\t\t" + levelData[i].type + ".objs = new List<ObjXmlData>();\n";
+                csOutput += "\tpublic static class LevelData\n";
+                csOutput += "\t{\n";
 
-                for (int g = 0; g < levelData[i].objs.Count(); g++)
+                //create fields
+                csOutput += "\t\t//all levels in game\n";
+                for (int i = 0; i < levelData.Count(); i++)
                 {
-                    csOutput += "\t\t\t{";
-
-                    csOutput += "ObjXmlData obj = new ObjXmlData(); ";
-
-                    csOutput += "obj.type = ObjType." + levelData[i].objs[g].type + "; ";
-                    csOutput += "obj.direction = Direction." + levelData[i].objs[g].direction + "; ";
-                    csOutput += "obj.posX = " + levelData[i].objs[g].posX + "; ";
-                    csOutput += "obj.posY = " + levelData[i].objs[g].posY + "; ";
-
-                    csOutput += "" + levelData[i].type + ".objs.Add(obj);";
-
-                    csOutput += "}\n";
+                    csOutput += "\t\tpublic static RoomXmlData " + levelData[i].type + " = new RoomXmlData();\n";
                 }
 
-                csOutput += "\t\t\t#endregion\n";
                 csOutput += "\n";
-            }
 
-            csOutput += "\t\t}\n";
-            csOutput += "\t}\n";
-            csOutput += "}";
+                //populate fields
+                csOutput += "\t\t//level data\n";
+                csOutput += "\t\tstatic LevelData()\n";
+                csOutput += "\t\t{\n";
 
-            string levelAddress = @"C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\GameClasses\AssetsLevelData.cs";
-            //string csFile = @"C:\Users\Gx000000\Desktop\AssetsLevelData.cs";
-            //File.Create(levelAddress).Dispose();
-            File.WriteAllText(levelAddress, csOutput);
-
-            #endregion
-
-
-            #region Write Room Data
-
-            csOutput = "";
-            csOutput += "using System.Collections.Generic;\n";
-            csOutput += "\n";
-            csOutput += "namespace DungeonRun\n";
-            csOutput += "{\n";
-
-            csOutput += "\tpublic static class RoomData\n";
-            csOutput += "\t{\n";
-
-            //create fields
-            csOutput += "\t\t//roomData is sorted to lists, based on type\n";
-            csOutput += "\t\tpublic static List<RoomXmlData> bossRooms = new List<RoomXmlData>();\n";
-            csOutput += "\t\tpublic static List<RoomXmlData> columnRooms = new List<RoomXmlData>();\n";
-            csOutput += "\t\tpublic static List<RoomXmlData> exitRooms = new List<RoomXmlData>();\n";
-            csOutput += "\t\tpublic static List<RoomXmlData> hubRooms = new List<RoomXmlData>();\n";
-            csOutput += "\t\tpublic static List<RoomXmlData> keyRooms = new List<RoomXmlData>();\n";
-            csOutput += "\t\tpublic static List<RoomXmlData> rowRooms = new List<RoomXmlData>();\n";
-            csOutput += "\t\tpublic static List<RoomXmlData> secretRooms = new List<RoomXmlData>();\n";
-            csOutput += "\t\tpublic static List<RoomXmlData> squareRooms = new List<RoomXmlData>();\n";
-            csOutput += "\n";
-
-            //populate fields
-            csOutput += "\t\tstatic RoomData()\n";
-            csOutput += "\t\t{\n";
-
-            for (int i = 0; i < roomData.Count(); i++)
-            {
-                Debug.WriteLine("writing ROOM " + i + " of " + roomData.Count);
-
-                csOutput += "\n";
-                csOutput += "\t\t\t#region Room - " + roomData[i].type + "\n\n";
-                csOutput += "\t\t\t{\n";
-
-                csOutput += "\t\t\t\tRoomXmlData room = new RoomXmlData();\n";
-                csOutput += "\t\t\t\troom.type = RoomID." + roomData[i].type + ";\n";
-                csOutput += "\t\t\t\troom.objs = new List<ObjXmlData>();\n";
-                
-                for (int g = 0; g < roomData[i].objs.Count(); g++)
+                for (int i = 0; i < levelData.Count(); i++)
                 {
-                    csOutput += "\t\t\t\t{";
-                    csOutput += "ObjXmlData Obj = new ObjXmlData(); ";
-                    csOutput += "Obj.type = ObjType." + roomData[i].objs[g].type + "; ";
-                    csOutput += "Obj.direction = Direction." + roomData[i].objs[g].direction + "; ";
-                    csOutput += "Obj.posX = " + roomData[i].objs[g].posX + "; ";
-                    csOutput += "Obj.posY = " + roomData[i].objs[g].posY + "; ";
-                    csOutput += "room.objs.Add(Obj);";
-                    csOutput += "}\n";
+                    Debug.WriteLine("writing FIELD " + i + " of " + levelData.Count);
+
+                    csOutput += "\n";
+                    csOutput += "\t\t\t#region " + levelData[i].type + "\n\n";
+
+                    csOutput += "\t\t\t" + levelData[i].type + ".type = RoomID." + levelData[i].type + ";\n"; //lol
+                    csOutput += "\t\t\t" + levelData[i].type + ".objs = new List<ObjXmlData>();\n";
+
+                    for (int g = 0; g < levelData[i].objs.Count(); g++)
+                    {
+                        csOutput += "\t\t\t{";
+
+                        csOutput += "ObjXmlData obj = new ObjXmlData(); ";
+
+                        csOutput += "obj.type = ObjType." + levelData[i].objs[g].type + "; ";
+                        csOutput += "obj.direction = Direction." + levelData[i].objs[g].direction + "; ";
+                        csOutput += "obj.posX = " + levelData[i].objs[g].posX + "; ";
+                        csOutput += "obj.posY = " + levelData[i].objs[g].posY + "; ";
+
+                        csOutput += "" + levelData[i].type + ".objs.Add(obj);";
+
+                        csOutput += "}\n";
+                    }
+
+                    csOutput += "\t\t\t#endregion\n";
+                    csOutput += "\n";
                 }
 
-                if (roomData[i].type == RoomID.Boss)
-                { csOutput += "\t\t\t\t bossRooms.Add(room);\n"; }
-                else if (roomData[i].type == RoomID.Column)
-                { csOutput += "\t\t\t\t columnRooms.Add(room);\n"; }
-                else if (roomData[i].type == RoomID.Exit)
-                { csOutput += "\t\t\t\t exitRooms.Add(room);\n"; }
-                else if (roomData[i].type == RoomID.Hub)
-                { csOutput += "\t\t\t\t hubRooms.Add(room);\n"; }
+                csOutput += "\t\t}\n";
+                csOutput += "\t}\n";
+                csOutput += "}";
 
-                else if (roomData[i].type == RoomID.Key)
-                { csOutput += "\t\t\t\t keyRooms.Add(room);\n"; }
-                else if (roomData[i].type == RoomID.Row)
-                { csOutput += "\t\t\t\t rowRooms.Add(room);\n"; }
-                else if (roomData[i].type == RoomID.Square)
-                { csOutput += "\t\t\t\t squareRooms.Add(room);\n"; }
+                string levelAddress = @"C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\GameClasses\AssetsLevelData.cs";
+                //string csFile = @"C:\Users\Gx000000\Desktop\AssetsLevelData.cs";
+                //File.Create(levelAddress).Dispose();
+                File.WriteAllText(levelAddress, csOutput);
 
-                csOutput += "\t\t\t}\n";
-                csOutput += "\t\t\t#endregion\n\n";
+                #endregion
+
             }
+            else
+            {
 
-            csOutput += "\t\t}\n";
-            csOutput += "\t}\n";
-            csOutput += "}";
+                #region Write Room Data
 
-            string roomAddress = @"C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\GameClasses\AssetsRoomData.cs";
-            //string csFile = @"C:\Users\Gx000000\Desktop\AssetsRoomData.cs";
-            //File.Create(roomAddress).Dispose();
-            File.WriteAllText(roomAddress, csOutput);
+                string csOutput = "";
+                csOutput += "using System.Collections.Generic;\n";
+                csOutput += "\n";
+                csOutput += "namespace DungeonRun\n";
+                csOutput += "{\n";
 
-            #endregion
+                csOutput += "\tpublic static class RoomData\n";
+                csOutput += "\t{\n";
 
+                //create fields
+                csOutput += "\t\t//roomData is sorted to lists, based on type\n";
+                csOutput += "\t\tpublic static List<RoomXmlData> bossRooms = new List<RoomXmlData>();\n";
+                csOutput += "\t\tpublic static List<RoomXmlData> columnRooms = new List<RoomXmlData>();\n";
+                csOutput += "\t\tpublic static List<RoomXmlData> exitRooms = new List<RoomXmlData>();\n";
+                csOutput += "\t\tpublic static List<RoomXmlData> hubRooms = new List<RoomXmlData>();\n";
+                csOutput += "\t\tpublic static List<RoomXmlData> keyRooms = new List<RoomXmlData>();\n";
+                csOutput += "\t\tpublic static List<RoomXmlData> rowRooms = new List<RoomXmlData>();\n";
+                csOutput += "\t\tpublic static List<RoomXmlData> secretRooms = new List<RoomXmlData>();\n";
+                csOutput += "\t\tpublic static List<RoomXmlData> squareRooms = new List<RoomXmlData>();\n";
+                csOutput += "\n";
+
+                //populate fields
+                csOutput += "\t\tstatic RoomData()\n";
+                csOutput += "\t\t{\n";
+
+                for (int i = 0; i < roomData.Count(); i++)
+                {
+                    Debug.WriteLine("writing ROOM " + i + " of " + roomData.Count);
+
+                    csOutput += "\n";
+                    csOutput += "\t\t\t#region Room - " + roomData[i].type + "\n\n";
+                    csOutput += "\t\t\t{\n";
+
+                    csOutput += "\t\t\t\tRoomXmlData room = new RoomXmlData();\n";
+                    csOutput += "\t\t\t\troom.type = RoomID." + roomData[i].type + ";\n";
+                    csOutput += "\t\t\t\troom.objs = new List<ObjXmlData>();\n";
+
+                    for (int g = 0; g < roomData[i].objs.Count(); g++)
+                    {
+                        csOutput += "\t\t\t\t{";
+                        csOutput += "ObjXmlData Obj = new ObjXmlData(); ";
+                        csOutput += "Obj.type = ObjType." + roomData[i].objs[g].type + "; ";
+                        csOutput += "Obj.direction = Direction." + roomData[i].objs[g].direction + "; ";
+                        csOutput += "Obj.posX = " + roomData[i].objs[g].posX + "; ";
+                        csOutput += "Obj.posY = " + roomData[i].objs[g].posY + "; ";
+                        csOutput += "room.objs.Add(Obj);";
+                        csOutput += "}\n";
+                    }
+
+                    if (roomData[i].type == RoomID.Boss)
+                    { csOutput += "\t\t\t\t bossRooms.Add(room);\n"; }
+                    else if (roomData[i].type == RoomID.Column)
+                    { csOutput += "\t\t\t\t columnRooms.Add(room);\n"; }
+                    else if (roomData[i].type == RoomID.Exit)
+                    { csOutput += "\t\t\t\t exitRooms.Add(room);\n"; }
+                    else if (roomData[i].type == RoomID.Hub)
+                    { csOutput += "\t\t\t\t hubRooms.Add(room);\n"; }
+
+                    else if (roomData[i].type == RoomID.Key)
+                    { csOutput += "\t\t\t\t keyRooms.Add(room);\n"; }
+                    else if (roomData[i].type == RoomID.Row)
+                    { csOutput += "\t\t\t\t rowRooms.Add(room);\n"; }
+                    else if (roomData[i].type == RoomID.Square)
+                    { csOutput += "\t\t\t\t squareRooms.Add(room);\n"; }
+
+                    csOutput += "\t\t\t}\n";
+                    csOutput += "\t\t\t#endregion\n\n";
+                }
+
+                csOutput += "\t\t}\n";
+                csOutput += "\t}\n";
+                csOutput += "}";
+
+                string roomAddress = @"C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\GameClasses\AssetsRoomData.cs";
+                //string csFile = @"C:\Users\Gx000000\Desktop\AssetsRoomData.cs";
+                //File.Create(roomAddress).Dispose();
+                File.WriteAllText(roomAddress, csOutput);
+
+                #endregion
+
+            }
 
             Debug.WriteLine("Xml to CS conversion done.");
         }

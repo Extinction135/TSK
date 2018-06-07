@@ -81,12 +81,12 @@ namespace DungeonRun
             //this allows screens to use camera matrices to draw world views
             foreach (Screen screen in screens) { screen.Draw(gameTime); }
 
-
-
-            #region Draw input, watermark, and cursor + tooltip
-
+            //Draw input, watermark, and cursor + tooltip
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
-            //draw the input display
+
+
+            #region Draw Input Display
+
             if (Flags.DrawInput)
             {
                 Functions_Draw.Draw(InputDisplay.directionalBkg);
@@ -95,14 +95,25 @@ namespace DungeonRun
                 Functions_Draw.Draw(InputDisplay.directions);
                 Functions_Draw.Draw(InputDisplay.buttons);
             }
-            //draw the watermark
+
+            #endregion
+
+
+            #region Draw Watermark
+
             if (Flags.DrawWatermark)
             {
                 Functions_Draw.Draw(WaterMark.display);
             }
-            //draw the cursor, if game isn't in release mode (dev mode)
-            if(Flags.Release == false)
-            {
+
+            #endregion
+
+
+            if (Flags.Release == false) //ignore cursor in release mode
+            {   
+
+                #region Position & Draw Cursor
+
                 if (TopDebugMenu.objToolState == ObjToolState.MoveObj) //check move state
                 {   //if moving, show open hand cursor
                     TopDebugMenu.cursor.currentFrame = AnimationFrames.Ui_Hand_Open[0];
@@ -125,17 +136,35 @@ namespace DungeonRun
                     TopDebugMenu.cursor.position.X += 3;
                     TopDebugMenu.cursor.position.Y += 6;
                 }
+
                 Functions_Draw.Draw(TopDebugMenu.cursor);
-                //draw the toolTip too
+
+                #endregion
+
+
+                #region Position & Draw ToolTip
+
+                //match position of cursor sprite to cursor
+                TopDebugMenu.toolTipSprite.position.X = Input.cursorPos.X + 12;
+                TopDebugMenu.toolTipSprite.position.Y = Input.cursorPos.Y - 0;
+
+                //set toolTip's animation frame based on objToolState
+                if (TopDebugMenu.objToolState == ObjToolState.AddObj)
+                { TopDebugMenu.toolTipSprite.currentFrame = AnimationFrames.Ui_Add[0]; }
+                else if (TopDebugMenu.objToolState == ObjToolState.DeleteObj)
+                { TopDebugMenu.toolTipSprite.currentFrame = AnimationFrames.Ui_Delete[0]; }
+                else { TopDebugMenu.toolTipSprite.currentFrame = AnimationFrames.Ui_Rotate[0]; }
+
+                //draw
                 if (TopDebugMenu.objToolState != ObjToolState.MoveObj)
-                { Functions_Draw.Draw(Widgets.ObjectTools.toolTipSprite); }
+                { Functions_Draw.Draw(TopDebugMenu.toolTipSprite); }
+
+                #endregion
+
             }
+
+
             spriteBatch.End();
-
-            #endregion
-
-
-
             //Draw the renderSurface to the window frame
             game.GraphicsDevice.SetRenderTarget(null);
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);

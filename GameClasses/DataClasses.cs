@@ -18,8 +18,8 @@ namespace DungeonRun
     {   // **********************************************************************************************************
         public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
-        public static float Version = 0.73f; //the version of the game
-        public static BootRoutine bootRoutine = BootRoutine.Editor_Room; //boot to game or editor?
+        public static float Version = 0.74f; //the version of the game
+        public static BootRoutine bootRoutine = BootRoutine.Editor_Level; //boot to game or editor?
         
         //dev flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
@@ -664,6 +664,8 @@ namespace DungeonRun
     public static class TopDebugMenu
     {
         public static ComponentSprite cursor;
+        public static ComponentSprite toolTipSprite;
+
         public static ObjToolState objToolState;
         public static Boolean hideAll = false;
 
@@ -681,12 +683,20 @@ namespace DungeonRun
 
         static TopDebugMenu()
         {
-            cursor = new ComponentSprite(Assets.uiItemsSheet,
-                new Vector2(0, 0),new Byte4(10, 2, 0, 0),new Point(16, 16));
+            cursor = new ComponentSprite(
+                Assets.uiItemsSheet,
+                new Vector2(0, 0),
+                new Byte4(10, 2, 0, 0),
+                new Point(16, 16));
+
+            toolTipSprite = new ComponentSprite(
+                Assets.uiItemsSheet,
+                new Vector2(0, 0),
+                new Byte4(10, 4, 0, 0),
+                new Point(16, 16));
 
             rec = new Rectangle(0, 0, 640, 13);
 
-            
             buttons = new List<ComponentButton>();
             buttons.Add(new ComponentButton(
                 "f1 draw recs", new Point(2, 2)));
@@ -695,7 +705,7 @@ namespace DungeonRun
             buttons.Add(new ComponentButton(
                 "f3 hide widgets", new Point(buttons[1].rec.X + buttons[1].rec.Width + 2, 2)));
             buttons.Add(new ComponentButton(
-                "f4 -", new Point(buttons[2].rec.X + buttons[2].rec.Width + 2, 2)));
+                "f4 compile xml", new Point(buttons[2].rec.X + buttons[2].rec.Width + 2, 2)));
             buttons.Add(new ComponentButton(
                 "f5 pause", new Point(buttons[3].rec.X + buttons[3].rec.Width + 2, 2)));
 

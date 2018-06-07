@@ -58,7 +58,8 @@ namespace DungeonRun
             }
             //pass tool input
             Widgets.RoomTools.HandleInput();
-            Widgets.ObjectTools.HandleInput();
+            Widgets.ObjectTools.HandleInput_Widget();
+            //dont pass input to ObjectTools.HandleInput_World();
         }
 
         public override void Update(GameTime GameTime)

@@ -24,14 +24,53 @@ namespace DungeonRun
         public static void HandleInput()
         {
             if (Flags.Release) { return; } //kill any dev input in release mode
-            
-            //Backspace - Show Editor Menu
-            if (Functions_Input.IsNewKeyPress(Keys.Back))
+
+
+            //handle objTools widget input
+            if (Widgets.ObjectTools.HandleInput_Widget())
+            {
+                //if editor clicked inside of objTools widget,
+                //do not pass input thru to game world
+            }
+            else
+            {   //if editor did not click inside of objTools widget,
+                //then we can pass input to game world
+                Widgets.ObjectTools.HandleInput_World();
+            }
+
+
+            #region Editor Keyboard Shortcuts
+
+            if (Functions_Input.IsNewKeyPress(Keys.D0)) //0 right of 9
+            {
+                Widgets.ObjectTools.SetActiveTool(Widgets.ObjectTools.moveObj);
+                TopDebugMenu.objToolState = ObjToolState.MoveObj;
+            }
+            else if (Functions_Input.IsNewKeyPress(Keys.OemMinus)) //right of 0
+            {
+                Widgets.ObjectTools.SetActiveTool(Widgets.ObjectTools.deleteObj);
+                TopDebugMenu.objToolState = ObjToolState.DeleteObj;
+            }
+            else if (Functions_Input.IsNewKeyPress(Keys.OemPlus)) //right of -
+            {
+                Widgets.ObjectTools.SetActiveTool(Widgets.ObjectTools.addObj);
+                TopDebugMenu.objToolState = ObjToolState.AddObj;
+            }
+            else if (Functions_Input.IsNewKeyPress(Keys.D9)) //left of 0
+            {
+                Widgets.ObjectTools.SetActiveTool(Widgets.ObjectTools.rotateObj);
+                TopDebugMenu.objToolState = ObjToolState.RotateObj;
+            }
+            else if (Functions_Input.IsNewKeyPress(Keys.Back)) //backspace!
             {
                 ScreenManager.AddScreen(new ScreenEditorMenu());
             }
 
+            #endregion
 
+            
+            
+            //dev function buttons
 
             #region F1 - Toggle Collision Rec Drawing
 
@@ -54,7 +93,7 @@ namespace DungeonRun
 
             #region F2 - Toggle Drawing of InfoPanel
 
-            if (Functions_Input.IsNewKeyPress(Keys.F2))
+            else if (Functions_Input.IsNewKeyPress(Keys.F2))
             {
                 if (Flags.EnableDebugInfo)
                 {
@@ -73,7 +112,7 @@ namespace DungeonRun
 
             #region F3 - Hide/Unhide Widgets
 
-            if (Functions_Input.IsNewKeyPress(Keys.F3))
+            else if (Functions_Input.IsNewKeyPress(Keys.F3))
             {
                 if (TopDebugMenu.hideAll == false)
                 {
@@ -88,9 +127,9 @@ namespace DungeonRun
             #endregion
 
 
-            #region F4 - xml to cs
+            #region F4 - Compile Xml to Cs
 
-            if (Functions_Input.IsNewKeyPress(Keys.F4))
+            else if (Functions_Input.IsNewKeyPress(Keys.F4))
             {
                 Functions_Backend.ConvertXMLtoCS();
             }
@@ -100,7 +139,7 @@ namespace DungeonRun
 
             #region F5 - Toggle Paused flag
 
-            if (Functions_Input.IsNewKeyPress(Keys.F5))
+            else if (Functions_Input.IsNewKeyPress(Keys.F5))
             {
                 if (Flags.Paused)
                 {
@@ -118,69 +157,25 @@ namespace DungeonRun
 
 
 
-
+            
 
 
             if (TopDebugMenu.hideAll)
-            {   
+            {
                 //all widgets are hidden
-
-                //allow editor to use objTools keyboard shortcuts
-                //pull these out of roomTools input section
             }
             else
             {
-                //widgets are displayed, allow all cursor input
-
-                //allow editor to use cursor tool
-                Widgets.ObjectTools.HandleInput();
+                //if objtools is drawing, update it
                 Widgets.ObjectTools.Update();
 
-
-
-                #region Move Between Level and Rooom Modes
-
+                //hold down left ctrl button to call Inspect() on anything touching cursor
                 if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
                 {
-
-                    /*
-                    //button - level editor
-                    if (TopDebugMenu.buttons[TopDebugMenu.buttons.Count - 1].rec.Contains(Input.cursorPos))
-                    {   //switch to level/world mode
-                        ScreenManager.ExitAndLoad(new ScreenLevelEditor());
-                        TopDebugMenu.display = WidgetDisplaySet.World;
-                        //ResetEditorWidgets();
-                        //display the editor state
-                        TopDebugMenu.buttons[TopDebugMenu.buttons.Count - 1].currentColor = Assets.colorScheme.buttonDown;
-                        TopDebugMenu.buttons[TopDebugMenu.buttons.Count - 2].currentColor = Assets.colorScheme.buttonUp;
-                        return;
-                    }
-                    //button - room editor
-                    else if (TopDebugMenu.buttons[TopDebugMenu.buttons.Count - 2].rec.Contains(Input.cursorPos))
-                    {   //switch to room/dungeon mode
-                        ScreenManager.ExitAndLoad(new ScreenRoomEditor());
-                        TopDebugMenu.display = WidgetDisplaySet.Dungeon;
-                        //ResetEditorWidgets();
-                        //display the editor state
-                        TopDebugMenu.buttons[TopDebugMenu.buttons.Count - 1].currentColor = Assets.colorScheme.buttonUp;
-                        TopDebugMenu.buttons[TopDebugMenu.buttons.Count - 2].currentColor = Assets.colorScheme.buttonDown;
-                        return;
-                    }
-                    */
-
-
-
-
-                    //hold down left ctrl button to call Inspect() on anything touching cursor
-                    if (Functions_Input.IsKeyDown(Keys.LeftControl)) { Functions_Debug.Inspect(); }
+                    if (Functions_Input.IsKeyDown(Keys.LeftControl))
+                    { Functions_Debug.Inspect(); }
                 }
-
-                #endregion
-
-
             }
-
-            
         }
 
 
