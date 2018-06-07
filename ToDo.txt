@@ -73,45 +73,10 @@ v0.74 - The Colliseum
 
 
 
-EditorMenu Screen - Part 3
 
-split F4 compile xml to cs functionality into
-two paths, one for level and one for room. what
-path is traveled is determined by checking the
-bootRoutine value in Flags. this separates level
-and room compilations, because both would never
-occur at the same time, and it takes many seconds
-to complete each codepath. 
+Mockups++
 
-ToolTip++
-obj tools sets position of tooltip + it's state.
-this should be done by topmenu, just prior to drawing.
-this ensures it's drawn over every screen, with
-the proper sprite and offset.
-
-
-ToolTip++
-in top menu, we should be able to change objTools state
-using keyboard shortcuts - this is done current in objtools.
-but when we hide objtools, we can't change tools anymore.
-updated and fixed.
-
-ObjTools++
-we dont want clicking on the obj tools widget
-to alter any roomObjs behind the widget. split
-objTools.handleInput() into handleInput_Widget(),
-and handleInput_World(). while in editor,
-both the widget and world are input handled by
-objTools, but while in editor menu objTools
-is only allowed widget input, so we don't accidentally
-modify / add objects to the game world by clicking on 
-obj widgets, which would be frustrating.
-
-tons of playtesting in editor.
-
-
-
-
+updated mockups to match game implementation.
 
 
 
@@ -133,7 +98,7 @@ Controls widget - local to editor menu
 
 
 
-
+fix the button displays of room/level tools.
 
 
 

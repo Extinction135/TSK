@@ -305,7 +305,13 @@ facing direction to the cardinal casting direction of the arrow projectile, for 
 
 
 
-
+The Kusanagi Sword
+this sword creates gusts of wind, which push objects
+actors and projectiles (specifically ground fires).
+this sword is used in a challenge where link must
+push fire across a field to kill a rival warlod, via
+the kusanagi legend in japan. alsoknown as the sword 
+of gathering clouds.
 
 
 
