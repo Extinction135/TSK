@@ -17,6 +17,9 @@ namespace DungeonRun
     public class ScreenEditorMenu : Screen
     {
         public ScreenRec bkgRec = new ScreenRec();
+        public ComponentButton currentSheet;
+
+
 
         public ScreenEditorMenu() { this.name = "Editor Menu Screen"; }
 
@@ -26,6 +29,16 @@ namespace DungeonRun
             bkgRec.fadeInSpeed = 0.12f;
             bkgRec.maxAlpha = 0.5f;
             bkgRec.fadeState = FadeState.FadeIn;
+
+            currentSheet = new ComponentButton("---", new Point(16, 16 + 2));
+            currentSheet.rec.Width = 16 * 5;
+
+            //initialize to forest/standard state
+            currentSheet.compText.text = "forest";
+            Level.ID = LevelID.DEV_Field;
+            Widgets.WO_Enemy_Forest.visible = true;
+            Widgets.WO_Shared_Forest.visible = true;
+            Widgets.WO_Building_Forest.visible = true;
         }
 
         public override void HandleInput(GameTime GameTime)
@@ -40,49 +53,83 @@ namespace DungeonRun
             //handle obj selection for obj widgets
             if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
             {
-                if (Widgets.WidgetObjects_Dungeon.window.interior.rec.Contains(Input.cursorPos))
-                {
-                    Widgets.ObjectTools.CheckObjList(Widgets.WidgetObjects_Dungeon.objList);
-                }
-                if (Widgets.WidgetObjects_Enemy.window.interior.rec.Contains(Input.cursorPos))
-                {
-                    Widgets.ObjectTools.CheckObjList(Widgets.WidgetObjects_Enemy.objList);
-                } 
-                if (Widgets.WidgetObjects_Environment.window.interior.rec.Contains(Input.cursorPos))
-                {
-                    Widgets.ObjectTools.CheckObjList(Widgets.WidgetObjects_Environment.objList);
-                }
-                if (Widgets.WidgetObjects_Building.window.interior.rec.Contains(Input.cursorPos))
-                {
-                    Widgets.ObjectTools.CheckObjList(Widgets.WidgetObjects_Building.objList);
-                }
-                if (Widgets.WidgetObjects_Shared.window.interior.rec.Contains(Input.cursorPos))
-                {
-                    Widgets.ObjectTools.CheckObjList(Widgets.WidgetObjects_Shared.objList);
-                }
+                CheckObjList(Widgets.WO_Environment);
+                CheckObjList(Widgets.WO_Dungeon);
+
+                CheckObjList(Widgets.WO_Enemy_Forest);
+                CheckObjList(Widgets.WO_Shared_Forest);
+                CheckObjList(Widgets.WO_Building_Forest);
+
+                CheckObjList(Widgets.WO_Building_Colliseum);
             }
+
             //pass tool input
             Widgets.RoomTools.HandleInput();
             Widgets.ObjectTools.HandleInput_Widget();
             //dont pass input to ObjectTools.HandleInput_World();
+
+
+
+
+            if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
+            {
+                if (currentSheet.rec.Contains(Input.cursorPos))
+                {
+
+                    #region Reset custom obj widgets
+
+                    Widgets.WO_Enemy_Forest.visible = false;
+                    Widgets.WO_Shared_Forest.visible = false;
+                    Widgets.WO_Building_Forest.visible = false;
+
+                    Widgets.WO_Building_Colliseum.visible = false;
+
+                    #endregion
+
+
+                    #region Setup custom widgets and level.id
+
+                    if (Level.ID == LevelID.DEV_Field) //initial case
+                    {
+                        Level.ID = LevelID.Colliseum;
+                        currentSheet.compText.text = "colliseum";
+                        Widgets.WO_Building_Colliseum.visible = true;
+                    }
+                    else if(Level.ID == LevelID.Colliseum)
+                    {
+                        Level.ID = LevelID.DEV_Field;
+                        currentSheet.compText.text = "forest";
+                        Widgets.WO_Enemy_Forest.visible = true;
+                        Widgets.WO_Shared_Forest.visible = true;
+                        Widgets.WO_Building_Forest.visible = true;
+                    }
+                    else
+                    {   //default case
+                        Level.ID = LevelID.DEV_Field;
+                        currentSheet.compText.text = "forest";
+                        Widgets.WO_Enemy_Forest.visible = true;
+                        Widgets.WO_Shared_Forest.visible = true;
+                        Widgets.WO_Building_Forest.visible = true;
+                    }
+
+                    #endregion
+
+
+                    //update floors and objects
+                    Functions_Texture.SetFloorTextures();
+                    for(int i = 0; i < Pool.roomObjCount; i++)
+                    { Functions_GameObject.SetType(Pool.roomObjPool[i], Pool.roomObjPool[i].type); }
+                    //update all shared widget objects
+                    Functions_Texture.SetWOTexture(Widgets.WO_Dungeon);
+                    Functions_Texture.SetWOTexture(Widgets.WO_Environment);
+                }
+            }
         }
 
         public override void Update(GameTime GameTime)
         {
             //fade overlay in
             Functions_ScreenRec.Fade(bkgRec);
-            //if (bkgRec.fadeState == FadeState.FadeComplete) { }
-
-
-
-            Widgets.ObjectTools.Update();
-            Widgets.RoomTools.Update();
-
-            Widgets.WidgetObjects_Dungeon.Update();
-            Widgets.WidgetObjects_Enemy.Update();
-            Widgets.WidgetObjects_Environment.Update();
-            Widgets.WidgetObjects_Building.Update();
-            Widgets.WidgetObjects_Shared.Update();
         }
 
         public override void Draw(GameTime GameTime)
@@ -91,18 +138,48 @@ namespace DungeonRun
 
             Functions_Draw.Draw(bkgRec);
 
-            //draw obj widgets
-            Widgets.WidgetObjects_Dungeon.Draw();
-            Widgets.WidgetObjects_Enemy.Draw();
-            Widgets.WidgetObjects_Environment.Draw();
-            Widgets.WidgetObjects_Building.Draw();
-            Widgets.WidgetObjects_Shared.Draw();
+            //update and draw obj widgets
+            Widgets.WO_Environment.Update();
+            Widgets.WO_Environment.Draw();
+            Widgets.WO_Dungeon.Update();
+            Widgets.WO_Dungeon.Draw();
+
+            //update and draw obj widgets that are visible
+            if (Widgets.WO_Enemy_Forest.visible)
+            { Widgets.WO_Enemy_Forest.Update(); Widgets.WO_Enemy_Forest.Draw(); }
+
+            if (Widgets.WO_Building_Forest.visible)
+            { Widgets.WO_Building_Forest.Update(); Widgets.WO_Building_Forest.Draw(); }
+
+            if (Widgets.WO_Shared_Forest.visible)
+            { Widgets.WO_Shared_Forest.Update(); Widgets.WO_Shared_Forest.Draw(); }
+
+            if (Widgets.WO_Building_Colliseum.visible)
+            { Widgets.WO_Building_Colliseum.Update(); Widgets.WO_Building_Colliseum.Draw(); }
+
 
             //draw tool widgets
+            Widgets.RoomTools.Update();
             Widgets.RoomTools.Draw();
+            Widgets.ObjectTools.Update();
             Widgets.ObjectTools.Draw();
+
+            //draw additional tools
+            Functions_Draw.Draw(currentSheet);
 
             ScreenManager.spriteBatch.End();
         }
+
+
+
+        public void CheckObjList(WidgetObject WO)
+        {
+            if (WO.visible & WO.window.interior.rec.Contains(Input.cursorPos))
+            { Widgets.ObjectTools.CheckObjList(WO.objList); }
+        }
+
+
+
+
     }
 }

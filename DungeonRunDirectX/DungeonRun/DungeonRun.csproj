@@ -201,6 +201,9 @@
     <Compile Include="..\..\GameClasses\Functions_Scroll.cs">
       <Link>Classes\Functions_Scroll.cs</Link>
     </Compile>
+    <Compile Include="..\..\GameClasses\Functions_Texture.cs">
+      <Link>Classes\Functions_Texture.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\Functions_WorldUI.cs">
       <Link>Classes\Functions_WorldUI.cs</Link>
     </Compile>

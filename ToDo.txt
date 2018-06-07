@@ -73,95 +73,51 @@ v0.74 - The Colliseum
 
 
 
-
-
-EditorMenu Screen - Part 5
-
-consolidated functions_topMenu into
-ScreenEditor, removing it from projects.
-
-added bkgRec to editor menu screen, which
-quickly fades in to cover the gameworld.
-this helps to visually reinforce the idea
-that the editor can't add/modify objs
-while on the editor menu screen.
-
-
-
-
-
-
-
-
-
 EditorMenu Screen - Part 6
 
-add a black overlay to editor menu screen, to help separate it
-from the editor screen.
+created functions_texture to contain responsibility
+for managing changing textures of floors and objects,
+based on the current level.id. this is done via two 
+methods, GetObjTexture() and GetFloorTexture().
+this was done to handle switching between the
+standard texture (forest) and the new colliseum
+texture.
 
-Level Type Buttons - along top of widgets
-this is where we will switch between the forest widget and colliseum widget.
-we simply change what widget is drawn, updat'd, annd input'd.
+created the level type button above dungeon objs
+widget, which toggles thru 'forest' and 'colliseum'
+values, calling the above functions_texture methods
+as needed for floors and objects.
+
+update various objects to use forest sheet,
+because these objects don't exist on other sheets.
+created Dev widget, empty for now.
+
+
+
+created colliseum widget object set.
+updated level type button to switch between
+forest and colliseum widget object sets.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Notes widget - local to editor menu
 
-Controls widget - local to editor menu
-
-
-
-
 fix the button displays of room/level tools.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Implement Light/Dark Room Data
-
-we can model light/dark with a boolean in the room's data.
-remember that overworld levels = big single rooms, plus
-we ONLY have roomData (level data doesn't really exist),
-so we have to model light/dark in room data.
-
-we also want this addition to layer easily into the existing
-roomData, so this boolean value should default to true, (< if missing when roomdata is loaded)
-which indicates the room is a light world room, since we
-dont have any dark world rooms - yet. update the existing
-roomData to include this lightWorld boolean.
-
-
-
-
-
-
-
-
+remove reload button. and its functionality.
+it doesn't work as is, anyway.
 
 
 
@@ -357,7 +313,23 @@ farmer - AFTER link fixes his crops (each time).
 
 
 
-TODAY:
+
+
+
+EDITOR +++++++++
+
+Implement Light/Dark Room Data
+
+we can model light/dark with a boolean in the room's data.
+remember that overworld levels = big single rooms, plus
+we ONLY have roomData (level data doesn't really exist),
+so we have to model light/dark in room data.
+
+we also want this addition to layer easily into the existing
+roomData, so this boolean value should default to true, (< if missing when roomdata is loaded)
+which indicates the room is a light world room, since we
+dont have any dark world rooms - yet. update the existing
+roomData to include this lightWorld boolean.
 
 
 
@@ -370,6 +342,20 @@ mess them up. maybe different selection modes: landscape, building.
 it would be nice to be able to drag select a rec around a set of objects,
 then move them with the arrow keys, in 16 pixel increments. this would allow
 us to edit parts of rooms just like we edit pixels in photoshop.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

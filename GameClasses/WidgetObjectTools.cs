@@ -263,7 +263,7 @@ namespace DungeonRun
                         {
                             Functions_GameObject.SetType(currentObjRef, ObjType.Dungeon_ChestEmpty);
                             //set the tool to be empty chest
-                            activeObj = Widgets.WidgetObjects_Dungeon.objList[19];
+                            activeObj = Widgets.WO_Dungeon.objList[19];
                         }
 
                         #endregion

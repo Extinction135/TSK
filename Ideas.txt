@@ -4,6 +4,24 @@
 
 
 
+Floors++
+we could make floors roomObjects, since we have enough
+space in the roomObj pool now. this means we could have
+custom floor designs in each room, because we'll be able
+to save them. we can also remove floors, and the idea of
+floors, from the pool + game, further simplifying the 
+codebase.
+
+
+
+
+
+
+
+
+
+
+
 
 
 

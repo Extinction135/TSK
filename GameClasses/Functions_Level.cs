@@ -300,9 +300,7 @@ namespace DungeonRun
             Level.rooms[0].visited = true;
             currentRoom = Level.rooms[0];
             Functions_Room.BuildRoom(currentRoom);
-            //set floor textures
-            SetFloorTexture(levelID);
-
+            Functions_Texture.SetFloorTextures();
             Functions_Hero.SpawnInCurrentRoom();
 
             //give hero a minimum amount of health
@@ -561,31 +559,6 @@ namespace DungeonRun
         {
             levelScreen.exitAction = ExitAct;
             levelScreen.displayState = DisplayState.Closing;
-        }
-
-        public static void SetFloorTexture(LevelID ID)
-        {   //set the floor pool texture based on dungeon type
-            Texture2D Texture = Assets.forestLevelSheet;
-            //set level/dungeon texture based on level id
-
-            //dungeon levels
-            if (ID == LevelID.Forest_Dungeon) { Texture = Assets.forestLevelSheet; }
-
-            //overworld levels
-            else if (ID == LevelID.Forest_Entrance) { Texture = Assets.forestLevelSheet; }
-            else if (ID == LevelID.Colliseum) { Texture = Assets.forestLevelSheet; }
-            else if (ID == LevelID.TheFarm) { Texture = Assets.forestLevelSheet; }
-            else if (ID == LevelID.LeftTown2) { Texture = Assets.forestLevelSheet; }
-
-            //dev levels
-            //else if (ID == LevelID.DEV_Field) { Texture = Assets.forestLevelSheet; }
-            //else if (ID == LevelID.DEV_Room) { Texture = Assets.forestLevelSheet; }
-            //default
-            else { Texture = Assets.forestLevelSheet; }
-
-            //set the floor texture
-            for (Pool.floorCounter = 0; Pool.floorCounter < Pool.floorCount; Pool.floorCounter++)
-            { Pool.floorPool[Pool.floorCounter].texture = Texture; }
         }
 
     }

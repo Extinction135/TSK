@@ -27,14 +27,18 @@ namespace DungeonRun
         //editor widgets
         public static WidgetObjectTools ObjectTools = new WidgetObjectTools();
         public static WidgetRoomTools RoomTools = new WidgetRoomTools();
-        //dungeon
-        public static WidgetObjects_Dungeon WidgetObjects_Dungeon = new WidgetObjects_Dungeon();
-        public static WidgetObjects_Enemy WidgetObjects_Enemy = new WidgetObjects_Enemy();
-        //world
-        public static WidgetObjects_Environment WidgetObjects_Environment = new WidgetObjects_Environment();
-        public static WidgetObjects_Building WidgetObjects_Building = new WidgetObjects_Building();
-        //shared
-        public static WidgetObjects_Shared WidgetObjects_Shared = new WidgetObjects_Shared();
+
+        //shared object widgets
+        public static WidgetObjects_Environment WO_Environment = new WidgetObjects_Environment();
+        public static WidgetObjects_Dungeon WO_Dungeon = new WidgetObjects_Dungeon();
+
+        //forest / standard object widgets
+        public static WidgetObjects_Enemy_Forest WO_Enemy_Forest = new WidgetObjects_Enemy_Forest();
+        public static WidgetObjects_Building_Forest WO_Building_Forest = new WidgetObjects_Building_Forest();
+        public static WidgetObjects_Shared_Forest WO_Shared_Forest = new WidgetObjects_Shared_Forest();
+
+        //colliseum object widgets
+        public static WidgetObjects_Building_Colliseum WO_Building_Colliseum = new WidgetObjects_Building_Colliseum();
     }
 
     public abstract class Widget

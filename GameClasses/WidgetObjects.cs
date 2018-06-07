@@ -65,6 +65,7 @@ namespace DungeonRun
     public class WidgetObject : Widget
     {
         public List<GameObject> objList;
+        public Boolean visible = false;
 
         public override void Reset(int X, int Y)
         {
@@ -102,14 +103,119 @@ namespace DungeonRun
     }
 
 
-    //left to right
+    //only texture changes
+
+    public class WidgetObjects_Environment : WidgetObject
+    {
+        public WidgetObjects_Environment()
+        {   //create and set the position of the window frame
+            window = new MenuWindow(
+                new Point(16 * 1, 16 * 2), //position
+                new Point(16 * 5, 16 * 15), //size
+                "Environment Objs"); //title
+
+            objList = new List<GameObject>();
+            //4 per row, 12 rows total
+            for (i = 0; i < 4 * 12; i++) { objList.Add(new GameObject()); }
+
+            //row 1
+            Functions_GameObject.SetType(objList[0], ObjType.Wor_Grass_Tall);
+            Functions_GameObject.SetType(objList[1], ObjType.Wor_Grass_Cut);
+            Functions_GameObject.SetType(objList[2], ObjType.Wor_Grass_1);
+            Functions_GameObject.SetType(objList[3], ObjType.Wor_Grass_2);
+
+            //row 2
+            Functions_GameObject.SetType(objList[4], ObjType.Wor_Bush);
+            Functions_GameObject.SetType(objList[5], ObjType.Wor_Bush_Stump);
+            Functions_GameObject.SetType(objList[6], ObjType.Wor_Pot);
+            Functions_GameObject.SetType(objList[7], ObjType.Wor_Flowers);
+
+            //row 3
+            Functions_GameObject.SetType(objList[8], ObjType.Wor_Tree);
+            Functions_GameObject.SetType(objList[9], ObjType.Wor_Tree_Burning);
+            Functions_GameObject.SetType(objList[10], ObjType.Wor_Tree_Burnt);
+            Functions_GameObject.SetType(objList[11], ObjType.Wor_Tree_Stump);
+
+            //row 4
+            Functions_GameObject.SetType(objList[12], ObjType.Unknown); //covered
+            Functions_GameObject.SetType(objList[13], ObjType.Unknown); //covered
+            Functions_GameObject.SetType(objList[14], ObjType.Unknown); //covered
+            Functions_GameObject.SetType(objList[15], ObjType.Unknown); //covered
+
+            //row 5
+            Functions_GameObject.SetType(objList[16], ObjType.Wor_Water);
+            Functions_GameObject.SetType(objList[17], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[18], ObjType.Wor_Coastline_Corner_Exterior);
+            Functions_GameObject.SetType(objList[19], ObjType.Wor_Coastline_Corner_Interior);
+
+            //row 6
+            Functions_GameObject.SetType(objList[20], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[21], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[22], ObjType.Wor_Coastline_Straight);
+            Functions_GameObject.SetType(objList[23], ObjType.Unknown);
+
+            //row 7
+            Functions_GameObject.SetType(objList[24], ObjType.Wor_Debris);
+            Functions_GameObject.SetType(objList[25], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[26], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[27], ObjType.Unknown);
+
+            //row 8
+            Functions_GameObject.SetType(objList[28], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[29], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[30], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[31], ObjType.Unknown);
+
+            //row 9
+            Functions_GameObject.SetType(objList[32], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[33], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[34], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[35], ObjType.Unknown);
+
+            //row 10
+            Functions_GameObject.SetType(objList[36], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[37], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[38], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[39], ObjType.Unknown);
+
+            //row 11
+            Functions_GameObject.SetType(objList[40], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[41], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[42], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[43], ObjType.Unknown);
+
+            //row 12
+            Functions_GameObject.SetType(objList[44], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[45], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[46], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[47], ObjType.Unknown);
+
+            //position the objs relative to the window frame
+            Functions_Widget.PositionObjs(this);
+
+            //manually set tree recs
+            objList[8].compCollision.rec.Height = 16 * 2;
+            objList[9].compCollision.rec.Height = 16 * 2;
+
+            //hide objs that trees overlap
+            Functions_Widget.HideObj(objList[12]);
+            Functions_Widget.HideObj(objList[13]);
+            Functions_Widget.HideObj(objList[14]);
+            Functions_Widget.HideObj(objList[15]);
+
+            //water tile hides these
+            Functions_Widget.HideObj(objList[17]);
+            Functions_Widget.HideObj(objList[20]);
+            Functions_Widget.HideObj(objList[21]);
+        }
+    }
 
     public class WidgetObjects_Dungeon : WidgetObject
     {
         public WidgetObjects_Dungeon()
         {   //create and set the position of the window frame
             window = new MenuWindow(
-                new Point(16 * 1, 16 * 2), //position
+                new Point(16 * 6 + 8, 16 * 2), //position
                 new Point(16 * 5, 16 * 15), //size
                 "Dungeon Objs"); //title
 
@@ -194,14 +300,18 @@ namespace DungeonRun
         }
     }
 
-    public class WidgetObjects_Enemy : WidgetObject
+
+    //contain objects specific to texture sheets
+
+
+    public class WidgetObjects_Enemy_Forest : WidgetObject
     {
-        public WidgetObjects_Enemy()
+        public WidgetObjects_Enemy_Forest()
         {   //create and set the position of the window frame
             window = new MenuWindow(
-                new Point(16 * 6 + 8, 16 * 2), //position
+                new Point(16 * 12, 16 * 2), //position
                 new Point(16 * 5, 16 * 15), //size
-                "Enemy Tools"); //title
+                "for Enemies"); //title
 
             objList = new List<GameObject>();
             //4 per row, 12 rows total
@@ -209,20 +319,20 @@ namespace DungeonRun
 
             //row 1
             Functions_GameObject.SetType(objList[0], ObjType.Dungeon_SpawnMob);
-            Functions_GameObject.SetType(objList[1], ObjType.Dungeon_SpawnMob);
-            Functions_GameObject.SetType(objList[2], ObjType.Dungeon_SpawnMob);
-            Functions_GameObject.SetType(objList[3], ObjType.Dungeon_SpawnMob);
+            Functions_GameObject.SetType(objList[1], ObjType.Dungeon_SpawnMiniBoss);
+            Functions_GameObject.SetType(objList[2], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[3], ObjType.Unknown);
 
             //row 2
-            Functions_GameObject.SetType(objList[4], ObjType.Dungeon_SpawnMiniBoss);
-            Functions_GameObject.SetType(objList[5], ObjType.Dungeon_SpawnMiniBoss);
-            Functions_GameObject.SetType(objList[6], ObjType.Dungeon_SpawnMiniBoss);
-            Functions_GameObject.SetType(objList[7], ObjType.Dungeon_SpawnMiniBoss);
+            Functions_GameObject.SetType(objList[4], ObjType.Wor_Enemy_Turtle);
+            Functions_GameObject.SetType(objList[5], ObjType.Wor_Enemy_Crab);
+            Functions_GameObject.SetType(objList[6], ObjType.Wor_Enemy_Rat);
+            Functions_GameObject.SetType(objList[7], ObjType.Unknown);
 
             //row 3
-            Functions_GameObject.SetType(objList[8], ObjType.Wor_Enemy_Turtle);
-            Functions_GameObject.SetType(objList[9], ObjType.Wor_Enemy_Crab);
-            Functions_GameObject.SetType(objList[10], ObjType.Wor_Enemy_Rat);
+            Functions_GameObject.SetType(objList[8], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[9], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[10], ObjType.Unknown);
             Functions_GameObject.SetType(objList[11], ObjType.Unknown);
 
             //row 4
@@ -284,14 +394,14 @@ namespace DungeonRun
         }
     }
 
-    public class WidgetObjects_Shared : WidgetObject
+    public class WidgetObjects_Shared_Forest : WidgetObject
     {
-        public WidgetObjects_Shared()
+        public WidgetObjects_Shared_Forest()
         {   //create and set the position of the window frame
             window = new MenuWindow(
-                new Point(16 * 12, 16 * 2), //position
+                new Point(16 * 17 + 8, 16 * 2), //position
                 new Point(16 * 5, 16 * 15), //size
-                "shared + npcs"); //title
+                "for shared"); //title
 
             objList = new List<GameObject>();
             //4 per row, 12 rows total
@@ -398,119 +508,14 @@ namespace DungeonRun
         }
     }
 
-    public class WidgetObjects_Environment : WidgetObject
+    public class WidgetObjects_Building_Forest : WidgetObject
     {
-        public WidgetObjects_Environment()
-        {   //create and set the position of the window frame
-            window = new MenuWindow(
-                new Point(16 * 17 + 8, 16 * 2), //position
-                new Point(16 * 5, 16 * 15), //size
-                "Environment Objs"); //title
-
-            objList = new List<GameObject>();
-            //4 per row, 12 rows total
-            for (i = 0; i < 4 * 12; i++) { objList.Add(new GameObject()); }
-
-            //row 1
-            Functions_GameObject.SetType(objList[0], ObjType.Wor_Grass_Tall);
-            Functions_GameObject.SetType(objList[1], ObjType.Wor_Grass_Cut);
-            Functions_GameObject.SetType(objList[2], ObjType.Wor_Grass_1);
-            Functions_GameObject.SetType(objList[3], ObjType.Wor_Grass_2);
-
-            //row 2
-            Functions_GameObject.SetType(objList[4], ObjType.Wor_Bush);
-            Functions_GameObject.SetType(objList[5], ObjType.Wor_Bush_Stump);
-            Functions_GameObject.SetType(objList[6], ObjType.Wor_Pot);
-            Functions_GameObject.SetType(objList[7], ObjType.Wor_Flowers);
-
-            //row 3
-            Functions_GameObject.SetType(objList[8], ObjType.Wor_Tree);
-            Functions_GameObject.SetType(objList[9], ObjType.Wor_Tree_Burning);
-            Functions_GameObject.SetType(objList[10], ObjType.Wor_Tree_Burnt);
-            Functions_GameObject.SetType(objList[11], ObjType.Wor_Tree_Stump);
-            
-            //row 4
-            Functions_GameObject.SetType(objList[12], ObjType.Unknown); //covered
-            Functions_GameObject.SetType(objList[13], ObjType.Unknown); //covered
-            Functions_GameObject.SetType(objList[14], ObjType.Unknown); //covered
-            Functions_GameObject.SetType(objList[15], ObjType.Unknown); //covered
-
-            //row 5
-            Functions_GameObject.SetType(objList[16], ObjType.Wor_Water);
-            Functions_GameObject.SetType(objList[17], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[18], ObjType.Wor_Coastline_Corner_Exterior);
-            Functions_GameObject.SetType(objList[19], ObjType.Wor_Coastline_Corner_Interior);
-
-            //row 6
-            Functions_GameObject.SetType(objList[20], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[21], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[22], ObjType.Wor_Coastline_Straight);
-            Functions_GameObject.SetType(objList[23], ObjType.Unknown);
-
-            //row 7
-            Functions_GameObject.SetType(objList[24], ObjType.Wor_Debris);
-            Functions_GameObject.SetType(objList[25], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[26], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[27], ObjType.Unknown);
-
-            //row 8
-            Functions_GameObject.SetType(objList[28], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[29], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[30], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[31], ObjType.Unknown);
-
-            //row 9
-            Functions_GameObject.SetType(objList[32], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[33], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[34], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[35], ObjType.Unknown);
-
-            //row 10
-            Functions_GameObject.SetType(objList[36], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[37], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[38], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[39], ObjType.Unknown);
-
-            //row 11
-            Functions_GameObject.SetType(objList[40], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[41], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[42], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[43], ObjType.Unknown);
-
-            //row 12
-            Functions_GameObject.SetType(objList[44], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[45], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[46], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[47], ObjType.Unknown);
-
-            //position the objs relative to the window frame
-            Functions_Widget.PositionObjs(this);
-
-            //manually set tree recs
-            objList[8].compCollision.rec.Height = 16 * 2;
-            objList[9].compCollision.rec.Height = 16 * 2;
-
-            //hide objs that trees overlap
-            Functions_Widget.HideObj(objList[12]);
-            Functions_Widget.HideObj(objList[13]);
-            Functions_Widget.HideObj(objList[14]);
-            Functions_Widget.HideObj(objList[15]);
-
-            //water tile hides these
-            Functions_Widget.HideObj(objList[17]);
-            Functions_Widget.HideObj(objList[20]);
-            Functions_Widget.HideObj(objList[21]);
-        }
-    }
-
-    public class WidgetObjects_Building : WidgetObject
-    {
-        public WidgetObjects_Building()
+        public WidgetObjects_Building_Forest()
         {   //create and set the position of the window frame
             window = new MenuWindow(
                 new Point(16 * 23, 16 * 2), //position
                 new Point(16 * 5, 16 * 15), //size
-                "Building Objs"); //title
+                "For Building Objs"); //title
 
             objList = new List<GameObject>();
             //4 per row, 12 rows total
@@ -592,6 +597,196 @@ namespace DungeonRun
             Functions_Widget.PositionObjs(this);
 
             Functions_Widget.HideObj(objList[43]);
+        }
+    }
+
+
+
+    //need colliseum_building
+    public class WidgetObjects_Building_Colliseum : WidgetObject
+    {
+        public WidgetObjects_Building_Colliseum()
+        {   //create and set the position of the window frame
+            window = new MenuWindow(
+                new Point(16 * 23, 16 * 2), //position
+                new Point(16 * 5, 16 * 15), //size
+                "Col Building Objs"); //title
+
+            objList = new List<GameObject>();
+            //4 per row, 12 rows total
+            for (i = 0; i < 4 * 12; i++) { objList.Add(new GameObject()); }
+
+            //row 1
+            Functions_GameObject.SetType(objList[0], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[1], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[2], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[3], ObjType.Unknown);
+
+            //row 2
+            Functions_GameObject.SetType(objList[4], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[5], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[6], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[7], ObjType.Unknown);
+
+            //row 3
+            Functions_GameObject.SetType(objList[8], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[9], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[10], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[11], ObjType.Unknown);
+
+            //row 4
+            Functions_GameObject.SetType(objList[12], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[13], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[14], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[15], ObjType.Unknown);
+
+            //row 5
+            Functions_GameObject.SetType(objList[16], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[17], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[18], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[19], ObjType.Unknown);
+
+            //row 6
+            Functions_GameObject.SetType(objList[20], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[21], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[22], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[23], ObjType.Unknown);
+
+            //row 7
+            Functions_GameObject.SetType(objList[24], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[25], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[26], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[27], ObjType.Unknown);
+
+            //row 8
+            Functions_GameObject.SetType(objList[28], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[29], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[30], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[31], ObjType.Unknown);
+
+            //row 9
+            Functions_GameObject.SetType(objList[32], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[33], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[34], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[35], ObjType.Unknown);
+
+            //row 10
+            Functions_GameObject.SetType(objList[36], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[37], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[38], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[39], ObjType.Unknown);
+
+            //row 11
+            Functions_GameObject.SetType(objList[40], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[41], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[42], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[43], ObjType.Unknown);
+
+            //row 12
+            Functions_GameObject.SetType(objList[44], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[45], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[46], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[47], ObjType.Unknown);
+
+            //position the objs relative to the window frame
+            Functions_Widget.PositionObjs(this);
+            
+        }
+    }
+
+
+    //then we switch between forest display (env, dung, for enemy, for shared, for building)
+    //and colliseum display (env, dung, col shared, col building)
+
+
+    public class WidgetObjects_DEV : WidgetObject
+    {
+        public WidgetObjects_DEV()
+        {   //create and set the position of the window frame
+            window = new MenuWindow(
+                new Point(16 * 34, 16 * 2), //position
+                new Point(16 * 5, 16 * 15), //size
+                "DEV Objs"); //title
+
+            objList = new List<GameObject>();
+            //4 per row, 12 rows total
+            for (i = 0; i < 4 * 12; i++) { objList.Add(new GameObject()); }
+
+            //row 1
+            Functions_GameObject.SetType(objList[0], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[1], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[2], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[3], ObjType.Unknown);
+
+            //row 2
+            Functions_GameObject.SetType(objList[4], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[5], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[6], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[7], ObjType.Unknown);
+
+            //row 3
+            Functions_GameObject.SetType(objList[8], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[9], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[10], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[11], ObjType.Unknown);
+
+            //row 4
+            Functions_GameObject.SetType(objList[12], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[13], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[14], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[15], ObjType.Unknown);
+
+            //row 5
+            Functions_GameObject.SetType(objList[16], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[17], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[18], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[19], ObjType.Unknown);
+
+            //row 6
+            Functions_GameObject.SetType(objList[20], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[21], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[22], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[23], ObjType.Unknown);
+
+            //row 7
+            Functions_GameObject.SetType(objList[24], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[25], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[26], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[27], ObjType.Unknown);
+
+            //row 8
+            Functions_GameObject.SetType(objList[28], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[29], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[30], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[31], ObjType.Unknown);
+
+            //row 9
+            Functions_GameObject.SetType(objList[32], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[33], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[34], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[35], ObjType.Unknown);
+
+            //row 10
+            Functions_GameObject.SetType(objList[36], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[37], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[38], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[39], ObjType.Unknown);
+
+            //row 11
+            Functions_GameObject.SetType(objList[40], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[41], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[42], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[43], ObjType.Unknown);
+
+            //row 12
+            Functions_GameObject.SetType(objList[44], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[45], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[46], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[47], ObjType.Unknown);
+
+            //position the objs relative to the window frame
+            Functions_Widget.PositionObjs(this);
+            
         }
     }
 

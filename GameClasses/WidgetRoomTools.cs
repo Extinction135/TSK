@@ -40,7 +40,7 @@ namespace DungeonRun
         public ComponentButton loadBtn;
         public ComponentButton newRoomBtn;
         public ComponentButton roomTypeBtn;
-        public ComponentButton reloadRoomBtn;
+        
 
 
 
@@ -56,13 +56,11 @@ namespace DungeonRun
             loadBtn = new ComponentButton("load", new Point(0, 0));
             newRoomBtn = new ComponentButton("new room", new Point(0, 0));
             roomTypeBtn = new ComponentButton("-------", new Point(0, 0));
-            reloadRoomBtn = new ComponentButton("reload", new Point(0, 0));
-
+            
             buttons.Add(saveBtn);
             buttons.Add(loadBtn);
             buttons.Add(newRoomBtn);
             buttons.Add(roomTypeBtn);
-            buttons.Add(reloadRoomBtn);
 
             roomTypeBtn.compText.text = "" + roomID;
             //center text to button, prevent half pixel offsets
@@ -81,10 +79,6 @@ namespace DungeonRun
             saveBtn.rec.X = X + 16 * 1 - 8;
             saveBtn.rec.Y = Y + 16 * 1 + 8 - 2;
             Functions_Component.CenterText(saveBtn);
-
-            reloadRoomBtn.rec.X = X + 16 * 1 + 17;
-            reloadRoomBtn.rec.Y = Y + 16 * 1 + 8 - 2;
-            Functions_Component.CenterText(reloadRoomBtn);
 
             loadBtn.rec.X = X + 16 * 4 + 10 - 8;
             loadBtn.rec.Y = Y + 16 * 1 + 8 - 2;
@@ -206,15 +200,6 @@ namespace DungeonRun
 
                             #endregion
 
-
-                            #region Reload
-
-                            else if (buttons[i] == reloadRoomBtn)
-                            {   //assumes roomData hasn't changed since last build
-                                //LoadRoomData(roomData);
-                            }
-
-                            #endregion
 
                         }
                     }
