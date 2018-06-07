@@ -247,6 +247,9 @@
     <Compile Include="..\..\GameClasses\ScreenDialog.cs">
       <Link>Classes\ScreenDialog.cs</Link>
     </Compile>
+    <Compile Include="..\..\GameClasses\ScreenEditorMenu.cs">
+      <Link>Classes\ScreenEditorMenu.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\ScreenInventory.cs">
       <Link>Classes\ScreenInventory.cs</Link>
     </Compile>

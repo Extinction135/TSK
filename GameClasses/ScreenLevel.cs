@@ -63,6 +63,8 @@ namespace DungeonRun
                 }
                 //map player input to hero
                 Functions_Input.MapPlayerInput(Pool.hero.compInput);
+
+
                 if (Flags.EnableTopMenu) { Functions_TopMenu.HandleInput(); }
             }
             else
@@ -312,16 +314,7 @@ namespace DungeonRun
             #endregion
 
 
-            Functions_Draw.Draw(overlay); //draw the overlay rec
-
-            if(Flags.Release == false)
-            {   //ALWAYS draw the cursor, and draw it last
-                Functions_Draw.Draw(TopDebugMenu.cursor);
-                //ALWAYS draw the toolTip too
-                if (TopDebugMenu.objToolState != ObjToolState.MoveObj)
-                { Functions_Draw.Draw(Widgets.ObjectTools.toolTipSprite); }
-            }
-
+            Functions_Draw.Draw(overlay); //draw black fade in/out overlay rec
             ScreenManager.spriteBatch.End();
 
             Timing.stopWatch.Stop();

@@ -28,7 +28,6 @@ namespace DungeonRun
             if (Set == WidgetDisplaySet.Dungeon)
             {
                 TopDebugMenu.display = WidgetDisplaySet.Dungeon;
-                ResetEditorWidgets();
                 //set buttons correctly - dungeon = down, world = up
                 TopDebugMenu.buttons[5].currentColor = Assets.colorScheme.buttonDown;
                 TopDebugMenu.buttons[6].currentColor = Assets.colorScheme.buttonUp;
@@ -36,84 +35,31 @@ namespace DungeonRun
             else if (Set == WidgetDisplaySet.World)
             {
                 TopDebugMenu.display = WidgetDisplaySet.World;
-                ResetEditorWidgets();
                 //set buttons correctly - dungeon = up, world = down
                 TopDebugMenu.buttons[6].currentColor = Assets.colorScheme.buttonDown;
                 TopDebugMenu.buttons[5].currentColor = Assets.colorScheme.buttonUp;
             }
         }
 
-
-        public static void UpdateEditorWidgets()
-        {
-            Widgets.ObjectTools.Update();
-            Widgets.RoomTools.Update();
-
-            Widgets.WidgetObjects_Dungeon.Update();
-            Widgets.WidgetObjects_Enemy.Update();
-
-            Widgets.WidgetObjects_Environment.Update();
-            Widgets.WidgetObjects_Building.Update();
-
-            Widgets.WidgetObjects_Shared.Update();
-        }
+        
 
 
-        public static void ResetEditorWidgets()
-        {
-            //editor set
-            Widgets.ObjectTools.Reset(16 * 1, 16 * 17 + 8); //bot left
-            Widgets.RoomTools.Reset(16 * 33, 16 * 17 + 8); //bot right
 
-            //dungeon set
-            Widgets.WidgetObjects_Dungeon.Reset(16 * 1, 16 * 2); //left
-            Widgets.WidgetObjects_Enemy.Reset(16 * 34, 16 * 2); //right
+        
 
-            //world set
-            Widgets.WidgetObjects_Environment.Reset(16 * 1, 16 * 2); //left
-            Widgets.WidgetObjects_Building.Reset(16 * 34, 16 * 2); //right
 
-            //shared
-            Widgets.WidgetObjects_Shared.Reset(16 * 7, 16 * 2); //right of left widget
-        }
 
 
         public static void HandleInput()
         {
             if (Flags.Release) { return; } //kill any dev input in release mode
-
-
-            #region Set Cursor Sprite's AnimationFrame and Position
-
-
-            if (TopDebugMenu.objToolState == ObjToolState.MoveObj) //check/set move state
-            {   //if moving, show open hand cursor
-                TopDebugMenu.cursor.currentFrame = AnimationFrames.Ui_Hand_Open[0];
-                //if moving, and dragging, show grab cursor
-                if (Functions_Input.IsMouseButtonDown(MouseButtons.LeftButton))
-                { TopDebugMenu.cursor.currentFrame = AnimationFrames.Ui_Hand_Grab[0]; }
-            }
-            else
-            {   //default to pointer
-                TopDebugMenu.cursor.currentFrame = AnimationFrames.Ui_Hand_Point[0];
-                //if clicking/dragging, show pointer press cursor
-                if (Functions_Input.IsMouseButtonDown(MouseButtons.LeftButton))
-                { TopDebugMenu.cursor.currentFrame = AnimationFrames.Ui_Hand_Press[0]; }
+            
+            //Backspace - Show Editor Menu
+            if (Functions_Input.IsNewKeyPress(Keys.Back))
+            {
+                ScreenManager.AddScreen(new ScreenEditorMenu());
             }
 
-            TopDebugMenu.cursor.position.X = Input.cursorPos.X;
-            TopDebugMenu.cursor.position.Y = Input.cursorPos.Y;
-
-            if (TopDebugMenu.objToolState != ObjToolState.MoveObj)
-            {   //apply offset for pointer sprite
-                TopDebugMenu.cursor.position.X += 3;
-                TopDebugMenu.cursor.position.Y += 6;
-            }
-
-            #endregion
-
-
-            UpdateEditorWidgets(); //this animates them
 
 
             #region F1 - Toggle Collision Rec Drawing
@@ -209,9 +155,6 @@ namespace DungeonRun
 
 
 
-
-
-
             //"playtest" mode
             if (TopDebugMenu.display == WidgetDisplaySet.None)
             {   //allow editor to use cursor tool
@@ -227,7 +170,7 @@ namespace DungeonRun
                 if (Functions_Input.IsNewKeyPress(Keys.F6))
                 {
                     TopDebugMenu.display = WidgetDisplaySet.Dungeon;
-                    ResetEditorWidgets();
+                    //ResetEditorWidgets();
                     //set buttons correctly - dungeon = down, world = up
                     TopDebugMenu.buttons[5].currentColor = Assets.colorScheme.buttonDown;
                     TopDebugMenu.buttons[6].currentColor = Assets.colorScheme.buttonUp;
@@ -241,7 +184,7 @@ namespace DungeonRun
                 if (Functions_Input.IsNewKeyPress(Keys.F7))
                 {
                     TopDebugMenu.display = WidgetDisplaySet.World;
-                    ResetEditorWidgets();
+                    //ResetEditorWidgets();
                     //set buttons correctly - dungeon = up, world = down
                     TopDebugMenu.buttons[6].currentColor = Assets.colorScheme.buttonDown;
                     TopDebugMenu.buttons[5].currentColor = Assets.colorScheme.buttonUp;
@@ -271,18 +214,12 @@ namespace DungeonRun
 
                 if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
                 {
-                    //if mouse clicks on ANY button/widget, return; from method
-                    //this prevents modifying objs/data BEHIND widgets, which is annoying
-
-
-                    #region Handle User Clicking TopMenu Buttons
-
                     //button - level editor
                     if (TopDebugMenu.buttons[TopDebugMenu.buttons.Count - 1].rec.Contains(Input.cursorPos))
                     {   //switch to level/world mode
                         ScreenManager.ExitAndLoad(new ScreenLevelEditor());
                         TopDebugMenu.display = WidgetDisplaySet.World;
-                        ResetEditorWidgets();
+                        //ResetEditorWidgets();
                         //display the editor state
                         TopDebugMenu.buttons[TopDebugMenu.buttons.Count - 1].currentColor = Assets.colorScheme.buttonDown;
                         TopDebugMenu.buttons[TopDebugMenu.buttons.Count - 2].currentColor = Assets.colorScheme.buttonUp;
@@ -293,71 +230,31 @@ namespace DungeonRun
                     {   //switch to room/dungeon mode
                         ScreenManager.ExitAndLoad(new ScreenRoomEditor());
                         TopDebugMenu.display = WidgetDisplaySet.Dungeon;
-                        ResetEditorWidgets();
+                        //ResetEditorWidgets();
                         //display the editor state
                         TopDebugMenu.buttons[TopDebugMenu.buttons.Count - 1].currentColor = Assets.colorScheme.buttonUp;
                         TopDebugMenu.buttons[TopDebugMenu.buttons.Count - 2].currentColor = Assets.colorScheme.buttonDown;
                         return;
                     }
 
-                    #endregion
-
-
-                    #region Handle User Clicking Editor Widget Objects
-
-                    if (TopDebugMenu.display == WidgetDisplaySet.Dungeon)
-                    {
-                        //Handle Dungeon Objs Widget 
-                        if (Widgets.WidgetObjects_Dungeon.window.interior.rec.Contains(Input.cursorPos))
-                        {
-                            Widgets.ObjectTools.CheckObjList(Widgets.WidgetObjects_Dungeon.objList);
-                            return;
-                        }
-
-                        //Handle Enemy Spawns Widget
-                        if (Widgets.WidgetObjects_Enemy.window.interior.rec.Contains(Input.cursorPos))
-                        {
-                            Widgets.ObjectTools.CheckObjList(Widgets.WidgetObjects_Enemy.objList);
-                            return;
-                        }
-                    }
-                    else if (TopDebugMenu.display == WidgetDisplaySet.World)
-                    {
-                        //Handle Environment Objs Widget 
-                        if (Widgets.WidgetObjects_Environment.window.interior.rec.Contains(Input.cursorPos))
-                        {
-                            Widgets.ObjectTools.CheckObjList(Widgets.WidgetObjects_Environment.objList);
-                            return;
-                        }
-
-                        //Handle Building Objs Widget 
-                        if (Widgets.WidgetObjects_Building.window.interior.rec.Contains(Input.cursorPos))
-                        {
-                            Widgets.ObjectTools.CheckObjList(Widgets.WidgetObjects_Building.objList);
-                            return;
-                        }
-                    }
-
-                    if (TopDebugMenu.displaySharedObjsWidget)
-                    {
-                        //Handle Shared Objs Widget 
-                        if (Widgets.WidgetObjects_Shared.window.interior.rec.Contains(Input.cursorPos))
-                        {
-                            Widgets.ObjectTools.CheckObjList(Widgets.WidgetObjects_Shared.objList);
-                            return;
-                        }
-                    }
-
-                    #endregion
-
-
                     //hold down left ctrl button to call Inspect() on anything touching cursor
                     if (Functions_Input.IsKeyDown(Keys.LeftControl)) { Functions_Debug.Inspect(); }
                 }
 
-                Widgets.RoomTools.HandleInput();
-                //allow editor to use cursor tool
-                Widgets.ObjectTools.HandleInput();
+
+
+
+
+                if(TopDebugMenu.display != WidgetDisplaySet.None)
+                {   //allow editor to use cursor tool
+                    Widgets.ObjectTools.HandleInput();
+                    Widgets.ObjectTools.Update();
+                }
+                
+
+
+
+
             }
         }
 
@@ -365,8 +262,7 @@ namespace DungeonRun
         public static void Draw()
         {
             if (TopDebugMenu.display != WidgetDisplaySet.None)
-            {
-                //draw the top bkgRec rec
+            {   //draw the top bkgRec rec
                 ScreenManager.spriteBatch.Draw(
                     Assets.dummyTexture,
                     TopDebugMenu.rec,
@@ -376,26 +272,7 @@ namespace DungeonRun
                     TopDebugMenu.counter < TopDebugMenu.buttons.Count;
                     TopDebugMenu.counter++)
                 { Functions_Draw.Draw(TopDebugMenu.buttons[TopDebugMenu.counter]); }
-                //if dungeon mode, draw dungeon widgets
-                if (TopDebugMenu.display == WidgetDisplaySet.Dungeon)
-                {
-                    Widgets.WidgetObjects_Dungeon.Draw();
-                    Widgets.WidgetObjects_Enemy.Draw();
-                }
-                //if level mode, draw level widgets
-                else if (TopDebugMenu.display == WidgetDisplaySet.World)
-                {
-                    Widgets.WidgetObjects_Environment.Draw();
-                    Widgets.WidgetObjects_Building.Draw();
-                }
-                //shared objs widget too
-                if (TopDebugMenu.displaySharedObjsWidget)
-                {
-                    Widgets.WidgetObjects_Shared.Draw();
-                }
-
-                //draw needed editor widgets
-                Widgets.RoomTools.Draw();
+                //draw the object tools
                 Widgets.ObjectTools.Draw();
             }
         }

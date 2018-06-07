@@ -75,27 +75,24 @@ v0.74 - The Colliseum
 
 
 
+EditorMenu Screen - Part 1
 
+added backspace shortcut to create editor menu screen.
+added editor menu screen to projects. 
+setup editor menu screen to position and draw obj 
+and tool widgets.
 
+fixed a bug where cursor wasn't drawn over screens
+properly - now cursor is printed alongside draw input
+and watermark, as the final thing drawn to the screen.
 
-
-Editor++
-
-added buttons for forest, colliseum level types.
-added mockup buttons for additional level types.
-split notes into notes + controls.
-using controls widget, added button for light
-world / dark world setting for levels.
-added button mockups for health and magic
-modifiers (per room), an idea that may/not
-be implemented later...
-
-added a dedicated widget for developing objects.
-this makes it a bit easier to test certain things
-that don't fit into other categories.
-
-
-
+added path to exit editor menu screen via backspace.
+fixed a bug where cursor didn't track to mouse properly.
+this now happens in screenmanager's draw(), as a final
+step, prior to draw the cursor and toolTip. the end
+result being the cursor sprite feels like it tracks
+more accurately and displays across all screens by
+default, if the game isn't in release mode.
 
 
 
@@ -105,41 +102,76 @@ that don't fit into other categories.
 
 
 
-implement the editor ui screen idea.
-
-press & HOLD spacebar to show a screen, where objs
-can be selected, and displayed objs can be changed,
-based on level type, & dark/light world buttons.
-everything on this screen is button based.
-
-
-the screen underneath it displays the top menu, 
-and the obj tools and room tools widgets. the obj
-widgets are gone, replaced with the screen.
-the obj + room tools widgets forcibly take
-input over the game world, so objs can't be
-accessed behind them - same with top menu.
+objs inside of obj widget sets should set themselves 
+relative to the window frames 0,0 - not absolute
+positioning themselves on screen!!!
 
 
 
-top menu should become button based, without
-function button input. shortcuts are bad.
-the only shortcuts should be: f1 - display editor
-widgets (top menu, obj, and room tools).
-everything else is accessible from clicking on
-the top menu. 
 
 
 
-we need to update / redesign the editor to allow
-for creation of different level types, along with
-light world and dark world level types.
+set position for obj tools widget (missing reset upon editor load)
 
-we can model light/dark with a boolean in the level data.
-this is something we'll need to add to existing levels, 
-defaulting to light world (since we dont have any dark 
-world levels yet!) which means we'll need to update the
-level xml and the routines that write the xmlt to cs.
+
+
+
+
+
+
+
+
+
+Implement New Editor
+
+this starts with creating a new screen, and then
+adding all the widgets to it, & getting it linked
+up to the backspace being held from editor.
+be sure to draw the obj tools widget.
+
+add the level type buttons to the top.
+add the notes widget + controls widget.
+
+remove the top menu buttons for shared, dungeon, world objs.
+including shortcuts. add new button "backspace=ui".
+
+the obj tools widget takes input over the game world, 
+so objs can't be accessed behind it - same with top menu.
+
+f3 hide widgets now only hides the obj tools widget, and
+the top menu. while hidden, the obj tools widget refuses
+input, update, and draw calls.
+
+
+
+
+
+
+
+
+
+Implement Light/Dark Room Data
+
+we can model light/dark with a boolean in the room's data.
+remember that overworld levels = big single rooms, plus
+we ONLY have roomData (level data doesn't really exist),
+so we have to model light/dark in room data.
+
+we also want this addition to layer easily into the existing
+roomData, so this boolean value should default to true, (< if missing when roomdata is loaded)
+which indicates the room is a light world room, since we
+dont have any dark world rooms - yet. update the existing
+roomData to include this lightWorld boolean.
+
+
+
+
+
+
+
+
+
+
 
 
 

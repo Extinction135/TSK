@@ -74,6 +74,9 @@ namespace DungeonRun
             foreach (Screen screen in screens) { screen.Draw(gameTime); }
 
 
+
+            #region Draw input, watermark, and cursor + tooltip
+
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
             //draw the input display
             if (Flags.DrawInput)
@@ -84,8 +87,45 @@ namespace DungeonRun
                 Functions_Draw.Draw(InputDisplay.directions);
                 Functions_Draw.Draw(InputDisplay.buttons);
             }
-            if (Flags.DrawWatermark) { Functions_Draw.Draw(WaterMark.display); }
+            //draw the watermark
+            if (Flags.DrawWatermark)
+            {
+                Functions_Draw.Draw(WaterMark.display);
+            }
+            //draw the cursor, if game isn't in release mode (dev mode)
+            if(Flags.Release == false)
+            {
+                if (TopDebugMenu.objToolState == ObjToolState.MoveObj) //check move state
+                {   //if moving, show open hand cursor
+                    TopDebugMenu.cursor.currentFrame = AnimationFrames.Ui_Hand_Open[0];
+                    //if dragging, show grab cursor
+                    if (Functions_Input.IsMouseButtonDown(MouseButtons.LeftButton))
+                    { TopDebugMenu.cursor.currentFrame = AnimationFrames.Ui_Hand_Grab[0]; }
+                }
+                else
+                {   //default to pointer
+                    TopDebugMenu.cursor.currentFrame = AnimationFrames.Ui_Hand_Point[0];
+                    //if clicking/dragging, show pointer press cursor
+                    if (Functions_Input.IsMouseButtonDown(MouseButtons.LeftButton))
+                    { TopDebugMenu.cursor.currentFrame = AnimationFrames.Ui_Hand_Press[0]; }
+                }
+                //match cursor to mouse pos + toolTip
+                TopDebugMenu.cursor.position.X = Input.cursorPos.X;
+                TopDebugMenu.cursor.position.Y = Input.cursorPos.Y;
+                if (TopDebugMenu.objToolState != ObjToolState.MoveObj)
+                {   //apply offset for pointer sprite
+                    TopDebugMenu.cursor.position.X += 3;
+                    TopDebugMenu.cursor.position.Y += 6;
+                }
+                Functions_Draw.Draw(TopDebugMenu.cursor);
+                //draw the toolTip too
+                if (TopDebugMenu.objToolState != ObjToolState.MoveObj)
+                { Functions_Draw.Draw(Widgets.ObjectTools.toolTipSprite); }
+            }
             spriteBatch.End();
+
+            #endregion
+
 
 
             //Draw the renderSurface to the window frame

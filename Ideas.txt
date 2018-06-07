@@ -1,13 +1,81 @@
 
 
 
-Colliseum
 
-what is this? we need npcs and unique sprites here too.
-define what colliseum is and how hero interacts with it.
-i dont know what this is right now. there's ideas, but not
-enough to execute on, so it's going on the backburner.
 
+
+
+
+
+Dreams (Ideas)
+
+clean beds appear in overworld levels (only
+light world). dirty beds appear in dungeons
+and in dark world. based on what level
+the bed is on, it can cause different 
+kinds of dreams.
+
+clean bed: premonition dreams, which guide the
+player towards the intended objective or goal
+functioning similar to lttp's fortune teller.
+this is concept art + music + dialog.
+
+dirty bed, light world dungeon: creepy to weird
+dreams, no premonitions, music / sounds with
+black screen, concept art, random NPCs saying
+random things or having non-sensical conversations.
+mostly harmless and just kinda weird.
+
+dirty bed, darkworld level: entrance to a randomly
+generated dream-world dungeon, where link's objective
+is to escape (find exit). Random enemies are chosen
+for rooms, along with random dungeon textures for
+each room. NPCs may be added to rooms randomly too,
+which would spout gibberish from randomly combined
+sentences and words. dying in the dungeon would
+end the dream, as would finding the exit.
+
+dirty bed, darkworld dungeon: why would you sleep
+there? WHY? because this bed creates nightmares.
+nightmares are special boss fights that are only 
+accessible via this manner, and are incredibly
+overpowered and meant to be unbeatable (unless
+using cheats, lol) - but they don't affect hero's
+rating or inventory post-dream. not all dreams
+in these beds are nightmares, only rarely does
+a nightmare appear - most of the time it's just 
+the creepy dreams.
+
+this makes beds become actually interesting 
+objects, instead of just interior building decorations.
+note that modifiers can be applied to dreams,
+and ceertainly will be to nightmares, where the hero
+only has certain equipment, or can only have 1
+heatlh max, or has infinite health, or inf magic,
+etc...
+
+
+
+
+
+
+
+
+
+- mountain dungeon (diff enemies, boss, dungeon sprites)
+
+- Non-room repeating Dungeon, additional rooms
+- Blob AI improvements - sword, bomb based on weapon / item loadout 
+
+- room keys - these only work for the room and only unlock 1 door, and
+these rooms turn all their doors into locked doors upon close, similar to puzzled rooms
+link doesn't put them into inventory - he literally picks them up and walks over
+to a locked door then throws the key at it.
+this is kinda like super mario world style key gameplay.
+if obj.type == key & obj.hitBox.intersects lockedDoor.hitBox,
+convert lockedDoor to openDoor, release() key.
+- or - we put the key as a menuItem in inventory,
+and clear that inventory item when link enters a new room (pre-build).
 
 
 
@@ -108,36 +176,6 @@ then simply animate the size of the pixel set over time
 on screen (pixelization). 
 this is likely something we'd have to do as a shader effect,
 or possibly as a final step over the 640x360 render surface.
-
-
-
-
-
-
-
-
-
-
-Battle Instructor NPC
-
-we need a battle instructor NPC that stands in front of an object
-that spawns blob actors on a regular cycle.
-
-NPC has dialog like:
-wanna learn how to fight? A/B
-
-to attack, equip a weapon from your inventory and press X.
-to use or cast, equip an item from your inventory and press Y.
-
-while moving, press B to dash.
-it's important to master this dashing skill.
-
-try dashing into an attack, then dashing out.
-the quicker you are, the less likely to be killed.
-
-
-
-
 
 
 
@@ -265,9 +303,12 @@ facing direction to the cardinal casting direction of the arrow projectile, for 
 
 
 
-The Wolf
-should be able to get a wolf pet, which actually attacks
-enemies. have to tame him by defeating him as a miniboss tho.
+
+
+
+
+
+
 
 
 because the blob boss has a cast sprite, he should be able to cast
