@@ -35,8 +35,8 @@ Phase 1 - version 0.1 to 0.7 (complete)
 zelda with a procedural, randomly generated dungeon, and
 better movement / dashing / combat on xbox one + pc.
 
-Phase 2 - version 0.8 to 1.0
-+ Miyamoto's original lttp ideas.
+Phase 2 - version 0.7 to 1.0
++ Miyamoto's original lttp ideas. (complete)
 + all desired functionality from lttp + other zeldas.
 + all desired functionality from other games.
 + mature, dark story + endgame content.	
@@ -69,63 +69,77 @@ player's health never goes above 1 in the trials).
 
 
 
-v0.74 - The Colliseum
-
-
-Prep for Colliseum Objs
-
-deleted all objects from colliseum xml room data.
-recompiled level data.
-fixed button displays of room/level tools.
-removed some debug profanity I forgot about. 
-
-
+v0.74 - The Colliseum & Training Dungeon
 
 
 
 Colliseum Objs
 
 create colliseum building objects, put them in the
-colliseum building widget.
+colliseum building widget. you can access this widget
+by pressing the forest button on the editor menu screen.
 
 
 
+What is the Colliseum?
+a series of rooms that contain NPCs and objects which 
+lead to challenges or sub-games within the main overall 
+game. these challenges are separate from the main game 
+and do not / cannot affect plotlines in any meaningful 
+way. there will also be a dark world colliseum, with 
+darker and different challenges.
 
 
-Colliseum
+Colliseum Facade
 
-BUILD THE COLLISEUM LEVEL USING COLLISUM OBJECTS.
+>> BUILD THE COLLISEUM ENTRANCE LEVEL USING COLLISUM OBJECTS <<
 should look like the map representation and seem really
 big. we want buildings larger, more impressive than lttp.
 
-(two) entrance to the colliseum.
+there is only one NPC outside the colliseum for now,
+and that is the training NPC.
+
+there are two entrances to the colliseum.
 one is obvs, the other is hidden behind a tree!
 
 
 
 
-contains NPCs and objects which lead to challenges or
-sub-games within the main overall game. these challenges
-are separate from the main game and do not / cannot affect
-plotlines in any meaningful way. there will also be a dark
-world colliseum, with darker and different challenges.
+
+
+
+Training NPC
+
+it is assumed player will speak with this NPC first,
+since this NPC is the only other living thing on screen
+upon first run of game. he introduces the player to
+basic game concepts via a quick dungeon with a boss fight.
+
+dialog (if collisuem pass boolean is false):
+"want a colliseum pass? you'll have to earn it.."
+"A) yes   B) no"
+
+dialog (if colliseum pass boolean is true)
+"the colliseum's entrance is just ahead."
+"enjoy the games and prizes..."
+
+if player doesn't have colliseum pass, then accepting
+the pass from the trainer creates the training dungeon.
 
 
 
 
-colliseum needs to be on a separate sheet.
-this means we will be implementing the 2nd level sheet.
+Training Dungeon
 
-this means editor needs to be able to switch between
-outside and colliseum sprite sheets. THE OBJECTS STAY
-THE SAME.
-
-
-
-
-
-NPCs are implemented uniquely.
-roomObjects are implemented generally, against a sprite sheet.
+this is a series of rooms with standard to basic enemies,
+culminating in a boss fight. these rooms are specifically
+designed to introduce the player to the game's unique concepts.
+the boss at the end of this dungeon is simply a damage sponge,
+and has simple mobs protecting it - very easy. also, in this
+training dungeon link's health cannot drop below 1 - so link's
+invincible. upon defeat of the boss, link is returned to the
+colliseum entrance level, except this time the colliseum pass
+boolean is flipped true, changing the trainer's dialog.
 
 
 
@@ -134,14 +148,11 @@ roomObjects are implemented generally, against a sprite sheet.
 
 
 
-Training / Instructor NPC
 
-initially trains link - setup the training NPC.
-this is the only NPC outside the colliseum entrance.
+
+
 without the colliseum pass, link cannot enter the colliseum.
-this is an object (colliseum door) that link interacts with.
-plus, we need a facade of building sprites/objs outside
-to indicate that the colliseum is a large structure.
+link interacts with a colliseum door obj to enter colliseum.
 when link interacts with the colliseum door, the
 colliseum interior level is loaded. 
 
@@ -152,6 +163,31 @@ interior colliseum level, along with tons of NPCs.
 
 these colliseum NPCs can each represent a different
 sub-game within the normal game, like The Trials.
+
+
+
+
+
+
+
+
+
+
+
+
+*we could build custom dungeons by simply creating field levels
+divided into walled off sections connected by doors. we could connect
+these field dungeon rooms together with objects. however, we would
+need many different objects that represented doors, because the object
+type would be the only way we would know where the door led to.
+interacting with the door loads a room, based on the door type - basically.
+
+
+
+
+
+
+
 
 
 
@@ -172,11 +208,6 @@ while moving, press B to dash.
 it's important to master this dashing skill.
 try dashing into an attack, then dashing out.
 the quicker you are, the less likely to be killed.
-
-
-
-
-
 
 
 
