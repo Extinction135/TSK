@@ -39,6 +39,9 @@ namespace DungeonRun
             Widgets.WO_Enemy_Forest.visible = true;
             Widgets.WO_Shared_Forest.visible = true;
             Widgets.WO_Building_Forest.visible = true;
+
+            Widgets.WO_Environment.visible = true;
+            Widgets.WO_Dungeon.visible = true;
         }
 
         public override void HandleInput(GameTime GameTime)
@@ -56,11 +59,17 @@ namespace DungeonRun
                 CheckObjList(Widgets.WO_Environment);
                 CheckObjList(Widgets.WO_Dungeon);
 
-                CheckObjList(Widgets.WO_Enemy_Forest);
-                CheckObjList(Widgets.WO_Shared_Forest);
-                CheckObjList(Widgets.WO_Building_Forest);
+                //check forest widget input
+                if (Widgets.WO_Enemy_Forest.visible)
+                { CheckObjList(Widgets.WO_Enemy_Forest); }
+                if (Widgets.WO_Shared_Forest.visible)
+                { CheckObjList(Widgets.WO_Shared_Forest); }
+                if (Widgets.WO_Building_Forest.visible)
+                { CheckObjList(Widgets.WO_Building_Forest); }
 
-                CheckObjList(Widgets.WO_Building_Colliseum);
+                //check colliseum widget input
+                if (Widgets.WO_Building_Colliseum.visible)
+                { CheckObjList(Widgets.WO_Building_Colliseum); }
             }
 
             //pass tool input
@@ -138,13 +147,13 @@ namespace DungeonRun
 
             Functions_Draw.Draw(bkgRec);
 
-            //update and draw obj widgets
-            Widgets.WO_Environment.Update();
-            Widgets.WO_Environment.Draw();
-            Widgets.WO_Dungeon.Update();
-            Widgets.WO_Dungeon.Draw();
-
             //update and draw obj widgets that are visible
+            if (Widgets.WO_Environment.visible)
+            { Widgets.WO_Environment.Update(); Widgets.WO_Environment.Draw(); }
+
+            if (Widgets.WO_Dungeon.visible)
+            { Widgets.WO_Dungeon.Update(); Widgets.WO_Dungeon.Draw(); }
+
             if (Widgets.WO_Enemy_Forest.visible)
             { Widgets.WO_Enemy_Forest.Update(); Widgets.WO_Enemy_Forest.Draw(); }
 

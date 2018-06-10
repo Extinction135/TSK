@@ -72,6 +72,34 @@ player's health never goes above 1 in the trials).
 v0.74 - The Colliseum & Training Dungeon
 
 
+The Colliseum - Part 1
+
+fixed bug where env/dung objs couldn't be selected
+in editor menu.
+
+created colliseum entrance obj, gates,
+stairs, pillars, bricks.
+
+updated colliseum level.
+
+
+
+
+
+
+
+
+
+
+*need colliseum roof/floor - dark, sorts under hero.
+fill colliseum building up with floor objs.
+
+
+
+
+
+
+
 
 Colliseum Objs
 
@@ -129,15 +157,13 @@ the pass from the trainer creates the training dungeon.
 
 
 
-Training Dungeon
+Training Fight
 
-this is a series of rooms with standard to basic enemies,
-culminating in a boss fight. these rooms are specifically
-designed to introduce the player to the game's unique concepts.
-the boss at the end of this dungeon is simply a damage sponge,
-and has simple mobs protecting it - very easy. also, in this
-training dungeon link's health cannot drop below 1 - so link's
-invincible. upon defeat of the boss, link is returned to the
+this takes place IN THE COLLISEUM PIT, with mobs + basics,
+culminating in a boss fight. 
+the boss at the end of this is simply a damage sponge,
+and has simple mobs protecting it - very easy. 
+upon defeat of the boss, link is returned to the
 colliseum entrance level, except this time the colliseum pass
 boolean is flipped true, changing the trainer's dialog.
 

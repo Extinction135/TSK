@@ -184,8 +184,9 @@ namespace DungeonRun
 
 
 
-        //dungeon entrances
+        //level entrances
         public static List<Byte4> Wor_Entrance_ForestDungeon = new List<Byte4> { new Byte4(0, 0, 0, 0) };
+        public static List<Byte4> Wor_Entrance_Colliseum = new List<Byte4> { new Byte4(0, 0, 0, 0) };
 
         //objects
         public static List<Byte4> Wor_Pot = new List<Byte4> { new Byte4(7, 6, 0, 0) };
@@ -251,6 +252,27 @@ namespace DungeonRun
         public static List<Byte4> Wor_Build_Roof_Bottom = new List<Byte4> { new Byte4(7, 8, 0, 0) };
         public static List<Byte4> Wor_Build_Roof_Chimney = new List<Byte4> { new Byte4(7, 11, 0, 0) };
 
+        //colliseum objs
+        public static List<Byte4> Wor_Colliseum_Gate_Center = new List<Byte4> { new Byte4(2, 3, 0, 0) };
+        public static List<Byte4> Wor_Colliseum_Gate_Pillar_Left = new List<Byte4> { new Byte4(0, 3, 0, 0) };
+        public static List<Byte4> Wor_Colliseum_Gate_Pillar_Right = new List<Byte4> { new Byte4(0, 3, 1, 0) };
+
+        public static List<Byte4> Wor_Colliseum_Pillar_Top = new List<Byte4> { new Byte4(3, 12, 0, 0) };
+        public static List<Byte4> Wor_Colliseum_Pillar_Middle = new List<Byte4> { new Byte4(3, 13, 0, 0) };
+        public static List<Byte4> Wor_Colliseum_Pillar_Bottom = new List<Byte4> { new Byte4(3, 14, 0, 0) };
+
+        public static List<Byte4> Wor_Colliseum_Stairs_Handrail_Top = new List<Byte4> { new Byte4(4, 12, 0, 0) };
+        public static List<Byte4> Wor_Colliseum_Stairs_Handrail_Middle = new List<Byte4> { new Byte4(4, 13, 0, 0) };
+        public static List<Byte4> Wor_Colliseum_Stairs_Handrail_Bottom = new List<Byte4> { new Byte4(4, 14, 0, 0) };
+
+        public static List<Byte4> Wor_Colliseum_Stairs_Left = new List<Byte4> { new Byte4(5, 12, 0, 0) };
+        public static List<Byte4> Wor_Colliseum_Stairs_Middle = new List<Byte4> { new Byte4(5, 13, 0, 0) };
+        public static List<Byte4> Wor_Colliseum_Stairs_Right = new List<Byte4> { new Byte4(5, 12, 1, 0) };
+
+        public static List<Byte4> Wor_Colliseum_Bricks_Left = new List<Byte4> { new Byte4(6, 6, 0, 0) };
+        public static List<Byte4> Wor_Colliseum_Bricks_Middle1 = new List<Byte4> { new Byte4(7, 6, 0, 0) };
+        public static List<Byte4> Wor_Colliseum_Bricks_Middle2 = new List<Byte4> { new Byte4(8, 6, 0, 0) };
+        public static List<Byte4> Wor_Colliseum_Bricks_Right = new List<Byte4> { new Byte4(9, 6, 0, 0) };
 
         #endregion
 

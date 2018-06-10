@@ -280,20 +280,20 @@ namespace DungeonRun
             //row 10
             Functions_GameObject.SetType(objList[36], ObjType.Unknown);
             Functions_GameObject.SetType(objList[37], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[38], ObjType.Dungeon_WallInteriorCorner);
-            Functions_GameObject.SetType(objList[39], ObjType.Dungeon_WallExteriorCorner);
+            Functions_GameObject.SetType(objList[38], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[39], ObjType.Unknown);
 
             //row 11
-            Functions_GameObject.SetType(objList[40], ObjType.Dungeon_WallStraight);
-            Functions_GameObject.SetType(objList[41], ObjType.Dungeon_WallTorch);
-            Functions_GameObject.SetType(objList[42], ObjType.Dungeon_WallPillar);
-            Functions_GameObject.SetType(objList[43], ObjType.Dungeon_WallStatue);
+            Functions_GameObject.SetType(objList[40], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[41], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[42], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[43], ObjType.Unknown);
 
             //row 12
-            Functions_GameObject.SetType(objList[44], ObjType.Dungeon_DoorTrap);
-            Functions_GameObject.SetType(objList[45], ObjType.Dungeon_DoorShut);
-            Functions_GameObject.SetType(objList[46], ObjType.Dungeon_DoorFake);
-            Functions_GameObject.SetType(objList[47], ObjType.Dungeon_DoorBombable);
+            Functions_GameObject.SetType(objList[44], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[45], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[46], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[47], ObjType.Unknown);
 
             //position the objs relative to the window frame
             Functions_Widget.PositionObjs(this);
@@ -617,80 +617,127 @@ namespace DungeonRun
             for (i = 0; i < 4 * 12; i++) { objList.Add(new GameObject()); }
 
             //row 1
-            Functions_GameObject.SetType(objList[0], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[1], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[2], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[3], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[0], ObjType.Wor_Entrance_Colliseum);
+            Functions_GameObject.SetType(objList[1], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[2], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[3], ObjType.Wor_Colliseum_Pillar_Top);
 
             //row 2
-            Functions_GameObject.SetType(objList[4], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[5], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[6], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[7], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[4], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[5], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[6], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[7], ObjType.Wor_Colliseum_Pillar_Middle);
 
             //row 3
-            Functions_GameObject.SetType(objList[8], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[9], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[10], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[11], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[8], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[9], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[10], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[11], ObjType.Wor_Colliseum_Pillar_Bottom);
 
             //row 4
-            Functions_GameObject.SetType(objList[12], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[13], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[14], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[12], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[13], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[14], ObjType.Unknown);//
             Functions_GameObject.SetType(objList[15], ObjType.Unknown);
 
             //row 5
-            Functions_GameObject.SetType(objList[16], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[17], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[18], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[19], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[16], ObjType.Wor_Colliseum_Gate_Pillar_Left);
+            Functions_GameObject.SetType(objList[17], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[18], ObjType.Wor_Colliseum_Gate_Center);
+            Functions_GameObject.SetType(objList[19], ObjType.Wor_Colliseum_Bricks_Left);
 
             //row 6
-            Functions_GameObject.SetType(objList[20], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[21], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[22], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[23], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[20], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[21], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[22], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[23], ObjType.Unknown);//
 
             //row 7
-            Functions_GameObject.SetType(objList[24], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[25], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[26], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[27], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[24], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[25], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[26], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[27], ObjType.Wor_Colliseum_Bricks_Middle1);
 
             //row 8
-            Functions_GameObject.SetType(objList[28], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[29], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[30], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[31], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[28], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[29], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[30], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[31], ObjType.Unknown);//
 
             //row 9
-            Functions_GameObject.SetType(objList[32], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[33], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[34], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[35], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[32], ObjType.Wor_Colliseum_Stairs_Handrail_Top);
+            Functions_GameObject.SetType(objList[33], ObjType.Wor_Colliseum_Stairs_Left);
+            Functions_GameObject.SetType(objList[34], ObjType.Wor_Colliseum_Gate_Pillar_Right);
+            Functions_GameObject.SetType(objList[35], ObjType.Unknown);//
 
             //row 10
-            Functions_GameObject.SetType(objList[36], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[37], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[38], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[39], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[36], ObjType.Wor_Colliseum_Stairs_Handrail_Middle);
+            Functions_GameObject.SetType(objList[37], ObjType.Wor_Colliseum_Stairs_Middle);
+            Functions_GameObject.SetType(objList[38], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[39], ObjType.Unknown);//
 
             //row 11
-            Functions_GameObject.SetType(objList[40], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[41], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[42], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[43], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[40], ObjType.Wor_Colliseum_Stairs_Handrail_Bottom);
+            Functions_GameObject.SetType(objList[41], ObjType.Wor_Colliseum_Stairs_Right);
+            Functions_GameObject.SetType(objList[42], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[43], ObjType.Unknown);//
 
             //row 12
-            Functions_GameObject.SetType(objList[44], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[45], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[46], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[47], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[44], ObjType.Wor_Colliseum_Bricks_Middle2);
+            Functions_GameObject.SetType(objList[45], ObjType.Wor_Colliseum_Bricks_Right);
+            Functions_GameObject.SetType(objList[46], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[47], ObjType.Unknown);//
 
             //position the objs relative to the window frame
             Functions_Widget.PositionObjs(this);
-            
+
+
+
+            //manually set the dungeon entrances collision rec
+            objList[0].compCollision.rec.Width = 16 * 3;
+            objList[0].compCollision.rec.Height = 16 * 4;
+
+            //hide the dungeon objs covered by dungeon entrance
+            Functions_Widget.HideObj(objList[1]);
+            Functions_Widget.HideObj(objList[2]);
+            Functions_Widget.HideObj(objList[4]);
+            Functions_Widget.HideObj(objList[5]);
+            Functions_Widget.HideObj(objList[6]);
+            Functions_Widget.HideObj(objList[8]);
+            Functions_Widget.HideObj(objList[9]);
+            Functions_Widget.HideObj(objList[10]);
+            Functions_Widget.HideObj(objList[12]);
+            Functions_Widget.HideObj(objList[13]);
+            Functions_Widget.HideObj(objList[14]);
+
+            //hide objs covered by gates
+            Functions_Widget.HideObj(objList[17]);
+            Functions_Widget.HideObj(objList[20]);
+            Functions_Widget.HideObj(objList[21]);
+            Functions_Widget.HideObj(objList[22]);
+            Functions_Widget.HideObj(objList[24]);
+            Functions_Widget.HideObj(objList[25]);
+            Functions_Widget.HideObj(objList[26]);
+            Functions_Widget.HideObj(objList[28]);
+            Functions_Widget.HideObj(objList[29]);
+            Functions_Widget.HideObj(objList[30]);
+
+
+            //hide objs covered by gates
+            Functions_Widget.HideObj(objList[35]);
+            Functions_Widget.HideObj(objList[38]); 
+            Functions_Widget.HideObj(objList[39]);
+            Functions_Widget.HideObj(objList[42]);
+            Functions_Widget.HideObj(objList[43]);
+            Functions_Widget.HideObj(objList[46]);
+            Functions_Widget.HideObj(objList[47]);
+
+            //hide objs covered by bricks
+            Functions_Widget.HideObj(objList[23]);
+            Functions_Widget.HideObj(objList[31]);
+
+
+
         }
     }
 

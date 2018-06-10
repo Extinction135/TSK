@@ -306,8 +306,9 @@ namespace DungeonRun
         //debris
         Wor_Debris,
 
-        //Dungeon Entrances
+        //Level Entrances
         Wor_Entrance_ForestDungeon,
+        Wor_Entrance_Colliseum,
 
         //objects
         Wor_Pot,
@@ -363,6 +364,31 @@ namespace DungeonRun
         Wor_Enemy_Crab,
         Wor_Enemy_Rat,
 
+
+
+
+
+        //colliseum objects
+        Wor_Colliseum_Gate_Center,
+        Wor_Colliseum_Gate_Pillar_Left,
+        Wor_Colliseum_Gate_Pillar_Right,
+
+        Wor_Colliseum_Pillar_Top,
+        Wor_Colliseum_Pillar_Middle,
+        Wor_Colliseum_Pillar_Bottom,
+
+        Wor_Colliseum_Stairs_Handrail_Top,
+        Wor_Colliseum_Stairs_Handrail_Middle,
+        Wor_Colliseum_Stairs_Handrail_Bottom,
+
+        Wor_Colliseum_Stairs_Left,
+        Wor_Colliseum_Stairs_Middle,
+        Wor_Colliseum_Stairs_Right,
+
+        Wor_Colliseum_Bricks_Left,
+        Wor_Colliseum_Bricks_Middle1,
+        Wor_Colliseum_Bricks_Middle2,
+        Wor_Colliseum_Bricks_Right,
 
 
         #endregion

@@ -1058,7 +1058,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Dungeon Entrances
+            #region Level Entrances
 
             else if (Type == ObjType.Wor_Entrance_ForestDungeon)
             {
@@ -1071,6 +1071,21 @@ namespace DungeonRun
                 Obj.compCollision.rec.Height = 16*3; Obj.compCollision.offsetY = +8;
                 //sort save and block
                 Obj.compSprite.zOffset = +16*3 - 2;
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = true;
+                Obj.sfx.hit = Assets.sfxTapMetallic;
+            }
+            else if (Type == ObjType.Wor_Entrance_Colliseum)
+            {
+                Obj.compSprite.texture = Assets.colliseumLevelSheet;
+                Obj.compSprite.cellSize.X = 16 * 3; //nonstandard size
+                Obj.compSprite.cellSize.Y = 16 * 4; //nonstandard size
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_Colliseum;
+                //set collision rec near bottom of entrance
+                Obj.compCollision.rec.Width = 16 * 3 - 4; Obj.compCollision.offsetX = -6;
+                Obj.compCollision.rec.Height = 16 * 3; Obj.compCollision.offsetY = +8;
+                //sort save and block
+                Obj.compSprite.zOffset = +16 * 3 - 2;
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = true;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
@@ -1564,6 +1579,166 @@ namespace DungeonRun
             }
 
             #endregion
+
+
+
+
+
+
+            //Colliseum Objects
+
+
+            #region Gates
+
+            else if (Type == ObjType.Wor_Colliseum_Gate_Center)
+            {
+                Obj.compSprite.texture = Assets.colliseumLevelSheet;
+                Obj.compSprite.cellSize.X = 16 * 1; //nonstandard size
+                Obj.compSprite.cellSize.Y = 16 * 4; //nonstandard size
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Colliseum_Gate_Center;
+                //non-blocking - made for easy grabbing
+                Obj.compCollision.rec.Width = 16*1; Obj.compCollision.offsetX = -8;
+                Obj.compCollision.rec.Height = 16*2; Obj.compCollision.offsetY = -4;
+                //sort save and block
+                Obj.compSprite.zOffset = +16 * 4;
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = false;
+                Obj.sfx.hit = Assets.sfxTapMetallic;
+            }
+            else if (Type == ObjType.Wor_Colliseum_Gate_Pillar_Left
+                || Type == ObjType.Wor_Colliseum_Gate_Pillar_Right)
+            {
+                Obj.compSprite.texture = Assets.colliseumLevelSheet;
+                Obj.compSprite.cellSize.X = 16 * 2; //nonstandard size
+                Obj.compSprite.cellSize.Y = 16 * 4; //nonstandard size
+                if (Type == ObjType.Wor_Colliseum_Gate_Pillar_Left)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Colliseum_Gate_Pillar_Left; }
+                else { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Colliseum_Gate_Pillar_Right; }
+                //rec base
+                Obj.compCollision.rec.Width = 16 * 2; Obj.compCollision.offsetX = -8;
+                Obj.compCollision.rec.Height = 16 * 2 - 4; Obj.compCollision.offsetY = +22;
+                //sort save and block
+                Obj.compSprite.zOffset = 16 + 8;
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = true;
+                Obj.sfx.hit = Assets.sfxTapMetallic;
+            }
+
+            #endregion
+
+
+            #region Stairs + Handrails
+
+            else if (
+                Type == ObjType.Wor_Colliseum_Stairs_Handrail_Top
+                || Type == ObjType.Wor_Colliseum_Stairs_Handrail_Middle
+                || Type == ObjType.Wor_Colliseum_Stairs_Handrail_Bottom
+                )
+            {
+                Obj.compSprite.texture = Assets.colliseumLevelSheet;
+                //Obj.compCollision.offsetY = 0; Obj.compCollision.rec.Height = 8;
+                Obj.compSprite.zOffset = 0;
+                Obj.canBeSaved = true;
+
+                if (Type == ObjType.Wor_Colliseum_Stairs_Handrail_Top)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Colliseum_Stairs_Handrail_Top; }
+                else if (Type == ObjType.Wor_Colliseum_Stairs_Handrail_Middle)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Colliseum_Stairs_Handrail_Middle; }
+                else if (Type == ObjType.Wor_Colliseum_Stairs_Handrail_Bottom)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Colliseum_Stairs_Handrail_Bottom; }
+
+                Obj.sfx.hit = Assets.sfxTapMetallic;
+                Obj.sfx.kill = null;
+            }
+            else if (
+                Type == ObjType.Wor_Colliseum_Stairs_Left
+                || Type == ObjType.Wor_Colliseum_Stairs_Middle
+                || Type == ObjType.Wor_Colliseum_Stairs_Right
+                )
+            {
+                Obj.compSprite.texture = Assets.colliseumLevelSheet;
+                Obj.compSprite.zOffset = -16;
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = false;
+
+                if (Type == ObjType.Wor_Colliseum_Stairs_Left)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Colliseum_Stairs_Left; }
+                else if (Type == ObjType.Wor_Colliseum_Stairs_Middle)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Colliseum_Stairs_Middle; }
+                else if (Type == ObjType.Wor_Colliseum_Stairs_Right)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Colliseum_Stairs_Right; }
+
+                Obj.sfx.hit = null;
+                Obj.sfx.kill = null;
+            }
+
+            #endregion
+
+
+            #region Pillar
+
+            else if (
+                Type == ObjType.Wor_Colliseum_Pillar_Top
+                || Type == ObjType.Wor_Colliseum_Pillar_Middle
+                || Type == ObjType.Wor_Colliseum_Pillar_Bottom
+                )
+            {
+                Obj.compSprite.texture = Assets.colliseumLevelSheet;
+                Obj.compSprite.zOffset = 0;
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = true;
+
+                if (Type == ObjType.Wor_Colliseum_Pillar_Top)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Colliseum_Pillar_Top; }
+                else if (Type == ObjType.Wor_Colliseum_Pillar_Middle)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Colliseum_Pillar_Middle; }
+                else if (Type == ObjType.Wor_Colliseum_Pillar_Bottom)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Colliseum_Pillar_Bottom; }
+
+                Obj.sfx.hit = Assets.sfxTapMetallic;
+                Obj.sfx.kill = null;
+            }
+
+            #endregion
+
+
+            #region Bricks
+
+            else if (
+                Type == ObjType.Wor_Colliseum_Bricks_Left
+                || Type == ObjType.Wor_Colliseum_Bricks_Middle1
+                || Type == ObjType.Wor_Colliseum_Bricks_Middle2
+                || Type == ObjType.Wor_Colliseum_Bricks_Right
+                )
+            {
+                Obj.compSprite.texture = Assets.colliseumLevelSheet;
+                Obj.compSprite.cellSize.X = 16 * 1; //nonstandard size
+                Obj.compSprite.cellSize.Y = 16 * 2; //nonstandard size
+                Obj.compCollision.rec.Width = 16; Obj.compCollision.offsetX = -8;
+                Obj.compCollision.rec.Height = 16 * 2; Obj.compCollision.offsetY = -8;
+
+                Obj.compSprite.zOffset = 0;
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = true;
+
+                if (Type == ObjType.Wor_Colliseum_Bricks_Left)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Colliseum_Bricks_Left; }
+                else if (Type == ObjType.Wor_Colliseum_Bricks_Middle1)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Colliseum_Bricks_Middle1; }
+                else if (Type == ObjType.Wor_Colliseum_Bricks_Middle2)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Colliseum_Bricks_Middle2; }
+                else if (Type == ObjType.Wor_Colliseum_Bricks_Right)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Colliseum_Bricks_Right; }
+
+                Obj.sfx.hit = Assets.sfxTapMetallic;
+                Obj.sfx.kill = null;
+            }
+
+            #endregion
+
+
+
+
 
 
             //Entities
