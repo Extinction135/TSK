@@ -74,25 +74,23 @@ v0.74 - The Colliseum & Training Dungeon
 
 
 
-The Colliseum - Part 2
+The Colliseum - Part 3
 
-added colliseum outdoor floor tiles.
-completed a basic version of the colliseum
-level, without any holes to slip thru.
+improved colliseum sprites + level.
 
 
 
 
 
 
-add a strip of floor tiles around the current edge
-in colliseum.
+
+remove restriction about placing objects outside of roomrec.
+due to the new editor, this is no longer an issue.
 
 
-add more stair cases up the colliseum.
-improve the floor, wall, pillar sprites.
-they should look and fit together better.
-improve the colliseum entrance - should look more like map.
+hitboxes for objects in widgets should always
+be set to 16x16.
+
 
 
 
@@ -105,7 +103,7 @@ these objects would exist outside of any level sheet,
 and instead be part of the entities sheet, because they would
 always be black.
 
-
+these shadow objects should go around the colliseum entrance?
 
 
 
