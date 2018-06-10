@@ -72,27 +72,39 @@ player's health never goes above 1 in the trials).
 v0.74 - The Colliseum & Training Dungeon
 
 
-The Colliseum - Part 1
 
-fixed bug where env/dung objs couldn't be selected
-in editor menu.
 
-created colliseum entrance obj, gates,
-stairs, pillars, bricks.
+The Colliseum - Part 2
 
-updated colliseum level.
+added colliseum outdoor floor tiles.
+completed a basic version of the colliseum
+level, without any holes to slip thru.
 
 
 
 
 
 
+add a strip of floor tiles around the current edge
+in colliseum.
+
+
+add more stair cases up the colliseum.
+improve the floor, wall, pillar sprites.
+they should look and fit together better.
+improve the colliseum entrance - should look more like map.
 
 
 
+Shadow Objects
+also, we need just pure black and a black to 0% alpha transition,
+so we can create atomoshperic shadows / dark areas.
+link should be able to walk into these dark areas,
+and the darkness should cover link completely.
+these objects would exist outside of any level sheet,
+and instead be part of the entities sheet, because they would
+always be black.
 
-*need colliseum roof/floor - dark, sorts under hero.
-fill colliseum building up with floor objs.
 
 
 

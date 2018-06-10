@@ -274,6 +274,10 @@ namespace DungeonRun
         public static List<Byte4> Wor_Colliseum_Bricks_Middle2 = new List<Byte4> { new Byte4(8, 6, 0, 0) };
         public static List<Byte4> Wor_Colliseum_Bricks_Right = new List<Byte4> { new Byte4(9, 6, 0, 0) };
 
+        public static List<Byte4> Wor_Colliseum_Outdoors_Floor = new List<Byte4> { new Byte4(3, 15, 0, 0) };
+
+
+
         #endregion
 
 

@@ -390,6 +390,7 @@ namespace DungeonRun
         Wor_Colliseum_Bricks_Middle2,
         Wor_Colliseum_Bricks_Right,
 
+        Wor_Colliseum_Outdoors_Floor,
 
         #endregion
 

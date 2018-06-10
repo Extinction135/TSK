@@ -1737,6 +1737,27 @@ namespace DungeonRun
             #endregion
 
 
+            #region Floors
+
+            //Wor_Colliseum_Outdoors_Floor
+
+            else if (
+                Type == ObjType.Wor_Colliseum_Outdoors_Floor
+                //|| Type == ObjType.Wor_Colliseum_Bricks_Middle1
+                )
+            {
+                Obj.compSprite.texture = Assets.colliseumLevelSheet;
+                Obj.compSprite.zOffset = -64; //floortile
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = false;
+
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Colliseum_Outdoors_Floor;
+                Obj.sfx.hit = null;
+                Obj.sfx.kill = null;
+            }
+
+            #endregion
+
 
 
 

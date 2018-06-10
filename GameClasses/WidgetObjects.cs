@@ -638,7 +638,7 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[12], ObjType.Unknown);//
             Functions_GameObject.SetType(objList[13], ObjType.Unknown);//
             Functions_GameObject.SetType(objList[14], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[15], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[15], ObjType.Wor_Colliseum_Outdoors_Floor);
 
             //row 5
             Functions_GameObject.SetType(objList[16], ObjType.Wor_Colliseum_Gate_Pillar_Left);
