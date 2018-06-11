@@ -74,18 +74,18 @@ v0.74 - The Colliseum & Training Dungeon
 
 
 
-The Colliseum - Part 3
 
-improved colliseum sprites + level.
-
+The Colliseum - Part 4
 
 
+removed restriction about placing objects 
+outside of roomrec. due to the new editor, 
+this is no longer an issue. playtested, 
+working as expected.
 
 
 
 
-remove restriction about placing objects outside of roomrec.
-due to the new editor, this is no longer an issue.
 
 
 hitboxes for objects in widgets should always

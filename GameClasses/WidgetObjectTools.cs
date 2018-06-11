@@ -185,7 +185,7 @@ namespace DungeonRun
 
             if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
             {
-                if (Functions_Level.currentRoom.rec.Contains(worldPos))
+                //if (Functions_Level.currentRoom.rec.Contains(worldPos))
                 {   //if mouse worldPos is within room, allow adding of active object
 
 
