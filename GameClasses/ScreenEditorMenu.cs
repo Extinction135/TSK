@@ -127,7 +127,9 @@ namespace DungeonRun
                     //update floors and objects
                     Functions_Texture.SetFloorTextures();
                     for(int i = 0; i < Pool.roomObjCount; i++)
-                    { Functions_GameObject.SetType(Pool.roomObjPool[i], Pool.roomObjPool[i].type); }
+                    {
+                        Functions_GameObject.SetType(Pool.roomObjPool[i], Pool.roomObjPool[i].type);
+                    }
                     //update all shared widget objects
                     Functions_Texture.SetWOTexture(Widgets.WO_Dungeon);
                     Functions_Texture.SetWOTexture(Widgets.WO_Environment);

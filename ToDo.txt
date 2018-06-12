@@ -68,79 +68,46 @@ player's health never goes above 1 in the trials).
 
 
 
-
-v0.74 - The Colliseum & Training Dungeon
-
-
-
-
-
-The Colliseum - Part 4
-
-
-removed restriction about placing objects 
-outside of roomrec. due to the new editor, 
-this is no longer an issue. playtested, 
-working as expected.
-
-
-
-
-
-
-hitboxes for objects in widgets should always
-be set to 16x16.
-
-
-
-
-Shadow Objects
-also, we need just pure black and a black to 0% alpha transition,
-so we can create atomoshperic shadows / dark areas.
-link should be able to walk into these dark areas,
-and the darkness should cover link completely.
-these objects would exist outside of any level sheet,
-and instead be part of the entities sheet, because they would
-always be black.
-
-these shadow objects should go around the colliseum entrance?
-
-
-
-
-
-
-
-Colliseum Objs
-
-create colliseum building objects, put them in the
-colliseum building widget. you can access this widget
-by pressing the forest button on the editor menu screen.
-
-
-
 What is the Colliseum?
-a series of rooms that contain NPCs and objects which 
+a room that contains NPCs and objects which 
 lead to challenges or sub-games within the main overall 
 game. these challenges are separate from the main game 
 and do not / cannot affect plotlines in any meaningful 
 way. there will also be a dark world colliseum, with 
 darker and different challenges.
 
+v0.74 - The Colliseum & Training
 
-Colliseum Facade
 
->> BUILD THE COLLISEUM ENTRANCE LEVEL USING COLLISUM OBJECTS <<
-should look like the map representation and seem really
-big. we want buildings larger, more impressive than lttp.
+
+
+
+The Colliseum - Part 5
+
+hitboxes for objects in widgets should always
+be set to 16x16. done. this fixes a bug with editor
+where widget obj hitboxes were wacky wrong, thus
+making them difficult to select.
+
+
+
+
+
+
+
+
+
+The Colliseum - Part 6
+
+link needs to get the colliseum pass.
+where does he get this from? what is a good task for him to do?
+he should have to defeat a boss in a dungeon?
+
+
+add the training npc obj to game & colliseum level.
 
 there is only one NPC outside the colliseum for now,
 and that is the training NPC.
-
-there are two entrances to the colliseum.
-one is obvs, the other is hidden behind a tree!
-
-
 
 
 
@@ -152,6 +119,10 @@ it is assumed player will speak with this NPC first,
 since this NPC is the only other living thing on screen
 upon first run of game. he introduces the player to
 basic game concepts via a quick dungeon with a boss fight.
+each one of these rooms is tailored to teach the player
+fundamental game mechanics. we also need to choose the
+starting loadout for the hero: sword, tunic, bombs, 
+bow&arrow, boomerang, 3 bottles.
 
 dialog (if collisuem pass boolean is false):
 "want a colliseum pass? you'll have to earn it.."
@@ -163,6 +134,29 @@ dialog (if colliseum pass boolean is true)
 
 if player doesn't have colliseum pass, then accepting
 the pass from the trainer creates the training dungeon.
+
+
+
+
+
+Reading Signs
+
+we need to be able to read signposts properly
+this is based on the current room/level.
+only 1 signpost is allowed per room, extending to fields.
+so, for overworld levels, there can only be 1 signpost.
+and it can only say one thing, because it's based
+on the room.id. and this will be contained within
+a method called ReadSign(GameObject SignPost).
+^ we're doing this because we need to be able to kinda 
+guide the player thru this intro dungeon, giving them
+hints about what they need to do to solve certain rooms.
+****this is the only section where this stupidity takes place***
+
+
+
+
+
 
 
 

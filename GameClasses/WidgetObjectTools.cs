@@ -185,107 +185,102 @@ namespace DungeonRun
 
             if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
             {
-                //if (Functions_Level.currentRoom.rec.Contains(worldPos))
-                {   //if mouse worldPos is within room, allow adding of active object
 
+                #region Handle Adding an Object To Room
 
-                    #region Handle Adding an Object To Room
+                if (TopDebugMenu.objToolState == ObjToolState.AddObj)
+                {
 
-                    if (TopDebugMenu.objToolState == ObjToolState.AddObj)
+                    #region Check to see if we can add this type of Obj to this type of Room
+
+                    if (currentObjRef.type == ObjType.Dungeon_Chest)
                     {
+                        //we convert the 'safe' chest into a key or hub chest here
+                        if (Functions_Level.currentRoom.roomID == RoomID.Key ||
+                            Functions_Level.currentRoom.roomID == RoomID.DEV_Key)
+                        {   //convert to key chest
+                            currentObjRef.type = ObjType.Dungeon_ChestKey;
 
-                        #region Check to see if we can add this type of Obj to this type of Room
+                        }
+                        else
+                        {   //tell user we cant add a chest to this type of room
+                            ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.CantAddChests));
+                            return; //dont add chest
+                        }
 
-                        if (currentObjRef.type == ObjType.Dungeon_Chest)
-                        {
-                            //we convert the 'safe' chest into a key or hub chest here
-                            if (Functions_Level.currentRoom.roomID == RoomID.Key ||
-                                Functions_Level.currentRoom.roomID == RoomID.DEV_Key)
-                            {   //convert to key chest
-                                currentObjRef.type = ObjType.Dungeon_ChestKey;
-
-                            }
-                            else
-                            {   //tell user we cant add a chest to this type of room
+                        //we cannot have more than one chest in a room
+                        for (j = 0; j < Pool.roomObjCount; j++)
+                        {   //check all roomObjs for an active chest
+                            if (Pool.roomObjPool[j].active & Pool.roomObjPool[j].group == ObjGroup.Chest)
+                            {
                                 ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.CantAddChests));
                                 return; //dont add chest
                             }
+                        }
+                    }
 
-                            //we cannot have more than one chest in a room
-                            for (j = 0; j < Pool.roomObjCount; j++)
-                            {   //check all roomObjs for an active chest
-                                if (Pool.roomObjPool[j].active & Pool.roomObjPool[j].group == ObjGroup.Chest)
-                                {
-                                    ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.CantAddChests));
-                                    return; //dont add chest
-                                }
+                    else if (currentObjRef.type == ObjType.Dungeon_Switch)
+                    {   //we cannot have more than one switch in a room
+                        for (j = 0; j < Pool.roomObjCount; j++)
+                        {   //check all roomObjs for an active chest
+                            if (Pool.roomObjPool[j].active && Pool.roomObjPool[j].type == ObjType.Dungeon_Switch)
+                            {
+                                ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.CantAddMoreSwitches));
+                                return; //dont add switch
                             }
                         }
-
-                        else if (currentObjRef.type == ObjType.Dungeon_Switch)
-                        {   //we cannot have more than one switch in a room
-                            for (j = 0; j < Pool.roomObjCount; j++)
-                            {   //check all roomObjs for an active chest
-                                if (Pool.roomObjPool[j].active && Pool.roomObjPool[j].type == ObjType.Dungeon_Switch)
-                                {
-                                    ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.CantAddMoreSwitches));
-                                    return; //dont add switch
-                                }
-                            }
-                        }
-
-                        #endregion
-
-
-                        GameObject objRef;
-                        //get an object from the entity pool or roomObj pool
-                        if (currentObjRef.group == ObjGroup.Projectile)
-                        { objRef = Functions_Pool.GetProjectile(); }
-                        else if (currentObjRef.group == ObjGroup.Pickup)
-                        { objRef = Functions_Pool.GetPickup(); }
-                        else { objRef = Functions_Pool.GetRoomObj(); }
-
-                        //place currently selected obj in room, aligned to 16px grid
-                        objRef.compMove.newPosition = Functions_Movement.AlignToGrid(worldPos.X, worldPos.Y);
-                        Functions_Movement.Teleport(objRef.compMove,
-                            objRef.compMove.newPosition.X, objRef.compMove.newPosition.Y);
-                        //set obj direction + type from stored values
-                        objRef.direction = currentObjRef.direction;
-                        objRef.compMove.direction = currentObjRef.direction;
-                        Functions_GameObject.SetType(objRef, currentObjRef.type);
-                        //set animation frame
-                        Functions_Animation.Animate(objRef.compAnim, objRef.compSprite);
-
-
-                        #region Convert chest objs to empty chests after placement
-
-                        if (currentObjRef.group == ObjGroup.Chest)
-                        {
-                            Functions_GameObject.SetType(currentObjRef, ObjType.Dungeon_ChestEmpty);
-                            //set the tool to be empty chest
-                            activeObj = Widgets.WO_Dungeon.objList[19];
-                        }
-
-                        #endregion
-
-
                     }
 
                     #endregion
 
 
-                    #region Handle Rotating an Object in Room
+                    GameObject objRef;
+                    //get an object from the entity pool or roomObj pool
+                    if (currentObjRef.group == ObjGroup.Projectile)
+                    { objRef = Functions_Pool.GetProjectile(); }
+                    else if (currentObjRef.group == ObjGroup.Pickup)
+                    { objRef = Functions_Pool.GetPickup(); }
+                    else { objRef = Functions_Pool.GetRoomObj(); }
 
-                    else if (TopDebugMenu.objToolState == ObjToolState.RotateObj)
+                    //place currently selected obj in room, aligned to 16px grid
+                    objRef.compMove.newPosition = Functions_Movement.AlignToGrid(worldPos.X, worldPos.Y);
+                    Functions_Movement.Teleport(objRef.compMove,
+                        objRef.compMove.newPosition.X, objRef.compMove.newPosition.Y);
+                    //set obj direction + type from stored values
+                    objRef.direction = currentObjRef.direction;
+                    objRef.compMove.direction = currentObjRef.direction;
+                    Functions_GameObject.SetType(objRef, currentObjRef.type);
+                    //set animation frame
+                    Functions_Animation.Animate(objRef.compAnim, objRef.compSprite);
+
+
+                    #region Convert chest objs to empty chests after placement
+
+                    if (currentObjRef.group == ObjGroup.Chest)
                     {
-                        if (GrabRoomObject()) { RotateActiveObj(); }
+                        Functions_GameObject.SetType(currentObjRef, ObjType.Dungeon_ChestEmpty);
+                        //set the tool to be empty chest
+                        activeObj = Widgets.WO_Dungeon.objList[19];
                     }
 
                     #endregion
+
 
                 }
 
+                #endregion
 
+
+                #region Handle Rotating an Object in Room
+
+                else if (TopDebugMenu.objToolState == ObjToolState.RotateObj)
+                {
+                    if (GrabRoomObject()) { RotateActiveObj(); }
+                }
+
+                #endregion
+
+                
                 #region Handle Grab/Move RoomObject State
 
                 if (TopDebugMenu.objToolState == ObjToolState.MoveObj) { GrabRoomObject(); }

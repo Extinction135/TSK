@@ -19,6 +19,18 @@ codebase.
 
 
 
+Shadow Objects
+also, we need just pure black and a black to 0% alpha transition,
+so we can create atomoshperic shadows / dark areas.
+link should be able to walk into these dark areas,
+and the darkness should cover link completely.
+these objects would exist outside of any level sheet,
+and instead be part of the entities sheet, because they would
+always be black.
+
+these shadow objects should go around the colliseum entrance?
+
+
 
 
 

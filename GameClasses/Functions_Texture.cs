@@ -43,7 +43,14 @@ namespace DungeonRun
         public static void SetWOTexture(WidgetObject WO)
         {   //12 rows, with 4 objs per row
             for (i = 0; i < 12 * 4; i++)
-            { Functions_GameObject.SetType(WO.objList[i], WO.objList[i].type); }
+            {
+                Functions_GameObject.SetType(WO.objList[i], WO.objList[i].type);
+                //make hitboxes easy to select, because this is a gameobj acting as a ui menu item
+                WO.objList[i].compCollision.rec.Width = 16;
+                WO.objList[i].compCollision.rec.Height = 16;
+                WO.objList[i].compCollision.rec.X = (int)WO.objList[i].compSprite.position.X - 8;
+                WO.objList[i].compCollision.rec.Y = (int)WO.objList[i].compSprite.position.Y - 8;
+            }
         }
 
 
