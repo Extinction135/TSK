@@ -392,8 +392,10 @@ namespace DungeonRun
 
                 else if (Item.type == MenuItemType.Challenge_Mob)
                 {
-                    //what happens when link purchases a challenge?
-                    //CompleteAdoption(Item);
+                    DialogPurchaseThankyou();
+
+                    //create a challenge/dialog screen that exits to
+                    //the pit with enemies setup
                 }
 
                 #endregion

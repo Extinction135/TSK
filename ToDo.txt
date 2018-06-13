@@ -123,46 +123,7 @@ lots of playtesting, looking good.
 
 
 
-
-
-
-
-
-
-The Colliseum - Part 11
-
-added the first challenge NPC to the pit,
-the mob challenges npc. compiled into roomData.
-
-created a menuItem sprite challenges.
-created game def for blob challenge, using new
-challenge sprite. added blob challenge into
-purchaseItem() via vendor screen.
-
-notes:
-a challenge is simple: link fights SOMETHING in
-the pit for a reward, but there is an admission cost.
-it cost gold to enter into a challenge, so if the
-player dies, they will likely lose gold, which
-adds risk to the already established reward given
-if the challenge is completed. this initial NPC
-will serve all kinds of challenges for testing.
-
-while inspecting and cleaning up menuItems,
-removed OptionsContinue menuItem from game.
-
-playtested, working as expected.
-note that the initial challenge has not
-been fully implemented just up to the point
-of sale from the vendor.
-
-
-
-
-
-
-
-
+The Colliseum - Part 12
 
 
 
