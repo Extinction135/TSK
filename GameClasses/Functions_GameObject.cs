@@ -1221,6 +1221,18 @@ namespace DungeonRun
                 else if (Type == ObjType.Vendor_NPC_Equipment) { Obj.compAnim.currentAnimation = AnimationFrames.Vendor_Equipment; }
                 else if (Type == ObjType.Vendor_NPC_Pets) { Obj.compAnim.currentAnimation = AnimationFrames.Vendor_Pets; }
             }
+            else if(Type == ObjType.Vendor_Colliseum_Mob)
+            {
+                Obj.compSprite.texture = Assets.colliseumLevelSheet;
+                Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;
+                Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 11;
+                Obj.compSprite.zOffset = 0;
+                Obj.compAnim.speed = 20; //slow animation
+                Obj.group = ObjGroup.Vendor;
+                Obj.canBeSaved = true;
+
+                Obj.compAnim.currentAnimation = AnimationFrames.Vendor_Colliseum_Mob;
+            }
 
             #endregion
 

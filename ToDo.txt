@@ -129,15 +129,32 @@ lots of playtesting, looking good.
 
 
 
-The Colliseum - Part 9
+The Colliseum - Part 11
 
-updated the uwp colliseum sheet.
+added the first challenge NPC to the pit,
+the mob challenges npc. compiled into roomData.
 
-upon *actually* building the uwp project,
-it fails to build - because i didn't include
-the gameclass function_texture. oops. so,
-the uwp side of the game has been broken 
-for 5 days. sorry.
+created a menuItem sprite challenges.
+created game def for blob challenge, using new
+challenge sprite. added blob challenge into
+purchaseItem() via vendor screen.
+
+notes:
+a challenge is simple: link fights SOMETHING in
+the pit for a reward, but there is an admission cost.
+it cost gold to enter into a challenge, so if the
+player dies, they will likely lose gold, which
+adds risk to the already established reward given
+if the challenge is completed. this initial NPC
+will serve all kinds of challenges for testing.
+
+while inspecting and cleaning up menuItems,
+removed OptionsContinue menuItem from game.
+
+playtested, working as expected.
+note that the initial challenge has not
+been fully implemented just up to the point
+of sale from the vendor.
 
 
 
@@ -146,6 +163,26 @@ for 5 days. sorry.
 
 
 
+
+
+
+*npc tells link challenge will start when you're ready
+*text: A) I'm ready.  -there is no B to cancel, lol
+*this dialog happens after link has completed purchase.
+
+*then wipe pit of vendors, spawn a bunch of blobs, respawn hero.
+*we can make a link of dark blocks at start here too.
+*then check to see if all blobs are dead.
+
+this condition should be thought of as a puzzle type:
+all enemies must be killed for a challenge to end.
+or, hero dies. these are the only two outcomes.
+
+at this point, we need some kind of reward screen (*that actually rewards*)
+to pop up and let player know they completed the challenge.
+this screen exits, loads the default pit (with vendors).
+this screen pops if hero dies too, except it's challenge
+failed text. same exit sequence.
 
 
 
@@ -165,23 +202,13 @@ spawn locations (far north of south exit, so link doesn't
 take damage upon spawn), then release control of the game
 back to level screen & player.
 
+during a challenge, we can create a line of blocks
+at the start of the colliseum to lock link in, so
+it's fight or die.
 
 
 
-add the first challenge NPC to the room.
-this NPC simply offers the blob challenge,
-which is a test challenge to ensure this whole
-colliseum challenge idea will work.
 
-*should cost gold to enter challenge.
-*reward is greater than entry fee.
-*then spawn a bunch of blobs.
-*then check to see if they're all dead.
-
-at this point, we need some kind of reward screen
-to pop up and let player know they completed the challenge.
-this screen exits, loads the default pit (with vendors).
-this should happen if hero dies too.
 
 
 
@@ -215,6 +242,12 @@ at the start of the colliseum challenge, and flash.
 
 
 
+
+
+
+improve boomerang sprites based on layer dev/more stuff in art.master
+this adds a diagonal frame, plus marks a boomerangs side for
+easier visual rotational tracking.
 
 
 

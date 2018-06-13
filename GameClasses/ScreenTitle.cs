@@ -158,9 +158,7 @@ namespace DungeonRun
                     #endregion
 
 
-                    //handle soundEffect
-                    if (currentlySelected.type == MenuItemType.OptionsContinue)
-                    { Assets.Play(Assets.sfxSelectFile); }
+                    //handle exit soundEffect
                     if (currentlySelected.type == MenuItemType.OptionsQuitGame)
                     { Assets.Play(Assets.sfxQuit); }
                     else { Assets.Play(Assets.sfxMenuItem); }

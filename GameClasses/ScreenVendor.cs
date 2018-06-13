@@ -52,22 +52,43 @@ namespace DungeonRun
             welcomeDialog = "i've got many useful goods for sale, adventurer!";
 
             if (vendorRef.type == ObjType.Vendor_NPC_Armor)
-            { welcomeDialog = "I have a strong selection of armor for sale."; }
+            {
+                welcomeDialog = "I have a strong selection of armor for sale.";
+            }
             else if (vendorRef.type == ObjType.Vendor_NPC_Equipment)
-            { welcomeDialog = "I have a useful selection of equipment for sale."; }
+            {
+                welcomeDialog = "I have a useful selection of equipment for sale.";
+            }
             else if (vendorRef.type == ObjType.Vendor_NPC_Items)
-            { welcomeDialog = "I have an interesting selection of items for sale."; }
+            {
+                welcomeDialog = "I have an interesting selection of items for sale.";
+            }
             else if (vendorRef.type == ObjType.Vendor_NPC_Magic)
-            { welcomeDialog = "I have a mysterious selection of magic items for sale."; }
+            {
+                welcomeDialog = "I have a mysterious selection of magic items for sale.";
+            }
             else if (vendorRef.type == ObjType.Vendor_NPC_Potions)
-            { welcomeDialog = "I have a fine selection of potions for sale."; }
+            {
+                welcomeDialog = "I have a fine selection of potions for sale.";
+            }
             else if (vendorRef.type == ObjType.Vendor_NPC_Weapons)
-            { welcomeDialog = "I have a wide selection of weapons for sale."; }
+            {
+                welcomeDialog = "I have a wide selection of weapons for sale.";
+            }
             else if (vendorRef.type == ObjType.Vendor_NPC_Pets)
             {
                 welcomeDialog = "I have a happy selection of pets for adoption.";
                 Widgets.ForSale.window.title.text = "For Adoption";
             }
+
+
+            else if (vendorRef.type == ObjType.Vendor_Colliseum_Mob)
+            {
+                welcomeDialog = "I have a few colliseum challenges for sale..\n";
+                welcomeDialog += "Win gold and prizes.. or... die.";
+                Widgets.ForSale.window.title.text = "Challenges - Mobs";
+            }
+
 
             #endregion
 
@@ -365,6 +386,19 @@ namespace DungeonRun
                 { CompleteAdoption(Item); }
 
                 #endregion
+
+
+                #region Challenges
+
+                else if (Item.type == MenuItemType.Challenge_Mob)
+                {
+                    //what happens when link purchases a challenge?
+                    //CompleteAdoption(Item);
+                }
+
+                #endregion
+
+
 
 
             } //else, hero doesn't have enough gold to purchase the item

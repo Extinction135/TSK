@@ -185,6 +185,15 @@ namespace DungeonRun
                 return; //prevents pet's cost from being displayed
             }
 
+
+            else if (VendorType == ObjType.Vendor_Colliseum_Mob)
+            {
+                //we need a menuItem for blob mob challenge
+                Functions_MenuItem.SetType(MenuItemType.Challenge_Mob, menuItems[0]);
+            }
+
+
+
             #endregion
 
 

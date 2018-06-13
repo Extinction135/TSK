@@ -8018,5 +8018,11 @@
       <posX>120</posX>
       <posY>664</posY>
     </ObjXmlData>
+    <ObjXmlData>
+      <type>Vendor_Colliseum_Mob</type>
+      <direction>Down</direction>
+      <posX>648</posX>
+      <posY>440</posY>
+    </ObjXmlData>
   </objs>
 </RoomXmlData>

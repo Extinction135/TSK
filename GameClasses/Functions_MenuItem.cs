@@ -319,8 +319,7 @@ namespace DungeonRun
             #endregion
 
 
-
-            #region Pets
+            #region Pet adoption menuItems
 
             else if (Type == MenuItemType.PetStinkyDog)
             {
@@ -334,8 +333,20 @@ namespace DungeonRun
             #endregion
 
 
+            #region Colliseum Challenge menuItems
 
-            //vendor menuItems?
+            else if (Type == MenuItemType.Challenge_Mob)
+            {
+                MenuItem.name = "Challenge - Blobs";
+                MenuItem.description = "Defeat 25 blobs \nfor 25 gold.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Challenge;
+                MenuItem.compSprite.texture = Assets.colliseumLevelSheet;
+                MenuItem.price = 10;
+            }
+
+            #endregion
+
+
 
 
 
@@ -372,17 +383,6 @@ namespace DungeonRun
 
 
             #region Option Widget menuItems
-
-
-            else if (Type == MenuItemType.OptionsContinue)
-            {
-                MenuItem.name = "Continue Game";
-                MenuItem.description = "Continues the\nlast game.";
-                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_ArrowUp;
-                MenuItem.compSprite.rotation = Rotation.Clockwise90;
-            }
-
-
 
             else if (Type == MenuItemType.OptionsNewGame)
             {

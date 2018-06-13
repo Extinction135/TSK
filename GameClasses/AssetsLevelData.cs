@@ -2787,6 +2787,7 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Spectator; obj.direction = Direction.Down; obj.posX = 152; obj.posY = 664; ColliseumPit.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Spectator; obj.direction = Direction.Down; obj.posX = 136; obj.posY = 664; ColliseumPit.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Spectator; obj.direction = Direction.Down; obj.posX = 120; obj.posY = 664; ColliseumPit.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Vendor_Colliseum_Mob; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 440; ColliseumPit.objs.Add(obj);}
 			#endregion
 
 

@@ -416,6 +416,8 @@ namespace DungeonRun
         NPC_Farmer_Reward,
         NPC_Farmer_EndDialog,
 
+        Vendor_Colliseum_Mob,
+
 
         #endregion
 
@@ -530,22 +532,15 @@ namespace DungeonRun
         Unknown,
 
 
-        //options menu
-        //OptionsMenu_Continue
-        OptionsContinue,
+        #region Option relate menuItems
 
         OptionsNewGame,
         OptionsLoadGame,
         OptionsQuitGame,
+
         OptionsSaveGame,
-
-        //OptionsVideoCtrls,
-        //OptionsInputCtrls,
-        //OptionsAudioCtrls,
-        //OptionsGameCtrls,
-
-        OptionsCheatMenu,
         OptionsOptionsMenu,
+        OptionsCheatMenu,
 
         Options_DrawInput,
         Options_TrackCamera,
@@ -555,8 +550,11 @@ namespace DungeonRun
         Options_PlayMusic,
         Options_DrawDebug,
 
+        #endregion
 
-        //cheats
+
+        #region Cheats
+
         CheatsInfiniteHP,
         CheatsInfiniteGold,
         CheatsInfiniteMagic,
@@ -567,19 +565,22 @@ namespace DungeonRun
         CheatsUnlockAll,
         CheatsClipping,
 
+        #endregion
+
+
         //loadout menuItems
         InventoryGold,
         InventoryMap,
         InventoryKey,
-
-        
 
         //vendor menuItems
         ItemHeart,
         ItemBomb3Pack,
         ItemArrowPack,
 
-        //inventory menuItems
+
+        #region Inventory menuItems
+
         ItemBoomerang,
         ItemBomb,
         ItemBow,
@@ -608,8 +609,15 @@ namespace DungeonRun
         EquipmentGlove,
         EquipmentPin,
 
+        #endregion
+
+
+        //pet menuItems
         PetStinkyDog,
-        PetChicken
+        PetChicken,
+
+        //challenge menuItems
+        Challenge_Mob
     }
 
 }

@@ -526,6 +526,8 @@ namespace DungeonRun
         public static List<Byte4> NPC_Farmer = new List<Byte4> { new Byte4(24, 14, 0, 0), new Byte4(24, 14, 1, 0) };
         public static List<Byte4> NPC_Farmer_HandsUp = new List<Byte4> { new Byte4(24, 14, 0, 0), new Byte4(25, 14, 0, 0) };
 
+        public static List<Byte4> Vendor_Colliseum_Mob = new List<Byte4> { new Byte4(16, 15, 0, 0), new Byte4(16, 15, 1, 0) };
+
         #endregion
 
 
@@ -636,10 +638,14 @@ namespace DungeonRun
         public static List<Byte4> Ui_MenuItem_Eq_Glove = new List<Byte4> { new Byte4(5, 8, 0, 0) };
         public static List<Byte4> Ui_MenuItem_Eq_Pin = new List<Byte4> { new Byte4(5, 9, 0, 0) };
 
+
+        //challenges
+        public static List<Byte4> Ui_MenuItem_Challenge = new List<Byte4> { new Byte4(15, 15, 0, 0) };
+
         #endregion
 
 
-        
+
 
 
         //actor animation frames
