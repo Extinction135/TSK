@@ -69,28 +69,21 @@ player's health never goes above 1 in the trials).
 
 
 What is the Colliseum?
+
 a room that contains NPCs and objects which 
 lead to challenges or sub-games within the main overall 
 game. these challenges are separate from the main game 
 and do not / cannot affect plotlines in any meaningful 
 way. there will also be a dark world colliseum, with 
-darker and different challenges.
+darker and different challenges. these challenges take
+place in the spectator's pit. the colliseum is open to
+any warrior brave enough to enter.
+
+
+
+
 
 v0.74 - The Colliseum & Training
-
-
-
-
-
-The Colliseum - Part 5
-
-hitboxes for objects in widgets should always
-be set to 16x16. done. this fixes a bug with editor
-where widget obj hitboxes were wacky wrong, thus
-making them difficult to select.
-
-
-
 
 
 
@@ -99,41 +92,74 @@ making them difficult to select.
 
 The Colliseum - Part 6
 
-link needs to get the colliseum pass.
-where does he get this from? what is a good task for him to do?
-he should have to defeat a boss in a dungeon?
-
-
-add the training npc obj to game & colliseum level.
-
-there is only one NPC outside the colliseum for now,
-and that is the training NPC.
-
-
+changed forest dungeon wall sprites to be different
+than colliseum dungeon wall sprites. since the colliseum
+is built out of bricks, it makes sense it's interior 
+would be made out of bricks as well, so colliseum was
+granted ownership of the original dungeon sprites, and
+forest dungeon was updated with new ones from 
+links awakening. playtested, working.
+updated uwp with new sprites as well.
 
 
 
-Training NPC
 
-it is assumed player will speak with this NPC first,
-since this NPC is the only other living thing on screen
-upon first run of game. he introduces the player to
-basic game concepts via a quick dungeon with a boss fight.
-each one of these rooms is tailored to teach the player
-fundamental game mechanics. we also need to choose the
-starting loadout for the hero: sword, tunic, bombs, 
-bow&arrow, boomerang, 3 bottles.
 
-dialog (if collisuem pass boolean is false):
-"want a colliseum pass? you'll have to earn it.."
-"A) yes   B) no"
 
-dialog (if colliseum pass boolean is true)
-"the colliseum's entrance is just ahead."
-"enjoy the games and prizes..."
 
-if player doesn't have colliseum pass, then accepting
-the pass from the trainer creates the training dungeon.
+
+
+
+Wednesday
+
+build interior room that will contain NPCs.
+this is a row room, for now, built from the colliseum's
+dungeon sprites. change those sprites.
+
+simply build a row room with the unique room id of colliseumInterior.
+link up hero interacting with colliseum door, leading to
+interior room. interior room should have exit door obj, btw.
+we should create some room data for this place, and store
+it in xml, added into game, etc...
+
+
+
+build the spectator's pit... 
+the boundary for the colliseum pit is built by code,
+so we don't have to hand place/save/load walls. 
+
+then we place spectators around the pit.
+
+which is surrounded by animated spectator sprites. 
+this is a field level with an exit dungeon obj just south
+of where hero spawns. this allows hero to exit colliseum
+if he wants to, or if a bug happens the hero isn't locked
+into a level and forced to save&quit.
+
+
+
+
+Thursday
+
+add the first challenge NPC to the room.
+this NPC simply offers the blob challenge,
+which is a test challenge to ensure this whole
+colliseum idea will work.
+
+*should cost gold to enter challenge.
+*reward is greater than entry fee.
+*just spawn a bunch of blob enemies.
+*then check to see if they're all dead.
+
+at this point, we need some kind of reward screen
+to pop up and let player know they completed the challenge.
+also, we need to exit the spec pit level and load the
+interior colliseum level, returning link to the place
+where he started. this should happen upon death in the
+colliseum as well.
+
+
+
 
 
 
@@ -148,96 +174,8 @@ so, for overworld levels, there can only be 1 signpost.
 and it can only say one thing, because it's based
 on the room.id. and this will be contained within
 a method called ReadSign(GameObject SignPost).
-^ we're doing this because we need to be able to kinda 
-guide the player thru this intro dungeon, giving them
-hints about what they need to do to solve certain rooms.
-****this is the only section where this stupidity takes place***
 
 
-
-
-
-
-
-
-
-Training Fight
-
-this takes place IN THE COLLISEUM PIT, with mobs + basics,
-culminating in a boss fight. 
-the boss at the end of this is simply a damage sponge,
-and has simple mobs protecting it - very easy. 
-upon defeat of the boss, link is returned to the
-colliseum entrance level, except this time the colliseum pass
-boolean is flipped true, changing the trainer's dialog.
-
-
-
-
-
-
-
-
-
-
-
-without the colliseum pass, link cannot enter the colliseum.
-link interacts with a colliseum door obj to enter colliseum.
-when link interacts with the colliseum door, the
-colliseum interior level is loaded. 
-
-this is the first non-dungeon chain of levels.
-and this can go on for as long as we want, adding
-entrances to different levels/dungeons to the
-interior colliseum level, along with tons of NPCs.
-
-these colliseum NPCs can each represent a different
-sub-game within the normal game, like The Trials.
-
-
-
-
-
-
-
-
-
-
-
-
-*we could build custom dungeons by simply creating field levels
-divided into walled off sections connected by doors. we could connect
-these field dungeon rooms together with objects. however, we would
-need many different objects that represented doors, because the object
-type would be the only way we would know where the door led to.
-interacting with the door loads a room, based on the door type - basically.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Battle Instructor NPC
-
-we need a battle instructor NPC that stands in front of an object
-that spawns blob actors on a regular cycle.
-NPC has dialog like:
-wanna learn how to fight? A/B
-to attack, equip a weapon from your inventory and press X.
-to use or cast, equip an item from your inventory and press Y.
-while moving, press B to dash.
-it's important to master this dashing skill.
-try dashing into an attack, then dashing out.
-the quicker you are, the less likely to be killed.
 
 
 
@@ -260,21 +198,6 @@ The Wolves
 16x16 wolf actors, with stats similar to link.
 aggressive if health is high, defensive if health is low.
 regenerates 1 health (up to 3) every 255 frames.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
