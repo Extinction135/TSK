@@ -19,7 +19,7 @@ namespace DungeonRun
         public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.74f; //the version of the game
-        public static BootRoutine bootRoutine = BootRoutine.Game; //boot to game or editor?
+        public static BootRoutine bootRoutine = BootRoutine.Editor_Level; //boot to game or editor?
         
         //dev flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
@@ -760,10 +760,9 @@ namespace DungeonRun
             roomID = ID;
             Functions_Room.SetType(this, ID);
             Functions_Room.MoveRoom(this, Pos.X, Pos.Y);
-            //center spawnpos to room
-            spawnPos = new Vector2(
+            spawnPos = new Vector2( //center spawnPos to room
                 Pos.X + rec.Width / 2, //centered horizontally
-                (Pos.Y + rec.Height / 2) + (rec.Height / 2) - 128 - 64 //at bottom
+                Pos.Y + rec.Height - 16 * 4 //at bottom
             );
             dataIndex = 0; //0 means no index assigned
         }

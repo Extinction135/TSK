@@ -1759,6 +1759,44 @@ namespace DungeonRun
             #endregion
 
 
+            #region Spectators
+
+
+            else if (Type == ObjType.Wor_Colliseum_Spectator)
+            {
+                Obj.compSprite.texture = Assets.colliseumLevelSheet;
+                Obj.compSprite.zOffset = 64; //sort over others like a roof
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = false;
+                Obj.sfx.hit = null;
+                Obj.sfx.kill = null;
+                Obj.getsAI = true;
+
+                //animation speed should be varied around 10, biased slow
+                Obj.compAnim.speed = (byte)(10 + Functions_Random.Int(-3, 5));
+
+                //randomly flip sprite horizontally
+                if (Functions_Random.Int(0, 100) < 50)
+                { Obj.compSprite.flipHorizontally = true; }
+                else { Obj.compSprite.flipHorizontally = false; }
+
+                //get a random num to use
+                Obj.interactiveFrame = Functions_Random.Int(0, 100);
+                //using random, choose spectator animFrame
+                if (Obj.interactiveFrame > 75)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Colliseum_SpectatorA; }
+                else if (Obj.interactiveFrame > 50)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Colliseum_SpectatorB; }
+                else if (Obj.interactiveFrame > 25)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Colliseum_SpectatorC; }
+                else
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Colliseum_SpectatorD; }
+            }
+
+
+            #endregion
+
+
 
 
 

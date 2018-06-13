@@ -394,6 +394,8 @@ namespace DungeonRun
 
         Wor_Colliseum_Outdoors_Floor,
 
+        Wor_Colliseum_Spectator,
+
         #endregion
 
 

@@ -261,6 +261,8 @@ namespace DungeonRun
         public static void HandleObj(GameObject Obj)
         {   //keep in mind this method is called every frame
 
+
+
             //Obj.group checks
 
             #region Spreading water thru ditches
@@ -523,7 +525,6 @@ namespace DungeonRun
             #endregion
 
 
-
             #region Collapsing Roofs
 
             else if (Obj.type == ObjType.Wor_Build_Roof_Collapsing)
@@ -571,9 +572,6 @@ namespace DungeonRun
             #endregion
 
 
-
-
-
             #region Chimney - smoke
 
             else if (Obj.type == ObjType.Wor_Build_Roof_Chimney)
@@ -593,6 +591,23 @@ namespace DungeonRun
             #endregion
 
 
+            #region Colliseum Spectators
+
+            else if (Obj.type == ObjType.Wor_Colliseum_Spectator)
+            {   //randomly create an exclamation particle
+                if (Functions_Random.Int(0, 10000) > 9990)
+                {
+                    Functions_Particle.Spawn(
+                        ObjType.Particle_ExclamationBubble,
+                        Obj.compSprite.position.X - 3,
+                        Obj.compSprite.position.Y - 16);
+                }
+            }
+
+            #endregion
+
+
+            //pets
 
             #region Pet - Dog
 
@@ -673,6 +688,7 @@ namespace DungeonRun
 
 
 
+            //enemies
 
             #region Enemy - Turtles & Crabs
 
@@ -721,7 +737,7 @@ namespace DungeonRun
 
 
 
-
+            //npcs + sidequests
 
             #region NPC - Farmer
 
@@ -773,9 +789,6 @@ namespace DungeonRun
             }
 
             #endregion
-
-
-
 
 
 

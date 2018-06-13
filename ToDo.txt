@@ -83,62 +83,42 @@ any warrior brave enough to enter.
 
 
 
-v0.74 - The Colliseum & Training
+v0.74 - The Colliseum & Challenges
 
 
 
 
+The Colliseum - Part 9
 
+created two animated spectator sprites, with
+colliseum style seating. 
 
-The Colliseum - Part 8
+this is actually only 1 obj def in game.
+we randomly choose the spectator animFrame,
+then randomly set it's anim timer too, so
+we don't get a bunch of twinning across a sea
+of spectators on the pit level.
 
+updated colliseum obj widget to move large
+gate objects to the bottom of the widget,
+essentially placing them beyond the bounds of
+the window, but still accessible as normal.
+this was done to make some space in the colliseum
+obj widget, so we can add spectator obj.
+it freed up a TON of space, and put the gate
+objs together on one row, so they visually
+fit together. walls now fit together visually
+on a single row as well.
 
+placed spectators around the pit, filling up the
+screen. i was careful to only use enough spectators
+to fill the screen based on where the hero can go,
+within the pit. this means i didn't place spectators
+that could never been seen (waste of roomObjs).
 
-
-
-
-
-
-
-Wednesday
-
-removed colliseum interior levels from game.
-that was the wrong direction, for many reasons.
-
-..and i've been hesitant to commit to a direction 
-for the colliseum because i wasn't exactly sure 
-how it was going to all fit together. i think i 
-have a good idea how all the colliseum pieces fit 
-together now, after alot of thinking.
-
-created spectator's pit room/level xml data.
-added into game's systems. rant time:
-we really shouldn't mix rooms and fields up,
-like we were doing with yesterday's implementation
-of colliseum's interior. if we do this, then
-editing the rooms/levels becomes slightly confusing
-because they're edited as rooms, but compiled
-as fields/levels. now that we're using a field
-for the spectator's pit (colliseum's interior),
-we don't have overlapping room/field codepaths.
-which simplifies the codebase and makes it easier
-to reason about, honestly. just mentally pathing 
-the interior rooms from yesterday thru the codebase
-kinda hurt my brain and was ringing alarms.
-so that mess is fixed now.
-
-compiled level data, playtested transition from
-colliseum exterior to interior pit. working well.
-
-additional notes:
-
-the idea behind showing the player the spectator's pit
-prior to fighting in it is to get the player comfortable
-with the space. let them explore without the threat of
-enemies or damage. then when they're ready, they can 
-start a challenge, and when we reload the pit level
-it wont be a jarring change - since they're already in
-the pit.
+removed interior obj markers.
+added grass patches around colliseum.
+lots of playtesting, looking good.
 
 
 
@@ -149,11 +129,62 @@ the pit.
 
 
 
-place spectators around the pit. 
-fill the screen with animated spectators.
+The Colliseum - Part 10
 
-remove interior obj markers.
-add grass patches around colliseum (no tall grass).
+spectator should be able to randomly create
+exclamation bubble particles above their
+head, as if they are shouting something.
+which means they getAI. done.
+
+randomly flip the spectator sprites horizontally,
+for additional variation. done.
+
+added more spectator sprites to colliseum sheet.
+updated code to manage 4 diff spectators.
+that's enough for now, but later i'll likely
+add even more spectators.
+
+added a variety of sprites into dev sheet,
+for a variety of ideas that are really exciting.
+like monster challenges for dark world colliseum.
+
+fixed pit level so it's not missing spectators.
+removed some shockingly bad code in room's
+constructor.
+
+Field Spawns++
+i think we should spawn hero lower in field levels.
+further south, so there is more level north to discover
+and explore. plus, it gives field levels an intuitive 
+south exit, just like dungeons. done, tested.
+on the farm level, hero spawns into water with a splash.
+and that's ok with me.
+
+
+
+
+
+
+
+
+
+
+
+
+
+colliseum sounds and music
+colliseum exterior should be silent, just ambient insects.
+inside the colliseum, there should be crowd murmurs, like alot of
+people are trying to be quiet in a large space.
+during fighting, the crowd should cheer each time an enemy is defeated.
+the crowd should boo each time the player takes damage.
+the bkg music should be ambient rhythmic drums, in time with link's heartbeat.
+completing the challenge should play the reward sfx.
+
+get this sounding good prior to adding NPCs + Challenges.
+this should feel like a colliseum, without any fighting.
+
+
 
 
 
@@ -178,19 +209,6 @@ back to level screen & player.
 
 
 
-
-
-
-
-
-colliseum sounds and music
-colliseum exterior should be silent, just ambient insects.
-inside the colliseum, there should be crowd murmurs, like alot of
-people are trying to be quiet in a large space.
-during fighting, the crowd should cheer each time an enemy is defeated.
-the crowd should boo each time the player takes damage.
-the bkg music should be ambient rhythmic drums, in time with link's heartbeat.
-completing the challenge should play the reward sfx.
 
 
 
