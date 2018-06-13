@@ -214,7 +214,7 @@ namespace DungeonRun
             // -> because hero may of exited a dungeon
             if (PlayerData.current.lastLocation == LevelID.Colliseum)
             { currentLocation = colliseum; }
-            else if (PlayerData.current.lastLocation == LevelID.ColliseumInterior)
+            else if (PlayerData.current.lastLocation == LevelID.ColliseumPit)
             { currentLocation = colliseum; }
 
             else if (PlayerData.current.lastLocation == LevelID.Forest_Entrance)

@@ -101,16 +101,25 @@ namespace DungeonRun
                 Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.Colliseum);
                 Level.rooms.Add(field);
             }
-            else if (Level.ID == LevelID.ColliseumInterior)
+            else if (Level.ID == LevelID.ColliseumPit)
+            {
+                Functions_Music.PlayMusic(Music.LightWorld);
+                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.ColliseumPit);
+                Level.rooms.Add(field);
+            }
+
+            /*
+            //example of a mini-dungeon
+            else if (Level.ID == LevelID.MiniBossDungeon)
             {
                 //create exit room
-                Level.rooms.Add(new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.ColliseumInterior));
+                Level.rooms.Add(new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.Exit));
                 
                 //add 2nd colliseum room north of exit room
                 Level.rooms.Add(new Room(new Point(
                     Level.rooms[0].rec.X, 
                     Level.rooms[0].rec.Y - (16 * Level.rooms[0].size.Y) - 16), 
-                    RoomID.ColliseumBackroom));
+                    RoomID.Hub));
 
                 //connect rooms with a door
                 Door door = new Door(new Point(Level.rooms[0].rec.X + 16 * 2, Level.rooms[0].rec.Y - 16));
@@ -119,6 +128,8 @@ namespace DungeonRun
                 
                 Functions_Music.PlayMusic(Music.LightWorld);
             }
+            */
+
             else if (Level.ID == LevelID.Forest_Entrance)
             {
                 Functions_Music.PlayMusic(Music.LightWorld);

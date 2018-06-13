@@ -49,10 +49,6 @@ namespace DungeonRun
             else if (ID == RoomID.Secret)
             { Room.size.X = 3; Room.size.Y = 3; }
 
-            //special rooms
-            else if (ID == RoomID.ColliseumInterior || ID == RoomID.ColliseumBackroom) //match size of row room
-            { Room.size.X = 19; Room.size.Y = 11; }
-
             //field rooms fill the screen - maintain 16:9 ratio
             else
             {
@@ -144,21 +140,16 @@ namespace DungeonRun
 
                 #region Setup Colliseum levels
 
-                //colliseum mixes fields and rooms
+
                 if (Room.roomID == RoomID.Colliseum)
                 {
                     RoomXmlData = LevelData.Colliseum;
                     Level.isField = true;
                 }
-                else if (Room.roomID == RoomID.ColliseumInterior)
+                else if (Room.roomID == RoomID.ColliseumPit)
                 {
-                    RoomXmlData = LevelData.ColliseumInterior;
-                    Level.isField = false;
-                }
-                else if (Room.roomID == RoomID.ColliseumBackroom)
-                {
-                    RoomXmlData = LevelData.ColliseumBackroom;
-                    Level.isField = false;
+                    RoomXmlData = LevelData.ColliseumPit;
+                    Level.isField = true;
                 }
 
                 #endregion

@@ -70,7 +70,7 @@ namespace DungeonRun
     {
         //overworld levels
         Colliseum,
-        ColliseumInterior,
+        ColliseumPit,
         TheFarm, 
         LeftTown2,
 
@@ -96,9 +96,7 @@ namespace DungeonRun
 
         //these OVERWORLD rooms are non-procedural (handmade)
         Colliseum,
-        ColliseumInterior,
-        ColliseumBackroom,
-
+        ColliseumPit,
         ForestEntrance,
         TheFarm,
         LeftTown2,

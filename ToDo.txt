@@ -90,13 +90,7 @@ v0.74 - The Colliseum & Training
 
 
 
-The Colliseum - Part 7
-
-added ColliseumInterior level and room to game.
-this builds a mini-dungeon of two rooms, connected
-with a door. both rooms are empty. exiting leads
-back to overworld. these rooms are accessed via
-interaction with colliseum entrance object.
+The Colliseum - Part 8
 
 
 
@@ -104,53 +98,132 @@ interaction with colliseum entrance object.
 
 
 
-*we need colliseum interior music.. and colliseum music in general.
-for overworld level and interior levels.
+
+
+Wednesday
+
+removed colliseum interior levels from game.
+that was the wrong direction, for many reasons.
+
+..and i've been hesitant to commit to a direction 
+for the colliseum because i wasn't exactly sure 
+how it was going to all fit together. i think i 
+have a good idea how all the colliseum pieces fit 
+together now, after alot of thinking.
+
+created spectator's pit room/level xml data.
+added into game's systems. rant time:
+we really shouldn't mix rooms and fields up,
+like we were doing with yesterday's implementation
+of colliseum's interior. if we do this, then
+editing the rooms/levels becomes slightly confusing
+because they're edited as rooms, but compiled
+as fields/levels. now that we're using a field
+for the spectator's pit (colliseum's interior),
+we don't have overlapping room/field codepaths.
+which simplifies the codebase and makes it easier
+to reason about, honestly. just mentally pathing 
+the interior rooms from yesterday thru the codebase
+kinda hurt my brain and was ringing alarms.
+so that mess is fixed now.
+
+compiled level data, playtested transition from
+colliseum exterior to interior pit. working well.
+
+additional notes:
+
+the idea behind showing the player the spectator's pit
+prior to fighting in it is to get the player comfortable
+with the space. let them explore without the threat of
+enemies or damage. then when they're ready, they can 
+start a challenge, and when we reload the pit level
+it wont be a jarring change - since they're already in
+the pit.
 
 
 
 
 
 
-build the spectator's pit... 
-the boundary for the colliseum pit is built by code,
-so we don't have to hand place/save/load walls. 
-
-then we place spectators around the pit.
-
-which is surrounded by animated spectator sprites. 
-this is a field level with an exit dungeon obj just south
-of where hero spawns. this allows hero to exit colliseum
-if he wants to, or if a bug happens the hero isn't locked
-into a level and forced to save&quit.
 
 
 
 
-Thursday
+place spectators around the pit. 
+fill the screen with animated spectators.
+
+remove interior obj markers.
+add grass patches around colliseum (no tall grass).
+
+
+
+
+how colliseum loading will work:
+we only have ONE colliseum xml roomdata def. ONE.
+and this is because it's a pain to make sure those walls
+stay the same if we have multiple spectator pit 
+level representations. so instead, we'll just have ONE.
+and this is the version of the pit with the challenge
+vendors INSIDE the pit, ready to sell challenges to link.
+this is the 'default state' of the pit level: no enemies.
+when a challenge is selected, we reload the default pit
+level, loop over all roomObjs looking for vendors, remove
+them, then add the challenge's enemies at specific
+spawn locations (far north of south exit, so link doesn't
+take damage upon spawn), then release control of the game
+back to level screen & player.
+
+
+
+
+
+
+
+
+
+
+
+colliseum sounds and music
+colliseum exterior should be silent, just ambient insects.
+inside the colliseum, there should be crowd murmurs, like alot of
+people are trying to be quiet in a large space.
+during fighting, the crowd should cheer each time an enemy is defeated.
+the crowd should boo each time the player takes damage.
+the bkg music should be ambient rhythmic drums, in time with link's heartbeat.
+completing the challenge should play the reward sfx.
+
+
+
+
 
 add the first challenge NPC to the room.
 this NPC simply offers the blob challenge,
 which is a test challenge to ensure this whole
-colliseum idea will work.
+colliseum challenge idea will work.
 
 *should cost gold to enter challenge.
 *reward is greater than entry fee.
-*then spawn a trio of forest bosses.
+*then spawn a bunch of blobs.
 *then check to see if they're all dead.
 
 at this point, we need some kind of reward screen
 to pop up and let player know they completed the challenge.
-also, we need to exit the spec pit level and load the
-interior colliseum level, returning link to the place
-where he started. this should happen upon death in the
-colliseum as well.
+this screen can simply exit, and it's left up to the player
+to leave the colliseum and reload it. or, we can simply
+load the spec pit, with vendors, upon screen exit.
+whatever we decide, this should happen if hero dies too.
 
 
 
 
 the words "KILL" should flash across
 the screen at the start of the colliseum challenge.
+
+
+
+
+
+
 
 
 

@@ -90,9 +90,13 @@ namespace DungeonRun
 
                         //set level id based on dialog
                         if (dialogs == AssetsDialog.Enter_ForestDungeon)
-                        { Level.ID = LevelID.Forest_Dungeon; }
+                        {
+                            Level.ID = LevelID.Forest_Dungeon;
+                        }
                         else if (dialogs == AssetsDialog.Enter_Colliseum)
-                        { Level.ID = LevelID.ColliseumInterior; }
+                        {
+                            Level.ID = LevelID.ColliseumPit;
+                        }
                     }
                     else if(Functions_Input.IsNewButtonPress(Buttons.B))
                     {
