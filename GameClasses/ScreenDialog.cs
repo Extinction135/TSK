@@ -77,18 +77,26 @@ namespace DungeonRun
 
                 #region Dialogs with A/B Choices + Diff Outcomes
 
-                if(dialogs == AssetsDialog.Enter_ForestDungeon)
+                if(
+                    dialogs == AssetsDialog.Enter_ForestDungeon
+                    || dialogs == AssetsDialog.Enter_Colliseum
+                    )
                 {
                     if (Functions_Input.IsNewButtonPress(Buttons.A))
                     {
                         ExitDialog(); //exit dialog, enter dungeon
                         exitToOverworld = false; exitToDungeon = true;
-                        Level.ID = LevelID.Forest_Dungeon; //set level id based on dialog
                         Assets.Play(Assets.sfxEnterDungeon);
+
+                        //set level id based on dialog
+                        if (dialogs == AssetsDialog.Enter_ForestDungeon)
+                        { Level.ID = LevelID.Forest_Dungeon; }
+                        else if (dialogs == AssetsDialog.Enter_Colliseum)
+                        { Level.ID = LevelID.ColliseumInterior; }
                     }
                     else if(Functions_Input.IsNewButtonPress(Buttons.B))
                     {
-                        ExitDialog(); //exit dialog, dont enter dungeon
+                        ExitDialog(); //exit dialog, dont enter
                         exitToOverworld = false; exitToDungeon = false;
                     }
                 }

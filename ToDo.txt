@@ -90,16 +90,13 @@ v0.74 - The Colliseum & Training
 
 
 
-The Colliseum - Part 6
+The Colliseum - Part 7
 
-changed forest dungeon wall sprites to be different
-than colliseum dungeon wall sprites. since the colliseum
-is built out of bricks, it makes sense it's interior 
-would be made out of bricks as well, so colliseum was
-granted ownership of the original dungeon sprites, and
-forest dungeon was updated with new ones from 
-links awakening. playtested, working.
-updated uwp with new sprites as well.
+added ColliseumInterior level and room to game.
+this builds a mini-dungeon of two rooms, connected
+with a door. both rooms are empty. exiting leads
+back to overworld. these rooms are accessed via
+interaction with colliseum entrance object.
 
 
 
@@ -107,20 +104,11 @@ updated uwp with new sprites as well.
 
 
 
+*we need colliseum interior music.. and colliseum music in general.
+for overworld level and interior levels.
 
 
 
-Wednesday
-
-build interior room that will contain NPCs.
-this is a row room, for now, built from the colliseum's
-dungeon sprites. change those sprites.
-
-simply build a row room with the unique room id of colliseumInterior.
-link up hero interacting with colliseum door, leading to
-interior room. interior room should have exit door obj, btw.
-we should create some room data for this place, and store
-it in xml, added into game, etc...
 
 
 
@@ -148,7 +136,7 @@ colliseum idea will work.
 
 *should cost gold to enter challenge.
 *reward is greater than entry fee.
-*just spawn a bunch of blob enemies.
+*then spawn a trio of forest bosses.
 *then check to see if they're all dead.
 
 at this point, we need some kind of reward screen
@@ -161,6 +149,8 @@ colliseum as well.
 
 
 
+the words "KILL" should flash across
+the screen at the start of the colliseum challenge.
 
 
 

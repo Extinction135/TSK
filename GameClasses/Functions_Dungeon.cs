@@ -290,6 +290,11 @@ namespace DungeonRun
                 FinishSecretRoom(Room);
             }
 
+            else if(Room.roomID == RoomID.ColliseumInterior)
+            {
+                PlaceExit(Room);
+            }
+
             #endregion
 
 

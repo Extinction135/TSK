@@ -101,12 +101,20 @@ namespace DungeonRun
         #endregion
 
 
-        #region Dungeon Entrance Dialogs
+        #region Dungeon/Level Entrance Dialogs
 
         public static List<Dialog> Enter_ForestDungeon = new List<Dialog>
         {
             new Dialog(ObjType.Hero_Idle, "Hmm..",
-                "Should I enter this dungeon?\n" +
+                "Should I enter this place?\n" +
+                "A) yes    B) no",
+                Assets.sfxTextLetter, false, false, false)
+        };
+
+        public static List<Dialog> Enter_Colliseum = new List<Dialog>
+        {
+            new Dialog(ObjType.Hero_Idle, "Hmm..",
+                "Should I enter the colliseum?\n" +
                 "A) yes    B) no",
                 Assets.sfxTextLetter, false, false, false)
         };

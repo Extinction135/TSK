@@ -69,7 +69,8 @@ namespace DungeonRun
     public enum LevelID
     {
         //overworld levels
-        Colliseum, //field with vendors
+        Colliseum,
+        ColliseumInterior,
         TheFarm, 
         LeftTown2,
 
@@ -95,6 +96,9 @@ namespace DungeonRun
 
         //these OVERWORLD rooms are non-procedural (handmade)
         Colliseum,
+        ColliseumInterior,
+        ColliseumBackroom,
+
         ForestEntrance,
         TheFarm,
         LeftTown2,

@@ -6,6 +6,8 @@ namespace DungeonRun
 	{
 		//all levels in game
 		public static RoomXmlData Colliseum = new RoomXmlData();
+		public static RoomXmlData ColliseumBackroom = new RoomXmlData();
+		public static RoomXmlData ColliseumInterior = new RoomXmlData();
 		public static RoomXmlData TheFarm = new RoomXmlData();
 		public static RoomXmlData ForestEntrance = new RoomXmlData();
 		public static RoomXmlData LeftTown2 = new RoomXmlData();
@@ -1443,6 +1445,21 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 296; obj.posY = 8; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 328; obj.posY = -8; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 312; obj.posY = 8; Colliseum.objs.Add(obj);}
+			#endregion
+
+
+			#region ColliseumBackroom
+
+			ColliseumBackroom.type = RoomID.ColliseumBackroom;
+			ColliseumBackroom.objs = new List<ObjXmlData>();
+			#endregion
+
+
+			#region ColliseumInterior
+
+			ColliseumInterior.type = RoomID.ColliseumInterior;
+			ColliseumInterior.objs = new List<ObjXmlData>();
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Signpost; obj.direction = Direction.Down; obj.posX = 152; obj.posY = 72; ColliseumInterior.objs.Add(obj);}
 			#endregion
 
 
