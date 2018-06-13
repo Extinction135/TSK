@@ -129,60 +129,21 @@ lots of playtesting, looking good.
 
 
 
-The Colliseum - Part 10
+The Colliseum - Part 9
 
-spectator should be able to randomly create
-exclamation bubble particles above their
-head, as if they are shouting something.
-which means they getAI. done.
+updated the uwp colliseum sheet.
 
-randomly flip the spectator sprites horizontally,
-for additional variation. done.
-
-added more spectator sprites to colliseum sheet.
-updated code to manage 4 diff spectators.
-that's enough for now, but later i'll likely
-add even more spectators.
-
-added a variety of sprites into dev sheet,
-for a variety of ideas that are really exciting.
-like monster challenges for dark world colliseum.
-
-fixed pit level so it's not missing spectators.
-removed some shockingly bad code in room's
-constructor.
-
-Field Spawns++
-i think we should spawn hero lower in field levels.
-further south, so there is more level north to discover
-and explore. plus, it gives field levels an intuitive 
-south exit, just like dungeons. done, tested.
-on the farm level, hero spawns into water with a splash.
-and that's ok with me.
+upon *actually* building the uwp project,
+it fails to build - because i didn't include
+the gameclass function_texture. oops. so,
+the uwp side of the game has been broken 
+for 5 days. sorry.
 
 
 
 
 
 
-
-
-
-
-
-
-
-colliseum sounds and music
-colliseum exterior should be silent, just ambient insects.
-inside the colliseum, there should be crowd murmurs, like alot of
-people are trying to be quiet in a large space.
-during fighting, the crowd should cheer each time an enemy is defeated.
-the crowd should boo each time the player takes damage.
-the bkg music should be ambient rhythmic drums, in time with link's heartbeat.
-completing the challenge should play the reward sfx.
-
-get this sounding good prior to adding NPCs + Challenges.
-this should feel like a colliseum, without any fighting.
 
 
 
@@ -207,13 +168,6 @@ back to level screen & player.
 
 
 
-
-
-
-
-
-
-
 add the first challenge NPC to the room.
 this NPC simply offers the blob challenge,
 which is a test challenge to ensure this whole
@@ -226,16 +180,36 @@ colliseum challenge idea will work.
 
 at this point, we need some kind of reward screen
 to pop up and let player know they completed the challenge.
-this screen can simply exit, and it's left up to the player
-to leave the colliseum and reload it. or, we can simply
-load the spec pit, with vendors, upon screen exit.
-whatever we decide, this should happen if hero dies too.
+this screen exits, loads the default pit (with vendors).
+this should happen if hero dies too.
 
 
 
 
-the words "KILL" should flash across
-the screen at the start of the colliseum challenge.
+
+
+
+
+
+
+
+colliseum sounds and music
+colliseum exterior should be silent, just ambient insects.
+inside the colliseum, there should be crowd murmurs, like alot of
+people are trying to be quiet in a large space.
+during fighting, the crowd should cheer each time an enemy is defeated.
+the crowd should boo each time the player takes damage.
+the bkg music should be ambient rhythmic drums, in time with link's heartbeat.
+completing the challenge should play the reward sfx.
+this should feel like a colliseum, without any fighting.
+
+
+
+
+Challenge Polish
+
+the words "KILL" should flash across the screen 
+at the start of the colliseum challenge, and flash.
 
 
 
