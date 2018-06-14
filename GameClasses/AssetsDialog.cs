@@ -146,6 +146,14 @@ namespace DungeonRun
                 Assets.sfxTextLetter, false, false, false),
         };
 
+        public static List<Dialog> Colliseum_Challenge_Accepted = new List<Dialog>
+        {
+            new Dialog(ObjType.Judge_Colliseum, "Challenge Accepted!",
+                "We look forward to seeing your skills in combat..\n" +
+                "Ready?...",
+                Assets.sfxTextLetter, false, false, false),
+        };
+
         public static List<Dialog> Colliseum_Challenge_Complete = new List<Dialog>
         {
             new Dialog(ObjType.Judge_Colliseum, "Congratulations!",

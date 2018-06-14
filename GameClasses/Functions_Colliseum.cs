@@ -59,6 +59,9 @@ namespace DungeonRun
 
         public static void BeginChallenge(ChallengeSet ChallengeSet)
         {
+            //rebuild the pit, fading in from black
+            Functions_Level.BuildLevel(Level.ID);
+
             //this method assums the current level + room is colliseum pit
             //note this method works for both light and dark world colliseums :p
             currentChallenge = ChallengeSet;
@@ -136,13 +139,13 @@ namespace DungeonRun
             //create the judge obj
             objRef = Functions_Pool.GetRoomObj();
 
-            //place along backwall
+            //place judge along backwall
             Functions_Movement.Teleport(
                 objRef.compMove,
                 Functions_Level.currentRoom.rec.X //start with the room's x pos
                 + Functions_Level.currentRoom.rec.Width / 2 //get the center X
                 + 8, //align to gameworld grid
-                Functions_Level.currentRoom.rec.Y + 16 * 14 - 8 - 4); //place against back wall
+                Functions_Level.currentRoom.rec.Y + 16 * 14 - 8 - 4); //against back wall
             objRef.direction = Direction.Down;
             Functions_GameObject.SetType(objRef, ObjType.Judge_Colliseum);
         }

@@ -64,161 +64,32 @@ player's health never goes above 1 in the trials).
 
 
 
-
-
-
-
-What is the Colliseum?
-
-a room that contains NPCs and objects which 
-lead to challenges or sub-games within the main overall 
-game. these challenges are separate from the main game 
-and do not / cannot affect plotlines in any meaningful 
-way. there will also be a dark world colliseum, with 
-darker and different challenges. these challenges take
-place in the spectator's pit. the colliseum is open to
-any warrior brave enough to enter.
-
-
-
-
-
 v0.74 - The Colliseum & Challenges
 
 
 
+The Colliseum - Part 13
 
+improve the transition from buying a challenge
+to starting a challenge. currently, the hero teleports
+to the spawn point, with no fading in/out to black,
+and it's really jarring and seems buggy.
 
-The Colliseum - Part 12 - The Big One
+after some hacking on the game, a few things were
+discovered: if you try to add a dialog screen when
+the vendor screen is closing, the game freezes and
+no input is processed at all. hilarious! if you
+try to add a dialog screen at the end of the
+BeginChallenge() routine, the same thing happens.
+amazing! glorious! plus, there's no transition.
 
-How Colliseum Loading Works (notes):
-we only have ONE colliseum xml roomdata def. ONE.
-and this is because it's a pain to make sure those walls
-and spectators stay the same if we have multiple spectator 
-pit level representations. so instead, we'll just have ONE.
-and this is the version of the pit with the challenge
-vendors INSIDE the pit, ready to sell challenges to link.
-this is the 'default state' of the pit level: no enemies.
-when a challenge is selected, we just loop over all roomObjs 
-looking for vendors, remove them, then add the challenge's 
-enemies at specific spawn locations (far north of south exit, 
-so link doesn't take damage upon spawn), then release 
-control of the game back to level screen & player.
-during a challenge, we can create a line of blocks
-at the start of the colliseum to lock link in, so
-it's fight or die.
-
-How do we handle a set of enemies for a challenge?
-this is essentially a list of actors and roomObjs.
-where these actors and roomObjs spawn is set by code,
-not data, so we don't need to store their positions,
-just their type and count. so this is really two lists
-of two enumerator values, a list of gameObj types, and
-a list of actorTypes. this composes the basic challenge.
-
-Implement ChallengeSets
-we'll need to feed a challengeSet into a method that handles
-placement and spawning of these roomObjs + actors for 
-colliseum pit. this method should also 'clear' the pit
-of vendors prior to spawning the challenge set.
-finally this method should respawn the hero at the pit 
-entrance. optionally, we can close off the pit, but i'd 
-prefer to leave it open in case the player chooses to flee.
-
-created Functions_Colliseum & ChallengeSet class.
-linked Functions_Colliseum to Dx project.
-created functions_colliseum.BeginChallenge(ChallengeSet).
-then from vendor screen, from purchase routine, we
-setup the dev challenge to make sure all enemies spawn
-properly in the pit (excluding bosses, because they 
-pop summary screens and flip dungeon booleans).
-
-updated how vendor screen closes, due to two codepaths
-duplicating the closing routine - since we are auto
-closing the challenge vendors screen upon a challenge
-purchase - otherwise there would be no immediate game
-feedback from a purchase, since the vendor screen exists
-over the level screen and the level screen is what a 
-challenge modifies. whew. so player buys a challenge,
-the vendor screen closes automatically, and the hero
-respawns in the pit filled with enemies and no vendors.
-
-playtested: working as expected. awesome.
-the challenge purchase, setup, and fight
-is barebones complete. now we need the reward.
-
-note: we have to block off the pit exit because an
-enemy or actor could travel outside of the level via
-the south exit where link couldn't kill them, leading
-to an unwinnable state which is buggy and unfair to
-the player. updated and tested.
-
-Challenge Completion - The Judge
-next, check to see if all enemy actors are dead.
-how is this done? by a gameObject! the Judge!
-an indestructible NPC, he getsAI, and is animated.
-and every 60 frames he checks to see if all actors
-are dead. if they are, then he triggers the reward screen.
-the reward screen's exit loads the default pit, so
-the Judge's judgement ENDS the challenge.
-this seems like a pretty fun idea, considering the
-dark world version of this judge, surrounded by
-a sea of monster spectators... aw yiss.
-
-How do we reward the player?
-we should be using static challenge sets!, so the 
-judge can compare the current challenge to known 
-challenges then he can control what rewards are 
-given out - gold, items, etc...
-he could even spawn the next round of challenges 
-in a tournament style battle. done.
-
-for now, we can just use the challenge npc sprite
-for the judge's animFrame. okies.
-added judge sprite to colliseum pit, along backwall.
-added interaction routines between hero and judge.
-playtested, judge's dialog works as expected.
-
-Judge's AI
-implemented judge's ai.
-in play, this means that within a second of the
-last enemy dying, the screen instantly turns black,
-and a dialog pops up telling player they won, upon
-closing this dialog the default pit level is
-loaded, completing the expected exit routine.
-
-then in a dash, i added the failure dialog, and
-added a check into the judege's ai that looks
-to see if hero has died, and if so the judge pops
-a dialog basically taunting player about their
-failure, then loads the default pit level, so
-death in the colliseum pit is handled differently
-than death everywhere else, which would normally
-return the hero to the overworld. but, in this
-case i'm assuming the player would likely want
-to retry the challenge, or try a different one,
-so i'm just saving them the time of getting
-back to the colliseum level. it's what i would want.
-
-UWP++
-updated uwp project with functions_Colliseum class link.
-updated uwp project with colliseum sprite sheet.
-
-bug: minibosses drop map loot upon their death.
-level.map should be flipped true upon entry to colliseum.
-this prevents any minibosses from dropping map loot.
-implemented.
-
-Challenges++
-implemented 25 blobs for 25 gold challenge.
-implemented 3 minibosses for 99 gold challenge.
-this essentially creates tier1 and tier2 challenges.
-
-lots of playtesting, and while challenges aren't
-perfect, they are implemented well enough right now.
-note: the game is in release mode with this commit,
-which *technically* makes it a preview release of 0.74.
-and it's tested to work on UWP, so... have fun!
+the better solution was to call BuildLevel()
+at the start of BeginChallenge(), passing in the
+current level's ID. this causes the level screen's
+overlay rec to be set to 100% opacity, and then 
+fades out, smoothly displaying the game. this is better
+transition than previous teleport transition.
+smooth, like a saxophone submerged in butter.
 
 
 
@@ -228,46 +99,52 @@ and it's tested to work on UWP, so... have fun!
 
 
 
+decouple bosses from summary screens and dungeon rewards.
+we can do this via the judge roomObj.
+he simply checks to see what type of room
+it is, if boss room, ensure all actors are dead.
+
+*we need to migrate the seeker actor to be a roomObj.
+this should be very simple, honestly.
 
 
+then, we can add bosses to challenge vendor.
+fight multiple bosses at once! cool.
 
 
-
-
-
-Challenges++
 future ideas for polish: better transition to
-post-challenge dialog screen (win/loss).
+post-challenge dialog screen (win/loss). this could be
+done by making the interactive frame even later, giving
+the player time to process what's happened.
 
 we should have a 'spam money' soundfx that plays
 during challenge complete screen, like player won jackpot.
 
-and possibly fireworks? lol
 
 
 
 
-
-
-
-
-colliseum sounds and music
+Colliseum Sfx and Music
 colliseum exterior should be silent, just ambient insects.
+this is a minute or two, with very slow fade in/outs, so the repeat
+happens during silence.
+
 inside the colliseum, there should be crowd murmurs, like alot of
-people are trying to be quiet in a large space.
-during fighting, the crowd should cheer each time an enemy is defeated.
+people are trying to be quiet in a large space. again, the fade in/out
+here is very slow.
+
+during fighting, there should be rowdy crowd sounds on repeat, 
+plus rhythmic ambient drums. this will have to repeat either
+between beats, or via a silent transition.
+
+the crowd should cheer each time an enemy is defeated.
 the crowd should boo each time the player takes damage.
-the bkg music should be ambient rhythmic drums, in time with link's heartbeat.
-completing the challenge should play the reward sfx.
-this should feel like a colliseum, without any fighting.
 
+should feel like a colliseum, without any fighting.
 
-
-
-Challenge Polish
 
 the words "KILL" should flash across the screen 
-at the start of the colliseum challenge, and flash.
+at the start of the colliseum challenge.
 
 
 
@@ -276,9 +153,31 @@ at the start of the colliseum challenge, and flash.
 
 
 
+
+
+
+
+
+Map++
+add lttp's map title to dungeon map screen, outside of
+the scroll sprite. rename map window title to nothing.
+
+Boomerang++
 improve boomerang sprites based on layer dev/more stuff in art.master
 this adds a diagonal frame, plus marks a boomerangs side for
 easier visual rotational tracking.
+
+boomerang is also pushing actors it hits south,
+if the approach is from the south, which is wrong.
+it should push actors the opposite direction.
+this should be done via Functions_Direction.GetOppositeDirection().
+
+
+
+
+
+
+
 
 
 
@@ -294,56 +193,44 @@ and it can only say one thing, because it's based
 on the room.id. and this will be contained within
 a method called ReadSign(GameObject SignPost).
 
-
-
-
-Hero's Death++
-we should slowdown the hero's death, so it's a
-pain to experience, increasing the player's
-aversion to the hero's death.
-
-
-
-
-
-Mob Challenges NPC
-
-this is a series of room battles with increasing challenging creature mobs,
-culminating in a battle with Wovles, the only *actually* useful pet in the game.
-this is started by the Mob Challenges NPC.
-this takes place in special 'spectator' rooms, where the walls
-look different and there are animated spectators beyond them.
-anim specs have no collisions/interactions and sort above hero,
-so hero walks under spectators to the next room, via a door.
-
-populate this with enemies
-we have many sprites in dev for this exact challenge
-
-The Wolves
-16x16 wolf actors, with stats similar to link.
-aggressive if health is high, defensive if health is low.
-regenerates 1 health (up to 3) every 255 frames.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Pets++
 pool.HerosPet is not protected by getActor() and other routines,
 so it is periodically overwritten. if we fix the routines to
 respect the pets position in the list, then pets should work fine
 again.
+
+Wolves
+16x16 wolf actors, with stats similar to link.
+aggressive if health is high, defensive if health is low.
+regenerates 1 health (up to 3) every 255 frames.
+wolves are spawned in packs of 4 inside the colliseum.
+defeating the pack unlocks the wolf pet, available from
+the pet vendor in town. wolf pet acts with normal wolf
+strat, but follows link and does not attack him (is ally).
+if wolf actor dies, he can be revived by link thru
+simple interaction. this revives wolf back to full health.
+
+
+
+
+
+Implement Cane of Somara (or whatever)
+this is the cane that creates blocks that are pushable.
+this makes it MUCH easier to get thru dungeons, as many
+rooms rely on floor switches, which link can simply
+create a block over.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

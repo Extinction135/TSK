@@ -347,7 +347,16 @@ worlds. it should be almost be laughable how much stuff happens in this battle.
 
 
 
+What is the Colliseum?
 
+a room that contains NPCs and objects which 
+lead to challenges or sub-games within the main overall 
+game. these challenges are separate from the main game 
+and do not / cannot affect plotlines in any meaningful 
+way. there will also be a dark world colliseum, with 
+darker and different challenges. these challenges take
+place in the spectator's pit. the colliseum is open to
+any warrior brave enough to enter.
 
 
 

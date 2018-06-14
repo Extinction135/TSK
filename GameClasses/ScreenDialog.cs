@@ -32,9 +32,7 @@ namespace DungeonRun
         Boolean exitToDungeon = false;
 
 
-
-
-
+        
 
 
         public void ExitDialog()
@@ -73,7 +71,6 @@ namespace DungeonRun
         {   //force player to wait for the dialog to complete
             if (Widgets.Dialog.dialogDisplayed)
             {
-
 
                 #region Dialogs with A/B Choices + Diff Outcomes
 
