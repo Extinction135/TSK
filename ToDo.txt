@@ -68,34 +68,77 @@ v0.74 - The Colliseum & Challenges
 
 
 
-The Colliseum - Part 14
+SeekerExploder++
 
-decouple bosses from summary screens and dungeon rewards.
-we also need to decouple minibosses from dropping the map obj.
-these effects come from their deaths.
+migrate seekerExploder actor to be a roomObject.
 
-added checks into boss and miniboss death that see
-what room the actor died in, and if boss dies in boss
-room, then he ends the dungeon. if miniboss dies in
-hub room, then he rewards the map. if these actors
-die outside of these specific rooms, they do not
-trigger their rewards to the player at all and die
-just like a normal enemy would.
+Why are we doing this?
+Seekers are implemented as actors, of which there
+can only be 30 on screen at once, due to the large
+amount of checks each actor goes through. they are
+expensive to process, + have a ton of animation 
+frames too. well, the seeker can be modeled as a 
+roomObj instead, with all the same behavior, but 
+we also gain: the roomObj count max is 3000, so we 
+can have A TON MORE seekers on screen, drastically 
+increasing the risk/skill level. plus, it cuts 
+processing time down for the actor pool,
+but this is negated by the additional number of
+seekers that will likely exist on screen. 
 
-modified boss's death to actually end on a blank
-frame. removed boss perpetually exploding.
-added 3 frame boss death to really nasty final sprite.
+basically, instead of having 1 actor seeker, we 
+can now have like 10 to 50 for about the same cost.
 
-created boss challenge, where link fights 3 bosses.
-increased the minibosses to 5 for that challenge.
+had to hack around the interaction functions to make
+a non-blocking roomObject interact with projectiles
+as a blocking roomObject - which was fine.
 
-removed challengeSet data class from the game -
-actually we only need a list of actor types to
-effectively model challenges.
+rewrote how seekers die, done thru HandleCommon()
+now - if the seeker is hit by a projectile that
+could kill it, or if the seeker gets close enough
+to the hero, HandleCommon() is called, at which point
+the seeker creates an explosion and drops loot.
+so, we can still cause explosion chains with seekers,
+which was kinda what made them awesome - they're
+like exploding barrels that move around and chase you.
 
-playtested, working as expected.
-boss + miniboss challenges: working.
-boss + miniboss in dungeon: working.
+rewrote how seekers explode - when they get near
+hero they instantly become an explosion, making them
+a bit more dangerous.
+
+improved seekers speed - moves slowly when they
+cant see hero, faster when they can see him.
+
+created exploding object gameobject.
+this conceptually represents any object that should 
+explode. anyobject can become an exploding object.
+the exploding object's definition doesn't modify
+anything about the previous gameobject, it simply
+sets getAi to true, and reset the lifecounter,
+then sets the lifetime. once the life counter
+hits the lifetime, the object spawns an explosion
+and is released, spawning some loot too.
+
+using this simple approach, barrels and seekerExploders
+are now both being fed into the exploding object
+system, and working as expected. this removed
+exploding barrels projectile, and prevented me
+from adding exploding exploder roomobjects.
+
+because seekers arent' blocking, they can walk thru objects.
+so, when a seeker interacts with a blocking roomObject, they
+now explode. this change deals the boss a bit more damage
+overtime, because the seekers run into walls alot.
+
+as of now, seekers are implemented well enough.
+their only downside is that they kill their boss
+if enough of them are spawned in a room. but,
+they would also kill the hero too - so i see this
+as balanced for now. if hero can survive long enough,
+the boss's mobs will kill him.
+
+updated the uwp project's content folder.
+set game into release mode for this commit as well.
 
 
 
@@ -108,10 +151,8 @@ boss + miniboss in dungeon: working.
 
 
 
-
-
-*we need to migrate the seeker actor to be a roomObj.
-this should be very simple, honestly.
+add runestones to colliseum area.
+small hitbox, blocking.
 
 
 future ideas for polish: better transition to
@@ -174,6 +215,12 @@ boomerang is also pushing actors it hits south,
 if the approach is from the south, which is wrong.
 it should push actors the opposite direction.
 this should be done via Functions_Direction.GetOppositeDirection().
+
+boomerangs should trigger barrels, and seekerExploders.
+
+
+
+
 
 Map++
 Make the map a pickup obj with a liftime of 0 (forever).

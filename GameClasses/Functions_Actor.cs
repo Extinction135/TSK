@@ -109,20 +109,6 @@ namespace DungeonRun
             }
 
 
-            //this needs to become a roomObj
-            else if (Actor.type == ActorType.Boss_BigEye_Mob)
-            {   //these enemies explode upon death
-                Functions_Projectile.Spawn(
-                    ObjType.ProjectileExplosion,
-                    Actor.compMove, Direction.Down);
-                //decorate this death as special / explosive
-                Functions_Particle.Spawn_Explosion(ObjType.Particle_Debris,
-                    Actor.compSprite.position.X, Actor.compSprite.position.Y, true);
-                Functions_Loot.SpawnLoot(Actor.compSprite.position); //loot!
-                Functions_Pool.Release(Actor);
-            }
-
-
             #region Bosses
 
             else if (Actor.type == ActorType.Boss_BigEye)
@@ -653,29 +639,6 @@ namespace DungeonRun
                 Actor.sfxDash = null; //silent dash
                 Actor.sfx.hit = Assets.sfxBossHit;
                 Actor.sfx.kill = Assets.sfxBossHitDeath;
-            }
-
-            #endregion
-
-
-            #region BigEye Boss Mob
-
-            else if (Type == ActorType.Boss_BigEye_Mob)
-            {
-                Actor.aiType = ActorAI.Basic;
-                Actor.enemy = true;
-                Actor.compSprite.texture = Assets.forestLevelSheet;
-                Actor.animList = AnimationFrames.Boss_BigEye_Mob_Animations; 
-                Actor.health = 1;
-                ResetActorLoadout(Actor);
-                Actor.walkSpeed = 0.25f;
-                Actor.dashSpeed = 0.4f;
-                //set actor sound effects
-                Actor.sfxDash = null; //silent dash
-                Actor.sfx.hit = Assets.sfxEnemyHit;
-                Actor.sfx.kill = Assets.sfxEnemyKill;
-                //big chase radius so they almost always see hero
-                Actor.chaseRadius = 16 * 10; //16*5 = default
             }
 
             #endregion

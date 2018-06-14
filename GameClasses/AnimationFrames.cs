@@ -310,6 +310,12 @@ namespace DungeonRun
         public static List<Byte4> Wor_Enemy_Rat_Left = new List<Byte4>
         { new Byte4(17, 12, 1, 0), new Byte4(18, 12, 1, 0) };
 
+        //Wor_SeekerExploder
+        public static List<Byte4> Wor_SeekerExploder = new List<Byte4>
+        {
+            new Byte4(16, 3, 0, 0), new Byte4(17, 3, 0, 0),
+            new Byte4(16, 3, 0, 0), new Byte4(17, 3, 1, 0)
+        };
 
         #endregion
 
@@ -650,10 +656,7 @@ namespace DungeonRun
 
         //actor animation frames
         public static ActorAnimationList Hero_Animations;
-
         public static ActorAnimationList Boss_BigEye_Animations;
-        public static ActorAnimationList Boss_BigEye_Mob_Animations;
-
         public static ActorAnimationList MiniBoss_BlackEye_Animations;
 
         //actor fx anim frames
@@ -888,43 +891,7 @@ namespace DungeonRun
 
             #endregion
 
-
-            #region Boss Big Eye Mob Animations
-
-            Boss_BigEye_Mob_Animations = new ActorAnimationList();
-
-            Boss_BigEye_Mob_Animations.idle = new AnimationGroup();
-            Boss_BigEye_Mob_Animations.idle.down = new List<Byte4>
-            {
-                new Byte4(16, 3, 0, 0), new Byte4(17, 3, 0, 0),
-                new Byte4(16, 3, 0, 0), new Byte4(17, 3, 1, 0)
-            };
-            Boss_BigEye_Mob_Animations.idle.up = Boss_BigEye_Mob_Animations.idle.down;
-            Boss_BigEye_Mob_Animations.idle.right = Boss_BigEye_Mob_Animations.idle.down;
-            Boss_BigEye_Mob_Animations.idle.left = Boss_BigEye_Mob_Animations.idle.down;
-            //all point to idle
-            Boss_BigEye_Mob_Animations.move = Boss_BigEye_Mob_Animations.idle;
-            Boss_BigEye_Mob_Animations.dash = Boss_BigEye_Mob_Animations.idle;
-            Boss_BigEye_Mob_Animations.attack = Boss_BigEye_Mob_Animations.idle;
-            Boss_BigEye_Mob_Animations.hit = Boss_BigEye_Mob_Animations.idle;
-            Boss_BigEye_Mob_Animations.reward = Boss_BigEye_Mob_Animations.idle;
-            //death sprite
-            Boss_BigEye_Mob_Animations.death_blank = new AnimationGroup();
-            Boss_BigEye_Mob_Animations.death_blank.down = new List<Byte4> { new Byte4(18, 3, 0, 0) };
-            Boss_BigEye_Mob_Animations.death_blank.up = Boss_BigEye_Mob_Animations.death_blank.down;
-            Boss_BigEye_Mob_Animations.death_blank.right = Boss_BigEye_Mob_Animations.death_blank.down;
-            Boss_BigEye_Mob_Animations.death_blank.left = Boss_BigEye_Mob_Animations.death_blank.down;
-
-            //set all swim anims to idle
-            Boss_BigEye_Mob_Animations.swim_dash = Boss_BigEye_Mob_Animations.idle;
-            Boss_BigEye_Mob_Animations.swim_hit = Boss_BigEye_Mob_Animations.idle;
-            Boss_BigEye_Mob_Animations.swim_idle = Boss_BigEye_Mob_Animations.idle;
-            Boss_BigEye_Mob_Animations.swim_move = Boss_BigEye_Mob_Animations.idle;
-            Boss_BigEye_Mob_Animations.swim_reward = Boss_BigEye_Mob_Animations.idle;
-
-            #endregion
-
-
+            
             #region Miniboss - Blackeye
 
             MiniBoss_BlackEye_Animations = new ActorAnimationList();
@@ -979,8 +946,6 @@ namespace DungeonRun
             MiniBoss_BlackEye_Animations.swim_reward = MiniBoss_BlackEye_Animations.idle;
 
             #endregion
-
-
 
 
         }

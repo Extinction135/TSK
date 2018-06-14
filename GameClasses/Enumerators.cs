@@ -145,9 +145,6 @@ namespace DungeonRun
         Hero,
         Blob,
 
-        //basic enemies
-        Boss_BigEye_Mob,
-
         //minibosses
         MiniBoss_BlackEye,
 
@@ -293,8 +290,6 @@ namespace DungeonRun
 
         Wor_Bed,
 
-
-
         //grass objects
         Wor_Grass_Tall,
         Wor_Grass_Cut,
@@ -366,15 +361,6 @@ namespace DungeonRun
         Wor_Build_Roof_Chimney,
         Wor_Build_Roof_Collapsing, //meta obj for collapsing roofs
 
-        //enemies
-        Wor_Enemy_Turtle,
-        Wor_Enemy_Crab,
-        Wor_Enemy_Rat,
-
-
-
-
-
         //colliseum objects
         Wor_Colliseum_Gate_Center,
         Wor_Colliseum_Gate_Pillar_Left,
@@ -402,6 +388,19 @@ namespace DungeonRun
         Wor_Colliseum_Spectator,
 
         #endregion
+
+
+
+        #region RoomObj Enemies
+
+        Wor_Enemy_Turtle,
+        Wor_Enemy_Crab,
+        Wor_Enemy_Rat,
+
+        Wor_SeekerExploder, //seeks hero
+
+        #endregion
+
 
 
         #region Vendors & NPCs
@@ -456,7 +455,7 @@ namespace DungeonRun
 
         //Projectiles - object
         ProjectileExplosion,
-        ProjectileExplodingBarrel, //creates explosion pro
+        
         ProjectileGroundFire,
 
         //Projectiles - thrown objs
@@ -466,6 +465,10 @@ namespace DungeonRun
 
         //Projectiles - casted magic
         ProjectileBombos,
+
+
+        
+
 
 
 
@@ -529,6 +532,11 @@ namespace DungeonRun
 
         #endregion
 
+
+
+
+        //very special objects
+        ExplodingObject, //creates explosion
 
     }
 

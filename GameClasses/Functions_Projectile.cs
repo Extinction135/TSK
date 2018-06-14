@@ -222,17 +222,6 @@ namespace DungeonRun
             #endregion
 
 
-            #region Exploding Barrels
-
-            else if (Type == ObjType.ProjectileExplodingBarrel)
-            {
-                Functions_Movement.Push(pro.compMove, Dir, 6.0f);
-                Assets.Play(Assets.sfxEnemyHit);
-            }
-
-            #endregion
-
-
             #region Explosions
 
             else if (Type == ObjType.ProjectileExplosion)
@@ -363,14 +352,6 @@ namespace DungeonRun
             {   //create explosion
                 Spawn(ObjType.ProjectileExplosion,
                     Obj.compMove, Direction.None);
-            }
-            else if (Obj.type == ObjType.ProjectileExplodingBarrel)
-            {
-                //create explosion projectile
-                Spawn(ObjType.ProjectileExplosion,
-                    Obj.compMove, Direction.None);
-                //create loot
-                Functions_Loot.SpawnLoot(Obj.compSprite.position);
             }
             else if(Obj.type == ObjType.ProjectileBush)
             {

@@ -153,7 +153,6 @@ namespace DungeonRun
                 if (Actor.state == ActorState.Dead) { return; }
                 //some projectiles dont interact with actors in any way at all
                 if (Obj.type == ObjType.ProjectileBomb
-                    || Obj.type == ObjType.ProjectileExplodingBarrel
                     || Obj.type == ObjType.ProjectileGroundFire
                     || Obj.type == ObjType.ProjectileBow
                     )
@@ -474,6 +473,23 @@ namespace DungeonRun
             Pool.interactionsCount++; //count interaction
 
 
+
+            
+            #region Setup Special RoomObjs prior to Interaction
+
+            //seekers dont block, but we want projectiles to kill them
+            if (RoomObj.type == ObjType.Wor_SeekerExploder)
+            { RoomObj.compCollision.blocking = true; }
+            //so we temporarily turn on their blocking, then check, then turn off
+
+            #endregion
+
+
+
+
+
+
+
             // *** Projectile vs Blocking RoomObj Interactions *** \\
 
             if (RoomObj.compCollision.blocking)
@@ -550,10 +566,10 @@ namespace DungeonRun
                     #endregion
 
 
-                    #region ExplodingBarrel
+                    #region ExplodingObject
 
-                    else if (Object.type == ObjType.ProjectileExplodingBarrel)
-                    {   //stop barrels from moving thru blocking objects
+                    else if (Object.type == ObjType.ExplodingObject)
+                    {   //stop exploding object from moving thru blocking objects
                         Functions_Movement.StopMovement(Object.compMove);
                     }
 
@@ -575,7 +591,7 @@ namespace DungeonRun
                         else if (RoomObj.type == ObjType.Dungeon_Barrel)
                         {
                             RoomObj.compMove.direction = Object.compMove.direction;
-                            Functions_GameObject_Dungeon.DestroyBarrel(RoomObj);
+                            Functions_GameObject_Dungeon.HitBarrel(RoomObj);
                         }
                         //activate switch block buttons
                         else if (RoomObj.type == ObjType.Dungeon_SwitchBlockBtn)
@@ -639,8 +655,9 @@ namespace DungeonRun
                             Assets.Play(Assets.sfxLightFire);
                         }
                         else if(RoomObj.type == ObjType.Dungeon_Barrel)
-                        {
-                            Functions_GameObject_Dungeon.DestroyBarrel(RoomObj);
+                        {   //dont push the barrel in any direction
+                            RoomObj.compMove.direction = Direction.None;
+                            Functions_GameObject_Dungeon.HitBarrel(RoomObj);
                         }
                     }
 
@@ -658,7 +675,6 @@ namespace DungeonRun
                     }
 
                     #endregion
-
 
 
                     #region Thrown Objects (Bush, Pot)
@@ -683,6 +699,24 @@ namespace DungeonRun
                 //there are no blocking obj vs obj interactions
                 //two blocking objs could never overlap or interact
             }
+
+
+
+
+            
+            #region Reset Special Objects post Interaction
+
+            //projectile checks against the seeker complete
+            if (RoomObj.type == ObjType.Wor_SeekerExploder)
+            { RoomObj.compCollision.blocking = false; }
+            //return seeker to non-blocking state, allowing overlap
+
+            #endregion
+
+            
+
+
+
 
 
             // *** Handle Obj vs Obj *** \\
@@ -727,6 +761,24 @@ namespace DungeonRun
             }
 
             #endregion
+
+
+            #region SeekerExploders
+
+            else if (Object.type == ObjType.Wor_SeekerExploder)
+            {
+                if (RoomObj.compCollision.blocking)
+                {   
+                    Object.lifeCounter = Object.lifetime; //explode this frame
+                    Functions_GameObject.HandleCommon(Object, Direction.None);
+                }
+            }
+
+            #endregion
+
+
+
+
 
 
 
@@ -932,10 +984,6 @@ namespace DungeonRun
             #endregion
 
 
-
-
-
-
             #region Debris - debris removal
 
             //if debris roomObj overlaps other objs, remove it
@@ -958,6 +1006,13 @@ namespace DungeonRun
             }
 
             #endregion
+
+
+            
+
+
+
+
 
         }
 

@@ -319,7 +319,7 @@ namespace DungeonRun
 
             //row 1
             Functions_GameObject.SetType(objList[0], ObjType.Dungeon_SpawnMob);
-            Functions_GameObject.SetType(objList[1], ObjType.Dungeon_SpawnMiniBoss);
+            Functions_GameObject.SetType(objList[1], ObjType.Unknown);
             Functions_GameObject.SetType(objList[2], ObjType.Unknown);
             Functions_GameObject.SetType(objList[3], ObjType.Unknown);
 
@@ -327,7 +327,7 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[4], ObjType.Wor_Enemy_Turtle);
             Functions_GameObject.SetType(objList[5], ObjType.Wor_Enemy_Crab);
             Functions_GameObject.SetType(objList[6], ObjType.Wor_Enemy_Rat);
-            Functions_GameObject.SetType(objList[7], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[7], ObjType.Wor_SeekerExploder);
 
             //row 3
             Functions_GameObject.SetType(objList[8], ObjType.Unknown);

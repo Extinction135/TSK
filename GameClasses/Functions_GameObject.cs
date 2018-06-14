@@ -71,6 +71,13 @@ namespace DungeonRun
                 Functions_Particle.Spawn(ObjType.Particle_Attention, RoomObj);
                 Kill(RoomObj, true, false);
             }
+            else if(RoomObj.type == ObjType.Wor_SeekerExploder)
+            {   //inherit inertia from hit
+                RoomObj.compMove.direction = HitDirection;
+                //become an explosion
+                SetType(RoomObj, ObjType.ExplodingObject);
+                Functions_Movement.Push(RoomObj.compMove, RoomObj.compMove.direction, 6.0f);
+            }
 
             #endregion
 
@@ -84,8 +91,8 @@ namespace DungeonRun
             }
             else if (RoomObj.type == ObjType.Dungeon_Barrel)
             {
-                RoomObj.compMove.direction = HitDirection; 
-                Functions_GameObject_Dungeon.DestroyBarrel(RoomObj);
+                RoomObj.compMove.direction = HitDirection;
+                Functions_GameObject_Dungeon.HitBarrel(RoomObj);
             }
             else if (RoomObj.type == ObjType.Dungeon_SwitchBlockBtn)
             {
@@ -311,7 +318,6 @@ namespace DungeonRun
                 { Obj.compSprite.flipHorizontally = true; }
             }
             else if (Obj.type == ObjType.ProjectileBomb
-                || Obj.type == ObjType.ProjectileExplodingBarrel
                 || Obj.type == ObjType.ProjectilePot
                 || Obj.type == ObjType.ProjectilePotSkull
                 || Obj.type == ObjType.ProjectileBush
@@ -1608,6 +1614,26 @@ namespace DungeonRun
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Enemy_Rat_Down;
             }
 
+            else if (Type == ObjType.Wor_SeekerExploder)
+            {
+                Obj.compSprite.texture = Assets.forestLevelSheet;
+                Obj.canBeSaved = true;
+                Obj.compSprite.zOffset = 0;
+                Obj.compMove.moveable = true;
+                //setup hitbox
+                Obj.compCollision.blocking = false; //allow overlap
+                Obj.compCollision.offsetX = -5; Obj.compCollision.rec.Width = 10;
+                Obj.compCollision.offsetY = -5; Obj.compCollision.rec.Height = 10;
+                //setup sfx
+                Obj.sfx.hit = Assets.sfxEnemyHit;
+                Obj.sfx.kill = Assets.sfxEnemyKill;
+                //setup animFrame
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_SeekerExploder;
+                Obj.getsAI = true; //seek to hero and explode
+            }
+
+
+
             #endregion
 
 
@@ -1825,6 +1851,35 @@ namespace DungeonRun
 
 
             #endregion
+
+
+
+
+
+
+
+
+            #region Very Special Objects
+
+            else if (Type == ObjType.ExplodingObject)
+            {
+                //a hit barrel ends up here
+                //a hit seekerExploder ends up here
+                //this object inherits from many diff objs
+                //but simply waits a few frames, then explodes
+                //(after being pushed a little)
+
+                //prep previous obj for explosion
+                Obj.getsAI = true;
+                Obj.lifetime = 30; //in frames
+                Obj.lifeCounter = 0; //reset
+            }
+
+            #endregion
+
+
+
+
 
 
 
@@ -2111,26 +2166,6 @@ namespace DungeonRun
 
             #endregion
 
-
-            #region Projectiles - Dungeon Specific
-
-            else if (Type == ObjType.ProjectileExplodingBarrel)
-            {   //this should match the Barrel GameObj
-                Obj.compSprite.zOffset = -7;
-                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
-                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
-                Obj.group = ObjGroup.Projectile;
-                Obj.lifetime = 40; //in frames
-                Obj.compAnim.speed = 7;
-                Obj.compMove.moveable = true;
-                Obj.compMove.grounded = true;
-
-                Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_BarrelExploding;
-                Obj.compSprite.texture = Assets.forestLevelSheet;
-                Obj.sfx.hit = Assets.sfxEnemyHit;
-            }
-
-            #endregion
 
             
             //Particles

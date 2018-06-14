@@ -143,18 +143,22 @@ namespace DungeonRun
             if (torchCount == 4) { return true; } else { return false; }
         }
 
-        public static void DestroyBarrel(GameObject Barrel)
-        {   //create a projectile exploding barrel at Barrel's exact location
-            Functions_Projectile.Spawn(
-                ObjType.ProjectileExplodingBarrel,
-                Barrel.compMove,
-                Barrel.compMove.direction); //pushed based on this direction
 
-            //we can release the barrel, or convert it to debris
-            Functions_Pool.Release(Barrel);
-            //Functions_GameObject.SetType(Barrel, ObjType.Wor_Debris);
+        public static void HitBarrel(GameObject Barrel)
+        {
+            //turn into exploding barrel
+            Barrel.compAnim.currentAnimation = AnimationFrames.Dungeon_BarrelExploding;
+            Barrel.compSprite.texture = Assets.forestLevelSheet;
+            //if barrel has a hit direction, push in that direction
+            if (Barrel.compMove.direction != Direction.None)
+            { Functions_Movement.Push(Barrel.compMove, Barrel.compMove.direction, 6.0f); }
+            //become an explosion
+            Functions_GameObject.SetType(Barrel, ObjType.ExplodingObject);
+            //play sfx
+            Assets.Play(Assets.sfxEnemyHit);
         }
-        
+
+
         public static void DragIntoPit(GameObject Object, GameObject Pit)
         {   //obj must be grounded
             if (Object.compMove.grounded)

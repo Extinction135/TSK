@@ -89,15 +89,7 @@ namespace DungeonRun
                                 Actor.compInput.dash = false;
                             }
 
-                            #endregion
-
-
-                            #region Enemies that explode when near target
-
-                            else if(Actor.type == ActorType.Boss_BigEye_Mob)
-                            {
-                                Functions_Actor.SetDeathState(Actor);
-                            }
+                            //other enemy types would choose maybe to use an item, etc..
 
                             #endregion
 
@@ -191,28 +183,17 @@ namespace DungeonRun
                 if (Functions_Random.Int(0, 100) > 70) { Actor.compInput.dash = true; }
 
 
-                //3 Phase - based on health, change how actor behaves
-                if(Actor.health > 20) 
-                {
-                    //move slowly
-                    Actor.walkSpeed = 0.05f;
-                    Actor.dashSpeed = 0.30f;
-
-                    if (Functions_Random.Int(0, 100) > 90)
-                    {   //rarely spawn mob
-                        Functions_Actor.SpawnActor(ActorType.Boss_BigEye_Mob, actorPos);
-                        Actor.compInput.attack = true;
-                    }
-                }
-                else if(Actor.health > 10) 
+                //2 Phase - based on health, change how actor behaves
+                if(Actor.health > 10) 
                 {
                     //move faster
                     Actor.walkSpeed = 0.25f;
                     Actor.dashSpeed = 0.30f;
 
                     if (Functions_Random.Int(0, 100) > 70)
-                    {   //regularly spawn mob
-                        Functions_Actor.SpawnActor(ActorType.Boss_BigEye_Mob, actorPos);
+                    {   //often spawn seeker
+                        Functions_GameObject.Spawn(ObjType.Wor_SeekerExploder, 
+                            actorPos.X, actorPos.Y, Direction.Down);
                         Actor.compInput.attack = true;
                     }
                 }
@@ -223,12 +204,13 @@ namespace DungeonRun
                     Actor.dashSpeed = 0.80f;
                     
                     if (Functions_Random.Int(0, 100) > 40)
-                    {   //often spawn mob
-                        Functions_Actor.SpawnActor(ActorType.Boss_BigEye_Mob, actorPos);
+                    {   //spam spawn seeker
+                        Functions_GameObject.Spawn(ObjType.Wor_SeekerExploder,
+                            actorPos.X, actorPos.Y, Direction.Down);
                         Actor.compInput.attack = true;
                     }
 
-                    //smoke (each frame) as a sign of nearing defeat
+                    //smoke (each frame) as a sign of nearing defeat/rage
                     Functions_Particle.Spawn(
                         ObjType.Particle_ImpactDust,
                         Actor.compSprite.position.X + 6 + Functions_Random.Int(-8, 8),
@@ -819,6 +801,66 @@ namespace DungeonRun
             }
 
             #endregion
+
+            
+            #region Seeker Exploders
+
+            else if (Obj.type == ObjType.Wor_SeekerExploder)
+            {
+                //get the x & y distances between actor and hero
+                xDistance = (int)Math.Abs(Pool.hero.compSprite.position.X - Obj.compSprite.position.X);
+                yDistance = (int)Math.Abs(Pool.hero.compSprite.position.Y - Obj.compSprite.position.Y);
+
+                if (yDistance < 16 * 10 & xDistance < 16 * 10) //can seeker see hero?
+                {   //set direction towards hero
+                    Obj.compMove.direction = Functions_Direction.GetDiagonalToHero(Obj.compSprite.position);
+                    Obj.direction = Obj.compMove.direction;
+                    //seeker moves with high energy
+                    Functions_Movement.Push(Obj.compMove, Obj.compMove.direction, 0.25f);
+                }
+                else
+                {   //randomly set direction seeker moves
+                    if (Functions_Random.Int(0, 100) > 95)
+                    { Obj.compMove.direction = Functions_Direction.GetRandomDirection(); }
+                    Obj.direction = Obj.compMove.direction;
+                    //seeker moves with less energy
+                    Functions_Movement.Push(Obj.compMove, Obj.compMove.direction, 0.1f);
+                }
+
+                if (yDistance < 15 & xDistance < 15) //is seeker close enough to explode?
+                {   //instantly explode
+                    Functions_Projectile.Spawn(ObjType.ProjectileExplosion,
+                        Obj.compSprite.position.X,
+                        Obj.compSprite.position.Y);
+                    Functions_Pool.Release(Obj);
+                }
+            }
+
+            #endregion
+
+
+
+
+
+            //very special objects
+
+            #region ExplodingObject
+
+            else if (Obj.type == ObjType.ExplodingObject)
+            {
+                Obj.lifeCounter++;
+                if(Obj.lifeCounter > Obj.lifetime)
+                {
+                    Functions_Projectile.Spawn(
+                        ObjType.ProjectileExplosion,
+                        Obj.compSprite.position.X,
+                        Obj.compSprite.position.Y);
+                    Functions_GameObject.Kill(Obj, true, false);
+                }
+            }
+
+            #endregion
+
 
 
 
