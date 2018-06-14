@@ -311,6 +311,16 @@ namespace DungeonRun
 
                 #endregion
 
+
+                #region Colliseum Judge
+
+                else if (Obj.type == ObjType.Judge_Colliseum)
+                {
+                    ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Colliseum_Judge));
+                }
+
+                #endregion
+
             }
 
 

@@ -607,6 +607,86 @@ namespace DungeonRun
             #endregion
 
 
+            #region Colliseum Judge
+
+            else if (Obj.type == ObjType.Judge_Colliseum)
+            {
+                //periodically check to see if all active actors are dead
+                //if true, then hero has completed active challenge
+
+                Obj.lifeCounter++;
+                if (Obj.lifeCounter == Obj.interactiveFrame)
+                {   //reset timer
+                    Obj.lifeCounter = 0;
+
+
+                    #region Check hero death + enemy death
+
+                    //check to see if hero has died or killed all enemies
+                    for(i = 0; i <  Pool.actorCount; i++)
+                    {
+                        if(Pool.actorPool[i].active)
+                        {   
+                            if(Pool.actorPool[i] == Pool.hero)
+                            {   //check to see if the actor has died
+                                if(Pool.hero.state == ActorState.Dead)
+                                {
+                                    // <<< exit condition : failed >>>
+                                    Functions_Level.BuildLevel(LevelID.ColliseumPit);
+                                    ScreenManager.AddScreen(
+                                        new ScreenDialog(
+                                            AssetsDialog.Colliseum_Challenge_Failed
+                                        ));
+                                    return; //challenge is not complete
+                                }
+                            }
+                            else
+                            {
+                                //find any living actor, fail check
+                                if (Pool.actorPool[i].state != ActorState.Dead)
+                                { return; } //challenge is not complete
+                            }
+                            
+                        }
+                    }
+
+                    #endregion
+
+
+                    //if code gets here, then hero is only living actor
+                    //this means the challenge has been completed
+
+
+                    #region Reward the player based on current ChallengeSet
+
+                    if (Functions_Colliseum.currentChallenge == ChallengeSets.Blobs)
+                    {   //reward hero with gold
+                        PlayerData.current.gold += 25;
+                        Assets.Play(Assets.sfxKeyPickup); //audibly cue player
+                    }
+                    else if(Functions_Colliseum.currentChallenge == ChallengeSets.Minibosses)
+                    {   //reward hero with gold
+                        PlayerData.current.gold += 99;
+                        Assets.Play(Assets.sfxKeyPickup); //audibly cue player
+                    }
+
+                    #endregion
+
+
+                    // <<< exit condition : completed >>>
+                    //create the default pit level
+                    Functions_Level.BuildLevel(LevelID.ColliseumPit);
+                    //pop a new dialog screen telling player they completed challenge
+                    ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Colliseum_Challenge_Complete));
+                }
+            }
+
+
+            #endregion
+
+
+
+
             //pets
 
             #region Pet - Dog

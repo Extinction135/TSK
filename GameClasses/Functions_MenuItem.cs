@@ -333,12 +333,23 @@ namespace DungeonRun
             #endregion
 
 
+
+
+
             #region Colliseum Challenge menuItems
 
-            else if (Type == MenuItemType.Challenge_Mob)
+            else if (Type == MenuItemType.Challenge_Blobs)
             {
                 MenuItem.name = "Challenge - Blobs";
                 MenuItem.description = "Defeat 25 blobs \nfor 25 gold.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Challenge;
+                MenuItem.compSprite.texture = Assets.colliseumLevelSheet;
+                MenuItem.price = 10;
+            }
+            else if (Type == MenuItemType.Challenge_Minibosses)
+            {
+                MenuItem.name = "Challenge - Minibosses";
+                MenuItem.description = "Defeat 3 minibosses \nfor 99 gold.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Challenge;
                 MenuItem.compSprite.texture = Assets.colliseumLevelSheet;
                 MenuItem.price = 10;

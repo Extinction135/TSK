@@ -417,7 +417,7 @@ namespace DungeonRun
         NPC_Farmer_EndDialog,
 
         Vendor_Colliseum_Mob,
-
+        Judge_Colliseum,
 
         #endregion
 
@@ -617,7 +617,10 @@ namespace DungeonRun
         PetChicken,
 
         //challenge menuItems
-        Challenge_Mob
+        Challenge_Blobs,
+        Challenge_Minibosses,
+
+
     }
 
 }

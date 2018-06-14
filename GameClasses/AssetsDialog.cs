@@ -136,7 +136,33 @@ namespace DungeonRun
 
 
 
+        #region Colliseum Dialogs
 
+        public static List<Dialog> Colliseum_Judge = new List<Dialog>
+        {
+            new Dialog(ObjType.Judge_Colliseum, "...",
+                "Complete the challenge to claim your reward!\n" +
+                "Kill or be killed..",
+                Assets.sfxTextLetter, false, false, false),
+        };
+
+        public static List<Dialog> Colliseum_Challenge_Complete = new List<Dialog>
+        {
+            new Dialog(ObjType.Judge_Colliseum, "Congratulations!",
+                "You have completed the challenge, and have been rewarded.\n" +
+                "We look forward to seeing your skills again soon...",
+                Assets.sfxTextLetter, false, false, false),
+        };
+
+        public static List<Dialog> Colliseum_Challenge_Failed = new List<Dialog>
+        {
+            new Dialog(ObjType.Judge_Colliseum, "Disappointing!",
+                "You have fallen in combat, much to the delight of The King.\n" +
+                "Your failure to complete the challenge amuses him.",
+                Assets.sfxTextLetter, false, false, false),
+        };
+
+        #endregion
 
 
 

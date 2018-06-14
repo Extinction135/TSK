@@ -118,13 +118,8 @@ namespace DungeonRun
                 Functions_Input.IsNewButtonPress(Buttons.B))
             {
                 Assets.Play(Assets.sfxWindowClose);
-                Functions_MenuWindow.Close(Widgets.Loadout.window);
-                Functions_MenuWindow.Close(Widgets.ForSale.window);
-                Functions_MenuWindow.Close(Widgets.Info.window);
-                Functions_MenuWindow.Close(Widgets.Dialog.window);
-                displayState = DisplayState.Closing;
+                CloseVendorScreen();
             }
-
             else if (Functions_Input.IsNewButtonPress(Buttons.A))
             {
                 if (currentlySelected.type != MenuItemType.Unknown)
@@ -219,6 +214,16 @@ namespace DungeonRun
             if (displayState == DisplayState.Opened)
             { Functions_Draw.Draw(selectionBox); }
             ScreenManager.spriteBatch.End();
+        }
+
+
+        public void CloseVendorScreen()
+        {
+            Functions_MenuWindow.Close(Widgets.Loadout.window);
+            Functions_MenuWindow.Close(Widgets.ForSale.window);
+            Functions_MenuWindow.Close(Widgets.Info.window);
+            Functions_MenuWindow.Close(Widgets.Dialog.window);
+            displayState = DisplayState.Closing;
         }
 
 
@@ -390,12 +395,17 @@ namespace DungeonRun
 
                 #region Challenges
 
-                else if (Item.type == MenuItemType.Challenge_Mob)
+                else if (Item.type == MenuItemType.Challenge_Blobs)
                 {
-                    DialogPurchaseThankyou();
-
-                    //create a challenge/dialog screen that exits to
-                    //the pit with enemies setup
+                    CompleteSale(Item);
+                    CloseVendorScreen();
+                    Functions_Colliseum.BeginChallenge(ChallengeSets.Blobs);
+                }
+                else if (Item.type == MenuItemType.Challenge_Minibosses)
+                {
+                    CompleteSale(Item);
+                    CloseVendorScreen();
+                    Functions_Colliseum.BeginChallenge(ChallengeSets.Minibosses);
                 }
 
                 #endregion

@@ -16,10 +16,10 @@ namespace DungeonRun
     
     public static class Flags
     {   // **********************************************************************************************************
-        public static Boolean Release = false; //puts game in release mode, overwrites other flags
+        public static Boolean Release = true; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.74f; //the version of the game
-        public static BootRoutine bootRoutine = BootRoutine.Editor_Level; //boot to game or editor?
+        public static BootRoutine bootRoutine = BootRoutine.Game; //boot to game or editor?
         
         //dev flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
@@ -732,7 +732,18 @@ namespace DungeonRun
 
 
 
+
+
     
+
+
+
+
+
+
+
+
+
     public static class Level
     {
         public static List<Room> rooms = new List<Room>();
@@ -815,6 +826,14 @@ namespace DungeonRun
     }
 
 
+
+
+
+    public class ChallengeSet
+    {
+        public List<ObjType> roomObjs = new List<ObjType>();
+        public List<ActorType> actors = new List<ActorType>();
+    }
 
 
 
@@ -972,10 +991,6 @@ namespace DungeonRun
         }
     }
 
-
-    
-
-
     public class Dialog
     {
         public ObjType speaker; //who is speaking
@@ -1005,7 +1020,7 @@ namespace DungeonRun
         }
     }
     
-
+    
 
     
 

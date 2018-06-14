@@ -1276,12 +1276,30 @@ namespace DungeonRun
                 else  { Obj.compAnim.currentAnimation = AnimationFrames.NPC_Farmer; }
             }
 
+            //colliseum judge
+            else if (Type == ObjType.Judge_Colliseum)
+            {
+                Obj.compSprite.texture = Assets.colliseumLevelSheet;
+                Obj.compAnim.currentAnimation = AnimationFrames.Vendor_Colliseum_Mob;
+                Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;
+                Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 11;
+                Obj.compSprite.zOffset = 0;
+                Obj.compAnim.speed = 20; //slow animation
+                Obj.group = ObjGroup.NPC;
+                Obj.canBeSaved = false;
+
+                //judge handles challenge completions
+                Obj.getsAI = true;
+                Obj.interactiveFrame = 60;
+            }
+
+
             #endregion
 
 
             #region Water Objects
 
-            else if(Type == ObjType.Wor_Water)
+            else if (Type == ObjType.Wor_Water)
             {   //use less pool objs by making water tiles 2x2
                 Obj.compSprite.zOffset = -40;
                 Obj.compCollision.blocking = false;

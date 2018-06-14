@@ -88,91 +88,161 @@ v0.74 - The Colliseum & Challenges
 
 
 
-The Colliseum - Part 9
 
-created two animated spectator sprites, with
-colliseum style seating. 
+The Colliseum - Part 12 - The Big One
 
-this is actually only 1 obj def in game.
-we randomly choose the spectator animFrame,
-then randomly set it's anim timer too, so
-we don't get a bunch of twinning across a sea
-of spectators on the pit level.
-
-updated colliseum obj widget to move large
-gate objects to the bottom of the widget,
-essentially placing them beyond the bounds of
-the window, but still accessible as normal.
-this was done to make some space in the colliseum
-obj widget, so we can add spectator obj.
-it freed up a TON of space, and put the gate
-objs together on one row, so they visually
-fit together. walls now fit together visually
-on a single row as well.
-
-placed spectators around the pit, filling up the
-screen. i was careful to only use enough spectators
-to fill the screen based on where the hero can go,
-within the pit. this means i didn't place spectators
-that could never been seen (waste of roomObjs).
-
-removed interior obj markers.
-added grass patches around colliseum.
-lots of playtesting, looking good.
-
-
-
-
-The Colliseum - Part 12
-
-
-
-*npc tells link challenge will start when you're ready
-*text: A) I'm ready.  -there is no B to cancel, lol
-*this dialog happens after link has completed purchase.
-
-*then wipe pit of vendors, spawn a bunch of blobs, respawn hero.
-*we can make a link of dark blocks at start here too.
-*then check to see if all blobs are dead.
-
-this condition should be thought of as a puzzle type:
-all enemies must be killed for a challenge to end.
-or, hero dies. these are the only two outcomes.
-
-at this point, we need some kind of reward screen (*that actually rewards*)
-to pop up and let player know they completed the challenge.
-this screen exits, loads the default pit (with vendors).
-this screen pops if hero dies too, except it's challenge
-failed text. same exit sequence.
-
-
-
-
-how colliseum loading will work:
+How Colliseum Loading Works (notes):
 we only have ONE colliseum xml roomdata def. ONE.
 and this is because it's a pain to make sure those walls
-stay the same if we have multiple spectator pit 
-level representations. so instead, we'll just have ONE.
+and spectators stay the same if we have multiple spectator 
+pit level representations. so instead, we'll just have ONE.
 and this is the version of the pit with the challenge
 vendors INSIDE the pit, ready to sell challenges to link.
 this is the 'default state' of the pit level: no enemies.
-when a challenge is selected, we reload the default pit
-level, loop over all roomObjs looking for vendors, remove
-them, then add the challenge's enemies at specific
-spawn locations (far north of south exit, so link doesn't
-take damage upon spawn), then release control of the game
-back to level screen & player.
-
+when a challenge is selected, we just loop over all roomObjs 
+looking for vendors, remove them, then add the challenge's 
+enemies at specific spawn locations (far north of south exit, 
+so link doesn't take damage upon spawn), then release 
+control of the game back to level screen & player.
 during a challenge, we can create a line of blocks
 at the start of the colliseum to lock link in, so
 it's fight or die.
 
+How do we handle a set of enemies for a challenge?
+this is essentially a list of actors and roomObjs.
+where these actors and roomObjs spawn is set by code,
+not data, so we don't need to store their positions,
+just their type and count. so this is really two lists
+of two enumerator values, a list of gameObj types, and
+a list of actorTypes. this composes the basic challenge.
+
+Implement ChallengeSets
+we'll need to feed a challengeSet into a method that handles
+placement and spawning of these roomObjs + actors for 
+colliseum pit. this method should also 'clear' the pit
+of vendors prior to spawning the challenge set.
+finally this method should respawn the hero at the pit 
+entrance. optionally, we can close off the pit, but i'd 
+prefer to leave it open in case the player chooses to flee.
+
+created Functions_Colliseum & ChallengeSet class.
+linked Functions_Colliseum to Dx project.
+created functions_colliseum.BeginChallenge(ChallengeSet).
+then from vendor screen, from purchase routine, we
+setup the dev challenge to make sure all enemies spawn
+properly in the pit (excluding bosses, because they 
+pop summary screens and flip dungeon booleans).
+
+updated how vendor screen closes, due to two codepaths
+duplicating the closing routine - since we are auto
+closing the challenge vendors screen upon a challenge
+purchase - otherwise there would be no immediate game
+feedback from a purchase, since the vendor screen exists
+over the level screen and the level screen is what a 
+challenge modifies. whew. so player buys a challenge,
+the vendor screen closes automatically, and the hero
+respawns in the pit filled with enemies and no vendors.
+
+playtested: working as expected. awesome.
+the challenge purchase, setup, and fight
+is barebones complete. now we need the reward.
+
+note: we have to block off the pit exit because an
+enemy or actor could travel outside of the level via
+the south exit where link couldn't kill them, leading
+to an unwinnable state which is buggy and unfair to
+the player. updated and tested.
+
+Challenge Completion - The Judge
+next, check to see if all enemy actors are dead.
+how is this done? by a gameObject! the Judge!
+an indestructible NPC, he getsAI, and is animated.
+and every 60 frames he checks to see if all actors
+are dead. if they are, then he triggers the reward screen.
+the reward screen's exit loads the default pit, so
+the Judge's judgement ENDS the challenge.
+this seems like a pretty fun idea, considering the
+dark world version of this judge, surrounded by
+a sea of monster spectators... aw yiss.
+
+How do we reward the player?
+we should be using static challenge sets!, so the 
+judge can compare the current challenge to known 
+challenges then he can control what rewards are 
+given out - gold, items, etc...
+he could even spawn the next round of challenges 
+in a tournament style battle. done.
+
+for now, we can just use the challenge npc sprite
+for the judge's animFrame. okies.
+added judge sprite to colliseum pit, along backwall.
+added interaction routines between hero and judge.
+playtested, judge's dialog works as expected.
+
+Judge's AI
+implemented judge's ai.
+in play, this means that within a second of the
+last enemy dying, the screen instantly turns black,
+and a dialog pops up telling player they won, upon
+closing this dialog the default pit level is
+loaded, completing the expected exit routine.
+
+then in a dash, i added the failure dialog, and
+added a check into the judege's ai that looks
+to see if hero has died, and if so the judge pops
+a dialog basically taunting player about their
+failure, then loads the default pit level, so
+death in the colliseum pit is handled differently
+than death everywhere else, which would normally
+return the hero to the overworld. but, in this
+case i'm assuming the player would likely want
+to retry the challenge, or try a different one,
+so i'm just saving them the time of getting
+back to the colliseum level. it's what i would want.
+
+UWP++
+updated uwp project with functions_Colliseum class link.
+updated uwp project with colliseum sprite sheet.
+
+bug: minibosses drop map loot upon their death.
+level.map should be flipped true upon entry to colliseum.
+this prevents any minibosses from dropping map loot.
+implemented.
+
+Challenges++
+implemented 25 blobs for 25 gold challenge.
+implemented 3 minibosses for 99 gold challenge.
+this essentially creates tier1 and tier2 challenges.
+
+lots of playtesting, and while challenges aren't
+perfect, they are implemented well enough right now.
+note: the game is in release mode with this commit,
+which *technically* makes it a preview release of 0.74.
+and it's tested to work on UWP, so... have fun!
 
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+Challenges++
+future ideas for polish: better transition to
+post-challenge dialog screen (win/loss).
+
+we should have a 'spam money' soundfx that plays
+during challenge complete screen, like player won jackpot.
+
+and possibly fireworks? lol
 
 
 
@@ -227,6 +297,12 @@ a method called ReadSign(GameObject SignPost).
 
 
 
+Hero's Death++
+we should slowdown the hero's death, so it's a
+pain to experience, increasing the player's
+aversion to the hero's death.
+
+
 
 
 
@@ -264,6 +340,13 @@ regenerates 1 health (up to 3) every 255 frames.
 
 
 
+pool.HerosPet is not protected by getActor() and other routines,
+so it is periodically overwritten. if we fix the routines to
+respect the pets position in the list, then pets should work fine
+again.
+
+
+
 
 
 
@@ -283,7 +366,17 @@ farmer - AFTER link fixes his crops (each time).
 
 
 
-
+we should be able to purchase dark beans
+growing these beans creates a dark world 
+portal that link can pass thru to the dark world. 
+however, dark world creatures will randomly spawn 
+from this portal too, so it's extremely dangerous
+to open a dark world portal. but for the first 4
+seconds (255 frames) no dark world creatures will
+spawn, giving the player enough time to jump through
+it, which also closes the portal, and would teleport
+link to the dark world level equivalent, however that
+system is designed.
 
 
 

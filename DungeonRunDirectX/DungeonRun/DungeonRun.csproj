@@ -111,6 +111,9 @@
     <Compile Include="..\..\GameClasses\Functions_Camera2D.cs">
       <Link>Classes\Functions_Camera2D.cs</Link>
     </Compile>
+    <Compile Include="..\..\GameClasses\Functions_Colliseum.cs">
+      <Link>Classes\Functions_Colliseum.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\Functions_Collision.cs">
       <Link>Classes\Functions_Collision.cs</Link>
     </Compile>
