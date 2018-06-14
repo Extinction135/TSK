@@ -130,7 +130,12 @@ namespace DungeonRun
 
     public enum DoorType { Open, Boss, Bombable }
 
-    public enum PuzzleType { None, Switch, Torches }
+    public enum PuzzleType
+    {   //in order of importance to the codebase
+        None,       //no room puzzle
+        Switch,     //an obj must be placed onto switch
+        Torches,    //all torches must be lit
+    }
 
 
 
@@ -619,7 +624,7 @@ namespace DungeonRun
         //challenge menuItems
         Challenge_Blobs,
         Challenge_Minibosses,
-
+        Challenge_Bosses,
 
     }
 

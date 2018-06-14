@@ -399,13 +399,19 @@ namespace DungeonRun
                 {
                     CompleteSale(Item);
                     CloseVendorScreen();
-                    Functions_Colliseum.BeginChallenge(ChallengeSets.Blobs);
+                    Functions_Colliseum.BeginChallenge(Challenges.Blobs);
                 }
                 else if (Item.type == MenuItemType.Challenge_Minibosses)
                 {
                     CompleteSale(Item);
                     CloseVendorScreen();
-                    Functions_Colliseum.BeginChallenge(ChallengeSets.Minibosses);
+                    Functions_Colliseum.BeginChallenge(Challenges.Minibosses);
+                }
+                else if (Item.type == MenuItemType.Challenge_Bosses)
+                {
+                    CompleteSale(Item);
+                    CloseVendorScreen();
+                    Functions_Colliseum.BeginChallenge(Challenges.Bosses);
                 }
 
                 #endregion

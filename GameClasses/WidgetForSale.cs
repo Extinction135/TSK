@@ -189,7 +189,8 @@ namespace DungeonRun
             else if (VendorType == ObjType.Vendor_Colliseum_Mob)
             {
                 Functions_MenuItem.SetType(MenuItemType.Challenge_Blobs, menuItems[0]);
-                Functions_MenuItem.SetType(MenuItemType.Challenge_Minibosses, menuItems[5]);
+                Functions_MenuItem.SetType(MenuItemType.Challenge_Minibosses, menuItems[1]);
+                Functions_MenuItem.SetType(MenuItemType.Challenge_Bosses, menuItems[5]);
             }
 
 

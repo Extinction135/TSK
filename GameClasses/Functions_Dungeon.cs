@@ -384,6 +384,9 @@ namespace DungeonRun
 
         public static void SetupPuzzle(Room Room)
         {   //this is called at the end of a room build
+            //this overwrites enemy puzzle type rooms
+            //meaning switches and torches have higher priority than enemies
+
             int torchCount = 0;
 
             for (i = 0; i < Pool.roomObjCount; i++)

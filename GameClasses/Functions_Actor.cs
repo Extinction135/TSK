@@ -107,13 +107,10 @@ namespace DungeonRun
             {
                 return; //done with hero
             }
-            else if (Actor.type == ActorType.Boss_BigEye)
-            {
-                DungeonRecord.beatDungeon = true; //player beat dungeon
-                Functions_Level.CloseLevel(ExitAction.Summary);
-                Assets.Play(Assets.sfxExplosionsMultiple); //play explosions
-            }
-            else if(Actor.type == ActorType.Boss_BigEye_Mob)
+
+
+            //this needs to become a roomObj
+            else if (Actor.type == ActorType.Boss_BigEye_Mob)
             {   //these enemies explode upon death
                 Functions_Projectile.Spawn(
                     ObjType.ProjectileExplosion,
@@ -124,36 +121,79 @@ namespace DungeonRun
                 Functions_Loot.SpawnLoot(Actor.compSprite.position); //loot!
                 Functions_Pool.Release(Actor);
             }
-            else if(Actor.type == ActorType.MiniBoss_BlackEye)
-            {
-                if(Level.map == false) //make sure hero doesn't already have map
-                {
-                    Level.map = true; //flip map true
-                    SetRewardState(Pool.hero); //stop + put hero into reward state
-                    SetAnimationGroup(Actor); //update hero's animGroup to reward
-                    SetAnimationDirection(Actor); //finally, set the anim direction
-                    Functions_Particle.Spawn(ObjType.Particle_RewardMap, Pool.hero);
-                    Assets.Play(Assets.sfxReward); //play reward / boss defeat sfx
-                    Actor.compAnim.speed = 15; //slow down death animation
 
-                    if (Flags.ShowDialogs)
-                    { ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.HeroGotMap)); }
+
+            #region Bosses
+
+            else if (Actor.type == ActorType.Boss_BigEye)
+            {   //decorate this death as special / explosive
+                Functions_Particle.Spawn_Explosion(ObjType.Particle_Debris,
+                    Actor.compSprite.position.X, Actor.compSprite.position.Y, true);
+
+
+                #region End Dungeon
+
+                if (Functions_Level.currentRoom.roomID == RoomID.Boss)
+                {   //boss must die in boss room to end dungeon
+                    DungeonRecord.beatDungeon = true; //player beat dungeon
+                    Functions_Level.CloseLevel(ExitAction.Summary);
                 }
 
-                //decorate this death as special / explosive
+                #endregion
+
+
+            }
+
+            #endregion
+
+
+            #region Minibosses
+
+            else if(Actor.type == ActorType.MiniBoss_BlackEye)
+            {   //decorate this death as special / explosive
                 Functions_Particle.Spawn_Explosion(ObjType.Particle_Debris,
                     Actor.compSprite.position.X, Actor.compSprite.position.Y, true);
                 //this actor becomes debris on floor, sort to floor.
                 Actor.compSprite.zOffset = -8;
                 Functions_Component.SetZdepth(Actor.compSprite);
+
+
+                #region Drop Map
+
+                //this will need to be moved somewhere else, because there will
+                //be many minibosses eventually
+
+                if(Functions_Level.currentRoom.roomID == RoomID.Hub)
+                {   //only in the hub room, can a miniboss spawn the map reward obj
+                    if (Level.map == false) //make sure hero doesn't already have map
+                    {
+                        Level.map = true; //flip map true
+                        SetRewardState(Pool.hero); //stop + put hero into reward state
+                        SetAnimationGroup(Actor); //update hero's animGroup to reward
+                        SetAnimationDirection(Actor); //finally, set the anim direction
+                        Functions_Particle.Spawn(ObjType.Particle_RewardMap, Pool.hero);
+                        Assets.Play(Assets.sfxReward); //play reward / boss defeat sfx
+                        Actor.compAnim.speed = 15; //slow down death animation
+
+                        if (Flags.ShowDialogs)
+                        { ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.HeroGotMap)); }
+                    }
+                }
+
+                #endregion
+
+
             }
+
+            #endregion
+
+
             else
-            {   //this is all other actor types!
+            {   //this is all other actor types: blob
                 Functions_Particle.Spawn(ObjType.Particle_Blast, Actor);
                 Functions_Loot.SpawnLoot(Actor.compSprite.position); //loot!
                 Functions_Pool.Release(Actor);
             }
-            
         }
 
         public static void SetRewardState(Actor Actor)
@@ -895,7 +935,6 @@ namespace DungeonRun
                     if (Actor.health <= 0) { SetDeathState(Actor); }
                 }
 
-
                 if (Actor.state == ActorState.Attack)
                 {   //when an actor attacks, they slow down for the duration
                     Actor.compMove.friction = World.frictionAttack;
@@ -910,27 +949,11 @@ namespace DungeonRun
                     //this prevents actor from affecting the hit's push via directional input
                     //this also gives hits ALOT more push
                 }
-
                 else if (Actor.state == ActorState.Dead)
                 {   //check death state
                     Actor.lockCounter = 0; //lock actor into dead state
                     Actor.health = 0; //lock actor's health at 0
-
-                    //Death Effects
-                    if (Actor.type == ActorType.Boss_BigEye)
-                    {   //dead bosses perpetually explode
-                        if (Functions_Random.Int(0, 100) > 75) //randomly create explosions
-                        {   //randomly place explosions around boss
-                            Functions_Particle.Spawn(
-                                ObjType.Particle_Blast,
-                                Actor.compSprite.position.X + Functions_Random.Int(-16, 16),
-                                Actor.compSprite.position.Y + Functions_Random.Int(-16, 16));
-                        }
-                    }
-                    else if (Actor == Pool.hero)
-                    {
-                        Functions_Hero.HandleDeath();
-                    }
+                    if (Actor == Pool.hero) { Functions_Hero.HandleDeath(); }
                 }
             }
 

@@ -872,14 +872,8 @@ namespace DungeonRun
                 new Byte4(11, 0, 0, 0), new Byte4(12, 0, 0, 0),
                 new Byte4(11, 0, 0, 0), new Byte4(12, 0, 0, 0),
                 new Byte4(11, 0, 0, 0), new Byte4(12, 0, 0, 0),
-                new Byte4(11, 0, 0, 0), new Byte4(12, 0, 0, 0),
-                new Byte4(11, 0, 0, 0), new Byte4(12, 0, 0, 0),
-                new Byte4(11, 0, 0, 0), new Byte4(12, 0, 0, 0),
-                new Byte4(11, 0, 0, 0), new Byte4(12, 0, 0, 0),
-                new Byte4(11, 0, 0, 0), new Byte4(12, 0, 0, 0),
-                new Byte4(11, 0, 0, 0), new Byte4(12, 0, 0, 0),
-                new Byte4(11, 0, 0, 0), new Byte4(12, 0, 0, 0),
-                new Byte4(11, 0, 0, 0), new Byte4(12, 0, 0, 0)
+                new Byte4(13, 0, 0, 0), new Byte4(14, 0, 0, 0),
+                new Byte4(15, 0, 0, 0)
             };
             Boss_BigEye_Animations.death_blank.up = Boss_BigEye_Animations.death_blank.down;
             Boss_BigEye_Animations.death_blank.right = Boss_BigEye_Animations.death_blank.down;

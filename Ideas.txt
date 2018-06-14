@@ -17,6 +17,18 @@ codebase.
 
 
 
+Wolves
+16x16 wolf actors, with stats similar to link.
+aggressive if health is high, defensive if health is low.
+regenerates 1 health (up to 3) every 255 frames.
+wolves are spawned in packs of 4 inside the colliseum.
+defeating the pack unlocks the wolf pet, available from
+the pet vendor in town. wolf pet acts with normal wolf
+strat, but follows link and does not attack him (is ally).
+if wolf actor dies, he can be revived by link thru
+simple interaction. this revives wolf back to full health.
+
+
 
 
 Shadow Objects

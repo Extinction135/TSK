@@ -68,48 +68,50 @@ v0.74 - The Colliseum & Challenges
 
 
 
-The Colliseum - Part 13
-
-improve the transition from buying a challenge
-to starting a challenge. currently, the hero teleports
-to the spawn point, with no fading in/out to black,
-and it's really jarring and seems buggy.
-
-after some hacking on the game, a few things were
-discovered: if you try to add a dialog screen when
-the vendor screen is closing, the game freezes and
-no input is processed at all. hilarious! if you
-try to add a dialog screen at the end of the
-BeginChallenge() routine, the same thing happens.
-amazing! glorious! plus, there's no transition.
-
-the better solution was to call BuildLevel()
-at the start of BeginChallenge(), passing in the
-current level's ID. this causes the level screen's
-overlay rec to be set to 100% opacity, and then 
-fades out, smoothly displaying the game. this is better
-transition than previous teleport transition.
-smooth, like a saxophone submerged in butter.
-
-
-
-
-
-
-
-
+The Colliseum - Part 14
 
 decouple bosses from summary screens and dungeon rewards.
-we can do this via the judge roomObj.
-he simply checks to see what type of room
-it is, if boss room, ensure all actors are dead.
+we also need to decouple minibosses from dropping the map obj.
+these effects come from their deaths.
+
+added checks into boss and miniboss death that see
+what room the actor died in, and if boss dies in boss
+room, then he ends the dungeon. if miniboss dies in
+hub room, then he rewards the map. if these actors
+die outside of these specific rooms, they do not
+trigger their rewards to the player at all and die
+just like a normal enemy would.
+
+modified boss's death to actually end on a blank
+frame. removed boss perpetually exploding.
+added 3 frame boss death to really nasty final sprite.
+
+created boss challenge, where link fights 3 bosses.
+increased the minibosses to 5 for that challenge.
+
+removed challengeSet data class from the game -
+actually we only need a list of actor types to
+effectively model challenges.
+
+playtested, working as expected.
+boss + miniboss challenges: working.
+boss + miniboss in dungeon: working.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 *we need to migrate the seeker actor to be a roomObj.
 this should be very simple, honestly.
-
-
-then, we can add bosses to challenge vendor.
-fight multiple bosses at once! cool.
 
 
 future ideas for polish: better transition to
@@ -119,6 +121,7 @@ the player time to process what's happened.
 
 we should have a 'spam money' soundfx that plays
 during challenge complete screen, like player won jackpot.
+
 
 
 
@@ -158,9 +161,9 @@ at the start of the colliseum challenge.
 
 
 
-Map++
-add lttp's map title to dungeon map screen, outside of
-the scroll sprite. rename map window title to nothing.
+
+
+------ POLISH prior to 0.74 release --------
 
 Boomerang++
 improve boomerang sprites based on layer dev/more stuff in art.master
@@ -172,19 +175,17 @@ if the approach is from the south, which is wrong.
 it should push actors the opposite direction.
 this should be done via Functions_Direction.GetOppositeDirection().
 
+Map++
+Make the map a pickup obj with a liftime of 0 (forever).
+link colliding with it should set reward state, pop map reward
+particle, flip map boolean. miniboss should spawn map pickup obj,
+if miniboss dies in hub room, and hero doesn't have map.
 
-
-
-
-
-
-
-
-
-
+MapScreen++
+add lttp's map title to dungeon map screen, outside of
+the scroll sprite. rename map window title to nothing.
 
 Reading Signs
-
 we need to be able to read signposts properly
 this is based on the current room/level.
 only 1 signpost is allowed per room, extending to fields.
@@ -199,26 +200,43 @@ so it is periodically overwritten. if we fix the routines to
 respect the pets position in the list, then pets should work fine
 again.
 
-Wolves
-16x16 wolf actors, with stats similar to link.
-aggressive if health is high, defensive if health is low.
-regenerates 1 health (up to 3) every 255 frames.
-wolves are spawned in packs of 4 inside the colliseum.
-defeating the pack unlocks the wolf pet, available from
-the pet vendor in town. wolf pet acts with normal wolf
-strat, but follows link and does not attack him (is ally).
-if wolf actor dies, he can be revived by link thru
-simple interaction. this revives wolf back to full health.
-
-
-
-
-
 Implement Cane of Somara (or whatever)
 this is the cane that creates blocks that are pushable.
 this makes it MUCH easier to get thru dungeons, as many
 rooms rely on floor switches, which link can simply
 create a block over.
+
+
+
+
+
+
+
+
+
+
+------ RELEASE 0.74 --------
+
+try to record a playthru with vo, and if you can
+record editing levels with the editor as well.
+
+create the gameplay page in the repo, and start
+filling it with examples of gameplay gifs (with text notes):
+
+moving & dashing
+attacking, using items, inventory
+colliseum fighting
+grass fires + burning objects
+swimming, diving, carrying + hiding
+pickup, throw, dash carry
+buildings, roofs, destruction
+Vendors + NPCs
+minibosses + bosses
+dungeon type, size, variety
+environments + levels
+
+
+record a gif showing off colliseum fights for 0.74.
 
 
 

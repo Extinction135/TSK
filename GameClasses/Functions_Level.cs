@@ -106,7 +106,6 @@ namespace DungeonRun
                 Functions_Music.PlayMusic(Music.LightWorld);
                 Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.ColliseumPit);
                 Level.rooms.Add(field);
-                Level.map = true; //prevents minibosses in challenges from dropping map
             }
 
             /*

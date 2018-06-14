@@ -31,23 +31,39 @@ namespace DungeonRun
             
             //set room size based on type - sizes should be odd, so doors/exits can be centered
             if (ID == RoomID.Exit || ID == RoomID.DEV_Exit)
-            { Room.size.X = 11; Room.size.Y = 11; }
+            {
+                Room.size.X = 11; Room.size.Y = 11;
+            }
             else if (ID == RoomID.Hub || ID == RoomID.DEV_Hub)
-            { Room.size.X = 19; Room.size.Y = 19; }
+            {
+                Room.size.X = 19; Room.size.Y = 19;
+            }
             else if (ID == RoomID.Boss || ID == RoomID.DEV_Boss)
-            { Room.size.X = 19; Room.size.Y = 11; }
+            {
+                Room.size.X = 19; Room.size.Y = 11;
+            }
             else if (ID == RoomID.Key || ID == RoomID.DEV_Key)
-            { Room.size.X = 19; Room.size.Y = 11; }
+            {
+                Room.size.X = 19; Room.size.Y = 11;
+            }
             
             //dungeon rooms
             else if (ID == RoomID.Column || ID == RoomID.DEV_Column)
-            { Room.size.X = 11; Room.size.Y = 19; }
+            {
+                Room.size.X = 11; Room.size.Y = 19;
+            }
             else if (ID == RoomID.Row || ID == RoomID.DEV_Row)
-            { Room.size.X = 19; Room.size.Y = 11; }
+            {
+                Room.size.X = 19; Room.size.Y = 11;
+            }
             else if (ID == RoomID.Square || ID == RoomID.DEV_Square)
-            { Room.size.X = 11; Room.size.Y = 11; }
+            {
+                Room.size.X = 11; Room.size.Y = 11;
+            }
             else if (ID == RoomID.Secret)
-            { Room.size.X = 3; Room.size.Y = 3; }
+            {
+                Room.size.X = 3; Room.size.Y = 3;
+            }
 
             //field rooms fill the screen - maintain 16:9 ratio
             else

@@ -659,12 +659,17 @@ namespace DungeonRun
 
                     #region Reward the player based on current ChallengeSet
 
-                    if (Functions_Colliseum.currentChallenge == ChallengeSets.Blobs)
+                    if (Functions_Colliseum.currentChallenge == Challenges.Blobs)
                     {   //reward hero with gold
                         PlayerData.current.gold += 25;
                         Assets.Play(Assets.sfxKeyPickup); //audibly cue player
                     }
-                    else if(Functions_Colliseum.currentChallenge == ChallengeSets.Minibosses)
+                    else if(Functions_Colliseum.currentChallenge == Challenges.Minibosses)
+                    {   //reward hero with gold
+                        PlayerData.current.gold += 99;
+                        Assets.Play(Assets.sfxKeyPickup); //audibly cue player
+                    }
+                    else if (Functions_Colliseum.currentChallenge == Challenges.Bosses)
                     {   //reward hero with gold
                         PlayerData.current.gold += 99;
                         Assets.Play(Assets.sfxKeyPickup); //audibly cue player

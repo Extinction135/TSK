@@ -15,33 +15,26 @@ namespace DungeonRun
 
 
 
-    public static class ChallengeSets
+    public static class Challenges
     {
         static int i;
-        public static ChallengeSet Blobs;
-        public static ChallengeSet Minibosses;
+        public static List<ActorType> Blobs;
+        public static List<ActorType> Minibosses;
+        public static List<ActorType> Bosses;
 
-        static ChallengeSets()
+        static Challenges()
         {
-            Blobs = new ChallengeSet();
+            Blobs = new List<ActorType>();
             for (i=0; i<25; i++)
-            { Blobs.actors.Add(ActorType.Blob); }
+            { Blobs.Add(ActorType.Blob); }
 
-            Minibosses = new ChallengeSet();
+            Minibosses = new List<ActorType>();
+            for (i = 0; i < 5; i++)
+            { Minibosses.Add(ActorType.MiniBoss_BlackEye); }
+
+            Bosses = new List<ActorType>();
             for (i = 0; i < 3; i++)
-            { Minibosses.actors.Add(ActorType.MiniBoss_BlackEye); }
-
-            /*
-            //add some testing actors
-            Blobs.actors.Add(ActorType.MiniBoss_BlackEye);
-            Blobs.actors.Add(ActorType.Blob);
-            Blobs.actors.Add(ActorType.Boss_BigEye_Mob);
-            //add some testing enemies
-            Blobs.roomObjs.Add(ObjType.Wor_Enemy_Rat);
-            Blobs.roomObjs.Add(ObjType.Wor_Enemy_Crab);
-            Blobs.roomObjs.Add(ObjType.Wor_Enemy_Turtle);
-            Blobs.roomObjs.Add(ObjType.Wor_Enemy_Rat);
-            */
+            { Bosses.Add(ActorType.Boss_BigEye); }
         }
     }
 
@@ -53,18 +46,18 @@ namespace DungeonRun
         static int i;
         public static GameObject objRef;
         public static Actor actorRef;
-        public static ChallengeSet currentChallenge;
+        public static List<ActorType> currentChallenge;
 
 
 
-        public static void BeginChallenge(ChallengeSet ChallengeSet)
+        public static void BeginChallenge(List<ActorType> Challenge)
         {
             //rebuild the pit, fading in from black
             Functions_Level.BuildLevel(Level.ID);
 
             //this method assums the current level + room is colliseum pit
             //note this method works for both light and dark world colliseums :p
-            currentChallenge = ChallengeSet;
+            currentChallenge = Challenge;
 
             //remove all vendors (and any other decoration)
             for (i = 0; i < Pool.roomObjCount; i++)
@@ -77,26 +70,8 @@ namespace DungeonRun
                 }
             }
 
-            //loop over ChallengeSet.roomObjs, creating them near back wall
-            for (i = 0; i < ChallengeSet.roomObjs.Count; i++)
-            {
-                objRef = Functions_Pool.GetRoomObj();
-                //place along backwall, left to right
-                Functions_Movement.Teleport(
-                    objRef.compMove,
-
-                    Functions_Level.currentRoom.rec.X //start with the room's x pos
-                    + Functions_Level.currentRoom.rec.Width / 2 //get the center X
-                    - 16 * 5 //move 5 tiles left
-                    + 16 * i, //from there, place objs in a horizontal line
-                    
-                    Functions_Level.currentRoom.rec.Y + 16 * 20); //place in front of actors
-                objRef.direction = Direction.Down;
-                Functions_GameObject.SetType(objRef, ChallengeSet.roomObjs[i]);
-            }
-
             //loop over ChallengeSet.actors, creating them near back wall
-            for (i = 0; i < ChallengeSet.actors.Count; i++)
+            for (i = 0; i < Challenge.Count; i++)
             {
                 actorRef = Functions_Pool.GetActor();
                 //place middle top
@@ -110,7 +85,7 @@ namespace DungeonRun
 
                     Functions_Level.currentRoom.rec.Y + 16 * 18); //place behind enemies
                 actorRef.direction = Direction.Down;
-                Functions_Actor.SetType(actorRef, ChallengeSet.actors[i]);
+                Functions_Actor.SetType(actorRef, Challenge[i]);
             }
 
             //close off the pit exit, so challenge set enemies can't escape
