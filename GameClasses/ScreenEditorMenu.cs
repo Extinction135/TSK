@@ -42,6 +42,9 @@ namespace DungeonRun
 
             Widgets.WO_Environment.visible = true;
             Widgets.WO_Dungeon.visible = true;
+
+            //set other states widgets to be closed
+            Widgets.WO_Building_Colliseum.visible = false;
         }
 
         public override void HandleInput(GameTime GameTime)

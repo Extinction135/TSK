@@ -276,14 +276,9 @@ namespace DungeonRun
 
         public static List<Byte4> Wor_Colliseum_Outdoors_Floor = new List<Byte4> { new Byte4(3, 15, 0, 0) };
 
-        public static List<Byte4> Wor_Colliseum_SpectatorA = new List<Byte4>
-        { new Byte4(15, 10, 0, 0), new Byte4(16, 10, 0, 0) };
-        public static List<Byte4> Wor_Colliseum_SpectatorB = new List<Byte4>
-        { new Byte4(15, 11, 0, 0), new Byte4(16, 11, 0, 0) };
-        public static List<Byte4> Wor_Colliseum_SpectatorC = new List<Byte4>
-        { new Byte4(15, 12, 0, 0), new Byte4(16, 12, 0, 0) };
-        public static List<Byte4> Wor_Colliseum_SpectatorD = new List<Byte4>
-        { new Byte4(15, 13, 0, 0), new Byte4(16, 13, 0, 0) };
+        public static List<Byte4> Wor_Colliseum_Spectator = new List<Byte4>
+        { new Byte4(4, 10, 0, 0), new Byte4(4, 11, 0, 0) };
+
 
 
         #endregion

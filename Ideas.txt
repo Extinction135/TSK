@@ -196,11 +196,22 @@ Water Temple
 	
 	
 Dancing
-standing still, press B to make link randomly dance
-animFrames, input check, dance state, randomly choose animFrame.
-dance ends with any input, because no statelock, but animLoops.
-or does it? maybe hold down B to loop. press it once to play
-a random dance once.
+standing still, press B to make link randomly dance.
+hold B to make link loop his dance.
+visit the dance vendor to choose a dance.
+link can only have one dance at a time.
+unlocking dances can now be side-quests.
+
+
+SideQuests
+Various things can be unlocked that are completely
+optional: all kinds of pets, dances, weapons,
+items, armor, equipment, etc... these are all
+contained within NPCs.
+
+
+
+
 
 
 
@@ -259,36 +270,6 @@ into the game. this ai could consider player state and retreat if weak, but inst
 i think the AI should just cheat and refill it's health if it gets to 0 or dies.
 in other words, there's an infinite bottle of fairies in link's backpack when AI is on.
 or, we could just simply turn on invincibility.
-
-
-
-
-
-
-should be able to push + pull explosive barrels without triggering them.
-
-
-
-Magic Mirror
-- returns link to dungeon entrance.
-- plays warp sound fx
-this should be done in conjunction with the upgraded level
-screen opening / closing animation:
-(4 black squares collapsing or opening on link)
-
-
-
-add lantern:
-free action to create a ground fire projectile at links facing location.
-doesn't take magic. can light torches too.
-
-
-
-
-
-
-
-
 
 
 
@@ -467,18 +448,6 @@ this is a menuItem that the player can select from the inventory screen
 the info widget displays the current savedata's rating (k/d)
 this is first 'story item'.
 
-Create colliseum NPC vendor.
-this is where Link can get his rating item from.
-it's free, and displays his K/D from the info screen.
-in later colliseum quests, K/D may be a requirement to enter some tournaments.
-
-
-
-
-
-
-
-
 
 
 
@@ -530,8 +499,8 @@ then ganon is replaced with a roomObj called Ganon's Soul,
 which Link can interact with. this is ganon essentially
 trapped and powerless in the dark world, begging link
 to set him free. if link sets him free, then we flip
-the ganon battle boolean false, kick link out of the
-level, and start all over again. lol.
+the ganon battle boolean false, reload level, 
+and start it all over again. lol.
 
 
 
@@ -560,32 +529,6 @@ slow finish / build becuase we call cleanRoom() twice, which is dumb af
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-lightworld forest entrance should be opening in trees
-dark world should be horrific tree trunk thing we have rn.
-
-
-
-
-
-
 Darkworld hand enemy:
 this is the dungeon hand enemy from the dark world forest dungeon.
 drop randomly from the top of the screen, or burrows from underneath the ground.
@@ -594,32 +537,9 @@ creepy sounds, only meant to creep out the player.
 
 
 
-
-
-
-Things that "spread" like water or fire
-this can be done by temporarily expanding the obj's collision rec, then doing
-the interaction check, then reverting the collision rec back to proper size.
-if water tile overlaps trench, trench becomes water tile.
-if ground fire overlaps grass, grass burns and becomes ground fire.
-this interaction spread needs to be limited to the middle or beginning
-of the object's or projectile's lifetime, so it doesn't spread too fast or slow.
-we can control how fast it spread by what frame this happens on.
-fire spreads slower, later interaction.
-water spreads faster, earlier interaction.
-*the ground around water tiles should be coastline tiles, so the transition
-can happen properly - coastline tiles create wet feet sprite*
-
-
-
-
-
-
 explosions should push bomb projectiles.
 it would be so easy, and it would make bomb projectiles feel alive!
 placing bombs next to one another would be unpredictable past 2-3 interactions
-
-
 
 
 
@@ -639,7 +559,6 @@ next we jump into the 'training' section of the game.
 
 
 
-
 - can we 'reboot' in 1920x1080? can we have player input to set the size?
 on Dx, this is easy. on UWP, this is not so easy, but also doesn't matter terribly.
 this could be modeled as an enum value in flags: if(Flags.platform == Platform.DirectX)
@@ -656,7 +575,6 @@ perfect on all monitors / tvs / displays.
 
 
 
-
 *** we could have a massive tree trunk without a top for the entrance ***
 the trunk would just keep going all the way up to the top of the sprite sheet,
 and we'd place the dungeon entrance near the top of the level, always.
@@ -665,36 +583,13 @@ with various smaller trees to increase it's relative size.
 plus, this tree looks like it belongs in the dark world. rt.
 
 
-
-Editor Widgets++
-i want to put portals / entrances in their own widget, because they have
-various sizes, and we only need to display them occasionally, unlike shared objs
-which we display more often, plus we're just wasting widget objs by covering
-them up with the dungeon entrance obj...
-
-
-
-
-in editor, when we select an object, we are assuming that obj is 16x16
-instead we should be centering the obj to the cursor based on the sprites framesize
-
-
-
-
 add signpost obj that hero can read to dungeon entrance level discussing dungeon.
 
 
 
 
 
-initially when the boomerang hits an obj, we could alter its lifetime
-to where it wouldn't collide with the immediate objs for a few frames,
-giving it a chance to escape and not create tons of collision/attention particles.
 
-
-HANDLE AUTOSAVE
-we *do* need to handle autoSave somehow, because it does contain 
-the last game - we can simply add it to the load screen as another option.
 
 
 
@@ -742,10 +637,6 @@ either right or left. thats it. hahahahahaa
 
 dripping/shiny particles randomly on the trunk.
 
-
-
-
-
 freeze an enemy, sprinkle magic powder on them, smash with a hammer = full magic pot
 
 
@@ -786,40 +677,8 @@ be a very nice type of interaction polish.
 
 
 
-
-
-
-
-
-
-
-
-
 Special Sword Attack
 should be able to charge up attack and spin just like Lttp.
-
-
-
-
-
-Grass Interactions++
-when hero moves thru tall grass, part of his feet should be obscured,
-just like Lttp. this is some kind of small animated grass thing
-and it only animates when the hero is moving. if he isn't moving,
-then the foot grass cover shouldnt animate at all.
-** this is a particle? projectile? either way, it's not on the
-entities sheet - it's on the level sheet, because it needs to match
-the color of the grass that it's covering.
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -828,14 +687,6 @@ we should shorten the dungeon_ prefix for gameObj to dun_.
 and world_ to wor_ .
 this will help those items better fit into the objTools widget
 plus, this shortens the overall size of the roomData xml by removing chars.
-
-
-
-
-
-
-
-
 
 
 
@@ -858,16 +709,10 @@ so, maybe we spend some time investigating enumFields...
 
 
 
-
-
-
 BIG OPTIMIZATION
 if we don't draw the floor tiles, the draw loop is much faster
 so, we could standardize the room sizes, then create a floor sprite
 then instead of drawing 200 floor sprites, we just draw 1 larger floor sprite
-
-
-
 
 
 
@@ -886,8 +731,6 @@ likely break after one use.
 
 we could lock one door randomly, or we could lock ALL THE DOORS, and then 
 force the player to choose which door they want to unlock.
-
-
 
 
 PULLABLE LEVERS
@@ -952,66 +795,6 @@ doors, pipes, etc...
 
 
 
-
-
-
-BUILDING DESTRUCTION
-normal buildings become the damaged versions upon explosions.
-damaged buildings becomes debris, rubble, and rarely loot upon explosions or attacks.
-damaged buildings or objs can be destroyed with weapons.
-
-
-
-
-
-
-SWIMMING
-this only happens upon collision with water objs. links default state is standing idle.
-upon collision with water obj, link switches to swimming state.
-from here, player can press B to 'dash' in the water, and press A to 'dive'.
-diving is useful if there is something in the water, noted by a darker color sprite.
-but that sprite is just ambiguous, and until the hero dives down and collects whatever
-it is, the player wont get the reward. and we *should* have a reward state for link.
-dungeons can have deep water (sinks) and shallow water (just has wading fx)
-and we can build puzzles around this, because it's impossible to tell them apart
-but we should be able to tell them apart, with some kind of shallow water lighter color difference
-this is important to do now, because it affects the layout of the dungeon sheet
-
-
-
-
-
-DIRT PATHING
-by default, the background color is a grass color. to that,
-we add dirt paths, animated grass objects scattered throughout, etc...
-
-
-
-
-
-
-
-BLOB BOTTLING
-i like the idea of bottling blobs, but not turning link into one.
-instead link should bottle a blob and bring it to an npc for inspection.
-this inspection then opens the dialog with the blob who explains the sidequest.
-
-
-
-
-
-we've also complicated the piss out of dialog screen with booleans, simply because we
-are forcing it into the post-title screen load dialog, where we transition from dialog
-to overworld. nowhere else do we do this. plus, we aren't planning to do anything else
-like that, so consider splitting that functionality out of dialog screen, and instead
-handling that at the end of LSN screen - since that's the only place it can be called from.
-we can handle it once here, and vastly simplify the dialog screen - so we can complicate
-it much later with story element stuff.
-
-
-
-
-
 PLATFORMS + BUILDING
 i like the idea of building platforms to cross pits or areas of insta-death.
 but, unlike other games we're gonna use magic here to build platforms, and we're
@@ -1022,86 +805,9 @@ right in front of him where he could step right onto it (aligned to 16px grid).
 these platforms would be permanent until the life of the room too, and cost 1 magic.
 
 
-
-
-
-
-
-
-
-WALL TORCHES
-if we seperate the wall torch off the wall bkg sprite, then we can reuse
-it indoors in world rooms, or outside on buildings. but, we need to update
-the door decoration algorithm to add torches, instead of replacing the wall
-with a wall torch, which acts simply as a wall.
-
-
-
 INCREASE MAGIC
 we do need a way to increase our total magic, tho.
 just like hearts, this item should be sold be the items vendor.
-
-
-
-
-
-
-
-
-BOMBABLE WALLS++
-add falling debris when straight walls are cracked by explosions.
-this is probably going to need to be a larger debris particle commit / system
-because the particles are going to be on the dungeon sheet, and we'll need
-to fake gravity and ground bouncing / friction collisions...
-
-
-
-
-
-
-
-
-
-Bushes++
-
-when we hit a bush, we should create bush leaf debris.
-this leaf debris is pushed the direction of the hit on the bush,
-so it inherits the inertia of the hit, 
-
-first, the initial BIG push in the hit direction happens
-then a small random directional push is applied to vary the leaf trajectories.
-
-BUT this means we need to have moving particles.. AND WE DO!
-this means we can push particles, giving them inertia.
-this would be very nice.
-
-
-
-
-
-
-
-
-
-INT / COLL WIDGET
-create interaction / collision info widget, which displays that data
-instead of stuffing it into the world ui... ooof!
-we can link f3 to drawing the interaction / collision info widget
-
-
-
-
-
-
-
-
-
-Boomerangs++
-
-boomerang sounds are totally wrong, clinks off a bush?
-triggers a bush? no. fix boomerang soundfx.
-
-
 
 
 
@@ -1118,30 +824,11 @@ and that would look WRONG.
 
 
 
-
-
 Slippery Slope!
 *if we slide a bomb across ice, then onto grass,
 the bomb keeps sliding as if it were on ice. it's a pro.
 so maybe we aren't resetting the friction prior
 to checking projectile interactions with roomObjs?
-
-
-
-
-
-
-
-
-Doors -> Doors & Portals
-
-we need a cheat code to convert all doors to open doors.
-this would bypass traps, boss door, open all hidden doors, etc...
-but, this would also convert any exits or portals, unless we
-separated the idea of doorObjs to be doorObjs and portalObjs,
-where a door links two rooms, but a portal exits level.
-this would be a new kind of obj.group... 
-
 
 
 
@@ -1200,10 +887,6 @@ to do these type of explosive throwing tricks.
 
 
 
-
-
-
-
 PROPERTY, BANK ACCOUNTS, + THE ECONOMY
 
 so, the hero can only have 99 rupees on his character.
@@ -1221,31 +904,6 @@ any business or property over 99 rupees...
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-REWARDS AS PROJECTILES (?)
-we *COULD* track overhead rewards to hero if we model them as projectiles instead of particles.
-that way hero doesn't have to stateLock into a reward unless it's for a cast or use
-alternatively, we could just slowly allow the reward particle to rise up, then dissappear.
-
-
-
-
-
 OVERWORLD SCREEN MAP++
 add tiny smoke particles coming out of some houses
 add 'floating' animation to ship (should bob up and down)
@@ -1253,14 +911,9 @@ this means it needs to be a sprite in the main sheet
 make castlel ruins look more 'ruiny'
 
 
-
-
 MAGNETIC ISLAND
 this is a set of levels where a Push() is applied to EVERyTHING each frame.
 the direction could be magnetic north, or it could be changeable by object or season.
-
-
-
 
 
 WIND + WIND MAGIC
@@ -1285,40 +938,11 @@ we can call it the push wand, which would allow us to create a whole new type of
 where we can use the push wand to move objects to solve rooms!!!
 
 
-
-
-
-FULL SCREEN AOE MAGIC SPELLS
-it's really simple to do this, just create explosions around the hero,
-or play a bunch of random explosion sprites everywhere, then damage all
-active enemies like so:
-
-for (i = 1; i < Pool.actorCount; i++) //skip actorPool[0] (hero)
-{
-	if (Pool.actorPool[i].active) //deal 1 point of damage to all active actors
-	{ Functions_Battle.Damage(Pool.actorPool[i], 1, 0.0f, Functions_Direction.GetRandomDirection()); }
-}
-
-either actually create projectiles to kill enemies, or fake it with particles
-it just depends on the effect and magic behavior
-
-
-
-
 Projectiles++
 WanderingFire 
 this is just like spikeblock except the obj.direction is chosen randomly upon collision
 the direction cannot be the current direction however, and can only be cardinal	
 should be able to place wandering fire using tools widget
-
-
-
-Improve / Beautify Feedback Info
-we need to move the left handed update collision interaction draw times
-into it's own widget, which is drawn on the right side, and make it linked
-to a boolean which draws it, which is then linked to the cheats menu as a
-draw dev info cheat.
-
 
 
 MAGIC POWDER (?)
@@ -1328,38 +952,11 @@ but, he's still your enemy, so i don't know how useful it is practically...
 
 
 
-Boat
-takes hero to different islands
-if hero is blob, then secret blob islands become available (like blob home island)
-
-
-Rage Potion
-for 255 frames hero cant take any damage, doubles damage with weapon in hand
-
-
-
-
-
-OBJECTS:
-
-Destroyed Debris object
-the dungeon statue should become the destroyed version upon destruction.
-any object that can be destroyed should become this object.
-this object should look like a pile of rocks. can be pushed.
-
 Circling Stars
 just like Lttp, the circling stars turns hero into an enemy actor type
-except, it's not on a timer. hero becomes enemy actor type until Circling stars collides with hero again.
+except, it's not on a timer. hero becomes enemy actor type until 
+Circling stars collides with hero again.
 this is a check: if hero.type != hero, become enemy, else become hero.
-
-BUG - PITS
-if an actor overlaps two pits at the exact same time
-they can be pulled into each pit, resulting in a cancelled out pull
-leaving actor hovering over pits, which is bad
-*which could easily be fixed by using a weaker pull on the left for all pits
-*the actor would slowly be pulled into the right pit, 
-*then quickly pulled once they dont collide with left pit any more
-
 
 
 
@@ -1370,21 +967,12 @@ and we'll probably need to expand the max size of roomObjs
 
 
 
-implement a level 2 magic spell
-this would deal 1 damage to everything on screen
-and play explosions randomly inside the room
-should be named bombos, sold by magic dealer
-
-
 
 WorldUI++
 when the hero's health changes, the worldUI should animate hearts individually
 if the hero gains 5 health, each heart should scale up, then animate down
 once that heart's scale reaches 1.0, then the next heart can animate
 this sequential scaling should happen anytime hero's health changes
-
-
-
 
 
 
@@ -1403,41 +991,6 @@ in first phase, the boss just randomly moves around
 
 
 
-
-
-
-
-
-
-
-title widget functionality ++
-	audio/input/video/game ctrls - creates appropriate screen
-
-audio ctrls screen
-	sfx volume
-	music volume
-	
-input ctrls screen
-	bvisual representation of button controls
-	
-video ctrls screen
-	full screen or windowed?
-	
-game ctrls screen
-	how camera moves - follow hero or center to current room? 
-	we only need to flip Flags.CameraTracksHero boolean
-	
-	
-if we make a PlayerData.loaded instance of SaveData,
-and then load the stream data from Functions_Backend
-into that Data.loaded instance, then we would have a restore point
-kind of system, plus we could simplify both Dx and UWP
-backend functions to simply load their streams into data.loaded.
-right now, they're setting the game data for each of the 3 files,
-which really shouldn't be a responsibility of the backend functions.
-	
-	
-	
 Handling corrupt game files & first run setup - part 2
 
 if a saved game file has correct XML headers, then game will load it
@@ -1478,51 +1031,12 @@ this is: total enemies killed / damage taken
 ex: 10/1 = 10.   245/73 = 3.35.
 
 
-we could simplify bumper interactions if we could just say
-if (obj.compCollision.Interacts_With_Bumper), then we bounce the obj.
-instead we're doing this inside of the type check, which is duplicating
-alot of code calling BounceOffBumper(), then passing the obj.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
 
 *************************************************************************
 MAYBES (these may/not be possible?)
-
-
 
 
 
@@ -1538,8 +1052,6 @@ critical paths, where we procedurally build smaller crit paths to complete
 the overall dungeon.
 
 
-
-
 BITE from all the other awesome games you love:
 	theres so much to do and explore
 	we need more to do and explore
@@ -1550,11 +1062,10 @@ BITE from all the other awesome games you love:
 	
 	
 	
-	
-
 Make the AI system Behavior based, where a Behavior is an enumerator
 
-actor.behaviors = new List<Behaviors> { Behavior.Aggressive, Behavior.Curious, Behavior.Destructive }
+actor.behaviors = new List<Behaviors> 
+{ Behavior.Aggressive, Behavior.Curious, Behavior.Destructive }
 Behavior.Aggressive (actor will pursue hero without regard for safety)
 Behavior.Attacks (actor will attack hero, if hero is close enough)
 Behavior.Curious (actor will randomly explore the area around them)
@@ -1571,9 +1082,6 @@ if actor.behavior[i] ==
 - destructive, attack destructible objects nearby
 - spawnsMobs, randomly spawn mobs based on the actor.type
 - throwsPots, picks up nearby pots, carrys them, and throws them at hero if hero is visible
-
-
-
 
 
 

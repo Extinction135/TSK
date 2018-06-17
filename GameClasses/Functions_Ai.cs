@@ -577,12 +577,43 @@ namespace DungeonRun
 
             else if (Obj.type == ObjType.Wor_Colliseum_Spectator)
             {   //randomly create an exclamation particle
-                if (Functions_Random.Int(0, 10000) > 9990)
+                if (Functions_Random.Int(0, 1000) > 995)
                 {
-                    Functions_Particle.Spawn(
+                    //set a random number to determine which spectator speaks
+                    Obj.interactiveFrame = Functions_Random.Int(0, 100);
+                    //spawn on which spectator?
+                    if (Obj.interactiveFrame < 25)
+                    {
+                        //#1
+                        Functions_Particle.Spawn(
                         ObjType.Particle_ExclamationBubble,
                         Obj.compSprite.position.X - 3,
                         Obj.compSprite.position.Y - 16);
+                    }
+                    else if(Obj.interactiveFrame < 50)
+                    {
+                        //#2
+                        Functions_Particle.Spawn(
+                        ObjType.Particle_ExclamationBubble,
+                        Obj.compSprite.position.X - 3 + 16 * 1,
+                        Obj.compSprite.position.Y - 16);
+                    }
+                    else if (Obj.interactiveFrame < 75)
+                    {
+                        //#3
+                        Functions_Particle.Spawn(
+                        ObjType.Particle_ExclamationBubble,
+                        Obj.compSprite.position.X - 3 + 16 * 2,
+                        Obj.compSprite.position.Y - 16);
+                    }
+                    else 
+                    {
+                        //#4
+                        Functions_Particle.Spawn(
+                        ObjType.Particle_ExclamationBubble,
+                        Obj.compSprite.position.X - 3 + 16 * 3,
+                        Obj.compSprite.position.Y - 16);
+                    }
                 }
             }
 

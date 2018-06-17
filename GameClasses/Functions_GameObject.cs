@@ -1820,6 +1820,11 @@ namespace DungeonRun
 
             else if (Type == ObjType.Wor_Colliseum_Spectator)
             {
+                Obj.compSprite.cellSize.X = 16 * 4; //nonstandard size
+                Obj.compSprite.cellSize.Y = 16 * 1; 
+                Obj.compCollision.rec.Width = 16 * 4; Obj.compCollision.offsetX = - 8;
+                Obj.compCollision.rec.Height = 16 * 1; Obj.compCollision.offsetY = -8;
+
                 Obj.compSprite.texture = Assets.colliseumLevelSheet;
                 Obj.compSprite.zOffset = 64; //sort over others like a roof
                 Obj.canBeSaved = true;
@@ -1836,17 +1841,7 @@ namespace DungeonRun
                 { Obj.compSprite.flipHorizontally = true; }
                 else { Obj.compSprite.flipHorizontally = false; }
 
-                //get a random num to use
-                Obj.interactiveFrame = Functions_Random.Int(0, 100);
-                //using random, choose spectator animFrame
-                if (Obj.interactiveFrame > 75)
-                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Colliseum_SpectatorA; }
-                else if (Obj.interactiveFrame > 50)
-                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Colliseum_SpectatorB; }
-                else if (Obj.interactiveFrame > 25)
-                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Colliseum_SpectatorC; }
-                else
-                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Colliseum_SpectatorD; }
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Colliseum_Spectator;
             }
 
 

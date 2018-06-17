@@ -47,17 +47,15 @@ Phase 2 - version 0.7 to 1.0
 	
 Milestones
 
-colliseum implemented, with sub-games + side-quests.
 farming + seeds + crops implemented.
-dark world, transitions to and from
+dark world, with transitions to and from
 mountain levels and dungeons (diff sprite sheet)
-tutorial intro
+intro
 basic narrative structure up to fight with king
-king boss
-modifiers - like cheats, but enabled by game
-(this allows us to do stuff like make sure player
-can't die in the tutorial section, or ensure that
-player's health never goes above 1 in the trials).
+king boss fight
+
+
+
 
 
 
@@ -68,77 +66,44 @@ v0.74 - The Colliseum & Challenges
 
 
 
-SeekerExploder++
+Colliseum++
 
-migrate seekerExploder actor to be a roomObject.
+rebuilt colliseum interior to be smaller,
+with less objects, but still feel the same.
 
-Why are we doing this?
-Seekers are implemented as actors, of which there
-can only be 30 on screen at once, due to the large
-amount of checks each actor goes through. they are
-expensive to process, + have a ton of animation 
-frames too. well, the seeker can be modeled as a 
-roomObj instead, with all the same behavior, but 
-we also gain: the roomObj count max is 3000, so we 
-can have A TON MORE seekers on screen, drastically 
-increasing the risk/skill level. plus, it cuts 
-processing time down for the actor pool,
-but this is negated by the additional number of
-seekers that will likely exist on screen. 
+Old colliseum pit stats:
+1337 with spectators.
+456 objects without spectators.
 
-basically, instead of having 1 actor seeker, we 
-can now have like 10 to 50 for about the same cost.
+New colliseum pit stats:
+370 objs without spectators.
+664 with spectators. <<<- naisu
 
-had to hack around the interaction functions to make
-a non-blocking roomObject interact with projectiles
-as a blocking roomObject - which was fine.
+optimize spectators:
+treat all 4 spectators as 1 object, horizontally
+spread out - reducing the number of spectators
+needed by ALOT. done. updated ai functions to
+randomly choose a spectator to place the exclamation
+bubble over.
 
-rewrote how seekers die, done thru HandleCommon()
-now - if the seeker is hit by a projectile that
-could kill it, or if the seeker gets close enough
-to the hero, HandleCommon() is called, at which point
-the seeker creates an explosion and drops loot.
-so, we can still cause explosion chains with seekers,
-which was kinda what made them awesome - they're
-like exploding barrels that move around and chase you.
+Why was this done?
+some crazy intense fights are going to happen
+in the colliseum, so the pit level needs to use
+as little cpu resources as possible.
 
-rewrote how seekers explode - when they get near
-hero they instantly become an explosion, making them
-a bit more dangerous.
+Spectator Sprites ++
+improved old man hands in air spectator - when his
+hands reached up, the weight of his body would shift
+up as well, so i lowered the sitting sprite of the
+old man down 1 pixel. this should give weight to his
+celebratory hands up.
 
-improved seekers speed - moves slowly when they
-cant see hero, faster when they can see him.
-
-created exploding object gameobject.
-this conceptually represents any object that should 
-explode. anyobject can become an exploding object.
-the exploding object's definition doesn't modify
-anything about the previous gameobject, it simply
-sets getAi to true, and reset the lifecounter,
-then sets the lifetime. once the life counter
-hits the lifetime, the object spawns an explosion
-and is released, spawning some loot too.
-
-using this simple approach, barrels and seekerExploders
-are now both being fed into the exploding object
-system, and working as expected. this removed
-exploding barrels projectile, and prevented me
-from adding exploding exploder roomobjects.
-
-because seekers arent' blocking, they can walk thru objects.
-so, when a seeker interacts with a blocking roomObject, they
-now explode. this change deals the boss a bit more damage
-overtime, because the seekers run into walls alot.
-
-as of now, seekers are implemented well enough.
-their only downside is that they kill their boss
-if enough of them are spawned in a room. but,
-they would also kill the hero too - so i see this
-as balanced for now. if hero can survive long enough,
-the boss's mobs will kill him.
-
-updated the uwp project's content folder.
-set game into release mode for this commit as well.
+Editor++
+fixed a minor issue where editor menu would display
+the colliseum widget object when it opened. the 
+initial display state for this widget is the forest
+state, and the colliseum widget object ain't part
+of the forest display state. i feexed.
 
 
 
@@ -146,6 +111,9 @@ set game into release mode for this commit as well.
 
 
 
+when editor menu loads up, set all widget objects
+to display false (visible).
+then display the forest widgets.
 
 
 
@@ -154,11 +122,21 @@ set game into release mode for this commit as well.
 add runestones to colliseum area.
 small hitbox, blocking.
 
+we could also make the colliseum interior smaller,
+and reduce the number of overall object in the level,
+because some crazy stuff is gonna happen here.
 
-future ideas for polish: better transition to
-post-challenge dialog screen (win/loss). this could be
-done by making the interactive frame even later, giving
-the player time to process what's happened.
+
+need 'flys' particle, which should represent
+a group of flys buzzing around something.
+dead boss should spawn flys particles.
+
+
+
+
+better transition to post-challenge dialog screen (win/loss). 
+this could be done by making the interactive frame even later, 
+giving the player time to process what's happened.
 
 we should have a 'spam money' soundfx that plays
 during challenge complete screen, like player won jackpot.
@@ -169,6 +147,7 @@ during challenge complete screen, like player won jackpot.
 
 
 Colliseum Sfx and Music
+
 colliseum exterior should be silent, just ambient insects.
 this is a minute or two, with very slow fade in/outs, so the repeat
 happens during silence.
@@ -185,6 +164,10 @@ the crowd should cheer each time an enemy is defeated.
 the crowd should boo each time the player takes damage.
 
 should feel like a colliseum, without any fighting.
+
+
+
+
 
 
 the words "KILL" should flash across the screen 
@@ -206,6 +189,10 @@ at the start of the colliseum challenge.
 
 ------ POLISH prior to 0.74 release --------
 
+
+
+
+
 Boomerang++
 improve boomerang sprites based on layer dev/more stuff in art.master
 this adds a diagonal frame, plus marks a boomerangs side for
@@ -217,6 +204,37 @@ it should push actors the opposite direction.
 this should be done via Functions_Direction.GetOppositeDirection().
 
 boomerangs should trigger barrels, and seekerExploders.
+
+*boomerang should only create attention particles upon hit if
+it's traveling away from hero. if it's returning to hero (it's lifecounter)
+then it shouldn't create ANY attention particles. this fixes
+the visual bug where it can create a ton of pops when hitting
+objs from certain angles / directions.
+
+
+
+
+
+
+MetalGear++
+
+pickup an object. press x to enter 'sneaking' mode.
+while sneaking, link crouches down with object mostly
+covering him, moving very slowly. enemies cannot see link
+while he is sneaking in this mode. every 255 frames,
+kick link out of sneaking mode, so player has to keep
+managing the sneak via X button press.
+
+as of now, we're only checking if link is underwater.
+we should model this instead using a 'hidden' boolean.
+if link is hidden, enemies can't see him, dont chase/attack him.
+if link is underwater, he is hidden.
+if link is sneaking, he is hidden.
+
+
+
+
+
 
 
 
@@ -251,8 +269,19 @@ Implement Cane of Somara (or whatever)
 this is the cane that creates blocks that are pushable.
 this makes it MUCH easier to get thru dungeons, as many
 rooms rely on floor switches, which link can simply
-create a block over.
+create a block over. if a block is created ontop of
+a blocking roomObject, the block ...
 
+Rat Hole
+we should have a 'rat hole' that randomly spawns
+rats in front of it. we can add this to a room,
+and the room now has constant enemies.
+
+Sorting++
+when hero pushes a shelf against a back wall,
+the backwall sorts over the shelf. 
+and all other sinks, stoves, etc..
+so fix this.
 
 
 
@@ -274,8 +303,9 @@ moving & dashing
 attacking, using items, inventory
 colliseum fighting
 grass fires + burning objects
-swimming, diving, carrying + hiding
+swimming, swim dashing 
 pickup, throw, dash carry
+sneaking, swimming underwater
 buildings, roofs, destruction
 Vendors + NPCs
 minibosses + bosses
@@ -296,13 +326,121 @@ record a gif showing off colliseum fights for 0.74.
 
 
 
+v0.75 The Dark World
+
+this is exciting, and scary.
+primarily because it doubles the amount
+of sprites + code + musics to implement it.
+
+
+
+
+
+Magic Mirror
+- returns link to dungeon entrance.
+- plays warp sound fx
+should call Level.BuildLevel(Level.ID),
+which will cause the level to fade in from black,
+and place hero at the entrance the dungeon again.
+*this should only work in a dungeon. 
+*magic mirror doesn't warp hero out of dark world
+back to light world like lttp did. 
+instead, magic mirror "reflects link's true image,
+keeping him human in the dark world".
+
+Whe link is first pulled into the dark world,
+his magic mirror should get cracked, so he becomes
+the familiar bunny again. this time he has to seek 
+out someone who can repair his magic mirror before
+he can become himself again. during this time,
+bunny link can only walk, dash, interact, pickup,
+throw, hide/sneak, swim, dive, and swim dash.
+no attacking or using items. the idea is to 
+make this part of the game a stealth mission:
+sneak past the overpowering enemies as a bunny,
+repair your magic mirror, and THEN fight.
+
+
+
+
+Darkworld Map
+idea: keep most of the locations the same in darkworld map,
+so it seems like the two worlds are related. there can be some
+different locations, sure, but don't deviate too much.
+we'll need a dark world overworld map + screen.
+this means we can move most functionality out of
+overworld screen and into a base class, then just
+change the locations, neighbors, and corresponding levels
+for light + dark overworld screens.
+
+
+
+
+How are Darkworld levels / dungeons handled?
+the game sees no real difference between light and dark world
+levels and rooms, it's really just a texture change + different
+enemies + objects. 
+darkworld map locations point to specific xml.
+lightworld map locations point to different xml.
+darkworld dungeon rooms use same roomData as lightworld dungeons.
+but, darkworld dungeon has different sprites + music,
+plus different enemies spawn.
+*this means we can't have turtles and rats in rooms.
+*instead model this as a basic roomObj enemy, 
+and choose randomly from a list. maybe its a rat,
+maybe it's a bat. as long as it 'fits' the dungeon, who cares.
 
 
 
 
 
 
-v0.75 - Farming
+Transitions Between Dark and Light Worlds
+this happens in a level, via a special portal object.
+for now, we will use lttp's standard portal, but it will
+only work one way: touching this portal closes the level,
+and open the darkworld or lightworld map screen, depending
+on if link was in the dark or light world when he touched
+the portal. this doesn't transition between rooms.
+
+
+
+Light & Dark World Sprites
+lightworld forest entrance should be opening in trees
+dark world should be horrific tree trunk thing we have rn.
+
+
+
+
+
+
+
+
+
+
+Force Player to Save Their Game upon an Exit
+
+this is from inventory menu. the player's latest data
+is sitting in autosave (playerData.current), and we need
+to save it to one of the 3 game data files. when we call
+exit, pop a save screen - hopefully player will understand
+they need to save their game before exiting.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+v0.76 - Farming
 
 cut grass should grow into tall grass if near coastlines,
 or filled ditches. implement the idea of seeds, sold by the
@@ -340,22 +478,6 @@ system is designed.
 
 EDITOR +++++++++
 
-Implement Light/Dark Room Data
-
-we can model light/dark with a boolean in the room's data.
-remember that overworld levels = big single rooms, plus
-we ONLY have roomData (level data doesn't really exist),
-so we have to model light/dark in room data.
-
-we also want this addition to layer easily into the existing
-roomData, so this boolean value should default to true, (< if missing when roomdata is loaded)
-which indicates the room is a light world room, since we
-dont have any dark world rooms - yet. update the existing
-roomData to include this lightWorld boolean.
-
-
-
-
 editor++
 it would be nice to be able to toggle roofs on/off.
 and hide their collisionrecs too, so we can't accidentally pick them up.
@@ -365,46 +487,6 @@ it would be nice to be able to drag select a rec around a set of objects,
 then move them with the arrow keys, in 16 pixel increments. this would allow
 us to edit parts of rooms just like we edit pixels in photoshop.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-DungeonMap++
-miniboss should drop the dungeon map object.
-upon touching this obj, hero should be set into reward
-state, with map overhead.
-
-
-
-
-Rat Hole
-we should have a 'rat hole' that randomly spawns
-rats in front of it. we can add this to a room,
-and the room now has constant enemies.
-
-
-
-Boss + Mobs++
-seekers need to be renamed
-seekers should also be ROOM OBJS, not actors.
-also, the boss should spawn more seekers sooner, so
-the initial boss fight seems more impressive and hard.
-it's a little lack-luster right now.
-there should be an initial wave of enemies the boss spawns.
 
 
 
@@ -474,13 +556,7 @@ can throw bombs. can attack with swords.
 
 
 
-Sneaking
 
-link picks up an obj. holding X while carrying this obj
-puts link into the 'sneaking' state, which means link
-crouches down and the held obj mostly covers him, except 
-for his feet. link moves at a much slower pace, but
-enemies cant see him and dont attack him.
 
 
 
@@ -505,11 +581,7 @@ as they are, as fast as they are.
 
 
 
-Sorting++
-when hero pushes a shelf against a back wall,
-the backwall sorts over the shelf. 
-and all other sinks, stoves, etc..
-so fix this.
+
 
 
 
@@ -607,27 +679,7 @@ that happened in the story, or something the player did.
 
 
 
-Boomerang++
-*boomerang should only create attention particles upon hit if
-it's traveling away from hero. if it's returning to hero (it's lifecounter)
-then it shouldn't create ANY attention particles. this fixes
-the visual bug where it can create a ton of pops when hitting
-objs from certain angles / directions.
 
-
-
-
-Metal Gear ++
-if you're carrying an obj and press B while not moving, link
-should squat down and the heldObj should sort mostly over his head,
-and he should flip the actor.hidden boolean. then update functions_AI
-to check the actor.hidden boolean instead of the actor.underwater
-boolean. then update the underwater rountines to set the actor.hidden
-boolean to true when actor dives underwater. the net effect of these
-changes is that the hero will be able to hide underwater, underwater
-while carrying an obj, or on land while carrying an obj. 
-being able to hide on land while carrying an obj is more metal gear
-than being able to dive while holding an obj. lol.
 
 
 
