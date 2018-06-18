@@ -252,7 +252,11 @@ namespace DungeonRun
         public static List<Byte4> Wor_Build_Roof_Bottom = new List<Byte4> { new Byte4(7, 8, 0, 0) };
         public static List<Byte4> Wor_Build_Roof_Chimney = new List<Byte4> { new Byte4(7, 11, 0, 0) };
 
-        //colliseum objs
+        #endregion
+
+
+        #region Colliseum Objects
+
         public static List<Byte4> Wor_Colliseum_Gate_Center = new List<Byte4> { new Byte4(2, 3, 0, 0) };
         public static List<Byte4> Wor_Colliseum_Gate_Pillar_Left = new List<Byte4> { new Byte4(0, 3, 0, 0) };
         public static List<Byte4> Wor_Colliseum_Gate_Pillar_Right = new List<Byte4> { new Byte4(0, 3, 1, 0) };
@@ -279,11 +283,7 @@ namespace DungeonRun
         public static List<Byte4> Wor_Colliseum_Spectator = new List<Byte4>
         { new Byte4(4, 10, 0, 0), new Byte4(4, 11, 0, 0) };
 
-
-
         #endregion
-
-
 
 
         #region World Enemies

@@ -43,7 +43,7 @@ namespace DungeonRun
             }
             else if (Obj.type == ObjType.ProjectileBoomerang)
             {   //boomerangs deal 0 damage, push 10, flip to return state
-                damage = 0; force = 10.0f; direction = Obj.direction;
+                damage = 0; force = 10.0f; direction = Obj.compMove.direction;
                 Obj.lifeCounter = 200; //return to caster
             }
             else if (Obj.type == ObjType.ProjectileNet)

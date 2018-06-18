@@ -645,12 +645,18 @@ namespace DungeonRun
                                 if(Pool.hero.state == ActorState.Dead)
                                 {
                                     // <<< exit condition : failed >>>
-                                    Functions_Level.BuildLevel(LevelID.ColliseumPit);
-                                    ScreenManager.AddScreen(
-                                        new ScreenDialog(
-                                            AssetsDialog.Colliseum_Challenge_Failed
-                                        ));
-                                    return; //challenge is not complete
+
+                                    //check to see if hero is at end of death animation,
+                                    //this gives the player time to visually process hero 
+                                    //spinning, falling to ground, screen fading in black
+
+                                    if (Pool.hero.compAnim.index == Pool.hero.compAnim.currentAnimation.Count)
+                                    {   //kicked out of colliseum to overworld screen
+                                        Functions_Level.CloseLevel(ExitAction.Summary);
+                                        //change the judge to another obj to prevent dialog spam
+                                        Functions_GameObject.SetType(Obj, ObjType.Vendor_Colliseum_Mob);
+                                        return; //challenge is not complete
+                                    }
                                 }
                             }
                             else
@@ -659,7 +665,6 @@ namespace DungeonRun
                                 if (Pool.actorPool[i].state != ActorState.Dead)
                                 { return; } //challenge is not complete
                             }
-                            
                         }
                     }
 
@@ -692,8 +697,10 @@ namespace DungeonRun
 
 
                     // <<< exit condition : completed >>>
-                    //create the default pit level
-                    Functions_Level.BuildLevel(LevelID.ColliseumPit);
+                    //exit level to pit level
+                    Level.ID = LevelID.ColliseumPit;
+                    Functions_Level.CloseLevel(ExitAction.Level);
+
                     //pop a new dialog screen telling player they completed challenge
                     ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Colliseum_Challenge_Complete));
                 }

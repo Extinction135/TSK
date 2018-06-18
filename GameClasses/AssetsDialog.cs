@@ -146,27 +146,11 @@ namespace DungeonRun
                 Assets.sfxTextLetter, false, false, false),
         };
 
-        public static List<Dialog> Colliseum_Challenge_Accepted = new List<Dialog>
-        {
-            new Dialog(ObjType.Judge_Colliseum, "Challenge Accepted!",
-                "We look forward to seeing your skills in combat..\n" +
-                "Ready?...",
-                Assets.sfxTextLetter, false, false, false),
-        };
-
         public static List<Dialog> Colliseum_Challenge_Complete = new List<Dialog>
         {
             new Dialog(ObjType.Judge_Colliseum, "Congratulations!",
                 "You have completed the challenge, and have been rewarded.\n" +
                 "We look forward to seeing your skills again soon...",
-                Assets.sfxTextLetter, false, false, false),
-        };
-
-        public static List<Dialog> Colliseum_Challenge_Failed = new List<Dialog>
-        {
-            new Dialog(ObjType.Judge_Colliseum, "Disappointing!",
-                "You have fallen in combat, much to the delight of The King.\n" +
-                "Your failure to complete the challenge amuses him.",
                 Assets.sfxTextLetter, false, false, false),
         };
 

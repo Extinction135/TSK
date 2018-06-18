@@ -66,44 +66,36 @@ v0.74 - The Colliseum & Challenges
 
 
 
+
+
 Colliseum++
 
-rebuilt colliseum interior to be smaller,
-with less objects, but still feel the same.
+improved transition from colliseum pit fight.
+hero either wins or dies, and both transitions are
+now much smoother. if hero dies, he spins around, falls
+to the ground, and the screen fades to black slowly.
+the summary screen is popped up, then player is
+kicked back to overworld screen, where link sits dejectedly
+at the colliseum location, which is awesome.
+if hero wins, then the judge pops the dialog as normal,
+but the screen then fades out to black, then loads the
+colliseum pit as normal.
 
-Old colliseum pit stats:
-1337 with spectators.
-456 objects without spectators.
+removed colliseum dialogs for challenge accepted and failed.
+these dialogs are no longer used.
+added various decorations to pit entrance level,
+so it doesn't look so bare.
+playtested by me, also playtested by 
+1st official "not-me playtester" Justin.
 
-New colliseum pit stats:
-370 objs without spectators.
-664 with spectators. <<<- naisu
-
-optimize spectators:
-treat all 4 spectators as 1 object, horizontally
-spread out - reducing the number of spectators
-needed by ALOT. done. updated ai functions to
-randomly choose a spectator to place the exclamation
-bubble over.
-
-Why was this done?
-some crazy intense fights are going to happen
-in the colliseum, so the pit level needs to use
-as little cpu resources as possible.
-
-Spectator Sprites ++
-improved old man hands in air spectator - when his
-hands reached up, the weight of his body would shift
-up as well, so i lowered the sitting sprite of the
-old man down 1 pixel. this should give weight to his
-celebratory hands up.
-
-Editor++
-fixed a minor issue where editor menu would display
-the colliseum widget object when it opened. the 
-initial display state for this widget is the forest
-state, and the colliseum widget object ain't part
-of the forest display state. i feexed.
+Boomerang++
+fixed a bug with boomerang where the hit actor was
+inheriting the direction of the boomerang's sprite
+(which was always down), instead of the boomerang's
+moving direction, via obj.compMove.direction. now
+hit actors respond as expected and the boomerang
+isn't a nightmare when you hit an actor from 
+the south (double push towards hero).
 
 
 
@@ -111,32 +103,8 @@ of the forest display state. i feexed.
 
 
 
-when editor menu loads up, set all widget objects
-to display false (visible).
-then display the forest widgets.
 
 
-
-
-
-add runestones to colliseum area.
-small hitbox, blocking.
-
-we could also make the colliseum interior smaller,
-and reduce the number of overall object in the level,
-because some crazy stuff is gonna happen here.
-
-
-need 'flys' particle, which should represent
-a group of flys buzzing around something.
-dead boss should spawn flys particles.
-
-
-
-
-better transition to post-challenge dialog screen (win/loss). 
-this could be done by making the interactive frame even later, 
-giving the player time to process what's happened.
 
 we should have a 'spam money' soundfx that plays
 during challenge complete screen, like player won jackpot.

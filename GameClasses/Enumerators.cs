@@ -361,6 +361,12 @@ namespace DungeonRun
         Wor_Build_Roof_Chimney,
         Wor_Build_Roof_Collapsing, //meta obj for collapsing roofs
 
+
+        #endregion
+
+
+        #region Colliseum Objects
+
         //colliseum objects
         Wor_Colliseum_Gate_Center,
         Wor_Colliseum_Gate_Pillar_Left,
@@ -384,10 +390,10 @@ namespace DungeonRun
         Wor_Colliseum_Bricks_Right,
 
         Wor_Colliseum_Outdoors_Floor,
-
         Wor_Colliseum_Spectator,
 
         #endregion
+
 
 
 
