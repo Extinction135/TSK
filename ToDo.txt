@@ -65,27 +65,16 @@ king boss fight
 v0.74 - The Colliseum & Challenges
 
 
+------ POLISH prior to release --------
 
-Colliseum Sfx + Music
 
-added gold spam soundfx to colliseum reward
-routine, happening during reward dialog with judge.
 
-changed vendor screen purchase routine completion
-to use gold spam soundfx, instead of beat dungeon sfx.
 
-found and modified fighting and waiting crowd
-soundtracks for interior colliseum pit.
-added to assets, game, tested, feelsGoodMan.jpg
-totally satisfied with colliseum experience,
-for right now. 
+Options++
 
-updated UWP to match Dx, set game into release
-mode for this commit as well.
-
-notes: this commit is essentially 0.74, but i
-want to polish some things and record a playthru
-with some voice over.
+added Options_DrawHitBoxes menuItem to options
+screen, linked to drawCollisions boolean, so i
+can toggle collision recs on even in release mode.
 
 
 
@@ -96,27 +85,6 @@ with some voice over.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
------- POLISH prior to 0.74 release --------
-
-
-
-
-the words "KILL" should flash across the screen 
-at the start of the colliseum challenge.
 
 
 Boomerang++

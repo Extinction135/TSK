@@ -572,6 +572,7 @@ namespace DungeonRun
         Options_DrawBuildTimes,
         Options_PlayMusic,
         Options_DrawDebug,
+        Options_DrawHitBoxes,
 
         #endregion
 

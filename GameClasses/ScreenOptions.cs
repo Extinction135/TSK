@@ -101,6 +101,9 @@ namespace DungeonRun
             labels[6].text = "draw\ndbug";
             Functions_MenuItem.SetType(MenuItemType.Options_DrawDebug, menuItems[6]);
 
+            labels[7].text = "hit\nboxs";
+            Functions_MenuItem.SetType(MenuItemType.Options_DrawHitBoxes, menuItems[7]);
+
             #endregion
 
 
@@ -178,6 +181,11 @@ namespace DungeonRun
                 {
                     if (Flags.EnableDebugInfo) { Flags.EnableDebugInfo = false; }
                     else { Flags.EnableDebugInfo = true; }
+                }
+                else if (currentlySelected.type == MenuItemType.Options_DrawHitBoxes)
+                {
+                    if (Flags.DrawCollisions) { Flags.DrawCollisions = false; }
+                    else { Flags.DrawCollisions = true; }
                 }
 
                 #endregion
@@ -339,6 +347,9 @@ namespace DungeonRun
 
             if (Flags.EnableDebugInfo)
             { menuItems[6].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
+
+            if (Flags.DrawCollisions)
+            { menuItems[7].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
 
             //expand this to include additional options
         }

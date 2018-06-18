@@ -583,6 +583,14 @@ namespace DungeonRun
                 MenuItem.description = "displays debug info. \nmay slow game down.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_CheatOff;
             }
+            else if (Type == MenuItemType.Options_DrawHitBoxes)
+            {
+                MenuItem.name = "Draw HitBoxes";
+                MenuItem.description = "red = blocking. \nblue = room.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_CheatOff;
+            }
+
+
             #endregion
 
 
