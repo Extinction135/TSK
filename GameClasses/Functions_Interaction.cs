@@ -581,7 +581,8 @@ namespace DungeonRun
                     else if (Object.type == ObjType.ProjectileBoomerang)
                     {
 
-                        #region Activate a limited set of RoomObjs
+
+                        #region Activate/Kill a limited set of RoomObjs
 
                         //activate levers
                         if (RoomObj.type == ObjType.Dungeon_LeverOff
@@ -598,25 +599,32 @@ namespace DungeonRun
                         {
                             Functions_GameObject_Dungeon.FlipSwitchBlocks(RoomObj);
                         }
+                        //kill seeker exploders, just like a sword would
+                        else if(RoomObj.type == ObjType.Wor_SeekerExploder)
+                        {
+                            Functions_GameObject.HandleCommon(RoomObj, Object.compMove.direction);
+                        }
 
                         #endregion
 
-                        //return the boomerang
 
-                        //here we could set the lifeCounter to 245, lifetime to 255
-                        //then ignore collisions for 10 frames to give boomerang head start home
-                        Object.lifeCounter = 200; //return to caster
+                        //if this is the initial hit, set the boomerang
+                        //into a return state, pop an attention particle
+                        if(Object.lifeCounter < Object.interactiveFrame)
+                        {   //set boomerang into return mode
+                            Object.lifeCounter = 200;
+                            Functions_Particle.Spawn(
+                                ObjType.Particle_Attention,
+                                Object.compSprite.position.X + 4,
+                                Object.compSprite.position.Y + 4);
+                        }
 
+                        //stop all boomerang movement, bounce off object
                         Functions_Movement.StopMovement(Object.compMove);
                         Functions_Movement.Push(Object.compMove,
                             Functions_Direction.GetOppositeCardinal(
                                 Object.compSprite.position,
-                                RoomObj.compSprite.position), 3.0f);
-
-                        //pop a particle
-                        Functions_Particle.Spawn(ObjType.Particle_Attention,
-                            Object.compSprite.position.X + 4,
-                            Object.compSprite.position.Y + 4);
+                                RoomObj.compSprite.position), 4.0f);
 
                         //determine what type of soundfx to play
                         if (RoomObj.group == ObjGroup.Wall)
@@ -629,6 +637,7 @@ namespace DungeonRun
                         { Assets.Play(Assets.sfxTapMetallic); }
                         else //play default boomerang hit sfx
                         { Assets.Play(Assets.sfxActorLand); }
+
                     }
 
                     #endregion

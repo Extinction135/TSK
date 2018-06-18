@@ -190,9 +190,9 @@ namespace DungeonRun
                 //cardinal push full
                 if (Dir == Direction.Down || Dir == Direction.Up
                     || Dir == Direction.Left || Dir == Direction.Right)
-                { Functions_Movement.Push(pro.compMove, Dir, 5.0f); }
+                { Functions_Movement.Push(pro.compMove, Dir, 6.0f); }
                 else//diagonal push half
-                { Functions_Movement.Push(pro.compMove, Dir, 2.5f); }
+                { Functions_Movement.Push(pro.compMove, Dir, 3.0f); }
                 pushLines = true;
 
                 //pro.direction = Direction.Down; //boomerangs always face down
@@ -410,11 +410,12 @@ namespace DungeonRun
             else if (Pro.type == ObjType.ProjectileBoomerang)
             {   //boomerang travels in thrown direction until this age, then returns to hero
 
+
                 #region Behavior From Hero
 
-                if (Pro.lifeCounter > 20)
+                if (Pro.lifeCounter > Pro.interactiveFrame)
                 {
-                    Pro.lifeCounter = 210; //lock pro here
+                    Pro.lifeCounter = 200; //keep pro alive
 
                     //get distance to hero
                     Vector2 distance = Pool.hero.compMove.position - Pro.compMove.position;
@@ -431,7 +432,6 @@ namespace DungeonRun
                     {
                         Functions_Pool.Release(Pro);
                         Functions_Hero.boomerangInPlay = false;
-                        //Assets.Play(Assets.sfxArrowHit);
                     }
                 }
 

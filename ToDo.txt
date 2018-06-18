@@ -69,56 +69,42 @@ v0.74 - The Colliseum & Challenges
 
 
 
-
-Options++
-
-added Options_DrawHitBoxes menuItem to options
-screen, linked to drawCollisions boolean, so i
-can toggle collision recs on even in release mode.
-
-
-
-
-
-
-
-
-
-
-
-
 Boomerang++
-improve boomerang sprites based on layer dev/more stuff in art.master
-this adds a diagonal frame, plus marks a boomerangs side for
-easier visual rotational tracking.
 
-boomerangs should trigger barrels, and seekerExploders.
+improved boomerang sprites, now black
+with a white marker for easier visual
+tracking. updated animFrames for boomerang.
+MUCH smoother spinning animation.
 
-*boomerang should only create attention particles upon hit if
-it's traveling away from hero. if it's returning to hero (it's lifecounter)
-then it shouldn't create ANY attention particles. this fixes
-the visual bug where it can create a ton of pops when hitting
-objs from certain angles / directions.
+updated boomerangs to kill seekerExploder 
+enemies, making them a level weaker than
+normal enemies.
+
+increased boomerang's initial velocity
+for both diagonal and cardinal directions.
+increased bounced velocity off objects as
+well.
+
+(cardinal, diagonal, bounce)
+prev values: 5.0, 2.5, 3.0.
+new values: 6.0, 3.0, 4.0
+feels much better.
+
+fixed boomerang to only create an attention
+particle on the initial hit, and not on
+hits while in return mode to hero.
+this fixes visual bug where it can create 
+a ton of pops when hitting objs from 
+certain angles / directions.
 
 
 
 
 
 
-MetalGear++
 
-pickup an object. press x to enter 'sneaking' mode.
-while sneaking, link crouches down with object mostly
-covering him, moving very slowly. enemies cannot see link
-while he is sneaking in this mode. every 255 frames,
-kick link out of sneaking mode, so player has to keep
-managing the sneak via X button press.
 
-as of now, we're only checking if link is underwater.
-we should model this instead using a 'hidden' boolean.
-if link is hidden, enemies can't see him, dont chase/attack him.
-if link is underwater, he is hidden.
-if link is sneaking, he is hidden.
+
 
 
 
@@ -174,6 +160,23 @@ so fix this.
 
 
 
+
+
+
+MetalGear++
+
+pickup an object. press x to enter 'sneaking' mode.
+while sneaking, link crouches down with object mostly
+covering him, moving very slowly. enemies cannot see link
+while he is sneaking in this mode. every 255 frames,
+kick link out of sneaking mode, so player has to keep
+managing the sneak via X button press.
+
+as of now, we're only checking if link is underwater.
+we should model this instead using a 'hidden' boolean.
+if link is hidden, enemies can't see him, dont chase/attack him.
+if link is underwater, he is hidden.
+if link is sneaking, he is hidden.
 
 
 

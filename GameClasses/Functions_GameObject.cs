@@ -1928,13 +1928,16 @@ namespace DungeonRun
             }
             else if (Type == ObjType.ProjectileBoomerang)
             {
-                Obj.compSprite.zOffset = 16;
+                Obj.compSprite.zOffset = 0;
                 Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
                 Obj.group = ObjGroup.Projectile;
-                Obj.lifetime = 255; //in frames
+
+                Obj.interactiveFrame = 20; //frame boomerang returns to hero
+                Obj.lifetime = 255;  //must be greater than 0, but is kept at 200
+
                 Obj.compMove.friction = 0.96f; //some air friction
-                Obj.compAnim.speed = 2; //in frames
+                Obj.compAnim.speed = 3; //very fast, in frames
                 Obj.compMove.moveable = true;
                 Obj.compMove.grounded = false; //obj is airborne
                 Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Boomerang;
