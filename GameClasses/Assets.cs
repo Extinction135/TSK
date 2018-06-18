@@ -74,6 +74,16 @@ namespace DungeonRun
         public static SoundEffectInstance musicLightWorld;
 
 
+
+
+        //colliseum soundfx
+        static SoundEffect musicCrowdWaitingSrc;
+        public static SoundEffectInstance musicCrowdWaiting;
+
+        static SoundEffect musicCrowdFightingSrc;
+        public static SoundEffectInstance musicCrowdFighting;
+
+
         #endregion
 
 
@@ -150,6 +160,8 @@ namespace DungeonRun
         public static SoundEffectInstance sfxShock;
         public static SoundEffectInstance sfxCastBolt;
         public static SoundEffectInstance sfxCastBombos;
+
+        public static SoundEffectInstance sfxGoldSpam;
 
         #endregion
 
@@ -233,6 +245,19 @@ namespace DungeonRun
             musicLightWorldSrc = content.Load<SoundEffect>(@"MusicLightWorld");
             musicLightWorld = musicLightWorldSrc.CreateInstance();
             musicLightWorld.IsLooped = true;
+
+
+
+            musicCrowdWaitingSrc = content.Load<SoundEffect>(@"MusicCrowdWaiting");
+            musicCrowdWaiting = musicCrowdWaitingSrc.CreateInstance();
+            musicCrowdWaiting.IsLooped = true;
+
+            musicCrowdFightingSrc = content.Load<SoundEffect>(@"MusicCrowdFighting");
+            musicCrowdFighting = musicCrowdFightingSrc.CreateInstance();
+            musicCrowdFighting.IsLooped = true;
+
+
+
 
             #endregion
 
@@ -371,6 +396,9 @@ namespace DungeonRun
             SoundEffect castBombosSrc = content.Load<SoundEffect>(@"SoundCastBombos");
             sfxCastBombos = castBombosSrc.CreateInstance();
             //
+            SoundEffect goldSpamSrc = content.Load<SoundEffect>(@"SoundGoldSpam");
+            sfxGoldSpam = goldSpamSrc.CreateInstance();
+
 
             #endregion
 

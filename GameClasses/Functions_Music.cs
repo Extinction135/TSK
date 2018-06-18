@@ -71,7 +71,8 @@ namespace DungeonRun
                     //if there is no track to load, do nothing and wait
                     if (trackToLoad == Music.None) { }
                     else
-                    {   //determine the track to load based on the enum
+                    {   
+                        //determine the track to load based on the enum
                         if (trackToLoad == Music.DungeonA)
                         { currentMusic = Assets.musicDungeonA; Assets.musicDrums.Play(); }
                         else if (trackToLoad == Music.DungeonB)
@@ -79,20 +80,34 @@ namespace DungeonRun
                         else if (trackToLoad == Music.DungeonC)
                         { currentMusic = Assets.musicDungeonC; Assets.musicDrums.Play(); }
                         //
-                        else if (trackToLoad == Music.Title)
-                        { currentMusic = Assets.musicTitle; Assets.musicDrums.Stop(); }
                         else if (trackToLoad == Music.LightWorld)
                         { currentMusic = Assets.musicLightWorld; Assets.musicDrums.Play(); }
-                        else if (trackToLoad == Music.Boss) 
-                        { currentMusic = Assets.musicBoss; } //drums already playing
+                        else if (trackToLoad == Music.CrowdFighting)
+                        { currentMusic = Assets.musicCrowdFighting; Assets.musicDrums.Play(); }
+                        else if (trackToLoad == Music.CrowdWaiting)
+                        { currentMusic = Assets.musicCrowdWaiting; Assets.musicDrums.Play(); }
+                        //title should never play drums
+                        else if (trackToLoad == Music.Title)
+                        { currentMusic = Assets.musicTitle; Assets.musicDrums.Stop(); }
+                        else if (trackToLoad == Music.Boss){ currentMusic = Assets.musicBoss; } 
+
+
+
 
                         //stop the other music tracks from playing
                         if (currentMusic != Assets.musicDungeonA) { Assets.musicDungeonA.Stop(); }
                         if (currentMusic != Assets.musicDungeonB) { Assets.musicDungeonB.Stop(); }
                         if (currentMusic != Assets.musicDungeonC) { Assets.musicDungeonC.Stop(); }
-                        if (currentMusic != Assets.musicTitle) { Assets.musicTitle.Stop(); }
+                        //
                         if (currentMusic != Assets.musicLightWorld) { Assets.musicLightWorld.Stop(); }
+                        if (currentMusic != Assets.musicCrowdFighting) { Assets.musicCrowdFighting.Stop(); }
+                        if (currentMusic != Assets.musicCrowdWaiting) { Assets.musicCrowdWaiting.Stop(); }
+                        //
+                        if (currentMusic != Assets.musicTitle) { Assets.musicTitle.Stop(); }
                         if (currentMusic != Assets.musicBoss) { Assets.musicBoss.Stop(); }
+
+
+
 
                         //play the music
                         currentMusic.Play();

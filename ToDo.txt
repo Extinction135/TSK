@@ -66,36 +66,26 @@ v0.74 - The Colliseum & Challenges
 
 
 
+Colliseum Sfx + Music
 
+added gold spam soundfx to colliseum reward
+routine, happening during reward dialog with judge.
 
-Colliseum++
+changed vendor screen purchase routine completion
+to use gold spam soundfx, instead of beat dungeon sfx.
 
-improved transition from colliseum pit fight.
-hero either wins or dies, and both transitions are
-now much smoother. if hero dies, he spins around, falls
-to the ground, and the screen fades to black slowly.
-the summary screen is popped up, then player is
-kicked back to overworld screen, where link sits dejectedly
-at the colliseum location, which is awesome.
-if hero wins, then the judge pops the dialog as normal,
-but the screen then fades out to black, then loads the
-colliseum pit as normal.
+found and modified fighting and waiting crowd
+soundtracks for interior colliseum pit.
+added to assets, game, tested, feelsGoodMan.jpg
+totally satisfied with colliseum experience,
+for right now. 
 
-removed colliseum dialogs for challenge accepted and failed.
-these dialogs are no longer used.
-added various decorations to pit entrance level,
-so it doesn't look so bare.
-playtested by me, also playtested by 
-1st official "not-me playtester" Justin.
+updated UWP to match Dx, set game into release
+mode for this commit as well.
 
-Boomerang++
-fixed a bug with boomerang where the hit actor was
-inheriting the direction of the boomerang's sprite
-(which was always down), instead of the boomerang's
-moving direction, via obj.compMove.direction. now
-hit actors respond as expected and the boomerang
-isn't a nightmare when you hit an actor from 
-the south (double push towards hero).
+notes: this commit is essentially 0.74, but i
+want to polish some things and record a playthru
+with some voice over.
 
 
 
@@ -105,41 +95,6 @@ the south (double push towards hero).
 
 
 
-
-we should have a 'spam money' soundfx that plays
-during challenge complete screen, like player won jackpot.
-
-
-
-
-
-
-Colliseum Sfx and Music
-
-colliseum exterior should be silent, just ambient insects.
-this is a minute or two, with very slow fade in/outs, so the repeat
-happens during silence.
-
-inside the colliseum, there should be crowd murmurs, like alot of
-people are trying to be quiet in a large space. again, the fade in/out
-here is very slow.
-
-during fighting, there should be rowdy crowd sounds on repeat, 
-plus rhythmic ambient drums. this will have to repeat either
-between beats, or via a silent transition.
-
-the crowd should cheer each time an enemy is defeated.
-the crowd should boo each time the player takes damage.
-
-should feel like a colliseum, without any fighting.
-
-
-
-
-
-
-the words "KILL" should flash across the screen 
-at the start of the colliseum challenge.
 
 
 
@@ -160,16 +115,14 @@ at the start of the colliseum challenge.
 
 
 
+the words "KILL" should flash across the screen 
+at the start of the colliseum challenge.
+
 
 Boomerang++
 improve boomerang sprites based on layer dev/more stuff in art.master
 this adds a diagonal frame, plus marks a boomerangs side for
 easier visual rotational tracking.
-
-boomerang is also pushing actors it hits south,
-if the approach is from the south, which is wrong.
-it should push actors the opposite direction.
-this should be done via Functions_Direction.GetOppositeDirection().
 
 boomerangs should trigger barrels, and seekerExploders.
 
@@ -283,7 +236,7 @@ environments + levels
 
 record a gif showing off colliseum fights for 0.74.
 
-
+update versions page to include 0.7.
 
 
 

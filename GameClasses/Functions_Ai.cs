@@ -680,17 +680,14 @@ namespace DungeonRun
                     if (Functions_Colliseum.currentChallenge == Challenges.Blobs)
                     {   //reward hero with gold
                         PlayerData.current.gold += 25;
-                        Assets.Play(Assets.sfxKeyPickup); //audibly cue player
                     }
                     else if(Functions_Colliseum.currentChallenge == Challenges.Minibosses)
                     {   //reward hero with gold
                         PlayerData.current.gold += 99;
-                        Assets.Play(Assets.sfxKeyPickup); //audibly cue player
                     }
                     else if (Functions_Colliseum.currentChallenge == Challenges.Bosses)
                     {   //reward hero with gold
                         PlayerData.current.gold += 99;
-                        Assets.Play(Assets.sfxKeyPickup); //audibly cue player
                     }
 
                     #endregion
@@ -703,6 +700,8 @@ namespace DungeonRun
 
                     //pop a new dialog screen telling player they completed challenge
                     ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Colliseum_Challenge_Complete));
+                    Assets.Play(Assets.sfxGoldSpam); //audibly cue player they were rewarded
+                    Assets.Play(Assets.sfxKeyPickup); //oh no, too spicy!
                 }
             }
 

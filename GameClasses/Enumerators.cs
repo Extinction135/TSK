@@ -123,6 +123,10 @@ namespace DungeonRun
 
         Title,
         LightWorld,
+
+        CrowdWaiting,
+        CrowdFighting,
+
         None
     }
 

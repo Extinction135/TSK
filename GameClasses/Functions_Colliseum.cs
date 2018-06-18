@@ -123,6 +123,9 @@ namespace DungeonRun
                 Functions_Level.currentRoom.rec.Y + 16 * 14 - 8 - 4); //against back wall
             objRef.direction = Direction.Down;
             Functions_GameObject.SetType(objRef, ObjType.Judge_Colliseum);
+
+            //change the crowd's atmosphere to be more aggressive
+            Functions_Music.PlayMusic(Music.CrowdFighting);
         }
 
         

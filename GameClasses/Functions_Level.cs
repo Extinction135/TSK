@@ -103,7 +103,7 @@ namespace DungeonRun
             }
             else if (Level.ID == LevelID.ColliseumPit)
             {
-                Functions_Music.PlayMusic(Music.LightWorld);
+                Functions_Music.PlayMusic(Music.CrowdWaiting);
                 Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.ColliseumPit);
                 Level.rooms.Add(field);
             }

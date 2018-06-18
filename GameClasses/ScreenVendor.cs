@@ -455,8 +455,9 @@ namespace DungeonRun
         public void DialogPurchaseThankyou()
         {
             Widgets.Dialog.DisplayDialog(vendorRef.type, "Thanks!",
-                "thankyou for your purchase!");
-            Assets.Play(Assets.sfxBeatDungeon);
+                "thank you for your purchase!");
+            //Assets.Play(Assets.sfxBeatDungeon);
+            Assets.Play(Assets.sfxGoldSpam);
         }
 
         public void DialogCarryingMaxAmount()

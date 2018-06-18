@@ -551,3 +551,21 @@
 /processorParam:TextureFormat=Color
 /build:ColliseumLevelSheet.png
 
+#begin MusicCrowdFighting.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:MusicCrowdFighting.ogg
+
+#begin MusicCrowdWaiting.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:MusicCrowdWaiting.ogg
+
+#begin SoundGoldSpam.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundGoldSpam.wav
+
