@@ -69,43 +69,16 @@ v0.74 - The Colliseum & Challenges
 
 
 
-Boomerang++
-
-improved boomerang sprites, now black
-with a white marker for easier visual
-tracking. updated animFrames for boomerang.
-MUCH smoother spinning animation.
-
-updated boomerangs to kill seekerExploder 
-enemies, making them a level weaker than
-normal enemies.
-
-increased boomerang's initial velocity
-for both diagonal and cardinal directions.
-increased bounced velocity off objects as
-well.
-
-(cardinal, diagonal, bounce)
-prev values: 5.0, 2.5, 3.0.
-new values: 6.0, 3.0, 4.0
-feels much better.
-
-fixed boomerang to only create an attention
-particle on the initial hit, and not on
-hits while in return mode to hero.
-this fixes visual bug where it can create 
-a ton of pops when hitting objs from 
-certain angles / directions.
 
 
+KitchenSink++
 
+when hero pushes a shelf against a back wall,
+the backwall sorts over the shelf. 
+and all other sinks, stoves, etc..
+tested and fixed.
 
-
-
-
-
-
-
+updated uwp's entity sheet.
 
 
 
@@ -152,11 +125,7 @@ we should have a 'rat hole' that randomly spawns
 rats in front of it. we can add this to a room,
 and the room now has constant enemies.
 
-Sorting++
-when hero pushes a shelf against a back wall,
-the backwall sorts over the shelf. 
-and all other sinks, stoves, etc..
-so fix this.
+
 
 
 

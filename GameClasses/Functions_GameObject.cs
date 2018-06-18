@@ -1481,7 +1481,7 @@ namespace DungeonRun
                 Obj.compSprite.texture = Assets.forestLevelSheet;
                 Obj.canBeSaved = true;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
-                Obj.compSprite.zOffset = 4; //sort over sidewalls
+                Obj.compSprite.zOffset = 0; //sort over sidewalls
                 //note - these hitboxes are custom for a reason
                 Obj.compCollision.rec.Width = 16; Obj.compCollision.offsetX = -8;
                 Obj.compCollision.rec.Height = 4; Obj.compCollision.offsetY = +4;
