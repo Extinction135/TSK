@@ -1,24 +1,20 @@
+This project is codenamed DungeonRun.  
+Please don't tell anyone about this.  
+  
+
 # DungeonRun
-2D Zelda. RandomDungeons++. Monogame 3.6. XboxOne/Win7.8.10.  
-+ DirectX version uses .Net 4.5 & SharpDX.  
-+ UWP version uses .NetCore & SharpDX.  
-+ OpenGL port coming soon.  
+An unreleased sequel to The Legend of Zelda: A Link to the Past.  
+ 
++ Found in a purchased shipping container from Portugal, the rom was originally written for the gameboy, sometime around 1995-1997. 
++ The decision was made to port the rom's codebase to Monogame, in the hopes of running the rom on a wide array of modern hardware.  
++ It's very likely that Nintendo will try to shut this project down, so I ask that you please don't tell anyone about this project until the port is complete (version 1.0).  
 
 
-## Version 0.7.3 - 2018.05.31  
-![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/0p73.gif)  
-
-v0.73 video: https://youtu.be/armZUYhgC6E   
-
-
-## Overview  
-+ Gameplay and Design is discussed in Design.md.  
-+ Daily tasks/commits are planned and organized in ToDo.txt.  
-+ The history of commits is available back to the initial push.  
+## Version 0.73 - 2018.05.31  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/0p73.gif)   
 
 
 ## Playing the Game
-+ Version 0.73 is now available and awesome.  
 + DirectX: https://www.dropbox.com/s/myzz0h6y0v7vjgp/DungeonRun0p73_DirectX.zip?dl=0   
 + UWP: https://www.dropbox.com/s/8iormmmm5yjo8aq/DungeonRun0p73_UWP.zip?dl=0  
 + You can sideload the UWP version onto your Xbox one using this guide: https://gbatemp.net/threads/how-to-sideload-dungeonrun-indie-game-on-xbox-one.470374/  
@@ -27,7 +23,7 @@ v0.73 video: https://youtu.be/armZUYhgC6E
 ## Dependencies
 + You'll need a compatible gamepad (Xbox360 or XboxOne controller) to play.
 + You'll also need .Net4.5, and possibly SharpDx and Monogame installed.
-+ The game demo should run fine on Windows 7, 8, and 10, and Xbox One.
++ The game has been tested to run on Windows 7, 8, and 10, and Xbox1.
 + Alternatively, you can clone the repo and build the game yourself.
 + You'll need Monogame and a compatible IDE installed to build it.
 + All the information you need is provided in the Getting Started Guide.
@@ -43,18 +39,11 @@ v0.73 video: https://youtu.be/armZUYhgC6E
 + Start brings up the Inventory Screen.
 
 
-## What's Available in the Current Version
-+ 1 Randomly Generated Dungeon (with about 35 handmade rooms) with multiple enemies, a miniboss, and a 3 phase dungeon boss.  
-+ 15 items (boomerang, bomb, bow + arrow, 3 bottles, fireball magic, bombos magic, lightning bolt magic, sword, net, shovel, tunic, shawl, & ring).  
-+ 3 levels, with vendors, npcs, and 1 side quest. And a dog companion. And chickens.  
-
-
 ## Contributing 
-+ Development is very active and messy right now.  
-+ This is a passion project of mine, I'm not doing this for money.  
++ Development is very active and messy right now.    
 + Please, please, please help me keep this quiet until it's done (version 1.0).  
-+ If too many people notice this, it's likely Nintendo will notice this as well.   
-+ And Nintendo has a habit of sending Cease & Desist letters to fan games...  
++ If too many people notice this, it's likely Nintendo will notice as well.   
++ Nintendo has a habit of suing and sending Cease & Desist letters...  
 + For Real: https://gamingreinvented.com/nintendoarticles/top-ten-nintendo-fanworks-cancelled-due-legal-complaints/  
 
 

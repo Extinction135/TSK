@@ -72,31 +72,6 @@ v0.74 - The Colliseum & Challenges
 
 
 Pets++
-
-the hero's pet is reserved as Pool.actorPool[1],
-however GetRoomObj() was checking from index 1,
-instead of 2. so it would return the hero's pet
-to a game system, which would then turn little
-stinky doggo into a wall or something. oops.
-
-updated GetRoomObj() to start searching from
-index 2, skipping hero and hero's pet (0, 1).
-playtested.
-
-pets work again, but pets can't swim - 
-so for now they walk on water. yep. ok.
-
-
-
-
-
-
-
-
-
-
-
-Pets++
 create swimming movement frames for pets.
 should be same pixels - just partially submerged
 
@@ -125,13 +100,13 @@ if miniboss dies in hub room, and hero doesn't have map.
 *map sprite should bounce and be SUPER noticeable.
 the player should have to choose NOT to pick it up.
 
-
-
-
-
 MapScreen++
 add lttp's map title to dungeon map screen, outside of
 the scroll sprite. rename map window title to nothing.
+
+
+
+
 
 Reading Signs
 we need to be able to read signposts properly
@@ -144,12 +119,20 @@ a method called ReadSign(GameObject SignPost).
 
 
 
+
+
+
 Implement Cane of Somara (or whatever)
 this is the cane that creates blocks that are pushable.
 this makes it MUCH easier to get thru dungeons, as many
 rooms rely on floor switches, which link can simply
 create a block over. if a block is created ontop of
 a blocking roomObject, the block ...
+
+
+
+
+
 
 Rat Hole
 we should have a 'rat hole' that randomly spawns
@@ -160,11 +143,26 @@ and the room now has constant enemies.
 
 
 
+Tattered Shawl
+the shawl could change hero's default
+friction value, to be lesser than normal,
+making it feel like he's moving faster - kinda
+like on ice.
+*currently, it does nothing.
+
+Old Tunic
+what does this do? it should have a purpose.
+
+
+
+
+
+
 
 
 ------ RELEASE 0.74 --------
 
-try to record a playthru with vo, and if you can
+try to record a playthru with vo.. and if you can,
 record editing levels with the editor as well.
 
 create the gameplay page in the repo, and start
