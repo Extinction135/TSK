@@ -1,6 +1,27 @@
 
 
 
+MetalGear++
+
+pickup an object. press x to enter 'sneaking' mode.
+while sneaking, link crouches down with object mostly
+covering him, moving very slowly. enemies cannot see link
+while he is sneaking in this mode. every 255 frames,
+kick link out of sneaking mode, so player has to keep
+managing the sneak via X button press.
+
+as of now, we're only checking if link is underwater.
+we should model this instead using a 'hidden' boolean.
+if link is hidden, enemies can't see him, dont chase/attack him.
+if link is underwater, he is hidden.
+if link is sneaking, he is hidden.
+
+
+
+
+
+
+
 Notes widget - local to editor menu
 
 

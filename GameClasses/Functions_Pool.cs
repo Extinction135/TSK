@@ -37,7 +37,7 @@ namespace DungeonRun
 
         public static GameObject GetRoomObj()
         {   //skip roomObj 1, cause it's the hero's pet
-            for (Pool.roomObjCounter = 1; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
+            for (Pool.roomObjCounter = 2; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
             {   //found an inactive obj to return
                 if (Pool.roomObjPool[Pool.roomObjCounter].active == false)
                 {   //reset obj to default state, hide offscreen, return it

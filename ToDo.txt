@@ -71,17 +71,45 @@ v0.74 - The Colliseum & Challenges
 
 
 
-KitchenSink++
+Pets++
 
-when hero pushes a shelf against a back wall,
-the backwall sorts over the shelf. 
-and all other sinks, stoves, etc..
-tested and fixed.
+the hero's pet is reserved as Pool.actorPool[1],
+however GetRoomObj() was checking from index 1,
+instead of 2. so it would return the hero's pet
+to a game system, which would then turn little
+stinky doggo into a wall or something. oops.
 
-updated uwp's entity sheet.
+updated GetRoomObj() to start searching from
+index 2, skipping hero and hero's pet (0, 1).
+playtested.
+
+pets work again, but pets can't swim - 
+so for now they walk on water. yep. ok.
 
 
 
+
+
+
+
+
+
+
+
+Pets++
+create swimming movement frames for pets.
+should be same pixels - just partially submerged
+
+
+Boomerangs++
+boomerangs should push rats, turtles, crabs..
+we should really be modeling this as an objectGroup
+we need an ObjGroup value for enemies,
+then we can just boomerang check against enemy objGroup
+..this might simplify some routines in the future as well
+
+update the boomerang ui sprite to look like the ingame
+version: black with a white marker
 
 
 
@@ -89,10 +117,17 @@ updated uwp's entity sheet.
 
 
 Map++
-Make the map a pickup obj with a liftime of 0 (forever).
+Make the map a roomObj.
 link colliding with it should set reward state, pop map reward
 particle, flip map boolean. miniboss should spawn map pickup obj,
 if miniboss dies in hub room, and hero doesn't have map.
+
+*map sprite should bounce and be SUPER noticeable.
+the player should have to choose NOT to pick it up.
+
+
+
+
 
 MapScreen++
 add lttp's map title to dungeon map screen, outside of
@@ -107,11 +142,7 @@ and it can only say one thing, because it's based
 on the room.id. and this will be contained within
 a method called ReadSign(GameObject SignPost).
 
-Pets++
-pool.HerosPet is not protected by getActor() and other routines,
-so it is periodically overwritten. if we fix the routines to
-respect the pets position in the list, then pets should work fine
-again.
+
 
 Implement Cane of Somara (or whatever)
 this is the cane that creates blocks that are pushable.
@@ -125,27 +156,6 @@ we should have a 'rat hole' that randomly spawns
 rats in front of it. we can add this to a room,
 and the room now has constant enemies.
 
-
-
-
-
-
-
-
-MetalGear++
-
-pickup an object. press x to enter 'sneaking' mode.
-while sneaking, link crouches down with object mostly
-covering him, moving very slowly. enemies cannot see link
-while he is sneaking in this mode. every 255 frames,
-kick link out of sneaking mode, so player has to keep
-managing the sneak via X button press.
-
-as of now, we're only checking if link is underwater.
-we should model this instead using a 'hidden' boolean.
-if link is hidden, enemies can't see him, dont chase/attack him.
-if link is underwater, he is hidden.
-if link is sneaking, he is hidden.
 
 
 
