@@ -321,7 +321,7 @@ namespace DungeonRun
 
             #region Pet adoption menuItems
 
-            else if (Type == MenuItemType.PetStinkyDog)
+            else if (Type == MenuItemType.PetDog_Gray)
             {
                 MenuItem.name = "Stinky Dog";
                 MenuItem.description = "A stinky, but loveable \ndog companion.";

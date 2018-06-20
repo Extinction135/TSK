@@ -387,7 +387,7 @@ namespace DungeonRun
 
                 #region Pets
 
-                else if (Item.type == MenuItemType.PetStinkyDog)
+                else if (Item.type == MenuItemType.PetDog_Gray)
                 { CompleteAdoption(Item); }
 
                 #endregion

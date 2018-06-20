@@ -553,10 +553,12 @@ namespace DungeonRun
         }
 
         public static void SpawnPet()
-        {   //spawn the hero's pet based on type
-            if (PlayerData.current.petType == MenuItemType.PetStinkyDog)
+        {   //spawn the hero's dog
+            if (PlayerData.current.petType != MenuItemType.Unknown)
             {   
                 Functions_GameObject.SetType(Pool.herosPet, ObjType.Pet_Dog);
+                Pool.herosPet.compAnim.currentAnimation = AnimationFrames.Pet_Dog_Idle;
+
                 Pool.herosPet.compCollision.blocking = false; //pet doesn't block
                 Pool.herosPet.active = true; //pet is active
                 Functions_Movement.Teleport(

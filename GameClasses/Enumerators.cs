@@ -637,8 +637,7 @@ namespace DungeonRun
 
 
         //pet menuItems
-        PetStinkyDog,
-        PetChicken,
+        PetDog_Gray,
 
         //challenge menuItems
         Challenge_Blobs,

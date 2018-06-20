@@ -35,19 +35,14 @@ Today:
 
 
 
-Chickens++
-
-moved chicken to forest sheet.
-updated chicken's obj def.
-this allows the pet sheet to actually
-contain only pets, which will expand now.
-removed unused art files from /art.
-
-
-
-
-
 Pets++
+
+removed pet chicken menuItem from the game.
+improved dog jumping animation.
+added white dog sprite for future update.
+
+
+
 
 pets sheet should just switch animFrames,
 the dog object stays the same in the game.
