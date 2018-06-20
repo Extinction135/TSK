@@ -2421,7 +2421,7 @@ namespace DungeonRun
 
             #region Pets
 
-            else if (Type == ObjType.Pet_Chicken || Type == ObjType.Pet_Dog)
+            else if (Type == ObjType.Pet_Dog)
             {   //smaller than normal 16x16 objs
                 Obj.compCollision.offsetX = -4; Obj.compCollision.rec.Width = 8;
                 Obj.compCollision.offsetY = -4; Obj.compCollision.rec.Height = 8;
@@ -2430,14 +2430,27 @@ namespace DungeonRun
                 Obj.lifetime = 0; //stay around forever
                 Obj.compMove.moveable = true; //obj is moveable by belts
                 Obj.getsAI = true; //obj gets ai too (track to hero, set anim frames)
-                //Obj.compCollision.blocking = false; //pets block!
+                Obj.compCollision.blocking = false; //dont block
                 Obj.compSprite.texture = Assets.petsSheet;
                 Obj.canBeSaved = true;
-                //set initial animation frames for pets
-                if (Type == ObjType.Pet_Dog)
-                { Obj.compAnim.currentAnimation = AnimationFrames.Pet_Dog_Idle; }
-                else if (Type == ObjType.Pet_Chicken)
-                { Obj.compAnim.currentAnimation = AnimationFrames.Pet_Chicken_Idle; }
+                //set initial animation frame
+                Obj.compAnim.currentAnimation = AnimationFrames.Pet_Dog_Idle;
+            }
+            else if(Type == ObjType.Pet_Chicken)
+            {   //smaller than normal 16x16 objs
+                Obj.compCollision.offsetX = -4; Obj.compCollision.rec.Width = 8;
+                Obj.compCollision.offsetY = -4; Obj.compCollision.rec.Height = 8;
+                Obj.compSprite.zOffset = -8; //pets are lower to the ground too
+
+                Obj.lifetime = 0; //stay around forever
+                Obj.compMove.moveable = true; //obj is moveable by belts
+                Obj.getsAI = true; //obj gets ai too (track to hero, set anim frames)
+
+                Obj.compCollision.blocking = false; //dont block
+                Obj.compSprite.texture = Assets.forestLevelSheet;
+                Obj.canBeSaved = true;
+                //set initial animation frame
+                Obj.compAnim.currentAnimation = AnimationFrames.Pet_Chicken_Idle;
             }
 
             #endregion

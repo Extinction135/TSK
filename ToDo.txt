@@ -35,21 +35,20 @@ Today:
 
 
 
-Pet Swimming
+Chickens++
 
-created swimming movement sprites for dog pet.
-added inWater and underWater booleans to gameObject class.
-this allows objects to be modeled as in the water or
-underwater - as that's coming in the future as well.
-updated interaction routines to allow dog swimming.
-
-
+moved chicken to forest sheet.
+updated chicken's obj def.
+this allows the pet sheet to actually
+contain only pets, which will expand now.
+removed unused art files from /art.
 
 
 
-Chicken ReOrg
 
-move chicken to world sheet.
+
+Pets++
+
 pets sheet should just switch animFrames,
 the dog object stays the same in the game.
 which means we can pallette swap and make a
