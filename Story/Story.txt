@@ -1,7 +1,19 @@
 
 
-can the death of shahasrala be the cause of the tournament?
-can we lead with this tragic event? it's a good hook.
+
+
+
+
+
+Overall Theme
+
+"along the path of killing the ones you hate,
+you will kill the ones you love, and ultimately
+end up alone, with everything you want."
+
+
+
+
 
 
 
@@ -10,19 +22,14 @@ can we lead with this tragic event? it's a good hook.
 
 #Backstory
 
-after link touches the triforce, all paths to the dark world
-were sealed. Hyrule entered into a state of unparalled prosperity,
-a golden age, which ended suddenly with the invasion of the Kondo clan.
+After Link touched the Triforce, he disappeared.
+All paths to the dark world vanished, and
+Hyrule entered into a new Golden Age of prosperity.
+A golden age, which ended suddenly with a War.
 
-unprepared for such a battle, Hyrule fell to the Kondo clan,
-and Princess Zelda married King Masa, the Kondo Clan's leader.
-When King Masa learned of Link, a reward was put out for him.
-Link fled his homeland, Hyrule, sailing across the seas.
-
-For years, Link simply traveled. Trying to forget.
-Then one day he sees the Hyrule Tournament Poster.
-
-Meanwhile in Hyrule...
+Unprepared for battle, Hyrule fell to the Kondo clan,
+and Princess Zelda married King Masa, the Kondo Clan's leader,
+as a peace offering between the two nations.
 Hyrule's inhabitants rebelled, and martial law was declared.
 The people turned against the king, and the queen, and were met
 with crushing force. Kakariko village was razed to the ground,
@@ -51,13 +58,11 @@ wasn't the end. Where one could live forever.. The Dark World...
 
 
 
-#Scene1 - Spark
+#Cutscene - Link's Return
 
-Link finds a poster advertising The Shadow King's Tournament.
-The Winner receives richs, land, and a meeting with the King and Queen.
-A meeting with Queen Zelda. After 20 years. Links decides to go.
-link travels back to hyrule to compete in the King's tournament.
-
+link standing on the front of a large boat, looking towards an island.
+boat sails slowly, wind blowing. distance shot.
+"after 25 years, link returns to hyrule..."
 
 
 
@@ -66,33 +71,35 @@ link travels back to hyrule to compete in the King's tournament.
 
 
 
-#Scene2 - Training
+Section 1
 
-Link arrives at the Coliseum. This is where 'training' happens.
+#Landing
 
-Quest: Complete Training
+Link arrives at Hyrule island, starting on the ship.
+Player is given no direction at all, like Zelda 1.
+This is a game about exploration, secrets, and layers of deceit.
+So, give the player an honest first impression: you're on you're own.
+The ship captain should tell link exactly that:
+'from here on out, traveler - you're on you're own.'
 
-"you know what you're doing, right?" - colliseum npc
-A) yes B) no, teach me -> training dialog
+*in link's inventory is a poster for hyrule's tournament.
+*this tournament decides the new 'hero of hyrule'
+*the tournament takes place at the colliseum
+*viewing the poster tells the player all the info they need to know
+*this also tells player that their inventory screen is actually important
 
-*modifier active: infinite health
-this teaches the player the basics of the game, like movement, attacking, item usage.
-player fights thru a few rooms leading up to a simple boss.
-these rooms teach the player BASICS about items too - using boomerangs to trigger things for example.
-of using bombs to blow statues up. etc..
-upon beating the boss, link is rewarded with the Colliseum Pass.
-this gives Link access to the other features of the Colliseum.
-more importantly, this ends the level and opens the overworld map up to the player.
-link spawns at the colliseum.
-
-***this is where we 'jump' to if we skip the tutorial.
+link has internal dialog with himself & player:
+'a new hero of hyrule?..'
+'i'm the only hero hyrule needs...'
 
 
-#Scene3 - OPEN MAP
+
+#OPEN MAP
+
 At this point, the player can do ALOT of stuff non-linearly.
 So the story has to split in multiple linear storylines that don't really
 overlap or touch at all, otherwise they can affect each other and it gets
-really complicated really fast, and that's hard to do in code.. honestly.
+really complicated really fast, and that's hard to do well.
 
 there are many other places open on the map initially.
 but some of them are closed, the inside of the castle city, for example.
@@ -100,47 +107,33 @@ the city gate will be closed until link wins the tournament.
 at that point, the royal city is open.	
 
 
-
-
-
-
-
-
-
-
-
-
-
 #MAIN PLOT
+
 to enter hyrule's tournament, link must be qualified as a
-true hyrulian warrior by possessing crystals from the 3 world dungeons.
+true hyrulian warrior by possessing pendants from the 3 world dungeons.
+or, at least that's what the tournament NPC tells link.
 
+the 3 dungeons are:
 forest
-cave (mountain)
-water
-(desert dungeon is optional)
+cave/mountain
+desert
 
-once link is a hyrulian warrior, he is granted access to the king's tournament.
-
-
-
-
-
-however, this tournament becomes easier with each additional crystal link collects.
-for example, link will fight the bosses from the swamp, graveyard, and ice dungeons
-if he doesn't have those crystals. so, completing those optional dungeons makes
-the 3rd act climax a little easier to get through. however, these dungeons are
-in the dark world, and they are noticeably harder than their light world equivalents.
-
-swamp
-graveyard
-ice
+this 3 pendant lightworld openmap approach is a BIG BITE from lttp.
+once link collects all 3 pendants, he talks to the tournament NPC
+again, who tells him:
+'i was just kidding about those 3 pendants. it's really just
+99 rupees to buy the colliseum pass. cool trinkets, tho.'
+- and then the player has to pay 99 rupees.
+*note: the player DOES have to have the pendants to get into the 
+tournament. the proper dialog won't trigger without them. this
+dialog is really just altering the player's trust in the game, 
+and getting the player to realize that they shouldn't trust NPCs,
+situations are more adult and misleading.
+**the pendants serve a different purpose later in the game,
+so they stay in the hero's inventory for now.
 
 
-
-
-
-
+#King'sTournament
 
 king's tournament is a series of boss fights, and MOST of these fights are against
 bosses that only exist in this tournament, so the player can't 'train' beforehand.
@@ -149,30 +142,29 @@ they have to adapt or grind. these bosses are specific and unique.
 After the boss battles, link 'wins' the tournament.
 * the city gate opens. city levels become available.
 * royal vendors become available.
+* link is told to go see the king for his reward.
 
 once link completes the tournament, defeating the last boss, the castle is
-made available to Link. this should be like Willy Wonka's chocolate factory -
-a mysterious, but frankly scary place where weird evil stuff happens.
+made available to Link. in link's inventory is an invitation to speak with
+the king. the objective is for link to get to the throne room, where the
+king and queen zelda are waiting.
 
-entering into the castle, link finds that the castle servants are all dark world
-demons, and they attack him as if he were in the dark world, because the castle
-is essentially part of the dark world at this point. so in the dark world, it's the
-same as it is in the light world. the light world version is 'gone'.
-**the castle acts as the primary 'gateway' between the dark and light worlds**
 
-link fights through the castle to the throne room to face the King and Queen.
 
-Prior to meeting, link can access the royal vendors, where special loot exists.
-link meets with the queen and king in the castle, where the king challenges link to a duel.
+#KingFight
+
+link meets with the queen and king in the castle, 
+where the king challenges link to a duel.
 (keep in mind zelda is controlling the king)
 
-k: 'zelda has told me the truth, link.'
-k: 'how she helped you fight ganon...'
-k: 'how you fell in love with her...'
-k: 'your childish affections amuse me, link.'
-k: 'do you think she's yours?' (this is zelda asking link if he loves her)
-k: 'do you still love her? did you return to see her? hahaha..' 
-k: 'she's my wife and your queen, peasant. en garde!'
+k: 'zelda has told me the truth, link.' (zelda is rewriting history)
+k: 'how she helped you...' (how she was powerless)
+k: 'how you were ganon's pawn...' (she was ganon's helpless pawn)
+k: 'how you fell in love with her...' (she loved link, and wanted his love in return)
+k: 'your story amuses me, link.' (she wants to be part of link's story)
+k: 'a peasant boy with magical toys..' (but link isn't of royal blood)
+k: 'let's see if you have any royal blood in you!' (but link isn't of royal blood!!!)
+k: 'en garde!' (get ready to fight)
 
 link battles the king.
 keep in mind that Zelda has engineered this entire encounter and is speaking thru
@@ -184,42 +176,153 @@ reading this initially, it just reads like a dumb video game character.
 once you know the backstory and context, it's really Zelda toying with Link,
 twisting facts, making things one sided, removing his importance / status, etc..
 
-when the king dies, Zelda and The Dark Queen battle for psycological control
-for a moment in a very bipolar dialog that exposes her mental state more obviously.
-- this defeat is annoying for the dark queen. 
-- this defeat is joyous for queen zelda, who pleads with link to keep fighting and 
-rescue her from the dark queen's grasp. 
-this bi-polar dialog should be presented with two different queen sprites to really 
-emphasize that these are TWO different people occupying the same body.
+*link defeats the king*
 
-dq: 'well look at the peasant boy, with his fancy toys.'
-dq: 'hasn't he grown into quite the hero...'
-z:	'link! help! i've lost control-'
-dq:	'oh my. such outbursts won't be tolerated'
-(the dark queen damages herself)
+k: 'i trusted her, link...' (the REAL king speaks, then dies)
+*here the king is telling link that the king was decieved by zelda.
+and that ultimately was his un-doing.
+
+(zelda begins to re-spin the narrative)
+z: 'i'm sorry to have put you through that, link...'
+z: 'i had to make sure you were still the true hero of hyrule..'
+z: 'the truth is.. difficult to admit.. the king was possessed by dark magic..'
+z: 'the same dark magic that flowed from the triforce so many years ago..'
+z: 'i fear the darkworld has grown powerful again..'
+z: 'but instead of power, this time ganon has chosen to use cunning and deceit..'
+z: 'trust no-one link, except me. ganon could possess any of them.'
+z: 'do you trust me, link? do you still love me?'
+
+l: 'zelda... you seem very different...'
+z: 'if you don't trust me, then just say so, link...'
+l: 'zelda, that's not what i'm saying...'
+z: 'if you don't trust me, link, then how do i know ganon hasn't possessed you?'
+l: 'zelda, calm down. i never said i don't trust you..'
+z: 'you've said all you needed to say, link - or ganon? whoever you are..'
+l: 'zelda - what's happened to you? to hyrule?'
+z: 'it's not about what's already happened, link...'
+z: 'it's about what's going to happen... what's coming...'
+z: 'en garde, my love.'
+
+*zelda dissappears*
+*explosions are created all around the room until link dies*
+the level.id is set to be the dark world castle, and the level
+exit action is set to level. eventually, link dies, progressing
+the story to the next chapter: The Dark World.
+
+yeah, zelda literally kills link (instead of link killing light
+world ganon to get to dark world). 
+this completes section 1 of the game.
+
+*note that link has been killed at this point, and is technically dead*
+
+
+
+
+
+
+
+
+
+
+
+
+Transition
+
+black screen.
+after a while, a dialog pops up - it's shahasrala's face
+telling link to 'wake up, link...'
+'wake up, link...'
+'wake up link!'
+
+
+
+
+
+
+
+
+
+
+Section 2 - The Dark World
+
+Link 'wakes up' in the dark world.
+he is in bed at shahasrala's house, who is a ghost.
+s: 'i'm glad you chose to live. you were dead for a few days.'
+shahasrala explains the true plot of the game to link:
+
+years ago, zelda sacrificed shahasrala to gain dark power.
+sha's spirit was able to live on in the dark world in ethereal form.
+he suspected that zelda was possessed by ganon's spirit,
+slowly turning her into his puppet. then using zelda, ganon controlled
+the king, and finally hyrule. ganon is dead, yes. but his spirit lives
+on in the AfterWorld, where he can still telepathically contact
+other people. even though ganon's spirit is weak, he is still pursuing
+pieces of the triforce. if ganon collects all the pieces of the
+triforce, he will return to his physical form with almost 
+unlimited power and knowledge. there is no-one else able to
+stop him - other than you, link. you are our only hope.
+and i fear that zelda may be one of ganon's pawns now too.
+she accussed me of treason, and i was sacrificed in a dark ritual.
+
+sha gives link a new objective: 
+gain access to the AfterWorld and trap ganon's spirit,
+so that he cannot influence anyone anymore.
+
+How does this play out?
+link collects the other 3 pendants.
+link breaks the seal to the darkworld castle.
+link defeats dark zelda.
+link travels to the river of the dead.
+the ferryman rows link across, with zelda's soul as the fee.
+ferryman tells link the dead can have one passenger,
+but there's no coming back once link travels to AfterWorld.
+link travels to the AfterWorld - see Section 3.
+
+
+
+so, link fights dark zelda and kills her.
+Dark Zelda is at the darkworld castle, deep in the throne room.
+this is a dungeon, leading to boss fight with dark zelda.
+
+we also have 3 other dungeons in the dark world:
+swamp/water
+graveyard
+ice temple
+
+the darkworld castle has been sealed with magic,
+which can only be broken by the 6 pendants. the other
+3 pendants need to be collected before link can access
+the darkworld castle's interior.
+
+link collects the additional 3 pendants, breaks the
+castle seal, fights to the throne room and confronts
+the dark queen, who explains who she really is:
 
 dq: 'i am the queen. the rightful ruler of hyrule.'
-dq:	'... i'm not the princess you saved so long ago, link.'
-dq: 'that girl was hunted. kidnapped... tortured.'
-dq: '...have you ever seen the dark world?'
-dq: 'as a child, i saw monsters tear my friends apart.'
-dq: '...while you were playing with boomerangs, link...'
-- dramatic pause -
+++:	'... i'm not the princess you saved so long ago, link.'
 
-dq: 'why are you here?'
-dq: 'some idealistic pursuit of love? fame? justice?'
-link: '...to see you, zelda. 
-link: '...to save you. again.'
-link: 'one last time..'
+dq: 'that girl was hunted. kidnapped... tortured.'
+++: 'i did what i had to do to survive.'
+
+dq: 'When did you first see the dark world?'
+++: 'When did you first feel death?'
+
+dq: 'as a child i saw monsters tear my friends apart.'
+++: '..while you were playing with boomerangs, link..'
+
+dq: 'my what paths we travel, my love.'
+++: '... why are you here, link?...'
+
+link: '...to see you, zelda. ...to save you. again.
+++: 'one last time..'
 
 dq: 'your little princess doesn't need saving anymore.'
-dq: '...you should save yourself instead.'
-dq: '...goodbye, link.'
+dq: '...you should save yourself instead. ...goodbye, link.'
 
 link: 'don't make me do this, zelda...'
 
-link and zelda fight an intense battle, with link mortally wounding her.
-they have their final dialog:
+link and zelda fight an intense battle, 
+with link winning. they have their final dialog:
 
 link: '...zelda.. i'm here..'
 z: 'link? you saved me.. again..'
@@ -230,106 +333,55 @@ z: 'listen to me link..'
 z: 'i have always loved you.'
 z: 'i knew you would return..'
 z: 'you're the only one, link..'
-z: 'the only one who ever... truly..'
-z: '...mattered...'
+z: 'the true hero of hyrule..'
 z: '...'
 
 link: 'zelda...'
-link: '...'
-link: '...i love you too...'
-link: '...goodbye.'
+++: '...goodbye.'
 
-then you hear ganon's laugh... and a dialog pops up with a questionmark speaker
-and the text 'hahahahah... hahahahahaha....'
-(alluding to the idea that someone was behind it all along.)
+then you hear ganon's laugh... and a dialog pops up with ganon as speaker:
+g: 'no use crying over her.. she wasn't that special.'
+g: 'hahahahahahahaha...'
 
-(cutscene to outside castle daytime)
-(the castle explodes, a crater is there instead with a portal to the dark world)
-(this is reflected in the overworld map)
+shahasrala contacts link telepathically:
+s: 'i've located ganon... he's in the AfterWorld..'
++: 'neither a place of life or death.. a place of spirits..'
 
-**this new dark world portal is the primary / only way to travel between these two worlds**
+s: 'cross the river of death, enter the AfterWorld...'
++: 'then use the soul crystal to trap ganon..'
 
-link wakes up in the dark world, next to the light world 'rift' that has been
-torn open by zelda's death. also the light world castle is now destroyed.
-but link can travel through this rift anytime he wants to. when link wakes up,
-shahasrala telepathically contacts him, giving him his first dark world goal:
-find shahasrala, speak with him, learn the truth about zelda.
-"if you want to know the truth about zelda - come find me. -shahasrala".
+s: 'from there, you're on you're own, link..'
++: 'i won't be able to contact you..'
 
-goals:
-find and talk with shahasrala.
-defeat the legendary beasts, unlocking ganon's tower.
-confront + defeat ganon.
+link respawns on overworld map at darkworld castle.
+*note: zelda's soul, in a soul crystal, is now in link's inventory.
+link must now get a soul crystal, then travel to the AfterWorld.
+the expected path is to explore and talk to the npcs.
 
 
+NPCs
+Hecate should be the name of a dark world vendor,
+specializing in magic, witchcraft, poisons, ghosts,
+necromancy and sorcery. she should be shown holding
+a pair of torches or a key, and can be shown in triple
+form as well. she is also associated with crossroads,
+and entrance-ways. she will sell link a soul crystal,
+for a price. she wants link to trap various enemies
+for her first, and once link traps those enemies (in 
+bottles) and returns them to Hecate, she gives him
+a soul crystal strong enough to contain ganon.
+there could even be 3 hecates spread across the darkworld,
+each selling different items.
 
-ganon's tower is protected by a magical seal.
-this seal is broken only by using the runestones protected by
-the legendary beasts. link must travel to their lairs, defeat 
-the beasts, get the runestones, then open ganon's tower.
+Hermes, with a golden wand, offers advice to link,
+'to leave the world of the living, one must cross the river'.
+hermes is just an npc somewhere in the darkworld.
 
-ganon's tower is the last dungeon, and as such is the most challenging.
-things are in a state of disrepair, so even the rooms try to kill link.
-
-eventually link gets to ganon, and ganon presents as a frail old man, 
-who resorts to mental trickery (the willy wonka). the idea here being that
-ganon won't fight link or even reveal his plans to link, to keep link in 
-the dark. the only way ganon would reveal himself and fight link is if
-link betrays his pure/idealistic nature, meaning that ganon has won that
-intellectual / moral battle - he has finally corrupted link.
-
-old ganon: 'i've been waiting for you a very long time, link.'
-og: 'but i am an old man now.. unable to fight you, my friend.'
-og: 'won't you chat with me for a while?'
-(continue to talk with Ganon A)
-(leave the old man alone B) - ends dialog
-
-link: 'i know what you've done, ganon.'
-og: 'what now?... what do you know, link?'
-og: 'tell me.. what have I done?'
-(accuse ganon of corrupting zelda A)
-(nevermind... B)
-
-B og: 'i corrupted her? tell me, how would an old man like me do that..'
-B og: 'why would i?..'
-(A i've spoken with shahasrala, he's told me everything.) - requires shahasrala boolean true.
-(B i have no proof, but i know your vile stench when i smell it.)
-B og: 'unfortunately, my smell isn't a crime. without proof, you're just a liar.'
-B og: 'what a wonderful day! hahahahahaha...' (dialog ends)
-
-**any A based response continues the dialog, we may add more later**
-
-A og: 'shahasrala... the untouchable thread by which my plans are laid bare...'
-(musical tone changes to dark ominous)
-A og: '...when zelda killed him, i thought my corruption of her was complete..'
-A og: 'it was only later that i realized she did so to hide him from me..'
-A og: '..to keep him protected so that you would one day know the truth...'
-A og: 'one day you would know that she had lost control, that it was me behind it all.'
-link: 'in that context, you failed to corrupt her completely, ganon.'
-link: 'she still had love inside. she resisted you, and you lost yet again.'
-link: '..and you will continue to lose.. as is your destiny.'
-og: 'a destiny shared with you - link. we. we will continue to lose.'
-og: 'you see ..when the triforce granted my wish, it unbalanced the light and dark.'
-og: 'the triforce created you in order to restore that balance. to bring light, order. to destroy me.'
-og: '..and once that balance is restored, you will become that which unbalances the worlds.'
-og: 'if you kill me, you will become the evil that inhabits the dark world.'
-og: '..and one day a heroic warrior will hunt you.. as you have hunted me..'
-link: 'you're wrong, ganon.. your choices are what made you evil - not fate.'
-link: 'your plans brought you here, crippled and alone. you blame everyone, but yourself.'
-link: 'you are incapable of change or progress, my old friend...'
-
-(at this point Ganon changes in beast ganon form, music is now high-intensity boss music)
-bg: 'bwahahahahah! i'm incapable of change, he says. wrong again, link.'
-bg: 'you're merely a pawn in my plans. you've brought the dark runestones, right?'
-bg: 'good. i'll need those to break the seal to the light world. thanks.'
-bg: '..oh, you thought i simply wanted revenge? no, my dear boy. i want it all.'
-bg: 'now give me your life. en garde!'
-(final battle begins with beast form ganon).
-
-this is the most epic battle in zelda history, and should be the primary focus
-of 1.0 development. this is a multi stage battle that initially takes place in ganon's
-tower, but as the fight progresses ganon pulls link through all kinds of timelines and
-worlds. it should be almost be laughable how much stuff happens in this battle. 
+The DarkWorld Colliseum is judged by the 3 judges,
+Minos, Rhad, and Acus. these NPCs present the dark
+world colliseum challenges. acus is known was the guardian
+of the keys, rhad is known as the lord of heaven, and
+minos is known as tie-breaker.
 
 
 
@@ -343,6 +395,96 @@ worlds. it should be almost be laughable how much stuff happens in this battle.
 
 
 
+
+
+
+
+
+
+
+
+Section 3 - The AfterWorld
+
+How does Link get here? by crossing The River of Fire.
+
+the river acheron, is the river of pain. (it's also on fire)
+the ferryman, charon rows the dead over, and requires a soul as payment.
+link simply needs to speak with charon to cross, if zelda's dead.
+
+if link comes here, and zelda isn't dead, then:
+this river is patrolled by centaurs,
+who shoot arrows of fire at those who try to cross it.
+the river itself is on fire, and lights link on fire as well.
+it will kill link if he trys to cross it, and crossing
+it doesn't load the next level or progress the story.
+the ferryman must reach a certain position to
+progress the story, which means link must activate him properly.
+and the ferryman is only built if zelda is dead.
+
+this is ONE LEVEL, changed based on zeldasDead boolean. 
+it's available from the dark world, but not directly
+accessible from the overworld. first, link must travel 
+to a location, then find a specific object that will
+load The River of the Dead.
+
+
+
+
+What is The AfterWorld?
+
+in the AfterWorld, actors don't take damage.
+so they don't die. they get pushed, and they can be
+knocked off into pits, etc.. but they can't be killed
+as normal. this reduces the loot dropped too.
+plus, most actors in the AfterWorld are ethereal and flying.
+or ghosts. so link can walk right thru them.
+
+most objects are ethereal too, and can be walked thru.
+to this extent - there are no dungeons in the soulworld.
+but there are vast field levels, with interesting stuff.
+but it's mostly non-blocking objects, with transparency.
+like a world of liquid glass.
+
+
+
+link gets to ganon's level.
+the dialog is simple and quick - assume the
+player will be repeating this a few times, as
+it's the hardest battle in the game.
+
+l: 'it's time to die, ganon.'
+
+g: 'time... what is time, my boy?'
+g: 'the perception of change? an idea?'
+g: 'i live outside of time. outside of you.'
+g: 'you can't stop time, and you can't stop me.'
+
+l: 'my sword disagrees..'
+l: 'and your speeches bore me... en garde!'
+
+ganon changes into beast form #1.
+final ganon battle begins.
+
+
+
+link defeats ganon, they have their final conversation.
+link is left to escape the AfterWorld, which is done using
+orpheus' lyre, a musical instrument that will put cerberus
+to sleep.
+
+
+once link escapes the soulworld, he returns to the lightworld.
+for now, that's the end.
+
+
+
+
+
+
+
+
+
+//other places
 
 
 
@@ -357,22 +499,6 @@ way. there will also be a dark world colliseum, with
 darker and different challenges. these challenges take
 place in the spectator's pit. the colliseum is open to
 any warrior brave enough to enter.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -443,7 +569,8 @@ they are kidnapped and forced to fight in the colliseum or live as slaves
 because the blobs can't communicate with the humans, everybody assumes they're just evil
 thus the blob's storyline is simply to fight in the queen's tournament and win
 upon winning, the blob will wish that his people be recognized and set free.
-the blob's journey is then one of learning about the blob's history + forming emotional bonds with blob NPCs
+the blob's journey is then one of learning about the blob's history 
++ forming emotional bonds with blob NPCs
 the blob challenge is simple: slower movement, leading to much harder dungeons + bosses
 
 

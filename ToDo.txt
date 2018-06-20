@@ -1,78 +1,55 @@
-﻿"As we enjoy great advantages from the inventions of others,
+﻿
+"As we enjoy great advantages from the inventions of others,
 we should be glad for an opportunity to serve others by an invention of ours,
 and this we should do freely and generously."
 - Benjamin Franklin	
 	
-Gif Capture process:
-	run game in release mode
-	run LiceCap, expand capture area past program window about 10 pixels on each side
-	record at 30fps, open in photoshop and crop the frame down to just the game view (minus window title)
-	reduce image size by half, down to original size so pixels are 1:1 ratio
-	save as PSD master, then begin cutting out sections/edits
-	the default time per frame (set by licecap) is perfect, do not change this
-	save for web ->  GIF 32 Dithered, filesize should be under 3mb, loop forever
-	test in browser to ensure proper fps
-adding music:
-	files are saved as .ogg and added to content pipeline, built on high quality.
-	keep these files stereo, but at 22k.
-adding sound effects:
-	sound effects should be compressed down to 22K sample rate, mono, 16bit
-VS shortcuts
-	CTRL + M, O = collapse functions/regions	
-new gif: 50% nearest neighbor, 32 dithered
-adding a cheat:
-	add value to MenuItemType enum (cheat starts as a selectable menu item)
-	update MenuItem.SetType() to set cheat menuItem descriptions, titles, and initial frame.
-	add menuItem to Cheat Screen.
-	link neighbors, add effect, add check to SetCheatMenuItems(), playtest.
-Adding GameObjs:
-	make enum defs, make animFrames,
-	set objType paths, add to env obj widget
-	playtest in field.	
 	
 	
-Phase 1 - version 0.1 to 0.7 (complete)
-zelda with a procedural, randomly generated dungeon, and
-better movement / dashing / combat on xbox one + pc.
+Roadmap
 
-Phase 2 - version 0.7 to 1.0
-+ Miyamoto's original lttp ideas. (complete)
-+ all desired functionality from lttp + other zeldas.
-+ all desired functionality from other games.
-+ mature, dark story + endgame content.	
-	
+0.75 - mountain/cave levels + dungeon + enemies
+0.76 - desert levels + dungeon + enemies
+0.77 - castle, city, royal vendors
+0.78 - king, fight with king, lightworld storyline done
+0.79 - farming + seeds + crops
+0.80 - dark world map + 1st level + transition to/from
 
-	
-	
-	
+
 Milestones
 
-farming + seeds + crops implemented.
-dark world, with transitions to and from
-mountain levels and dungeons (diff sprite sheet)
-intro
-basic narrative structure up to fight with king
-king boss fight
+swamp/water dungeon + enemies
+ice dungeon + enemies
+graveyard dungeon + enemies
+darkworld castle + enemies
+darkworld queen battle
+darkworld storyline
+
+ganon battle + storyline
 
 
 
 
 
+Today:
+
+
+Story++
+
+revised story, roadmap/milestones, reorganized
+ideas and todo. special focus on zelda's two sided
+dialogs as the king. heavily changed story once
+plot gets to darkworld.
 
 
 
-
-v0.74 - The Colliseum & Challenges
-
-
------- POLISH prior to release --------
 
 
 
 
 
 Pets++
-create swimming movement frames for pets.
+create swimming movement frames for dog.
 should be same pixels - just partially submerged
 
 
@@ -86,9 +63,7 @@ then we can just boomerang check against enemy objGroup
 update the boomerang ui sprite to look like the ingame
 version: black with a white marker
 
-
-
-
+why can't we pick up rats? they are roomObjs
 
 
 Map++
@@ -106,8 +81,6 @@ the scroll sprite. rename map window title to nothing.
 
 
 
-
-
 Reading Signs
 we need to be able to read signposts properly
 this is based on the current room/level.
@@ -122,48 +95,12 @@ a method called ReadSign(GameObject SignPost).
 
 
 
-Implement Cane of Somara (or whatever)
-this is the cane that creates blocks that are pushable.
-this makes it MUCH easier to get thru dungeons, as many
-rooms rely on floor switches, which link can simply
-create a block over. if a block is created ontop of
-a blocking roomObject, the block ...
-
-
-
-
-
-
-Rat Hole
-we should have a 'rat hole' that randomly spawns
-rats in front of it. we can add this to a room,
-and the room now has constant enemies.
-
-
-
-
-
-Tattered Shawl
-the shawl could change hero's default
-friction value, to be lesser than normal,
-making it feel like he's moving faster - kinda
-like on ice.
-*currently, it does nothing.
-
-Old Tunic
-what does this do? it should have a purpose.
-
-
-
 
 
 
 
 
 ------ RELEASE 0.74 --------
-
-try to record a playthru with vo.. and if you can,
-record editing levels with the editor as well.
 
 create the gameplay page in the repo, and start
 filling it with examples of gameplay gifs (with text notes):
@@ -181,25 +118,24 @@ minibosses + bosses
 dungeon type, size, variety
 environments + levels
 
-
 record a gif showing off colliseum fights for 0.74.
-
-update versions page to include 0.7.
-
+delete versions page entirely.
 
 
 
 
 
 
+EDITOR +++++++++
 
-
-
-v0.75 The Dark World
-
-this is exciting, and scary.
-primarily because it doubles the amount
-of sprites + code + musics to implement it.
+editor++
+it would be nice to be able to toggle roofs on/off.
+and hide their collisionrecs too, so we can't accidentally pick them up.
+it would also be nice to "lock" water tiles somehow, so we can't
+mess them up. maybe different selection modes: landscape, building.
+it would be nice to be able to drag select a rec around a set of objects,
+then move them with the arrow keys, in 16 pixel increments. this would allow
+us to edit parts of rooms just like we edit pixels in photoshop.
 
 
 
@@ -231,340 +167,6 @@ repair your magic mirror, and THEN fight.
 
 
 
-
-Darkworld Map
-idea: keep most of the locations the same in darkworld map,
-so it seems like the two worlds are related. there can be some
-different locations, sure, but don't deviate too much.
-we'll need a dark world overworld map + screen.
-this means we can move most functionality out of
-overworld screen and into a base class, then just
-change the locations, neighbors, and corresponding levels
-for light + dark overworld screens.
-
-
-
-
-How are Darkworld levels / dungeons handled?
-the game sees no real difference between light and dark world
-levels and rooms, it's really just a texture change + different
-enemies + objects. 
-darkworld map locations point to specific xml.
-lightworld map locations point to different xml.
-darkworld dungeon rooms use same roomData as lightworld dungeons.
-but, darkworld dungeon has different sprites + music,
-plus different enemies spawn.
-*this means we can't have turtles and rats in rooms.
-*instead model this as a basic roomObj enemy, 
-and choose randomly from a list. maybe its a rat,
-maybe it's a bat. as long as it 'fits' the dungeon, who cares.
-
-
-
-
-
-
-Transitions Between Dark and Light Worlds
-this happens in a level, via a special portal object.
-for now, we will use lttp's standard portal, but it will
-only work one way: touching this portal closes the level,
-and open the darkworld or lightworld map screen, depending
-on if link was in the dark or light world when he touched
-the portal. this doesn't transition between rooms.
-
-
-
-Light & Dark World Sprites
-lightworld forest entrance should be opening in trees
-dark world should be horrific tree trunk thing we have rn.
-
-
-
-
-
-
-
-
-
-
-Force Player to Save Their Game upon an Exit
-
-this is from inventory menu. the player's latest data
-is sitting in autosave (playerData.current), and we need
-to save it to one of the 3 game data files. when we call
-exit, pop a save screen - hopefully player will understand
-they need to save their game before exiting.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-v0.76 - Farming
-
-cut grass should grow into tall grass if near coastlines,
-or filled ditches. implement the idea of seeds, sold by the
-farmer - AFTER link fixes his crops (each time).
-
-
-
-- LIGHT WORLD & DARK WORLD
-- this is different overworld map + different levels + diff sprites
-- this is NOT A SEPARATE SYSTEM (needless complexity)
-
-
-
-
-
-we should be able to purchase dark beans
-growing these beans creates a dark world 
-portal that link can pass thru to the dark world. 
-however, dark world creatures will randomly spawn 
-from this portal too, so it's extremely dangerous
-to open a dark world portal. but for the first 4
-seconds (255 frames) no dark world creatures will
-spawn, giving the player enough time to jump through
-it, which also closes the portal, and would teleport
-link to the dark world level equivalent, however that
-system is designed.
-
-
-
-
-
-
-
-
-
-EDITOR +++++++++
-
-editor++
-it would be nice to be able to toggle roofs on/off.
-and hide their collisionrecs too, so we can't accidentally pick them up.
-it would also be nice to "lock" water tiles somehow, so we can't
-mess them up. maybe different selection modes: landscape, building.
-it would be nice to be able to drag select a rec around a set of objects,
-then move them with the arrow keys, in 16 pixel increments. this would allow
-us to edit parts of rooms just like we edit pixels in photoshop.
-
-
-
-
-Fire++
-when fire expands, it should expand further vertically,
-because it doesn't always transfer from bush to bush,
-because bush hitboxes are small.
-
-
-
-
-
-Enemy Spawns
-
-standard - usually 3 hit.
-
-easy - 1 hit, usually many or they explode.
-- we have seekers, they need to be renamed.
-- we also have fun floaty eye that should be mob outside of boss room
-
-*hard - more than 3 hits, less than 10.
--we dont have a hard boss for forest dungeon yet.
--make one
-
-Enemies++
-
-Seeker : seeks towards player, exlodes (done)
-Standard : 3 hits, with a melee attack (usually sword).
-
-OneHit : fast moving, low melee, low health.
-Distance : projectile attack (unlimited), med move, low health.
-Healing : healing magic (set amount), med move, no attack.
-Aggro : tank, slow, strong melee attack.
-Flanking : rogue, weak, fast, with strong attack.
-
-Miniboss : done
-Boss : done
-
-we'll need to change the enemy spawn 2, or miniboss spawn to be
-Enemy_Spawn_Weak, Enemy_Spawn_Strong. later on, it's likely this 
-will expand to also include Enemy_Spawn_Ranged, Enemy_Spawn_Healer,
-etc...
-
-
-
-
-
-
-Underground Blob Dungeon:
-we have an overworld pit sprite.
-hide this randomly under an object that can be destroyed,
-like a bush on a level. for now, this object will
-create a new type of dungeon, an underground dungeon.
-this is just a single critical path from hub room to exit room.
-just a hub room, then an exit room south of it.
-in the hub room, a miniboss will spawn, with a chest.
-the chest will have the dungeon map, in case we decide to expand
-this dugneon algorithm to be more than 2 rooms in the future.
-but, this reverses the dungeon - leading to the exit.
-upon exit, we simply return hero to his last overworld location,
-which should be stored in save data.
-*these dungeons should be blob enemy only, because this is story*
-
-
-Blobs need to have more weapons & items to attack and use.
-can throw bombs. can attack with swords.
-
-
-
-
-
-
-
-
-Pathing
-
-We need dirt paths, without using alot of sprite space up.
-we could do vert transition to dirt + hori trans to dirt,
-but never actually have a dirt tile. putting two of these
-together could build a path, and then we just need corners.
-so, minimum of 4 - likely 6.
-
-
-
-
-HitBoxes++
-we're always expanding and contracting the hitBox.
-we need dedicated methods for doing this.
-we need to override/replace/rewrite xna's rectangle class.
-but we need to keep the intersects() and contains() methods,
-as they are, as fast as they are.
-
-
-
-
-
-
-
-Exploit : Trap Door Pit Teleport
-
-the majority of what i do as a game developer is deal
-with cause and effect, how systems interact, and designing
-systems that do their job BUT ALSO get along with the
-other systems that exist in the global namespace (ecosphere).
-
-currently the system designed to track what door link
-went thru last is causing a problem with the system that
-represents the pit's functionality. this occurs in this
-particular state, and likely in others:
-
-hero enters a puzzle room where the doors become trap
-doors (this is only way to get trap doors). hero moves
-to a different trap door, touching it, activating it
-as the last door 'entered'. hero is then pushed, or
-falls into a pit (maybe with a certain direction).
-this causes the pit to pull hero in, then call 
-RespawnInCurrentRoom() on the hero, teleporting him
-to the last touched door, the 2nd trap door. with
-enough inertia, the hero can overcome the trap door's
-initial frame of pushing, and link can pop out into
-the room on the other side of the 2nd trap door.
-i experienced this exploit personally. not sure if
-it would work on vertical North/South doors, as
-it only happened to me for East/West doors.
-this is *likely* what's happening, tho I'm not
-exactly sure - but I do know how to fix it.
-
-the fix is simply to remove trap doors from the
-routine that sets the last 'touched' door / active door.
-in fact, only open doors or bombed doors should be
-set as the last / active door.
-
-
-
-
-Boomerang Bug?
-ran into lost boomerang bug again.
-simply left a room with it bouncing around.
-
-
-
-when water spreads to other tiles, it shouldn't play
-the water splash soundfx, this takes waaay too long.
-it should play the water walk sfx, or we should shorten
-the water splash sound fx dramatically. either or.
-or we should create a water spreading soundfx,
-then use the splash fx shortened. i dunno.
-
- 
- 
-
- 
- 
-
-Improve Projectile.Spawn()
-
-*miniboss cant shoot fireballs south - why?
-?= pro.spawn() assumes that the actor's collRec is 16x16 - it shouldn't.
-this means only 16x16 actors can safely shoot fireballs without damaging
-themselves, which is some valve level stupid. this method should take
-the actor as a parameter, and then we should base the offsets FOR ALL
-PROJECTILES off of the actor's collision rec width and height. this
-would allow larger actors, like bosses, to SHOOT FIREBALLS. geez.
-
-Special Attacks / Boss "USE"
-bigeye uses the shut + bloodshot frames for his special.
-bigeye: spawns A TON of exploding seekers while in his special.
-
-
-
-
-
-
-
-
-
-
-
-we can handle plot/level changes like this:
-we have a boolean that represents this levels state.
-false loads xml data A. true loads xml data B.
-the differece between A and B represents something
-that happened in the story, or something the player did.
--perhaps the player killed an NPC.
--perhaps the player irrigated a farmers crops (B would have filled ditches, A wouldn't).
--theres alot we can do here.
-
-
-
-
-
-
-
-
-
-
-in hard mode, pits should deal 1 damage.
-in normal mode, pits deal no damage.
-
-
-
-
-
-
-
-*consider that actors may need interaction points*
-*needed if actors want to pickup or dig, and it would be nice to see that
-with more advanced enemies later on*
-migrate hero's interaction rec and interaction rec functions into actor class.
 
 
 

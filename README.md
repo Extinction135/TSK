@@ -1,13 +1,9 @@
-This project is codenamed DungeonRun.  
-Please don't tell anyone about this.  
-  
-
 # DungeonRun
 An unreleased sequel to The Legend of Zelda: A Link to the Past.  
  
-+ Found in a purchased shipping container from Portugal, the rom was originally written for the gameboy, sometime around 1995-1997. 
-+ The decision was made to port the rom's codebase to Monogame, in the hopes of running the rom on a wide array of modern hardware.  
-+ It's very likely that Nintendo will try to shut this project down, so I ask that you please don't tell anyone about this project until the port is complete (version 1.0).  
++ Found in a purchased shipping container, the rom was originally written for the gameboy, sometime around 1995-1997. 
++ The decision was made to port the code to Monogame, in the hopes of running it on most modern hardware.  
++ It's very likely that Nintendo will try to shut this down, so I ask that you please don't tell anyone about DungeonRun until the port is complete (v1.0).  
 
 
 ## Version 0.73 - 2018.05.31  

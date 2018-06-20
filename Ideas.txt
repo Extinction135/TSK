@@ -1,5 +1,343 @@
 
 
+Darkworld Map
+idea: keep most of the locations the same in darkworld map,
+so it seems like the two worlds are related. there can be some
+different locations, sure, but don't deviate too much.
+we'll need a dark world overworld map + screen.
+this means we can move most functionality out of
+overworld screen and into a base class, then just
+change the locations, neighbors, and corresponding levels
+for light + dark overworld screens.
+
+
+
+
+How are Darkworld levels / dungeons handled?
+the game sees no real difference between light and dark world
+levels and rooms, it's really just a texture change + different
+enemies + objects. 
+darkworld map locations point to specific xml.
+lightworld map locations point to different xml.
+darkworld dungeon rooms use same roomData as lightworld dungeons.
+but, darkworld dungeon has different sprites + music,
+plus different enemies spawn.
+*this means we can't have turtles and rats in rooms.
+*instead model this as a basic roomObj enemy, 
+and choose randomly from a list. maybe its a rat,
+maybe it's a bat. as long as it 'fits' the dungeon, who cares.
+
+
+
+
+
+
+Transitions Between Dark and Light Worlds
+this happens in a level, via a special portal object.
+for now, we will use lttp's standard portal, but it will
+only work one way: touching this portal closes the level,
+and open the darkworld or lightworld map screen, depending
+on if link was in the dark or light world when he touched
+the portal. this doesn't transition between rooms.
+
+
+
+Light & Dark World Sprites
+lightworld forest entrance should be opening in trees
+dark world should be horrific tree trunk thing we have rn.
+
+
+
+
+
+
+
+
+
+
+Force Player to Save Their Game upon an Exit
+
+this is from inventory menu. the player's latest data
+is sitting in autosave (playerData.current), and we need
+to save it to one of the 3 game data files. when we call
+exit, pop a save screen - hopefully player will understand
+they need to save their game before exiting.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Farming
+cut grass should grow into tall grass if near coastlines,
+or filled ditches. implement the idea of seeds, sold by the
+farmer - AFTER link fixes his crops (each time).
+
+
+should be able to plant crops, water them via ditches,
+and then wait for them to grow into loot or special items.
+
+seeds are sold by the farmer, who is already implemented
+in game. now, post-reward he becomes the seed vendor.
+forcing the player to figure out how to regrow bushes
+is the foundation of farming - watering seeds!
+
+Seeds: DarkBeans
+we should be able to purchase dark beans
+growing these beans creates a dark world 
+portal that link can pass thru to the dark world. 
+however, dark world creatures will randomly spawn 
+from this portal too, so it's extremely dangerous
+to open a dark world portal. but for the first 4
+seconds (255 frames) no dark world creatures will
+spawn, giving the player enough time to jump through
+it, which also closes the portal, and would teleport
+link to the dark world level equivalent, however that
+system is designed.
+
+Seed: CloudStalk
+like super mario bros, grows a beanstalk into the sky.
+link asks "should i climb this? A/B".
+doing so takes him to the cloud world.
+
+
+
+
+
+
+
+
+
+
+
+Fire++
+when fire expands, it should expand further vertically,
+because it doesn't always transfer from bush to bush,
+because bush hitboxes are small.
+
+
+
+
+
+Enemy Spawns
+
+standard - usually 3 hit.
+
+easy - 1 hit, usually many or they explode.
+- we have seekers, they need to be renamed.
+- we also have fun floaty eye that should be mob outside of boss room
+
+*hard - more than 3 hits, less than 10.
+-we dont have a hard boss for forest dungeon yet.
+-make one
+
+Enemies++
+
+Seeker : seeks towards player, exlodes (done)
+Standard : 3 hits, with a melee attack (usually sword).
+
+OneHit : fast moving, low melee, low health.
+Distance : projectile attack (unlimited), med move, low health.
+Healing : healing magic (set amount), med move, no attack.
+Aggro : tank, slow, strong melee attack.
+Flanking : rogue, weak, fast, with strong attack.
+
+Miniboss : done
+Boss : done
+
+we'll need to change the enemy spawn 2, or miniboss spawn to be
+Enemy_Spawn_Weak, Enemy_Spawn_Strong. later on, it's likely this 
+will expand to also include Enemy_Spawn_Ranged, Enemy_Spawn_Healer,
+etc...
+
+
+
+
+
+
+Underground Blob Dungeon:
+we have an overworld pit sprite.
+hide this randomly under an object that can be destroyed,
+like a bush on a level. for now, this object will
+create a new type of dungeon, an underground dungeon.
+this is just a single critical path from hub room to exit room.
+just a hub room, then an exit room south of it.
+in the hub room, a miniboss will spawn, with a chest.
+the chest will have the dungeon map, in case we decide to expand
+this dugneon algorithm to be more than 2 rooms in the future.
+but, this reverses the dungeon - leading to the exit.
+upon exit, we simply return hero to his last overworld location,
+which should be stored in save data.
+*these dungeons should be blob enemy only, because this is story*
+
+
+Blobs need to have more weapons & items to attack and use.
+can throw bombs. can attack with swords.
+
+
+
+
+Pathing
+
+We need dirt paths, without using alot of sprite space up.
+we could do vert transition to dirt + hori trans to dirt,
+but never actually have a dirt tile. putting two of these
+together could build a path, and then we just need corners.
+so, minimum of 4 - likely 6.
+
+
+
+
+HitBoxes++
+we're always expanding and contracting the hitBox.
+we need dedicated methods for doing this.
+we need to override/replace/rewrite xna's rectangle class.
+but we need to keep the intersects() and contains() methods,
+as they are, as fast as they are.
+
+
+
+
+
+Exploit : Trap Door Pit Teleport
+
+the majority of what i do as a game developer is deal
+with cause and effect, how systems interact, and designing
+systems that do their job BUT ALSO get along with the
+other systems that exist in the global namespace (ecosphere).
+
+currently the system designed to track what door link
+went thru last is causing a problem with the system that
+represents the pit's functionality. this occurs in this
+particular state, and likely in others:
+
+hero enters a puzzle room where the doors become trap
+doors (this is only way to get trap doors). hero moves
+to a different trap door, touching it, activating it
+as the last door 'entered'. hero is then pushed, or
+falls into a pit (maybe with a certain direction).
+this causes the pit to pull hero in, then call 
+RespawnInCurrentRoom() on the hero, teleporting him
+to the last touched door, the 2nd trap door. with
+enough inertia, the hero can overcome the trap door's
+initial frame of pushing, and link can pop out into
+the room on the other side of the 2nd trap door.
+i experienced this exploit personally. not sure if
+it would work on vertical North/South doors, as
+it only happened to me for East/West doors.
+this is *likely* what's happening, tho I'm not
+exactly sure - but I do know how to fix it.
+
+the fix is simply to remove trap doors from the
+routine that sets the last 'touched' door / active door.
+in fact, only open doors or bombed doors should be
+set as the last / active door.
+
+
+
+
+when water spreads to other tiles, it shouldn't play
+the water splash soundfx, this takes waaay too long.
+it should play the water walk sfx, or we should shorten
+the water splash sound fx dramatically. either or.
+or we should create a water spreading soundfx,
+then use the splash fx shortened. i dunno.
+
+ 
+  
+
+Improve Projectile.Spawn()
+
+*miniboss cant shoot fireballs south - why?
+?= pro.spawn() assumes that the actor's collRec is 16x16 - it shouldn't.
+this means only 16x16 actors can safely shoot fireballs without damaging
+themselves, which is some valve level stupid. this method should take
+the actor as a parameter, and then we should base the offsets FOR ALL
+PROJECTILES off of the actor's collision rec width and height. this
+would allow larger actors, like bosses, to SHOOT FIREBALLS. geez.
+
+Special Attacks / Boss "USE"
+bigeye uses the shut + bloodshot frames for his special.
+bigeye: spawns A TON of exploding seekers while in his special.
+
+
+
+
+
+we can handle plot/level changes like this:
+we have a boolean that represents this levels state.
+false loads xml data A. true loads xml data B.
+the differece between A and B represents something
+that happened in the story, or something the player did.
+-perhaps the player killed an NPC.
+-perhaps the player irrigated a farmers crops (B would have filled ditches, A wouldn't).
+-theres alot we can do here.
+
+
+in hard mode, pits should deal 1 damage.
+in normal mode, pits deal no damage.
+
+
+
+*consider that actors may need interaction points*
+*needed if actors want to pickup or dig, and it would be nice to see that
+with more advanced enemies later on*
+migrate hero's interaction rec and interaction rec functions into actor class.
+
+
+
+Implement Cane of Somara (or whatever)
+this is the cane that creates blocks that are pushable.
+this makes it MUCH easier to get thru dungeons, as many
+rooms rely on floor switches, which link can simply
+create a block over. if a block is created ontop of
+a blocking roomObject, the block ...
+
+PLATFORMS + BUILDING
+i like the idea of building platforms to cross pits or areas of insta-death.
+but, unlike other games we're gonna use magic here to build platforms, and we're
+gonna loop this minecraft/fortnite idea back to LttP by using the cane. in lttp,
+we could build platforms using the cane, but only in specific places.
+what if link could build a platform anywhere he was, the direction he was facing,
+right in front of him where he could step right onto it (aligned to 16px grid).
+these platforms would be permanent until the life of the room too, and cost 1 magic.
+
+
+Rat Hole
+we should have a 'rat hole' that randomly spawns
+rats in front of it. we can add this to a room,
+and the room now has constant enemies.
+
+
+Tattered Shawl
+the shawl could change hero's default
+friction value, to be lesser than normal,
+making it feel like he's moving faster - kinda
+like on ice.
+*currently, it does nothing.
+
+Old Tunic
+what does this do? it should have a purpose.
+
+
+
+
+Should be able to light link on fire.
+dashing has a chance to put fire out.
+water puts fire out immediately.
+
+
+
+
 
 MetalGear++
 
@@ -234,6 +572,41 @@ contained within NPCs.
 
 
 
+Fishing
+a fish obj can live in water tiles, hiding from link, displayed
+as an underwater object. if link is swimming and uses the net,
+he may catch the underwater fish in a bottle.
+*we could also have a fishing minigame, where player mashes X
+*using net in water could also pick up underwater objects
+
+
+
+
+Windmill Sidequest Thing
+windmil doesn't work because river leading to it is blocked by
+debris. can blow debris up with bomb, allowing water to spread
+to windmill, turning it - unlocking / opening something.
+we can model if the debris has been exploded using a boolean,
+and we can check this boolean when we build the level,
+removing the debris if boolean is true, 
+so player feels like they altered the level.
+*once we teach player about windmills here, we can place
+a windmill in the dark world that needs a ditch dug to it.
+this could hide a dungeon entrance, for example.
+
+
+
+
+
+
+WaterTemple
+the water temple is accessible by changing the water level outside
+via a big push lever. changing the water level is the dungeon's theme,
+so the player needs to know how this mechanic works prior to entering.
+once inside, the various critical paths need to be created with the
+understanding that some of those rooms will be "flooded" and impassable,
+and the path to the lever that drains those rooms MUST be passable,
+or in this case - not flooded.
 
 
 
@@ -292,6 +665,17 @@ i think the AI should just cheat and refill it's health if it gets to 0 or dies.
 in other words, there's an infinite bottle of fairies in link's backpack when AI is on.
 or, we could just simply turn on invincibility.
 
+
+
+
+
+
+Reaper
+travels around the perimeter or the room.
+if link touches him, link dies. reaper is unkillable,
+and can change directions randomly, or bounce like 
+spikeblock, etc.. reapers would roam mostly around
+dark world graveyards or death-related levels.
 
 
 
