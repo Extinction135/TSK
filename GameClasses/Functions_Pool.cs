@@ -240,15 +240,15 @@ namespace DungeonRun
             {
                 if (Pool.roomObjPool[i].active)
                 {
-                    Functions_GameObject.Update(Pool.roomObjPool[i]);
-                    Functions_Animation.Animate(Pool.roomObjPool[i].compAnim, Pool.roomObjPool[i].compSprite);
-                    Functions_Animation.ScaleSpriteDown(Pool.roomObjPool[i].compSprite);
-
                     //set objects that are in the air to world air friction
                     if (Pool.roomObjPool[i].compMove.grounded == false)
                     { Pool.roomObjPool[i].compMove.friction = World.frictionAir; }
                     //objects not in the air get set the world ground friction
                     else { Pool.roomObjPool[i].compMove.friction = World.friction; }
+
+                    //reset water booleans for objects
+                    Pool.roomObjPool[i].inWater = false;
+                    Pool.roomObjPool[i].underWater = false;
 
                     //any moving roomObj gets interaction checks
                     //and specific roomObjs ALWAYS get interaction checks
@@ -257,6 +257,11 @@ namespace DungeonRun
                         || Pool.roomObjPool[i].type == ObjType.Dungeon_Fairy
                         || Pool.roomObjPool[i].type == ObjType.Pet_Dog)
                     { Functions_Interaction.CheckInteractions(Pool.roomObjPool[i]); }
+
+                    //update, animate, scale
+                    Functions_GameObject.Update(Pool.roomObjPool[i]);
+                    Functions_Animation.Animate(Pool.roomObjPool[i].compAnim, Pool.roomObjPool[i].compSprite);
+                    Functions_Animation.ScaleSpriteDown(Pool.roomObjPool[i].compSprite);
                 }
             }
 

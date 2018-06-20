@@ -16,7 +16,7 @@ namespace DungeonRun
     
     public static class Flags
     {   // **********************************************************************************************************
-        public static Boolean Release = true; //puts game in release mode, overwrites other flags
+        public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.74f; //the version of the game
         public static BootRoutine bootRoutine = BootRoutine.Editor_Level; //boot to game or editor?
@@ -1117,9 +1117,13 @@ namespace DungeonRun
         public Boolean canBeSaved = false; //can this obj be saved to RoomXMLData?
         public Byte lifetime; //how many frames this object exists for, 0 = forever/ignore
         public Byte lifeCounter; //counts up to lifetime value
-        public int interactiveFrame = 0; //only for objs
+
+        public int interactiveFrame = 0; 
         //0 = always interactive
         //>0 = just that one # frame of interaction
+
+        public Boolean underWater = false; //is obj underwater
+        public Boolean inWater = false; //is obj partially submerged in water? ex: swimming
 
         public GameObject()
         {   //initialize to default value - data is changed later

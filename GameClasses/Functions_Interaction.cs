@@ -735,9 +735,13 @@ namespace DungeonRun
 
             #region Pet / Animals
 
-            if (Object.type == ObjType.Pet_Chicken || Object.type == ObjType.Pet_Dog)
-            {   //bounce off bumpers
-                if (RoomObj.type == ObjType.Dungeon_Bumper)
+            if (Object.type == ObjType.Pet_Dog)
+            {   
+                //dogs can swim
+                if(RoomObj.type == ObjType.Wor_Water) { Object.inWater = true; }
+
+                //dogs bounce
+                else if (RoomObj.type == ObjType.Dungeon_Bumper)
                 { Functions_GameObject_Dungeon.BounceOffBumper(Object.compMove, RoomObj); }
             }
 

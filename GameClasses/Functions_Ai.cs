@@ -749,13 +749,15 @@ namespace DungeonRun
                     { Obj.compSprite.flipHorizontally = true; }
                     else { Obj.compSprite.flipHorizontally = false; } //moving right                                              
 
-                    //set moving or idle anim frame
-                    if (Math.Abs(Obj.compMove.magnitude.X) > 0 || Math.Abs(Obj.compMove.magnitude.Y) > 0)
-                    { Obj.compAnim.currentAnimation = AnimationFrames.Pet_Dog_Move; }
-                    else { Obj.compAnim.currentAnimation = AnimationFrames.Pet_Dog_Idle; }
-
                     //play the pet's sound fx occasionally
                     if (Functions_Random.Int(0, 101) > 99) { Assets.Play(Assets.sfxPetDog); }
+
+                    //set animFrame, based on movement and inWater boolean
+                    //if dogs in water, set to water animation, else set to moving anim, else idle anim
+                    if (Obj.inWater) { Obj.compAnim.currentAnimation = AnimationFrames.Pet_Dog_InWater; }
+                    else if (Math.Abs(Obj.compMove.magnitude.X) > 0 || Math.Abs(Obj.compMove.magnitude.Y) > 0)
+                    { Obj.compAnim.currentAnimation = AnimationFrames.Pet_Dog_Move; }
+                    else { Obj.compAnim.currentAnimation = AnimationFrames.Pet_Dog_Idle; }
                 }
             }
 

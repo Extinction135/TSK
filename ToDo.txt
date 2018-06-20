@@ -34,23 +34,33 @@ ganon battle + storyline
 Today:
 
 
-Story++
 
-revised story, roadmap/milestones, reorganized
-ideas and todo. special focus on zelda's two sided
-dialogs as the king. heavily changed story once
-plot gets to darkworld.
+Pet Swimming
 
-
-
-
+created swimming movement sprites for dog pet.
+added inWater and underWater booleans to gameObject class.
+this allows objects to be modeled as in the water or
+underwater - as that's coming in the future as well.
+updated interaction routines to allow dog swimming.
 
 
 
 
-Pets++
-create swimming movement frames for dog.
-should be same pixels - just partially submerged
+
+Chicken ReOrg
+
+move chicken to world sheet.
+pets sheet should just switch animFrames,
+the dog object stays the same in the game.
+which means we can pallette swap and make a
+white, gray, and black dog versions for testing.
+
+
+ok, we need to be able to model roomobjects
+as underwater or in water, which is 
+
+
+
 
 
 Boomerangs++
