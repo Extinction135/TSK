@@ -1577,6 +1577,7 @@ namespace DungeonRun
             else if(Type == ObjType.Wor_Enemy_Turtle
                 || Type == ObjType.Wor_Enemy_Crab)
             {
+                Obj.group = ObjGroup.Enemy;
                 Obj.compSprite.texture = Assets.forestLevelSheet;
                 Obj.getsAI = true; //roomObj enemy
                 Obj.canBeSaved = true;
@@ -1598,6 +1599,7 @@ namespace DungeonRun
 
             else if(Type == ObjType.Wor_Enemy_Rat)
             {
+                Obj.group = ObjGroup.Enemy;
                 Obj.compSprite.texture = Assets.forestLevelSheet;
                 Obj.getsAI = true; //roomObj enemy
                 Obj.canBeSaved = true;
@@ -1616,6 +1618,7 @@ namespace DungeonRun
 
             else if (Type == ObjType.Wor_SeekerExploder)
             {
+                Obj.group = ObjGroup.Enemy;
                 Obj.compSprite.texture = Assets.forestLevelSheet;
                 Obj.canBeSaved = true;
                 Obj.compSprite.zOffset = 0;

@@ -184,8 +184,10 @@ namespace DungeonRun
         Vendor,
         NPC,
 
+        Enemy,
         EnemySpawn,
         Ditch,
+
         //entities
         Pickup,
         Projectile,

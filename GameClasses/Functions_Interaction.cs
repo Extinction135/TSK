@@ -581,8 +581,12 @@ namespace DungeonRun
                     else if (Object.type == ObjType.ProjectileBoomerang)
                     {
 
+                        //kill roomObj enemies, just like a sword would
+                        if (RoomObj.group == ObjGroup.Enemy)
+                        { Functions_GameObject.HandleCommon(RoomObj, Object.compMove.direction); }
 
-                        #region Activate/Kill a limited set of RoomObjs
+
+                        #region Activate a limited set of RoomObjs
 
                         //activate levers
                         if (RoomObj.type == ObjType.Dungeon_LeverOff
@@ -598,11 +602,6 @@ namespace DungeonRun
                         else if (RoomObj.type == ObjType.Dungeon_SwitchBlockBtn)
                         {
                             Functions_GameObject_Dungeon.FlipSwitchBlocks(RoomObj);
-                        }
-                        //kill seeker exploders, just like a sword would
-                        else if(RoomObj.type == ObjType.Wor_SeekerExploder)
-                        {
-                            Functions_GameObject.HandleCommon(RoomObj, Object.compMove.direction);
                         }
 
                         #endregion

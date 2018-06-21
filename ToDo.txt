@@ -35,39 +35,39 @@ Today:
 
 
 
-Pets++
 
-removed pet chicken menuItem from the game.
-improved dog jumping animation.
-added white dog sprite for future update.
+Enemies++
+
+added ObjGroup value Enemies.
+this allows us to model roomObj enemies
+as a group, instead of by type, which
+will simplify interaction routines with
+the current enemies, as well as future 
+enemies. 
+
+updated turtle, crab, rat, and seekerExploder
+to be of ObjGroup type Enemy. updated boomerang
+interaction routines to call HandleCommon()
+on all obj.group enemy objects. this means 
+boomerang now pushes and kills turtles, crabs,
+rats, and seekerExploders.
 
 
 
-
-pets sheet should just switch animFrames,
-the dog object stays the same in the game.
-which means we can pallette swap and make a
-white, gray, and black dog versions for testing.
-
-
-ok, we need to be able to model roomobjects
-as underwater or in water, which is 
+boomerangs should destroy bushes.
 
 
 
 
 
 Boomerangs++
-boomerangs should push rats, turtles, crabs..
-we should really be modeling this as an objectGroup
-we need an ObjGroup value for enemies,
-then we can just boomerang check against enemy objGroup
-..this might simplify some routines in the future as well
 
 update the boomerang ui sprite to look like the ingame
 version: black with a white marker
 
 why can't we pick up rats? they are roomObjs
+
+
 
 
 Map++
