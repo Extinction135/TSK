@@ -583,7 +583,9 @@ namespace DungeonRun
 
                         //kill roomObj enemies, just like a sword would
                         if (RoomObj.group == ObjGroup.Enemy)
-                        { Functions_GameObject.HandleCommon(RoomObj, Object.compMove.direction); }
+                        {
+                            Functions_GameObject.HandleCommon(RoomObj, Object.compMove.direction);
+                        }
 
 
                         #region Activate a limited set of RoomObjs
@@ -603,13 +605,18 @@ namespace DungeonRun
                         {
                             Functions_GameObject_Dungeon.FlipSwitchBlocks(RoomObj);
                         }
+                        //destroy bushes
+                        else if (RoomObj.type == ObjType.Wor_Bush)
+                        {
+                            Functions_GameObject.HandleCommon(RoomObj, Object.compMove.direction);
+                        }
 
                         #endregion
 
 
                         //if this is the initial hit, set the boomerang
                         //into a return state, pop an attention particle
-                        if(Object.lifeCounter < Object.interactiveFrame)
+                        if (Object.lifeCounter < Object.interactiveFrame)
                         {   //set boomerang into return mode
                             Object.lifeCounter = 200;
                             Functions_Particle.Spawn(

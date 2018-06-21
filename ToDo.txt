@@ -36,35 +36,19 @@ Today:
 
 
 
-Enemies++
-
-added ObjGroup value Enemies.
-this allows us to model roomObj enemies
-as a group, instead of by type, which
-will simplify interaction routines with
-the current enemies, as well as future 
-enemies. 
-
-updated turtle, crab, rat, and seekerExploder
-to be of ObjGroup type Enemy. updated boomerang
-interaction routines to call HandleCommon()
-on all obj.group enemy objects. this means 
-boomerang now pushes and kills turtles, crabs,
-rats, and seekerExploders.
-
-
-
-boomerangs should destroy bushes.
-
-
-
-
-
 Boomerangs++
 
-update the boomerang ui sprite to look like the ingame
-version: black with a white marker
+updated boomerang ui sprite to look like 
+ingame version: black with white marker.
+boomerangs now destroy bushes as well.
+so, the boomerang is very useful.
 
+
+
+
+
+
+Rats++
 why can't we pick up rats? they are roomObjs
 
 
