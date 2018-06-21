@@ -139,36 +139,14 @@ namespace DungeonRun
             {   //decorate this death as special / explosive
                 Functions_Particle.Spawn_Explosion(ObjType.Particle_Debris,
                     Actor.compSprite.position.X, Actor.compSprite.position.Y, true);
+                Actor.compAnim.speed = 15; //slow down death animation to taste
                 //this actor becomes debris on floor, sort to floor.
                 Actor.compSprite.zOffset = -8;
                 Functions_Component.SetZdepth(Actor.compSprite);
-
-
-                #region Drop Map
-
-                //this will need to be moved somewhere else, because there will
-                //be many minibosses eventually
-
-                if(Functions_Level.currentRoom.roomID == RoomID.Hub)
-                {   //only in the hub room, can a miniboss spawn the map reward obj
-                    if (Level.map == false) //make sure hero doesn't already have map
-                    {
-                        Level.map = true; //flip map true
-                        SetRewardState(Pool.hero); //stop + put hero into reward state
-                        SetAnimationGroup(Actor); //update hero's animGroup to reward
-                        SetAnimationDirection(Actor); //finally, set the anim direction
-                        Functions_Particle.Spawn(ObjType.Particle_RewardMap, Pool.hero);
-                        Assets.Play(Assets.sfxReward); //play reward / boss defeat sfx
-                        Actor.compAnim.speed = 15; //slow down death animation
-
-                        if (Flags.ShowDialogs)
-                        { ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.HeroGotMap)); }
-                    }
-                }
-
-                #endregion
-
-
+                //try to drop map
+                Functions_GameObject_Dungeon.DropMap(
+                    Actor.compSprite.position.X, 
+                    Actor.compSprite.position.Y);
             }
 
             #endregion

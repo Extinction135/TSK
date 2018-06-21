@@ -226,6 +226,7 @@ namespace DungeonRun
         Dungeon_FloorDecal,
         Dungeon_FloorBlood, 
 
+        Dungeon_Map, //unlocks dungeon map
 
         //HAND PLACED
         Dungeon_Pit, 
@@ -237,7 +238,7 @@ namespace DungeonRun
         Dungeon_Statue, 
         Dungeon_SkullPillar,
 
-        Dungeon_Chest, //placeable in editor, becomes key or map chest
+        Dungeon_Chest, //placeable in editor, becomes key chest
         Dungeon_ChestKey, //not placeable, procedurally set
         Dungeon_ChestEmpty, //just empty
 
@@ -499,7 +500,6 @@ namespace DungeonRun
         Particle_Leaf,
         Particle_Debris,
 
-         
         //Particles - map
         Particle_Map_Flag,
         Particle_Map_Wave,

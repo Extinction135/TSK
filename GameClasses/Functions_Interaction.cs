@@ -113,9 +113,32 @@ namespace DungeonRun
 
                 //type checks
 
+                #region Map
+
+                if (Obj.type == ObjType.Dungeon_Map)
+                {
+                    if (Level.map == false) //make sure hero doesn't already have map
+                    {
+                        Functions_Pool.Release(Obj); //hero collects map obj
+                        Level.map = true; //flip map true
+                        Functions_Actor.SetRewardState(Pool.hero);
+                        Functions_Actor.SetAnimationGroup(Pool.hero);
+                        Functions_Actor.SetAnimationDirection(Pool.hero); 
+                        Functions_Particle.Spawn(ObjType.Particle_RewardMap, Pool.hero);
+                        Assets.Play(Assets.sfxReward); //play reward / boss defeat sfx
+
+                        if (Flags.ShowDialogs)
+                        { ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.HeroGotMap)); }
+                    }
+                    return;
+                }
+
+                #endregion
+
+
                 #region Fairy
 
-                if (Obj.type == ObjType.Dungeon_Fairy)
+                else if (Obj.type == ObjType.Dungeon_Fairy)
                 {
                     Functions_GameObject_Dungeon.UseFairy(Obj);
                     return;

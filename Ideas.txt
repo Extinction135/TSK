@@ -1,6 +1,13 @@
 
 
 
+MapScreen++
+add lttp's map title to dungeon map screen, outside of
+the scroll sprite. rename map window title to nothing.
+
+
+
+
 
 Hidden Seeds / Vendor Items
 *if we push a shelf obj up to the farmer vendor,

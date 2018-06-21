@@ -293,7 +293,7 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[44], ObjType.Unknown);
             Functions_GameObject.SetType(objList[45], ObjType.Unknown);
             Functions_GameObject.SetType(objList[46], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[47], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[47], ObjType.Dungeon_Map);
 
             //position the objs relative to the window frame
             Functions_Widget.PositionObjs(this);

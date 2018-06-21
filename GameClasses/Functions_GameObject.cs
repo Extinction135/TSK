@@ -655,7 +655,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Chests
+            #region Chest + Map
 
             else if (Type == ObjType.Dungeon_Chest || 
                 Type == ObjType.Dungeon_ChestKey)
@@ -679,6 +679,15 @@ namespace DungeonRun
                 Obj.compMove.moveable = true;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_ChestOpened;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
+            }
+            else if(Type == ObjType.Dungeon_Map)
+            {
+                Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_Map;
+                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
+                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
+                Obj.compSprite.zOffset = 0;
+                //hero simply touches map to collect it
+                Obj.compCollision.blocking = false; 
             }
 
             #endregion

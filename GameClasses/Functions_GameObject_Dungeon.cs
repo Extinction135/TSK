@@ -344,5 +344,19 @@ namespace DungeonRun
             Functions_GameObject.Spawn(Type, posB.X, posB.Y, Door.direction);
         }
 
+        public static void DropMap(float X, float Y)
+        {   //a map drop only comes from a miniboss death in a hub room
+            if (Functions_Level.currentRoom.roomID == RoomID.Hub)
+            {   //a map will only spawn if hero doesn't have the map
+                if (Level.map == false)
+                {
+                    Functions_GameObject.Spawn(ObjType.Dungeon_Map,
+                        X, Y, Direction.Down);
+                }
+            }
+        }
+
+
+
     }
 }

@@ -35,46 +35,32 @@ Today:
 
 
 
-Throw & Push++
 
-we can now pickup and throw all enemy roomObjs.
-except seekerExploders, which could create a weird
-state where link is holding a reference to a roomObj
-that has released itself, so link would either A) get
-hit by seeker explosion and try to throw(), or B) get
-put into a state where he is holding a released obj, 
-which wouldn't get drawn or interacted with. 
 
-we can now push() all objects that are moveable
-and grounded, since conceptually that makes sense.
-and it's essentially what conveyor belts are doing.
 
-i see some parallells between conveyor belts and
-hero pushing objects, but i dont think a consolidation
-is warranted, currently. in the future, when Wind is
-implemented, we'll likely consolidate roomObj pushing
-to a single method, and check the push against a weight
-integer to determine if the push should occur.
-link would have a weight greater than the obj always,
-so he could always push push-able objects. BUT wind
-would have a weight of 0 or 1, very light, and would
-only physically move objects lighter than it (not building
-walls for example). however, later on - we could implement
-storm magic that creates tornados or strong gusts of
-wind, and we'd only need to increase the weight of the
-wind to insure it pushed everything on screen, including
-the hero. this weight vs weight check is very useful -
-it can also determine how quickly the hero pushes an
-object making it seem like larger or heavier objects
-take longer to push. /rantOver.
+DungeonMap++
 
-double checked obj definitions to ensure proper
-push interaction is implemented.
+i don't like how link is auto-rewarded with
+the map currently - it's jarring and takes
+agency away from the player. maybe the player
+doesn't want to pickup the map? or perhaps
+the player is too unobservant to notice it.
 
-fixed sorting issue with buildings side walls 
-sorting on same layer as front walls. now they
-sort over front walls, completing the required
-black border of pixels around every roomObj.
+either way, the game rewards observation,
+so the dungeon map is now an object that
+the miniboss drops in the hub room of any
+dungeon. if the player doesnt pick the map
+up, the miniboss will drop it again upon
+being defeated next time. if the hero has
+the map, it wont be dropped. if the miniboss
+dies outside of the hub room, like in a
+colliseum challenge, then the map isn't
+dropped. when link collides with the map
+object, he automatically picks it up,
+and sets into a reward state with the same
+map sprite over his head. it's a pretty
+good transition, and works well enough
+(with the dialog) that "I'll allow it".
 
 
 
@@ -83,18 +69,6 @@ black border of pixels around every roomObj.
 
 
 
-Map++
-Make the map a roomObj.
-link colliding with it should set reward state, pop map reward
-particle, flip map boolean. miniboss should spawn map pickup obj,
-if miniboss dies in hub room, and hero doesn't have map.
-
-*map sprite should bounce and be SUPER noticeable.
-the player should have to choose NOT to pick it up.
-
-MapScreen++
-add lttp's map title to dungeon map screen, outside of
-the scroll sprite. rename map window title to nothing.
 
 
 
