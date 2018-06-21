@@ -32,29 +32,15 @@ Today:
 
 
 
+BedBugs
 
-
-
-Prep for 0.74 Release
-
-during a playthru recording, several issues
-were noticed and fixed...
-
-fixed a major issue with pets removing
-roomObjects when spawning inside dungeon
-rooms - they were overlapping a wall, which
-was removing the wall.
-
-fixed an issue where open building
-doors couldn't be destroyed.
-
-updated roomObj enemies to instantly die
-if they go beyond the room's rec. link
-wouldn't be able to chase them or kill
-them, plus it looks really weird to see
-a rat running around outside the dungeon
-room in total darkness. this is the same
-check used for fairies too.
+fixed a bug where beds were displaying
+the improper debris sprite, which was
+due to the debris object never setting
+it's cellSize back to 16x16, and since
+the bed was 16x32, the animFrame pointed
+to the wrong sprite - the closed building
+door sprite, lol.
 
 
 
@@ -65,10 +51,29 @@ check used for fairies too.
 
 
 
+Release 0.74 - The Colliseum
+
+the major addition 0.74 brings is The
+Colliseum, a place where link can purchase
+challenges. A challenge is a set of enemies,
+with a reward. If link defeats all the
+enemies, then he gets the reward. Otherwise,
+link dies, is kicked out of the colliseum to
+the overworld screen, and has to buy the
+challenge again. for now, there are 3
+challenges that are all pretty crazy and fun.
+
+there's also been a ton of smaller 
+improvements to the overall game.
 
 
 
------- RELEASE 0.74 --------
+
+
+
+
+
+
 
 
 Part1

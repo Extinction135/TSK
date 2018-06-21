@@ -558,7 +558,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Floor Objects
+            #region Boss Decal + Floor Blood
 
             else if (Type == ObjType.Dungeon_FloorDecal)
             {   
@@ -1049,6 +1049,10 @@ namespace DungeonRun
 
             else if (Type == ObjType.Wor_Debris)
             {
+                //reset cell size
+                Obj.compSprite.cellSize.X = 16 * 1;
+                Obj.compSprite.cellSize.Y = 16 * 1;
+
                 //reset hitbox
                 Obj.compCollision.rec.Width = 16;
                 Obj.compCollision.rec.Height = 16;
