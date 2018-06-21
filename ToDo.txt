@@ -32,22 +32,6 @@ Today:
 
 
 
-BedBugs
-
-fixed a bug where beds were displaying
-the improper debris sprite, which was
-due to the debris object never setting
-it's cellSize back to 16x16, and since
-the bed was 16x32, the animFrame pointed
-to the wrong sprite - the closed building
-door sprite, lol.
-
-
-
-
-
-
-
 
 
 
@@ -64,7 +48,12 @@ challenge again. for now, there are 3
 challenges that are all pretty crazy and fun.
 
 there's also been a ton of smaller 
-improvements to the overall game.
+improvements to the overall game,
+along with many layers of polish.
+
+> uploaded 0.74 playthru to 'tubes.
+> uploaded Dx & UWP releases of 0.74 to 'box.
+> recorded .gifs & updated readme.
 
 
 
@@ -72,50 +61,12 @@ improvements to the overall game.
 
 
 
-
-
-
-
-Part1
-
-record playthrough using OBS. dump this raw
-video file as private video to youtube.
-
-record gifs using licecap over obs recording.
-this way we have more control over the filesize, and
-the framing of the content we want to highlight.
-
-record several gifs to edit together for 0.74.
-post 0.74 gif and video to readme.
-
-export install version of game for Dx.
-export appx package of game for UWP.
-upload to dropbox, add links back to readme.
 
 delete versions page entirely.
 
 
 
 
-
-
-Part2
-
-create the gameplay page in the repo, and start
-filling it with examples of gameplay gifs (with text notes):
-
-moving & dashing
-attacking, using items, inventory
-colliseum fighting
-grass fires + burning objects
-swimming, swim dashing 
-pickup, throw, dash carry
-sneaking, swimming underwater
-buildings, roofs, destruction
-Vendors + NPCs
-minibosses + bosses
-dungeon type, size, variety
-environments + levels
 
 
 
