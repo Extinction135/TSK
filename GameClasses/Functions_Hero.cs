@@ -278,6 +278,7 @@ namespace DungeonRun
             else if (Obj.group == ObjGroup.NPC)
             {   //based on obj.type, select dialog
 
+
                 #region Story/Guide
 
                 if(Obj.type == ObjType.NPC_Story)
@@ -433,12 +434,15 @@ namespace DungeonRun
 
             #region Carry-able Objects
 
+            if(Obj.group == ObjGroup.Enemy)
+            {   //deny link ability to pickup some enemies
+                if (Obj.type == ObjType.Wor_SeekerExploder) { return; }
+                Functions_Actor.Pickup(Obj, Pool.hero);
+            }
+
             if (Obj.type == ObjType.Dungeon_Pot
                 || Obj.type == ObjType.Wor_Pot
-                || Obj.type == ObjType.Wor_Bush
-                //enemies
-                || Obj.type == ObjType.Wor_Enemy_Turtle
-                || Obj.type == ObjType.Wor_Enemy_Crab)
+                || Obj.type == ObjType.Wor_Bush)
             {
                 Functions_Actor.Pickup(Obj, Pool.hero);
             }
@@ -448,19 +452,15 @@ namespace DungeonRun
 
             #region Push-able Objects
 
-            //what hero can push is limited by this check
-            else if(Obj.type == ObjType.Dungeon_Barrel
-                || Obj.type == ObjType.Dungeon_BlockLight
-                || Obj.type == ObjType.Dungeon_Statue
-                || Obj.type == ObjType.Dungeon_TorchLit
-                || Obj.type == ObjType.Dungeon_TorchUnlit
-                || Obj.type == ObjType.Wor_Bookcase
-                || Obj.type == ObjType.Wor_Chair
-                || Obj.type == ObjType.Wor_Shelf
-                || Obj.type == ObjType.Wor_Sink
-                || Obj.type == ObjType.Wor_Stove
-                || Obj.type == ObjType.Wor_TableSingle)
+            //if an obj is moveable, hero should be able to push it, right?
+            if(Obj.compMove.moveable & Obj.compMove.grounded)
             {
+                //some objects cannot be pushed
+                if (Obj.type == ObjType.Dungeon_Pot
+                    || Obj.type == ObjType.Wor_Pot
+                    || Obj.type == ObjType.Dungeon_ChestKey)
+                { return; }
+                //all other objects can be pushed
                 Functions_Actor.Grab(Obj, Pool.hero);
             }
 

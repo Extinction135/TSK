@@ -35,21 +35,50 @@ Today:
 
 
 
+Throw & Push++
 
-Boomerangs++
+we can now pickup and throw all enemy roomObjs.
+except seekerExploders, which could create a weird
+state where link is holding a reference to a roomObj
+that has released itself, so link would either A) get
+hit by seeker explosion and try to throw(), or B) get
+put into a state where he is holding a released obj, 
+which wouldn't get drawn or interacted with. 
 
-updated boomerang ui sprite to look like 
-ingame version: black with white marker.
-boomerangs now destroy bushes as well.
-so, the boomerang is very useful.
+we can now push() all objects that are moveable
+and grounded, since conceptually that makes sense.
+and it's essentially what conveyor belts are doing.
+
+i see some parallells between conveyor belts and
+hero pushing objects, but i dont think a consolidation
+is warranted, currently. in the future, when Wind is
+implemented, we'll likely consolidate roomObj pushing
+to a single method, and check the push against a weight
+integer to determine if the push should occur.
+link would have a weight greater than the obj always,
+so he could always push push-able objects. BUT wind
+would have a weight of 0 or 1, very light, and would
+only physically move objects lighter than it (not building
+walls for example). however, later on - we could implement
+storm magic that creates tornados or strong gusts of
+wind, and we'd only need to increase the weight of the
+wind to insure it pushed everything on screen, including
+the hero. this weight vs weight check is very useful -
+it can also determine how quickly the hero pushes an
+object making it seem like larger or heavier objects
+take longer to push. /rantOver.
+
+double checked obj definitions to ensure proper
+push interaction is implemented.
+
+fixed sorting issue with buildings side walls 
+sorting on same layer as front walls. now they
+sort over front walls, completing the required
+black border of pixels around every roomObj.
 
 
 
 
-
-
-Rats++
-why can't we pick up rats? they are roomObjs
 
 
 

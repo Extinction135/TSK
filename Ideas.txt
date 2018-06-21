@@ -1,5 +1,38 @@
 
 
+
+
+Hidden Seeds / Vendor Items
+*if we push a shelf obj up to the farmer vendor,
+he will sell you special seeds from his secret family
+locker.. he mentions that he forgot about where he
+put it prior to this - so the player has at least a hint.
+this can be done by simply expnding the NPCs hitbox and
+then checking for the obj in question.
+
+
+
+Wind 
+in the future, when Wind is
+implemented, we'll likely consolidate roomObj pushing
+to a single method, and check the push against a weight
+integer to determine if the push should occur.
+link would have a weight greater than the obj always,
+so he could always push push-able objects. BUT wind
+would have a weight of 0 or 1, very light, and would
+only physically move objects lighter than it (not building
+walls for example). however, later on - we could implement
+storm magic that creates tornados or strong gusts of
+wind, and we'd only need to increase the weight of the
+wind to insure it pushed everything on screen, including
+the hero. this weight vs weight check is very useful -
+it can also determine how quickly the hero pushes an
+object making it seem like larger or heavier objects
+take longer to push. /rantOver.
+
+
+
+
 Darkworld Map
 idea: keep most of the locations the same in darkworld map,
 so it seems like the two worlds are related. there can be some

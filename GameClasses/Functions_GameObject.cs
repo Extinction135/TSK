@@ -645,7 +645,7 @@ namespace DungeonRun
                 Obj.compSprite.cellSize.Y = 16 * 2; //nonstandard size
                 Obj.compSprite.zOffset = +10;
                 Obj.compCollision.offsetY = +8;
-                Obj.compMove.moveable = true;
+                Obj.compMove.moveable = false;
                 Obj.canBeSaved = true;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_SkullPillar;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
@@ -739,7 +739,6 @@ namespace DungeonRun
                 Obj.compCollision.rec.Width = 12; Obj.compCollision.rec.Height = 5;
                 Obj.compSprite.zOffset = -3;
                 Obj.canBeSaved = true;
-                //Obj.compMove.moveable = true;
                 if (Type == ObjType.Dungeon_LeverOn)
                 { Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_LeverOn; }
                 else { Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_LeverOff; }
@@ -1497,7 +1496,7 @@ namespace DungeonRun
                 Obj.compSprite.texture = Assets.forestLevelSheet;
                 Obj.canBeSaved = true;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
-                Obj.compSprite.zOffset = 0;
+                Obj.compSprite.zOffset = 1;
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Build_Wall_Side_Left;
                 //note - these hitboxes are custom for a reason
                 Obj.compCollision.rec.Width = 3; Obj.compCollision.offsetX = -8;
@@ -1508,7 +1507,7 @@ namespace DungeonRun
                 Obj.compSprite.texture = Assets.forestLevelSheet;
                 Obj.canBeSaved = true;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
-                Obj.compSprite.zOffset = 0;
+                Obj.compSprite.zOffset = 1;
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Build_Wall_Side_Right;
                 //note - these hitboxes are custom for a reason
                 Obj.compCollision.rec.Width = 3; Obj.compCollision.offsetX = +5;
