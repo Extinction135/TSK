@@ -386,8 +386,7 @@ namespace DungeonRun
 
             else if (Obj.type == ObjType.Dungeon_Signpost)
             {
-                if (Flags.ShowDialogs)
-                { ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Signpost_Standard)); }
+                Functions_GameObject_World.ReadSign(Obj);
             }
 
             #endregion

@@ -35,51 +35,16 @@ Today:
 
 
 
+Signs & Forest Entrance Level
 
-
-
-DungeonMap++
-
-i don't like how link is auto-rewarded with
-the map currently - it's jarring and takes
-agency away from the player. maybe the player
-doesn't want to pickup the map? or perhaps
-the player is too unobservant to notice it.
-
-either way, the game rewards observation,
-so the dungeon map is now an object that
-the miniboss drops in the hub room of any
-dungeon. if the player doesnt pick the map
-up, the miniboss will drop it again upon
-being defeated next time. if the hero has
-the map, it wont be dropped. if the miniboss
-dies outside of the hub room, like in a
-colliseum challenge, then the map isn't
-dropped. when link collides with the map
-object, he automatically picks it up,
-and sets into a reward state with the same
-map sprite over his head. it's a pretty
-good transition, and works well enough
-(with the dialog) that "I'll allow it".
+implemented signs to be readable based on the level.id.
+added dialogs for forest entrance level and left town level.
+completely redesigned forest entrance level.
+lots of playtesting.
 
 
 
 
-
-
-
-
-
-
-
-Reading Signs
-we need to be able to read signposts properly
-this is based on the current room/level.
-only 1 signpost is allowed per room, extending to fields.
-so, for overworld levels, there can only be 1 signpost.
-and it can only say one thing, because it's based
-on the room.id. and this will be contained within
-a method called ReadSign(GameObject SignPost).
 
 
 

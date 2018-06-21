@@ -132,6 +132,30 @@ namespace DungeonRun
                 Assets.sfxTextLetter, false, false, false)
         };
 
+        public static List<Dialog> Signpost_ForestEntrance = new List<Dialog>
+        {
+            new Dialog(ObjType.Hero_Idle, "Hyrule Forest",
+                "'Please Respect our community - no logging!'\n" +
+                "..I guess they really care about their wood.",
+                Assets.sfxTextLetter, false, false, false)
+        };
+
+        public static List<Dialog> Signpost_LeftTown2 = new List<Dialog>
+        {
+            new Dialog(ObjType.Hero_Idle, "Hmm..",
+                "it says 'welcome to left town'.\n" +
+                "that's an odd name for a town.",
+                Assets.sfxTextLetter, false, false, false)
+        };
+
+        public static List<Dialog> Signpost_TheFarm = new List<Dialog>
+        {
+            new Dialog(ObjType.Hero_Idle, "The Farm",
+                "welcome to the farm.\n" +
+                "...",
+                Assets.sfxTextLetter, false, false, false)
+        };
+
         #endregion
 
 
@@ -226,6 +250,9 @@ namespace DungeonRun
         };
 
         #endregion
+
+
+
 
     }
 }

@@ -163,5 +163,25 @@ namespace DungeonRun
         }
 
 
+        public static void ReadSign(GameObject Sign)
+        {
+            //based on level.id, and sometimes roomID, signs point to diff dialogs
+            if (Level.ID == LevelID.Forest_Entrance)
+            {
+                ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Signpost_ForestEntrance));
+            }
+            else if(Level.ID == LevelID.LeftTown2)
+            {
+                ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Signpost_LeftTown2));
+            }
+            else if (Level.ID == LevelID.TheFarm)
+            {
+                ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Signpost_TheFarm));
+            }
+            else
+            {   //bare minimum, we pop a blank standard dialog
+                ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Signpost_Standard));
+            }
+        }
     }
 }

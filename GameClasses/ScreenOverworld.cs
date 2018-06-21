@@ -431,9 +431,7 @@ namespace DungeonRun
                         Assets.Play(Assets.sfxMapLocation);
 
                         if(Flags.PrintOutput)
-                        {
-                            Debug.WriteLine("location: " + currentLocation.ID);
-                        }
+                        { Debug.WriteLine("location: " + currentLocation.ID); }
                     }
                 }
 
