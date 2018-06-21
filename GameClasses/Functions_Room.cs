@@ -92,8 +92,8 @@ namespace DungeonRun
         static Boolean removeObjB;
 
         public static void Cleanup(Room Room)
-        {
-            for (i = 0; i < Pool.roomObjCount; i++)
+        {   //skip the hero's pet (roomObj[0])
+            for (i = 1; i < Pool.roomObjCount; i++)
             {
                 objA = Pool.roomObjPool[i];
                 if (objA.active)

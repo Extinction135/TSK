@@ -1,6 +1,51 @@
 
 
 
+
+
+
+
+
+
+EDITOR +++++++++
+
+editor++
+it would be nice to be able to toggle roofs on/off.
+and hide their collisionrecs too, so we can't accidentally pick them up.
+it would also be nice to "lock" water tiles somehow, so we can't
+mess them up. maybe different selection modes: landscape, building.
+it would be nice to be able to drag select a rec around a set of objects,
+then move them with the arrow keys, in 16 pixel increments. this would allow
+us to edit parts of rooms just like we edit pixels in photoshop.
+
+
+Magic Mirror
+- returns link to dungeon entrance.
+- plays warp sound fx
+should call Level.BuildLevel(Level.ID),
+which will cause the level to fade in from black,
+and place hero at the entrance the dungeon again.
+*this should only work in a dungeon. 
+*magic mirror doesn't warp hero out of dark world
+back to light world like lttp did. 
+instead, magic mirror "reflects link's true image,
+keeping him human in the dark world".
+
+Whe link is first pulled into the dark world,
+his magic mirror should get cracked, so he becomes
+the familiar bunny again. this time he has to seek 
+out someone who can repair his magic mirror before
+he can become himself again. during this time,
+bunny link can only walk, dash, interact, pickup,
+throw, hide/sneak, swim, dive, and swim dash.
+no attacking or using items. the idea is to 
+make this part of the game a stealth mission:
+sneak past the overpowering enemies as a bunny,
+repair your magic mirror, and THEN fight.
+
+
+
+
 MapScreen++
 add lttp's map title to dungeon map screen, outside of
 the scroll sprite. rename map window title to nothing.

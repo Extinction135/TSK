@@ -16,7 +16,7 @@ namespace DungeonRun
     
     public static class Flags
     {   // **********************************************************************************************************
-        public static Boolean Release = false; //puts game in release mode, overwrites other flags
+        public static Boolean Release = true; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.74f; //the version of the game
         public static BootRoutine bootRoutine = BootRoutine.Editor_Level; //boot to game or editor?
@@ -225,7 +225,7 @@ namespace DungeonRun
         public static int activeActor = 1; //tracks the current actor being handled by AI
 
         public static Actor hero; //points to actorPool[0]
-        public static GameObject herosPet; //points to roomObj[0]
+        public static GameObject herosPet; //points to roomObj[1]
 
         public static int collisionsCount = 0; //tracks collisions per frame
         public static int interactionsCount = 0; //tracks interactions per frame

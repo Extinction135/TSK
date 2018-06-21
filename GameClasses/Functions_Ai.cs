@@ -295,6 +295,108 @@ namespace DungeonRun
             #endregion
 
 
+            #region Handle RoomObj Enemies - behavior
+
+            else if (Obj.group == ObjGroup.Enemy)
+            {
+
+                //if an enemy has gone beyond the bounds of a roomRec, release without loot
+                if (!Functions_Level.currentRoom.rec.Contains(Obj.compSprite.position))
+                {
+                    Functions_Pool.Release(Obj);
+                }
+
+
+                #region Enemy - Turtles & Crabs
+
+                if (Obj.type == ObjType.Wor_Enemy_Turtle
+                    || Obj.type == ObjType.Wor_Enemy_Crab)
+                {   //rarely gently push in a direction
+                    if (Functions_Random.Int(0, 1001) > 900)
+                    {
+                        Functions_Movement.Push(Obj.compMove,
+                            Functions_Direction.GetRandomDirection(), 0.5f);
+                    }
+                }
+
+                #endregion
+
+
+                #region Enemy - Rats
+
+                else if (Obj.type == ObjType.Wor_Enemy_Rat)
+                {
+                    //very rarely play rat soundfx
+                    if (Functions_Random.Int(0, 1001) > 999)
+                    { Assets.Play(Assets.sfxRatSqueak); }
+
+                    //rarely choose a random cardinal direction
+                    if (Functions_Random.Int(0, 1001) > 990)
+                    {
+                        Obj.direction = Functions_Direction.GetRandomCardinal();
+                        //set animation frame based on direction
+                        if (Obj.direction == Direction.Up)
+                        { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Enemy_Rat_Up; }
+                        else if (Obj.direction == Direction.Right)
+                        { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Enemy_Rat_Right; }
+                        else if (Obj.direction == Direction.Down)
+                        { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Enemy_Rat_Down; }
+                        else if (Obj.direction == Direction.Left)
+                        { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Enemy_Rat_Left; }
+                    }
+
+                    //often push in current direction
+                    if (Functions_Random.Int(0, 1001) > 700)
+                    { Functions_Movement.Push(Obj.compMove, Obj.direction, 1.0f); }
+                }
+
+                #endregion
+
+
+                #region Seeker Exploders
+
+                else if (Obj.type == ObjType.Wor_SeekerExploder)
+                {
+                    //get the x & y distances between actor and hero
+                    xDistance = (int)Math.Abs(Pool.hero.compSprite.position.X - Obj.compSprite.position.X);
+                    yDistance = (int)Math.Abs(Pool.hero.compSprite.position.Y - Obj.compSprite.position.Y);
+
+                    if (yDistance < 16 * 10 & xDistance < 16 * 10) //can seeker see hero?
+                    {   //set direction towards hero
+                        Obj.compMove.direction = Functions_Direction.GetDiagonalToHero(Obj.compSprite.position);
+                        Obj.direction = Obj.compMove.direction;
+                        //seeker moves with high energy
+                        Functions_Movement.Push(Obj.compMove, Obj.compMove.direction, 0.25f);
+                    }
+                    else
+                    {   //randomly set direction seeker moves
+                        if (Functions_Random.Int(0, 100) > 95)
+                        { Obj.compMove.direction = Functions_Direction.GetRandomDirection(); }
+                        Obj.direction = Obj.compMove.direction;
+                        //seeker moves with less energy
+                        Functions_Movement.Push(Obj.compMove, Obj.compMove.direction, 0.1f);
+                    }
+
+                    if (yDistance < 15 & xDistance < 15) //is seeker close enough to explode?
+                    {   //instantly explode
+                        Functions_Projectile.Spawn(ObjType.ProjectileExplosion,
+                            Obj.compSprite.position.X,
+                            Obj.compSprite.position.Y);
+                        Functions_Pool.Release(Obj);
+                    }
+                }
+
+                #endregion
+
+
+            }
+
+            #endregion
+
+
+
+
+
 
             //Obj.type checks
 
@@ -401,6 +503,10 @@ namespace DungeonRun
             }
 
             #endregion
+
+
+
+
 
 
 
@@ -792,93 +898,7 @@ namespace DungeonRun
 
             #endregion
 
-
-
-            //enemies
-
-            #region Enemy - Turtles & Crabs
-
-            else if(Obj.type == ObjType.Wor_Enemy_Turtle
-                || Obj.type == ObjType.Wor_Enemy_Crab)
-            {   //rarely gently push in a direction
-                if (Functions_Random.Int(0, 1001) > 900)
-                {
-                    Functions_Movement.Push(Obj.compMove,
-                        Functions_Direction.GetRandomDirection(), 0.5f);
-                }
-            }
-
-            #endregion
-
-
-            #region Enemy - Rats
-
-            else if (Obj.type == ObjType.Wor_Enemy_Rat)
-            {
-                //very rarely play rat soundfx
-                if (Functions_Random.Int(0, 1001) > 999)
-                { Assets.Play(Assets.sfxRatSqueak); }
-
-                //rarely choose a random cardinal direction
-                if (Functions_Random.Int(0, 1001) > 990)
-                {
-                    Obj.direction = Functions_Direction.GetRandomCardinal();
-                    //set animation frame based on direction
-                    if (Obj.direction == Direction.Up)
-                    { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Enemy_Rat_Up; }
-                    else if (Obj.direction == Direction.Right)
-                    { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Enemy_Rat_Right; }
-                    else if (Obj.direction == Direction.Down)
-                    { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Enemy_Rat_Down; }
-                    else if (Obj.direction == Direction.Left)
-                    { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Enemy_Rat_Left; }
-                }
-
-                //often push in current direction
-                if (Functions_Random.Int(0, 1001) > 700)
-                { Functions_Movement.Push(Obj.compMove, Obj.direction, 1.0f); }
-            }
-
-            #endregion
-
             
-            #region Seeker Exploders
-
-            else if (Obj.type == ObjType.Wor_SeekerExploder)
-            {
-                //get the x & y distances between actor and hero
-                xDistance = (int)Math.Abs(Pool.hero.compSprite.position.X - Obj.compSprite.position.X);
-                yDistance = (int)Math.Abs(Pool.hero.compSprite.position.Y - Obj.compSprite.position.Y);
-
-                if (yDistance < 16 * 10 & xDistance < 16 * 10) //can seeker see hero?
-                {   //set direction towards hero
-                    Obj.compMove.direction = Functions_Direction.GetDiagonalToHero(Obj.compSprite.position);
-                    Obj.direction = Obj.compMove.direction;
-                    //seeker moves with high energy
-                    Functions_Movement.Push(Obj.compMove, Obj.compMove.direction, 0.25f);
-                }
-                else
-                {   //randomly set direction seeker moves
-                    if (Functions_Random.Int(0, 100) > 95)
-                    { Obj.compMove.direction = Functions_Direction.GetRandomDirection(); }
-                    Obj.direction = Obj.compMove.direction;
-                    //seeker moves with less energy
-                    Functions_Movement.Push(Obj.compMove, Obj.compMove.direction, 0.1f);
-                }
-
-                if (yDistance < 15 & xDistance < 15) //is seeker close enough to explode?
-                {   //instantly explode
-                    Functions_Projectile.Spawn(ObjType.ProjectileExplosion,
-                        Obj.compSprite.position.X,
-                        Obj.compSprite.position.Y);
-                    Functions_Pool.Release(Obj);
-                }
-            }
-
-            #endregion
-
-
-
 
 
             //very special objects

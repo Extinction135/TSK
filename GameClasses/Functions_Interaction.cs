@@ -1050,7 +1050,19 @@ namespace DungeonRun
             #endregion
 
 
-            
+            #region Open Doors - collapse from explosions + bolts
+
+            else if (RoomObj.type == ObjType.Wor_Build_Door_Open)
+            {
+                if (Object.type == ObjType.ProjectileExplosion
+                    || Object.type == ObjType.ProjectileLightningBolt)
+                {   //destroy obj
+                    Functions_GameObject.Kill(RoomObj, false, true);
+                }
+            }
+
+            #endregion
+
 
 
 

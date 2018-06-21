@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="28040Gx000000.DungeonRun" Publisher="CN=F18779B8-66AD-42E1-A2BA-1881191A8029" Version="0.7.3.0" />
+  <Identity Name="28040Gx000000.DungeonRun" Publisher="CN=F18779B8-66AD-42E1-A2BA-1881191A8029" Version="0.7.4.0" />
   <mp:PhoneIdentity PhoneProductId="513a0791-d91c-402c-bb32-731dfc855cf7" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>DungeonRun</DisplayName>

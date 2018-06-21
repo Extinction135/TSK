@@ -13,19 +13,16 @@ Roadmap
 0.77 - castle, city, royal vendors
 0.78 - king, fight with king, lightworld storyline done
 0.79 - farming + seeds + crops
+
 0.80 - dark world map + 1st level + transition to/from
+0.81 - swamp/water dungeon + enemies
+0.82 - ice dungeon + enemies
+0.83 - graveyard dungeon + enemies
 
-
-Milestones
-
-swamp/water dungeon + enemies
-ice dungeon + enemies
-graveyard dungeon + enemies
-darkworld castle + enemies
-darkworld queen battle
-darkworld storyline
-
-ganon battle + storyline
+0.84 - darkworld castle + enemies
+0.85 - darkworld queen battle
+0.86 - darkworld storyline
+0.87 - ganon battle + storyline
 
 
 
@@ -35,14 +32,29 @@ Today:
 
 
 
-Signs & Forest Entrance Level
-
-implemented signs to be readable based on the level.id.
-added dialogs for forest entrance level and left town level.
-completely redesigned forest entrance level.
-lots of playtesting.
 
 
+
+Prep for 0.74 Release
+
+during a playthru recording, several issues
+were noticed and fixed...
+
+fixed a major issue with pets removing
+roomObjects when spawning inside dungeon
+rooms - they were overlapping a wall, which
+was removing the wall.
+
+fixed an issue where open building
+doors couldn't be destroyed.
+
+updated roomObj enemies to instantly die
+if they go beyond the room's rec. link
+wouldn't be able to chase them or kill
+them, plus it looks really weird to see
+a rat running around outside the dungeon
+room in total darkness. this is the same
+check used for fairies too.
 
 
 
@@ -57,6 +69,32 @@ lots of playtesting.
 
 
 ------ RELEASE 0.74 --------
+
+
+Part1
+
+record playthrough using OBS. dump this raw
+video file as private video to youtube.
+
+record gifs using licecap over obs recording.
+this way we have more control over the filesize, and
+the framing of the content we want to highlight.
+
+record several gifs to edit together for 0.74.
+post 0.74 gif and video to readme.
+
+export install version of game for Dx.
+export appx package of game for UWP.
+upload to dropbox, add links back to readme.
+
+delete versions page entirely.
+
+
+
+
+
+
+Part2
 
 create the gameplay page in the repo, and start
 filling it with examples of gameplay gifs (with text notes):
@@ -73,53 +111,6 @@ Vendors + NPCs
 minibosses + bosses
 dungeon type, size, variety
 environments + levels
-
-record a gif showing off colliseum fights for 0.74.
-delete versions page entirely.
-
-
-
-
-
-
-EDITOR +++++++++
-
-editor++
-it would be nice to be able to toggle roofs on/off.
-and hide their collisionrecs too, so we can't accidentally pick them up.
-it would also be nice to "lock" water tiles somehow, so we can't
-mess them up. maybe different selection modes: landscape, building.
-it would be nice to be able to drag select a rec around a set of objects,
-then move them with the arrow keys, in 16 pixel increments. this would allow
-us to edit parts of rooms just like we edit pixels in photoshop.
-
-
-
-
-
-Magic Mirror
-- returns link to dungeon entrance.
-- plays warp sound fx
-should call Level.BuildLevel(Level.ID),
-which will cause the level to fade in from black,
-and place hero at the entrance the dungeon again.
-*this should only work in a dungeon. 
-*magic mirror doesn't warp hero out of dark world
-back to light world like lttp did. 
-instead, magic mirror "reflects link's true image,
-keeping him human in the dark world".
-
-Whe link is first pulled into the dark world,
-his magic mirror should get cracked, so he becomes
-the familiar bunny again. this time he has to seek 
-out someone who can repair his magic mirror before
-he can become himself again. during this time,
-bunny link can only walk, dash, interact, pickup,
-throw, hide/sneak, swim, dive, and swim dash.
-no attacking or using items. the idea is to 
-make this part of the game a stealth mission:
-sneak past the overpowering enemies as a bunny,
-repair your magic mirror, and THEN fight.
 
 
 

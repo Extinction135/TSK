@@ -564,6 +564,7 @@ namespace DungeonRun
                     Pool.herosPet.compMove,
                     Pool.hero.compMove.position.X,
                     Pool.hero.compMove.position.Y);
+                Functions_Component.Align(Pool.herosPet);
             }
         }
 
