@@ -31,42 +31,10 @@ Roadmap
 Today:
 
 
+Art++
 
-
-
-
-Release 0.74 - The Colliseum
-
-the major addition 0.74 brings is The
-Colliseum, a place where link can purchase
-challenges. A challenge is a set of enemies,
-with a reward. If link defeats all the
-enemies, then he gets the reward. Otherwise,
-link dies, is kicked out of the colliseum to
-the overworld screen, and has to buy the
-challenge again. for now, there are 3
-challenges that are all pretty crazy and fun.
-
-there's also been a ton of smaller 
-improvements to the overall game,
-along with many layers of polish.
-
-> uploaded 0.74 playthru to 'tubes.
-> uploaded Dx & UWP releases of 0.74 to 'box.
-> recorded .gifs & updated readme.
-
-
-
-
-
-
-
-
-delete versions page entirely.
-
-
-
-
+created cutscenes.psd, filled with art.
+redesigned title screen.
 
 
 

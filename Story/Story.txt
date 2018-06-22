@@ -20,36 +20,22 @@ end up alone, with everything you want."
 
 
 
-#Backstory
+#Setup - intro + cutscenes
 
 After Link touched the Triforce, he disappeared.
-All paths to the dark world vanished, and
-Hyrule entered into a new Golden Age of prosperity.
-A golden age, which ended suddenly with a War.
+All paths to the dark world vanished
+Hyrule entered into a new Golden Age.
+A golden age, which ended suddenly in War.
+Hyrule fell to the army of dark knights.
+Queen Zelda was taken hostage by the new king.
+the shadow king..
 
-Unprepared for battle, Hyrule fell to the Kondo clan,
-and Princess Zelda married King Masa, the Kondo Clan's leader,
-as a peace offering between the two nations.
-Hyrule's inhabitants rebelled, and martial law was declared.
-The people turned against the king, and the queen, and were met
-with crushing force. Kakariko village was razed to the ground,
-and many villagers died or lost their homes. Queen Zelda
-disappeared into the castle, never leaving, rarely being seen.
+and darkness flowed from the sacred realm once more...
 
-Unable to organize, the people of hyrule submitted to King Masa.
-Broken and hungry, they were fed and sheltered by the King.
-A colliseum was built, and the people were entertained.
-The King provided the people jobs, homes, and families.
-The people slowly began to love the King. 
 
-Then one day the King fell sick. All the king's healers couldn't
-fix him. People traveled from lands far away to cure him,
-but there was nothing they could do, and King Masa died.
-The Queen wept by his side for days, until a shadow rose
-from King Masa's body. It summoned the wisemen and the warriors.
-As they appeared, the shadow became King Masa, and it spoke to them.
-It told them of an afterlife. A world beyond ours, where death
-wasn't the end. Where one could live forever.. The Dark World...
+
+
+
 
 
 
