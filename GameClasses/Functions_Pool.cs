@@ -217,9 +217,15 @@ namespace DungeonRun
                     { Pool.actorPool[i].compMove.friction = World.frictionAir; }
                     //actors not in the air get set the world ground friction
                     else { Pool.actorPool[i].compMove.friction = World.friction; }
+
                     Pool.actorPool[i].feetFX.visible = false; //reset feetFX
                     Pool.actorPool[i].swimming = false; //reset swimming
                     Functions_Actor.Breathe(Pool.actorPool[i]); //check underwater state
+
+                    //if actor is falling, assume they should land this frame
+                    if (Pool.actorPool[i].state == ActorState.Falling)
+                    { Pool.actorPool[i].state = ActorState.Landed; }
+
                     //then finally handle any interactions the actor has
                     Functions_Interaction.CheckInteractions(Pool.actorPool[i], true, true);
 

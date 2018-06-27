@@ -249,10 +249,30 @@ namespace DungeonRun
 
             else if (Obj.group == ObjGroup.MountainWall)
             {
-                //push actor south
-                Functions_Movement.Push(Actor.compMove, Direction.Down, 1.0f);
+                //bottom walls are handled differently because we dont
+                //want to set hero into a falling state from walking into wall
+                if (Obj.type == ObjType.Wor_MountainWall_Bottom)
+                {   //actor must be falling (statelocked + landed) to continue falling thru wall
+                    if (Actor.state == ActorState.Landed) //due to how we check/set
+                    {   //lock actor into falling state
+                        Actor.state = ActorState.Falling;
+                        Actor.stateLocked = true;
+                    }
+                }
+                else//this is a middle mountain wall
+                {   
+                    //check to see if this is the initial fall
+                    if (Actor.state == ActorState.Falling) { }
+                    else if (Actor.state == ActorState.Landed) { }
+                    else { Assets.Play(Assets.sfxActorFall); }
 
-                
+                    //lock actor into falling state
+                    Actor.state = ActorState.Falling;
+                    Actor.stateLocked = true;
+                }
+
+                //push actor south every frame, faking gravity, preventing overlap
+                Functions_Movement.Push(Actor.compMove, Direction.Down, 1.0f);
             }
 
             #endregion

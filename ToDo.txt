@@ -40,38 +40,18 @@ Today:
 
 
 
-Mountains + Mountain Walls
 
-created mountain wall sprite and obj def.
-added to widgets, tested, looking good.
+Falling & Landing
 
-created mountain entrance level (not linked
-to overworld yet) for developing. tested.
+implemented falling and landing states
+and animations for heros. worked out
+some issues with mountain walls properly
+handling falling actors and gravity.
+playtested, working very well.
 
-split mountain wall into 3 objects,
-so the middle part can be repeated,
-creating the illusion of a very tall
-mountain while using relatively little
-resources. est reduction of :
-(tops)4x1 + (mids)4x2 + (bottoms)4x1
-premature optimization is bad, but
-designed optimization is ok, right? 
-
-How does hero interact with wall objects?
-if he overlaps a mid or bottom wall, push
-hero south - just like trap doors. this 
-fakes gravity well enough.
-
-added MountainWall ObjGroup type.
-this will come in handy later on for 
-various actor v obj(wall) checks.
-
-added check into interactions.actor v obj,
-based on the objGroup type of MountinWall,
-these objects push all actors down with
-a per-frame force of 1.0, exactly the same
-as trap doors do. this makes mountain walls
-'one way' only - down.
+first we had to figure out going
+down. now, we get to figure out 
+climbing and going up. how exciting.
 
 
 
@@ -81,21 +61,19 @@ as trap doors do. this makes mountain walls
 
 
 
-Falling, Landing, and Fall Damage?
+Climbing
 
-if hero is pushed by any mountain wall, 
-place hero into falling state.
+add a staircase for walking up long distances.
 
-if hero is in falling state, hero by DEFAULT 
-every frame trys to transition into landed state.
-this is the sitting animation with a thud/fall sfx.
 
-every frame, if hero is overlapping a mountain wall,
-then hero is set into the falling state. the check
-to see if hero transitions to landed state happens
-before this, transitioning him to landing state.
-then wall OVERWRITES the hero's default state, KEEPING
-him in the falling state.
+
+climbing = push north.
+
+add foot holds for free form puzzle climbing.
+add a ladder for climbing short distances vertically.
+ladders and footholds work the same.
+
+
 
 
 
@@ -103,6 +81,17 @@ link up the mountain level to the overworld screen.
 add the mountain dungeon's entrance obj.
 change the mountain dungeon's wall sprites to be
 cave-y. 
+
+
+
+
+
+
+
+
+
+
+
 
 update forest standard enemy to be angry floating eye.
 - doesn't need swimming state, has same rec as hero,

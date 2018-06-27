@@ -383,6 +383,22 @@ namespace DungeonRun
 
             #endregion
 
+
+            #region Falling & Landing
+
+            else if (Actor.state == ActorState.Falling)
+            {
+                Actor.animGroup = Actor.animList.falling;
+            }
+            else if (Actor.state == ActorState.Landed)
+            {
+                Actor.animGroup = Actor.animList.landed;
+                Actor.compAnim.speed = 30; //slow down anim
+                Actor.compAnim.loop = false;
+            }
+
+            #endregion
+
         }
 
         public static void SetAnimationDirection(Actor Actor)
@@ -892,9 +908,25 @@ namespace DungeonRun
                 }
                 else if (Actor.state == ActorState.Dead)
                 {   //check death state
-                    Actor.lockCounter = 0; //lock actor into dead state
+                    Actor.lockCounter = 0; //lock actor into state
                     Actor.health = 0; //lock actor's health at 0
                     if (Actor == Pool.hero) { Functions_Hero.HandleDeath(); }
+                }
+                else if (Actor.state == ActorState.Falling)
+                {   //lock actor into state
+                    Actor.lockCounter = 0; 
+                    Actor.lockTotal = 60;
+                }
+                else if(Actor.state == ActorState.Landed)
+                {   //actor has landed on ground, not touching wall obj
+                    //actor inherit's counter + total from falling state above
+
+                    if (Actor.lockCounter == 1) //on first frame of landing..
+                    {   //pop attention and play landing sfx
+                        Functions_Particle.Spawn(ObjType.Particle_Attention, Actor);
+                        Assets.Play(Assets.sfxActorLand);
+                        Functions_Movement.StopMovement(Actor.compMove);
+                    }
                 }
             }
 

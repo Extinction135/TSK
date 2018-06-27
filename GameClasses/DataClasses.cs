@@ -903,6 +903,11 @@ namespace DungeonRun
 
         public AnimationGroup underwater_idle;
         public AnimationGroup underwater_move;
+
+        public AnimationGroup falling;
+        public AnimationGroup landed;
+
+        public AnimationGroup climbing;
     }
 
     public class ColorScheme

@@ -168,7 +168,10 @@ namespace DungeonRun
         Idle, Move, Dash, //movements
         Interact, Attack, Use, //actions
         Hit, Dead, Reward, //consequences
-        Pickup, Throw //actions
+        Pickup, Throw, //actions
+
+        Falling, Landed,
+        //Climbing, 
     }
 
     public enum ActorAI
