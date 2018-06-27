@@ -31,31 +31,7 @@ Roadmap
 Today:
 
 
-
-
-Level
-update level and level functions to be more reasonable.
-we currently do something like funs_level.currentRoom and that's
-just stupid - it should be Level.Room.
-
-
-
-Cleanup
-
-migrated Functions_Level.currentRoom to
-Level.currentRoom.
-
-
-
-
-
-
-
-are gates specific to the forest level?
-they seem specific to the TOWN level, which 
-should probably be it's own sheet. and buildings
-seem specific to the TOWN level as well, so 
-perhaps they aren't global..
+updated readme
 
 
 
@@ -75,7 +51,9 @@ for future level sheets.
 
 create town sheet. 
 update game so town level loads town sheet.
-
+move gates and building objects out from shared
+area and into unique section, just for town.
+update their animFrames!
 
 
 

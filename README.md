@@ -1,14 +1,36 @@
 # DungeonRun
-An unreleased sequel to The Legend of Zelda: A Link to the Past.  
- 
-+ Found in a purchased shipping container, the rom was written for the gameboy, sometime around 1995-1997. 
-+ I decided to port the code to Monogame, in the hopes of running it on modern hardware.  
-+ It's very likely that Nintendo will try to shut this down, so I ask that you please don't tell anyone about DungeonRun until the port is complete (v1.0).   
-+  For Real: https://gamingreinvented.com/nintendoarticles/top-ten-nintendo-fanworks-cancelled-due-legal-complaints/  
++ A sequel to The Legend of Zelda: A Link to the Past, circa 1995-1997.
+
+
+## Goals
++ Modern 2D Zelda, based on 'golden age' of nintendo game development (90s).
++ Incorporates Miyamoto's missing ideas from Lttp (grass fires, ditches) <<< done.
++ Extends Miyamoto's ideas (swimming underwater, climbing, etc..) <<< wip.
++ Procedurally generated dungeons based on a multiple critical path approach <<< done.
++ Handmade rooms, which are stitched together into cohesive dungeons <<< done.
++ Overworld map like SMB with changing locations based on story progress <<< wip.
++ Play around with the visual style of 90s-era gameboy games <<< wip.
++ Dark, mature storyline where link becomes an anti-hero and real characters die <<< wip.
++ Multi-stage boss and miniboss battles, colliseum tournaments <<< done.
+
+
+## Specs
++ 60 fps @ 16:9 ratio  
++ 640x360 base resolution scaled up to 720/1080/etc 
++ Xbox 360/One controller support
++ Runs on Windows 7/8/10 & XboxOne (via UWP sideloading)
+
+
+## Contributing
++ It's likely Nintendo will want to stop this. 
++ But I think there is potential in completing this.
++ So please help me keep this project quiet until v1.0.
++ Then you can reap all the internet points and karma you want to..
++ Eg: https://gamingreinvented.com/nintendoarticles/top-ten-nintendo-fanworks-cancelled-due-legal-complaints/  
 
 
 
-## Version 0.74 - 2018.06.21  
+# Version 0.74 - 2018.06.21  
 ![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/074boomerang.gif)   
 ![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/074bossDefeat.gif)   
 ![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/074challengeA.gif)   
@@ -52,15 +74,6 @@ An unreleased sequel to The Legend of Zelda: A Link to the Past.
 + You'll need Monogame and a compatible IDE installed to build it.
 + All the information you need is provided in the Getting Started Guide.
 + https://github.com/MrGrak/Monogame-Getting-Started
-
-
-## Game Controls
-+ Joystick or DPad to move the hero around.
-+ A button interacts with objects and NPCs.
-+ B button dashes, if hero is moving in a direction.
-+ X button attacks with the equipped weapon.
-+ Y button uses the equipped item.
-+ Start brings up the Inventory Screen.
 
 
 
