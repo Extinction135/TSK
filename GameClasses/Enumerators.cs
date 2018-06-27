@@ -68,16 +68,20 @@ namespace DungeonRun
 
     public enum LevelID
     {
-        //overworld levels
+        //overworld levels (fields)
         Colliseum,
         ColliseumPit,
         TheFarm, 
         LeftTown2,
 
-        //dungeon levels + entrance levels
-        Forest_Entrance, //field with dungeon entrance
-        Forest_Dungeon, //dungeon, procedurally generated series of rooms
+        //fields, with dungeon entrances
+        Forest_Entrance, 
+        Mountain_Entrance,
 
+        //dungeons, series of rooms
+        Forest_Dungeon, 
+        Mountain_Dungeon,
+        
         //locations that cannot be visited
         Road, //used for connecting levels on map
 

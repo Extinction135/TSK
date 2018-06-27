@@ -31,7 +31,8 @@ namespace DungeonRun
             else if (Level.ID == LevelID.Forest_Entrance) { currentTexture = Assets.forestLevelSheet; }
             else if (Level.ID == LevelID.Forest_Dungeon) { currentTexture = Assets.forestLevelSheet; }
 
-            //mountain and cave dungeon
+            else if (Level.ID == LevelID.Mountain_Entrance) { currentTexture = Assets.mountainLevelSheet; }
+            else if (Level.ID == LevelID.Mountain_Dungeon) { currentTexture = Assets.mountainLevelSheet; }
         }
 
 

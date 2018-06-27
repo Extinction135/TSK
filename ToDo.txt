@@ -39,41 +39,14 @@ Today:
 
 
 
-Textures, Objects, Enemies, Vendors, NPCs & Editor++
+Editor++
 
-created town sheet.
-updated forest, colliseum, and mountain sheets.
-renamed all sheets, updated both content projects.
-updated sprite assets with proper file addresses.
-added mountain and town sheet instances to assets.
-
-updated rat, turtle, crab to be global enemies,
-meaning their sprites exist on every sheet now.
-this allows them to exist on any level, and have
-that level's color scheme (eventually).
-
-updated npc and vendor objects to use townsheet.
-updated bed to inherit level texture, as it's a 
-global obj now (every sheet has a bed).
-
-updated tables, bookcase, shelf, stove, sink,
-and chair to use townsheet. updated gates, 
-buildings, and roofs to use townsheet.
-
-updated Fun_Texture to handle new sheets and
-level texture associations.
-
-renamed and rearranged editorMenu widget objects.
-updated editor menu to handle town, forest,
-and colliseum widget objects.
-updated editorMenu to pass input to, update,
-and draw the dev widget object.
-
-
-
-
-
-
+added mountain widget object + mountain level id
+values for mountain entrance and dungeon. updated
+fun_texture to set mountain texture based on level.id.
+fixed a minor bug where initial editor menu display
+state wasn't properly set into forest state.
+lots of playtesting.
 
 
 
@@ -88,14 +61,22 @@ and draw the dev widget object.
 
 Mountain Walls
 
-add mountain widget object, update editor
-to handle mountain widget object. add mountain
-objects to game + mountain widget. these objects
-are the mountain wall object and the foothold
+add mountain objects to mountain widget. 
+these objects are the mountain wall object and the foothold
 object. we should make the mountain wall object
 very large, and the foot hold objects should be 16x16.
 this way we get an optimization in roomObjs (mountain walls)
 because they will be taking up the most space visually.
+
+we need to create the mountain entrance level.
+we dont need to have the dungeon entrance just yet,
+lets focus on climbing for now.
+
+
+
+
+
+
 
 
 

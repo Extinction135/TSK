@@ -36,8 +36,8 @@ namespace DungeonRun
             //initialize to forest state
             ResetWidgets();
             currentSheet.compText.text = "forest";
-            Level.ID = LevelID.DEV_Field;
             Widgets.WO_Forest.visible = true;
+            Level.ID = LevelID.Forest_Entrance;
         }
 
         public override void HandleInput(GameTime GameTime)
@@ -63,6 +63,7 @@ namespace DungeonRun
                 //unique WOs
                 if (Widgets.WO_Town.visible) { CheckObjList(Widgets.WO_Town); }
                 if (Widgets.WO_Forest.visible) { CheckObjList(Widgets.WO_Forest); }
+                if (Widgets.WO_Mountain.visible) { CheckObjList(Widgets.WO_Mountain); }
                 if (Widgets.WO_Colliseum.visible) { CheckObjList(Widgets.WO_Colliseum); }
 
                 //dev WO
@@ -96,17 +97,23 @@ namespace DungeonRun
                         Level.ID = LevelID.Forest_Entrance;
                     }
                     else if (Level.ID == LevelID.Forest_Entrance)
+                    {   //leads to mountain
+                        currentSheet.compText.text = "mountain";
+                        Widgets.WO_Mountain.visible = true;
+                        Level.ID = LevelID.Mountain_Entrance;
+                    }
+                    else if (Level.ID == LevelID.Mountain_Entrance)
                     {   //leads to town
                         currentSheet.compText.text = "town";
                         Widgets.WO_Town.visible = true;
                         Level.ID = LevelID.LeftTown2;
                     }
-                    //add mountain here
+
                     else
-                    {   //any other case resets button's sequence, leads to town
-                        currentSheet.compText.text = "town";
-                        Widgets.WO_Town.visible = true;
-                        Level.ID = LevelID.LeftTown2;
+                    {   //any other case resets button's sequence, leads to forest
+                        currentSheet.compText.text = "forest";
+                        Widgets.WO_Forest.visible = true;
+                        Level.ID = LevelID.Forest_Entrance;
                     }
                     
 
@@ -147,6 +154,8 @@ namespace DungeonRun
             if (Widgets.WO_Dungeon.visible) { Widgets.WO_Dungeon.Update(); Widgets.WO_Dungeon.Draw(); }
 
             if (Widgets.WO_Forest.visible) { Widgets.WO_Forest.Update(); Widgets.WO_Forest.Draw(); }
+            if (Widgets.WO_Mountain.visible) { Widgets.WO_Mountain.Update(); Widgets.WO_Mountain.Draw(); }
+
             if (Widgets.WO_Town.visible) { Widgets.WO_Town.Update(); Widgets.WO_Town.Draw(); }
             if (Widgets.WO_Colliseum.visible) { Widgets.WO_Colliseum.Update(); Widgets.WO_Colliseum.Draw(); }
 
@@ -184,7 +193,8 @@ namespace DungeonRun
             Widgets.WO_Forest.visible = false;
             Widgets.WO_Town.visible = false;
             Widgets.WO_Colliseum.visible = false;
-
+            Widgets.WO_Mountain.visible = false;
+            
             //set dev widget to always be visible
             Widgets.WO_DEV.visible = true;
         }
