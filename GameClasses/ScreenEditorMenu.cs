@@ -33,17 +33,18 @@ namespace DungeonRun
             currentSheet = new ComponentButton("---", new Point(16, 16 + 2));
             currentSheet.rec.Width = 16 * 5;
 
-            //initialize to forest/standard state
-            currentSheet.compText.text = "forest";
-            Level.ID = LevelID.DEV_Field;
-            Widgets.WO_Enemy_Forest.visible = true;
-            Widgets.WO_Shared_Forest.visible = true;
-            Widgets.WO_Building_Forest.visible = true;
-
+            //set shared widgets to be visible
             Widgets.WO_Environment.visible = true;
             Widgets.WO_Dungeon.visible = true;
+            Widgets.WO_Building.visible = true;
 
-            //set other states widgets to be closed
+            //initialize to forest state
+            currentSheet.compText.text = "forest";
+            Level.ID = LevelID.DEV_Field;
+            Widgets.WO_Forest1.visible = true;
+            Widgets.WO_Forest2.visible = true;
+
+            //set all other widgets closed
             Widgets.WO_Building_Colliseum.visible = false;
         }
 
@@ -61,14 +62,13 @@ namespace DungeonRun
             {
                 CheckObjList(Widgets.WO_Environment);
                 CheckObjList(Widgets.WO_Dungeon);
+                CheckObjList(Widgets.WO_Building);
 
                 //check forest widget input
-                if (Widgets.WO_Enemy_Forest.visible)
-                { CheckObjList(Widgets.WO_Enemy_Forest); }
-                if (Widgets.WO_Shared_Forest.visible)
-                { CheckObjList(Widgets.WO_Shared_Forest); }
-                if (Widgets.WO_Building_Forest.visible)
-                { CheckObjList(Widgets.WO_Building_Forest); }
+                if (Widgets.WO_Forest1.visible)
+                { CheckObjList(Widgets.WO_Forest1); }
+                if (Widgets.WO_Forest2.visible)
+                { CheckObjList(Widgets.WO_Forest2); }
 
                 //check colliseum widget input
                 if (Widgets.WO_Building_Colliseum.visible)
@@ -90,9 +90,8 @@ namespace DungeonRun
 
                     #region Reset custom obj widgets
 
-                    Widgets.WO_Enemy_Forest.visible = false;
-                    Widgets.WO_Shared_Forest.visible = false;
-                    Widgets.WO_Building_Forest.visible = false;
+                    Widgets.WO_Forest1.visible = false;
+                    Widgets.WO_Forest2.visible = false;
 
                     Widgets.WO_Building_Colliseum.visible = false;
 
@@ -111,17 +110,15 @@ namespace DungeonRun
                     {
                         Level.ID = LevelID.DEV_Field;
                         currentSheet.compText.text = "forest";
-                        Widgets.WO_Enemy_Forest.visible = true;
-                        Widgets.WO_Shared_Forest.visible = true;
-                        Widgets.WO_Building_Forest.visible = true;
+                        Widgets.WO_Forest1.visible = true;
+                        Widgets.WO_Forest2.visible = true;
                     }
                     else
                     {   //default case
                         Level.ID = LevelID.DEV_Field;
                         currentSheet.compText.text = "forest";
-                        Widgets.WO_Enemy_Forest.visible = true;
-                        Widgets.WO_Shared_Forest.visible = true;
-                        Widgets.WO_Building_Forest.visible = true;
+                        Widgets.WO_Forest1.visible = true;
+                        Widgets.WO_Forest2.visible = true;
                     }
 
                     #endregion
@@ -153,20 +150,20 @@ namespace DungeonRun
             Functions_Draw.Draw(bkgRec);
 
             //update and draw obj widgets that are visible
+
             if (Widgets.WO_Environment.visible)
             { Widgets.WO_Environment.Update(); Widgets.WO_Environment.Draw(); }
-
             if (Widgets.WO_Dungeon.visible)
             { Widgets.WO_Dungeon.Update(); Widgets.WO_Dungeon.Draw(); }
+            if (Widgets.WO_Building.visible)
+            { Widgets.WO_Building.Update(); Widgets.WO_Building.Draw(); }
 
-            if (Widgets.WO_Enemy_Forest.visible)
-            { Widgets.WO_Enemy_Forest.Update(); Widgets.WO_Enemy_Forest.Draw(); }
 
-            if (Widgets.WO_Building_Forest.visible)
-            { Widgets.WO_Building_Forest.Update(); Widgets.WO_Building_Forest.Draw(); }
+            if (Widgets.WO_Forest1.visible)
+            { Widgets.WO_Forest1.Update(); Widgets.WO_Forest1.Draw(); }
+            if (Widgets.WO_Forest2.visible)
+            { Widgets.WO_Forest2.Update(); Widgets.WO_Forest2.Draw(); }
 
-            if (Widgets.WO_Shared_Forest.visible)
-            { Widgets.WO_Shared_Forest.Update(); Widgets.WO_Shared_Forest.Draw(); }
 
             if (Widgets.WO_Building_Colliseum.visible)
             { Widgets.WO_Building_Colliseum.Update(); Widgets.WO_Building_Colliseum.Draw(); }

@@ -34,29 +34,27 @@ Today:
 
 
 
-Prep for Mountains 
 
-added dungeon entrances to master sheet.
-added light world forest dungeon entrance
-to forest sheet. added building objects
-to colliseum sheet, in case we want to 
-actually make buildings outside the
-colliseum. this means building sprites
-are required, but can be unique, 
-for each sheet.
 
-moved bed object into the required dungeon
-section of each sheet - i guess we're 
-committing to the dream idea. added dirty
-bed animFrame too.
+Editor++
 
-moved skull pillar. ensured forest and 
-colliseum reserved dungeon sections meet
-new requirements (beds, skull pillar).
+migrated building object widget to be shared
+between all current sheets / levels - because
+building objects/sprites are now required by
+all sheets.
 
-created mountain section in master.psd.
-this dupes the world and dungeon sections
-from forest/colliseum.
+moved where widget objects are placed in editor
+menu, based on the new idea of sharing the
+buildings widget.
+
+moved skull pillar into the shared dungeon
+objects widget, because it's a shared object.
+
+changed names for forest widgets to be more
+neutral - forest1 and forest2. consolidated
+all forest objects from 1 into 2. 1 is blank.
+
+add basic mountain objects to mountain sheet.
 
 
 
@@ -65,11 +63,33 @@ from forest/colliseum.
 
 
 
+are gates specific to the forest level?
+they seem specific to the TOWN level, which 
+should probably be it's own sheet. and buildings
+seem specific to the TOWN level as well, so 
+perhaps they aren't global..
 
-* the building widgets object is now GLOBAL
-for ALL sheets. EVERY sheet MUST implement
-buildings, which they all do now.
-so this widget is handled like the env+dungeon widgets.
+
+
+sheets / levels:
+
+town - buildings, interior objects
+forest - large trees
+mountain - climbable walls
+colliseum - exterior & interior objs + spectators
+
+shared: ditches, water, grass, foilage
+
+
+
+
+
+
+
+
+
+
+
 
 
 

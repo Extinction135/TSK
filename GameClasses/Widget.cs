@@ -31,11 +31,11 @@ namespace DungeonRun
         //shared object widgets
         public static WidgetObjects_Environment WO_Environment = new WidgetObjects_Environment();
         public static WidgetObjects_Dungeon WO_Dungeon = new WidgetObjects_Dungeon();
+        public static WidgetObjects_Building WO_Building = new WidgetObjects_Building();
 
         //forest / standard object widgets
-        public static WidgetObjects_Enemy_Forest WO_Enemy_Forest = new WidgetObjects_Enemy_Forest();
-        public static WidgetObjects_Building_Forest WO_Building_Forest = new WidgetObjects_Building_Forest();
-        public static WidgetObjects_Shared_Forest WO_Shared_Forest = new WidgetObjects_Shared_Forest();
+        public static WidgetObjects_Forest1 WO_Forest1 = new WidgetObjects_Forest1();
+        public static WidgetObjects_Forest2 WO_Forest2 = new WidgetObjects_Forest2();
 
         //colliseum object widgets
         public static WidgetObjects_Building_Colliseum WO_Building_Colliseum = new WidgetObjects_Building_Colliseum();
