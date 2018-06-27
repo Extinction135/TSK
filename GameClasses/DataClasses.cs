@@ -746,13 +746,20 @@ namespace DungeonRun
 
     public static class Level
     {
-        public static List<Room> rooms = new List<Room>();
-        public static List<Door> doors = new List<Door>();
         public static LevelID ID = LevelID.Colliseum;
+
+        public static List<Room> rooms = new List<Room>();
+        public static Room currentRoom; //points to one in list above
+
+        public static List<Door> doors = new List<Door>();
+        //we could store last door here like this:
+        //public static Door lastDoor;
+
         public static Boolean bigKey = false;
         public static Boolean map = false;
-        public static Boolean lightWorld = true;
         public static Boolean isField = true;
+
+        public static Boolean lightWorld = true;
     }
 
     public class Room

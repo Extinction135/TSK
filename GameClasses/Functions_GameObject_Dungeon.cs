@@ -240,7 +240,7 @@ namespace DungeonRun
         public static void CheckForPuzzles(Boolean solved)
         {
             //check to see if hero has solved room
-            if (Functions_Level.currentRoom.puzzleType == PuzzleType.Torches)
+            if (Level.currentRoom.puzzleType == PuzzleType.Torches)
             {   //if the current room's puzzle type is Torches, check to see how many have been lit
                 if (CountTorches())
                 {   //enough torches have been lit to unlock this room / solve puzzle
@@ -346,7 +346,7 @@ namespace DungeonRun
 
         public static void DropMap(float X, float Y)
         {   //a map drop only comes from a miniboss death in a hub room
-            if (Functions_Level.currentRoom.roomID == RoomID.Hub)
+            if (Level.currentRoom.roomID == RoomID.Hub)
             {   //a map will only spawn if hero doesn't have the map
                 if (Level.map == false)
                 {

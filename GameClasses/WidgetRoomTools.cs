@@ -239,7 +239,7 @@ namespace DungeonRun
         public void SaveCurrentRoom()
         {   //create RoomXmlData instance
             roomData = new RoomXmlData();
-            RoomID id = Functions_Level.currentRoom.roomID; //shorten roomID
+            RoomID id = Level.currentRoom.roomID; //shorten roomID
             
             //convert DEV room types into proper GAME room types
             if (id == RoomID.DEV_Boss) { roomData.type = RoomID.Boss; }
@@ -271,8 +271,8 @@ namespace DungeonRun
                     objData.type = Obj.type;
                     objData.direction = Obj.direction;
                     //set saved obj's position relative to room's top left corner
-                    objData.posX = Obj.compSprite.position.X - Functions_Level.currentRoom.rec.X;
-                    objData.posY = Obj.compSprite.position.Y - Functions_Level.currentRoom.rec.Y;
+                    objData.posX = Obj.compSprite.position.X - Level.currentRoom.rec.X;
+                    objData.posY = Obj.compSprite.position.Y - Level.currentRoom.rec.Y;
                     RoomData.objs.Add(objData);
                 }
             }
@@ -294,12 +294,12 @@ namespace DungeonRun
 
                 Room room = new Room(Functions_Level.buildPosition, RoomXmlData.type);
                 Level.rooms.Add(room);
-                Functions_Level.currentRoom = room;
+                Level.currentRoom = room;
                 Functions_Dungeon.AddDevDoors(room);
 
                 //set spawnPos outside TopLeft of new dev room
-                Functions_Level.currentRoom.spawnPos.X = Functions_Level.currentRoom.rec.X - 32;
-                Functions_Level.currentRoom.spawnPos.Y = Functions_Level.currentRoom.rec.Y;
+                Level.currentRoom.spawnPos.X = Level.currentRoom.rec.X - 32;
+                Level.currentRoom.spawnPos.Y = Level.currentRoom.rec.Y;
 
                 //build walled empty room with floors, add xml objs, etc...
                 Functions_Dungeon.BuildRoomFrom(RoomXmlData);
@@ -309,7 +309,7 @@ namespace DungeonRun
                 Functions_Pool.Reset();
                 Functions_Room.BuildRoomXmlData(RoomXmlData);
                 //pass the room type into the built room
-                Functions_Level.currentRoom.roomID = RoomXmlData.type;
+                Level.currentRoom.roomID = RoomXmlData.type;
             }
             Functions_Pool.Update(); //update roomObjs once
             Functions_Hero.SpawnInCurrentRoom(); //spawn hero in room

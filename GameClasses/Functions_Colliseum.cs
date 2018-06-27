@@ -78,12 +78,12 @@ namespace DungeonRun
                 Functions_Movement.Teleport(
                     actorRef.compMove,
 
-                    Functions_Level.currentRoom.rec.X //start with the room's x pos
-                    + Functions_Level.currentRoom.rec.Width / 2 //get the center X
+                    Level.currentRoom.rec.X //start with the room's x pos
+                    + Level.currentRoom.rec.Width / 2 //get the center X
                     - 16 * 5 //move 5 tiles left
                     + 16 * i, //from there, place actors in a horizontal line
 
-                    Functions_Level.currentRoom.rec.Y + 16 * 18); //place behind enemies
+                    Level.currentRoom.rec.Y + 16 * 18); //place behind enemies
                 actorRef.direction = Direction.Down;
                 Functions_Actor.SetType(actorRef, Challenge[i]);
             }
@@ -97,13 +97,13 @@ namespace DungeonRun
                 Functions_Movement.Teleport(
                     objRef.compMove,
 
-                    Functions_Level.currentRoom.rec.X //start with the room's x pos
-                    + Functions_Level.currentRoom.rec.Width / 2 //get the center X
+                    Level.currentRoom.rec.X //start with the room's x pos
+                    + Level.currentRoom.rec.Width / 2 //get the center X
                     - 16 * 5 //move 5 tiles left
                     + 16 * i //from there, place objs in a horizontal line
                     + 8, //with a small alignment offset
 
-                    Functions_Level.currentRoom.spawnPos.Y + 16 * 2 - 8);
+                    Level.currentRoom.spawnPos.Y + 16 * 2 - 8);
                 objRef.direction = Direction.Down;
                 Functions_GameObject.SetType(objRef, ObjType.Wor_Colliseum_Pillar_Top);
             }
@@ -117,10 +117,10 @@ namespace DungeonRun
             //place judge along backwall
             Functions_Movement.Teleport(
                 objRef.compMove,
-                Functions_Level.currentRoom.rec.X //start with the room's x pos
-                + Functions_Level.currentRoom.rec.Width / 2 //get the center X
+                Level.currentRoom.rec.X //start with the room's x pos
+                + Level.currentRoom.rec.Width / 2 //get the center X
                 + 8, //align to gameworld grid
-                Functions_Level.currentRoom.rec.Y + 16 * 14 - 8 - 4); //against back wall
+                Level.currentRoom.rec.Y + 16 * 14 - 8 - 4); //against back wall
             objRef.direction = Direction.Down;
             Functions_GameObject.SetType(objRef, ObjType.Judge_Colliseum);
 

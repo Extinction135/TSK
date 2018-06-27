@@ -90,7 +90,7 @@ namespace DungeonRun
                 //get visibility
                 mapRoom.visited = dungeonRoom.visited;
                 //set marker to currentRoom position 
-                if (dungeonRoom == Functions_Level.currentRoom)
+                if (dungeonRoom == Level.currentRoom)
                 {   //match currentRoom properties to rooms[i] (current room)
                     marker.X = mapRoom.rec.X + (mapRoom.rec.Width / 2);
                     marker.Y = mapRoom.rec.Y + (mapRoom.rec.Height / 2);

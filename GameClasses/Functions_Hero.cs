@@ -42,7 +42,7 @@ namespace DungeonRun
 
                 #region Handle hero transferring back to overworld screen
 
-                if(heroRec.Intersects(Functions_Level.currentRoom.rec) == false)
+                if(heroRec.Intersects(Level.currentRoom.rec) == false)
                 {
                     Functions_Level.CloseLevel(ExitAction.Overworld);
                     //stop hero's movement
@@ -60,7 +60,7 @@ namespace DungeonRun
 
                 for (i = 0; i < Level.rooms.Count; i++)
                 {   //if the current room is not the room we are checking against, then continue
-                    if (Functions_Level.currentRoom != Level.rooms[i])
+                    if (Level.currentRoom != Level.rooms[i])
                     {   //if heroRec collides with room rec, set it as currentRoom, build room
                         if (heroRec.Intersects(Level.rooms[i].rec))
                         {
@@ -74,7 +74,7 @@ namespace DungeonRun
 
 
                             //transitions between rooms, build
-                            Functions_Level.currentRoom = Level.rooms[i];
+                            Level.currentRoom = Level.rooms[i];
                             Functions_Room.BuildRoom(Level.rooms[i]);
                             Level.rooms[i].visited = true;
                         }
@@ -93,8 +93,8 @@ namespace DungeonRun
                         Level.doors[i].visited = true;
                         if (Level.doors[i].type == DoorType.Open)
                         {   //set the current room's spawnPos to the last open door hero collided with
-                            Functions_Level.currentRoom.spawnPos.X = Level.doors[i].rec.X + 8;
-                            Functions_Level.currentRoom.spawnPos.Y = Level.doors[i].rec.Y + 8;
+                            Level.currentRoom.spawnPos.X = Level.doors[i].rec.X + 8;
+                            Level.currentRoom.spawnPos.Y = Level.doors[i].rec.Y + 8;
                         }
                     }
                 }
@@ -492,8 +492,8 @@ namespace DungeonRun
         public static void SpawnInCurrentRoom()
         {   //teleport hero to currentRoom's spawn position
             Functions_Movement.Teleport(Pool.hero.compMove,
-                Functions_Level.currentRoom.spawnPos.X,
-                Functions_Level.currentRoom.spawnPos.Y);
+                Level.currentRoom.spawnPos.X,
+                Level.currentRoom.spawnPos.Y);
             Functions_Movement.StopMovement(Pool.hero.compMove);
             ResetHero();
         }

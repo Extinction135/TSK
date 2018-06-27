@@ -145,13 +145,13 @@ namespace DungeonRun
                     if (Level.isField)
                     {
                         //center camera to field
-                        Camera2D.targetPosition.X = Functions_Level.currentRoom.center.X;
-                        Camera2D.targetPosition.Y = Functions_Level.currentRoom.center.Y;
+                        Camera2D.targetPosition.X = Level.currentRoom.center.X;
+                        Camera2D.targetPosition.Y = Level.currentRoom.center.Y;
                         //move 50% toward hero
                         Camera2D.targetPosition.X -=
-                                (Functions_Level.currentRoom.center.X - Pool.hero.compSprite.position.X) * 0.5f;
+                                (Level.currentRoom.center.X - Pool.hero.compSprite.position.X) * 0.5f;
                         Camera2D.targetPosition.Y -=
-                            (Functions_Level.currentRoom.center.Y - Pool.hero.compSprite.position.Y) * 0.5f;
+                            (Level.currentRoom.center.Y - Pool.hero.compSprite.position.Y) * 0.5f;
                     }
                     else
                     {   //hero is in a dungeon
@@ -164,8 +164,8 @@ namespace DungeonRun
                         else
                         {
                             //center camera to current room
-                            Camera2D.targetPosition.X = Functions_Level.currentRoom.center.X;
-                            Camera2D.targetPosition.Y = Functions_Level.currentRoom.center.Y;
+                            Camera2D.targetPosition.X = Level.currentRoom.center.X;
+                            Camera2D.targetPosition.Y = Level.currentRoom.center.Y;
                             Camera2D.tracks = true; //wait until room change, then move
                         }
                     }

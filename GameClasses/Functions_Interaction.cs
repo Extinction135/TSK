@@ -374,8 +374,8 @@ namespace DungeonRun
                                 //direct player's attention to hero's respawn pos
                                 Functions_Particle.Spawn(
                                     ObjType.Particle_Attention,
-                                    Functions_Level.currentRoom.spawnPos.X,
-                                    Functions_Level.currentRoom.spawnPos.Y);
+                                    Level.currentRoom.spawnPos.X,
+                                    Level.currentRoom.spawnPos.Y);
                             }
                             else
                             {   //handle enemy pit death (no loot, insta-death)

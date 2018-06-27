@@ -301,7 +301,7 @@ namespace DungeonRun
             {
 
                 //if an enemy has gone beyond the bounds of a roomRec, release without loot
-                if (!Functions_Level.currentRoom.rec.Contains(Obj.compSprite.position))
+                if (!Level.currentRoom.rec.Contains(Obj.compSprite.position))
                 {
                     Functions_Pool.Release(Obj);
                 }
@@ -491,7 +491,7 @@ namespace DungeonRun
                         Functions_Direction.GetRandomDirection(), 1.0f);
                     //check that the fairy overlaps the current room rec,
                     //otherwise the fairy has strayed too far and must be killed
-                    if (!Functions_Level.currentRoom.rec.Contains(Obj.compSprite.position))
+                    if (!Level.currentRoom.rec.Contains(Obj.compSprite.position))
                     {
                         Functions_Particle.Spawn(
                             ObjType.Particle_Attention,

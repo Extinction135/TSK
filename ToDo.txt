@@ -33,29 +33,17 @@ Today:
 
 
 
+Level
+update level and level functions to be more reasonable.
+we currently do something like funs_level.currentRoom and that's
+just stupid - it should be Level.Room.
 
 
 
-Editor++
+Cleanup
 
-migrated building object widget to be shared
-between all current sheets / levels - because
-building objects/sprites are now required by
-all sheets.
-
-moved where widget objects are placed in editor
-menu, based on the new idea of sharing the
-buildings widget.
-
-moved skull pillar into the shared dungeon
-objects widget, because it's a shared object.
-
-changed names for forest widgets to be more
-neutral - forest1 and forest2. consolidated
-all forest objects from 1 into 2. 1 is blank.
-
-add basic mountain objects to mountain sheet.
-
+migrated Functions_Level.currentRoom to
+Level.currentRoom.
 
 
 
@@ -73,20 +61,20 @@ perhaps they aren't global..
 
 sheets / levels:
 
-town - buildings, interior objects
-forest - large trees
-mountain - climbable walls
+town - buildings, interior objects, gates
+forest - large trees, forest stuff
+mountain - climbable walls, cave entrances
 colliseum - exterior & interior objs + spectators
 
-shared: ditches, water, grass, foilage
+shared: ditches, water, grass, foilage, dungeon objs
 
 
+this grouping makes sense and sets the foundation
+for future level sheets.
 
 
-
-
-
-
+create town sheet. 
+update game so town level loads town sheet.
 
 
 
@@ -96,9 +84,6 @@ shared: ditches, water, grass, foilage
 *exiting the forest dungeon placed link at colliseum.
 it's likely we're not checking to see if link is exiting
 a level of id.type dungeon.
-
-
-
 
 
 
@@ -137,10 +122,7 @@ from base class of screen, but this way we get to keep
 the last selected menuItem, etc... 
 
 
-Level
-update level and level functions to be more reasonable.
-we currently do something like funs_level.currentRoom and that's
-just stupid - it should be Level.Room.
+
 
 
 

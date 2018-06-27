@@ -238,7 +238,7 @@ namespace DungeonRun
                 RoomXmlData = new RoomXmlData();
                 Level.isField = false;
                 RoomXmlData.type = Room.roomID;
-                SetType(Functions_Level.currentRoom, Room.roomID);
+                SetType(Level.currentRoom, Room.roomID);
                 //add nsew doors so hero can enter/exit for testing
                 Functions_Dungeon.AddDevDoors(Room); 
             }
@@ -299,8 +299,8 @@ namespace DungeonRun
 
                     //move roomObj to xmlObj's position (with room offset)
                     Functions_Movement.Teleport(objRef.compMove,
-                        Functions_Level.currentRoom.rec.X + RoomXmlData.objs[i].posX,
-                        Functions_Level.currentRoom.rec.Y + RoomXmlData.objs[i].posY);
+                        Level.currentRoom.rec.X + RoomXmlData.objs[i].posX,
+                        Level.currentRoom.rec.Y + RoomXmlData.objs[i].posY);
                     //get obj direction
                     objRef.direction = RoomXmlData.objs[i].direction;
                     //finally, set roomObj.type to xmlObj.type

@@ -19,7 +19,7 @@ namespace DungeonRun
 
         public static ScreenLevel levelScreen;
 
-        public static Room currentRoom; //points to a room on dungeon's roomList
+        //public static Room currentRoom; //points to a room on dungeon's roomList
         public static int dungeonTrack = 0;
 
         //where the exit room is placed in dungeon.rooms list
@@ -327,8 +327,8 @@ namespace DungeonRun
 
             //build the 1st room on Level.rooms list (index0) - exit/spawn room
             Level.rooms[0].visited = true;
-            currentRoom = Level.rooms[0];
-            Functions_Room.BuildRoom(currentRoom);
+            Level.currentRoom = Level.rooms[0];
+            Functions_Room.BuildRoom(Level.currentRoom);
             Functions_Texture.SetFloorTextures();
             Functions_Hero.SpawnInCurrentRoom();
 
@@ -336,8 +336,8 @@ namespace DungeonRun
             if (Pool.hero.health < 3) { Pool.hero.health = 3; }
 
             //teleport camera to center of room
-            Camera2D.targetPosition.X = currentRoom.center.X;
-            Camera2D.targetPosition.Y = currentRoom.center.Y;
+            Camera2D.targetPosition.X = Level.currentRoom.center.X;
+            Camera2D.targetPosition.Y = Level.currentRoom.center.Y;
             Camera2D.currentPosition = Camera2D.targetPosition;
             Functions_Camera2D.SetView();
             //level screen will then decide where the camera should be per frame

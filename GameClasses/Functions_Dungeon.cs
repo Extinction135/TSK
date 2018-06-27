@@ -139,24 +139,24 @@ namespace DungeonRun
         public static void BuildRoomFrom(RoomXmlData RoomXmlData)
         {
             //reset pool, get blank room, fill with floors + walls
-            BuildEmptyRoom(Functions_Level.currentRoom);
+            BuildEmptyRoom(Level.currentRoom);
             //set the floortile frames properly based on room.type
-            SetFloors(Functions_Level.currentRoom);
+            SetFloors(Level.currentRoom);
             //change certain walls to doors based on collisions with Level.doors
-            SetDoors(Functions_Level.currentRoom);
+            SetDoors(Level.currentRoom);
             //build the xml objects over the empty dungeon room
             Functions_Room.BuildRoomXmlData(RoomXmlData);
             //add decorative objs and check for torches/switches/etc..
-            ProcedurallyFinish(Functions_Level.currentRoom);
+            ProcedurallyFinish(Level.currentRoom);
 
             if (Flags.HardMode)
             {   //setup the rooms puzzle everytime hero enters it
-                SetupPuzzle(Functions_Level.currentRoom);
+                SetupPuzzle(Level.currentRoom);
             }
             else//puzzle rooms on normal mode only require solving once
             {   //if this room hasn't been visited, setup any puzzle it contains
-                if (Functions_Level.currentRoom.visited == false)
-                { SetupPuzzle(Functions_Level.currentRoom); }
+                if (Level.currentRoom.visited == false)
+                { SetupPuzzle(Level.currentRoom); }
             }
 
             Assets.Play(Assets.sfxDoorOpen); //play door sfx
