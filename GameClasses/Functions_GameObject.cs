@@ -1877,10 +1877,10 @@ namespace DungeonRun
 
                 Obj.compSprite.texture = Assets.mountainLevelSheet;
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_MountainWall_Top;
-                Obj.compSprite.zOffset = -64; //sorts under hero
+                Obj.compSprite.zOffset = -18; //sorts under footholds
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = false;
-                //Obj.group = ObjGroup.MountainWall; //excluded from dropping actors/objs
+                //Obj.group = ObjGroup.MountainWall;
             }
             else if (Type == ObjType.Wor_MountainWall_Mid)
             {   //nonstandard size
@@ -1890,7 +1890,7 @@ namespace DungeonRun
 
                 Obj.compSprite.texture = Assets.mountainLevelSheet;
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_MountainWall_Mid;
-                Obj.compSprite.zOffset = -64; //sorts under hero
+                Obj.compSprite.zOffset = -18; //sorts under footholds
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = false;
                 Obj.group = ObjGroup.MountainWall;
@@ -1903,25 +1903,30 @@ namespace DungeonRun
 
                 Obj.compSprite.texture = Assets.mountainLevelSheet;
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_MountainWall_Bottom;
-                Obj.compSprite.zOffset = -64; //sorts under hero
+                Obj.compSprite.zOffset = -18; //sorts under footholds
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = false;
                 Obj.group = ObjGroup.MountainWall;
             }
 
-            else if (Type == ObjType.Wor_MountainWall_Foothold)
+            else if (Type == ObjType.Wor_MountainWall_Foothold
+                || Type == ObjType.Wor_MountainWall_Ladder)
             {   
                 Obj.compSprite.cellSize.X = 16 * 1; Obj.compSprite.cellSize.Y = 16 * 1;
-                Obj.compCollision.rec.Width = 18; Obj.compCollision.offsetX = -9;
-                Obj.compCollision.rec.Height = 18; Obj.compCollision.offsetY = -9;
+                Obj.compCollision.rec.Width = 20; Obj.compCollision.offsetX = -10;
+                Obj.compCollision.rec.Height = 20; Obj.compCollision.offsetY = -10;
 
                 Obj.compSprite.texture = Assets.mountainLevelSheet;
-                Obj.compAnim.currentAnimation = AnimationFrames.Wor_MountainWall_Foothold;
-                Obj.compSprite.zOffset = -32; //sorts under hero, over wall
+
+                if (Type == ObjType.Wor_MountainWall_Foothold)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_MountainWall_Foothold; }
+                else { Obj.compAnim.currentAnimation = AnimationFrames.Wor_MountainWall_Ladder; }
+                
+                Obj.compSprite.zOffset = -16; //sorts under hero
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = false;
-
                 Obj.group = ObjGroup.MountainWall;
+
                 //randomly flip sprite horizontally
                 if (Functions_Random.Int(0, 100) < 50)
                 { Obj.compSprite.flipHorizontally = true; }

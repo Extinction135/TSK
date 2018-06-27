@@ -39,17 +39,29 @@ Today:
 
 
 
-Climbing - Part 1
+Climbing - Part 2
 
-added footholds and ladder sprites.
-added climbing actor state and foothold
-roomObject. added footholds to mountain
-entrance level for testing.
+added ladder to game.
+fixed sorting of mountain walls over water,
+then fixed sorting of footholds and ladders
+over mountain walls. this allows for walls
+over bodies of water, that are climbable.
 
-got the system for climbing working
-with the system for falling. footholds
-work in the basic sense. now they need
-polish.
+added B button press to drop from climbing.
+while playing I noticed something very nice:
+on the ground and in the water, B button dashes,
+but while climbing (which is dangerous) B button
+drops the player and makes them start all over
+again. this teaches them that they can't rush
+(dash) or hurry thru this part of the game.
+this teaches them discipline and restraint.
+
+updated mountain top wall sprites, while fixing 
+bug with exiting climbing state while at top
+of mountain walls.
+
+improved ladder and foothold sprites.
+improved mountain wall sprites.
 
 
 
@@ -59,33 +71,22 @@ polish.
 
 
 
+Climbing - Part 3
 
-*pressing B should drop actor into falling state.
+*need climbing sfx - chest open sfx?
+*improve climbing animation - should only animate when hero is moving
+this should be based on the compInput of actor.
+if the input has any magnitude, play the climb_moving anim,
+otherwise play the climb_idle anim.
+
+
+
+
 *pressing A while falling should grab onto nearest foothold.
-*foothold should have larger hitboxes.
-
-*water should sort under mountain walls. << allows walls over water
-*footholds should sort over mountain walls.
 
 
 
 
-
-
-
-
-
-
-
-
-A button press starts climbing.
-
-interaction with foothold object sets actor
-into climbing state. while in climbing state,
-mountain walls do not push down. pressing a
-again doesn't exit climbing mode.
-
-if actor isn't touching foothold, climbing state ends.
 
 if actor is falling, they should be able to 
 grab a foothold by pressing a button. pressing
@@ -97,19 +98,29 @@ to catch a foothold in an unreachable area,
 all based on skill and understanding of the game.
 
 
-
-
-
 **swim up to a cliff and climb it... yesss.....*****
 
 
 add a staircase for walking up long distances.
 
-climbing = push north animFrames.
 
-add foot holds for free form puzzle climbing.
-add a ladder for climbing short distances vertically.
-ladders and footholds work the same.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

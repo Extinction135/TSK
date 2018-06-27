@@ -380,13 +380,6 @@ namespace DungeonRun
         Wor_Build_Roof_Chimney,
         Wor_Build_Roof_Collapsing, //meta obj for collapsing roofs
 
-        //mountain objs
-        Wor_MountainWall_Top,
-        Wor_MountainWall_Mid,
-        Wor_MountainWall_Bottom,
-        Wor_MountainWall_Foothold,
-
-
 
         #endregion
 
@@ -419,6 +412,21 @@ namespace DungeonRun
         Wor_Colliseum_Spectator,
 
         #endregion
+
+
+
+
+        #region Mountain Objects
+
+        Wor_MountainWall_Top,
+        Wor_MountainWall_Mid,
+        Wor_MountainWall_Bottom,
+
+        Wor_MountainWall_Foothold,
+        Wor_MountainWall_Ladder,
+
+        #endregion
+
 
 
 

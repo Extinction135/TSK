@@ -943,17 +943,67 @@ namespace DungeonRun
                     //lock into state
                     Actor.lockCounter = 0;
 
-                    //assume actor should fall
-                    Actor.state = ActorState.Falling;
-                    //prove actor is nearby foothold to maintain grip
+
+
+                    #region Magic
+
+                    //borrow lockTotal to model outcome states 
+                    //lockTotal = irrelevant, cuz lockcounter gets reset 0 above)
+                    //if you don't understand the two lines ^above^, dont touch
+                    //the code below...
+
+                    Actor.lockTotal = 0;
+                    //0 = falling
+                    //1 = climbing
+                    //2 = finished climbing
+                    
                     for (i = 0; i < Pool.roomObjCount; i++)
                     {   //find an active foothold obj
-                        if (Pool.roomObjPool[i].active &
-                            Pool.roomObjPool[i].type == ObjType.Wor_MountainWall_Foothold)
-                        {   //if foothold does not contain center point of actor, actor loses grip and falls
-                            if (Pool.roomObjPool[i].compCollision.rec.Contains(Actor.compSprite.position))
-                            { Actor.state = ActorState.Climbing; }
+                        if (Pool.roomObjPool[i].active)
+                        {
+                            //prove actor is nearby foothold to maintain grip
+                            if (Pool.roomObjPool[i].type == ObjType.Wor_MountainWall_Foothold ||
+                                Pool.roomObjPool[i].type == ObjType.Wor_MountainWall_Ladder)
+                            {
+                                //if foothold does not contain center point of actor, actor loses grip and falls
+                                if (Pool.roomObjPool[i].compCollision.rec.Contains(Actor.compSprite.position))
+                                {
+                                    Actor.lockTotal = 1; //Actor.state = ActorState.Climbing;
+                                }
+                            }
+                            
+                            //actors touching top wall return to idle from climbing
+                            else if(Pool.roomObjPool[i].type == ObjType.Wor_MountainWall_Top)
+                            {
+                                if (Pool.roomObjPool[i].compCollision.rec.Contains(Actor.compSprite.position))
+                                {
+                                    Actor.lockTotal = 2; //Actor.state = ActorState.Idle;
+                                }
+                            }
+
                         }
+                    }
+
+                    //based on state, set actor state
+                    if (Actor.lockTotal == 0)
+                    { Actor.state = ActorState.Falling; Actor.stateLocked = true; }
+                    else if(Actor.lockTotal == 1)
+                    { Actor.state = ActorState.Climbing; Actor.stateLocked = true; }
+                    else if (Actor.lockTotal == 2)
+                    { Actor.state = ActorState.Idle; Actor.stateLocked = false; }
+
+                    //leave Actor.lockTotal alone
+                    Actor.lockTotal = 100;
+
+                    #endregion
+
+
+
+                    //allow player to drop from climb using B button
+                    if (Actor == Pool.hero)
+                    {
+                        if (Functions_Input.IsNewButtonPress(Buttons.B))
+                        { Actor.state = ActorState.Falling; }
                     }
                 }
                 
