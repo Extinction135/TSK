@@ -15,7 +15,7 @@ namespace DungeonRun
     public static class Functions_Actor
     {
         static ObjType throwType;
-
+        static int i;
 
 
         public static void ResetActor(Actor Actor)
@@ -384,7 +384,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Falling & Landing
+            #region Falling & Landing & Climbing
 
             else if (Actor.state == ActorState.Falling)
             {
@@ -395,6 +395,10 @@ namespace DungeonRun
                 Actor.animGroup = Actor.animList.landed;
                 Actor.compAnim.speed = 30; //slow down anim
                 Actor.compAnim.loop = false;
+            }
+            else if (Actor.state == ActorState.Climbing)
+            {
+                Actor.animGroup = Actor.animList.climbing;
             }
 
             #endregion
@@ -686,13 +690,14 @@ namespace DungeonRun
                 //set actor moving/facing direction
                 if (Actor.compInput.direction != Direction.None)
                 { Actor.direction = Actor.compInput.direction; }
+
                 Actor.state = Actor.inputState; //sync state to input state
                 Actor.lockCounter = 0; //reset lock counter in case actor statelocks
                 Actor.lockTotal = 0; //reset lock total
                 Actor.compMove.speed = Actor.walkSpeed; //default to walk speed
+                
 
-
-                if(Actor.swimming)
+                if (Actor.swimming)
                 {   //SWIM STATES
                     Actor.compMove.speed = Actor.swimSpeed;
                     if (Actor.state == ActorState.Interact)
@@ -916,6 +921,7 @@ namespace DungeonRun
                 {   //lock actor into state
                     Actor.lockCounter = 0; 
                     Actor.lockTotal = 60;
+                    Actor.compMove.speed = Actor.walkSpeed;
                 }
                 else if(Actor.state == ActorState.Landed)
                 {   //actor has landed on ground, not touching wall obj
@@ -928,6 +934,29 @@ namespace DungeonRun
                         Functions_Movement.StopMovement(Actor.compMove);
                     }
                 }
+                else if (Actor.state == ActorState.Climbing)
+                {
+                    Actor.compMove.speed = Actor.swimSpeed; //move slowly
+                    //allow directional input
+                    if (Actor.compInput.direction != Direction.None)
+                    { Actor.direction = Actor.compInput.direction; }
+                    //lock into state
+                    Actor.lockCounter = 0;
+
+                    //assume actor should fall
+                    Actor.state = ActorState.Falling;
+                    //prove actor is nearby foothold to maintain grip
+                    for (i = 0; i < Pool.roomObjCount; i++)
+                    {   //find an active foothold obj
+                        if (Pool.roomObjPool[i].active &
+                            Pool.roomObjPool[i].type == ObjType.Wor_MountainWall_Foothold)
+                        {   //if foothold does not contain center point of actor, actor loses grip and falls
+                            if (Pool.roomObjPool[i].compCollision.rec.Contains(Actor.compSprite.position))
+                            { Actor.state = ActorState.Climbing; }
+                        }
+                    }
+                }
+                
             }
 
             #endregion

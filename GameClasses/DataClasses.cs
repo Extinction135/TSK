@@ -1094,6 +1094,7 @@ namespace DungeonRun
         public Boolean underwater = false; //is actor's head underwater or above water?
         public int breathCounter = 0; //counts frames while actor is underwater, forces surface
 
+
         public Actor()
         {
             compSprite = new ComponentSprite(Assets.heroSheet, 

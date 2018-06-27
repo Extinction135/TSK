@@ -249,30 +249,48 @@ namespace DungeonRun
 
             else if (Obj.group == ObjGroup.MountainWall)
             {
-                //bottom walls are handled differently because we dont
-                //want to set hero into a falling state from walking into wall
-                if (Obj.type == ObjType.Wor_MountainWall_Bottom)
-                {   //actor must be falling (statelocked + landed) to continue falling thru wall
-                    if (Actor.state == ActorState.Landed) //due to how we check/set
-                    {   //lock actor into falling state
-                        Actor.state = ActorState.Falling;
-                        Actor.stateLocked = true;
-                    }
-                }
-                else//this is a middle mountain wall
-                {   
-                    //check to see if this is the initial fall
+                //Notes
+                //mid walls start falls - from the top
+                //mid walls continue falls, if actor is falling
+                //mid walls push south
+                //bottom walls continue falls, if actor is falling
+                //bottom walls push south
+                //if actor is climbing, mid/bottom walls dont push them
+
+                if (Obj.type == ObjType.Wor_MountainWall_Mid)
+                {
+                    if (Actor.state == ActorState.Climbing) { return; }
+
+                    //is this initial fall?
                     if (Actor.state == ActorState.Falling) { }
                     else if (Actor.state == ActorState.Landed) { }
-                    else { Assets.Play(Assets.sfxActorFall); }
+                    else
+                    {   //play initial fall sfx
+                        Assets.Play(Assets.sfxActorFall);
+                    }
 
                     //lock actor into falling state
                     Actor.state = ActorState.Falling;
                     Actor.stateLocked = true;
-                }
 
-                //push actor south every frame, faking gravity, preventing overlap
-                Functions_Movement.Push(Actor.compMove, Direction.Down, 1.0f);
+                    //fall
+                    Functions_Movement.Push(Actor.compMove, Direction.Down, 1.0f);
+                }
+                else if (Obj.type == ObjType.Wor_MountainWall_Bottom)
+                {
+                    if (Actor.state == ActorState.Climbing) { return; }
+
+                    //only pass falling/landed actor thru wall south
+                    if (Actor.state == ActorState.Falling
+                        || Actor.state == ActorState.Landed)
+                    {   //lock actor into falling state
+                        Actor.state = ActorState.Falling;
+                        Actor.stateLocked = true;
+                    }
+
+                    //fall/push
+                    Functions_Movement.Push(Actor.compMove, Direction.Down, 1.0f);
+                }
             }
 
             #endregion

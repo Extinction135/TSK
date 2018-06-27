@@ -39,20 +39,17 @@ Today:
 
 
 
+Climbing - Part 1
 
+added footholds and ladder sprites.
+added climbing actor state and foothold
+roomObject. added footholds to mountain
+entrance level for testing.
 
-Falling & Landing
-
-implemented falling and landing states
-and animations for heros. worked out
-some issues with mountain walls properly
-handling falling actors and gravity.
-playtested, working very well.
-
-first we had to figure out going
-down. now, we get to figure out 
-climbing and going up. how exciting.
-
+got the system for climbing working
+with the system for falling. footholds
+work in the basic sense. now they need
+polish.
 
 
 
@@ -61,13 +58,54 @@ climbing and going up. how exciting.
 
 
 
-Climbing
+
+
+*pressing B should drop actor into falling state.
+*pressing A while falling should grab onto nearest foothold.
+*foothold should have larger hitboxes.
+
+*water should sort under mountain walls. << allows walls over water
+*footholds should sort over mountain walls.
+
+
+
+
+
+
+
+
+
+
+
+
+A button press starts climbing.
+
+interaction with foothold object sets actor
+into climbing state. while in climbing state,
+mountain walls do not push down. pressing a
+again doesn't exit climbing mode.
+
+if actor isn't touching foothold, climbing state ends.
+
+if actor is falling, they should be able to 
+grab a foothold by pressing a button. pressing
+a button again afterwards doesn't cancel the
+climbing state. so it's ok to spam A while falling
+in the hopes of grabbing on. this allows for
+assassin's creed style climbing up high to fall
+to catch a foothold in an unreachable area,
+all based on skill and understanding of the game.
+
+
+
+
+
+**swim up to a cliff and climb it... yesss.....*****
+
 
 add a staircase for walking up long distances.
 
-
-
-climbing = push north.
+climbing = push north animFrames.
 
 add foot holds for free form puzzle climbing.
 add a ladder for climbing short distances vertically.
@@ -77,16 +115,14 @@ ladders and footholds work the same.
 
 
 
+
+
+
+
 link up the mountain level to the overworld screen.
 add the mountain dungeon's entrance obj.
 change the mountain dungeon's wall sprites to be
 cave-y. 
-
-
-
-
-
-
 
 
 

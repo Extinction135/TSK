@@ -303,6 +303,8 @@ namespace DungeonRun
         public static List<Byte4> Wor_MountainWall_Bottom = new List<Byte4> { new Byte4(0, 14, 0, 0) };
         public static List<Byte4> Wor_MountainWall_Top = new List<Byte4> { new Byte4(0, 15, 0, 0) };
 
+        public static List<Byte4> Wor_MountainWall_Foothold = new List<Byte4> { new Byte4(4, 12, 0, 0) };
+
         #endregion
 
 
@@ -861,7 +863,11 @@ namespace DungeonRun
 
             //climbing
             Hero_Animations.climbing = new AnimationGroup();
-            Hero_Animations.climbing.down = new List<Byte4> { new Byte4(7, 1, 0, 0), new Byte4(8, 1, 0, 0) };
+            Hero_Animations.climbing.down = new List<Byte4>
+            {
+                //new Byte4(7, 1, 0, 0),
+                new Byte4(8, 1, 0, 0), new Byte4(8, 1, 1, 0)
+            };
             Hero_Animations.climbing.up = Hero_Animations.climbing.down;
             Hero_Animations.climbing.right = Hero_Animations.climbing.down;
             Hero_Animations.climbing.left = Hero_Animations.climbing.down;

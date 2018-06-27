@@ -424,6 +424,27 @@ namespace DungeonRun
 
 
 
+
+
+            #region Climbing Footholds
+
+            else if (Obj.type == ObjType.Wor_MountainWall_Foothold)
+            {
+                Pool.hero.state = ActorState.Climbing;
+                Pool.hero.stateLocked = true;
+            }
+
+            #endregion
+
+
+
+
+
+
+
+
+
+
             if (Pool.hero.swimming) { return; }
 
 

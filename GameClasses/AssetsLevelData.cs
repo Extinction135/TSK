@@ -6913,17 +6913,52 @@ namespace DungeonRun
 
 			MountainEntrance.type = RoomID.MountainEntrance;
 			MountainEntrance.objs = new List<ObjXmlData>();
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 584; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 568; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 552; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 536; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 536; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 552; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 536; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 536; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 552; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 568; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 584; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 504; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 504; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 504; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 536; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 536; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 536; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 568; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 568; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 568; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 600; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 600; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Top; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 424; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Top; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 424; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Top; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 424; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 440; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 440; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 440; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 472; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 472; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 472; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 600; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 632; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 632; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 632; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Pot; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 648; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Pot; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 648; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 632; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 616; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 600; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 584; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 568; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 568; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 568; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 568; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 552; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 536; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 520; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 504; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 488; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 488; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 488; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 488; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 472; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 456; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 440; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 424; MountainEntrance.objs.Add(obj);}
 			#endregion
 
 		}

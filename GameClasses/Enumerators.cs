@@ -171,7 +171,7 @@ namespace DungeonRun
         Pickup, Throw, //actions
 
         Falling, Landed,
-        //Climbing, 
+        Climbing, 
     }
 
     public enum ActorAI
@@ -197,6 +197,7 @@ namespace DungeonRun
         Enemy,
         EnemySpawn,
         Ditch,
+
         MountainWall,
 
         //entities
@@ -383,6 +384,7 @@ namespace DungeonRun
         Wor_MountainWall_Top,
         Wor_MountainWall_Mid,
         Wor_MountainWall_Bottom,
+        Wor_MountainWall_Foothold,
 
 
 

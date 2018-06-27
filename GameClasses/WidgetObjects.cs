@@ -586,7 +586,7 @@ namespace DungeonRun
             //row 10
             Functions_GameObject.SetType(objList[36], ObjType.Unknown);
             Functions_GameObject.SetType(objList[37], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[38], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[38], ObjType.Wor_MountainWall_Foothold);
             Functions_GameObject.SetType(objList[39], ObjType.Wor_MountainWall_Mid); //wall mid
 
             //row 11

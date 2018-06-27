@@ -1909,6 +1909,25 @@ namespace DungeonRun
                 Obj.group = ObjGroup.MountainWall;
             }
 
+            else if (Type == ObjType.Wor_MountainWall_Foothold)
+            {   
+                Obj.compSprite.cellSize.X = 16 * 1; Obj.compSprite.cellSize.Y = 16 * 1;
+                Obj.compCollision.rec.Width = 18; Obj.compCollision.offsetX = -9;
+                Obj.compCollision.rec.Height = 18; Obj.compCollision.offsetY = -9;
+
+                Obj.compSprite.texture = Assets.mountainLevelSheet;
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_MountainWall_Foothold;
+                Obj.compSprite.zOffset = -32; //sorts under hero, over wall
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = false;
+
+                Obj.group = ObjGroup.MountainWall;
+                //randomly flip sprite horizontally
+                if (Functions_Random.Int(0, 100) < 50)
+                { Obj.compSprite.flipHorizontally = true; }
+                else { Obj.compSprite.flipHorizontally = false; }
+            }
+
             #endregion
 
 
