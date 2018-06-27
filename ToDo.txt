@@ -39,41 +39,39 @@ Today:
 
 
 
-Editor++
 
-added mountain widget object + mountain level id
-values for mountain entrance and dungeon. updated
-fun_texture to set mountain texture based on level.id.
-fixed a minor bug where initial editor menu display
-state wasn't properly set into forest state.
-lots of playtesting.
+Mountains + Mountain Walls
 
+created mountain wall sprite and obj def.
+added to widgets, tested, looking good.
 
+created mountain entrance level (not linked
+to overworld yet) for developing. tested.
 
+split mountain wall into 3 objects,
+so the middle part can be repeated,
+creating the illusion of a very tall
+mountain while using relatively little
+resources. est reduction of :
+(tops)4x1 + (mids)4x2 + (bottoms)4x1
+premature optimization is bad, but
+designed optimization is ok, right? 
 
+How does hero interact with wall objects?
+if he overlaps a mid or bottom wall, push
+hero south - just like trap doors. this 
+fakes gravity well enough.
 
+added MountainWall ObjGroup type.
+this will come in handy later on for 
+various actor v obj(wall) checks.
 
-
-
-
-
-
-
-Mountain Walls
-
-add mountain objects to mountain widget. 
-these objects are the mountain wall object and the foothold
-object. we should make the mountain wall object
-very large, and the foot hold objects should be 16x16.
-this way we get an optimization in roomObjs (mountain walls)
-because they will be taking up the most space visually.
-
-we need to create the mountain entrance level.
-we dont need to have the dungeon entrance just yet,
-lets focus on climbing for now.
-
-
-
+added check into interactions.actor v obj,
+based on the objGroup type of MountinWall,
+these objects push all actors down with
+a per-frame force of 1.0, exactly the same
+as trap doors do. this makes mountain walls
+'one way' only - down.
 
 
 
@@ -83,6 +81,45 @@ lets focus on climbing for now.
 
 
 
+Falling, Landing, and Fall Damage?
+
+if hero is pushed by any mountain wall, 
+place hero into falling state.
+
+if hero is in falling state, hero by DEFAULT 
+every frame trys to transition into landed state.
+this is the sitting animation with a thud/fall sfx.
+
+every frame, if hero is overlapping a mountain wall,
+then hero is set into the falling state. the check
+to see if hero transitions to landed state happens
+before this, transitioning him to landing state.
+then wall OVERWRITES the hero's default state, KEEPING
+him in the falling state.
+
+
+
+link up the mountain level to the overworld screen.
+add the mountain dungeon's entrance obj.
+change the mountain dungeon's wall sprites to be
+cave-y. 
+
+update forest standard enemy to be angry floating eye.
+- doesn't need swimming state, has same rec as hero,
+so he can cast fireballs, etc...
+
+
+create blob dungeon pit object - this will go on town level.
+if hero collides with this obj, he falls into the blob dungeon.
+this dungeon builds a critical path to the exit, which
+dumps hero back out at last overworld location (or just town level).
+-this moves blobs into their own dungeon, without a miniboss or boss.
+
+
+
+mountain dungeon++
+add mountain enemies, miniboss, boss.
+standard enemy is? snake?
 
 
 
@@ -103,26 +140,23 @@ lets focus on climbing for now.
 
 
 
-**we have nothing for the 'entrance' obj for the
-town sheet. this could be the big weather vane
-with the duck from kakariko village, but that's
-just decorative 'throwback' and isn't really useful..
 
 
 
-clear town level - we are going to rebuild it 
-completely, with a few goals in mind: smaller houses
+
+
+
+
+
+
+Town++
+we are going to rebuild the town level completely..
+completely! with a few goals in mind: smaller houses
 that are father apart. all roofs fade out when link
 enters a house, so we don't want multiple houses on
 screen at once. only one. we'll also be creating the
 My Chickens! sidequest soon, so create a gated area
 for chickens.
-
-create town sheet. 
-update game so town level loads town sheet.
-move gates and building objects out from shared
-area and into unique section, just for town.
-update their animFrames!
 
 
 

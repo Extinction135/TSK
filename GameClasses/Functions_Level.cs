@@ -136,6 +136,15 @@ namespace DungeonRun
                 Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.ForestEntrance);
                 Level.rooms.Add(field);
             }
+            else if (Level.ID == LevelID.Mountain_Entrance)
+            {
+                Functions_Music.PlayMusic(Music.LightWorld);
+                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.MountainEntrance);
+                Level.rooms.Add(field);
+            }
+
+
+
             else if (Level.ID == LevelID.TheFarm)
             {
                 Functions_Music.PlayMusic(Music.LightWorld);

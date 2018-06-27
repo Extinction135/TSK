@@ -1867,7 +1867,49 @@ namespace DungeonRun
 
 
 
+            #region Mountain Objects
 
+            else if (Type == ObjType.Wor_MountainWall_Top)
+            {   //nonstandard size
+                Obj.compSprite.cellSize.X = 16 * 4; Obj.compSprite.cellSize.Y = 16 * 1;
+                Obj.compCollision.rec.Width = 16 * 4; Obj.compCollision.offsetX = -8;
+                Obj.compCollision.rec.Height = 16 * 1; Obj.compCollision.offsetY = -8;
+
+                Obj.compSprite.texture = Assets.mountainLevelSheet;
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_MountainWall_Top;
+                Obj.compSprite.zOffset = -64; //sorts under hero
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = false;
+                //Obj.group = ObjGroup.MountainWall; //excluded from dropping actors/objs
+            }
+            else if (Type == ObjType.Wor_MountainWall_Mid)
+            {   //nonstandard size
+                Obj.compSprite.cellSize.X = 16 * 4; Obj.compSprite.cellSize.Y = 16 * 2;
+                Obj.compCollision.rec.Width = 16 * 4; Obj.compCollision.offsetX = -8;
+                Obj.compCollision.rec.Height = 16 * 2; Obj.compCollision.offsetY = -8;
+
+                Obj.compSprite.texture = Assets.mountainLevelSheet;
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_MountainWall_Mid;
+                Obj.compSprite.zOffset = -64; //sorts under hero
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = false;
+                Obj.group = ObjGroup.MountainWall;
+            }
+            else if (Type == ObjType.Wor_MountainWall_Bottom)
+            {   //nonstandard size
+                Obj.compSprite.cellSize.X = 16 * 4; Obj.compSprite.cellSize.Y = 16 * 1;
+                Obj.compCollision.rec.Width = 16 * 4; Obj.compCollision.offsetX = -8;
+                Obj.compCollision.rec.Height = 16 * 1; Obj.compCollision.offsetY = -8;
+
+                Obj.compSprite.texture = Assets.mountainLevelSheet;
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_MountainWall_Bottom;
+                Obj.compSprite.zOffset = -64; //sorts under hero
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = false;
+                Obj.group = ObjGroup.MountainWall;
+            }
+
+            #endregion
 
 
 

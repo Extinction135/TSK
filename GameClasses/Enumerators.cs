@@ -80,7 +80,7 @@ namespace DungeonRun
 
         //dungeons, series of rooms
         Forest_Dungeon, 
-        Mountain_Dungeon,
+        Mountain_Dungeon, //<<<wip
         
         //locations that cannot be visited
         Road, //used for connecting levels on map
@@ -101,7 +101,10 @@ namespace DungeonRun
         //these OVERWORLD rooms are non-procedural (handmade)
         Colliseum,
         ColliseumPit,
+
         ForestEntrance,
+        MountainEntrance,
+
         TheFarm,
         LeftTown2,
 
@@ -191,6 +194,7 @@ namespace DungeonRun
         Enemy,
         EnemySpawn,
         Ditch,
+        MountainWall,
 
         //entities
         Pickup,
@@ -371,6 +375,12 @@ namespace DungeonRun
         Wor_Build_Roof_Bottom,
         Wor_Build_Roof_Chimney,
         Wor_Build_Roof_Collapsing, //meta obj for collapsing roofs
+
+        //mountain objs
+        Wor_MountainWall_Top,
+        Wor_MountainWall_Mid,
+        Wor_MountainWall_Bottom,
+
 
 
         #endregion

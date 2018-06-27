@@ -10,6 +10,7 @@ namespace DungeonRun
 		public static RoomXmlData TheFarm = new RoomXmlData();
 		public static RoomXmlData ForestEntrance = new RoomXmlData();
 		public static RoomXmlData LeftTown2 = new RoomXmlData();
+		public static RoomXmlData MountainEntrance = new RoomXmlData();
 
 		//level data
 		static LevelData()
@@ -6905,6 +6906,24 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 616; LeftTown2.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 408; LeftTown2.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 392; obj.posY = 488; LeftTown2.objs.Add(obj);}
+			#endregion
+
+
+			#region MountainEntrance
+
+			MountainEntrance.type = RoomID.MountainEntrance;
+			MountainEntrance.objs = new List<ObjXmlData>();
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 584; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 568; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 552; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 536; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 536; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 552; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 536; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 536; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 552; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 568; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 584; MountainEntrance.objs.Add(obj);}
 			#endregion
 
 		}

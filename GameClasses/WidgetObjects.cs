@@ -581,25 +581,25 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[32], ObjType.Unknown);
             Functions_GameObject.SetType(objList[33], ObjType.Unknown);
             Functions_GameObject.SetType(objList[34], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[35], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[35], ObjType.Wor_MountainWall_Top); //wall top
 
             //row 10
             Functions_GameObject.SetType(objList[36], ObjType.Unknown);
             Functions_GameObject.SetType(objList[37], ObjType.Unknown);
             Functions_GameObject.SetType(objList[38], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[39], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[39], ObjType.Wor_MountainWall_Mid); //wall mid
 
             //row 11
             Functions_GameObject.SetType(objList[40], ObjType.Unknown);
             Functions_GameObject.SetType(objList[41], ObjType.Unknown);
             Functions_GameObject.SetType(objList[42], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[43], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[43], ObjType.Unknown); //covered
 
             //row 12
             Functions_GameObject.SetType(objList[44], ObjType.Unknown);
             Functions_GameObject.SetType(objList[45], ObjType.Unknown);
             Functions_GameObject.SetType(objList[46], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[47], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[47], ObjType.Wor_MountainWall_Bottom); //wall bottom
 
             //position the objs relative to the window frame
             Functions_Widget.PositionObjs(this);
@@ -623,11 +623,10 @@ namespace DungeonRun
             Functions_Widget.HideObj(objList[12]);
             Functions_Widget.HideObj(objList[13]);
             Functions_Widget.HideObj(objList[14]);
+
+            Functions_Widget.HideObj(objList[43]);
         }
     }
-
-
-
 
     public class WidgetObjects_Colliseum : WidgetObject
     {

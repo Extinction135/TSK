@@ -178,6 +178,12 @@ namespace DungeonRun
                     RoomXmlData = LevelData.ForestEntrance;
                     Level.isField = true;
                 }
+                else if (Room.roomID == RoomID.MountainEntrance)
+                {
+                    RoomXmlData = LevelData.MountainEntrance;
+                    Level.isField = true;
+                }
+
                 else if (Room.roomID == RoomID.TheFarm)
                 {
                     RoomXmlData = LevelData.TheFarm;

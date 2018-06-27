@@ -245,6 +245,23 @@ namespace DungeonRun
             #endregion
 
 
+            #region MountainWalls
+
+            else if (Obj.group == ObjGroup.MountainWall)
+            {
+                //push actor south
+                Functions_Movement.Push(Actor.compMove, Direction.Down, 1.0f);
+
+                
+            }
+
+            #endregion
+
+
+
+
+
+
             //Objects
             else if (Obj.group == ObjGroup.Object)
             {
