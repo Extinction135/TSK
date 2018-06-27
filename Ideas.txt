@@ -1,10 +1,55 @@
 
 
 
+DaBlobs
+the blobs live in the underworld, literally underground
+of the light world. the have an entire culture, men, women,
+and children. but they all look the same. they have thier own
+building architecture. as blob link, you are mistaken for the
+fabled hero blob that is told of in prophecy that will save
+the blob people. this gives blob link an entire side plot
+that doesn't touch the main plot.
+
+Blob world
+this is actually a series of rooms like a dungeon, but without
+a hub room or boss room, and the hero's critical path is OUT
+of the dungeon TO THE EXIT ROOM. this returns link to the overworld
+map screen. in this blob dungeon city, there are rooms with buildings,
+commerce, life. the blobs basically live in an underground dungeon.
+
+as human link, the blobs will just ignore you with random dismissive
+dialog. if you attack a NPC, the game spawns blob actors at all NPC
+locations, then removes the NPCs - the end result being that the blobs
+pickup swords and defend themselves from the evil human who attacked them.
+we can also model this change using a boolean so future rooms spawn
+blob enemies instead of NPCs.
+
+as blob link, NPCs respond normally and all vendors are unlocked.
+there is a spot reserved for the blob's sidequest in the hero's inventory.
+
+How do we leave blob world?
+the exit to the blob world is marked on the map, which the hero
+gets from a helpful child blob in the room where hero's spawns into
+blob dungeon. this is like a first peace offerring to tell player
+that maybe they don't need to attack the blobs.
 
 
 
 
+
+
+
+Sky Islands
+grow a beanstalk from a special seed.
+this beanstalk takes link to the sky island hub,
+a level in the sky with it's own npcs and side quests.
+
+
+
+Hand from the Wall
+a hand should come out of the stone wall and grab
+at link - if this happens we could take link
+somewhere else (level) or just damage push him.
 
 
 EDITOR +++++++++
