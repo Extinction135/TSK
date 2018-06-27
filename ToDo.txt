@@ -9,14 +9,20 @@ and this we should do freely and generously."
 Roadmap
 
 0.75 - mountain/cave levels + dungeon + enemies
-0.76 - desert levels + dungeon + enemies
+0.76 - desert levels + dungeon + enemies (bottom left castle)
 0.77 - castle, city, royal vendors
 0.78 - king, fight with king, lightworld storyline done
 0.79 - farming + seeds + crops
 
+
+*map redesign to look like hyrule*
+*island overworld map becomes ice-island*
+*this leads into darkworld map design too*
 0.80 - dark world map + 1st level + transition to/from
+
+
 0.81 - swamp/water dungeon + enemies
-0.82 - ice dungeon + enemies
+0.82 - ice dungeon + enemies <<< this is larger ice-island map, via darkworld boat
 0.83 - graveyard dungeon + enemies
 
 0.84 - darkworld castle + enemies
@@ -31,12 +37,29 @@ Roadmap
 Today:
 
 
-updated readme
+
+
+
+
+
+ReOrg
+
+moved gates & buildings out of forest 
+reserved area, prepping for separation
+of forest sheet and town sheets.
+
+updated animFrames, tested town level.
+working as expected.
+
+
+
+
+
+
 
 
 
 sheets / levels:
-
 town - buildings, interior objects, gates
 forest - large trees, forest stuff
 mountain - climbable walls, cave entrances
@@ -44,10 +67,19 @@ colliseum - exterior & interior objs + spectators
 
 shared: ditches, water, grass, foilage, dungeon objs
 
-
 this grouping makes sense and sets the foundation
 for future level sheets.
 
+
+
+
+clear town level - we are going to rebuild it 
+completely, with a few goals in mind: smaller houses
+that are father apart. all roofs fade out when link
+enters a house, so we don't want multiple houses on
+screen at once. only one. we'll also be creating the
+My Chickens! sidequest soon, so create a gated area
+for chickens.
 
 create town sheet. 
 update game so town level loads town sheet.

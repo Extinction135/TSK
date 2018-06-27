@@ -177,7 +177,7 @@ namespace DungeonRun
 
         public static List<Byte4> Wor_Stove = new List<Byte4> { new Byte4(5, 15, 0, 0) };
         public static List<Byte4> Wor_Sink = new List<Byte4> { new Byte4(4, 15, 0, 0) };
-        public static List<Byte4> Wor_Chair = new List<Byte4> { new Byte4(6, 15, 0, 0) };
+        public static List<Byte4> Wor_Chair = new List<Byte4> { new Byte4(0, 14, 0, 0) };
 
         public static List<Byte4> Wor_Bed = new List<Byte4> { new Byte4(8, 5, 0, 0) };
         public static List<Byte4> Wor_BedDirty = new List<Byte4> { new Byte4(9, 5, 0, 0) };
@@ -231,27 +231,36 @@ namespace DungeonRun
         public static List<Byte4> Wor_Ditch_Filled_Endcap_Horizontal = new List<Byte4> { new Byte4(5, 10, 0, 0) };
         public static List<Byte4> Wor_Ditch_Filled_Endcap_North = new List<Byte4> { new Byte4(5, 11, 0, 0) };
 
+
+
+
+
         //fence and gate
-        public static List<Byte4> Wor_Fence_Horizontal = new List<Byte4> { new Byte4(4, 7, 0, 0) }; 
-        public static List<Byte4> Wor_Fence_Vertical_Left = new List<Byte4> { new Byte4(4, 6, 0, 0) };
-        public static List<Byte4> Wor_Fence_Vertical_Right = new List<Byte4> { new Byte4(4, 6, 1, 0) };
-        public static List<Byte4> Wor_Fence_Gate = new List<Byte4> { new Byte4(5, 7, 0, 0) };
+        public static List<Byte4> Wor_Fence_Horizontal = new List<Byte4> { new Byte4(0, 13, 0, 0) }; 
+        public static List<Byte4> Wor_Fence_Vertical_Left = new List<Byte4> { new Byte4(0, 12, 0, 0) };
+        public static List<Byte4> Wor_Fence_Vertical_Right = new List<Byte4> { new Byte4(0, 12, 1, 0) };
+        public static List<Byte4> Wor_Fence_Gate = new List<Byte4> { new Byte4(1, 13, 0, 0) };
 
         //building objs
-        public static List<Byte4> Wor_Build_Wall_FrontA = new List<Byte4> { new Byte4(6, 9, 0, 0) };
-        public static List<Byte4> Wor_Build_Wall_FrontB = new List<Byte4> { new Byte4(7, 9, 0, 0) };
-        public static List<Byte4> Wor_Build_Wall_Back = new List<Byte4> { new Byte4(6, 7, 0, 0) };
+        public static List<Byte4> Wor_Build_Wall_FrontA = new List<Byte4> { new Byte4(8, 14, 0, 0) };
+        public static List<Byte4> Wor_Build_Wall_FrontB = new List<Byte4> { new Byte4(9, 14, 0, 0) };
+        public static List<Byte4> Wor_Build_Wall_Back = new List<Byte4> { new Byte4(8, 12, 0, 0) };
 
-        public static List<Byte4> Wor_Build_Wall_Side_Left = new List<Byte4> { new Byte4(6, 8, 0, 0) };
-        public static List<Byte4> Wor_Build_Wall_Side_Right = new List<Byte4> { new Byte4(6, 8, 1, 0) };
+        public static List<Byte4> Wor_Build_Wall_Side_Left = new List<Byte4> { new Byte4(8, 13, 0, 0) };
+        public static List<Byte4> Wor_Build_Wall_Side_Right = new List<Byte4> { new Byte4(8, 13, 1, 0) };
 
-        public static List<Byte4> Wor_Build_Door_Shut = new List<Byte4> { new Byte4(6, 10, 0, 0) };
-        public static List<Byte4> Wor_Build_Door_Open = new List<Byte4> { new Byte4(7, 10, 0, 0) };
+        public static List<Byte4> Wor_Build_Door_Shut = new List<Byte4> { new Byte4(8, 15, 0, 0) };
+        public static List<Byte4> Wor_Build_Door_Open = new List<Byte4> { new Byte4(9, 15, 0, 0) };
 
         //roofs
-        public static List<Byte4> Wor_Build_Roof_Top = new List<Byte4> { new Byte4(7, 7, 0, 0) };
-        public static List<Byte4> Wor_Build_Roof_Bottom = new List<Byte4> { new Byte4(7, 8, 0, 0) };
-        public static List<Byte4> Wor_Build_Roof_Chimney = new List<Byte4> { new Byte4(7, 11, 0, 0) };
+        public static List<Byte4> Wor_Build_Roof_Top = new List<Byte4> { new Byte4(9, 12, 0, 0) };
+        public static List<Byte4> Wor_Build_Roof_Bottom = new List<Byte4> { new Byte4(9, 13, 0, 0) };
+        public static List<Byte4> Wor_Build_Roof_Chimney = new List<Byte4> { new Byte4(10, 12, 0, 0) };
+
+
+
+
+
 
         #endregion
 
