@@ -33,108 +33,101 @@ namespace DungeonRun
             currentSheet = new ComponentButton("---", new Point(16, 16 + 2));
             currentSheet.rec.Width = 16 * 5;
 
-            //set shared widgets to be visible
-            Widgets.WO_Environment.visible = true;
-            Widgets.WO_Dungeon.visible = true;
-            Widgets.WO_Building.visible = true;
-
             //initialize to forest state
+            ResetWidgets();
             currentSheet.compText.text = "forest";
             Level.ID = LevelID.DEV_Field;
-            Widgets.WO_Forest1.visible = true;
-            Widgets.WO_Forest2.visible = true;
-
-            //set all other widgets closed
-            Widgets.WO_Building_Colliseum.visible = false;
+            Widgets.WO_Forest.visible = true;
         }
 
         public override void HandleInput(GameTime GameTime)
         {
+
+            #region Exit This Screen
 
             if (Functions_Input.IsNewKeyPress(Keys.Back))
             {
                 ScreenManager.RemoveScreen(this);
             }
 
+            #endregion
 
-            //handle obj selection for obj widgets
+
+            #region Handle obj selection for obj widgets
+
             if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
             {
-                CheckObjList(Widgets.WO_Environment);
-                CheckObjList(Widgets.WO_Dungeon);
-                CheckObjList(Widgets.WO_Building);
+                if (Widgets.WO_Environment.visible) { CheckObjList(Widgets.WO_Environment); }
+                if (Widgets.WO_Dungeon.visible) { CheckObjList(Widgets.WO_Dungeon); }
 
-                //check forest widget input
-                if (Widgets.WO_Forest1.visible)
-                { CheckObjList(Widgets.WO_Forest1); }
-                if (Widgets.WO_Forest2.visible)
-                { CheckObjList(Widgets.WO_Forest2); }
+                //unique WOs
+                if (Widgets.WO_Town.visible) { CheckObjList(Widgets.WO_Town); }
+                if (Widgets.WO_Forest.visible) { CheckObjList(Widgets.WO_Forest); }
+                if (Widgets.WO_Colliseum.visible) { CheckObjList(Widgets.WO_Colliseum); }
 
-                //check colliseum widget input
-                if (Widgets.WO_Building_Colliseum.visible)
-                { CheckObjList(Widgets.WO_Building_Colliseum); }
+                //dev WO
+                if (Widgets.WO_DEV.visible) { CheckObjList(Widgets.WO_DEV); }
             }
 
-            //pass tool input
-            Widgets.RoomTools.HandleInput();
-            Widgets.ObjectTools.HandleInput_Widget();
-            //dont pass input to ObjectTools.HandleInput_World();
+            #endregion
 
 
-
+            #region Handle Level Button (currentSheet) Presses
 
             if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
             {
                 if (currentSheet.rec.Contains(Input.cursorPos))
                 {
-
-                    #region Reset custom obj widgets
-
-                    Widgets.WO_Forest1.visible = false;
-                    Widgets.WO_Forest2.visible = false;
-
-                    Widgets.WO_Building_Colliseum.visible = false;
-
-                    #endregion
+                    ResetWidgets();
 
 
-                    #region Setup custom widgets and level.id
 
-                    if (Level.ID == LevelID.DEV_Field) //initial case
-                    {
-                        Level.ID = LevelID.Colliseum;
+                    //Iterate thru forest, town, colliseum, mountain, etc...
+                    if (Level.ID == LevelID.LeftTown2)
+                    {   //leads to colliseum
                         currentSheet.compText.text = "colliseum";
-                        Widgets.WO_Building_Colliseum.visible = true;
+                        Widgets.WO_Colliseum.visible = true;
+                        Level.ID = LevelID.Colliseum;
                     }
                     else if(Level.ID == LevelID.Colliseum)
-                    {
-                        Level.ID = LevelID.DEV_Field;
+                    {   //leads to forest
                         currentSheet.compText.text = "forest";
-                        Widgets.WO_Forest1.visible = true;
-                        Widgets.WO_Forest2.visible = true;
+                        Widgets.WO_Forest.visible = true;
+                        Level.ID = LevelID.Forest_Entrance;
                     }
+                    else if (Level.ID == LevelID.Forest_Entrance)
+                    {   //leads to town
+                        currentSheet.compText.text = "town";
+                        Widgets.WO_Town.visible = true;
+                        Level.ID = LevelID.LeftTown2;
+                    }
+                    //add mountain here
                     else
-                    {   //default case
-                        Level.ID = LevelID.DEV_Field;
-                        currentSheet.compText.text = "forest";
-                        Widgets.WO_Forest1.visible = true;
-                        Widgets.WO_Forest2.visible = true;
+                    {   //any other case resets button's sequence, leads to town
+                        currentSheet.compText.text = "town";
+                        Widgets.WO_Town.visible = true;
+                        Level.ID = LevelID.LeftTown2;
                     }
+                    
 
-                    #endregion
 
-
-                    //update floors and objects
+                    //update level floors and room objects
                     Functions_Texture.SetFloorTextures();
                     for(int i = 0; i < Pool.roomObjCount; i++)
-                    {
-                        Functions_GameObject.SetType(Pool.roomObjPool[i], Pool.roomObjPool[i].type);
-                    }
+                    { Functions_GameObject.SetType(Pool.roomObjPool[i], Pool.roomObjPool[i].type); }
                     //update all shared widget objects
                     Functions_Texture.SetWOTexture(Widgets.WO_Dungeon);
                     Functions_Texture.SetWOTexture(Widgets.WO_Environment);
                 }
             }
+
+            #endregion
+
+
+            //pass tool input
+            Widgets.RoomTools.HandleInput();
+            Widgets.ObjectTools.HandleInput_Widget();
+            //dont pass input to ObjectTools.HandleInput_World();
         }
 
         public override void Update(GameTime GameTime)
@@ -150,25 +143,15 @@ namespace DungeonRun
             Functions_Draw.Draw(bkgRec);
 
             //update and draw obj widgets that are visible
+            if (Widgets.WO_Environment.visible) { Widgets.WO_Environment.Update(); Widgets.WO_Environment.Draw(); }
+            if (Widgets.WO_Dungeon.visible) { Widgets.WO_Dungeon.Update(); Widgets.WO_Dungeon.Draw(); }
 
-            if (Widgets.WO_Environment.visible)
-            { Widgets.WO_Environment.Update(); Widgets.WO_Environment.Draw(); }
-            if (Widgets.WO_Dungeon.visible)
-            { Widgets.WO_Dungeon.Update(); Widgets.WO_Dungeon.Draw(); }
-            if (Widgets.WO_Building.visible)
-            { Widgets.WO_Building.Update(); Widgets.WO_Building.Draw(); }
+            if (Widgets.WO_Forest.visible) { Widgets.WO_Forest.Update(); Widgets.WO_Forest.Draw(); }
+            if (Widgets.WO_Town.visible) { Widgets.WO_Town.Update(); Widgets.WO_Town.Draw(); }
+            if (Widgets.WO_Colliseum.visible) { Widgets.WO_Colliseum.Update(); Widgets.WO_Colliseum.Draw(); }
 
-
-            if (Widgets.WO_Forest1.visible)
-            { Widgets.WO_Forest1.Update(); Widgets.WO_Forest1.Draw(); }
-            if (Widgets.WO_Forest2.visible)
-            { Widgets.WO_Forest2.Update(); Widgets.WO_Forest2.Draw(); }
-
-
-            if (Widgets.WO_Building_Colliseum.visible)
-            { Widgets.WO_Building_Colliseum.Update(); Widgets.WO_Building_Colliseum.Draw(); }
-
-
+            if (Widgets.WO_DEV.visible) { Widgets.WO_DEV.Update(); Widgets.WO_DEV.Draw(); }
+            
             //draw tool widgets
             Widgets.RoomTools.Update();
             Widgets.RoomTools.Draw();
@@ -189,7 +172,22 @@ namespace DungeonRun
             { Widgets.ObjectTools.CheckObjList(WO.objList); }
         }
 
+        public void ResetWidgets()
+        {
+            currentSheet.compText.text = "nothing";
 
+            //set shared widgets to be visible
+            Widgets.WO_Environment.visible = true;
+            Widgets.WO_Dungeon.visible = true;
+
+            //set all other widgets not visible
+            Widgets.WO_Forest.visible = false;
+            Widgets.WO_Town.visible = false;
+            Widgets.WO_Colliseum.visible = false;
+
+            //set dev widget to always be visible
+            Widgets.WO_DEV.visible = true;
+        }
 
 
     }

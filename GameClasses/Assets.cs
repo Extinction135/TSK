@@ -36,9 +36,14 @@ namespace DungeonRun
         public static Texture2D entitiesSheet;
         public static Texture2D uiItemsSheet;
 
-        //world sheets
-        public static Texture2D forestLevelSheet;
+        //level sheets
+        public static Texture2D townLevelSheet;
         public static Texture2D colliseumLevelSheet;
+
+        public static Texture2D forestLevelSheet;
+        public static Texture2D mountainLevelSheet;
+        
+        
 
 
 
@@ -191,26 +196,27 @@ namespace DungeonRun
             font = content.Load<SpriteFont>(@"pixelFont");
             medFont = content.Load<SpriteFont>(@"mediumFont");
 
-            //actor textures
-            heroSheet = content.Load<Texture2D>(@"HeroSheet");
-            blobSheet = content.Load<Texture2D>(@"BlobSheet");
-
-            //pets sheet
-            petsSheet = content.Load<Texture2D>(@"PetsSheet");
-
-            //ui + screen sheets
-            bigTextSheet = content.Load<Texture2D>(@"BigTextSheet");
             overworldSheet = content.Load<Texture2D>(@"OverworldTexture");
             titleBkgSheet = content.Load<Texture2D>(@"TitleBkg");
-            entitiesSheet = content.Load<Texture2D>(@"EntitiesSheet");
-            uiItemsSheet = content.Load<Texture2D>(@"UiItemsSheet");
 
-            //world sheets
-            forestLevelSheet = content.Load<Texture2D>(@"ForestLevelSheet");
-            colliseumLevelSheet = content.Load<Texture2D>(@"ColliseumLevelSheet");
-            
-            //load all roomData
-            //Functions_Backend.LoadAllRoomData();
+
+            //load all sprite textures
+            bigTextSheet = content.Load<Texture2D>(@"Sprites_BigText");
+            entitiesSheet = content.Load<Texture2D>(@"Sprites_Entities");
+
+            blobSheet = content.Load<Texture2D>(@"Sprites_Hero_Blob");
+            heroSheet = content.Load<Texture2D>(@"Sprites_Hero_Link");
+
+            colliseumLevelSheet = content.Load<Texture2D>(@"Sprites_Level_Colliseum");
+            forestLevelSheet = content.Load<Texture2D>(@"Sprites_Level_Forest");
+            mountainLevelSheet = content.Load<Texture2D>(@"Sprites_Level_Mountain");
+            townLevelSheet = content.Load<Texture2D>(@"Sprites_Level_Town");
+
+            petsSheet = content.Load<Texture2D>(@"Sprites_Pets");
+            uiItemsSheet = content.Load<Texture2D>(@"Sprites_Ui");
+
+
+
 
 
             #region Create Music instances

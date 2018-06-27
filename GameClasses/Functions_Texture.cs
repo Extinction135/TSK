@@ -18,23 +18,32 @@ namespace DungeonRun
         static int i;
 
 
+        static void SetTexture()
+        {   //based on level id, set the current texture
+            currentTexture = Assets.forestLevelSheet; //default to forest
+
+            if (Level.ID == LevelID.LeftTown2) { currentTexture = Assets.townLevelSheet; }
+            else if (Level.ID == LevelID.TheFarm) { currentTexture = Assets.townLevelSheet; }
+
+            else if (Level.ID == LevelID.Colliseum) { currentTexture = Assets.colliseumLevelSheet; }
+            else if (Level.ID == LevelID.ColliseumPit) { currentTexture = Assets.colliseumLevelSheet; }
+
+            else if (Level.ID == LevelID.Forest_Entrance) { currentTexture = Assets.forestLevelSheet; }
+            else if (Level.ID == LevelID.Forest_Dungeon) { currentTexture = Assets.forestLevelSheet; }
+
+            //mountain and cave dungeon
+        }
+
+
         public static void SetObjTexture(GameObject Obj)
         {
-            currentTexture = Assets.forestLevelSheet; //default to forest/standard
-
-            //these levels use the non-forest/standard texture
-            if (Level.ID == LevelID.Colliseum) { currentTexture = Assets.colliseumLevelSheet; }
-
+            SetTexture();
             Obj.compSprite.texture = currentTexture;
         }
 
         public static void SetFloorTextures()
         {
-            currentTexture = Assets.forestLevelSheet; //default to forest/standard
-
-            //these levels use the non-forest/standard texture
-            if (Level.ID == LevelID.Colliseum) { currentTexture = Assets.colliseumLevelSheet; }
-
+            SetTexture();
             //update all floor texture references
             for (Pool.floorCounter = 0; Pool.floorCounter < Pool.floorCount; Pool.floorCounter++)
             { Pool.floorPool[Pool.floorCounter].texture = currentTexture; }

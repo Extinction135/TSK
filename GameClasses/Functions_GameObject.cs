@@ -1137,7 +1137,7 @@ namespace DungeonRun
                 || Type == ObjType.Wor_Sink
                 || Type == ObjType.Wor_Chair)
             {
-                Obj.compSprite.texture = Assets.forestLevelSheet;
+                Obj.compSprite.texture = Assets.townLevelSheet;
                 Obj.compCollision.offsetY = 0; Obj.compCollision.rec.Height = 8;
                 Obj.compSprite.zOffset = -7;
                 Obj.canBeSaved = true;
@@ -1164,7 +1164,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Wor_TableSingle )
             {
-                Obj.compSprite.texture = Assets.forestLevelSheet;
+                Obj.compSprite.texture = Assets.townLevelSheet;
                 Obj.canBeSaved = true;
                 Obj.compMove.moveable = true;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
@@ -1178,7 +1178,7 @@ namespace DungeonRun
             else if(Type == ObjType.Wor_TableDoubleLeft
                 || Type == ObjType.Wor_TableDoubleRight)
             {
-                Obj.compSprite.texture = Assets.forestLevelSheet;
+                Obj.compSprite.texture = Assets.townLevelSheet;
                 Obj.canBeSaved = true;
                 //Obj.compMove.moveable = true;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
@@ -1201,7 +1201,6 @@ namespace DungeonRun
 
             else if(Type == ObjType.Wor_Bed)
             {
-                Obj.compSprite.texture = Assets.forestLevelSheet;
                 Obj.compSprite.cellSize.Y = 16*2; //non standard cellsize
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Bed;
                 Obj.compCollision.offsetX = -8; Obj.compCollision.offsetY = 0;
@@ -1223,7 +1222,7 @@ namespace DungeonRun
                 Type == ObjType.Vendor_NPC_Armor || Type == ObjType.Vendor_NPC_Equipment
                 || Type == ObjType.Vendor_NPC_Pets)
             {
-                Obj.compSprite.texture = Assets.forestLevelSheet;
+                Obj.compSprite.texture = Assets.townLevelSheet;
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 11;
                 Obj.compSprite.zOffset = 0;
@@ -1260,7 +1259,7 @@ namespace DungeonRun
             //story NPC
             else if (Type == ObjType.NPC_Story)
             {
-                Obj.compSprite.texture = Assets.forestLevelSheet;
+                Obj.compSprite.texture = Assets.townLevelSheet;
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 11;
                 Obj.compSprite.zOffset = 0;
@@ -1271,7 +1270,9 @@ namespace DungeonRun
             }
             
             //farmer NPC
-            else if(Type == ObjType.NPC_Farmer || Type == ObjType.NPC_Farmer_Reward || Type == ObjType.NPC_Farmer_EndDialog)
+            else if(Type == ObjType.NPC_Farmer 
+                || Type == ObjType.NPC_Farmer_Reward 
+                || Type == ObjType.NPC_Farmer_EndDialog)
             {
                 //only end state of farmer is 'dumb'
                 if (Type == ObjType.NPC_Farmer_EndDialog) { Obj.getsAI = false; }
@@ -1281,7 +1282,7 @@ namespace DungeonRun
                 { Obj.interactiveFrame = 30; } //completion condition, while reward
                 else { Obj.interactiveFrame = 60; } //farmer gently spams exclamation point
 
-                Obj.compSprite.texture = Assets.forestLevelSheet;
+                Obj.compSprite.texture = Assets.townLevelSheet;
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 11;
                 Obj.compSprite.zOffset = 0;
@@ -1446,7 +1447,7 @@ namespace DungeonRun
             
             else if (Type == ObjType.Wor_Fence_Vertical_Left || Type == ObjType.Wor_Fence_Vertical_Right)
             {
-                Obj.compSprite.texture = Assets.forestLevelSheet;
+                Obj.compSprite.texture = Assets.townLevelSheet;
                 Obj.canBeSaved = true;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
                 Obj.compSprite.zOffset = 0;
@@ -1468,7 +1469,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Wor_Fence_Horizontal || Type == ObjType.Wor_Fence_Gate)
             {
-                Obj.compSprite.texture = Assets.forestLevelSheet;
+                Obj.compSprite.texture = Assets.townLevelSheet;
                 Obj.canBeSaved = true;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
                 Obj.compSprite.zOffset = 4;
@@ -1490,7 +1491,7 @@ namespace DungeonRun
                 || Type == ObjType.Wor_Build_Wall_FrontB
                 || Type == ObjType.Wor_Build_Wall_Back)
             {
-                Obj.compSprite.texture = Assets.forestLevelSheet;
+                Obj.compSprite.texture = Assets.townLevelSheet;
                 Obj.canBeSaved = true;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
                 Obj.compSprite.zOffset = 0; //sort over sidewalls
@@ -1506,7 +1507,7 @@ namespace DungeonRun
             }
             else if(Type == ObjType.Wor_Build_Wall_Side_Left)
             {
-                Obj.compSprite.texture = Assets.forestLevelSheet;
+                Obj.compSprite.texture = Assets.townLevelSheet;
                 Obj.canBeSaved = true;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
                 Obj.compSprite.zOffset = 1;
@@ -1517,7 +1518,7 @@ namespace DungeonRun
             }
             else if(Type == ObjType.Wor_Build_Wall_Side_Right)
             {
-                Obj.compSprite.texture = Assets.forestLevelSheet;
+                Obj.compSprite.texture = Assets.townLevelSheet;
                 Obj.canBeSaved = true;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
                 Obj.compSprite.zOffset = 1;
@@ -1528,7 +1529,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Wor_Build_Door_Shut)
             {
-                Obj.compSprite.texture = Assets.forestLevelSheet;
+                Obj.compSprite.texture = Assets.townLevelSheet;
                 Obj.canBeSaved = true;
                 Obj.compSprite.zOffset = 0;
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Build_Door_Shut;
@@ -1538,7 +1539,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Wor_Build_Door_Open)
             {
-                Obj.compSprite.texture = Assets.forestLevelSheet;
+                Obj.compSprite.texture = Assets.townLevelSheet;
                 Obj.canBeSaved = true;
                 Obj.compSprite.zOffset = 0;
                 Obj.compCollision.blocking = false;
@@ -1549,7 +1550,7 @@ namespace DungeonRun
             else if (Type == ObjType.Wor_Build_Roof_Bottom
                 || Type == ObjType.Wor_Build_Roof_Top)
             {
-                Obj.compSprite.texture = Assets.forestLevelSheet;
+                Obj.compSprite.texture = Assets.townLevelSheet;
                 Obj.canBeSaved = true;
                 Obj.compSprite.zOffset = 48; //sort over most other things
                 Obj.compCollision.blocking = false;
@@ -1560,7 +1561,7 @@ namespace DungeonRun
             }
             else if(Type == ObjType.Wor_Build_Roof_Chimney)
             {
-                Obj.compSprite.texture = Assets.forestLevelSheet;
+                Obj.compSprite.texture = Assets.townLevelSheet;
                 Obj.canBeSaved = true;
                 Obj.compSprite.zOffset = 48; //sort over most other things
                 Obj.compCollision.blocking = false;
@@ -1571,6 +1572,7 @@ namespace DungeonRun
             {
                 //this obj inherits the attributes of the previous roof obj it once was
                 //this means we dont modify the attributes at all
+                
                 Obj.getsAI = true; //but collapsing roofs always get AI
                 Obj.interactiveFrame = 20; //base speed of collapse spread
                 Obj.interactiveFrame += Functions_Random.Int(-10, 10); //vary spreadtime
@@ -1590,7 +1592,6 @@ namespace DungeonRun
                 || Type == ObjType.Wor_Enemy_Crab)
             {
                 Obj.group = ObjGroup.Enemy;
-                Obj.compSprite.texture = Assets.forestLevelSheet;
                 Obj.getsAI = true; //roomObj enemy
                 Obj.canBeSaved = true;
                 Obj.compSprite.zOffset = 0;
@@ -1612,7 +1613,6 @@ namespace DungeonRun
             else if(Type == ObjType.Wor_Enemy_Rat)
             {
                 Obj.group = ObjGroup.Enemy;
-                Obj.compSprite.texture = Assets.forestLevelSheet;
                 Obj.getsAI = true; //roomObj enemy
                 Obj.canBeSaved = true;
                 Obj.compSprite.zOffset = 0;
@@ -1628,6 +1628,8 @@ namespace DungeonRun
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Enemy_Rat_Down;
             }
 
+
+            //unique enemies - their texture is specific
             else if (Type == ObjType.Wor_SeekerExploder)
             {
                 Obj.group = ObjGroup.Enemy;
@@ -2462,7 +2464,7 @@ namespace DungeonRun
                 Obj.getsAI = true; //obj gets ai too (track to hero, set anim frames)
 
                 Obj.compCollision.blocking = false; //dont block
-                Obj.compSprite.texture = Assets.forestLevelSheet;
+                Obj.compSprite.texture = Assets.townLevelSheet;
                 Obj.canBeSaved = true;
                 //set initial animation frame
                 Obj.compAnim.currentAnimation = AnimationFrames.Pet_Chicken_Idle;

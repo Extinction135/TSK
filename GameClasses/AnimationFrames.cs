@@ -291,31 +291,37 @@ namespace DungeonRun
         public static List<Byte4> Wor_Colliseum_Outdoors_Floor = new List<Byte4> { new Byte4(3, 15, 0, 0) };
 
         public static List<Byte4> Wor_Colliseum_Spectator = new List<Byte4>
-        { new Byte4(4, 10, 0, 0), new Byte4(4, 11, 0, 0) };
+        { new Byte4(4, 12, 0, 0), new Byte4(4, 13, 0, 0) };
 
         #endregion
 
 
         #region World Enemies
 
-        //enemies
-        public static List<Byte4> Wor_Enemy_Turtle = new List<Byte4>
-        { new Byte4(16, 13, 0, 0), new Byte4(17, 13, 0, 0) };
+
+
+        //global enemies (can appear on any level)
 
         public static List<Byte4> Wor_Enemy_Crab = new List<Byte4>
-        { new Byte4(18, 13, 0, 0), new Byte4(19, 13, 0, 0) };
+        { new Byte4(16, 10, 0, 0), new Byte4(17, 10, 0, 0) };
+
+        public static List<Byte4> Wor_Enemy_Turtle = new List<Byte4>
+        { new Byte4(16, 11, 0, 0), new Byte4(17, 11, 0, 0) };
 
         //rat enemy has directional animFrames
         public static List<Byte4> Wor_Enemy_Rat_Up = new List<Byte4>
-        { new Byte4(19, 12, 0, 0), new Byte4(19, 12, 1, 0) };
+        { new Byte4(19, 9, 0, 0), new Byte4(19, 9, 1, 0) };
         public static List<Byte4> Wor_Enemy_Rat_Right = new List<Byte4>
-        { new Byte4(17, 12, 0, 0), new Byte4(18, 12, 0, 0) };
+        { new Byte4(17, 9, 0, 0), new Byte4(18, 9, 0, 0) };
         public static List<Byte4> Wor_Enemy_Rat_Down = new List<Byte4>
-        { new Byte4(16, 12, 0, 0), new Byte4(16, 12, 1, 0) };
+        { new Byte4(16, 9, 0, 0), new Byte4(16, 9, 1, 0) };
         public static List<Byte4> Wor_Enemy_Rat_Left = new List<Byte4>
-        { new Byte4(17, 12, 1, 0), new Byte4(18, 12, 1, 0) };
+        { new Byte4(17, 9, 1, 0), new Byte4(18, 9, 1, 0) };
 
-        //Wor_SeekerExploder
+
+
+
+        //unique enemies (only appears on specific level / colliseum)
         public static List<Byte4> Wor_SeekerExploder = new List<Byte4>
         {
             new Byte4(16, 3, 0, 0), new Byte4(17, 3, 0, 0),
@@ -551,9 +557,9 @@ namespace DungeonRun
         public static List<Byte4> Pet_Dog_InWater = new List<Byte4> { new Byte4(3, 1, 0, 0), new Byte4(4, 1, 0, 0) };
 
         public static List<Byte4> Pet_Chicken_Idle = new List<Byte4>
-        { new Byte4(16, 11, 0, 0), new Byte4(17, 11, 0, 0) };
+        { new Byte4(16, 12, 0, 0), new Byte4(17, 12, 0, 0) };
         public static List<Byte4> Pet_Chicken_Move = new List<Byte4>
-        { new Byte4(17, 11, 0, 0), new Byte4(18, 11, 0, 0) };
+        { new Byte4(17, 12, 0, 0), new Byte4(18, 12, 0, 0) };
 
         #endregion
 
