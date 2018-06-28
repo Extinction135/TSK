@@ -47,49 +47,57 @@ Roadmap
 Today:
 
 
+Dungeon Sprites++
 
+improved mountain dungeon wall sprites.
 
-Dungeons++
-
-improved fun_dungeon.buildDungeon_AddBossPath().
-added ability to create a number of rooms
-between the last room and boss room. these
-rooms are created north of the last room,
-vertically expanding the dungeon away from
-the exit room. 
-
-tested mountain + forest dungeons. <<< good.
-
-Visual Aids
-created folder repo/DungeonExamples, to
-contain visual examples of what dungeon
-layouts look like. this is to show people
-how the layout changes between dungeons.
-added forest and mountain dungeon maps
-pulled from 1st run examples.
-
-
-
-
-
-
-
-
-
-
-*improve mountain dungeon wall sprites
-- the transition to the floor is too dark
+nerdy artsy notes:
+the transition to the floor is too dark
 plus, there is a light part that directly
 touches floor and looks wrong.
 the top right lighter part also looks wrong,
 but the 'shine' on the rock face looks good.
 keep and expand it. shiny wet rocks looks good 
 and different.
+mountain cracked walls need to conform to the shape
+of the underlying wall. it can't be straight..
+same goes for wall statues, and doors.
+pillars need their bottom corners removed 
+(underlying wall) so they fit in with cave walls...
+boss door will always be surrounded by pillars,
+redesigned sprite around this singular state.
+
+improved forest dungeon wall sprites.
+improved stone wall dungeon sprites,
+affecting town and colliseum dungeons,
+which we aren't building yet.
+
+playtested, looking great.
+
+
+
+
+
+
+
+
+
+
 
 
 
 *if a tree is burning, we can't destroy it
 *because we only check for trees, and not burning trees too..
+
+
+
+
+
+*we shouldn't be adding an offset to the camera
+when we center to a dungeon room. this causes column
+rooms to be displayed not centered IN GAME. but,
+they displayed 'centered' in teh editor - which doesnt
+matter at all!!!!
 
 
 
