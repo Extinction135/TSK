@@ -1179,10 +1179,6 @@ namespace DungeonRun
         public int secs = 0;
 
         public LevelID lastLocation = LevelID.Colliseum;
-
-        public int enemiesKilled = 0;
-        public int damageTaken = 0;
-
         public ActorType actorType = ActorType.Hero;
         public int gold = 99;
         public byte heartsTotal = 3; //sets max health
@@ -1197,7 +1193,15 @@ namespace DungeonRun
         public byte arrowsMax = 99;
 
 
-        //Items
+
+        //fun random tracking data
+        public int enemiesKilled = 0;
+        public int damageTaken = 0;
+        public int recorded_wallJumps = 0;
+
+
+
+
         //the hero's last selected / current item
         public MenuItemType currentItem = MenuItemType.ItemBoomerang;
         public int lastItemSelected = 0; //index of Widgets.Inventory.menuItems[?]
@@ -1237,6 +1241,9 @@ namespace DungeonRun
 
         //player's pet
         public MenuItemType petType = MenuItemType.Unknown;
+
+
+        
     }
 
  

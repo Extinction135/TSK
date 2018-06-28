@@ -254,5 +254,25 @@ namespace DungeonRun
 
 
 
+        #region Achievement Dialogs
+
+        public static List<Dialog> Achievement_WallJumps_10 = new List<Dialog>
+        {   //returns to inventory screen upon close
+            new Dialog(ObjType.Hero_Idle, "Nice!",
+                "That's 10 successful wall jumps."
+                + "\nI'm getting pretty good at climbing..",
+                Assets.sfxKeyPickup, false, false, false)
+        };
+        public static List<Dialog> Achievement_WallJumps_100 = new List<Dialog>
+        {   //returns to inventory screen upon close
+            new Dialog(ObjType.Hero_Idle, "Mastery!",
+                "That's 100 successful wall jumps."
+                + "\nI've mastered climbing..",
+                Assets.sfxKeyPickup, false, false, false)
+        };
+
+        #endregion
+
+
     }
 }

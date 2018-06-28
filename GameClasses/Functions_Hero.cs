@@ -211,7 +211,9 @@ namespace DungeonRun
                 {
                     if (Pool.roomObjPool[i].compCollision.rec.Contains(interactionPoint))
                     {
-                        if (Pool.roomObjPool[i].type == ObjType.Wor_Water)
+                        if (Pool.roomObjPool[i].type == ObjType.Wor_Water
+                            || Pool.roomObjPool[i].type == ObjType.Wor_MountainWall_Mid
+                            || Pool.roomObjPool[i].type == ObjType.Wor_MountainWall_Bottom)
                         { } //ignore these objects for hero rec interaction
                         else
                         {   //all other objects are tested for interaction
@@ -618,6 +620,24 @@ namespace DungeonRun
             PlayerData.current.petType = MenuItemType.Unknown;
             //PlayerData.current.petType = MenuItemType.PetStinkyDog;
         }
+
+
+
+
+
+        public static void CheckAchievements(Achievements Achievement)
+        {
+            if(Achievement == Achievements.WallJumps)
+            {   //check wall jumps
+                if (PlayerData.current.recorded_wallJumps == 10)
+                { ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Achievement_WallJumps_10)); }
+                else if(PlayerData.current.recorded_wallJumps == 100)
+                { ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Achievement_WallJumps_100)); }
+            }
+        }
+
+
+
 
 
     }

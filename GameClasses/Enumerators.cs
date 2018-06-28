@@ -64,7 +64,13 @@ namespace DungeonRun
 
 
 
-    
+    public enum Achievements
+    {
+        WallJumps,
+    }
+
+
+
 
     public enum LevelID
     {

@@ -38,22 +38,81 @@ Today:
 
 
 
+Wall Jumps
 
-Climbing - Part 6
+the basic idea is that we want the player
+to be able to detach from the wall (B button
+press), starting a fall. Then using the 
+joystick or Dpad, changing the direction
+of the falling hero overtime. Once the
+player realizes this is possible, they will
+eventually line up a path that intersects
+a ladder or foothold, and try to grab it
+via the A button press - completing a heroic
+leap from one spot to another.
 
-integrated mountain walls into roomObj v Obj
-interaction check, using same hack as seekerExploders,
-turning their blocking boolean on just prior
-to interaction checks, then turning it off afterwards.
-this has the net effect of treating the walls like 
-they were blocking objects - preventing a variety of
-nasty bugs from happening: enemies moving through
-mountain walls, objects and projectiles flying
-through moutain walls, etc..
+extended falling routine in actor.update to
+allow for setting the hero's interaction rec
+while in statelocked falling state. this allows
+player to spam A button while falling to 
+heroically grab at any nearby ladder or foothold.
+-made sure to get the current controller's
+direction just prior to checking the grab,
+so it doesn't feel laggy or a frame behind.
 
-playtested, all projectiles interact with mountain
-walls as if they were blocking, completing mountain
-wall interactions with actors and roomObjs.
+Done
+so, that *completely* implements wall jumps.
+playtested, wall jumping is incredibly fun.
+this allows for climbing up high to fall
+to catch a foothold in an unreachable area,
+all based on skill and understanding of the game.
+
+added soundfx and attention particle when hero
+successfully completes a wall jump. we could
+also add any kind of celebration here to note
+the heroic leap, and we could also keep track
+of how many successful wall jumps hero has made.
+
+added wallJumps int to playerData,
+linked it up to wall jump rountine,
+which now increments the wallJump int
+each time the hero completes a wall jump.
+lets use this data to unlock
+a challenge or trophy or something...
+
+
+Achievements
+created achievements enumerator,
+with wallJumps as it's only value for now.
+created fun_hero.CheckAchievements(),
+which accepts an achievement enum,
+which then determines which achievement
+routine to run. two are implemented
+currently - checking for 10 and 100
+successful wall jump - from playerData.
+
+successfully completing an achievement
+pops a dialog screen telling player
+what they have completed. in the future,
+this WILL lead to more meaningful
+effects, because a dialog screen feels
+cheap, honestly. playtested, working
+as expected.
+
+updated UWP to match Dx.
+
+
+
+
+
+
+
+
+
+additional achievements to add:
+cutting bushes achievement.
+burning grass / objects achievement.
+
 
 
 
@@ -63,14 +122,13 @@ wall interactions with actors and roomObjs.
 Climbing++
 
 *pressing A while falling should grab onto nearest foothold.
-if actor is falling, they should be able to 
-grab a foothold by pressing a button. pressing
-a button again afterwards doesn't cancel the
-climbing state. so it's ok to spam A while falling
-in the hopes of grabbing on. this allows for
-assassin's creed style climbing up high to fall
-to catch a foothold in an unreachable area,
-all based on skill and understanding of the game.
+
+
+
+
+setup mountain dungeon enemy sprites
+setup forest dungeon enemy sprites
+
 
 
 
@@ -104,6 +162,8 @@ Separate Blob and Forest Dungeons
 update forest standard enemy to be angry floating eye.
 - doesn't need swimming state, has same rec as hero,
 so he can cast fireballs, etc...
+
+* the blob dungeon uses the town sheet *
 
 create blob dungeon pit object - this will go on town level.
 if hero collides with this obj, he falls into the blob dungeon.

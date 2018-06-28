@@ -927,6 +927,51 @@ namespace DungeonRun
                     Actor.lockCounter = 0; 
                     Actor.lockTotal = 60;
                     Actor.compMove.speed = Actor.walkSpeed;
+
+                    #region Allow Hero to grab while falling via A button press
+
+                    if (Actor == Pool.hero)
+                    {
+                        if (Functions_Input.IsNewButtonPress(Buttons.A))
+                        {
+                            //set hero.direction based on controller input *right now*
+                            Pool.hero.direction = Input.gamePadDirection;
+                            //this direction will be used in check() below
+                            //to set where interaction point is placed
+
+                            //check to see if hero can grab a foothold/ladder
+                            Functions_Hero.CheckInteractionRec();
+
+                            //if hero grabbed, he is now in climbing state
+                            if (Actor.state != ActorState.Climbing)
+                            {   //hero did not grab a foothold/ladder, continues fall south
+                                //reset actor direction down
+                                Actor.direction = Direction.Down;
+                            }
+                            else
+                            {
+                                //hero successfully grabbed, from a fall
+                                //that's preeetty crispy, so we should celebrate a little
+
+                                //place an attention particle above the hero's head as recognition
+                                Functions_Particle.Spawn(
+                                    ObjType.Particle_Attention,
+                                    Actor.compSprite.position.X, 
+                                    Actor.compSprite.position.Y - 4, 
+                                    Direction.Down);
+                                //play a special soundfx
+                                Assets.Play(Assets.sfxActorLand);
+                                //track successful wall jumps
+                                PlayerData.current.recorded_wallJumps++;
+                                //check wall jump achievements
+                                Functions_Hero.CheckAchievements(Achievements.WallJumps);
+                            }
+                        }
+                    }
+
+                    #endregion
+
+
                 }
                 else if(Actor.state == ActorState.Landed)
                 {   //actor has landed on ground, not touching wall obj
