@@ -921,7 +921,7 @@ namespace DungeonRun
 
             #region Enemy Spawn Objects
 
-            else if (Type == ObjType.Dungeon_SpawnMob || Type == ObjType.Dungeon_SpawnMiniBoss)
+            else if (Type == ObjType.Dungeon_SpawnMob)
             {
                 Obj.compSprite.zOffset = -32; //sort to floor
                 Obj.compCollision.blocking = false;

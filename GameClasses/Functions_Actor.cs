@@ -45,6 +45,7 @@ namespace DungeonRun
             //assume standard search/attack radius
             Actor.chaseRadius = 16 * 5;
             Actor.attackRadius = 14;
+
         }
 
         public static void SpawnActor(ActorType Type, Vector2 Pos)
@@ -610,6 +611,38 @@ namespace DungeonRun
                 Actor.dashSpeed = 0.30f;
                 //set actor sound effects
                 Actor.sfxDash = Assets.sfxBlobDash;
+                Actor.sfx.hit = Assets.sfxEnemyHit;
+                Actor.sfx.kill = Assets.sfxEnemyKill;
+            }
+
+            #endregion
+
+
+            #region Standard - AngryEye
+
+            else if (Type == ActorType.Standard_AngryEye)
+            {
+                Actor.aiType = ActorAI.Basic;
+                Actor.compMove.grounded = false; //is flying
+
+                Actor.enemy = true;
+                Actor.compSprite.texture = Assets.forestLevelSheet;
+                Actor.animList = AnimationFrames.Standard_AngryEye_Animations;
+                Actor.health = 3;
+                ResetActorLoadout(Actor);
+                Actor.walkSpeed = 0.05f;
+                Actor.dashSpeed = 0.30f;
+
+                //this actor is a 2x1 enemy
+                Actor.compSprite.cellSize.X = 16 * 1;
+                Actor.compSprite.cellSize.Y = 16 * 2;
+                Actor.compCollision.offsetY = -4;
+
+                //actor is floating in air
+                Actor.compSprite.zOffset = 16;
+
+                //set actor sound effects
+                Actor.sfxDash = null; //silent dash
                 Actor.sfx.hit = Assets.sfxEnemyHit;
                 Actor.sfx.kill = Assets.sfxEnemyKill;
             }

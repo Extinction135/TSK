@@ -47,32 +47,29 @@ Roadmap
 Today:
 
 
-Dungeon Sprites++
 
-improved mountain dungeon wall sprites.
 
-nerdy artsy notes:
-the transition to the floor is too dark
-plus, there is a light part that directly
-touches floor and looks wrong.
-the top right lighter part also looks wrong,
-but the 'shine' on the rock face looks good.
-keep and expand it. shiny wet rocks looks good 
-and different.
-mountain cracked walls need to conform to the shape
-of the underlying wall. it can't be straight..
-same goes for wall statues, and doors.
-pillars need their bottom corners removed 
-(underlying wall) so they fit in with cave walls...
-boss door will always be surrounded by pillars,
-redesigned sprite around this singular state.
 
-improved forest dungeon wall sprites.
-improved stone wall dungeon sprites,
-affecting town and colliseum dungeons,
-which we aren't building yet.
+Enemies++
 
-playtested, looking great.
+add various enemies to forest, mountain, colliseum sheets.
+improved various enemies with additional frames.
+
+updated all level sheets.
+improved default actor animation groups.
+removed spawn miniboss object from game. no no.
+
+AngryEye
+AngryEye standard enemy added to game and spawning
+inside of forest dungeon as expected. however, angry
+eye doesn't have any projectile or weapon to attack
+with just yet, so he just floats over to the hero
+and gnaws on his head without doing any damage.
+
+fixed a minor bug where actors weren't implementing
+the full extent of their animation groups, causing
+null reference exceptions when certain actors switched
+to certain states.
 
 
 
@@ -85,31 +82,110 @@ playtested, looking great.
 
 
 
-
-*if a tree is burning, we can't destroy it
-*because we only check for trees, and not burning trees too..
-
-
-
-
-
-*we shouldn't be adding an offset to the camera
-when we center to a dungeon room. this causes column
-rooms to be displayed not centered IN GAME. but,
-they displayed 'centered' in teh editor - which doesnt
-matter at all!!!!
+*angry eye attacks, but doesn't have any kind of projectile
+to actually hurt hero with. we could make a generic bite projectile
+similar to sword, but invisible, that angry eye could spawn
+in the direction it's facing.
 
 
 
 
-Refactoring
+Standard Enemies
 
-functions_level.buildPosition should be level.buildPosition.
-same with fun_level.dungeonTrack... lol
+mountain standard actor is beefy bat sprite.
+blob standard actor is blob.
 
-level.id.Forest_Dungeon = id.Dungeon_Forest.
-id.Forest_Entrance = id.Entrance_Forest.
-fix these naming conventions.
+implement blob dungeon.
+
+
+
+
+implement bat boss, spider miniboss, bat mob, bat projectile
+
+
+
+
+
+
+
+
+
+
+
+
+angry eye: chases, bites with hook tentacles, flying
+
+cavedog: defensive, arrows + claw if nearby, grounded (swims)
+*claw is closer range attack, but wider than sword*
+*create claw item that lets hero attack using claw*
+
+blob: attacks with sword, grounded (swims), chases
+
+
+
+
+
+
+cavedog - bearded, rough fellow. attacks with
+his claws and arrows. ranged and melee. full actor
+sprites, hero can't bottle him, hero can't become
+him by normal means.
+
+
+
+
+Blob Dungeon + Overworld Pit
+
+overworld pit is a non-blocking obj, 16x16,
+that is placed somewhere in town level. hero
+touching this pit causes hero to fall, level to
+close, leading to blob dungeon.
+
+Blob Dungeon
+starts with a new type of room, the landing room.
+in the landing room, the center area is empty,
+and this is where hero spawns. there is no exit.
+there is a small blob child NPC that will give
+link the map, if link talks to the NPC. NPC is
+invincible otherwise.
+
+build path to hub room. (this is where we can load
+the blob hub room with vendors, etc..)
+build path to exit room. (we can have custom blob
+exit room data here too)
+add rooms, connect with secrets x2.
+blob dungeons should be small and easy, without
+miniboss or boss - like training wheels dungeon.
+
+
+
+
+
+mountain enemies:
+
+bats: should 'awaken' and fly in the direction of the hero
+from their awakening position. if they hit a blocking obj
+they simply pop and release. if they hit hero, they damage
+push him for 1. this allows editors to place bats in rooms,
+waiting for hero to get close prior to being triggered.
+
+bat boss: opens his wings and spews forth bat projectiles at
+the hero, who must run and dodge the slightly laggy waterfall
+of bats flying at him. we'll need bat projectiles for this.
+
+spider miniboss: has 2 phases: armored and not armored.
+starts off armored, at half health armor 'breaks' via
+shatter soundfx and multiple rising smoke particles.
+unarmored version moves faster and attacks more often.
+and taunts.
+
+*we should make a damaged version of black eye, that looks
+cracked, and we should switch to this version for phase 2.
+this improves the visual feedback representing damage progress.
+
+
+
+
 
 
 
@@ -154,13 +230,6 @@ what level they 'belong' to.
 
 
 
-
-
-
-
-
-
-
 Separate Blob and Forest Dungeons
 
 * the blob dungeon uses the town sheet *
@@ -172,6 +241,87 @@ dumps hero back out at last overworld location (or just town level).
 -this moves blobs into their own dungeon, without a miniboss or boss.
 
 
+add an entrance to the blob dungeon (this is pit obj)
+from the town level. we can also move some npcs from 
+the town level to the farm level, as it seems very
+lonely there as is.
+
+
+DaBlobs
+the blobs live in the underworld, literally underground
+of the light world. the have an entire culture, men, women,
+and children. but they all look the same. they have thier own
+building architecture. as blob link, you are mistaken for the
+fabled hero blob that is told of in prophecy that will save
+the blob people. this gives blob link an entire side plot
+that doesn't touch the main plot.
+
+Blob world
+this is actually a series of rooms like a dungeon, but without
+a hub room or boss room, and the hero's critical path is OUT
+of the dungeon TO THE EXIT ROOM. this returns link to the overworld
+map screen. in this blob dungeon city, there are rooms with buildings,
+commerce, life. the blobs basically live in an underground dungeon.
+
+as human link, the blobs will just ignore you with random dismissive
+dialog. if you attack a NPC, the game spawns blob actors at all NPC
+locations, then removes the NPCs - the end result being that the blobs
+pickup swords and defend themselves from the evil human who attacked them.
+we can also model this change using a boolean so future rooms spawn
+blob enemies instead of NPCs.
+
+as blob link, NPCs respond normally and all vendors are unlocked.
+there is a spot reserved for the blob's sidequest in the hero's inventory.
+
+How do we leave blob world?
+the exit to the blob world is marked on the map, which the hero
+gets from a helpful child blob in the room where hero's spawns into
+blob dungeon. this is like a first peace offerring to tell player
+that maybe they don't need to attack the blobs.
+
+
+
+
+
+
+
+
+
+Polish / Bugs
+
+*if a tree is burning, we can't destroy it
+*because we only check for trees, and not burning trees too..
+
+
+
+*we shouldn't be adding an offset to the camera
+when we center to a dungeon room. this causes column
+rooms to be displayed not centered IN GAME. but,
+they displayed 'centered' in teh editor - which doesnt
+matter at all!!!!
+
+
+
+
+Refactoring
+
+functions_level.buildPosition should be level.buildPosition.
+same with fun_level.dungeonTrack... lol
+
+level.id.Forest_Dungeon = id.Dungeon_Forest.
+id.Forest_Entrance = id.Entrance_Forest.
+fix these naming conventions.
+
+
+
+
+
+
+
+
+
+
+
 Town++
 we are going to rebuild the town level completely..
 completely! with a few goals in mind: smaller houses
@@ -181,10 +331,7 @@ screen at once. only one. we'll also be creating the
 My Chickens! sidequest soon, so create a gated area
 for chickens.
 
-we also want to have an entrance to the blob dungeon
-from the town level. we can also move some npcs from 
-the town level to the farm level, as it seems very
-lonely there as is.
+
 
 
 

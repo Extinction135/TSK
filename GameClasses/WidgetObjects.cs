@@ -291,7 +291,7 @@ namespace DungeonRun
 
             //row 12
             Functions_GameObject.SetType(objList[44], ObjType.Dungeon_SpawnMob);
-            Functions_GameObject.SetType(objList[45], ObjType.Dungeon_SpawnMiniBoss);
+            Functions_GameObject.SetType(objList[45], ObjType.Unknown);
             Functions_GameObject.SetType(objList[46], ObjType.Unknown);
             Functions_GameObject.SetType(objList[47], ObjType.Dungeon_Map);
 

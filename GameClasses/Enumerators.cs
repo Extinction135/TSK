@@ -158,9 +158,13 @@ namespace DungeonRun
 
     public enum ActorType
     {
-        //playable heros
-        Hero,
-        Blob,
+        //standard actors (heros)
+        Hero, //main
+        Blob, //2ndary, playable
+
+        //dungeon standard actors
+        Standard_AngryEye, //forest
+        //Standard_BeefyBat, //mountain
 
         //minibosses
         MiniBoss_BlackEye,
@@ -294,8 +298,7 @@ namespace DungeonRun
         Dungeon_Fairy,
 
         //Actor Spawn Objects (hand-placed)
-        Dungeon_SpawnMob, //SpawnEnemy1
-        Dungeon_SpawnMiniBoss, //SpawnEnemy2
+        Dungeon_SpawnMob, //spawn a standard enemy, based on dungeon type
 
         #endregion
 

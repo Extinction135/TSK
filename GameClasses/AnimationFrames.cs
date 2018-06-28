@@ -690,7 +690,11 @@ namespace DungeonRun
 
 
         //actor animation frames
-        public static ActorAnimationList Hero_Animations;
+        public static ActorAnimationList Hero_Animations; //blob uses this too
+
+        public static ActorAnimationList Standard_AngryEye_Animations;
+        //public static ActorAnimationList Standard_BeefyBat_Animations;
+
         public static ActorAnimationList Boss_BigEye_Animations;
         public static ActorAnimationList MiniBoss_BlackEye_Animations;
 
@@ -904,6 +908,83 @@ namespace DungeonRun
             #endregion
 
 
+            #region AngryEye Animations
+
+            Standard_AngryEye_Animations = new ActorAnimationList();
+
+            //movement
+            Standard_AngryEye_Animations.idle = new AnimationGroup();
+            Standard_AngryEye_Animations.idle.down = new List<Byte4> { new Byte4(16, 3, 0, 0), new Byte4(16, 3, 1, 0) };
+            Standard_AngryEye_Animations.idle.up = Standard_AngryEye_Animations.idle.down;
+            Standard_AngryEye_Animations.idle.right = Standard_AngryEye_Animations.idle.down;
+            Standard_AngryEye_Animations.idle.left = Standard_AngryEye_Animations.idle.down;
+
+            Standard_AngryEye_Animations.move = Standard_AngryEye_Animations.idle;
+            Standard_AngryEye_Animations.idleCarry = Standard_AngryEye_Animations.idle;
+            Standard_AngryEye_Animations.moveCarry = Standard_AngryEye_Animations.idle;
+
+            //actions
+            Standard_AngryEye_Animations.dash = new AnimationGroup();
+            Standard_AngryEye_Animations.dash.down = new List<Byte4> { new Byte4(18, 3, 0, 0) }; //menacing
+            Standard_AngryEye_Animations.dash.up = Standard_AngryEye_Animations.dash.down;
+            Standard_AngryEye_Animations.dash.right = Standard_AngryEye_Animations.dash.down;
+            Standard_AngryEye_Animations.dash.left = Standard_AngryEye_Animations.dash.down;
+
+            Standard_AngryEye_Animations.interact = Standard_AngryEye_Animations.dash;
+
+            Standard_AngryEye_Animations.attack = new AnimationGroup();
+            Standard_AngryEye_Animations.attack.down = new List<Byte4>
+            { new Byte4(18, 3, 0, 0), new Byte4(19, 3, 0, 0) };
+            Standard_AngryEye_Animations.attack.up = Standard_AngryEye_Animations.attack.down;
+            Standard_AngryEye_Animations.attack.right = Standard_AngryEye_Animations.attack.down;
+            Standard_AngryEye_Animations.attack.left = Standard_AngryEye_Animations.attack.down;
+
+            Standard_AngryEye_Animations.hit = new AnimationGroup();
+            Standard_AngryEye_Animations.hit.down = new List<Byte4> { new Byte4(17, 3, 0, 0) };
+            Standard_AngryEye_Animations.hit.up = Standard_AngryEye_Animations.hit.down;
+            Standard_AngryEye_Animations.hit.right = Standard_AngryEye_Animations.hit.down;
+            Standard_AngryEye_Animations.hit.left = Standard_AngryEye_Animations.hit.down;
+            Standard_AngryEye_Animations.reward = Standard_AngryEye_Animations.hit;
+            Standard_AngryEye_Animations.pickupThrow = Standard_AngryEye_Animations.attack;
+
+            Standard_AngryEye_Animations.death_heroic = Standard_AngryEye_Animations.hit;
+            Standard_AngryEye_Animations.death_heroic_water = Standard_AngryEye_Animations.hit;
+            Standard_AngryEye_Animations.death_blank = Standard_AngryEye_Animations.hit;
+            //grab, push, pull
+            Standard_AngryEye_Animations.grab = Standard_AngryEye_Animations.attack;
+            Standard_AngryEye_Animations.push = Standard_AngryEye_Animations.attack;
+            //swim idle and move
+            Standard_AngryEye_Animations.swim_idle = Standard_AngryEye_Animations.idle;
+            Standard_AngryEye_Animations.swim_move = Standard_AngryEye_Animations.idle;
+            Standard_AngryEye_Animations.swim_dash = Standard_AngryEye_Animations.dash;
+            Standard_AngryEye_Animations.swim_hit = Standard_AngryEye_Animations.hit;
+            Standard_AngryEye_Animations.swim_reward = Standard_AngryEye_Animations.hit;
+            //underwater
+            Standard_AngryEye_Animations.underwater_idle = Standard_AngryEye_Animations.idle;
+            Standard_AngryEye_Animations.underwater_move = Standard_AngryEye_Animations.idle;
+            //falling & landed
+            Standard_AngryEye_Animations.falling = Standard_AngryEye_Animations.idle;
+            Standard_AngryEye_Animations.landed = Standard_AngryEye_Animations.idle;
+            //climbing move
+            Standard_AngryEye_Animations.climbing = Standard_AngryEye_Animations.attack;
+
+            #endregion
+
+
+
+
+            #region BeefyBat Animations
+
+
+
+
+
+            #endregion
+
+
+
+
+
             #region Boss Big Eye Animations
 
             Boss_BigEye_Animations = new ActorAnimationList();
@@ -916,6 +997,9 @@ namespace DungeonRun
             Boss_BigEye_Animations.idle.left = Boss_BigEye_Animations.idle.down;
 
             Boss_BigEye_Animations.move = Boss_BigEye_Animations.idle;
+            Boss_BigEye_Animations.idleCarry = Boss_BigEye_Animations.idle;
+            Boss_BigEye_Animations.moveCarry = Boss_BigEye_Animations.idle;
+            Boss_BigEye_Animations.interact = Boss_BigEye_Animations.idle;
             Boss_BigEye_Animations.dash = Boss_BigEye_Animations.idle;
 
             Boss_BigEye_Animations.attack = new AnimationGroup();
@@ -935,7 +1019,10 @@ namespace DungeonRun
             Boss_BigEye_Animations.hit.left = Boss_BigEye_Animations.hit.down;
 
             Boss_BigEye_Animations.reward = Boss_BigEye_Animations.hit;
+            Boss_BigEye_Animations.pickupThrow = Boss_BigEye_Animations.idle;
 
+            Boss_BigEye_Animations.death_heroic = Boss_BigEye_Animations.death_blank;
+            Boss_BigEye_Animations.death_heroic_water = Boss_BigEye_Animations.death_blank;
             Boss_BigEye_Animations.death_blank = new AnimationGroup();
             Boss_BigEye_Animations.death_blank.down = new List<Byte4>
             {   //repeating hit frames
@@ -949,16 +1036,22 @@ namespace DungeonRun
             Boss_BigEye_Animations.death_blank.right = Boss_BigEye_Animations.death_blank.down;
             Boss_BigEye_Animations.death_blank.left = Boss_BigEye_Animations.death_blank.down;
 
-            //set all swim anims to idle
-            Boss_BigEye_Animations.swim_dash = Boss_BigEye_Animations.idle;
-            Boss_BigEye_Animations.swim_hit = Boss_BigEye_Animations.idle;
+            Boss_BigEye_Animations.grab = Boss_BigEye_Animations.idle;
+            Boss_BigEye_Animations.push = Boss_BigEye_Animations.idle;
             Boss_BigEye_Animations.swim_idle = Boss_BigEye_Animations.idle;
             Boss_BigEye_Animations.swim_move = Boss_BigEye_Animations.idle;
+            Boss_BigEye_Animations.swim_dash = Boss_BigEye_Animations.idle;
+            Boss_BigEye_Animations.swim_hit = Boss_BigEye_Animations.idle;
             Boss_BigEye_Animations.swim_reward = Boss_BigEye_Animations.idle;
+            Boss_BigEye_Animations.underwater_idle = Boss_BigEye_Animations.idle;
+            Boss_BigEye_Animations.underwater_move = Boss_BigEye_Animations.idle;
+            Boss_BigEye_Animations.falling = Boss_BigEye_Animations.idle;
+            Boss_BigEye_Animations.landed = Boss_BigEye_Animations.idle;
+            Boss_BigEye_Animations.climbing = Boss_BigEye_Animations.idle;
 
             #endregion
 
-            
+
             #region Miniboss - Blackeye
 
             MiniBoss_BlackEye_Animations = new ActorAnimationList();
@@ -971,6 +1064,9 @@ namespace DungeonRun
             MiniBoss_BlackEye_Animations.idle.left = MiniBoss_BlackEye_Animations.idle.down;
 
             MiniBoss_BlackEye_Animations.move = MiniBoss_BlackEye_Animations.idle;
+            MiniBoss_BlackEye_Animations.idleCarry = MiniBoss_BlackEye_Animations.idle;
+            MiniBoss_BlackEye_Animations.moveCarry = MiniBoss_BlackEye_Animations.idle;
+            MiniBoss_BlackEye_Animations.interact = MiniBoss_BlackEye_Animations.idle;
 
             //dash is semi-shut eye
             MiniBoss_BlackEye_Animations.dash = new AnimationGroup();
@@ -989,6 +1085,7 @@ namespace DungeonRun
             MiniBoss_BlackEye_Animations.hit.left = MiniBoss_BlackEye_Animations.hit.down;
 
             MiniBoss_BlackEye_Animations.reward = MiniBoss_BlackEye_Animations.hit;
+            MiniBoss_BlackEye_Animations.pickupThrow = MiniBoss_BlackEye_Animations.attack;
 
             MiniBoss_BlackEye_Animations.death_blank = new AnimationGroup();
             MiniBoss_BlackEye_Animations.death_blank.down = new List<Byte4>
@@ -1005,12 +1102,19 @@ namespace DungeonRun
             MiniBoss_BlackEye_Animations.death_heroic = MiniBoss_BlackEye_Animations.death_blank;
             MiniBoss_BlackEye_Animations.death_heroic_water = MiniBoss_BlackEye_Animations.death_blank;
 
-            //set all swim anims to idle
-            MiniBoss_BlackEye_Animations.swim_dash = MiniBoss_BlackEye_Animations.idle;
-            MiniBoss_BlackEye_Animations.swim_hit = MiniBoss_BlackEye_Animations.idle;
+            MiniBoss_BlackEye_Animations.grab = MiniBoss_BlackEye_Animations.idle;
+            MiniBoss_BlackEye_Animations.push = MiniBoss_BlackEye_Animations.idle;
             MiniBoss_BlackEye_Animations.swim_idle = MiniBoss_BlackEye_Animations.idle;
             MiniBoss_BlackEye_Animations.swim_move = MiniBoss_BlackEye_Animations.idle;
+            MiniBoss_BlackEye_Animations.swim_dash = MiniBoss_BlackEye_Animations.idle;
+            MiniBoss_BlackEye_Animations.swim_hit = MiniBoss_BlackEye_Animations.idle;
             MiniBoss_BlackEye_Animations.swim_reward = MiniBoss_BlackEye_Animations.idle;
+            MiniBoss_BlackEye_Animations.underwater_idle = MiniBoss_BlackEye_Animations.idle;
+            MiniBoss_BlackEye_Animations.underwater_move = MiniBoss_BlackEye_Animations.idle;
+            MiniBoss_BlackEye_Animations.falling = MiniBoss_BlackEye_Animations.idle;
+            MiniBoss_BlackEye_Animations.landed = MiniBoss_BlackEye_Animations.idle;
+            MiniBoss_BlackEye_Animations.climbing = MiniBoss_BlackEye_Animations.idle;
+
 
             #endregion
 

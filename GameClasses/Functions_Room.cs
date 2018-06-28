@@ -315,16 +315,21 @@ namespace DungeonRun
                     //create enemies at enemySpawn obj locations
                     if (objRef.group == ObjGroup.EnemySpawn)
                     {
-                        if (objRef.type == ObjType.Dungeon_SpawnMob)
+
+
+                        //here we check level.id to determine what
+                        //type of STANDARD enemy to spawn
+                        if(Level.ID == LevelID.Forest_Dungeon)
                         {
-                            //spawn a mob type enemy
+                            Functions_Actor.SpawnActor(ActorType.Standard_AngryEye, objRef.compSprite.position);
+                        }
+                        else if(Level.ID == LevelID.Mountain_Dungeon)
+                        {
                             Functions_Actor.SpawnActor(ActorType.Blob, objRef.compSprite.position);
                         }
-                        else if (objRef.type == ObjType.Dungeon_SpawnMiniBoss)
-                        {
-                            //spawn a mini-boss type enemy
-                            Functions_Actor.SpawnActor(ActorType.Blob, objRef.compSprite.position);
-                        }
+
+
+
                     }
                 }
             }

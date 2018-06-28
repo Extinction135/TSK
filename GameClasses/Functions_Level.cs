@@ -188,6 +188,8 @@ namespace DungeonRun
             //build the 1st room on Level.rooms list (index0) - exit/spawn room
             Level.rooms[0].visited = true;
             Level.currentRoom = Level.rooms[0];
+
+            //this actually builds everything in the first room
             Functions_Room.BuildRoom(Level.currentRoom);
             Functions_Texture.SetFloorTextures();
             Functions_Hero.SpawnInCurrentRoom();

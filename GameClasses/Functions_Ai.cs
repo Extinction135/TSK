@@ -80,7 +80,7 @@ namespace DungeonRun
 
                             #region Enemies that attack with weapons / items
 
-                            if(Actor.type == ActorType.Blob)
+                            //if(Actor.type == ActorType.Blob)
                             {
                                 //set the cardinal direction towards hero, attack, cancel any dash
                                 Actor.compInput.direction = 
