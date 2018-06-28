@@ -39,46 +39,23 @@ Today:
 
 
 
-Climbing - Part 3
 
-created idle and move climbing animations for
-heros, using existing sprite sheet.
+Notes
 
-updated climbing routine in actor.update to
-manually set the animation frames for the actor,
-then bail from the method. then i linked the
-idle and move climbing animations to the input
-component's direction. if the direction isn't
-none (the player is pressing the joystick in a
-direction), then the actor's animation is set
-to the climbing moving animation. this was easier
-and faster than doing a math.abs check to see
-if the actor's move component's magnitude was
-greater than 0 (actor was moving), which was the
-original solution to determine how what animation
-frame to display. whew.
+things I discovered while playtesting climbing..
 
-playtested, it actually looks like link is
-climbing the wall.
+1. you can climb while carrying objects, like:
+bushes, pots, skulls, crabs, turtles, and rats.
+do you so desire to journey up a mountain side
+with a rat companion? now you can do so. 
 
-improved heros hand placement to prevent 
-twinning while pushing and climbing.
+2. you can fall off a cliff, carrying an object,
+and complete the fall onto land or water, while
+still carrying the object. cause why not?
 
-improved routine that handles climbing animation,
-now the routine stops in the middle of the moving
-animation, then waits 255 frames before advancing
-to the next animation frame. when moving, the
-animation speed returns to normal and the moving
-animation plays as expected. this adds the bonus
-of giving the hero a very slow idle climbing
-animation, like they were adjusting their grip
-while waiting. overall, climbing looks very good.
-removed idle climbing animation, as the system
-only needs the moving climbing animation now.
-
-built the first version of the mountain,
-with two climbable areas, one over water.
-
+in the future, we may build a puzzle around
+carrying objects up and down mountainsides.
+the joy of building systems that are separate.
 
 
 
@@ -87,6 +64,9 @@ with two climbable areas, one over water.
 
 
 Climbing - Part 4
+
+link up mountain world to overworld map.
+
 
 *when hero falls into water, he should just splash and goto idle.
 we'll need to branch check here.
@@ -104,43 +84,33 @@ to catch a foothold in an unreachable area,
 all based on skill and understanding of the game.
 
 
+*we need a trap ladder object, this should look
+partially broken. when link touches it, it breaks
+and becomes nothing. this means link cant cross
+the path that way, and must find another. this
+is the perfect way to introduce the mountain climb.
+-the old route was damaged, so link must use the
+harder route over water to get to the top.
+
+at the top is the mountain dungeon entrance.
+bonus: this introduces the idea of climbing,
+gives player an easy route to try out, right
+next to a harder route that's also hidden to
+the casual observer, so player feels clever 
+for discovering it too.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-link up the mountain level to the overworld screen.
 add the mountain dungeon's entrance obj.
 change the mountain dungeon's wall sprites to be
 cave-y. 
+
+
+
+
+
+
+
+
 
 
 
