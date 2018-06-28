@@ -39,39 +39,53 @@ Today:
 
 
 
-
-Notes
-
-things I discovered while playtesting climbing..
-
-1. you can climb while carrying objects, like:
-bushes, pots, skulls, crabs, turtles, and rats.
-do you so desire to journey up a mountain side
-with a rat companion? now you can do so. 
-
-2. you can fall off a cliff, carrying an object,
-and complete the fall onto land or water, while
-still carrying the object. cause why not?
-
-in the future, we may build a puzzle around
-carrying objects up and down mountainsides.
-the joy of building systems that are separate.
-
-
-
-
-
-
-
 Climbing - Part 4
 
-link up mountain world to overworld map.
+linked up mountain world to overworld map.
+added sfx for climbing.
+
+when hero falls off wall into water, he now
+goes directly into an idle swim state, after
+waiting a brisk 30 frames. if hero falls onto
+land, he waits the full 60 frames, and plays 
+the sitting to standing animation slowly.
+this visually separates falling in water
+and on land, and makes them feel different
+too - adding another layer of realness to 
+the world. this makes me very happy.
+
+added trap ladders into game.
+updated mountain level with trap ladders.
+trap ladder object notes - this should look
+partially broken. when link touches it, it breaks
+and becomes nothing. this means link cant cross
+the path that way, and must find another. this
+is the perfect way to introduce the mountain climb.
+- the old route was damaged, so link must use the
+harder route over water to get to the top.
+
+at the top is the mountain dungeon entrance.
+bonus: this introduces the idea of climbing,
+gives player an easy route to try out, right
+next to a harder route that's also hidden to
+the casual observer, so player feels clever 
+for discovering it too.
 
 
-*when hero falls into water, he should just splash and goto idle.
-we'll need to branch check here.
 
-*need climbing sfx - chest open sfx?
+
+
+
+
+
+
+
+Climbing - Part 5
+
+add the mountain dungeon's entrance obj.
+change the mountain dungeon's wall sprites to be
+cave-y. 
+
 
 *pressing A while falling should grab onto nearest foothold.
 if actor is falling, they should be able to 
@@ -84,25 +98,7 @@ to catch a foothold in an unreachable area,
 all based on skill and understanding of the game.
 
 
-*we need a trap ladder object, this should look
-partially broken. when link touches it, it breaks
-and becomes nothing. this means link cant cross
-the path that way, and must find another. this
-is the perfect way to introduce the mountain climb.
--the old route was damaged, so link must use the
-harder route over water to get to the top.
 
-at the top is the mountain dungeon entrance.
-bonus: this introduces the idea of climbing,
-gives player an easy route to try out, right
-next to a harder route that's also hidden to
-the casual observer, so player feels clever 
-for discovering it too.
-
-
-add the mountain dungeon's entrance obj.
-change the mountain dungeon's wall sprites to be
-cave-y. 
 
 
 

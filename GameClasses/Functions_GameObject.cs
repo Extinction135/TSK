@@ -1910,7 +1910,8 @@ namespace DungeonRun
             }
 
             else if (Type == ObjType.Wor_MountainWall_Foothold
-                || Type == ObjType.Wor_MountainWall_Ladder)
+                || Type == ObjType.Wor_MountainWall_Ladder
+                || Type == ObjType.Wor_MountainWall_Ladder_Trap)
             {   
                 Obj.compSprite.cellSize.X = 16 * 1; Obj.compSprite.cellSize.Y = 16 * 1;
                 Obj.compCollision.rec.Width = 20; Obj.compCollision.offsetX = -10;
@@ -1920,7 +1921,9 @@ namespace DungeonRun
 
                 if (Type == ObjType.Wor_MountainWall_Foothold)
                 { Obj.compAnim.currentAnimation = AnimationFrames.Wor_MountainWall_Foothold; }
-                else { Obj.compAnim.currentAnimation = AnimationFrames.Wor_MountainWall_Ladder; }
+                else if (Type == ObjType.Wor_MountainWall_Ladder)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_MountainWall_Ladder; }
+                else { Obj.compAnim.currentAnimation = AnimationFrames.Wor_MountainWall_Ladder_Trap; }
                 
                 Obj.compSprite.zOffset = -16; //sorts under hero
                 Obj.canBeSaved = true;

@@ -392,9 +392,18 @@ namespace DungeonRun
             }
             else if (Actor.state == ActorState.Landed)
             {
-                Actor.animGroup = Actor.animList.landed;
-                Actor.compAnim.speed = 30; //slow down anim
-                Actor.compAnim.loop = false;
+                if(Actor.swimming)
+                {
+                    Actor.animGroup = Actor.animList.swim_idle;
+                    Actor.lockTotal = 30;
+                }
+                else
+                {
+                    Actor.animGroup = Actor.animList.landed;
+                    Actor.lockTotal = 60;
+                    Actor.compAnim.speed = 30; //slow down anim
+                    Actor.compAnim.loop = false;
+                }
             }
 
             #endregion
@@ -922,7 +931,6 @@ namespace DungeonRun
                 else if(Actor.state == ActorState.Landed)
                 {   //actor has landed on ground, not touching wall obj
                     //actor inherit's counter + total from falling state above
-
                     if (Actor.lockCounter == 1) //on first frame of landing..
                     {   //pop attention and play landing sfx
                         Functions_Particle.Spawn(ObjType.Particle_Attention, Actor);
@@ -938,6 +946,7 @@ namespace DungeonRun
                         Actor.direction = Actor.compInput.direction;
                         Actor.compAnim.currentAnimation = AnimationFrames.Hero_Animations.climbing.down;
                         Actor.compAnim.speed = 10; //normal
+                        Assets.Play(Assets.sfxMapWalking);
                     }
                     else
                     {   //set idle animation

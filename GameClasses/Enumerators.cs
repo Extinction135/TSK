@@ -424,6 +424,7 @@ namespace DungeonRun
 
         Wor_MountainWall_Foothold,
         Wor_MountainWall_Ladder,
+        Wor_MountainWall_Ladder_Trap,
 
         #endregion
 

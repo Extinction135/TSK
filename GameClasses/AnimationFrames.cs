@@ -305,6 +305,7 @@ namespace DungeonRun
 
         public static List<Byte4> Wor_MountainWall_Foothold = new List<Byte4> { new Byte4(4, 12, 0, 0) };
         public static List<Byte4> Wor_MountainWall_Ladder = new List<Byte4> { new Byte4(4, 13, 0, 0) };
+        public static List<Byte4> Wor_MountainWall_Ladder_Trap = new List<Byte4> { new Byte4(4, 14, 0, 0) };
 
         #endregion
 

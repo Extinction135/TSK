@@ -291,6 +291,22 @@ namespace DungeonRun
                     //fall/push
                     Functions_Movement.Push(Actor.compMove, Direction.Down, 1.0f);
                 }
+
+
+                #region Trap Ladders
+
+                else if(Obj.type == ObjType.Wor_MountainWall_Ladder_Trap)
+                {
+                    //creates attention particle and removes itself
+                    Functions_Particle.Spawn(ObjType.Particle_Attention,
+                        Obj.compSprite.position.X, Obj.compSprite.position.Y, Direction.Down);
+                    Functions_Pool.Release(Obj);
+                    Assets.Play(Assets.sfxShatter);
+                }
+
+                #endregion
+
+
             }
 
             #endregion
