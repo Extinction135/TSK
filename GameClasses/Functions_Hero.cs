@@ -400,10 +400,15 @@ namespace DungeonRun
                 ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Enter_ForestDungeon));
             }
             else if (Obj.type == ObjType.Wor_Entrance_Colliseum)
-            {   //give player choice to enter colliseum
+            {   
+                //give player choice to enter colliseum
                 ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Enter_Colliseum));
             }
-
+            else if (Obj.type == ObjType.Wor_Entrance_MountainDungeon)
+            {   
+                //give player choice to enter dungeon
+                ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Enter_ForestDungeon));
+            }
 
             #endregion
 
@@ -422,10 +427,6 @@ namespace DungeonRun
             #endregion
 
 
-
-
-
-
             #region Climbing Footholds
 
             else if (Obj.type == ObjType.Wor_MountainWall_Foothold
@@ -440,16 +441,7 @@ namespace DungeonRun
 
 
 
-
-
-
-
-
-
             if (Pool.hero.swimming) { return; }
-
-
-
 
             //Objects that can only be interacted with from Land
 

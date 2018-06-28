@@ -1109,6 +1109,25 @@ namespace DungeonRun
                 Obj.sfx.hit = Assets.sfxTapMetallic;
             }
 
+
+            else if (Type == ObjType.Wor_Entrance_MountainDungeon)
+            {
+                Obj.compSprite.texture = Assets.mountainLevelSheet;
+                Obj.compSprite.cellSize.X = 16 * 3; //nonstandard size
+                Obj.compSprite.cellSize.Y = 16 * 4; //nonstandard size
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_MountainDungeon;
+                //set collision rec near bottom of entrance
+                Obj.compCollision.rec.Width = 16 * 3 - 4; Obj.compCollision.offsetX = -6;
+                Obj.compCollision.rec.Height = 16 * 3; Obj.compCollision.offsetY = +8;
+                //sort save and block
+                Obj.compSprite.zOffset = +16 * 3 - 2;
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = true;
+                Obj.sfx.hit = Assets.sfxTapMetallic;
+            }
+
+
+
             #endregion
 
 
@@ -1867,7 +1886,11 @@ namespace DungeonRun
 
 
 
+
+            //Mountain Objects
+
             #region Mountain Objects
+            
 
             else if (Type == ObjType.Wor_MountainWall_Top)
             {   //nonstandard size
@@ -1880,7 +1903,7 @@ namespace DungeonRun
                 Obj.compSprite.zOffset = -18; //sorts under footholds
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = false;
-                //Obj.group = ObjGroup.MountainWall;
+                Obj.group = ObjGroup.MountainWall;
             }
             else if (Type == ObjType.Wor_MountainWall_Mid)
             {   //nonstandard size
@@ -1937,6 +1960,12 @@ namespace DungeonRun
             }
 
             #endregion
+
+
+
+
+
+
 
 
 

@@ -530,7 +530,7 @@ namespace DungeonRun
             //row 1
 
             //this is a 3x4 * 16 sized sprite/obj
-            Functions_GameObject.SetType(objList[0], ObjType.Wor_Entrance_ForestDungeon);
+            Functions_GameObject.SetType(objList[0], ObjType.Wor_Entrance_MountainDungeon);
             Functions_GameObject.SetType(objList[1], ObjType.Unknown);//
             Functions_GameObject.SetType(objList[2], ObjType.Unknown);//
             Functions_GameObject.SetType(objList[3], ObjType.Dungeon_Statue);

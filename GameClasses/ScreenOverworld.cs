@@ -213,19 +213,30 @@ namespace DungeonRun
 
             //2. Setup current location based on level id
             // -> because hero may of exited a dungeon
-            if (PlayerData.current.lastLocation == LevelID.Colliseum)
+
+            if (PlayerData.current.lastLocation == LevelID.TheFarm)
+            { currentLocation = centerIsland; }
+            else if (PlayerData.current.lastLocation == LevelID.LeftTown2)
+            { currentLocation = leftTown2; }
+
+
+            else if(PlayerData.current.lastLocation == LevelID.Colliseum)
             { currentLocation = colliseum; }
             else if (PlayerData.current.lastLocation == LevelID.ColliseumPit)
             { currentLocation = colliseum; }
 
             else if (PlayerData.current.lastLocation == LevelID.Forest_Entrance)
             { currentLocation = forestDungeon; }
-            else if (PlayerData.current.lastLocation == LevelID.TheFarm)
-            { currentLocation = centerIsland; }
-            else if (PlayerData.current.lastLocation == LevelID.LeftTown2)
-            { currentLocation = leftTown2; }
+            else if (PlayerData.current.lastLocation == LevelID.Forest_Dungeon)
+            { currentLocation = forestDungeon; }
+
             else if (PlayerData.current.lastLocation == LevelID.Mountain_Entrance)
             { currentLocation = caveDungeon; }
+            else if (PlayerData.current.lastLocation == LevelID.Mountain_Dungeon)
+            { currentLocation = caveDungeon; }
+
+             
+            
 
             else //default to colliseum if unknown
             { currentLocation = colliseum; }

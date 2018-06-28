@@ -183,11 +183,7 @@ namespace DungeonRun
         public static List<Byte4> Wor_BedDirty = new List<Byte4> { new Byte4(9, 5, 0, 0) };
 
 
-
-
-        //level entrances
-        public static List<Byte4> Wor_Entrance_ForestDungeon = new List<Byte4> { new Byte4(0, 0, 0, 0) };
-        public static List<Byte4> Wor_Entrance_Colliseum = new List<Byte4> { new Byte4(0, 0, 0, 0) };
+        
 
         //objects
         public static List<Byte4> Wor_Pot = new List<Byte4> { new Byte4(7, 6, 0, 0) };
@@ -265,7 +261,10 @@ namespace DungeonRun
         #endregion
 
 
+
         #region Colliseum Objects
+
+        public static List<Byte4> Wor_Entrance_Colliseum = new List<Byte4> { new Byte4(0, 0, 0, 0) };
 
         public static List<Byte4> Wor_Colliseum_Gate_Center = new List<Byte4> { new Byte4(2, 3, 0, 0) };
         public static List<Byte4> Wor_Colliseum_Gate_Pillar_Left = new List<Byte4> { new Byte4(0, 3, 0, 0) };
@@ -296,9 +295,17 @@ namespace DungeonRun
         #endregion
 
 
+        #region Forest Objects
+
+        public static List<Byte4> Wor_Entrance_ForestDungeon = new List<Byte4> { new Byte4(0, 0, 0, 0) };
+
+        #endregion
+
+
         #region Mountain Objects
 
-        
+        public static List<Byte4> Wor_Entrance_MountainDungeon = new List<Byte4> { new Byte4(0, 0, 0, 0) };
+
         public static List<Byte4> Wor_MountainWall_Mid = new List<Byte4> { new Byte4(0, 6, 0, 0) };
         public static List<Byte4> Wor_MountainWall_Bottom = new List<Byte4> { new Byte4(0, 14, 0, 0) };
         public static List<Byte4> Wor_MountainWall_Top = new List<Byte4> { new Byte4(0, 15, 0, 0) };

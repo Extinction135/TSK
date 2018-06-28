@@ -327,9 +327,6 @@ namespace DungeonRun
         //debris
         Wor_Debris,
 
-        //Level Entrances
-        Wor_Entrance_ForestDungeon,
-        Wor_Entrance_Colliseum,
 
         //objects
         Wor_Pot,
@@ -384,7 +381,11 @@ namespace DungeonRun
         #endregion
 
 
+
+
         #region Colliseum Objects
+
+        Wor_Entrance_Colliseum,
 
         //colliseum objects
         Wor_Colliseum_Gate_Center,
@@ -414,9 +415,16 @@ namespace DungeonRun
         #endregion
 
 
+        #region Forest Objects
+
+        Wor_Entrance_ForestDungeon,
+
+        #endregion
 
 
         #region Mountain Objects
+
+        Wor_Entrance_MountainDungeon,
 
         Wor_MountainWall_Top,
         Wor_MountainWall_Mid,

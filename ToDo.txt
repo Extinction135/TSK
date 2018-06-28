@@ -39,52 +39,43 @@ Today:
 
 
 
-Climbing - Part 4
-
-linked up mountain world to overworld map.
-added sfx for climbing.
-
-when hero falls off wall into water, he now
-goes directly into an idle swim state, after
-waiting a brisk 30 frames. if hero falls onto
-land, he waits the full 60 frames, and plays 
-the sitting to standing animation slowly.
-this visually separates falling in water
-and on land, and makes them feel different
-too - adding another layer of realness to 
-the world. this makes me very happy.
-
-added trap ladders into game.
-updated mountain level with trap ladders.
-trap ladder object notes - this should look
-partially broken. when link touches it, it breaks
-and becomes nothing. this means link cant cross
-the path that way, and must find another. this
-is the perfect way to introduce the mountain climb.
-- the old route was damaged, so link must use the
-harder route over water to get to the top.
-
-at the top is the mountain dungeon entrance.
-bonus: this introduces the idea of climbing,
-gives player an easy route to try out, right
-next to a harder route that's also hidden to
-the casual observer, so player feels clever 
-for discovering it too.
-
-
-
-
-
-
-
-
-
-
 Climbing - Part 5
 
-add the mountain dungeon's entrance obj.
-change the mountain dungeon's wall sprites to be
-cave-y. 
+added mountain dungeon entrance obj to game
+and mountain level. added more areas to the 
+mountain level, just for sport climbing.
+
+linked up mountain dungeon entrance to build
+the default forest dungeon (for testing rn).
+
+updated overworld with return paths for
+forest and mountain dungeons and entrance
+levels. this fixes a bug with overworld
+level where exiting forest dungeon placed
+link at the colliseum.
+
+tested exiting mountain entrance level
+returns link to cave map location < yep.
+also, exiting forest dungeon from mountain
+entrance level returns link to cave location.
+
+bug: using shovel, mountainwalls, footholds,
+ladders can all be 'dug removed'. updated Dig
+routine to prevent objs of group mountainWall
+from being removed. fixed bug with digging.
+
+playtested, working beautifully.
+
+
+
+
+
+
+**mountain walls dont push roomObjs, like
+TURTLES, so roomobjs enemies can walk right over em,
+completely breaking immersion...
+
+
 
 
 *pressing A while falling should grab onto nearest foothold.
@@ -104,6 +95,17 @@ all based on skill and understanding of the game.
 
 
 
+Mountain Dungeon
+
+mountain entrance should create mountain dungeon.
+this is a separate dungeon, with a diff dungeon recipe
+than forest dungeon. no variation from critical path
+approach - exit > hub > key > boss.
+
+we need mountain dungeon wall sprites that actually look cave-y.
+
+add mountain enemies, miniboss, boss.
+standard enemy is? snake?
 
 
 
@@ -112,11 +114,12 @@ all based on skill and understanding of the game.
 
 
 
+
+Separate Blob and Forest Dungeons
 
 update forest standard enemy to be angry floating eye.
 - doesn't need swimming state, has same rec as hero,
 so he can cast fireballs, etc...
-
 
 create blob dungeon pit object - this will go on town level.
 if hero collides with this obj, he falls into the blob dungeon.
@@ -126,9 +129,12 @@ dumps hero back out at last overworld location (or just town level).
 
 
 
-mountain dungeon++
-add mountain enemies, miniboss, boss.
-standard enemy is? snake?
+
+
+
+
+
+
 
 
 
@@ -171,9 +177,6 @@ for chickens.
 
 
 
-*exiting the forest dungeon placed link at colliseum.
-it's likely we're not checking to see if link is exiting
-a level of id.type dungeon.
 
 
 
