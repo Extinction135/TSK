@@ -397,19 +397,16 @@ namespace DungeonRun
             #region World / Level Entrances
 
             else if (Obj.type == ObjType.Wor_Entrance_ForestDungeon)
-            {
-                //give player choice to enter dungeon
+            {   //give player choice to enter
                 ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Enter_ForestDungeon));
             }
             else if (Obj.type == ObjType.Wor_Entrance_Colliseum)
-            {   
-                //give player choice to enter colliseum
+            {   //give player choice to enter
                 ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Enter_Colliseum));
             }
             else if (Obj.type == ObjType.Wor_Entrance_MountainDungeon)
-            {   
-                //give player choice to enter dungeon
-                ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Enter_ForestDungeon));
+            {   //give player choice to enter
+                ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Enter_MountainDungeon));
             }
 
             #endregion

@@ -30,6 +30,12 @@ Roadmap
 0.86 - darkworld storyline
 0.87 - ganon battle + storyline
 
+0.9 - COLOR!!! (keep grayscale as texture option)
+0.9+ - supporting media
+
+1.0 - official release
+
+
 
 
 
@@ -38,80 +44,119 @@ Today:
 
 
 
-Wall Jumps
-
-the basic idea is that we want the player
-to be able to detach from the wall (B button
-press), starting a fall. Then using the 
-joystick or Dpad, changing the direction
-of the falling hero overtime. Once the
-player realizes this is possible, they will
-eventually line up a path that intersects
-a ladder or foothold, and try to grab it
-via the A button press - completing a heroic
-leap from one spot to another.
-
-extended falling routine in actor.update to
-allow for setting the hero's interaction rec
-while in statelocked falling state. this allows
-player to spam A button while falling to 
-heroically grab at any nearby ladder or foothold.
--made sure to get the current controller's
-direction just prior to checking the grab,
-so it doesn't feel laggy or a frame behind.
-
-Done
-so, that *completely* implements wall jumps.
-playtested, wall jumping is incredibly fun.
-this allows for climbing up high to fall
-to catch a foothold in an unreachable area,
-all based on skill and understanding of the game.
-
-added soundfx and attention particle when hero
-successfully completes a wall jump. we could
-also add any kind of celebration here to note
-the heroic leap, and we could also keep track
-of how many successful wall jumps hero has made.
-
-added wallJumps int to playerData,
-linked it up to wall jump rountine,
-which now increments the wallJump int
-each time the hero completes a wall jump.
-lets use this data to unlock
-a challenge or trophy or something...
-
-
-Achievements
-created achievements enumerator,
-with wallJumps as it's only value for now.
-created fun_hero.CheckAchievements(),
-which accepts an achievement enum,
-which then determines which achievement
-routine to run. two are implemented
-currently - checking for 10 and 100
-successful wall jump - from playerData.
-
-successfully completing an achievement
-pops a dialog screen telling player
-what they have completed. in the future,
-this WILL lead to more meaningful
-effects, because a dialog screen feels
-cheap, honestly. playtested, working
-as expected.
-
-updated UWP to match Dx.
 
 
 
 
+Wall Sprites
+
+updated dungeon wall sprites for mountain,
+forest, town, and colliseum level sheets.
+3 different styles are implemented now.
+
+however, we wont get to see the mountain
+dungeon wall sprites until we build the
+mountain dungeon. same with the town
+dungeon wall sprites - we need to build
+a blob dungeon to see them.
+
+Enemy Sprites
+setup mountain dungeon enemy sprites.
+setup forest dungeon enemy sprites.
+
+Boss Floor Decals
+boss decals for forest and mountain dungeons
+properly represent their bosses, eye and bat.
+this pleases me greatly.
+
+organized master & dev psds.
+
+Dialogs++
+added mountain dialog to dialog assets.
+improved dungeon entrance dialogs to be
+hilarious. not really. updated dialog
+screen to set Level.ID to mountainDungeon.
+
+DungeonGenerator++
+extracted reuseable routines from forest
+dungeon generation (monolithic) algorthm.
+using these reuseable (atomic) dungeon building
+methods, wrote dungeon 'recipes' for forest
+and mountain dungeons. a recipe is simply a
+series of atomic dungeon building methods 
+called in a specific order, with specific
+parameters. these parameters (and order)
+determine the dungeon's size, spread, number
+of connections and secret rooms. the new
+dungeon generation system is much more
+reuseable, flexible, and varied - and will
+serve as a solid foundation to build 6 distinct
+dungeons from, with additional bespoke
+dungeons for blobs and other side quests.
+
+note: Functions_Level.BuildLevel() starts 
+this chain - if level.id is forest or mountain
+dungeon, then we call new fun_dungeon.BuildDungeon() 
+methods. this completes implementation of
+mountain dungeon.
+
+Test
+tested forest and mountain dungeons (cheat with map),
+discovered and fixed a bug with dungeon generation
+where boss room was being built inside of hub room,
+and the two rooms were being alternatively set to be
+the current room, meaning they were each built each
+frame - however the boss room was the last room added,
+so it was drawn last and thus was the only one displayed.
+sometimes experiencing and figuring out bugs is 
+really fun, this bug was one of them.
+
+Polish
+changed forest dungeon to have less rooms added
+post critical path build - this makes the dungeon
+simpler to complete. but, added twice as many secret
+rooms, so alternative paths are more frequent and
+the player can realize that secret rooms can connect
+to secret rooms, since that is an extremely likely
+outcome with this recipe.
+
+changed mountain dungeon to have more rooms added
+post critical path build than forest - making it
+larger and more complex, and thus more difficult.
+
+Test
+fixed a bug where mountain dungeon background color
+wasn't being set to black. fixed.
+
+Final Thoughts
+I probably should of broken this commit into 
+smaller commits, but I was very focused and busy. 
+Deal with it. This commit essentially changes
+how dungeons are generated, added the mountain
+dungeon, made the forest and mountain dungeons
+distinct, defined how level sheets are used in
+game and how they are designed and exported in
+photoshop. also, a ton of new sprites were added
+to the master file, based on years of collection.
 
 
 
 
 
-additional achievements to add:
-cutting bushes achievement.
-burning grass / objects achievement.
+
+
+
+
+
+
+*improve fun_dungeon.buildDungeon_AddBossPath()
+we should be able to create a number of rooms
+between the last room and boss room. this should
+weight itself towards the north direction,
+with 25% chance for left or right - but never
+south. this means we build boss rooms AWAY from
+the exit. we don't want those close to the exit
+because it makes the dungeon feel cheap and easy.
 
 
 
@@ -119,18 +164,31 @@ burning grass / objects achievement.
 
 
 
-Climbing++
-
-*pressing A while falling should grab onto nearest foothold.
-
-
-
-
-setup mountain dungeon enemy sprites
-setup forest dungeon enemy sprites
-
+*improve mountain dungeon wall sprites
+- the transition to the floor is too dark
+plus, there is a light part that directly
+touches floor and looks wrong.
+the top right lighter part also looks wrong,
+but the 'shine' on the rock face looks good.
+keep and expand it. shiny wet rocks looks good 
+and different.
 
 
+
+*if a tree is burning, we can't destroy it
+*because we only check for trees, and not burning trees too..
+
+
+
+
+Refactoring
+
+functions_level.buildPosition should be level.buildPosition.
+same with fun_level.dungeonTrack... lol
+
+level.id.Forest_Dungeon = id.Dungeon_Forest.
+id.Forest_Entrance = id.Entrance_Forest.
+fix these naming conventions.
 
 
 
@@ -139,15 +197,45 @@ setup forest dungeon enemy sprites
 
 Mountain Dungeon
 
-mountain entrance should create mountain dungeon.
-this is a separate dungeon, with a diff dungeon recipe
-than forest dungeon. no variation from critical path
-approach - exit > hub > key > boss.
+mountain dungeon enemies:
+standard: dark spider (from rescueDog)
+boss: big bat (dash moves, dives, spawns bat mobs)
+miniboss: med bat (dash moves, dives)
+mob: sm flying bat (seeks and bite-pushes hero)
 
-we need mountain dungeon wall sprites that actually look cave-y.
 
-add mountain enemies, miniboss, boss.
-standard enemy is? snake?
+forest dungeon enemies:
+standard: 
+	floating angry eye - flying, sm hitbox
+	*need more frames for angry eye (hit, cast)
+	shocktopus - flying, sm hitbox
+boss: big eye
+miniboss: blackeye
+mob: seekerExploder
+
+EnemySpawns++
+for each dungeon, enemy spawn 1 simply creates
+that dungeon's standard enemy at that location.
+if there is more than one standard enemy for
+that dungeon, then randomly choose one.
+*note: most standard enemies are flying, so
+they dont have to deal with swim states. so
+far, only the blob standard enemy fully
+implements all hero states...
+
+
+add room enemies to object widgets, based on 
+what level they 'belong' to.
+
+
+
+
+add:
+eye statue - doesn't attack, can be picked up like turtle. 
+doesnt move. hand placed.
+
+floating sm eye - randomly floats around, explodes if near hero,
+hand placed.
 
 
 
@@ -159,10 +247,6 @@ standard enemy is? snake?
 
 Separate Blob and Forest Dungeons
 
-update forest standard enemy to be angry floating eye.
-- doesn't need swimming state, has same rec as hero,
-so he can cast fireballs, etc...
-
 * the blob dungeon uses the town sheet *
 
 create blob dungeon pit object - this will go on town level.
@@ -170,42 +254,6 @@ if hero collides with this obj, he falls into the blob dungeon.
 this dungeon builds a critical path to the exit, which
 dumps hero back out at last overworld location (or just town level).
 -this moves blobs into their own dungeon, without a miniboss or boss.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 Town++
@@ -221,49 +269,7 @@ for chickens.
 
 
 
-
-
-
-
-
-
-
-
-Mountain Level
-should be able to climb up certain rock walls, denoted with small
-footholds. hold A to climb. rockwalls normally push link down (faking
-gravity), but while in climbing state the push is ignored. this allows
-link to literally climb up the mountain. he can't use any items while,
-climbing so link has to dodge enemies until he can get to a landing to
-take care of them.
-
-the 1st field level is the basecamp and start of the mountain.
-the 2nd field level is the major climbing level, and contains the
-entrance to the mountain dungeon.
-the 3rd field level is the summit, and contains summit related things. ???
-the mountain dungeon entrance is NOT on the summit, because
-it would be difficult and time consuming to climb all the way back
-up when player has died in the dungeon. at the summit we could
-have an overlook - which creates a screen with nice concept art and music.
-like the player was looking at hyrule from atop a mountain.
-
-
-
-
-
-
-
-Screens + ScreenManager
-migrate screens to be GLOBAL. they will still inherit
-from base class of screen, but this way we get to keep
-the last selected menuItem, etc... 
-
-
-
-
-
-
-
+TITLE SCREEN + TEST AI
 *not this, but...*
 At the begining of the game, build a complete dungeon in the
 background. this causes the game to do all the JIT compilation
@@ -278,6 +284,23 @@ die. after a period of time, randomly load a different level
 or dungeon. should start inside a dungeon.
 
 
+
+
+
+Colliseum +++
+extend colliseum with additional challenges.
+add more miniboss + boss challenges.
+add more standard enemy challenges.
+add *colliseum unique* creature challenges.
+
+add *king's tournament challenge*
+- this is ladder fight of bosses
+- we have tons of bosses to put here, from master/forest/dev
+
+
+
+
+release 0.75... 
 
 
 

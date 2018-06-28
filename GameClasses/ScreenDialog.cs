@@ -77,6 +77,7 @@ namespace DungeonRun
                 if(
                     dialogs == AssetsDialog.Enter_ForestDungeon
                     || dialogs == AssetsDialog.Enter_Colliseum
+                    || dialogs == AssetsDialog.Enter_MountainDungeon
                     )
                 {
                     if (Functions_Input.IsNewButtonPress(Buttons.A))
@@ -93,6 +94,10 @@ namespace DungeonRun
                         else if (dialogs == AssetsDialog.Enter_Colliseum)
                         {
                             Level.ID = LevelID.ColliseumPit;
+                        }
+                        else if (dialogs == AssetsDialog.Enter_MountainDungeon)
+                        {
+                            Level.ID = LevelID.Mountain_Dungeon;
                         }
                     }
                     else if(Functions_Input.IsNewButtonPress(Buttons.B))

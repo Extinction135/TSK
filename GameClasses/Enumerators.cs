@@ -86,7 +86,7 @@ namespace DungeonRun
 
         //dungeons, series of rooms
         Forest_Dungeon, 
-        Mountain_Dungeon, //<<<wip
+        Mountain_Dungeon,
         
         //locations that cannot be visited
         Road, //used for connecting levels on map

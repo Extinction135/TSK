@@ -103,19 +103,32 @@ namespace DungeonRun
 
         #region Dungeon/Level Entrance Dialogs
 
+        //dont fade in the foreground on these dialogs, because
+        //they exit the level, which fades the foreground in
+        //if we set foreground fade parameter to true (in Dialog()),
+        //then a 'double-fade' happens, and it looks really bad
+
         public static List<Dialog> Enter_ForestDungeon = new List<Dialog>
         {
             new Dialog(ObjType.Hero_Idle, "Hmm..",
-                "Should I enter this place?\n" +
-                "A) yes    B) no",
+                "this hollow log looks slippery and dangerous..\n" +
+                "A) enter carefully    B) i'm just not into logs..",
                 Assets.sfxTextLetter, false, false, false)
         };
 
         public static List<Dialog> Enter_Colliseum = new List<Dialog>
         {
             new Dialog(ObjType.Hero_Idle, "Hmm..",
-                "Should I enter the colliseum?\n" +
-                "A) yes    B) no",
+                "i can hear a crowd inside, along with the sounds of battle..\n" +
+                "A) enter the colliseum    B) i've got other things to do..",
+                Assets.sfxTextLetter, false, false, false)
+        };
+
+        public static List<Dialog> Enter_MountainDungeon = new List<Dialog>
+        {
+            new Dialog(ObjType.Hero_Idle, "Hmm..",
+                "this dark cave smells terrible. there's probably nothing inside..\n" +
+                "A) enter anyway    B) i don't like dark, musty caves..",
                 Assets.sfxTextLetter, false, false, false)
         };
 
@@ -160,6 +173,9 @@ namespace DungeonRun
 
 
 
+
+
+
         #region Colliseum Dialogs
 
         public static List<Dialog> Colliseum_Judge = new List<Dialog>
@@ -179,6 +195,9 @@ namespace DungeonRun
         };
 
         #endregion
+
+
+
 
 
 

@@ -48,6 +48,9 @@ that maybe they don't need to attack the blobs.
 
 
 
+additional achievements to add:
+cutting bushes achievement.
+burning grass / objects achievement.
 
 
 
@@ -57,8 +60,14 @@ that maybe they don't need to attack the blobs.
 
 
 
-
-
+Screens + ScreenManager
+migrate screens to be GLOBAL. they will still inherit
+from base class of screen, but this way we get to keep
+the last selected menuItem, etc... 
+**this is actually ALOT of work, because we need to model
+resetting a screen, which we will likely need to put in the
+base class of screen.. if we eve pursue this path.. what
+do we gain from this, exactly?
 
 
 
@@ -214,7 +223,13 @@ dark world should be horrific tree trunk thing we have rn.
 
 
 
-
+Mountain Level++
+the summit, contains summit related things...
+the mountain dungeon entrance is NOT on the summit, because
+it would be difficult and time consuming to climb all the way back
+up when player has died in the dungeon. at the summit we could
+have an overlook - which creates a screen with nice concept art and music.
+like the player was looking at hyrule from atop a mountain.
 
 
 
