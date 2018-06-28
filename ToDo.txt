@@ -40,123 +40,36 @@ Roadmap
 
 
 
+
+
+
+
 Today:
 
 
 
 
+Dungeons++
+
+improved fun_dungeon.buildDungeon_AddBossPath().
+added ability to create a number of rooms
+between the last room and boss room. these
+rooms are created north of the last room,
+vertically expanding the dungeon away from
+the exit room. 
+
+tested mountain + forest dungeons. <<< good.
+
+Visual Aids
+created folder repo/DungeonExamples, to
+contain visual examples of what dungeon
+layouts look like. this is to show people
+how the layout changes between dungeons.
+added forest and mountain dungeon maps
+pulled from 1st run examples.
 
 
 
-Wall Sprites
-
-updated dungeon wall sprites for mountain,
-forest, town, and colliseum level sheets.
-3 different styles are implemented now.
-
-however, we wont get to see the mountain
-dungeon wall sprites until we build the
-mountain dungeon. same with the town
-dungeon wall sprites - we need to build
-a blob dungeon to see them.
-
-Enemy Sprites
-setup mountain dungeon enemy sprites.
-setup forest dungeon enemy sprites.
-
-Boss Floor Decals
-boss decals for forest and mountain dungeons
-properly represent their bosses, eye and bat.
-this pleases me greatly.
-
-organized master & dev psds.
-
-Dialogs++
-added mountain dialog to dialog assets.
-improved dungeon entrance dialogs to be
-hilarious. not really. updated dialog
-screen to set Level.ID to mountainDungeon.
-
-DungeonGenerator++
-extracted reuseable routines from forest
-dungeon generation (monolithic) algorthm.
-using these reuseable (atomic) dungeon building
-methods, wrote dungeon 'recipes' for forest
-and mountain dungeons. a recipe is simply a
-series of atomic dungeon building methods 
-called in a specific order, with specific
-parameters. these parameters (and order)
-determine the dungeon's size, spread, number
-of connections and secret rooms. the new
-dungeon generation system is much more
-reuseable, flexible, and varied - and will
-serve as a solid foundation to build 6 distinct
-dungeons from, with additional bespoke
-dungeons for blobs and other side quests.
-
-note: Functions_Level.BuildLevel() starts 
-this chain - if level.id is forest or mountain
-dungeon, then we call new fun_dungeon.BuildDungeon() 
-methods. this completes implementation of
-mountain dungeon.
-
-Test
-tested forest and mountain dungeons (cheat with map),
-discovered and fixed a bug with dungeon generation
-where boss room was being built inside of hub room,
-and the two rooms were being alternatively set to be
-the current room, meaning they were each built each
-frame - however the boss room was the last room added,
-so it was drawn last and thus was the only one displayed.
-sometimes experiencing and figuring out bugs is 
-really fun, this bug was one of them.
-
-Polish
-changed forest dungeon to have less rooms added
-post critical path build - this makes the dungeon
-simpler to complete. but, added twice as many secret
-rooms, so alternative paths are more frequent and
-the player can realize that secret rooms can connect
-to secret rooms, since that is an extremely likely
-outcome with this recipe.
-
-changed mountain dungeon to have more rooms added
-post critical path build than forest - making it
-larger and more complex, and thus more difficult.
-
-Test
-fixed a bug where mountain dungeon background color
-wasn't being set to black. fixed.
-
-Final Thoughts
-I probably should of broken this commit into 
-smaller commits, but I was very focused and busy. 
-Deal with it. This commit essentially changes
-how dungeons are generated, added the mountain
-dungeon, made the forest and mountain dungeons
-distinct, defined how level sheets are used in
-game and how they are designed and exported in
-photoshop. also, a ton of new sprites were added
-to the master file, based on years of collection.
-
-
-
-
-
-
-
-
-
-
-
-*improve fun_dungeon.buildDungeon_AddBossPath()
-we should be able to create a number of rooms
-between the last room and boss room. this should
-weight itself towards the north direction,
-with 25% chance for left or right - but never
-south. this means we build boss rooms AWAY from
-the exit. we don't want those close to the exit
-because it makes the dungeon feel cheap and easy.
 
 
 
@@ -230,12 +143,7 @@ what level they 'belong' to.
 
 
 
-add:
-eye statue - doesn't attack, can be picked up like turtle. 
-doesnt move. hand placed.
 
-floating sm eye - randomly floats around, explodes if near hero,
-hand placed.
 
 
 
@@ -264,6 +172,13 @@ enters a house, so we don't want multiple houses on
 screen at once. only one. we'll also be creating the
 My Chickens! sidequest soon, so create a gated area
 for chickens.
+
+we also want to have an entrance to the blob dungeon
+from the town level. we can also move some npcs from 
+the town level to the farm level, as it seems very
+lonely there as is.
+
+
 
 
 
@@ -296,6 +211,19 @@ add *colliseum unique* creature challenges.
 add *king's tournament challenge*
 - this is ladder fight of bosses
 - we have tons of bosses to put here, from master/forest/dev
+
+
+
+
+
+
+add to forest dungeon:
+eye statue - doesn't attack, can be picked up like turtle. 
+doesnt move. hand placed.
+
+floating sm eye - randomly floats around, explodes if near hero,
+hand placed.
+
 
 
 

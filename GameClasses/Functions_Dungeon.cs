@@ -583,10 +583,10 @@ namespace DungeonRun
         {
             //easy difficulty
             BuildDungeon_ExitToHub(2); //med size
-            BuildDungeon_AddBossPath();
+            BuildDungeon_AddBossPath(0); //sm size
             BuildDungeon_KeyPath(2); //med size
             BuildDungeon_ImproveExit();
-            BuildDungeon_Expand(1); //compact, secrets++
+            BuildDungeon_Expand(1); //small, secrets++
             BuildDungeon_Finalize();
         }
 
@@ -594,7 +594,7 @@ namespace DungeonRun
         {
             //medium difficulty
             BuildDungeon_ExitToHub(2); //med size
-            BuildDungeon_AddBossPath();
+            BuildDungeon_AddBossPath(1); //med size
             BuildDungeon_KeyPath(2); //med size
             BuildDungeon_ImproveExit();
             BuildDungeon_Expand(2); //med size/secrets
@@ -644,10 +644,18 @@ namespace DungeonRun
             hubIndex = Level.rooms.Count() - 1;
         }
 
-        static void BuildDungeon_AddBossPath()
+        static void BuildDungeon_AddBossPath(byte numOfRoomsBetween)
         {
-            // * we could add rooms between starting room and boss room
-            // * this could be a parameter we pass into the method
+            //add rooms north of starting room
+            for (b = 0; b < numOfRoomsBetween; b++)
+            {
+                lastRoom = Level.rooms.Count() - 1;
+                Room room = new Room(new Point(0, 0), Functions_Level.GetRandomRoomType());
+                Functions_Room.MoveRoom(room,
+                    Level.rooms[lastRoom].rec.X,
+                    Level.rooms[lastRoom].rec.Y - (16 * room.size.Y) - 16);
+                Level.rooms.Add(room);
+            }
 
             //place boss north of last room added
             lastRoom = Level.rooms.Count() - 1;
