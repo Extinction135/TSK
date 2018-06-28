@@ -576,11 +576,11 @@ namespace DungeonRun
             { RoomObj.compCollision.blocking = true; }
             //so we temporarily turn on their blocking, then check, then turn off
 
+            //mountain walls dont block, but we'll to pretend they do for this check
+            if(RoomObj.group == ObjGroup.MountainWall)
+            { RoomObj.compCollision.blocking = true; }
+
             #endregion
-
-
-
-
 
 
 
@@ -800,16 +800,12 @@ namespace DungeonRun
                     
                     #endregion
 
-
-                    return; //projectile interactions complete
                 }
 
                 //an interaction is an overlap not handled by collision system
                 //there are no blocking obj vs obj interactions
                 //two blocking objs could never overlap or interact
             }
-
-
 
 
             
@@ -820,9 +816,22 @@ namespace DungeonRun
             { RoomObj.compCollision.blocking = false; }
             //return seeker to non-blocking state, allowing overlap
 
+            //do the same for mountain walls
+            if (RoomObj.group == ObjGroup.MountainWall)
+            { RoomObj.compCollision.blocking = false; }
+
             #endregion
 
-            
+
+
+            //projectile interactions complete
+            if (Object.group == ObjGroup.Projectile) { return; }
+
+
+
+
+
+
 
 
 
@@ -888,10 +897,6 @@ namespace DungeonRun
             }
 
             #endregion
-
-
-
-
 
 
 

@@ -39,44 +39,28 @@ Today:
 
 
 
-Climbing - Part 5
+Climbing - Part 6
 
-added mountain dungeon entrance obj to game
-and mountain level. added more areas to the 
-mountain level, just for sport climbing.
+integrated mountain walls into roomObj v Obj
+interaction check, using same hack as seekerExploders,
+turning their blocking boolean on just prior
+to interaction checks, then turning it off afterwards.
+this has the net effect of treating the walls like 
+they were blocking objects - preventing a variety of
+nasty bugs from happening: enemies moving through
+mountain walls, objects and projectiles flying
+through moutain walls, etc..
 
-linked up mountain dungeon entrance to build
-the default forest dungeon (for testing rn).
-
-updated overworld with return paths for
-forest and mountain dungeons and entrance
-levels. this fixes a bug with overworld
-level where exiting forest dungeon placed
-link at the colliseum.
-
-tested exiting mountain entrance level
-returns link to cave map location < yep.
-also, exiting forest dungeon from mountain
-entrance level returns link to cave location.
-
-bug: using shovel, mountainwalls, footholds,
-ladders can all be 'dug removed'. updated Dig
-routine to prevent objs of group mountainWall
-from being removed. fixed bug with digging.
-
-playtested, working beautifully.
+playtested, all projectiles interact with mountain
+walls as if they were blocking, completing mountain
+wall interactions with actors and roomObjs.
 
 
 
 
 
 
-**mountain walls dont push roomObjs, like
-TURTLES, so roomobjs enemies can walk right over em,
-completely breaking immersion...
-
-
-
+Climbing++
 
 *pressing A while falling should grab onto nearest foothold.
 if actor is falling, they should be able to 
