@@ -862,17 +862,10 @@ namespace DungeonRun
             { new Byte4(3, 7, 1, 0), new Byte4(4, 7, 1, 0), new Byte4(5, 7, 1, 0) };
 
 
-            //climbing
-            Hero_Animations.climbing = new AnimationGroup();
-            Hero_Animations.climbing.down = new List<Byte4>
-            {
-                //new Byte4(7, 1, 0, 0),
-                new Byte4(8, 1, 0, 0), new Byte4(8, 1, 1, 0)
-            };
-            Hero_Animations.climbing.up = Hero_Animations.climbing.down;
-            Hero_Animations.climbing.right = Hero_Animations.climbing.down;
-            Hero_Animations.climbing.left = Hero_Animations.climbing.down;
             
+            
+
+
             //falling
             Hero_Animations.falling = Hero_Animations.hit;
 
@@ -882,6 +875,23 @@ namespace DungeonRun
             Hero_Animations.landed.up = Hero_Animations.landed.down;
             Hero_Animations.landed.right = Hero_Animations.landed.down;
             Hero_Animations.landed.left = Hero_Animations.landed.down;
+
+            
+
+            //climbing move
+            Hero_Animations.climbing = new AnimationGroup();
+            Hero_Animations.climbing.down = new List<Byte4>
+            {
+                new Byte4(7, 1, 0, 0), new Byte4(8, 1, 0, 0),
+                new Byte4(7, 1, 1, 0), new Byte4(8, 1, 1, 0),
+            };
+            Hero_Animations.climbing.up = Hero_Animations.climbing.down;
+            Hero_Animations.climbing.right = Hero_Animations.climbing.down;
+            Hero_Animations.climbing.left = Hero_Animations.climbing.down;
+
+
+
+
 
             #endregion
 

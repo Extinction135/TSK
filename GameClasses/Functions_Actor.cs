@@ -384,7 +384,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Falling & Landing & Climbing
+            #region Falling & Landing
 
             else if (Actor.state == ActorState.Falling)
             {
@@ -395,10 +395,6 @@ namespace DungeonRun
                 Actor.animGroup = Actor.animList.landed;
                 Actor.compAnim.speed = 30; //slow down anim
                 Actor.compAnim.loop = false;
-            }
-            else if (Actor.state == ActorState.Climbing)
-            {
-                Actor.animGroup = Actor.animList.climbing;
             }
 
             #endregion
@@ -936,19 +932,28 @@ namespace DungeonRun
                 }
                 else if (Actor.state == ActorState.Climbing)
                 {
-                    Actor.compMove.speed = Actor.swimSpeed; //move slowly
                     //allow directional input
                     if (Actor.compInput.direction != Direction.None)
-                    { Actor.direction = Actor.compInput.direction; }
-                    //lock into state
-                    Actor.lockCounter = 0;
+                    {   //set direction and moving animation
+                        Actor.direction = Actor.compInput.direction;
+                        Actor.compAnim.currentAnimation = AnimationFrames.Hero_Animations.climbing.down;
+                        Actor.compAnim.speed = 10; //normal
+                    }
+                    else
+                    {   //set idle animation
+                        Actor.compAnim.currentAnimation = AnimationFrames.Hero_Animations.climbing.down;
+                        Actor.compAnim.speed = 255; //extremely slow, feels like an idle
+                    }
+
+                    Actor.compMove.speed = Actor.swimSpeed; //move slowly
 
 
+                    #region Set Actor State to Falling, Climbing, or Idle
 
-                    #region Magic
+                    Actor.lockCounter = 0; //lock into state
 
                     //borrow lockTotal to model outcome states 
-                    //lockTotal = irrelevant, cuz lockcounter gets reset 0 above)
+                    //lockTotal = irrelevant, cuz lockcounter gets reset to 0 above
                     //if you don't understand the two lines ^above^, dont touch
                     //the code below...
 
@@ -967,8 +972,8 @@ namespace DungeonRun
                             {
                                 //if foothold does not contain center point of actor, actor loses grip and falls
                                 if (Pool.roomObjPool[i].compCollision.rec.Contains(Actor.compSprite.position))
-                                {
-                                    Actor.lockTotal = 1; //Actor.state = ActorState.Climbing;
+                                {   //Actor.state = ActorState.Climbing;
+                                    Actor.lockTotal = 1; 
                                 }
                             }
                             
@@ -976,8 +981,8 @@ namespace DungeonRun
                             else if(Pool.roomObjPool[i].type == ObjType.Wor_MountainWall_Top)
                             {
                                 if (Pool.roomObjPool[i].compCollision.rec.Contains(Actor.compSprite.position))
-                                {
-                                    Actor.lockTotal = 2; //Actor.state = ActorState.Idle;
+                                {   //Actor.state = ActorState.Idle;
+                                    Actor.lockTotal = 2; 
                                 }
                             }
 
@@ -998,13 +1003,15 @@ namespace DungeonRun
                     #endregion
 
 
-
                     //allow player to drop from climb using B button
                     if (Actor == Pool.hero)
                     {
                         if (Functions_Input.IsNewButtonPress(Buttons.B))
                         { Actor.state = ActorState.Falling; }
                     }
+                    
+                    //we manually set the animation frames, bail from rest of method
+                    return;
                 }
                 
             }
