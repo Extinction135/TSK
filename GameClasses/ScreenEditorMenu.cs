@@ -37,6 +37,7 @@ namespace DungeonRun
             ResetWidgets();
             currentSheet.compText.text = "forest";
             Widgets.WO_Forest.visible = true;
+            Widgets.WE_Forest.visible = true;
             Level.ID = LevelID.Forest_Entrance;
         }
 
@@ -94,6 +95,7 @@ namespace DungeonRun
                     {   //leads to forest
                         currentSheet.compText.text = "forest";
                         Widgets.WO_Forest.visible = true;
+                        Widgets.WE_Forest.visible = true;
                         Level.ID = LevelID.Forest_Entrance;
                     }
                     else if (Level.ID == LevelID.Forest_Entrance)
@@ -106,6 +108,7 @@ namespace DungeonRun
                     {   //leads to town
                         currentSheet.compText.text = "town";
                         Widgets.WO_Town.visible = true;
+                        Widgets.WE_Town.visible = true;
                         Level.ID = LevelID.LeftTown2;
                     }
 
@@ -160,7 +163,13 @@ namespace DungeonRun
             if (Widgets.WO_Colliseum.visible) { Widgets.WO_Colliseum.Update(); Widgets.WO_Colliseum.Draw(); }
 
             if (Widgets.WO_DEV.visible) { Widgets.WO_DEV.Update(); Widgets.WO_DEV.Draw(); }
-            
+
+
+            //update and draw actor widgets that are visible
+            if (Widgets.WE_Forest.visible) { Widgets.WE_Forest.Update(); Widgets.WE_Forest.Draw(); }
+            if (Widgets.WE_Town.visible) { Widgets.WE_Town.Update(); Widgets.WE_Town.Draw(); }
+
+
             //draw tool widgets
             Widgets.RoomTools.Update();
             Widgets.RoomTools.Draw();
@@ -194,7 +203,11 @@ namespace DungeonRun
             Widgets.WO_Town.visible = false;
             Widgets.WO_Colliseum.visible = false;
             Widgets.WO_Mountain.visible = false;
-            
+
+            //set actor widgets not visible
+            Widgets.WE_Forest.visible = false;
+            Widgets.WE_Town.visible = false;
+
             //set dev widget to always be visible
             Widgets.WO_DEV.visible = true;
         }

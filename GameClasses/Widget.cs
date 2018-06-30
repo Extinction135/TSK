@@ -38,9 +38,12 @@ namespace DungeonRun
 
         public static WidgetObjects_Forest WO_Forest = new WidgetObjects_Forest();
         public static WidgetObjects_Mountain WO_Mountain = new WidgetObjects_Mountain();
-        
 
         public static WidgetObjects_DEV WO_DEV = new WidgetObjects_DEV();
+
+        //actor widgets
+        public static WidgetEnemies_Forest WE_Forest = new WidgetEnemies_Forest();
+        public static WidgetEnemies_Town WE_Town = new WidgetEnemies_Town();
     }
 
     public abstract class Widget

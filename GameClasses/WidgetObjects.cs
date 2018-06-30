@@ -315,7 +315,7 @@ namespace DungeonRun
         public WidgetObjects_Town()
         {   //create and set the position of the window frame
             window = new MenuWindow(
-                new Point(16 * 23, 16 * 2),
+                new Point(16 * 12, 16 * 2),
                 new Point(16 * 5, 16 * 15), //size
                 "Town Objects"); //title
 
@@ -407,7 +407,7 @@ namespace DungeonRun
         public WidgetObjects_Forest()
         {   //create and set the position of the window frame
             window = new MenuWindow(
-                new Point(16 * 23, 16 * 2), //position
+                new Point(16 * 12, 16 * 2), //position
                 new Point(16 * 5, 16 * 15), //size
                 "Forest Objects"); //title
 
@@ -519,7 +519,7 @@ namespace DungeonRun
         public WidgetObjects_Mountain()
         {   //create and set the position of the window frame
             window = new MenuWindow(
-                new Point(16 * 23, 16 * 2), //position
+                new Point(16 * 12, 16 * 2), //position
                 new Point(16 * 5, 16 * 15), //size
                 "Mountain Objects"); //title
 
@@ -633,7 +633,7 @@ namespace DungeonRun
         public WidgetObjects_Colliseum()
         {   //create and set the position of the window frame
             window = new MenuWindow(
-                new Point(16 * 23, 16 * 2), //position
+                new Point(16 * 12, 16 * 2), //position
                 new Point(16 * 5, 16 * 15), //size
                 "Colliseum Objs"); //title
 
