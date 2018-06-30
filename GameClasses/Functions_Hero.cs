@@ -251,8 +251,7 @@ namespace DungeonRun
                 {
                     Functions_Particle.Spawn(ObjType.Particle_RewardKey, Pool.hero);
                     Level.bigKey = true;
-                    if (Flags.ShowDialogs)
-                    { ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.HeroGotKey)); }
+                    ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.HeroGotKey));
                 }
                 if (Obj.type != ObjType.Dungeon_ChestEmpty)
                 {   //if the chest is not empty, play the reward animation
@@ -373,8 +372,7 @@ namespace DungeonRun
                 }
                 else
                 {   //if hero doesn't have the bigKey, throw a dialog screen telling player this
-                    if (Flags.ShowDialogs)
-                    { ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.DoesNotHaveKey)); }
+                    ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.DoesNotHaveKey));
                 }
             }
 

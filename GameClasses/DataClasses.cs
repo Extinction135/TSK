@@ -39,7 +39,7 @@ namespace DungeonRun
         public static Boolean PlaySoundFX = true; //turns soundfx on/off
         public static Boolean HardMode = false; //makes the game harder
         public static Boolean CameraTracksHero = false; //camera tracks hero or centers to dungeon room
-        public static Boolean ShowDialogs = true; //turn dialogs on/off
+        
 
         //cheat flags
         public static Boolean Invincibility = true; //does hero ignore damage?
@@ -78,7 +78,6 @@ namespace DungeonRun
                 CameraTracksHero = false;
                 ShowEnemySpawns = false;
                 PrintOutput = false;
-                ShowDialogs = true;
 
                 HardMode = false;
 

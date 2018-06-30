@@ -49,33 +49,32 @@ Today:
 
 
 
-Actor Widgets
 
-created widgetActors.cs to contain actors, 
-for editor development testing purposes, based 
-on the concept and design of object widgets. 
-for now, this widget simply displays which enemies
-belong to which dungeons, but in the near future
-actors will be selectable and add-able to the
-game world from editor, via this actor widget.
+Dialogs++
 
-implemented forest actors widget. this displays
-the boss, miniboss, and standard actors required
-to create a dungeon.
-
-moved level obj widgets to the right of dungeon objs
-in editor menu screen to mek room for actors widget.
-
-when the level type button changes, the 
-corresponding actor widget is displayed. for now,
-only the forest actors widget is display.
-
-added town actors widget, with blob as only actor.
-playtested. updated uwp project too.
+remove option to turn dialogs off.
+this is actually game breaking - because hero's only
+way into a dungeon is from a dialog screen. if he
+can't create that dialog screen, then he cant get 
+into any dungeon - meaning dialog screens are vital
+to the game functioning properly.
 
 
 
 
+Fuzzy Input
+
+the idea is to implement a fuzz tester to see if any
+crazy input states break the game. this is easy to do:
+randomly set the controller input each frame.
+
+
+
+
+
+we need to implement dialogs on/off as an option..
+wait - if we do that then hero can't enter dungeon.
+dialogs must ALWAYS be implemented.
 
 
 

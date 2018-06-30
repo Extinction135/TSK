@@ -67,22 +67,19 @@ namespace DungeonRun
                         Obj.compSprite.position.X,
                         Obj.compSprite.position.Y);
                     Functions_Pool.Release(Obj);
-                    if (Flags.ShowDialogs) //pop success dialog
-                    { ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.BottleSuccess)); }
+                    ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.BottleSuccess));
                     //set the hero into an idle state (else hero lingers in use state without net)
                     Functions_Actor.SetIdleState(Pool.hero);
                     return;
                 }
                 else
                 {   //player has no empty bottles
-                    if (Flags.ShowDialogs)
-                    { ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.BottleFull)); }
+                    ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.BottleFull));
                     return;
                 }
             }
             //can't bottle this, pop cant bottle dialog
-            if (Flags.ShowDialogs)
-            { ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.BottleCant)); }
+            ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.BottleCant));
         }
 
         public static void Bottle(Actor Actor)
@@ -97,22 +94,19 @@ namespace DungeonRun
                         Actor.compSprite.position.X,
                         Actor.compSprite.position.Y);
                     Functions_Pool.Release(Actor);
-                    if (Flags.ShowDialogs) //pop success dialog
-                    { ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.BottleSuccess)); }
+                    ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.BottleSuccess));
                     //set the hero into an idle state (else hero lingers in use state without net)
                     Functions_Actor.SetIdleState(Pool.hero);
                     return;
                 }
                 else
                 {   //player has no empty bottles
-                    if (Flags.ShowDialogs)
-                    { ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.BottleFull)); }
+                    ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.BottleFull));
                     return;
                 }
             }
             //can't bottle this, pop cant bottle dialog
-            if (Flags.ShowDialogs)
-            { ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.BottleCant)); }
+            ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.BottleCant));
         }
 
     }
