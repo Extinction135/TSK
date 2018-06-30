@@ -50,14 +50,7 @@ Today:
 
 
 
-Dialogs++
 
-remove option to turn dialogs off.
-this is actually game breaking - because hero's only
-way into a dungeon is from a dialog screen. if he
-can't create that dialog screen, then he cant get 
-into any dungeon - meaning dialog screens are vital
-to the game functioning properly.
 
 
 
@@ -68,13 +61,19 @@ the idea is to implement a fuzz tester to see if any
 crazy input states break the game. this is easy to do:
 randomly set the controller input each frame.
 
+added flags.fuzzyInput to game.
+updated MapPlayerInput() with routine for fuzzing
+input component for hero actor. the fuzzing occurs
+using two distinct methods: either setting multiple
+input values to true (multiple button mashing), and
+setting single input values to true (single button
+spamming). each frame, a method is chosen and ran.
+so we are now testing both mashing and spamming
+of input component systems. no breakage so far.
 
 
 
 
-we need to implement dialogs on/off as an option..
-wait - if we do that then hero can't enter dungeon.
-dialogs must ALWAYS be implemented.
 
 
 

@@ -14,6 +14,9 @@ namespace DungeonRun
 {
     public static class Functions_Input
     {
+        static int ran;
+
+
 
         public static void ResetInputData(ComponentInput CompInput)
         {
@@ -27,7 +30,6 @@ namespace DungeonRun
         public static void MapPlayerInput(ComponentInput CompInput)
         {   //hero has loaded into a level, via level screen
             ResetInputData(CompInput); //reset the input component
-            CompInput.direction = Input.gamePadDirection; //map direction
 
             //map attack, use item, and interact button presses
             if (IsNewButtonPress(Buttons.X)) { CompInput.attack = true; }
@@ -40,8 +42,63 @@ namespace DungeonRun
             if (IsButtonDown(Buttons.B)) { CompInput.dash = true; }
             //this essentially spams dash
 
-            //open inventory with start button only
-            else if (IsNewButtonPress(Buttons.Start))
+
+            #region Implement Fuzzy input
+
+            //the idea is to randomly change the input components values
+            //to test game systems to see if they break. useful when new
+            //systems are added. we could fuzz controller input, but thats
+            //more front-facing. this fuzzes the back-end input systems,
+            //those based around the input component class.
+
+            if(Flags.FuzzyInput)
+            {
+                CompInput.direction = Functions_Direction.GetRandomDirection();
+
+                ran = Functions_Random.Int(0, 100);
+                if(ran > 50)
+                {
+                    //method 1 - multiple button mashing
+                    if (Functions_Random.Int(0, 100) > 50)
+                    { CompInput.attack = true; }
+                    else { CompInput.attack = false; }
+
+                    if (Functions_Random.Int(0, 100) > 50)
+                    { CompInput.use = true; }
+                    else { CompInput.use = false; }
+
+                    if (Functions_Random.Int(0, 100) > 50)
+                    { CompInput.interact = true; }
+                    else { CompInput.interact = false; }
+
+                    if (Functions_Random.Int(0, 100) > 50)
+                    { CompInput.dash = true; }
+                    else { CompInput.dash = false; }
+                }
+                else
+                {
+                    //method 2 - single button spamming
+                    CompInput.attack = false;
+                    CompInput.use = false;
+                    CompInput.interact = false;
+                    CompInput.dash = false;
+
+                    ran = Functions_Random.Int(0, 100);
+
+                    if (ran < 25) { CompInput.attack = true; }
+                    else if (ran < 50) { CompInput.use = true; }
+                    else if (ran < 75) { CompInput.interact = true; }
+                    else { CompInput.dash = true; }
+                }
+            }
+
+            #endregion
+
+
+            //map direction post fuzz
+            CompInput.direction = Input.gamePadDirection; 
+            //open inventory with start button
+            if (IsNewButtonPress(Buttons.Start))
             { ScreenManager.AddScreen(new ScreenInventory()); }
         }
 
