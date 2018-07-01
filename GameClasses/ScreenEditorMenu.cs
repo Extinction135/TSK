@@ -54,7 +54,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Handle obj selection for obj widgets
+            #region Handle obj/actor selection for widgets
 
             if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
             {
@@ -69,6 +69,12 @@ namespace DungeonRun
 
                 //dev WO
                 if (Widgets.WO_DEV.visible) { CheckObjList(Widgets.WO_DEV); }
+
+
+                //actor widgets
+                if (Widgets.WE_Forest.visible) { CheckActList(Widgets.WE_Forest); }
+                if (Widgets.WE_Town.visible) { CheckActList(Widgets.WE_Town); }
+
             }
 
             #endregion
@@ -189,6 +195,13 @@ namespace DungeonRun
             if (WO.visible & WO.window.interior.rec.Contains(Input.cursorPos))
             { Widgets.ObjectTools.CheckObjList(WO.objList); }
         }
+
+        public void CheckActList(WidgetActor WE)
+        {
+            if (WE.visible & WE.window.interior.rec.Contains(Input.cursorPos))
+            { Widgets.ObjectTools.CheckActorsList(WE.actors); }
+        }
+
 
         public void ResetWidgets()
         {

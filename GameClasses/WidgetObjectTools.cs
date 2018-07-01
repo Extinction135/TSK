@@ -15,8 +15,12 @@ namespace DungeonRun
 {
     public class WidgetObjectTools : Widget
     {
-        //handles the selection, grabbing, dragging, releasing, adding, and deleting of roomObjects
+        //handles the selection, grabbing, dragging, releasing, adding, and deleting of objs + actors
         int j;
+
+
+        Boolean objMode = true; //start widget in object mode (rather than actor mode)
+        public ActorType selectedActor;
 
         public GameObject moveObj;
         public GameObject rotateObj;
@@ -179,7 +183,10 @@ namespace DungeonRun
             //convert cursor Pos to world pos
             worldPos = Functions_Camera2D.ConvertScreenToWorld(Input.cursorPos.X, Input.cursorPos.Y);
 
-            //mouse button states
+            if (objMode == false) { HandleInput_ActorMode(); return; }
+
+
+            //mouse button states for Obj mode
 
             #region Handle Left Button CLICK
 
@@ -372,6 +379,32 @@ namespace DungeonRun
 
         }
 
+        public void HandleInput_ActorMode()
+        {
+            if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
+            {
+                //add actor to room
+                if (TopDebugMenu.objToolState == ObjToolState.AddObj)
+                {
+                    Actor actorRef = Functions_Pool.GetActor();
+
+                    //place currently selected obj in room, aligned to 16px grid
+                    actorRef.compMove.newPosition = Functions_Movement.AlignToGrid(worldPos.X, worldPos.Y);
+                    Functions_Movement.Teleport(
+                        actorRef.compMove,
+                        actorRef.compMove.newPosition.X, 
+                        actorRef.compMove.newPosition.Y);
+                    //set type and initial state
+                    Functions_Actor.SetType(actorRef, selectedActor);
+                    actorRef.state = ActorState.Idle;
+                }
+            }
+        }
+
+
+
+
+
         public override void Update()
         {
             Functions_MenuWindow.Update(window);
@@ -516,9 +549,43 @@ namespace DungeonRun
                     selectionBoxObj.scale = 2.0f;
                     GetActiveObjInfo();
                     if (TopDebugMenu.objToolState == ObjToolState.RotateObj) { RotateActiveObj(); }
+
+                    //set a state to tell objtools to create obj
+                    objMode = true;
                 }
             }
         }
+
+        public void CheckActorsList(List<Actor> actList)
+        {
+            for (int i = 0; i < actList.Count; i++)
+            {
+                if (actList[i].compCollision.rec.Contains(Input.cursorPos))
+                {
+                    //copy actor's sprite and animation into current obj
+                    currentObjRef.compAnim.currentAnimation = actList[i].compAnim.currentAnimation;
+                    currentObjRef.compSprite.texture = actList[i].compSprite.texture;
+                    currentObjRef.compSprite.cellSize = actList[i].compSprite.cellSize;
+                    Functions_Component.UpdateCellSize(currentObjRef.compSprite);
+                    currentObjRef.compSprite.currentFrame = actList[i].compSprite.currentFrame;
+                    currentObjRef.compAnim.index = 0;
+
+                    //select actor
+                    selectionBoxObj.position = actList[i].compSprite.position;
+                    selectionBoxObj.scale = 2.0f;
+                    //display info about actor
+                    window.title.text = "" + actList[i].type;
+                    currentObjDirectionText.text = "!!!! actor selected !!!!";
+                    //store actor type (in this widget)
+                    selectedActor = actList[i].type;
+                    //set a state to tell objtools to create actor
+                    objMode = false;
+                }
+            }
+        }
+
+
+
 
     }
 }

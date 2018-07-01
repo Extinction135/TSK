@@ -52,24 +52,22 @@ Today:
 
 
 
+Editor++
 
+we want to be able to add actors to dev levels
+in editor, to test their behaviors. the actor
+widget exists, we just need to implement the
+logic for 'adding' a selected actor.
 
+implemented adding actors via editor menu
+screen. this is just another 'state' of the
+widget object tools class, creating an actor
+instead of a gameobject upon clicking in world.
+we also display some info about the actor
+in the objTools widget, which we have completely
+snatched from conceptually just managing
+objects to managing both actors and objects.
 
-Fuzzy Input
-
-the idea is to implement a fuzz tester to see if any
-crazy input states break the game. this is easy to do:
-randomly set the controller input each frame.
-
-added flags.fuzzyInput to game.
-updated MapPlayerInput() with routine for fuzzing
-input component for hero actor. the fuzzing occurs
-using two distinct methods: either setting multiple
-input values to true (multiple button mashing), and
-setting single input values to true (single button
-spamming). each frame, a method is chosen and ran.
-so we are now testing both mashing and spamming
-of input component systems. no breakage so far.
 
 
 
@@ -96,22 +94,11 @@ roomObj enemies exist simply as level objects.
 
 
 
-when the level type button updates the widgets,
-we should change the enemies widget too.
-this way we display enemy sets for forest, town,
-colliseum, and mountain levels.
 
 
-
-
-
-
-
-
-
-
-
-
+*when we change elvel types in editor, move selection box
+in objTools widget offscreen, because its very likely we
+closed or changed the widgets layout.
 
 
 

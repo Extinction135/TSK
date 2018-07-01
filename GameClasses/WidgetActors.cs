@@ -14,7 +14,7 @@ using Microsoft.Xna.Framework.Media;
 namespace DungeonRun
 {
 
-    public class WidgetActors
+    public class WidgetActor
     {
 
         static int i;
@@ -55,10 +55,11 @@ namespace DungeonRun
 
     }
 
+    
 
 
 
-    public class WidgetEnemies_Forest : WidgetActors
+    public class WidgetEnemies_Forest : WidgetActor
     {
         public WidgetEnemies_Forest()
         {
@@ -109,7 +110,7 @@ namespace DungeonRun
 
 
 
-    public class WidgetEnemies_Town : WidgetActors
+    public class WidgetEnemies_Town : WidgetActor
     {
         public WidgetEnemies_Town()
         {
