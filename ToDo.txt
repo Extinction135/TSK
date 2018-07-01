@@ -51,22 +51,86 @@ Today:
 
 
 
-
-
-
-Editor++
-
-when we change level types in editor, move selection box
-in objTools widget offscreen, because its very likely we
-closed or changed the widgets layout. done.
+Wall Jumping++
+when we detach hero from wall, give hero initial push
+push north, to simulate a jump. player controls trajectory
+from there on. done.
 
 
 
 
 
+Falling++
+if hero overlaps two walls, they double push him south.
+we should limit the amount that walls can collectively
+push hero so all falling feels the same.
+
+
+Colliseum walls++
+make colliseum walls function just like mountain walls,
+pushing hero south. this means we need to add a top wall 
+section - which will further reduce objects in the colliseum,
+since we are using pillar tops to 'seal' the wall up top.
+instead just make a top colliseum wall sprite, since its
+needed to climb up and exit walls anyway. then, we can add
+footholds to the colliseum's back wall, if player wants to
+climb around while a challenge is happening.
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+climbing with pets
+pets should match hero's position, plus 4 or 6 pixels
+on y axis, if hero is climbing or falling. this means
+pet teleports to hero's back upon a climb. while pet is
+on hero's back, pet ignores all collisions and their ai
+changes to simply play the pet's soundfx randomly.
+
+
+
+
+
+
+
+
+
+
+better colliseum spawning
+get colliseum's center point (room.center).
+add a random offset to it, within 16*4 radius.
+spawn enemy there. repeat for all enemies.
+enemies now spawn centered to colliseum.
+
+
+
+
+
+infinite fairies cheat
+this allows for damage and death to occur, but prevents
+a gameover. add a boolean into flags, which is checked in
+bottle use routines. if true, the upon heros death game
+assume a fairt bottle is present. add this cheat to the
+cheats menu.
+
+
+
+
+
+
+
+mountain enemies
 
 mountain standard actor is beefy bat sprite.
 create amd implement this actor as mountain standard enemy

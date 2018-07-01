@@ -90,6 +90,7 @@ namespace DungeonRun
                 MapCheat = false;
                 KeyCheat = false;
                 UnlockAll = false;
+                Clipping = false;
             }
 
             #endregion

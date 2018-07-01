@@ -961,6 +961,7 @@ namespace DungeonRun
                     Actor.lockTotal = 60;
                     Actor.compMove.speed = Actor.walkSpeed;
 
+
                     #region Allow Hero to grab while falling via A button press
 
                     if (Actor == Pool.hero)
@@ -1094,7 +1095,11 @@ namespace DungeonRun
                     if (Actor == Pool.hero)
                     {
                         if (Functions_Input.IsNewButtonPress(Buttons.B))
-                        { Actor.state = ActorState.Falling; }
+                        {
+                            Actor.state = ActorState.Falling;
+                            //push actor north to fake a jump
+                            Functions_Movement.Push(Pool.hero.compMove, Direction.Up, 10.0f);
+                        }
                     }
                     
                     //we manually set the animation frames, bail from rest of method
