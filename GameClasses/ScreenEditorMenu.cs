@@ -134,6 +134,10 @@ namespace DungeonRun
                     //update all shared widget objects
                     Functions_Texture.SetWOTexture(Widgets.WO_Dungeon);
                     Functions_Texture.SetWOTexture(Widgets.WO_Environment);
+
+                    //hide obj tools selection box offscreen
+                    //because it's likely positioned over something different now
+                    Widgets.ObjectTools.selectionBoxObj.position.X = 2048;
                 }
             }
 

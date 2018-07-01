@@ -52,53 +52,17 @@ Today:
 
 
 
+
+
 Editor++
 
-we want to be able to add actors to dev levels
-in editor, to test their behaviors. the actor
-widget exists, we just need to implement the
-logic for 'adding' a selected actor.
-
-implemented adding actors via editor menu
-screen. this is just another 'state' of the
-widget object tools class, creating an actor
-instead of a gameobject upon clicking in world.
-we also display some info about the actor
-in the objTools widget, which we have completely
-snatched from conceptually just managing
-objects to managing both actors and objects.
-
-
-
-
-
-
-
-
-
-
-actor selection and adding:
-select actor, selection box snaps to actor.
-this means actor is active.
-obj in obj list changes to be X sprite.
-while in this mode (actor mode),
-hand switches to add automatically,
-clicking anywhere creates that actor type
-at that location.
-
-
-roomObj enemies exist simply as level objects.
-
-
-
-
-
-
-
-
-*when we change elvel types in editor, move selection box
+when we change level types in editor, move selection box
 in objTools widget offscreen, because its very likely we
-closed or changed the widgets layout.
+closed or changed the widgets layout. done.
+
+
+
+
 
 
 
@@ -162,11 +126,10 @@ frames to dodge or respond, which would be nice.
 
 
 
-
-
-
--- tonite --
-
+rats and crabs should "bite", but turtles dont.
+all types can be picked up and carried, but rats
+and crabs will eventually bite you, causing link
+to throw the creature and take 1 damage.
 
 
 
