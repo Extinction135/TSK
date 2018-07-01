@@ -15,6 +15,8 @@ namespace DungeonRun
     public static class Functions_Interaction
     {
         public static int i;
+        public static float terminalVelocity = 4.0f;
+
 
 
         public static void CheckInteractions(Actor Actor, Boolean checkProjectiles, Boolean checkRoomObjs)
@@ -271,8 +273,11 @@ namespace DungeonRun
                     Actor.state = ActorState.Falling;
                     Actor.stateLocked = true;
 
+                    //limit how much we can push actor (terminal velocity)
+                    if (Actor.compMove.magnitude.Y > terminalVelocity) { return; }
+
                     //fall
-                    Functions_Movement.Push(Actor.compMove, Direction.Down, 1.0f);
+                    Functions_Movement.Push(Actor.compMove, Direction.Down, 1.5f);
                 }
                 else if (Obj.type == ObjType.Wor_MountainWall_Bottom)
                 {
@@ -286,8 +291,11 @@ namespace DungeonRun
                         Actor.stateLocked = true;
                     }
 
+                    //limit how much we can push actor (terminal velocity)
+                    if (Actor.compMove.magnitude.Y > terminalVelocity) { return; }
+
                     //fall/push
-                    Functions_Movement.Push(Actor.compMove, Direction.Down, 1.0f);
+                    Functions_Movement.Push(Actor.compMove, Direction.Down, 1.5f);
                 }
 
 

@@ -51,19 +51,70 @@ Today:
 
 
 
-Wall Jumping++
-when we detach hero from wall, give hero initial push
-push north, to simulate a jump. player controls trajectory
-from there on. done.
+**bug: swords no longer cut tall grass?
+
+
+
+
+
+Falling++ (Terminal Velocity)
+
+if hero overlaps two walls, they double push him south.
+we should limit the amount that walls can collectively
+push hero so all falling feels the same. done.
+
+now, prior to pushing hero, a check is performed to see
+what the actor's Y magnitude is. if it is greater than
+the expected value, then the additional push doesn't occur.
+this expected value is the terminal velocity.
+testing works just fine, but falling feels too slow.
+
+Falling++
+increased wall push from 1.0 to 1.5.
+set terminal velocity to 4.0f.
+falling feels better.
+
 
 
 
 
 
 Falling++
-if hero overlaps two walls, they double push him south.
-we should limit the amount that walls can collectively
-push hero so all falling feels the same.
+while falling, the comp input direction should not 
+apply the actor's speed to it's comp move. this causes
+the actor to slow down, if the direction is up.
+instead, we should only accept left and right, and
+diagonal directions that resolve to L/R.
+
+
+
+
+Falling++
+room objects should be pushed south just like actors.
+and upon completing their fall, they should be pushed in a 
+south direction, plus a random L/R value, like they slid.
+there should also be a landing sfx, and a smoke dash particle.
+
+
+
+
+Loose Grip
+when hero loses his grip on the wall, create a smoke
+particle, so player gets some visual feedback.
+
+
+
+
+
+
+SignPost at Mountain Entrance level should explain:
+"You can climb by pressing the A button on
+ladders and footholds. Be careful, you'll fall."
+"Press B to jump off the wall. While falling, 
+press A to grab onto a foothold again."
+
+
+
 
 
 Colliseum walls++
