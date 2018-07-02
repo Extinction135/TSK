@@ -258,11 +258,14 @@ namespace DungeonRun
                 //if actor is climbing, mid/bottom walls dont push them
 
                 if (Obj.type == ObjType.Wor_MountainWall_Mid
+                    
                     //colliseum walls
-                    || Obj.type == ObjType.Wor_Colliseum_Bricks_Left
-                    || Obj.type == ObjType.Wor_Colliseum_Bricks_Middle1
-                    || Obj.type == ObjType.Wor_Colliseum_Bricks_Middle2
-                    || Obj.type == ObjType.Wor_Colliseum_Bricks_Right)
+                    //|| Obj.type == ObjType.Wor_Colliseum_Bricks_Left
+                    //|| Obj.type == ObjType.Wor_Colliseum_Bricks_Middle1
+                    //|| Obj.type == ObjType.Wor_Colliseum_Bricks_Middle2
+                    //|| Obj.type == ObjType.Wor_Colliseum_Bricks_Right
+
+                    )
                 {
                     if (Actor.state == ActorState.Climbing) { return; }
 
@@ -1160,6 +1163,9 @@ namespace DungeonRun
 
             else if (RoomObj.group == ObjGroup.Wall_Climbable)
             {
+                //if hero is climbing with the object as pet, ignore falling
+                if (Object == Pool.herosPet & Pool.hero.state == ActorState.Climbing) { return; }
+
                 //wall moves obj fast, if obj is moving slow then this is initial fall
                 if (Object.compMove.magnitude.Y < 2.0f & Object.compMove.magnitude.Y > 0.5f)
                 {   //play soundfx and directional cue on initial fall

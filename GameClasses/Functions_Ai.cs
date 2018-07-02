@@ -823,14 +823,40 @@ namespace DungeonRun
 
             else if (Obj.type == ObjType.Pet_Dog)
             {
-                if (Functions_Random.Int(0, 101) > 50)
+
+                //pet models 'state' based on the hero's state
+                if(Pool.hero.state == ActorState.Climbing)
                 {
+                    //place pet at hero's location, slightly lower than hero
+                    //this simulates hero climbing with pet in his backpack
+                    Functions_Movement.Teleport(Obj.compMove,
+                        Pool.hero.compSprite.position.X,
+                        Pool.hero.compSprite.position.Y + 6);
+                    Functions_Component.Align(Obj);
+
+                    Obj.compSprite.zOffset = 16; //sort pet over hero
+                    Obj.inWater = false; //pet isn't in water while on wall
+                }
+                else if(Pool.hero.state == ActorState.Landed)
+                {   //prevents pet from falling down wall when hero 'lands' at top
+                    Functions_Movement.Teleport(Obj.compMove,
+                        Pool.hero.compSprite.position.X,
+                        Pool.hero.compSprite.position.Y);
+                    Functions_Component.Align(Obj);
+                    //sort pet under hero (on ground)
+                    Obj.compSprite.zOffset = -8; 
+                }
+
+                else
+                {
+                    //pet is free to roam around the game world (not in hero's backpack)
+
                     //track to the hero, within radius - get distance to hero
                     xDistance = (int)Math.Abs(Pool.hero.compSprite.position.X - Obj.compSprite.position.X);
                     yDistance = (int)Math.Abs(Pool.hero.compSprite.position.Y - Obj.compSprite.position.Y);
 
                     //check if pet can see hero
-                    if (yDistance < 64 & xDistance < 64)
+                    if (yDistance < 16 * 5 & xDistance < 16 * 5)
                     {   //if distance is less than rest radius, rest 
                         if (yDistance < 24 & xDistance < 24)
                         { } //do nothing, pet is close enough to hero to rest
@@ -838,10 +864,11 @@ namespace DungeonRun
                         {   //move diagonally towards hero
                             Functions_Movement.Push(Obj.compMove,
                                 Functions_Direction.GetDiagonalToHero(Obj.compSprite.position),
-                                0.4f); 
+                                0.4f);
                         }
                     }
-                    else//pet cannot see hero..
+                    //pet cannot see hero..
+                    else
                     {   //randomly push the pet in a direction
                         if (Functions_Random.Int(0, 101) > 80)
                         {
@@ -849,22 +876,22 @@ namespace DungeonRun
                                 Functions_Direction.GetRandomDirection(), 1.0f);
                         }
                     }
-
-                    //set the facing direction based on X magnitude
-                    if (Obj.compMove.magnitude.X < 0) //moving left
-                    { Obj.compSprite.flipHorizontally = true; }
-                    else { Obj.compSprite.flipHorizontally = false; } //moving right                                              
-
-                    //play the pet's sound fx occasionally
-                    if (Functions_Random.Int(0, 101) > 99) { Assets.Play(Assets.sfxPetDog); }
-
-                    //set animFrame, based on movement and inWater boolean
-                    //if dogs in water, set to water animation, else set to moving anim, else idle anim
-                    if (Obj.inWater) { Obj.compAnim.currentAnimation = AnimationFrames.Pet_Dog_InWater; }
-                    else if (Math.Abs(Obj.compMove.magnitude.X) > 0 || Math.Abs(Obj.compMove.magnitude.Y) > 0)
-                    { Obj.compAnim.currentAnimation = AnimationFrames.Pet_Dog_Move; }
-                    else { Obj.compAnim.currentAnimation = AnimationFrames.Pet_Dog_Idle; }
                 }
+
+                //set the facing direction based on X magnitude
+                if (Obj.compMove.magnitude.X < 0) //moving left
+                { Obj.compSprite.flipHorizontally = true; }
+                else { Obj.compSprite.flipHorizontally = false; } //moving right 
+
+                //set animFrame, based on movement and inWater boolean
+                //if dogs in water, set to water animation, else set to moving anim, else idle anim
+                if (Obj.inWater) { Obj.compAnim.currentAnimation = AnimationFrames.Pet_Dog_InWater; }
+                else if (Math.Abs(Obj.compMove.magnitude.X) > 0 || Math.Abs(Obj.compMove.magnitude.Y) > 0)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Pet_Dog_Move; }
+                else { Obj.compAnim.currentAnimation = AnimationFrames.Pet_Dog_Idle; }
+
+                //play the pet's sound fx occasionally
+                if (Functions_Random.Int(0, 101) > 99) { Assets.Play(Assets.sfxPetDog); }
             }
 
             #endregion

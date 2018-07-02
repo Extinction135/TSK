@@ -50,68 +50,63 @@ Today:
 
 
 
-Enums++
 
-changed objgroup enum from MountainWalls to Wall_Climable.
-this more accurately describes what the enum value models.
-tried to migrate colliseum walls to climbable state, but
-the way they were designed (in 1x2 strips) doesn't work
-for climbing, and they will have to be redesigned (based
-on the mountain wall sprites) to be climbable.
+Climbing with pets
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-Colliseum walls++
-make colliseum walls function just like mountain walls,
-pushing hero south. this means we need to add top + bottom wall
-sections - which will further reduce objects in the colliseum,
-since we are using pillar tops to 'seal' the wall up top.
-instead just make a top colliseum wall sprite, since its
-needed to climb up and exit walls anyway. then, we can add
-footholds to the colliseum's back wall, if player wants to
-climb around while a challenge is happening. we can even 
-make the back wall alot taller with more footholds too.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-climbing with pets
 pets should match hero's position, plus 4 or 6 pixels
 on y axis, if hero is climbing or falling. this means
 pet teleports to hero's back upon a climb. while pet is
 on hero's back, pet ignores all collisions and their ai
 changes to simply play the pet's soundfx randomly.
+done, and basically working.
+
+updated initial falling routine for climbable walls
+to ignore hero's pet if hero is climbing with pet.
+this prevents the stuttering effect and the initial
+push particles from being created when hero starts
+climbing the wall, because the pet object was being
+forcibly teleported to the hero's position - then
+the walls were trying to push it and thought it
+was the objects initial fall too.
+
+added code to sort pet over hero while in climbing
+state. this helps to sell the effect of having the
+pet in the hero's backpack.
+
+fixed a bug where pets would display their swimming
+animation on the wall, if hero began his climb from
+a swimming state (in water).
+
+fixed a bug where pets would fly off the edge of a
+cliff that hero had just climbed. because we're
+teleporting pet onto hero's back, pet is still 
+overlapping a wall object when hero completes his
+climb - causing the pet to instantly fall.
+
+updated mountain level, fixing an annoying issue
+with the easiest path for climbing up. a bush was
+in the way, preventing a proper landing state from
+triggering. 
 
 
 
+
+
+
+
+
+
+
+
+
+
+*we should only be passing mouse input to the game
+if the game has focus...
+
+
+*we should only be displaying the dog's head, centered
+to the sprite frame. if dog is in water, then dog remains
+in water if hero is climbing - that looks very wrong.
 
 
 
@@ -418,6 +413,18 @@ add *king's tournament challenge*
 - this is ladder fight of bosses
 - we have tons of bosses to put here, from master/forest/dev
 
+
+
+Colliseum walls++
+make colliseum walls function just like mountain walls,
+pushing hero south. this means we need to add top + bottom wall
+sections - which will further reduce objects in the colliseum,
+since we are using pillar tops to 'seal' the wall up top.
+instead just make a top colliseum wall sprite, since its
+needed to climb up and exit walls anyway. then, we can add
+footholds to the colliseum's back wall, if player wants to
+climb around while a challenge is happening. we can even 
+make the back wall alot taller with more footholds too.
 
 
 

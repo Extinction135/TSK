@@ -299,7 +299,7 @@ namespace DungeonRun
                     //group checks
                     else if (Pool.roomObjPool[d].group == ObjGroup.Wall
                         || Pool.roomObjPool[d].group == ObjGroup.Door
-                        || Pool.roomObjPool[d].group == ObjGroup.MountainWall
+                        || Pool.roomObjPool[d].group == ObjGroup.Wall_Climbable
                         )
                     {
                         objRef.compSprite.visible = false;

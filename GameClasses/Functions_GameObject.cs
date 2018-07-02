@@ -2549,7 +2549,7 @@ namespace DungeonRun
             {   //smaller than normal 16x16 objs
                 Obj.compCollision.offsetX = -4; Obj.compCollision.rec.Width = 8;
                 Obj.compCollision.offsetY = -4; Obj.compCollision.rec.Height = 8;
-                Obj.compSprite.zOffset = -8; //pets are lower to the ground too
+                Obj.compSprite.zOffset = -8; //this pet is lower to the ground
 
                 Obj.lifetime = 0; //stay around forever
                 Obj.compMove.moveable = true; //obj is moveable by belts
@@ -2564,7 +2564,7 @@ namespace DungeonRun
             {   //smaller than normal 16x16 objs
                 Obj.compCollision.offsetX = -4; Obj.compCollision.rec.Width = 8;
                 Obj.compCollision.offsetY = -4; Obj.compCollision.rec.Height = 8;
-                Obj.compSprite.zOffset = -8; //pets are lower to the ground too
+                Obj.compSprite.zOffset = -8; //this pet is lower to the ground
 
                 Obj.lifetime = 0; //stay around forever
                 Obj.compMove.moveable = true; //obj is moveable by belts
