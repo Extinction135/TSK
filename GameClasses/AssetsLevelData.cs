@@ -7328,7 +7328,7 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 312; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 328; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 344; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 344; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_TorchLit; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 344; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 344; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 312; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 328; MountainEntrance.objs.Add(obj);}
@@ -7630,8 +7630,8 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Barrel; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 200; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Barrel; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 184; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Barrel; obj.direction = Direction.Down; obj.posX = 440; obj.posY = 168; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Enemy_Turtle; obj.direction = Direction.Down; obj.posX = 442; obj.posY = 205; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Enemy_Turtle; obj.direction = Direction.Down; obj.posX = 407; obj.posY = 239; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Enemy_Turtle; obj.direction = Direction.Down; obj.posX = 442; obj.posY = 218; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Enemy_Turtle; obj.direction = Direction.Down; obj.posX = 409; obj.posY = 226; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_TorchLit; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 232; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Pot; obj.direction = Direction.Down; obj.posX = 504; obj.posY = 216; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Pot; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 184; MountainEntrance.objs.Add(obj);}
@@ -7639,14 +7639,20 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Pot; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 216; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Pot; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 184; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Pot; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 232; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Enemy_Turtle; obj.direction = Direction.Down; obj.posX = 633; obj.posY = 310; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Enemy_Turtle; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 153; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Enemy_Turtle; obj.direction = Direction.Down; obj.posX = 450; obj.posY = 295; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Enemy_Turtle; obj.direction = Direction.Down; obj.posX = 641; obj.posY = 311; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Enemy_Turtle; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 154; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Enemy_Turtle; obj.direction = Direction.Down; obj.posX = 443; obj.posY = 296; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Debris; obj.direction = Direction.Down; obj.posX = 504; obj.posY = 232; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Debris; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 248; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Debris; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 232; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Debris; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 232; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Debris; obj.direction = Direction.Down; obj.posX = 520; obj.posY = 248; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_BlockLight; obj.direction = Direction.Down; obj.posX = 856; obj.posY = 344; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_SwitchBlockBtn; obj.direction = Direction.Down; obj.posX = 872; obj.posY = 344; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Statue; obj.direction = Direction.Down; obj.posX = 888; obj.posY = 344; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_ChestEmpty; obj.direction = Direction.Down; obj.posX = 808; obj.posY = 344; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_BlockLight; obj.direction = Direction.Down; obj.posX = 392; obj.posY = 344; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Barrel; obj.direction = Direction.Down; obj.posX = 840; obj.posY = 344; MountainEntrance.objs.Add(obj);}
 			#endregion
 
 		}

@@ -57,25 +57,45 @@ Today:
 
 
 
-Falling++ (Terminal Velocity)
 
-if hero overlaps two walls, they double push him south.
-we should limit the amount that walls can collectively
-push hero so all falling feels the same. done.
-
-now, prior to pushing hero, a check is performed to see
-what the actor's Y magnitude is. if it is greater than
-the expected value, then the additional push doesn't occur.
-this expected value is the terminal velocity.
-testing works just fine, but falling feels too slow.
 
 Falling++
-increased wall push from 1.0 to 1.5.
-set terminal velocity to 4.0f.
-falling feels better.
+
+room objects should be pushed south just like actors.
+done, a pushed object 'falls' down mountain walls.
+added some pushable objects to mountain level for testing.
+
+fixed a bug where mountain top walls were pushing
+objects, but not actors, leading a situation where
+objects fell sooner than actors, which felt wrong.
+however this created a bug where player could dig
+out top mountain wall objects using shovel. updated
+dig() to check to top mountain wall objects. done.
+
+Obj Falling++
+added soundfx for initial object fall.
+added push particle for initial object fall too.
+this sells the effect of the hero pushing an object
+over the wall. although, obj could use a shadow.
+lots of playtesting.
 
 
 
+
+
+
+
+
+
+
+
+*there is no landing animation for blobs.
+*we may be able to dig remove walls, because they are no longer
+mountain wall group types.
+
+
+top walls dont matter at all. they don't even
+need to be of mountain wall group.
 
 
 
@@ -89,13 +109,11 @@ diagonal directions that resolve to L/R.
 
 
 
-Falling++
-room objects should be pushed south just like actors.
-and upon completing their fall, they should be pushed in a 
-south direction, plus a random L/R value, like they slid.
-there should also be a landing sfx, and a smoke dash particle.
 
 
+*improve objs falling down mountain walls...
+they should have a shadow below them, offset, to
+fake distance away from the wall.
 
 
 Loose Grip

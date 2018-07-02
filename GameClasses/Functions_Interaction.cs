@@ -846,6 +846,36 @@ namespace DungeonRun
             // *** Handle Obj vs Obj *** \\
 
 
+
+
+            #region Gravity Walls
+
+            if (RoomObj.group == ObjGroup.MountainWall)
+            {   //limit how much we can push objs (terminal velocity)
+                if (Object.compMove.magnitude.Y < terminalVelocity)
+                {   //fall/push
+                    Functions_Movement.Push(Object.compMove, Direction.Down, 1.5f);
+                    
+                    //we could grab a shadow from the shadow pool and place it here to 
+                    //fake depth and distance away from the wall / ground
+                }
+                //wall moves obj fast, if obj is moving slow then this is initial fall
+                if (Object.compMove.magnitude.Y < 2.0f) 
+                {   //play soundfx and directional cue on initial fall
+                    Assets.Play(Assets.sfxActorFall);
+                    Functions_Particle.Spawn(
+                        ObjType.Particle_Push, 
+                        Object.compSprite.position.X + 4,
+                        Object.compSprite.position.Y - 8, 
+                        Direction.Down);
+                } 
+            }
+
+            #endregion
+
+
+
+
             //object.type checks
 
             #region Pet / Animals

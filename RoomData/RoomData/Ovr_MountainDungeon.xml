@@ -2493,7 +2493,7 @@
       <posY>344</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Wor_Grass_2</type>
+      <type>Dungeon_TorchLit</type>
       <direction>Down</direction>
       <posX>584</posX>
       <posY>344</posY>
@@ -4308,13 +4308,13 @@
       <type>Wor_Enemy_Turtle</type>
       <direction>Down</direction>
       <posX>442</posX>
-      <posY>205</posY>
+      <posY>218</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Enemy_Turtle</type>
       <direction>Down</direction>
-      <posX>407</posX>
-      <posY>239</posY>
+      <posX>409</posX>
+      <posY>226</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_TorchLit</type>
@@ -4361,20 +4361,20 @@
     <ObjXmlData>
       <type>Wor_Enemy_Turtle</type>
       <direction>Down</direction>
-      <posX>633</posX>
-      <posY>310</posY>
+      <posX>641</posX>
+      <posY>311</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Enemy_Turtle</type>
       <direction>Down</direction>
       <posX>680</posX>
-      <posY>153</posY>
+      <posY>154</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Enemy_Turtle</type>
       <direction>Down</direction>
-      <posX>450</posX>
-      <posY>295</posY>
+      <posX>443</posX>
+      <posY>296</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Debris</type>
@@ -4405,6 +4405,42 @@
       <direction>Down</direction>
       <posX>520</posX>
       <posY>248</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_BlockLight</type>
+      <direction>Down</direction>
+      <posX>856</posX>
+      <posY>344</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SwitchBlockBtn</type>
+      <direction>Down</direction>
+      <posX>872</posX>
+      <posY>344</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_Statue</type>
+      <direction>Down</direction>
+      <posX>888</posX>
+      <posY>344</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_ChestEmpty</type>
+      <direction>Down</direction>
+      <posX>808</posX>
+      <posY>344</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_BlockLight</type>
+      <direction>Down</direction>
+      <posX>392</posX>
+      <posY>344</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_Barrel</type>
+      <direction>Down</direction>
+      <posX>840</posX>
+      <posY>344</posY>
     </ObjXmlData>
   </objs>
 </RoomXmlData>

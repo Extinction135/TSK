@@ -329,6 +329,9 @@ namespace DungeonRun
                         //|| Pool.roomObjPool[d].type == ObjType.Wor_Coastline_Corner_Interior
                         //|| Pool.roomObjPool[d].type == ObjType.Wor_Coastline_Straight
 
+                        //walls
+                        || Pool.roomObjPool[d].type == ObjType.Wor_MountainWall_Top
+
                         //dungeon objs
                         || Pool.roomObjPool[d].type == ObjType.Dungeon_Pit
                         || Pool.roomObjPool[d].type == ObjType.Dungeon_PitBridge

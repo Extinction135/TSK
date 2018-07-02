@@ -1903,7 +1903,7 @@ namespace DungeonRun
                 Obj.compSprite.zOffset = -18; //sorts under footholds
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = false;
-                Obj.group = ObjGroup.MountainWall;
+                //Obj.group = ObjGroup.MountainWall;
             }
             else if (Type == ObjType.Wor_MountainWall_Mid)
             {   //nonstandard size
