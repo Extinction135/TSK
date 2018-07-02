@@ -1601,6 +1601,10 @@ namespace DungeonRun
             #endregion
 
 
+
+            //Object Enemies
+
+
             #region Enemies
 
             //these enemies are roomObj enemies, simple ai, 1 hit mobs

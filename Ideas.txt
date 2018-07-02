@@ -28,6 +28,14 @@ burning grass / objects achievement.
 
 
 
+*build level with spike blocks over water.
+have to dive underwater to avoid them...
+
+
+
+
+
+
 
 
 Screens + ScreenManager

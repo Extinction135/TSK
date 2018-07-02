@@ -51,24 +51,35 @@ Today:
 
 
 
-Falling++
-
-while falling, the comp input direction should not 
-apply the actor's speed to the move component. 
-this causes actor to slow down, if the direction is up.
-instead, we should only accept left and right, and
-diagonal directions that resolve to L/R. 
-done & tested.
 
 
+Water++
+
+fixed a bug where various gameobjects didn't sink
+into water properly, like turtles, rats, crabs..
+
+added check to ensure floating / flying objects
+dont sink into water.
+
+added check to ensure floating / flying actors
+dont sink or swim in water. < this was what was
+causing miniboss to have null reference error on 
+his animation frames / animation groups. he *was*
+being put into a swimming state, because we never
+checked to see if the actor was flying.
 
 
 
 
 
 
-turtles, and other roomObj enemies dont fall into water.
-they should.
+
+
+
+
+
+
+
 
 
 

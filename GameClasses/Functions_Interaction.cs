@@ -500,6 +500,9 @@ namespace DungeonRun
 
                 else if(Obj.type == ObjType.Wor_Water)
                 {
+                    //if actor is flying, don't sink or swim in water
+                    if(Actor.compMove.grounded == false) { return; }
+
                     if(Actor.createSplash == false)
                     {   //actor is transitioning into water this frame
                         Functions_Particle.Spawn(ObjType.Particle_Splash,
@@ -1063,9 +1066,15 @@ namespace DungeonRun
 
             else if(RoomObj.type == ObjType.Wor_Water)
             {
-                //if object is not of the general object group, bail
-                //otherwise projecctiles (+ others) splash into water upon contact
-                if (Object.group != ObjGroup.Object) { return; }
+                //object groups not removed by water
+                if (Object.group == ObjGroup.Wall || Object.group == ObjGroup.Door
+                    || Object.group == ObjGroup.Vendor || Object.group == ObjGroup.NPC
+                    || Object.group == ObjGroup.EnemySpawn || Object.group == ObjGroup.Ditch
+                    || Object.group == ObjGroup.MountainWall || Object.group == ObjGroup.Projectile)
+                { return; }
+
+                //if object is airborne, it shouldn't sink
+                if (Object.compMove.grounded == false) { return; }
 
                 //if an obj is moveable, then hero can push it, then it should sink in water
                 if (Object.compMove.moveable)
