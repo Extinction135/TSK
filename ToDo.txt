@@ -50,43 +50,20 @@ Today:
 
 
 
+Enums++
 
-
-
-Water++
-
-fixed a bug where various gameobjects didn't sink
-into water properly, like turtles, rats, crabs..
-
-added check to ensure floating / flying objects
-dont sink into water.
-
-added check to ensure floating / flying actors
-dont sink or swim in water. < this was what was
-causing miniboss to have null reference error on 
-his animation frames / animation groups. he *was*
-being put into a swimming state, because we never
-checked to see if the actor was flying.
+changed objgroup enum from MountainWalls to Wall_Climable.
+this more accurately describes what the enum value models.
+tried to migrate colliseum walls to climbable state, but
+the way they were designed (in 1x2 strips) doesn't work
+for climbing, and they will have to be redesigned (based
+on the mountain wall sprites) to be climbable.
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-change objgroup enum from mountain walls to gravity walls.
-then add colliseum walls into that obj group.
 
 
 
@@ -97,13 +74,19 @@ then add colliseum walls into that obj group.
 
 Colliseum walls++
 make colliseum walls function just like mountain walls,
-pushing hero south. this means we need to add a top wall 
-section - which will further reduce objects in the colliseum,
+pushing hero south. this means we need to add top + bottom wall
+sections - which will further reduce objects in the colliseum,
 since we are using pillar tops to 'seal' the wall up top.
 instead just make a top colliseum wall sprite, since its
 needed to climb up and exit walls anyway. then, we can add
 footholds to the colliseum's back wall, if player wants to
-climb around while a challenge is happening.
+climb around while a challenge is happening. we can even 
+make the back wall alot taller with more footholds too.
+
+
+
+
+
 
 
 

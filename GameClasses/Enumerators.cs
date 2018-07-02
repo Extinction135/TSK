@@ -208,7 +208,7 @@ namespace DungeonRun
         EnemySpawn,
         Ditch,
 
-        MountainWall,
+        Wall_Climbable, //for wall climbing objects
 
         //entities
         Pickup,

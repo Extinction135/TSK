@@ -245,9 +245,9 @@ namespace DungeonRun
             #endregion
 
 
-            #region MountainWalls
+            #region Climbable Walls
 
-            else if (Obj.group == ObjGroup.MountainWall)
+            else if (Obj.group == ObjGroup.Wall_Climbable)
             {
                 //Notes
                 //mid walls start falls - from the top
@@ -257,7 +257,12 @@ namespace DungeonRun
                 //bottom walls push south
                 //if actor is climbing, mid/bottom walls dont push them
 
-                if (Obj.type == ObjType.Wor_MountainWall_Mid)
+                if (Obj.type == ObjType.Wor_MountainWall_Mid
+                    //colliseum walls
+                    || Obj.type == ObjType.Wor_Colliseum_Bricks_Left
+                    || Obj.type == ObjType.Wor_Colliseum_Bricks_Middle1
+                    || Obj.type == ObjType.Wor_Colliseum_Bricks_Middle2
+                    || Obj.type == ObjType.Wor_Colliseum_Bricks_Right)
                 {
                     if (Actor.state == ActorState.Climbing) { return; }
 
@@ -586,7 +591,7 @@ namespace DungeonRun
             //so we temporarily turn on their blocking, then check, then turn off
 
             //mountain walls dont block, but we'll to pretend they do for this check
-            if(RoomObj.group == ObjGroup.MountainWall)
+            if(RoomObj.group == ObjGroup.Wall_Climbable)
             { RoomObj.compCollision.blocking = true; }
 
             #endregion
@@ -823,7 +828,7 @@ namespace DungeonRun
             if (RoomObj.type == ObjType.Wor_SeekerExploder)
             { RoomObj.compCollision.blocking = false; }
 
-            if (RoomObj.group == ObjGroup.MountainWall)
+            if (RoomObj.group == ObjGroup.Wall_Climbable)
             { RoomObj.compCollision.blocking = false; }
 
             #endregion
@@ -1070,7 +1075,7 @@ namespace DungeonRun
                 if (Object.group == ObjGroup.Wall || Object.group == ObjGroup.Door
                     || Object.group == ObjGroup.Vendor || Object.group == ObjGroup.NPC
                     || Object.group == ObjGroup.EnemySpawn || Object.group == ObjGroup.Ditch
-                    || Object.group == ObjGroup.MountainWall || Object.group == ObjGroup.Projectile)
+                    || Object.group == ObjGroup.Wall_Climbable || Object.group == ObjGroup.Projectile)
                 { return; }
 
                 //if object is airborne, it shouldn't sink
@@ -1151,9 +1156,9 @@ namespace DungeonRun
             #endregion
 
 
-            #region Gravity Walls
+            #region Climbable Walls
 
-            else if (RoomObj.group == ObjGroup.MountainWall)
+            else if (RoomObj.group == ObjGroup.Wall_Climbable)
             {
                 //wall moves obj fast, if obj is moving slow then this is initial fall
                 if (Object.compMove.magnitude.Y < 2.0f & Object.compMove.magnitude.Y > 0.5f)

@@ -1813,9 +1813,7 @@ namespace DungeonRun
                 Obj.compCollision.rec.Width = 16; Obj.compCollision.offsetX = -8;
                 Obj.compCollision.rec.Height = 16 * 2; Obj.compCollision.offsetY = -8;
 
-                Obj.compSprite.zOffset = 0;
                 Obj.canBeSaved = true;
-                Obj.compCollision.blocking = true;
 
                 if (Type == ObjType.Wor_Colliseum_Bricks_Left)
                 { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Colliseum_Bricks_Left; }
@@ -1828,6 +1826,13 @@ namespace DungeonRun
 
                 Obj.sfx.hit = Assets.sfxTapMetallic;
                 Obj.sfx.kill = null;
+
+                //we need to model these walls after the top, mid, bottom approach
+                //developed for mountain
+
+                //Obj.group = ObjGroup.Wall_Climbable;
+                Obj.compCollision.blocking = true; //false for climbing
+                Obj.compSprite.zOffset = -18; //sorts under footholds
             }
 
             #endregion
@@ -1907,7 +1912,7 @@ namespace DungeonRun
                 Obj.compSprite.zOffset = -18; //sorts under footholds
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = false;
-                //Obj.group = ObjGroup.MountainWall;
+                //Obj.group = ObjGroup.Wall_Climbable; //do not do this!
             }
             else if (Type == ObjType.Wor_MountainWall_Mid)
             {   //nonstandard size
@@ -1920,7 +1925,7 @@ namespace DungeonRun
                 Obj.compSprite.zOffset = -18; //sorts under footholds
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = false;
-                Obj.group = ObjGroup.MountainWall;
+                Obj.group = ObjGroup.Wall_Climbable;
             }
             else if (Type == ObjType.Wor_MountainWall_Bottom)
             {   //nonstandard size
@@ -1933,7 +1938,7 @@ namespace DungeonRun
                 Obj.compSprite.zOffset = -18; //sorts under footholds
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = false;
-                Obj.group = ObjGroup.MountainWall;
+                Obj.group = ObjGroup.Wall_Climbable;
             }
 
             else if (Type == ObjType.Wor_MountainWall_Foothold
@@ -1955,7 +1960,7 @@ namespace DungeonRun
                 Obj.compSprite.zOffset = -16; //sorts under hero
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = false;
-                Obj.group = ObjGroup.MountainWall;
+                Obj.group = ObjGroup.Wall_Climbable;
 
                 //randomly flip sprite horizontally
                 if (Functions_Random.Int(0, 100) < 50)
