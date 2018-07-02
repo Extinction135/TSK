@@ -51,62 +51,56 @@ Today:
 
 
 
-Climbing with pets
 
-pets should match hero's position, plus 4 or 6 pixels
-on y axis, if hero is climbing or falling. this means
-pet teleports to hero's back upon a climb. while pet is
-on hero's back, pet ignores all collisions and their ai
-changes to simply play the pet's soundfx randomly.
-done, and basically working.
+Climbing with Pets
 
-updated initial falling routine for climbable walls
-to ignore hero's pet if hero is climbing with pet.
-this prevents the stuttering effect and the initial
-push particles from being created when hero starts
-climbing the wall, because the pet object was being
-forcibly teleported to the hero's position - then
-the walls were trying to push it and thought it
-was the objects initial fall too.
+improved climbing with pet dog, now just the dog's
+head is displayed on the player's back, acting more
+like an icon reminding player what type of pet they
+have. which is more or less what I want for this
+climbing state - player should know their pet is
+'with them', but isn't taking up too much screen
+space so that hero's climbing animation is hidden.
+this also fixes a bug where dog would display as
+swimming if hero started climb while pet was swimming.
 
-added code to sort pet over hero while in climbing
-state. this helps to sell the effect of having the
-pet in the hero's backpack.
+tested finishing climb with pet dog, fixed a bug
+where foothold and ladder objects were being treated
+as mountain walls and pushing objects. because of
+where hero was ending his climb (at the top), the
+foothold he ended his climb on was overlapping the
+pet dog, and always tossing the dog off the cliff
+as soon as hero stood up. which, in hindsight, is
+pretty funny - but not the game behavior we want.
+dont worry, the pet dog can't be hurt at all.
 
-fixed a bug where pets would display their swimming
-animation on the wall, if hero began his climb from
-a swimming state (in water).
-
-fixed a bug where pets would fly off the edge of a
-cliff that hero had just climbed. because we're
-teleporting pet onto hero's back, pet is still 
-overlapping a wall object when hero completes his
-climb - causing the pet to instantly fall.
-
-updated mountain level, fixing an annoying issue
-with the easiest path for climbing up. a bush was
-in the way, preventing a proper landing state from
-triggering. 
+reduced the probability of pet's sfx playing.
+dog barked too much. 
 
 
 
 
+Bugs
 
 
+*exploder seekers show color from colliseum sheet
+upon death explosion.. why?
 
 
-
+proper shadows on world debris - these are currently
+opaque med dark gray. not correct.
 
 
 
 
 *we should only be passing mouse input to the game
-if the game has focus...
+if the game has focus... otherwise we click thru from
+other windows doing random stupid stuff to the game.
 
 
-*we should only be displaying the dog's head, centered
-to the sprite frame. if dog is in water, then dog remains
-in water if hero is climbing - that looks very wrong.
+
+
+
 
 
 
@@ -122,14 +116,17 @@ enemies now spawn centered to colliseum.
 
 
 
-
-
 infinite fairies cheat
 this allows for damage and death to occur, but prevents
 a gameover. add a boolean into flags, which is checked in
 bottle use routines. if true, the upon heros death game
 assume a fairt bottle is present. add this cheat to the
 cheats menu.
+
+
+
+
+
 
 
 

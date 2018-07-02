@@ -1163,9 +1163,19 @@ namespace DungeonRun
 
             else if (RoomObj.group == ObjGroup.Wall_Climbable)
             {
-                //if hero is climbing with the object as pet, ignore falling
-                if (Object == Pool.herosPet & Pool.hero.state == ActorState.Climbing) { return; }
+                //prevent certain wall objs from pulling any objects down the wall
+                if (RoomObj.type == ObjType.Wor_MountainWall_Foothold
+                    || RoomObj.type == ObjType.Wor_MountainWall_Ladder
+                    || RoomObj.type == ObjType.Wor_MountainWall_Ladder_Trap)
+                { return; }
 
+                //if hero is climbing/landed with the object as pet, ignore push
+                if (Object == Pool.herosPet)
+                {
+                    if (Pool.hero.state == ActorState.Climbing || Pool.hero.state == ActorState.Landed)
+                    { return; }
+                }
+                
                 //wall moves obj fast, if obj is moving slow then this is initial fall
                 if (Object.compMove.magnitude.Y < 2.0f & Object.compMove.magnitude.Y > 0.5f)
                 {   //play soundfx and directional cue on initial fall

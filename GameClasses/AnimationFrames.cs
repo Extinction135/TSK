@@ -576,6 +576,7 @@ namespace DungeonRun
         public static List<Byte4> Pet_Dog_Idle = new List<Byte4> { new Byte4(0, 1, 0, 0), new Byte4(1, 1, 0, 0) };
         public static List<Byte4> Pet_Dog_Move = new List<Byte4> { new Byte4(1, 1, 0, 0), new Byte4(2, 1, 0, 0) };
         public static List<Byte4> Pet_Dog_InWater = new List<Byte4> { new Byte4(3, 1, 0, 0), new Byte4(4, 1, 0, 0) };
+        public static List<Byte4> Pet_Dog_Climbing = new List<Byte4> { new Byte4(5, 1, 0, 0) };
 
         public static List<Byte4> Pet_Chicken_Idle = new List<Byte4>
         { new Byte4(16, 12, 0, 0), new Byte4(17, 12, 0, 0) };

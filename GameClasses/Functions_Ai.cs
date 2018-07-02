@@ -831,22 +831,22 @@ namespace DungeonRun
                     //this simulates hero climbing with pet in his backpack
                     Functions_Movement.Teleport(Obj.compMove,
                         Pool.hero.compSprite.position.X,
-                        Pool.hero.compSprite.position.Y + 6);
+                        Pool.hero.compSprite.position.Y + 0);
                     Functions_Component.Align(Obj);
 
                     Obj.compSprite.zOffset = 16; //sort pet over hero
                     Obj.inWater = false; //pet isn't in water while on wall
                 }
                 else if(Pool.hero.state == ActorState.Landed)
-                {   //prevents pet from falling down wall when hero 'lands' at top
+                {   //prevent pet from falling down wall when hero 'lands' at top
                     Functions_Movement.Teleport(Obj.compMove,
                         Pool.hero.compSprite.position.X,
-                        Pool.hero.compSprite.position.Y);
+                        //move north until no longer overlapping
+                        Pool.hero.compSprite.position.Y -= 1); 
                     Functions_Component.Align(Obj);
                     //sort pet under hero (on ground)
-                    Obj.compSprite.zOffset = -8; 
+                    Obj.compSprite.zOffset = -8;
                 }
-
                 else
                 {
                     //pet is free to roam around the game world (not in hero's backpack)
@@ -883,15 +883,23 @@ namespace DungeonRun
                 { Obj.compSprite.flipHorizontally = true; }
                 else { Obj.compSprite.flipHorizontally = false; } //moving right 
 
-                //set animFrame, based on movement and inWater boolean
-                //if dogs in water, set to water animation, else set to moving anim, else idle anim
-                if (Obj.inWater) { Obj.compAnim.currentAnimation = AnimationFrames.Pet_Dog_InWater; }
+
+                //set the animation frame, based on a number of factors
+
+                //climbing
+                if (Pool.hero.state == ActorState.Climbing)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Pet_Dog_Climbing; }
+                //swimming
+                else if (Obj.inWater)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Pet_Dog_InWater; }
+                //moving
                 else if (Math.Abs(Obj.compMove.magnitude.X) > 0 || Math.Abs(Obj.compMove.magnitude.Y) > 0)
                 { Obj.compAnim.currentAnimation = AnimationFrames.Pet_Dog_Move; }
+                //not moving - idle
                 else { Obj.compAnim.currentAnimation = AnimationFrames.Pet_Dog_Idle; }
 
                 //play the pet's sound fx occasionally
-                if (Functions_Random.Int(0, 101) > 99) { Assets.Play(Assets.sfxPetDog); }
+                if (Functions_Random.Int(0, 1001) > 995) { Assets.Play(Assets.sfxPetDog); }
             }
 
             #endregion
