@@ -589,7 +589,6 @@ namespace DungeonRun
             #endregion
 
 
-
             // *** Projectile vs Blocking RoomObj Interactions *** \\
 
             if (RoomObj.compCollision.blocking)
@@ -806,24 +805,6 @@ namespace DungeonRun
 
                     #endregion
 
-
-
-
-
-
-                    #region Reset Special Objects post Interaction
-
-                    //projectile checks against these objects complete,
-                    //return them to their non-blocking state
-                    if (RoomObj.type == ObjType.Wor_SeekerExploder)
-                    { RoomObj.compCollision.blocking = false; }
-
-                    if (RoomObj.group == ObjGroup.MountainWall)
-                    { RoomObj.compCollision.blocking = false; }
-
-                    #endregion
-
-                    return;
                 }
 
                 //an interaction is an overlap not handled by collision system
@@ -832,7 +813,17 @@ namespace DungeonRun
             }
 
 
-            
+            #region Reset Special Objects post Interaction
+
+            //projectile checks against these objects complete,
+            //return them to their non-blocking state
+            if (RoomObj.type == ObjType.Wor_SeekerExploder)
+            { RoomObj.compCollision.blocking = false; }
+
+            if (RoomObj.group == ObjGroup.MountainWall)
+            { RoomObj.compCollision.blocking = false; }
+
+            #endregion
 
 
 
@@ -846,30 +837,7 @@ namespace DungeonRun
 
 
 
-            #region Gravity Walls
-
-            if (RoomObj.group == ObjGroup.MountainWall)
-            {   //limit how much we can push objs (terminal velocity)
-                if (Object.compMove.magnitude.Y < terminalVelocity)
-                {   //fall/push
-                    Functions_Movement.Push(Object.compMove, Direction.Down, 1.5f);
-                    
-                    //we could grab a shadow from the shadow pool and place it here to 
-                    //fake depth and distance away from the wall / ground
-                }
-                //wall moves obj fast, if obj is moving slow then this is initial fall
-                if (Object.compMove.magnitude.Y < 2.0f) 
-                {   //play soundfx and directional cue on initial fall
-                    Assets.Play(Assets.sfxActorFall);
-                    Functions_Particle.Spawn(
-                        ObjType.Particle_Push, 
-                        Object.compSprite.position.X + 4,
-                        Object.compSprite.position.Y - 8, 
-                        Direction.Down);
-                } 
-            }
-
-            #endregion
+            
 
 
 
@@ -1174,7 +1142,32 @@ namespace DungeonRun
             #endregion
 
 
+            #region Gravity Walls
 
+            else if (RoomObj.group == ObjGroup.MountainWall)
+            {
+                //wall moves obj fast, if obj is moving slow then this is initial fall
+                if (Object.compMove.magnitude.Y < 2.0f & Object.compMove.magnitude.Y > 0.5f)
+                {   //play soundfx and directional cue on initial fall
+                    Assets.Play(Assets.sfxActorFall);
+                    Functions_Particle.Spawn(
+                        ObjType.Particle_Push,
+                        Object.compSprite.position.X + 4,
+                        Object.compSprite.position.Y - 8,
+                        Direction.Down);
+                }
+
+                //limit how much we can push objs (terminal velocity)
+                if (Object.compMove.magnitude.Y < terminalVelocity)
+                {   //fall/push
+                    Functions_Movement.Push(Object.compMove, Direction.Down, 1.5f);
+
+                    //we could grab a shadow from the shadow pool and place it here to 
+                    //fake depth and distance away from the wall / ground
+                }
+            }
+
+            #endregion
 
 
 
