@@ -51,33 +51,18 @@ Today:
 
 
 
-
-
-Mountain Entrance Signpost++
-
-added proper dialog for mountain entrance
-signpost - telling player how to climb, jump,
-and grab footholds. playtested, working.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Falling++
+
 while falling, the comp input direction should not 
-apply the actor's speed to it's comp move. this causes
-the actor to slow down, if the direction is up.
+apply the actor's speed to the move component. 
+this causes actor to slow down, if the direction is up.
 instead, we should only accept left and right, and
-diagonal directions that resolve to L/R.
+diagonal directions that resolve to L/R. 
+done & tested.
+
+
+
+
 
 
 
@@ -89,14 +74,11 @@ they should.
 
 
 
+change objgroup enum from mountain walls to gravity walls.
+then add colliseum walls into that obj group.
 
 
 
-SignPost at Mountain Entrance level should explain:
-"You can climb by pressing the A button on
-ladders and footholds. Be careful, you'll fall."
-"Press B to jump off the wall. While falling, 
-press A to grab onto a foothold again."
 
 
 

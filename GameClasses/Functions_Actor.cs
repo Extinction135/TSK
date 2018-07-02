@@ -968,10 +968,32 @@ namespace DungeonRun
                     {
                         if (Functions_Input.IsNewButtonPress(Buttons.A))
                         {
+
+                            #region Resolve input direction to left or right
+
+                            if (Input.gamePadDirection == Direction.Up 
+                                || Input.gamePadDirection == Direction.Down)
+                            { Input.gamePadDirection = Direction.None; }
+
+                            else if (Input.gamePadDirection == Direction.UpLeft
+                                || Input.gamePadDirection == Direction.DownLeft)
+                            { Input.gamePadDirection = Direction.Left; }
+
+                            else if (Input.gamePadDirection == Direction.UpRight
+                                || Input.gamePadDirection == Direction.DownRight)
+                            { Input.gamePadDirection = Direction.Right; }
+
+                            #endregion
+
+
+
                             //set hero.direction based on controller input *right now*
                             Pool.hero.direction = Input.gamePadDirection;
                             //this direction will be used in check() below
                             //to set where interaction point is placed
+
+                            //however, we dont want any up direction
+                            
 
                             //check to see if hero can grab a foothold/ladder
                             Functions_Hero.CheckInteractionRec();
