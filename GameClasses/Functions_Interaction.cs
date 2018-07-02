@@ -803,9 +803,27 @@ namespace DungeonRun
                         //thrown objs die upon blocking collision
                         Functions_Projectile.Kill(Object);
                     }
-                    
+
                     #endregion
 
+
+
+
+
+
+                    #region Reset Special Objects post Interaction
+
+                    //projectile checks against these objects complete,
+                    //return them to their non-blocking state
+                    if (RoomObj.type == ObjType.Wor_SeekerExploder)
+                    { RoomObj.compCollision.blocking = false; }
+
+                    if (RoomObj.group == ObjGroup.MountainWall)
+                    { RoomObj.compCollision.blocking = false; }
+
+                    #endregion
+
+                    return;
                 }
 
                 //an interaction is an overlap not handled by collision system
@@ -815,26 +833,6 @@ namespace DungeonRun
 
 
             
-            #region Reset Special Objects post Interaction
-
-            //projectile checks against the seeker complete
-            if (RoomObj.type == ObjType.Wor_SeekerExploder)
-            { RoomObj.compCollision.blocking = false; }
-            //return seeker to non-blocking state, allowing overlap
-
-            //do the same for mountain walls
-            if (RoomObj.group == ObjGroup.MountainWall)
-            { RoomObj.compCollision.blocking = false; }
-
-            #endregion
-
-
-
-            //projectile interactions complete
-            if (Object.group == ObjGroup.Projectile) { return; }
-
-
-
 
 
 

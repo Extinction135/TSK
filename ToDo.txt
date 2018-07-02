@@ -48,43 +48,17 @@ Today:
 
 
 
+Interaction Bug
 
-
-
-**bug: swords no longer cut tall grass?
-
-
-
-
-
-
-
-Falling++
-
-room objects should be pushed south just like actors.
-done, a pushed object 'falls' down mountain walls.
-added some pushable objects to mountain level for testing.
-
-fixed a bug where mountain top walls were pushing
-objects, but not actors, leading a situation where
-objects fell sooner than actors, which felt wrong.
-however this created a bug where player could dig
-out top mountain wall objects using shovel. updated
-dig() to check to top mountain wall objects. done.
-
-Obj Falling++
-added soundfx for initial object fall.
-added push particle for initial object fall too.
-this sells the effect of the hero pushing an object
-over the wall. although, obj could use a shadow.
-lots of playtesting.
-
-
-
-
-
-
-
+fixed a bug where swords would no longer cut tall
+grass, and likely other bugs too. the issue: interaction
+routine between obj and obj was returning from method
+after projectile check using a group check for projectile.
+not good - because the non-blocking interactions between
+projectiles and tall grass come after that. the fix was
+to move the return call INTO the blocking v projectile
+routine check, where it originally lived for many versions.
+playtested, fixed.
 
 
 
