@@ -49,21 +49,21 @@ Today:
 
 
 
-Blob++
 
-created 2 frame landing animation for blob.
-tested that blob actors fall correctly.
 
-Interations++
-fixed more interaction bugs, at the cost
-of higher frame times, because we're no longer
-returning from the interaction method early.
 
-Falling++
-improved check controlling initial object
-falling routine. it was being played at incorrect
-times while playtesting object falling.
-lots of playtesting to get this right.
+
+Mountain Entrance Signpost++
+
+added proper dialog for mountain entrance
+signpost - telling player how to climb, jump,
+and grab footholds. playtested, working.
+
+
+
+
+
+
 
 
 
@@ -86,16 +86,6 @@ turtles, and other roomObj enemies dont fall into water.
 they should.
 
 
-
-
-*improve objs falling down mountain walls...
-they should have a shadow below them, offset, to
-fake distance away from the wall.
-
-
-Loose Grip
-when hero loses his grip on the wall, create a smoke
-particle, so player gets some visual feedback.
 
 
 

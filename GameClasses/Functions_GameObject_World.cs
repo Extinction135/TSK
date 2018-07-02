@@ -178,6 +178,12 @@ namespace DungeonRun
             {
                 ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Signpost_TheFarm));
             }
+            else if (Level.ID == LevelID.Mountain_Entrance)
+            {
+                ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Signpost_MountainEntrance));
+            }
+
+
             else
             {   //bare minimum, we pop a blank standard dialog
                 ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Signpost_Standard));

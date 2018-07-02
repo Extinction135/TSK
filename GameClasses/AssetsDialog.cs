@@ -169,6 +169,14 @@ namespace DungeonRun
                 Assets.sfxTextLetter, false, false, false)
         };
 
+        public static List<Dialog> Signpost_MountainEntrance = new List<Dialog>
+        {
+            new Dialog(ObjType.Hero_Idle, "The Mountain",
+                "Climb the mountain using A to grab onto a foothold.\n" +
+                "Press B to jump off the wall. Press A to grab again, while falling.",
+                Assets.sfxTextLetter, false, false, false)
+        };
+
         #endregion
 
 

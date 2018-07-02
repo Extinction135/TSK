@@ -1061,7 +1061,7 @@ namespace DungeonRun
                                 //if foothold does not contain center point of actor, actor loses grip and falls
                                 if (Pool.roomObjPool[i].compCollision.rec.Contains(Actor.compSprite.position))
                                 {   //Actor.state = ActorState.Climbing;
-                                    Actor.lockTotal = 1; 
+                                    Actor.lockTotal = 1;
                                 }
                             }
                             
