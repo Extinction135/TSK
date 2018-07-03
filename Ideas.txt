@@ -11,7 +11,23 @@ creates a mythos that will bait and hook people into playing.
 
 
 
+add *king's tournament challenge*
+- this is ladder fight of bosses
+- we have tons of bosses to put here, from master/forest/dev
 
+
+
+
+Colliseum walls++
+make colliseum walls function just like mountain walls,
+pushing hero south. this means we need to add top + bottom wall
+sections - which will further reduce objects in the colliseum,
+since we are using pillar tops to 'seal' the wall up top.
+instead just make a top colliseum wall sprite, since its
+needed to climb up and exit walls anyway. then, we can add
+footholds to the colliseum's back wall, if player wants to
+climb around while a challenge is happening. we can even 
+make the back wall alot taller with more footholds too.
 
 
 

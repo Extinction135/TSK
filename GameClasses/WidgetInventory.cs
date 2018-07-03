@@ -111,7 +111,8 @@ namespace DungeonRun
         public void SetInventoryMenuItems()
         {
 
-            #region Items - 0 thru 3, 7 thru 10, 14 thru 20
+
+            #region Items - 0 thru 20
 
             //0 = boomerang
             Functions_MenuItem.SetType(MenuItemType.ItemBoomerang, menuItems[0]);
@@ -130,42 +131,34 @@ namespace DungeonRun
 
             //3 - magic mirror
 
-            //7 - hookshot
-            //8 - ?
-            //9 - ?
-            //10 - ?
-
-            //14 - mirror shield
-            //15 - cape
-            //16 - firerod
-            //17 - icerod
-            //18 - shovel
-            //19 - cane1
-            //20 - cane2
-
-            #endregion
-
-
-            #region Bottles - 4, 5, 6
-
+            //Bottles - 4, 5, 6
             //set the hero's inventory bottles to the contents of the saveData bottles
             Functions_MenuItem.SetType(PlayerData.current.bottleA, menuItems[4]);
             Functions_MenuItem.SetType(PlayerData.current.bottleB, menuItems[5]);
             Functions_MenuItem.SetType(PlayerData.current.bottleC, menuItems[6]);
 
-            #endregion
+            //7 - hookshot
+            //8 - ?
+            //9 - ?
+            //10 - ?
 
-
-            #region Set the magic medallion items - 11, 12, 13
-
+            //Set the magic medallion items - 11, 12, 13
             if (PlayerData.current.magicFireball)
             { Functions_MenuItem.SetType(MenuItemType.MagicFireball, menuItems[11]); }
-
             if (PlayerData.current.magicBombos)
             { Functions_MenuItem.SetType(MenuItemType.MagicBombos, menuItems[12]); }
-
             if (PlayerData.current.magicBolt)
             { Functions_MenuItem.SetType(MenuItemType.MagicBolt, menuItems[13]); }
+
+            //14 - mirror shield
+            //15 - cape
+            //16 - firerod
+            //17 - icerod
+            //18 - cane1
+            //19 - cane2
+
+            //Enemy Item - 20
+            Functions_MenuItem.SetType(PlayerData.current.enemyItem, menuItems[20]);
 
             #endregion
 
@@ -180,11 +173,11 @@ namespace DungeonRun
             //23 - shovel
             if (PlayerData.current.weaponShovel)
             { Functions_MenuItem.SetType(MenuItemType.WeaponShovel, menuItems[23]); }
-            //24 - (fang)
-            if (PlayerData.current.weaponFang)
-            { Functions_MenuItem.SetType(MenuItemType.WeaponFang, menuItems[24]); }
+            //24 - 
             //25 - 
-            //26 - 
+            //26 -
+            //Enemy Weapon - 27
+            Functions_MenuItem.SetType(PlayerData.current.enemyWeapon, menuItems[27]);
 
             #endregion
 
@@ -212,6 +205,7 @@ namespace DungeonRun
             //41 - ?
 
             #endregion
+
 
         }
 

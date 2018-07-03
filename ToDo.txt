@@ -47,51 +47,105 @@ Today:
 
 
 
-RoomData++
+Bat Projectile
 
-updated hub rooms, based on the idea not
-all minibosses will be flying - removed pits,
-water features, etc..
-
-fixed an off by one output bug that incorrectly
-displayed the number of levels and rooms when
-converting xml to cs.
-
-
-
-
-
-
-
-
-
-Enemies
-
-
-
-
-miniboss fights should be fun, and in rooms that
-are interesting to fight in - not dangerous. remove
-pits, water objects, spikes.. focus on fun, not
-challenge.
-
-
-
-
+the idea is we want to have a projectile that looks
+and flys like a bat, so the bat boss can shoot bats 
+out of his wings at hero.
 
 bat projectile: flys in a direction until collision with
 object or actor, dealing power level 1 damage to obj/actor,
-and pushing very slightly..
-bat projectile is located on the mountain sheet.
+and pushing very slightly. bat projectile is located 
+on the mountain sheet.
+
+created bat projectile, modeled after arrow,
+but slower and with different animation.
+modified bow to shoot bat projectiles (for testing).
+too awesome not to keep.. soo.. quick detour..
+
+EnemyItems : BatMagic + Fang
+
+bat magic functions like arrow, but takes no magic
+to cast, and unlocks caster after a few frames, so
+it can be spammed very quickly.
+fang is already implemented.
+these two objects are now conceptually known as
+'enemy items'.
+
+created bat magic medallion, which creates a bat 
+projectile upon use. unlocks caster after a few frames,
+costs nothing, so it can be spammed infinitely.
+bat boss will use this exact strategy to create
+his special attack. player can use the same strategy
+too - via the unlockAll cheat.
+
+designed where enemy item and enemy weapon menuItems
+exist in inventory widget - they are the last items
+in those categories (items, weapons). any enemy item
+gets set into the 1 slot available to hero. this means
+hero can only carry 1 enemy item and 1 enemy weapon 
+at a time.
+
+bat magic is not for sale, only available from
+the unlockAll cheat. 
+removed saveData.weaponFang from game.
+
+lots of playtesting to make sure bats, bat magic,
+and the new enemy items system work.
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+should be able to cast bats diagonally...
+
+
+
+
+
+
+
+
+
+
+Boss++
 bat boss: opens his wings and spews forth bat projectiles at
-the hero, who must run and dodge the slightly laggy waterfall
-of bats flying at him. we'll need bat projectiles for this.
+the hero, who must run and dodge the waterfall of flying bats.
+update mountain dungeon to use bat boss.
 
 
 
 
+SleepingBat
+sleeping bat roomObject: uses the upside down
+bat sprite from mountain's 31,0 frame. when hero
+gets close enough, this obj becomes a bat projectile,
+with a direction towards hero's last position.
+this means bat doesn't track hero, so hero can move.
+also, bat pro has randomness applied to it's spawn,
+so it's very likely the bat will move unpredictably,
+but it will at least be moving towards hero.
+
+put sleeping bats on the mountain entrance level.
+DO NOT put these objs in dungeon room data.
+
+
+
+
+
+
+
+Miniboss++
 spider miniboss: has 2 phases: armored and not armored.
 starts off armored, at half health armor 'breaks' via
 shatter soundfx and multiple rising smoke particles.
@@ -101,6 +155,7 @@ and taunts. and smokes like other minis/bosses.
 
 
 
+Bat World Enemy
 bat world enemy: bat flys towards hero and bites
 him. if bat creates a bite projectile, bat removes itself.
 *the difference between world bat and beefy bat is that
@@ -110,6 +165,27 @@ beefy bat can bite multiple times and has 2 hp.
 
 
 
+this complete implementation of mountain dungeon, so far.
+- technially 0.75 is done at this point. -
+
+
+
+
+
+
+
+
+exterior colliseum floors really do need to be lighter...
+
+
+
+
+Enemy Items VENDOR
+enemy items exist in the last slot of
+each type - item, weapon, armor, equipment..
+meaning hero can only hold one of them at a time.
+the only place to get these items is from the enemy
+items vendor, located outside the colliseum (for now).
 
 
 
@@ -157,70 +233,6 @@ miniboss or boss - like training wheels dungeon.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-implement bat boss, spider miniboss, bat mob, bat projectile
-
-
-mountain enemies:
-
-bats: fly towards hero, biting him if they get close enough.
-
-
-
-*we should make a damaged version of black eye, that looks
-cracked, and we should switch to this version for phase 2.
-this improves the visual feedback representing damage progress.
-
-
-
-
-
-
-
-
-
-
-Mountain Dungeon
-
-mountain dungeon enemies:
-standard: dark spider (from rescueDog)
-boss: big bat (dash moves, dives, spawns bat mobs)
-miniboss: med bat (dash moves, dives)
-mob: sm flying bat (seeks and bite-pushes hero)
-
-
-forest dungeon enemies:
-standard: 
-	floating angry eye - flying, sm hitbox
-	*need more frames for angry eye (hit, cast)
-	shocktopus - flying, sm hitbox
-boss: big eye
-miniboss: blackeye
-mob: seekerExploder
-
-EnemySpawns++
-for each dungeon, enemy spawn 1 simply creates
-that dungeon's standard enemy at that location.
-if there is more than one standard enemy for
-that dungeon, then randomly choose one.
-*note: most standard enemies are flying, so
-they dont have to deal with swim states. so
-far, only the blob standard enemy fully
-implements all hero states...
-
-
-add room enemies to object widgets, based on 
-what level they 'belong' to.
 
 
 
@@ -357,27 +369,12 @@ or dungeon. should start inside a dungeon.
 
 
 Colliseum +++
-extend colliseum with additional challenges.
+extend colliseum with additional BAT (mountain) challenges.
 add more miniboss + boss challenges.
 add more standard enemy challenges.
 add *colliseum unique* creature challenges.
 
-add *king's tournament challenge*
-- this is ladder fight of bosses
-- we have tons of bosses to put here, from master/forest/dev
 
-
-
-Colliseum walls++
-make colliseum walls function just like mountain walls,
-pushing hero south. this means we need to add top + bottom wall
-sections - which will further reduce objects in the colliseum,
-since we are using pillar tops to 'seal' the wall up top.
-instead just make a top colliseum wall sprite, since its
-needed to climb up and exit walls anyway. then, we can add
-footholds to the colliseum's back wall, if player wants to
-climb around while a challenge is happening. we can even 
-make the back wall alot taller with more footholds too.
 
 
 
@@ -394,10 +391,7 @@ hand placed.
 
 
 
-release 0.75... 
-
-
-
+release polished 0.75... 
 
 
 

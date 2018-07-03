@@ -607,9 +607,10 @@ namespace DungeonRun
                 if (Object.group == ObjGroup.Projectile)
                 {
 
-                    #region Arrow
+                    #region Arrow / Bat
 
-                    if (Object.type == ObjType.ProjectileArrow)
+                    if (Object.type == ObjType.ProjectileArrow
+                        || Object.type == ObjType.ProjectileBat)
                     {   //arrows trigger common obj interactions
                         Functions_GameObject.HandleCommon(RoomObj, Object.compMove.direction);
                         //arrows die upon blocking collision

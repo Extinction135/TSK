@@ -227,6 +227,13 @@ namespace DungeonRun
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Magic_Bolt;
                 MenuItem.price = 99;
             }
+            else if (Type == MenuItemType.MagicBat)
+            {
+                MenuItem.name = "Bat Magic";
+                MenuItem.description = "shoots bats, cause \nwhy not? no cost.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Magic_Bat;
+                MenuItem.price = 99;
+            }
 
             #endregion
 

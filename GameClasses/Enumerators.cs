@@ -523,8 +523,10 @@ namespace DungeonRun
         //Projectiles - casted magic
         ProjectileBombos,
 
-        //Projectiles - invisible
+        //Projectiles - enemy related
         ProjectileBite,
+        ProjectileBat,
+
 
         
 
@@ -669,6 +671,7 @@ namespace DungeonRun
         MagicFireball,
         MagicBombos,
         MagicBolt,
+        MagicBat,
 
         WeaponSword,
         WeaponNet, 

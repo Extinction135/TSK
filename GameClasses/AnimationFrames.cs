@@ -431,6 +431,9 @@ namespace DungeonRun
             new Byte4(7, 2, 0, 0)
         };
 
+        public static List<Byte4> Projectile_Bat = new List<Byte4>
+        { new Byte4(31, 1, 0, 0), new Byte4(31, 2, 0, 0) };
+
         #endregion
 
 
@@ -666,6 +669,8 @@ namespace DungeonRun
         public static List<Byte4> Ui_MenuItem_Magic_Fireball = new List<Byte4> { new Byte4(2, 5, 0, 0) };
         public static List<Byte4> Ui_MenuItem_Magic_Bombos = new List<Byte4> { new Byte4(2, 6, 0, 0) };
         public static List<Byte4> Ui_MenuItem_Magic_Bolt = new List<Byte4> { new Byte4(2, 7, 0, 0) };
+        public static List<Byte4> Ui_MenuItem_Magic_Bat = new List<Byte4> { new Byte4(2, 8, 0, 0) };
+
 
         public static List<Byte4> Ui_MenuItem_Weapon_Sword = new List<Byte4> { new Byte4(3, 5, 0, 0) };
         public static List<Byte4> Ui_MenuItem_Weapon_Net = new List<Byte4> { new Byte4(3, 7, 0, 0) };
@@ -709,6 +714,8 @@ namespace DungeonRun
 
         static AnimationFrames()
         {
+
+            //standard actors
 
             #region Hero Animations - Link and Blob
 
@@ -973,8 +980,6 @@ namespace DungeonRun
             #endregion
 
 
-
-
             #region BeefyBat Animations
 
             Standard_BeefyBat_Animations = new ActorAnimationList();
@@ -1027,6 +1032,79 @@ namespace DungeonRun
 
 
 
+
+            //miniboss actors
+
+            #region Miniboss - Blackeye
+
+            MiniBoss_BlackEye_Animations = new ActorAnimationList();
+
+            //movement
+            MiniBoss_BlackEye_Animations.idle = new AnimationGroup();
+            MiniBoss_BlackEye_Animations.idle.down = new List<Byte4> { new Byte4(8, 2, 0, 0), new Byte4(9, 2, 0, 0) };
+            MiniBoss_BlackEye_Animations.idle.up = MiniBoss_BlackEye_Animations.idle.down;
+            MiniBoss_BlackEye_Animations.idle.right = MiniBoss_BlackEye_Animations.idle.down;
+            MiniBoss_BlackEye_Animations.idle.left = MiniBoss_BlackEye_Animations.idle.down;
+
+            MiniBoss_BlackEye_Animations.move = MiniBoss_BlackEye_Animations.idle;
+            MiniBoss_BlackEye_Animations.idleCarry = MiniBoss_BlackEye_Animations.idle;
+            MiniBoss_BlackEye_Animations.moveCarry = MiniBoss_BlackEye_Animations.idle;
+            MiniBoss_BlackEye_Animations.interact = MiniBoss_BlackEye_Animations.idle;
+
+            //dash is semi-shut eye
+            MiniBoss_BlackEye_Animations.dash = new AnimationGroup();
+            MiniBoss_BlackEye_Animations.dash.down = new List<Byte4> { new Byte4(10, 2, 0, 0) };
+            MiniBoss_BlackEye_Animations.dash.up = MiniBoss_BlackEye_Animations.dash.down;
+            MiniBoss_BlackEye_Animations.dash.right = MiniBoss_BlackEye_Animations.dash.down;
+            MiniBoss_BlackEye_Animations.dash.left = MiniBoss_BlackEye_Animations.dash.down;
+
+            //attack is semi-shut eye too
+            MiniBoss_BlackEye_Animations.attack = MiniBoss_BlackEye_Animations.dash;
+
+            MiniBoss_BlackEye_Animations.hit = new AnimationGroup();
+            MiniBoss_BlackEye_Animations.hit.down = new List<Byte4> { new Byte4(11, 2, 0, 0) };
+            MiniBoss_BlackEye_Animations.hit.up = MiniBoss_BlackEye_Animations.hit.down;
+            MiniBoss_BlackEye_Animations.hit.right = MiniBoss_BlackEye_Animations.hit.down;
+            MiniBoss_BlackEye_Animations.hit.left = MiniBoss_BlackEye_Animations.hit.down;
+
+            MiniBoss_BlackEye_Animations.reward = MiniBoss_BlackEye_Animations.hit;
+            MiniBoss_BlackEye_Animations.pickupThrow = MiniBoss_BlackEye_Animations.attack;
+
+            MiniBoss_BlackEye_Animations.death_blank = new AnimationGroup();
+            MiniBoss_BlackEye_Animations.death_blank.down = new List<Byte4>
+            {
+                new Byte4(11, 2, 0, 0), new Byte4(12, 2, 0, 0),
+                new Byte4(13, 2, 0, 0), new Byte4(14, 2, 0, 0),
+                new Byte4(15, 2, 0, 0) //leftover cracked debris
+            };
+
+            MiniBoss_BlackEye_Animations.death_blank.up = MiniBoss_BlackEye_Animations.death_blank.down;
+            MiniBoss_BlackEye_Animations.death_blank.right = MiniBoss_BlackEye_Animations.death_blank.down;
+            MiniBoss_BlackEye_Animations.death_blank.left = MiniBoss_BlackEye_Animations.death_blank.down;
+
+            MiniBoss_BlackEye_Animations.death_heroic = MiniBoss_BlackEye_Animations.death_blank;
+            MiniBoss_BlackEye_Animations.death_heroic_water = MiniBoss_BlackEye_Animations.death_blank;
+
+            MiniBoss_BlackEye_Animations.grab = MiniBoss_BlackEye_Animations.idle;
+            MiniBoss_BlackEye_Animations.push = MiniBoss_BlackEye_Animations.idle;
+            MiniBoss_BlackEye_Animations.swim_idle = MiniBoss_BlackEye_Animations.idle;
+            MiniBoss_BlackEye_Animations.swim_move = MiniBoss_BlackEye_Animations.idle;
+            MiniBoss_BlackEye_Animations.swim_dash = MiniBoss_BlackEye_Animations.idle;
+            MiniBoss_BlackEye_Animations.swim_hit = MiniBoss_BlackEye_Animations.idle;
+            MiniBoss_BlackEye_Animations.swim_reward = MiniBoss_BlackEye_Animations.idle;
+            MiniBoss_BlackEye_Animations.underwater_idle = MiniBoss_BlackEye_Animations.idle;
+            MiniBoss_BlackEye_Animations.underwater_move = MiniBoss_BlackEye_Animations.idle;
+            MiniBoss_BlackEye_Animations.falling = MiniBoss_BlackEye_Animations.idle;
+            MiniBoss_BlackEye_Animations.landed = MiniBoss_BlackEye_Animations.idle;
+            MiniBoss_BlackEye_Animations.climbing = MiniBoss_BlackEye_Animations.idle;
+
+
+            #endregion
+
+
+
+
+            //boss actors
 
             #region Boss Big Eye Animations
 
@@ -1094,72 +1172,6 @@ namespace DungeonRun
 
             #endregion
 
-
-            #region Miniboss - Blackeye
-
-            MiniBoss_BlackEye_Animations = new ActorAnimationList();
-
-            //movement
-            MiniBoss_BlackEye_Animations.idle = new AnimationGroup();
-            MiniBoss_BlackEye_Animations.idle.down = new List<Byte4> { new Byte4(8, 2, 0, 0), new Byte4(9, 2, 0, 0) };
-            MiniBoss_BlackEye_Animations.idle.up = MiniBoss_BlackEye_Animations.idle.down;
-            MiniBoss_BlackEye_Animations.idle.right = MiniBoss_BlackEye_Animations.idle.down;
-            MiniBoss_BlackEye_Animations.idle.left = MiniBoss_BlackEye_Animations.idle.down;
-
-            MiniBoss_BlackEye_Animations.move = MiniBoss_BlackEye_Animations.idle;
-            MiniBoss_BlackEye_Animations.idleCarry = MiniBoss_BlackEye_Animations.idle;
-            MiniBoss_BlackEye_Animations.moveCarry = MiniBoss_BlackEye_Animations.idle;
-            MiniBoss_BlackEye_Animations.interact = MiniBoss_BlackEye_Animations.idle;
-
-            //dash is semi-shut eye
-            MiniBoss_BlackEye_Animations.dash = new AnimationGroup();
-            MiniBoss_BlackEye_Animations.dash.down = new List<Byte4> { new Byte4(10, 2, 0, 0) };
-            MiniBoss_BlackEye_Animations.dash.up = MiniBoss_BlackEye_Animations.dash.down;
-            MiniBoss_BlackEye_Animations.dash.right = MiniBoss_BlackEye_Animations.dash.down;
-            MiniBoss_BlackEye_Animations.dash.left = MiniBoss_BlackEye_Animations.dash.down;
-
-            //attack is semi-shut eye too
-            MiniBoss_BlackEye_Animations.attack = MiniBoss_BlackEye_Animations.dash;
-
-            MiniBoss_BlackEye_Animations.hit = new AnimationGroup();
-            MiniBoss_BlackEye_Animations.hit.down = new List<Byte4> { new Byte4(11, 2, 0, 0) };
-            MiniBoss_BlackEye_Animations.hit.up = MiniBoss_BlackEye_Animations.hit.down;
-            MiniBoss_BlackEye_Animations.hit.right = MiniBoss_BlackEye_Animations.hit.down;
-            MiniBoss_BlackEye_Animations.hit.left = MiniBoss_BlackEye_Animations.hit.down;
-
-            MiniBoss_BlackEye_Animations.reward = MiniBoss_BlackEye_Animations.hit;
-            MiniBoss_BlackEye_Animations.pickupThrow = MiniBoss_BlackEye_Animations.attack;
-
-            MiniBoss_BlackEye_Animations.death_blank = new AnimationGroup();
-            MiniBoss_BlackEye_Animations.death_blank.down = new List<Byte4>
-            {
-                new Byte4(11, 2, 0, 0), new Byte4(12, 2, 0, 0),
-                new Byte4(13, 2, 0, 0), new Byte4(14, 2, 0, 0),
-                new Byte4(15, 2, 0, 0) //leftover cracked debris
-            };
-
-            MiniBoss_BlackEye_Animations.death_blank.up = MiniBoss_BlackEye_Animations.death_blank.down;
-            MiniBoss_BlackEye_Animations.death_blank.right = MiniBoss_BlackEye_Animations.death_blank.down;
-            MiniBoss_BlackEye_Animations.death_blank.left = MiniBoss_BlackEye_Animations.death_blank.down;
-
-            MiniBoss_BlackEye_Animations.death_heroic = MiniBoss_BlackEye_Animations.death_blank;
-            MiniBoss_BlackEye_Animations.death_heroic_water = MiniBoss_BlackEye_Animations.death_blank;
-
-            MiniBoss_BlackEye_Animations.grab = MiniBoss_BlackEye_Animations.idle;
-            MiniBoss_BlackEye_Animations.push = MiniBoss_BlackEye_Animations.idle;
-            MiniBoss_BlackEye_Animations.swim_idle = MiniBoss_BlackEye_Animations.idle;
-            MiniBoss_BlackEye_Animations.swim_move = MiniBoss_BlackEye_Animations.idle;
-            MiniBoss_BlackEye_Animations.swim_dash = MiniBoss_BlackEye_Animations.idle;
-            MiniBoss_BlackEye_Animations.swim_hit = MiniBoss_BlackEye_Animations.idle;
-            MiniBoss_BlackEye_Animations.swim_reward = MiniBoss_BlackEye_Animations.idle;
-            MiniBoss_BlackEye_Animations.underwater_idle = MiniBoss_BlackEye_Animations.idle;
-            MiniBoss_BlackEye_Animations.underwater_move = MiniBoss_BlackEye_Animations.idle;
-            MiniBoss_BlackEye_Animations.falling = MiniBoss_BlackEye_Animations.idle;
-            MiniBoss_BlackEye_Animations.landed = MiniBoss_BlackEye_Animations.idle;
-            MiniBoss_BlackEye_Animations.climbing = MiniBoss_BlackEye_Animations.idle;
-
-
-            #endregion
 
 
         }

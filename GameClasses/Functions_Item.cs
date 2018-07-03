@@ -67,8 +67,14 @@ namespace DungeonRun
             {
                 if (Actor == Pool.hero & !CheckArrows()) //check if hero has enough
                 { Assets.Play(Assets.sfxError); Actor.lockTotal = 0; return; }
+                
                 //actor shoots an arrow
-                Functions_Projectile.Spawn(ObjType.ProjectileArrow, Actor.compMove, Actor.direction);
+                //Functions_Projectile.Spawn(ObjType.ProjectileArrow, Actor.compMove, Actor.direction);
+                //actor shoots a bat ?
+                Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor.compMove, Actor.direction);
+
+
+
                 //actor displays a bow
                 Functions_Projectile.Spawn(ObjType.ProjectileBow, Actor.compMove, Actor.direction);
                 Functions_Actor.SetItemUseState(Actor);
@@ -103,6 +109,17 @@ namespace DungeonRun
                 Functions_Projectile.Cast_Bolt(Pool.hero);
                 Functions_Actor.SetItemUseState(Actor);
             }
+
+
+            else if (Type == MenuItemType.MagicBat)
+            {
+                //create bat projectile, shorten casting time to allow for spamming
+                Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor.compMove, Actor.direction);
+                Functions_Actor.SetItemUseState(Actor);
+                Actor.lockTotal = 2;
+            }
+
+
 
             #endregion
 

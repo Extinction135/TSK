@@ -606,7 +606,6 @@ namespace DungeonRun
             //set weapons
             PlayerData.current.weaponNet = true;
             PlayerData.current.weaponShovel = true;
-            PlayerData.current.weaponFang = true;
             //set armor
             PlayerData.current.armorCape = true;
             //set equipment
@@ -615,6 +614,10 @@ namespace DungeonRun
             //we could set the pet here too, but we wont for now
             PlayerData.current.petType = MenuItemType.Unknown;
             //PlayerData.current.petType = MenuItemType.PetStinkyDog;
+
+            //setup testing enemy weapon/item
+            PlayerData.current.enemyItem = MenuItemType.MagicBat;
+            PlayerData.current.enemyWeapon = MenuItemType.WeaponFang;
         }
 
 

@@ -182,6 +182,7 @@ namespace DungeonRun
                         || currentlySelected.type == MenuItemType.MagicFireball
                         || currentlySelected.type == MenuItemType.MagicBombos
                         || currentlySelected.type == MenuItemType.MagicBolt
+                        || currentlySelected.type == MenuItemType.MagicBat
                         )
                     {
                         PlayerData.current.currentItem = currentlySelected.type;

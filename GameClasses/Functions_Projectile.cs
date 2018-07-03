@@ -320,11 +320,59 @@ namespace DungeonRun
             #endregion
 
 
-            else if(Type == ObjType.ProjectileBite)
+            #region Bat projectile
+
+            else if (Type == ObjType.ProjectileBat)
+            {
+                //initially place bat outside of caster
+                if (Dir == Direction.Down)
+                {
+                    Functions_Movement.Teleport(pro.compMove,
+                        Caster.newPosition.X + 0,
+                        Caster.newPosition.Y + 16);
+                }
+                else if (Dir == Direction.Up)
+                {
+                    Functions_Movement.Teleport(pro.compMove,
+                        Caster.newPosition.X + 0,
+                        Caster.newPosition.Y - 14);
+                }
+                else if (Dir == Direction.Right)
+                {
+                    Functions_Movement.Teleport(pro.compMove,
+                        Caster.newPosition.X + 16,
+                        Caster.newPosition.Y + 1);
+                }
+                else if (Dir == Direction.Left)
+                {
+                    Functions_Movement.Teleport(pro.compMove,
+                        Caster.newPosition.X - 16,
+                        Caster.newPosition.Y + 1);
+                }
+                Functions_Component.Align(pro); //align components
+                Assets.Play(Assets.sfxRatSqueak);
+                pushLines = true;
+
+                //push bat in initial direction, plus random direction
+                Functions_Movement.Push(pro.compMove, Dir, 2.0f);
+                Functions_Movement.Push(pro.compMove, Functions_Direction.GetRandomDirection(), 0.5f);
+            }
+
+            #endregion
+
+
+
+            #region Bite Projectile
+
+            else if (Type == ObjType.ProjectileBite)
             {
                 Assets.Play(Assets.sfxEnemyTaunt);
                 pushLines = true;
             }
+
+            #endregion
+
+
 
             HandleBehavior(pro);
             if (pushLines) { Functions_Particle.SpawnPushFX(Caster, Dir); }
@@ -342,7 +390,8 @@ namespace DungeonRun
         public static void Kill(GameObject Obj)
         {
             //contains death events for projectiles
-            if (Obj.type == ObjType.ProjectileArrow)
+            if (Obj.type == ObjType.ProjectileArrow
+                || Obj.type == ObjType.ProjectileBat)
             {
                 Functions_Particle.Spawn(
                     ObjType.Particle_Attention,

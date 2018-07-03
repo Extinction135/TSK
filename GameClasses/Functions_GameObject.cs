@@ -321,7 +321,8 @@ namespace DungeonRun
                 || Obj.type == ObjType.ProjectilePot
                 || Obj.type == ObjType.ProjectilePotSkull
                 || Obj.type == ObjType.ProjectileBush
-                || Obj.type == ObjType.ProjectileBoomerang)
+                || Obj.type == ObjType.ProjectileBoomerang
+                || Obj.type == ObjType.ProjectileBat)
             {   //some objects only face Direction.Down
                 Obj.direction = Direction.Down;
             }
@@ -2294,7 +2295,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Projectiles - Invisible (bite)
+            #region Projectiles - Enemy Related
 
             else if (Type == ObjType.ProjectileBite)
             {
@@ -2321,7 +2322,27 @@ namespace DungeonRun
 
             }
 
+            else if (Type == ObjType.ProjectileBat)
+            {
+                Obj.compSprite.zOffset = 16;
+
+                Obj.compCollision.offsetX = -4; Obj.compCollision.offsetY = -4-4;
+                Obj.compCollision.rec.Width = 8; Obj.compCollision.rec.Height = 8;
+
+                Obj.group = ObjGroup.Projectile;
+                Obj.lifetime = 200; //in frames
+                Obj.compAnim.speed = 10; //in frames
+                Obj.compMove.friction = 1.0f; //no air friction
+                Obj.compMove.moveable = true;
+                Obj.compMove.grounded = false; //obj is airborne
+                Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Bat;
+                Obj.compSprite.texture = Assets.mountainLevelSheet;
+                Obj.sfx.kill = Assets.sfxRatSqueak;
+                Obj.sfx.hit = null;
+            }
+
             #endregion
+
 
             //Particles
 

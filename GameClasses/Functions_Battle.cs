@@ -76,7 +76,11 @@ namespace DungeonRun
             {   //bite deals 1 damage, push 5
                 damage = 1; force = 5.0f; direction = Obj.direction;
             }
-
+            else if (Obj.type == ObjType.ProjectileBat)
+            {   //bats deal 1 damage, push 4, and die
+                damage = 1; force = 4.0f; direction = Obj.direction;
+                Obj.lifeCounter = Obj.lifetime;
+            }
 
 
             //power level 2 projectiles
