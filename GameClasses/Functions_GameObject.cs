@@ -396,7 +396,12 @@ namespace DungeonRun
 
             //set the type and texture first
             Obj.type = Type;
-            Functions_Texture.SetObjTexture(Obj);
+
+            //these objs inherit their texture sheets from prev obj state
+            if (Obj.type == ObjType.ExplodingObject) { }
+            //set the obj's texture based on level.id
+            else { Functions_Texture.SetObjTexture(Obj); }
+            
             //below in type checks, objs/particles/projectiles/pickups 
             //switch their textures to whatever sheet they need
 

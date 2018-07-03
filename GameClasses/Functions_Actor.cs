@@ -559,12 +559,12 @@ namespace DungeonRun
         public static void Transform(Actor Actor, ActorType Type)
         {   //transforms one actor into another
             SetType(Actor, Type);
-            //update hero's loadout
+
             if (Actor == Pool.hero)
-            {   //get hero's loadout, store actor type
-                Functions_Hero.SetLoadout();
+            {   //store actor type
                 PlayerData.current.actorType = Actor.type;
             }
+
             Functions_Particle.Spawn(ObjType.Particle_Attention, Actor);
         }
 

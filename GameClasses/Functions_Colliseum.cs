@@ -70,7 +70,7 @@ namespace DungeonRun
                 }
             }
 
-            //loop over ChallengeSet.actors, creating them near back wall
+            //loop over ChallengeSet.actors, creating them centered near back wall
             for (i = 0; i < Challenge.Count; i++)
             {
                 actorRef = Functions_Pool.GetActor();
@@ -78,12 +78,16 @@ namespace DungeonRun
                 Functions_Movement.Teleport(
                     actorRef.compMove,
 
+                    //X
                     Level.currentRoom.rec.X //start with the room's x pos
                     + Level.currentRoom.rec.Width / 2 //get the center X
-                    - 16 * 5 //move 5 tiles left
-                    + 16 * i, //from there, place actors in a horizontal line
-
-                    Level.currentRoom.rec.Y + 16 * 18); //place behind enemies
+                    + 16 * Functions_Random.Int(-5, 5) //add random offset
+                    + 8, //add offset to exactly center to room, because ocd
+                    //Y
+                    Level.currentRoom.rec.Y + 16 * 24 //near center / back wall
+                    + 16 * Functions_Random.Int(-4, 4) //add random offset
+                    
+                    ); 
                 actorRef.direction = Direction.Down;
                 Functions_Actor.SetType(actorRef, Challenge[i]);
             }
@@ -103,7 +107,7 @@ namespace DungeonRun
                     + 16 * i //from there, place objs in a horizontal line
                     + 8, //with a small alignment offset
 
-                    Level.currentRoom.spawnPos.Y + 16 * 2 - 8);
+                    Level.currentRoom.spawnPos.Y + 16 * 2 - 8); //place behind enemies
                 objRef.direction = Direction.Down;
                 Functions_GameObject.SetType(objRef, ObjType.Wor_Colliseum_Pillar_Top);
             }

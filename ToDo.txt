@@ -52,67 +52,54 @@ Today:
 
 
 
-Climbing with Pets
-
-improved climbing with pet dog, now just the dog's
-head is displayed on the player's back, acting more
-like an icon reminding player what type of pet they
-have. which is more or less what I want for this
-climbing state - player should know their pet is
-'with them', but isn't taking up too much screen
-space so that hero's climbing animation is hidden.
-this also fixes a bug where dog would display as
-swimming if hero started climb while pet was swimming.
-
-tested finishing climb with pet dog, fixed a bug
-where foothold and ladder objects were being treated
-as mountain walls and pushing objects. because of
-where hero was ending his climb (at the top), the
-foothold he ended his climb on was overlapping the
-pet dog, and always tossing the dog off the cliff
-as soon as hero stood up. which, in hindsight, is
-pretty funny - but not the game behavior we want.
-dont worry, the pet dog can't be hurt at all.
-
-reduced the probability of pet's sfx playing.
-dog barked too much. 
-
-
-
-
-Bugs
-
-
-*exploder seekers show color from colliseum sheet
-upon death explosion.. why?
-
-
-proper shadows on world debris - these are currently
-opaque med dark gray. not correct.
-
-
-
-
-*we should only be passing mouse input to the game
-if the game has focus... otherwise we click thru from
-other windows doing random stupid stuff to the game.
 
 
 
 
 
+Better Colliseum Spawning
 
-
-
-
-
-
-
-better colliseum spawning
 get colliseum's center point (room.center).
-add a random offset to it, within 16*4 radius.
-spawn enemy there. repeat for all enemies.
-enemies now spawn centered to colliseum.
+add a random offset to it, spawn enemy there. 
+repeat for all enemies. enemies now spawn 
+centered to colliseum. done pretty much like
+described.
+
+I Feexed Bugs
+
+1. exploder seekers show color from colliseum sheet
+upon death explosion.. why? because we call obj.setType()
+when we change to exploding object from seeker, setType()
+then calls setobj texture(), which sets the obj texture
+based on the level.id, which was colliseum at the time.
+we just added a check to obj.setType() to see if obj is
+an exploding object, then bypass the set texture call.
+tested and fixed.
+
+2. proper shadows on world debris - these are currently
+opaque med dark gray. not correct. done, updated all
+level sheets too.
+
+3. using blob in a bottle didn't clear the bottle
+in hero's item slot (it did in hero's inventory).
+this allows inifinite useage. why? in actor.transform()
+a call was made to set the hero's inventory, which 
+loaded the data from playerData.current, which had
+the bottle in it's data. the fix was to remove the
+call to load the hero's inventory, which was really
+only being done as polish - because everything except
+the sword is dropped from the current loadout when
+hero transforms into blob (that's because blob is
+an actor just like hero and actually has null armor,
+item, and equipment).
+
+
+
+
+
+
+
+
 
 
 
@@ -122,6 +109,27 @@ a gameover. add a boolean into flags, which is checked in
 bottle use routines. if true, the upon heros death game
 assume a fairt bottle is present. add this cheat to the
 cheats menu.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*we should only be passing mouse input to the game
+if the game has focus... otherwise we click thru from
+other windows doing random stupid stuff to the game.
+
+
 
 
 
