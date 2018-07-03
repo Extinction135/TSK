@@ -80,7 +80,8 @@ namespace DungeonRun
 
             //determine the direction the projectile should inherit
             if (Type == ObjType.ProjectileBomb
-                || Type == ObjType.ProjectileBoomerang)
+                || Type == ObjType.ProjectileBoomerang
+                || Type == ObjType.ProjectileBat)
             { } //do nothing, we want to be able to throw these projectiles diagonally
             else
             {   //set the projectiles direction to a cardinal one
@@ -324,6 +325,12 @@ namespace DungeonRun
 
             else if (Type == ObjType.ProjectileBat)
             {
+
+
+                //we aren't taking into account diagonals here...
+
+
+
                 //initially place bat outside of caster
                 if (Dir == Direction.Down)
                 {
@@ -341,14 +348,48 @@ namespace DungeonRun
                 {
                     Functions_Movement.Teleport(pro.compMove,
                         Caster.newPosition.X + 16,
-                        Caster.newPosition.Y + 1);
+                        Caster.newPosition.Y + 0);
                 }
                 else if (Dir == Direction.Left)
                 {
                     Functions_Movement.Teleport(pro.compMove,
                         Caster.newPosition.X - 16,
-                        Caster.newPosition.Y + 1);
+                        Caster.newPosition.Y + 0);
                 }
+
+
+
+
+                //diagonals
+                else if (Dir == Direction.UpRight)
+                {
+                    Functions_Movement.Teleport(pro.compMove,
+                        Caster.newPosition.X + 16,
+                        Caster.newPosition.Y - 14);
+                }
+                else if (Dir == Direction.UpLeft)
+                {
+                    Functions_Movement.Teleport(pro.compMove,
+                        Caster.newPosition.X - 16,
+                        Caster.newPosition.Y - 14);
+                }
+                else if (Dir == Direction.DownRight)
+                {
+                    Functions_Movement.Teleport(pro.compMove,
+                        Caster.newPosition.X + 16,
+                        Caster.newPosition.Y + 16);
+                }
+                else if (Dir == Direction.DownLeft)
+                {
+                    Functions_Movement.Teleport(pro.compMove,
+                        Caster.newPosition.X - 16,
+                        Caster.newPosition.Y + 16);
+                }
+
+
+
+
+
                 Functions_Component.Align(pro); //align components
                 Assets.Play(Assets.sfxRatSqueak);
                 pushLines = true;

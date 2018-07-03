@@ -47,69 +47,17 @@ Today:
 
 
 
-Bat Projectile
-
-the idea is we want to have a projectile that looks
-and flys like a bat, so the bat boss can shoot bats 
-out of his wings at hero.
-
-bat projectile: flys in a direction until collision with
-object or actor, dealing power level 1 damage to obj/actor,
-and pushing very slightly. bat projectile is located 
-on the mountain sheet.
-
-created bat projectile, modeled after arrow,
-but slower and with different animation.
-modified bow to shoot bat projectiles (for testing).
-too awesome not to keep.. soo.. quick detour..
-
-EnemyItems : BatMagic + Fang
-
-bat magic functions like arrow, but takes no magic
-to cast, and unlocks caster after a few frames, so
-it can be spammed very quickly.
-fang is already implemented.
-these two objects are now conceptually known as
-'enemy items'.
-
-created bat magic medallion, which creates a bat 
-projectile upon use. unlocks caster after a few frames,
-costs nothing, so it can be spammed infinitely.
-bat boss will use this exact strategy to create
-his special attack. player can use the same strategy
-too - via the unlockAll cheat.
-
-designed where enemy item and enemy weapon menuItems
-exist in inventory widget - they are the last items
-in those categories (items, weapons). any enemy item
-gets set into the 1 slot available to hero. this means
-hero can only carry 1 enemy item and 1 enemy weapon 
-at a time.
-
-bat magic is not for sale, only available from
-the unlockAll cheat. 
-removed saveData.weaponFang from game.
-
-lots of playtesting to make sure bats, bat magic,
-and the new enemy items system work.
 
 
 
 
 
 
+Projectiles++
 
-
-
-
-
-
-
-
-
-should be able to cast bats diagonally...
-
-
+can now cast bat projectiles diagonally.
+fixed a dev setting where bow was creating bat
+projectiles. now it's creating arrows again.
 
 
 

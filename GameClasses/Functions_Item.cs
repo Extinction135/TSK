@@ -67,14 +67,8 @@ namespace DungeonRun
             {
                 if (Actor == Pool.hero & !CheckArrows()) //check if hero has enough
                 { Assets.Play(Assets.sfxError); Actor.lockTotal = 0; return; }
-                
                 //actor shoots an arrow
-                //Functions_Projectile.Spawn(ObjType.ProjectileArrow, Actor.compMove, Actor.direction);
-                //actor shoots a bat ?
-                Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor.compMove, Actor.direction);
-
-
-
+                Functions_Projectile.Spawn(ObjType.ProjectileArrow, Actor.compMove, Actor.direction);
                 //actor displays a bow
                 Functions_Projectile.Spawn(ObjType.ProjectileBow, Actor.compMove, Actor.direction);
                 Functions_Actor.SetItemUseState(Actor);
