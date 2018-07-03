@@ -3,24 +3,6 @@
   <type>Column</type>
   <objs>
     <ObjXmlData>
-      <type>Wor_Enemy_Rat</type>
-      <direction>Down</direction>
-      <posX>8</posX>
-      <posY>56</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Enemy_Rat</type>
-      <direction>Down</direction>
-      <posX>168</posX>
-      <posY>264</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Enemy_Rat</type>
-      <direction>Down</direction>
-      <posX>136</posX>
-      <posY>8</posY>
-    </ObjXmlData>
-    <ObjXmlData>
       <type>Dungeon_Switch</type>
       <direction>Down</direction>
       <posX>88</posX>
@@ -699,12 +681,6 @@
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_SpawnMob</type>
-      <direction>Down</direction>
-      <posX>8</posX>
-      <posY>296</posY>
-    </ObjXmlData>
-    <ObjXmlData>
       <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>104</posX>
@@ -913,24 +889,6 @@
       <direction>Down</direction>
       <posX>104</posX>
       <posY>72</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpawnMob</type>
-      <direction>Down</direction>
-      <posX>168</posX>
-      <posY>296</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpawnMob</type>
-      <direction>Down</direction>
-      <posX>168</posX>
-      <posY>8</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpawnMob</type>
-      <direction>Down</direction>
-      <posX>8</posX>
-      <posY>8</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_BlockLight</type>

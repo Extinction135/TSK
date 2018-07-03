@@ -420,24 +420,6 @@
       <type>Dungeon_Barrel</type>
       <direction>Down</direction>
       <posX>152</posX>
-      <posY>104</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_Barrel</type>
-      <direction>Down</direction>
-      <posX>136</posX>
-      <posY>88</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_Barrel</type>
-      <direction>Down</direction>
-      <posX>152</posX>
-      <posY>72</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_Barrel</type>
-      <direction>Down</direction>
-      <posX>152</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
@@ -475,12 +457,6 @@
       <direction>Down</direction>
       <posX>168</posX>
       <posY>56</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_Barrel</type>
-      <direction>Down</direction>
-      <posX>168</posX>
-      <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_Barrel</type>
@@ -810,12 +786,6 @@
       <type>Dungeon_Pot</type>
       <direction>Down</direction>
       <posX>136</posX>
-      <posY>104</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_Pot</type>
-      <direction>Down</direction>
-      <posX>136</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
@@ -823,18 +793,6 @@
       <direction>Down</direction>
       <posX>168</posX>
       <posY>40</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_Pot</type>
-      <direction>Down</direction>
-      <posX>168</posX>
-      <posY>72</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_Pot</type>
-      <direction>Down</direction>
-      <posX>168</posX>
-      <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_Pot</type>
@@ -913,12 +871,6 @@
       <direction>Down</direction>
       <posX>264</posX>
       <posY>40</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_Pot</type>
-      <direction>Down</direction>
-      <posX>136</posX>
-      <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_ConveyorBeltOn</type>

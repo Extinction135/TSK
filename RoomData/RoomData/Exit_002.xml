@@ -12,31 +12,7 @@
       <type>Wor_Enemy_Rat</type>
       <direction>Down</direction>
       <posX>8</posX>
-      <posY>24</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Enemy_Rat</type>
-      <direction>Down</direction>
-      <posX>104</posX>
-      <posY>40</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Enemy_Rat</type>
-      <direction>Down</direction>
-      <posX>24</posX>
-      <posY>88</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Enemy_Rat</type>
-      <direction>Down</direction>
-      <posX>168</posX>
-      <posY>72</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Enemy_Rat</type>
-      <direction>Down</direction>
-      <posX>136</posX>
-      <posY>136</posY>
+      <posY>8</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_Signpost</type>

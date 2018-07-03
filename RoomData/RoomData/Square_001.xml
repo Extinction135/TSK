@@ -3,30 +3,6 @@
   <type>Square</type>
   <objs>
     <ObjXmlData>
-      <type>Wor_Enemy_Rat</type>
-      <direction>Down</direction>
-      <posX>136</posX>
-      <posY>40</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Enemy_Rat</type>
-      <direction>Down</direction>
-      <posX>8</posX>
-      <posY>40</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Enemy_Rat</type>
-      <direction>Down</direction>
-      <posX>40</posX>
-      <posY>136</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Enemy_Rat</type>
-      <direction>Down</direction>
-      <posX>168</posX>
-      <posY>136</posY>
-    </ObjXmlData>
-    <ObjXmlData>
       <type>Dungeon_Barrel</type>
       <direction>Down</direction>
       <posX>88</posX>
@@ -114,42 +90,18 @@
       <type>Dungeon_SpawnMob</type>
       <direction>Down</direction>
       <posX>72</posX>
-      <posY>72</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpawnMob</type>
-      <direction>Down</direction>
-      <posX>72</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_SpawnMob</type>
       <direction>Down</direction>
       <posX>104</posX>
-      <posY>72</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpawnMob</type>
-      <direction>Down</direction>
-      <posX>104</posX>
       <posY>88</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpawnMob</type>
-      <direction>Down</direction>
-      <posX>72</posX>
-      <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_SpawnMob</type>
       <direction>Down</direction>
       <posX>88</posX>
-      <posY>104</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpawnMob</type>
-      <direction>Down</direction>
-      <posX>104</posX>
       <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>

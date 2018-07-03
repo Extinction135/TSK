@@ -48,57 +48,29 @@ Today:
 
 
 
-
-
-
-Beefy Bat
-
-this is the standard actor in mountain dungeon.
-flys around, creates bite projectile if close
-enough to hero - but doesn't have an attack animation.
-we still lock bb into attack state for 15 frames tho.
-bb should have 2 hp, but we should spawn two of them
-for every enemy spawn (more mobs).
-
-added widget for mountain dungeon to editor.
-updated build routines to create 2 bats per
-enemy spawn object in room. lowered bats hp
-to 2 to compensate for their additional number.
-
-Why was this done? 
-the mountain dungeon is supposed to be harder 
-than the forest dungeon - however, the bat is 
-essentially the same enemy as the angry eye, 
-a flying actor with a bite attack.
-in order to make them more distinct, one is
-stronger than the other (more hp) but is more
-rare to find (spawn number). this is simply the
-beginning of making these two actors distinct,
-since I'm literally copying and pasting code
-to get the initial bat actor in-game.
-
-tested bat 1v1, working well.
-tested bat 1vMany, working very well.
-tested bat in mountain dungeon, working well.
-
-
-
-
-
-
-
-
-
-
 Dungeon RoomData++
-you can have 1 rat in the exit room.
-reduce the overall number of enemy spawns too.
+
+you can have 1 rat in the exit room, 
+that's it! if we litter the rooms with 
+rats, then all dungeons begin to look 
+the same - ratty. pun and done.
+
+reduce the overall number of enemy spawns.
 instead, we will be making harder enemies,
 not mobs of them. mobs will be reserved for
-boss fights, for the most part..
+boss fights, for the most part.. done.
 
 remove rats and crabs from dungeon room data.
-these are outside overworld enemies.
+these are outside overworld enemies. done.
+
+create different hub room types. done.
+updated various rooms with better design,
+or more interesting room layouts.
+
+playtested, dungeon rooms feel better.
+
+
+
 
 
 
@@ -112,6 +84,8 @@ rats and crabs should "bite", but turtles dont.
 all types can be picked up and carried, but rats
 and crabs will eventually bite link, causing link
 to throw the creature and take 1 damage.
+
+
 
 
 

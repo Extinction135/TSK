@@ -3,34 +3,16 @@
   <type>Key</type>
   <objs>
     <ObjXmlData>
+      <type>Dungeon_Flamethrower</type>
+      <direction>Down</direction>
+      <posX>24</posX>
+      <posY>56</posY>
+    </ObjXmlData>
+    <ObjXmlData>
       <type>Dungeon_ChestKey</type>
       <direction>Down</direction>
-      <posX>152</posX>
+      <posX>151</posX>
       <posY>56</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_Barrel</type>
-      <direction>Down</direction>
-      <posX>56</posX>
-      <posY>56</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_Barrel</type>
-      <direction>Down</direction>
-      <posX>56</posX>
-      <posY>120</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_Barrel</type>
-      <direction>Down</direction>
-      <posX>248</posX>
-      <posY>56</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_Barrel</type>
-      <direction>Down</direction>
-      <posX>248</posX>
-      <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_TorchUnlit</type>
@@ -810,12 +792,6 @@
       <type>Dungeon_ConveyorBeltOn</type>
       <direction>Left</direction>
       <posX>280</posX>
-      <posY>120</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_ConveyorBeltOn</type>
-      <direction>Left</direction>
-      <posX>280</posX>
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
@@ -913,12 +889,6 @@
       <direction>Right</direction>
       <posX>24</posX>
       <posY>40</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_ConveyorBeltOn</type>
-      <direction>Right</direction>
-      <posX>24</posX>
-      <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_ConveyorBeltOn</type>
@@ -1085,13 +1055,7 @@
     <ObjXmlData>
       <type>Dungeon_Flamethrower</type>
       <direction>Down</direction>
-      <posX>344</posX>
-      <posY>8</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_Flamethrower</type>
-      <direction>Down</direction>
-      <posX>152</posX>
+      <posX>280</posX>
       <posY>120</posY>
     </ObjXmlData>
   </objs>

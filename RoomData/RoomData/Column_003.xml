@@ -4,39 +4,9 @@
   <objs>
     <ObjXmlData>
       <type>Dungeon_PitTrap</type>
-      <direction>Down</direction>
+      <direction>Left</direction>
       <posX>8</posX>
       <posY>8</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Enemy_Rat</type>
-      <direction>Down</direction>
-      <posX>8</posX>
-      <posY>56</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Enemy_Rat</type>
-      <direction>Down</direction>
-      <posX>8</posX>
-      <posY>248</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Enemy_Rat</type>
-      <direction>Down</direction>
-      <posX>168</posX>
-      <posY>56</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Enemy_Rat</type>
-      <direction>Down</direction>
-      <posX>56</posX>
-      <posY>8</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Enemy_Rat</type>
-      <direction>Down</direction>
-      <posX>168</posX>
-      <posY>200</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_SwitchBlockUp</type>
@@ -898,19 +868,19 @@
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_PitTrap</type>
-      <direction>Down</direction>
+      <direction>Up</direction>
       <posX>168</posX>
       <posY>8</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_PitTrap</type>
-      <direction>Right</direction>
+      <direction>Left</direction>
       <posX>168</posX>
       <posY>296</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_PitTrap</type>
-      <direction>Down</direction>
+      <direction>Left</direction>
       <posX>8</posX>
       <posY>296</posY>
     </ObjXmlData>

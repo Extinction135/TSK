@@ -3,49 +3,49 @@
   <type>Column</type>
   <objs>
     <ObjXmlData>
-      <type>Wor_Enemy_Rat</type>
+      <type>Dungeon_IceTile</type>
       <direction>Down</direction>
-      <posX>136</posX>
+      <posX>56</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Wor_Enemy_Rat</type>
+      <type>Dungeon_IceTile</type>
       <direction>Down</direction>
-      <posX>152</posX>
-      <posY>56</posY>
+      <posX>72</posX>
+      <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Wor_Enemy_Rat</type>
+      <type>Dungeon_IceTile</type>
       <direction>Down</direction>
-      <posX>24</posX>
-      <posY>24</posY>
+      <posX>120</posX>
+      <posY>264</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Wor_Enemy_Rat</type>
-      <direction>Down</direction>
-      <posX>152</posX>
-      <posY>152</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Enemy_Rat</type>
+      <type>Dungeon_IceTile</type>
       <direction>Down</direction>
       <posX>104</posX>
-      <posY>88</posY>
+      <posY>264</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Wor_Enemy_Rat</type>
+      <type>Dungeon_IceTile</type>
       <direction>Down</direction>
       <posX>40</posX>
-      <posY>152</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Enemy_Rat</type>
-      <direction>Down</direction>
-      <posX>104</posX>
       <posY>232</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Wor_Enemy_Rat</type>
+      <type>Dungeon_IceTile</type>
+      <direction>Down</direction>
+      <posX>56</posX>
+      <posY>248</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_IceTile</type>
+      <direction>Down</direction>
+      <posX>72</posX>
+      <posY>264</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_IceTile</type>
       <direction>Down</direction>
       <posX>40</posX>
       <posY>248</posY>
@@ -54,6 +54,54 @@
       <type>Dungeon_IceTile</type>
       <direction>Down</direction>
       <posX>56</posX>
+      <posY>264</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_IceTile</type>
+      <direction>Down</direction>
+      <posX>104</posX>
+      <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_IceTile</type>
+      <direction>Down</direction>
+      <posX>120</posX>
+      <posY>56</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_IceTile</type>
+      <direction>Down</direction>
+      <posX>136</posX>
+      <posY>72</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_IceTile</type>
+      <direction>Down</direction>
+      <posX>120</posX>
+      <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_IceTile</type>
+      <direction>Down</direction>
+      <posX>136</posX>
+      <posY>56</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_IceTile</type>
+      <direction>Down</direction>
+      <posX>24</posX>
+      <posY>216</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_IceTile</type>
+      <direction>Down</direction>
+      <posX>88</posX>
+      <posY>280</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_IceTile</type>
+      <direction>Down</direction>
+      <posX>56</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
@@ -101,14 +149,14 @@
     <ObjXmlData>
       <type>Dungeon_SwitchBlockBtn</type>
       <direction>Down</direction>
-      <posX>24</posX>
-      <posY>280</posY>
+      <posX>56</posX>
+      <posY>248</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_SwitchBlockBtn</type>
       <direction>Down</direction>
-      <posX>152</posX>
-      <posY>24</posY>
+      <posX>120</posX>
+      <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_SwitchBlockBtn</type>
@@ -335,8 +383,8 @@
     <ObjXmlData>
       <type>Dungeon_IceTile</type>
       <direction>Down</direction>
-      <posX>168</posX>
-      <posY>40</posY>
+      <posX>88</posX>
+      <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_IceTile</type>
@@ -485,56 +533,56 @@
     <ObjXmlData>
       <type>Dungeon_Pot</type>
       <direction>Down</direction>
-      <posX>40</posX>
-      <posY>280</posY>
+      <posX>56</posX>
+      <posY>264</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_Pot</type>
       <direction>Down</direction>
-      <posX>136</posX>
-      <posY>24</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>8</posX>
-      <posY>280</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>24</posX>
-      <posY>296</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>40</posX>
-      <posY>296</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>8</posX>
-      <posY>264</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>136</posX>
-      <posY>8</posY>
+      <posX>120</posX>
+      <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_IceTile</type>
       <direction>Down</direction>
       <posX>152</posX>
-      <posY>8</posY>
+      <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_IceTile</type>
       <direction>Down</direction>
-      <posX>168</posX>
+      <posX>24</posX>
+      <posY>232</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_IceTile</type>
+      <direction>Down</direction>
+      <posX>72</posX>
+      <posY>280</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_IceTile</type>
+      <direction>Down</direction>
+      <posX>104</posX>
       <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_IceTile</type>
+      <direction>Down</direction>
+      <posX>152</posX>
+      <posY>72</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_IceTile</type>
+      <direction>Down</direction>
+      <posX>120</posX>
+      <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_IceTile</type>
+      <direction>Down</direction>
+      <posX>136</posX>
+      <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_IceTile</type>
@@ -575,26 +623,50 @@
     <ObjXmlData>
       <type>Dungeon_Pot</type>
       <direction>Down</direction>
-      <posX>152</posX>
-      <posY>40</posY>
+      <posX>136</posX>
+      <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_Pot</type>
       <direction>Down</direction>
-      <posX>24</posX>
-      <posY>264</posY>
+      <posX>40</posX>
+      <posY>248</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Wor_Enemy_Rat</type>
+      <type>Dungeon_IceTile</type>
+      <direction>Down</direction>
+      <posX>152</posX>
+      <posY>56</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_IceTile</type>
+      <direction>Down</direction>
+      <posX>24</posX>
+      <posY>248</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_IceTile</type>
       <direction>Down</direction>
       <posX>40</posX>
       <posY>264</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Wor_Enemy_Rat</type>
+      <type>Dungeon_IceTile</type>
       <direction>Down</direction>
-      <posX>152</posX>
+      <posX>56</posX>
       <posY>280</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_IceTile</type>
+      <direction>Down</direction>
+      <posX>120</posX>
+      <posY>248</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_IceTile</type>
+      <direction>Down</direction>
+      <posX>56</posX>
+      <posY>56</posY>
     </ObjXmlData>
   </objs>
 </RoomXmlData>
