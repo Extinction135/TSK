@@ -343,11 +343,11 @@ namespace DungeonRun
 
 
         //unique enemies (only appears on specific level / colliseum)
-        public static List<Byte4> Wor_SeekerExploder = new List<Byte4>
-        {
-            new Byte4(16, 3, 0, 0), new Byte4(17, 3, 0, 0),
-            new Byte4(16, 3, 0, 0), new Byte4(17, 3, 1, 0)
-        };
+        public static List<Byte4> Wor_SeekerExploder_Idle = new List<Byte4>
+        { new Byte4(16, 3, 0, 0), new Byte4(17, 3, 0, 0) };
+        public static List<Byte4> Wor_SeekerExploder_Chase = new List<Byte4>
+        { new Byte4(18, 3, 0, 0), new Byte4(19, 3, 0, 0) };
+
 
         #endregion
 

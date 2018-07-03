@@ -46,26 +46,26 @@ Today:
 
 
 
-CollisionRec/HitBox++
-
-upon playtesting it was discovered that hero's collision
-rec is set to non-blocking upon death, and never set back
-to blocking upon a fairy rez. which isn't affecting anything,
-but is incorrect, needs to be fixed, and could affect something.
-fix: removed hero from routine that sets a dead actors
-hitbox to false, making their corpse non-blocking, which is
-pretty important. hero's hitbox remains blocking in death now.
 
 
 
 
+SeekerExploders++
+
+changed seeker exploder sprites.
+now, seekers have two visual modes:
+idle and seeking towards hero.
+when they seek, they blink so player
+knows seekers are tracking them.
+
+in play, this is awesome. you can
+actually see the difference between
+active seekers and non-active seekers
+and kite them more easily. win!
 
 
 
 
-change exploder seekers to the shocker sprites normally
-associated with this large eyeball enemy. use the old
-enemy sprite somewhere else.
 
 
 
@@ -81,7 +81,6 @@ rats and crabs should "bite", but turtles dont.
 all types can be picked up and carried, but rats
 and crabs will eventually bite link, causing link
 to throw the creature and take 1 damage.
-
 
 
 

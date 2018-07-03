@@ -353,7 +353,7 @@ namespace DungeonRun
                 #endregion
 
 
-                #region Seeker Exploders
+                #region Enemy - Seeker Exploders
 
                 else if (Obj.type == ObjType.Wor_SeekerExploder)
                 {
@@ -367,6 +367,7 @@ namespace DungeonRun
                         Obj.direction = Obj.compMove.direction;
                         //seeker moves with high energy
                         Functions_Movement.Push(Obj.compMove, Obj.compMove.direction, 0.25f);
+                        Obj.compAnim.currentAnimation = AnimationFrames.Wor_SeekerExploder_Chase;
                     }
                     else
                     {   //randomly set direction seeker moves
@@ -375,11 +376,13 @@ namespace DungeonRun
                         Obj.direction = Obj.compMove.direction;
                         //seeker moves with less energy
                         Functions_Movement.Push(Obj.compMove, Obj.compMove.direction, 0.1f);
+                        Obj.compAnim.currentAnimation = AnimationFrames.Wor_SeekerExploder_Idle;
                     }
 
                     if (yDistance < 15 & xDistance < 15) //is seeker close enough to explode?
                     {   //instantly explode
-                        Functions_Projectile.Spawn(ObjType.ProjectileExplosion,
+                        Functions_Projectile.Spawn(
+                            ObjType.ProjectileExplosion,
                             Obj.compSprite.position.X,
                             Obj.compSprite.position.Y);
                         Functions_Pool.Release(Obj);

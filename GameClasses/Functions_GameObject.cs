@@ -1673,7 +1673,7 @@ namespace DungeonRun
                 Obj.sfx.hit = Assets.sfxEnemyHit;
                 Obj.sfx.kill = Assets.sfxEnemyKill;
                 //setup animFrame
-                Obj.compAnim.currentAnimation = AnimationFrames.Wor_SeekerExploder;
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_SeekerExploder_Idle;
                 Obj.getsAI = true; //seek to hero and explode
             }
 
