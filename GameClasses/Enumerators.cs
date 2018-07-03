@@ -635,6 +635,8 @@ namespace DungeonRun
         CheatsKey,
         CheatsUnlockAll,
         CheatsClipping,
+        CheatsInfiniteFairies,
+
 
         #endregion
 

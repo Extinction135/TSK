@@ -535,6 +535,14 @@ namespace DungeonRun
                 MenuItem.description = "Toggles interactions\nand collisions on/off.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_CheatOn;
             }
+            else if (Type == MenuItemType.CheatsInfiniteFairies)
+            {
+                MenuItem.name = "Infinite Fairies";
+                MenuItem.description = "A bottled fairy will\n always revive you.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_CheatOn;
+            }
+
+
 
             #endregion
 

@@ -52,6 +52,8 @@ namespace DungeonRun
         public static Boolean UnlockAll = true; //unlocks all items for hero
         public static Boolean Clipping = false; //removes hero from collision/interaction/exit routines
         public static Boolean FuzzyInput = false; //fuzz controller input each frame (for testing) << make into cheat menuitem
+        public static Boolean InfiniteFairies = false; //hero always has fairy in a bottle
+
 
 
         static Flags()
@@ -91,6 +93,8 @@ namespace DungeonRun
                 KeyCheat = false;
                 UnlockAll = false;
                 Clipping = false;
+                FuzzyInput = false;
+                InfiniteFairies = false;
             }
 
             #endregion

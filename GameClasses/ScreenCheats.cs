@@ -115,6 +115,10 @@ namespace DungeonRun
             labels[8].text = "clip\nping";
             Functions_MenuItem.SetType(MenuItemType.CheatsClipping, menuItems[8]);
 
+            //CheatsClipping
+            labels[9].text = "inf\nfair";
+            Functions_MenuItem.SetType(MenuItemType.CheatsInfiniteFairies, menuItems[9]);
+
             #endregion
 
 
@@ -208,7 +212,11 @@ namespace DungeonRun
                     if (Flags.Clipping) { Flags.Clipping = false; }
                     else { Flags.Clipping = true; }
                 }
-
+                else if (currentlySelected.type == MenuItemType.CheatsInfiniteFairies)
+                {
+                    if (Flags.InfiniteFairies) { Flags.InfiniteFairies = false; }
+                    else { Flags.InfiniteFairies = true; }
+                }
 
 
                 #endregion
@@ -360,6 +368,7 @@ namespace DungeonRun
             if (Flags.KeyCheat) { menuItems[6].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
             if (Flags.UnlockAll) { menuItems[7].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
             if (Flags.Clipping) { menuItems[8].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
+            if (Flags.InfiniteFairies) { menuItems[9].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
             //expand this to include additional cheats
         }
 

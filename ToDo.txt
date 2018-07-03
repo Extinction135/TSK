@@ -42,96 +42,21 @@ Roadmap
 
 
 
-
-
 Today:
 
 
 
 
 
+Infinite Fairies Cheat
 
-
-
-
-
-
-
-Better Colliseum Spawning
-
-get colliseum's center point (room.center).
-add a random offset to it, spawn enemy there. 
-repeat for all enemies. enemies now spawn 
-centered to colliseum. done pretty much like
-described.
-
-I Feexed Bugs
-
-1. exploder seekers show color from colliseum sheet
-upon death explosion.. why? because we call obj.setType()
-when we change to exploding object from seeker, setType()
-then calls setobj texture(), which sets the obj texture
-based on the level.id, which was colliseum at the time.
-we just added a check to obj.setType() to see if obj is
-an exploding object, then bypass the set texture call.
-tested and fixed.
-
-2. proper shadows on world debris - these are currently
-opaque med dark gray. not correct. done, updated all
-level sheets too.
-
-3. using blob in a bottle didn't clear the bottle
-in hero's item slot (it did in hero's inventory).
-this allows inifinite useage. why? in actor.transform()
-a call was made to set the hero's inventory, which 
-loaded the data from playerData.current, which had
-the bottle in it's data. the fix was to remove the
-call to load the hero's inventory, which was really
-only being done as polish - because everything except
-the sword is dropped from the current loadout when
-hero transforms into blob (that's because blob is
-an actor just like hero and actually has null armor,
-item, and equipment).
-
-
-
-
-
-
-
-
-
-
-
-infinite fairies cheat
 this allows for damage and death to occur, but prevents
 a gameover. add a boolean into flags, which is checked in
 bottle use routines. if true, the upon heros death game
-assume a fairt bottle is present. add this cheat to the
-cheats menu.
+assume a fairy bottle is present. add this cheat to the
+cheats menu. done. tested. working.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-*we should only be passing mouse input to the game
-if the game has focus... otherwise we click thru from
-other windows doing random stupid stuff to the game.
-
-
-
-
+this is actually fun to play around with too.
 
 
 

@@ -24,7 +24,11 @@ namespace DungeonRun
                 Functions_Item.UseItem(MenuItemType.BottleFairy, Pool.hero);
                 return true;
             }
-
+            else if(Flags.InfiniteFairies)
+            {
+                Functions_Item.UseItem(MenuItemType.BottleFairy, Pool.hero);
+                return true;
+            }
             else { return false; }
         }
 
