@@ -28,7 +28,7 @@ namespace DungeonRun
             Debug.WriteLine("Beginning XML to CS conversion... wait...");
             List<RoomXmlData> levelData = new List<RoomXmlData>();
             List<RoomXmlData> roomData = new List<RoomXmlData>();
-
+            
 
             #region Get all the data from roomData folder
 
@@ -56,6 +56,7 @@ namespace DungeonRun
             }
 
             #endregion
+
 
 
             if (Flags.bootRoutine == BootRoutine.Editor_Level)
@@ -88,7 +89,7 @@ namespace DungeonRun
 
                 for (int i = 0; i < levelData.Count(); i++)
                 {
-                    Debug.WriteLine("writing FIELD " + i + " of " + levelData.Count);
+                    Debug.WriteLine("writing FIELD " + i + " of " + (levelData.Count-1));
 
                     csOutput += "\n";
                     csOutput += "\t\t\t#region " + levelData[i].type + "\n\n";
@@ -160,7 +161,7 @@ namespace DungeonRun
 
                 for (int i = 0; i < roomData.Count(); i++)
                 {
-                    Debug.WriteLine("writing ROOM " + i + " of " + roomData.Count);
+                    Debug.WriteLine("writing ROOM " + i + " of " + (roomData.Count-1));
 
                     csOutput += "\n";
                     csOutput += "\t\t\t#region Room - " + roomData[i].type + "\n\n";
