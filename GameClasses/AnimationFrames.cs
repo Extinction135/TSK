@@ -695,7 +695,7 @@ namespace DungeonRun
         public static ActorAnimationList Hero_Animations; //blob uses this too
 
         public static ActorAnimationList Standard_AngryEye_Animations;
-        //public static ActorAnimationList Standard_BeefyBat_Animations;
+        public static ActorAnimationList Standard_BeefyBat_Animations;
 
         public static ActorAnimationList Boss_BigEye_Animations;
         public static ActorAnimationList MiniBoss_BlackEye_Animations;
@@ -977,6 +977,47 @@ namespace DungeonRun
 
             #region BeefyBat Animations
 
+            Standard_BeefyBat_Animations = new ActorAnimationList();
+
+            //movement
+            Standard_BeefyBat_Animations.idle = new AnimationGroup();
+
+            Standard_BeefyBat_Animations.idle.down = new List<Byte4>
+            { new Byte4(23, 3, 0, 0), new Byte4(24, 3, 0, 0) };
+
+            Standard_BeefyBat_Animations.idle.up = new List<Byte4>
+            { new Byte4(27, 3, 0, 0), new Byte4(28, 3, 0, 0) };
+
+            Standard_BeefyBat_Animations.idle.right = new List<Byte4>
+            { new Byte4(25, 3, 0, 0), new Byte4(26, 3, 0, 0) };
+
+            Standard_BeefyBat_Animations.idle.left = new List<Byte4>
+            { new Byte4(25, 3, 1, 0), new Byte4(26, 3, 1, 0) };
+
+            Standard_BeefyBat_Animations.move = Standard_BeefyBat_Animations.idle;
+            Standard_BeefyBat_Animations.idleCarry = Standard_BeefyBat_Animations.idle;
+            Standard_BeefyBat_Animations.moveCarry = Standard_BeefyBat_Animations.idle;
+            Standard_BeefyBat_Animations.dash = Standard_BeefyBat_Animations.idle;
+            Standard_BeefyBat_Animations.interact = Standard_BeefyBat_Animations.idle;
+            Standard_BeefyBat_Animations.attack = Standard_BeefyBat_Animations.idle;
+            Standard_BeefyBat_Animations.hit = Standard_BeefyBat_Animations.idle;
+            Standard_BeefyBat_Animations.reward = Standard_BeefyBat_Animations.idle;
+            Standard_BeefyBat_Animations.pickupThrow = Standard_BeefyBat_Animations.idle;
+            Standard_BeefyBat_Animations.death_heroic = Standard_BeefyBat_Animations.idle;
+            Standard_BeefyBat_Animations.death_heroic_water = Standard_BeefyBat_Animations.idle;
+            Standard_BeefyBat_Animations.death_blank = Standard_BeefyBat_Animations.idle;
+            Standard_BeefyBat_Animations.grab = Standard_BeefyBat_Animations.idle;
+            Standard_BeefyBat_Animations.push = Standard_BeefyBat_Animations.idle;
+            Standard_BeefyBat_Animations.swim_idle = Standard_BeefyBat_Animations.idle;
+            Standard_BeefyBat_Animations.swim_move = Standard_BeefyBat_Animations.idle;
+            Standard_BeefyBat_Animations.swim_dash = Standard_BeefyBat_Animations.idle;
+            Standard_BeefyBat_Animations.swim_hit = Standard_BeefyBat_Animations.idle;
+            Standard_BeefyBat_Animations.swim_reward = Standard_BeefyBat_Animations.idle;
+            Standard_BeefyBat_Animations.underwater_idle = Standard_BeefyBat_Animations.idle;
+            Standard_BeefyBat_Animations.underwater_move = Standard_BeefyBat_Animations.idle;
+            Standard_BeefyBat_Animations.falling = Standard_BeefyBat_Animations.idle;
+            Standard_BeefyBat_Animations.landed = Standard_BeefyBat_Animations.idle;
+            Standard_BeefyBat_Animations.climbing = Standard_BeefyBat_Animations.idle;
 
 
 

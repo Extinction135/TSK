@@ -324,10 +324,18 @@ namespace DungeonRun
                             Functions_Actor.SpawnActor(ActorType.Standard_AngryEye, objRef.compSprite.position);
                         }
                         else if(Level.ID == LevelID.Mountain_Dungeon)
+                        {   //create two bats per spawn object
+                            Functions_Actor.SpawnActor(ActorType.Standard_BeefyBat, objRef.compSprite.position);
+                            Functions_Actor.SpawnActor(ActorType.Standard_BeefyBat, objRef.compSprite.position);
+                        }
+
+                        /*
+                        //blob dungeon
+                        else if (Level.ID == LevelID.Mountain_Dungeon)
                         {
                             Functions_Actor.SpawnActor(ActorType.Blob, objRef.compSprite.position);
                         }
-
+                        */
 
 
                     }

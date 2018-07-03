@@ -164,7 +164,7 @@ namespace DungeonRun
 
         //dungeon standard actors
         Standard_AngryEye, //forest
-        //Standard_BeefyBat, //mountain
+        Standard_BeefyBat, //mountain
 
         //minibosses
         MiniBoss_BlackEye,

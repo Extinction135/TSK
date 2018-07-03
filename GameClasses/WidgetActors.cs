@@ -108,6 +108,56 @@ namespace DungeonRun
     }
 
 
+    public class WidgetEnemies_Mountain : WidgetActor
+    {
+        public WidgetEnemies_Mountain()
+        {
+            //create and set the position of the window frame
+            window = new MenuWindow(
+                new Point(16 * 23, 16 * 2), //position
+                new Point(16 * 5, 16 * 15), //size
+                "Mountain actors"); //title
+
+            actors = new List<Actor>();
+            //create actor, set its type, place actor, add to actors list
+
+            /*
+            //boss
+            Actor boss = new Actor();
+            boss.direction = Direction.Down;
+            Functions_Actor.SetType(boss, ActorType.Boss_BigEye);
+            Functions_Movement.Teleport(boss.compMove,
+                window.interior.rec.X + 13 + 8,
+                window.interior.rec.Y + 29 + 8);
+            Functions_Component.Align(boss);
+            boss.state = ActorState.Idle;
+            actors.Add(boss);
+
+            //miniboss
+            Actor miniboss = new Actor();
+            miniboss.direction = Direction.Down;
+            Functions_Actor.SetType(miniboss, ActorType.MiniBoss_BlackEye);
+            Functions_Movement.Teleport(miniboss.compMove,
+                window.interior.rec.X + 13 + 8 + 16 * 2,
+                window.interior.rec.Y + 29 + 8);
+            Functions_Component.Align(miniboss);
+            miniboss.state = ActorState.Idle;
+            actors.Add(miniboss);
+            */
+
+            //standard
+            Actor standard = new Actor();
+            standard.direction = Direction.Down;
+            Functions_Actor.SetType(standard, ActorType.Standard_BeefyBat);
+            Functions_Movement.Teleport(standard.compMove,
+                window.interior.rec.X + 13 + 8 + 16 * 2,
+                window.interior.rec.Y + 29 + 8 + 16 * 2);
+            Functions_Component.Align(standard);
+            standard.state = ActorState.Idle;
+            actors.Add(standard);
+        }
+    }
+
 
 
     public class WidgetEnemies_Town : WidgetActor

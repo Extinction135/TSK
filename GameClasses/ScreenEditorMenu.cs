@@ -73,6 +73,7 @@ namespace DungeonRun
 
                 //actor widgets
                 if (Widgets.WE_Forest.visible) { CheckActList(Widgets.WE_Forest); }
+                if (Widgets.WE_Mountain.visible) { CheckActList(Widgets.WE_Mountain); }
                 if (Widgets.WE_Town.visible) { CheckActList(Widgets.WE_Town); }
 
             }
@@ -108,6 +109,7 @@ namespace DungeonRun
                     {   //leads to mountain
                         currentSheet.compText.text = "mountain";
                         Widgets.WO_Mountain.visible = true;
+                        Widgets.WE_Mountain.visible = true;
                         Level.ID = LevelID.Mountain_Entrance;
                     }
                     else if (Level.ID == LevelID.Mountain_Entrance)
@@ -177,6 +179,7 @@ namespace DungeonRun
 
             //update and draw actor widgets that are visible
             if (Widgets.WE_Forest.visible) { Widgets.WE_Forest.Update(); Widgets.WE_Forest.Draw(); }
+            if (Widgets.WE_Mountain.visible) { Widgets.WE_Mountain.Update(); Widgets.WE_Mountain.Draw(); }
             if (Widgets.WE_Town.visible) { Widgets.WE_Town.Update(); Widgets.WE_Town.Draw(); }
 
 
@@ -217,12 +220,13 @@ namespace DungeonRun
 
             //set all other widgets not visible
             Widgets.WO_Forest.visible = false;
+            Widgets.WO_Mountain.visible = false;
             Widgets.WO_Town.visible = false;
             Widgets.WO_Colliseum.visible = false;
-            Widgets.WO_Mountain.visible = false;
-
+            
             //set actor widgets not visible
             Widgets.WE_Forest.visible = false;
+            Widgets.WE_Mountain.visible = false;
             Widgets.WE_Town.visible = false;
 
             //set dev widget to always be visible

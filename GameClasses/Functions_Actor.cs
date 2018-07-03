@@ -45,7 +45,6 @@ namespace DungeonRun
             //assume standard search/attack radius
             Actor.chaseRadius = 16 * 5;
             Actor.attackRadius = 14;
-
         }
 
         public static void SpawnActor(ActorType Type, Vector2 Pos)
@@ -654,6 +653,42 @@ namespace DungeonRun
             }
 
             #endregion
+
+
+            #region Standard - BeefyBat
+
+            else if (Type == ActorType.Standard_BeefyBat)
+            {
+                Actor.aiType = ActorAI.Basic;
+                Actor.compMove.grounded = false; //is flying
+
+                Actor.enemy = true;
+                Actor.compSprite.texture = Assets.mountainLevelSheet;
+                Actor.animList = AnimationFrames.Standard_BeefyBat_Animations;
+                Actor.health = 2;
+                ResetActorLoadout(Actor);
+                Actor.weapon = MenuItemType.WeaponFang;
+                Actor.walkSpeed = 0.05f;
+                Actor.dashSpeed = 0.30f;
+
+                //bias hitbox north
+                Actor.compCollision.offsetY = -2; 
+                //actor is flying, sort over
+                Actor.compSprite.zOffset = 16;
+
+                //set actor sound effects
+                Actor.sfxDash = null; //silent dash
+                Actor.sfx.hit = Assets.sfxEnemyHit;
+                Actor.sfx.kill = Assets.sfxEnemyKill;
+            }
+
+            #endregion
+
+
+
+
+
+
 
 
             #region Boss - BigEye

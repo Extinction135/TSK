@@ -43,6 +43,7 @@ namespace DungeonRun
 
         //actor widgets
         public static WidgetEnemies_Forest WE_Forest = new WidgetEnemies_Forest();
+        public static WidgetEnemies_Mountain WE_Mountain = new WidgetEnemies_Mountain();
         public static WidgetEnemies_Town WE_Town = new WidgetEnemies_Town();
     }
 
