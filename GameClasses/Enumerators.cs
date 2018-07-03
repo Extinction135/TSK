@@ -513,7 +513,6 @@ namespace DungeonRun
 
         //Projectiles - object
         ProjectileExplosion,
-        
         ProjectileGroundFire,
 
         //Projectiles - thrown objs
@@ -524,6 +523,8 @@ namespace DungeonRun
         //Projectiles - casted magic
         ProjectileBombos,
 
+        //Projectiles - invisible
+        ProjectileBite,
 
         
 
@@ -672,6 +673,7 @@ namespace DungeonRun
         WeaponSword,
         WeaponNet, 
         WeaponShovel,
+        WeaponFang,
 
         ArmorCloth,
         ArmorCape,

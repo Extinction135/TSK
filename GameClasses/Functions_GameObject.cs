@@ -2294,7 +2294,35 @@ namespace DungeonRun
             #endregion
 
 
-            
+            #region Projectiles - Invisible (bite)
+
+            else if (Type == ObjType.ProjectileBite)
+            {
+                Obj.compSprite.zOffset = 16;
+
+                Obj.compCollision.rec.Width = 8;
+                Obj.compCollision.rec.Height = 8;
+
+                //set collision rec based on direction
+                if (Obj.direction == Direction.Up || Obj.direction == Direction.Down)
+                {Obj.compCollision.rec.Width = 16; }
+                else //left or right
+                { Obj.compCollision.rec.Height = 16; }
+
+                Obj.group = ObjGroup.Projectile;
+                Obj.lifetime = 2; //in frames
+                Obj.compAnim.speed = 2; //in frames
+                Obj.compAnim.loop = false;
+                Obj.compMove.moveable = false;
+                Obj.compMove.grounded = false; //obj is airborne
+                Obj.compSprite.texture = Assets.entitiesSheet; //null / doesn't matter cause..
+                Obj.compSprite.visible = false; //..this projectile isnt drawn
+                Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Sword; //null too
+
+            }
+
+            #endregion
+
             //Particles
 
 

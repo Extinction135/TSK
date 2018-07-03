@@ -26,10 +26,10 @@ namespace DungeonRun
             posRef.Y = Object.compSprite.position.Y;
 
 
-            #region Sword
+            #region Sword & Net
 
             if (Object.type == ObjType.ProjectileSword || Object.type == ObjType.ProjectileNet)
-            {   //place particle at tip, based on direction
+            {   
                 if (Object.direction == Direction.Up) { posRef.X += 8; posRef.Y -= 0; }
                 else if (Object.direction == Direction.Right) { posRef.X += 8; posRef.Y += 8; }
                 else if (Object.direction == Direction.Down) { posRef.X += 8; posRef.Y += 8; }

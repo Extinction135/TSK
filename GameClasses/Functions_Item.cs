@@ -35,6 +35,11 @@ namespace DungeonRun
                 Functions_Projectile.Spawn(ObjType.ProjectileShovel, Actor.compMove, Actor.direction);
                 Functions_Actor.SetItemUseState(Actor);
             }
+            else if (Type == MenuItemType.WeaponFang)
+            {
+                Functions_Projectile.Spawn(ObjType.ProjectileBite, Actor.compMove, Actor.direction);
+                Functions_Actor.SetItemUseState(Actor);
+            }
 
             #endregion
 

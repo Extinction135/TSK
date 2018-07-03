@@ -180,7 +180,9 @@ namespace DungeonRun
             //23 - shovel
             if (PlayerData.current.weaponShovel)
             { Functions_MenuItem.SetType(MenuItemType.WeaponShovel, menuItems[23]); }
-            //24 - 
+            //24 - (fang)
+            if (PlayerData.current.weaponFang)
+            { Functions_MenuItem.SetType(MenuItemType.WeaponFang, menuItems[24]); }
             //25 - 
             //26 - 
 

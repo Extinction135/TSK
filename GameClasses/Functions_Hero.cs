@@ -606,6 +606,7 @@ namespace DungeonRun
             //set weapons
             PlayerData.current.weaponNet = true;
             PlayerData.current.weaponShovel = true;
+            PlayerData.current.weaponFang = true;
             //set armor
             PlayerData.current.armorCape = true;
             //set equipment

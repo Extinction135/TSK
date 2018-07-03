@@ -630,6 +630,7 @@ namespace DungeonRun
                 Actor.animList = AnimationFrames.Standard_AngryEye_Animations;
                 Actor.health = 3;
                 ResetActorLoadout(Actor);
+                Actor.weapon = MenuItemType.WeaponFang;
                 Actor.walkSpeed = 0.05f;
                 Actor.dashSpeed = 0.30f;
 

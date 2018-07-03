@@ -1227,6 +1227,7 @@ namespace DungeonRun
         //public Boolean weaponSword = false; //not used rn
         public Boolean weaponNet = false;
         public Boolean weaponShovel = false;
+        public Boolean weaponFang = false;
 
         //Armor
         public MenuItemType currentArmor = MenuItemType.ArmorCloth;

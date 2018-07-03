@@ -320,6 +320,12 @@ namespace DungeonRun
             #endregion
 
 
+            else if(Type == ObjType.ProjectileBite)
+            {
+                Assets.Play(Assets.sfxEnemyTaunt);
+                pushLines = true;
+            }
+
             HandleBehavior(pro);
             if (pushLines) { Functions_Particle.SpawnPushFX(Caster, Dir); }
         }
@@ -384,6 +390,11 @@ namespace DungeonRun
         {
             //the following paths handle the per frame events, or behaviors, of a projectile
             //for example, tracking a sword to it's caster so the caster can slide and attack
+
+
+            //THIS SHOULD BE BASED ON THE CASTER'S HITBOX, NOT NEWPOSITION
+
+
 
 
             #region Sword & Net
@@ -532,6 +543,27 @@ namespace DungeonRun
             }
 
             #endregion
+
+
+
+
+            #region Bite
+
+            else if (Pro.type == ObjType.ProjectileBite)
+            {   //track the projectile to it's caster
+                if (Pro.direction == Direction.Down) { offset.X = 0; offset.Y = +17; }
+                else if (Pro.direction == Direction.Up) { offset.X = 0; offset.Y = -6; }
+                else if (Pro.direction == Direction.Right) { offset.X = +17; offset.Y = 0; }
+                else if (Pro.direction == Direction.Left) { offset.X = -8; offset.Y = 0; }
+                //apply the offset
+                Pro.compMove.newPosition.X = Pro.caster.newPosition.X + offset.X;
+                Pro.compMove.newPosition.Y = Pro.caster.newPosition.Y + offset.Y;
+            }
+
+            #endregion
+
+
+
 
 
             //teleport the projectile to it's new position

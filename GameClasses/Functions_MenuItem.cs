@@ -254,6 +254,14 @@ namespace DungeonRun
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Weapon_Shovel;
                 MenuItem.price = 50;
             }
+            else if (Type == MenuItemType.WeaponFang)
+            {
+                MenuItem.name = "Creature's Fang";
+                MenuItem.description = "used by some enemies\nto bite for 1 damage.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Weapon_Fang;
+                MenuItem.price = 0;
+            }
+
 
             #endregion
 

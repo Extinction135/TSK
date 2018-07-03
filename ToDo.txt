@@ -47,19 +47,67 @@ Today:
 
 
 
+Biting
 
-Infinite Fairies Cheat
+the idea is simple: we want an invisible projectile
+that models a bite or scratch attack that any actor
+or enemy might do. for example, the angry eye actor
+has an attack animation in it's sprite sheet frames,
+but this attack animation doesn't do anything real
+in-game, so angry eye just kind of gnaws on players
+head doing nothing. instead, he should create a bite
+projectile that damages and pushes hero, but isn't
+visible - so it looks like the attack animation did
+the damage. ok go.
 
-this allows for damage and death to occur, but prevents
-a gameover. add a boolean into flags, which is checked in
-bottle use routines. if true, the upon heros death game
-assume a fairy bottle is present. add this cheat to the
-cheats menu. done. tested. working.
+created FANG weapon menuItem type.
+created BITE projectile.
+updated angry eye actor to have FANG
+weapon. updated unlockAll cheat to
+give hero FANG weapon for testing.
+properly aligned fang to hero.
+tested, working great. tested angry
+eye actor using fang weapon - working
+great as well. 
 
-this is actually fun to play around with too.
 
 
 
+
+
+
+
+
+
+
+
+bug
+upon playtesting it was discovered that hero's collision
+rec is set to non-blocking upon death, and never set back
+to blocking upon a fairy rez. which isn't affecting anything,
+but is incorrect, needs to be fixed, and could affect something.
+
+
+
+
+change exploder seekers to the shocker sprites normally
+associated with this large eyeball enemy. use the old
+enemy sprite somewhere else.
+
+
+
+
+
+
+
+
+
+
+
+rats and crabs should "bite", but turtles dont.
+all types can be picked up and carried, but rats
+and crabs will eventually bite link, causing link
+to throw the creature and take 1 damage.
 
 
 
@@ -112,25 +160,7 @@ miniboss or boss - like training wheels dungeon.
 
 
 
-*angry eye attacks, but doesn't have any kind of projectile
-to actually hurt hero with. we could make a generic bite projectile
-similar to sword, but invisible, that angry eye could spawn
-in the direction it's facing.
 
-*we really need an invisible 8x8 weapon projectile to fake
-biting, clawing, etc... by any kind of enemy. this should
-last 1 frame, and not track to caster because it only
-exists that frame, then removes itself.
-*we could wait until mid frame of attack animation before
-processing the invisble projectile, giving player a few
-frames to dodge or respond, which would be nice.
-
-
-
-rats and crabs should "bite", but turtles dont.
-all types can be picked up and carried, but rats
-and crabs will eventually bite you, causing link
-to throw the creature and take 1 damage.
 
 
 
@@ -376,3 +406,16 @@ release 0.75...
 
 
 
+
+
+
+
+
+nasty system related work, ugh...
+projectiles++
+projectiles should be cast based on the caster's collision rec.
+spawn() should account for collision rec and always spawn projectile
+in a position that isn't overlapping caster's hitBox. this allows bosses
+to spawn projectiles, since their collision rec isn't the same size
+as heros, and we're basing all our projectile spawns off hero's hitbox.
+this is a pretty important change.
