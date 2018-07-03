@@ -101,14 +101,14 @@ namespace DungeonRun
             Actor.lockCounter = 0;
             Actor.lockTotal = 255;
             Assets.Play(Actor.sfx.kill); //play actor death sound fx
-            Actor.compCollision.blocking = false; //make dead actor's corpse passable
+            
 
             //Actor Specific Death Effects
             if(Actor.type == ActorType.Hero)
             {
                 return; //done with hero
             }
-
+            
 
             #region Bosses
 
@@ -154,11 +154,16 @@ namespace DungeonRun
 
 
             else
-            {   //this is all other actor types: blob
+            {   //this is all other actor types: blob, angry eye, etc..
                 Functions_Particle.Spawn(ObjType.Particle_Blast, Actor);
                 Functions_Loot.SpawnLoot(Actor.compSprite.position); //loot!
                 Functions_Pool.Release(Actor);
             }
+
+
+
+            //this is all actors except hero, who bails from method early
+            Actor.compCollision.blocking = false; //make dead actor's corpse passable
         }
 
         public static void SetRewardState(Actor Actor)

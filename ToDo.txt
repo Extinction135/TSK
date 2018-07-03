@@ -46,46 +46,19 @@ Today:
 
 
 
+CollisionRec/HitBox++
 
-Biting
-
-the idea is simple: we want an invisible projectile
-that models a bite or scratch attack that any actor
-or enemy might do. for example, the angry eye actor
-has an attack animation in it's sprite sheet frames,
-but this attack animation doesn't do anything real
-in-game, so angry eye just kind of gnaws on players
-head doing nothing. instead, he should create a bite
-projectile that damages and pushes hero, but isn't
-visible - so it looks like the attack animation did
-the damage. ok go.
-
-created FANG weapon menuItem type.
-created BITE projectile.
-updated angry eye actor to have FANG
-weapon. updated unlockAll cheat to
-give hero FANG weapon for testing.
-properly aligned fang to hero.
-tested, working great. tested angry
-eye actor using fang weapon - working
-great as well. 
-
-
-
-
-
-
-
-
-
-
-
-
-bug
 upon playtesting it was discovered that hero's collision
 rec is set to non-blocking upon death, and never set back
 to blocking upon a fairy rez. which isn't affecting anything,
 but is incorrect, needs to be fixed, and could affect something.
+fix: removed hero from routine that sets a dead actors
+hitbox to false, making their corpse non-blocking, which is
+pretty important. hero's hitbox remains blocking in death now.
+
+
+
+
 
 
 
