@@ -190,7 +190,8 @@ namespace DungeonRun
             {
                 Functions_MenuItem.SetType(MenuItemType.Challenge_Blobs, menuItems[0]);
                 Functions_MenuItem.SetType(MenuItemType.Challenge_Minibosses, menuItems[1]);
-                Functions_MenuItem.SetType(MenuItemType.Challenge_Bosses, menuItems[5]);
+                Functions_MenuItem.SetType(MenuItemType.Challenge_Bosses_BigEye, menuItems[5]);
+                Functions_MenuItem.SetType(MenuItemType.Challenge_Bosses_BigBat, menuItems[6]);
             }
 
 

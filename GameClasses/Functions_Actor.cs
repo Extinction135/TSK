@@ -111,23 +111,24 @@ namespace DungeonRun
 
             #region Bosses
 
-            else if (Actor.type == ActorType.Boss_BigEye)
+            else if (Actor.type == ActorType.Boss_BigEye
+                || Actor.type == ActorType.Boss_BigBat)
             {   //decorate this death as special / explosive
                 Functions_Particle.Spawn_Explosion(ObjType.Particle_Debris,
                     Actor.compSprite.position.X, Actor.compSprite.position.Y, true);
-
-
-                #region End Dungeon
-
+                
+                //End Dungeon
                 if (Level.currentRoom.roomID == RoomID.Boss)
                 {   //boss must die in boss room to end dungeon
                     DungeonRecord.beatDungeon = true; //player beat dungeon
                     Functions_Level.CloseLevel(ExitAction.Summary);
+
+                    //flip dungeon booleans
+                    if (Actor.type == ActorType.Boss_BigEye)
+                    { PlayerData.current.story_forestDungeon = true; }
+                    else if (Actor.type == ActorType.Boss_BigBat)
+                    { PlayerData.current.story_mountainDungeon = true; }
                 }
-
-                #endregion
-
-
             }
 
             #endregion
@@ -190,7 +191,10 @@ namespace DungeonRun
         }
 
         public static void SetCollisionRec(Actor Actor)
-        {   //set the collisionRec parameters based on the Type
+        {
+
+            //set the collisionRec parameters based on the Type
+            /*
             if (Actor.type == ActorType.Boss_BigEye)
             {
                 Actor.compCollision.rec.Width = 24;
@@ -199,7 +203,7 @@ namespace DungeonRun
                 Actor.compCollision.offsetY = 0;
             }
 
-            /*
+            
             //this doesn't work, because pro.spawn() doesn't
             //take into account the actor's hitBox when creating a fireball
             //so this will cause self-interaction upon spawn, leading to death.
@@ -212,7 +216,7 @@ namespace DungeonRun
             }
             */
 
-            else
+            
             {   //hero/blob/etc actors have same hitBox (for 16x16 sprite)
                 Actor.compCollision.rec.Width = 12;
                 Actor.compCollision.rec.Height = 8;
@@ -691,8 +695,9 @@ namespace DungeonRun
 
 
 
-            #region Boss - BigEye
+            #region Bosses
 
+            //BigEye
             else if (Type == ActorType.Boss_BigEye)
             {
                 Actor.aiType = ActorAI.Boss_BigEye;
@@ -702,7 +707,10 @@ namespace DungeonRun
                 Actor.compSprite.texture = Assets.forestLevelSheet;
                 Actor.animList = AnimationFrames.Boss_BigEye_Animations;
                 Actor.health = 30;
+
+                //this boss creates seeker exploders based on it's hp
                 ResetActorLoadout(Actor);
+                Actor.weapon = MenuItemType.WeaponFang; //and can bite
 
                 //walk and dash speeds are set in Functions_Ai
                 //because they change based on this actor's health
@@ -716,13 +724,58 @@ namespace DungeonRun
                 Actor.sfxDash = null; //silent dash
                 Actor.sfx.hit = Assets.sfxBossHit;
                 Actor.sfx.kill = Assets.sfxBossHitDeath;
+
+                //boss parameters
+                Actor.attackRadius = 20;
+                Actor.chaseRadius = 16 * 20;
+            }
+
+            //BigBat
+            else if (Type == ActorType.Boss_BigBat)
+            {
+                Actor.aiType = ActorAI.Boss_BigBat;
+                Actor.compMove.grounded = false; //is flying
+
+                Actor.enemy = true;
+                Actor.compSprite.texture = Assets.mountainLevelSheet;
+                Actor.animList = AnimationFrames.Boss_BigBat_Animations;
+                Actor.health = 20;
+
+                //this boss spam casts bat projectiles as main attack
+                ResetActorLoadout(Actor);
+                Actor.item = MenuItemType.MagicBat;
+                Actor.weapon = MenuItemType.WeaponFang; //and can bite
+
+                //walk and dash speeds are set in Functions_Ai
+                //because they change based on this actor's health
+
+                //this actor is a 2x3 boss 
+                Actor.compSprite.cellSize.X = 16 * 2;
+                Actor.compSprite.cellSize.Y = 16 * 3;
+
+                //actor is floating in air
+                Actor.compSprite.zOffset = 32;
+                //set actor sound effects
+                Actor.sfxDash = null; //silent dash
+                Actor.sfx.hit = Assets.sfxBossHit;
+                Actor.sfx.kill = Assets.sfxBossHitDeath;
+
+                //boss parameters
+                Actor.attackRadius = 20;
+                Actor.chaseRadius = 16 * 20;
             }
 
             #endregion
 
 
-            #region Miniboss - Blackeye
 
+
+
+
+
+            #region Minibosses - 
+
+            //Blackeye
             else if (Type == ActorType.MiniBoss_BlackEye)
             {
                 Actor.aiType = ActorAI.Miniboss_Blackeye;

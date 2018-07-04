@@ -363,16 +363,24 @@ namespace DungeonRun
             }
             else if (Type == MenuItemType.Challenge_Minibosses)
             {
-                MenuItem.name = "Challenge - Minibosses";
-                MenuItem.description = "Defeat 5 minibosses \nfor 99 gold.";
+                MenuItem.name = "Challenge - Blackeyes";
+                MenuItem.description = "Defeat 2 minibosses \nfor 99 gold.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Challenge;
                 MenuItem.compSprite.texture = Assets.colliseumLevelSheet;
                 MenuItem.price = 10;
             }
-            else if (Type == MenuItemType.Challenge_Bosses)
+            else if (Type == MenuItemType.Challenge_Bosses_BigEye)
             {
-                MenuItem.name = "Challenge - Bosses";
-                MenuItem.description = "Defeat 3 Bosses \nfor 99 gold.";
+                MenuItem.name = "Challenge - BigEyes";
+                MenuItem.description = "Defeat 1 BigEye \nfor 99 gold.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Challenge;
+                MenuItem.compSprite.texture = Assets.colliseumLevelSheet;
+                MenuItem.price = 10;
+            }
+            else if (Type == MenuItemType.Challenge_Bosses_BigBat)
+            {
+                MenuItem.name = "Challenge - BigBats";
+                MenuItem.description = "Defeat 1 BigBat \nfor 99 gold.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Challenge;
                 MenuItem.compSprite.texture = Assets.colliseumLevelSheet;
                 MenuItem.price = 10;

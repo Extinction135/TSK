@@ -20,7 +20,8 @@ namespace DungeonRun
         static int i;
         public static List<ActorType> Blobs;
         public static List<ActorType> Minibosses;
-        public static List<ActorType> Bosses;
+        public static List<ActorType> Bosses_BigEye;
+        public static List<ActorType> Bosses_BigBat;
 
         static Challenges()
         {
@@ -29,12 +30,16 @@ namespace DungeonRun
             { Blobs.Add(ActorType.Blob); }
 
             Minibosses = new List<ActorType>();
-            for (i = 0; i < 5; i++)
+            for (i = 0; i < 2; i++)
             { Minibosses.Add(ActorType.MiniBoss_BlackEye); }
 
-            Bosses = new List<ActorType>();
-            for (i = 0; i < 3; i++)
-            { Bosses.Add(ActorType.Boss_BigEye); }
+            Bosses_BigEye = new List<ActorType>();
+            for (i = 0; i < 1; i++)
+            { Bosses_BigEye.Add(ActorType.Boss_BigEye); }
+
+            Bosses_BigBat = new List<ActorType>();
+            for (i = 0; i < 1; i++)
+            { Bosses_BigBat.Add(ActorType.Boss_BigBat); }
         }
     }
 

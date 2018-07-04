@@ -16,7 +16,7 @@ namespace DungeonRun
     
     public static class Flags
     {   // **********************************************************************************************************
-        public static Boolean Release = true; //puts game in release mode, overwrites other flags
+        public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.75f; //the version of the game
         public static BootRoutine bootRoutine = BootRoutine.Editor_Level; //boot to game or editor?
@@ -767,20 +767,23 @@ namespace DungeonRun
         public int recorded_wallJumps = 0;
 
 
+        //player's pet
+        public MenuItemType petType = MenuItemType.Unknown;
+
+
 
 
         //the hero's last selected / current item
         public MenuItemType currentItem = MenuItemType.ItemBoomerang;
         public int lastItemSelected = 0; //index of Widgets.Inventory.menuItems[?]
 
-        public Boolean itemBoomerang = false;
+        public Boolean itemBoomerang = true;
         public Boolean itemBow = false;
 
         public Boolean magicFireball = false;
         public Boolean magicBombos = false;
         public Boolean magicBolt = false;
 
-        
         //bottles - hero just always has 3 bottles
         public MenuItemType bottleA = MenuItemType.BottleEmpty;
         public MenuItemType bottleB = MenuItemType.BottleEmpty;
@@ -797,7 +800,6 @@ namespace DungeonRun
         //public Boolean armorCloth = false; //not used rn
         public Boolean armorCape = false; //cosmetic only rn, no effect
 
-
         //Equipment
         public MenuItemType currentEquipment = MenuItemType.Unknown;
         public Boolean equipmentRing = true;
@@ -806,14 +808,15 @@ namespace DungeonRun
         //public Boolean equipmentGlove = false;
         //public Boolean equipmentPin = false;
 
-
-        //player's pet
-        public MenuItemType petType = MenuItemType.Unknown;
-
-
         //setup default enemy items
         public MenuItemType enemyItem = MenuItemType.Unknown;
         public MenuItemType enemyWeapon = MenuItemType.Unknown;
+
+
+        //story booleans
+        public Boolean story_forestDungeon = false;
+        public Boolean story_mountainDungeon = false;
+
 
     }
 

@@ -103,17 +103,13 @@ namespace DungeonRun
                 Functions_Projectile.Cast_Bolt(Pool.hero);
                 Functions_Actor.SetItemUseState(Actor);
             }
-
-
             else if (Type == MenuItemType.MagicBat)
             {
                 //create bat projectile, shorten casting time to allow for spamming
                 Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor.compMove, Actor.direction);
                 Functions_Actor.SetItemUseState(Actor);
-                Actor.lockTotal = 2;
+                Actor.lockTotal = 4;
             }
-
-
 
             #endregion
 

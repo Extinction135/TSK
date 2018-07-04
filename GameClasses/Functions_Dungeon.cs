@@ -512,10 +512,20 @@ namespace DungeonRun
 
         public static void FinishBossRoom(Room Room)
         {   //spawn boss in center of room
-            Functions_Actor.SpawnActor(
-                ActorType.Boss_BigEye, 
-                Room.center.X + 8, 
-                Room.center.Y + 8);
+            if(Level.ID == LevelID.Forest_Dungeon)
+            {
+                Functions_Actor.SpawnActor(
+                    ActorType.Boss_BigEye,
+                    Room.center.X + 8,
+                    Room.center.Y + 8);
+            }
+            else if (Level.ID == LevelID.Mountain_Dungeon)
+            {
+                Functions_Actor.SpawnActor(
+                    ActorType.Boss_BigBat,
+                    Room.center.X + 8,
+                    Room.center.Y + 8);
+            }
         }
 
         public static void FinishKeyRoom(Room Room)

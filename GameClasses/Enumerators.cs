@@ -170,7 +170,8 @@ namespace DungeonRun
         MiniBoss_BlackEye,
 
         //bosses
-        Boss_BigEye
+        Boss_BigEye,
+        Boss_BigBat,
     }
 
     public enum ActorState
@@ -187,9 +188,13 @@ namespace DungeonRun
     public enum ActorAI
     {
         Random,
-        Basic,
+
+        Basic, //aka 'standard'
+
+        Miniboss_Blackeye,
+
         Boss_BigEye,
-        Miniboss_Blackeye
+        Boss_BigBat
     }
 
 
@@ -693,10 +698,14 @@ namespace DungeonRun
         //pet menuItems
         PetDog_Gray,
 
-        //challenge menuItems
+        #region Colliseum Challenges
+
         Challenge_Blobs,
         Challenge_Minibosses,
-        Challenge_Bosses,
+        Challenge_Bosses_BigEye,
+        Challenge_Bosses_BigBat,
+
+        #endregion
 
     }
 

@@ -407,11 +407,17 @@ namespace DungeonRun
                     CloseVendorScreen();
                     Functions_Colliseum.BeginChallenge(Challenges.Minibosses);
                 }
-                else if (Item.type == MenuItemType.Challenge_Bosses)
+                else if (Item.type == MenuItemType.Challenge_Bosses_BigEye)
                 {
                     CompleteSale(Item);
                     CloseVendorScreen();
-                    Functions_Colliseum.BeginChallenge(Challenges.Bosses);
+                    Functions_Colliseum.BeginChallenge(Challenges.Bosses_BigEye);
+                }
+                else if (Item.type == MenuItemType.Challenge_Bosses_BigBat)
+                {
+                    CompleteSale(Item);
+                    CloseVendorScreen();
+                    Functions_Colliseum.BeginChallenge(Challenges.Bosses_BigBat);
                 }
 
                 #endregion

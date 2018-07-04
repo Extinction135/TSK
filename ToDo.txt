@@ -49,27 +49,91 @@ Today:
 
 
 
+Bosses++
 
-
-
-
-Projectiles++
-
-can now cast bat projectiles diagonally.
-fixed a dev setting where bow was creating bat
-projectiles. now it's creating arrows again.
-
-
-
-
-
-
-
-
-Boss++
 bat boss: opens his wings and spews forth bat projectiles at
 the hero, who must run and dodge the waterfall of flying bats.
 update mountain dungeon to use bat boss.
+
+fixed bat boss sprite to be 2x3, saving much space.
+
+added story booleans to player data to track
+completion of forest and mountain dungeons.
+linked the death of each boss (in their boss 
+room) to these booleans.
+
+updated FinishBossRoom() to create different
+bosses based on the level.id.
+
+implemented ai for big bat, adding bite attack
+if hero gets too close to boss. upgraded big 
+eye to use bite attack as well.
+
+changed Actor.SetCollisionRec() to use hero's
+hitBox values for ALL actors including big
+bosses - so big eye is going to be hard to hit.
+this was done so that both bosses can use the
+fang weapon, allowing them to Bite attack hero,
+if hero gets close enough to them. this is the
+exact same approach used by angry eye.
+
+changed big eye boss strategy: phase 1 (above
+10 hp) this boss creates seeker exploders very
+often. once his health dips below 10, he stops
+creating seekers and starts chasing the hero,
+relying on his bite attack instead.
+
+fixed bug with big eye setting his attack state
+to true when he spawned a seeeker, which caused
+him to bite, which destroyed the seeker (sometimes)
+but more importantly - spammed the enemy taunt
+sound effect. so that HAD to be stopped.
+
+upgraded bat boss to have 3 phases, each distinct
+from the last in terms of strategy. phase 1 the bat
+just wanders around rarely shooting bat swarms, but
+always biting hero if he gets too close. phase 2
+is where he picks up and really starts spamming the
+bat swarms, which kinda feels like bullethell,
+sometimes. also, the boss chases hero during
+phase 2. in phase 3, boss moves towards back of
+room and spams the bat magic in a last attempt.
+
+added bat boss 1v1 to collisuem challenges,
+and it's awesome. really awesome. the bat's
+final stand strategy turns his battle into 
+a bullet hell at the last minute and I love it.
+
+updated battle routines to prevent bat boss from
+taking damage from bat projectiles (which he 
+spawns profusely). this prevents him from taking
+damage while he moves around in his bullethell.
+
+updated bat boss ai to move to center of room
+and spawn bat projectiles in all directions as
+a final attempt to kill player.
+
+removed push particles from taunting routines
+for miniboss and bosses. LOTS of testing.
+
+slowed down bat projectiles.
+added 50/50 chance for bat boss to do super
+special attack while in phase 3. this limits
+the bullet hell, which is unbearable at full
+throttle while in the tiny boss room..
+
+dialed back colliseum challenges to be more
+realistic in nature: 2v1 minibosses, and
+1v1 bosses.
+
+
+
+
+
+
+
+
+
 
 
 
@@ -343,6 +407,11 @@ release polished 0.75...
 
 
 
+
+for now, all actors are using the same hitbox.
+the hero's hitbox. so some enemies are really hard to
+hit, because visually it looks like they are bigger
+than their hitbox says they are in-game.
 
 
 

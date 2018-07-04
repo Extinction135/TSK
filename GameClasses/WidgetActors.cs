@@ -121,11 +121,11 @@ namespace DungeonRun
             actors = new List<Actor>();
             //create actor, set its type, place actor, add to actors list
 
-            /*
+            
             //boss
             Actor boss = new Actor();
             boss.direction = Direction.Down;
-            Functions_Actor.SetType(boss, ActorType.Boss_BigEye);
+            Functions_Actor.SetType(boss, ActorType.Boss_BigBat);
             Functions_Movement.Teleport(boss.compMove,
                 window.interior.rec.X + 13 + 8,
                 window.interior.rec.Y + 29 + 8);
@@ -133,6 +133,7 @@ namespace DungeonRun
             boss.state = ActorState.Idle;
             actors.Add(boss);
 
+            /*
             //miniboss
             Actor miniboss = new Actor();
             miniboss.direction = Direction.Down;

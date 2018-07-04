@@ -77,7 +77,12 @@ namespace DungeonRun
                 damage = 1; force = 5.0f; direction = Obj.direction;
             }
             else if (Obj.type == ObjType.ProjectileBat)
-            {   //bats deal 1 damage, push 4, and die
+            {
+                //bat projectiles cant deal damage to the bat boss
+                if (Actor.type == ActorType.Boss_BigBat) { return; }
+                //(he spawns them, and it would be cheap)
+                
+                //bats deal 1 damage, push 4, and die
                 damage = 1; force = 4.0f; direction = Obj.direction;
                 Obj.lifeCounter = Obj.lifetime;
             }

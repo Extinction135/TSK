@@ -325,12 +325,6 @@ namespace DungeonRun
 
             else if (Type == ObjType.ProjectileBat)
             {
-
-
-                //we aren't taking into account diagonals here...
-
-
-
                 //initially place bat outside of caster
                 if (Dir == Direction.Down)
                 {
@@ -356,9 +350,6 @@ namespace DungeonRun
                         Caster.newPosition.X - 16,
                         Caster.newPosition.Y + 0);
                 }
-
-
-
 
                 //diagonals
                 else if (Dir == Direction.UpRight)
@@ -387,15 +378,12 @@ namespace DungeonRun
                 }
 
 
-
-
-
                 Functions_Component.Align(pro); //align components
                 Assets.Play(Assets.sfxRatSqueak);
                 pushLines = true;
 
                 //push bat in initial direction, plus random direction
-                Functions_Movement.Push(pro.compMove, Dir, 2.0f);
+                Functions_Movement.Push(pro.compMove, Dir, 1.5f);
                 Functions_Movement.Push(pro.compMove, Functions_Direction.GetRandomDirection(), 0.5f);
             }
 

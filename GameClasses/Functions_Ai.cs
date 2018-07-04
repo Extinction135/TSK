@@ -112,9 +112,9 @@ namespace DungeonRun
             #endregion
 
 
-            //cooler ai
+            //Miniboss ai
 
-            #region Miniboss AI
+            #region BlackEye
 
             else if (Actor.aiType == ActorAI.Miniboss_Blackeye)
             {
@@ -162,11 +162,6 @@ namespace DungeonRun
                     if (Functions_Random.Int(0, 100) > 95)
                     {
                         Assets.Play(Assets.sfxEnemyTaunt);
-                        Functions_Particle.Spawn(
-                            ObjType.Particle_Push,
-                            Actor.compSprite.position.X,
-                            Actor.compSprite.position.Y,
-                            Direction.Down);
                     }
                 }
             }
@@ -174,7 +169,9 @@ namespace DungeonRun
             #endregion
 
 
-            #region Boss AI
+            //Boss AI
+
+            #region BigEye
 
             else if (Actor.aiType == ActorAI.Boss_BigEye)
             {
@@ -183,32 +180,35 @@ namespace DungeonRun
                 if (Functions_Random.Int(0, 100) > 70) { Actor.compInput.dash = true; }
 
 
-                //2 Phase - based on health, change how actor behaves
+                #region Phase 1
+
                 if(Actor.health > 10) 
                 {
                     //move faster
                     Actor.walkSpeed = 0.25f;
                     Actor.dashSpeed = 0.30f;
 
-                    if (Functions_Random.Int(0, 100) > 70)
+                    if (Functions_Random.Int(0, 100) > 60)
                     {   //often spawn seeker
                         Functions_GameObject.Spawn(ObjType.Wor_SeekerExploder, 
                             actorPos.X, actorPos.Y, Direction.Down);
-                        Actor.compInput.attack = true;
                     }
                 }
+
+                #endregion
+
+
+                #region Phase 2
+
                 else //actor is below 10 health
                 {
-                    //dash faster too
-                    Actor.walkSpeed = 0.25f;
-                    Actor.dashSpeed = 0.80f;
+                    //move and dash faster
+                    Actor.walkSpeed = 0.4f;
+                    Actor.dashSpeed = 0.6f;
                     
-                    if (Functions_Random.Int(0, 100) > 40)
-                    {   //spam spawn seeker
-                        Functions_GameObject.Spawn(ObjType.Wor_SeekerExploder,
-                            actorPos.X, actorPos.Y, Direction.Down);
-                        Actor.compInput.attack = true;
-                    }
+                    //strategy 2 - aggresively bite hero
+                    ChaseHero(); //always chases hero
+                    //now boss will rely on bite attack only
 
                     //smoke (each frame) as a sign of nearing defeat/rage
                     Functions_Particle.Spawn(
@@ -216,18 +216,137 @@ namespace DungeonRun
                         Actor.compSprite.position.X + 6 + Functions_Random.Int(-8, 8),
                         Actor.compSprite.position.Y - 10 + Functions_Random.Int(-5, 5)
                     );
-
                     //rarely taunt the player
                     if (Functions_Random.Int(0, 100) > 95)
                     {
                         Assets.Play(Assets.sfxEnemyTaunt);
-                        Functions_Particle.Spawn(
-                            ObjType.Particle_Push,
-                            Actor.compSprite.position.X, 
-                            Actor.compSprite.position.Y, 
-                            Direction.Down);
                     }
                 }
+
+                #endregion
+
+
+                Check_Bite();
+            }
+
+            #endregion
+
+
+            #region BigBat
+
+            else if (Actor.aiType == ActorAI.Boss_BigBat)
+            {
+                //by default, choose a random direction to move in & randomly dash
+                Actor.compInput.direction = (Direction)Functions_Random.Int(0, 8);
+                if (Functions_Random.Int(0, 100) > 70) { Actor.compInput.dash = true; }
+
+
+                #region Phase 1
+
+                if (Actor.health > 10)
+                {
+                    //initial speed
+                    Actor.walkSpeed = 0.25f;
+                    Actor.dashSpeed = 0.30f;
+
+                    //rarely use bat magic
+                    if (Functions_Random.Int(0, 100) > 85)
+                    { Actor.compInput.use = true; }
+                }
+
+                #endregion
+
+
+                #region Phase 2
+
+                else if (Actor.health > 5)
+                {
+                    //dash fast
+                    Actor.walkSpeed = 0.25f;
+                    Actor.dashSpeed = 0.80f;
+
+                    ChaseHero(); //boss becomes aggressive
+                    //boss switches to bite attack
+
+                    //rarely taunt the player
+                    if (Functions_Random.Int(0, 100) > 95)
+                    { Assets.Play(Assets.sfxEnemyTaunt); }
+                }
+
+                #endregion
+
+
+                #region Phase 3
+
+                else
+                {
+                    //move towards center of room
+                    Actor.compInput.direction = 
+                        Functions_Direction.GetDiagonalToCenterOfRoom(Actor.compSprite.position);
+
+                    //limit special attack
+                    if(Functions_Random.Int(0, 100) > 50)
+                    {   //Super Special Attack : spam spawn bats in all directions
+                        Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor.compMove, Direction.Down);
+                        Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor.compMove, Direction.DownRight);
+                        Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor.compMove, Direction.Right);
+                        Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor.compMove, Direction.UpRight);
+                        Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor.compMove, Direction.Up);
+                        Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor.compMove, Direction.UpLeft);
+                        Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor.compMove, Direction.Left);
+                        Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor.compMove, Direction.DownLeft);
+                    }
+
+                    //always taunt the player
+                    Assets.Play(Assets.sfxEnemyTaunt);
+
+                    //smoke (each frame) as a sign of nearing defeat
+                    Functions_Particle.Spawn(
+                        ObjType.Particle_ImpactDust,
+                        Actor.compSprite.position.X + 6 + Functions_Random.Int(-8, 8),
+                        Actor.compSprite.position.Y - 10 + Functions_Random.Int(-5, 5)
+                    );
+
+                    //set some states false
+                    Actor.compInput.use = false;
+                    Actor.compInput.dash = false;
+                    Actor.compInput.attack = false;
+                    return; //dont worry about bite / special attack below
+                }
+
+                #endregion
+
+
+                Check_Bite();
+
+
+                #region Special Attack - Bat Swarm
+
+                //bat boss special attack:
+                //create lots of bats each time boss uses magic
+                if (Actor.compInput.use)
+                {
+                    //spawn 2 bats in the direction boss is moving
+                    Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor.compMove, 
+                        Actor.compInput.direction);
+                    Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor.compMove,
+                        Actor.compInput.direction);
+
+                    //spawn 2 bats towards hero, diagonally
+                    Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor.compMove,
+                        Functions_Direction.GetDiagonalToHero(Actor.compSprite.position));
+                    Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor.compMove,
+                        Functions_Direction.GetDiagonalToHero(Actor.compSprite.position));
+
+                    //spawn 2 bats towards center of room
+                    Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor.compMove,
+                        Functions_Direction.GetDiagonalToCenterOfRoom(Actor.compSprite.position));
+                    Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor.compMove,
+                        Functions_Direction.GetDiagonalToCenterOfRoom(Actor.compSprite.position));
+                }
+
+                #endregion
+
             }
 
             #endregion
@@ -239,6 +358,20 @@ namespace DungeonRun
             if (yDistance < Actor.chaseRadius && xDistance < Actor.chaseRadius)
             { Actor.compInput.direction = Functions_Direction.GetDiagonalToHero(actorPos); }
         }
+
+        public static void Check_Bite()
+        {   //determine if actor is close enough to attack hero
+            if (yDistance < Actor.attackRadius & xDistance < Actor.attackRadius)
+            {   //actor is close enough to hero to attack
+                //set the cardinal direction towards hero, attack, cancel other inputs
+                Actor.compInput.direction = Functions_Direction.GetCardinalDirectionToHero(actorPos);
+                Actor.compInput.attack = true;
+                Actor.compInput.dash = false;
+                Actor.compInput.use = false;
+            }
+        }
+
+
 
         public static void HandleObj(GameObject Obj)
         {   //keep in mind this method is called every frame
@@ -794,7 +927,11 @@ namespace DungeonRun
                     {   //reward hero with gold
                         PlayerData.current.gold += 99;
                     }
-                    else if (Functions_Colliseum.currentChallenge == Challenges.Bosses)
+                    else if (Functions_Colliseum.currentChallenge == Challenges.Bosses_BigBat)
+                    {   //reward hero with gold
+                        PlayerData.current.gold += 99;
+                    }
+                    else if (Functions_Colliseum.currentChallenge == Challenges.Bosses_BigEye)
                     {   //reward hero with gold
                         PlayerData.current.gold += 99;
                     }

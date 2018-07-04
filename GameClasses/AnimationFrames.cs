@@ -702,8 +702,11 @@ namespace DungeonRun
         public static ActorAnimationList Standard_AngryEye_Animations;
         public static ActorAnimationList Standard_BeefyBat_Animations;
 
-        public static ActorAnimationList Boss_BigEye_Animations;
         public static ActorAnimationList MiniBoss_BlackEye_Animations;
+
+        public static ActorAnimationList Boss_BigEye_Animations;
+        public static ActorAnimationList Boss_BigBat_Animations;
+
 
         //actor fx anim frames
         public static List<Byte4> ActorFX_GrassyFeet = new List<Byte4>
@@ -1172,6 +1175,69 @@ namespace DungeonRun
 
             #endregion
 
+
+
+            
+            #region Boss Big Bat Animations
+
+            Boss_BigBat_Animations = new ActorAnimationList();
+
+            //movement
+            Boss_BigBat_Animations.idle = new AnimationGroup();
+            Boss_BigBat_Animations.idle.down = new List<Byte4>
+            { new Byte4(8, 0, 0, 0), new Byte4(9, 0, 0, 0), new Byte4(10, 0, 0, 0) };
+            Boss_BigBat_Animations.idle.up = Boss_BigBat_Animations.idle.down;
+            Boss_BigBat_Animations.idle.right = Boss_BigBat_Animations.idle.down;
+            Boss_BigBat_Animations.idle.left = Boss_BigBat_Animations.idle.down;
+
+            Boss_BigBat_Animations.move = Boss_BigBat_Animations.idle;
+            Boss_BigBat_Animations.idleCarry = Boss_BigBat_Animations.idle;
+            Boss_BigBat_Animations.moveCarry = Boss_BigBat_Animations.idle;
+            Boss_BigBat_Animations.interact = Boss_BigBat_Animations.idle;
+            Boss_BigBat_Animations.dash = Boss_BigBat_Animations.idle;
+
+            Boss_BigBat_Animations.attack = new AnimationGroup();
+            Boss_BigBat_Animations.attack.down = new List<Byte4>
+            { new Byte4(11, 0, 0, 0), new Byte4(11, 0, 0, 0) };
+            Boss_BigBat_Animations.attack.up = Boss_BigBat_Animations.attack.down;
+            Boss_BigBat_Animations.attack.right = Boss_BigBat_Animations.attack.down;
+            Boss_BigBat_Animations.attack.left = Boss_BigBat_Animations.attack.down;
+
+            Boss_BigBat_Animations.hit = new AnimationGroup();
+            Boss_BigBat_Animations.hit.down = new List<Byte4>
+            { new Byte4(9, 0, 0, 0), new Byte4(9, 0, 0, 0) };
+            Boss_BigBat_Animations.hit.up = Boss_BigBat_Animations.hit.down;
+            Boss_BigBat_Animations.hit.right = Boss_BigBat_Animations.hit.down;
+            Boss_BigBat_Animations.hit.left = Boss_BigBat_Animations.hit.down;
+
+            Boss_BigBat_Animations.reward = Boss_BigBat_Animations.hit;
+            Boss_BigBat_Animations.pickupThrow = Boss_BigBat_Animations.idle;
+
+            Boss_BigBat_Animations.death_heroic = Boss_BigBat_Animations.death_blank;
+            Boss_BigBat_Animations.death_heroic_water = Boss_BigBat_Animations.death_blank;
+            Boss_BigBat_Animations.death_blank = new AnimationGroup();
+            Boss_BigBat_Animations.death_blank.down = new List<Byte4>
+            {   //laying on ground
+                new Byte4(12, 0, 0, 0), new Byte4(12, 0, 0, 0)
+            };
+            Boss_BigBat_Animations.death_blank.up = Boss_BigBat_Animations.death_blank.down;
+            Boss_BigBat_Animations.death_blank.right = Boss_BigBat_Animations.death_blank.down;
+            Boss_BigBat_Animations.death_blank.left = Boss_BigBat_Animations.death_blank.down;
+
+            Boss_BigBat_Animations.grab = Boss_BigBat_Animations.idle;
+            Boss_BigBat_Animations.push = Boss_BigBat_Animations.idle;
+            Boss_BigBat_Animations.swim_idle = Boss_BigBat_Animations.idle;
+            Boss_BigBat_Animations.swim_move = Boss_BigBat_Animations.idle;
+            Boss_BigBat_Animations.swim_dash = Boss_BigBat_Animations.idle;
+            Boss_BigBat_Animations.swim_hit = Boss_BigBat_Animations.idle;
+            Boss_BigBat_Animations.swim_reward = Boss_BigBat_Animations.idle;
+            Boss_BigBat_Animations.underwater_idle = Boss_BigBat_Animations.idle;
+            Boss_BigBat_Animations.underwater_move = Boss_BigBat_Animations.idle;
+            Boss_BigBat_Animations.falling = Boss_BigBat_Animations.attack;
+            Boss_BigBat_Animations.landed = Boss_BigBat_Animations.death_blank;
+            Boss_BigBat_Animations.climbing = Boss_BigBat_Animations.idle;
+
+            #endregion
 
 
         }
