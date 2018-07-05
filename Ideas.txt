@@ -9,6 +9,15 @@ creates a mythos that will bait and hook people into playing.
 
 
 
+HammerTime (sry, had2)
+create and implement hammer weapon.
+this is used to flatten some objects, & break armor.
+it's a decent weapon too.
+breaking armor should be noted in the flavor text.
+armor can be broken using shovel or hammer.
+
+
+
 
 
 add *king's tournament challenge*

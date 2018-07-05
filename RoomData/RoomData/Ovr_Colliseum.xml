@@ -9590,5 +9590,17 @@
       <posX>1208</posX>
       <posY>296</posY>
     </ObjXmlData>
+    <ObjXmlData>
+      <type>Vendor_NPC_EnemyItems</type>
+      <direction>Down</direction>
+      <posX>568</posX>
+      <posY>472</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_Signpost</type>
+      <direction>Down</direction>
+      <posX>696</posX>
+      <posY>472</posY>
+    </ObjXmlData>
   </objs>
 </RoomXmlData>

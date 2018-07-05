@@ -472,13 +472,16 @@ namespace DungeonRun
 
         //Vendor NPCs
         Vendor_NPC_Items,
+        Vendor_NPC_EnemyItems,
+
         Vendor_NPC_Potions,
         Vendor_NPC_Magic,
         Vendor_NPC_Weapons,
         Vendor_NPC_Armor,
         Vendor_NPC_Equipment,
-        Vendor_NPC_Pets,
 
+        Vendor_NPC_Pets,
+        
         NPC_Story,
 
         NPC_Farmer,

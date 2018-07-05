@@ -232,7 +232,7 @@ namespace DungeonRun
                 MenuItem.name = "Bat Magic";
                 MenuItem.description = "shoots bats, cause \nwhy not? no cost.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Magic_Bat;
-                MenuItem.price = 99;
+                MenuItem.price = 0;
             }
 
             #endregion

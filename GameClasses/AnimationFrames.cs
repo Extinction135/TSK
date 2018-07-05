@@ -557,6 +557,8 @@ namespace DungeonRun
         #region Vendors & NPCs
 
         public static List<Byte4> Vendor_Items = new List<Byte4> { new Byte4(16, 14, 0, 0), new Byte4(16, 14, 1, 0) };
+        public static List<Byte4> Vendor_EnemyItems = new List<Byte4> { new Byte4(16, 14, 0, 0), new Byte4(16, 14, 1, 0) };
+
         public static List<Byte4> Vendor_Potions = new List<Byte4> { new Byte4(17, 14, 0, 0), new Byte4(17, 14, 1, 0) };
         public static List<Byte4> Vendor_Magic = new List<Byte4> { new Byte4(18, 14, 0, 0), new Byte4(18, 14, 1, 0) };
         public static List<Byte4> Vendor_Weapons = new List<Byte4> { new Byte4(19, 14, 0, 0), new Byte4(19, 14, 1, 0) };
@@ -924,10 +926,6 @@ namespace DungeonRun
             #endregion
 
 
-
-
-
-
             #region AngryEye Animations
 
             Standard_AngryEye_Animations = new ActorAnimationList();
@@ -999,16 +997,16 @@ namespace DungeonRun
             Standard_BeefyBat_Animations.idle = new AnimationGroup();
 
             Standard_BeefyBat_Animations.idle.down = new List<Byte4>
-            { new Byte4(23, 3, 0, 0), new Byte4(24, 3, 0, 0) };
+            { new Byte4(16, 3, 0, 0), new Byte4(17, 3, 0, 0) };
 
             Standard_BeefyBat_Animations.idle.up = new List<Byte4>
-            { new Byte4(27, 3, 0, 0), new Byte4(28, 3, 0, 0) };
+            { new Byte4(16, 4, 0, 0), new Byte4(17, 4, 0, 0) };
 
             Standard_BeefyBat_Animations.idle.right = new List<Byte4>
-            { new Byte4(25, 3, 0, 0), new Byte4(26, 3, 0, 0) };
+            { new Byte4(16, 5, 0, 0), new Byte4(17, 5, 0, 0) };
 
             Standard_BeefyBat_Animations.idle.left = new List<Byte4>
-            { new Byte4(25, 3, 1, 0), new Byte4(26, 3, 1, 0) };
+            { new Byte4(16, 5, 1, 0), new Byte4(17, 5, 1, 0) };
 
             Standard_BeefyBat_Animations.move = Standard_BeefyBat_Animations.idle;
             Standard_BeefyBat_Animations.idleCarry = Standard_BeefyBat_Animations.idle;
@@ -1305,8 +1303,6 @@ namespace DungeonRun
             #endregion
 
 
-
-            
             #region Boss Big Bat Animations
 
             Boss_BigBat_Animations = new ActorAnimationList();

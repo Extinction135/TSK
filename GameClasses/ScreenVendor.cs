@@ -53,33 +53,41 @@ namespace DungeonRun
 
             if (vendorRef.type == ObjType.Vendor_NPC_Armor)
             {
-                welcomeDialog = "I have a strong selection of armor for sale.";
+                welcomeDialog = "The shawl doesn't actually do anything yet..";
             }
             else if (vendorRef.type == ObjType.Vendor_NPC_Equipment)
             {
-                welcomeDialog = "I have a useful selection of equipment for sale.";
+                welcomeDialog = "I'm working on expanding my seletion...";
             }
             else if (vendorRef.type == ObjType.Vendor_NPC_Items)
             {
-                welcomeDialog = "I have an interesting selection of items for sale.";
+                welcomeDialog = "I hope you have enough gold this time..";
             }
             else if (vendorRef.type == ObjType.Vendor_NPC_Magic)
             {
-                welcomeDialog = "I have a mysterious selection of magic items for sale.";
+                welcomeDialog = "I found these. Not really sure what they do.\nSure are shiny..";
             }
             else if (vendorRef.type == ObjType.Vendor_NPC_Potions)
             {
-                welcomeDialog = "I have a fine selection of potions for sale.";
+                welcomeDialog = "Drink up...\nHehehehe...";
             }
             else if (vendorRef.type == ObjType.Vendor_NPC_Weapons)
             {
-                welcomeDialog = "I have a wide selection of weapons for sale.";
+                welcomeDialog = "You'll need all these eventually..";
             }
             else if (vendorRef.type == ObjType.Vendor_NPC_Pets)
             {
-                welcomeDialog = "I have a happy selection of pets for adoption.";
+                welcomeDialog = "Please adopt a pet, mister! They all need good homes..";
                 Widgets.ForSale.window.title.text = "For Adoption";
             }
+            else if (vendorRef.type == ObjType.Vendor_NPC_EnemyItems)
+            {
+                welcomeDialog = "don't tell mrgrak I let you play with these..\nhe'd remove me from the game..";
+                Widgets.ForSale.window.title.text = "Shhh!";
+            }
+
+
+
 
 
             else if (vendorRef.type == ObjType.Vendor_Colliseum_Mob)
@@ -327,6 +335,12 @@ namespace DungeonRun
                     }
                     else { DialogAlreadyPurchased(); }
                 }
+                else if(Item.type == MenuItemType.MagicBat)
+                {
+                    //set into player's enemyItem slot
+                    PlayerData.current.enemyItem = MenuItemType.MagicBat;
+                    CompleteSale(Item);
+                }
 
                 #endregion
 
@@ -350,6 +364,12 @@ namespace DungeonRun
                         CompleteSale(Item);
                     }
                     else { DialogAlreadyPurchased(); }
+                }
+                else if (Item.type == MenuItemType.WeaponFang)
+                {
+                    //set into player's enemyWeapon slot
+                    PlayerData.current.enemyWeapon = MenuItemType.WeaponFang;
+                    CompleteSale(Item);
                 }
 
                 #endregion
