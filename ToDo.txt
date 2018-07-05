@@ -55,28 +55,14 @@ Today:
 
 
 
-Colliseum +++
 
-added spider miniboss challenge.
-diversified blob challenge into spawning 
-ALL standard actors, but only 15 of them.
-this brings total challenges in colliseum to 5.
+Rooms++
 
-created signpost dialog for colliseum exterior,
-and dungeon exit room.
-
-Exit Room Signpost
-this really should be it's own commit because its
-special: the signpost in the exit room changes
-it's text based on the level.id and the total
-number of rooms in the dungeon. so the player
-gets the name of the dungeon and it's overall
-'size' (room count). PLUS - we give them a hint
-to go two rooms north to find the map. which,
-isn't a lie - technically the miniboss in the
-hub room WILL drop the map. but some players 
-may feel misled when they are trapped in a room
-with a miniboss instead of a map.
+create more decorative standard rooms (row, column, square),
+with easy enemy spawns and no puzzles. this is to help
+add variation to the dungeon rooms so we have less repeating
+rooms.. done. also upgraded all standard rooms with more
+interesting designs.
 
 
 
@@ -85,6 +71,90 @@ with a miniboss instead of a map.
 
 
 
+
+
+
+Polish
+
+dungeon statue should be part of dungeon objects widget!
+
+
+
+
+
+
+
+change enemy spawn sprite to X. just to make
+it stand out a bit more.
+
+
+
+
+
+
+
+
+
+
+
+Release
+
+release 0.75 to the 'hubs. dont change readme gifs.
+just post UWP and Dx versions, with links to dropBX.
+
+
+
+
+
+
+Media
+
+switch hard drives over to win7, download and install
+0.75. check that you can record voiceover. setup a playthrough
+with voiceover - recorded using OBS if you can.
+
+switch back to win10 with recorded video.
+from master, capture GIFs using licecap for
+readme. only choose gifs that are interesting,
+carefully select what it shown on readme.
+
+post voiceover'd video to youtube under unlisted link.
+update readme with latest video.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+0.76
+
+explosions should push roomObjects that they touch.
+that are moveable. that dont get destroyed?
+are explosions pushing objects?
+
+add a 'clean room' button - removes all roomObjs
+not of group wall or door. thats it.
+leaves us with a blank room with walls, doors,
+statues, and floors.
+add this button to a new widget.. somewhere..
 
 
 rats and crabs should "bite", but turtles dont.
@@ -93,90 +163,10 @@ and crabs will eventually bite link, causing link
 to throw the creature and take 1 damage.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-underwater objects / enemies
-we have an underwater object sprite (should be on leevl sheet)
-when an enemy falls into the water, they should become underwater
-sprite (but keep their obj.type) - just change their current anim
-frame if they touch water (forcibly). here's the trick - keep the
-objs 'alive' using ai, moving them around UNDERWATER, where they
-might eventually roam back onto land - ending their underwater
-sprite state. this allows crabs, rats, turtles to swim and be
-free to roam around levels without getting mercy killed because
-they don't have swimming animation sprites.
-
-
-
-
-
-
-
-
-
-MountainWalls++
-it would be really nice to have alcoves on
-mountain walls, where link could rest from a
-long climb. this also allows us to fill up
-the level with mountain walls, then use footholds
-as paths up to different locations.
-
-
-
-
-
-SleepingBat
-sleeping bat roomObject: uses the upside down
-bat sprite from mountain's 31,0 frame. when hero
-gets close enough, this obj becomes a bat world enemy.
-
-put sleeping bats on the mountain entrance level.
-DO NOT put these objs in dungeon room data.
-
-Bat World Enemy
-bat world enemy: bat flys towards hero and bites
-him. if bat creates a bite projectile, bat removes itself.
-*the difference between world bat and beefy bat is that
-beefy bat can bite multiple times and has 2 hp.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+it would be nice to show the currently selected objects
+important parameters, like moveable, grounded, etc..
+we could put this info next to the object in the objTools
+widget, if we extende the widget.
 
 
 

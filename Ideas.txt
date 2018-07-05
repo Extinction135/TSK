@@ -20,6 +20,51 @@ armor can be broken using shovel or hammer.
 
 
 
+
+
+underwater objects / enemies
+we have an underwater object sprite (should be on leevl sheet)
+when an enemy falls into the water, they should become underwater
+sprite (but keep their obj.type) - just change their current anim
+frame if they touch water (forcibly). here's the trick - keep the
+objs 'alive' using ai, moving them around UNDERWATER, where they
+might eventually roam back onto land - ending their underwater
+sprite state. this allows crabs, rats, turtles to swim and be
+free to roam around levels without getting mercy killed because
+they don't have swimming animation sprites.
+
+
+
+
+MountainWalls++
+it would be really nice to have alcoves on
+mountain walls, where link could rest from a
+long climb. this also allows us to fill up
+the level with mountain walls, then use footholds
+as paths up to different locations.
+
+
+
+SleepingBat
+sleeping bat roomObject: uses the upside down
+bat sprite from mountain's 31,0 frame. when hero
+gets close enough, this obj becomes a bat world enemy.
+
+put sleeping bats on the mountain entrance level.
+DO NOT put these objs in dungeon room data.
+
+Bat World Enemy
+bat world enemy: bat flys towards hero and bites
+him. if bat creates a bite projectile, bat removes itself.
+*the difference between world bat and beefy bat is that
+beefy bat can bite multiple times and has 2 hp.
+
+
+
+
+
+
+
 add *king's tournament challenge*
 - this is ladder fight of bosses
 - we have tons of bosses to put here, from master/forest/dev

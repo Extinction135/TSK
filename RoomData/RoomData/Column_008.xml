@@ -3,6 +3,18 @@
   <type>Column</type>
   <objs>
     <ObjXmlData>
+      <type>Dungeon_SpawnMob</type>
+      <direction>Down</direction>
+      <posX>88</posX>
+      <posY>152</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SpawnMob</type>
+      <direction>Down</direction>
+      <posX>88</posX>
+      <posY>88</posY>
+    </ObjXmlData>
+    <ObjXmlData>
       <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>72</posX>
@@ -132,7 +144,7 @@
       <type>Dungeon_BlockSpike</type>
       <direction>Up</direction>
       <posX>136</posX>
-      <posY>103</posY>
+      <posY>102</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_Pot</type>

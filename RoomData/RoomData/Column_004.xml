@@ -3,6 +3,54 @@
   <type>Column</type>
   <objs>
     <ObjXmlData>
+      <type>Wor_Bush</type>
+      <direction>Down</direction>
+      <posX>24</posX>
+      <posY>72</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Bush</type>
+      <direction>Down</direction>
+      <posX>40</posX>
+      <posY>72</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Bush</type>
+      <direction>Down</direction>
+      <posX>56</posX>
+      <posY>72</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Bush</type>
+      <direction>Down</direction>
+      <posX>72</posX>
+      <posY>72</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Bush</type>
+      <direction>Down</direction>
+      <posX>88</posX>
+      <posY>72</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Bush</type>
+      <direction>Down</direction>
+      <posX>104</posX>
+      <posY>72</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Bush</type>
+      <direction>Down</direction>
+      <posX>72</posX>
+      <posY>232</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Bush</type>
+      <direction>Down</direction>
+      <posX>88</posX>
+      <posY>232</posY>
+    </ObjXmlData>
+    <ObjXmlData>
       <type>Dungeon_LeverOff</type>
       <direction>Down</direction>
       <posX>88</posX>
@@ -131,20 +179,20 @@
     <ObjXmlData>
       <type>Dungeon_SpawnMob</type>
       <direction>Down</direction>
-      <posX>56</posX>
-      <posY>200</posY>
+      <posX>40</posX>
+      <posY>184</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_SpawnMob</type>
       <direction>Down</direction>
-      <posX>120</posX>
-      <posY>200</posY>
+      <posX>136</posX>
+      <posY>184</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_SpawnMob</type>
       <direction>Down</direction>
-      <posX>120</posX>
-      <posY>104</posY>
+      <posX>136</posX>
+      <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_BlockDark</type>
@@ -353,8 +401,8 @@
     <ObjXmlData>
       <type>Dungeon_SpawnMob</type>
       <direction>Down</direction>
-      <posX>56</posX>
-      <posY>104</posY>
+      <posX>40</posX>
+      <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_BlockDark</type>
@@ -441,42 +489,6 @@
       <posY>264</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_Barrel</type>
-      <direction>Down</direction>
-      <posX>152</posX>
-      <posY>136</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_Barrel</type>
-      <direction>Down</direction>
-      <posX>152</posX>
-      <posY>152</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_Barrel</type>
-      <direction>Down</direction>
-      <posX>152</posX>
-      <posY>168</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_Barrel</type>
-      <direction>Down</direction>
-      <posX>24</posX>
-      <posY>136</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_Barrel</type>
-      <direction>Down</direction>
-      <posX>24</posX>
-      <posY>152</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_Barrel</type>
-      <direction>Down</direction>
-      <posX>24</posX>
-      <posY>168</posY>
-    </ObjXmlData>
-    <ObjXmlData>
       <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>56</posX>
@@ -669,28 +681,28 @@
       <posY>184</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_Barrel</type>
+      <type>Wor_Bush</type>
       <direction>Down</direction>
-      <posX>24</posX>
-      <posY>120</posY>
+      <posX>104</posX>
+      <posY>232</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_Barrel</type>
+      <type>Wor_Bush</type>
       <direction>Down</direction>
-      <posX>24</posX>
-      <posY>184</posY>
+      <posX>120</posX>
+      <posY>232</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_Barrel</type>
+      <type>Wor_Bush</type>
+      <direction>Down</direction>
+      <posX>136</posX>
+      <posY>232</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Bush</type>
       <direction>Down</direction>
       <posX>152</posX>
-      <posY>120</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_Barrel</type>
-      <direction>Down</direction>
-      <posX>152</posX>
-      <posY>184</posY>
+      <posY>232</posY>
     </ObjXmlData>
   </objs>
 </RoomXmlData>

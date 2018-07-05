@@ -148,19 +148,19 @@
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_PitTrap</type>
-      <direction>Up</direction>
+      <direction>Right</direction>
       <posX>8</posX>
       <posY>8</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_PitTrap</type>
-      <direction>Left</direction>
+      <direction>Up</direction>
       <posX>296</posX>
       <posY>8</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_PitTrap</type>
-      <direction>Down</direction>
+      <direction>Left</direction>
       <posX>296</posX>
       <posY>168</posY>
     </ObjXmlData>
@@ -631,12 +631,6 @@
       <direction>Down</direction>
       <posX>56</posX>
       <posY>104</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpawnMob</type>
-      <direction>Down</direction>
-      <posX>88</posX>
-      <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_SpawnMob</type>

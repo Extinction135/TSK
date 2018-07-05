@@ -5,26 +5,26 @@
     <ObjXmlData>
       <type>Dungeon_BlockLight</type>
       <direction>Down</direction>
-      <posX>56</posX>
+      <posX>72</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_BlockLight</type>
       <direction>Down</direction>
       <posX>88</posX>
-      <posY>56</posY>
+      <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_BlockLight</type>
       <direction>Down</direction>
-      <posX>120</posX>
+      <posX>104</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_BlockLight</type>
       <direction>Down</direction>
       <posX>88</posX>
-      <posY>120</posY>
+      <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_SpikesFloorOn</type>
@@ -83,26 +83,26 @@
     <ObjXmlData>
       <type>Dungeon_SpawnMob</type>
       <direction>Down</direction>
-      <posX>88</posX>
-      <posY>72</posY>
+      <posX>136</posX>
+      <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_SpawnMob</type>
       <direction>Down</direction>
-      <posX>104</posX>
-      <posY>88</posY>
+      <posX>136</posX>
+      <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_SpawnMob</type>
       <direction>Down</direction>
-      <posX>72</posX>
-      <posY>88</posY>
+      <posX>40</posX>
+      <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_SpawnMob</type>
       <direction>Down</direction>
-      <posX>88</posX>
-      <posY>104</posY>
+      <posX>40</posX>
+      <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_ConveyorBeltOn</type>
