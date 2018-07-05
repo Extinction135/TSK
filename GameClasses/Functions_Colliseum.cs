@@ -19,20 +19,33 @@ namespace DungeonRun
     {
         static int i;
         public static List<ActorType> Blobs;
-        public static List<ActorType> Minibosses;
+
+        public static List<ActorType> Mini_Blackeyes;
+        public static List<ActorType> Mini_Spiders;
+
         public static List<ActorType> Bosses_BigEye;
         public static List<ActorType> Bosses_BigBat;
 
         static Challenges()
         {
             Blobs = new List<ActorType>();
-            for (i=0; i<25; i++)
-            { Blobs.Add(ActorType.Blob); }
+            for (i = 0; i < 5; i++)
+            {
+                Blobs.Add(ActorType.Blob);
+                Blobs.Add(ActorType.Standard_AngryEye);
+                Blobs.Add(ActorType.Standard_BeefyBat);
+            }
 
-            Minibosses = new List<ActorType>();
-            for (i = 0; i < 1; i++)
-            { Minibosses.Add(ActorType.MiniBoss_Spider_Armored); }
+            //minis
+            Mini_Blackeyes = new List<ActorType>();
+            for (i = 0; i < 2; i++)
+            { Mini_Blackeyes.Add(ActorType.MiniBoss_BlackEye); }
 
+            Mini_Spiders = new List<ActorType>();
+            for (i = 0; i < 2; i++)
+            { Mini_Spiders.Add(ActorType.MiniBoss_Spider_Armored); }
+
+            //boss
             Bosses_BigEye = new List<ActorType>();
             for (i = 0; i < 1; i++)
             { Bosses_BigEye.Add(ActorType.Boss_BigEye); }

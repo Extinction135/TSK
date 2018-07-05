@@ -415,18 +415,29 @@ namespace DungeonRun
 
                 #region Challenges
 
+                //standards
                 else if (Item.type == MenuItemType.Challenge_Blobs)
                 {
                     CompleteSale(Item);
                     CloseVendorScreen();
                     Functions_Colliseum.BeginChallenge(Challenges.Blobs);
                 }
-                else if (Item.type == MenuItemType.Challenge_Minibosses)
+
+                //minis
+                else if (Item.type == MenuItemType.Challenge_Mini_BlackEyes)
                 {
                     CompleteSale(Item);
                     CloseVendorScreen();
-                    Functions_Colliseum.BeginChallenge(Challenges.Minibosses);
+                    Functions_Colliseum.BeginChallenge(Challenges.Mini_Blackeyes);
                 }
+                else if (Item.type == MenuItemType.Challenge_Mini_Spiders)
+                {
+                    CompleteSale(Item);
+                    CloseVendorScreen();
+                    Functions_Colliseum.BeginChallenge(Challenges.Mini_Spiders);
+                }
+
+                //bosses
                 else if (Item.type == MenuItemType.Challenge_Bosses_BigEye)
                 {
                     CompleteSale(Item);

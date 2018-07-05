@@ -386,6 +386,19 @@ namespace DungeonRun
 
             else if (Obj.type == ObjType.Dungeon_Signpost)
             {
+
+                if (Level.currentRoom.roomID == RoomID.Exit)
+                {   //dynamically populate the text with level data
+                    AssetsDialog.Signpost_ExitRoom = new List<Dialog>
+                    {
+                        new Dialog(ObjType.Hero_Idle, "...",
+                            "Dungeon: " + Level.ID + ".  Size: " + Level.rooms.Count + " rooms.\n" +
+                            "Head North two Rooms to find the map. Good luck!",
+                            Assets.sfxTextLetter, false, false, false)
+                    };
+                }
+
+                //read signpost from global dialogs
                 Functions_GameObject_World.ReadSign(Obj);
             }
 

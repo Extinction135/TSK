@@ -166,10 +166,17 @@ namespace DungeonRun
         public static void ReadSign(GameObject Sign)
         {
             //based on level.id, and sometimes roomID, signs point to diff dialogs
+
+            //field signposts
             if (Level.ID == LevelID.Forest_Entrance)
             {
                 ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Signpost_ForestEntrance));
             }
+            else if (Level.ID == LevelID.Mountain_Entrance)
+            {
+                ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Signpost_MountainEntrance));
+            }
+
             else if(Level.ID == LevelID.LeftTown2)
             {
                 ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Signpost_LeftTown2));
@@ -178,9 +185,16 @@ namespace DungeonRun
             {
                 ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Signpost_TheFarm));
             }
-            else if (Level.ID == LevelID.Mountain_Entrance)
+            else if (Level.ID == LevelID.Colliseum)
             {
-                ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Signpost_MountainEntrance));
+                ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Signpost_Colliseum));
+            }
+
+
+            //dungeon signposts
+            else if (Level.currentRoom.roomID == RoomID.Exit)
+            {
+                ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Signpost_ExitRoom));
             }
 
 

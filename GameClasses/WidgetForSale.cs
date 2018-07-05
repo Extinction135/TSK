@@ -189,9 +189,16 @@ namespace DungeonRun
             else if (VendorType == ObjType.Vendor_Colliseum_Mob)
             {
                 Functions_MenuItem.SetType(MenuItemType.Challenge_Blobs, menuItems[0]);
-                Functions_MenuItem.SetType(MenuItemType.Challenge_Minibosses, menuItems[1]);
+                Functions_MenuItem.SetType(MenuItemType.Challenge_Mini_BlackEyes, menuItems[1]);
+                Functions_MenuItem.SetType(MenuItemType.Challenge_Mini_Spiders, menuItems[2]);
+                //3
+                //4
+                
                 Functions_MenuItem.SetType(MenuItemType.Challenge_Bosses_BigEye, menuItems[5]);
                 Functions_MenuItem.SetType(MenuItemType.Challenge_Bosses_BigBat, menuItems[6]);
+                //7
+                //8
+                //9
             }
 
             else if (VendorType == ObjType.Vendor_NPC_EnemyItems)

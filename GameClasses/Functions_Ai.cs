@@ -909,19 +909,22 @@ namespace DungeonRun
 
                     #region Reward the player based on current ChallengeSet
 
+                    //standard
                     if (Functions_Colliseum.currentChallenge == Challenges.Blobs)
                     {   //reward hero with gold
                         PlayerData.current.gold += 25;
                     }
-                    else if(Functions_Colliseum.currentChallenge == Challenges.Minibosses)
+
+                    //minis
+                    else if(Functions_Colliseum.currentChallenge == Challenges.Mini_Blackeyes
+                        || Functions_Colliseum.currentChallenge == Challenges.Mini_Spiders)
                     {   //reward hero with gold
                         PlayerData.current.gold += 99;
                     }
-                    else if (Functions_Colliseum.currentChallenge == Challenges.Bosses_BigBat)
-                    {   //reward hero with gold
-                        PlayerData.current.gold += 99;
-                    }
-                    else if (Functions_Colliseum.currentChallenge == Challenges.Bosses_BigEye)
+
+                    //bosses
+                    else if (Functions_Colliseum.currentChallenge == Challenges.Bosses_BigEye
+                        || Functions_Colliseum.currentChallenge == Challenges.Bosses_BigBat)
                     {   //reward hero with gold
                         PlayerData.current.gold += 99;
                     }

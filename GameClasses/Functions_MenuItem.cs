@@ -353,34 +353,47 @@ namespace DungeonRun
 
             #region Colliseum Challenge menuItems
 
+            //standards
             else if (Type == MenuItemType.Challenge_Blobs)
             {
-                MenuItem.name = "Challenge - Blobs";
-                MenuItem.description = "Defeat 25 blobs \nfor 25 gold.";
+                MenuItem.name = "Mobs - Blobs";
+                MenuItem.description = "Defeat 25 random enemies \nfor 25 gold.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Challenge;
                 MenuItem.compSprite.texture = Assets.colliseumLevelSheet;
                 MenuItem.price = 10;
             }
-            else if (Type == MenuItemType.Challenge_Minibosses)
+
+            //minibosses
+            else if (Type == MenuItemType.Challenge_Mini_BlackEyes)
             {
-                MenuItem.name = "Challenge - Blackeyes";
-                MenuItem.description = "Defeat 2 minibosses \nfor 99 gold.";
+                MenuItem.name = "Miniboss - Blackeyes";
+                MenuItem.description = "Defeat 2 blackeyes \nfor 99 gold.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Challenge;
                 MenuItem.compSprite.texture = Assets.colliseumLevelSheet;
                 MenuItem.price = 10;
             }
+            else if (Type == MenuItemType.Challenge_Mini_Spiders)
+            {
+                MenuItem.name = "Miniboss - Spiders";
+                MenuItem.description = "Defeat 2 spiders \nfor 99 gold.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Challenge;
+                MenuItem.compSprite.texture = Assets.colliseumLevelSheet;
+                MenuItem.price = 10;
+            }
+
+            //bosses
             else if (Type == MenuItemType.Challenge_Bosses_BigEye)
             {
-                MenuItem.name = "Challenge - BigEyes";
-                MenuItem.description = "Defeat 1 BigEye \nfor 99 gold.";
+                MenuItem.name = "Boss - BigEye";
+                MenuItem.description = "Defeat BigEye \nfor 99 gold.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Challenge;
                 MenuItem.compSprite.texture = Assets.colliseumLevelSheet;
                 MenuItem.price = 10;
             }
             else if (Type == MenuItemType.Challenge_Bosses_BigBat)
             {
-                MenuItem.name = "Challenge - BigBats";
-                MenuItem.description = "Defeat 1 BigBat \nfor 99 gold.";
+                MenuItem.name = "Boss - BigBat";
+                MenuItem.description = "Defeat BigBat \nfor 99 gold.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Challenge;
                 MenuItem.compSprite.texture = Assets.colliseumLevelSheet;
                 MenuItem.price = 10;

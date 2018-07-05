@@ -145,6 +145,8 @@ namespace DungeonRun
                 Assets.sfxTextLetter, false, false, false)
         };
 
+
+
         public static List<Dialog> Signpost_ForestEntrance = new List<Dialog>
         {
             new Dialog(ObjType.Hero_Idle, "Hyrule Forest",
@@ -153,27 +155,48 @@ namespace DungeonRun
                 Assets.sfxTextLetter, false, false, false)
         };
 
+        public static List<Dialog> Signpost_MountainEntrance = new List<Dialog>
+        {
+            new Dialog(ObjType.Hero_Idle, "Climbing The Mountain",
+                "Climb using A to grab onto a foothold.\n" +
+                "Press B to jump off the wall. Be careful.",
+                Assets.sfxTextLetter, false, false, false)
+        };
+
+
+
         public static List<Dialog> Signpost_LeftTown2 = new List<Dialog>
         {
-            new Dialog(ObjType.Hero_Idle, "Hmm..",
+            new Dialog(ObjType.Hero_Idle, "Welcome To Left Town",
                 "it says 'welcome to left town'.\n" +
-                "that's an odd name for a town.",
+                "that's an odd name for a town..",
                 Assets.sfxTextLetter, false, false, false)
         };
 
         public static List<Dialog> Signpost_TheFarm = new List<Dialog>
         {
             new Dialog(ObjType.Hero_Idle, "The Farm",
-                "welcome to the farm.\n" +
-                "...",
+                "welcome to the farm...\n" +
+                "..well that's really boring..",
                 Assets.sfxTextLetter, false, false, false)
         };
 
-        public static List<Dialog> Signpost_MountainEntrance = new List<Dialog>
+        public static List<Dialog> Signpost_Colliseum = new List<Dialog>
         {
-            new Dialog(ObjType.Hero_Idle, "The Mountain",
-                "Climb the mountain using A to grab onto a foothold.\n" +
-                "Press B to jump off the wall. Press A to grab again, while falling.",
+            new Dialog(ObjType.Hero_Idle, "The Colliseum",
+                "The Colliseum is open.\n" +
+                "<- Do not trust the man to the left.",
+                Assets.sfxTextLetter, false, false, false)
+        };
+
+
+
+        //dungeon signposts
+        public static List<Dialog> Signpost_ExitRoom = new List<Dialog>
+        {
+            new Dialog(ObjType.Hero_Idle, "this gets overwritten",
+                "overwritten by heros interaction\n" +
+                "with signpost, so current data is fetched.",
                 Assets.sfxTextLetter, false, false, false)
         };
 

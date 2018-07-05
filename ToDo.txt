@@ -53,57 +53,36 @@ Today:
 
 
 
-Polish++
-
-if a tree is burning, we can't destroy it.
-because we don't check for burning trees in BlowUp().
-now we do.
-
-we should add an offset to the camera when it 
-centers to the dungeon room - it needs a +16 offset
-on the Y axis in order to properly display large 
-rooms like columns.
-
-Refactoring
-functions_level.buildPosition should be level.buildPosition.
-same with fun_level.dungeonTrack... lol. < done.
-
-
-
-
-
-
-
-
-
-
-
 
 
 Colliseum +++
-extend colliseum with additional BAT (mountain) challenges.
-add more miniboss + boss challenges.
-add more standard enemy challenges.
-add *colliseum unique* creature challenges.
+
+added spider miniboss challenge.
+diversified blob challenge into spawning 
+ALL standard actors, but only 15 of them.
+this brings total challenges in colliseum to 5.
+
+created signpost dialog for colliseum exterior,
+and dungeon exit room.
+
+Exit Room Signpost
+this really should be it's own commit because its
+special: the signpost in the exit room changes
+it's text based on the level.id and the total
+number of rooms in the dungeon. so the player
+gets the name of the dungeon and it's overall
+'size' (room count). PLUS - we give them a hint
+to go two rooms north to find the map. which,
+isn't a lie - technically the miniboss in the
+hub room WILL drop the map. but some players 
+may feel misled when they are trapped in a room
+with a miniboss instead of a map.
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-add more signs 
-exit room, exterior colliseum, 
-improve signpost dialogs.
 
 
 

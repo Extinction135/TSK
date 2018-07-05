@@ -706,7 +706,10 @@ namespace DungeonRun
         #region Colliseum Challenges
 
         Challenge_Blobs,
-        Challenge_Minibosses,
+
+        Challenge_Mini_BlackEyes,
+        Challenge_Mini_Spiders,
+
         Challenge_Bosses_BigEye,
         Challenge_Bosses_BigBat,
 
