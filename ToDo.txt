@@ -48,44 +48,16 @@ Today:
 
 
 
-0.75 is ready... now we POLISH MOAR!
 
+Pre 0.75 Fixes
 
+moved dungeon statue into dungeon objects widget.
+cleaned up forest objects widget.
 
-
-
-
-
-Rooms++
-
-create more decorative standard rooms (row, column, square),
-with easy enemy spawns and no puzzles. this is to help
-add variation to the dungeon rooms so we have less repeating
-rooms.. done. also upgraded all standard rooms with more
-interesting designs.
-
-
-
-
-
-
-
-
-
-
-
-Polish
-
-dungeon statue should be part of dungeon objects widget!
-
-
-
-
-
-
-
-change enemy spawn sprite to X. just to make
-it stand out a bit more.
+when we loop over enemy spawns, we need to 
+be creating blobs, if dungeon isn't of forest 
+or mountain type. that keeps the enemy spawns 
+producing actors while we are designing rooms.
 
 
 
@@ -97,7 +69,9 @@ it stand out a bit more.
 
 
 
-Release
+
+
+Release 0.75
 
 release 0.75 to the 'hubs. dont change readme gifs.
 just post UWP and Dx versions, with links to dropBX.
@@ -107,7 +81,7 @@ just post UWP and Dx versions, with links to dropBX.
 
 
 
-Media
+Release Media for 0.75
 
 switch hard drives over to win7, download and install
 0.75. check that you can record voiceover. setup a playthrough

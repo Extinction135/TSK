@@ -315,8 +315,6 @@ namespace DungeonRun
                     //create enemies at enemySpawn obj locations
                     if (objRef.group == ObjGroup.EnemySpawn)
                     {
-
-
                         //here we check level.id to determine what
                         //type of STANDARD enemy to spawn
                         if(Level.ID == LevelID.Forest_Dungeon)
@@ -329,15 +327,11 @@ namespace DungeonRun
                             Functions_Actor.SpawnActor(ActorType.Standard_BeefyBat, objRef.compSprite.position);
                         }
 
-                        /*
-                        //blob dungeon
-                        else if (Level.ID == LevelID.Mountain_Dungeon)
-                        {
+
+                        else
+                        {   //any other dungeon spawns blobs
                             Functions_Actor.SpawnActor(ActorType.Blob, objRef.compSprite.position);
                         }
-                        */
-
-
                     }
                 }
             }

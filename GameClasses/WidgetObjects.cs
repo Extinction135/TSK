@@ -256,8 +256,8 @@ namespace DungeonRun
             //row 6
             Functions_GameObject.SetType(objList[20], ObjType.Dungeon_TorchUnlit);
             Functions_GameObject.SetType(objList[21], ObjType.Dungeon_TorchLit);
-            Functions_GameObject.SetType(objList[22], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[23], ObjType.Dungeon_WallTorch);
+            Functions_GameObject.SetType(objList[22], ObjType.Dungeon_Statue);
+            Functions_GameObject.SetType(objList[23], ObjType.Unknown);
 
             //row 7
             Functions_GameObject.SetType(objList[24], ObjType.Dungeon_SpikesFloorOn);
@@ -421,7 +421,7 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[0], ObjType.Wor_Entrance_ForestDungeon);
             Functions_GameObject.SetType(objList[1], ObjType.Unknown);//
             Functions_GameObject.SetType(objList[2], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[3], ObjType.Dungeon_Statue);
+            Functions_GameObject.SetType(objList[3], ObjType.Wor_SeekerExploder);
 
             //row 2
             Functions_GameObject.SetType(objList[4], ObjType.Unknown);//
@@ -433,13 +433,13 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[8], ObjType.Unknown);//
             Functions_GameObject.SetType(objList[9], ObjType.Unknown);//
             Functions_GameObject.SetType(objList[10], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[11], ObjType.Dungeon_Statue);
+            Functions_GameObject.SetType(objList[11], ObjType.Wor_SeekerExploder);
 
             //row 4
             Functions_GameObject.SetType(objList[12], ObjType.Unknown);//
             Functions_GameObject.SetType(objList[13], ObjType.Unknown);//
             Functions_GameObject.SetType(objList[14], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[15], ObjType.Dungeon_Statue);
+            Functions_GameObject.SetType(objList[15], ObjType.Wor_SeekerExploder);
 
             //row 5
             Functions_GameObject.SetType(objList[16], ObjType.Unknown);
