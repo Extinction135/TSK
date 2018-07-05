@@ -428,7 +428,20 @@ namespace DungeonRun
 
             else if (Obj.type == ObjType.Wor_MountainWall_Foothold
                 || Obj.type == ObjType.Wor_MountainWall_Ladder)
-            {
+            {   
+                //hero isnt in climbing state yet, but will be at end of this routine
+                //so this is the initial 'attach' to the wall from idle or falling
+                if (Pool.hero.state != ActorState.Climbing)
+                {   //help hero 'onto' the wall/foothold
+                    Functions_Movement.Teleport(Pool.hero.compMove,
+                        Pool.hero.compSprite.position.X, //keep X
+                        Obj.compSprite.position.Y + 6); //align on Y
+                    Functions_Component.Align(Pool.hero);
+                    //this was done to ensure heros' center sprite pos
+                    //overlaps with the foothold/ladder obj
+                    //which is required to keep actor in climbing state each frame
+                }
+
                 Pool.hero.state = ActorState.Climbing;
                 Pool.hero.stateLocked = true;
             }

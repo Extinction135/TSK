@@ -52,55 +52,34 @@ Today:
 
 
 
+Climbing++
 
+when hero first attaches to a foothold (if hero's
+state isn't climbing), we should align hero to the
+base of the foothold (but only on the Y axis). why?
+hero's sprite's center position MUST overlap a foothold
+obj in order for hero to stay in a climbing state.
+by placing the hero at the obj's position, plus an
+offset (for taste), we can ensure hero properly
+attaches to wall when the player simply presses A.
 
-
-
-Vendor : Enemy Items
-
-enemy items exist in the last slot of
-each type - item, weapon, armor, equipment..
-meaning hero can only hold one of them at a time.
-the only place to get these items is from the enemy
-items vendor, located outside the colliseum (for now).
-
-added hooded vendor sprite.
-added enemy items vendor into game, on colliseum
-exterior level. updated vendor dialogs to be 'better'.
-tested, really fun.
-
-Polish
-
-repacked beefy bat next to miniboss spider.
-we have a nice 2 frame opening there, helps to
-visually separate dungeon and enemies section.
-
-drastically lightened exterior colliseum floor
-sprites - if floor tiles are too dark many issues
-happen: debris doesn't look right, boomerang gets
-lost, etc..
-
-
-
-
-
-
-
-
-
-
-
-
-
-improve initial climbing routine:
-when hero attaches to wall at first (state != climbing),
-we should center the hero to the foothold.
 this prevents a bug where if player isn't pressing
-up on dpad then hero just falls off wall - because 
+up on dpad (when they press A to begin the climb)
+then hero just falls off wall! - because 
 the center of hero's sprite isn't touching the
 foothold object YET. if we align these two initially,
 we prevent this state from occurring, and player
-can simply press A to attach to wall.
+can simply press A to attach to wall. we dont 
+align the X position because we don't want to 
+affect the hero's position too much (jarring),
+plus we already know the interaction point has
+collided with the foothold (so the hero is 'close
+enough' to grab onto the foothold obj).
+
+
+
+
+
 
 
 
