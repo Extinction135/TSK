@@ -58,7 +58,7 @@ namespace DungeonRun
             //power level 1 projectiles
             else if(Obj.type == ObjType.ProjectileArrow)
             {   //arrows deal 1 damage, push 4, and die
-                damage = 1; force = 4.0f; direction = Obj.direction;
+                damage = 1; force = 4.0f; direction = Obj.compMove.direction;
                 Obj.lifeCounter = Obj.lifetime;
             }
             else if (Obj.type == ObjType.ProjectileSword)
@@ -73,7 +73,7 @@ namespace DungeonRun
                 || Obj.type == ObjType.ProjectilePot
                 || Obj.type == ObjType.ProjectilePotSkull)
             {   //thrown objs deal 1 damage, push 4
-                damage = 1; force = 4.0f; direction = Obj.direction;
+                damage = 1; force = 4.0f; direction = Obj.compMove.direction;
             }
             else if (Obj.type == ObjType.ProjectileBite)
             {   //bite deals 1 damage, push 5
@@ -82,7 +82,7 @@ namespace DungeonRun
             else if (Obj.type == ObjType.ProjectileBat)
             {
                 //bats deal 1 damage, push 4, and die
-                damage = 1; force = 4.0f; direction = Obj.direction;
+                damage = 1; force = 4.0f; direction = Obj.compMove.direction;
                 Obj.lifeCounter = Obj.lifetime;
             }
 

@@ -219,21 +219,18 @@ namespace DungeonRun
             else if (PlayerData.current.lastLocation == LevelID.LeftTown2)
             { currentLocation = leftTown2; }
 
-
-            else if(PlayerData.current.lastLocation == LevelID.Colliseum)
-            { currentLocation = colliseum; }
-            else if (PlayerData.current.lastLocation == LevelID.ColliseumPit)
+            else if(PlayerData.current.lastLocation == LevelID.Colliseum
+                || PlayerData.current.lastLocation == LevelID.ColliseumPit)
             { currentLocation = colliseum; }
 
-            else if (PlayerData.current.lastLocation == LevelID.Forest_Entrance)
-            { currentLocation = forestDungeon; }
-            else if (PlayerData.current.lastLocation == LevelID.Forest_Dungeon)
+            else if (PlayerData.current.lastLocation == LevelID.Forest_Entrance
+                || PlayerData.current.lastLocation == LevelID.Forest_Dungeon)
             { currentLocation = forestDungeon; }
 
-            else if (PlayerData.current.lastLocation == LevelID.Mountain_Entrance)
+            else if (PlayerData.current.lastLocation == LevelID.Mountain_Entrance
+                || PlayerData.current.lastLocation == LevelID.Mountain_Dungeon)
             { currentLocation = caveDungeon; }
-            else if (PlayerData.current.lastLocation == LevelID.Mountain_Dungeon)
-            { currentLocation = caveDungeon; }
+
 
              
             

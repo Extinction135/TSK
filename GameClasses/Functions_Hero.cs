@@ -393,7 +393,7 @@ namespace DungeonRun
                     {
                         new Dialog(ObjType.Hero_Idle, "...",
                             "Dungeon: " + Level.ID + ".  Size: " + Level.rooms.Count + " rooms.\n" +
-                            "Head North two Rooms to find the map. Good luck!",
+                            "Head North 3 Rooms to find the map. Good luck!",
                             Assets.sfxTextLetter, false, false, false)
                     };
                 }

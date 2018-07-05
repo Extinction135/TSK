@@ -49,17 +49,18 @@ Today:
 
 
 
-Pre 0.75 Fixes
+Pre-release Polish:
 
-moved dungeon statue into dungeon objects widget.
-cleaned up forest objects widget.
+"go north 3 rooms to find the map" < done.
 
-when we loop over enemy spawns, we need to 
-be creating blobs, if dungeon isn't of forest 
-or mountain type. that keeps the enemy spawns 
-producing actors while we are designing rooms.
+bat projectiles push all actors they collide with south.
+we should be basing the push on actor.compMove.direction.
+checked, fixed, done.
 
-
+exiting from summary screen dropped link at colliseum.
+why? we were never setting the level.id post-summary
+screen so level loading routines defaulted to colliseum.
+fixed that. ready for real-ease.
 
 
 
