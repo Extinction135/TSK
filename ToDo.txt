@@ -52,29 +52,21 @@ Today:
 
 
 
-Climbing++
 
-when hero first attaches to a foothold (if hero's
-state isn't climbing), we should align hero to the
-base of the foothold (but only on the Y axis). why?
-hero's sprite's center position MUST overlap a foothold
-obj in order for hero to stay in a climbing state.
-by placing the hero at the obj's position, plus an
-offset (for taste), we can ensure hero properly
-attaches to wall when the player simply presses A.
+Polish++
 
-this prevents a bug where if player isn't pressing
-up on dpad (when they press A to begin the climb)
-then hero just falls off wall! - because 
-the center of hero's sprite isn't touching the
-foothold object YET. if we align these two initially,
-we prevent this state from occurring, and player
-can simply press A to attach to wall. we dont 
-align the X position because we don't want to 
-affect the hero's position too much (jarring),
-plus we already know the interaction point has
-collided with the foothold (so the hero is 'close
-enough' to grab onto the foothold obj).
+if a tree is burning, we can't destroy it.
+because we don't check for burning trees in BlowUp().
+now we do.
+
+we should add an offset to the camera when it 
+centers to the dungeon room - it needs a +16 offset
+on the Y axis in order to properly display large 
+rooms like columns.
+
+Refactoring
+functions_level.buildPosition should be level.buildPosition.
+same with fun_level.dungeonTrack... lol. < done.
 
 
 
@@ -82,6 +74,36 @@ enough' to grab onto the foothold obj).
 
 
 
+
+
+
+
+
+
+Colliseum +++
+extend colliseum with additional BAT (mountain) challenges.
+add more miniboss + boss challenges.
+add more standard enemy challenges.
+add *colliseum unique* creature challenges.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+add more signs 
+exit room, exterior colliseum, 
+improve signpost dialogs.
 
 
 
@@ -92,35 +114,15 @@ and crabs will eventually bite link, causing link
 to throw the creature and take 1 damage.
 
 
-*if a tree is burning, we can't destroy it
-*because we only check for trees, and not burning trees too..
 
 
 
-*we shouldn't be adding an offset to the camera
-when we center to a dungeon room. this causes column
-rooms to be displayed not centered IN GAME. but,
-they displayed 'centered' in teh editor - which doesnt
-matter at all!!!!
 
 
 
-Refactoring
-
-functions_level.buildPosition should be level.buildPosition.
-same with fun_level.dungeonTrack... lol
-
-level.id.Forest_Dungeon = id.Dungeon_Forest.
-id.Forest_Entrance = id.Entrance_Forest.
-fix these naming conventions.
 
 
 
-Colliseum +++
-extend colliseum with additional BAT (mountain) challenges.
-add more miniboss + boss challenges.
-add more standard enemy challenges.
-add *colliseum unique* creature challenges.
 
 
 

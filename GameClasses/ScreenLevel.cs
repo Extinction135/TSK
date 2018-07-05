@@ -165,7 +165,7 @@ namespace DungeonRun
                         {
                             //center camera to current room
                             Camera2D.targetPosition.X = Level.currentRoom.center.X;
-                            Camera2D.targetPosition.Y = Level.currentRoom.center.Y;
+                            Camera2D.targetPosition.Y = Level.currentRoom.center.Y + 16 * 1;
                             Camera2D.tracks = true; //wait until room change, then move
                         }
                     }

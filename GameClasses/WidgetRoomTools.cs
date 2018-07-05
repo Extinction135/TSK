@@ -292,7 +292,7 @@ namespace DungeonRun
                 Level.bigKey = false;
                 Level.map = false;
 
-                Room room = new Room(Functions_Level.buildPosition, RoomXmlData.type);
+                Room room = new Room(Level.buildPosition, RoomXmlData.type);
                 Level.rooms.Add(room);
                 Level.currentRoom = room;
                 Functions_Dungeon.AddDevDoors(room);

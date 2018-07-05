@@ -41,8 +41,8 @@ namespace DungeonRun
                 Widgets.RoomTools.SetState(WidgetRoomToolsState.Room);
                 //teleport hero to outside of room at top left corner
                 Functions_Movement.Teleport(Pool.hero.compMove,
-                    Functions_Level.buildPosition.X - 32,
-                    Functions_Level.buildPosition.Y + 32);
+                    Level.buildPosition.X - 32,
+                    Level.buildPosition.Y + 32);
             }
 
             //position the roomTools widget

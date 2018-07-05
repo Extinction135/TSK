@@ -79,8 +79,8 @@ namespace DungeonRun
                 mapRoom.rec.X = dungeonRoom.rec.X;
                 mapRoom.rec.Y = dungeonRoom.rec.Y;
                 //subtract the build position
-                mapRoom.rec.X -= Functions_Level.buildPosition.X;
-                mapRoom.rec.Y -= Functions_Level.buildPosition.Y;
+                mapRoom.rec.X -= Level.buildPosition.X;
+                mapRoom.rec.Y -= Level.buildPosition.Y;
                 //reduce position 16:1
                 mapRoom.rec.X = mapRoom.rec.X / 16;
                 mapRoom.rec.Y = mapRoom.rec.Y / 16;
@@ -126,8 +126,8 @@ namespace DungeonRun
                 dungeonDoor.rec.X = Level.doors[i].rec.X;
                 dungeonDoor.rec.Y = Level.doors[i].rec.Y;
                 //subtract the build position
-                dungeonDoor.rec.X -= Functions_Level.buildPosition.X;
-                dungeonDoor.rec.Y -= Functions_Level.buildPosition.Y;
+                dungeonDoor.rec.X -= Level.buildPosition.X;
+                dungeonDoor.rec.Y -= Level.buildPosition.Y;
                 //reduce position 16:1
                 dungeonDoor.rec.X = dungeonDoor.rec.X / 16;
                 dungeonDoor.rec.Y = dungeonDoor.rec.Y / 16;

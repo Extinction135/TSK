@@ -649,7 +649,7 @@ namespace DungeonRun
         {
             //create the exit room
             Room exitRoom = new Room(new Point(0, 0), RoomID.Exit);
-            Functions_Room.MoveRoom(exitRoom, Functions_Level.buildPosition.X, Functions_Level.buildPosition.Y);
+            Functions_Room.MoveRoom(exitRoom, Level.buildPosition.X, Level.buildPosition.Y);
             Level.rooms.Add(exitRoom); //exit room must be at index0
             lastRoom = Level.rooms.Count() - 1;
 
@@ -829,12 +829,12 @@ namespace DungeonRun
             #region Choose Dungeon Music
 
             //select the dungeon music
-            if (Functions_Level.dungeonTrack == 0) { Functions_Music.PlayMusic(Music.DungeonA); }
-            else if (Functions_Level.dungeonTrack == 1) { Functions_Music.PlayMusic(Music.DungeonB); }
-            else if (Functions_Level.dungeonTrack == 2) { Functions_Music.PlayMusic(Music.DungeonC); }
+            if (Level.dungeonTrack == 0) { Functions_Music.PlayMusic(Music.DungeonA); }
+            else if (Level.dungeonTrack == 1) { Functions_Music.PlayMusic(Music.DungeonB); }
+            else if (Level.dungeonTrack == 2) { Functions_Music.PlayMusic(Music.DungeonC); }
             //cycle thru dungeon music tracks
-            Functions_Level.dungeonTrack++;
-            if (Functions_Level.dungeonTrack > 2) { Functions_Level.dungeonTrack = 0; }
+            Level.dungeonTrack++;
+            if (Level.dungeonTrack > 2) { Level.dungeonTrack = 0; }
 
             #endregion
 

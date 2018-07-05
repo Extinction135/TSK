@@ -151,7 +151,7 @@ namespace DungeonRun
                     Obj.compSprite.position.X,
                     Obj.compSprite.position.Y - 4);
             }
-            else if (Obj.type == ObjType.Wor_Tree)
+            else if (Obj.type == ObjType.Wor_Tree || Obj.type == ObjType.Wor_Tree_Burning)
             {   //blow up tree, showing leaf explosion
                 Functions_GameObject_World.BlowUpTree(Obj, true);
             }

@@ -17,13 +17,11 @@ namespace DungeonRun
         public static Stopwatch stopWatch = new Stopwatch();
         public static TimeSpan time;
 
-        public static ScreenLevel levelScreen;
+        //this is a problem, will be solved with structural change soon
+        public static ScreenLevel levelScreen; 
 
-        public static int dungeonTrack = 0;
-
-        //where exit room is placed initially
-        public static Point buildPosition = new Point(16 * 10, 16 * 200); 
-
+        
+        
 
         public static void ResetLevel()
         {   //level type is set by overworld & dialog screens
@@ -96,7 +94,7 @@ namespace DungeonRun
                 { roomType = Widgets.RoomTools.roomData.type; }
 
                 //build the dev room based on roomType
-                Room room = new Room(new Point(buildPosition.X, buildPosition.Y), roomType); 
+                Room room = new Room(new Point(Level.buildPosition.X, Level.buildPosition.Y), roomType); 
                 Level.rooms.Add(room); //spawn room must be index0
 
                 //set spawnPos outside TopLeft of new dev room
@@ -105,7 +103,7 @@ namespace DungeonRun
             }
             else if (Level.ID == LevelID.DEV_Field)
             {
-                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.DEV_Field);
+                Room field = new Room(new Point(Level.buildPosition.X, Level.buildPosition.Y), RoomID.DEV_Field);
                 Level.rooms.Add(field);
             }
 
@@ -119,13 +117,13 @@ namespace DungeonRun
             else if (Level.ID == LevelID.Colliseum)
             {
                 Functions_Music.PlayMusic(Music.LightWorld);
-                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.Colliseum);
+                Room field = new Room(new Point(Level.buildPosition.X, Level.buildPosition.Y), RoomID.Colliseum);
                 Level.rooms.Add(field);
             }
             else if (Level.ID == LevelID.ColliseumPit)
             {
                 Functions_Music.PlayMusic(Music.CrowdWaiting);
-                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.ColliseumPit);
+                Room field = new Room(new Point(Level.buildPosition.X, Level.buildPosition.Y), RoomID.ColliseumPit);
                 Level.rooms.Add(field);
             }
 
@@ -133,13 +131,13 @@ namespace DungeonRun
             else if (Level.ID == LevelID.Forest_Entrance)
             {
                 Functions_Music.PlayMusic(Music.LightWorld);
-                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.ForestEntrance);
+                Room field = new Room(new Point(Level.buildPosition.X, Level.buildPosition.Y), RoomID.ForestEntrance);
                 Level.rooms.Add(field);
             }
             else if (Level.ID == LevelID.Mountain_Entrance)
             {
                 Functions_Music.PlayMusic(Music.LightWorld);
-                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.MountainEntrance);
+                Room field = new Room(new Point(Level.buildPosition.X, Level.buildPosition.Y), RoomID.MountainEntrance);
                 Level.rooms.Add(field);
             }
 
@@ -147,13 +145,13 @@ namespace DungeonRun
             else if (Level.ID == LevelID.TheFarm)
             {
                 Functions_Music.PlayMusic(Music.LightWorld);
-                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.TheFarm);
+                Room field = new Room(new Point(Level.buildPosition.X, Level.buildPosition.Y), RoomID.TheFarm);
                 Level.rooms.Add(field);
             }
             else if (Level.ID == LevelID.LeftTown2)
             {
                 Functions_Music.PlayMusic(Music.LightWorld);
-                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.LeftTown2);
+                Room field = new Room(new Point(Level.buildPosition.X, Level.buildPosition.Y), RoomID.LeftTown2);
                 Level.rooms.Add(field);
             }
 

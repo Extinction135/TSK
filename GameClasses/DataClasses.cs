@@ -19,7 +19,7 @@ namespace DungeonRun
         public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.75f; //the version of the game
-        public static BootRoutine bootRoutine = BootRoutine.Editor_Level; //boot to game or editor?
+        public static BootRoutine bootRoutine = BootRoutine.Editor_Room; //boot to game or editor?
         
         //dev flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
@@ -836,6 +836,8 @@ namespace DungeonRun
     public static class Level
     {
         public static LevelID ID = LevelID.Colliseum;
+        //where exit/field room is placed
+        public static Point buildPosition = new Point(16 * 10, 16 * 200);
 
         public static List<Room> rooms = new List<Room>();
         public static Room currentRoom; //points to one in list above
@@ -849,6 +851,7 @@ namespace DungeonRun
         public static Boolean isField = true;
 
         public static Boolean lightWorld = true;
+        public static int dungeonTrack = 0;
     }
 
     public class Room
