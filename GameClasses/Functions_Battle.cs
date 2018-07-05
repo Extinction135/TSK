@@ -22,11 +22,14 @@ namespace DungeonRun
 
         public static void Damage(Actor Actor, GameObject Obj)
         {   //based on the obj type, deal damage to the actor, push in a direction
-            //reset the damage fields
+            
+            //0. Reset damage fields
             direction = Direction.None;
             damage = 0;
             force = 0.0f;
 
+
+            //1. setup projectiles & objects (set damage, force, direction)
 
             #region Projectiles
 
@@ -78,10 +81,6 @@ namespace DungeonRun
             }
             else if (Obj.type == ObjType.ProjectileBat)
             {
-                //bat projectiles cant deal damage to the bat boss
-                if (Actor.type == ActorType.Boss_BigBat) { return; }
-                //(he spawns them, and it would be cheap)
-                
                 //bats deal 1 damage, push 4, and die
                 damage = 1; force = 4.0f; direction = Obj.direction;
                 Obj.lifeCounter = Obj.lifetime;
@@ -124,7 +123,43 @@ namespace DungeonRun
             #endregion
 
 
-            //if damage was prevented, then do not damage/push the actor
+            //2. check actor v pro/obj status effects
+
+            #region Handle actor 'invincibilities' against projectiles & objs
+
+            if(Actor.type == ActorType.Boss_BigBat)
+            {
+                //bat projectiles cant deal damage to the bat boss
+                //(he spawns them, and it would be cheap)
+                if (Obj.type == ObjType.ProjectileBat)
+                { Obj.lifeCounter = 0; return; } //keep bat alive, bail
+            }
+            else if(Actor.type == ActorType.MiniBoss_Spider_Armored)
+            {
+                //armored spider resists all projectiles except a few
+                if (Obj.group == ObjGroup.Projectile)
+                {
+                    //these projectiles ACTUALLY damage armored spider
+                    if (
+                        Obj.type == ObjType.ProjectileExplosion
+                        || Obj.type == ObjType.ProjectileLightningBolt
+                        || Obj.type == ObjType.ProjectileShovel
+                        )
+                    { }
+                    else
+                    {   //all others create 'clink' sfx
+                        damage = 0; //deal no damage
+                        force = 3.0f; //& push spider very little
+                    }
+                }
+                //all other damaging objects are ignored
+                else { return; }
+            }
+
+            #endregion
+
+
+            //3. pass completed damage & force
             Damage(Actor, damage, force, direction);
         }
 

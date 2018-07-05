@@ -49,90 +49,155 @@ Today:
 
 
 
-Bosses++
 
-bat boss: opens his wings and spews forth bat projectiles at
-the hero, who must run and dodge the waterfall of flying bats.
-update mountain dungeon to use bat boss.
+Miniboss : Armored Spider
 
-fixed bat boss sprite to be 2x3, saving much space.
+spider miniboss: has 2 phases: armored and not armored.
+starts off armored, using shovel, armor 'breaks' via
+shatter soundfx and multiple rising smoke particles.
+unarmored version moves faster and attacks more often.
+and taunts and blinks. and smokes like other minis.
 
-added story booleans to player data to track
-completion of forest and mountain dungeons.
-linked the death of each boss (in their boss 
-room) to these booleans.
+armored
+frame 1 flips horizontally for idle
+frame 2 is hit and attack (bite).
+frame 2 could also a secondary idle animation.
 
-updated FinishBossRoom() to create different
-bosses based on the level.id.
+unarmored
+frame 1 flips horizontally for idle
+frame 2 is hit and attack (bite).
 
-implemented ai for big bat, adding bite attack
-if hero gets too close to boss. upgraded big 
-eye to use bite attack as well.
+death
+frame 1 is pre-death (hold here 5 frames)
+frame 2 is dead state.
 
-changed Actor.SetCollisionRec() to use hero's
-hitBox values for ALL actors including big
-bosses - so big eye is going to be hard to hit.
-this was done so that both bosses can use the
-fang weapon, allowing them to Bite attack hero,
-if hero gets close enough to them. this is the
-exact same approach used by angry eye.
+how do we switch from armored to unarmored
+spiders? by setting the actor type upon the
+armored spiders death, meaning the actor changes
+into a different actor - meaning we need an
+unarmored spider actor that is totally separate
+from the armored version..
 
-changed big eye boss strategy: phase 1 (above
-10 hp) this boss creates seeker exploders very
-often. once his health dips below 10, he stops
-creating seekers and starts chasing the hero,
-relying on his bite attack instead.
+changed unarmored spiders hit to be an eyes
+closed sprite, which flips horizontally causing
+the spider to seem like he's about to fall over
+(woozy or wobbly), which i think will play into
+the hit effect well.
 
-fixed bug with big eye setting his attack state
-to true when he spawned a seeeker, which caused
-him to bite, which destroyed the seeker (sometimes)
-but more importantly - spammed the enemy taunt
-sound effect. so that HAD to be stopped.
+made the unarmored spiders death animation to 
+be the wobbly hit animation for longer, plus a
+final crumpled dead squished spider sprite.
 
-upgraded bat boss to have 3 phases, each distinct
-from the last in terms of strategy. phase 1 the bat
-just wanders around rarely shooting bat swarms, but
-always biting hero if he gets too close. phase 2
-is where he picks up and really starts spamming the
-bat swarms, which kinda feels like bullethell,
-sometimes. also, the boss chases hero during
-phase 2. in phase 3, boss moves towards back of
-room and spams the bat magic in a last attempt.
+added death routines for unarmored spider,
+drops map and copies blackeye's death.
 
-added bat boss 1v1 to collisuem challenges,
-and it's awesome. really awesome. the bat's
-final stand strategy turns his battle into 
-a bullet hell at the last minute and I love it.
+updated dungeon routines to spawn armored
+spider in mountain dungeon hub room.
 
-updated battle routines to prevent bat boss from
-taking damage from bat projectiles (which he 
-spawns profusely). this prevents him from taking
-damage while he moves around in his bullethell.
+spider miniboss implements the fang weapon,
+and then implements basic ai (no special
+strategy here). the unique-ness is in the
+initial presentation of the enemy: slow and
+armored, invincible to the common attacks.
+after 'discovering' how to hurt the boss,
+he changes into the fast, easier to kill
+version which is also more challenging.
 
-updated bat boss ai to move to center of room
-and spawn bat projectiles in all directions as
-a final attempt to kill player.
+armored spider should resist all damage except:
+explosions, lightning, shovel. < done.
+all other projectiles create 'clink' soundfx to
+signal to player that their attack didn't damage
+miniboss. < done. tested.
 
-removed push particles from taunting routines
-for miniboss and bosses. LOTS of testing.
+modified how actor 'invincibilities' are handled
+in functions_battle, to be cleaner.
 
-slowed down bat projectiles.
-added 50/50 chance for bat boss to do super
-special attack while in phase 3. this limits
-the bullet hell, which is unbearable at full
-throttle while in the tiny boss room..
+changed basic ai to be more aggressive in attack
+against hero - specifically the probability of an
+enemy attacking the hero went from 50/50 to 75%
+chance, meaning it's more likely enemies will
+bite and swing swords at hero.
 
-dialed back colliseum challenges to be more
-realistic in nature: 2v1 minibosses, and
-1v1 bosses.
+removed wall statues from key rooms, because i want
+the player to focus on the puzzle, not dodging arrows.
 
+lots of playtesting to make sure armored spider is
+implemented properly.
 
-
-
-
+retuned the unarmored spider to actually be pretty
+challenging to defeat because he's just insanely
+aggressive - chases hero almost as fast as hero 
+can dash / evade him. VERY happy with this miniboss!
 
 
 
+
+
+Issue: in FinishHubRoom(), we assume the boss room
+is connected to the hub room via north connection.
+this is no longer true, as the mountain dungeon can
+connect the boss room to ANY other room type, as it
+builds a critical path FROM the hub to the boss room.
+so, each time we build a room we need to check to see
+if the boss door exists, and then we need to add
+decorations if it does exist.
+
+Fix: moved boss door decoration routines into method
+fun_dungeon.Check_BossDoor(), which loops all roomObjs,
+looking for Obj.type Dungeon_DoorBoss, then decorates
+it. dungeon routines always attach boss door via north
+connection, so we always know where to place the doormat.
+
+
+
+
+
+
+
+
+
+
+
+
+repack beefy bat next to miniboss spider.
+we have a nice 2 frame opening there.
+
+
+
+
+
+
+
+
+
+
+
+
+batboss should spawn a bunch of bats + smoke
+particles when he dies, because he's basically missing
+a falling animation frame. OR YOU COULD JUST MAKE
+MORE DEATH SPRITE ANIMATION FRAMES, LAZY ASS.
+from attack frame, make 2 falling frames to final
+dead on ground sprite.
+
+
+
+
+
+
+
+
+
+
+
+
+armor can be broken using shovel or hammer.
+
+HammerTime (sry, had2)
+create and implement hammer weapon.
+this is used to flatten some objects, & break armor.
+it's a decent weapon too.
+breaking armor should be noted in the flavor text.
 
 
 
@@ -153,27 +218,11 @@ DO NOT put these objs in dungeon room data.
 
 
 
-
-
-
-
-Miniboss++
-spider miniboss: has 2 phases: armored and not armored.
-starts off armored, at half health armor 'breaks' via
-shatter soundfx and multiple rising smoke particles.
-unarmored version moves faster and attacks more often.
-and taunts. and smokes like other minis/bosses.
-
-
-
-
 Bat World Enemy
 bat world enemy: bat flys towards hero and bites
 him. if bat creates a bite projectile, bat removes itself.
 *the difference between world bat and beefy bat is that
 beefy bat can bite multiple times and has 2 hp.
-
-
 
 
 
@@ -184,6 +233,15 @@ this complete implementation of mountain dungeon, so far.
 
 
 
+
+
+
+
+
+
+
+
+POLISH!!!!!!!!!!!!!!!! for 0.75
 
 
 

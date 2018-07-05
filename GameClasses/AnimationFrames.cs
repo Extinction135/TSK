@@ -703,6 +703,10 @@ namespace DungeonRun
         public static ActorAnimationList Standard_BeefyBat_Animations;
 
         public static ActorAnimationList MiniBoss_BlackEye_Animations;
+        public static ActorAnimationList MiniBoss_SpiderArmored_Animations;
+        public static ActorAnimationList MiniBoss_SpiderUnarmored_Animations;
+
+
 
         public static ActorAnimationList Boss_BigEye_Animations;
         public static ActorAnimationList Boss_BigBat_Animations;
@@ -920,6 +924,10 @@ namespace DungeonRun
             #endregion
 
 
+
+
+
+
             #region AngryEye Animations
 
             Standard_AngryEye_Animations = new ActorAnimationList();
@@ -1101,8 +1109,129 @@ namespace DungeonRun
             MiniBoss_BlackEye_Animations.landed = MiniBoss_BlackEye_Animations.idle;
             MiniBoss_BlackEye_Animations.climbing = MiniBoss_BlackEye_Animations.idle;
 
+            #endregion
+
+
+            #region Miniboss - Spider (Armored)
+
+            MiniBoss_SpiderArmored_Animations = new ActorAnimationList();
+
+            //movement
+            MiniBoss_SpiderArmored_Animations.idle = new AnimationGroup();
+            MiniBoss_SpiderArmored_Animations.idle.down = new List<Byte4>
+            { new Byte4(6, 3, 0, 0), new Byte4(6, 3, 1, 0) };
+            MiniBoss_SpiderArmored_Animations.idle.up = MiniBoss_SpiderArmored_Animations.idle.down;
+            MiniBoss_SpiderArmored_Animations.idle.right = MiniBoss_SpiderArmored_Animations.idle.down;
+            MiniBoss_SpiderArmored_Animations.idle.left = MiniBoss_SpiderArmored_Animations.idle.down;
+
+            MiniBoss_SpiderArmored_Animations.move = MiniBoss_SpiderArmored_Animations.idle;
+            MiniBoss_SpiderArmored_Animations.idleCarry = MiniBoss_SpiderArmored_Animations.idle;
+            MiniBoss_SpiderArmored_Animations.moveCarry = MiniBoss_SpiderArmored_Animations.idle;
+            MiniBoss_SpiderArmored_Animations.interact = MiniBoss_SpiderArmored_Animations.idle;
+
+            //dash is semi-shut eye
+            MiniBoss_SpiderArmored_Animations.dash = new AnimationGroup();
+            MiniBoss_SpiderArmored_Animations.dash.down = new List<Byte4>
+            { new Byte4(6, 4, 0, 0), new Byte4(6, 4, 1, 0) };
+            MiniBoss_SpiderArmored_Animations.dash.up = MiniBoss_SpiderArmored_Animations.dash.down;
+            MiniBoss_SpiderArmored_Animations.dash.right = MiniBoss_SpiderArmored_Animations.dash.down;
+            MiniBoss_SpiderArmored_Animations.dash.left = MiniBoss_SpiderArmored_Animations.dash.down;
+
+            MiniBoss_SpiderArmored_Animations.attack = MiniBoss_SpiderArmored_Animations.dash;
+            MiniBoss_SpiderArmored_Animations.hit = MiniBoss_SpiderArmored_Animations.dash;
+            MiniBoss_SpiderArmored_Animations.reward = MiniBoss_SpiderArmored_Animations.dash;
+            MiniBoss_SpiderArmored_Animations.pickupThrow = MiniBoss_SpiderArmored_Animations.dash;
+            MiniBoss_SpiderArmored_Animations.death_blank = MiniBoss_SpiderArmored_Animations.dash;
+            MiniBoss_SpiderArmored_Animations.death_heroic = MiniBoss_SpiderArmored_Animations.dash;
+            MiniBoss_SpiderArmored_Animations.death_heroic_water = MiniBoss_SpiderArmored_Animations.dash;
+
+            MiniBoss_SpiderArmored_Animations.grab = MiniBoss_SpiderArmored_Animations.idle;
+            MiniBoss_SpiderArmored_Animations.push = MiniBoss_SpiderArmored_Animations.idle;
+            MiniBoss_SpiderArmored_Animations.swim_idle = MiniBoss_SpiderArmored_Animations.idle;
+            MiniBoss_SpiderArmored_Animations.swim_move = MiniBoss_SpiderArmored_Animations.idle;
+            MiniBoss_SpiderArmored_Animations.swim_dash = MiniBoss_SpiderArmored_Animations.idle;
+            MiniBoss_SpiderArmored_Animations.swim_hit = MiniBoss_SpiderArmored_Animations.idle;
+            MiniBoss_SpiderArmored_Animations.swim_reward = MiniBoss_SpiderArmored_Animations.idle;
+            MiniBoss_SpiderArmored_Animations.underwater_idle = MiniBoss_SpiderArmored_Animations.idle;
+            MiniBoss_SpiderArmored_Animations.underwater_move = MiniBoss_SpiderArmored_Animations.idle;
+            MiniBoss_SpiderArmored_Animations.falling = MiniBoss_SpiderArmored_Animations.idle;
+            MiniBoss_SpiderArmored_Animations.landed = MiniBoss_SpiderArmored_Animations.idle;
+            MiniBoss_SpiderArmored_Animations.climbing = MiniBoss_SpiderArmored_Animations.idle;
 
             #endregion
+
+
+            #region Miniboss - Spider (Unarmored)
+
+            MiniBoss_SpiderUnarmored_Animations = new ActorAnimationList();
+
+            //movement
+            MiniBoss_SpiderUnarmored_Animations.idle = new AnimationGroup();
+            MiniBoss_SpiderUnarmored_Animations.idle.down = new List<Byte4>
+            { new Byte4(6, 5, 0, 0), new Byte4(6, 5, 1, 0) };
+            MiniBoss_SpiderUnarmored_Animations.idle.up = MiniBoss_SpiderUnarmored_Animations.idle.down;
+            MiniBoss_SpiderUnarmored_Animations.idle.right = MiniBoss_SpiderUnarmored_Animations.idle.down;
+            MiniBoss_SpiderUnarmored_Animations.idle.left = MiniBoss_SpiderUnarmored_Animations.idle.down;
+
+            MiniBoss_SpiderUnarmored_Animations.move = MiniBoss_SpiderUnarmored_Animations.idle;
+            MiniBoss_SpiderUnarmored_Animations.idleCarry = MiniBoss_SpiderUnarmored_Animations.idle;
+            MiniBoss_SpiderUnarmored_Animations.moveCarry = MiniBoss_SpiderUnarmored_Animations.idle;
+            MiniBoss_SpiderUnarmored_Animations.interact = MiniBoss_SpiderUnarmored_Animations.idle;
+
+            //dash is semi-shut eye
+            MiniBoss_SpiderUnarmored_Animations.dash = new AnimationGroup();
+            MiniBoss_SpiderUnarmored_Animations.dash.down = new List<Byte4>
+            { new Byte4(6, 6, 0, 0), new Byte4(6, 6, 1, 0) };
+            MiniBoss_SpiderUnarmored_Animations.dash.up = MiniBoss_SpiderUnarmored_Animations.dash.down;
+            MiniBoss_SpiderUnarmored_Animations.dash.right = MiniBoss_SpiderUnarmored_Animations.dash.down;
+            MiniBoss_SpiderUnarmored_Animations.dash.left = MiniBoss_SpiderUnarmored_Animations.dash.down;
+
+            MiniBoss_SpiderUnarmored_Animations.attack = MiniBoss_SpiderUnarmored_Animations.dash;
+
+            MiniBoss_SpiderUnarmored_Animations.hit = new AnimationGroup();
+            MiniBoss_SpiderUnarmored_Animations.hit.down = new List<Byte4>
+            {
+                new Byte4(6, 7, 0, 0), new Byte4(6, 7, 1, 0), //eyes closed wobble x3
+                new Byte4(6, 7, 0, 0), new Byte4(6, 7, 1, 0),
+                new Byte4(6, 7, 0, 0), new Byte4(6, 7, 1, 0),
+            };
+            MiniBoss_SpiderUnarmored_Animations.hit.up = MiniBoss_SpiderUnarmored_Animations.hit.down;
+            MiniBoss_SpiderUnarmored_Animations.hit.right = MiniBoss_SpiderUnarmored_Animations.hit.down;
+            MiniBoss_SpiderUnarmored_Animations.hit.left = MiniBoss_SpiderUnarmored_Animations.hit.down;
+
+            MiniBoss_SpiderUnarmored_Animations.reward = MiniBoss_SpiderUnarmored_Animations.dash;
+            MiniBoss_SpiderUnarmored_Animations.pickupThrow = MiniBoss_SpiderUnarmored_Animations.dash;
+
+            MiniBoss_SpiderUnarmored_Animations.death_blank = new AnimationGroup();
+            MiniBoss_SpiderUnarmored_Animations.death_blank.down = new List<Byte4>
+            {
+                new Byte4(6, 7, 0, 0), new Byte4(6, 7, 1, 0), //eyes closed wobble x3
+                new Byte4(6, 7, 0, 0), new Byte4(6, 7, 1, 0),
+                new Byte4(6, 7, 0, 0), new Byte4(6, 7, 1, 0),
+                new Byte4(6, 8, 0, 0) //squished spider death
+            };
+            MiniBoss_SpiderUnarmored_Animations.death_blank.up = MiniBoss_SpiderUnarmored_Animations.death_blank.down;
+            MiniBoss_SpiderUnarmored_Animations.death_blank.right = MiniBoss_SpiderUnarmored_Animations.death_blank.down;
+            MiniBoss_SpiderUnarmored_Animations.death_blank.left = MiniBoss_SpiderUnarmored_Animations.death_blank.down;
+
+            MiniBoss_SpiderUnarmored_Animations.death_heroic = MiniBoss_SpiderUnarmored_Animations.death_blank;
+            MiniBoss_SpiderUnarmored_Animations.death_heroic_water = MiniBoss_SpiderUnarmored_Animations.death_blank;
+
+            MiniBoss_SpiderUnarmored_Animations.grab = MiniBoss_SpiderUnarmored_Animations.idle;
+            MiniBoss_SpiderUnarmored_Animations.push = MiniBoss_SpiderUnarmored_Animations.idle;
+            MiniBoss_SpiderUnarmored_Animations.swim_idle = MiniBoss_SpiderUnarmored_Animations.idle;
+            MiniBoss_SpiderUnarmored_Animations.swim_move = MiniBoss_SpiderUnarmored_Animations.idle;
+            MiniBoss_SpiderUnarmored_Animations.swim_dash = MiniBoss_SpiderUnarmored_Animations.idle;
+            MiniBoss_SpiderUnarmored_Animations.swim_hit = MiniBoss_SpiderUnarmored_Animations.idle;
+            MiniBoss_SpiderUnarmored_Animations.swim_reward = MiniBoss_SpiderUnarmored_Animations.idle;
+            MiniBoss_SpiderUnarmored_Animations.underwater_idle = MiniBoss_SpiderUnarmored_Animations.idle;
+            MiniBoss_SpiderUnarmored_Animations.underwater_move = MiniBoss_SpiderUnarmored_Animations.idle;
+            MiniBoss_SpiderUnarmored_Animations.falling = MiniBoss_SpiderUnarmored_Animations.idle;
+            MiniBoss_SpiderUnarmored_Animations.landed = MiniBoss_SpiderUnarmored_Animations.idle;
+            MiniBoss_SpiderUnarmored_Animations.climbing = MiniBoss_SpiderUnarmored_Animations.idle;
+
+            #endregion
+
 
 
 

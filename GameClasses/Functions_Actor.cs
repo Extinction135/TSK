@@ -150,6 +150,32 @@ namespace DungeonRun
                     Actor.compSprite.position.Y);
             }
 
+            else if (Actor.type == ActorType.MiniBoss_Spider_Armored)
+            {   
+                //decorate this death as special / explosive
+                Functions_Particle.Spawn_Explosion(ObjType.Particle_Debris,
+                    Actor.compSprite.position.X, Actor.compSprite.position.Y, true);
+                //armored spider becomes unarmored version
+                SetType(Actor, ActorType.MiniBoss_Spider_Unarmored);
+                //audibly alert player battle isn't over
+                Assets.Play(Assets.sfxBossHit);
+            }
+
+            else if (Actor.type == ActorType.MiniBoss_Spider_Unarmored)
+            {   
+                //decorate this death as special / explosive
+                Functions_Particle.Spawn_Explosion(ObjType.Particle_Debris,
+                    Actor.compSprite.position.X, Actor.compSprite.position.Y, true);
+                Actor.compAnim.speed = 10; //slow down death animation to taste
+                //this actor becomes debris on floor, sort to floor.
+                Actor.compSprite.zOffset = -8;
+                Functions_Component.SetZdepth(Actor.compSprite);
+                //try to drop map
+                Functions_GameObject_Dungeon.DropMap(
+                    Actor.compSprite.position.X,
+                    Actor.compSprite.position.Y);
+            }
+
             #endregion
 
 
@@ -585,6 +611,8 @@ namespace DungeonRun
             SetCollisionRec(Actor);
 
 
+            //Standard Actors
+
             #region Hero
 
             if (Type == ActorType.Hero)
@@ -695,9 +723,10 @@ namespace DungeonRun
 
 
 
-            #region Bosses
+            //Bosses
 
-            //BigEye
+            #region BigEye
+
             else if (Type == ActorType.Boss_BigEye)
             {
                 Actor.aiType = ActorAI.Boss_BigEye;
@@ -730,7 +759,11 @@ namespace DungeonRun
                 Actor.chaseRadius = 16 * 20;
             }
 
-            //BigBat
+            #endregion
+
+
+            #region BigBat
+
             else if (Type == ActorType.Boss_BigBat)
             {
                 Actor.aiType = ActorAI.Boss_BigBat;
@@ -773,9 +806,10 @@ namespace DungeonRun
 
 
 
-            #region Minibosses - 
+            //Minibosses
 
-            //Blackeye
+            #region Blackeye
+
             else if (Type == ActorType.MiniBoss_BlackEye)
             {
                 Actor.aiType = ActorAI.Miniboss_Blackeye;
@@ -804,6 +838,82 @@ namespace DungeonRun
             }
 
             #endregion
+
+
+            #region Spider - Armored
+
+            else if (Type == ActorType.MiniBoss_Spider_Armored)
+            {
+                Actor.aiType = ActorAI.Basic;
+
+                Actor.enemy = true;
+                Actor.compSprite.texture = Assets.mountainLevelSheet;
+                Actor.animList = AnimationFrames.MiniBoss_SpiderArmored_Animations;
+                Actor.health = 1; //simply takes 1 damage, then becomes unarmored
+
+                ResetActorLoadout(Actor);
+                Actor.weapon = MenuItemType.WeaponFang;
+
+                //moves slowly
+                Actor.walkSpeed = 0.05f;
+                Actor.dashSpeed = 0.30f;
+
+                //this actor is a 3x1 miniboss
+                Actor.compSprite.cellSize.X = 16 * 3;
+                Actor.compSprite.cellSize.Y = 16 * 1;
+                Actor.compCollision.offsetY = 0;
+                Actor.compSprite.zOffset = 0;
+
+                //set actor sound effects
+                Actor.sfxDash = Assets.sfxEnemyTaunt;
+                Actor.sfx.hit = Assets.sfxTapMetallic;
+                Actor.sfx.kill = Assets.sfxShatter;
+            }
+
+            #endregion
+
+
+            #region Spider - UN-armored
+
+            else if (Type == ActorType.MiniBoss_Spider_Unarmored)
+            {
+                Actor.aiType = ActorAI.Basic;
+                Actor.compCollision.blocking = true; //actor was 'dead'
+
+                Actor.enemy = true;
+                Actor.compSprite.texture = Assets.mountainLevelSheet;
+                Actor.animList = AnimationFrames.MiniBoss_SpiderUnarmored_Animations;
+                Actor.health = 5; //actual miniboss
+
+                ResetActorLoadout(Actor);
+                Actor.weapon = MenuItemType.WeaponFang;
+
+                //moves extremely fast
+                Actor.walkSpeed = 0.75f;
+                Actor.dashSpeed = 1.5f;
+                Actor.compAnim.speed = 5;
+
+                //always 'see' hero
+                Actor.chaseRadius = 16 * 30;
+
+                //this actor is a 3x1 miniboss
+                Actor.compSprite.cellSize.X = 16 * 3;
+                Actor.compSprite.cellSize.Y = 16 * 1;
+                Actor.compCollision.offsetY = 0;
+                Actor.compSprite.zOffset = 16;
+
+                //set actor sound effects
+                Actor.sfxDash = Assets.sfxEnemyTaunt; 
+                Actor.sfx.hit = Assets.sfxBossHit;
+                Actor.sfx.kill = Assets.sfxBossHitDeath; 
+            }
+
+
+            #endregion
+
+
+
+
 
 
             SetAnimationGroup(Actor);

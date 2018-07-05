@@ -168,6 +168,8 @@ namespace DungeonRun
 
         //minibosses
         MiniBoss_BlackEye,
+        MiniBoss_Spider_Armored,
+        MiniBoss_Spider_Unarmored,
 
         //bosses
         Boss_BigEye,

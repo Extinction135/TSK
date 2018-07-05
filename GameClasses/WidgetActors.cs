@@ -133,18 +133,16 @@ namespace DungeonRun
             boss.state = ActorState.Idle;
             actors.Add(boss);
 
-            /*
             //miniboss
             Actor miniboss = new Actor();
             miniboss.direction = Direction.Down;
-            Functions_Actor.SetType(miniboss, ActorType.MiniBoss_BlackEye);
+            Functions_Actor.SetType(miniboss, ActorType.MiniBoss_Spider_Armored);
             Functions_Movement.Teleport(miniboss.compMove,
                 window.interior.rec.X + 13 + 8 + 16 * 2,
                 window.interior.rec.Y + 29 + 8);
             Functions_Component.Align(miniboss);
             miniboss.state = ActorState.Idle;
             actors.Add(miniboss);
-            */
 
             //standard
             Actor standard = new Actor();

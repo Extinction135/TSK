@@ -299,7 +299,8 @@ namespace DungeonRun
             else if (Room.roomID == RoomID.Key)
             {
                 FinishKeyRoom(Room);
-                AddWallStatues(Room);
+                //this room's focus is the puzzle
+                //AddWallStatues(Room);
                 AddCrackedWalls(Room);
                 ScatterDebris(Room);
             }
@@ -376,6 +377,9 @@ namespace DungeonRun
 
             #endregion
 
+
+            //check to see if boss door exist in room, decorate
+            Check_BossDoor();
 
             //align + remove overlapping objs
             Functions_GameObject.AlignRoomObjs();
@@ -502,6 +506,38 @@ namespace DungeonRun
             }
         }
 
+
+        public static void Check_BossDoor()
+        {
+            //can be ANY room, dungeon recipes can attach boss to any room
+            for (i = 0; i < Pool.roomObjCount; i++)
+            {   //loop thru all active roomObjects
+                if (Pool.roomObjPool[i].active)
+                {
+                    //create the boss welcome mat (zelda staple, grabs players attention)
+                    if (Pool.roomObjPool[i].type == ObjType.Dungeon_DoorBoss)
+                    {   //build the boss welcome mat (left)
+                        Functions_GameObject.Spawn(ObjType.Dungeon_FloorDecal,
+                            Pool.roomObjPool[i].compSprite.position.X - 8,
+                            Pool.roomObjPool[i].compSprite.position.Y + 16,
+                            Direction.Down);
+                        //build the boss welcome mat (right)
+                        objRef = Functions_GameObject.Spawn(ObjType.Dungeon_FloorDecal,
+                            Pool.roomObjPool[i].compSprite.position.X + 8,
+                            Pool.roomObjPool[i].compSprite.position.Y + 16,
+                            Direction.Down);
+                        objRef.compSprite.flipHorizontally = true;
+                    }
+                }
+            }
+        }
+
+
+
+
+
+
+
         //room specific procedural objects 
 
         public static void FinishSecretRoom(Room Room)
@@ -548,31 +584,19 @@ namespace DungeonRun
         public static void FinishHubRoom(Room Room)
         {
             //spawn miniboss in center of room
-            Functions_Actor.SpawnActor(
-                ActorType.MiniBoss_BlackEye,
-                Room.center.X + 8,
-                Room.center.Y + 8);
-
-            //check the map chest, create the boss welcome mat
-            for (i = 0; i < Pool.roomObjCount; i++)
-            {   //loop thru all active roomObjects
-                if (Pool.roomObjPool[i].active)
-                {   
-                    //create the boss welcome mat (zelda staple, grabs players attention)
-                    if (Pool.roomObjPool[i].type == ObjType.Dungeon_DoorBoss)
-                    {   //build the boss welcome mat (left)
-                        Functions_GameObject.Spawn(ObjType.Dungeon_FloorDecal,
-                            Pool.roomObjPool[i].compSprite.position.X - 8,
-                            Pool.roomObjPool[i].compSprite.position.Y + 16,
-                            Direction.Down);
-                        //build the boss welcome mat (right)
-                        objRef = Functions_GameObject.Spawn(ObjType.Dungeon_FloorDecal,
-                            Pool.roomObjPool[i].compSprite.position.X + 8,
-                            Pool.roomObjPool[i].compSprite.position.Y + 16,
-                            Direction.Down);
-                        objRef.compSprite.flipHorizontally = true;
-                    }
-                }
+            if (Level.ID == LevelID.Forest_Dungeon)
+            {
+                Functions_Actor.SpawnActor(
+                    ActorType.MiniBoss_BlackEye,
+                    Room.center.X + 8,
+                    Room.center.Y + 8);
+            }
+            else if (Level.ID == LevelID.Mountain_Dungeon)
+            {
+                Functions_Actor.SpawnActor(
+                    ActorType.MiniBoss_Spider_Armored,
+                    Room.center.X + 8,
+                    Room.center.Y + 8);
             }
         }
 

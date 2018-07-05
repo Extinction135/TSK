@@ -74,25 +74,15 @@ namespace DungeonRun
                     //determine if actor is close enough to attack hero
                     if (yDistance < Actor.attackRadius && xDistance < Actor.attackRadius)
                     {   //actor is close enough to hero to attack
-                        if (Functions_Random.Int(0, 100) > 50) //randomly proceed
+                        if (Functions_Random.Int(0, 100) > 25) //randomly proceed
                         {
-                            //enemies vary their attacks based on type
+                            //Enemies attack with weapons / items
 
-                            #region Enemies that attack with weapons / items
-
-                            //if(Actor.type == ActorType.Blob)
-                            {
-                                //set the cardinal direction towards hero, attack, cancel any dash
-                                Actor.compInput.direction = 
-                                    Functions_Direction.GetCardinalDirectionToHero(actorPos);
-                                Actor.compInput.attack = true;
-                                Actor.compInput.dash = false;
-                            }
-
-                            //other enemy types would choose maybe to use an item, etc..
-
-                            #endregion
-
+                            //set the cardinal direction towards hero, attack, cancel any dash
+                            Actor.compInput.direction =
+                                Functions_Direction.GetCardinalDirectionToHero(actorPos);
+                            Actor.compInput.attack = true;
+                            Actor.compInput.dash = false;
                         }
                     }
                 }

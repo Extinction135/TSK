@@ -30,8 +30,8 @@ namespace DungeonRun
             { Blobs.Add(ActorType.Blob); }
 
             Minibosses = new List<ActorType>();
-            for (i = 0; i < 2; i++)
-            { Minibosses.Add(ActorType.MiniBoss_BlackEye); }
+            for (i = 0; i < 1; i++)
+            { Minibosses.Add(ActorType.MiniBoss_Spider_Armored); }
 
             Bosses_BigEye = new List<ActorType>();
             for (i = 0; i < 1; i++)
