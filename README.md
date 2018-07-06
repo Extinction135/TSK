@@ -1,5 +1,6 @@
 # DungeonRun
 + A sequel to The Legend of Zelda: A Link to the Past, circa 1995-1997.  
+  
 ![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/074petSwimming.gif)   
 
 
@@ -34,6 +35,9 @@
 
 
 # Version 0.75 - 2018.07.06 
++ 30 minute playthrough with developer commentary (warning: profanity)
++ https://youtu.be/192cVjSK-7E  
+  
 ![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/074boomerang.gif)   
 ![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/074challengeA.gif)   
 ![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/074challengeB.gif)   
@@ -47,8 +51,7 @@
 ![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/074overworld.gif)   
 ![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/074smHouseDestruction.gif)   
 
-+ A 22 minute playthrough testing all current systems (v0.74):  
-+ https://www.youtube.com/watch?v=69tWTnghX3E   
+
 
 
 ## Playing the Game

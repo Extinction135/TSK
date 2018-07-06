@@ -97,8 +97,8 @@ namespace DungeonRun
             {
                 objA = Pool.roomObjPool[i];
                 if (objA.active)
-                {   //loop thru roomObjs checking A against B
-                    for (j = 0; j < Pool.roomObjCount; j++)
+                {   //loop thru roomObjs checking A against B 
+                    for (j = 1; j < Pool.roomObjCount; j++) //skip hero's pet here too
                     {
                         objB = Pool.roomObjPool[j];
                         if (objB.active)

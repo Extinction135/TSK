@@ -265,7 +265,6 @@ namespace DungeonRun
             Obj.group = ObjGroup.Object; //assume object is a generic object
             Obj.type = ObjType.Dungeon_WallStraight; //reset the type
             Obj.direction = Direction.Down;
-
             Obj.active = true; //assume this object should draw / animate
             Obj.getsAI = false; //most objects do not get any AI input
             Obj.canBeSaved = false; //most objects cannot be saved as XML data
@@ -281,17 +280,21 @@ namespace DungeonRun
             Obj.compSprite.rotation = Rotation.None;
             Obj.compSprite.scale = 1.0f;
             Obj.compSprite.texture = Assets.forestLevelSheet;
+            Obj.compSprite.visible = true;
+
             //reset the animation component
             Obj.compAnim.speed = 10; //set obj's animation speed to default value
             Obj.compAnim.loop = true; //assume obj's animation loops
             Obj.compAnim.index = 0; //reset the current animation index/frame
             Obj.compAnim.timer = 0; //reset the elapsed frames
+
             //reset the collision component
             Obj.compCollision.blocking = true; //assume the object is blocking (most are)
             Obj.compCollision.rec.Width = 16; //assume collisionRec is 16x16
             Obj.compCollision.rec.Height = 16; //(most are)
             Obj.compCollision.offsetX = -8; //assume collisionRec offset is -8x-8
             Obj.compCollision.offsetY = -8; //(most are)
+
             //reset the move component
             Obj.compMove.magnitude.X = 0; //discard any previous magnitude
             Obj.compMove.magnitude.Y = 0; //
@@ -299,6 +302,7 @@ namespace DungeonRun
             Obj.compMove.friction = 0.75f; //normal friction
             Obj.compMove.moveable = false; //most objects cant be moved
             Obj.compMove.grounded = true; //most objects exist on the ground
+
             //reset the sfx component
             Obj.sfx.hit = null;
             Obj.sfx.kill = null;

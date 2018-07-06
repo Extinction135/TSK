@@ -1221,6 +1221,8 @@ namespace DungeonRun
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Column;
 				room.objs = new List<ObjXmlData>();
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_ConveyorBeltOn; Obj.direction = Direction.Right; Obj.posX = 88; Obj.posY = 200; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_ConveyorBeltOn; Obj.direction = Direction.Right; Obj.posX = 40; Obj.posY = 104; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_ConveyorBeltOn; Obj.direction = Direction.Right; Obj.posX = 104; Obj.posY = 200; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_ConveyorBeltOn; Obj.direction = Direction.Right; Obj.posX = 120; Obj.posY = 200; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_ConveyorBeltOn; Obj.direction = Direction.Right; Obj.posX = 56; Obj.posY = 104; room.objs.Add(Obj);}
@@ -1245,7 +1247,6 @@ namespace DungeonRun
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_ConveyorBeltOn; Obj.direction = Direction.Up; Obj.posX = 136; Obj.posY = 168; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_ConveyorBeltOn; Obj.direction = Direction.Left; Obj.posX = 136; Obj.posY = 152; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_ConveyorBeltOn; Obj.direction = Direction.Down; Obj.posX = 88; Obj.posY = 184; room.objs.Add(Obj);}
-				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_ConveyorBeltOn; Obj.direction = Direction.Down; Obj.posX = 88; Obj.posY = 200; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_BlockDark; Obj.direction = Direction.Down; Obj.posX = 152; Obj.posY = 216; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_BlockLight; Obj.direction = Direction.Down; Obj.posX = 88; Obj.posY = 88; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_BlockDark; Obj.direction = Direction.Down; Obj.posX = 72; Obj.posY = 88; room.objs.Add(Obj);}
@@ -1312,7 +1313,6 @@ namespace DungeonRun
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_BlockDark; Obj.direction = Direction.Down; Obj.posX = 40; Obj.posY = 168; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_BlockDark; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 168; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_ConveyorBeltOn; Obj.direction = Direction.Up; Obj.posX = 40; Obj.posY = 120; room.objs.Add(Obj);}
-				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_ConveyorBeltOn; Obj.direction = Direction.Up; Obj.posX = 40; Obj.posY = 104; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pit; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 184; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pit; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 216; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pit; Obj.direction = Direction.Down; Obj.posX = 40; Obj.posY = 216; room.objs.Add(Obj);}

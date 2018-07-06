@@ -48,44 +48,40 @@ Today:
 
 
 
-I have no idea what I'm doing
 
-*actually* tested deployment on win7 and of course,
-it doesn't work. due to some weird publishing settings.
-i can't actually get the game installed on win7, but
-i fixed the publishing settings so the game can be
-installed on win10 just fine. which means all previous
-versions likely didn't install on windows at all. oops.
-which means the only way to play the game was via uwp.
-i'm sorry. i'm so, so sorry. that's embarassing.
+0.75 Playthrough
 
-it has something to do with the manifest file and
-the click-once deployment that prevents the game
-from being installed on windows 7. but fear not,
-if you clone the repo and build it in monogame on
-win7 - it will run just fine. so, learn to fish.
+while recording playthrough, bugs noticed:
+projectiles are being created, but some are not being
+drawn. updated resetObj to set compSprite.visible true.
 
-updated readme.
+fixed an issue with column005 room not functioning.
+
+fixed an issue with hero's pet causing dungeon's walls
+to dissapear / be removed (from cleanup() room method).
+
+published an improved v0.75, installed on win10 machine,
+recorded playthrough with voiceover, posted to youtube.
+updated readme with youtube link.
 
 
 
 
 
+0.75 Release
+
+*publish UWP v0.75 with fixes
+*update both files on Dropbox
+*update readme with links to correct dropbox files
+*remove archives of 0.74
+
+
+
+*clip any interesting gifs from master playthrough, update readme.
 
 
 
 
-
-
-record playthrough talking about various game systems.
-post to youtube, record gifs.
-
-from master, capture GIFs using licecap for
-readme. only choose gifs that are interesting,
-carefully select what it shown on readme.
-
-post voiceover'd video to youtube under unlisted link.
-update readme with latest video.
 
 
 
