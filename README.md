@@ -2,6 +2,9 @@
 + A sequel to The Legend of Zelda: A Link to the Past, circa 1995-1997.  
   
 ![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/074petSwimming.gif)   
+  
++ 30 minute playthrough with developer commentary (warning: profanity)
++ https://youtu.be/192cVjSK-7E  
 
 
 ## Goals
@@ -35,8 +38,6 @@
 
 
 # Version 0.75 - 2018.07.06 
-+ 30 minute playthrough with developer commentary (warning: profanity)
-+ https://youtu.be/192cVjSK-7E  
   
 ![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/074boomerang.gif)   
 ![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/074challengeA.gif)   
@@ -54,9 +55,9 @@
 
 
 
-## Playing the Game
-+ DirectX: https://www.dropbox.com/s/0h79xuzku4jv621/DR_075_Dx.zip?dl=0  
-+ UWP: https://www.dropbox.com/s/fbvgncz77gbwljz/DR_075_UWP.zip?dl=0  
+## Playing the Game (Windows 10 + Xbox1)
++ DirectX: https://www.dropbox.com/s/mqsawbx4ceexxbf/DR_075_Dx.zip?dl=0  
++ UWP: https://www.dropbox.com/s/3rak0eosi8m0q5h/DR_075_UWP.zip?dl=0  
 + You can sideload the UWP version onto your Xbox one using this guide:  
 + https://gbatemp.net/threads/how-to-sideload-dungeonrun-indie-game-on-xbox-one.470374/  
 

@@ -49,20 +49,7 @@ Today:
 
 
 
-0.75 Playthrough
 
-while recording playthrough, bugs noticed:
-projectiles are being created, but some are not being
-drawn. updated resetObj to set compSprite.visible true.
-
-fixed an issue with column005 room not functioning.
-
-fixed an issue with hero's pet causing dungeon's walls
-to dissapear / be removed (from cleanup() room method).
-
-published an improved v0.75, installed on win10 machine,
-recorded playthrough with voiceover, posted to youtube.
-updated readme with youtube link.
 
 
 
@@ -70,10 +57,10 @@ updated readme with youtube link.
 
 0.75 Release
 
-*publish UWP v0.75 with fixes
-*update both files on Dropbox
-*update readme with links to correct dropbox files
-*remove archives of 0.74
+published UWP v0.75 with fixes.
+updated both files on Dropbox.
+updated readme with links to correct dropbox files.
+removed archives of 0.74.
 
 
 
