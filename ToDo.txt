@@ -48,47 +48,38 @@ Today:
 
 
 
+I have no idea what I'm doing
 
-Pre-release Polish:
+*actually* tested deployment on win7 and of course,
+it doesn't work. due to some weird publishing settings.
+i can't actually get the game installed on win7, but
+i fixed the publishing settings so the game can be
+installed on win10 just fine. which means all previous
+versions likely didn't install on windows at all. oops.
+which means the only way to play the game was via uwp.
+i'm sorry. i'm so, so sorry. that's embarassing.
 
-"go north 3 rooms to find the map" < done.
+it has something to do with the manifest file and
+the click-once deployment that prevents the game
+from being installed on windows 7. but fear not,
+if you clone the repo and build it in monogame on
+win7 - it will run just fine. so, learn to fish.
 
-bat projectiles push all actors they collide with south.
-we should be basing the push on actor.compMove.direction.
-checked, fixed, done.
-
-exiting from summary screen dropped link at colliseum.
-why? we were never setting the level.id post-summary
-screen so level loading routines defaulted to colliseum.
-fixed that. ready for real-ease.
-
-
-
-
-
-
-
-
-
-
-
-Release 0.75
-
-release 0.75 to the 'hubs. dont change readme gifs.
-just post UWP and Dx versions, with links to dropBX.
+updated readme.
 
 
 
 
 
 
-Release Media for 0.75
 
-switch hard drives over to win7, download and install
-0.75. check that you can record voiceover. setup a playthrough
-with voiceover - recorded using OBS if you can.
 
-switch back to win10 with recorded video.
+
+
+
+record playthrough talking about various game systems.
+post to youtube, record gifs.
+
 from master, capture GIFs using licecap for
 readme. only choose gifs that are interesting,
 carefully select what it shown on readme.
