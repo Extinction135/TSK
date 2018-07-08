@@ -328,7 +328,7 @@ namespace DungeonRun
         //grass objects
         Wor_Grass_Tall,
         Wor_Grass_Cut,
-        Wor_Grass_1,
+        //Wor_Grass_1,
         Wor_Grass_2,
         Wor_Flowers,
 

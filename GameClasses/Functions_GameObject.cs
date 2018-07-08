@@ -950,7 +950,7 @@ namespace DungeonRun
 
             #region Grass Objects
 
-            else if (Type == ObjType.Wor_Grass_1 || Type == ObjType.Wor_Grass_2
+            else if (Type == ObjType.Wor_Grass_2
                 || Type == ObjType.Wor_Grass_Cut || Type == ObjType.Wor_Grass_Tall
                 || Type == ObjType.Wor_Flowers)
             {
@@ -960,7 +960,7 @@ namespace DungeonRun
                 Obj.compAnim.loop = true;
 
                 //set animation frame
-                if (Type == ObjType.Wor_Grass_1 || Type == ObjType.Wor_Grass_Cut)
+                if (Type == ObjType.Wor_Grass_Cut)
                 {
                     Obj.compAnim.currentAnimation = AnimationFrames.World_Grass_Short;
                 }

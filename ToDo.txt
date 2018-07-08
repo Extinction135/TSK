@@ -52,48 +52,22 @@ Today:
 
 
 
-
-
-
-0.75 Release
-
-published UWP v0.75 with fixes.
-updated both files on Dropbox.
-updated readme with links to correct dropbox files.
-removed archives of 0.74.
-
-
-
-*clip any interesting gifs from master playthrough, update readme.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 0.76
+
+
+
+remove wor_grass_1 value from game.
+it isn't used anymore!
+
+
+
+
+
+
+
+
+
+
 
 explosions should push roomObjects that they touch.
 that are moveable. that dont get destroyed?
@@ -117,6 +91,10 @@ important parameters, like moveable, grounded, etc..
 we could put this info next to the object in the objTools
 widget, if we extende the widget.
 
+
+footholds were pushed off the mountain wall.
+i assume a frame of interaction happened prior to
+the roomObj types being updated.
 
 
 

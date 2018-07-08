@@ -121,7 +121,7 @@ namespace DungeonRun
             //row 1
             Functions_GameObject.SetType(objList[0], ObjType.Wor_Grass_Tall);
             Functions_GameObject.SetType(objList[1], ObjType.Wor_Grass_Cut);
-            Functions_GameObject.SetType(objList[2], ObjType.Wor_Grass_1);
+            Functions_GameObject.SetType(objList[2], ObjType.Unknown);
             Functions_GameObject.SetType(objList[3], ObjType.Wor_Grass_2);
 
             //row 2
