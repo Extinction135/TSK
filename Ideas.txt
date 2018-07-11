@@ -17,7 +17,8 @@ breaking armor should be noted in the flavor text.
 armor can be broken using shovel or hammer.
 
 
-
+opening a portal to dark world should spawn a bunch of bat
+projectiles in all directions as a decoration, along with smoke poofs.
 
 
 

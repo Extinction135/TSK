@@ -20,18 +20,18 @@ namespace DungeonRun
 
 			Colliseum.type = RoomID.Colliseum;
 			Colliseum.objs = new List<ObjXmlData>();
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Entrance_Colliseum; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 168; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Entrance_Colliseum; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 184; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Gate_Center; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 408; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Gate_Center; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 408; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Stairs_Handrail_Top; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 312; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Stairs_Handrail_Top; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 312; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Bottom; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 232; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_SkullPillar; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 216; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Stairs_Left; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 376; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Stairs_Left; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 360; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Stairs_Left; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 344; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Stairs_Left; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 328; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Stairs_Left; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 312; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Bottom; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 232; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_SkullPillar; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 216; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Stairs_Right; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 376; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Stairs_Right; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 360; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Stairs_Right; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 344; Colliseum.objs.Add(obj);}
@@ -49,11 +49,11 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Gate_Pillar_Right; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 408; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Stairs_Right; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 328; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Stairs_Right; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 312; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Left; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 168; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 216; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 120; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 120; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Left; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 136; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 168; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 232; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 168; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 168; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 168; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 456; obj.posY = 104; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Stairs_Middle; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 312; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Stairs_Middle; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 312; Colliseum.objs.Add(obj);}
@@ -61,7 +61,7 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Stairs_Middle; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 312; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Stairs_Middle; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 312; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Stairs_Middle; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 312; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 200; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 232; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Stairs_Middle; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 312; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Stairs_Middle; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 328; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Stairs_Middle; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 344; Colliseum.objs.Add(obj);}
@@ -70,21 +70,21 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Stairs_Handrail_Middle; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 328; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Stairs_Handrail_Middle; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 344; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Stairs_Handrail_Middle; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 360; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Right; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 136; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Right; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 168; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Stairs_Handrail_Middle; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 328; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Stairs_Handrail_Middle; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 344; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Stairs_Handrail_Middle; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 360; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 456; obj.posY = 88; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 456; obj.posY = 72; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 856; obj.posY = 280; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Right; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 168; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Right; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 200; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 168; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Right; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 200; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 456; obj.posY = 56; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 136; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 168; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 200; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 168; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 184; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 200; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 456; obj.posY = 40; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 136; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 184; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Stairs_Middle; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 328; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Stairs_Middle; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 328; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Stairs_Middle; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 328; Colliseum.objs.Add(obj);}
@@ -114,7 +114,7 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Bottom; obj.direction = Direction.Down; obj.posX = 456; obj.posY = 344; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Right; obj.direction = Direction.Down; obj.posX = 792; obj.posY = 296; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 456; obj.posY = 328; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 168; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 200; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 808; obj.posY = 312; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 808; obj.posY = 328; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Bottom; obj.direction = Direction.Down; obj.posX = 808; obj.posY = 344; Colliseum.objs.Add(obj);}
@@ -122,7 +122,7 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Left; obj.direction = Direction.Down; obj.posX = 472; obj.posY = 296; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 488; obj.posY = 296; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 456; obj.posY = 312; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 152; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 168; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 808; obj.posY = 296; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 456; obj.posY = 296; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Right; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 328; Colliseum.objs.Add(obj);}
@@ -133,35 +133,35 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 744; obj.posY = 328; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_TorchLit; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 296; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_TorchLit; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 296; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 136; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 168; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 872; obj.posY = 280; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Right; obj.direction = Direction.Down; obj.posX = 888; obj.posY = 280; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 168; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 184; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 216; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 200; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 168; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Left; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 200; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 200; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Right; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 200; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 840; obj.posY = 312; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 856; obj.posY = 312; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 200; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 200; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 456; obj.posY = 24; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 136; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 168; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Left; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 168; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Left; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 136; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 872; obj.posY = 312; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 456; obj.posY = 8; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 200; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 216; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 808; obj.posY = 104; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 136; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 168; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 200; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Right; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 200; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Right; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 168; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Right; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 136; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 808; obj.posY = 88; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Left; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 200; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Left; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 200; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 744; obj.posY = 136; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 744; obj.posY = 168; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 744; obj.posY = 200; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 200; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 808; obj.posY = 72; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 136; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 808; obj.posY = 280; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 456; obj.posY = 280; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 808; obj.posY = 264; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 456; obj.posY = 280; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Left; obj.direction = Direction.Down; obj.posX = 824; obj.posY = 280; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Right; obj.direction = Direction.Down; obj.posX = 888; obj.posY = 312; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 520; obj.posY = 328; Colliseum.objs.Add(obj);}
@@ -169,7 +169,7 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 904; obj.posY = 312; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 904; obj.posY = 296; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 168; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 200; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Bottom; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 232; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 776; obj.posY = 296; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 808; obj.posY = 56; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 520; obj.posY = 136; Colliseum.objs.Add(obj);}
@@ -229,7 +229,7 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Left; obj.direction = Direction.Down; obj.posX = 1016; obj.posY = 280; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 1000; obj.posY = 280; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 1000; obj.posY = 264; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 1000; obj.posY = 248; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 1000; obj.posY = 232; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 1032; obj.posY = 248; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 1032; obj.posY = 280; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 1048; obj.posY = 248; Colliseum.objs.Add(obj);}
@@ -244,7 +244,7 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 1096; obj.posY = 280; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 1096; obj.posY = 264; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 1096; obj.posY = 248; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 1096; obj.posY = 232; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 1096; obj.posY = 216; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Left; obj.direction = Direction.Down; obj.posX = 1112; obj.posY = 232; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Left; obj.direction = Direction.Down; obj.posX = 1112; obj.posY = 264; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 1128; obj.posY = 232; Colliseum.objs.Add(obj);}
@@ -279,7 +279,7 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Stairs_Handrail_Bottom; obj.direction = Direction.Down; obj.posX = 344; obj.posY = 312; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Stairs_Middle; obj.direction = Direction.Down; obj.posX = 312; obj.posY = 264; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Stairs_Middle; obj.direction = Direction.Down; obj.posX = 312; obj.posY = 280; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 264; obj.posY = 248; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 264; obj.posY = 248; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 264; obj.posY = 264; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 264; obj.posY = 280; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 264; obj.posY = 296; Colliseum.objs.Add(obj);}
@@ -294,7 +294,7 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 200; obj.posY = 280; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Left; obj.direction = Direction.Down; obj.posX = 184; obj.posY = 248; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Left; obj.direction = Direction.Down; obj.posX = 184; obj.posY = 280; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 168; obj.posY = 232; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 168; obj.posY = 232; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 168; obj.posY = 248; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 168; obj.posY = 264; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 168; obj.posY = 280; Colliseum.objs.Add(obj);}
@@ -321,10 +321,10 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = -8; obj.posY = 264; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 24; obj.posY = 232; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 24; obj.posY = 264; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 184; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Left; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 168; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 776; obj.posY = 168; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 776; obj.posY = 200; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 168; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Left; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 136; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Bottom; obj.direction = Direction.Down; obj.posX = 808; obj.posY = 216; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Bottom; obj.direction = Direction.Down; obj.posX = 456; obj.posY = 216; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 456; obj.posY = 200; Colliseum.objs.Add(obj);}
@@ -345,10 +345,10 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Right; obj.direction = Direction.Down; obj.posX = 440; obj.posY = 136; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Right; obj.direction = Direction.Down; obj.posX = 440; obj.posY = 104; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Right; obj.direction = Direction.Down; obj.posX = 440; obj.posY = 72; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Left; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 104; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Left; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 104; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 488; obj.posY = 8; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 520; obj.posY = 8; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 8; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Right; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 104; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Left; obj.direction = Direction.Down; obj.posX = 824; obj.posY = 72; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Left; obj.direction = Direction.Down; obj.posX = 824; obj.posY = 104; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Left; obj.direction = Direction.Down; obj.posX = 824; obj.posY = 136; Colliseum.objs.Add(obj);}
@@ -440,21 +440,21 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 248; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 248; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 248; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 152; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Left; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 72; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 232; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 232; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Bottom; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 232; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 232; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 248; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 248; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 248; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 264; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 264; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 280; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 280; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 520; obj.posY = 280; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 504; obj.posY = 280; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 488; obj.posY = 280; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 472; obj.posY = 280; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 184; obj.posY = 232; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 280; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 200; obj.posY = 232; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 216; obj.posY = 232; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 232; obj.posY = 232; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 248; obj.posY = 232; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 472; obj.posY = 264; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 472; obj.posY = 248; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 472; obj.posY = 232; Colliseum.objs.Add(obj);}
@@ -467,13 +467,13 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 520; obj.posY = 264; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 504; obj.posY = 264; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 488; obj.posY = 264; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Bottom; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 216; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Left; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 40; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 232; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 136; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 136; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 136; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 232; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 232; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 232; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Left; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 8; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 136; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 104; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 248; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 248; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 264; Colliseum.objs.Add(obj);}
@@ -486,8 +486,8 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 280; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 264; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 248; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 200; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 136; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 72; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 136; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 248; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 264; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 280; Colliseum.objs.Add(obj);}
@@ -497,40 +497,40 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 264; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 248; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 232; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 232; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 152; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 248; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 264; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 280; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 280; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 792; obj.posY = 280; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 776; obj.posY = 280; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 264; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 248; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 232; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 744; obj.posY = 232; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 744; obj.posY = 248; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 744; obj.posY = 264; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 744; obj.posY = 280; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 280; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 280; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 744; obj.posY = 280; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 264; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 248; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 232; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 776; obj.posY = 232; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 776; obj.posY = 248; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 776; obj.posY = 264; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 776; obj.posY = 280; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 792; obj.posY = 280; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 280; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 280; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 792; obj.posY = 264; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 792; obj.posY = 248; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 792; obj.posY = 232; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 808; obj.posY = 232; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 808; obj.posY = 248; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 808; obj.posY = 264; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 824; obj.posY = 264; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 1096; obj.posY = 232; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 1000; obj.posY = 248; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 456; obj.posY = 232; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 456; obj.posY = 248; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 456; obj.posY = 264; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 440; obj.posY = 264; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 424; obj.posY = 264; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 408; obj.posY = 264; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 456; obj.posY = 264; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 376; obj.posY = 264; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 392; obj.posY = 264; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 408; obj.posY = 264; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 408; obj.posY = 248; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 424; obj.posY = 248; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 440; obj.posY = 248; Colliseum.objs.Add(obj);}
@@ -557,11 +557,11 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 872; obj.posY = 216; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 856; obj.posY = 216; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 856; obj.posY = 232; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 856; obj.posY = 264; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 840; obj.posY = 264; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 808; obj.posY = 280; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 824; obj.posY = 264; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 856; obj.posY = 248; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 872; obj.posY = 264; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 888; obj.posY = 264; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 840; obj.posY = 264; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 856; obj.posY = 264; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 872; obj.posY = 248; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 872; obj.posY = 232; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 888; obj.posY = 216; Colliseum.objs.Add(obj);}
@@ -585,10 +585,10 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 392; obj.posY = 216; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 376; obj.posY = 232; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 392; obj.posY = 248; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 376; obj.posY = 264; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 424; obj.posY = 264; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 376; obj.posY = 248; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 392; obj.posY = 232; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 392; obj.posY = 264; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 440; obj.posY = 264; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 360; obj.posY = 248; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 344; obj.posY = 248; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 344; obj.posY = 232; Colliseum.objs.Add(obj);}
@@ -649,12 +649,12 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 296; obj.posY = 152; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 312; obj.posY = 152; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 312; obj.posY = 168; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 264; obj.posY = 232; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 248; obj.posY = 232; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 232; obj.posY = 232; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 216; obj.posY = 232; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 200; obj.posY = 232; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 184; obj.posY = 232; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 264; obj.posY = 232; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 472; obj.posY = 280; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 488; obj.posY = 280; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 504; obj.posY = 280; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 520; obj.posY = 280; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 280; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 184; obj.posY = 216; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 168; obj.posY = 216; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 200; obj.posY = 216; Colliseum.objs.Add(obj);}
@@ -690,8 +690,8 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 200; obj.posY = 168; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 184; obj.posY = 184; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 168; obj.posY = 200; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 152; obj.posY = 216; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 136; obj.posY = 216; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 24; obj.posY = 216; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 40; obj.posY = 216; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 152; obj.posY = 200; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 168; obj.posY = 184; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 184; obj.posY = 168; Colliseum.objs.Add(obj);}
@@ -709,14 +709,14 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 168; obj.posY = 168; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 152; obj.posY = 184; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 136; obj.posY = 200; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 120; obj.posY = 216; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 88; obj.posY = 216; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 72; obj.posY = 216; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 104; obj.posY = 216; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 56; obj.posY = 216; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 40; obj.posY = 216; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 24; obj.posY = 216; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = -8; obj.posY = 216; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 56; obj.posY = 216; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 72; obj.posY = 216; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 88; obj.posY = 216; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 104; obj.posY = 216; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 120; obj.posY = 216; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 136; obj.posY = 216; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 152; obj.posY = 216; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 8; obj.posY = 216; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = -8; obj.posY = 200; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 24; obj.posY = 200; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 40; obj.posY = 200; Colliseum.objs.Add(obj);}
@@ -897,22 +897,22 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Left; obj.direction = Direction.Down; obj.posX = 472; obj.posY = 40; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Left; obj.direction = Direction.Down; obj.posX = 472; obj.posY = 72; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Left; obj.direction = Direction.Down; obj.posX = 472; obj.posY = 104; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Right; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 104; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 72; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 8; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 136; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Right; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 72; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Right; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 136; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 744; obj.posY = 8; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 776; obj.posY = 8; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 744; obj.posY = 72; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 776; obj.posY = 72; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 776; obj.posY = 40; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 744; obj.posY = 40; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 40; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 104; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Right; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 40; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Right; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 8; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 744; obj.posY = 104; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 776; obj.posY = 104; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 40; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 72; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 104; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Left; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 72; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Left; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 40; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Left; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 104; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 520; obj.posY = 40; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 520; obj.posY = 72; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 520; obj.posY = 104; Colliseum.objs.Add(obj);}
@@ -923,73 +923,73 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 504; obj.posY = 72; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 504; obj.posY = 40; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 504; obj.posY = 8; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 104; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 72; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 40; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 8; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 8; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Left; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 8; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Right; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 104; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Right; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 72; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 120; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Right; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 40; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 8; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 40; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 40; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 72; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Right; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 8; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 104; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 72; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 104; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 104; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Right; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 72; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Right; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 40; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Right; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 8; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Left; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 72; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Left; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 40; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Left; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 8; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 104; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 104; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 104; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 104; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 104; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 104; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 104; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 88; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 88; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 88; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 88; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 88; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 88; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 88; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 72; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 72; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 72; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 72; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 72; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 72; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 72; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 56; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 40; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 24; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 8; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 8; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 8; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 8; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 8; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 8; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 8; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 24; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 40; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 56; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 56; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 40; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 24; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 24; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 40; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 56; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 56; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 40; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 24; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 24; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 40; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 56; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 56; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 40; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 24; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 88; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 72; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 56; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 40; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 24; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 8; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 104; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 72; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 40; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 8; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 104; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 72; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 40; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 40; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 8; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 8; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 136; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 136; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 136; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 136; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 104; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 104; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 72; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 72; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 104; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 104; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 72; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 72; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 40; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 40; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 40; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 40; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 8; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 8; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 8; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 8; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 136; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_TorchLit; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 232; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 232; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_TorchLit; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 232; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_TorchLit; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 232; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 232; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_TorchLit; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 232; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 216; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 152; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 136; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Left; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 200; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle1; obj.direction = Direction.Down; obj.posX = 744; obj.posY = 200; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 8; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 24; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 40; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 56; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 72; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 88; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 104; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 120; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Left; obj.direction = Direction.Down; obj.posX = 344; obj.posY = 40; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Left; obj.direction = Direction.Down; obj.posX = 344; obj.posY = 8; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Right; obj.direction = Direction.Down; obj.posX = 440; obj.posY = 8; Colliseum.objs.Add(obj);}
@@ -1020,7 +1020,7 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Bricks_Middle2; obj.direction = Direction.Down; obj.posX = 856; obj.posY = 40; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1288; obj.posY = -8; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1288; obj.posY = 8; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1272; obj.posY = 216; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 1288; obj.posY = 216; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1272; obj.posY = 200; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1272; obj.posY = 184; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1272; obj.posY = 168; Colliseum.objs.Add(obj);}
@@ -1069,7 +1069,7 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1080; obj.posY = -8; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1096; obj.posY = -8; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1288; obj.posY = 184; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1288; obj.posY = 216; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 1272; obj.posY = 216; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1288; obj.posY = 200; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1288; obj.posY = 168; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1288; obj.posY = 152; Colliseum.objs.Add(obj);}
@@ -1125,36 +1125,36 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1256; obj.posY = 184; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1256; obj.posY = 200; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1240; obj.posY = 200; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1240; obj.posY = 216; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1256; obj.posY = 216; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1224; obj.posY = 216; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 1256; obj.posY = 216; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 1240; obj.posY = 216; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 1224; obj.posY = 216; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1224; obj.posY = 200; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1208; obj.posY = 216; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 1208; obj.posY = 216; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1224; obj.posY = 184; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1208; obj.posY = 200; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1192; obj.posY = 216; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 1192; obj.posY = 216; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1224; obj.posY = 168; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1208; obj.posY = 184; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1192; obj.posY = 200; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1176; obj.posY = 216; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 1176; obj.posY = 216; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1224; obj.posY = 152; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1208; obj.posY = 168; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1192; obj.posY = 184; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1176; obj.posY = 200; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1160; obj.posY = 216; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1128; obj.posY = 216; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1112; obj.posY = 216; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1096; obj.posY = 216; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1144; obj.posY = 216; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 872; obj.posY = 264; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 888; obj.posY = 264; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 1016; obj.posY = 232; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 1032; obj.posY = 232; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 1048; obj.posY = 232; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1160; obj.posY = 200; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1176; obj.posY = 184; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1192; obj.posY = 168; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1208; obj.posY = 152; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1224; obj.posY = 136; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1080; obj.posY = 216; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1080; obj.posY = 232; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 1064; obj.posY = 232; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1000; obj.posY = 216; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1000; obj.posY = 232; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 1080; obj.posY = 232; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 952; obj.posY = 216; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 984; obj.posY = 248; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 952; obj.posY = 232; Colliseum.objs.Add(obj);}
@@ -1186,15 +1186,15 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1000; obj.posY = 200; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1032; obj.posY = 200; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1032; obj.posY = 216; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1032; obj.posY = 232; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1048; obj.posY = 232; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 1112; obj.posY = 216; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 1128; obj.posY = 216; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1048; obj.posY = 216; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1048; obj.posY = 200; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1064; obj.posY = 216; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1064; obj.posY = 232; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 1160; obj.posY = 216; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1016; obj.posY = 216; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1016; obj.posY = 200; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1016; obj.posY = 232; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 1144; obj.posY = 216; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1064; obj.posY = 200; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1080; obj.posY = 200; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1096; obj.posY = 200; Colliseum.objs.Add(obj);}
@@ -1364,26 +1364,12 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1112; obj.posY = 152; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1128; obj.posY = 152; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 1096; obj.posY = 136; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 168; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 184; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 152; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 152; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 168; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 184; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 200; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Bottom; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 216; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 232; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 232; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 136; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 136; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 120; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 120; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 152; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 152; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 152; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 120; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 120; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 120; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_TorchLit; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 232; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_TorchLit; obj.direction = Direction.Down; obj.posX = 824; obj.posY = 200; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_TorchLit; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 232; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_TorchLit; obj.direction = Direction.Down; obj.posX = 440; obj.posY = 200; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = 168; obj.posY = 216; Colliseum.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Top; obj.direction = Direction.Down; obj.posX = -8; obj.posY = 216; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 296; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 296; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Stairs_Handrail_Bottom; obj.direction = Direction.Down; obj.posX = 920; obj.posY = 312; Colliseum.objs.Add(obj);}
@@ -1406,16 +1392,12 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Stairs_Right; obj.direction = Direction.Down; obj.posX = 328; obj.posY = 280; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Stairs_Right; obj.direction = Direction.Down; obj.posX = 328; obj.posY = 296; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Stairs_Right; obj.direction = Direction.Down; obj.posX = 328; obj.posY = 312; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 168; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 168; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Pillar_Middle; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 168; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 8; obj.posY = 120; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 8; obj.posY = 136; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 8; obj.posY = 152; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 8; obj.posY = 168; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 8; obj.posY = 184; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 8; obj.posY = 200; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 8; obj.posY = 216; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 8; obj.posY = 104; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 8; obj.posY = 88; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 8; obj.posY = 72; Colliseum.objs.Add(obj);}
@@ -1445,36 +1427,6 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 296; obj.posY = 8; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 328; obj.posY = -8; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Colliseum_Outdoors_Floor; obj.direction = Direction.Down; obj.posX = 312; obj.posY = 8; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Pot; obj.direction = Direction.Down; obj.posX = 472; obj.posY = 280; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Pot; obj.direction = Direction.Down; obj.posX = 488; obj.posY = 280; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Pot; obj.direction = Direction.Down; obj.posX = 504; obj.posY = 280; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Pot; obj.direction = Direction.Down; obj.posX = 520; obj.posY = 280; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Pot; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 280; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Pot; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 280; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Pot; obj.direction = Direction.Down; obj.posX = 744; obj.posY = 280; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Pot; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 280; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Pot; obj.direction = Direction.Down; obj.posX = 776; obj.posY = 280; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Pot; obj.direction = Direction.Down; obj.posX = 792; obj.posY = 280; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Pot; obj.direction = Direction.Down; obj.posX = 824; obj.posY = 264; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Pot; obj.direction = Direction.Down; obj.posX = 840; obj.posY = 264; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Pot; obj.direction = Direction.Down; obj.posX = 856; obj.posY = 264; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Pot; obj.direction = Direction.Down; obj.posX = 872; obj.posY = 264; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Pot; obj.direction = Direction.Down; obj.posX = 888; obj.posY = 264; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Pot; obj.direction = Direction.Down; obj.posX = 440; obj.posY = 264; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Pot; obj.direction = Direction.Down; obj.posX = 424; obj.posY = 264; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Pot; obj.direction = Direction.Down; obj.posX = 408; obj.posY = 264; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Pot; obj.direction = Direction.Down; obj.posX = 392; obj.posY = 264; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Pot; obj.direction = Direction.Down; obj.posX = 376; obj.posY = 264; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Pot; obj.direction = Direction.Down; obj.posX = 248; obj.posY = 232; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Pot; obj.direction = Direction.Down; obj.posX = 232; obj.posY = 232; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Pot; obj.direction = Direction.Down; obj.posX = 216; obj.posY = 232; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Pot; obj.direction = Direction.Down; obj.posX = 200; obj.posY = 232; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Pot; obj.direction = Direction.Down; obj.posX = 184; obj.posY = 232; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Pot; obj.direction = Direction.Down; obj.posX = 1016; obj.posY = 232; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Pot; obj.direction = Direction.Down; obj.posX = 1032; obj.posY = 232; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Pot; obj.direction = Direction.Down; obj.posX = 1048; obj.posY = 232; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Pot; obj.direction = Direction.Down; obj.posX = 1064; obj.posY = 232; Colliseum.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Pot; obj.direction = Direction.Down; obj.posX = 1080; obj.posY = 232; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 872; obj.posY = 520; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 856; obj.posY = 520; Colliseum.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 856; obj.posY = 568; Colliseum.objs.Add(obj);}
@@ -6927,14 +6879,14 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 472; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 872; obj.posY = 536; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 936; obj.posY = 536; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 280; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 424; obj.posY = 200; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 504; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 744; obj.posY = 504; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 808; obj.posY = 504; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 536; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 872; obj.posY = 504; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 936; obj.posY = 504; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 264; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 424; obj.posY = 184; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 1000; obj.posY = 536; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 1064; obj.posY = 536; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 1128; obj.posY = 536; MountainEntrance.objs.Add(obj);}
@@ -7252,10 +7204,10 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 488; obj.posY = 648; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 392; obj.posY = 648; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 632; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 392; obj.posY = 264; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 280; obj.posY = 280; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 232; obj.posY = 312; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 792; obj.posY = 312; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 440; obj.posY = 168; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 440; obj.posY = 152; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 440; obj.posY = 136; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 456; obj.posY = 120; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 296; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 504; obj.posY = 312; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 344; MountainEntrance.objs.Add(obj);}
@@ -7264,33 +7216,33 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 328; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 344; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 344; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 520; obj.posY = 312; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 328; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 328; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 328; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 328; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 312; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 328; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 312; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 312; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 312; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 312; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 312; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 328; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 328; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 312; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 312; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 312; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 312; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 312; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 504; obj.posY = 296; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 520; obj.posY = 296; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 296; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 296; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 296; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 280; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 280; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 280; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 264; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 264; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 328; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 520; obj.posY = 312; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 504; obj.posY = 296; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 520; obj.posY = 296; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 328; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 328; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 312; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 296; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 280; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 904; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 808; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 344; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 472; obj.posY = 168; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 408; obj.posY = 200; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 328; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 360; obj.posY = 312; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 424; obj.posY = 296; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 344; obj.posY = 200; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 408; obj.posY = 312; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 520; obj.posY = 328; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 312; MountainEntrance.objs.Add(obj);}
@@ -7321,16 +7273,15 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 280; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 296; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 520; obj.posY = 280; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 280; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 264; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 264; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 248; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 264; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 280; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 360; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 200; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 200; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 408; obj.posY = 168; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 168; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 472; obj.posY = 136; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 312; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 328; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 344; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_TorchLit; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 344; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 344; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 312; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 328; MountainEntrance.objs.Add(obj);}
@@ -7344,19 +7295,16 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 344; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 792; obj.posY = 344; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 344; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 456; obj.posY = 248; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 136; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 344; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 344; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 488; obj.posY = 344; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_TorchLit; obj.direction = Direction.Down; obj.posX = 472; obj.posY = 344; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 456; obj.posY = 344; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 360; obj.posY = 344; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 296; obj.posY = 344; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 280; obj.posY = 344; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 776; obj.posY = 344; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 344; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_TorchLit; obj.direction = Direction.Down; obj.posX = 392; obj.posY = 344; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_TorchLit; obj.direction = Direction.Down; obj.posX = 840; obj.posY = 344; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 744; obj.posY = 264; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 408; obj.posY = 328; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 328; obj.posY = 312; MountainEntrance.objs.Add(obj);}
@@ -7379,271 +7327,379 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 664; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Signpost; obj.direction = Direction.Down; obj.posX = 744; obj.posY = 568; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 552; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Entrance_MountainDungeon; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 168; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 136; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 104; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 72; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 40; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 8; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 8; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 40; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 792; obj.posY = 8; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 856; obj.posY = 40; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 920; obj.posY = 8; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 984; obj.posY = 40; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1048; obj.posY = 8; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1112; obj.posY = 40; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1176; obj.posY = 8; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1240; obj.posY = 40; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1176; obj.posY = 72; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1048; obj.posY = 72; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 920; obj.posY = 72; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 792; obj.posY = 72; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 72; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 104; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 856; obj.posY = 104; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 984; obj.posY = 104; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1112; obj.posY = 104; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1240; obj.posY = 104; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 40; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 104; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 472; obj.posY = 72; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 472; obj.posY = 8; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 408; obj.posY = 40; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Entrance_MountainDungeon; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 152; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 136; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 168; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 408; obj.posY = 136; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 136; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 408; obj.posY = 104; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 344; obj.posY = 72; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 104; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 776; obj.posY = 200; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 840; obj.posY = 200; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 904; obj.posY = 200; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 968; obj.posY = 200; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 1032; obj.posY = 200; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 1096; obj.posY = 200; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 1160; obj.posY = 200; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 1224; obj.posY = 200; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 168; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 8; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 776; obj.posY = 8; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 40; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 72; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 104; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 776; obj.posY = 40; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 840; obj.posY = 8; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 104; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 776; obj.posY = 72; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 840; obj.posY = 40; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 72; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 40; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 8; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 72; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 40; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 8; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 408; obj.posY = 72; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 408; obj.posY = 40; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 280; obj.posY = 200; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 216; obj.posY = 200; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 280; obj.posY = 168; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 152; obj.posY = 168; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 24; obj.posY = 168; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = -40; obj.posY = 168; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = -40; obj.posY = 200; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 24; obj.posY = 200; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 88; obj.posY = 200; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 152; obj.posY = 200; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = -40; obj.posY = 136; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = -40; obj.posY = 104; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 200; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 472; obj.posY = 200; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 408; obj.posY = 8; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 472; obj.posY = 104; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = -40; obj.posY = 72; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = -40; obj.posY = 40; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = -40; obj.posY = 8; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = -40; obj.posY = -24; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 24; obj.posY = -24; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 88; obj.posY = -24; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 152; obj.posY = -24; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 216; obj.posY = -24; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 280; obj.posY = -24; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 344; obj.posY = -24; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 408; obj.posY = -24; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 24; obj.posY = 8; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 24; obj.posY = 40; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 24; obj.posY = 72; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 24; obj.posY = 104; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 24; obj.posY = 136; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 88; obj.posY = 136; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 88; obj.posY = 104; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 472; obj.posY = 72; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 472; obj.posY = 40; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 472; obj.posY = 8; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 104; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 72; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 40; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 8; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Pot; obj.direction = Direction.Down; obj.posX = 520; obj.posY = 232; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 840; obj.posY = 72; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 776; obj.posY = 104; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 136; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 776; obj.posY = 168; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 776; obj.posY = 136; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 840; obj.posY = 168; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 840; obj.posY = 136; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 840; obj.posY = 104; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 904; obj.posY = 168; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 904; obj.posY = 136; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 968; obj.posY = 136; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 968; obj.posY = 104; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 968; obj.posY = 72; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1032; obj.posY = 72; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1032; obj.posY = 40; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1032; obj.posY = 8; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 968; obj.posY = 8; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 968; obj.posY = 40; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 904; obj.posY = 40; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 904; obj.posY = 8; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 904; obj.posY = 72; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 904; obj.posY = 104; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 712; obj.posY = -24; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 776; obj.posY = -24; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 840; obj.posY = -24; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 904; obj.posY = -24; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 968; obj.posY = -24; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 488; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 456; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 968; obj.posY = 168; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 472; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 504; obj.posY = 232; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 232; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 232; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1032; obj.posY = 104; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1032; obj.posY = 136; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 504; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 88; obj.posY = 72; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 88; obj.posY = 40; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 88; obj.posY = 8; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 152; obj.posY = 8; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 152; obj.posY = 40; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 152; obj.posY = 72; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 152; obj.posY = 104; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 152; obj.posY = 136; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 88; obj.posY = 168; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 216; obj.posY = 168; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1032; obj.posY = 168; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1032; obj.posY = -24; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1096; obj.posY = -24; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1160; obj.posY = -24; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1224; obj.posY = -24; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1096; obj.posY = 8; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1096; obj.posY = 40; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1096; obj.posY = 72; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1096; obj.posY = 104; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1096; obj.posY = 136; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1096; obj.posY = 168; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 216; obj.posY = 136; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 216; obj.posY = 104; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 216; obj.posY = 72; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 216; obj.posY = 40; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 216; obj.posY = 8; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 280; obj.posY = 8; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 344; obj.posY = 8; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 280; obj.posY = 40; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 280; obj.posY = 104; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 216; obj.posY = 72; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 216; obj.posY = 8; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 152; obj.posY = 40; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 152; obj.posY = 104; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 88; obj.posY = 72; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 88; obj.posY = 8; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 24; obj.posY = 40; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 24; obj.posY = 104; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = -40; obj.posY = 72; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = -40; obj.posY = 8; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 136; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 472; obj.posY = 136; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 408; obj.posY = 136; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 344; obj.posY = 136; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 280; obj.posY = 136; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 216; obj.posY = 136; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 152; obj.posY = 136; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 88; obj.posY = 136; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 24; obj.posY = 136; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = -40; obj.posY = 136; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = -40; obj.posY = 40; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = -40; obj.posY = 104; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 24; obj.posY = 72; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 24; obj.posY = 8; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 88; obj.posY = 40; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 88; obj.posY = 104; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 152; obj.posY = 72; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 152; obj.posY = 8; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 216; obj.posY = 40; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 216; obj.posY = 104; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 280; obj.posY = 72; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 280; obj.posY = 8; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 344; obj.posY = 40; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 280; obj.posY = 72; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 344; obj.posY = 72; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 280; obj.posY = 104; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 344; obj.posY = 104; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 408; obj.posY = 72; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 408; obj.posY = 8; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 472; obj.posY = 40; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 472; obj.posY = 104; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 72; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 8; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 136; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 136; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 792; obj.posY = 136; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 856; obj.posY = 136; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 920; obj.posY = 136; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 984; obj.posY = 136; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 1048; obj.posY = 136; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 1112; obj.posY = 136; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 1176; obj.posY = 136; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 1240; obj.posY = 136; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1176; obj.posY = 104; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1240; obj.posY = 72; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1240; obj.posY = 8; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1176; obj.posY = 40; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1112; obj.posY = 8; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1112; obj.posY = 72; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1048; obj.posY = 40; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1048; obj.posY = 104; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 984; obj.posY = 72; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 984; obj.posY = 8; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 920; obj.posY = 40; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 920; obj.posY = 104; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 856; obj.posY = 72; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 856; obj.posY = 8; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 792; obj.posY = 40; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 792; obj.posY = 104; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 72; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 8; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 40; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 104; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder; obj.direction = Direction.Down; obj.posX = 472; obj.posY = 136; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 136; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 216; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 200; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 200; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder; obj.direction = Direction.Down; obj.posX = 472; obj.posY = 120; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder; obj.direction = Direction.Down; obj.posX = 488; obj.posY = 104; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 120; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 104; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 88; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 72; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 56; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 72; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 88; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 40; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 40; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 104; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 88; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 24; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 56; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 40; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 744; obj.posY = 40; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 40; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 776; obj.posY = 24; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 792; obj.posY = 24; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 808; obj.posY = 24; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 824; obj.posY = 40; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 840; obj.posY = 56; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 840; obj.posY = 72; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 824; obj.posY = 88; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 808; obj.posY = 88; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 504; obj.posY = 88; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 408; obj.posY = 88; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 440; obj.posY = 88; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 424; obj.posY = 72; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 456; obj.posY = 104; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 504; obj.posY = 72; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 504; obj.posY = 56; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 520; obj.posY = 56; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 40; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 40; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 40; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 56; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 56; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 72; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 24; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 40; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder_Trap; obj.direction = Direction.Down; obj.posX = 792; obj.posY = 136; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder_Trap; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 136; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder_Trap; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 72; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder_Trap; obj.direction = Direction.Down; obj.posX = 488; obj.posY = 40; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder_Trap; obj.direction = Direction.Down; obj.posX = 392; obj.posY = 40; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder; obj.direction = Direction.Down; obj.posX = 408; obj.posY = 56; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 40; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder; obj.direction = Direction.Down; obj.posX = 840; obj.posY = 40; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder; obj.direction = Direction.Down; obj.posX = 792; obj.posY = 104; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder; obj.direction = Direction.Down; obj.posX = 792; obj.posY = 120; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 840; obj.posY = 24; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Pot; obj.direction = Direction.Down; obj.posX = 392; obj.posY = 24; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Pot; obj.direction = Direction.Down; obj.posX = 488; obj.posY = 24; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_TorchLit; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 24; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 184; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 184; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 168; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 168; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 168; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 168; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 168; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 152; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 152; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 152; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 520; obj.posY = 168; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 520; obj.posY = 152; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 152; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 504; obj.posY = 168; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 488; obj.posY = 184; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 488; obj.posY = 168; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 472; obj.posY = 184; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 472; obj.posY = 200; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 488; obj.posY = 200; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 504; obj.posY = 184; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 488; obj.posY = 216; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 184; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 168; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 184; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 200; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 520; obj.posY = 184; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 504; obj.posY = 200; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 472; obj.posY = 216; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_SkullPillar; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 200; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 216; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 152; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 504; obj.posY = 152; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 472; obj.posY = 168; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 456; obj.posY = 184; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 488; obj.posY = 232; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 456; obj.posY = 216; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_SkullPillar; obj.direction = Direction.Down; obj.posX = 520; obj.posY = 200; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 184; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 152; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 168; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 216; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 488; obj.posY = 152; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 424; obj.posY = 200; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 152; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 280; obj.posY = 136; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 344; obj.posY = 136; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 344; obj.posY = 168; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1160; obj.posY = 168; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 472; obj.posY = -24; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 536; obj.posY = -24; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 584; obj.posY = -24; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 648; obj.posY = -24; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1224; obj.posY = 168; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1224; obj.posY = 136; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1160; obj.posY = 136; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1160; obj.posY = 104; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1160; obj.posY = 8; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1224; obj.posY = 8; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1160; obj.posY = 40; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1160; obj.posY = 72; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1224; obj.posY = 40; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1224; obj.posY = 72; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1224; obj.posY = 104; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1288; obj.posY = -24; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1288; obj.posY = 8; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1288; obj.posY = 40; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1288; obj.posY = 72; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1288; obj.posY = 104; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1288; obj.posY = 136; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1288; obj.posY = 168; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 1288; obj.posY = 200; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 440; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 392; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 360; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 360; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 424; obj.posY = 360; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 376; obj.posY = 360; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 360; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 360; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 280; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 232; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 184; obj.posY = 248; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 136; obj.posY = 344; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 152; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 184; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 216; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 168; obj.posY = 232; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 168; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 88; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Pot; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 232; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 8; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 40; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 56; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 24; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 8; obj.posY = 232; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = -8; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 200; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 184; obj.posY = 232; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 200; obj.posY = 232; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 88; obj.posY = 328; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = -8; obj.posY = 328; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 56; obj.posY = 344; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 72; obj.posY = 344; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 120; obj.posY = 344; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 104; obj.posY = 344; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 8; obj.posY = 344; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 440; obj.posY = 264; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 824; obj.posY = 152; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 744; obj.posY = 152; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 312; obj.posY = 152; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 376; obj.posY = 152; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 392; obj.posY = 152; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 296; obj.posY = 184; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 328; obj.posY = 200; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 328; obj.posY = 152; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 152; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 152; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 808; obj.posY = 152; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 888; obj.posY = 152; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 104; obj.posY = 328; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 88; obj.posY = 344; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 72; obj.posY = 328; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 24; obj.posY = 344; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = -8; obj.posY = 344; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = -24; obj.posY = 344; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = -24; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = -8; obj.posY = 232; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 24; obj.posY = 232; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 72; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 88; obj.posY = 232; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 104; obj.posY = 216; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 840; obj.posY = 216; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 744; obj.posY = 216; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 776; obj.posY = 248; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 792; obj.posY = 248; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 792; obj.posY = 232; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 168; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 808; obj.posY = 168; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 792; obj.posY = 184; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 152; obj.posY = 232; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 136; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 168; obj.posY = 248; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 776; obj.posY = 216; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 232; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 200; obj.posY = 248; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 856; obj.posY = 280; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 856; obj.posY = 184; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 392; obj.posY = 184; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 312; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 216; obj.posY = 232; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 248; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 280; obj.posY = 248; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 312; obj.posY = 248; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 344; obj.posY = 280; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Pot; obj.direction = Direction.Down; obj.posX = 392; obj.posY = 200; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Pot; obj.direction = Direction.Down; obj.posX = 376; obj.posY = 216; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Pot; obj.direction = Direction.Down; obj.posX = 376; obj.posY = 232; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Pot; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 152; obj.posY = 344; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 184; obj.posY = 344; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 184; obj.posY = 296; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 56; obj.posY = 280; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Pot; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 232; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Barrel; obj.direction = Direction.Down; obj.posX = 392; obj.posY = 216; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Barrel; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 200; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Barrel; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 184; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Barrel; obj.direction = Direction.Down; obj.posX = 440; obj.posY = 168; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Enemy_Turtle; obj.direction = Direction.Down; obj.posX = 439; obj.posY = 209; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Enemy_Turtle; obj.direction = Direction.Down; obj.posX = 405; obj.posY = 216; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Pot; obj.direction = Direction.Down; obj.posX = 504; obj.posY = 216; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Pot; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 184; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Pot; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 232; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Pot; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 216; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Pot; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 184; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Pot; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 232; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Enemy_Turtle; obj.direction = Direction.Down; obj.posX = 640; obj.posY = 309; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Enemy_Turtle; obj.direction = Direction.Down; obj.posX = 678; obj.posY = 167; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Enemy_Turtle; obj.direction = Direction.Down; obj.posX = 445; obj.posY = 297; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Debris; obj.direction = Direction.Down; obj.posX = 504; obj.posY = 232; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Debris; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 232; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Debris; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 232; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Debris; obj.direction = Direction.Down; obj.posX = 520; obj.posY = 232; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 296; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 1064; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 1112; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 1256; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 1224; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 1192; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 1176; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 1208; obj.posY = 232; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 1208; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 1240; obj.posY = 344; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 1144; obj.posY = 312; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 1112; obj.posY = 328; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 1080; obj.posY = 344; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 1112; obj.posY = 344; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 1096; obj.posY = 328; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 1128; obj.posY = 328; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 904; obj.posY = 248; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 1016; obj.posY = 232; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 984; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 888; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 1048; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 1064; obj.posY = 232; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 1080; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 1112; obj.posY = 232; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 1128; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 1160; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 1176; obj.posY = 232; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 1192; obj.posY = 232; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 1208; obj.posY = 248; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 1224; obj.posY = 232; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 1240; obj.posY = 232; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 1240; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 1256; obj.posY = 232; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 1272; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 1128; obj.posY = 312; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 1112; obj.posY = 312; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 1080; obj.posY = 328; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 1096; obj.posY = 344; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 1064; obj.posY = 344; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 1128; obj.posY = 344; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 1144; obj.posY = 344; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 1144; obj.posY = 328; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 1160; obj.posY = 312; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 1160; obj.posY = 344; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 1192; obj.posY = 344; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 968; obj.posY = 344; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 920; obj.posY = 344; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 888; obj.posY = 360; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 904; obj.posY = 344; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 968; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 1256; obj.posY = 344; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 1240; obj.posY = 328; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 1224; obj.posY = 344; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 984; obj.posY = 344; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 968; obj.posY = 312; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 1016; obj.posY = 344; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 952; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 1208; obj.posY = 360; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 1176; obj.posY = 360; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 1048; obj.posY = 360; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 856; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 1144; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 1224; obj.posY = 328; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 1032; obj.posY = 344; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 936; obj.posY = 344; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 1016; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 1288; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 120; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 8; obj.posY = 328; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 216; obj.posY = 344; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 40; obj.posY = 344; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 264; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 72; obj.posY = 232; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = -24; obj.posY = 296; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 24; obj.posY = 328; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 168; obj.posY = 328; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 232; obj.posY = 232; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 136; obj.posY = 232; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 136; obj.posY = 280; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 936; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 856; obj.posY = 344; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 1048; obj.posY = 296; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 1240; obj.posY = 296; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 1176; obj.posY = 328; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 1160; obj.posY = 232; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 1032; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 952; obj.posY = 344; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush_Stump; obj.direction = Direction.Down; obj.posX = 1000; obj.posY = 296; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush_Stump; obj.direction = Direction.Down; obj.posX = 1272; obj.posY = 232; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush_Stump; obj.direction = Direction.Down; obj.posX = 872; obj.posY = 344; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush_Stump; obj.direction = Direction.Down; obj.posX = 824; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush_Stump; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush_Stump; obj.direction = Direction.Down; obj.posX = 456; obj.posY = 280; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush_Stump; obj.direction = Direction.Down; obj.posX = 328; obj.posY = 216; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush_Stump; obj.direction = Direction.Down; obj.posX = 296; obj.posY = 296; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush_Stump; obj.direction = Direction.Down; obj.posX = 152; obj.posY = 248; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush_Stump; obj.direction = Direction.Down; obj.posX = 120; obj.posY = 328; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush_Stump; obj.direction = Direction.Down; obj.posX = 24; obj.posY = 248; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree_Burnt; obj.direction = Direction.Down; obj.posX = 456; obj.posY = 232; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree_Burnt; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 232; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 456; obj.posY = 104; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 472; obj.posY = 88; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 488; obj.posY = 136; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 504; obj.posY = 120; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 504; obj.posY = 104; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 520; obj.posY = 104; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 88; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 88; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 88; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 104; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 120; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 104; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 120; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 136; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 152; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 168; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 184; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 200; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 72; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 520; obj.posY = 56; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 504; obj.posY = 56; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 488; obj.posY = 40; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 88; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 72; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 56; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 40; MountainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 40; MountainEntrance.objs.Add(obj);}
 			#endregion
 
 		}
