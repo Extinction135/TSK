@@ -33,13 +33,11 @@ Today:
 
 
 
+Colliseum++
 
+improved the exterior colliseum further, 
+based on lttp's eastern palace entrance.
 
-Sprites++
-
-upgraded various sprites.
-reworked collisuem exterior (using new entrance obj).
-reworked mountain exterior (using new entrance obj).
 
 
 
