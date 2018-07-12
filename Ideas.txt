@@ -37,12 +37,15 @@ they don't have swimming animation sprites.
 
 
 
-MountainWalls++
-it would be really nice to have alcoves on
-mountain walls, where link could rest from a
-long climb. this also allows us to fill up
-the level with mountain walls, then use footholds
-as paths up to different locations.
+In Game LoreMaster
+talking with this NPC opens the lore screen, which allows
+link to select a variety of items, enemies, and map locations.
+the lore master then tells the player about the selected thing,
+via dialog screens or something. this will be alot of text, so
+it should probably display instantly. maybe this screen has a
+scroll background, with selections... i dunno.
+
+
 
 
 

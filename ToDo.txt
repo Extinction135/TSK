@@ -50,14 +50,57 @@ Today:
 
 
 
+Mountain Wall Alcoves
 
-Bosses & Minibosses ++
+repacked footholds and ladders.
+updated mountain sheet.
 
-upgraded blackeye, bigeye, and bigbat to 
-call animate twice each frame, if they are
-in their last damage phase. this has the effect
-of making their animation twice as fast, making
-them seem enraged / nearing defeat.
+added mountain alcoves left and right.
+based upon the idea that they simply block
+left or right, based on type, the hero can
+climb up to them using footholds, then
+land on the alcove floor. from there, the
+idea is to interact with a cave entrance,
+or continue climbing up, via a foothold.
+
+created test level for alcove development.
+alcoves are working very well.
+added two alcoves and climbing paths to
+mountain entrance level.
+
+
+
+
+
+
+
+Mountain Wall Caves
+this is one object, sits over existing mountain wall (sorts over)
+hero can interact with it by pressing A.
+asks hero if hero wants to go into this random cave..
+this generates a TINY dungeon (exit, miniboss)
+
+
+
+
+
+
+
+
+
+
+
+Posts++
+Add vertical and hrrizontal posts (we added them
+to the base world section sprites, so they in all sheets).
+
+
+
+
+
+
+
+
 
 
 
@@ -131,7 +174,7 @@ been broken. the history of why it was broken can be explained.
 
 
 
-Swamp miniboss and boss
+Swamp miniboss and boss (requires special room data for hub & boss)
 
 miniboss: in water mouth
 creates splash when transitioning from above/in water states.
@@ -200,36 +243,7 @@ off of the level id.
 
 
 
-Mountain Wall Alcoves
 
-we have the sprites.
-now we need the code.
-this is two objects: alcove wall, alcove landing.
-
-landing = should act similar to mountain wall top.
-
-alcove wall = blocking obj. that's it.
-has a collision rec on left or right, so
-hero can't 'land' on the side of the alcove.
-
-
-
-
-
-
-Mountain Wall Caves
-this is one object, sits over existing mountain wall (sorts over)
-hero can interact with it by pressing A.
-asks hero if hero wants to go into this random cave..
-this generates a TINY dungeon (exit, miniboss)
-
-
-
-
-
-Posts++
-Add vertical and hrrizontal posts (we added them
-to the base world section sprites, so they in all sheets).
 
 
 
@@ -273,8 +287,12 @@ this is located in the quest section too, in a different slot.
 this is only displayed if player has discovered the blob questline.
 same as link story, but different objectives tracking diff booleans.
 
-
-
+we need booleans for each dungeon BOSS defeat.
+then the story quest book should display these boolean values.
+we also need boolean for colliseum tournament completion.
+then we add a boolean value for shadow king defeat.
+this models and completes the required data for the ligthworld
+storyline.
 
 
 
@@ -288,13 +306,7 @@ then he gets the reward.
 
 
 
-In Game LoreMaster
-talking with this NPC opens the lore screen, which allows
-link to select a variety of items, enemies, and map locations.
-the lore master then tells the player about the selected thing,
-via dialog screens or something. this will be alot of text, so
-it should probably display instantly. maybe this screen has a
-scroll background, with selections... i dunno.
+
 
 
 

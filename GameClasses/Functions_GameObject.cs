@@ -1997,6 +1997,34 @@ namespace DungeonRun
                 else { Obj.compSprite.flipHorizontally = false; }
             }
 
+
+            else if (Type == ObjType.Wor_MountainWall_Alcove_Left
+                || Type == ObjType.Wor_MountainWall_Alcove_Right)
+            {   //nonstandard size
+                Obj.compSprite.cellSize.X = 16*2; Obj.compSprite.cellSize.Y = 16 * 2;
+                Obj.compCollision.rec.Width = 12; Obj.compCollision.rec.Height = 16 * 2;
+                Obj.compSprite.texture = Assets.mountainLevelSheet;
+
+                if (Type == ObjType.Wor_MountainWall_Alcove_Left)
+                {   //set collision rec left
+                    Obj.compAnim.currentAnimation = AnimationFrames.Wor_MountainWall_Alcove_Left;
+                    Obj.compCollision.offsetX = -8; Obj.compCollision.offsetY = -8;
+                }
+                else
+                {   //set collision rec right
+                    Obj.compAnim.currentAnimation = AnimationFrames.Wor_MountainWall_Alcove_Right;
+                    Obj.compCollision.offsetX = +12; Obj.compCollision.offsetY = -8;
+                }
+                
+                Obj.compSprite.zOffset = -18; //sorts under footholds
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = true;
+                Obj.group = ObjGroup.Object;
+            }
+
+
+
+
             #endregion
 
 

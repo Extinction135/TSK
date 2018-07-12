@@ -715,20 +715,20 @@ namespace DungeonRun
 
             //row 10
             Functions_GameObject.SetType(objList[36], ObjType.Wor_MountainWall_Ladder_Trap);
-            Functions_GameObject.SetType(objList[37], ObjType.Wor_MountainWall_Ladder);
-            Functions_GameObject.SetType(objList[38], ObjType.Wor_MountainWall_Foothold);
+            Functions_GameObject.SetType(objList[37], ObjType.Wor_MountainWall_Alcove_Right);
+            Functions_GameObject.SetType(objList[38], ObjType.Unknown); //covered
             Functions_GameObject.SetType(objList[39], ObjType.Wor_MountainWall_Mid); //wall mid
 
             //row 11
-            Functions_GameObject.SetType(objList[40], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[41], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[42], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[40], ObjType.Wor_MountainWall_Ladder);
+            Functions_GameObject.SetType(objList[41], ObjType.Unknown); //cov
+            Functions_GameObject.SetType(objList[42], ObjType.Unknown); //cov
             Functions_GameObject.SetType(objList[43], ObjType.Unknown); //covered
 
             //row 12
-            Functions_GameObject.SetType(objList[44], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[45], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[46], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[44], ObjType.Wor_MountainWall_Foothold);
+            Functions_GameObject.SetType(objList[45], ObjType.Wor_MountainWall_Alcove_Left);
+            Functions_GameObject.SetType(objList[46], ObjType.Unknown); //covered
             Functions_GameObject.SetType(objList[47], ObjType.Wor_MountainWall_Bottom); //wall bottom
 
             //position the objs relative to the window frame
@@ -754,7 +754,13 @@ namespace DungeonRun
             Functions_Widget.HideObj(objList[13]);
             Functions_Widget.HideObj(objList[14]);
 
+            Functions_Widget.HideObj(objList[38]);
+
+            Functions_Widget.HideObj(objList[41]);
+            Functions_Widget.HideObj(objList[42]);
             Functions_Widget.HideObj(objList[43]);
+
+            Functions_Widget.HideObj(objList[46]);
         }
     }
 

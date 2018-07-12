@@ -455,6 +455,9 @@ namespace DungeonRun
         Wor_MountainWall_Ladder,
         Wor_MountainWall_Ladder_Trap,
 
+        Wor_MountainWall_Alcove_Left,
+        Wor_MountainWall_Alcove_Right,
+
         #endregion
 
 

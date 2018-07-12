@@ -318,9 +318,13 @@ namespace DungeonRun
         public static List<Byte4> Wor_MountainWall_Bottom = new List<Byte4> { new Byte4(0, 14, 0, 0) };
         public static List<Byte4> Wor_MountainWall_Top = new List<Byte4> { new Byte4(0, 15, 0, 0) };
 
-        public static List<Byte4> Wor_MountainWall_Foothold = new List<Byte4> { new Byte4(4, 12, 0, 0) };
-        public static List<Byte4> Wor_MountainWall_Ladder = new List<Byte4> { new Byte4(4, 13, 0, 0) };
-        public static List<Byte4> Wor_MountainWall_Ladder_Trap = new List<Byte4> { new Byte4(4, 14, 0, 0) };
+        public static List<Byte4> Wor_MountainWall_Foothold = new List<Byte4> { new Byte4(15, 12, 0, 0) };
+        public static List<Byte4> Wor_MountainWall_Ladder = new List<Byte4> { new Byte4(15, 13, 0, 0) };
+        public static List<Byte4> Wor_MountainWall_Ladder_Trap = new List<Byte4> { new Byte4(15, 14, 0, 0) };
+
+        public static List<Byte4> Wor_MountainWall_Alcove_Left = new List<Byte4> { new Byte4(2, 6, 0, 0) };
+        public static List<Byte4> Wor_MountainWall_Alcove_Right = new List<Byte4> { new Byte4(2, 6, 1, 0) };
+
 
         #endregion
 
