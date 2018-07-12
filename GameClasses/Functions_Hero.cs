@@ -419,6 +419,10 @@ namespace DungeonRun
             {   //give player choice to enter
                 ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Enter_MountainDungeon));
             }
+            else if (Obj.type == ObjType.Wor_Entrance_SwampDungeon)
+            {   //give player choice to enter
+                ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Enter_SwampDungeon));
+            }
 
             #endregion
 

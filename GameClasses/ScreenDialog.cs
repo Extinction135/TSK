@@ -78,6 +78,7 @@ namespace DungeonRun
                     dialogs == AssetsDialog.Enter_ForestDungeon
                     || dialogs == AssetsDialog.Enter_Colliseum
                     || dialogs == AssetsDialog.Enter_MountainDungeon
+                    || dialogs == AssetsDialog.Enter_SwampDungeon
                     )
                 {
                     if (Functions_Input.IsNewButtonPress(Buttons.A))
@@ -98,6 +99,10 @@ namespace DungeonRun
                         else if (dialogs == AssetsDialog.Enter_MountainDungeon)
                         {
                             Level.ID = LevelID.Mountain_Dungeon;
+                        }
+                        else if (dialogs == AssetsDialog.Enter_SwampDungeon)
+                        {
+                            Level.ID = LevelID.Swamp_Dungeon;
                         }
                     }
                     else if(Functions_Input.IsNewButtonPress(Buttons.B))

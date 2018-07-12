@@ -8,7 +8,7 @@ and this we should do freely and generously."
 	
 Roadmap
 
-0.76 - swamp levels + dungeon + enemies (bottom left castle)
+0.76 - swamp levels + dungeon + enemies
 0.77 - castle, city, royal vendors
 0.78 - king, fight with king, lightworld storyline done
 0.79 - farming + seeds + crops
@@ -28,18 +28,84 @@ Roadmap
 
 1.0 - official release
 
+
+
+
+
+
+
+
+
+
+
 Today:
 
 
 
 
-Colliseum++
-
-improved the exterior colliseum further, 
-based on lttp's eastern palace entrance.
 
 
 
+Swamp Level & Dungeon 
+
+created swamp level sheet. added to Dx & UWP content
+projects. updated assets to load swamp level sheet.
+
+created swamp widget object, widget enemy object too.
+linked into editor menu screen. added levelIDs for
+swamp entrance and dungeon. added roomID for swamp
+entrance. tested, woroking.
+
+simplified how dungeon/level entrance object animation
+frames are defined in animationFrames.
+
+added swamp entrance obj. added into dialog routines,
+so link has choice to enter, upon interaction with obj.
+added routine into dungeon generator for swamp dungeon.
+for now, it will use same recipe as mountain dungeon.
+
+tested, working. but the walls dont show swamp sprites.
+because swamp hasn't been added into texture functions.
+other than that, working fine.
+
+updated fun_texture.SetTexture() with checks for swamp
+dungeon and entrance level, setting the current tex
+ref correctly. tested, bug fixed. 
+
+regioned dataclasses, because visual studio won't collapse
+class definitions using ctrl+M, O - but it will regions.
+
+updated BuildLevel() set bkg color routine to check
+for swamp dungeon. this fixes a bug where bkg color
+was set to light gray, which wasn't correct.
+
+updated BuildRoomXmlData with routine for swamp dungeon,
+however we don't have a swamp standard enemy to spawn yet.
+so for now, we'll just spawn blobs.
+
+updated FinishBossRoom() and FinishHubRoom() to just
+copy mountain dungeon's enemy set (for now) for swamp.
+this allows the swamp dungeon to be completed, as it
+now has a boss. yay.
+
+Swamp Entrance Obj++
+improved collision rec so link can walk behind obj.
+improved visuals: added staircase, proper shadows, extended
+tentacles to improve size of dungeon entrance.
+
+Swamp Level++
+created swamp level xml. compiled into cs.
+added swamp dungeon location to overworld map,
+pointing to swamp dungeon entrance level.
+added swamp level into fun_level.BuildLevel() routines.
+updated fun_room.BuildRoom() with swamp entrance check.
+fixed a logic bug with background colors not getting
+set properly, based on dungeon / level comparisons.
+
+playtested, working as expected.
+updated uwp content folder.
+swamp level and dungeon properly added into game.
+now, they need to be polished.
 
 
 
@@ -49,41 +115,199 @@ based on lttp's eastern palace entrance.
 
 
 
-Swamp Dungeon 
 
-created swamp level sheet.
 
-create swamp level, with swamp entrance obj.
-create swamp dungeon, with enemies.
+
+
+
+
+
 
 update overworld map to have swamp dungeon location in 
 bottom left hand corner. should look swampy.
 
 
 
-
-
-
-
-add bone debris decoration object to colliseum exterior.
-
-
-
-
-
-mountain cave entrance should look like it's part of the mountain wall.
-we also REALLY need mountain alcoves.
+*we call update or animate on the roomObj tools widget gameobject
+TWICE - i guess..
 
 
 
 
 
+Separate Levels and Dungeons
+
+make dungeon level gobal.
+make field level global.
+build forest versions of both at start of game.
+this fixes the jit compilation xbox one does.
+
+-update systems to work with global level instances.
+
+
+
+
+
+Exiting Dungeons
+this should return the hero to the dungeon entrance,
+on the proper dungeo entrance level. hero should spawn
+just south of dungeon entrance. this means dungeon entrances
+can't be blocked by anything directly infront of them.
+
+*plus, the field level will always correspond to a map
+location, and we can only access overworld map from field
+level, so we no longer need dungeon type checks in overworld
+screen, since we always exit from dungeon to field, then field
+to map.
+
+*this allows us to have a field and dungeon level in ram
+at the same time and maintain the two separately. we can 
+even prevent a ReBuild() from being called when hero transfers
+between rooms (field and dungeon).
+
+^idea: on town level, we can have an inaccesible area.
+then we have an entrance to a blob dungeon, which is built
+very short. upon exiting the blob dungeon, hero spawns inside
+the inaccessible area in town level. we use dungeon generator
+to build the tiny blob dungeon, getting more use out of it.
+
+Magic Mirror
+^this plays well into magic mirror: use it in a dungeon to return
+to the exit (starting room). exiting dungeon takes us to field.
+using magic mirror in field level takes hero to overworld screen.
+it does not serve as a connection between worlds, because it has
+been broken. the history of why it was broken can be explained.
 
 
 
 
 
 
+
+
+
+
+
+
+
+Mountain Wall Alcoves
+
+we have the sprites.
+now we need the code.
+this is two objects: alcove wall, alcove landing.
+
+landing = should act similar to mountain wall top.
+
+alcove wall = blocking obj. that's it.
+has a collision rec on left or right, so
+hero can't 'land' on the side of the alcove.
+
+
+
+
+
+
+Mountain Wall Caves
+this is one object, sits over existing mountain wall (sorts over)
+hero can interact with it by pressing A.
+asks hero if hero wants to go into this random cave..
+this generates a TINY dungeon (exit, miniboss)
+
+
+
+
+
+Posts++
+Add vertical and hrrizontal posts (we added them
+to the base world section sprites, so they in all sheets).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+swamp entrance level design
+-must swim UNDERWATER under objects to gain access to dungeon entrance.
+-need these water objects to swim under too
+
+
+
+
+
+
+
+
+Stats Book
+this is located in the options section.
+displays player's various stats via the stats screen.
+rating (k/d), dungeon completions/failures,
+miniboss kills, boss kills, total enemy kills..
+deaths, colliseum rating, etc...
+
+
+
+Link Story Quest Book
+this is located in the quest section, and essentially
+serves as the 'log book' or mission tracker for the player.
+this has several steps, starting with visit the colliseum.
+the quest book is how the player will track the main storyline too.
+events that happen should be displayed in this log book.
+
+Blob Story Quest Book
+this is located in the quest section too, in a different slot.
+this is only displayed if player has discovered the blob questline.
+same as link story, but different objectives tracking diff booleans.
+
+
+
+
+
+
+My Chickens!
+now that we have posts, we can make this sidequest.
+this is an NPC with an expanding hitBox check for 4 chickens
+nearby. surrounding the NPC is the posts, which form a chicken
+pen. link has to pickup and deliver the 4 chickens to the pen,
+then he gets the reward.
+
+
+
+
+In Game LoreMaster
+talking with this NPC opens the lore screen, which allows
+link to select a variety of items, enemies, and map locations.
+the lore master then tells the player about the selected thing,
+via dialog screens or something. this will be alot of text, so
+it should probably display instantly. maybe this screen has a
+scroll background, with selections... i dunno.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Polish + Fixes
 
 explosions should push roomObjects that they touch.
 that are moveable. that dont get destroyed?
@@ -111,6 +335,10 @@ widget, if we extende the widget.
 footholds were pushed off the mountain wall.
 i assume a frame of interaction happened prior to
 the roomObj types being updated.
+
+
+
+
 
 
 

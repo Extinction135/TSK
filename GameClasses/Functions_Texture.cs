@@ -33,6 +33,9 @@ namespace DungeonRun
 
             else if (Level.ID == LevelID.Mountain_Entrance) { currentTexture = Assets.mountainLevelSheet; }
             else if (Level.ID == LevelID.Mountain_Dungeon) { currentTexture = Assets.mountainLevelSheet; }
+
+            else if (Level.ID == LevelID.Swamp_Entrance) { currentTexture = Assets.swampLevelSheet; }
+            else if (Level.ID == LevelID.Swamp_Dungeon) { currentTexture = Assets.swampLevelSheet; }
         }
 
 

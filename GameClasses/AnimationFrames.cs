@@ -262,9 +262,17 @@ namespace DungeonRun
 
 
 
+
+        //Generic Dungeon/Level Entrance Object, 3x4 entrance object at 0,0
+        public static List<Byte4> Wor_Entrance_Dungeon = new List<Byte4> { new Byte4(0, 0, 0, 0) };
+
+
+
+
+
         #region Colliseum Objects
 
-        public static List<Byte4> Wor_Entrance_Colliseum = new List<Byte4> { new Byte4(0, 0, 0, 0) };
+        //
 
         public static List<Byte4> Wor_Colliseum_Gate_Center = new List<Byte4> { new Byte4(2, 3, 0, 0) };
         public static List<Byte4> Wor_Colliseum_Gate_Pillar_Left = new List<Byte4> { new Byte4(0, 3, 0, 0) };
@@ -297,14 +305,14 @@ namespace DungeonRun
 
         #region Forest Objects
 
-        public static List<Byte4> Wor_Entrance_ForestDungeon = new List<Byte4> { new Byte4(0, 0, 0, 0) };
+        //
 
         #endregion
 
 
         #region Mountain Objects
 
-        public static List<Byte4> Wor_Entrance_MountainDungeon = new List<Byte4> { new Byte4(0, 0, 0, 0) };
+        //
 
         public static List<Byte4> Wor_MountainWall_Mid = new List<Byte4> { new Byte4(0, 6, 0, 0) };
         public static List<Byte4> Wor_MountainWall_Bottom = new List<Byte4> { new Byte4(0, 14, 0, 0) };
@@ -315,6 +323,16 @@ namespace DungeonRun
         public static List<Byte4> Wor_MountainWall_Ladder_Trap = new List<Byte4> { new Byte4(4, 14, 0, 0) };
 
         #endregion
+
+
+        #region Swamp Objects
+
+        //
+
+        #endregion
+
+
+
 
 
         #region World Enemies

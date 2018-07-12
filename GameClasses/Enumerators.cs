@@ -83,11 +83,13 @@ namespace DungeonRun
         //fields, with dungeon entrances
         Forest_Entrance, 
         Mountain_Entrance,
+        Swamp_Entrance,
 
         //dungeons, series of rooms
         Forest_Dungeon, 
         Mountain_Dungeon,
-        
+        Swamp_Dungeon,
+
         //locations that cannot be visited
         Road, //used for connecting levels on map
 
@@ -110,6 +112,7 @@ namespace DungeonRun
 
         ForestEntrance,
         MountainEntrance,
+        SwampEntrance,
 
         TheFarm,
         LeftTown2,
@@ -399,6 +402,8 @@ namespace DungeonRun
 
 
 
+
+
         #region Colliseum Objects
 
         Wor_Entrance_Colliseum,
@@ -451,6 +456,15 @@ namespace DungeonRun
         Wor_MountainWall_Ladder_Trap,
 
         #endregion
+
+
+        #region Swamp Objects
+
+        Wor_Entrance_SwampDungeon,
+
+        #endregion
+
+
 
 
 

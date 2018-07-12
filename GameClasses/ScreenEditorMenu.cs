@@ -63,9 +63,12 @@ namespace DungeonRun
 
                 //unique WOs
                 if (Widgets.WO_Town.visible) { CheckObjList(Widgets.WO_Town); }
+                if (Widgets.WO_Colliseum.visible) { CheckObjList(Widgets.WO_Colliseum); }
+                //
                 if (Widgets.WO_Forest.visible) { CheckObjList(Widgets.WO_Forest); }
                 if (Widgets.WO_Mountain.visible) { CheckObjList(Widgets.WO_Mountain); }
-                if (Widgets.WO_Colliseum.visible) { CheckObjList(Widgets.WO_Colliseum); }
+                if (Widgets.WO_Swamp.visible) { CheckObjList(Widgets.WO_Swamp); }
+                
 
                 //dev WO
                 if (Widgets.WO_DEV.visible) { CheckObjList(Widgets.WO_DEV); }
@@ -74,6 +77,8 @@ namespace DungeonRun
                 //actor widgets
                 if (Widgets.WE_Forest.visible) { CheckActList(Widgets.WE_Forest); }
                 if (Widgets.WE_Mountain.visible) { CheckActList(Widgets.WE_Mountain); }
+                if (Widgets.WE_Swamp.visible) { CheckActList(Widgets.WE_Swamp); }
+                //
                 if (Widgets.WE_Town.visible) { CheckActList(Widgets.WE_Town); }
 
             }
@@ -113,13 +118,20 @@ namespace DungeonRun
                         Level.ID = LevelID.Mountain_Entrance;
                     }
                     else if (Level.ID == LevelID.Mountain_Entrance)
+                    {   //leads to swamp
+                        currentSheet.compText.text = "swamp";
+                        Widgets.WO_Swamp.visible = true;
+                        Widgets.WE_Swamp.visible = true;
+                        Level.ID = LevelID.Swamp_Entrance;
+                    }
+                    else if (Level.ID == LevelID.Swamp_Entrance)
                     {   //leads to town
                         currentSheet.compText.text = "town";
                         Widgets.WO_Town.visible = true;
                         Widgets.WE_Town.visible = true;
                         Level.ID = LevelID.LeftTown2;
                     }
-
+                    
                     else
                     {   //any other case resets button's sequence, leads to forest
                         currentSheet.compText.text = "forest";
@@ -170,6 +182,7 @@ namespace DungeonRun
 
             if (Widgets.WO_Forest.visible) { Widgets.WO_Forest.Update(); Widgets.WO_Forest.Draw(); }
             if (Widgets.WO_Mountain.visible) { Widgets.WO_Mountain.Update(); Widgets.WO_Mountain.Draw(); }
+            if (Widgets.WO_Swamp.visible) { Widgets.WO_Swamp.Update(); Widgets.WO_Swamp.Draw(); }
 
             if (Widgets.WO_Town.visible) { Widgets.WO_Town.Update(); Widgets.WO_Town.Draw(); }
             if (Widgets.WO_Colliseum.visible) { Widgets.WO_Colliseum.Update(); Widgets.WO_Colliseum.Draw(); }
@@ -180,6 +193,7 @@ namespace DungeonRun
             //update and draw actor widgets that are visible
             if (Widgets.WE_Forest.visible) { Widgets.WE_Forest.Update(); Widgets.WE_Forest.Draw(); }
             if (Widgets.WE_Mountain.visible) { Widgets.WE_Mountain.Update(); Widgets.WE_Mountain.Draw(); }
+            if (Widgets.WE_Swamp.visible) { Widgets.WE_Swamp.Update(); Widgets.WE_Swamp.Draw(); }
             if (Widgets.WE_Town.visible) { Widgets.WE_Town.Update(); Widgets.WE_Town.Draw(); }
 
 
@@ -221,12 +235,14 @@ namespace DungeonRun
             //set all other widgets not visible
             Widgets.WO_Forest.visible = false;
             Widgets.WO_Mountain.visible = false;
+            Widgets.WO_Swamp.visible = false;
             Widgets.WO_Town.visible = false;
             Widgets.WO_Colliseum.visible = false;
             
             //set actor widgets not visible
             Widgets.WE_Forest.visible = false;
             Widgets.WE_Mountain.visible = false;
+            Widgets.WE_Swamp.visible = false;
             Widgets.WE_Town.visible = false;
 
             //set dev widget to always be visible

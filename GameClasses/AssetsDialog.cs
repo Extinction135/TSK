@@ -132,6 +132,14 @@ namespace DungeonRun
                 Assets.sfxTextLetter, false, false, false)
         };
 
+        public static List<Dialog> Enter_SwampDungeon = new List<Dialog>
+        {
+            new Dialog(ObjType.Hero_Idle, "Hmm..",
+                "i really dont want to go in here..\n" +
+                "A) enter anyway    B) no calamari, thanks",
+                Assets.sfxTextLetter, false, false, false)
+        };
+
         #endregion
 
 

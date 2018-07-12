@@ -546,24 +546,7 @@ namespace DungeonRun
             //perhaps a secret vendor? or vendors?
         }
 
-        public static void FinishBossRoom(Room Room)
-        {   //spawn boss in center of room
-            if(Level.ID == LevelID.Forest_Dungeon)
-            {
-                Functions_Actor.SpawnActor(
-                    ActorType.Boss_BigEye,
-                    Room.center.X + 8,
-                    Room.center.Y + 8);
-            }
-            else if (Level.ID == LevelID.Mountain_Dungeon)
-            {
-                Functions_Actor.SpawnActor(
-                    ActorType.Boss_BigBat,
-                    Room.center.X + 8,
-                    Room.center.Y + 8);
-            }
-        }
-
+        //setup KEY chest
         public static void FinishKeyRoom(Room Room)
         {
             for (i = 0; i < Pool.roomObjCount; i++)
@@ -581,6 +564,33 @@ namespace DungeonRun
             }
         }
 
+        //spawn BOSSes
+        public static void FinishBossRoom(Room Room)
+        {   //spawn boss in center of room
+            if(Level.ID == LevelID.Forest_Dungeon)
+            {
+                Functions_Actor.SpawnActor(
+                    ActorType.Boss_BigEye,
+                    Room.center.X + 8,
+                    Room.center.Y + 8);
+            }
+            else if (Level.ID == LevelID.Mountain_Dungeon)
+            {
+                Functions_Actor.SpawnActor(
+                    ActorType.Boss_BigBat,
+                    Room.center.X + 8,
+                    Room.center.Y + 8);
+            }
+            else if (Level.ID == LevelID.Swamp_Dungeon)
+            {
+                Functions_Actor.SpawnActor(
+                    ActorType.Boss_BigBat,
+                    Room.center.X + 8,
+                    Room.center.Y + 8);
+            }
+        }
+
+        //spawn MINIBOSSes
         public static void FinishHubRoom(Room Room)
         {
             //spawn miniboss in center of room
@@ -598,7 +608,19 @@ namespace DungeonRun
                     Room.center.X + 8,
                     Room.center.Y + 8);
             }
+            else if (Level.ID == LevelID.Swamp_Dungeon)
+            {
+                Functions_Actor.SpawnActor(
+                    ActorType.MiniBoss_Spider_Armored,
+                    Room.center.X + 8,
+                    Room.center.Y + 8);
+            }
         }
+
+
+
+
+        
 
 
 
@@ -634,6 +656,18 @@ namespace DungeonRun
             BuildDungeon_Expand(2); //med size/secrets
             BuildDungeon_Finalize();
         }
+
+        public static void BuildDungeon_Swamp()
+        {
+            //medium difficulty - dupes mountain for now
+            BuildDungeon_ExitToHub(2); //med size
+            BuildDungeon_AddBossPath(1); //med size
+            BuildDungeon_KeyPath(2); //med size
+            BuildDungeon_ImproveExit();
+            BuildDungeon_Expand(2); //med size/secrets
+            BuildDungeon_Finalize();
+        }
+
 
 
 

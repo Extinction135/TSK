@@ -44,7 +44,16 @@ namespace DungeonRun
             Level.ID = levelID;
 
             //set dungeon booleans
-            if (levelID == LevelID.Forest_Dungeon || levelID == LevelID.DEV_Room)
+            if (levelID == LevelID.Forest_Dungeon
+                || levelID == LevelID.Mountain_Dungeon
+                || levelID == LevelID.Swamp_Dungeon)
+            {
+                Level.isField = false;
+                Level.lightWorld = false;
+            }
+
+            //set dev booleans
+            if(levelID == LevelID.DEV_Room)
             {
                 Level.isField = false;
                 Level.lightWorld = false;
@@ -53,17 +62,18 @@ namespace DungeonRun
 
             #region Set The Background Color
 
-            //assume light world
+            //assume light world - light gray
             Assets.colorScheme.background = Assets.colorScheme.bkg_lightWorld;
 
-            //check for dark world
+            //check for dark world - dark gray
             if (Level.lightWorld == false) 
-            { Assets.colorScheme.background = Assets.colorScheme.bkg_darkWorld; }
+            {
+                Assets.colorScheme.background = Assets.colorScheme.bkg_darkWorld;
 
-            //check for dungeons
-            if (levelID == LevelID.Forest_Dungeon
-                || levelID == LevelID.Mountain_Dungeon) 
-            { Assets.colorScheme.background = Assets.colorScheme.bkg_dungeon; }
+                //if level is a room, then this is a dungeon, set bkg to black
+                if (Level.isField == false)
+                { Assets.colorScheme.background = Assets.colorScheme.bkg_dungeon; }
+            }
 
             #endregion
 
@@ -113,6 +123,7 @@ namespace DungeonRun
 
             #region Build Overworld Field Levels
 
+
             //special levels
             else if (Level.ID == LevelID.Colliseum)
             {
@@ -127,6 +138,7 @@ namespace DungeonRun
                 Level.rooms.Add(field);
             }
 
+
             //entrances
             else if (Level.ID == LevelID.Forest_Entrance)
             {
@@ -140,6 +152,13 @@ namespace DungeonRun
                 Room field = new Room(new Point(Level.buildPosition.X, Level.buildPosition.Y), RoomID.MountainEntrance);
                 Level.rooms.Add(field);
             }
+            else if (Level.ID == LevelID.Swamp_Entrance)
+            {
+                Functions_Music.PlayMusic(Music.LightWorld);
+                Room field = new Room(new Point(Level.buildPosition.X, Level.buildPosition.Y), RoomID.SwampEntrance);
+                Level.rooms.Add(field);
+            }
+
 
             //standard levels
             else if (Level.ID == LevelID.TheFarm)
@@ -168,6 +187,10 @@ namespace DungeonRun
             else if (Level.ID == LevelID.Mountain_Dungeon)
             {
                 Functions_Dungeon.BuildDungeon_Mountain();
+            }
+            else if (Level.ID == LevelID.Swamp_Dungeon)
+            {
+                Functions_Dungeon.BuildDungeon_Swamp();
             }
 
             #endregion

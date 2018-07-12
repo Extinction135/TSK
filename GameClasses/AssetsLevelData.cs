@@ -11,6 +11,7 @@ namespace DungeonRun
 		public static RoomXmlData ForestEntrance = new RoomXmlData();
 		public static RoomXmlData LeftTown2 = new RoomXmlData();
 		public static RoomXmlData MountainEntrance = new RoomXmlData();
+		public static RoomXmlData SwampEntrance = new RoomXmlData();
 
 		//level data
 		static LevelData()
@@ -7680,6 +7681,14 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 56; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 40; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 40; MountainEntrance.objs.Add(obj);}
+			#endregion
+
+
+			#region SwampEntrance
+
+			SwampEntrance.type = RoomID.SwampEntrance;
+			SwampEntrance.objs = new List<ObjXmlData>();
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Entrance_SwampDungeon; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 472; SwampEntrance.objs.Add(obj);}
 			#endregion
 
 		}

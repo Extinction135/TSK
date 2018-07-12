@@ -97,8 +97,8 @@ namespace DungeonRun
             locations.Add(leftTownChurch);
             MapLocation leftIslandConnector = new MapLocation(false, new Vector2(175, 296));
             locations.Add(leftIslandConnector);
-            MapLocation castleRuins = new MapLocation(false, new Vector2(117, 275));
-            locations.Add(castleRuins);
+            MapLocation swampDungeon = new MapLocation(true, new Vector2(117, 275));
+            locations.Add(swampDungeon);
 
             //bottom right part of map
             MapLocation tentTown = new MapLocation(false, new Vector2(483, 256));
@@ -174,8 +174,8 @@ namespace DungeonRun
             leftTownChurch.neighborLeft = leftTown1;
             leftTownChurch.neighborDown = leftIslandConnector;
             leftIslandConnector.neighborUp = leftTownChurch;
-            leftIslandConnector.neighborLeft = castleRuins;
-            castleRuins.neighborRight = leftIslandConnector;
+            leftIslandConnector.neighborLeft = swampDungeon;
+            swampDungeon.neighborRight = leftIslandConnector;
 
             rightTown.neighborDown = tentTown;
             tentTown.neighborUp = rightTown;
@@ -209,6 +209,7 @@ namespace DungeonRun
             centerIsland.ID = LevelID.TheFarm;
             leftTown2.ID = LevelID.LeftTown2;
             caveDungeon.ID = LevelID.Mountain_Entrance;
+            swampDungeon.ID = LevelID.Swamp_Entrance;
 
 
             //2. Setup current location based on level id
@@ -231,9 +232,11 @@ namespace DungeonRun
                 || PlayerData.current.lastLocation == LevelID.Mountain_Dungeon)
             { currentLocation = caveDungeon; }
 
+            else if (PlayerData.current.lastLocation == LevelID.Swamp_Entrance
+                || PlayerData.current.lastLocation == LevelID.Swamp_Dungeon)
+            { currentLocation = swampDungeon; }
 
-             
-            
+
 
             else //default to colliseum if unknown
             { currentLocation = colliseum; }

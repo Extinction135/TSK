@@ -20,7 +20,8 @@ namespace DungeonRun
         // **********************************************************************************************************
         public static float Version = 0.76f; //the version of the game
         public static BootRoutine bootRoutine = BootRoutine.Editor_Level; //boot to game or editor?
-        
+
+
         //dev flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
         public static Boolean EnableDebugInfo = false; //rightside debug info
@@ -40,7 +41,6 @@ namespace DungeonRun
         public static Boolean HardMode = false; //makes the game harder
         public static Boolean CameraTracksHero = false; //camera tracks hero or centers to dungeon room
         
-
         //cheat flags
         public static Boolean Invincibility = true; //does hero ignore damage?
         public static Boolean InfiniteMagic = true; //does hero ignore magic costs?
@@ -53,7 +53,6 @@ namespace DungeonRun
         public static Boolean Clipping = false; //removes hero from collision/interaction/exit routines
         public static Boolean FuzzyInput = false; //fuzz controller input each frame (for testing) 
         public static Boolean InfiniteFairies = false; //hero always has fairy in a bottle
-
 
 
         static Flags()
@@ -119,31 +118,19 @@ namespace DungeonRun
                 }
             }
         }
-    }
-
-    public static class World
-    {
-        public static float frictionAttack = 0.1f; //actor in attacking state
-        public static float frictionUse = 0.5f; //actor in use state
-
-        public static float friction = 0.75f; //standard friction
-
-        public static float frictionWater = 0.85f; //some slowdown
-        public static float frictionAir = 0.9f; //some slowdown
-        public static float frictionIce = 0.99f; //no slowdown
-
-
-        //floors are placed on the last layer, all others draw above this
-        public static float floorLayer = 0.999990f;
-        public static float waterLayer = 0.999989f;
 
     }
 
+    
 
 
 
 
-    //very much so in dev..
+
+
+    #region Save data, level data, room data, door data
+    
+
     public class SaveData
     {   //data that will be saved/loaded from game session to session
         public DateTime dateTime = DateTime.Now;
@@ -229,10 +216,99 @@ namespace DungeonRun
     }
 
 
+    public static class Level
+    {
+        public static LevelID ID = LevelID.Colliseum;
+        //where exit/field room is placed
+        public static Point buildPosition = new Point(16 * 10, 16 * 200);
+
+        public static List<Room> rooms = new List<Room>();
+        public static Room currentRoom; //points to one in list above
+
+        public static List<Door> doors = new List<Door>();
+        //we could store last door here like this:
+        //public static Door lastDoor;
+
+        public static Boolean bigKey = false;
+        public static Boolean map = false;
+        public static Boolean isField = true;
+
+        public static Boolean lightWorld = true;
+        public static int dungeonTrack = 0;
+    }
+
+    public class Room
+    {
+        public Rectangle rec = new Rectangle(0, 0, 0, 0);
+        public Boolean visited = false;
+        public Byte2 size = new Byte2(0, 0); //in 16 pixel tiles
+        public Point center = new Point(0, 0);
+        public RoomID roomID;
+        public Vector2 spawnPos; //where hero can spawn in room (last door passed thru/exit)
+        public PuzzleType puzzleType = PuzzleType.None; //most rooms aren't puzzles
+        public int dataIndex; //if dungeon room, what roomData index is used to populate?
+
+        public Room(Point Pos, RoomID ID)
+        {
+            roomID = ID;
+            Functions_Room.SetType(this, ID);
+            Functions_Room.MoveRoom(this, Pos.X, Pos.Y);
+            spawnPos = new Vector2( //center spawnPos to room
+                Pos.X + rec.Width / 2, //centered horizontally
+                Pos.Y + rec.Height - 16 * 4 //at bottom
+            );
+            dataIndex = 0; //0 means no index assigned
+        }
+    }
+
+    public class Door
+    {
+        public Rectangle rec = new Rectangle(0, 0, 16, 16);
+        public Boolean visited = false;
+        public Door(Point Pos) { rec.X = Pos.X; rec.Y = Pos.Y; }
+        public DoorType type = DoorType.Open;
+    }
+
+
+    public class RoomXmlData
+    {
+        public RoomID type = RoomID.Row;
+        public List<ObjXmlData> objs = new List<ObjXmlData>();
+    }
+
+    public class ObjXmlData
+    {   //placed relative to room's XY pos
+        public ObjType type = ObjType.Dungeon_WallStraight;
+        public Direction direction = Direction.Down;
+        public float posX = 0;
+        public float posY = 0;
+    }
 
 
 
+    #endregion
 
+
+
+    #region Globals
+
+    public static class World
+    {
+        public static float frictionAttack = 0.1f; //actor in attacking state
+        public static float frictionUse = 0.5f; //actor in use state
+
+        public static float friction = 0.75f; //standard friction
+
+        public static float frictionWater = 0.85f; //some slowdown
+        public static float frictionAir = 0.9f; //some slowdown
+        public static float frictionIce = 0.99f; //no slowdown
+
+
+        //floors are placed on the last layer, all others draw above this
+        public static float floorLayer = 0.999990f;
+        public static float waterLayer = 0.999989f;
+
+    }
 
     public static class Camera2D
     {
@@ -826,95 +902,12 @@ namespace DungeonRun
     }
 
 
-    
+
+    #endregion
 
 
 
-
-
-
-
-
-    public static class Level
-    {
-        public static LevelID ID = LevelID.Colliseum;
-        //where exit/field room is placed
-        public static Point buildPosition = new Point(16 * 10, 16 * 200);
-
-        public static List<Room> rooms = new List<Room>();
-        public static Room currentRoom; //points to one in list above
-
-        public static List<Door> doors = new List<Door>();
-        //we could store last door here like this:
-        //public static Door lastDoor;
-
-        public static Boolean bigKey = false;
-        public static Boolean map = false;
-        public static Boolean isField = true;
-
-        public static Boolean lightWorld = true;
-        public static int dungeonTrack = 0;
-    }
-
-    public class Room
-    {
-        public Rectangle rec = new Rectangle(0, 0, 0, 0);
-        public Boolean visited = false;
-        public Byte2 size = new Byte2(0, 0); //in 16 pixel tiles
-        public Point center = new Point(0, 0);
-        public RoomID roomID;
-        public Vector2 spawnPos; //where hero can spawn in room (last door passed thru/exit)
-        public PuzzleType puzzleType = PuzzleType.None; //most rooms aren't puzzles
-        public int dataIndex; //if dungeon room, what roomData index is used to populate?
-
-        public Room(Point Pos, RoomID ID)
-        {
-            roomID = ID;
-            Functions_Room.SetType(this, ID);
-            Functions_Room.MoveRoom(this, Pos.X, Pos.Y);
-            spawnPos = new Vector2( //center spawnPos to room
-                Pos.X + rec.Width / 2, //centered horizontally
-                Pos.Y + rec.Height - 16 * 4 //at bottom
-            );
-            dataIndex = 0; //0 means no index assigned
-        }
-    }
-
-    public class Door
-    {
-        public Rectangle rec = new Rectangle(0, 0, 16, 16);
-        public Boolean visited = false;
-        public Door(Point Pos) { rec.X = Pos.X; rec.Y = Pos.Y; }
-        public DoorType type = DoorType.Open;
-    }
-
-
-
-    
-
-
-    public class RoomXmlData
-    {
-        public RoomID type = RoomID.Row;
-        public List<ObjXmlData> objs = new List<ObjXmlData>();
-    }
-
-    public class ObjXmlData
-    {   //placed relative to room's XY pos
-        public ObjType type = ObjType.Dungeon_WallStraight;
-        public Direction direction = Direction.Down;
-        public float posX = 0;
-        public float posY = 0;
-    }
-
-
-
-    
-
-
-
-
-    //Instanced Classes
+    #region Instanced Classes
 
     public class Byte2
     {
@@ -1117,10 +1110,11 @@ namespace DungeonRun
         }
     }
 
+    #endregion
 
 
 
-    //GameData Classes
+    #region Actors, GameObjects, Projectiles
 
     public class Actor
     {
@@ -1246,52 +1240,13 @@ namespace DungeonRun
         }
     }
 
-    public class GameDisplayData
-    {   //this is used by LoadSaveNewScreen to display a game's data visually
-        public MenuItem menuItem = new MenuItem();
-        public ComponentSprite hero = new ComponentSprite(
-            Assets.heroSheet, new Vector2(-100, 1000),
-            new Byte4(0, 0, 0, 0), new Point(16, 16));
-        public ComponentText timeDateText = new ComponentText(
-            Assets.font, "time:/ndate:", new Vector2(-100, 1000),
-            Assets.colorScheme.textDark);
-        public MenuItem lastStoryItem = new MenuItem();
-    }
+
+    #endregion
 
 
 
-    
+    #region UI Classes
 
- 
-
-    //Map Classes
-
-    public class MapLocation
-    {
-        public ComponentSprite compSprite;
-        public Boolean isLevel = false; //is level or connector location?
-        public LevelID ID = LevelID.Road; //roads cannot be visited
-
-        //cardinal neighbors this location links with
-        public MapLocation neighborUp;
-        public MapLocation neighborRight;
-        public MapLocation neighborDown;
-        public MapLocation neighborLeft;
-        public MapLocation(Boolean IsLevel, Vector2 Position)
-        {
-            isLevel = IsLevel;
-            compSprite = new ComponentSprite(Assets.entitiesSheet,
-                Position, new Byte4(11, 0, 0, 0), new Point(16, 8));
-            //determine if location should use small or large sprite
-            if (IsLevel) { compSprite.currentFrame.Y = 1; }
-            neighborUp = this; neighborDown = this;
-            neighborLeft = this; neighborRight = this;
-        }
-    }
-
-
-
-    //UI Classes
 
     public class MenuItem
     {
@@ -1379,20 +1334,25 @@ namespace DungeonRun
         }
     }
 
-    public class ScreenRec
-    {
-        public Rectangle rec = new Rectangle(0, 0, 640, 360);
-        public float alpha = 0.0f;
-        public float maxAlpha = 1.0f;
-        public float fadeInSpeed = 0.05f;
-        public float fadeOutSpeed = 0.05f;
-        public FadeState fadeState = FadeState.FadeIn;
-        public Boolean fade = true;
+    public class GameDisplayData
+    {   //this is used by LoadSaveNewScreen to display a game's data visually
+        public MenuItem menuItem = new MenuItem();
+        public ComponentSprite hero = new ComponentSprite(
+            Assets.heroSheet, new Vector2(-100, 1000),
+            new Byte4(0, 0, 0, 0), new Point(16, 16));
+        public ComponentText timeDateText = new ComponentText(
+            Assets.font, "time:/ndate:", new Vector2(-100, 1000),
+            Assets.colorScheme.textDark);
+        public MenuItem lastStoryItem = new MenuItem();
     }
 
 
+    #endregion
 
-    //Data Components
+
+
+    #region COMPONENTS - collosion, movement, animation, input, sprite, soundfx
+
 
     public class ComponentCollision
     {   //allows an object or actor to collide with other objects or actors
@@ -1483,14 +1443,14 @@ namespace DungeonRun
         public SoundEffectInstance hit = Assets.sfxEnemyHit;
         //act/obj/pro/pick dies
         public SoundEffectInstance kill = Assets.sfxEnemyKill; 
-    }   
+    }
+
+
+    #endregion
 
 
 
-
-
-
-    //UI Components
+    #region UI COMPONENTS - text, button, amountDisplay
 
     public class ComponentText
     {
@@ -1543,6 +1503,45 @@ namespace DungeonRun
             bkg = new Rectangle(new Point(X, Y), new Point(9, 7));
             visible = true;
         }
+    }
+
+    #endregion
+
+
+
+    //misc
+    public class MapLocation
+    {
+        public ComponentSprite compSprite;
+        public Boolean isLevel = false; //is level or connector location?
+        public LevelID ID = LevelID.Road; //roads cannot be visited
+
+        //cardinal neighbors this location links with
+        public MapLocation neighborUp;
+        public MapLocation neighborRight;
+        public MapLocation neighborDown;
+        public MapLocation neighborLeft;
+        public MapLocation(Boolean IsLevel, Vector2 Position)
+        {
+            isLevel = IsLevel;
+            compSprite = new ComponentSprite(Assets.entitiesSheet,
+                Position, new Byte4(11, 0, 0, 0), new Point(16, 8));
+            //determine if location should use small or large sprite
+            if (IsLevel) { compSprite.currentFrame.Y = 1; }
+            neighborUp = this; neighborDown = this;
+            neighborLeft = this; neighborRight = this;
+        }
+    }
+
+    public class ScreenRec
+    {
+        public Rectangle rec = new Rectangle(0, 0, 640, 360);
+        public float alpha = 0.0f;
+        public float maxAlpha = 1.0f;
+        public float fadeInSpeed = 0.05f;
+        public float fadeOutSpeed = 0.05f;
+        public FadeState fadeState = FadeState.FadeIn;
+        public Boolean fade = true;
     }
 
 }

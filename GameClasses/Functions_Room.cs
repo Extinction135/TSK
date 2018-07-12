@@ -171,7 +171,7 @@ namespace DungeonRun
                 #endregion
 
 
-                #region Setup overworld level data
+                #region Setup overworld field level data
 
                 else if (Room.roomID == RoomID.ForestEntrance)
                 {
@@ -181,6 +181,11 @@ namespace DungeonRun
                 else if (Room.roomID == RoomID.MountainEntrance)
                 {
                     RoomXmlData = LevelData.MountainEntrance;
+                    Level.isField = true;
+                }
+                else if (Room.roomID == RoomID.SwampEntrance)
+                {
+                    RoomXmlData = LevelData.SwampEntrance;
                     Level.isField = true;
                 }
 
@@ -322,9 +327,12 @@ namespace DungeonRun
                             Functions_Actor.SpawnActor(ActorType.Standard_AngryEye, objRef.compSprite.position);
                         }
                         else if(Level.ID == LevelID.Mountain_Dungeon)
-                        {   //create two bats per spawn object
+                        {   
                             Functions_Actor.SpawnActor(ActorType.Standard_BeefyBat, objRef.compSprite.position);
-                            Functions_Actor.SpawnActor(ActorType.Standard_BeefyBat, objRef.compSprite.position);
+                        }
+                        else if (Level.ID == LevelID.Swamp_Dungeon)
+                        {
+                            Functions_Actor.SpawnActor(ActorType.Blob, objRef.compSprite.position);
                         }
 
 

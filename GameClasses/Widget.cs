@@ -38,13 +38,15 @@ namespace DungeonRun
 
         public static WidgetObjects_Forest WO_Forest = new WidgetObjects_Forest();
         public static WidgetObjects_Mountain WO_Mountain = new WidgetObjects_Mountain();
+        public static WidgetObjects_Swamp WO_Swamp = new WidgetObjects_Swamp();
 
         public static WidgetObjects_DEV WO_DEV = new WidgetObjects_DEV();
 
         //actor widgets
-        public static WidgetEnemies_Forest WE_Forest = new WidgetEnemies_Forest();
-        public static WidgetEnemies_Mountain WE_Mountain = new WidgetEnemies_Mountain();
-        public static WidgetEnemies_Town WE_Town = new WidgetEnemies_Town();
+        public static WidgetActors_Forest WE_Forest = new WidgetActors_Forest();
+        public static WidgetActors_Mountain WE_Mountain = new WidgetActors_Mountain();
+        public static WidgetActors_Swamp WE_Swamp = new WidgetActors_Swamp();
+        public static WidgetActors_Town WE_Town = new WidgetActors_Town();
     }
 
     public abstract class Widget

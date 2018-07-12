@@ -1090,10 +1090,10 @@ namespace DungeonRun
 
             else if (Type == ObjType.Wor_Entrance_ForestDungeon)
             {
-                Obj.compSprite.texture = Assets.forestLevelSheet;
                 Obj.compSprite.cellSize.X = 16 * 3; //nonstandard size
                 Obj.compSprite.cellSize.Y = 16 * 4; //nonstandard size
-                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_ForestDungeon;
+                Obj.compSprite.texture = Assets.forestLevelSheet;
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_Dungeon;
                 //set collision rec near bottom of entrance
                 Obj.compCollision.rec.Width = 16*3-4; Obj.compCollision.offsetX = -6;
                 Obj.compCollision.rec.Height = 16*3; Obj.compCollision.offsetY = +8;
@@ -1103,12 +1103,12 @@ namespace DungeonRun
                 Obj.compCollision.blocking = true;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
             }
-            else if (Type == ObjType.Wor_Entrance_Colliseum)
+            else if (Type == ObjType.Wor_Entrance_MountainDungeon)
             {
-                Obj.compSprite.texture = Assets.colliseumLevelSheet;
                 Obj.compSprite.cellSize.X = 16 * 3; //nonstandard size
                 Obj.compSprite.cellSize.Y = 16 * 4; //nonstandard size
-                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_Colliseum;
+                Obj.compSprite.texture = Assets.mountainLevelSheet;
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_Dungeon;
                 //set collision rec near bottom of entrance
                 Obj.compCollision.rec.Width = 16 * 3 - 4; Obj.compCollision.offsetX = -6;
                 Obj.compCollision.rec.Height = 16 * 3; Obj.compCollision.offsetY = +8;
@@ -1118,14 +1118,30 @@ namespace DungeonRun
                 Obj.compCollision.blocking = true;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
             }
-
-
-            else if (Type == ObjType.Wor_Entrance_MountainDungeon)
+            else if (Type == ObjType.Wor_Entrance_SwampDungeon)
             {
-                Obj.compSprite.texture = Assets.mountainLevelSheet;
                 Obj.compSprite.cellSize.X = 16 * 3; //nonstandard size
                 Obj.compSprite.cellSize.Y = 16 * 4; //nonstandard size
-                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_MountainDungeon;
+                Obj.compSprite.texture = Assets.swampLevelSheet;
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_Dungeon;
+                //set collision rec near bottom of entrance
+                Obj.compCollision.rec.Width = 16 * 2 + 4; Obj.compCollision.offsetX = -2;
+                Obj.compCollision.rec.Height = 16 * 1 + 8; Obj.compCollision.offsetY = 16 * 2;
+                //sort save and block
+                Obj.compSprite.zOffset = +16 * 3 - 2;
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = true;
+                Obj.sfx.hit = Assets.sfxTapMetallic;
+            }
+
+
+
+            else if (Type == ObjType.Wor_Entrance_Colliseum)
+            {
+                Obj.compSprite.cellSize.X = 16 * 3; //nonstandard size
+                Obj.compSprite.cellSize.Y = 16 * 4; //nonstandard size
+                Obj.compSprite.texture = Assets.colliseumLevelSheet;
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_Dungeon;
                 //set collision rec near bottom of entrance
                 Obj.compCollision.rec.Width = 16 * 3 - 4; Obj.compCollision.offsetX = -6;
                 Obj.compCollision.rec.Height = 16 * 3; Obj.compCollision.offsetY = +8;
