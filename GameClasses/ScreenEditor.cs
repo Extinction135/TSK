@@ -205,6 +205,7 @@ namespace DungeonRun
         public override void Update(GameTime GameTime)
         {   
             base.Update(GameTime);
+            Widgets.ObjectTools.Update();
         }
 
         public override void Draw(GameTime GameTime)
@@ -228,7 +229,6 @@ namespace DungeonRun
                     TopDebugMenu.counter++)
                 { Functions_Draw.Draw(TopDebugMenu.buttons[TopDebugMenu.counter]); }
                 //draw the object tools
-                Widgets.ObjectTools.Update();
                 Widgets.ObjectTools.Draw();
                 //close up the spritebatch
                 ScreenManager.spriteBatch.End();

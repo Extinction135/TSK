@@ -38,6 +38,14 @@ Roadmap
 
 
 
+
+
+
+
+
+
+
+
 Today:
 
 
@@ -46,22 +54,11 @@ Today:
 
 
 
+ObjTools++
 
-Overworld Map++
-
-updated overworld map to have swampy location in 
-bottom left hand corner. changed the castle sprite.
-removed campfire from swamp island.
-playtested, working as expected.
-
-started putting together sprites for darkworld map.
-
-
-
-
-
-
-
+fixed a bug where objTools was getting an animate
+call twice each frame, leading to very active selected
+objects. which just felt weird.
 
 
 
@@ -70,6 +67,15 @@ started putting together sprites for darkworld map.
 
 *we call update or animate on the roomObj tools widget gameobject
 TWICE - i guess..
+
+
+
+whenever bosses/minibosses get low on health,
+SPEED UP THEIR ANIMATION, duh.
+
+
+
+
 
 
 
@@ -130,6 +136,82 @@ been broken. the history of why it was broken can be explained.
 
 
 
+
+
+
+
+
+
+
+Swamp miniboss and boss
+
+miniboss: in water mouth
+creates splash when transitioning from above/in water states.
+while in water, actor is not blocking and can't be hit.
+above water, the actor constantly 'chomps' his mouth, creating bite pros
+randomly the actor decides to go underwater/above water.
+randomly the actor choose a direction.
+randomly the actor dashes.
+
+boss A: ocotohead
+randomly ducks in/out of water.
+not harmable while in water.
+bobs slightly while above water.
+only moves while underwater.
+creates splash when transitioning.
+takes alot of damage, has no attack.
+as his health gets lower, he moves
+more erratically.
+
+boss minions: tentacles
+has above and below water states like head.
+pops up, into idle (left 2 frames).
+randomly attacks left/right with bites, using
+wild swinging animation frames.
+takes some damage, but not alot.
+
+swamp boss room:
+octohead + 4 tentacles.
+when octohead gets below 10 health, he spawns 4 more tentacles.
+
+*we need a watery hub room for swamp mini
+*we need a watery boss room for swamp boss
+*we need small tiles that the hero can stand on, above water (water lillies!)
+
+*we need swamp dungeon to specifically load these mini & boss rooms.
+**in fact, it would be good to have dungeons specifically load the hub
+and boss rooms, so we dont have insane boss battles on ice.
+
+we need to 'texture id' each room to a dungeon type using an enum, in xml data.
+then loop over the hub rooms, looking for forest id enum, then build it.
+we could even collect a list of hub rooms with forest id enum,
+and randomly choose one, allowing for variation. we could even
+place forest specific objects in these rooms, because we know they
+will always be built in the forest sheet (so we dont have two level
+sheets on screen at once).
+
+this could be the way to set the level's texture as well.
+if the room has a dungeon type enum, then we know what texture that
+room requires to be displayed correctly. when we load the room,
+we could simply set the texture based on the room's texture enum.
+
+*this removes the need for SetTexture() to exist, as we load/set
+the texture based on the texture enum found in xml data, instead.
+
+some rooms would have the texture enum id of any, corresponding to
+any of the texture sheets. in this case, we would base the texture
+off of the level id.
+
+
+
+
+
+
+
+
+
+
+
 Mountain Wall Alcoves
 
 we have the sprites.
@@ -170,15 +252,11 @@ to the base world section sprites, so they in all sheets).
 
 
 
-
-
-
-
-
 swamp entrance level design
 -must swim UNDERWATER under objects to gain access to dungeon entrance.
 -need these water objects to swim under too
-
+-need to update underwater swimming to allow for passing through
+certain objects (those created above)...
 
 
 
