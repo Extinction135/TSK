@@ -3,8 +3,8 @@
   
 ![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/074petSwimming.gif)   
   
-+ 30 minute playthrough with developer commentary (warning: profanity)
-+ https://youtu.be/192cVjSK-7E  
++ youtube channel with weekly video content:  
++ https://www.youtube.com/channel/UCsgpfZB1USgAe0Lv2ZI18uw  
 
 
 ## Goals

@@ -52,21 +52,30 @@ Today:
 
 
 
+YouTube Channel
+
+created youtube channel for the game, to serve as a
+place to post development videos. added channel art.
+updated readme with link to channel.
+
+channel url:
+https://www.youtube.com/channel/UCsgpfZB1USgAe0Lv2ZI18uw
+
+posted 0.75 playthrough with dev comm to channel.
 
 
-ObjTools++
-
-fixed a bug where objTools was getting an animate
-call twice each frame, leading to very active selected
-objects. which just felt weird.
 
 
 
 
 
 
-*we call update or animate on the roomObj tools widget gameobject
-TWICE - i guess..
+
+
+
+
+
+
 
 
 
