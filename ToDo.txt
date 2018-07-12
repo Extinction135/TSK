@@ -50,35 +50,40 @@ Today:
 
 
 
-Mountain Wall Alcoves
-
-repacked footholds and ladders.
-updated mountain sheet.
-
-added mountain alcoves left and right.
-based upon the idea that they simply block
-left or right, based on type, the hero can
-climb up to them using footholds, then
-land on the alcove floor. from there, the
-idea is to interact with a cave entrance,
-or continue climbing up, via a foothold.
-
-created test level for alcove development.
-alcoves are working very well.
-added two alcoves and climbing paths to
-mountain entrance level.
-
-
 
 
 
 
 
 Mountain Wall Caves
+
 this is one object, sits over existing mountain wall (sorts over)
 hero can interact with it by pressing A.
-asks hero if hero wants to go into this random cave..
-this generates a TINY dungeon (exit, miniboss)
+it's blocking, slightly outside of mountain wall it covers.
+this is to prevent hero from colliding with mountain wall.
+
+ingame, added to mountain dungeon entrance.
+tested and working well. caves do nothing, for now.
+
+
+
+
+
+
+
+Mountain Sprites Polish
+
+alcove shouldnt have top black line, these always lead
+to a cave of somekind..
+
+remake mountain walls (mid) to fit with cave..
+this is bcause cave already fits with bottom walls.
+cave doesn't have shadows - these are opaque pixels.
+the cave compltely covers the mountain wall. COMPLETELY.
+
+corners of alcove should have light color carried through
+them - they look too blocky over mountain walls.
+
 
 
 
@@ -96,6 +101,7 @@ to the base world section sprites, so they in all sheets).
 
 
 
+update uwp content files with dx latest.
 
 
 

@@ -458,6 +458,10 @@ namespace DungeonRun
         Wor_MountainWall_Alcove_Left,
         Wor_MountainWall_Alcove_Right,
 
+        Wor_MountainWall_Cave_Bare,
+        Wor_MountainWall_Cave_Covered,
+
+
         #endregion
 
 

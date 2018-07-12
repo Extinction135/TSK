@@ -325,6 +325,8 @@ namespace DungeonRun
         public static List<Byte4> Wor_MountainWall_Alcove_Left = new List<Byte4> { new Byte4(2, 6, 0, 0) };
         public static List<Byte4> Wor_MountainWall_Alcove_Right = new List<Byte4> { new Byte4(2, 6, 1, 0) };
 
+        public static List<Byte4> Wor_MountainWall_Cave_Bare = new List<Byte4> { new Byte4(3, 6, 0, 0) };
+        public static List<Byte4> Wor_MountainWall_Cave_Covered = new List<Byte4> { new Byte4(3, 7, 0, 0) };
 
         #endregion
 

@@ -2024,6 +2024,27 @@ namespace DungeonRun
 
 
 
+            else if (Type == ObjType.Wor_MountainWall_Cave_Bare
+                || Type == ObjType.Wor_MountainWall_Cave_Covered)
+            {   //nonstandard size
+                Obj.compSprite.cellSize.X = 16 * 2; Obj.compSprite.cellSize.Y = 16 * 2;
+                Obj.compCollision.rec.Width = 16 * 2; Obj.compCollision.rec.Height = 16 * 2;
+                Obj.compCollision.offsetX = -8; Obj.compCollision.offsetY = -8;
+                Obj.compSprite.texture = Assets.mountainLevelSheet;
+
+                if (Type == ObjType.Wor_MountainWall_Cave_Bare)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_MountainWall_Cave_Bare; }
+                else
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_MountainWall_Cave_Covered; }
+
+                Obj.compSprite.zOffset = 0; //sorts over footholds
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = true;
+                Obj.group = ObjGroup.Object;
+                Obj.compMove.moveable = false;  //nah
+            }
+
+
 
             #endregion
 

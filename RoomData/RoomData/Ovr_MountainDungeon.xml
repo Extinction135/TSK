@@ -345,10 +345,10 @@
       <posY>408</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Wor_MountainWall_Mid</type>
+      <type>Wor_MountainWall_Top</type>
       <direction>Down</direction>
       <posX>552</posX>
-      <posY>376</posY>
+      <posY>360</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_MountainWall_Mid</type>
@@ -609,10 +609,10 @@
       <posY>360</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Wor_MountainWall_Top</type>
+      <type>Wor_MountainWall_Mid</type>
       <direction>Down</direction>
       <posX>552</posX>
-      <posY>360</posY>
+      <posY>376</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_MountainWall_Top</type>
@@ -791,8 +791,8 @@
     <ObjXmlData>
       <type>Wor_MountainWall_Foothold</type>
       <direction>Down</direction>
-      <posX>584</posX>
-      <posY>456</posY>
+      <posX>808</posX>
+      <posY>664</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_MountainWall_Mid</type>
@@ -3867,10 +3867,10 @@
       <posY>360</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Wor_Grass_2</type>
+      <type>Wor_MountainWall_Foothold</type>
       <direction>Down</direction>
-      <posX>600</posX>
-      <posY>360</posY>
+      <posX>584</posX>
+      <posY>488</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Grass_2</type>
@@ -5015,38 +5015,38 @@
     <ObjXmlData>
       <type>Wor_MountainWall_Foothold</type>
       <direction>Down</direction>
-      <posX>584</posX>
-      <posY>440</posY>
+      <posX>712</posX>
+      <posY>680</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_MountainWall_Foothold</type>
       <direction>Down</direction>
       <posX>584</posX>
-      <posY>424</posY>
+      <posY>504</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_MountainWall_Foothold</type>
       <direction>Down</direction>
       <posX>584</posX>
+      <posY>520</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_MountainWall_Foothold</type>
+      <direction>Down</direction>
+      <posX>584</posX>
+      <posY>536</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_MountainWall_Cave_Covered</type>
+      <direction>Down</direction>
+      <posX>776</posX>
+      <posY>536</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_MountainWall_Cave_Bare</type>
+      <direction>Down</direction>
+      <posX>312</posX>
       <posY>408</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_MountainWall_Foothold</type>
-      <direction>Down</direction>
-      <posX>600</posX>
-      <posY>392</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_MountainWall_Foothold</type>
-      <direction>Down</direction>
-      <posX>600</posX>
-      <posY>376</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_MountainWall_Foothold</type>
-      <direction>Down</direction>
-      <posX>600</posX>
-      <posY>360</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_MountainWall_Alcove_Right</type>
@@ -5055,16 +5055,10 @@
       <posY>440</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Wor_MountainWall_Ladder</type>
+      <type>Wor_MountainWall_Cave_Bare</type>
       <direction>Down</direction>
-      <posX>312</posX>
-      <posY>424</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_MountainWall_Ladder</type>
-      <direction>Down</direction>
-      <posX>312</posX>
-      <posY>408</posY>
+      <posX>408</posX>
+      <posY>520</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_MountainWall_Ladder</type>
@@ -5101,6 +5095,12 @@
       <direction>Down</direction>
       <posX>328</posX>
       <posY>456</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_MountainWall_Cave_Bare</type>
+      <direction>Down</direction>
+      <posX>568</posX>
+      <posY>440</posY>
     </ObjXmlData>
   </objs>
 </RoomXmlData>

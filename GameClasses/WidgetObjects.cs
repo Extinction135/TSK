@@ -699,18 +699,18 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[24], ObjType.Unknown);
             Functions_GameObject.SetType(objList[25], ObjType.Unknown);
             Functions_GameObject.SetType(objList[26], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[27], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[27], ObjType.Wor_MountainWall_Cave_Covered);
 
             //row 8
             Functions_GameObject.SetType(objList[28], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[29], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[30], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[31], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[29], ObjType.Wor_MountainWall_Cave_Bare);
+            Functions_GameObject.SetType(objList[30], ObjType.Unknown); //cov
+            Functions_GameObject.SetType(objList[31], ObjType.Unknown); //cov
 
             //row 9
             Functions_GameObject.SetType(objList[32], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[33], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[34], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[33], ObjType.Unknown); //cov
+            Functions_GameObject.SetType(objList[34], ObjType.Unknown); //cov
             Functions_GameObject.SetType(objList[35], ObjType.Wor_MountainWall_Top); //wall top
 
             //row 10
@@ -753,6 +753,12 @@ namespace DungeonRun
             Functions_Widget.HideObj(objList[12]);
             Functions_Widget.HideObj(objList[13]);
             Functions_Widget.HideObj(objList[14]);
+
+            Functions_Widget.HideObj(objList[30]);
+            Functions_Widget.HideObj(objList[31]);
+
+            Functions_Widget.HideObj(objList[33]);
+            Functions_Widget.HideObj(objList[34]);
 
             Functions_Widget.HideObj(objList[38]);
 
