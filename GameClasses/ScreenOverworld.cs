@@ -304,7 +304,7 @@ namespace DungeonRun
             //create map campfires
             Functions_Particle.Spawn(ObjType.Particle_Map_Campfire, 505, 257); //tent town
             Functions_Particle.Spawn(ObjType.Particle_Map_Campfire, 299, 297); //center island
-            Functions_Particle.Spawn(ObjType.Particle_Map_Campfire, 109, 266); //left island / castle ruins
+            
             
             #endregion
 

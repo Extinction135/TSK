@@ -46,66 +46,15 @@ Today:
 
 
 
-Swamp Level & Dungeon 
 
-created swamp level sheet. added to Dx & UWP content
-projects. updated assets to load swamp level sheet.
+Overworld Map++
 
-created swamp widget object, widget enemy object too.
-linked into editor menu screen. added levelIDs for
-swamp entrance and dungeon. added roomID for swamp
-entrance. tested, woroking.
-
-simplified how dungeon/level entrance object animation
-frames are defined in animationFrames.
-
-added swamp entrance obj. added into dialog routines,
-so link has choice to enter, upon interaction with obj.
-added routine into dungeon generator for swamp dungeon.
-for now, it will use same recipe as mountain dungeon.
-
-tested, working. but the walls dont show swamp sprites.
-because swamp hasn't been added into texture functions.
-other than that, working fine.
-
-updated fun_texture.SetTexture() with checks for swamp
-dungeon and entrance level, setting the current tex
-ref correctly. tested, bug fixed. 
-
-regioned dataclasses, because visual studio won't collapse
-class definitions using ctrl+M, O - but it will regions.
-
-updated BuildLevel() set bkg color routine to check
-for swamp dungeon. this fixes a bug where bkg color
-was set to light gray, which wasn't correct.
-
-updated BuildRoomXmlData with routine for swamp dungeon,
-however we don't have a swamp standard enemy to spawn yet.
-so for now, we'll just spawn blobs.
-
-updated FinishBossRoom() and FinishHubRoom() to just
-copy mountain dungeon's enemy set (for now) for swamp.
-this allows the swamp dungeon to be completed, as it
-now has a boss. yay.
-
-Swamp Entrance Obj++
-improved collision rec so link can walk behind obj.
-improved visuals: added staircase, proper shadows, extended
-tentacles to improve size of dungeon entrance.
-
-Swamp Level++
-created swamp level xml. compiled into cs.
-added swamp dungeon location to overworld map,
-pointing to swamp dungeon entrance level.
-added swamp level into fun_level.BuildLevel() routines.
-updated fun_room.BuildRoom() with swamp entrance check.
-fixed a logic bug with background colors not getting
-set properly, based on dungeon / level comparisons.
-
+updated overworld map to have swampy location in 
+bottom left hand corner. changed the castle sprite.
+removed campfire from swamp island.
 playtested, working as expected.
-updated uwp content folder.
-swamp level and dungeon properly added into game.
-now, they need to be polished.
+
+started putting together sprites for darkworld map.
 
 
 
@@ -116,15 +65,6 @@ now, they need to be polished.
 
 
 
-
-
-
-
-
-
-
-update overworld map to have swamp dungeon location in 
-bottom left hand corner. should look swampy.
 
 
 
