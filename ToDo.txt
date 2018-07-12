@@ -51,36 +51,15 @@ Today:
 
 
 
+Bosses & Minibosses ++
 
-YouTube Channel
-
-created youtube channel for the game, to serve as a
-place to post development videos. added channel art.
-updated readme with link to channel.
-
-channel url:
-https://www.youtube.com/channel/UCsgpfZB1USgAe0Lv2ZI18uw
-
-posted 0.75 playthrough with dev comm to channel.
+upgraded blackeye, bigeye, and bigbat to 
+call animate twice each frame, if they are
+in their last damage phase. this has the effect
+of making their animation twice as fast, making
+them seem enraged / nearing defeat.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-whenever bosses/minibosses get low on health,
-SPEED UP THEIR ANIMATION, duh.
 
 
 

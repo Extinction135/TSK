@@ -132,6 +132,8 @@ namespace DungeonRun
                     //move very fast
                     Actor.walkSpeed = 0.20f;
                     Actor.dashSpeed = 0.50f;
+                    //double up the animation (speed up)
+                    Functions_Animation.Animate(Actor.compAnim, Actor.compSprite);
 
                     //smoke (each frame) as a sign of nearing defeat
                     Functions_Particle.Spawn(
@@ -195,7 +197,9 @@ namespace DungeonRun
                     //move and dash faster
                     Actor.walkSpeed = 0.4f;
                     Actor.dashSpeed = 0.6f;
-                    
+                    //double up the animation (speed up)
+                    Functions_Animation.Animate(Actor.compAnim, Actor.compSprite);
+
                     //strategy 2 - aggresively bite hero
                     ChaseHero(); //always chases hero
                     //now boss will rely on bite attack only
@@ -254,6 +258,8 @@ namespace DungeonRun
                     //dash fast
                     Actor.walkSpeed = 0.25f;
                     Actor.dashSpeed = 0.80f;
+                    //double up the animation (speed up)
+                    Functions_Animation.Animate(Actor.compAnim, Actor.compSprite);
 
                     ChaseHero(); //boss becomes aggressive
                     //boss switches to bite attack
