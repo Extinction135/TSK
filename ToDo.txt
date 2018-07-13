@@ -55,34 +55,37 @@ Today:
 
 
 
-Mountain Wall Caves
-
-this is one object, sits over existing mountain wall (sorts over)
-hero can interact with it by pressing A.
-it's blocking, slightly outside of mountain wall it covers.
-this is to prevent hero from colliding with mountain wall.
-
-ingame, added to mountain dungeon entrance.
-tested and working well. caves do nothing, for now.
-
-
-
-
-
-
-
 Mountain Sprites Polish
 
-alcove shouldnt have top black line, these always lead
-to a cave of somekind..
-
-remake mountain walls (mid) to fit with cave..
+alcove shouldnt have top black line, these always 
+lead to a cave of somekind.
+remake mountain walls (mid) to fit with cave.
 this is bcause cave already fits with bottom walls.
 cave doesn't have shadows - these are opaque pixels.
-the cave compltely covers the mountain wall. COMPLETELY.
-
+the cave completely covers the mountain wall. COMPLETELY.
 corners of alcove should have light color carried through
 them - they look too blocky over mountain walls.
+all done.
+
+changed mountain dungeon entrance sprite,
+so hero has to climb UP to the entrance, then
+enter the dungeon from an alcove.
+updated mountain level based on new entrance.
+updated uwp content files with dx latest.
+playtested.
+
+caves should not be blocking.
+this is because hero can fall and land on top of them.
+this visually makes no sense at all. done.
+
+rewrote interaction routine with midwall.
+if hero is walking/dashing north, then hero is just
+pushed - not put into a falling state. this prevents
+the hero from falling off the wall from walking into
+it, which seems clumsy.
+
+
+
 
 
 
@@ -101,9 +104,10 @@ to the base world section sprites, so they in all sheets).
 
 
 
-update uwp content files with dx latest.
 
 
+*dont randomly rotate floor cracks.
+they can be flipped horizontally only.
 
 
 

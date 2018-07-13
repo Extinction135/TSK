@@ -257,35 +257,42 @@ namespace DungeonRun
                 //bottom walls push south
                 //if actor is climbing, mid/bottom walls dont push them
 
-                if (Obj.type == ObjType.Wor_MountainWall_Mid
-                    
-                    //colliseum walls
-                    //|| Obj.type == ObjType.Wor_Colliseum_Bricks_Left
-                    //|| Obj.type == ObjType.Wor_Colliseum_Bricks_Middle1
-                    //|| Obj.type == ObjType.Wor_Colliseum_Bricks_Middle2
-                    //|| Obj.type == ObjType.Wor_Colliseum_Bricks_Right
-
-                    )
+                if (Obj.type == ObjType.Wor_MountainWall_Mid)
                 {
+                    //limit how much we can push actor (terminal velocity)
+                    if (Actor.compMove.magnitude.Y > terminalVelocity)
+                    { Actor.compMove.magnitude.Y = terminalVelocity; }
+
+                    //actor is climbing
                     if (Actor.state == ActorState.Climbing) { return; }
 
-                    //is this initial fall?
-                    if (Actor.state == ActorState.Falling) { }
-                    else if (Actor.state == ActorState.Landed) { }
-                    else
-                    {   //play initial fall sfx
-                        Assets.Play(Assets.sfxActorFall);
+                    //actor is falling - push down, lock into falling
+                    else if (Actor.state == ActorState.Falling)
+                    {
+                        Functions_Movement.Push(Actor.compMove, Direction.Down, 1.5f);
+                        Actor.state = ActorState.Falling;
+                        Actor.stateLocked = true;
+                        return;
                     }
 
-                    //lock actor into falling state
-                    Actor.state = ActorState.Falling;
+                    //actor is walking/dashing into wall from south - push down
+                    else if (Actor.state == ActorState.Move || Actor.state == ActorState.Dash)
+                    {
+                        //see if actor is walking north into wall
+                        if (Actor.compMove.direction == Direction.Up
+                            || Actor.compMove.direction == Direction.UpLeft
+                            || Actor.compMove.direction == Direction.UpRight)
+                        {
+                            Functions_Movement.Push(Actor.compMove, Direction.Down, 1.5f);
+                            return; //done pushing actor
+                        }
+                    }
+
+                    //any actor that reaches this code is in an initial falling state
+                    Assets.Play(Assets.sfxActorFall); //play initial fall sfx
+                    Actor.state = ActorState.Falling; //lock actor into falling state
                     Actor.stateLocked = true;
-
-                    //limit how much we can push actor (terminal velocity)
-                    if (Actor.compMove.magnitude.Y > terminalVelocity) { return; }
-
-                    //fall
-                    Functions_Movement.Push(Actor.compMove, Direction.Down, 1.5f);
+                    Functions_Movement.Push(Actor.compMove, Direction.Down, 1.5f); //fall
                 }
                 else if (Obj.type == ObjType.Wor_MountainWall_Bottom)
                 {

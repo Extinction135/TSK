@@ -1103,21 +1103,24 @@ namespace DungeonRun
                 Obj.compCollision.blocking = true;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
             }
+
             else if (Type == ObjType.Wor_Entrance_MountainDungeon)
             {
                 Obj.compSprite.cellSize.X = 16 * 3; //nonstandard size
                 Obj.compSprite.cellSize.Y = 16 * 4; //nonstandard size
                 Obj.compSprite.texture = Assets.mountainLevelSheet;
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_Dungeon;
+                
                 //set collision rec near bottom of entrance
-                Obj.compCollision.rec.Width = 16 * 3 - 4; Obj.compCollision.offsetX = -6;
-                Obj.compCollision.rec.Height = 16 * 3; Obj.compCollision.offsetY = +8;
+                Obj.compCollision.rec.Width = 16 * 2; Obj.compCollision.offsetX = -8;
+                Obj.compCollision.rec.Height = 16 * 2; Obj.compCollision.offsetY = +8+16;
                 //sort save and block
                 Obj.compSprite.zOffset = +16 * 3 - 2;
                 Obj.canBeSaved = true;
-                Obj.compCollision.blocking = true;
+                Obj.compCollision.blocking = false; //is cave
                 Obj.sfx.hit = Assets.sfxTapMetallic;
             }
+
             else if (Type == ObjType.Wor_Entrance_SwampDungeon)
             {
                 Obj.compSprite.cellSize.X = 16 * 3; //nonstandard size
@@ -1930,6 +1933,10 @@ namespace DungeonRun
             #region Mountain Objects
             
 
+
+
+
+
             else if (Type == ObjType.Wor_MountainWall_Top)
             {   //nonstandard size
                 Obj.compSprite.cellSize.X = 16 * 4; Obj.compSprite.cellSize.Y = 16 * 1;
@@ -2033,13 +2040,18 @@ namespace DungeonRun
                 Obj.compSprite.texture = Assets.mountainLevelSheet;
 
                 if (Type == ObjType.Wor_MountainWall_Cave_Bare)
-                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_MountainWall_Cave_Bare; }
+                {
+                    Obj.compAnim.currentAnimation = AnimationFrames.Wor_MountainWall_Cave_Bare;
+                    Obj.compCollision.blocking = false; //is cave
+                }
                 else
-                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_MountainWall_Cave_Covered; }
+                {
+                    Obj.compAnim.currentAnimation = AnimationFrames.Wor_MountainWall_Cave_Covered;
+                    Obj.compCollision.blocking = true; //is not really cave
+                }
 
                 Obj.compSprite.zOffset = 0; //sorts over footholds
                 Obj.canBeSaved = true;
-                Obj.compCollision.blocking = true;
                 Obj.group = ObjGroup.Object;
                 Obj.compMove.moveable = false;  //nah
             }
