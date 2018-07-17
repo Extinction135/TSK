@@ -330,10 +330,14 @@ namespace DungeonRun
             {   //some objects only face Direction.Down
                 Obj.direction = Direction.Down;
             }
+
+            /*
             else if(Obj.type == ObjType.Dungeon_PitTrap)
             {   //some objects are randomly rotated
                 Obj.direction = Functions_Direction.GetRandomCardinal();
             }
+            */
+
             else if(Obj.type == ObjType.Dungeon_FloorBlood)
             {   //some objects are randomly flipped horizontally
                 Obj.compSprite.flipHorizontally = true;

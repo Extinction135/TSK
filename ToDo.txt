@@ -10,8 +10,8 @@ Roadmap
 
 0.76 - swamp levels + dungeon + enemies
 0.77 - castle, city, royal vendors
-0.78 - king, fight with king, lightworld storyline done
-0.79 - farming + seeds + crops
+0.78 - king, fight with king, lightworld storyline
+0.79 - BOAT level, intro, farming + seeds + crops
 
 0.80 - dark world map + 1st level + transition to/from
 0.81 - volcano level + dungeon + enemies
@@ -51,43 +51,10 @@ Today:
 
 
 
+Pit Traps++
 
-
-
-
-Mountain Sprites Polish
-
-alcove shouldnt have top black line, these always 
-lead to a cave of somekind.
-remake mountain walls (mid) to fit with cave.
-this is bcause cave already fits with bottom walls.
-cave doesn't have shadows - these are opaque pixels.
-the cave completely covers the mountain wall. COMPLETELY.
-corners of alcove should have light color carried through
-them - they look too blocky over mountain walls.
-all done.
-
-changed mountain dungeon entrance sprite,
-so hero has to climb UP to the entrance, then
-enter the dungeon from an alcove.
-updated mountain level based on new entrance.
-updated uwp content files with dx latest.
-playtested.
-
-caves should not be blocking.
-this is because hero can fall and land on top of them.
-this visually makes no sense at all. done.
-
-rewrote interaction routine with midwall.
-if hero is walking/dashing north, then hero is just
-pushed - not put into a falling state. this prevents
-the hero from falling off the wall from walking into
-it, which seems clumsy.
-
-
-
-
-
+fixed a minor bug where pit traps were
+being randomly rotated, which looked very wrong.
 
 
 
@@ -101,18 +68,6 @@ it, which seems clumsy.
 Posts++
 Add vertical and hrrizontal posts (we added them
 to the base world section sprites, so they in all sheets).
-
-
-
-
-
-*dont randomly rotate floor cracks.
-they can be flipped horizontally only.
-
-
-
-
-
 
 
 
