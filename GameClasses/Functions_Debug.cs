@@ -152,7 +152,7 @@ namespace DungeonRun
             output += "\tposX:" + Sprite.position.X;
             output += "\tposY:" + Sprite.position.Y;
             output += "\tcurrentFrame:" + Sprite.currentFrame.X + ", " + Sprite.currentFrame.Y + ", " + Sprite.currentFrame.flipHori;
-            output += "\tcellSize:" + Sprite.cellSize.X + ", " + Sprite.cellSize.Y;
+            output += "\tcellSize:" + Sprite.drawRec.Width + ", " + Sprite.drawRec.Height;
             output += "\n";
             output += "\tvisible:" + Sprite.visible;
             output += "\torigin:" + Sprite.origin.X + ", " + Sprite.origin.Y;

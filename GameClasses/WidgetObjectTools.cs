@@ -565,8 +565,8 @@ namespace DungeonRun
                     //copy actor's sprite and animation into current obj
                     currentObjRef.compAnim.currentAnimation = actList[i].compAnim.currentAnimation;
                     currentObjRef.compSprite.texture = actList[i].compSprite.texture;
-                    currentObjRef.compSprite.cellSize = actList[i].compSprite.cellSize;
-                    Functions_Component.UpdateCellSize(currentObjRef.compSprite);
+                    currentObjRef.compSprite.drawRec.Width = actList[i].compSprite.drawRec.Width;
+                    currentObjRef.compSprite.drawRec.Height = actList[i].compSprite.drawRec.Height;
                     currentObjRef.compSprite.currentFrame = actList[i].compSprite.currentFrame;
                     currentObjRef.compAnim.index = 0;
 

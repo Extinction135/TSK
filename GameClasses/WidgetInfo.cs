@@ -77,7 +77,10 @@ namespace DungeonRun
         {   //match the infoItem to the passed MenuItem
             infoItem.compAnim.currentAnimation = MenuItem.compAnim.currentAnimation;
             infoItem.compSprite.texture = MenuItem.compSprite.texture;
-            infoItem.compSprite.cellSize = MenuItem.compSprite.cellSize;
+
+            infoItem.compSprite.drawRec.Width = MenuItem.compSprite.drawRec.Width;
+            infoItem.compSprite.drawRec.Height = MenuItem.compSprite.drawRec.Height;
+
             infoItem.compSprite.rotation = MenuItem.compSprite.rotation;
             window.title.text = MenuItem.name;
             description.text = MenuItem.description;
@@ -88,8 +91,7 @@ namespace DungeonRun
                 goldDisplay.visible = true;
             }
             else { goldDisplay.amount.text = ""; goldDisplay.visible = false; }
-
-            Functions_Component.UpdateCellSize(infoItem.compSprite);
+            
         }
 
     }

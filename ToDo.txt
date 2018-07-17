@@ -61,16 +61,11 @@ Today:
 
 
 
+CellSize--
 
-Posts++
-
-added vertical, horizontal, and corner posts.
-tested in editor, but not added to any levels,
-yet. 
-
-Pit Traps++
-upgraded pit traps to be randomly flipped 
-horizontally, to break up their visual repetition.
+removed cellsize and UpdateCellSize() from codebase,
+based on an observation from Fillip F. this simplifies
+the sprite component.
 
 
 
@@ -81,7 +76,7 @@ horizontally, to break up their visual repetition.
 
 
 
-record video talking about mountain walls
+record video talking about mountain walls, climbing.
 
 
 
@@ -99,10 +94,6 @@ this fixes the jit compilation xbox one does.
 
 -update systems to work with global level instances.
 
-
-
-
-
 Exiting Dungeons
 this should return the hero to the dungeon entrance,
 on the proper dungeo entrance level. hero should spawn
@@ -119,12 +110,6 @@ to map.
 at the same time and maintain the two separately. we can 
 even prevent a ReBuild() from being called when hero transfers
 between rooms (field and dungeon).
-
-^idea: on town level, we can have an inaccesible area.
-then we have an entrance to a blob dungeon, which is built
-very short. upon exiting the blob dungeon, hero spawns inside
-the inaccessible area in town level. we use dungeon generator
-to build the tiny blob dungeon, getting more use out of it.
 
 Magic Mirror
 ^this plays well into magic mirror: use it in a dungeon to return
@@ -240,6 +225,9 @@ certain objects (those created above)...
 
 
 
+forest entrance level design
+-must grow or destroy foilage to enter dungeon?
+-or maybe we keep this as the gimmick for darkworld dungeon.
 
 
 

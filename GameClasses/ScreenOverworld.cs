@@ -44,8 +44,8 @@ namespace DungeonRun
 
             map = new ComponentSprite(Assets.overworldSheet,
                 new Vector2(640/2, 360/2), new Byte4(0, 0, 0, 0), new Point(1280, 720));
-            map.position.X = map.cellSize.X / 2;
-            map.position.Y = map.cellSize.Y / 2;
+            map.position.X = map.drawRec.Width / 2;
+            map.position.Y = map.drawRec.Height / 2;
 
 
             #region Create locations

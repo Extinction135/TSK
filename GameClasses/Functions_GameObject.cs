@@ -273,8 +273,8 @@ namespace DungeonRun
             Obj.interactiveFrame = 0;
 
             //reset the sprite component
-            Obj.compSprite.cellSize.X = 16 * 1; //assume cell size is 16x16 (most are)
-            Obj.compSprite.cellSize.Y = 16 * 1;
+            Obj.compSprite.drawRec.Width = 16 * 1; //assume cell size is 16x16 (most are)
+            Obj.compSprite.drawRec.Height = 16 * 1;
             Obj.compSprite.zOffset = 0;
             Obj.compSprite.flipHorizontally = false;
             Obj.compSprite.rotation = Rotation.None;
@@ -439,7 +439,7 @@ namespace DungeonRun
             else if (Type == ObjType.Dungeon_ExitPillarLeft ||
                Type == ObjType.Dungeon_ExitPillarRight)
             {
-                Obj.compSprite.cellSize.Y = 16 * 3; //nonstandard size
+                Obj.compSprite.drawRec.Height = 16 * 3; //nonstandard size
                 Obj.compSprite.zOffset = -32; //sort to floor
                 Obj.group = ObjGroup.Door;
                 Obj.compCollision.rec.Height = 32 - 5;
@@ -451,7 +451,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Dungeon_Exit)
             {
-                Obj.compSprite.cellSize.Y = 16 * 3; //nonstandard size
+                Obj.compSprite.drawRec.Height = 16 * 3; //nonstandard size
                 Obj.compSprite.zOffset = -32; //sort to floor
                 Obj.group = ObjGroup.Door;
                 Obj.compCollision.rec.Height = 4;
@@ -462,7 +462,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Dungeon_ExitLight)
             {
-                Obj.compSprite.cellSize.Y = 16 * 2; //nonstandard size
+                Obj.compSprite.drawRec.Height = 16 * 2; //nonstandard size
                 Obj.compCollision.offsetY = 0;
                 Obj.compSprite.zOffset = 256; //sort above everything
                 Obj.compCollision.blocking = false;
@@ -657,7 +657,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Dungeon_SkullPillar)
             {
-                Obj.compSprite.cellSize.Y = 16 * 2; //nonstandard size
+                Obj.compSprite.drawRec.Height = 16 * 2; //nonstandard size
                 Obj.compSprite.zOffset = +10;
                 Obj.compCollision.offsetY = +8;
                 Obj.compMove.moveable = false;
@@ -1024,7 +1024,7 @@ namespace DungeonRun
                 || Type == ObjType.Wor_Tree_Burning 
                 || Type == ObjType.Wor_Tree_Burnt)
             {
-                Obj.compSprite.cellSize.Y = 16 * 2; //nonstandard size
+                Obj.compSprite.drawRec.Height = 16 * 2; //nonstandard size
                 Obj.canBeSaved = true;
                 Obj.compSprite.zOffset = +10;
                 Obj.compCollision.blocking = true;
@@ -1047,7 +1047,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Wor_Tree_Stump)
             {
-                Obj.compSprite.cellSize.Y = 16 * 2; //nonstandard size
+                Obj.compSprite.drawRec.Height = 16 * 2; //nonstandard size
                 Obj.canBeSaved = true;
                 Obj.compSprite.zOffset = +10;
                 Obj.compCollision.blocking = false;
@@ -1065,8 +1065,8 @@ namespace DungeonRun
             else if (Type == ObjType.Wor_Debris)
             {
                 //reset cell size
-                Obj.compSprite.cellSize.X = 16 * 1;
-                Obj.compSprite.cellSize.Y = 16 * 1;
+                Obj.compSprite.drawRec.Width = 16 * 1;
+                Obj.compSprite.drawRec.Height = 16 * 1;
 
                 //reset hitbox
                 Obj.compCollision.rec.Width = 16;
@@ -1095,8 +1095,8 @@ namespace DungeonRun
 
             else if (Type == ObjType.Wor_Entrance_ForestDungeon)
             {
-                Obj.compSprite.cellSize.X = 16 * 3; //nonstandard size
-                Obj.compSprite.cellSize.Y = 16 * 4; //nonstandard size
+                Obj.compSprite.drawRec.Width = 16 * 3; //nonstandard size
+                Obj.compSprite.drawRec.Height = 16 * 4; //nonstandard size
                 Obj.compSprite.texture = Assets.forestLevelSheet;
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_Dungeon;
                 //set collision rec near bottom of entrance
@@ -1111,8 +1111,8 @@ namespace DungeonRun
 
             else if (Type == ObjType.Wor_Entrance_MountainDungeon)
             {
-                Obj.compSprite.cellSize.X = 16 * 3; //nonstandard size
-                Obj.compSprite.cellSize.Y = 16 * 4; //nonstandard size
+                Obj.compSprite.drawRec.Width = 16 * 3; //nonstandard size
+                Obj.compSprite.drawRec.Height = 16 * 4; //nonstandard size
                 Obj.compSprite.texture = Assets.mountainLevelSheet;
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_Dungeon;
                 
@@ -1128,8 +1128,8 @@ namespace DungeonRun
 
             else if (Type == ObjType.Wor_Entrance_SwampDungeon)
             {
-                Obj.compSprite.cellSize.X = 16 * 3; //nonstandard size
-                Obj.compSprite.cellSize.Y = 16 * 4; //nonstandard size
+                Obj.compSprite.drawRec.Width = 16 * 3; //nonstandard size
+                Obj.compSprite.drawRec.Height = 16 * 4; //nonstandard size
                 Obj.compSprite.texture = Assets.swampLevelSheet;
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_Dungeon;
                 //set collision rec near bottom of entrance
@@ -1146,8 +1146,8 @@ namespace DungeonRun
 
             else if (Type == ObjType.Wor_Entrance_Colliseum)
             {
-                Obj.compSprite.cellSize.X = 16 * 3; //nonstandard size
-                Obj.compSprite.cellSize.Y = 16 * 4; //nonstandard size
+                Obj.compSprite.drawRec.Width = 16 * 3; //nonstandard size
+                Obj.compSprite.drawRec.Height = 16 * 4; //nonstandard size
                 Obj.compSprite.texture = Assets.colliseumLevelSheet;
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_Dungeon;
                 //set collision rec near bottom of entrance
@@ -1254,7 +1254,7 @@ namespace DungeonRun
 
             else if(Type == ObjType.Wor_Bed)
             {
-                Obj.compSprite.cellSize.Y = 16*2; //non standard cellsize
+                Obj.compSprite.drawRec.Height = 16*2; //non standard cellsize
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Bed;
                 Obj.compCollision.offsetX = -8; Obj.compCollision.offsetY = 0;
                 Obj.compCollision.rec.Width = 16; Obj.compCollision.rec.Height = 3 + 16;
@@ -1381,8 +1381,8 @@ namespace DungeonRun
                 Obj.canBeSaved = true;
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Water;
                 //double size
-                Obj.compSprite.cellSize.X = 16 * 2; 
-                Obj.compSprite.cellSize.Y = 16 * 2; 
+                Obj.compSprite.drawRec.Width = 16 * 2; 
+                Obj.compSprite.drawRec.Height = 16 * 2; 
                 Obj.compCollision.rec.Width = 16 * 2;
                 Obj.compCollision.rec.Height = 16 * 2;
                 Obj.compCollision.offsetX = -8;
@@ -1775,8 +1775,8 @@ namespace DungeonRun
             else if (Type == ObjType.Wor_Colliseum_Gate_Center)
             {
                 Obj.compSprite.texture = Assets.colliseumLevelSheet;
-                Obj.compSprite.cellSize.X = 16 * 1; //nonstandard size
-                Obj.compSprite.cellSize.Y = 16 * 4; //nonstandard size
+                Obj.compSprite.drawRec.Width = 16 * 1; //nonstandard size
+                Obj.compSprite.drawRec.Height = 16 * 4; //nonstandard size
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Colliseum_Gate_Center;
                 //non-blocking - made for easy grabbing
                 Obj.compCollision.rec.Width = 16*1; Obj.compCollision.offsetX = -8;
@@ -1791,8 +1791,8 @@ namespace DungeonRun
                 || Type == ObjType.Wor_Colliseum_Gate_Pillar_Right)
             {
                 Obj.compSprite.texture = Assets.colliseumLevelSheet;
-                Obj.compSprite.cellSize.X = 16 * 2; //nonstandard size
-                Obj.compSprite.cellSize.Y = 16 * 4; //nonstandard size
+                Obj.compSprite.drawRec.Width = 16 * 2; //nonstandard size
+                Obj.compSprite.drawRec.Height = 16 * 4; //nonstandard size
                 if (Type == ObjType.Wor_Colliseum_Gate_Pillar_Left)
                 { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Colliseum_Gate_Pillar_Left; }
                 else { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Colliseum_Gate_Pillar_Right; }
@@ -1894,8 +1894,8 @@ namespace DungeonRun
                 )
             {
                 Obj.compSprite.texture = Assets.colliseumLevelSheet;
-                Obj.compSprite.cellSize.X = 16 * 1; //nonstandard size
-                Obj.compSprite.cellSize.Y = 16 * 2; //nonstandard size
+                Obj.compSprite.drawRec.Width = 16 * 1; //nonstandard size
+                Obj.compSprite.drawRec.Height = 16 * 2; //nonstandard size
                 Obj.compCollision.rec.Width = 16; Obj.compCollision.offsetX = -8;
                 Obj.compCollision.rec.Height = 16 * 2; Obj.compCollision.offsetY = -8;
 
@@ -1951,8 +1951,8 @@ namespace DungeonRun
 
             else if (Type == ObjType.Wor_Colliseum_Spectator)
             {
-                Obj.compSprite.cellSize.X = 16 * 4; //nonstandard size
-                Obj.compSprite.cellSize.Y = 16 * 1; 
+                Obj.compSprite.drawRec.Width = 16 * 4; //nonstandard size
+                Obj.compSprite.drawRec.Height = 16 * 1; 
                 Obj.compCollision.rec.Width = 16 * 4; Obj.compCollision.offsetX = - 8;
                 Obj.compCollision.rec.Height = 16 * 1; Obj.compCollision.offsetY = -8;
 
@@ -1993,7 +1993,7 @@ namespace DungeonRun
 
             else if (Type == ObjType.Wor_MountainWall_Top)
             {   //nonstandard size
-                Obj.compSprite.cellSize.X = 16 * 4; Obj.compSprite.cellSize.Y = 16 * 1;
+                Obj.compSprite.drawRec.Width = 16 * 4; Obj.compSprite.drawRec.Height = 16 * 1;
                 Obj.compCollision.rec.Width = 16 * 4; Obj.compCollision.offsetX = -8;
                 Obj.compCollision.rec.Height = 16 * 1; Obj.compCollision.offsetY = -8;
 
@@ -2006,7 +2006,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Wor_MountainWall_Mid)
             {   //nonstandard size
-                Obj.compSprite.cellSize.X = 16 * 4; Obj.compSprite.cellSize.Y = 16 * 2;
+                Obj.compSprite.drawRec.Width = 16 * 4; Obj.compSprite.drawRec.Height = 16 * 2;
                 Obj.compCollision.rec.Width = 16 * 4; Obj.compCollision.offsetX = -8;
                 Obj.compCollision.rec.Height = 16 * 2; Obj.compCollision.offsetY = -8;
 
@@ -2019,7 +2019,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Wor_MountainWall_Bottom)
             {   //nonstandard size
-                Obj.compSprite.cellSize.X = 16 * 4; Obj.compSprite.cellSize.Y = 16 * 1;
+                Obj.compSprite.drawRec.Width = 16 * 4; Obj.compSprite.drawRec.Height = 16 * 1;
                 Obj.compCollision.rec.Width = 16 * 4; Obj.compCollision.offsetX = -8;
                 Obj.compCollision.rec.Height = 16 * 1; Obj.compCollision.offsetY = -8;
 
@@ -2035,7 +2035,7 @@ namespace DungeonRun
                 || Type == ObjType.Wor_MountainWall_Ladder
                 || Type == ObjType.Wor_MountainWall_Ladder_Trap)
             {   
-                Obj.compSprite.cellSize.X = 16 * 1; Obj.compSprite.cellSize.Y = 16 * 1;
+                Obj.compSprite.drawRec.Width = 16 * 1; Obj.compSprite.drawRec.Height = 16 * 1;
                 Obj.compCollision.rec.Width = 20; Obj.compCollision.offsetX = -10;
                 Obj.compCollision.rec.Height = 20; Obj.compCollision.offsetY = -10;
 
@@ -2062,7 +2062,7 @@ namespace DungeonRun
             else if (Type == ObjType.Wor_MountainWall_Alcove_Left
                 || Type == ObjType.Wor_MountainWall_Alcove_Right)
             {   //nonstandard size
-                Obj.compSprite.cellSize.X = 16*2; Obj.compSprite.cellSize.Y = 16 * 2;
+                Obj.compSprite.drawRec.Width = 16*2; Obj.compSprite.drawRec.Height = 16 * 2;
                 Obj.compCollision.rec.Width = 12; Obj.compCollision.rec.Height = 16 * 2;
                 Obj.compSprite.texture = Assets.mountainLevelSheet;
 
@@ -2088,7 +2088,7 @@ namespace DungeonRun
             else if (Type == ObjType.Wor_MountainWall_Cave_Bare
                 || Type == ObjType.Wor_MountainWall_Cave_Covered)
             {   //nonstandard size
-                Obj.compSprite.cellSize.X = 16 * 2; Obj.compSprite.cellSize.Y = 16 * 2;
+                Obj.compSprite.drawRec.Width = 16 * 2; Obj.compSprite.drawRec.Height = 16 * 2;
                 Obj.compCollision.rec.Width = 16 * 2; Obj.compCollision.rec.Height = 16 * 2;
                 Obj.compCollision.offsetX = -8; Obj.compCollision.offsetY = -8;
                 Obj.compSprite.texture = Assets.mountainLevelSheet;
@@ -2158,7 +2158,7 @@ namespace DungeonRun
                 Type == ObjType.Pickup_Magic || Type == ObjType.Pickup_Arrow ||
                 Type == ObjType.Pickup_Bomb)
             {
-                Obj.compSprite.cellSize.X = 8; //non standard cellsize
+                Obj.compSprite.drawRec.Width = 8; //non standard cellsize
                 Obj.compCollision.offsetX = -8; Obj.compCollision.offsetY = -5;
                 Obj.compCollision.rec.Width = 8; Obj.compCollision.rec.Height = 10;
                 Obj.group = ObjGroup.Pickup;
@@ -2492,7 +2492,7 @@ namespace DungeonRun
 
             else if (Type == ObjType.Particle_PitBubble)
             {
-                Obj.compSprite.cellSize.X = 8; Obj.compSprite.cellSize.Y = 8; //nonstandard size
+                Obj.compSprite.drawRec.Width = 8; Obj.compSprite.drawRec.Height = 8; //nonstandard size
                 Obj.compSprite.zOffset = -63; //sort over pits, under pit teeth
                 Obj.group = ObjGroup.Particle;
                 Obj.lifetime = 10 * 4 * 6; //speed * anim frames * loops
@@ -2509,7 +2509,7 @@ namespace DungeonRun
 
             else if (Type == ObjType.Particle_RisingSmoke)
             {
-                Obj.compSprite.cellSize.X = 8; Obj.compSprite.cellSize.Y = 8; //nonstandard size
+                Obj.compSprite.drawRec.Width = 8; Obj.compSprite.drawRec.Height = 8; //nonstandard size
                 Obj.compSprite.zOffset = 64;
                 Obj.group = ObjGroup.Particle;
                 Obj.lifetime = 24; //in frames
@@ -2524,7 +2524,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Particle_ImpactDust)
             {
-                Obj.compSprite.cellSize.X = 8; Obj.compSprite.cellSize.Y = 8; //nonstandard size
+                Obj.compSprite.drawRec.Height = 8; Obj.compSprite.drawRec.Height = 8; //nonstandard size
                 Obj.compSprite.zOffset = 32;
                 Obj.group = ObjGroup.Particle;
                 Obj.lifetime = 24; //in frames
@@ -2535,7 +2535,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Particle_Sparkle)
             {
-                Obj.compSprite.cellSize.X = 8; Obj.compSprite.cellSize.Y = 8; //nonstandard size
+                Obj.compSprite.drawRec.Width = 8; Obj.compSprite.drawRec.Height = 8; //nonstandard size
                 Obj.compSprite.zOffset = 16;
                 Obj.group = ObjGroup.Particle;
                 Obj.lifetime = 24; //in frames
@@ -2545,7 +2545,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Particle_Push)
             {
-                Obj.compSprite.cellSize.X = 8; Obj.compSprite.cellSize.Y = 8; //nonstandard size
+                Obj.compSprite.drawRec.Width = 8; Obj.compSprite.drawRec.Height = 8; //nonstandard size
                 Obj.compSprite.zOffset = 32;
                 Obj.group = ObjGroup.Particle;
                 Obj.lifetime = 6*3; //in frames
@@ -2567,7 +2567,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Particle_Leaf || Type == ObjType.Particle_Debris)
             {
-                Obj.compSprite.cellSize.X = 8; Obj.compSprite.cellSize.Y = 8; //nonstandard size
+                Obj.compSprite.drawRec.Width = 8; Obj.compSprite.drawRec.Height = 8; //nonstandard size
                 Obj.compSprite.zOffset = 16;
                 Obj.group = ObjGroup.Particle;
                 Obj.compAnim.loop = false;
@@ -2702,7 +2702,7 @@ namespace DungeonRun
             //these particles only exist on the overworld map
             else if (Type == ObjType.Particle_Map_Flag)
             {
-                Obj.compSprite.cellSize.X = 8; Obj.compSprite.cellSize.Y = 4; //nonstandard size
+                Obj.compSprite.drawRec.Width = 8; Obj.compSprite.drawRec.Height = 4; //nonstandard size
                 Obj.group = ObjGroup.Particle;
                 Obj.compAnim.speed = 10; //in frames
                 Obj.compAnim.currentAnimation = AnimationFrames.Particle_Map_Flag;
@@ -2711,7 +2711,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Particle_Map_Wave)
             {
-                Obj.compSprite.cellSize.X = 8; Obj.compSprite.cellSize.Y = 4; //nonstandard size
+                Obj.compSprite.drawRec.Width = 8; Obj.compSprite.drawRec.Height = 4; //nonstandard size
                 Obj.group = ObjGroup.Particle;
                 Obj.compAnim.speed = 15; //in frames
                 Obj.lifetime = (byte)(Obj.compAnim.speed * 4); //there are 4 frames of animation
@@ -2721,7 +2721,8 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Particle_Map_Campfire)
             {
-                Obj.compSprite.cellSize.X = 8; Obj.compSprite.cellSize.Y = 8; //nonstandard size
+                Obj.compSprite.drawRec.Width = 8;
+                Obj.compSprite.drawRec.Height = 8; //nonstandard size
                 Obj.group = ObjGroup.Particle;
                 Obj.compAnim.speed = 6; //in frames
                 Obj.compAnim.currentAnimation = AnimationFrames.Particle_Map_Campfire;
@@ -2806,7 +2807,6 @@ namespace DungeonRun
 
 
             SetRotation(Obj);
-            Functions_Component.UpdateCellSize(Obj.compSprite);
             Obj.compSprite.currentFrame = Obj.compAnim.currentAnimation[0]; //goto 1st anim frame
             Functions_Component.Align(Obj.compMove, Obj.compSprite, Obj.compCollision);
         }

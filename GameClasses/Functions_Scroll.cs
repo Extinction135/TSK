@@ -27,8 +27,8 @@ namespace DungeonRun
                 ComponentSprite sprite = new ComponentSprite(
                     Assets.uiItemsSheet, new Vector2(0, 0),
                     new Byte4(0, 0, 0, 0), new Point(32, 16));
-                if (Bkg) { sprite.cellSize.X = 16; }
-                Functions_Component.UpdateCellSize(sprite);
+                if (Bkg) { sprite.drawRec.Width = 16; }
+                
                 sprite.position.X = Pos.X; //set blank's pos
                 sprite.position.Y = Pos.Y + (16 * i);
                 //set sprite's frame

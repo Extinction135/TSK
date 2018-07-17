@@ -1399,7 +1399,6 @@ namespace DungeonRun
         public Texture2D texture;
         public Vector2 position;
         public Byte4 currentFrame;
-        public Point cellSize;
 
         public SpriteEffects spriteEffect; //flip vertically, flip horizontally, none
         public Boolean flipHorizontally;
@@ -1420,7 +1419,6 @@ namespace DungeonRun
             texture = Texture;
             position = Position;
             currentFrame = CurrentFrame;
-            cellSize = CellSize;
             spriteEffect = SpriteEffects.None;
             flipHorizontally = false;
             visible = true;

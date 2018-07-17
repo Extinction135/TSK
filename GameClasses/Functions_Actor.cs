@@ -35,8 +35,8 @@ namespace DungeonRun
             Actor.compSprite.zOffset = 0;
             Actor.compSprite.scale = 1.0f;
             //assume standard actor
-            Actor.compSprite.cellSize.X = 16;
-            Actor.compSprite.cellSize.Y = 16;
+            Actor.compSprite.drawRec.Width = 16;
+            Actor.compSprite.drawRec.Height = 16;
             //setup hitbox for standard 16x16 actor
             Actor.compCollision.rec.Width = 12;
             Actor.compCollision.rec.Height = 8;
@@ -671,8 +671,8 @@ namespace DungeonRun
                 Actor.dashSpeed = 0.30f;
 
                 //this actor is a 2x1 enemy
-                Actor.compSprite.cellSize.X = 16 * 1;
-                Actor.compSprite.cellSize.Y = 16 * 2;
+                Actor.compSprite.drawRec.Width = 16 * 1;
+                Actor.compSprite.drawRec.Height = 16 * 2;
                 Actor.compCollision.offsetY = -4;
 
                 //actor is floating in air
@@ -745,8 +745,8 @@ namespace DungeonRun
                 //because they change based on this actor's health
 
                 //this actor is a 2x3 boss 
-                Actor.compSprite.cellSize.X = 16 * 2;
-                Actor.compSprite.cellSize.Y = 16 * 3;
+                Actor.compSprite.drawRec.Width = 16 * 2;
+                Actor.compSprite.drawRec.Height = 16 * 3;
                 //actor is floating in air
                 Actor.compSprite.zOffset = 16;
                 //set actor sound effects
@@ -783,8 +783,8 @@ namespace DungeonRun
                 //because they change based on this actor's health
 
                 //this actor is a 2x3 boss 
-                Actor.compSprite.cellSize.X = 16 * 2;
-                Actor.compSprite.cellSize.Y = 16 * 3;
+                Actor.compSprite.drawRec.Width = 16 * 2;
+                Actor.compSprite.drawRec.Height = 16 * 3;
 
                 //actor is floating in air
                 Actor.compSprite.zOffset = 32;
@@ -825,8 +825,8 @@ namespace DungeonRun
                 //because they change based on this actor's health
 
                 //this actor is a 2x2 miniboss
-                Actor.compSprite.cellSize.X = 16 * 2;
-                Actor.compSprite.cellSize.Y = 16 * 2;
+                Actor.compSprite.drawRec.Width = 16 * 2;
+                Actor.compSprite.drawRec.Height = 16 * 2;
 
                 Actor.compCollision.offsetY = -4;
                 //actor is floating in air
@@ -859,8 +859,8 @@ namespace DungeonRun
                 Actor.dashSpeed = 0.30f;
 
                 //this actor is a 3x1 miniboss
-                Actor.compSprite.cellSize.X = 16 * 3;
-                Actor.compSprite.cellSize.Y = 16 * 1;
+                Actor.compSprite.drawRec.Width = 16 * 3;
+                Actor.compSprite.drawRec.Height = 16 * 1;
                 Actor.compCollision.offsetY = 0;
                 Actor.compSprite.zOffset = 0;
 
@@ -897,8 +897,8 @@ namespace DungeonRun
                 Actor.chaseRadius = 16 * 30;
 
                 //this actor is a 3x1 miniboss
-                Actor.compSprite.cellSize.X = 16 * 3;
-                Actor.compSprite.cellSize.Y = 16 * 1;
+                Actor.compSprite.drawRec.Width = 16 * 3;
+                Actor.compSprite.drawRec.Height = 16 * 1;
                 Actor.compCollision.offsetY = 0;
                 Actor.compSprite.zOffset = 16;
 
@@ -918,7 +918,6 @@ namespace DungeonRun
 
             SetAnimationGroup(Actor);
             SetAnimationDirection(Actor);
-            Functions_Component.UpdateCellSize(Actor.compSprite);
             Functions_Component.CenterOrigin(Actor.compSprite);
         }
 

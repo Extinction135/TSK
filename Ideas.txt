@@ -48,6 +48,15 @@ scroll background, with selections... i dunno.
 
 
 
+idea: on town level, we can have an inaccesible area.
+then we have an entrance to a blob dungeon, which is built
+very short. upon exiting the blob dungeon, hero spawns inside
+the inaccessible area in town level. we use dungeon generator
+to build the tiny blob dungeon, getting more use out of it.
+
+
+
+
 
 SleepingBat
 sleeping bat roomObject: uses the upside down
