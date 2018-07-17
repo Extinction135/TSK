@@ -254,8 +254,13 @@ namespace DungeonRun
         public static List<Byte4> Wor_Build_Roof_Chimney = new List<Byte4> { new Byte4(10, 12, 0, 0) };
 
 
+        //posts
+        public static List<Byte4> Wor_Post_Vertical_Left = new List<Byte4> { new Byte4(5, 6, 0, 0) };
+        public static List<Byte4> Wor_Post_Corner_Left = new List<Byte4> { new Byte4(5, 7, 0, 0) };
+        public static List<Byte4> Wor_Post_Vertical_Right = new List<Byte4> { new Byte4(5, 6, 1, 0) };
+        public static List<Byte4> Wor_Post_Corner_Right = new List<Byte4> { new Byte4(5, 7, 1, 0) };
 
-
+        public static List<Byte4> Wor_Post_Horizontal = new List<Byte4> { new Byte4(6, 7, 0, 0) };
 
 
         #endregion

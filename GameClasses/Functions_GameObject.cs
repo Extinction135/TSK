@@ -338,7 +338,8 @@ namespace DungeonRun
             }
             */
 
-            else if(Obj.type == ObjType.Dungeon_FloorBlood)
+            else if(Obj.type == ObjType.Dungeon_FloorBlood
+                || Obj.type == ObjType.Dungeon_PitTrap)
             {   //some objects are randomly flipped horizontally
                 Obj.compSprite.flipHorizontally = true;
             }
@@ -1637,6 +1638,55 @@ namespace DungeonRun
             #endregion
 
 
+            #region Posts
+
+            else if (Type == ObjType.Wor_Post_Vertical_Left || Type == ObjType.Wor_Post_Corner_Left)
+            {
+                Obj.canBeSaved = true;
+                Obj.sfx.hit = Assets.sfxTapMetallic;
+                Obj.compSprite.zOffset = 0;
+                //hitbox 
+                Obj.compCollision.rec.Width = 8; Obj.compCollision.offsetX = 0;
+                Obj.compCollision.rec.Height = 16; Obj.compCollision.offsetY = -8;
+                //animframes
+                if (Type == ObjType.Wor_Post_Vertical_Left)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Post_Vertical_Left; }
+                else
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Post_Corner_Left; }
+            }
+
+            else if (Type == ObjType.Wor_Post_Vertical_Right || Type == ObjType.Wor_Post_Corner_Right)
+            {
+                Obj.canBeSaved = true;
+                Obj.sfx.hit = Assets.sfxTapMetallic;
+                Obj.compSprite.zOffset = 0;
+                //hitbox 
+                Obj.compCollision.rec.Width = 8; Obj.compCollision.offsetX = -8;
+                Obj.compCollision.rec.Height = 16; Obj.compCollision.offsetY = -8;
+                //animframes
+                if (Type == ObjType.Wor_Post_Vertical_Right)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Post_Vertical_Right; }
+                else
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Post_Corner_Right; }
+            }
+
+            else if (Type == ObjType.Wor_Post_Horizontal)
+            {
+                Obj.canBeSaved = true;
+                Obj.sfx.hit = Assets.sfxTapMetallic;
+                Obj.compSprite.zOffset = 0;
+                //hitbox 
+                Obj.compCollision.rec.Width = 16; Obj.compCollision.offsetX = -8;
+                Obj.compCollision.rec.Height = 8; Obj.compCollision.offsetY = 0;
+                //animFrame
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Post_Horizontal;
+            }
+            
+
+            #endregion
+
+
+
 
             //Object Enemies
 
@@ -1647,7 +1697,7 @@ namespace DungeonRun
             //standard, miniboss, and boss enemies are ACTORS and handled
             //via Ai Functions.
 
-            else if(Type == ObjType.Wor_Enemy_Turtle
+            else if (Type == ObjType.Wor_Enemy_Turtle
                 || Type == ObjType.Wor_Enemy_Crab)
             {
                 Obj.group = ObjGroup.Enemy;

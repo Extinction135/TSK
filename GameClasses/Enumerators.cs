@@ -396,6 +396,13 @@ namespace DungeonRun
         Wor_Build_Roof_Chimney,
         Wor_Build_Roof_Collapsing, //meta obj for collapsing roofs
 
+        //posts
+        Wor_Post_Vertical_Right,
+        Wor_Post_Corner_Right,
+        Wor_Post_Horizontal,
+        Wor_Post_Corner_Left,
+        Wor_Post_Vertical_Left,
+
 
         #endregion
 

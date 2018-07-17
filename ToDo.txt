@@ -14,17 +14,26 @@ Roadmap
 0.79 - BOAT level, intro, farming + seeds + crops
 
 0.80 - dark world map + 1st level + transition to/from
-0.81 - volcano level + dungeon + enemies
+0.81 - volcano levels + dungeon + enemies
 0.82 - ice levels + dungeon + enemies
-0.83 - graveyard dungeon + enemies
+0.83 - graveyard levels + dungeon + enemies
 
-0.84 - darkworld castle + enemies
+0.84 - darkworld castle level/dungeon + enemies
 0.85 - darkworld queen battle
 0.86 - darkworld storyline
 0.87 - ganon battle + storyline
 
-0.9 - COLOR!!! (keep grayscale as texture option)
-0.9+ - supporting media
+0.88 - secrets
+0.89 - sidequests, extra
+0.90 - COLOR!!! (keep grayscale as texture option)
+
+0.91 - playthrough videos
+0.92 - development videos
+0.93 - intro to codebase / systems design
+0.94 - overall design & direction of TSK
+0.95 - thoughts on zelda franchise
+
+???
 
 1.0 - official release
 
@@ -51,24 +60,28 @@ Today:
 
 
 
-Pit Traps++
-
-fixed a minor bug where pit traps were
-being randomly rotated, which looked very wrong.
-
-
-
-
-
-
-
-
 
 
 Posts++
-Add vertical and hrrizontal posts (we added them
-to the base world section sprites, so they in all sheets).
 
+added vertical, horizontal, and corner posts.
+tested in editor, but not added to any levels,
+yet. 
+
+Pit Traps++
+upgraded pit traps to be randomly flipped 
+horizontally, to break up their visual repetition.
+
+
+
+
+
+
+
+
+
+
+record video talking about mountain walls
 
 
 
