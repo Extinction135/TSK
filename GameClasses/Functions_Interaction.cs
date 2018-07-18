@@ -128,7 +128,8 @@ namespace DungeonRun
                         Functions_Actor.SetAnimationDirection(Pool.hero); 
                         Functions_Particle.Spawn(ObjType.Particle_RewardMap, Pool.hero);
                         Assets.Play(Assets.sfxReward); //play reward / boss defeat sfx
-                        ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.HeroGotMap));
+                        Screens.Dialog.SetDialog(AssetsDialog.HeroGotMap);
+                        ScreenManager.AddScreen(Screens.Dialog);
                     }
                     return;
                 }

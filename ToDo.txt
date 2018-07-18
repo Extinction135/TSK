@@ -61,18 +61,6 @@ Today:
 
 
 
-Prep for Screen Update
-
-removed game1 reference from screen base class.
-leftovers from previous pattern, no longer used.
-
-
-
-
-
-
-
-
 Global Screens
 
 we really need to make level screen global, to fix functions_level.
@@ -82,24 +70,45 @@ which is called automatically by screenManager when a screen
 is added. when a screen is removed, we simply set the screen.visible
 to false, which prevents it from being drawn. the 'order' of screens
 remains similar to instanced screenManager, so the draw order depends
-on the order the screens are added.
+on the order the screens are added. we'll need to add in that visible
+boolean to screens tho..
 
+created Screens global object, with public static (global) instances
+of ALL screens in game. so, instead of creating a screen each time
+the game needs one, we'll pass the global instance of that screen via
+Screens.whatever.
 
+*dialog screen requires a dialog list in it's constructor.
+which means we need to redesign how dialog screen handles dialog 
+lists completely, instead having a method called DisplayDialog(),
+which accepts the dialog list, and is called in place of constructor
+from calling code.
 
+*load save new screen requires an initial state in it's constructor,
+to set the screen's internal display state. move this into a method
+as well, which should be called from calling code.
 
+*vendor screen wants a vendor gameobject in it's constructor,
+which again needs to be moved into a method for calling code.
 
+temp fix: moved all screen's constructor parameters into 
+LoadContent(), just to get by this issue real quick and
+easily mark these screen's loadContent() methods as 'in-dev'
+via visual studio's error list. this completes the global
+access point Screens implementation. 
 
+now lets fix screenManager and screens to work with the
+global screen setup just implemented. done. changed LoadContent()
+to Open() and UnloadContent() to Close(). moved new data created
+into each screen's constructor, out of the Open() method, prevventing
+garbage collection from happening (eventually).
 
+checked that screens are implemented via global access point,
+instead of using instances. lots of playtesting to ensure screens
+are operating properly. they are.
 
-
-
-
-
-
-
-
-
-
+bonus: we can get the active screen anywhere in the game 
+using screenManager.activeScreen. quaint.
 
 
 

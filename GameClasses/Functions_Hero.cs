@@ -251,7 +251,9 @@ namespace DungeonRun
                 {
                     Functions_Particle.Spawn(ObjType.Particle_RewardKey, Pool.hero);
                     LevelSet.currentLevel.bigKey = true;
-                    ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.HeroGotKey));
+                    //setup dialog
+                    Screens.Dialog.SetDialog(AssetsDialog.HeroGotKey);
+                    ScreenManager.AddScreen(Screens.Dialog);
                 }
                 if (Obj.type != ObjType.Dungeon_ChestEmpty)
                 {   //if the chest is not empty, play the reward animation
@@ -271,7 +273,8 @@ namespace DungeonRun
             //Vendors
             else if (Obj.group == ObjGroup.Vendor)
             {
-                ScreenManager.AddScreen(new ScreenVendor(Obj));
+                Screens.Vendor.SetVendor(Obj.type);
+                ScreenManager.AddScreen(Screens.Dialog);
             }
 
 
@@ -284,7 +287,8 @@ namespace DungeonRun
 
                 if(Obj.type == ObjType.NPC_Story)
                 {   //figure out what part of the story the hero is at, pass this dialog
-                    ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Guide));
+                    Screens.Dialog.SetDialog(AssetsDialog.Guide);
+                    ScreenManager.AddScreen(Screens.Dialog);
                 }
 
                 #endregion
@@ -294,7 +298,8 @@ namespace DungeonRun
 
                 else if (Obj.type == ObjType.NPC_Farmer)
                 {
-                    ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Farmer_Setup));
+                    Screens.Dialog.SetDialog(AssetsDialog.Farmer_Setup);
+                    ScreenManager.AddScreen(Screens.Dialog);
                 }
                 else if (Obj.type == ObjType.NPC_Farmer_Reward)
                 {   //convert farmer to end state
@@ -304,11 +309,13 @@ namespace DungeonRun
                     //play reward sfx
                     Assets.Play(Assets.sfxReward);
                     //display reward dialog
-                    ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Farmer_Reward));
+                    Screens.Dialog.SetDialog(AssetsDialog.Farmer_Reward);
+                    ScreenManager.AddScreen(Screens.Dialog);
                 }
                 else if (Obj.type == ObjType.NPC_Farmer_EndDialog)
                 {
-                    ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Farmer_EndDialog));
+                    Screens.Dialog.SetDialog(AssetsDialog.Farmer_EndDialog);
+                    ScreenManager.AddScreen(Screens.Dialog);
                 }
 
                 #endregion
@@ -318,7 +325,8 @@ namespace DungeonRun
 
                 else if (Obj.type == ObjType.Judge_Colliseum)
                 {
-                    ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Colliseum_Judge));
+                    Screens.Dialog.SetDialog(AssetsDialog.Colliseum_Judge);
+                    ScreenManager.AddScreen(Screens.Dialog);
                 }
 
                 #endregion
@@ -372,7 +380,8 @@ namespace DungeonRun
                 }
                 else
                 {   //if hero doesn't have the bigKey, throw a dialog screen telling player this
-                    ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.DoesNotHaveKey));
+                    Screens.Dialog.SetDialog(AssetsDialog.DoesNotHaveKey);
+                    ScreenManager.AddScreen(Screens.Dialog);
                 }
             }
 
@@ -410,19 +419,23 @@ namespace DungeonRun
 
             else if (Obj.type == ObjType.Wor_Entrance_ForestDungeon)
             {   //give player choice to enter
-                ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Enter_ForestDungeon));
+                Screens.Dialog.SetDialog(AssetsDialog.Enter_ForestDungeon);
+                ScreenManager.AddScreen(Screens.Dialog);
             }
             else if (Obj.type == ObjType.Wor_Entrance_Colliseum)
             {   //give player choice to enter
-                ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Enter_Colliseum));
+                Screens.Dialog.SetDialog(AssetsDialog.Enter_Colliseum);
+                ScreenManager.AddScreen(Screens.Dialog);
             }
             else if (Obj.type == ObjType.Wor_Entrance_MountainDungeon)
             {   //give player choice to enter
-                ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Enter_MountainDungeon));
+                Screens.Dialog.SetDialog(AssetsDialog.Enter_MountainDungeon);
+                ScreenManager.AddScreen(Screens.Dialog);
             }
             else if (Obj.type == ObjType.Wor_Entrance_SwampDungeon)
             {   //give player choice to enter
-                ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Enter_SwampDungeon));
+                Screens.Dialog.SetDialog(AssetsDialog.Enter_SwampDungeon);
+                ScreenManager.AddScreen(Screens.Dialog);
             }
 
             #endregion
@@ -660,9 +673,15 @@ namespace DungeonRun
             if(Achievement == Achievements.WallJumps)
             {   //check wall jumps
                 if (PlayerData.current.recorded_wallJumps == 10)
-                { ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Achievement_WallJumps_10)); }
+                {
+                    Screens.Dialog.SetDialog(AssetsDialog.Achievement_WallJumps_10);
+                    ScreenManager.AddScreen(Screens.Dialog);
+                }
                 else if(PlayerData.current.recorded_wallJumps == 100)
-                { ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Achievement_WallJumps_100)); }
+                {
+                    Screens.Dialog.SetDialog(AssetsDialog.Achievement_WallJumps_100);
+                    ScreenManager.AddScreen(Screens.Dialog);
+                }
             }
         }
 

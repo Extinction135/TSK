@@ -33,7 +33,7 @@ namespace DungeonRun
 
         public ScreenLevel() { this.name = "LevelScreen"; }
 
-        public override void LoadContent()
+        public override void Open()
         {   
             overlay.alpha = 1.0f;
             overlay.fadeOutSpeed = 0.025f;
@@ -116,7 +116,7 @@ namespace DungeonRun
 
                     //handle exit action
                     if (exitAction == ExitAction.Summary)
-                    { ScreenManager.ExitAndLoad(new ScreenSummary()); }
+                    { ScreenManager.ExitAndLoad(Screens.Summary); }
                     else if (exitAction == ExitAction.ExitDungeon)
                     {
                         //hero doesn't return to overworld
@@ -124,25 +124,25 @@ namespace DungeonRun
 
                         //instead hero loads into the last field level
                         LevelSet.currentLevel = LevelSet.field;
-                        ScreenManager.ExitAndLoad(new ScreenLevel());
+                        ScreenManager.ExitAndLoad(Screens.Level);
                     }
                     else if (exitAction == ExitAction.Overworld)
                     {
-                        ScreenManager.ExitAndLoad(new ScreenOverworld());
+                        ScreenManager.ExitAndLoad(Screens.Overworld);
                     }
                     else if (exitAction == ExitAction.Title)
                     {
-                        ScreenManager.ExitAndLoad(new ScreenTitle());
+                        ScreenManager.ExitAndLoad(Screens.Title);
                     }
                     else if (exitAction == ExitAction.Field)
                     {   //point to field level
                         LevelSet.currentLevel = LevelSet.field;
-                        ScreenManager.ExitAndLoad(new ScreenLevel());
+                        ScreenManager.ExitAndLoad(Screens.Level);
                     }
                     else if (exitAction == ExitAction.Dungeon)
                     {   //point to dungeon level
                         LevelSet.currentLevel = LevelSet.dungeon;
-                        ScreenManager.ExitAndLoad(new ScreenLevel());
+                        ScreenManager.ExitAndLoad(Screens.Level);
                     }
                     
                     if (Flags.PrintOutput)

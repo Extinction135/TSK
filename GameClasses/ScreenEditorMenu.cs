@@ -25,17 +25,19 @@ namespace DungeonRun
 
 
 
-        public ScreenEditorMenu() { this.name = "Editor Menu Screen"; }
+        public ScreenEditorMenu()
+        {
+            this.name = "Editor Menu Screen";
+            currentSheet = new ComponentButton("---", new Point(16, 16 + 2));
+            currentSheet.rec.Width = 16 * 5;
+        }
 
-        public override void LoadContent()
+        public override void Open()
         {
             bkgRec.alpha = 0.0f;
             bkgRec.fadeInSpeed = 0.12f;
             bkgRec.maxAlpha = 0.5f;
             bkgRec.fadeState = FadeState.FadeIn;
-
-            currentSheet = new ComponentButton("---", new Point(16, 16 + 2));
-            currentSheet.rec.Width = 16 * 5;
 
             //initialize to forest state
             ResetWidgets();

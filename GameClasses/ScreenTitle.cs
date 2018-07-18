@@ -36,24 +36,20 @@ namespace DungeonRun
 
 
 
-        public ScreenTitle() { this.name = "TitleScreen"; }
-
-        public override void LoadContent()
+        public ScreenTitle()
         {
-            overlay.alpha = 6.0f;
-            overlay.fadeInSpeed = 0.03f; //slower closing fade
+            this.name = "TitleScreen";
 
             background = new ComponentSprite(Assets.titleBkgSheet,
-                new Vector2(640/2, 360/2), new Byte4(0, 0, 0, 0), new Point(640, 360));
+                new Vector2(640 / 2, 360 / 2), new Byte4(0, 0, 0, 0), new Point(640, 360));
             window = new MenuWindow(
                 new Point(16 * 15 + 8, 16 * 15 + 8),
-                new Point(16 * 9 + 8, 16 * 4), 
+                new Point(16 * 9 + 8, 16 * 4),
                 "Main Menu");
-            title = new ComponentSprite(Assets.bigTextSheet, 
+            title = new ComponentSprite(Assets.bigTextSheet,
                 new Vector2(583 - 256, 200), //center
-                new Byte4(0, 0, 0, 0), 
+                new Byte4(0, 0, 0, 0),
                 new Point(16 * 16, 16 * 4));
-            title.alpha = 0.0f;
 
 
             #region Create the menuItems
@@ -63,12 +59,12 @@ namespace DungeonRun
             Functions_MenuItem.SetType(MenuItemType.OptionsNewGame, newGame);
             Functions_MenuItem.SetType(MenuItemType.OptionsLoadGame, loadGame);
             Functions_MenuItem.SetType(MenuItemType.OptionsQuitGame, quitGame);
-            
+
             //add the menuItems to the menuItems list
             menuItems.Add(newGame);
             menuItems.Add(loadGame);
             menuItems.Add(quitGame);
-            
+
             //set the menuItem's neighbors
             Functions_MenuItem.SetNeighbors(menuItems, 3);
 
@@ -91,7 +87,7 @@ namespace DungeonRun
             labels = new List<ComponentText>();
             //row 1
             labels.Add(new ComponentText(Assets.font, "new\ngame",
-                newGame.compSprite.position + new Vector2(11, -12), 
+                newGame.compSprite.position + new Vector2(11, -12),
                 Assets.colorScheme.textDark));
             labels.Add(new ComponentText(Assets.font, "load\ngame",
                 loadGame.compSprite.position + new Vector2(11, -12),
@@ -103,17 +99,24 @@ namespace DungeonRun
             #endregion
 
 
+            //create the selectionBox
+            selectionBox = new ComponentSprite(Assets.uiItemsSheet,
+                new Vector2(0, 0),
+                AnimationFrames.Ui_SelectionBox[0],
+                new Point(16, 16));
+        }
+
+        public override void Open()
+        {
+            overlay.alpha = 6.0f;
+            overlay.fadeInSpeed = 0.03f; //slower closing fade
+            title.alpha = 0.0f;
+
             //set the currently selected menuItem to the first inventory menuItem
             currentlySelected = menuItems[0];
             previouslySelected = menuItems[0];
-            //create the selectionBox
-            selectionBox = new ComponentSprite(Assets.uiItemsSheet,
-                new Vector2(0, 0), 
-                AnimationFrames.Ui_SelectionBox[0],
-                new Point(16, 16));
             //open the screen
             displayState = DisplayState.Opening;
-            
             //play the title music
             Functions_Music.PlayMusic(Music.Title);
 
@@ -144,11 +147,13 @@ namespace DungeonRun
 
                     if (currentlySelected.type == MenuItemType.OptionsNewGame)
                     {
-                        ScreenManager.AddScreen(new ScreenLoadSaveNew(LoadSaveNewState.New));
+                        Screens.LoadSaveNew.SetState(LoadSaveNewState.New);
+                        ScreenManager.AddScreen(Screens.LoadSaveNew);
                     }
                     else if (currentlySelected.type == MenuItemType.OptionsLoadGame)
                     {
-                        ScreenManager.AddScreen(new ScreenLoadSaveNew(LoadSaveNewState.Load));
+                        Screens.LoadSaveNew.SetState(LoadSaveNewState.Load);
+                        ScreenManager.AddScreen(Screens.LoadSaveNew);
                     }
                     else if (currentlySelected.type == MenuItemType.OptionsQuitGame)
                     {

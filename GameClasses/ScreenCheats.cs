@@ -30,30 +30,26 @@ namespace DungeonRun
         //simply visually tracks which menuItem is selected
         public ComponentSprite selectionBox;
 
+        int columns = 8;
+        int rows = 5;
 
 
-        public ScreenCheats() { this.name = "Cheats Screen"; }
 
-        public override void LoadContent()
+        public ScreenCheats()
         {
-            //setup the screen
-            background.alpha = 0.0f;
-            background.fadeInSpeed = 0.03f;
-            background.fadeOutSpeed = 0.07f;
-            background.maxAlpha = 0.7f;
-            displayState = DisplayState.Opening;
+            this.name = "Cheats Screen";
 
-
-            #region Create Window, Labels, MenuItems
+            //create the selectionBox
+            selectionBox = new ComponentSprite(Assets.uiItemsSheet,
+                new Vector2(0, 0),
+                AnimationFrames.Ui_SelectionBox[0],
+                new Point(16, 16));
 
             //create the bkg window
             window = new MenuWindow(
-                new Point(16 * 8 - 8, 16 * 4), 
-                new Point(16 * 18, 16 * 14 + 8), 
+                new Point(16 * 8 - 8, 16 * 4),
+                new Point(16 * 18, 16 * 14 + 8),
                 "Cheats");
-
-            int columns = 8;
-            int rows = 5;
 
             //create menuitem labels
             labels = new List<ComponentText>();
@@ -67,9 +63,17 @@ namespace DungeonRun
             //create menuitems
             menuItems = new List<MenuItem>();
             for (i = 0; i < columns * rows; i++) { menuItems.Add(new MenuItem()); }
+        }
 
-            #endregion
-
+        public override void Open()
+        {
+            //setup the screen
+            background.alpha = 0.0f;
+            background.fadeInSpeed = 0.03f;
+            background.fadeOutSpeed = 0.07f;
+            background.maxAlpha = 0.7f;
+            displayState = DisplayState.Opening;
+            
 
             #region Set MenuItems & Labels
 
@@ -122,8 +126,6 @@ namespace DungeonRun
             #endregion
 
 
-
-
             #region Finish Up, prep for screen opening
 
             //set labels relative to menuItems
@@ -140,11 +142,7 @@ namespace DungeonRun
             currentlySelected = menuItems[0];
             previouslySelected = menuItems[0];
             Widgets.Info.Display(currentlySelected);
-            //create the selectionBox
-            selectionBox = new ComponentSprite(Assets.uiItemsSheet,
-                new Vector2(0, 0),
-                AnimationFrames.Ui_SelectionBox[0],
-                new Point(16, 16));
+            
             //play the opening soundFX
             Assets.Play(Assets.sfxWindowOpen);
 

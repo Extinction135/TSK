@@ -134,7 +134,11 @@ namespace DungeonRun
                 SaveGame(Type); dialog = AssetsDialog.GameNotFound;
             }
             //if loaded data is current game, notify player of loading via dialog screen
-            if (loadAsCurrentGame) { ScreenManager.AddScreen(new ScreenDialog(dialog)); }
+            if (loadAsCurrentGame) 
+			{ 
+				Screens.Dialog.SetDialog(dialog);
+                ScreenManager.AddScreen(Screens.Dialog);
+			}
             //Functions_Debug.Inspect(PlayerData.saveData);
         }
 

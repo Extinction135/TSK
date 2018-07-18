@@ -170,37 +170,44 @@ namespace DungeonRun
             //field signposts
             if (LevelSet.currentLevel.ID == LevelID.Forest_Entrance)
             {
-                ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Signpost_ForestEntrance));
+                Screens.Dialog.SetDialog(AssetsDialog.Signpost_ForestEntrance);
+                ScreenManager.AddScreen(Screens.Dialog);
             }
             else if (LevelSet.currentLevel.ID == LevelID.Mountain_Entrance)
             {
-                ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Signpost_MountainEntrance));
+                Screens.Dialog.SetDialog(AssetsDialog.Signpost_MountainEntrance);
+                ScreenManager.AddScreen(Screens.Dialog);
             }
 
             else if(LevelSet.currentLevel.ID == LevelID.LeftTown2)
             {
-                ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Signpost_LeftTown2));
+                Screens.Dialog.SetDialog(AssetsDialog.Signpost_LeftTown2);
+                ScreenManager.AddScreen(Screens.Dialog);
             }
             else if (LevelSet.currentLevel.ID == LevelID.TheFarm)
             {
-                ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Signpost_TheFarm));
+                Screens.Dialog.SetDialog(AssetsDialog.Signpost_TheFarm);
+                ScreenManager.AddScreen(Screens.Dialog);
             }
             else if (LevelSet.currentLevel.ID == LevelID.Colliseum)
             {
-                ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Signpost_Colliseum));
+                Screens.Dialog.SetDialog(AssetsDialog.Signpost_Colliseum);
+                ScreenManager.AddScreen(Screens.Dialog);
             }
 
 
             //dungeon signposts
             else if (LevelSet.currentLevel.currentRoom.roomID == RoomID.Exit)
             {
-                ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Signpost_ExitRoom));
+                Screens.Dialog.SetDialog(AssetsDialog.Signpost_ExitRoom);
+                ScreenManager.AddScreen(Screens.Dialog);
             }
 
 
             else
             {   //bare minimum, we pop a blank standard dialog
-                ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Signpost_Standard));
+                Screens.Dialog.SetDialog(AssetsDialog.Signpost_Standard);
+                ScreenManager.AddScreen(Screens.Dialog);
             }
         }
 

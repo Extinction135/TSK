@@ -27,11 +27,9 @@ namespace DungeonRun
         float ratingChange = 0.0f;
 
 
-        public ScreenSummary() { this.name = "SummaryScreen"; }
-
-        public override void LoadContent()
+        public ScreenSummary()
         {
-            background.alpha = 1.0f;
+            this.name = "SummaryScreen";
 
 
             #region Create Title
@@ -39,7 +37,7 @@ namespace DungeonRun
             Byte4 frame = new Byte4(0, 1, 0, 0);
             if (DungeonRecord.beatDungeon) { frame.Y = 2; }
             title = new ComponentSprite(Assets.bigTextSheet,
-                    new Vector2(583 - 256, 80), 
+                    new Vector2(583 - 256, 80),
                     frame,
                     new Point(16 * 16, 16 * 4));
             title.alpha = 0.0f;
@@ -49,12 +47,12 @@ namespace DungeonRun
 
             #region Create the summary + data + continue text fields
 
-            summaryText = new ComponentText(Assets.medFont, 
+            summaryText = new ComponentText(Assets.medFont,
                 "time \nenemies \ndamage \nrating",
                 new Vector2(220, 150),
                 Assets.colorScheme.textLight);
             summaryText.alpha = 0.0f;
-            summaryData = new ComponentText(Assets.medFont, 
+            summaryData = new ComponentText(Assets.medFont,
                 "00:00:00 \n0 \n0 \n0",
                 new Vector2(330, 150),
                 Assets.colorScheme.textLight);
@@ -67,7 +65,11 @@ namespace DungeonRun
 
             #endregion
 
-            
+        }
+
+        public override void Open()
+        {
+            background.alpha = 1.0f;
             Functions_Music.PlayMusic(Music.Title); //play title music
             //fill hero's health up to max - prevents drum track from playing
             Pool.hero.health = PlayerData.current.heartsTotal;
@@ -117,6 +119,15 @@ namespace DungeonRun
 
             #endregion
 
+
+            //reset stuff
+            title.alpha = 0.0f;
+            continueText.alpha = 0.0f;
+            summaryText.alpha = 0.0f;
+            summaryData.alpha = 0.0f;
+            enemyCount = 0;
+            totalDamage = 0;
+            ratingChange = 0.0f;
         }
 
         public override void HandleInput(GameTime GameTime)
@@ -210,7 +221,7 @@ namespace DungeonRun
                 //get last location
                 LevelSet.currentLevel.ID = PlayerData.current.lastLocation;
                 //exit all screens, return to overworld
-                ScreenManager.ExitAndLoad(new ScreenOverworld());
+                ScreenManager.ExitAndLoad(Screens.Overworld);
             }
 
             #endregion

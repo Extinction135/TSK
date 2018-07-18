@@ -25,9 +25,18 @@ namespace DungeonRun
 
 
 
-        public ScreenInventory() { this.name = "InventoryScreen"; }
+        public ScreenInventory()
+        {
+            this.name = "InventoryScreen";
 
-        public override void LoadContent()
+            //create the selectionBox
+            selectionBox = new ComponentSprite(Assets.uiItemsSheet,
+                new Vector2(0, 0),
+                AnimationFrames.Ui_SelectionBox[0],
+                new Point(16, 16));
+        }
+
+        public override void Open()
         {
             background.alpha = 0.0f;
             background.fadeInSpeed = 0.03f;
@@ -101,11 +110,7 @@ namespace DungeonRun
             currentlySelected = Widgets.Inventory.menuItems[0];
             previouslySelected = Widgets.Inventory.menuItems[0];
             Widgets.Info.Display(currentlySelected);
-            //create the selectionBox
-            selectionBox = new ComponentSprite(Assets.uiItemsSheet, 
-                new Vector2(0, 0), 
-                AnimationFrames.Ui_SelectionBox[0], 
-                new Point(16, 16));
+            
             //play the opening soundFX
             Assets.Play(Assets.sfxWindowOpen);
         }
@@ -127,7 +132,7 @@ namespace DungeonRun
 
                 if (currentlySelected.type == MenuItemType.InventoryMap)
                 {   //create a new map screen
-                    ScreenManager.AddScreen(new ScreenLevelMap());
+                    ScreenManager.AddScreen(Screens.LevelMap);
                 }
 
                 #endregion
@@ -143,19 +148,21 @@ namespace DungeonRun
                 }
                 else if (currentlySelected.type == MenuItemType.OptionsCheatMenu)
                 {
-                    ScreenManager.AddScreen(new ScreenCheats());
+                    ScreenManager.AddScreen(Screens.Cheats);
                 }
                 else if (currentlySelected.type == MenuItemType.OptionsOptionsMenu)
                 {
-                    ScreenManager.AddScreen(new ScreenOptions());
+                    ScreenManager.AddScreen(Screens.Options);
                 }
                 else if (currentlySelected.type == MenuItemType.OptionsSaveGame)
                 {
-                    ScreenManager.AddScreen(new ScreenLoadSaveNew(LoadSaveNewState.Save));
+                    Screens.LoadSaveNew.SetState(LoadSaveNewState.Save);
+                    ScreenManager.AddScreen(Screens.LoadSaveNew);
                 }
                 else if (currentlySelected.type == MenuItemType.OptionsLoadGame)
                 {
-                    ScreenManager.AddScreen(new ScreenLoadSaveNew(LoadSaveNewState.Load));
+                    Screens.LoadSaveNew.SetState(LoadSaveNewState.Load);
+                    ScreenManager.AddScreen(Screens.LoadSaveNew);
                 }
 
                 #endregion
@@ -334,7 +341,7 @@ namespace DungeonRun
                 }
                 else if (exitAction == ExitAction.Title)
                 {   //bkg has faded out
-                    ScreenManager.ExitAndLoad(new ScreenTitle());
+                    ScreenManager.ExitAndLoad(Screens.Title);
                 }
             }
 

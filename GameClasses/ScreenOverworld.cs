@@ -34,16 +34,12 @@ namespace DungeonRun
         
 
 
-        public ScreenOverworld() { this.name = "OverworldScreen"; }
-
-        public override void LoadContent()
+        public ScreenOverworld()
         {
-            overlay.alpha = 1.0f;
-            overlay.fadeInSpeed = 0.04f;
-            overlay.fadeOutSpeed = 0.04f;
+            this.name = "OverworldScreen";
 
             map = new ComponentSprite(Assets.overworldSheet,
-                new Vector2(640/2, 360/2), new Byte4(0, 0, 0, 0), new Point(1280, 720));
+                new Vector2(640 / 2, 360 / 2), new Byte4(0, 0, 0, 0), new Point(1280, 720));
             map.position.X = map.drawRec.Width / 2;
             map.position.Y = map.drawRec.Height / 2;
 
@@ -74,7 +70,7 @@ namespace DungeonRun
             locations.Add(wallConnector);
             MapLocation rightTown = new MapLocation(false, new Vector2(514, 189));
             locations.Add(rightTown);
-            
+
             MapLocation colliseumLeft = new MapLocation(false, new Vector2(258, 178));
             locations.Add(colliseumLeft);
             MapLocation forestDungeon = new MapLocation(true, new Vector2(265, 125));
@@ -123,7 +119,6 @@ namespace DungeonRun
 
             #region Set maplocation's neighbors
 
-
             //dev neighbors - this may remain
             ship.neighborDown = centerIsland;
             centerIsland.neighborUp = ship;
@@ -135,7 +130,7 @@ namespace DungeonRun
             leftCastleTown.neighborDown = castle;
             castle.neighborLeft = leftCastleTown;
             castle.neighborUp = leftCastleTown;
-            
+
             castle.neighborDown = gate;
             gate.neighborUp = castle;
 
@@ -219,7 +214,7 @@ namespace DungeonRun
             else if (LevelSet.field.ID == LevelID.LeftTown2)
             { currentLocation = leftTown2; }
 
-            else if(LevelSet.field.ID == LevelID.Colliseum
+            else if (LevelSet.field.ID == LevelID.Colliseum
                 || LevelSet.field.ID == LevelID.ColliseumPit)
             { currentLocation = colliseum; }
 
@@ -234,43 +229,12 @@ namespace DungeonRun
 
 
 
-
-
-
-
-
-
             else //default to colliseum if unknown
             { currentLocation = colliseum; }
             //set target to current (no initial target)
             targetLocation = currentLocation;
 
             #endregion
-
-
-
-            //setup hero overworld actor
-            hero = Pool.hero;
-            hero.feetFX.visible = false;
-
-            //teleport hero to current location
-            Functions_Movement.Teleport(hero.compMove,
-                currentLocation.compSprite.position.X,
-                currentLocation.compSprite.position.Y - 8);
-            Functions_Component.Align(hero);
-
-            //prevents drown sprite from appearing, if hero died in water
-            hero.underwater = false; hero.swimming = false;
-            Functions_Actor.Update(hero);
-
-            //play the title music
-            Functions_Music.PlayMusic(Music.Title);
-            //prevent kick drum from playing during overworld map
-            if (Pool.hero.health < 3) { Pool.hero.health = 3; } 
-            //grab the hero's current loadout
-            Functions_Hero.SetLoadout();
-            //reset the pool
-            Functions_Pool.Reset();
 
 
             #region Add Animated Particles / Sprites to Map
@@ -306,10 +270,44 @@ namespace DungeonRun
             //create map campfires
             Functions_Particle.Spawn(ObjType.Particle_Map_Campfire, 505, 257); //tent town
             Functions_Particle.Spawn(ObjType.Particle_Map_Campfire, 299, 297); //center island
-            
-            
+
+
             #endregion
 
+
+        }
+
+
+
+        public override void Open()
+        {
+            
+
+            overlay.alpha = 1.0f;
+            overlay.fadeInSpeed = 0.04f;
+            overlay.fadeOutSpeed = 0.04f;
+
+            //setup hero overworld actor
+            hero = Pool.hero;
+            hero.feetFX.visible = false;
+
+            //teleport hero to current location
+            Functions_Movement.Teleport(hero.compMove,
+                currentLocation.compSprite.position.X,
+                currentLocation.compSprite.position.Y - 8);
+            Functions_Component.Align(hero);
+
+            //prevents drown sprite from appearing, if hero died in water
+            hero.underwater = false; hero.swimming = false;
+            Functions_Actor.Update(hero);
+
+            //play the title music
+            Functions_Music.PlayMusic(Music.Title);
+            //prevent kick drum from playing during overworld map
+            if (Pool.hero.health < 3) { Pool.hero.health = 3; } 
+
+            //reset the pool
+            Functions_Pool.Reset();
 
             //set the player's sprite based on the hero.actorType
             if (PlayerData.current.actorType == ActorType.Blob)
@@ -320,6 +318,8 @@ namespace DungeonRun
             //autosave the current game, etc..
             Functions_Backend.SaveGame(GameFile.AutoSave);
             Assets.Play(Assets.sfxMapOpen);
+            displayState = DisplayState.Opening;
+            //set map bkg color
             Assets.colorScheme.background = Assets.colorScheme.bkg_lightWorld;
         }
 
@@ -385,7 +385,7 @@ namespace DungeonRun
                         }
                     }
                     else if (Functions_Input.IsNewButtonPress(Buttons.Start))
-                    { ScreenManager.AddScreen(new ScreenInventory()); }
+                    { ScreenManager.AddScreen(Screens.Inventory); }
                 }
             }
         }
@@ -502,7 +502,7 @@ namespace DungeonRun
                 LevelSet.currentLevel = LevelSet.field;
                 
                 //load the level, building the room(s)
-                ScreenManager.ExitAndLoad(new ScreenLevel());
+                ScreenManager.ExitAndLoad(Screens.Level);
             }
         }
 

@@ -16,10 +16,11 @@ namespace DungeonRun
     {
 
         public static Game1 game;
-        public static List<Screen> screens;
-        public static List<Screen> screensToUpdate;
+
+        public static List<Screen> screens; //list of active screens
+        public static Screen activeScreen; //targets the active screen
+
         public static SpriteBatch spriteBatch;
-        public static bool coveredByOtherScreen;
         public static RenderTarget2D renderSurface;
         public static GameTime gameTime;
 
@@ -29,7 +30,6 @@ namespace DungeonRun
         {
             game = Game1;
             screens = new List<Screen>();
-            screensToUpdate = new List<Screen>();
             spriteBatch = new SpriteBatch(game.GraphicsDevice);
             renderSurface = new RenderTarget2D(game.GraphicsDevice, 640, 360);
 
@@ -69,13 +69,10 @@ namespace DungeonRun
             gameTime = GameTime;
             Functions_Input.Update();
 
-            screensToUpdate.Clear();
-            screensToUpdate.AddRange(screens);
-            coveredByOtherScreen = false;
-
             if (screens.Count > 0)
             {
-                Screen activeScreen = screens[screens.Count - 1];
+                //the only 'active screen' is the last one (top one)
+                activeScreen = screens[screens.Count - 1];
                 activeScreen.HandleInput(GameTime);
                 activeScreen.Update(GameTime);
             }
@@ -194,15 +191,14 @@ namespace DungeonRun
 
         public static void AddScreen(Screen screen)
         {   
-            screen.LoadContent();
-            screens.Add(screen);
+            screen.Open(); //this resets the screen to opening state
+            screens.Add(screen); //add the global screen instance to the active list
         }
 
         public static void RemoveScreen(Screen screen)
         {
-            screen.UnloadContent();
+            screen.Close();
             screens.Remove(screen);
-            screensToUpdate.Remove(screen);
         }
 
         public static void ExitAndLoad(Screen screenToLoad)
@@ -211,16 +207,13 @@ namespace DungeonRun
             {
                 try
                 {
-                    screens[0].UnloadContent();
-                    screensToUpdate.Remove(screens[0]);
+                    screens[0].Close();
                     screens.Remove(screens[0]);
                 }
                 catch { }
             }
             AddScreen(screenToLoad);
         }
-
-        public static void UnloadContent() { foreach (Screen screen in screens) { screen.UnloadContent(); } }
 
     }
 }

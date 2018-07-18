@@ -18,7 +18,7 @@ namespace DungeonRun
     {
         public ScreenEditor() { this.name = "Editor Screen"; }
 
-        public override void LoadContent()
+        public override void Open()
         {
             //based on the boot routine, setup the editor differently
             if(Flags.bootRoutine == BootRoutine.Editor_Level)
@@ -28,7 +28,7 @@ namespace DungeonRun
                 
                 Widgets.RoomTools.roomData = new RoomXmlData();
                 Widgets.RoomTools.roomData.type = RoomID.DEV_Field;
-                base.LoadContent();
+                base.Open();
 
                 Widgets.RoomTools.SetState(WidgetRoomToolsState.Level);
                 //fields auto-teleport hero to field spawn point
@@ -40,7 +40,7 @@ namespace DungeonRun
 
                 Widgets.RoomTools.roomData = new RoomXmlData();
                 Widgets.RoomTools.roomData.type = RoomID.DEV_Row;
-                base.LoadContent();
+                base.Open();
 
                 Widgets.RoomTools.SetState(WidgetRoomToolsState.Room);
                 //teleport hero to outside of room at top left corner
@@ -99,7 +99,7 @@ namespace DungeonRun
             }
             else if (Functions_Input.IsNewKeyPress(Keys.Back)) //backspace!
             {
-                ScreenManager.AddScreen(new ScreenEditorMenu());
+                ScreenManager.AddScreen(Screens.EditorMenu);
             }
 
             #endregion

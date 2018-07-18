@@ -35,20 +35,46 @@ namespace DungeonRun
         ComponentSprite selectionBox;
         ComponentSprite arrow;
         ComponentText actionText;
-        
 
 
-        public ScreenLoadSaveNew(LoadSaveNewState State)
+
+
+
+
+        public void SetState(LoadSaveNewState State)
         {
             screenState = State;
-            this.name = "ScreenLoadSaveNew";
+
+            playerStationary = new ComponentAnimation();
+            playerStationary.currentAnimation = new List<Byte4> { new Byte4(0, 0, 0, 0) };
+
+            playerWalking = new ComponentAnimation();
+            playerWalking.currentAnimation = new List<Byte4> { new Byte4(1, 0, 0, 0), new Byte4(1, 0, 1, 0) };
         }
 
-        public override void LoadContent()
+
+
+
+        public ScreenLoadSaveNew()
         {
-            background.alpha = 0.0f;
-            background.fadeInSpeed = 0.03f;
-            background.maxAlpha = 0.8f;
+            this.name = "ScreenLoadSaveNew";
+            //defaults to new
+            screenState = LoadSaveNewState.New;
+
+            //create the selectionBox
+            selectionBox = new ComponentSprite(Assets.uiItemsSheet,
+                new Vector2(0, 0),
+                AnimationFrames.Ui_SelectionBox[0],
+                new Point(16, 16));
+            //create the arrow
+            arrow = new ComponentSprite(Assets.uiItemsSheet,
+                new Vector2(1000, 0),
+                new Byte4(14, 1, 0, 0),
+                new Point(16, 16));
+            arrow.rotation = Rotation.Clockwise90;
+            //create action text
+            actionText = new ComponentText(Assets.font, "",
+                new Vector2(0, 0), Assets.colorScheme.textDark);
 
 
             #region Create & set window and dividers
@@ -66,9 +92,6 @@ namespace DungeonRun
             window.lines[4].position.Y = window.background.position.Y + 16 * 5;
             window.lines[5].position.Y = window.background.position.Y + 16 * 7;
             window.lines[6].position.Y = window.background.position.Y + 16 * 8;
-            Functions_MenuWindow.ResetAndMove(window,
-                16 * 13 + 8 + 4, 16 * 6,
-                new Point(16 * 12 + 8, 16 * 11), "Default");
 
             #endregion
 
@@ -114,12 +137,6 @@ namespace DungeonRun
             game2.hero.position = game2.menuItem.compSprite.position;
             game3.hero.position = game3.menuItem.compSprite.position;
 
-            playerStationary = new ComponentAnimation();
-            playerStationary.currentAnimation = new List<Byte4> { new Byte4(0, 0, 0, 0) };
-
-            playerWalking = new ComponentAnimation();
-            playerWalking.currentAnimation = new List<Byte4> { new Byte4(1, 0, 0, 0), new Byte4(1, 0, 1, 0) };
-
             #endregion
 
 
@@ -130,6 +147,9 @@ namespace DungeonRun
             game3.timeDateText.position = game3.menuItem.compSprite.position + new Vector2(16, -12);
 
             #endregion
+
+
+            #region Setup Quest Item 
 
             //place last collected quest item for all 3 games
             //setup the last collected quest item
@@ -142,24 +162,25 @@ namespace DungeonRun
             game3.lastStoryItem.compSprite.position.X = game3.menuItem.compSprite.position.X + 16 * 9 - 3;
             game3.lastStoryItem.compSprite.position.Y = game3.menuItem.compSprite.position.Y;
 
+            #endregion
+
+
+        }
+
+        public override void Open()
+        {
+            background.alpha = 0.0f;
+            background.fadeInSpeed = 0.03f;
+            background.maxAlpha = 0.8f;
+
+            Functions_MenuWindow.ResetAndMove(window,
+                16 * 13 + 8 + 4, 16 * 6,
+                new Point(16 * 12 + 8, 16 * 11), "Default");
+
+
             PopulateDisplay(PlayerData.game1, game1);
             PopulateDisplay(PlayerData.game2, game2);
             PopulateDisplay(PlayerData.game3, game3);
-
-            //create the selectionBox
-            selectionBox = new ComponentSprite(Assets.uiItemsSheet,
-                new Vector2(0, 0), 
-                AnimationFrames.Ui_SelectionBox[0],
-                new Point(16, 16));
-            //create the arrow
-            arrow = new ComponentSprite(Assets.uiItemsSheet,
-                new Vector2(1000, 0), 
-                new Byte4(14, 1, 0, 0),
-                new Point(16, 16));
-            arrow.rotation = Rotation.Clockwise90;
-            //create action text
-            actionText = new ComponentText(Assets.font, "",
-                new Vector2(0, 0), Assets.colorScheme.textDark);
 
 
             #region Modify components based on screenState
@@ -183,7 +204,7 @@ namespace DungeonRun
             Assets.Play(Assets.sfxWindowOpen);
         }
 
-        public override void UnloadContent()
+        public override void Close()
         {   //silently reload the latest game files
             Functions_Backend.LoadGame(GameFile.Game1, false);
             Functions_Backend.LoadGame(GameFile.Game2, false);
@@ -248,8 +269,15 @@ namespace DungeonRun
                         }
                         //create dialog screen, let player know file has been created or saved
                         if (screenState == LoadSaveNewState.New)
-                        { ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.GameCreated)); }
-                        else { ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.GameSaved)); }
+                        {
+                            Screens.Dialog.SetDialog(AssetsDialog.GameCreated);
+                            ScreenManager.AddScreen(Screens.Dialog);
+                        }
+                        else
+                        {
+                            Screens.Dialog.SetDialog(AssetsDialog.GameSaved);
+                            ScreenManager.AddScreen(Screens.Dialog);
+                        }
                     }
                     //save current game to autoSave file (sets autosave)
                     Functions_Backend.SaveGame(GameFile.AutoSave);

@@ -31,24 +31,28 @@ namespace DungeonRun
         public ComponentText exitIcon = new ComponentText(
             Assets.font, "E", new Vector2(), Assets.colorScheme.textDark);
 
+        int verticalOffset = 16; //how far map is pushed down from screen center
 
 
-        public ScreenLevelMap() { this.name = "DungeonMap"; }
 
-        public override void LoadContent()
+        
+        public ScreenLevelMap()
+        {
+            this.name = "DungeonMap";
+
+            //create scroll instance
+            scroll = new Scroll(
+                new Vector2(16 * 12, 16 * 4 - 8),
+                15, 16);
+            scroll.displayState = DisplayState.Opening;
+            scroll.title.text = "Dungeon Map";
+        }
+
+        public override void Open()
         {
             background.alpha = 0.0f; //fade bkg in
             background.maxAlpha = 0.6f;
             Assets.Play(Assets.sfxMapOpen);
-
-            //create scroll instance
-            scroll = new Scroll(
-                new Vector2(16 * 12, 16 * 4 - 8), 
-                15, 16);
-            scroll.displayState = DisplayState.Opening;
-            scroll.title.text = "Dungeon Map";
-
-            int verticalOffset = 16; //how far map is pushed down from screen center
 
             //create rooms and doors lists
             rooms = new List<Room>();

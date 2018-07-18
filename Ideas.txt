@@ -121,14 +121,7 @@ have to dive underwater to avoid them...
 
 
 
-Screens + ScreenManager
-migrate screens to be GLOBAL. they will still inherit
-from base class of screen, but this way we get to keep
-the last selected menuItem, etc... 
-**this is actually ALOT of work, because we need to model
-resetting a screen, which we will likely need to put in the
-base class of screen.. if we eve pursue this path.. what
-do we gain from this, exactly?
+
 
 
 

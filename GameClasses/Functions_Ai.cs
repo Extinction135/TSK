@@ -944,7 +944,10 @@ namespace DungeonRun
                     Functions_Level.CloseLevel(ExitAction.Field);
 
                     //pop a new dialog screen telling player they completed challenge
-                    ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Colliseum_Challenge_Complete));
+                    Screens.Dialog.SetDialog(AssetsDialog.Colliseum_Challenge_Complete);
+                    ScreenManager.AddScreen(Screens.Dialog);
+
+
                     Assets.Play(Assets.sfxGoldSpam); //audibly cue player they were rewarded
                     Assets.Play(Assets.sfxKeyPickup); //oh no, too spicy!
                 }

@@ -32,24 +32,16 @@ namespace DungeonRun
 
      
 
-        public ScreenOptions() { this.name = "Options Screen"; }
-
-        public override void LoadContent()
+        public ScreenOptions()
         {
-            //setup the screen
-            background.alpha = 0.0f;
-            background.fadeInSpeed = 0.03f;
-            background.fadeOutSpeed = 0.07f;
-            background.maxAlpha = 0.7f;
-            displayState = DisplayState.Opening;
-
+            this.name = "Options Screen";
 
             #region Create Window, Labels, MenuItems
 
             //create the bkg window
             window = new MenuWindow(
-                new Point(16 * 8 - 8, 16 * 4), 
-                new Point(16 * 18, 16 * 14 + 8), 
+                new Point(16 * 8 - 8, 16 * 4),
+                new Point(16 * 18, 16 * 14 + 8),
                 "Options");
 
             int columns = 8;
@@ -80,7 +72,7 @@ namespace DungeonRun
                 (byte)rows, 16 * 3 + 8, 24);
 
             //this is how to set the menuItems, once they're ready for options screen
-            labels[0].text = "draw\ninput"; 
+            labels[0].text = "draw\ninput";
             Functions_MenuItem.SetType(MenuItemType.Options_DrawInput, menuItems[0]);
 
             labels[1].text = "trak\ncam";
@@ -119,20 +111,32 @@ namespace DungeonRun
             //set the cheat menuItem sprites based on their relative booleans
             SetCheatMenuItems();
 
-            //set the currently selected menuItem to the first inventory menuItem
-            currentlySelected = menuItems[0];
-            previouslySelected = menuItems[0];
-            Widgets.Info.Display(currentlySelected);
             //create the selectionBox
             selectionBox = new ComponentSprite(Assets.uiItemsSheet,
                 new Vector2(0, 0),
                 AnimationFrames.Ui_SelectionBox[0],
                 new Point(16, 16));
-            //play the opening soundFX
-            Assets.Play(Assets.sfxWindowOpen);
 
             #endregion
 
+        }
+
+        public override void Open()
+        {
+            //setup the screen
+            background.alpha = 0.0f;
+            background.fadeInSpeed = 0.03f;
+            background.fadeOutSpeed = 0.07f;
+            background.maxAlpha = 0.7f;
+            displayState = DisplayState.Opening;
+
+            //set the currently selected menuItem to the first inventory menuItem
+            currentlySelected = menuItems[0];
+            previouslySelected = menuItems[0];
+            Widgets.Info.Display(currentlySelected);
+
+            //play the opening soundFX
+            Assets.Play(Assets.sfxWindowOpen);
         }
 
         public override void HandleInput(GameTime GameTime)

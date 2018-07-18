@@ -211,7 +211,8 @@ namespace DungeonRun
                         }
                         else
                         {   //tell user we cant add a chest to this type of room
-                            ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.CantAddChests));
+                            Screens.Dialog.SetDialog(AssetsDialog.CantAddChests);
+                            ScreenManager.AddScreen(Screens.Dialog);
                             return; //dont add chest
                         }
 
@@ -220,7 +221,8 @@ namespace DungeonRun
                         {   //check all roomObjs for an active chest
                             if (Pool.roomObjPool[j].active & Pool.roomObjPool[j].group == ObjGroup.Chest)
                             {
-                                ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.CantAddChests));
+                                Screens.Dialog.SetDialog(AssetsDialog.CantAddChests);
+                                ScreenManager.AddScreen(Screens.Dialog);
                                 return; //dont add chest
                             }
                         }
@@ -232,7 +234,8 @@ namespace DungeonRun
                         {   //check all roomObjs for an active chest
                             if (Pool.roomObjPool[j].active && Pool.roomObjPool[j].type == ObjType.Dungeon_Switch)
                             {
-                                ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.CantAddMoreSwitches));
+                                Screens.Dialog.SetDialog(AssetsDialog.CantAddMoreSwitches);
+                                ScreenManager.AddScreen(Screens.Dialog);
                                 return; //dont add switch
                             }
                         }

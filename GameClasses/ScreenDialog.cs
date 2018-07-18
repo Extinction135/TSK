@@ -28,34 +28,27 @@ namespace DungeonRun
         //2: npc speaking - single or multiple dialogs with 1 or many speakers
         //3: entering/exiting dungeons - single dialog with A confirm or B deny input
         //4: link makes choice - just like 3, A & B input for yes or no
-        Boolean exitToOverworld = false;
-        Boolean exitToDungeon = false;
-        Boolean exitToField = false;
-
-
-        
-
-
-        public void ExitDialog()
-        {
-            Assets.Play(Assets.sfxWindowClose);
-            displayState = DisplayState.Closing;
-            Functions_MenuWindow.Close(Widgets.Dialog.window);
-        }
-        
+        Boolean exitToOverworld;
+        Boolean exitToDungeon;
+        Boolean exitToField;
 
 
 
-        public ScreenDialog(List<Dialog> Dialogs)
-        {
-            dialogs = Dialogs;
-        }
 
-        public override void LoadContent()
+
+        public ScreenDialog()
         {
             this.name = "Dialog Screen";
+            //default value
+            dialogs = AssetsDialog.Guide;
+        }
+
+        public override void Open()
+        {
             foreground.fadeInSpeed = 0.05f;
             background.fadeOutSpeed = 0.05f;
+            foreground.alpha = 0.0f;
+            background.alpha = 0.0f;
 
             //pass dialog[0] to dialog widget for display
             DisplayDialog(dialogs[0]);
@@ -66,16 +59,26 @@ namespace DungeonRun
             Functions_Actor.SetAnimationGroup(Pool.hero);
             Functions_Actor.SetAnimationDirection(Pool.hero);
             Functions_Animation.Animate(Pool.hero.compAnim, Pool.hero.compSprite);
+
+            //reset screen's booleans
+            exitToOverworld = false;
+            exitToDungeon = false;
+            exitToField = false;
         }
 
         public override void HandleInput(GameTime GameTime)
         {   //force player to wait for the dialog to complete
             if (Widgets.Dialog.dialogDisplayed)
             {
+                //handle loading and new dialog states
+                if (dialogs == AssetsDialog.GameLoaded || dialogs == AssetsDialog.GameCreated)
+                { exitToOverworld = true; }
+
+
 
                 #region Dialogs with A/B Choices + Diff Outcomes
 
-                if(
+                if (
                     dialogs == AssetsDialog.Enter_ForestDungeon
                     || dialogs == AssetsDialog.Enter_Colliseum
                     || dialogs == AssetsDialog.Enter_MountainDungeon
@@ -118,8 +121,8 @@ namespace DungeonRun
                 #endregion
 
 
-                #region Iterative Dialogs (sequential)
-
+                #region Iterative Dialogs (sequential) - loading, reading, etc...
+                
                 else
                 {
                     if (Functions_Input.IsNewButtonPress(Buttons.A))
@@ -180,7 +183,9 @@ namespace DungeonRun
             {   
                 if(exitToOverworld)
                 {   
-                    ScreenManager.ExitAndLoad(new ScreenOverworld());
+                    //ScreenManager.ExitAndLoad(Screens.Overworld);
+                    Functions_Level.CloseLevel(ExitAction.Overworld);
+                    ScreenManager.RemoveScreen(this);
                 }
                 else if (exitToField)
                 {
@@ -228,6 +233,19 @@ namespace DungeonRun
             displayState = DisplayState.Opening;
             dialogIndex++; //track dialog count
         }
+
+        public void ExitDialog()
+        {
+            Assets.Play(Assets.sfxWindowClose);
+            displayState = DisplayState.Closing;
+            Functions_MenuWindow.Close(Widgets.Dialog.window);
+        }
+
+        public void SetDialog(List<Dialog> Dialogs)
+        {
+            dialogs = Dialogs;
+        }
+
 
     }
 }
