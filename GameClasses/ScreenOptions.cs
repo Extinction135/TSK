@@ -123,6 +123,11 @@ namespace DungeonRun
 
         public override void Open()
         {
+            Functions_MenuWindow.ResetAndMove(window,
+                16 * 8 - 8, 16 * 4,
+                new Point(16 * 18, 16 * 14 + 8), 
+                "Options");
+
             //setup the screen
             background.alpha = 0.0f;
             background.fadeInSpeed = 0.03f;
