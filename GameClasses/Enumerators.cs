@@ -56,7 +56,9 @@ namespace DungeonRun
         ExitDungeon, //left dungeon, goto overworld screen
 
         Overworld, //goto overworld screen
-        Level, //build a level (dungeon or overworld)
+
+        Field, //build a field level
+        Dungeon, //build a dungeon level
 
         QuitGame,
         ExitScreen

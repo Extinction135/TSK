@@ -212,29 +212,31 @@ namespace DungeonRun
             swampDungeon.ID = LevelID.Swamp_Entrance;
 
 
-            //2. Setup current location based on level id
-            // -> because hero may of exited a dungeon
+            //2. Setup current MAP location based on current FIELD id
 
-            if (PlayerData.current.lastLocation == LevelID.TheFarm)
+            if (LevelSet.field.ID == LevelID.TheFarm)
             { currentLocation = centerIsland; }
-            else if (PlayerData.current.lastLocation == LevelID.LeftTown2)
+            else if (LevelSet.field.ID == LevelID.LeftTown2)
             { currentLocation = leftTown2; }
 
-            else if(PlayerData.current.lastLocation == LevelID.Colliseum
-                || PlayerData.current.lastLocation == LevelID.ColliseumPit)
+            else if(LevelSet.field.ID == LevelID.Colliseum
+                || LevelSet.field.ID == LevelID.ColliseumPit)
             { currentLocation = colliseum; }
 
-            else if (PlayerData.current.lastLocation == LevelID.Forest_Entrance
-                || PlayerData.current.lastLocation == LevelID.Forest_Dungeon)
+            else if (LevelSet.field.ID == LevelID.Forest_Entrance)
             { currentLocation = forestDungeon; }
 
-            else if (PlayerData.current.lastLocation == LevelID.Mountain_Entrance
-                || PlayerData.current.lastLocation == LevelID.Mountain_Dungeon)
+            else if (LevelSet.field.ID == LevelID.Mountain_Entrance)
             { currentLocation = caveDungeon; }
 
-            else if (PlayerData.current.lastLocation == LevelID.Swamp_Entrance
-                || PlayerData.current.lastLocation == LevelID.Swamp_Dungeon)
+            else if (LevelSet.field.ID == LevelID.Swamp_Entrance)
             { currentLocation = swampDungeon; }
+
+
+
+
+
+
 
 
 
@@ -366,8 +368,12 @@ namespace DungeonRun
                     {   //upon A button press, check to see if current location is a level
                         if (currentLocation.isLevel) //if so, close the scroll
                         {
+                            //setup field level hero is about to enter
+                            LevelSet.field.ID = currentLocation.ID;
+                            LevelSet.currentLevel = LevelSet.field;
                             //save currentLocation into player data
                             PlayerData.current.lastLocation = currentLocation.ID;
+
                             //animate link into reward state
                             hero.state = ActorState.Reward;
                             hero.direction = Direction.Down;
@@ -490,8 +496,11 @@ namespace DungeonRun
                 { displayState = DisplayState.Closed; }
             }
             else if (displayState == DisplayState.Closed)
-            {   //set the level id based on the current location
-                Level.ID = currentLocation.ID;
+            {   
+                //set the level id based on the current location, load into field
+                LevelSet.field.ID = currentLocation.ID;
+                LevelSet.currentLevel = LevelSet.field;
+                
                 //load the level, building the room(s)
                 ScreenManager.ExitAndLoad(new ScreenLevel());
             }

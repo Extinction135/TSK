@@ -216,25 +216,60 @@ namespace DungeonRun
     }
 
 
-    public static class Level
+
+
+
+
+
+
+
+
+    public static class LevelSet
     {
-        public static LevelID ID = LevelID.Colliseum;
-        //where exit/field room is placed
-        public static Point buildPosition = new Point(16 * 10, 16 * 200);
+        public static Level field;
+        public static Level dungeon;
+        //current level points to field or dungeon
+        public static Level currentLevel;
 
-        public static List<Room> rooms = new List<Room>();
-        public static Room currentRoom; //points to one in list above
-
-        public static List<Door> doors = new List<Door>();
-        //we could store last door here like this:
-        //public static Door lastDoor;
-
-        public static Boolean bigKey = false;
-        public static Boolean map = false;
-        public static Boolean isField = true;
-        
-        public static int dungeonTrack = 0;
+        static LevelSet()
+        {
+            field = new Level();
+            dungeon = new Level();
+            currentLevel = field;
+            //testing
+            field.ID = LevelID.Forest_Entrance;
+            dungeon.ID = LevelID.Forest_Dungeon;
+        }
     }
+
+    public class Level
+    {
+        public LevelID ID = LevelID.Colliseum;
+        public List<Room> rooms = new List<Room>();
+        public Room currentRoom; //points to one in list above
+        public List<Door> doors = new List<Door>();
+
+        public Boolean bigKey = false;
+        public Boolean map = false;
+        public Boolean isField = true;
+        public int dungeonTrack = 0; //what music plays
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public class Room
     {
@@ -1421,8 +1456,8 @@ namespace DungeonRun
             spriteEffect = SpriteEffects.None;
             flipHorizontally = false;
             visible = true;
-            Functions_Component.CenterOrigin(this);
             drawRec = new Rectangle((int)Position.X, (int)Position.Y, CellSize.X, CellSize.Y);
+            Functions_Component.CenterOrigin(this);
             drawColor = new Color(255, 255, 255);
             alpha = 1.0f;
             scale = 1.0f;

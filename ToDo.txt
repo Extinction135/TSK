@@ -60,32 +60,68 @@ Today:
 
 
 
-Level--
-
-removed level.lightWorld boolean, which was really
-doing anything and we're not ready to add darkworld
-levels yet, plus we're about to complicate level 
-a bunch, so we need to clean it up first.
-
-
-
-
-
-
-
-
-
-
-
-level.field
-level.dungeon
-
 
 Separate Levels and Dungeons
 
-make dungeon level gobal.
-make field level global.
-build forest versions of both at start of game.
+right now, there is only 1 level instance.
+and ALL GAME SYSTEMS are built around the idea
+of only having one level instance. BUT, now I
+want two level instances: field and dungeon.
+
+Why? Several reasons..
+
+1. i want to build a field and dungeon level at
+the start of the game, to mitigate the JIT compilation
+that happens on the xbox one just prior to entering a level
+or dungeon for the first time. that pause is unacceptable,
+so we'll defeat the JIT compilation by forcing it to compile
+that data upon boot. 
+
+2. because I want to be able to exit a dungeon and
+return to the level that has that dungeon's entrance.
+right now, we just return to the overworld. i could do
+a dungeon type check, then load the appropriate field level,
+but it's just easier to point a level reference to an existing
+field level in ram, so we stick with that solution.
+
+3. this simplifies how the overworld screen works: now
+it simply checks the value of the last field level loaded,
+then places hero at the correct starting location. the 
+overworld screen no longer needs to check if the hero is
+exiting a dungeon, since that action leads to a field level.
+in other words, hero can only exit to overworld screen from
+a field level.
+
+i'm sure there are other reasons, but those are The Big 3.
+
+also fixed a bug with component sprite setting the origin
+prior to setting the drawRec's size, which introduced
+a +8,+8 pixel offset to ALL sprites, making things ugly.
+playtested, working as expected.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*add black pixels to the corners of the mountain wall sprites.
+this will make the rooms appear rounded, which further visually
+separates them. 
+
+
+
+
+build forest versions of field and dungeon at start of game.
 this fixes the jit compilation xbox one does.
 
 we will need to have two level instances (field + dungeon).

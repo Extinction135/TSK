@@ -18,13 +18,16 @@ namespace DungeonRun
         public static TimeSpan time;
 
         //this is a problem, will be solved with structural change soon
-        public static ScreenLevel levelScreen; 
+        public static ScreenLevel levelScreen;
 
-        
-        
+        //where exit/field room is placed - should be part of build functions
+        public static Point buildPosition = new Point(16 * 10, 16 * 200);
 
-        public static void ResetLevel()
-        {   //level type is set by overworld & dialog screens
+
+
+
+        public static void ResetLevel(Level Level)
+        {   
             Level.rooms = new List<Room>();
             Level.doors = new List<Door>();
             Level.bigKey = false;
@@ -32,43 +35,55 @@ namespace DungeonRun
             //enable map and key cheats
             Level.map = Flags.MapCheat;
             Level.bigKey = Flags.KeyCheat;
-            //reset to overworld field
-            Level.isField = true;
         }
 
 
         public static void BuildLevel(LevelID levelID)
         {
-            ResetLevel();
-            Level.ID = levelID;
+            //reset these booleans in case we changed them via levelSet.currentLevel
+            LevelSet.dungeon.isField = false;
+            LevelSet.field.isField = true;
 
-            //set dungeon booleans
+
+            //handle DUNGEON setup
             if (levelID == LevelID.Forest_Dungeon
                 || levelID == LevelID.Mountain_Dungeon
-                || levelID == LevelID.Swamp_Dungeon)
+                || levelID == LevelID.Swamp_Dungeon
+                //and dev set too
+                || levelID == LevelID.DEV_Room)
             {
-                Level.isField = false;
+                //reset dungeon data
+                ResetLevel(LevelSet.dungeon);
+                //point current level to dungeon
+                LevelSet.currentLevel = LevelSet.dungeon;
             }
 
-            //set dev booleans
-            if(levelID == LevelID.DEV_Room)
+            //handle FIELD setup
+            else
             {
-                Level.isField = false;
+                //reset field data
+                ResetLevel(LevelSet.field);
+                //point current level to field
+                LevelSet.currentLevel = LevelSet.field;
             }
+
+            //pass levelID to the current field or dungeon
+            LevelSet.currentLevel.ID = levelID;
+
+
+
 
 
             #region Set The Background Color
 
-            //assume light world - light gray
-            Assets.colorScheme.background = Assets.colorScheme.bkg_lightWorld;
-            
+            //for now, set to either lightworld or dungeon bkg colors
+            if (LevelSet.currentLevel.isField)
+            { Assets.colorScheme.background = Assets.colorScheme.bkg_lightWorld; }
+            else
+            { Assets.colorScheme.background = Assets.colorScheme.bkg_dungeon; }
+
             //planned for darkworld colorscheme like this (missing check):
             //Assets.colorScheme.background = Assets.colorScheme.bkg_darkWorld;
-
-            //if level is a room, then this is a dungeon, set to dungeon bkg color
-            if (Level.isField == false)
-            { Assets.colorScheme.background = Assets.colorScheme.bkg_dungeon; }
-            
 
             #endregion
 
@@ -77,7 +92,7 @@ namespace DungeonRun
 
             //setup the room (level), or series of rooms (dungeon)
             if (Flags.PrintOutput)
-            { Debug.WriteLine("-- building level: " + Level.ID + " --"); }
+            { Debug.WriteLine("-- building level: " + LevelSet.currentLevel.ID + " --"); }
             stopWatch.Reset(); stopWatch.Start();
 
 
@@ -91,7 +106,7 @@ namespace DungeonRun
 
             #region Build DEV Levels
 
-            if (Level.ID == LevelID.DEV_Room)
+            if (LevelSet.currentLevel.ID == LevelID.DEV_Room)
             {
                 //make a new room, which inherits the RoomTool's roomData type
                 RoomID roomType = RoomID.DEV_Row;
@@ -99,17 +114,17 @@ namespace DungeonRun
                 { roomType = Widgets.RoomTools.roomData.type; }
 
                 //build the dev room based on roomType
-                Room room = new Room(new Point(Level.buildPosition.X, Level.buildPosition.Y), roomType); 
-                Level.rooms.Add(room); //spawn room must be index0
+                Room room = new Room(new Point(buildPosition.X, buildPosition.Y), roomType);
+                LevelSet.currentLevel.rooms.Add(room); //spawn room must be index0
 
                 //set spawnPos outside TopLeft of new dev room
                 room.spawnPos.X = room.rec.X - 32;
                 room.spawnPos.Y = room.rec.Y;
             }
-            else if (Level.ID == LevelID.DEV_Field)
+            else if (LevelSet.currentLevel.ID == LevelID.DEV_Field)
             {
-                Room field = new Room(new Point(Level.buildPosition.X, Level.buildPosition.Y), RoomID.DEV_Field);
-                Level.rooms.Add(field);
+                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.DEV_Field);
+                LevelSet.currentLevel.rooms.Add(field);
             }
 
             #endregion
@@ -120,53 +135,53 @@ namespace DungeonRun
 
 
             //special levels
-            else if (Level.ID == LevelID.Colliseum)
+            else if (LevelSet.currentLevel.ID == LevelID.Colliseum)
             {
                 Functions_Music.PlayMusic(Music.LightWorld);
-                Room field = new Room(new Point(Level.buildPosition.X, Level.buildPosition.Y), RoomID.Colliseum);
-                Level.rooms.Add(field);
+                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.Colliseum);
+                LevelSet.currentLevel.rooms.Add(field);
             }
-            else if (Level.ID == LevelID.ColliseumPit)
+            else if (LevelSet.currentLevel.ID == LevelID.ColliseumPit)
             {
                 Functions_Music.PlayMusic(Music.CrowdWaiting);
-                Room field = new Room(new Point(Level.buildPosition.X, Level.buildPosition.Y), RoomID.ColliseumPit);
-                Level.rooms.Add(field);
+                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.ColliseumPit);
+                LevelSet.currentLevel.rooms.Add(field);
             }
 
 
             //entrances
-            else if (Level.ID == LevelID.Forest_Entrance)
+            else if (LevelSet.currentLevel.ID == LevelID.Forest_Entrance)
             {
                 Functions_Music.PlayMusic(Music.LightWorld);
-                Room field = new Room(new Point(Level.buildPosition.X, Level.buildPosition.Y), RoomID.ForestEntrance);
-                Level.rooms.Add(field);
+                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.ForestEntrance);
+                LevelSet.currentLevel.rooms.Add(field);
             }
-            else if (Level.ID == LevelID.Mountain_Entrance)
+            else if (LevelSet.currentLevel.ID == LevelID.Mountain_Entrance)
             {
                 Functions_Music.PlayMusic(Music.LightWorld);
-                Room field = new Room(new Point(Level.buildPosition.X, Level.buildPosition.Y), RoomID.MountainEntrance);
-                Level.rooms.Add(field);
+                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.MountainEntrance);
+                LevelSet.currentLevel.rooms.Add(field);
             }
-            else if (Level.ID == LevelID.Swamp_Entrance)
+            else if (LevelSet.currentLevel.ID == LevelID.Swamp_Entrance)
             {
                 Functions_Music.PlayMusic(Music.LightWorld);
-                Room field = new Room(new Point(Level.buildPosition.X, Level.buildPosition.Y), RoomID.SwampEntrance);
-                Level.rooms.Add(field);
+                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.SwampEntrance);
+                LevelSet.currentLevel.rooms.Add(field);
             }
 
 
             //standard levels
-            else if (Level.ID == LevelID.TheFarm)
+            else if (LevelSet.currentLevel.ID == LevelID.TheFarm)
             {
                 Functions_Music.PlayMusic(Music.LightWorld);
-                Room field = new Room(new Point(Level.buildPosition.X, Level.buildPosition.Y), RoomID.TheFarm);
-                Level.rooms.Add(field);
+                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.TheFarm);
+                LevelSet.currentLevel.rooms.Add(field);
             }
-            else if (Level.ID == LevelID.LeftTown2)
+            else if (LevelSet.currentLevel.ID == LevelID.LeftTown2)
             {
                 Functions_Music.PlayMusic(Music.LightWorld);
-                Room field = new Room(new Point(Level.buildPosition.X, Level.buildPosition.Y), RoomID.LeftTown2);
-                Level.rooms.Add(field);
+                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.LeftTown2);
+                LevelSet.currentLevel.rooms.Add(field);
             }
 
             #endregion
@@ -175,15 +190,15 @@ namespace DungeonRun
 
             #region Build Dungeons
 
-            else if (Level.ID == LevelID.Forest_Dungeon)
+            else if (LevelSet.currentLevel.ID == LevelID.Forest_Dungeon)
             {
                 Functions_Dungeon.BuildDungeon_Forest();
             }
-            else if (Level.ID == LevelID.Mountain_Dungeon)
+            else if (LevelSet.currentLevel.ID == LevelID.Mountain_Dungeon)
             {
                 Functions_Dungeon.BuildDungeon_Mountain();
             }
-            else if (Level.ID == LevelID.Swamp_Dungeon)
+            else if (LevelSet.currentLevel.ID == LevelID.Swamp_Dungeon)
             {
                 Functions_Dungeon.BuildDungeon_Swamp();
             }
@@ -202,11 +217,11 @@ namespace DungeonRun
 
 
             //build the 1st room on Level.rooms list (index0) - exit/spawn room
-            Level.rooms[0].visited = true;
-            Level.currentRoom = Level.rooms[0];
+            LevelSet.currentLevel.rooms[0].visited = true;
+            LevelSet.currentLevel.currentRoom = LevelSet.currentLevel.rooms[0];
 
             //this actually builds everything in the first room
-            Functions_Room.BuildRoom(Level.currentRoom);
+            Functions_Room.BuildRoom(LevelSet.currentLevel.currentRoom);
             Functions_Texture.SetFloorTextures();
             Functions_Hero.SpawnInCurrentRoom();
 
@@ -214,8 +229,8 @@ namespace DungeonRun
             if (Pool.hero.health < 3) { Pool.hero.health = 3; }
 
             //teleport camera to center of room
-            Camera2D.targetPosition.X = Level.currentRoom.center.X;
-            Camera2D.targetPosition.Y = Level.currentRoom.center.Y;
+            Camera2D.targetPosition.X = LevelSet.currentLevel.currentRoom.center.X;
+            Camera2D.targetPosition.Y = LevelSet.currentLevel.currentRoom.center.Y;
             Camera2D.currentPosition = Camera2D.targetPosition;
             Functions_Camera2D.SetView();
             //level screen will then decide where the camera should be per frame
@@ -223,7 +238,7 @@ namespace DungeonRun
             stopWatch.Stop(); time = stopWatch.Elapsed;
             if (Flags.PrintOutput)
             {
-                Debug.WriteLine("level " + Level.ID + " built in " + time.Ticks + " ticks");
+                Debug.WriteLine("level " + LevelSet.currentLevel.ID + " built in " + time.Ticks + " ticks");
             }
 
             //fade the dungeon screen out from black, revealing the new level
@@ -368,7 +383,7 @@ namespace DungeonRun
             else if (Child.roomID == RoomID.Secret) { door.type = DoorType.Bombable; }
 
             //add the door to Level.doors list
-            Level.doors.Add(door);
+            LevelSet.currentLevel.doors.Add(door);
         }
 
         public static RoomID GetRandomRoomType()
@@ -418,8 +433,8 @@ namespace DungeonRun
                 Child.rec.Width += 32; Child.rec.Height += 32;
                 Child.rec.X -= 16; Child.rec.Y -= 16;
                 //check to see if child collides with any room
-                for (int i = 0; i < Level.rooms.Count; i++)
-                { if (Child.rec.Intersects(Level.rooms[i].rec)) { collision = true; } }
+                for (int i = 0; i < LevelSet.currentLevel.rooms.Count; i++)
+                { if (Child.rec.Intersects(LevelSet.currentLevel.rooms[i].rec)) { collision = true; } }
                 //deflate
                 Child.rec.Width -= 32; Child.rec.Height -= 32;
                 Child.rec.X += 16; Child.rec.Y += 16;
@@ -427,40 +442,40 @@ namespace DungeonRun
                 //set the child room's center
                 Functions_Room.MoveRoom(Child, Child.rec.X, Child.rec.Y);
                 if (!collision) //if there wasn't a room collision, add room to rooms list
-                { Level.rooms.Add(Child); return true; }
+                { LevelSet.currentLevel.rooms.Add(Child); return true; }
             }
             return false; //we didn't successfully place the child room
         }
 
         public static void AddMoreRooms()
         {   //randomly add additional rooms to all rooms except exit/boss/key
-            int coreRoomCount = Level.rooms.Count;
+            int coreRoomCount = LevelSet.currentLevel.rooms.Count;
             for (int i = 0; i < coreRoomCount; i++)
             {
-                if (Level.rooms[i].roomID == RoomID.Exit) { }
-                else if (Level.rooms[i].roomID == RoomID.Boss) { }
-                else if (Level.rooms[i].roomID == RoomID.Key) { }
+                if (LevelSet.currentLevel.rooms[i].roomID == RoomID.Exit) { }
+                else if (LevelSet.currentLevel.rooms[i].roomID == RoomID.Boss) { }
+                else if (LevelSet.currentLevel.rooms[i].roomID == RoomID.Key) { }
                 else
                 {
                     Room room = new Room(new Point(0, 0), GetRandomRoomType());
-                    AddRoom(Level.rooms[i], room, 10, false);
+                    AddRoom(LevelSet.currentLevel.rooms[i], room, 10, false);
                 }
             }
         }
 
         public static void AddSecretRooms()
         {   //randomly add secret rooms to all rooms except exit/boss/secret/hub
-            int coreRoomCount = Level.rooms.Count;
+            int coreRoomCount = LevelSet.currentLevel.rooms.Count;
             for (int i = 0; i < coreRoomCount; i++)
             {
-                if (Level.rooms[i].roomID == RoomID.Exit) { }
-                else if (Level.rooms[i].roomID == RoomID.Boss) { }
-                else if (Level.rooms[i].roomID == RoomID.Secret) { }
-                else if (Level.rooms[i].roomID == RoomID.Hub) { }
+                if (LevelSet.currentLevel.rooms[i].roomID == RoomID.Exit) { }
+                else if (LevelSet.currentLevel.rooms[i].roomID == RoomID.Boss) { }
+                else if (LevelSet.currentLevel.rooms[i].roomID == RoomID.Secret) { }
+                else if (LevelSet.currentLevel.rooms[i].roomID == RoomID.Hub) { }
                 else
                 {
                     Room room = new Room(new Point(0, 0), RoomID.Secret);
-                    AddRoom(Level.rooms[i], room, 10, false);
+                    AddRoom(LevelSet.currentLevel.rooms[i], room, 10, false);
                 }
             }
         }

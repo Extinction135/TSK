@@ -33,7 +33,7 @@ namespace DungeonRun
 
         public static void CheckRoomCollision()
         {
-            if (Level.isField)
+            if (LevelSet.currentLevel.isField)
             {   //hero is in level
 
                 if (Flags.Clipping) //if player has enabled clipping
@@ -42,7 +42,7 @@ namespace DungeonRun
 
                 #region Handle hero transferring back to overworld screen
 
-                if(heroRec.Intersects(Level.currentRoom.rec) == false)
+                if(heroRec.Intersects(LevelSet.currentLevel.currentRoom.rec) == false)
                 {
                     Functions_Level.CloseLevel(ExitAction.Overworld);
                     //stop hero's movement
@@ -58,11 +58,11 @@ namespace DungeonRun
 
                 #region Handle Hero transferring between Level.Rooms
 
-                for (i = 0; i < Level.rooms.Count; i++)
+                for (i = 0; i < LevelSet.currentLevel.rooms.Count; i++)
                 {   //if the current room is not the room we are checking against, then continue
-                    if (Level.currentRoom != Level.rooms[i])
+                    if (LevelSet.currentLevel.currentRoom != LevelSet.currentLevel.rooms[i])
                     {   //if heroRec collides with room rec, set it as currentRoom, build room
-                        if (heroRec.Intersects(Level.rooms[i].rec))
+                        if (heroRec.Intersects(LevelSet.currentLevel.rooms[i].rec))
                         {
 
                             if (Pool.hero.carrying) //destroy anything hero is carrying
@@ -74,9 +74,9 @@ namespace DungeonRun
 
 
                             //transitions between rooms, build
-                            Level.currentRoom = Level.rooms[i];
-                            Functions_Room.BuildRoom(Level.rooms[i]);
-                            Level.rooms[i].visited = true;
+                            LevelSet.currentLevel.currentRoom = LevelSet.currentLevel.rooms[i];
+                            Functions_Room.BuildRoom(LevelSet.currentLevel.rooms[i]);
+                            LevelSet.currentLevel.rooms[i].visited = true;
                         }
                     }
                 }
@@ -86,15 +86,15 @@ namespace DungeonRun
 
                 #region Track Doors that Hero has visited
 
-                for (i = 0; i < Level.doors.Count; i++)
+                for (i = 0; i < LevelSet.currentLevel.doors.Count; i++)
                 {   //check heroRec collision against Level.doors
-                    if (heroRec.Intersects(Level.doors[i].rec))
+                    if (heroRec.Intersects(LevelSet.currentLevel.doors[i].rec))
                     {   //track doors hero has visited
-                        Level.doors[i].visited = true;
-                        if (Level.doors[i].type == DoorType.Open)
+                        LevelSet.currentLevel.doors[i].visited = true;
+                        if (LevelSet.currentLevel.doors[i].type == DoorType.Open)
                         {   //set the current room's spawnPos to the last open door hero collided with
-                            Level.currentRoom.spawnPos.X = Level.doors[i].rec.X + 8;
-                            Level.currentRoom.spawnPos.Y = Level.doors[i].rec.Y + 8;
+                            LevelSet.currentLevel.currentRoom.spawnPos.X = LevelSet.currentLevel.doors[i].rec.X + 8;
+                            LevelSet.currentLevel.currentRoom.spawnPos.Y = LevelSet.currentLevel.doors[i].rec.Y + 8;
                         }
                     }
                 }
@@ -250,7 +250,7 @@ namespace DungeonRun
                 if (Obj.type == ObjType.Dungeon_ChestKey)
                 {
                     Functions_Particle.Spawn(ObjType.Particle_RewardKey, Pool.hero);
-                    Level.bigKey = true;
+                    LevelSet.currentLevel.bigKey = true;
                     ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.HeroGotKey));
                 }
                 if (Obj.type != ObjType.Dungeon_ChestEmpty)
@@ -361,7 +361,7 @@ namespace DungeonRun
 
             else if (Obj.type == ObjType.Dungeon_DoorBoss)
             {
-                if (Level.bigKey)
+                if (LevelSet.currentLevel.bigKey)
                 {   //hero must have dungeon key to open boss door
                     Functions_GameObject.SetType(Obj, ObjType.Dungeon_DoorOpen);
                     Assets.Play(Assets.sfxDoorOpen);
@@ -387,12 +387,13 @@ namespace DungeonRun
             else if (Obj.type == ObjType.Dungeon_Signpost)
             {
 
-                if (Level.currentRoom.roomID == RoomID.Exit)
+                if (LevelSet.currentLevel.currentRoom.roomID == RoomID.Exit)
                 {   //dynamically populate the text with level data
                     AssetsDialog.Signpost_ExitRoom = new List<Dialog>
                     {
                         new Dialog(ObjType.Hero_Idle, "...",
-                            "Dungeon: " + Level.ID + ".  Size: " + Level.rooms.Count + " rooms.\n" +
+                            "Dungeon: " + LevelSet.currentLevel.ID + "." +
+                            "Size: " + LevelSet.currentLevel.rooms.Count + " rooms.\n" +
                             "Head North 3 Rooms to find the map. Good luck!",
                             Assets.sfxTextLetter, false, false, false)
                     };
@@ -533,8 +534,8 @@ namespace DungeonRun
         public static void SpawnInCurrentRoom()
         {   //teleport hero to currentRoom's spawn position
             Functions_Movement.Teleport(Pool.hero.compMove,
-                Level.currentRoom.spawnPos.X,
-                Level.currentRoom.spawnPos.Y);
+                LevelSet.currentLevel.currentRoom.spawnPos.X,
+                LevelSet.currentLevel.currentRoom.spawnPos.Y);
             Functions_Movement.StopMovement(Pool.hero.compMove);
             ResetHero();
         }

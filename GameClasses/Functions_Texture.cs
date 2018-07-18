@@ -22,20 +22,20 @@ namespace DungeonRun
         {   //based on level id, set the current texture
             currentTexture = Assets.forestLevelSheet; //default to forest
 
-            if (Level.ID == LevelID.LeftTown2) { currentTexture = Assets.townLevelSheet; }
-            else if (Level.ID == LevelID.TheFarm) { currentTexture = Assets.townLevelSheet; }
+            if (LevelSet.currentLevel.ID == LevelID.LeftTown2) { currentTexture = Assets.townLevelSheet; }
+            else if (LevelSet.currentLevel.ID == LevelID.TheFarm) { currentTexture = Assets.townLevelSheet; }
 
-            else if (Level.ID == LevelID.Colliseum) { currentTexture = Assets.colliseumLevelSheet; }
-            else if (Level.ID == LevelID.ColliseumPit) { currentTexture = Assets.colliseumLevelSheet; }
+            else if (LevelSet.currentLevel.ID == LevelID.Colliseum) { currentTexture = Assets.colliseumLevelSheet; }
+            else if (LevelSet.currentLevel.ID == LevelID.ColliseumPit) { currentTexture = Assets.colliseumLevelSheet; }
 
-            else if (Level.ID == LevelID.Forest_Entrance) { currentTexture = Assets.forestLevelSheet; }
-            else if (Level.ID == LevelID.Forest_Dungeon) { currentTexture = Assets.forestLevelSheet; }
+            else if (LevelSet.currentLevel.ID == LevelID.Forest_Entrance) { currentTexture = Assets.forestLevelSheet; }
+            else if (LevelSet.currentLevel.ID == LevelID.Forest_Dungeon) { currentTexture = Assets.forestLevelSheet; }
 
-            else if (Level.ID == LevelID.Mountain_Entrance) { currentTexture = Assets.mountainLevelSheet; }
-            else if (Level.ID == LevelID.Mountain_Dungeon) { currentTexture = Assets.mountainLevelSheet; }
+            else if (LevelSet.currentLevel.ID == LevelID.Mountain_Entrance) { currentTexture = Assets.mountainLevelSheet; }
+            else if (LevelSet.currentLevel.ID == LevelID.Mountain_Dungeon) { currentTexture = Assets.mountainLevelSheet; }
 
-            else if (Level.ID == LevelID.Swamp_Entrance) { currentTexture = Assets.swampLevelSheet; }
-            else if (Level.ID == LevelID.Swamp_Dungeon) { currentTexture = Assets.swampLevelSheet; }
+            else if (LevelSet.currentLevel.ID == LevelID.Swamp_Entrance) { currentTexture = Assets.swampLevelSheet; }
+            else if (LevelSet.currentLevel.ID == LevelID.Swamp_Dungeon) { currentTexture = Assets.swampLevelSheet; }
         }
 
 

@@ -71,7 +71,7 @@ namespace DungeonRun
         public static void BeginChallenge(List<ActorType> Challenge)
         {
             //rebuild the pit, fading in from black
-            Functions_Level.BuildLevel(Level.ID);
+            Functions_Level.BuildLevel(LevelSet.currentLevel.ID);
 
             //this method assums the current level + room is colliseum pit
             //note this method works for both light and dark world colliseums :p
@@ -97,12 +97,12 @@ namespace DungeonRun
                     actorRef.compMove,
 
                     //X
-                    Level.currentRoom.rec.X //start with the room's x pos
-                    + Level.currentRoom.rec.Width / 2 //get the center X
+                    LevelSet.currentLevel.currentRoom.rec.X //start with the room's x pos
+                    + LevelSet.currentLevel.currentRoom.rec.Width / 2 //get the center X
                     + 16 * Functions_Random.Int(-5, 5) //add random offset
                     + 8, //add offset to exactly center to room, because ocd
-                    //Y
-                    Level.currentRoom.rec.Y + 16 * 24 //near center / back wall
+                         //Y
+                    LevelSet.currentLevel.currentRoom.rec.Y + 16 * 24 //near center / back wall
                     + 16 * Functions_Random.Int(-4, 4) //add random offset
                     
                     ); 
@@ -119,13 +119,13 @@ namespace DungeonRun
                 Functions_Movement.Teleport(
                     objRef.compMove,
 
-                    Level.currentRoom.rec.X //start with the room's x pos
-                    + Level.currentRoom.rec.Width / 2 //get the center X
+                    LevelSet.currentLevel.currentRoom.rec.X //start with the room's x pos
+                    + LevelSet.currentLevel.currentRoom.rec.Width / 2 //get the center X
                     - 16 * 5 //move 5 tiles left
                     + 16 * i //from there, place objs in a horizontal line
                     + 8, //with a small alignment offset
 
-                    Level.currentRoom.spawnPos.Y + 16 * 2 - 8); //place behind enemies
+                    LevelSet.currentLevel.currentRoom.spawnPos.Y + 16 * 2 - 8); //place behind enemies
                 objRef.direction = Direction.Down;
                 Functions_GameObject.SetType(objRef, ObjType.Wor_Colliseum_Pillar_Top);
             }
@@ -139,10 +139,10 @@ namespace DungeonRun
             //place judge along backwall
             Functions_Movement.Teleport(
                 objRef.compMove,
-                Level.currentRoom.rec.X //start with the room's x pos
-                + Level.currentRoom.rec.Width / 2 //get the center X
+                LevelSet.currentLevel.currentRoom.rec.X //start with the room's x pos
+                + LevelSet.currentLevel.currentRoom.rec.Width / 2 //get the center X
                 + 8, //align to gameworld grid
-                Level.currentRoom.rec.Y + 16 * 14 - 8 - 4); //against back wall
+                LevelSet.currentLevel.currentRoom.rec.Y + 16 * 14 - 8 - 4); //against back wall
             objRef.direction = Direction.Down;
             Functions_GameObject.SetType(objRef, ObjType.Judge_Colliseum);
 

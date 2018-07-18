@@ -113,12 +113,12 @@ namespace DungeonRun
                 Door.compSprite.position.X, 
                 Door.compSprite.position.Y);
             //update the dungeon.doors list, change colliding door to bombed
-            for (int i = 0; i < Level.doors.Count; i++)
+            for (int i = 0; i < LevelSet.currentLevel.doors.Count; i++)
             {   //if this explosion collides with any dungeon.door that is of type.bombable
-                if (Level.doors[i].type == DoorType.Bombable)
+                if (LevelSet.currentLevel.doors[i].type == DoorType.Bombable)
                 {   //change this door type to type.bombed
-                    if (Projectile.compCollision.rec.Intersects(Level.doors[i].rec))
-                    { Level.doors[i].type = DoorType.Open; }
+                    if (Projectile.compCollision.rec.Intersects(LevelSet.currentLevel.doors[i].rec))
+                    { LevelSet.currentLevel.doors[i].type = DoorType.Open; }
                 }
             }
         }
@@ -240,7 +240,7 @@ namespace DungeonRun
         public static void CheckForPuzzles(Boolean solved)
         {
             //check to see if hero has solved room
-            if (Level.currentRoom.puzzleType == PuzzleType.Torches)
+            if (LevelSet.currentLevel.currentRoom.puzzleType == PuzzleType.Torches)
             {   //if the current room's puzzle type is Torches, check to see how many have been lit
                 if (CountTorches())
                 {   //enough torches have been lit to unlock this room / solve puzzle
@@ -346,9 +346,9 @@ namespace DungeonRun
 
         public static void DropMap(float X, float Y)
         {   //a map drop only comes from a miniboss death in a hub room
-            if (Level.currentRoom.roomID == RoomID.Hub)
+            if (LevelSet.currentLevel.currentRoom.roomID == RoomID.Hub)
             {   //a map will only spawn if hero doesn't have the map
-                if (Level.map == false)
+                if (LevelSet.currentLevel.map == false)
                 {
                     Functions_GameObject.Spawn(ObjType.Dungeon_Map,
                         X, Y, Direction.Down);

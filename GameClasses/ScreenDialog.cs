@@ -30,6 +30,7 @@ namespace DungeonRun
         //4: link makes choice - just like 3, A & B input for yes or no
         Boolean exitToOverworld = false;
         Boolean exitToDungeon = false;
+        Boolean exitToField = false;
 
 
         
@@ -84,31 +85,33 @@ namespace DungeonRun
                     if (Functions_Input.IsNewButtonPress(Buttons.A))
                     {
                         ExitDialog(); //exit dialog, enter dungeon
-                        exitToOverworld = false; exitToDungeon = true;
                         Assets.Play(Assets.sfxEnterDungeon);
 
                         //set level id based on dialog
                         if (dialogs == AssetsDialog.Enter_ForestDungeon)
                         {
-                            Level.ID = LevelID.Forest_Dungeon;
-                        }
-                        else if (dialogs == AssetsDialog.Enter_Colliseum)
-                        {
-                            Level.ID = LevelID.ColliseumPit;
+                            LevelSet.dungeon.ID = LevelID.Forest_Dungeon;
+                            exitToDungeon = true;
                         }
                         else if (dialogs == AssetsDialog.Enter_MountainDungeon)
                         {
-                            Level.ID = LevelID.Mountain_Dungeon;
+                            LevelSet.dungeon.ID = LevelID.Mountain_Dungeon;
+                            exitToDungeon = true;
                         }
                         else if (dialogs == AssetsDialog.Enter_SwampDungeon)
                         {
-                            Level.ID = LevelID.Swamp_Dungeon;
+                            LevelSet.dungeon.ID = LevelID.Swamp_Dungeon;
+                            exitToDungeon = true;
+                        }
+                        else if (dialogs == AssetsDialog.Enter_Colliseum)
+                        {   
+                            LevelSet.field.ID = LevelID.ColliseumPit;
+                            exitToField = true; //colliseum pit exists on a field level
                         }
                     }
                     else if(Functions_Input.IsNewButtonPress(Buttons.B))
                     {
-                        ExitDialog(); //exit dialog, dont enter
-                        exitToOverworld = false; exitToDungeon = false;
+                        ExitDialog(); //exit dialog
                     }
                 }
 
@@ -176,14 +179,19 @@ namespace DungeonRun
             else if (displayState == DisplayState.Closed)
             {   
                 if(exitToOverworld)
-                {   //get links last location from saveData, defaults to colliseum
-                    Level.ID = PlayerData.current.lastLocation;
+                {   
                     ScreenManager.ExitAndLoad(new ScreenOverworld());
+                }
+                else if (exitToField)
+                {
+                    //close the level screen, exiting to field level
+                    Functions_Level.CloseLevel(ExitAction.Field);
+                    ScreenManager.RemoveScreen(this);
                 }
                 else if(exitToDungeon)
                 {
                     //close the level screen, exiting to dungeon level
-                    Functions_Level.CloseLevel(ExitAction.Level);
+                    Functions_Level.CloseLevel(ExitAction.Dungeon);
                     ScreenManager.RemoveScreen(this);
                 }
                 else

@@ -18,19 +18,19 @@ namespace DungeonRun
 
         public static void DrawLevel()
         {   //draw the dungeon's room collision recs
-            for (i = 0; i < Level.rooms.Count; i++)
+            for (i = 0; i < LevelSet.currentLevel.rooms.Count; i++)
             {
                 ScreenManager.spriteBatch.Draw(
                     Assets.dummyTexture,
-                    Level.rooms[i].rec,
+                    LevelSet.currentLevel.rooms[i].rec,
                     Assets.colorScheme.roomRec);
             }
             //draw the dungeon doors
-            for (i = 0; i < Level.doors.Count; i++)
+            for (i = 0; i < LevelSet.currentLevel.doors.Count; i++)
             {
                 ScreenManager.spriteBatch.Draw(
                     Assets.dummyTexture,
-                    Level.doors[i].rec,
+                    LevelSet.currentLevel.doors[i].rec,
                     Assets.colorScheme.interaction);
             }
         }

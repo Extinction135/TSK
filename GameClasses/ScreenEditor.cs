@@ -23,7 +23,9 @@ namespace DungeonRun
             //based on the boot routine, setup the editor differently
             if(Flags.bootRoutine == BootRoutine.Editor_Level)
             {
-                Level.ID = LevelID.DEV_Field;
+                LevelSet.currentLevel = LevelSet.field;
+                LevelSet.field.ID = LevelID.DEV_Field;
+                
                 Widgets.RoomTools.roomData = new RoomXmlData();
                 Widgets.RoomTools.roomData.type = RoomID.DEV_Field;
                 base.LoadContent();
@@ -33,7 +35,9 @@ namespace DungeonRun
             }
             else
             {
-                Level.ID = LevelID.DEV_Room;
+                LevelSet.currentLevel = LevelSet.dungeon;
+                LevelSet.dungeon.ID = LevelID.Forest_Dungeon;
+
                 Widgets.RoomTools.roomData = new RoomXmlData();
                 Widgets.RoomTools.roomData.type = RoomID.DEV_Row;
                 base.LoadContent();
@@ -41,8 +45,8 @@ namespace DungeonRun
                 Widgets.RoomTools.SetState(WidgetRoomToolsState.Room);
                 //teleport hero to outside of room at top left corner
                 Functions_Movement.Teleport(Pool.hero.compMove,
-                    Level.buildPosition.X - 32,
-                    Level.buildPosition.Y + 32);
+                    Functions_Level.buildPosition.X - 32,
+                    Functions_Level.buildPosition.Y + 32);
             }
 
             //position the roomTools widget

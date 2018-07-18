@@ -120,11 +120,11 @@ namespace DungeonRun
             Functions_MenuItem.SetType(PlayerData.current.petType, menuItems[5]);
 
             //set dungeon map menuItem
-            if (Level.map) //if player found the map, display it
+            if (LevelSet.currentLevel.map) //if player found the map, display it
             { Functions_MenuItem.SetType(MenuItemType.InventoryMap, menuItems[6]); }
             else { Functions_MenuItem.SetType(MenuItemType.Unknown, menuItems[6]); }
             //set dungeon key menuItem
-            if (Level.bigKey) //if player found the key, display it
+            if (LevelSet.currentLevel.bigKey) //if player found the key, display it
             { Functions_MenuItem.SetType(MenuItemType.InventoryKey, menuItems[7]); }
             else { Functions_MenuItem.SetType(MenuItemType.Unknown, menuItems[7]); }
         }

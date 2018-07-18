@@ -133,15 +133,15 @@ namespace DungeonRun
 
         public static Direction GetDiagonalToCenterOfRoom(Vector2 Pos)
         {   //return a NSEW or DIAG direction towards room center
-            if (Level.currentRoom.center.Y > Pos.Y)
+            if (LevelSet.currentLevel.currentRoom.center.Y > Pos.Y)
             {   //down left or down right
-                if (Level.currentRoom.center.X > Pos.X)
+                if (LevelSet.currentLevel.currentRoom.center.X > Pos.X)
                 { return Direction.DownRight; }
                 else { return Direction.DownLeft; }
             }
             else
             {   //up left or up right
-                if (Level.currentRoom.center.X > Pos.X)
+                if (LevelSet.currentLevel.currentRoom.center.X > Pos.X)
                 { return Direction.UpRight; }
                 else { return Direction.UpLeft; }
             }

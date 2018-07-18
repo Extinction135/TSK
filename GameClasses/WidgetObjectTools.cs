@@ -203,8 +203,8 @@ namespace DungeonRun
                     if (currentObjRef.type == ObjType.Dungeon_Chest)
                     {
                         //we convert the 'safe' chest into a key or hub chest here
-                        if (Level.currentRoom.roomID == RoomID.Key ||
-                            Level.currentRoom.roomID == RoomID.DEV_Key)
+                        if (LevelSet.currentLevel.currentRoom.roomID == RoomID.Key ||
+                            LevelSet.currentLevel.currentRoom.roomID == RoomID.DEV_Key)
                         {   //convert to key chest
                             currentObjRef.type = ObjType.Dungeon_ChestKey;
 

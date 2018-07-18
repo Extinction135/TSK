@@ -194,13 +194,13 @@ namespace DungeonRun
                 {
                     if (Flags.KeyCheat) { Flags.KeyCheat = false; }
                     else { Flags.KeyCheat = true; }
-                    Level.bigKey = Flags.KeyCheat;
+                    LevelSet.currentLevel.bigKey = Flags.KeyCheat;
                 }
                 else if (currentlySelected.type == MenuItemType.CheatsMap)
                 {
                     if (Flags.MapCheat) { Flags.MapCheat = false; }
                     else { Flags.MapCheat = true; }
-                    Level.map = Flags.MapCheat;
+                    LevelSet.currentLevel.map = Flags.MapCheat;
                 }
                 else if (currentlySelected.type == MenuItemType.CheatsUnlockAll)
                 {

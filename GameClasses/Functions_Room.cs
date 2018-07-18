@@ -149,10 +149,9 @@ namespace DungeonRun
             //Setup RoomData OR DevRooms
 
             if (RoomXmlData == null)
-            {   //assume level is dungeon level
-                Level.isField = false;
-
-
+            {   
+                
+                
 
                 #region Setup Colliseum levels
 
@@ -160,12 +159,12 @@ namespace DungeonRun
                 if (Room.roomID == RoomID.Colliseum)
                 {
                     RoomXmlData = LevelData.Colliseum;
-                    Level.isField = true;
+                    LevelSet.currentLevel.isField = true;
                 }
                 else if (Room.roomID == RoomID.ColliseumPit)
                 {
                     RoomXmlData = LevelData.ColliseumPit;
-                    Level.isField = true;
+                    LevelSet.currentLevel.isField = true;
                 }
 
                 #endregion
@@ -176,28 +175,28 @@ namespace DungeonRun
                 else if (Room.roomID == RoomID.ForestEntrance)
                 {
                     RoomXmlData = LevelData.ForestEntrance;
-                    Level.isField = true;
+                    LevelSet.currentLevel.isField = true;
                 }
                 else if (Room.roomID == RoomID.MountainEntrance)
                 {
                     RoomXmlData = LevelData.MountainEntrance;
-                    Level.isField = true;
+                    LevelSet.currentLevel.isField = true;
                 }
                 else if (Room.roomID == RoomID.SwampEntrance)
                 {
                     RoomXmlData = LevelData.SwampEntrance;
-                    Level.isField = true;
+                    LevelSet.currentLevel.isField = true;
                 }
 
                 else if (Room.roomID == RoomID.TheFarm)
                 {
                     RoomXmlData = LevelData.TheFarm;
-                    Level.isField = true;
+                    LevelSet.currentLevel.isField = true;
                 }
                 else if (Room.roomID == RoomID.LeftTown2)
                 {
                     RoomXmlData = LevelData.LeftTown2;
-                    Level.isField = true;
+                    LevelSet.currentLevel.isField = true;
                 }
 
                 #endregion
@@ -208,30 +207,37 @@ namespace DungeonRun
                 else if (Room.roomID == RoomID.Boss)
                 {
                     RoomXmlData = RoomData.bossRooms[Room.dataIndex];
+                    LevelSet.currentLevel.isField = false;
                 }
                 else if (Room.roomID == RoomID.Column)
                 {
                     RoomXmlData = RoomData.columnRooms[Room.dataIndex];
+                    LevelSet.currentLevel.isField = false;
                 }
                 else if (Room.roomID == RoomID.Exit)
                 {
                     RoomXmlData = RoomData.exitRooms[Room.dataIndex];
+                    LevelSet.currentLevel.isField = false;
                 }
                 else if (Room.roomID == RoomID.Hub)
                 {
                     RoomXmlData = RoomData.hubRooms[Room.dataIndex];
+                    LevelSet.currentLevel.isField = false;
                 }
                 else if (Room.roomID == RoomID.Key)
                 {
                     RoomXmlData = RoomData.keyRooms[Room.dataIndex];
+                    LevelSet.currentLevel.isField = false;
                 }
                 else if (Room.roomID == RoomID.Row)
                 {
                     RoomXmlData = RoomData.rowRooms[Room.dataIndex];
+                    LevelSet.currentLevel.isField = false;
                 }
                 else if (Room.roomID == RoomID.Square)
                 {
                     RoomXmlData = RoomData.squareRooms[Room.dataIndex];
+                    LevelSet.currentLevel.isField = false;
                 }
 
                 #endregion
@@ -247,16 +253,16 @@ namespace DungeonRun
                 Room.roomID == RoomID.DEV_Square)
             {
                 RoomXmlData = new RoomXmlData();
-                Level.isField = false;
+                LevelSet.currentLevel.isField = false;
                 RoomXmlData.type = Room.roomID;
-                SetType(Level.currentRoom, Room.roomID);
+                SetType(LevelSet.currentLevel.currentRoom, Room.roomID);
                 //add nsew doors so hero can enter/exit for testing
                 Functions_Dungeon.AddDevDoors(Room); 
             }
             else if (Room.roomID == RoomID.DEV_Field)
             {
                 RoomXmlData = new RoomXmlData();
-                Level.isField = true;
+                LevelSet.currentLevel.isField = true;
             }
 
             #endregion
@@ -264,7 +270,7 @@ namespace DungeonRun
 
             #region Build the room + roomData
 
-            if (Level.isField)
+            if (LevelSet.currentLevel.isField)
             {   //we are building an outdoor overworld field room
                 Functions_Pool.Reset();
                 BuildRoomXmlData(RoomXmlData);
@@ -310,8 +316,8 @@ namespace DungeonRun
 
                     //move roomObj to xmlObj's position (with room offset)
                     Functions_Movement.Teleport(objRef.compMove,
-                        Level.currentRoom.rec.X + RoomXmlData.objs[i].posX,
-                        Level.currentRoom.rec.Y + RoomXmlData.objs[i].posY);
+                        LevelSet.currentLevel.currentRoom.rec.X + RoomXmlData.objs[i].posX,
+                        LevelSet.currentLevel.currentRoom.rec.Y + RoomXmlData.objs[i].posY);
                     //get obj direction
                     objRef.direction = RoomXmlData.objs[i].direction;
                     //finally, set roomObj.type to xmlObj.type
@@ -322,16 +328,17 @@ namespace DungeonRun
                     {
                         //here we check level.id to determine what
                         //type of STANDARD enemy to spawn
-                        if(Level.ID == LevelID.Forest_Dungeon)
+                        if(LevelSet.currentLevel.ID == LevelID.Forest_Dungeon)
                         {
                             Functions_Actor.SpawnActor(ActorType.Standard_AngryEye, objRef.compSprite.position);
                         }
-                        else if(Level.ID == LevelID.Mountain_Dungeon)
+                        else if(LevelSet.currentLevel.ID == LevelID.Mountain_Dungeon)
                         {   
                             Functions_Actor.SpawnActor(ActorType.Standard_BeefyBat, objRef.compSprite.position);
                         }
-                        else if (Level.ID == LevelID.Swamp_Dungeon)
+                        else if (LevelSet.currentLevel.ID == LevelID.Swamp_Dungeon)
                         {
+                            //we spawn blobs for now, but we need swamp standards SOON
                             Functions_Actor.SpawnActor(ActorType.Blob, objRef.compSprite.position);
                         }
 

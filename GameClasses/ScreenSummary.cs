@@ -206,9 +206,9 @@ namespace DungeonRun
             #region Handle Exit State
 
             else if (displayState == DisplayState.Closed)
-            {   
+            {
                 //get last location
-                Level.ID = PlayerData.current.lastLocation;
+                LevelSet.currentLevel.ID = PlayerData.current.lastLocation;
                 //exit all screens, return to overworld
                 ScreenManager.ExitAndLoad(new ScreenOverworld());
             }

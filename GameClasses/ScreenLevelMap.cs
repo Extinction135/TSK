@@ -68,9 +68,9 @@ namespace DungeonRun
             exitIcon.position.X = -100;
             marker.X = -100;
 
-            for (i = 0; i < Level.rooms.Count; i++)
+            for (i = 0; i < LevelSet.currentLevel.rooms.Count; i++)
             {
-                dungeonRoom = Level.rooms[i];
+                dungeonRoom = LevelSet.currentLevel.rooms[i];
                 Room mapRoom = new Room(new Point(0, 0), dungeonRoom.roomID);
                 //get the room size
                 mapRoom.rec.Width = dungeonRoom.size.X;
@@ -79,8 +79,8 @@ namespace DungeonRun
                 mapRoom.rec.X = dungeonRoom.rec.X;
                 mapRoom.rec.Y = dungeonRoom.rec.Y;
                 //subtract the build position
-                mapRoom.rec.X -= Level.buildPosition.X;
-                mapRoom.rec.Y -= Level.buildPosition.Y;
+                mapRoom.rec.X -= Functions_Level.buildPosition.X;
+                mapRoom.rec.Y -= Functions_Level.buildPosition.Y;
                 //reduce position 16:1
                 mapRoom.rec.X = mapRoom.rec.X / 16;
                 mapRoom.rec.Y = mapRoom.rec.Y / 16;
@@ -90,7 +90,7 @@ namespace DungeonRun
                 //get visibility
                 mapRoom.visited = dungeonRoom.visited;
                 //set marker to currentRoom position 
-                if (dungeonRoom == Level.currentRoom)
+                if (dungeonRoom == LevelSet.currentLevel.currentRoom)
                 {   //match currentRoom properties to rooms[i] (current room)
                     marker.X = mapRoom.rec.X + (mapRoom.rec.Width / 2);
                     marker.Y = mapRoom.rec.Y + (mapRoom.rec.Height / 2);
@@ -116,18 +116,18 @@ namespace DungeonRun
             #region Collect all the dungeon doors
 
             doors = new List<Door>();
-            for (i = 0; i < Level.doors.Count; i++)
+            for (i = 0; i < LevelSet.currentLevel.doors.Count; i++)
             {
                 Door dungeonDoor = new Door(new Point());
                 //map doors are always 1x1 pixels
                 dungeonDoor.rec.Width = 1;
                 dungeonDoor.rec.Height = 1;
                 //get the door position
-                dungeonDoor.rec.X = Level.doors[i].rec.X;
-                dungeonDoor.rec.Y = Level.doors[i].rec.Y;
+                dungeonDoor.rec.X = LevelSet.currentLevel.doors[i].rec.X;
+                dungeonDoor.rec.Y = LevelSet.currentLevel.doors[i].rec.Y;
                 //subtract the build position
-                dungeonDoor.rec.X -= Level.buildPosition.X;
-                dungeonDoor.rec.Y -= Level.buildPosition.Y;
+                dungeonDoor.rec.X -= Functions_Level.buildPosition.X;
+                dungeonDoor.rec.Y -= Functions_Level.buildPosition.Y;
                 //reduce position 16:1
                 dungeonDoor.rec.X = dungeonDoor.rec.X / 16;
                 dungeonDoor.rec.Y = dungeonDoor.rec.Y / 16;
@@ -135,7 +135,7 @@ namespace DungeonRun
                 dungeonDoor.rec.X += (640 / 2) - 8;
                 dungeonDoor.rec.Y += (360 / 2) + verticalOffset;
                 //get visibility
-                dungeonDoor.visited = Level.doors[i].visited;
+                dungeonDoor.visited = LevelSet.currentLevel.doors[i].visited;
                 //add door to doors list
                 doors.Add(dungeonDoor);
             }
@@ -191,7 +191,7 @@ namespace DungeonRun
 
                 for (i = 0; i < rooms.Count; i++)
                 {   //do we need to draw this room?
-                    if (rooms[i].visited || Level.map)
+                    if (rooms[i].visited || LevelSet.currentLevel.map)
                     {
                         if (rooms[i].visited)
                         {   //draw visited rooms with Visited color
@@ -215,7 +215,7 @@ namespace DungeonRun
 
                 for (i = 0; i < doors.Count; i++)
                 {   //do we need to draw this door?
-                    if (doors[i].visited || Level.map)
+                    if (doors[i].visited || LevelSet.currentLevel.map)
                     {
                         if (doors[i].visited)
                         {   //draw visited doors with Visited color

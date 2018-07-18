@@ -118,7 +118,7 @@ namespace DungeonRun
                     Actor.compSprite.position.X, Actor.compSprite.position.Y, true);
                 
                 //End Dungeon
-                if (Level.currentRoom.roomID == RoomID.Boss)
+                if (LevelSet.currentLevel.currentRoom.roomID == RoomID.Boss)
                 {   //boss must die in boss room to end dungeon
                     DungeonRecord.beatDungeon = true; //player beat dungeon
                     Functions_Level.CloseLevel(ExitAction.Summary);

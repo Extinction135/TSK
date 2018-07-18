@@ -144,20 +144,20 @@ namespace DungeonRun
                                 //based on state, set level id
                                 if (state == WidgetRoomToolsState.Room)
                                 {
-                                    Level.ID = LevelID.DEV_Room;
+                                    LevelSet.currentLevel.ID = LevelID.DEV_Room;
                                 }
                                 else
                                 {
-                                    Level.ID = LevelID.DEV_Field;
+                                    LevelSet.currentLevel.ID = LevelID.DEV_Field;
                                     roomID = RoomID.DEV_Field;
                                 }
                                 //hack: stuff roomID into roomTool's roomData
                                 Widgets.RoomTools.roomData = new RoomXmlData();
                                 Widgets.RoomTools.roomData.type = roomID;
                                 //then ref roomData in build level to get roomType
-                                Functions_Level.BuildLevel(Level.ID);
+                                Functions_Level.BuildLevel(LevelSet.currentLevel.ID);
 
-                                Debug.WriteLine("level id: " + Level.ID);
+                                Debug.WriteLine("level id: " + LevelSet.currentLevel.ID);
                                 Debug.WriteLine("room id: " + roomID);
                             }
 
@@ -239,7 +239,7 @@ namespace DungeonRun
         public void SaveCurrentRoom()
         {   //create RoomXmlData instance
             roomData = new RoomXmlData();
-            RoomID id = Level.currentRoom.roomID; //shorten roomID
+            RoomID id = LevelSet.currentLevel.currentRoom.roomID; //shorten roomID
             
             //convert DEV room types into proper GAME room types
             if (id == RoomID.DEV_Boss) { roomData.type = RoomID.Boss; }
@@ -271,8 +271,8 @@ namespace DungeonRun
                     objData.type = Obj.type;
                     objData.direction = Obj.direction;
                     //set saved obj's position relative to room's top left corner
-                    objData.posX = Obj.compSprite.position.X - Level.currentRoom.rec.X;
-                    objData.posY = Obj.compSprite.position.Y - Level.currentRoom.rec.Y;
+                    objData.posX = Obj.compSprite.position.X - LevelSet.currentLevel.currentRoom.rec.X;
+                    objData.posY = Obj.compSprite.position.Y - LevelSet.currentLevel.currentRoom.rec.Y;
                     RoomData.objs.Add(objData);
                 }
             }
@@ -284,22 +284,22 @@ namespace DungeonRun
 
             if (state == WidgetRoomToolsState.Room)
             {
-                Level.ID = LevelID.DEV_Room;
-                Level.rooms = new List<Room>();
-                Level.doors = new List<Door>();
+                LevelSet.currentLevel.ID = LevelID.DEV_Room;
+                LevelSet.currentLevel.rooms = new List<Room>();
+                LevelSet.currentLevel.doors = new List<Door>();
 
                 //reset the level flags
-                Level.bigKey = false;
-                Level.map = false;
+                LevelSet.currentLevel.bigKey = false;
+                LevelSet.currentLevel.map = false;
 
-                Room room = new Room(Level.buildPosition, RoomXmlData.type);
-                Level.rooms.Add(room);
-                Level.currentRoom = room;
+                Room room = new Room(Functions_Level.buildPosition, RoomXmlData.type);
+                LevelSet.currentLevel.rooms.Add(room);
+                LevelSet.currentLevel.currentRoom = room;
                 Functions_Dungeon.AddDevDoors(room);
 
                 //set spawnPos outside TopLeft of new dev room
-                Level.currentRoom.spawnPos.X = Level.currentRoom.rec.X - 32;
-                Level.currentRoom.spawnPos.Y = Level.currentRoom.rec.Y;
+                LevelSet.currentLevel.currentRoom.spawnPos.X = LevelSet.currentLevel.currentRoom.rec.X - 32;
+                LevelSet.currentLevel.currentRoom.spawnPos.Y = LevelSet.currentLevel.currentRoom.rec.Y;
 
                 //build walled empty room with floors, add xml objs, etc...
                 Functions_Dungeon.BuildRoomFrom(RoomXmlData);
@@ -309,7 +309,7 @@ namespace DungeonRun
                 Functions_Pool.Reset();
                 Functions_Room.BuildRoomXmlData(RoomXmlData);
                 //pass the room type into the built room
-                Level.currentRoom.roomID = RoomXmlData.type;
+                LevelSet.currentLevel.currentRoom.roomID = RoomXmlData.type;
             }
             Functions_Pool.Update(); //update roomObjs once
             Functions_Hero.SpawnInCurrentRoom(); //spawn hero in room

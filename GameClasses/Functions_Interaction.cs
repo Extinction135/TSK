@@ -119,10 +119,10 @@ namespace DungeonRun
 
                 if (Obj.type == ObjType.Dungeon_Map)
                 {
-                    if (Level.map == false) //make sure hero doesn't already have map
+                    if (LevelSet.currentLevel.map == false) //make sure hero doesn't already have map
                     {
                         Functions_Pool.Release(Obj); //hero collects map obj
-                        Level.map = true; //flip map true
+                        LevelSet.currentLevel.map = true; //flip map true
                         Functions_Actor.SetRewardState(Pool.hero);
                         Functions_Actor.SetAnimationGroup(Pool.hero);
                         Functions_Actor.SetAnimationDirection(Pool.hero); 
@@ -466,8 +466,8 @@ namespace DungeonRun
                                 //direct player's attention to hero's respawn pos
                                 Functions_Particle.Spawn(
                                     ObjType.Particle_Attention,
-                                    Level.currentRoom.spawnPos.X,
-                                    Level.currentRoom.spawnPos.Y);
+                                    LevelSet.currentLevel.currentRoom.spawnPos.X,
+                                    LevelSet.currentLevel.currentRoom.spawnPos.Y);
                             }
                             else
                             {   //handle enemy pit death (no loot, insta-death)

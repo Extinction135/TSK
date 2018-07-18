@@ -430,7 +430,7 @@ namespace DungeonRun
             {
 
                 //if an enemy has gone beyond the bounds of a roomRec, release without loot
-                if (!Level.currentRoom.rec.Contains(Obj.compSprite.position))
+                if (!LevelSet.currentLevel.currentRoom.rec.Contains(Obj.compSprite.position))
                 {
                     Functions_Pool.Release(Obj);
                 }
@@ -623,7 +623,7 @@ namespace DungeonRun
                         Functions_Direction.GetRandomDirection(), 1.0f);
                     //check that the fairy overlaps the current room rec,
                     //otherwise the fairy has strayed too far and must be killed
-                    if (!Level.currentRoom.rec.Contains(Obj.compSprite.position))
+                    if (!LevelSet.currentLevel.currentRoom.rec.Contains(Obj.compSprite.position))
                     {
                         Functions_Particle.Spawn(
                             ObjType.Particle_Attention,
@@ -940,8 +940,8 @@ namespace DungeonRun
 
                     // <<< exit condition : completed >>>
                     //exit level to pit level
-                    Level.ID = LevelID.ColliseumPit;
-                    Functions_Level.CloseLevel(ExitAction.Level);
+                    LevelSet.currentLevel.ID = LevelID.ColliseumPit;
+                    Functions_Level.CloseLevel(ExitAction.Field);
 
                     //pop a new dialog screen telling player they completed challenge
                     ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Colliseum_Challenge_Complete));

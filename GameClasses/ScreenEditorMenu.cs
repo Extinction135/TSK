@@ -19,6 +19,10 @@ namespace DungeonRun
         public ScreenRec bkgRec = new ScreenRec();
         public ComponentButton currentSheet;
 
+        //used to track what level widgets are being displayed
+        public LevelID levelBeingDisplayed = LevelID.Forest_Entrance;
+
+
 
 
         public ScreenEditorMenu() { this.name = "Editor Menu Screen"; }
@@ -38,7 +42,6 @@ namespace DungeonRun
             currentSheet.compText.text = "forest";
             Widgets.WO_Forest.visible = true;
             Widgets.WE_Forest.visible = true;
-            Level.ID = LevelID.Forest_Entrance;
         }
 
         public override void HandleInput(GameTime GameTime)
@@ -94,51 +97,55 @@ namespace DungeonRun
                 {
                     ResetWidgets();
 
-
+                    
 
                     //Iterate thru forest, town, colliseum, mountain, etc...
-                    if (Level.ID == LevelID.LeftTown2)
+                    if (levelBeingDisplayed == LevelID.LeftTown2)
                     {   //leads to colliseum
                         currentSheet.compText.text = "colliseum";
                         Widgets.WO_Colliseum.visible = true;
-                        Level.ID = LevelID.Colliseum;
+                        levelBeingDisplayed = LevelID.Colliseum;
                     }
-                    else if(Level.ID == LevelID.Colliseum)
+                    else if(levelBeingDisplayed == LevelID.Colliseum)
                     {   //leads to forest
                         currentSheet.compText.text = "forest";
                         Widgets.WO_Forest.visible = true;
                         Widgets.WE_Forest.visible = true;
-                        Level.ID = LevelID.Forest_Entrance;
+                        levelBeingDisplayed = LevelID.Forest_Entrance;
                     }
-                    else if (Level.ID == LevelID.Forest_Entrance)
+                    else if (levelBeingDisplayed == LevelID.Forest_Entrance)
                     {   //leads to mountain
                         currentSheet.compText.text = "mountain";
                         Widgets.WO_Mountain.visible = true;
                         Widgets.WE_Mountain.visible = true;
-                        Level.ID = LevelID.Mountain_Entrance;
+                        levelBeingDisplayed = LevelID.Mountain_Entrance;
                     }
-                    else if (Level.ID == LevelID.Mountain_Entrance)
+                    else if (levelBeingDisplayed == LevelID.Mountain_Entrance)
                     {   //leads to swamp
                         currentSheet.compText.text = "swamp";
                         Widgets.WO_Swamp.visible = true;
                         Widgets.WE_Swamp.visible = true;
-                        Level.ID = LevelID.Swamp_Entrance;
+                        levelBeingDisplayed = LevelID.Swamp_Entrance;
                     }
-                    else if (Level.ID == LevelID.Swamp_Entrance)
+                    else if (levelBeingDisplayed == LevelID.Swamp_Entrance)
                     {   //leads to town
                         currentSheet.compText.text = "town";
                         Widgets.WO_Town.visible = true;
                         Widgets.WE_Town.visible = true;
-                        Level.ID = LevelID.LeftTown2;
+                        levelBeingDisplayed = LevelID.LeftTown2;
                     }
                     
                     else
                     {   //any other case resets button's sequence, leads to forest
                         currentSheet.compText.text = "forest";
                         Widgets.WO_Forest.visible = true;
-                        Level.ID = LevelID.Forest_Entrance;
+                        levelBeingDisplayed = LevelID.Forest_Entrance;
                     }
-                    
+
+
+                    //pass the new levelID to current level, so if we save it later it has right ID
+                    LevelSet.currentLevel.ID = levelBeingDisplayed;
+
 
 
                     //update level floors and room objects

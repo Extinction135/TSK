@@ -40,7 +40,7 @@ namespace DungeonRun
             //register this dungeon screen with Functions_Level
             Functions_Level.levelScreen = this;
             //level id is set by overworld screen
-            Functions_Level.BuildLevel(Level.ID); 
+            Functions_Level.BuildLevel(LevelSet.currentLevel.ID); 
             //load hero's actorType from SaveData
             Functions_Actor.SetType(Pool.hero, PlayerData.current.actorType);
             Functions_Hero.SetLoadout();
@@ -118,14 +118,33 @@ namespace DungeonRun
                     if (exitAction == ExitAction.Summary)
                     { ScreenManager.ExitAndLoad(new ScreenSummary()); }
                     else if (exitAction == ExitAction.ExitDungeon)
-                    { ScreenManager.ExitAndLoad(new ScreenOverworld()); }
-                    else if (exitAction == ExitAction.Overworld)
-                    { ScreenManager.ExitAndLoad(new ScreenOverworld()); }
-                    else if (exitAction == ExitAction.Title)
-                    { ScreenManager.ExitAndLoad(new ScreenTitle()); }
-                    else if (exitAction == ExitAction.Level)
-                    { ScreenManager.ExitAndLoad(new ScreenLevel()); }
+                    {
+                        //hero doesn't return to overworld
+                        //ScreenManager.ExitAndLoad(new ScreenOverworld());
 
+                        //instead hero loads into the last field level
+                        LevelSet.currentLevel = LevelSet.field;
+                        ScreenManager.ExitAndLoad(new ScreenLevel());
+                    }
+                    else if (exitAction == ExitAction.Overworld)
+                    {
+                        ScreenManager.ExitAndLoad(new ScreenOverworld());
+                    }
+                    else if (exitAction == ExitAction.Title)
+                    {
+                        ScreenManager.ExitAndLoad(new ScreenTitle());
+                    }
+                    else if (exitAction == ExitAction.Field)
+                    {   //point to field level
+                        LevelSet.currentLevel = LevelSet.field;
+                        ScreenManager.ExitAndLoad(new ScreenLevel());
+                    }
+                    else if (exitAction == ExitAction.Dungeon)
+                    {   //point to dungeon level
+                        LevelSet.currentLevel = LevelSet.dungeon;
+                        ScreenManager.ExitAndLoad(new ScreenLevel());
+                    }
+                    
                     if (Flags.PrintOutput)
                     { Debug.WriteLine("exit action for level screen: " + exitAction); }
                 }
@@ -142,16 +161,16 @@ namespace DungeonRun
 
                     #region Track Hero in Fields and Dungeons
 
-                    if (Level.isField)
+                    if (LevelSet.currentLevel.isField)
                     {
                         //center camera to field
-                        Camera2D.targetPosition.X = Level.currentRoom.center.X;
-                        Camera2D.targetPosition.Y = Level.currentRoom.center.Y;
+                        Camera2D.targetPosition.X = LevelSet.currentLevel.currentRoom.center.X;
+                        Camera2D.targetPosition.Y = LevelSet.currentLevel.currentRoom.center.Y;
                         //move 50% toward hero
                         Camera2D.targetPosition.X -=
-                                (Level.currentRoom.center.X - Pool.hero.compSprite.position.X) * 0.5f;
+                                (LevelSet.currentLevel.currentRoom.center.X - Pool.hero.compSprite.position.X) * 0.5f;
                         Camera2D.targetPosition.Y -=
-                            (Level.currentRoom.center.Y - Pool.hero.compSprite.position.Y) * 0.5f;
+                            (LevelSet.currentLevel.currentRoom.center.Y - Pool.hero.compSprite.position.Y) * 0.5f;
                     }
                     else
                     {   //hero is in a dungeon
@@ -164,8 +183,8 @@ namespace DungeonRun
                         else
                         {
                             //center camera to current room
-                            Camera2D.targetPosition.X = Level.currentRoom.center.X;
-                            Camera2D.targetPosition.Y = Level.currentRoom.center.Y + 16 * 1;
+                            Camera2D.targetPosition.X = LevelSet.currentLevel.currentRoom.center.X;
+                            Camera2D.targetPosition.Y = LevelSet.currentLevel.currentRoom.center.Y + 16 * 1;
                             Camera2D.tracks = true; //wait until room change, then move
                         }
                     }
