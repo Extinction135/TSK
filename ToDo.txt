@@ -58,26 +58,50 @@ Roadmap
 Today:
 
 
-JIT Fix
 
-so when testing on the xbox one, and on the pc, I
-noticed that there was a pause before the first build
-of any dungeon. subsequent builds were very fast, 
-leading me to believe that there is an initial setup
-cost or a just-in-time compilation happening on the
-first build. the fix is simply to build a forest dungeon
-when the game first boots up, incurring this cost when
-the game isn't doing anything important, like running.
-thanks .Net!
 
-fix implemented, but it exposes a flaw in the design of
-Functions_Level, which relys on a level screen being 
-present (via a reference). so had to remove some code
-there to make this boot build fix work properly.
-there are plans to make screens global later on that
-will resolve this problem, so i'm not fixing the
-minor visual bug it creates: level screens sometimes
-don't fade in from black properly now.
+
+Prep for Screen Update
+
+removed game1 reference from screen base class.
+leftovers from previous pattern, no longer used.
+
+
+
+
+
+
+
+
+Global Screens
+
+we really need to make level screen global, to fix functions_level.
+this means we need to make ALL screens global.
+which means we need to have a reset method for all screeens,
+which is called automatically by screenManager when a screen
+is added. when a screen is removed, we simply set the screen.visible
+to false, which prevents it from being drawn. the 'order' of screens
+remains similar to instanced screenManager, so the draw order depends
+on the order the screens are added.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -438,12 +462,6 @@ make it cluck, of course.
 
 
 TITLE SCREEN + TEST AI
-*not this, but...*
-At the begining of the game, build a complete dungeon in the
-background. this causes the game to do all the JIT compilation
-at the start, so we don't get an initial hiccup when loading into the
-first dungeon. *hopefully* because this only happens on uwp
-on xbox one, so i'm assuming the code is compiled differently.
 
 title screen is the menu with input over a level screen
 played by an AI. this AI doesn't have to be good. it just

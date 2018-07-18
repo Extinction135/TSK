@@ -193,8 +193,7 @@ namespace DungeonRun
 
 
         public static void AddScreen(Screen screen)
-        {   //set all of screen's references
-            screen.game = game;
+        {   
             screen.LoadContent();
             screens.Add(screen);
         }

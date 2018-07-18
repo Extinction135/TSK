@@ -14,7 +14,6 @@ namespace DungeonRun
 {
     public abstract class Screen
     {  
-        public Game1 game;
         public DisplayState displayState;
         public Screen() { }
         public string name = "New";
@@ -23,5 +22,13 @@ namespace DungeonRun
         public virtual void HandleInput(GameTime gameTime) { }
         public virtual void Update(GameTime gameTime) { }
         public virtual void Draw(GameTime gameTime) { }
+    }
+
+
+    public static class Screens
+    {
+        //acts as global access point for all screens in game
+
+
     }
 }

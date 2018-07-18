@@ -217,13 +217,6 @@ namespace DungeonRun
 
 
 
-
-
-
-
-
-
-
     public static class LevelSet
     {
         public static Level field;
@@ -236,9 +229,6 @@ namespace DungeonRun
             field = new Level();
             dungeon = new Level();
             currentLevel = field;
-            //testing
-            field.ID = LevelID.Forest_Entrance;
-            dungeon.ID = LevelID.Forest_Dungeon;
         }
     }
 
@@ -254,19 +244,6 @@ namespace DungeonRun
         public Boolean isField = true;
         public int dungeonTrack = 0; //what music plays
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -302,6 +279,8 @@ namespace DungeonRun
         public Door(Point Pos) { rec.X = Pos.X; rec.Y = Pos.Y; }
         public DoorType type = DoorType.Open;
     }
+
+
 
 
     public class RoomXmlData
