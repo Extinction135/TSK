@@ -232,8 +232,7 @@ namespace DungeonRun
         public static Boolean bigKey = false;
         public static Boolean map = false;
         public static Boolean isField = true;
-
-        public static Boolean lightWorld = true;
+        
         public static int dungeonTrack = 0;
     }
 

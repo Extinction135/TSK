@@ -32,9 +32,8 @@ namespace DungeonRun
             //enable map and key cheats
             Level.map = Flags.MapCheat;
             Level.bigKey = Flags.KeyCheat;
-            //reset to overworld lightworld
+            //reset to overworld field
             Level.isField = true;
-            Level.lightWorld = true;
         }
 
 
@@ -49,14 +48,12 @@ namespace DungeonRun
                 || levelID == LevelID.Swamp_Dungeon)
             {
                 Level.isField = false;
-                Level.lightWorld = false;
             }
 
             //set dev booleans
             if(levelID == LevelID.DEV_Room)
             {
                 Level.isField = false;
-                Level.lightWorld = false;
             }
 
 
@@ -64,16 +61,14 @@ namespace DungeonRun
 
             //assume light world - light gray
             Assets.colorScheme.background = Assets.colorScheme.bkg_lightWorld;
+            
+            //planned for darkworld colorscheme like this (missing check):
+            //Assets.colorScheme.background = Assets.colorScheme.bkg_darkWorld;
 
-            //check for dark world - dark gray
-            if (Level.lightWorld == false) 
-            {
-                Assets.colorScheme.background = Assets.colorScheme.bkg_darkWorld;
-
-                //if level is a room, then this is a dungeon, set bkg to black
-                if (Level.isField == false)
-                { Assets.colorScheme.background = Assets.colorScheme.bkg_dungeon; }
-            }
+            //if level is a room, then this is a dungeon, set to dungeon bkg color
+            if (Level.isField == false)
+            { Assets.colorScheme.background = Assets.colorScheme.bkg_dungeon; }
+            
 
             #endregion
 

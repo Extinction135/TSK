@@ -60,14 +60,12 @@ Today:
 
 
 
+Level--
 
-CellSize--
-
-removed cellsize and UpdateCellSize() from codebase,
-based on an observation from Fillip F. this simplifies
-the sprite component.
-
-
+removed level.lightWorld boolean, which was really
+doing anything and we're not ready to add darkworld
+levels yet, plus we're about to complicate level 
+a bunch, so we need to clean it up first.
 
 
 
@@ -76,13 +74,11 @@ the sprite component.
 
 
 
-record video talking about mountain walls, climbing.
 
 
 
-
-
-
+level.field
+level.dungeon
 
 
 Separate Levels and Dungeons
@@ -91,6 +87,15 @@ make dungeon level gobal.
 make field level global.
 build forest versions of both at start of game.
 this fixes the jit compilation xbox one does.
+
+we will need to have two level instances (field + dungeon).
+while in dungeon, target level should be dungeon.
+while in field, target level should be field.
+when we load a level, we should set the target, based
+on the level id.
+
+
+
 
 -update systems to work with global level instances.
 
