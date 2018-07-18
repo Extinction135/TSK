@@ -242,8 +242,9 @@ namespace DungeonRun
             }
 
             //fade the dungeon screen out from black, revealing the new level
-            levelScreen.overlay.alpha = 1.0f;
-            levelScreen.displayState = DisplayState.Opening;
+            //this needs to be implemented when level screen is global
+            //levelScreen.overlay.alpha = 1.0f;
+            //levelScreen.displayState = DisplayState.Opening;
         }
 
 

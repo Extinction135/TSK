@@ -58,46 +58,26 @@ Roadmap
 Today:
 
 
+JIT Fix
 
+so when testing on the xbox one, and on the pc, I
+noticed that there was a pause before the first build
+of any dungeon. subsequent builds were very fast, 
+leading me to believe that there is an initial setup
+cost or a just-in-time compilation happening on the
+first build. the fix is simply to build a forest dungeon
+when the game first boots up, incurring this cost when
+the game isn't doing anything important, like running.
+thanks .Net!
 
-
-Separate Levels and Dungeons
-
-right now, there is only 1 level instance.
-and ALL GAME SYSTEMS are built around the idea
-of only having one level instance. BUT, now I
-want two level instances: field and dungeon.
-
-Why? Several reasons..
-
-1. i want to build a field and dungeon level at
-the start of the game, to mitigate the JIT compilation
-that happens on the xbox one just prior to entering a level
-or dungeon for the first time. that pause is unacceptable,
-so we'll defeat the JIT compilation by forcing it to compile
-that data upon boot. 
-
-2. because I want to be able to exit a dungeon and
-return to the level that has that dungeon's entrance.
-right now, we just return to the overworld. i could do
-a dungeon type check, then load the appropriate field level,
-but it's just easier to point a level reference to an existing
-field level in ram, so we stick with that solution.
-
-3. this simplifies how the overworld screen works: now
-it simply checks the value of the last field level loaded,
-then places hero at the correct starting location. the 
-overworld screen no longer needs to check if the hero is
-exiting a dungeon, since that action leads to a field level.
-in other words, hero can only exit to overworld screen from
-a field level.
-
-i'm sure there are other reasons, but those are The Big 3.
-
-also fixed a bug with component sprite setting the origin
-prior to setting the drawRec's size, which introduced
-a +8,+8 pixel offset to ALL sprites, making things ugly.
-playtested, working as expected.
+fix implemented, but it exposes a flaw in the design of
+Functions_Level, which relys on a level screen being 
+present (via a reference). so had to remove some code
+there to make this boot build fix work properly.
+there are plans to make screens global later on that
+will resolve this problem, so i'm not fixing the
+minor visual bug it creates: level screens sometimes
+don't fade in from black properly now.
 
 
 
@@ -114,26 +94,8 @@ playtested, working as expected.
 
 
 
-*add black pixels to the corners of the mountain wall sprites.
-this will make the rooms appear rounded, which further visually
-separates them. 
 
 
-
-
-build forest versions of field and dungeon at start of game.
-this fixes the jit compilation xbox one does.
-
-we will need to have two level instances (field + dungeon).
-while in dungeon, target level should be dungeon.
-while in field, target level should be field.
-when we load a level, we should set the target, based
-on the level id.
-
-
-
-
--update systems to work with global level instances.
 
 Exiting Dungeons
 this should return the hero to the dungeon entrance,
@@ -141,25 +103,17 @@ on the proper dungeo entrance level. hero should spawn
 just south of dungeon entrance. this means dungeon entrances
 can't be blocked by anything directly infront of them.
 
-*plus, the field level will always correspond to a map
-location, and we can only access overworld map from field
-level, so we no longer need dungeon type checks in overworld
-screen, since we always exit from dungeon to field, then field
-to map.
-
-*this allows us to have a field and dungeon level in ram
-at the same time and maintain the two separately. we can 
-even prevent a ReBuild() from being called when hero transfers
-between rooms (field and dungeon).
-
 Magic Mirror
-^this plays well into magic mirror: use it in a dungeon to return
+this plays well into magic mirror: use it in a dungeon to return
 to the exit (starting room). exiting dungeon takes us to field.
 using magic mirror in field level takes hero to overworld screen.
 it does not serve as a connection between worlds, because it has
 been broken. the history of why it was broken can be explained.
 
-
+Mountain Sprites
+add black pixels to the corners of the mountain wall sprites.
+this will make the rooms appear rounded, which further visually
+separates them. 
 
 
 
@@ -263,6 +217,16 @@ swamp entrance level design
 -need these water objects to swim under too
 -need to update underwater swimming to allow for passing through
 certain objects (those created above)...
+
+
+spikeblocks? swim under. indestructible. immobile.
+lily pads? stand on top of, with watery feet.
+marsh grass = impassable, but burnable.
+
+
+
+
+
 
 
 

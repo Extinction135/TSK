@@ -35,6 +35,20 @@ namespace DungeonRun
 
             Pool.Initialize();
 
+
+
+            //pre-build an instance of a dungeon when game boots 
+            //done to bypass JIT compilation on other platforms
+            LevelSet.currentLevel = LevelSet.dungeon;
+            Functions_Level.BuildLevel(LevelID.Forest_Dungeon);
+            Functions_Level.ResetLevel(LevelSet.currentLevel);
+            //pre-build a standard field level too
+            LevelSet.currentLevel = LevelSet.field;
+            Functions_Level.BuildLevel(LevelID.Colliseum);
+            //the level hero loads into will be decided by overworld later on
+
+
+
             //GAME BOOT ROUTINE
             if (Flags.bootRoutine == BootRoutine.Game)
             {
