@@ -357,7 +357,7 @@ namespace DungeonRun
             else if (Type == MenuItemType.Challenge_Blobs)
             {
                 MenuItem.name = "Mobs - Blobs";
-                MenuItem.description = "Defeat 25 random enemies \nfor 25 gold.";
+                MenuItem.description = "Defeat 25 enemies \nfor 25 gold.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Challenge;
                 MenuItem.compSprite.texture = Assets.colliseumLevelSheet;
                 MenuItem.price = 10;

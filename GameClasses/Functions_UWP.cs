@@ -60,7 +60,7 @@ namespace DungeonRun
         public static async void LoadGame(GameFile Type, Boolean loadAsCurrentGame)
         {
             SetFilename(Type);
-            Boolean autoSave = false;
+            //Boolean autoSave = false;
             //Dialog dialogType = Dialog.Default;
 			List<Dialog> dialog = AssetsDialog.Guide;
 			
@@ -83,7 +83,7 @@ namespace DungeonRun
                             if (Type == GameFile.AutoSave)
                             {
                                 PlayerData.current = (SaveData)serializer.Deserialize(stream);
-                                autoSave = true;
+                                //autoSave = true;
                             }
                             else if (Type == GameFile.Game1)
                             {
@@ -101,9 +101,8 @@ namespace DungeonRun
                                 if (loadAsCurrentGame) { PlayerData.current = PlayerData.game3; }
                             }
                         }
-                        if (autoSave) //let player know file has been loaded
-                        { dialog = AssetsDialog.GameAutoSaved; } 
-						else { dialog = AssetsDialog.GameLoaded; }
+						
+						dialog = AssetsDialog.GameLoaded;
                     }
                 }
 

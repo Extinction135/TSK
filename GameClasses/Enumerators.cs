@@ -53,8 +53,8 @@ namespace DungeonRun
 
         //hero either dies/beats dungeon or exits
         Summary, //died/beat boss, show summary
-        ExitDungeon, //left dungeon, goto overworld screen
 
+        GameLoaded, //from lsn screen, after a game has been made/loaded
         Overworld, //goto overworld screen
 
         Field, //build a field level

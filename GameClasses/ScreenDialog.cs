@@ -22,15 +22,9 @@ namespace DungeonRun
         ScreenRec background = new ScreenRec();
         ScreenRec foreground = new ScreenRec();
 
+        ExitAction exitAction = ExitAction.ExitScreen;
+        
 
-        //there are a few different paths thru screen dialog
-        //1: loading/new game - speaker info about data, exit to overworld default location
-        //2: npc speaking - single or multiple dialogs with 1 or many speakers
-        //3: entering/exiting dungeons - single dialog with A confirm or B deny input
-        //4: link makes choice - just like 3, A & B input for yes or no
-        Boolean exitToOverworld;
-        Boolean exitToDungeon;
-        Boolean exitToField;
 
 
 
@@ -39,8 +33,7 @@ namespace DungeonRun
         public ScreenDialog()
         {
             this.name = "Dialog Screen";
-            //default value
-            dialogs = AssetsDialog.Guide;
+            dialogs = AssetsDialog.Guide; //default value
         }
 
         public override void Open()
@@ -60,21 +53,34 @@ namespace DungeonRun
             Functions_Actor.SetAnimationDirection(Pool.hero);
             Functions_Animation.Animate(Pool.hero.compAnim, Pool.hero.compSprite);
 
-            //reset screen's booleans
-            exitToOverworld = false;
-            exitToDungeon = false;
-            exitToField = false;
+
+            //reset exit action to just exit this dialog screen
+            exitAction = ExitAction.ExitScreen;
+
+            //set exit action based on dialog type
+            if (
+                dialogs == AssetsDialog.GameLoaded 
+                || dialogs == AssetsDialog.GameCreated
+                || dialogs == AssetsDialog.GameNotFound
+                || dialogs == AssetsDialog.GameLoadFailed
+                )
+            { exitAction = ExitAction.GameLoaded; }
+
+            else if(
+                dialogs == AssetsDialog.Enter_ForestDungeon
+                    || dialogs == AssetsDialog.Enter_MountainDungeon
+                    || dialogs == AssetsDialog.Enter_SwampDungeon
+                    )
+            { exitAction = ExitAction.Dungeon; }
+
+            else if(dialogs == AssetsDialog.Enter_Colliseum)
+            { exitAction = ExitAction.Field; }
         }
 
         public override void HandleInput(GameTime GameTime)
         {   //force player to wait for the dialog to complete
             if (Widgets.Dialog.dialogDisplayed)
             {
-                //handle loading and new dialog states
-                if (dialogs == AssetsDialog.GameLoaded || dialogs == AssetsDialog.GameCreated)
-                { exitToOverworld = true; }
-
-
 
                 #region Dialogs with A/B Choices + Diff Outcomes
 
@@ -92,28 +98,21 @@ namespace DungeonRun
 
                         //set level id based on dialog
                         if (dialogs == AssetsDialog.Enter_ForestDungeon)
-                        {
-                            LevelSet.dungeon.ID = LevelID.Forest_Dungeon;
-                            exitToDungeon = true;
-                        }
+                        { LevelSet.dungeon.ID = LevelID.Forest_Dungeon; }
+
                         else if (dialogs == AssetsDialog.Enter_MountainDungeon)
-                        {
-                            LevelSet.dungeon.ID = LevelID.Mountain_Dungeon;
-                            exitToDungeon = true;
-                        }
+                        { LevelSet.dungeon.ID = LevelID.Mountain_Dungeon; }
+
                         else if (dialogs == AssetsDialog.Enter_SwampDungeon)
-                        {
-                            LevelSet.dungeon.ID = LevelID.Swamp_Dungeon;
-                            exitToDungeon = true;
-                        }
+                        { LevelSet.dungeon.ID = LevelID.Swamp_Dungeon; }
+
                         else if (dialogs == AssetsDialog.Enter_Colliseum)
-                        {   
-                            LevelSet.field.ID = LevelID.ColliseumPit;
-                            exitToField = true; //colliseum pit exists on a field level
-                        }
+                        { LevelSet.field.ID = LevelID.ColliseumPit; }
+
                     }
                     else if(Functions_Input.IsNewButtonPress(Buttons.B))
                     {
+                        exitAction = ExitAction.ExitScreen; //reset exit action
                         ExitDialog(); //exit dialog
                     }
                 }
@@ -146,7 +145,7 @@ namespace DungeonRun
         public override void Update(GameTime GameTime)
         {
 
-            #region Handle Screen State
+            #region Opening
 
             if (displayState == DisplayState.Opening)
             {
@@ -163,6 +162,12 @@ namespace DungeonRun
                     { displayState = DisplayState.Opened; }
                 }
             }
+
+            #endregion
+
+
+            #region Closing
+
             else if (displayState == DisplayState.Closing)
             {
                 if (foreground.fade)
@@ -179,23 +184,28 @@ namespace DungeonRun
                 if (Widgets.Dialog.window.background.displayState == DisplayState.Closed)
                 { displayState = DisplayState.Closed; }
             }
+
+            #endregion
+
+
+            #region Closed
+
             else if (displayState == DisplayState.Closed)
             {   
-                if(exitToOverworld)
-                {   
-                    //ScreenManager.ExitAndLoad(Screens.Overworld);
-                    Functions_Level.CloseLevel(ExitAction.Overworld);
-                    ScreenManager.RemoveScreen(this);
+                //from lsn screen to overworld
+                if(exitAction == ExitAction.GameLoaded)
+                {   //exit all screens, load overworld level
+                    ScreenManager.ExitAndLoad(Screens.Overworld);
                 }
-                else if (exitToField)
-                {
-                    //close the level screen, exiting to field level
+                //from field to field (ex: colliseum)
+                else if (exitAction == ExitAction.Field)
+                {   //close the level screen, exiting to field level
                     Functions_Level.CloseLevel(ExitAction.Field);
                     ScreenManager.RemoveScreen(this);
                 }
-                else if(exitToDungeon)
-                {
-                    //close the level screen, exiting to dungeon level
+                //from field to dungeon
+                else if(exitAction == ExitAction.Dungeon)
+                {   //close the level screen, exiting to dungeon level
                     Functions_Level.CloseLevel(ExitAction.Dungeon);
                     ScreenManager.RemoveScreen(this);
                 }
@@ -229,7 +239,6 @@ namespace DungeonRun
             Assets.Play(Dialog.sfx);
             background.fade = Dialog.fadeBackgroundIn;
             foreground.fade = Dialog.fadeForegroundIn;
-            exitToOverworld = Dialog.exitToOverworld;
             displayState = DisplayState.Opening;
             dialogIndex++; //track dialog count
         }

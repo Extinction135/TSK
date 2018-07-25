@@ -83,13 +83,15 @@ namespace DungeonRun
                 else if (Obj.group == ObjGroup.Door)
                 {   //handle hero interaction with exit door
                     if (Obj.type == ObjType.Dungeon_Exit)
-                    {   //stop movement, prevents overlap with exit
+                    {   
+                        //stop movement, prevents overlap with exit
                         Functions_Movement.StopMovement(Pool.hero.compMove);
-                        if (Functions_Level.levelScreen.displayState == DisplayState.Opened)
+                        if (Screens.Level.displayState == DisplayState.Opened)
                         {   
                             DungeonRecord.Reset();
                             Assets.Play(Assets.sfxDoorOpen);
-                            Functions_Level.CloseLevel(ExitAction.ExitDungeon);
+                            //return hero to last field level
+                            Functions_Level.CloseLevel(ExitAction.Field);
                         }
                         return; //dont center or move hero anymore
                     }

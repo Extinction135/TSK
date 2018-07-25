@@ -19,7 +19,7 @@ namespace DungeonRun
         public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.76f; //the version of the game
-        public static BootRoutine bootRoutine = BootRoutine.Editor_Level; //boot to game or editor?
+        public static BootRoutine bootRoutine = BootRoutine.Game; //boot to game or editor?
 
 
         //dev flags
@@ -1085,15 +1085,13 @@ namespace DungeonRun
         public SoundEffectInstance sfx;
         public Boolean fadeBackgroundIn;
         public Boolean fadeForegroundIn;
-        public Boolean exitToOverworld;
 
         public Dialog(
             ObjType Speaker, 
             String Title, 
             String Text, 
             SoundEffectInstance Sfx, 
-            Boolean FadeBkg, Boolean FadeFrg, 
-            Boolean ExitToOverworld)
+            Boolean FadeBkg, Boolean FadeFrg)
         {
             speaker = Speaker;
             title = Title;
@@ -1101,7 +1099,6 @@ namespace DungeonRun
             sfx = Sfx;
             fadeBackgroundIn = FadeBkg;
             fadeForegroundIn = FadeFrg;
-            exitToOverworld = ExitToOverworld;
         }
     }
 

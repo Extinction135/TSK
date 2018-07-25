@@ -31,7 +31,7 @@ namespace DungeonRun
         public ComponentText exitIcon = new ComponentText(
             Assets.font, "E", new Vector2(), Assets.colorScheme.textDark);
 
-        int verticalOffset = 16; //how far map is pushed down from screen center
+        int verticalOffset = 16 * 2; //how far map is pushed down from screen center
 
 
 
@@ -39,13 +39,12 @@ namespace DungeonRun
         public ScreenLevelMap()
         {
             this.name = "DungeonMap";
-
             //create scroll instance
             scroll = new Scroll(
                 new Vector2(16 * 12, 16 * 4 - 8),
                 15, 16);
-            scroll.displayState = DisplayState.Opening;
             scroll.title.text = "Dungeon Map";
+            scroll.displayState = DisplayState.Opening;
         }
 
         public override void Open()
@@ -146,6 +145,8 @@ namespace DungeonRun
 
             #endregion
 
+
+            scroll.displayState = DisplayState.Opening;
         }
 
         public override void HandleInput(GameTime GameTime)

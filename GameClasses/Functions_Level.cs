@@ -17,8 +17,16 @@ namespace DungeonRun
         public static Stopwatch stopWatch = new Stopwatch();
         public static TimeSpan time;
 
-        //this is a problem, will be solved with structural change soon
-        public static ScreenLevel levelScreen;
+
+
+
+        
+
+
+
+
+
+
 
         //where exit/field room is placed - should be part of build functions
         public static Point buildPosition = new Point(16 * 10, 16 * 200);
@@ -483,8 +491,8 @@ namespace DungeonRun
 
         public static void CloseLevel(ExitAction ExitAct)
         {
-            levelScreen.exitAction = ExitAct;
-            levelScreen.displayState = DisplayState.Closing;
+            Screens.Level.exitAction = ExitAct;
+            Screens.Level.displayState = DisplayState.Closing;
         }
 
     }

@@ -37,8 +37,6 @@ namespace DungeonRun
         {   
             overlay.alpha = 1.0f;
             overlay.fadeOutSpeed = 0.025f;
-            //register this dungeon screen with Functions_Level
-            Functions_Level.levelScreen = this;
             //level id is set by overworld screen
             Functions_Level.BuildLevel(LevelSet.currentLevel.ID); 
             //load hero's actorType from SaveData
@@ -117,15 +115,7 @@ namespace DungeonRun
                     //handle exit action
                     if (exitAction == ExitAction.Summary)
                     { ScreenManager.ExitAndLoad(Screens.Summary); }
-                    else if (exitAction == ExitAction.ExitDungeon)
-                    {
-                        //hero doesn't return to overworld
-                        //ScreenManager.ExitAndLoad(new ScreenOverworld());
 
-                        //instead hero loads into the last field level
-                        LevelSet.currentLevel = LevelSet.field;
-                        ScreenManager.ExitAndLoad(Screens.Level);
-                    }
                     else if (exitAction == ExitAction.Overworld)
                     {
                         ScreenManager.ExitAndLoad(Screens.Overworld);
@@ -134,11 +124,13 @@ namespace DungeonRun
                     {
                         ScreenManager.ExitAndLoad(Screens.Title);
                     }
+
                     else if (exitAction == ExitAction.Field)
                     {   //point to field level
                         LevelSet.currentLevel = LevelSet.field;
                         ScreenManager.ExitAndLoad(Screens.Level);
                     }
+
                     else if (exitAction == ExitAction.Dungeon)
                     {   //point to dungeon level
                         LevelSet.currentLevel = LevelSet.dungeon;

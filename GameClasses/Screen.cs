@@ -32,15 +32,17 @@ namespace DungeonRun
         public static ScreenDialog Dialog = new ScreenDialog();
         public static ScreenEditor Editor = new ScreenEditor();
         public static ScreenEditorMenu EditorMenu = new ScreenEditorMenu();
-        public static ScreenInventory Inventory = new ScreenInventory();
+
         public static ScreenLevel Level = new ScreenLevel();
         public static ScreenLevelMap LevelMap = new ScreenLevelMap();
+        public static ScreenOverworld Overworld = new ScreenOverworld();
+        public static ScreenInventory Inventory = new ScreenInventory();
+        public static ScreenVendor Vendor = new ScreenVendor();
+
         public static ScreenLoadSaveNew LoadSaveNew = new ScreenLoadSaveNew();
         public static ScreenOptions Options = new ScreenOptions();
-        public static ScreenOverworld Overworld = new ScreenOverworld();
         public static ScreenSummary Summary = new ScreenSummary();
         public static ScreenTitle Title = new ScreenTitle();
-        public static ScreenVendor Vendor = new ScreenVendor();
     }
 
 

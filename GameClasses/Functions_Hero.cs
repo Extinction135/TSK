@@ -274,7 +274,7 @@ namespace DungeonRun
             else if (Obj.group == ObjGroup.Vendor)
             {
                 Screens.Vendor.SetVendor(Obj.type);
-                ScreenManager.AddScreen(Screens.Dialog);
+                ScreenManager.AddScreen(Screens.Vendor);
             }
 
 
@@ -395,17 +395,15 @@ namespace DungeonRun
 
             else if (Obj.type == ObjType.Dungeon_Signpost)
             {
-
                 if (LevelSet.currentLevel.currentRoom.roomID == RoomID.Exit)
-                {   //dynamically populate the text with level data
-                    AssetsDialog.Signpost_ExitRoom = new List<Dialog>
-                    {
-                        new Dialog(ObjType.Hero_Idle, "...",
-                            "Dungeon: " + LevelSet.currentLevel.ID + "." +
-                            "Size: " + LevelSet.currentLevel.rooms.Count + " rooms.\n" +
-                            "Head North 3 Rooms to find the map. Good luck!",
-                            Assets.sfxTextLetter, false, false, false)
-                    };
+                {   
+                    //setup signpost title
+                    AssetsDialog.Signpost_ExitRoom[0].title = "...";
+                    //populate signpost text with level data
+                    AssetsDialog.Signpost_ExitRoom[0].text = 
+                        "Dungeon: " + LevelSet.currentLevel.ID + ". " +
+                        "Size: " + LevelSet.currentLevel.rooms.Count + " rooms.\n" +
+                        "Head North 3 Rooms to find the map. Good luck!";
                 }
 
                 //read signpost from global dialogs
