@@ -95,6 +95,16 @@ namespace DungeonRun
                 Assets.sfxError, true, false)
         };
 
+
+        public static List<Dialog> GameSavePls = new List<Dialog>
+        {   //goes to overworld screen upon close
+            new Dialog(ObjType.Hero_Idle, "Don't forget..",
+                "Before you go, make sure to save your game..\n" +
+                "A) saved it, lemme go!    B) thanks, I forgot to save..",
+                Assets.sfxChestOpen, false, false)
+        };
+
+
         #endregion
 
 

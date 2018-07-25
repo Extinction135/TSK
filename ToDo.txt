@@ -58,39 +58,30 @@ Roadmap
 Today:
 
 
-Screens And Bugs
-
-fixed the bugs associated with global screens, after
-a short vacation from gameDev.
-
-basically, i completed the implementation that i 
-should of finished a week ago. simplified a bunch of
-stuff related to dialog screen. fixed an issue with
-level map screen not resetting it's state to open,
-which immediately closed the screen upon 2nd use.
-plus a bunch of other bugs.
-
-playtested, working well. onto 0.76.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Exiting Game to Title
 
 upon exit of game, from inventory screen, pop dialog
 telling players to manually save their game before exiting.
-we'll need dialog for that.
+this is done because the player's data is actually sitting
+in playerData.current and not playerData.game1, for example.
+so they need to manually update their save file with their
+data - the game isn't going to autosave like it used to.
+
+simplified inventory screen by removing exitAction ref,
+reducing the number of screen states to 1. implemented
+save dialog and path to title screen from this dialog
+through dialog screen.
+
+
+
+
+
+
+
+
+
 
 
 *we CAN update the inventory screen from the cheat screen,
@@ -98,10 +89,6 @@ meaning cheats can be implemented RIGHT AWAY like map and key.
 we just need to move the update inv items functionality into a
 method (is this already done?) then call that method from the
 cheats screen.
-
-
-
-opening the map screen should reset it's screen state to opening.
 
 
 
@@ -122,6 +109,21 @@ this should return the hero to the dungeon entrance,
 on the proper dungeo entrance level. hero should spawn
 just south of dungeon entrance. this means dungeon entrances
 can't be blocked by anything directly infront of them.
+
+
+exiting the colliseum should place link outside the colliseum
+entrance obj. also, the obj should just be a wide black entrance,
+like the center sprite. we dupe that for a total of 3, so we have
+a massive entrance. then put those skull pillars on the side. why?
+to match the entrance/exit sizes between the colliseum levels.
+the exit from the interior is pretty wide, so the entrance
+should be wide as well.
+
+
+
+
+
+
 
 Magic Mirror
 this plays well into magic mirror: use it in a dungeon to return

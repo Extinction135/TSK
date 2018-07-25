@@ -21,7 +21,11 @@ namespace DungeonRun
         public MenuItem previouslySelected;
         //simply visually tracks which menuItem is selected
         public ComponentSprite selectionBox;
-        public ExitAction exitAction = ExitAction.ExitScreen;
+
+
+
+
+        //public ExitAction exitAction = ExitAction.ExitScreen;
 
 
 
@@ -141,10 +145,10 @@ namespace DungeonRun
                 #region Handle the Options MenuItems
 
                 else if (currentlySelected.type == MenuItemType.OptionsQuitGame)
-                {   //close dungeon screen (autosaves), goto title screen
-                    displayState = DisplayState.Closing;
-                    exitAction = ExitAction.Title;
-                    Assets.Play(Assets.sfxQuit);
+                {
+                    //pop savePls dialog
+                    Screens.Dialog.SetDialog(AssetsDialog.GameSavePls);
+                    ScreenManager.AddScreen(Screens.Dialog);
                 }
                 else if (currentlySelected.type == MenuItemType.OptionsCheatMenu)
                 {
@@ -263,7 +267,6 @@ namespace DungeonRun
                 Functions_MenuWindow.Close(Widgets.Info.window);
                 Functions_MenuWindow.Close(Widgets.Inventory.window);
                 Functions_MenuWindow.Close(Widgets.Options.window);
-                exitAction = ExitAction.ExitScreen;
             }
 
             #endregion
@@ -318,31 +321,16 @@ namespace DungeonRun
             }
             else if (displayState == DisplayState.Closing)
             {
-                if (exitAction == ExitAction.ExitScreen)
-                {   //fade background out
-                    background.fadeState = FadeState.FadeOut;
-                    Functions_ScreenRec.Fade(background);
-                    if (background.fadeState == FadeState.FadeComplete)
-                    { displayState = DisplayState.Closed; }
-                }
-                else if (exitAction == ExitAction.Title)
-                {   //fade overlay in
-                    overlay.fadeState = FadeState.FadeIn;
-                    Functions_ScreenRec.Fade(overlay);
-                    if (overlay.fadeState == FadeState.FadeComplete)
-                    { displayState = DisplayState.Closed; }
-                }
+                //fade background out
+                background.fadeState = FadeState.FadeOut;
+                Functions_ScreenRec.Fade(background);
+                if (background.fadeState == FadeState.FadeComplete)
+                { displayState = DisplayState.Closed; }
             }
             else if (displayState == DisplayState.Closed)
             {
-                if (exitAction == ExitAction.ExitScreen)
-                {   //overlay has faded in 100%
-                    ScreenManager.RemoveScreen(this);
-                }
-                else if (exitAction == ExitAction.Title)
-                {   //bkg has faded out
-                    ScreenManager.ExitAndLoad(Screens.Title);
-                }
+                //overlay has faded in 100%
+                ScreenManager.RemoveScreen(this);
             }
 
             #endregion

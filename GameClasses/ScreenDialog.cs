@@ -86,29 +86,57 @@ namespace DungeonRun
 
                 if (
                     dialogs == AssetsDialog.Enter_ForestDungeon
-                    || dialogs == AssetsDialog.Enter_Colliseum
                     || dialogs == AssetsDialog.Enter_MountainDungeon
                     || dialogs == AssetsDialog.Enter_SwampDungeon
+
+                    || dialogs == AssetsDialog.Enter_Colliseum
+
+                    || dialogs == AssetsDialog.GameSavePls
                     )
                 {
                     if (Functions_Input.IsNewButtonPress(Buttons.A))
                     {
-                        ExitDialog(); //exit dialog, enter dungeon
-                        Assets.Play(Assets.sfxEnterDungeon);
 
-                        //set level id based on dialog
+                        #region Dungeons
+
                         if (dialogs == AssetsDialog.Enter_ForestDungeon)
-                        { LevelSet.dungeon.ID = LevelID.Forest_Dungeon; }
+                        {
+                            LevelSet.dungeon.ID = LevelID.Forest_Dungeon;
+                            ExitDialog(); Assets.Play(Assets.sfxEnterDungeon);
+                        }
 
                         else if (dialogs == AssetsDialog.Enter_MountainDungeon)
-                        { LevelSet.dungeon.ID = LevelID.Mountain_Dungeon; }
+                        {
+                            LevelSet.dungeon.ID = LevelID.Mountain_Dungeon;
+                            ExitDialog(); Assets.Play(Assets.sfxEnterDungeon);
+                        }
 
                         else if (dialogs == AssetsDialog.Enter_SwampDungeon)
-                        { LevelSet.dungeon.ID = LevelID.Swamp_Dungeon; }
+                        {
+                            LevelSet.dungeon.ID = LevelID.Swamp_Dungeon;
+                            ExitDialog(); Assets.Play(Assets.sfxEnterDungeon);
+                        }
 
+                        #endregion
+
+
+                        //enter colliseum from exterior colliseum field level
                         else if (dialogs == AssetsDialog.Enter_Colliseum)
-                        { LevelSet.field.ID = LevelID.ColliseumPit; }
+                        {
+                            LevelSet.field.ID = LevelID.ColliseumPit;
+                            ExitDialog(); Assets.Play(Assets.sfxEnterDungeon);
+                        }
 
+                        //exiting to title from inventory/dialog screens
+                        else if (dialogs == AssetsDialog.GameSavePls)
+                        {
+                            exitAction = ExitAction.Title; //goto title
+                            Assets.Play(Assets.sfxQuit); //play quit sfx
+                            foreground.fade = true; //fade foreground in
+                            //ExitDialog(); //this plays sfx, so we dupe it below
+                            displayState = DisplayState.Closing;
+                            Functions_MenuWindow.Close(Widgets.Dialog.window);
+                        }
                     }
                     else if(Functions_Input.IsNewButtonPress(Buttons.B))
                     {
@@ -197,6 +225,12 @@ namespace DungeonRun
                 {   //exit all screens, load overworld level
                     ScreenManager.ExitAndLoad(Screens.Overworld);
                 }
+                //from inventory screen to title
+                else if(exitAction == ExitAction.Title)
+                {   //exit all screens, load overworld level
+                    ScreenManager.ExitAndLoad(Screens.Title);
+                }
+
                 //from field to field (ex: colliseum)
                 else if (exitAction == ExitAction.Field)
                 {   //close the level screen, exiting to field level
