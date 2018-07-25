@@ -79,9 +79,6 @@ namespace DungeonRun
             Functions_MenuItem.PlaceRow(menuItems, 7 * 5, X + 16 * 1, Y + 16 * 12 + 8, 7);
             Functions_MenuItem.SetNeighbors(menuItems, 7); //set menuItems neighbors
 
-            //reset the menuItems
-            for (i = 0; i < menuItems.Count; i++)
-            { Functions_MenuItem.SetType(MenuItemType.Unknown, menuItems[i]); }
             bombsDisplay.visible = true; //bomb amount is always displayed
             //set the inventory widget's menuItems based on saveData booleans
             SetInventoryMenuItems();
@@ -110,7 +107,12 @@ namespace DungeonRun
 
         public void SetInventoryMenuItems()
         {
+            //reset the menuItems
+            for (i = 0; i < menuItems.Count; i++)
+            { Functions_MenuItem.SetType(MenuItemType.Unknown, menuItems[i]); }
 
+
+            //setup the menuItems
 
             #region Items - 0 thru 20
 

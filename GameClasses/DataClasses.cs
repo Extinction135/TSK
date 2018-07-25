@@ -48,7 +48,7 @@ namespace DungeonRun
         public static Boolean InfiniteArrows = true; //does hero ignore arrow cost?
         public static Boolean InfiniteBombs = true; //does hero ignore bomb cost?
         public static Boolean MapCheat = false; //sets dungeon.map true when dungeon is built
-        public static Boolean KeyCheat = true; //sets dungeon.key true when dungeon is built
+        public static Boolean KeyCheat = false; //sets dungeon.key true when dungeon is built
         public static Boolean UnlockAll = true; //unlocks all items for hero
         public static Boolean Clipping = false; //removes hero from collision/interaction/exit routines
         public static Boolean FuzzyInput = false; //fuzz controller input each frame (for testing) 
@@ -78,7 +78,7 @@ namespace DungeonRun
                 ProcessAI = true;
                 CameraTracksHero = false;
                 ShowEnemySpawns = false;
-                PrintOutput = true;
+                PrintOutput = false;
 
                 HardMode = false;
 
@@ -108,9 +108,6 @@ namespace DungeonRun
                     InfiniteGold = true; //hero has infinite gold
                     InfiniteArrows = true; //hero has infinite arrows
                     InfiniteBombs = true; //hero has infinite bombs
-                    MapCheat = true;
-                    KeyCheat = true;
-                    UnlockAll = true;
 
                     //handle editor cheats
                     EnableTopMenu = true; //necessary

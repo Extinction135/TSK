@@ -39,7 +39,8 @@ namespace DungeonRun
             overlay.fadeOutSpeed = 0.025f;
             //level id is set by overworld screen
             Functions_Level.BuildLevel(LevelSet.currentLevel.ID); 
-            //load hero's actorType from SaveData
+
+            //load hero's type + loadout
             Functions_Actor.SetType(Pool.hero, PlayerData.current.actorType);
             Functions_Hero.SetLoadout();
             //open the screen

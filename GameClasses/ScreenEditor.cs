@@ -56,7 +56,6 @@ namespace DungeonRun
             overlay.alpha = 0.0f;
             displayState = DisplayState.Opened; //open the screen
             Flags.Paused = false; //unpause editor initially
-            Functions_Hero.UnlockAll(); //unlock all items
         }
 
         public override void HandleInput(GameTime GameTime)

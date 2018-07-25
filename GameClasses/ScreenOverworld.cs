@@ -281,7 +281,7 @@ namespace DungeonRun
 
         public override void Open()
         {
-            
+            Assets.colorScheme.background = Assets.colorScheme.bkg_lightWorld;
 
             overlay.alpha = 1.0f;
             overlay.fadeInSpeed = 0.04f;
@@ -314,13 +314,18 @@ namespace DungeonRun
             { hero.compSprite.texture = Assets.blobSheet; }
             else if(PlayerData.current.actorType == ActorType.Hero)
             { hero.compSprite.texture = Assets.heroSheet; }
+            
 
-            //autosave the current game, etc..
-            Functions_Backend.SaveGame(GameFile.AutoSave);
+
+
+            
+
+            //load hero's type + loadout
+            Functions_Actor.SetType(Pool.hero, PlayerData.current.actorType);
+            Functions_Hero.SetLoadout();
+            //open the screen
             Assets.Play(Assets.sfxMapOpen);
             displayState = DisplayState.Opening;
-            //set map bkg color
-            Assets.colorScheme.background = Assets.colorScheme.bkg_lightWorld;
         }
 
         public override void HandleInput(GameTime GameTime)

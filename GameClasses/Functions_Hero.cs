@@ -602,6 +602,7 @@ namespace DungeonRun
             Pool.hero.weapon = PlayerData.current.currentWeapon;
             Pool.hero.armor = PlayerData.current.currentArmor;
             Pool.hero.equipment = PlayerData.current.currentEquipment;
+            UnlockAll();
         }
 
         public static void SpawnPet()
@@ -622,10 +623,16 @@ namespace DungeonRun
         }
 
         public static void UnlockAll()
-        {   //this method unlocks all available items, weapons, equipment, armor
+        {   
+            //if the cheat is not enabled, bail from method
+            if (Flags.UnlockAll == false)
+            {   //reset player's data to fresh instance
+                PlayerData.current = new SaveData();
+                return;
+            }
 
-            //start with fresh save data
-            PlayerData.current = new SaveData();
+            //this method unlocks all available items, weapons, equipment, armor
+
             //max hearts and magic
             PlayerData.current.heartsTotal = 9;
             Pool.hero.health = 9;
@@ -654,7 +661,7 @@ namespace DungeonRun
             PlayerData.current.equipmentRing = true;
 
             //we could set the pet here too, but we wont for now
-            PlayerData.current.petType = MenuItemType.Unknown;
+            //PlayerData.current.petType = MenuItemType.Unknown;
             //PlayerData.current.petType = MenuItemType.PetStinkyDog;
 
             //setup testing enemy weapon/item

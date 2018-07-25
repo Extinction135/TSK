@@ -198,17 +198,22 @@ namespace DungeonRun
                     if (Flags.KeyCheat) { Flags.KeyCheat = false; }
                     else { Flags.KeyCheat = true; }
                     LevelSet.currentLevel.bigKey = Flags.KeyCheat;
+                    Widgets.Loadout.UpdateLoadout(); //modifies loadout widget
                 }
                 else if (currentlySelected.type == MenuItemType.CheatsMap)
                 {
                     if (Flags.MapCheat) { Flags.MapCheat = false; }
                     else { Flags.MapCheat = true; }
                     LevelSet.currentLevel.map = Flags.MapCheat;
+                    Widgets.Loadout.UpdateLoadout(); //modifies loadout widget
                 }
                 else if (currentlySelected.type == MenuItemType.CheatsUnlockAll)
                 {
-                    Flags.UnlockAll = true;
+                    if (Flags.UnlockAll) { Flags.UnlockAll = false; }
+                    else { Flags.UnlockAll = true; }
                     Functions_Hero.UnlockAll();
+                    Widgets.Inventory.SetInventoryMenuItems(); //modifies inv items
+                    Widgets.Loadout.UpdateLoadout(); //(reset) modifies loadout widget
                 }
                 else if (currentlySelected.type == MenuItemType.CheatsClipping)
                 {
