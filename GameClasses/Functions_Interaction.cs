@@ -259,10 +259,6 @@ namespace DungeonRun
 
                 if (Obj.type == ObjType.Wor_MountainWall_Mid)
                 {
-                    //limit how much we can push actor (terminal velocity)
-                    if (Actor.compMove.magnitude.Y > terminalVelocity)
-                    { Actor.compMove.magnitude.Y = terminalVelocity; }
-
                     //actor is climbing
                     if (Actor.state == ActorState.Climbing) { return; }
 
@@ -285,6 +281,17 @@ namespace DungeonRun
                     Functions_Movement.Push(Actor.compMove, Direction.Down, 1.5f);
                     Actor.state = ActorState.Falling;
                     Actor.stateLocked = true;
+
+                    //hack in initial falling sfx, based on falling speed
+                    if (Actor.compMove.magnitude.Y < terminalVelocity)
+                    { Assets.Play(Assets.sfxActorFall); }
+                    //^ this will very quickly reach terminalVelocity
+                    //meaning the call to play fall will only happen for a few frames
+                    //and the sfx can't be spammed until it's stopped playing
+
+                    //limit how much we can push actor (terminal velocity)
+                    else if (Actor.compMove.magnitude.Y > terminalVelocity)
+                    { Actor.compMove.magnitude.Y = terminalVelocity; }
                 }
 
                 #endregion

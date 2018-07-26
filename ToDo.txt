@@ -59,36 +59,23 @@ Today:
 
 
 
-
-
-Achievements ++
-
-the only achievements in game right now are for wall
-jumping, so to give player feedback that what they just
-did is related to an achievement, instead of popping an
-attention particle over hero's head - we now spawn an
-exclamation bubble. like hero just shouted something.
-this is VERY visually distinct from normal in game
-particles the player would see while climbing.
-
-
-
-
-
-
-
-
-
-
-
 Fall Sfx++
 
 we dont have fall sfx for hero, which feels missing.
 
-fall sfx should only be called if hero's state
-changes into falling state from a non-falling state. and it
-should only happen once. this means if hero is ever put into a
-falling state, the sfx is handled automatically. 
+hacked into interactions between mid mountain wall and
+actor, the terminal velocity check was moved to later
+in the method, then an if branch was added prior,
+checking to see if the actor's falling magnitude (Y axis)
+was less than the terminal velocity. if it is, then 
+the initial fall sound fx is played.
+
+notes: it only takes a few frames for the actor to reach
+terminal velocity from falling, so for those few frames
+the fall soundfx is called each frame. a sound effect
+cannot be played again until it's finished playing, so
+the additional calls to play the sound effect are essentially
+ignored and initial falling sound is implemented again.
 
 
 
@@ -97,18 +84,6 @@ falling state, the sfx is handled automatically.
 
 
 
-
-
-
-
-
-
-
-Towns++
-add a 2nd town level on the left of the map, below left town.
-we can begin to split the NPCs apart between these two towns.
-we also need to add a town on the right side of the map, outside
-of the city gates. move some NPCs over there too.
 
 
 Magic Mirror
@@ -122,6 +97,15 @@ been broken. the history of why it was broken can be explained.
 
 
 
+
+
+Levels++
+
+Towns++
+add a 2nd town level on the left of the map, below left town.
+we can begin to split the NPCs apart between these two towns.
+we also need to add a town on the right side of the map, outside
+of the city gates. move some NPCs over there too.
 
 
 
@@ -238,12 +222,25 @@ marsh grass = impassable, but burnable.
 
 
 
+forest level redesign -
+a horizontal set of trees block the dungeon entrance.
+the entrance is surrounded by indestructible objs.
+player HAS TO BURN down the trees to get access to dungeon.
+this teaches player objs can be destroyed.
+bonus: grass under the trees should act as a fuse for a
+massive forest fire across the whole level. kinda like it
+does now, but better.
+
+darkworld dungeon entrance level design idea:
+must grow foilage to enter dungeon, which
+also grows monsters and stuff..
 
 
 
-forest entrance level design
--must grow or destroy foilage to enter dungeon?
--or maybe we keep this as the gimmick for darkworld dungeon.
+
+
+
+
 
 
 Mountain Sprites
