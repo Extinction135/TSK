@@ -125,14 +125,16 @@ namespace DungeonRun
                 Room room = new Room(new Point(buildPosition.X, buildPosition.Y), roomType);
                 LevelSet.currentLevel.rooms.Add(room); //spawn room must be index0
 
-                //set spawnPos outside TopLeft of new dev room
-                room.spawnPos.X = room.rec.X - 32;
-                room.spawnPos.Y = room.rec.Y;
+                //set spawnPos (outside TopLeft of new dev room)
+                LevelSet.spawnPos_Dungeon.X = room.rec.X - 32;
+                LevelSet.spawnPos_Dungeon.Y = room.rec.Y;
             }
             else if (LevelSet.currentLevel.ID == LevelID.DEV_Field)
             {
                 Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.DEV_Field);
                 LevelSet.currentLevel.rooms.Add(field);
+                //set spawnPos (centered south to room)
+                Functions_Hero.ResetFieldSpawnPos();
             }
 
             #endregion

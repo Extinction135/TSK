@@ -21,7 +21,6 @@ namespace DungeonRun
         public static float Version = 0.76f; //the version of the game
         public static BootRoutine bootRoutine = BootRoutine.Game; //boot to game or editor?
 
-
         //dev flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
         public static Boolean EnableDebugInfo = false; //rightside debug info
@@ -49,7 +48,7 @@ namespace DungeonRun
         public static Boolean InfiniteBombs = true; //does hero ignore bomb cost?
         public static Boolean MapCheat = false; //sets dungeon.map true when dungeon is built
         public static Boolean KeyCheat = false; //sets dungeon.key true when dungeon is built
-        public static Boolean UnlockAll = true; //unlocks all items for hero
+        public static Boolean UnlockAll = false; //unlocks all items for hero
         public static Boolean Clipping = false; //removes hero from collision/interaction/exit routines
         public static Boolean FuzzyInput = false; //fuzz controller input each frame (for testing) 
         public static Boolean InfiniteFairies = false; //hero always has fairy in a bottle
@@ -221,6 +220,13 @@ namespace DungeonRun
         //current level points to field or dungeon
         public static Level currentLevel;
 
+        //used to spawn hero in field or dungeon rooms
+        public static Vector2 spawnPos_Field = new Vector2();
+        //^ canBe: centered + south, or based on entrance roomObj
+        public static Vector2 spawnPos_Dungeon = new Vector2();
+        //^ entirely based on connecting doors and exit door in dungeon
+
+
         static LevelSet()
         {
             field = new Level();
@@ -252,7 +258,6 @@ namespace DungeonRun
         public Byte2 size = new Byte2(0, 0); //in 16 pixel tiles
         public Point center = new Point(0, 0);
         public RoomID roomID;
-        public Vector2 spawnPos; //where hero can spawn in room (last door passed thru/exit)
         public PuzzleType puzzleType = PuzzleType.None; //most rooms aren't puzzles
         public int dataIndex; //if dungeon room, what roomData index is used to populate?
 
@@ -261,10 +266,6 @@ namespace DungeonRun
             roomID = ID;
             Functions_Room.SetType(this, ID);
             Functions_Room.MoveRoom(this, Pos.X, Pos.Y);
-            spawnPos = new Vector2( //center spawnPos to room
-                Pos.X + rec.Width / 2, //centered horizontally
-                Pos.Y + rec.Height - 16 * 4 //at bottom
-            );
             dataIndex = 0; //0 means no index assigned
         }
     }

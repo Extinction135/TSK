@@ -454,8 +454,10 @@ namespace DungeonRun
                 Obj.compSprite.drawRec.Height = 16 * 3; //nonstandard size
                 Obj.compSprite.zOffset = -32; //sort to floor
                 Obj.group = ObjGroup.Door;
-                Obj.compCollision.rec.Height = 4;
-                Obj.compCollision.offsetY = 32 + 4;
+
+                Obj.compCollision.rec.Height = 8;
+                Obj.compCollision.offsetY = 32;
+
                 Obj.compCollision.blocking = false;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_Exit;
                 Obj.sfx.hit = Assets.sfxTapMetallic;

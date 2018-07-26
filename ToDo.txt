@@ -59,42 +59,64 @@ Today:
 
 
 
-Arrow Count++
-
-issue: the arrow count (in inventory widget) can sometimes
-be displayed as 0, when hero doesn't have bow - leading to a
-state where the menuItem is unknown and has a count of 0,
-which visually makes NO SENSE at all.
-
-fix inventory widget to only display arrow counter if
-hero actually has bow boolean set to true. this is only
-checked when the widget or scrveen is initially opened.
-not when we reset/setup the inventory menuItems.
-
-updated SetInventoryMenuItems() to set visible booleans
-properly for bomb and arrow counts. bomb count is always
-displayed, while arrows are dependent upon the bow boolean.
-tested, working.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Exiting Dungeons
+
 this should return the hero to the dungeon entrance,
-on the proper dungeo entrance level. hero should spawn
+on the proper dungeon entrance level. hero should spawn
 just south of dungeon entrance. this means dungeon entrances
 can't be blocked by anything directly infront of them.
+to do this, we'll need to drastically modify how spawning 
+is done, via spawnPos.
+
+SpawnPos++
+
+Removed spawnPos from rooms and put into Functions_Hero, 
+for various reasons explained below.. this was done in 
+prep for exiting dungeons to their corresponding field 
+levels and spawning in front of the dungeon entrance object.
+
+what do we gain by storing spawnPos in room?
+actually nothing, because the data isn't used in any special
+way related to the lifecycle of rooms. in fact, it would be more
+useful and less wasteful if we only had one spawnPos instance,
+because we have spawnPos instances for each room in the level,
+which currently can upwards of 100 rooms. so we have 100 extra
+spawnPos references sitting in memory, not really being used
+except when the hero enters that specifc room. that's dumb.
+simplified room class.
+
+upon implementation, it became apparent that spawnPos should 
+not live in functions_hero, because we actually need two 
+position values, not one, and they map better to the
+field and dungeon concepts designed in LevelSet class.
+
+created two spawnPos vector2 instances in levelSet, one 
+for field and one for dungeon. this seperates them and 
+places them in the codebase in a logical area (levelSet). 
+
+upgraded colliseum pit to exit to colliseum exterior.
+this also sets up the foundation for linking levels to other
+levels (fields) using entrance objects.
+
++ fixed issue with dungeon exit obj not properly aligning.
+a ton of playtesting to ensure entering and exiting various
+entrances and levels works properly with the new spawn system.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 exiting the colliseum should place link outside the colliseum
 entrance obj. also, the obj should just be a wide black entrance,
@@ -111,10 +133,27 @@ should be wide as well.
 
 
 
-Mountain Sprites
-add black pixels to the corners of the mountain wall sprites.
-this will make the rooms appear rounded, which further visually
-separates them. 
+
+floor debris should not be created in exit room.
+it overlaps the exit door and looks bad.
+
+
+
+* beefy bats dont properly face their moving direction.
+their sprite facing direction is independent of their moving direction.
+
+
+
+
+* we should not be calling the fall sound from interaction with 
+mountain wall. this should only be called if hero's state
+changes into falling state from a non-falling state. and it
+should only happen once. this means if hero is ever put into a
+falling state, the sfx is handled automatically. this also
+prevents a bug where the sound fx is spammed while hero falls
+down a mountain wall.
+
+
 
 
 
@@ -257,6 +296,16 @@ marsh grass = impassable, but burnable.
 forest entrance level design
 -must grow or destroy foilage to enter dungeon?
 -or maybe we keep this as the gimmick for darkworld dungeon.
+
+
+Mountain Sprites
+add black pixels to the corners of the mountain wall sprites.
+this will make the rooms appear rounded, which further visually
+separates them. 
+
+
+
+
 
 
 

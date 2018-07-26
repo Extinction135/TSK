@@ -387,6 +387,9 @@ namespace DungeonRun
                             Functions_Animation.Animate(hero.compAnim, hero.compSprite);
                             Assets.Play(Assets.sfxTextDone);
                             Assets.Play(Assets.sfxWindowClose);
+
+                            //setup hero's spawnPos for field level
+                            Functions_Hero.ResetFieldSpawnPos();
                         }
                     }
                     else if (Functions_Input.IsNewButtonPress(Buttons.Start))

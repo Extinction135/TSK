@@ -297,12 +297,12 @@ namespace DungeonRun
                 LevelSet.currentLevel.currentRoom = room;
                 Functions_Dungeon.AddDevDoors(room);
 
-                //set spawnPos outside TopLeft of new dev room
-                LevelSet.currentLevel.currentRoom.spawnPos.X = LevelSet.currentLevel.currentRoom.rec.X - 32;
-                LevelSet.currentLevel.currentRoom.spawnPos.Y = LevelSet.currentLevel.currentRoom.rec.Y;
-
                 //build walled empty room with floors, add xml objs, etc...
                 Functions_Dungeon.BuildRoomFrom(RoomXmlData);
+
+                //set spawnPos outside TopLeft of new dev room
+                LevelSet.spawnPos_Dungeon.X = LevelSet.currentLevel.currentRoom.rec.X - 32;
+                LevelSet.spawnPos_Dungeon.Y = LevelSet.currentLevel.currentRoom.rec.Y;
             }
             else
             {   //clear all objs, add xml objs
@@ -310,7 +310,11 @@ namespace DungeonRun
                 Functions_Room.BuildRoomXmlData(RoomXmlData);
                 //pass the room type into the built room
                 LevelSet.currentLevel.currentRoom.roomID = RoomXmlData.type;
+
+                //set spawnPos
+                Functions_Hero.ResetFieldSpawnPos();
             }
+
             Functions_Pool.Update(); //update roomObjs once
             Functions_Hero.SpawnInCurrentRoom(); //spawn hero in room
             Pool.hero.direction = Direction.Down;

@@ -24,6 +24,52 @@ namespace DungeonRun
 
 
 
+
+        
+        
+
+        public static void SetFieldSpawnPos(GameObject Obj)
+        {   //this assumes obj is a 2/3x4 dugneon entrance obj!
+
+            //match obj X
+            LevelSet.spawnPos_Field.X = Obj.compSprite.position.X; 
+            //setup spawnPos X based on obj.type
+            if (Obj.type == ObjType.Wor_Entrance_MountainDungeon) //this is modeled as a 2x4 obj
+            {
+                LevelSet.spawnPos_Field.X += 8;
+            }
+            else
+            {   //all other entrances are 3x4 objs
+                LevelSet.spawnPos_Field.X += 16;
+            }
+
+            //setup Y spawnPos
+            LevelSet.spawnPos_Field.Y = Obj.compSprite.position.Y + 16 * 3 + 10;
+            //^ start with obj.Y, add vertical south offset (place hero in front of obj)
+        }
+
+        public static void ResetFieldSpawnPos()
+        {   //set to center of room, plus south offset
+            LevelSet.spawnPos_Field.X = LevelSet.field.currentRoom.center.X;
+            LevelSet.spawnPos_Field.Y = LevelSet.field.currentRoom.rec.Y;
+            //spawn hero at bottom of level
+            LevelSet.spawnPos_Field.Y += LevelSet.field.currentRoom.rec.Height - 16 * 4;
+        }
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         static Functions_Hero()
         {
             //interactionRec = new ComponentCollision();
@@ -33,6 +79,10 @@ namespace DungeonRun
 
         public static void CheckRoomCollision()
         {
+            //only process this method if the level screen is completely open
+            if (Screens.Level.displayState != DisplayState.Opened) { return; }
+            //otherwise it processes while level is closing causing bugs
+
             if (LevelSet.currentLevel.isField)
             {   //hero is in level
 
@@ -40,11 +90,22 @@ namespace DungeonRun
                 { return; } //prevent exit of field level (for editing)
 
 
-                #region Handle hero transferring back to overworld screen
+                #region Handle hero transferring to overworld screen or field
 
                 if(heroRec.Intersects(LevelSet.currentLevel.currentRoom.rec) == false)
                 {
-                    Functions_Level.CloseLevel(ExitAction.Overworld);
+                    //some fields return to other fields
+                    if (LevelSet.currentLevel.ID == LevelID.ColliseumPit)
+                    {   //return to colliseum exterior level
+                        LevelSet.field.ID = LevelID.Colliseum;
+                        Functions_Level.CloseLevel(ExitAction.Field);
+                    }
+                    //all other fields return to overworld screen
+                    else
+                    {
+                        Functions_Level.CloseLevel(ExitAction.Overworld);
+                    }
+
                     //stop hero's movement
                     Functions_Movement.StopMovement(Pool.hero.compMove);
                 }
@@ -92,9 +153,9 @@ namespace DungeonRun
                     {   //track doors hero has visited
                         LevelSet.currentLevel.doors[i].visited = true;
                         if (LevelSet.currentLevel.doors[i].type == DoorType.Open)
-                        {   //set the current room's spawnPos to the last open door hero collided with
-                            LevelSet.currentLevel.currentRoom.spawnPos.X = LevelSet.currentLevel.doors[i].rec.X + 8;
-                            LevelSet.currentLevel.currentRoom.spawnPos.Y = LevelSet.currentLevel.doors[i].rec.Y + 8;
+                        {   //set hero's spawnPos to this open door's position
+                            LevelSet.spawnPos_Dungeon.X = LevelSet.currentLevel.doors[i].rec.X + 8;
+                            LevelSet.spawnPos_Dungeon.Y = LevelSet.currentLevel.doors[i].rec.Y + 8;
                         }
                     }
                 }
@@ -241,6 +302,7 @@ namespace DungeonRun
 
 
             //obj.group checks
+
 
             #region Chests
 
@@ -419,21 +481,28 @@ namespace DungeonRun
             {   //give player choice to enter
                 Screens.Dialog.SetDialog(AssetsDialog.Enter_ForestDungeon);
                 ScreenManager.AddScreen(Screens.Dialog);
-            }
-            else if (Obj.type == ObjType.Wor_Entrance_Colliseum)
-            {   //give player choice to enter
-                Screens.Dialog.SetDialog(AssetsDialog.Enter_Colliseum);
-                ScreenManager.AddScreen(Screens.Dialog);
+                SetFieldSpawnPos(Obj);
             }
             else if (Obj.type == ObjType.Wor_Entrance_MountainDungeon)
             {   //give player choice to enter
                 Screens.Dialog.SetDialog(AssetsDialog.Enter_MountainDungeon);
                 ScreenManager.AddScreen(Screens.Dialog);
+                SetFieldSpawnPos(Obj);
             }
             else if (Obj.type == ObjType.Wor_Entrance_SwampDungeon)
             {   //give player choice to enter
                 Screens.Dialog.SetDialog(AssetsDialog.Enter_SwampDungeon);
                 ScreenManager.AddScreen(Screens.Dialog);
+                SetFieldSpawnPos(Obj);
+            }
+
+
+
+            else if (Obj.type == ObjType.Wor_Entrance_Colliseum)
+            {   //give player choice to enter
+                Screens.Dialog.SetDialog(AssetsDialog.Enter_Colliseum);
+                ScreenManager.AddScreen(Screens.Dialog);
+                SetFieldSpawnPos(Obj);
             }
 
             #endregion
@@ -543,12 +612,39 @@ namespace DungeonRun
         }
 
         public static void SpawnInCurrentRoom()
-        {   //teleport hero to currentRoom's spawn position
-            Functions_Movement.Teleport(Pool.hero.compMove,
-                LevelSet.currentLevel.currentRoom.spawnPos.X,
-                LevelSet.currentLevel.currentRoom.spawnPos.Y);
+        {   
+            //teleport hero to level's spawn position (field or dungeon)
+            if(LevelSet.currentLevel == LevelSet.field)
+            {
+                if (LevelSet.currentLevel.ID == LevelID.ColliseumPit)
+                {   //ALWAYS spawn hero in south position, but don't use spawnPos ref
+                    Functions_Movement.Teleport(
+                        Pool.hero.compMove,
+                        LevelSet.field.currentRoom.center.X,
+                        LevelSet.field.currentRoom.rec.Y
+                        + LevelSet.field.currentRoom.rec.Height - 16 * 4);
+                }
+                else
+                {   //place hero based on field spawnPos ref
+                    Functions_Movement.Teleport(Pool.hero.compMove,
+                        LevelSet.spawnPos_Field.X, LevelSet.spawnPos_Field.Y);
+                }
+            }
+            else
+            {
+                Functions_Movement.Teleport(Pool.hero.compMove, 
+                    LevelSet.spawnPos_Dungeon.X, LevelSet.spawnPos_Dungeon.Y);
+
+                //pop an attention particle to draw player's attention
+                Functions_Particle.Spawn(ObjType.Particle_Attention,
+                    LevelSet.spawnPos_Dungeon.X, LevelSet.spawnPos_Dungeon.Y);
+            }
+
+            //kill movement, reset hero to proper starting state
             Functions_Movement.StopMovement(Pool.hero.compMove);
             ResetHero();
+
+            
         }
 
         public static void ResetHero()

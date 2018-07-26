@@ -442,9 +442,10 @@ namespace DungeonRun
                 (Room.size.X / 2) * 16 + pos.X + 8,
                 Room.size.Y * 16 + pos.Y + 8 - 16 * 2,
                 Direction.Down);
-            //set the room.spawnPos to pos above exit door obj
-            Room.spawnPos.X = (Room.size.X / 2) * 16 + Room.rec.X + 8;
-            Room.spawnPos.Y = Room.rec.Y + (Room.size.Y - 1) * 16;
+
+            //set the hero's spawnPos to above exit door obj
+            LevelSet.spawnPos_Dungeon.X = (Room.size.X / 2) * 16 + Room.rec.X + 8;
+            LevelSet.spawnPos_Dungeon.Y = Room.rec.Y + (Room.size.Y - 1) * 16;
         }
 
         public static void AddWallStatues(Room Room)

@@ -125,7 +125,11 @@ namespace DungeonRun
                     + 16 * i //from there, place objs in a horizontal line
                     + 8, //with a small alignment offset
 
-                    LevelSet.currentLevel.currentRoom.spawnPos.Y + 16 * 2 - 8); //place behind enemies
+                    //LevelSet.currentLevel.currentRoom.spawnPos.Y + 16 * 2 - 8
+                    LevelSet.currentLevel.currentRoom.rec.Y //start with Y pos
+                    + LevelSet.currentLevel.currentRoom.rec.Height //add height
+                    - 16 - 8); //apply final offset
+
                 objRef.direction = Direction.Down;
                 Functions_GameObject.SetType(objRef, ObjType.Wor_Colliseum_Pillar_Top);
             }

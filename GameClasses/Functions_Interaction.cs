@@ -95,6 +95,7 @@ namespace DungeonRun
                         }
                         return; //dont center or move hero anymore
                     }
+
                     //center Hero to Door horiontally or vertically
                     if (Obj.direction == Direction.Up || Obj.direction == Direction.Down)
                     {   //gradually center hero to door
@@ -110,6 +111,7 @@ namespace DungeonRun
                         if (Math.Abs(Pool.hero.compSprite.position.Y - Obj.compSprite.position.Y) < 2)
                         { Pool.hero.compMove.newPosition.Y = Obj.compSprite.position.Y; }
                     }
+
                 }
 
                 #endregion
@@ -466,11 +468,6 @@ namespace DungeonRun
                             {   //send hero back to last door he passed thru
                                 Assets.Play(Assets.sfxActorLand); //play actor land sfx
                                 Functions_Hero.SpawnInCurrentRoom();
-                                //direct player's attention to hero's respawn pos
-                                Functions_Particle.Spawn(
-                                    ObjType.Particle_Attention,
-                                    LevelSet.currentLevel.currentRoom.spawnPos.X,
-                                    LevelSet.currentLevel.currentRoom.spawnPos.Y);
                             }
                             else
                             {   //handle enemy pit death (no loot, insta-death)
