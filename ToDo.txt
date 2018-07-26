@@ -59,49 +59,34 @@ Today:
 
 
 
+Arrow Count++
 
-Cheats++
-
-+ added toggling of UnlockAll cheat on/off.
-+ cheats update inventory screen in realtime(tm) now.
-+ hero's loadout is now set from overworld and level screens.
-
-done because new global screens system allows for it.
-which is awesome, btw, and a perk of the design.
-fixed a variety of bugs with cheats and cheat screen and
-inventory screen.
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-*should be able to 'weed' the grass
-pressing A on grass already sets link into the pickup
-state, so to add to this: simply pop a leaf explosion
-on the tall grass obj pos, then call loot function.
-
-
+issue: the arrow count (in inventory widget) can sometimes
+be displayed as 0, when hero doesn't have bow - leading to a
+state where the menuItem is unknown and has a count of 0,
+which visually makes NO SENSE at all.
 
 fix inventory widget to only display arrow counter if
 hero actually has bow boolean set to true. this is only
 checked when the widget or scrveen is initially opened.
-not when we reset/setup the inventory menuItems
+not when we reset/setup the inventory menuItems.
+
+updated SetInventoryMenuItems() to set visible booleans
+properly for bomb and arrow counts. bomb count is always
+displayed, while arrows are dependent upon the bow boolean.
+tested, working.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -125,18 +110,34 @@ should be wide as well.
 
 
 
+
+Mountain Sprites
+add black pixels to the corners of the mountain wall sprites.
+this will make the rooms appear rounded, which further visually
+separates them. 
+
+
+
+Towns++
+add a 2nd town level on the left of the map, below left town.
+we can begin to split the NPCs apart between these two towns.
+we also need to add a town on the right side of the map, outside
+of the city gates. move some NPCs over there too.
+
 Magic Mirror
 this plays well into magic mirror: use it in a dungeon to return
 to the exit (starting room). exiting dungeon takes us to field.
 using magic mirror in field level takes hero to overworld screen.
 it does not serve as a connection between worlds, because it has
 been broken. the history of why it was broken can be explained.
+*need sprite
 
 
-Mountain Sprites
-add black pixels to the corners of the mountain wall sprites.
-this will make the rooms appear rounded, which further visually
-separates them. 
+
+
+
+
+
 
 
 

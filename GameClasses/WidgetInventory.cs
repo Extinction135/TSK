@@ -79,7 +79,6 @@ namespace DungeonRun
             Functions_MenuItem.PlaceRow(menuItems, 7 * 5, X + 16 * 1, Y + 16 * 12 + 8, 7);
             Functions_MenuItem.SetNeighbors(menuItems, 7); //set menuItems neighbors
 
-            bombsDisplay.visible = true; //bomb amount is always displayed
             //set the inventory widget's menuItems based on saveData booleans
             SetInventoryMenuItems();
         }
@@ -107,28 +106,39 @@ namespace DungeonRun
 
         public void SetInventoryMenuItems()
         {
+
+            #region Reset Inventory MenuItems and Amount Displays
+
+            //reset display amounts to false
+            arrowsDisplay.visible = false;
+            bombsDisplay.visible = true;
             //reset the menuItems
             for (i = 0; i < menuItems.Count; i++)
             { Functions_MenuItem.SetType(MenuItemType.Unknown, menuItems[i]); }
 
+            #endregion
 
-            //setup the menuItems
+
+            //setup menuItems
+
 
             #region Items - 0 thru 20
 
             //0 = boomerang
             Functions_MenuItem.SetType(MenuItemType.ItemBoomerang, menuItems[0]);
+
             //1 = bombs
             Functions_MenuItem.SetType(MenuItemType.ItemBomb, menuItems[1]);
             Functions_Component.Align(bombsDisplay, menuItems[1].compSprite);
             Functions_Component.UpdateAmount(bombsDisplay, PlayerData.current.bombsCurrent);
+
             //2 - arrows
             if (PlayerData.current.itemBow)
             {   //if hero has arrows, display the number of arrows + draw display amount
                 Functions_MenuItem.SetType(MenuItemType.ItemBow, menuItems[2]);
                 Functions_Component.Align(arrowsDisplay, menuItems[2].compSprite);
                 Functions_Component.UpdateAmount(arrowsDisplay, PlayerData.current.arrowsCurrent);
-                arrowsDisplay.visible = PlayerData.current.itemBow; //hero has a bow, show arrow count
+                arrowsDisplay.visible = true; //hero has a bow, show arrow count
             }
 
             //3 - magic mirror
