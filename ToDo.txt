@@ -58,30 +58,11 @@ Roadmap
 Today:
 
 
+Overworld++
 
-Fall Sfx++
-
-we dont have fall sfx for hero, which feels missing.
-
-hacked into interactions between mid mountain wall and
-actor, the terminal velocity check was moved to later
-in the method, then an if branch was added prior,
-checking to see if the actor's falling magnitude (Y axis)
-was less than the terminal velocity. if it is, then 
-the initial fall sound fx is played.
-
-notes: it only takes a few frames for the actor to reach
-terminal velocity from falling, so for those few frames
-the fall soundfx is called each frame. a sound effect
-cannot be played again until it's finished playing, so
-the additional calls to play the sound effect are essentially
-ignored and initial falling sound is implemented again.
-
-
-
-
-
-
+fixed a bug where campfires, and flags weren't appearing on the
+overworld screen. this was due to Open() not spawning the particles,
+because other screens had reset and used particles from the pool.
 
 
 
@@ -97,12 +78,15 @@ been broken. the history of why it was broken can be explained.
 
 
 
-
-
 Levels++
 
-Towns++
+Left Towns
 add a 2nd town level on the left of the map, below left town.
+add a 3rd town level on the left of the colliseum connector.
+this makes 3 towns on the left.
+
+
+
 we can begin to split the NPCs apart between these two towns.
 we also need to add a town on the right side of the map, outside
 of the city gates. move some NPCs over there too.

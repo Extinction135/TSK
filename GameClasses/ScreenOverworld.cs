@@ -237,20 +237,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Add Animated Particles / Sprites to Map
-
-            //create castle flags
-            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 451 + 8, 97 + 6);
-            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 468 + 8, 106 + 6);
-            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 485 + 8, 98 + 6);
-            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 464 + 8, 82 + 6);
-            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 474 + 8, 79 + 6);
-            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 465 + 8, 71 + 6);
-            //create additional flags
-            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 334 + 8, 97 + 6); //old town
-            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 320 + 8, 113 + 6); //old town
-            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 357 + 8, 99 + 6); //old town
-            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 305 + 8, 147 + 6); //colliseum
+            #region Setup wave spawn positions
 
             //create a list of positions where to place waves
             waveSpawnPositions = new List<Vector2>();
@@ -267,13 +254,7 @@ namespace DungeonRun
             waveSpawnPositions.Add(new Vector2(120 + 8, 090 + 6));
             waveSpawnPositions.Add(new Vector2(094 + 8, 121 + 6));
 
-            //create map campfires
-            Functions_Particle.Spawn(ObjType.Particle_Map_Campfire, 505, 257); //tent town
-            Functions_Particle.Spawn(ObjType.Particle_Map_Campfire, 299, 297); //center island
-
-
             #endregion
-
 
         }
 
@@ -314,11 +295,30 @@ namespace DungeonRun
             { hero.compSprite.texture = Assets.blobSheet; }
             else if(PlayerData.current.actorType == ActorType.Hero)
             { hero.compSprite.texture = Assets.heroSheet; }
-            
 
 
 
-            
+            //spawn map campfires
+            Functions_Particle.Spawn(ObjType.Particle_Map_Campfire, 505, 257); //tent town
+            Functions_Particle.Spawn(ObjType.Particle_Map_Campfire, 299, 297); //center island
+
+            //spawn castle flags
+            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 451 + 8, 97 + 6);
+            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 468 + 8, 106 + 6);
+            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 485 + 8, 98 + 6);
+            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 464 + 8, 82 + 6);
+            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 474 + 8, 79 + 6);
+            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 465 + 8, 71 + 6);
+
+            //spawn additional flags
+            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 334 + 8, 97 + 6); //old town
+            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 320 + 8, 113 + 6); //old town
+            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 357 + 8, 99 + 6); //old town
+            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 305 + 8, 147 + 6); //colliseum
+
+
+
+
 
             //load hero's type + loadout
             Functions_Actor.SetType(Pool.hero, PlayerData.current.actorType);
