@@ -198,6 +198,8 @@ namespace DungeonRun
 
         Basic, //aka 'standard'
 
+        Standard_BeefyBat, //special standards
+
         Miniboss_Blackeye,
 
         Boss_BigEye,

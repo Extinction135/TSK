@@ -1849,6 +1849,30 @@ if actor.behavior[i] ==
 
 
 
+release strategies:
+
+1. goto reddit/gaming, find a top contributer.
+PM that contributor with a link to the youTube video,
+with a message along the lines of 'take the karma, i just want people
+to know my story'. the redditor should be capable of doing the rest,
+once they realize what they're watching. if they dont, just ping
+the top contributor each day until one bites and starts the hug of death.
+*you can also target r/videos
+*you can also target r/zelda
+
+2. spam 4chan with gifs that have the game's release link burned in,
+bypassing spam filters entirely.. lol
+
+
+
+
+
+
+
+
+
+
+
 
 
 

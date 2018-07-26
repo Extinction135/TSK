@@ -1029,13 +1029,13 @@ namespace DungeonRun
             { new Byte4(16, 3, 0, 0), new Byte4(17, 3, 0, 0) };
 
             Standard_BeefyBat_Animations.idle.up = new List<Byte4>
-            { new Byte4(16, 4, 0, 0), new Byte4(17, 4, 0, 0) };
-
-            Standard_BeefyBat_Animations.idle.right = new List<Byte4>
             { new Byte4(16, 5, 0, 0), new Byte4(17, 5, 0, 0) };
 
+            Standard_BeefyBat_Animations.idle.right = new List<Byte4>
+            { new Byte4(16, 4, 0, 0), new Byte4(17, 4, 0, 0) };
+
             Standard_BeefyBat_Animations.idle.left = new List<Byte4>
-            { new Byte4(16, 5, 1, 0), new Byte4(17, 5, 1, 0) };
+            { new Byte4(16, 4, 1, 0), new Byte4(17, 4, 1, 0) };
 
             Standard_BeefyBat_Animations.move = Standard_BeefyBat_Animations.idle;
             Standard_BeefyBat_Animations.idleCarry = Standard_BeefyBat_Animations.idle;

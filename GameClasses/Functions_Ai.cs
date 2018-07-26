@@ -58,19 +58,16 @@ namespace DungeonRun
             #region Basic AI
             
             else if(Actor.aiType == ActorAI.Basic)
-            {   //by default, choose a random direction to move in & randomly dash
+            {   
+                //by default, choose a random direction to move in & randomly dash
                 Actor.compInput.direction = (Direction)Functions_Random.Int(0, 8);
                 if (Functions_Random.Int(0, 100) > 90) { Actor.compInput.dash = true; }
-
-                //if the hero's underwater (hidden), just bail from rest of method
-                if (Pool.hero.underwater) { return; }
-                //if hero's dead, bail
-                if (Pool.hero.state == ActorState.Dead) { return; }
 
                 //if the actor is an enemy, and the hero is on other team (ally)
                 if (Actor.enemy & Pool.hero.enemy == false)
                 {   
-                    ChaseHero(); //this method will chase hero using diagonal movement only
+                    ChaseHero();
+
                     //determine if actor is close enough to attack hero
                     if (yDistance < Actor.attackRadius && xDistance < Actor.attackRadius)
                     {   //actor is close enough to hero to attack
@@ -87,8 +84,8 @@ namespace DungeonRun
                     }
                 }
                 else if(Actor.enemy == false)
-                {   //if actor is an ally, then chase the hero
-                    ChaseHero();
+                {   
+                    ChaseHero(); //if actor is an ally, follow(chase) hero
                     //determine if actor is close enough to stop chasing hero
                     if (yDistance < Actor.attackRadius && xDistance < Actor.attackRadius)
                     {   
@@ -96,13 +93,60 @@ namespace DungeonRun
                         Actor.compInput.direction = Direction.None;
                     }
                 }
-                
             }
 
             #endregion
 
 
-            //Miniboss ai
+            //Special Standard AIs
+
+            #region BeefyBat
+
+            else if (Actor.aiType == ActorAI.Standard_BeefyBat)
+            {
+                //strategy: idles in place until hero gets close, then dash attacks him
+
+                //reset input to none (to idle)
+                Actor.compInput.direction = Direction.None;
+                ChaseHero(); //if close enough, compInput gets a direction towards hero
+
+                //if actor is close enough to see hero, attack or dash towards hero
+                if(Actor.compInput.direction != Direction.None) //we got a direction from chase hero
+                {   //determine if actor is close enough to attack hero too
+                    if (yDistance < Actor.attackRadius && xDistance < Actor.attackRadius)
+                    {   //actor is close enough to hero to attack
+                        if (Functions_Random.Int(0, 100) > 10) //randomly proceed
+                        {   //set cardinal direction towards hero, attack
+                            Actor.compInput.direction = 
+                                Functions_Direction.GetCardinalDirectionToHero(actorPos);
+                            Actor.compInput.attack = true;
+                        }
+                    }
+                    else
+                    {   //if we cant attack, aggressively dash towards hero
+                        Actor.compInput.dash = true;
+                    }
+                }
+                else
+                {   //we cannot 'see' hero
+
+                    //very rarely dash in a random direction (to mix up position)
+                    if (Functions_Random.Int(0, 100) > 98)
+                    {   
+                        Actor.compInput.direction = (Direction)Functions_Random.Int(0, 8);
+                        Actor.compInput.dash = true;
+                    }
+                    //upon coming to a rest, return to a south facing state (hivemind)
+                    if(Actor.compMove.moving == false) { Actor.direction = Direction.Down; }
+                }
+            }
+
+            #endregion
+
+
+
+
+            //Miniboss AIs
 
             #region BlackEye
 
@@ -161,7 +205,7 @@ namespace DungeonRun
             #endregion
 
 
-            //Boss AI
+            //Boss AIs
 
             #region BigEye
 
@@ -350,9 +394,24 @@ namespace DungeonRun
         }
 
         public static void ChaseHero()
-        {   //actor is close enough to chase hero, set actor's direction to hero
+        {
+            //if the hero's underwater (hidden), just bail from rest of method
+            if (Pool.hero.underwater) { return; }
+            //if hero's dead, bail
+            if (Pool.hero.state == ActorState.Dead) { return; }
+
+            //actor is close enough to chase hero, set actor's direction to hero
             if (yDistance < Actor.chaseRadius && xDistance < Actor.chaseRadius)
-            { Actor.compInput.direction = Functions_Direction.GetDiagonalToHero(actorPos); }
+            {
+                if(Actor.chaseDiagonally)
+                {   //chasing diagonally lets actors slide around blocking objs, appearing smart
+                    Actor.compInput.direction = Functions_Direction.GetDiagonalToHero(actorPos);
+                }
+                else
+                {   //chasing cardinally lets actors easily get stuck on blocking objs, appearing dumb
+                    Actor.compInput.direction = Functions_Direction.GetCardinalDirectionToHero(actorPos);
+                }   //some actor sprites require cardinal movement, tho
+            }
         }
 
         public static void Check_Bite()

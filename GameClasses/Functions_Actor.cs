@@ -691,13 +691,19 @@ namespace DungeonRun
 
             else if (Type == ActorType.Standard_BeefyBat)
             {
-                Actor.aiType = ActorAI.Basic;
+                Actor.aiType = ActorAI.Standard_BeefyBat;
+                Actor.chaseDiagonally = false; //sprite requires it
                 Actor.compMove.grounded = false; //is flying
 
                 Actor.enemy = true;
                 Actor.compSprite.texture = Assets.mountainLevelSheet;
                 Actor.animList = AnimationFrames.Standard_BeefyBat_Animations;
+
                 Actor.health = 2;
+                Actor.chaseRadius = 16 * 3; //decrease chase radius
+
+
+
                 ResetActorLoadout(Actor);
                 Actor.weapon = MenuItemType.WeaponFang;
                 Actor.walkSpeed = 0.05f;

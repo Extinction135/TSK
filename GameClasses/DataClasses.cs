@@ -19,7 +19,7 @@ namespace DungeonRun
         public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.76f; //the version of the game
-        public static BootRoutine bootRoutine = BootRoutine.Game; //boot to game or editor?
+        public static BootRoutine bootRoutine = BootRoutine.Editor_Level; //boot to game or editor?
 
         //dev flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
@@ -1127,7 +1127,9 @@ namespace DungeonRun
     public class Actor
     {
         public ActorType type; //the type of actor this is
+
         public ActorAI aiType = ActorAI.Basic; //what type of AI this actor gets
+        public Boolean chaseDiagonally = true; //most actors chase diagonally to slide around blocking objs
         public Boolean enemy = false; //defaults to ally
         public ActorState state; //what actor is doing this frame
         public ActorState inputState; //what input wants actor to do this frame

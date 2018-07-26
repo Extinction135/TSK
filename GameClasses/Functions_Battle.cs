@@ -123,18 +123,21 @@ namespace DungeonRun
             #endregion
 
 
-            //2. check actor v pro/obj status effects
+            //2. ENEMY INVINCIBILITY - check actor v pro/obj status effects 
 
-            #region Handle actor 'invincibilities' against projectiles & objs
+            #region Standard Enemy - INVINCIBILITIES
 
-            if(Actor.type == ActorType.Boss_BigBat)
-            {
-                //bat projectiles cant deal damage to the bat boss
-                //(he spawns them, and it would be cheap)
-                if (Obj.type == ObjType.ProjectileBat)
-                { Obj.lifeCounter = 0; return; } //keep bat alive, bail
+            if (Actor.type == ActorType.Standard_BeefyBat)
+            {   //prevent friendly fire between bats attacking in groups
+                if (Obj.type == ObjType.ProjectileBite) { return; } //bail
             }
-            else if(Actor.type == ActorType.MiniBoss_Spider_Armored)
+
+            #endregion
+
+
+            #region MiniBosses - INVINCIBILITIES
+
+            else if (Actor.type == ActorType.MiniBoss_Spider_Armored)
             {
                 //armored spider resists all projectiles except a few
                 if (Obj.group == ObjGroup.Projectile)
@@ -154,6 +157,19 @@ namespace DungeonRun
                 }
                 //all other damaging objects are ignored
                 else { return; }
+            }
+
+            #endregion
+
+
+            #region Bosses - INVINCIBILITIES
+
+            else if (Actor.type == ActorType.Boss_BigBat)
+            {
+                //bat projectiles cant deal damage to the bat boss
+                //(he spawns them, and it would be cheap)
+                if (Obj.type == ObjType.ProjectileBat)
+                { Obj.lifeCounter = 0; return; } //keep bat alive, bail
             }
 
             #endregion
