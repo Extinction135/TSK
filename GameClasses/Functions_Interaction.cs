@@ -677,10 +677,10 @@ namespace DungeonRun
                         if (Object.lifeCounter == 1) //these events happen only at start
                         {   //bail if pro is hitting open door, else sparkle + hit sfx
                             if (RoomObj.type == ObjType.Dungeon_DoorOpen) { return; }
-                            //center sparkle to hit obj
-                            Functions_Particle.Spawn(ObjType.Particle_Sparkle, 
-                                RoomObj.compSprite.position.X + 4,
-                                RoomObj.compSprite.position.Y + 4);
+                            //center sparkle to sword/shovel
+                            Functions_Particle.Spawn(ObjType.Particle_Sparkle,
+                                Object.compSprite.position.X + 4,
+                                Object.compSprite.position.Y + 4);
                             Assets.Play(RoomObj.sfx.hit);
                         }
                         else if (Object.lifeCounter == 4)
@@ -1179,6 +1179,9 @@ namespace DungeonRun
 
             else if (RoomObj.group == ObjGroup.Wall_Climbable)
             {
+                //prevent any push on projectiles
+                if (Object.group == ObjGroup.Projectile) { return; }
+
                 //prevent certain wall objs from pulling any objects down the wall
                 if (RoomObj.type == ObjType.Wor_MountainWall_Foothold
                     || RoomObj.type == ObjType.Wor_MountainWall_Ladder

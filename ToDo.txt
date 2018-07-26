@@ -60,59 +60,19 @@ Today:
 
 
 
-MountainWalls + Falling System
 
-mountain walls no longer 'push' hero away from them, if
-he walks or dashes north (cardinally or diagonally) into them.
-instead his position is reverted to the last non-overlapping
-position - which is less than the push 'correction' from 
-before. this has the net effect of reducing the 'bounce' off
-the wall while still maintaining the integrity of the climbing
-and falling systems.
+MountainWalls vs Projectiles
 
-Bonus:
-+ removed fall sound from mountain wall interaction routine.
-+ simplified how mountain walls interact with actors.
-+ upgraded caves to be blocking, including dungeon cave 
-entrance, which makes alcoves feel alot safer since the wall
-doesn't push the hero anymore.
+mountain walls no longer push projectiles.
+this prevents a bug where striking a wall with
+a sword caused the sword to be pushed back into
+hero, causing him damage.
 
-Polish++
-actor should be using currentSpeed in movement functions.
-currentSpeed should be set based on actor state, in actor.update()
-this way, other systems can simply ref actor.currentSpeed,
-allowing mountain walls to offset push actor by the exact
-amount actor is walking/dashing/swimming into them, preventing
-overlap.
+Sword++
 
-Actor.compMove.speed already IS this reference, so we'll just
-use that instead. lol.. done.
-
-based on playtesting, I've built a system that pushes the hero
-away from mountain walls, if hero approaches from the south,
-for bottom walls and mid walls (so alcoves feel right). while
-testing this system, I found that dash swimming into walls
-didn't feel right - and while I didn't get it exactly the way
-I wanted to I modified the system enough to where you can't
-dash through mountain walls from land or water. there is a fun
-"dash up the wall" trick that can be done, which can be combo'd
-into grabbing a foothold that is a tile above the water, which
-was added into the mountain level.
-
-
-
-
-
-
-
-
-
-
-
-mountain walls shouldn't push projectiles..
-any obj that is pushed by a mountain wall shoudn't
-call the fall sound either...
-
+when a sword projectile collides with an object,
+it should create the sparkle particle ON ITSELF.
+^ done. this makes sword attacks feel SO MUCH BETTER.
 
 
 
