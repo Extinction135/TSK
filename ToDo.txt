@@ -60,72 +60,58 @@ Today:
 
 
 
+MountainWalls + Falling System
+
+mountain walls no longer 'push' hero away from them, if
+he walks or dashes north (cardinally or diagonally) into them.
+instead his position is reverted to the last non-overlapping
+position - which is less than the push 'correction' from 
+before. this has the net effect of reducing the 'bounce' off
+the wall while still maintaining the integrity of the climbing
+and falling systems.
+
+Bonus:
++ removed fall sound from mountain wall interaction routine.
++ simplified how mountain walls interact with actors.
++ upgraded caves to be blocking, including dungeon cave 
+entrance, which makes alcoves feel alot safer since the wall
+doesn't push the hero anymore.
+
+Polish++
+actor should be using currentSpeed in movement functions.
+currentSpeed should be set based on actor state, in actor.update()
+this way, other systems can simply ref actor.currentSpeed,
+allowing mountain walls to offset push actor by the exact
+amount actor is walking/dashing/swimming into them, preventing
+overlap.
+
+Actor.compMove.speed already IS this reference, so we'll just
+use that instead. lol.. done.
+
+based on playtesting, I've built a system that pushes the hero
+away from mountain walls, if hero approaches from the south,
+for bottom walls and mid walls (so alcoves feel right). while
+testing this system, I found that dash swimming into walls
+didn't feel right - and while I didn't get it exactly the way
+I wanted to I modified the system enough to where you can't
+dash through mountain walls from land or water. there is a fun
+"dash up the wall" trick that can be done, which can be combo'd
+into grabbing a foothold that is a tile above the water, which
+was added into the mountain level.
 
 
 
 
-Beefy Bats
 
-* beefy bats dont properly face their moving direction.
-their sprite facing direction is independent of their moving direction.
-- this was a problem with their animation frames, which
-was fixed. however, upon interacting with them a new bug was
-discovered with beefy bats: since all ai controlled actors 
-move diagonally, the diagonal movement is resolved to a cardinal
-direction and all diagonal movement specifically resolves to
-either left or right (not up or down). as a result, the beefy
-bat sprite rarely displays his up or down animation - unless
-he bite attacks or dashes north / south. this isn't the visual
-process that I want. instead, we'll update the AI to set the
-movement to a cardinal direction for beefy bats, instead of a 
-diagonal direction - allowing the visual process to occur
-the way I want it to.
 
-^ done. it would appear a better solution would be to model
-if an actor chases diagonally or cardinally using a boolean.
-the current system specifically checks the actor.type, of
-which there are some and will be many more. it would save time
-and code later, but incurs an upfront cost of a quick system 
-rewrite for actor ai chasing... seems like a good investment.
 
-* instead of checking by actor type, we want to add a boolean
-to actor class that controls how this actor chases or moves towards
-the hero (diagonally or cardinally). moving diagonally is preferred,
-but there are certain actors that require north/south movement
-to properly display their animated sprites.. moving cardinally
-was the original implementation for actors, until it was realized
-that actors easily get stuck on blocks and never move around them
-until hero does, leading a variety of exploits that made the ai
-look really, really dumb. the fix was simply to make all actors
-chase using diagonal movement, which allowed them to slide around
-blocks (thanks physics system!), making them very challenging and
-"smart".
 
-^ done. notes from playtesting: we should only be spawning one 
-beefy bat in dungeon rooms for spawn points. this may of already
-been implemented - but anyway - we also need to increase how
-often the beefy bat dashes towards hero - and increase his attack
-probability to 100% - but we also need to decrease his visibility
-radius to hero so he doesn't trigger until hero is much closer.
-at that point, the bat is a very dangerous enemy.
 
-to actually implement this without complicating the AI too much,
-I decided to create an new ActorAI enum value for BeefyBat.
-this will be a seperate ai path, much like miniboss or boss.
 
-beefybat has a 90% chance to bite attack hero, instead of the
-standard 75% chance. the new AI also returns every bat to a south
-facing state after an idle dash event, so a hivemaind visual
-is conveyed (they all face the same way, watching you). it's
-creepy and effective and exactly what I want.
 
-* bats should not be able to die from bite attacks, because it's
-very likely other bats will be group attacking and kill each other
-in this case. < done. this also improved the structure of Damage(),
-creating sections for standard, miniboss, and boss regions.
-
-the playtesting of beefybats has been successful - they now
-have a unique and interesting 'personality' as an enemy type.
+mountain walls shouldn't push projectiles..
+any obj that is pushed by a mountain wall shoudn't
+call the fall sound either...
 
 
 
@@ -139,18 +125,37 @@ have a unique and interesting 'personality' as an enemy type.
 
 
 
-*we should spawn more than 1 mountain miniboss spider in the hub room.
-maybe three...
 
 
 
-* we should not be calling the fall sound from interaction with 
-mountain wall. this should only be called if hero's state
+
+
+
+
+
+
+
+
+
+
+Fall Sfx++
+
+we dont have fall sfx for hero, which feels missing.
+
+fall sfx should only be called if hero's state
 changes into falling state from a non-falling state. and it
 should only happen once. this means if hero is ever put into a
-falling state, the sfx is handled automatically. this also
-prevents a bug where the sound fx is spammed while hero falls
-down a mountain wall.
+falling state, the sfx is handled automatically. 
+
+
+
+
+
+
+
+
+
+
 
 
 

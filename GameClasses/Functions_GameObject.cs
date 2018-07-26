@@ -1124,7 +1124,7 @@ namespace DungeonRun
                 //sort save and block
                 Obj.compSprite.zOffset = +16 * 3 - 2;
                 Obj.canBeSaved = true;
-                Obj.compCollision.blocking = false; //is cave
+                Obj.compCollision.blocking = true;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
             }
 
@@ -2096,20 +2096,15 @@ namespace DungeonRun
                 Obj.compSprite.texture = Assets.mountainLevelSheet;
 
                 if (Type == ObjType.Wor_MountainWall_Cave_Bare)
-                {
-                    Obj.compAnim.currentAnimation = AnimationFrames.Wor_MountainWall_Cave_Bare;
-                    Obj.compCollision.blocking = false; //is cave
-                }
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_MountainWall_Cave_Bare; }
                 else
-                {
-                    Obj.compAnim.currentAnimation = AnimationFrames.Wor_MountainWall_Cave_Covered;
-                    Obj.compCollision.blocking = true; //is not really cave
-                }
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_MountainWall_Cave_Covered; }
 
                 Obj.compSprite.zOffset = 0; //sorts over footholds
                 Obj.canBeSaved = true;
                 Obj.group = ObjGroup.Object;
                 Obj.compMove.moveable = false;  //nah
+                Obj.compCollision.blocking = true;
             }
 
 

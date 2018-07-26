@@ -927,6 +927,8 @@ namespace DungeonRun
             Functions_Component.CenterOrigin(Actor.compSprite);
         }
 
+
+
         public static void Update(Actor Actor)
         {
 

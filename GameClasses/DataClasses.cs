@@ -1148,6 +1148,9 @@ namespace DungeonRun
         public float walkSpeed;
         public float swimSpeed = 0.10f; //unchanged
 
+
+
+
         //the components that actor requires to function
         public ComponentSprite compSprite;
         public ComponentAnimation compAnim = new ComponentAnimation();

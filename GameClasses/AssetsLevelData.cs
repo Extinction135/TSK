@@ -6979,7 +6979,6 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 440; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 488; obj.posY = 376; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 408; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 808; obj.posY = 664; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 488; obj.posY = 504; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 472; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 408; MountainEntrance.objs.Add(obj);}
@@ -7494,10 +7493,8 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder_Trap; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 360; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Alcove_Right; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 472; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Alcove_Left; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 472; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 680; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 504; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 520; MountainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 536; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Cave_Covered; obj.direction = Direction.Down; obj.posX = 776; obj.posY = 536; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Cave_Bare; obj.direction = Direction.Down; obj.posX = 312; obj.posY = 408; MountainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Alcove_Right; obj.direction = Direction.Down; obj.posX = 328; obj.posY = 440; MountainEntrance.objs.Add(obj);}

@@ -254,13 +254,8 @@ namespace DungeonRun
 
             else if (Obj.group == ObjGroup.Wall_Climbable)
             {
-                //Notes
-                //mid walls start falls - from the top
-                //mid walls continue falls, if actor is falling
-                //mid walls push south
-                //bottom walls continue falls, if actor is falling
-                //bottom walls push south
-                //if actor is climbing, mid/bottom walls dont push them
+
+                #region Mid Walls - THESE CAUSING FALLING TO HAPPEN
 
                 if (Obj.type == ObjType.Wor_MountainWall_Mid)
                 {
@@ -271,52 +266,66 @@ namespace DungeonRun
                     //actor is climbing
                     if (Actor.state == ActorState.Climbing) { return; }
 
-                    //actor is falling - push down, lock into falling
-                    else if (Actor.state == ActorState.Falling)
-                    {
-                        Functions_Movement.Push(Actor.compMove, Direction.Down, 1.5f);
-                        Actor.state = ActorState.Falling;
-                        Actor.stateLocked = true;
-                        return;
-                    }
-
-                    //actor is walking/dashing into wall from south - push down
+                    //actor is walking/dashing into wall from the south - push down
                     else if (Actor.state == ActorState.Move || Actor.state == ActorState.Dash)
                     {
                         //see if actor is walking north into wall
-                        if (Actor.compMove.direction == Direction.Up
-                            || Actor.compMove.direction == Direction.UpLeft
-                            || Actor.compMove.direction == Direction.UpRight)
+                        if (Actor.direction == Direction.Up
+                            || Actor.direction == Direction.UpLeft
+                            || Actor.direction == Direction.UpRight)
                         {
-                            Functions_Movement.Push(Actor.compMove, Direction.Down, 1.5f);
-                            return; //done pushing actor
+                            //prevent overlap
+                            Functions_Movement.Push(Actor.compMove, Direction.Down, 
+                                Actor.compMove.speed * 1.25f); 
+                            return; //done with actor
                         }
                     }
 
-                    //any actor that reaches this code is in an initial falling state
-                    Assets.Play(Assets.sfxActorFall); //play initial fall sfx
-                    Actor.state = ActorState.Falling; //lock actor into falling state
+                    //all other states resolve to actor falling
+                    Functions_Movement.Push(Actor.compMove, Direction.Down, 1.5f);
+                    Actor.state = ActorState.Falling;
                     Actor.stateLocked = true;
-                    Functions_Movement.Push(Actor.compMove, Direction.Down, 1.5f); //fall
                 }
+
+                #endregion
+
+
+                #region Bottom Walls
+
                 else if (Obj.type == ObjType.Wor_MountainWall_Bottom)
                 {
                     if (Actor.state == ActorState.Climbing) { return; }
 
                     //only pass falling/landed actor thru wall south
-                    if (Actor.state == ActorState.Falling
+                    else if (Actor.state == ActorState.Falling
                         || Actor.state == ActorState.Landed)
                     {   //lock actor into falling state
                         Actor.state = ActorState.Falling;
                         Actor.stateLocked = true;
+
+                        //limit how much we can push actor (terminal velocity)
+                        if (Actor.compMove.magnitude.Y > terminalVelocity) { return; }
+
+                        //fall/push
+                        Functions_Movement.Push(Actor.compMove, Direction.Down, 1.5f);
                     }
-
-                    //limit how much we can push actor (terminal velocity)
-                    if (Actor.compMove.magnitude.Y > terminalVelocity) { return; }
-
-                    //fall/push
-                    Functions_Movement.Push(Actor.compMove, Direction.Down, 1.5f);
+                    else
+                    {
+                        //prevent overlap
+                        if(Actor.state == ActorState.Dash)
+                        {
+                            Functions_Movement.Push(Actor.compMove, Direction.Down,
+                            Actor.compMove.speed * 1.5f); //push more
+                        }
+                        else
+                        {
+                            Functions_Movement.Push(Actor.compMove, Direction.Down,
+                            Actor.compMove.speed * 1.25f); //push standard
+                        }
+                    }
                 }
+
+                #endregion
 
 
                 #region Trap Ladders
@@ -331,7 +340,6 @@ namespace DungeonRun
                 }
 
                 #endregion
-
 
             }
 
