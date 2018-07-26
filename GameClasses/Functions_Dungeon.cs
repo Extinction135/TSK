@@ -283,7 +283,6 @@ namespace DungeonRun
             {
                 PlaceExit(Room);
                 AddCrackedWalls(Room);
-                ScatterDebris(Room);
             }
             else if (Room.roomID == RoomID.Secret)
             {

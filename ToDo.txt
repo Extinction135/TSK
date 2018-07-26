@@ -59,83 +59,15 @@ Today:
 
 
 
-Exiting Dungeons
 
-this should return the hero to the dungeon entrance,
-on the proper dungeon entrance level. hero should spawn
-just south of dungeon entrance. this means dungeon entrances
-can't be blocked by anything directly infront of them.
-to do this, we'll need to drastically modify how spawning 
-is done, via spawnPos.
-
-SpawnPos++
-
-Removed spawnPos from rooms and put into Functions_Hero, 
-for various reasons explained below.. this was done in 
-prep for exiting dungeons to their corresponding field 
-levels and spawning in front of the dungeon entrance object.
-
-what do we gain by storing spawnPos in room?
-actually nothing, because the data isn't used in any special
-way related to the lifecycle of rooms. in fact, it would be more
-useful and less wasteful if we only had one spawnPos instance,
-because we have spawnPos instances for each room in the level,
-which currently can upwards of 100 rooms. so we have 100 extra
-spawnPos references sitting in memory, not really being used
-except when the hero enters that specifc room. that's dumb.
-simplified room class.
-
-upon implementation, it became apparent that spawnPos should 
-not live in functions_hero, because we actually need two 
-position values, not one, and they map better to the
-field and dungeon concepts designed in LevelSet class.
-
-created two spawnPos vector2 instances in levelSet, one 
-for field and one for dungeon. this seperates them and 
-places them in the codebase in a logical area (levelSet). 
-
-upgraded colliseum pit to exit to colliseum exterior.
-this also sets up the foundation for linking levels to other
-levels (fields) using entrance objects.
-
-+ fixed issue with dungeon exit obj not properly aligning.
-a ton of playtesting to ensure entering and exiting various
-entrances and levels works properly with the new spawn system.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-exiting the colliseum should place link outside the colliseum
-entrance obj. also, the obj should just be a wide black entrance,
-like the center sprite. we dupe that for a total of 3, so we have
-a massive entrance. then put those skull pillars on the side. why?
-to match the entrance/exit sizes between the colliseum levels.
-the exit from the interior is pretty wide, so the entrance
-should be wide as well.
-
-
-
-
-
-
-
-
+ExitRooms & FloorDebris
 
 floor debris should not be created in exit room.
 it overlaps the exit door and looks bad.
++ no longer scattering debris in exit rooms.
+
+
+
 
 
 
@@ -162,6 +94,7 @@ add a 2nd town level on the left of the map, below left town.
 we can begin to split the NPCs apart between these two towns.
 we also need to add a town on the right side of the map, outside
 of the city gates. move some NPCs over there too.
+
 
 Magic Mirror
 this plays well into magic mirror: use it in a dungeon to return
@@ -306,37 +239,25 @@ separates them.
 
 
 
+Colliseum Entrance Obj++
+the colliseum entrance obj should just be a wide black entrance,
+like the center sprite. we dupe that for a total of 3, so we have
+a massive entrance. then put those skull pillars on the side. why?
+to match the entrance/exit sizes between the colliseum levels.
+the exit from the interior is pretty wide, so the entrance
+should be wide as well.
 
 
 
 
-Stats Book
-this is located in the options section.
-displays player's various stats via the stats screen.
-rating (k/d), dungeon completions/failures,
-miniboss kills, boss kills, total enemy kills..
-deaths, colliseum rating, etc...
 
 
 
-Link Story Quest Book
-this is located in the quest section, and essentially
-serves as the 'log book' or mission tracker for the player.
-this has several steps, starting with visit the colliseum.
-the quest book is how the player will track the main storyline too.
-events that happen should be displayed in this log book.
 
-Blob Story Quest Book
-this is located in the quest section too, in a different slot.
-this is only displayed if player has discovered the blob questline.
-same as link story, but different objectives tracking diff booleans.
 
-we need booleans for each dungeon BOSS defeat.
-then the story quest book should display these boolean values.
-we also need boolean for colliseum tournament completion.
-then we add a boolean value for shadow king defeat.
-this models and completes the required data for the ligthworld
-storyline.
+
+
+
 
 
 
@@ -396,112 +317,8 @@ widget, if we extende the widget.
 
 footholds were pushed off the mountain wall.
 i assume a frame of interaction happened prior to
-the roomObj types being updated.
-
-
-
-
-
-
-
-
-
-
-
-
-implement blob dungeon.
-standard actor is blob.
-
-Blob Dungeon + Overworld Pit
-
-overworld pit is a non-blocking obj, 16x16,
-that is placed somewhere in town level. hero
-touching this pit causes hero to fall, level to
-close, leading to blob dungeon.
-
-Blob Dungeon
-starts in an empty square room, the landing room.
-in the landing room, the center area is empty,
-and this is where hero spawns. there is no exit.
-there is a small blob child NPC that will give
-link the map, if link talks to the NPC. NPC is
-invincible otherwise.
-
-build path to hub room. (this is where we can load
-the blob hub room with vendors, etc..)
-build path to exit room. (we can have custom blob
-exit room data here too)
-add rooms, connect with secrets x2.
-blob dungeons should be small and easy, without
-miniboss or boss - like training wheels dungeon.
-
-
-
-Separate Blob and Forest Dungeons
-
-* the blob dungeon uses the town sheet *
-
-create blob dungeon pit object - this will go on town level.
-if hero collides with this obj, he falls into the blob dungeon.
-this dungeon builds a critical path to the exit, which
-dumps hero back out at last overworld location (or just town level).
--this moves blobs into their own dungeon, without a miniboss or boss.
-
-
-add an entrance to the blob dungeon (this is pit obj)
-from the town level. we can also move some npcs from 
-the town level to the farm level, as it seems very
-lonely there as is.
-
-
-DaBlobs
-the blobs live in the underworld, literally underground
-of the light world. the have an entire culture, men, women,
-and children. but they all look the same. they have thier own
-building architecture. as blob link, you are mistaken for the
-fabled hero blob that is told of in prophecy that will save
-the blob people. this gives blob link an entire side plot
-that doesn't touch the main plot.
-
-Blob world
-this is actually a series of rooms like a dungeon, but without
-a hub room or boss room, and the hero's critical path is OUT
-of the dungeon TO THE EXIT ROOM. this returns link to the overworld
-map screen. in this blob dungeon city, there are rooms with buildings,
-commerce, life. the blobs basically live in an underground dungeon.
-
-as human link, the blobs will just ignore you with random dismissive
-dialog. if you attack a NPC, the game spawns blob actors at all NPC
-locations, then removes the NPCs - the end result being that the blobs
-pickup swords and defend themselves from the evil human who attacked them.
-we can also model this change using a boolean so future rooms spawn
-blob enemies instead of NPCs.
-
-as blob link, NPCs respond normally and all vendors are unlocked.
-there is a spot reserved for the blob's sidequest in the hero's inventory.
-
-How do we leave blob world?
-the exit to the blob world is marked on the map, which the hero
-gets from a helpful child blob in the room where hero's spawns into
-blob dungeon. this is like a first peace offerring to tell player
-that maybe they don't need to attack the blobs.
-
-
-
-Town++
-we are going to rebuild the town level completely..
-completely! with a few goals in mind: smaller houses
-that are father apart. all roofs fade out when link
-enters a house, so we don't want multiple houses on
-screen at once. only one. we'll also be creating the
-My Chickens! sidequest soon, so create a gated area
-for chickens, add chickens. hitting a chicken should
-make it cluck, of course.
-
-
-
-
-
+the roomObj types being updated. 
+*when we reset the pool, stopMovement() on all objs too.
 
 
 
@@ -521,15 +338,6 @@ or dungeon. should start inside a dungeon.
 
 
 
-
-
-
-
-
-
-
-
-
 add to forest dungeon:
 eye statue - doesn't attack, can be picked up like turtle. 
 doesnt move. hand placed.
@@ -539,10 +347,7 @@ hand placed.
 
 
 
-
-
-
-
+FIX PROJECTILE SPAWN SYSTEM PLS K THX BAI
 
 for now, all actors are using the same hitbox.
 the hero's hitbox. so some enemies are really hard to
