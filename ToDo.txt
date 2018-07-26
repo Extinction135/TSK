@@ -61,32 +61,15 @@ Today:
 
 
 
-MountainWalls vs Projectiles
+Achievements ++
 
-mountain walls no longer push projectiles.
-this prevents a bug where striking a wall with
-a sword caused the sword to be pushed back into
-hero, causing him damage.
-
-Sword++
-
-when a sword projectile collides with an object,
-it should create the sparkle particle ON ITSELF.
-^ done. this makes sword attacks feel SO MUCH BETTER.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+the only achievements in game right now are for wall
+jumping, so to give player feedback that what they just
+did is related to an achievement, instead of popping an
+attention particle over hero's head - we now spawn an
+exclamation bubble. like hero just shouted something.
+this is VERY visually distinct from normal in game
+particles the player would see while climbing.
 
 
 

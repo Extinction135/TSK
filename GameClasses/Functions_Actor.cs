@@ -1197,15 +1197,12 @@ namespace DungeonRun
                             #endregion
 
 
-
                             //set hero.direction based on controller input *right now*
                             Pool.hero.direction = Input.gamePadDirection;
                             //this direction will be used in check() below
                             //to set where interaction point is placed
-
                             //however, we dont want any up direction
                             
-
                             //check to see if hero can grab a foothold/ladder
                             Functions_Hero.CheckInteractionRec();
 
@@ -1218,14 +1215,16 @@ namespace DungeonRun
                             else
                             {
                                 //hero successfully grabbed, from a fall
-                                //that's preeetty crispy, so we should celebrate a little
+                                //that's pretty crispy, so we should celebrate a little
 
-                                //place an attention particle above the hero's head as recognition
+                                //place a (!) above hero's head as recognition
                                 Functions_Particle.Spawn(
-                                    ObjType.Particle_Attention,
+                                    ObjType.Particle_ExclamationBubble,
                                     Actor.compSprite.position.X, 
                                     Actor.compSprite.position.Y - 4, 
                                     Direction.Down);
+                                //^ nowhere else can hero 'spawn' a (!)
+
                                 //play a special soundfx
                                 Assets.Play(Assets.sfxActorLand);
                                 //track successful wall jumps
