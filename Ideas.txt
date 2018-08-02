@@ -1,5 +1,29 @@
 
 
+Magic Mirror
+use it in a dungeon to return to the exit (starting room). 
+exiting dungeon takes us to field.
+using magic mirror in field level takes hero to overworld screen.
+
+it does not serve as a connection between worlds, because it has
+been broken. the history of why it was broken can be explained.
+*need sprite in ui sheet
+
+
+
+
+Levels++
+
+Left Towns
+add a 2nd town level on the left of the map, below left town.
+add a 3rd town level on the left of the colliseum connector.
+this makes 3 towns on the left.
+
+right town level
+
+campground level
+
+
 
 
 

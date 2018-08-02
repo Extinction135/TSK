@@ -1188,9 +1188,12 @@ namespace DungeonRun
 
         //fields used in swimming
         public Boolean swimming = false; //is actor in water?
-        public Boolean createSplash = false; //handles splash entering water
+        public Boolean createSplash = false; //handles splash entering/exiting water
         public Boolean underwater = false; //is actor's head underwater or above water?
         public int breathCounter = 0; //counts frames while actor is underwater, forces surface
+        public int breathTotal = 60 * 4; //in frames, defaults to 4 seconds
+        public Boolean underwaterEnemy = false;
+
 
 
         public Actor()

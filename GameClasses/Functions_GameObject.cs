@@ -2521,7 +2521,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Particle_ImpactDust)
             {
-                Obj.compSprite.drawRec.Height = 8; Obj.compSprite.drawRec.Height = 8; //nonstandard size
+                Obj.compSprite.drawRec.Width = 8; Obj.compSprite.drawRec.Height = 8; //nonstandard size
                 Obj.compSprite.zOffset = 32;
                 Obj.group = ObjGroup.Particle;
                 Obj.lifetime = 24; //in frames

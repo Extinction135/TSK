@@ -611,7 +611,7 @@ namespace DungeonRun
             else if (LevelSet.currentLevel.ID == LevelID.Swamp_Dungeon)
             {
                 Functions_Actor.SpawnActor(
-                    ActorType.MiniBoss_Spider_Armored,
+                    ActorType.MiniBoss_OctoMouth,
                     Room.center.X + 8,
                     Room.center.Y + 8);
             }

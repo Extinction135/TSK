@@ -736,7 +736,7 @@ namespace DungeonRun
         public static ActorAnimationList MiniBoss_BlackEye_Animations;
         public static ActorAnimationList MiniBoss_SpiderArmored_Animations;
         public static ActorAnimationList MiniBoss_SpiderUnarmored_Animations;
-
+        public static ActorAnimationList MiniBoss_OctoMouth_Animations;
 
 
         public static ActorAnimationList Boss_BigEye_Animations;
@@ -1261,6 +1261,72 @@ namespace DungeonRun
 
 
 
+            #region Miniboss - OctoMouth
+
+            MiniBoss_OctoMouth_Animations = new ActorAnimationList();
+
+            //idle
+            MiniBoss_OctoMouth_Animations.idle = new AnimationGroup();
+            //two diagonal sprite frames become 4 cardinal directions using MAGIC
+            MiniBoss_OctoMouth_Animations.idle.down = new List<Byte4> { new Byte4(11, 3, 1, 0) };
+            MiniBoss_OctoMouth_Animations.idle.up = new List<Byte4> { new Byte4(9, 3, 1, 0) };
+            MiniBoss_OctoMouth_Animations.idle.right = new List<Byte4> { new Byte4(9, 3, 0, 0) };
+            MiniBoss_OctoMouth_Animations.idle.left = new List<Byte4> { new Byte4(11, 3, 0, 0) };
+
+            //attack
+            MiniBoss_OctoMouth_Animations.attack = new AnimationGroup();
+            //same magic used for attack as well
+            MiniBoss_OctoMouth_Animations.attack.down = new List<Byte4> { new Byte4(10, 3, 1, 0) };
+            MiniBoss_OctoMouth_Animations.attack.up = new List<Byte4> { new Byte4(8, 3, 1, 0) };
+            MiniBoss_OctoMouth_Animations.attack.right = new List<Byte4> { new Byte4(8, 3, 0, 0) };
+            MiniBoss_OctoMouth_Animations.attack.left = new List<Byte4> { new Byte4(10, 3, 0, 0) };
+
+            //underwater
+            MiniBoss_OctoMouth_Animations.underwater_idle = new AnimationGroup();
+            MiniBoss_OctoMouth_Animations.underwater_idle.down = 
+                new List<Byte4> { new Byte4(12, 3, 0, 0), new Byte4(12, 3, 1, 0) };
+            MiniBoss_OctoMouth_Animations.underwater_idle.up = MiniBoss_OctoMouth_Animations.underwater_idle.down;
+            MiniBoss_OctoMouth_Animations.underwater_idle.right = MiniBoss_OctoMouth_Animations.underwater_idle.down;
+            MiniBoss_OctoMouth_Animations.underwater_idle.left = MiniBoss_OctoMouth_Animations.underwater_idle.down;
+            MiniBoss_OctoMouth_Animations.underwater_move = MiniBoss_OctoMouth_Animations.underwater_idle;
+
+            //hit
+            MiniBoss_OctoMouth_Animations.hit = new AnimationGroup();
+            MiniBoss_OctoMouth_Animations.hit.down = MiniBoss_OctoMouth_Animations.attack.down;
+            MiniBoss_OctoMouth_Animations.hit.up = MiniBoss_OctoMouth_Animations.attack.up;
+            MiniBoss_OctoMouth_Animations.hit.right = MiniBoss_OctoMouth_Animations.attack.right;
+            MiniBoss_OctoMouth_Animations.hit.left = MiniBoss_OctoMouth_Animations.attack.left;
+
+            //death
+            MiniBoss_OctoMouth_Animations.death_blank = MiniBoss_OctoMouth_Animations.underwater_idle;
+            MiniBoss_OctoMouth_Animations.death_heroic = MiniBoss_OctoMouth_Animations.underwater_idle;
+            MiniBoss_OctoMouth_Animations.death_heroic_water = MiniBoss_OctoMouth_Animations.underwater_idle;
+
+
+            //unused animation states
+            MiniBoss_OctoMouth_Animations.move = MiniBoss_OctoMouth_Animations.idle;
+            MiniBoss_OctoMouth_Animations.idleCarry = MiniBoss_OctoMouth_Animations.idle;
+            MiniBoss_OctoMouth_Animations.moveCarry = MiniBoss_OctoMouth_Animations.idle;
+            MiniBoss_OctoMouth_Animations.interact = MiniBoss_OctoMouth_Animations.idle;
+            MiniBoss_OctoMouth_Animations.dash = MiniBoss_OctoMouth_Animations.idle;
+            MiniBoss_OctoMouth_Animations.reward = MiniBoss_OctoMouth_Animations.idle;
+            MiniBoss_OctoMouth_Animations.pickupThrow = MiniBoss_OctoMouth_Animations.idle;
+            MiniBoss_OctoMouth_Animations.grab = MiniBoss_OctoMouth_Animations.idle;
+            MiniBoss_OctoMouth_Animations.push = MiniBoss_OctoMouth_Animations.idle;
+            MiniBoss_OctoMouth_Animations.swim_idle = MiniBoss_OctoMouth_Animations.idle;
+            MiniBoss_OctoMouth_Animations.swim_move = MiniBoss_OctoMouth_Animations.idle;
+            MiniBoss_OctoMouth_Animations.swim_dash = MiniBoss_OctoMouth_Animations.idle;
+            MiniBoss_OctoMouth_Animations.swim_hit = MiniBoss_OctoMouth_Animations.idle;
+            MiniBoss_OctoMouth_Animations.swim_reward = MiniBoss_OctoMouth_Animations.idle;
+            MiniBoss_OctoMouth_Animations.falling = MiniBoss_OctoMouth_Animations.idle;
+            MiniBoss_OctoMouth_Animations.landed = MiniBoss_OctoMouth_Animations.idle;
+            MiniBoss_OctoMouth_Animations.climbing = MiniBoss_OctoMouth_Animations.idle;
+
+            #endregion
+
+
+
+
 
 
             //boss actors
@@ -1393,6 +1459,101 @@ namespace DungeonRun
 
             #endregion
 
+
+
+            /*
+
+            THIS IS ACTUALLY TENTACLE - READY TO GO JUST CHANGE THE NAME
+            MiniBoss_OctoMouth_Animations = new ActorAnimationList();
+
+            //movement
+            MiniBoss_OctoMouth_Animations.idle = new AnimationGroup();
+            MiniBoss_OctoMouth_Animations.idle.down = new List<Byte4>
+            { new Byte4(8, 1, 0, 0), new Byte4(9, 1, 0, 0) };
+            MiniBoss_OctoMouth_Animations.idle.up = MiniBoss_OctoMouth_Animations.idle.down;
+            MiniBoss_OctoMouth_Animations.idle.right = MiniBoss_OctoMouth_Animations.idle.down;
+            MiniBoss_OctoMouth_Animations.idle.left = MiniBoss_OctoMouth_Animations.idle.down;
+            MiniBoss_OctoMouth_Animations.move = MiniBoss_OctoMouth_Animations.idle;
+            MiniBoss_OctoMouth_Animations.idleCarry = MiniBoss_OctoMouth_Animations.idle;
+            MiniBoss_OctoMouth_Animations.moveCarry = MiniBoss_OctoMouth_Animations.idle;
+            MiniBoss_OctoMouth_Animations.interact = MiniBoss_OctoMouth_Animations.idle;
+            
+            //dash acts as transition from above water to underwater animation (no REAL dash)
+            MiniBoss_OctoMouth_Animations.dash = new AnimationGroup();
+            MiniBoss_OctoMouth_Animations.dash.down = new List<Byte4>
+            { new Byte4(13, 1, 0, 0), new Byte4(13, 1, 0, 0) };
+            MiniBoss_OctoMouth_Animations.dash.up = MiniBoss_OctoMouth_Animations.dash.down;
+            MiniBoss_OctoMouth_Animations.dash.right = MiniBoss_OctoMouth_Animations.dash.down;
+            MiniBoss_OctoMouth_Animations.dash.left = MiniBoss_OctoMouth_Animations.dash.down;
+            
+            //underwater states
+            MiniBoss_OctoMouth_Animations.underwater_idle = new AnimationGroup();
+            MiniBoss_OctoMouth_Animations.underwater_idle.down = new List<Byte4>
+            { new Byte4(14, 1, 0, 0), new Byte4(14, 1, 0, 0) };
+            MiniBoss_OctoMouth_Animations.underwater_idle.up = MiniBoss_OctoMouth_Animations.underwater_idle.down;
+            MiniBoss_OctoMouth_Animations.underwater_idle.right = MiniBoss_OctoMouth_Animations.underwater_idle.down;
+            MiniBoss_OctoMouth_Animations.underwater_idle.left = MiniBoss_OctoMouth_Animations.underwater_idle.down;
+            MiniBoss_OctoMouth_Animations.underwater_move = MiniBoss_OctoMouth_Animations.underwater_idle;
+            
+            //attack
+            MiniBoss_OctoMouth_Animations.attack = new AnimationGroup();
+            MiniBoss_OctoMouth_Animations.attack.down = new List<Byte4>
+            {
+                new Byte4(10, 1, 0, 0), new Byte4(11, 1, 0, 0)
+            };
+            MiniBoss_OctoMouth_Animations.attack.up = MiniBoss_OctoMouth_Animations.attack.down;
+            MiniBoss_OctoMouth_Animations.attack.right = MiniBoss_OctoMouth_Animations.attack.down;
+            MiniBoss_OctoMouth_Animations.attack.left = MiniBoss_OctoMouth_Animations.attack.down;
+
+            //hit
+            MiniBoss_OctoMouth_Animations.hit = new AnimationGroup();
+            MiniBoss_OctoMouth_Animations.hit.down = new List<Byte4>
+            {
+                new Byte4(12, 1, 0, 0), new Byte4(12, 1, 0, 0)
+            };
+            MiniBoss_OctoMouth_Animations.hit.up = MiniBoss_OctoMouth_Animations.hit.down;
+            MiniBoss_OctoMouth_Animations.hit.right = MiniBoss_OctoMouth_Animations.hit.down;
+            MiniBoss_OctoMouth_Animations.hit.left = MiniBoss_OctoMouth_Animations.hit.down;
+
+            //death
+            MiniBoss_OctoMouth_Animations.death_blank = new AnimationGroup();
+            MiniBoss_OctoMouth_Animations.death_blank.down = new List<Byte4>
+            {
+                new Byte4(6, 7, 0, 0), new Byte4(6, 7, 1, 0), //eyes closed wobble x3
+                new Byte4(6, 7, 0, 0), new Byte4(6, 7, 1, 0),
+                new Byte4(6, 7, 0, 0), new Byte4(6, 7, 1, 0),
+                new Byte4(6, 8, 0, 0) //squished spider death
+            };
+            MiniBoss_OctoMouth_Animations.death_blank.up = MiniBoss_OctoMouth_Animations.death_blank.down;
+            MiniBoss_OctoMouth_Animations.death_blank.right = MiniBoss_OctoMouth_Animations.death_blank.down;
+            MiniBoss_OctoMouth_Animations.death_blank.left = MiniBoss_OctoMouth_Animations.death_blank.down;
+
+
+            //unused animation states
+            MiniBoss_OctoMouth_Animations.death_heroic = MiniBoss_OctoMouth_Animations.death_blank;
+            MiniBoss_OctoMouth_Animations.death_heroic_water = MiniBoss_OctoMouth_Animations.death_blank;
+            MiniBoss_OctoMouth_Animations.reward = MiniBoss_OctoMouth_Animations.idle;
+            MiniBoss_OctoMouth_Animations.pickupThrow = MiniBoss_OctoMouth_Animations.idle;
+            MiniBoss_OctoMouth_Animations.grab = MiniBoss_OctoMouth_Animations.idle;
+            MiniBoss_OctoMouth_Animations.push = MiniBoss_OctoMouth_Animations.idle;
+            MiniBoss_OctoMouth_Animations.swim_idle = MiniBoss_OctoMouth_Animations.idle;
+            MiniBoss_OctoMouth_Animations.swim_move = MiniBoss_OctoMouth_Animations.idle;
+            MiniBoss_OctoMouth_Animations.swim_dash = MiniBoss_OctoMouth_Animations.idle;
+            MiniBoss_OctoMouth_Animations.swim_hit = MiniBoss_OctoMouth_Animations.idle;
+            MiniBoss_OctoMouth_Animations.swim_reward = MiniBoss_OctoMouth_Animations.idle;
+            MiniBoss_OctoMouth_Animations.falling = MiniBoss_OctoMouth_Animations.idle;
+            MiniBoss_OctoMouth_Animations.landed = MiniBoss_OctoMouth_Animations.idle;
+            MiniBoss_OctoMouth_Animations.climbing = MiniBoss_OctoMouth_Animations.idle;
+
+
+
+
+
+
+
+
+
+            */
 
         }
     }

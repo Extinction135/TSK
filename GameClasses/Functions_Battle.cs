@@ -21,8 +21,13 @@ namespace DungeonRun
 
 
         public static void Damage(Actor Actor, GameObject Obj)
-        {   //based on the obj type, deal damage to the actor, push in a direction
-            
+        {
+            //bail from method if actor is underwater
+            if (Actor.underwater) { return; }
+
+
+            //based on the obj type, deal damage to the actor, push in a direction
+
             //0. Reset damage fields
             direction = Direction.None;
             damage = 0;
@@ -194,6 +199,17 @@ namespace DungeonRun
                 else { Actor.health -= Damage; }
                 //if projectile damaged hero, track the damage dealt
                 if (Actor == Pool.hero) { DungeonRecord.totalDamage += Damage; }
+
+                //put underwater enemies into their underwater state (so player can't spam attack them)
+                if (Actor.underwaterEnemy)
+                {
+                    Actor.underwater = true;
+                    Functions_Particle.Spawn(
+                        ObjType.Particle_Splash,
+                        Actor.compSprite.position.X,
+                        Actor.compSprite.position.Y);
+                }
+
             }
         }
 

@@ -219,8 +219,19 @@ namespace DungeonRun
                     else { Pool.actorPool[i].compMove.friction = World.friction; }
 
                     Pool.actorPool[i].feetFX.visible = false; //reset feetFX
-                    Pool.actorPool[i].swimming = false; //reset swimming
-                    Functions_Actor.Breathe(Pool.actorPool[i]); //check underwater state
+
+                    //underwater enemies are always swimming
+                    if (Pool.actorPool[i].underwaterEnemy)
+                    {
+                        Pool.actorPool[i].swimming = true;
+                        Pool.actorPool[i].compMove.friction = World.frictionWater;
+                    }
+                    //else reset swimming boolean
+                    else
+                    {
+                        Pool.actorPool[i].swimming = false;
+                        Functions_Actor.Breathe(Pool.actorPool[i]);
+                    }
 
                     //if actor is falling, assume they should land this frame
                     if (Pool.actorPool[i].state == ActorState.Falling)

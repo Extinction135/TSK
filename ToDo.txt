@@ -58,38 +58,70 @@ Roadmap
 Today:
 
 
-Overworld++
 
-fixed a bug where campfires, and flags weren't appearing on the
-overworld screen. this was due to Open() not spawning the particles,
-because other screens had reset and used particles from the pool.
+Swamp Miniboss - OctoMouth
+
+this is lttp's darkworld walking mouth migrated to the
+water, representing an underwater creature with giant 
+teeth that shoots fireballs and can swim, dive.
+
+underwater, octomouth randomly moves in a direction or
+chases hero if he's low on health. often, octomouth will
+rise up out of the water and stop all his movement.
+then he will face towards the hero and wait to be attacked.
+sometimes he will shoot a fireball at hero, and sometimes
+he will dive back underwater. if his health gets below
+half, he moves alot faster. that's it.
+
+Improvements
+
++ if any actor is underwater, they cannot take any damage
+from anything and are essentially invincible. the hero can 
+go underwater, but it only lasts for 4 seconds, and while
+underwater the hero can't attack or use items. it's defense.
+
++ this allows various water-based enemies to retreat into the
+water as part of their ai strategy. these enemies then move to
+a different location to attack from a distance or harass upclose.
+
++ dashing while underwater is now allowed. hero can dash, along
+with enemies. this allows underwater swamp enemies more freedom
+to move about their surroundings.
+
++ underwater enemies that are hit immediately go into their
+underwater state - so hero only gets one hit at a time. else,
+it's very easy to spam attack and that feels cheap - esp for
+these underwater enemies which could easily dive afterwards.
+
++ modified octomouth mouth to more often surface above water,
+and reduced his affinity to dive to be more rare. this allows
+the player more time to attack him when he's above water, and
+decreases the overall time he's underwater so hero gets more
+chances to attack him. this is to balance the effect of hitting
+underwater enemies, which is that they go underwater immediately.
+so the attack window is open more often, but it shuts as soon
+as an attack lands and the player has to wait for a moment for
+the next window. this is noted with auditory soundfx (each event),
+so the attack window and subsequent failure/success feels good.
+
++ reduced the health of octomouth from 15 to 10, since it takes
+more time and patience to kill this particular miniboss and i 
+don't want the pacing of battle to slow down too much for this
+1v1. 
+
++ updated actor animation routines to allow swimming underwater
+enemies to have an attack animation, since octomouth is always
+swimming and MUST display some visual change when he attacks.
+
++ updated dungeon routines to spawn octomouth in swamp dungeon.
+while there isn't water in the hub room, octomouth is setup to
+function as if there were, and 'dives underwater' into the ground.
+which works system-wise (he'll pop back up 'above water'), but
+doesn't make much sense visually..
 
 
 
 
-Magic Mirror
-this plays well into magic mirror: use it in a dungeon to return
-to the exit (starting room). exiting dungeon takes us to field.
-using magic mirror in field level takes hero to overworld screen.
-it does not serve as a connection between worlds, because it has
-been broken. the history of why it was broken can be explained.
-*need sprite
-
-
-
-
-Levels++
-
-Left Towns
-add a 2nd town level on the left of the map, below left town.
-add a 3rd town level on the left of the colliseum connector.
-this makes 3 towns on the left.
-
-
-
-we can begin to split the NPCs apart between these two towns.
-we also need to add a town on the right side of the map, outside
-of the city gates. move some NPCs over there too.
 
 
 
@@ -100,6 +132,25 @@ of the city gates. move some NPCs over there too.
 
 
 
+Swamp Boss 
+
+Octohead + Tentacles
+
+tentacles are unkillable actors. they take no damage
+but still get hit and have sfx. they randomly move towards
+or away from hero, and if they get close enough they
+swing wildly using bite attacks on left/right.
+if hero hits them, they go into a stunned state
+for 4 seconds (their breath counter). then they
+return to harassing the hero.
+
+octohead simply ducks in and out of water and
+randomly moves around. he has alot of health, and
+spawns 4 tentacles if there aren't 4 tentacles around.
+if his health gets below 10, then he spawns 4 more
+tentacles, bringing the total to 8 tentacles harassing
+the hero while the head randomly moves around.
+upon defeat of the head, all tentacles explode and die.
 
 
 
@@ -111,36 +162,13 @@ of the city gates. move some NPCs over there too.
 
 
 
-Swamp miniboss and boss (requires special room data for hub & boss)
 
-miniboss: in water mouth
-creates splash when transitioning from above/in water states.
-while in water, actor is not blocking and can't be hit.
-above water, the actor constantly 'chomps' his mouth, creating bite pros
-randomly the actor decides to go underwater/above water.
-randomly the actor choose a direction.
-randomly the actor dashes.
 
-boss A: ocotohead
-randomly ducks in/out of water.
-not harmable while in water.
-bobs slightly while above water.
-only moves while underwater.
-creates splash when transitioning.
-takes alot of damage, has no attack.
-as his health gets lower, he moves
-more erratically.
 
-boss minions: tentacles
-has above and below water states like head.
-pops up, into idle (left 2 frames).
-randomly attacks left/right with bites, using
-wild swinging animation frames.
-takes some damage, but not alot.
 
-swamp boss room:
-octohead + 4 tentacles.
-when octohead gets below 10 health, he spawns 4 more tentacles.
+
+
+Boss And Hub Room Upgrade
 
 *we need a watery hub room for swamp mini
 *we need a watery boss room for swamp boss
@@ -178,8 +206,10 @@ off of the level id.
 
 
 
-
-
+*this also sets up the possibility of water colliseum battles.
+*judge should be sitting on a lilly pad.
+*we'd just need to flood the colliseum with water tiles, then
+place lilly pads / rafts / bridges / etc in specific areas.
 
 
 

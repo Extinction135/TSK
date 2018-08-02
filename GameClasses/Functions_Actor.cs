@@ -45,6 +45,8 @@ namespace DungeonRun
             //assume standard search/attack radius
             Actor.chaseRadius = 16 * 5;
             Actor.attackRadius = 14;
+            //reset to above ground enemy (most are)
+            Actor.underwaterEnemy = false;
         }
 
         public static void SpawnActor(ActorType Type, Vector2 Pos)
@@ -341,7 +343,10 @@ namespace DungeonRun
             else if (Actor.state == ActorState.Attack)
             {
                 if (Actor.swimming)
-                { }
+                {
+                    if (Actor.underwaterEnemy)
+                    { Actor.animGroup = Actor.animList.attack; }
+                }
                 else if (Actor.carrying)
                 { }
                 else { Actor.animGroup = Actor.animList.attack; }
@@ -476,7 +481,7 @@ namespace DungeonRun
             if (Actor.underwater)
             {   //if actor has been underwater for awhile, force them to come up for air
                 Actor.breathCounter++;
-                if (Actor.breathCounter > 60 * 4) //4 seconds
+                if (Actor.breathCounter > Actor.breathTotal)
                 {
                     Actor.underwater = false;
                     Functions_Particle.Spawn(ObjType.Particle_Splash, Actor);
@@ -728,90 +733,6 @@ namespace DungeonRun
 
 
 
-
-            //Bosses
-
-            #region BigEye
-
-            else if (Type == ActorType.Boss_BigEye)
-            {
-                Actor.aiType = ActorAI.Boss_BigEye;
-                Actor.compMove.grounded = false; //is flying
-
-                Actor.enemy = true;
-                Actor.compSprite.texture = Assets.forestLevelSheet;
-                Actor.animList = AnimationFrames.Boss_BigEye_Animations;
-                Actor.health = 30;
-
-                //this boss creates seeker exploders based on it's hp
-                ResetActorLoadout(Actor);
-                Actor.weapon = MenuItemType.WeaponFang; //and can bite
-
-                //walk and dash speeds are set in Functions_Ai
-                //because they change based on this actor's health
-
-                //this actor is a 2x3 boss 
-                Actor.compSprite.drawRec.Width = 16 * 2;
-                Actor.compSprite.drawRec.Height = 16 * 3;
-                //actor is floating in air
-                Actor.compSprite.zOffset = 16;
-                //set actor sound effects
-                Actor.sfxDash = null; //silent dash
-                Actor.sfx.hit = Assets.sfxBossHit;
-                Actor.sfx.kill = Assets.sfxBossHitDeath;
-
-                //boss parameters
-                Actor.attackRadius = 20;
-                Actor.chaseRadius = 16 * 20;
-            }
-
-            #endregion
-
-
-            #region BigBat
-
-            else if (Type == ActorType.Boss_BigBat)
-            {
-                Actor.aiType = ActorAI.Boss_BigBat;
-                Actor.compMove.grounded = false; //is flying
-
-                Actor.enemy = true;
-                Actor.compSprite.texture = Assets.mountainLevelSheet;
-                Actor.animList = AnimationFrames.Boss_BigBat_Animations;
-                Actor.health = 20;
-
-                //this boss spam casts bat projectiles as main attack
-                ResetActorLoadout(Actor);
-                Actor.item = MenuItemType.MagicBat;
-                Actor.weapon = MenuItemType.WeaponFang; //and can bite
-
-                //walk and dash speeds are set in Functions_Ai
-                //because they change based on this actor's health
-
-                //this actor is a 2x3 boss 
-                Actor.compSprite.drawRec.Width = 16 * 2;
-                Actor.compSprite.drawRec.Height = 16 * 3;
-
-                //actor is floating in air
-                Actor.compSprite.zOffset = 32;
-                //set actor sound effects
-                Actor.sfxDash = null; //silent dash
-                Actor.sfx.hit = Assets.sfxBossHit;
-                Actor.sfx.kill = Assets.sfxBossHitDeath;
-
-                //boss parameters
-                Actor.attackRadius = 20;
-                Actor.chaseRadius = 16 * 20;
-            }
-
-            #endregion
-
-
-
-
-
-
-
             //Minibosses
 
             #region Blackeye
@@ -909,13 +830,129 @@ namespace DungeonRun
                 Actor.compSprite.zOffset = 16;
 
                 //set actor sound effects
-                Actor.sfxDash = Assets.sfxEnemyTaunt; 
+                Actor.sfxDash = Assets.sfxEnemyTaunt;
                 Actor.sfx.hit = Assets.sfxBossHit;
-                Actor.sfx.kill = Assets.sfxBossHitDeath; 
+                Actor.sfx.kill = Assets.sfxBossHitDeath;
             }
 
 
             #endregion
+
+
+            #region OctoMouth
+
+
+            else if (Type == ActorType.MiniBoss_OctoMouth)
+            {
+                Actor.aiType = ActorAI.MiniBoss_OctoMouth;
+                Actor.compMove.grounded = true;
+                
+                Actor.enemy = true;
+                Actor.underwaterEnemy = true;
+                Actor.compSprite.texture = Assets.swampLevelSheet;
+                Actor.animList = AnimationFrames.MiniBoss_OctoMouth_Animations;
+                Actor.health = 10;
+                ResetActorLoadout(Actor);
+
+                //walk and dash speeds are set in Functions_Ai
+                //because they change based on this actor's health
+
+                //this actor is a 2x2 miniboss
+                Actor.compSprite.drawRec.Width = 16 * 2;
+                Actor.compSprite.drawRec.Height = 16 * 2;
+
+                Actor.compCollision.offsetY = -3;
+                Actor.compSprite.zOffset = 2; //sort over water
+
+                //set actor sound effects
+                Actor.sfxDash = null; //silent dash
+                Actor.sfx.hit = Assets.sfxBossHit;
+                Actor.sfx.kill = Assets.sfxEnemyKill;
+            }
+
+            #endregion
+
+
+
+
+
+            //Bosses
+
+            #region BigEye
+
+            else if (Type == ActorType.Boss_BigEye)
+            {
+                Actor.aiType = ActorAI.Boss_BigEye;
+                Actor.compMove.grounded = false; //is flying
+
+                Actor.enemy = true;
+                Actor.compSprite.texture = Assets.forestLevelSheet;
+                Actor.animList = AnimationFrames.Boss_BigEye_Animations;
+                Actor.health = 30;
+
+                //this boss creates seeker exploders based on it's hp
+                ResetActorLoadout(Actor);
+                Actor.weapon = MenuItemType.WeaponFang; //and can bite
+
+                //walk and dash speeds are set in Functions_Ai
+                //because they change based on this actor's health
+
+                //this actor is a 2x3 boss 
+                Actor.compSprite.drawRec.Width = 16 * 2;
+                Actor.compSprite.drawRec.Height = 16 * 3;
+                //actor is floating in air
+                Actor.compSprite.zOffset = 16;
+                //set actor sound effects
+                Actor.sfxDash = null; //silent dash
+                Actor.sfx.hit = Assets.sfxBossHit;
+                Actor.sfx.kill = Assets.sfxBossHitDeath;
+
+                //boss parameters
+                Actor.attackRadius = 20;
+                Actor.chaseRadius = 16 * 20;
+            }
+
+            #endregion
+
+
+            #region BigBat
+
+            else if (Type == ActorType.Boss_BigBat)
+            {
+                Actor.aiType = ActorAI.Boss_BigBat;
+                Actor.compMove.grounded = false; //is flying
+
+                Actor.enemy = true;
+                Actor.compSprite.texture = Assets.mountainLevelSheet;
+                Actor.animList = AnimationFrames.Boss_BigBat_Animations;
+                Actor.health = 20;
+
+                //this boss spam casts bat projectiles as main attack
+                ResetActorLoadout(Actor);
+                Actor.item = MenuItemType.MagicBat;
+                Actor.weapon = MenuItemType.WeaponFang; //and can bite
+
+                //walk and dash speeds are set in Functions_Ai
+                //because they change based on this actor's health
+
+                //this actor is a 2x3 boss 
+                Actor.compSprite.drawRec.Width = 16 * 2;
+                Actor.compSprite.drawRec.Height = 16 * 3;
+
+                //actor is floating in air
+                Actor.compSprite.zOffset = 32;
+                //set actor sound effects
+                Actor.sfxDash = null; //silent dash
+                Actor.sfx.hit = Assets.sfxBossHit;
+                Actor.sfx.kill = Assets.sfxBossHitDeath;
+
+                //boss parameters
+                Actor.attackRadius = 20;
+                Actor.chaseRadius = 16 * 20;
+            }
+
+            #endregion
+
 
 
 
@@ -957,40 +994,33 @@ namespace DungeonRun
                     else if (Actor.state == ActorState.Dash)
                     {
 
-                        #region  Swim dash (but can't dash underwater)
+                        #region  Swim dash
+                        
+                        Actor.lockTotal = 15;
+                        Actor.stateLocked = true;
 
-                        if (Actor.underwater == false)
-                        {
-                            Actor.lockTotal = 15;
-                            Actor.stateLocked = true;
-
-                            if (Actor.compInput.direction == Direction.Down
-                                || Actor.compInput.direction == Direction.Up
-                                || Actor.compInput.direction == Direction.Left
-                                || Actor.compInput.direction == Direction.Right)
-                            {   //cardinal swim dash - full power push + confirmation particle
-                                Functions_Movement.Push(
-                                    Actor.compMove,
-                                    Actor.compInput.direction, 2.0f);
-                                Assets.Play(Assets.sfxWaterSwim);
-                                //place water kick fx behind actor
-                                Functions_Particle.Spawn(
-                                    ObjType.Particle_WaterKick,
-                                    Actor.compSprite.position.X,
-                                    Actor.compSprite.position.Y,
-                                    Functions_Direction.GetOppositeDirection(Actor.direction));
-                            }
-                            else
-                            {   //diagonal swim dash - half power push
-                                Functions_Movement.Push(
-                                    Actor.compMove,
-                                    Actor.compInput.direction, 1.0f);
-                                Assets.Play(Assets.sfxWaterSwim);
-                            }
+                        if (Actor.compInput.direction == Direction.Down
+                            || Actor.compInput.direction == Direction.Up
+                            || Actor.compInput.direction == Direction.Left
+                            || Actor.compInput.direction == Direction.Right)
+                        {   //cardinal swim dash - full power push + confirmation particle
+                            Functions_Movement.Push(
+                                Actor.compMove,
+                                Actor.compInput.direction, 2.0f);
+                            Assets.Play(Assets.sfxWaterSwim);
+                            //place water kick fx behind actor
+                            Functions_Particle.Spawn(
+                                ObjType.Particle_WaterKick,
+                                Actor.compSprite.position.X,
+                                Actor.compSprite.position.Y,
+                                Functions_Direction.GetOppositeDirection(Actor.direction));
                         }
                         else
-                        {   //return actor to normal move state, they can't dash underwater
-                            Actor.state = ActorState.Move; //nah breh
+                        {   //diagonal swim dash - half power push
+                            Functions_Movement.Push(
+                                Actor.compMove,
+                                Actor.compInput.direction, 1.0f);
+                            Assets.Play(Assets.sfxWaterSwim);
                         }
 
                         #endregion

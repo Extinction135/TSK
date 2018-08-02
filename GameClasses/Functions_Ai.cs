@@ -205,6 +205,113 @@ namespace DungeonRun
             #endregion
 
 
+            #region OctoMouth
+
+            else if (Actor.aiType == ActorAI.MiniBoss_OctoMouth)
+            {
+                //setup movement speeds
+                if (Actor.health < 5)
+                {   //move ALOT faster
+                    Actor.walkSpeed = 1.00f;
+                    Actor.dashSpeed = 4.00f;
+                }
+                else
+                {
+                    Actor.walkSpeed = 0.20f;
+                    Actor.dashSpeed = 0.80f;
+                }
+
+
+                #region Underwater routine
+
+                if (Actor.underwater)
+                {
+                    //randomly change directions
+                    if (Functions_Random.Int(0, 100) > 80)
+                    {
+                        if (Actor.health < 5)
+                        {   //move towards hero
+                            Actor.compInput.direction = 
+                                Functions_Direction.GetCardinalDirectionToHero(Actor.compSprite.position);
+                        }
+                        else
+                        {   //move randomly
+                            Actor.compInput.direction = (Direction)Functions_Random.Int(0, 8);
+                        }
+                        
+                    }
+
+                    //randomly dash
+                    if (Functions_Random.Int(0, 100) > 80) { Actor.compInput.dash = true; }
+
+                    //randomly surface above water
+                    if (Functions_Random.Int(0, 100) > 90)
+                    {
+                        Actor.underwater = false;
+                        Functions_Particle.Spawn(
+                            ObjType.Particle_Splash,
+                            Actor.compSprite.position.X,
+                            Actor.compSprite.position.Y);
+                    }
+                }
+
+                #endregion
+
+
+                #region Above water routine
+
+                else
+                {
+                    //face the direction of the hero at all times
+                    Actor.direction = Functions_Direction.GetCardinalDirectionToHero(Actor.compSprite.position);
+                    //but don't move in any direction
+                    Actor.compInput.direction = Direction.None;
+                    //stop any movement
+                    Functions_Movement.StopMovement(Actor.compMove);
+
+                    //shoot fireballs at hero
+                    if (Functions_Random.Int(0, 100) > 92)
+                    {   
+                        Functions_Projectile.Spawn(ObjType.ProjectileFireball,
+                            Actor.compMove,
+                            Functions_Direction.GetCardinalDirectionToHero(Actor.compSprite.position));
+                        Actor.compInput.attack = true;
+                    }
+
+                    //rarely randomly dive (give hero time to attack them)
+                    if (Functions_Random.Int(0, 100) > 98)
+                    {
+                        Actor.underwater = true;
+                        Functions_Particle.Spawn(
+                            ObjType.Particle_Splash,
+                            Actor.compSprite.position.X,
+                            Actor.compSprite.position.Y);
+                    }
+
+                    if (Actor.health < 5)
+                    {   
+                        //smoke (each frame) as a sign of nearing defeat
+                        Functions_Particle.Spawn(
+                            ObjType.Particle_ImpactDust,
+                            Actor.compSprite.position.X + 6 + Functions_Random.Int(-8, 8),
+                            Actor.compSprite.position.Y - 10 + Functions_Random.Int(-5, 5)
+                        );
+
+                        //often taunt the player
+                        if (Functions_Random.Int(0, 100) > 50)
+                        { Assets.Play(Assets.sfxEnemyTaunt); }
+                    }
+                }
+
+                #endregion
+
+            }
+
+            #endregion
+
+
+
+
             //Boss AIs
 
             #region BigEye

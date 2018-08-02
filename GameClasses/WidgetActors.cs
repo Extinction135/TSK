@@ -184,7 +184,7 @@ namespace DungeonRun
             //miniboss
             Actor miniboss = new Actor();
             miniboss.direction = Direction.Down;
-            Functions_Actor.SetType(miniboss, ActorType.MiniBoss_Spider_Armored);
+            Functions_Actor.SetType(miniboss, ActorType.MiniBoss_OctoMouth);
             Functions_Movement.Teleport(miniboss.compMove,
                 window.interior.rec.X + 13 + 8 + 16 * 2,
                 window.interior.rec.Y + 29 + 8);

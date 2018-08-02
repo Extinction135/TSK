@@ -175,11 +175,32 @@ namespace DungeonRun
         MiniBoss_BlackEye,
         MiniBoss_Spider_Armored,
         MiniBoss_Spider_Unarmored,
+        MiniBoss_OctoMouth,
+
+
 
         //bosses
         Boss_BigEye,
         Boss_BigBat,
     }
+
+    public enum ActorAI
+    {
+        Random,
+
+        Basic, //aka 'standard'
+
+        Standard_BeefyBat, //special standards
+
+        Miniboss_Blackeye,
+        MiniBoss_OctoMouth,
+
+        Boss_BigEye,
+        Boss_BigBat
+    }
+
+
+
 
     public enum ActorState
     {
@@ -192,19 +213,7 @@ namespace DungeonRun
         Climbing, 
     }
 
-    public enum ActorAI
-    {
-        Random,
-
-        Basic, //aka 'standard'
-
-        Standard_BeefyBat, //special standards
-
-        Miniboss_Blackeye,
-
-        Boss_BigEye,
-        Boss_BigBat
-    }
+    
 
 
 
