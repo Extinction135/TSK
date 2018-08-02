@@ -177,6 +177,23 @@ namespace DungeonRun
                 { Obj.lifeCounter = 0; return; } //keep bat alive, bail
             }
 
+            else if(Actor.type == ActorType.Boss_OctoHead)
+            {
+                if (Obj.type == ObjType.ProjectileBoomerang)
+                {
+                    //stop all boomerang movement, bounce off object
+                    Functions_Movement.StopMovement(Obj.compMove);
+                    Functions_Movement.Push(Obj.compMove,
+                        Functions_Direction.GetOppositeCardinal(
+                            Obj.compSprite.position,
+                            Actor.compSprite.position), 4.0f);
+                    Functions_Particle.Spawn(ObjType.Particle_ImpactDust, Obj);
+                    Assets.Play(Assets.sfxActorLand);
+                    Obj.lifeCounter = 200;
+                    return;
+                } //set into return mode, bail
+            }
+
             #endregion
 
 
@@ -204,10 +221,8 @@ namespace DungeonRun
                 if (Actor.underwaterEnemy)
                 {
                     Actor.underwater = true;
-                    Functions_Particle.Spawn(
-                        ObjType.Particle_Splash,
-                        Actor.compSprite.position.X,
-                        Actor.compSprite.position.Y);
+                    Actor.breathCounter = 0;
+                    Functions_Actor.CreateSplash(Actor);
                 }
 
             }

@@ -207,7 +207,7 @@ namespace DungeonRun
         //story booleans
         public Boolean story_forestDungeon = false;
         public Boolean story_mountainDungeon = false;
-
+        public Boolean story_swampDungeon = false;
 
     }
 

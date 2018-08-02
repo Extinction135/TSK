@@ -59,98 +59,113 @@ Today:
 
 
 
-Swamp Miniboss - OctoMouth
-
-this is lttp's darkworld walking mouth migrated to the
-water, representing an underwater creature with giant 
-teeth that shoots fireballs and can swim, dive.
-
-underwater, octomouth randomly moves in a direction or
-chases hero if he's low on health. often, octomouth will
-rise up out of the water and stop all his movement.
-then he will face towards the hero and wait to be attacked.
-sometimes he will shoot a fireball at hero, and sometimes
-he will dive back underwater. if his health gets below
-half, he moves alot faster. that's it.
-
-Improvements
-
-+ if any actor is underwater, they cannot take any damage
-from anything and are essentially invincible. the hero can 
-go underwater, but it only lasts for 4 seconds, and while
-underwater the hero can't attack or use items. it's defense.
-
-+ this allows various water-based enemies to retreat into the
-water as part of their ai strategy. these enemies then move to
-a different location to attack from a distance or harass upclose.
-
-+ dashing while underwater is now allowed. hero can dash, along
-with enemies. this allows underwater swamp enemies more freedom
-to move about their surroundings.
-
-+ underwater enemies that are hit immediately go into their
-underwater state - so hero only gets one hit at a time. else,
-it's very easy to spam attack and that feels cheap - esp for
-these underwater enemies which could easily dive afterwards.
-
-+ modified octomouth mouth to more often surface above water,
-and reduced his affinity to dive to be more rare. this allows
-the player more time to attack him when he's above water, and
-decreases the overall time he's underwater so hero gets more
-chances to attack him. this is to balance the effect of hitting
-underwater enemies, which is that they go underwater immediately.
-so the attack window is open more often, but it shuts as soon
-as an attack lands and the player has to wait for a moment for
-the next window. this is noted with auditory soundfx (each event),
-so the attack window and subsequent failure/success feels good.
-
-+ reduced the health of octomouth from 15 to 10, since it takes
-more time and patience to kill this particular miniboss and i 
-don't want the pacing of battle to slow down too much for this
-1v1. 
-
-+ updated actor animation routines to allow swimming underwater
-enemies to have an attack animation, since octomouth is always
-swimming and MUST display some visual change when he attacks.
-
-+ updated dungeon routines to spawn octomouth in swamp dungeon.
-while there isn't water in the hub room, octomouth is setup to
-function as if there were, and 'dives underwater' into the ground.
-which works system-wise (he'll pop back up 'above water'), but
-doesn't make much sense visually..
 
 
+Swamp Boss : Octohead + Tentacles
 
-
-
-
-
-
-
-
-
-
-
-
-Swamp Boss 
-
-Octohead + Tentacles
-
-tentacles are unkillable actors. they take no damage
-but still get hit and have sfx. they randomly move towards
-or away from hero, and if they get close enough they
-swing wildly using bite attacks on left/right.
-if hero hits them, they go into a stunned state
-for 4 seconds (their breath counter). then they
-return to harassing the hero.
+tentacles are actors with 30 health.
+upon getting hit, they duck underwater for a time, 
+then surface again to slowly chase hero (no dashing).
+this is because there will likely be more than 1 on
+screen at a time, so this is a group strategy.
 
 octohead simply ducks in and out of water and
-randomly moves around. he has alot of health, and
-spawns 4 tentacles if there aren't 4 tentacles around.
-if his health gets below 10, then he spawns 4 more
-tentacles, bringing the total to 8 tentacles harassing
-the hero while the head randomly moves around.
+randomly moves around. he has 8 health, and
+spawns a tentacle each time he comes up out of the 
+water. this means he spawns as many tentacles as
+he has HPs. this also lets the player choose how
+they want to deal with the tentacles: let them 
+stackup or deal with them one at a time.
+
 upon defeat of the head, all tentacles explode and die.
+
++++ improved SetActorInput() to base the ai's distance off
+the enemy hitBox's center vs the hero's hitBox's center.
+previously, this was based off the actor's sprite's center.
+but, the hitBox it what we should of been using all along,
+because the proceeding attacking routines are setup based
+upon that assumption. so this change makes enemy attacks
+much more accurate, because it removes an offset to the
+Y axis for enemies larger than 16 pixels tall. standard
+actors still function as normal, with slightly better
+accuracy and without a bias for attacking north. 
+
++++ updated Projectile.Spawn() to take an Actor as a 
+parameter, setting up this method to handle a big change
+coming up soon. previously, this was taking a move
+component, which didn't provide the hitBox info needed
+to *actually* align projectiles to their casters.
+now this method has that information, but the projectile
+system isn't setup to work with that info or store it
+frame to frame (that info only exists inside the method
+when it's called - consider the scope).
+
++ boomerang shouldn't bother / hurt octohead, otherwise he
+spawns a tentacle without taking damage. done.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Actor Refs
+
+a projectile's caster should be an actor reference.
+if a projectile's caster is null, then it has no behavior.
+this is because some gameobjects cast projectiles,
+but in that case the projectile wouldn't have any behavior
+related to the caster.
+
+this simplifies the current system for handling projectiles,
+which uses the moveComponent. using this moveComp, projectile.update
+attempts to prevent projectiles from ovrelapping with their casters,
+but this is based on the compMove and not the hitBox, which is
+actually the target of importance. we need to have access to
+the entire actor object, not just it's compMove! we need to
+touch the actor's hitBox from projectile.update, and we can't currently.
+once we do this, we can check and align projectiles to the actor's
+hitBox, and then larger enemies can have larger hitboxes while also
+being able to cast projectiles...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

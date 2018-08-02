@@ -35,11 +35,18 @@ namespace DungeonRun
             if (Actor.state == ActorState.Dead) { return; }
             //reset the target actor's input
             Functions_Input.ResetInputData(Actor.compInput);
-            //get actor sprite position
-            actorPos = Actor.compSprite.position;
-            //get the x & y distances between actor and hero
-            xDistance = (int)Math.Abs(Pool.hero.compSprite.position.X - actorPos.X);
-            yDistance = (int)Math.Abs(Pool.hero.compSprite.position.Y - actorPos.Y);
+
+            //get actor's hitBox center position
+            actorPos.X = Actor.compCollision.rec.Center.X;
+            actorPos.Y = Actor.compCollision.rec.Center.Y;
+            //get the x & y distances between actor and hero hitbox
+            xDistance = (int)Math.Abs(Pool.hero.compCollision.rec.Center.X - actorPos.X);
+            yDistance = (int)Math.Abs(Pool.hero.compCollision.rec.Center.Y - actorPos.Y);
+
+
+
+
+
 
 
             //control actor based on actor.aiType
@@ -73,8 +80,6 @@ namespace DungeonRun
                     {   //actor is close enough to hero to attack
                         if (Functions_Random.Int(0, 100) > 25) //randomly proceed
                         {
-                            //Enemies attack with weapons / items
-
                             //set the cardinal direction towards hero, attack, cancel any dash
                             Actor.compInput.direction =
                                 Functions_Direction.GetCardinalDirectionToHero(actorPos);
@@ -98,7 +103,7 @@ namespace DungeonRun
             #endregion
 
 
-            //Special Standard AIs
+            //Standard AIs
 
             #region BeefyBat
 
@@ -165,9 +170,8 @@ namespace DungeonRun
 
                     if (Functions_Random.Int(0, 100) > 95)
                     {   //shoot fireballs at hero
-                        Functions_Projectile.Spawn(ObjType.ProjectileArrow,
-                            Actor.compMove,
-                            Functions_Direction.GetCardinalDirectionToHero(Actor.compSprite.position));
+                        Functions_Projectile.Spawn(ObjType.ProjectileArrow, Actor,
+                            Functions_Direction.GetCardinalDirectionToHero(actorPos));
                         Actor.compInput.attack = true;
                     }
                 }
@@ -188,9 +192,8 @@ namespace DungeonRun
 
                     if (Functions_Random.Int(0, 100) > 75)
                     {   //shoot fireballs at hero more often
-                        Functions_Projectile.Spawn(ObjType.ProjectileArrow,
-                            Actor.compMove,
-                            Functions_Direction.GetCardinalDirectionToHero(Actor.compSprite.position));
+                        Functions_Projectile.Spawn(ObjType.ProjectileArrow, Actor,
+                            Functions_Direction.GetCardinalDirectionToHero(actorPos));
                         Actor.compInput.attack = true;
                     }
 
@@ -232,7 +235,7 @@ namespace DungeonRun
                         if (Actor.health < 5)
                         {   //move towards hero
                             Actor.compInput.direction = 
-                                Functions_Direction.GetCardinalDirectionToHero(Actor.compSprite.position);
+                                Functions_Direction.GetCardinalDirectionToHero(actorPos);
                         }
                         else
                         {   //move randomly
@@ -244,14 +247,13 @@ namespace DungeonRun
                     //randomly dash
                     if (Functions_Random.Int(0, 100) > 80) { Actor.compInput.dash = true; }
 
-                    //randomly surface above water
-                    if (Functions_Random.Int(0, 100) > 90)
+                    //use breath counter to keep enemy underwater for a moment
+                    Actor.breathCounter++;
+                    if (Actor.breathCounter > Functions_Random.Int(15, 25)) //not in frames!
                     {
                         Actor.underwater = false;
-                        Functions_Particle.Spawn(
-                            ObjType.Particle_Splash,
-                            Actor.compSprite.position.X,
-                            Actor.compSprite.position.Y);
+                        Functions_Actor.CreateSplash(Actor);
+                        Actor.breathCounter = 0;
                     }
                 }
 
@@ -263,7 +265,7 @@ namespace DungeonRun
                 else
                 {
                     //face the direction of the hero at all times
-                    Actor.direction = Functions_Direction.GetCardinalDirectionToHero(Actor.compSprite.position);
+                    Actor.direction = Functions_Direction.GetCardinalDirectionToHero(actorPos);
                     //but don't move in any direction
                     Actor.compInput.direction = Direction.None;
                     //stop any movement
@@ -272,9 +274,8 @@ namespace DungeonRun
                     //shoot fireballs at hero
                     if (Functions_Random.Int(0, 100) > 92)
                     {   
-                        Functions_Projectile.Spawn(ObjType.ProjectileFireball,
-                            Actor.compMove,
-                            Functions_Direction.GetCardinalDirectionToHero(Actor.compSprite.position));
+                        Functions_Projectile.Spawn(ObjType.ProjectileFireball, Actor,
+                            Functions_Direction.GetCardinalDirectionToHero(actorPos));
                         Actor.compInput.attack = true;
                     }
 
@@ -282,10 +283,8 @@ namespace DungeonRun
                     if (Functions_Random.Int(0, 100) > 98)
                     {
                         Actor.underwater = true;
-                        Functions_Particle.Spawn(
-                            ObjType.Particle_Splash,
-                            Actor.compSprite.position.X,
-                            Actor.compSprite.position.Y);
+                        Functions_Actor.CreateSplash(Actor);
+                        Actor.breathCounter = 0;
                     }
 
                     if (Actor.health < 5)
@@ -434,14 +433,14 @@ namespace DungeonRun
                     //limit special attack
                     if(Functions_Random.Int(0, 100) > 50)
                     {   //Super Special Attack : spam spawn bats in all directions
-                        Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor.compMove, Direction.Down);
-                        Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor.compMove, Direction.DownRight);
-                        Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor.compMove, Direction.Right);
-                        Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor.compMove, Direction.UpRight);
-                        Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor.compMove, Direction.Up);
-                        Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor.compMove, Direction.UpLeft);
-                        Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor.compMove, Direction.Left);
-                        Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor.compMove, Direction.DownLeft);
+                        Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor, Direction.Down);
+                        Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor, Direction.DownRight);
+                        Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor, Direction.Right);
+                        Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor, Direction.UpRight);
+                        Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor, Direction.Up);
+                        Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor, Direction.UpLeft);
+                        Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor, Direction.Left);
+                        Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor, Direction.DownLeft);
                     }
 
                     //always taunt the player
@@ -474,21 +473,21 @@ namespace DungeonRun
                 if (Actor.compInput.use)
                 {
                     //spawn 2 bats in the direction boss is moving
-                    Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor.compMove, 
+                    Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor, 
                         Actor.compInput.direction);
-                    Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor.compMove,
+                    Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor,
                         Actor.compInput.direction);
 
                     //spawn 2 bats towards hero, diagonally
-                    Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor.compMove,
+                    Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor,
                         Functions_Direction.GetDiagonalToHero(Actor.compSprite.position));
-                    Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor.compMove,
+                    Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor,
                         Functions_Direction.GetDiagonalToHero(Actor.compSprite.position));
 
                     //spawn 2 bats towards center of room
-                    Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor.compMove,
+                    Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor,
                         Functions_Direction.GetDiagonalToCenterOfRoom(Actor.compSprite.position));
-                    Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor.compMove,
+                    Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor,
                         Functions_Direction.GetDiagonalToCenterOfRoom(Actor.compSprite.position));
                 }
 
@@ -497,6 +496,159 @@ namespace DungeonRun
             }
 
             #endregion
+
+
+            #region OctoHead
+
+            else if (Actor.aiType == ActorAI.Boss_OctoHead)
+            {
+                //setup movement speeds
+                if (Actor.health < 5)
+                {   //move ALOT faster
+                    Actor.walkSpeed = 1.00f;
+                    Actor.dashSpeed = 4.00f;
+                }
+                else
+                {
+                    Actor.walkSpeed = 0.20f;
+                    Actor.dashSpeed = 0.80f;
+                }
+
+
+                #region Underwater routine
+
+                if (Actor.underwater)
+                {
+                    //Debug.WriteLine("count v counter: " + Actor.breathCounter + " / " + Actor.breathTotal);
+
+                    //randomly dash
+                    if (Functions_Random.Int(0, 100) > 80) { Actor.compInput.dash = true; }
+
+                    //use breath counter to keep enemy underwater for a moment
+                    Actor.breathCounter++;
+                    if (Actor.breathCounter > Functions_Random.Int(15, 25)) //not in frames!
+                    {
+                        Actor.underwater = false;
+                        Functions_Actor.CreateSplash(Actor);
+                        Actor.breathCounter = 0;
+
+                        //spawn a tentacle on way back to surface (since boss took damage)
+                        Functions_Actor.SpawnActor(ActorType.Special_Tentacle, Actor.compSprite.position);
+                    }
+                }
+
+                #endregion
+
+
+                #region Above water routine
+
+                else
+                {
+                    Actor.direction = Direction.Down;
+                    //but don't move in any direction
+                    Actor.compInput.direction = Direction.None;
+                    //stop any movement
+                    Functions_Movement.StopMovement(Actor.compMove);
+
+                    //boss waits for something to hit him to dive
+
+                    if (Actor.health < 5)
+                    {
+                        //often taunt the player
+                        if (Functions_Random.Int(0, 100) > 50)
+                        { Assets.Play(Assets.sfxEnemyTaunt); }
+                    }
+                }
+
+                #endregion
+
+
+                //randomly move in a direction
+                if (Functions_Random.Int(0, 100) > 80)
+                { Actor.compInput.direction = (Direction)Functions_Random.Int(0, 8); }
+
+                //handle phase 2 low on health decorations
+                if (Actor.health < 5)
+                {   //smoke (each frame) as a sign of nearing defeat
+                    Functions_Particle.Spawn(
+                        ObjType.Particle_ImpactDust,
+                        Actor.compSprite.position.X + 6 + Functions_Random.Int(-8, 8),
+                        Actor.compSprite.position.Y - 0 + Functions_Random.Int(-5, 5)
+                    );
+                }
+
+            }
+
+            #endregion
+
+
+
+
+            //Special AIs
+
+            #region Tentacle
+            
+            else if (Actor.aiType == ActorAI.Special_Tentacle)
+            {
+
+                #region Underwater routine
+
+                if (Actor.underwater)
+                {
+                    //randomly move in a direction
+                    if (Functions_Random.Int(0, 100) > 80)
+                    { Actor.compInput.direction = (Direction)Functions_Random.Int(0, 8); }
+
+                    //always dash while underwater
+                    Actor.compInput.dash = true;
+
+                    //use breath counter to keep enemy underwater for a moment
+                    Actor.breathCounter++;
+                    if (Actor.breathCounter > Functions_Random.Int(30, 60)) //not in frames!
+                    {
+                        Actor.underwater = false;
+                        Functions_Actor.CreateSplash(Actor);
+                        Actor.breathCounter = 0;
+                    }
+                }
+
+                #endregion
+
+
+                #region Above water routine
+
+                else
+                {
+                    //slowly chase hero (effect: many tentacles converge slowly around hero)
+                    ChaseHero();
+                    Actor.compInput.dash = false;
+
+                    //manually handle attack 
+                    if (yDistance < Actor.attackRadius & xDistance < Actor.attackRadius)
+                    {   //actor is close enough to hero to attack, do so
+                        Actor.compInput.direction = Functions_Direction.GetCardinalDirectionToHero(actorPos);
+                        Actor.compInput.attack = true;
+                        
+                        //manually spawn bite projectile 
+                        Actor.direction = Actor.compInput.direction; //face hero for manual spawn
+                        Functions_Projectile.Spawn(ObjType.ProjectileBite, Actor, Actor.direction);
+                    }
+                    
+                    //always face the direction of the hero (hivemind)
+                    Actor.direction = Functions_Direction.GetCardinalDirectionToHero(actorPos);
+
+                    //note: tentacle doesn't dive on it's own, HAS to be hit by projectile
+                }
+
+                #endregion
+
+            }
+
+            #endregion
+
+
+
+
 
         }
 
@@ -705,14 +857,21 @@ namespace DungeonRun
                 if (Functions_Random.Int(0, 500) > 497) //aggressively shoots
                 {   //shoot fireball towards hero along a cardinal direction
                     Functions_Projectile.Spawn(
-                        ObjType.ProjectileFireball, Obj.compMove,
+                        ObjType.ProjectileFireball, 
+                        Obj.compMove.position.X,
+                        Obj.compMove.position.Y,
                         Functions_Direction.GetCardinalDirectionToHero(Obj.compSprite.position));
                 }
             }
             else if (Obj.type == ObjType.Dungeon_WallStatue)
             {
                 if (Functions_Random.Int(0, 2000) > 1998) //rarely shoots
-                { Functions_Projectile.Spawn(ObjType.ProjectileArrow, Obj.compMove, Obj.direction); }
+                { Functions_Projectile.Spawn(
+                    ObjType.ProjectileArrow, 
+                    Obj.compMove.position.X,
+                    Obj.compMove.position.Y, 
+                    Obj.direction);
+                }
             }
             else if (Obj.type == ObjType.Dungeon_Pit)
             {

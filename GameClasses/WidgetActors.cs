@@ -173,7 +173,7 @@ namespace DungeonRun
             //boss
             Actor boss = new Actor();
             boss.direction = Direction.Down;
-            Functions_Actor.SetType(boss, ActorType.Boss_BigBat);
+            Functions_Actor.SetType(boss, ActorType.Boss_OctoHead);
             Functions_Movement.Teleport(boss.compMove,
                 window.interior.rec.X + 13 + 8,
                 window.interior.rec.Y + 29 + 8);
@@ -202,6 +202,17 @@ namespace DungeonRun
             Functions_Component.Align(standard);
             standard.state = ActorState.Idle;
             actors.Add(standard);
+
+            //special - tentacle
+            Actor special = new Actor();
+            special.direction = Direction.Down;
+            Functions_Actor.SetType(special, ActorType.Special_Tentacle);
+            Functions_Movement.Teleport(special.compMove,
+                window.interior.rec.X + 13 + 8,
+                window.interior.rec.Y + 29 + 8 + 16 * 4);
+            Functions_Component.Align(special);
+            special.state = ActorState.Idle;
+            actors.Add(special);
         }
     }
 

@@ -16,7 +16,7 @@ namespace DungeonRun
     {
         static ObjType throwType;
         static int i;
-
+        static int k;
 
         public static void ResetActor(Actor Actor)
         {   //reset actor to default living state
@@ -114,7 +114,8 @@ namespace DungeonRun
             #region Bosses
 
             else if (Actor.type == ActorType.Boss_BigEye
-                || Actor.type == ActorType.Boss_BigBat)
+                || Actor.type == ActorType.Boss_BigBat
+                || Actor.type == ActorType.Boss_OctoHead)
             {   //decorate this death as special / explosive
                 Functions_Particle.Spawn_Explosion(ObjType.Particle_Debris,
                     Actor.compSprite.position.X, Actor.compSprite.position.Y, true);
@@ -130,7 +131,21 @@ namespace DungeonRun
                     { PlayerData.current.story_forestDungeon = true; }
                     else if (Actor.type == ActorType.Boss_BigBat)
                     { PlayerData.current.story_mountainDungeon = true; }
+                    else if (Actor.type == ActorType.Boss_OctoHead)
+                    { PlayerData.current.story_swampDungeon = true; }
                 }
+
+                //Cleanup any boss mobs leftover
+                if(Actor.type == ActorType.Boss_OctoHead)
+                {
+                    //loop over all actors, checking for active tentacles, and kill em'
+                    for(k = 0; k < Pool.actorCount; k++)
+                    {
+                        if (Pool.actorPool[k].active & Pool.actorPool[k].type == ActorType.Special_Tentacle)
+                        { SetDeathState(Pool.actorPool[k]); }
+                    }
+                }
+
             }
 
             #endregion
@@ -178,6 +193,21 @@ namespace DungeonRun
                     Actor.compSprite.position.Y);
             }
 
+            else if (Actor.type == ActorType.MiniBoss_OctoMouth)
+            {
+                //decorate this death as special / explosive
+                Functions_Particle.Spawn_Explosion(ObjType.Particle_Debris,
+                    Actor.compSprite.position.X, Actor.compSprite.position.Y, true);
+                //Actor.compAnim.speed = 10; //slow down death animation to taste
+                //this actor becomes debris in water, sort to floor.
+                Actor.compSprite.zOffset = -8;
+                Functions_Component.SetZdepth(Actor.compSprite);
+                //try to drop map
+                Functions_GameObject_Dungeon.DropMap(
+                    Actor.compSprite.position.X,
+                    Actor.compSprite.position.Y);
+            }
+
             #endregion
 
 
@@ -217,42 +247,7 @@ namespace DungeonRun
             Actor.lockCounter = 0;
             Actor.lockTotal = 0;
         }
-
-        public static void SetCollisionRec(Actor Actor)
-        {
-
-            //set the collisionRec parameters based on the Type
-            /*
-            if (Actor.type == ActorType.Boss_BigEye)
-            {
-                Actor.compCollision.rec.Width = 24;
-                Actor.compCollision.rec.Height = 16;
-                Actor.compCollision.offsetX = -12;
-                Actor.compCollision.offsetY = 0;
-            }
-
-            
-            //this doesn't work, because pro.spawn() doesn't
-            //take into account the actor's hitBox when creating a fireball
-            //so this will cause self-interaction upon spawn, leading to death.
-            else if(Actor.type == ActorType.MiniBoss_BlackEye)
-            {
-                Actor.compCollision.rec.Width = 16;
-                Actor.compCollision.rec.Height = 16;
-                Actor.compCollision.offsetX = -8;
-                Actor.compCollision.offsetY = 0;
-            }
-            */
-
-            
-            {   //hero/blob/etc actors have same hitBox (for 16x16 sprite)
-                Actor.compCollision.rec.Width = 12;
-                Actor.compCollision.rec.Height = 8;
-                Actor.compCollision.offsetX = -6;
-                Actor.compCollision.offsetY = 0;
-            }
-        }
-
+        
         public static void ResetActorLoadout(Actor Actor)
         {
             Actor.weapon = MenuItemType.Unknown;
@@ -484,7 +479,7 @@ namespace DungeonRun
                 if (Actor.breathCounter > Actor.breathTotal)
                 {
                     Actor.underwater = false;
-                    Functions_Particle.Spawn(ObjType.Particle_Splash, Actor);
+                    CreateSplash(Actor);
                     Actor.breathCounter = 0;
                 }
             }
@@ -580,7 +575,7 @@ namespace DungeonRun
                 else if (Act.heldObj.type == ObjType.Wor_Pot)
                 { throwType = ObjType.ProjectilePot; }
                 //spawn the thrown projectile obj
-                Functions_Projectile.Spawn(throwType, Act.compMove, Act.direction);
+                Functions_Projectile.Spawn(throwType, Act, Act.direction);
                 Functions_Pool.Release(Act.heldObj);
             }
             
@@ -607,13 +602,47 @@ namespace DungeonRun
             Functions_Particle.Spawn(ObjType.Particle_Attention, Actor);
         }
 
+        public static void CreateSplash(Actor Actor)
+        {
+            //decorate water transition based on actor type
+            if (Actor.type == ActorType.Boss_OctoHead)
+            {   //dis burlyboy requires more than one splash to look good
+                Functions_Particle.Spawn(
+                    ObjType.Particle_Splash,
+                    Actor.compSprite.position.X - 8,
+                    Actor.compSprite.position.Y + 8);
+                Functions_Particle.Spawn(
+                    ObjType.Particle_Splash,
+                    Actor.compSprite.position.X + 8,
+                    Actor.compSprite.position.Y + 8);
+            }
+            else
+            {   //all other actors are small enough to use just one splash
+                Functions_Particle.Spawn(
+                    ObjType.Particle_Splash,
+                    Actor.compSprite.position.X,
+                    Actor.compSprite.position.Y + 2);
+            }
+        }
+
+
+
 
 
         public static void SetType(Actor Actor, ActorType Type)
         {
             ResetActor(Actor);
             Actor.type = Type;
-            SetCollisionRec(Actor);
+
+            //default collision rec - if boss creates projectiles they have to use this
+            //this is because the spawn projectile method assumes this collision rec
+            //and doesn't account for any change in it's size
+            //so this will cause self-interaction upon projectile spawn, leading to actor hit/death
+
+            Actor.compCollision.rec.Width = 12;
+            Actor.compCollision.rec.Height = 8;
+            Actor.compCollision.offsetX = -6;
+            Actor.compCollision.offsetY = 0;
 
 
             //Standard Actors
@@ -841,7 +870,6 @@ namespace DungeonRun
 
             #region OctoMouth
 
-
             else if (Type == ActorType.MiniBoss_OctoMouth)
             {
                 Actor.aiType = ActorAI.MiniBoss_OctoMouth;
@@ -954,6 +982,87 @@ namespace DungeonRun
             #endregion
 
 
+            #region OctoHead
+
+            else if (Type == ActorType.Boss_OctoHead)
+            {
+                Actor.aiType = ActorAI.Boss_OctoHead;
+                Actor.compMove.grounded = true;
+
+                Actor.enemy = true;
+                Actor.underwaterEnemy = true;
+                Actor.compSprite.texture = Assets.swampLevelSheet;
+                Actor.animList = AnimationFrames.Boss_OctoHead_Animations;
+                Actor.health = 8; //each time head takes damage he spawns a tentacle actor
+                ResetActorLoadout(Actor);
+
+                //walk and dash speeds are set in Functions_Ai
+                //because they change based on this actor's health
+
+                //this actor is a 2x3 boss
+                Actor.compSprite.drawRec.Width = 16 * 2;
+                Actor.compSprite.drawRec.Height = 16 * 3;
+
+                Actor.compCollision.offsetY = 8;
+                Actor.compSprite.zOffset = 14;
+
+                //set actor sound effects
+                Actor.sfxDash = null; //silent dash
+                Actor.sfx.hit = Assets.sfxBossHit;
+                Actor.sfx.kill = Assets.sfxBossHitDeath;
+
+                //setup collision rec (since actor doesn't spawn projectiles)
+                Actor.compCollision.rec.Width = 16;
+                Actor.compCollision.rec.Height = 16;
+                Actor.compCollision.offsetX = -8;
+                Actor.compCollision.offsetY = 2;
+            }
+
+            #endregion
+
+
+
+
+
+            //Specials
+
+            #region Tentacle
+
+            else if (Type == ActorType.Special_Tentacle)
+            {
+                Actor.aiType = ActorAI.Special_Tentacle;
+                Actor.compMove.grounded = true;
+
+                Actor.enemy = true;
+                Actor.underwaterEnemy = true;
+                Actor.compSprite.texture = Assets.swampLevelSheet;
+                Actor.animList = AnimationFrames.Special_Tentacle_Animations;
+                Actor.health = 30; //not meant to be killed, but they can be
+
+                ResetActorLoadout(Actor);
+                Actor.weapon = MenuItemType.WeaponFang; //bites
+
+                Actor.walkSpeed = 0.20f;
+                Actor.dashSpeed = 0.80f;
+
+                //this actor is a 2x3 special
+                Actor.compSprite.drawRec.Width = 16 * 2;
+                Actor.compSprite.drawRec.Height = 16 * 3;
+
+                Actor.compCollision.offsetY = 8;
+                Actor.compSprite.zOffset = 14;
+
+                //set actor sound effects
+                Actor.sfxDash = null; //silent dash
+                Actor.sfx.hit = Assets.sfxEnemyHit;
+                Actor.sfx.kill = Assets.sfxEnemyKill;
+
+                //ai params
+                Actor.chaseRadius = 16 * 10;
+                Actor.attackRadius = 18;
+            }
+
+            #endregion
 
 
 

@@ -584,7 +584,7 @@ namespace DungeonRun
             else if (LevelSet.currentLevel.ID == LevelID.Swamp_Dungeon)
             {
                 Functions_Actor.SpawnActor(
-                    ActorType.Boss_BigBat,
+                    ActorType.Boss_OctoHead,
                     Room.center.X + 8,
                     Room.center.Y + 8);
             }

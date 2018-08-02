@@ -54,7 +54,7 @@ namespace DungeonRun
             HandleBehavior(pro);
         }
  
-        public static void Spawn(ObjType Type, ComponentMovement Caster, Direction Dir)
+        public static void Spawn(ObjType Type, Actor Caster, Direction Dir)
         {
             pushLines = false; //assume this pro doesn't have push lines
 
@@ -76,7 +76,7 @@ namespace DungeonRun
             //get a projectile to spawn
             pro = Functions_Pool.GetProjectile();
             //set the projectile's caster reference
-            pro.caster = Caster;
+            pro.caster = Caster.compMove;
 
             //determine the direction the projectile should inherit
             if (Type == ObjType.ProjectileBomb
@@ -90,9 +90,10 @@ namespace DungeonRun
             pro.compMove.direction = Dir;
             pro.direction = Dir;
 
-            //teleport the object to the caster's location
+            //teleport the object to the caster's hitBox location
             Functions_Movement.Teleport(pro.compMove,
-                Caster.position.X, Caster.position.Y);
+                Caster.compCollision.rec.Center.X,
+                Caster.compCollision.rec.Center.Y);
 
             //assume this projectile is moving
             pro.compMove.moving = true;
@@ -111,26 +112,26 @@ namespace DungeonRun
                 if (Dir == Direction.Down)
                 {
                     Functions_Movement.Teleport(pro.compMove,
-                        Caster.newPosition.X + 0,
-                        Caster.newPosition.Y + 16);
+                        Caster.compCollision.rec.Center.X + 0,
+                        Caster.compCollision.rec.Center.Y + 16);
                 }
                 else if (Dir == Direction.Up)
                 {
                     Functions_Movement.Teleport(pro.compMove,
-                        Caster.newPosition.X + 0,
-                        Caster.newPosition.Y - 14);
+                        Caster.compCollision.rec.Center.X + 0,
+                        Caster.compCollision.rec.Center.Y - 14);
                 }
                 else if (Dir == Direction.Right)
                 {
                     Functions_Movement.Teleport(pro.compMove,
-                        Caster.newPosition.X + 16,
-                        Caster.newPosition.Y + 1);
+                        Caster.compCollision.rec.Center.X + 16,
+                        Caster.compCollision.rec.Center.Y + 1);
                 }
                 else if (Dir == Direction.Left)
                 {
                     Functions_Movement.Teleport(pro.compMove,
-                        Caster.newPosition.X - 16,
-                        Caster.newPosition.Y + 1);
+                        Caster.compCollision.rec.Center.X - 16,
+                        Caster.compCollision.rec.Center.Y + 1);
                 }
                 Functions_Component.Align(pro); //align the arrows comps
                 Functions_Movement.Push(pro.compMove, Dir, 6.0f);
@@ -149,26 +150,26 @@ namespace DungeonRun
                 if (Dir == Direction.Down)
                 {
                     Functions_Movement.Teleport(pro.compMove,
-                        Caster.newPosition.X + 0,
-                        Caster.newPosition.Y + 16);
+                        Caster.compCollision.rec.Center.X + 0,
+                        Caster.compCollision.rec.Center.Y + 16);
                 }
                 else if (Dir == Direction.Up)
                 {
                     Functions_Movement.Teleport(pro.compMove,
-                        Caster.newPosition.X + 0,
-                        Caster.newPosition.Y - 14);
+                        Caster.compCollision.rec.Center.X + 0,
+                        Caster.compCollision.rec.Center.Y - 14);
                 }
                 else if (Dir == Direction.Right)
                 {
                     Functions_Movement.Teleport(pro.compMove,
-                        Caster.newPosition.X + 16,
-                        Caster.newPosition.Y + 1);
+                        Caster.compCollision.rec.Center.X + 16,
+                        Caster.compCollision.rec.Center.Y + 1);
                 }
                 else if (Dir == Direction.Left)
                 {
                     Functions_Movement.Teleport(pro.compMove,
-                        Caster.newPosition.X - 16,
-                        Caster.newPosition.Y + 1);
+                        Caster.compCollision.rec.Center.X - 16,
+                        Caster.compCollision.rec.Center.Y + 1);
                 }
                 Functions_Component.Align(pro); //align the arrows comps
                 Functions_Movement.Push(pro.compMove, Dir, 4.0f);
@@ -282,26 +283,26 @@ namespace DungeonRun
                 if (Dir == Direction.Down)
                 {
                     Functions_Movement.Teleport(pro.compMove,
-                        Caster.newPosition.X + 0,
-                        Caster.newPosition.Y + 16);
+                        Caster.compCollision.rec.Center.X + 0,
+                        Caster.compCollision.rec.Center.Y + 16);
                 }
                 else if (Dir == Direction.Up)
                 {
                     Functions_Movement.Teleport(pro.compMove,
-                        Caster.newPosition.X + 0,
-                        Caster.newPosition.Y - 14);
+                        Caster.compCollision.rec.Center.X + 0,
+                        Caster.compCollision.rec.Center.Y - 14);
                 }
                 else if (Dir == Direction.Right)
                 {
                     Functions_Movement.Teleport(pro.compMove,
-                        Caster.newPosition.X + 16,
-                        Caster.newPosition.Y - 9);
+                        Caster.compCollision.rec.Center.X + 16,
+                        Caster.compCollision.rec.Center.Y - 9);
                 }
                 else if (Dir == Direction.Left)
                 {
                     Functions_Movement.Teleport(pro.compMove,
-                        Caster.newPosition.X - 16,
-                        Caster.newPosition.Y - 9);
+                        Caster.compCollision.rec.Center.X - 16,
+                        Caster.compCollision.rec.Center.Y - 9);
                 }
                 Functions_Component.Align(pro); //align the arrows comps
                 Functions_Movement.Push(pro.compMove, Dir, 5.0f);
@@ -329,52 +330,52 @@ namespace DungeonRun
                 if (Dir == Direction.Down)
                 {
                     Functions_Movement.Teleport(pro.compMove,
-                        Caster.newPosition.X + 0,
-                        Caster.newPosition.Y + 16);
+                        Caster.compCollision.rec.Center.X + 0,
+                        Caster.compCollision.rec.Center.Y + 16);
                 }
                 else if (Dir == Direction.Up)
                 {
                     Functions_Movement.Teleport(pro.compMove,
-                        Caster.newPosition.X + 0,
-                        Caster.newPosition.Y - 14);
+                        Caster.compCollision.rec.Center.X + 0,
+                        Caster.compCollision.rec.Center.Y - 14);
                 }
                 else if (Dir == Direction.Right)
                 {
                     Functions_Movement.Teleport(pro.compMove,
-                        Caster.newPosition.X + 16,
-                        Caster.newPosition.Y + 0);
+                        Caster.compCollision.rec.Center.X + 16,
+                        Caster.compCollision.rec.Center.Y + 0);
                 }
                 else if (Dir == Direction.Left)
                 {
                     Functions_Movement.Teleport(pro.compMove,
-                        Caster.newPosition.X - 16,
-                        Caster.newPosition.Y + 0);
+                        Caster.compCollision.rec.Center.X - 16,
+                        Caster.compCollision.rec.Center.Y + 0);
                 }
 
                 //diagonals
                 else if (Dir == Direction.UpRight)
                 {
                     Functions_Movement.Teleport(pro.compMove,
-                        Caster.newPosition.X + 16,
-                        Caster.newPosition.Y - 14);
+                        Caster.compCollision.rec.Center.X + 16,
+                        Caster.compCollision.rec.Center.Y - 14);
                 }
                 else if (Dir == Direction.UpLeft)
                 {
                     Functions_Movement.Teleport(pro.compMove,
-                        Caster.newPosition.X - 16,
-                        Caster.newPosition.Y - 14);
+                        Caster.compCollision.rec.Center.X - 16,
+                        Caster.compCollision.rec.Center.Y - 14);
                 }
                 else if (Dir == Direction.DownRight)
                 {
                     Functions_Movement.Teleport(pro.compMove,
-                        Caster.newPosition.X + 16,
-                        Caster.newPosition.Y + 16);
+                        Caster.compCollision.rec.Center.X + 16,
+                        Caster.compCollision.rec.Center.Y + 16);
                 }
                 else if (Dir == Direction.DownLeft)
                 {
                     Functions_Movement.Teleport(pro.compMove,
-                        Caster.newPosition.X - 16,
-                        Caster.newPosition.Y + 16);
+                        Caster.compCollision.rec.Center.X - 16,
+                        Caster.compCollision.rec.Center.Y + 16);
                 }
 
 
@@ -390,13 +391,24 @@ namespace DungeonRun
             #endregion
 
 
-
             #region Bite Projectile
+
+            //this is based on caster's hitBox, lasts 2 frames
 
             else if (Type == ObjType.ProjectileBite)
             {
                 Assets.Play(Assets.sfxEnemyTaunt);
                 pushLines = true;
+
+                //track the projectile to it's caster
+                if (pro.direction == Direction.Down) { offset.X = 0; offset.Y = +17; }
+                else if (pro.direction == Direction.Up) { offset.X = 0; offset.Y = -6; }
+                else if (pro.direction == Direction.Right) { offset.X = +17; offset.Y = 0; }
+                else if (pro.direction == Direction.Left) { offset.X = -8; offset.Y = 0; }
+                
+                //apply the offset
+                pro.compMove.newPosition.X = Caster.compCollision.rec.Center.X + offset.X;
+                pro.compMove.newPosition.Y = Caster.compCollision.rec.Center.Y + offset.Y;
             }
 
             #endregion
@@ -404,7 +416,7 @@ namespace DungeonRun
 
 
             HandleBehavior(pro);
-            if (pushLines) { Functions_Particle.SpawnPushFX(Caster, Dir); }
+            if (pushLines) { Functions_Particle.SpawnPushFX(Caster.compMove, Dir); }
         }
 
 
@@ -427,16 +439,20 @@ namespace DungeonRun
                     Obj.compSprite.position.X + 0,
                     Obj.compSprite.position.Y + 0);
             }
+
+
             else if (Obj.type == ObjType.ProjectileBomb)
             {   //create explosion projectile
-                Spawn(ObjType.ProjectileExplosion,
-                    Obj.compMove, Direction.None);
+                Spawn(ObjType.ProjectileExplosion, Obj.compMove.position.X, Obj.compMove.position.Y);
             }
             else if (Obj.type == ObjType.ProjectileFireball)
             {   //create explosion
-                Spawn(ObjType.ProjectileExplosion,
-                    Obj.compMove, Direction.None);
+                Spawn(ObjType.ProjectileExplosion, Obj.compMove.position.X, Obj.compMove.position.Y);
             }
+
+
+
+
             else if(Obj.type == ObjType.ProjectileBush)
             {
                 Functions_Loot.SpawnLoot(Obj.compSprite.position);
@@ -489,6 +505,7 @@ namespace DungeonRun
                 //apply the offset
                 Pro.compMove.newPosition.X = Pro.caster.newPosition.X + offset.X;
                 Pro.compMove.newPosition.Y = Pro.caster.newPosition.Y + offset.Y;
+                //these projectiles only work on actors with standard hitbox
             }
 
             #endregion
@@ -624,26 +641,7 @@ namespace DungeonRun
 
 
 
-
-            #region Bite
-
-            else if (Pro.type == ObjType.ProjectileBite)
-            {   //track the projectile to it's caster
-                if (Pro.direction == Direction.Down) { offset.X = 0; offset.Y = +17; }
-                else if (Pro.direction == Direction.Up) { offset.X = 0; offset.Y = -6; }
-                else if (Pro.direction == Direction.Right) { offset.X = +17; offset.Y = 0; }
-                else if (Pro.direction == Direction.Left) { offset.X = -8; offset.Y = 0; }
-                //apply the offset
-                Pro.compMove.newPosition.X = Pro.caster.newPosition.X + offset.X;
-                Pro.compMove.newPosition.Y = Pro.caster.newPosition.Y + offset.Y;
-            }
-
-            #endregion
-
-
-
-
-
+            
             //teleport the projectile to it's new position
             Functions_Movement.Teleport(Pro.compMove,
                 Pro.compMove.newPosition.X,

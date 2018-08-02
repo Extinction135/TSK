@@ -177,11 +177,13 @@ namespace DungeonRun
         MiniBoss_Spider_Unarmored,
         MiniBoss_OctoMouth,
 
-
-
         //bosses
         Boss_BigEye,
         Boss_BigBat,
+        Boss_OctoHead,
+
+        //special actors
+        Special_Tentacle,
     }
 
     public enum ActorAI
@@ -196,7 +198,10 @@ namespace DungeonRun
         MiniBoss_OctoMouth,
 
         Boss_BigEye,
-        Boss_BigBat
+        Boss_BigBat,
+        Boss_OctoHead,
+
+        Special_Tentacle
     }
 
 
