@@ -59,23 +59,35 @@ Today:
 
 
 
-added lilly pad, big plant.
-tested swamp boss and miniboss in
-more accurate water context .
 
 
 
 
 
 
-tentacles should move slower.
+
+
+
+
+
+
+Swamp++
+
+tentacles should move slower. done.
 kraken should move more above water.
 this prevents a state where kraken is
 stuck in a spot that is difficult to hit.
+done - kinda. increased the probability
+kraken will move in a direction each frame,
+also increased his movement speed so any
+input would have more effect on his position.
+overtime, this will lead to more varied
+positions for the kraken, giving the player
+more opportunities for a distance strike,
+such as with the bow or fireball.
 
-
-
-
+updated obj widget to hide objects to hide
+objs covered by lily pad + plant objs.
 
 
 

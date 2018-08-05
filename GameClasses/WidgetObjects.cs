@@ -812,14 +812,14 @@ namespace DungeonRun
             //row 5
             Functions_GameObject.SetType(objList[16], ObjType.Unknown);
             Functions_GameObject.SetType(objList[17], ObjType.Wor_Swamp_BigPlant);
-            Functions_GameObject.SetType(objList[18], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[18], ObjType.Unknown);//
             Functions_GameObject.SetType(objList[19], ObjType.Wor_Swamp_LillyPad);
 
             //row 6
             Functions_GameObject.SetType(objList[20], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[21], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[22], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[23], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[21], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[22], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[23], ObjType.Unknown);//
 
             //row 7
             Functions_GameObject.SetType(objList[24], ObjType.Unknown);
@@ -879,7 +879,12 @@ namespace DungeonRun
             Functions_Widget.HideObj(objList[12]);
             Functions_Widget.HideObj(objList[13]);
             Functions_Widget.HideObj(objList[14]);
-            
+
+            Functions_Widget.HideObj(objList[18]);
+            Functions_Widget.HideObj(objList[21]);
+            Functions_Widget.HideObj(objList[22]);
+            Functions_Widget.HideObj(objList[23]);
+
 
         }
     }

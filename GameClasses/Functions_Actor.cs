@@ -1042,8 +1042,8 @@ namespace DungeonRun
                 ResetActorLoadout(Actor);
                 Actor.weapon = MenuItemType.WeaponFang; //bites
 
-                Actor.walkSpeed = 0.20f;
-                Actor.dashSpeed = 0.80f;
+                Actor.walkSpeed = 0.15f;
+                Actor.dashSpeed = 0.15f;
 
                 //this actor is a 2x3 special
                 Actor.compSprite.drawRec.Width = 16 * 2;

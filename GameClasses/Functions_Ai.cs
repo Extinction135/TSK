@@ -510,8 +510,8 @@ namespace DungeonRun
                 }
                 else
                 {
-                    Actor.walkSpeed = 0.20f;
-                    Actor.dashSpeed = 0.80f;
+                    Actor.walkSpeed = 0.50f;
+                    Actor.dashSpeed = 1.00f;
                 }
 
 
@@ -564,7 +564,7 @@ namespace DungeonRun
 
 
                 //randomly move in a direction
-                if (Functions_Random.Int(0, 100) > 80)
+                if (Functions_Random.Int(0, 100) > 70)
                 { Actor.compInput.direction = (Direction)Functions_Random.Int(0, 8); }
 
                 //handle phase 2 low on health decorations
