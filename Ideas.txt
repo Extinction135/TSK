@@ -590,6 +590,39 @@ as they are, as fast as they are.
 
 
 
+
+The Matrix
+we have a telephone object/sprite
+we could have hero interact with it
+answer a phonecall, a dialog tells hero
+that someone is looking for him.
+this someone wants to meet.
+'follow the white rabbit' is the phrase referenced.
+which means we need a white rabbit to lead hero to
+the someone that he is to meet.. this is possibly the
+3rd world in the game.. the 'machine world'..
+where link could fight awesome mech enemies,
+in some vain attempt to save the living from the
+machines.. sure, why not?
+
+
+
+
+
+
+
+
+
+Houses in Water
+
+can we build a house over water tiles? 
+sure, why not? this means we can build an
+entire town in the ocean...
+
+
+
+
+
 Exploit : Trap Door Pit Teleport
 
 the majority of what i do as a game developer is deal

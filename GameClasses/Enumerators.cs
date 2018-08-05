@@ -493,6 +493,10 @@ namespace DungeonRun
         #region Swamp Objects
 
         Wor_Entrance_SwampDungeon,
+        Wor_Swamp_LillyPad,
+        Wor_Swamp_BigPlant,
+
+
 
         #endregion
 

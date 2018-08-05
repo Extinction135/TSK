@@ -1989,10 +1989,6 @@ namespace DungeonRun
             #region Mountain Objects
             
 
-
-
-
-
             else if (Type == ObjType.Wor_MountainWall_Top)
             {   //nonstandard size
                 Obj.compSprite.drawRec.Width = 16 * 4; Obj.compSprite.drawRec.Height = 16 * 1;
@@ -2108,6 +2104,44 @@ namespace DungeonRun
             }
 
 
+
+            #endregion
+
+
+
+
+
+
+            //Swamp Objects
+
+            #region 
+
+            else if (Type == ObjType.Wor_Swamp_LillyPad)
+            {   //nonstandard size
+                Obj.compSprite.drawRec.Width = 16 * 2; Obj.compSprite.drawRec.Height = 16 * 2;
+                Obj.compCollision.rec.Width = 16 * 2; Obj.compCollision.offsetX = -8;
+                Obj.compCollision.rec.Height = 16 * 2; Obj.compCollision.offsetY = -8;
+
+                Obj.compSprite.texture = Assets.swampLevelSheet;
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Swamp_LillyPad;
+
+                Obj.compSprite.zOffset = -39; //sorts just above water (-40)
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = false;
+            }
+            else if (Type == ObjType.Wor_Swamp_BigPlant)
+            {   //nonstandard size
+                Obj.compSprite.drawRec.Width = 16 * 2; Obj.compSprite.drawRec.Height = 16 * 2;
+                Obj.compCollision.rec.Width = 16 * 2; Obj.compCollision.offsetX = -8;
+                Obj.compCollision.rec.Height = 16 * 2; Obj.compCollision.offsetY = -8;
+
+                Obj.compSprite.texture = Assets.swampLevelSheet;
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Swamp_BigPlant;
+
+                Obj.compSprite.zOffset = 6; //has height
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = true;
+            }
 
             #endregion
 

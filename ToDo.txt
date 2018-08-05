@@ -59,49 +59,19 @@ Today:
 
 
 
+added lilly pad, big plant.
+tested swamp boss and miniboss in
+more accurate water context .
 
 
-Swamp Boss : Octohead + Tentacles
 
-tentacles are actors with 30 health.
-upon getting hit, they duck underwater for a time, 
-then surface again to slowly chase hero (no dashing).
-this is because there will likely be more than 1 on
-screen at a time, so this is a group strategy.
 
-octohead simply ducks in and out of water and
-randomly moves around. he has 8 health, and
-spawns a tentacle each time he comes up out of the 
-water. this means he spawns as many tentacles as
-he has HPs. this also lets the player choose how
-they want to deal with the tentacles: let them 
-stackup or deal with them one at a time.
 
-upon defeat of the head, all tentacles explode and die.
 
-+++ improved SetActorInput() to base the ai's distance off
-the enemy hitBox's center vs the hero's hitBox's center.
-previously, this was based off the actor's sprite's center.
-but, the hitBox it what we should of been using all along,
-because the proceeding attacking routines are setup based
-upon that assumption. so this change makes enemy attacks
-much more accurate, because it removes an offset to the
-Y axis for enemies larger than 16 pixels tall. standard
-actors still function as normal, with slightly better
-accuracy and without a bias for attacking north. 
-
-+++ updated Projectile.Spawn() to take an Actor as a 
-parameter, setting up this method to handle a big change
-coming up soon. previously, this was taking a move
-component, which didn't provide the hitBox info needed
-to *actually* align projectiles to their casters.
-now this method has that information, but the projectile
-system isn't setup to work with that info or store it
-frame to frame (that info only exists inside the method
-when it's called - consider the scope).
-
-+ boomerang shouldn't bother / hurt octohead, otherwise he
-spawns a tentacle without taking damage. done.
+tentacles should move slower.
+kraken should move more above water.
+this prevents a state where kraken is
+stuck in a spot that is difficult to hit.
 
 
 
@@ -115,6 +85,74 @@ spawns a tentacle without taking damage. done.
 
 
 
+
+
+
+
+
+before we can properly 'design' the swamp hub room, we need
+to have the new set of water objects: lily pads, rafts, bridges,
+etc.. because we need to able to navigate the swamp water.
+same goes for hub rooms. and it's going to be sooo awesome too.
+
+
+
+lily pad needs to be a 2x2 obj because it's going to exist
+alongside / within bodies of water. it has no functionality,
+it simply functions as the absence of a watertile, thus 
+no swimming state for any actor that overlaps it. 
+
+
+lillies - stand on top of to fight
+plants - blocking water objs
+vines - blocking, unless underwater (swim under, blocks swamp entrance)
+bulb - annoying blocking obj
+sm plant - 
+
+
+
+
+swamp entrance level design
+-must swim UNDERWATER under objects to gain access to dungeon entrance.
+
+
+spikeblocks = swim under. indestructible. immobile.
+we need immobile spikeblocks!
+
+
+what happens to hero if he surfaces above water
+into a vine? should the vine push him? very gently,
+since he's in water. this would prevent overlap.
+
+
+
+
+
+
+
+
+* we can also put posts in the water
+
+
+
+
+
+waterfall and coastline sprites exist!
+
+
+
+
+
+
+we also have the boat sprites ready to go,
+so we can setup the boat level soon too.
+
+
+
+we can do boat and swamp level designs at the same time, 
+since they are mostly water tile based levels
+we are just adding specific objects to these
+levels to make them swampy or boaty... i'm dumb.
 
 
 
@@ -128,7 +166,7 @@ spawns a tentacle without taking damage. done.
 Actor Refs
 
 a projectile's caster should be an actor reference.
-if a projectile's caster is null, then it has no behavior.
+if a projectile's caster is null, then it should have no behavior.
 this is because some gameobjects cast projectiles,
 but in that case the projectile wouldn't have any behavior
 related to the caster.
@@ -143,33 +181,8 @@ touch the actor's hitBox from projectile.update, and we can't currently.
 once we do this, we can check and align projectiles to the actor's
 hitBox, and then larger enemies can have larger hitboxes while also
 being able to cast projectiles...
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+plus, projectiles could properly implement their behaviors - by
+tracking the actor's hitbox instead of their newPosition..
 
 
 
@@ -213,6 +226,10 @@ some rooms would have the texture enum id of any, corresponding to
 any of the texture sheets. in this case, we would base the texture
 off of the level id.
 
+create 3 cotomouths in hub room for swamp.
+create 2 armored spiders in hub room for mountain.
+
+
 
 
 
@@ -236,16 +253,7 @@ place lilly pads / rafts / bridges / etc in specific areas.
 
 
 
-swamp entrance level design
--must swim UNDERWATER under objects to gain access to dungeon entrance.
--need these water objects to swim under too
--need to update underwater swimming to allow for passing through
-certain objects (those created above)...
 
-
-spikeblocks? swim under. indestructible. immobile.
-lily pads? stand on top of, with watery feet.
-marsh grass = impassable, but burnable.
 
 
 
@@ -388,18 +396,4 @@ hand placed.
 
 
 
-FIX PROJECTILE SPAWN SYSTEM PLS K THX BAI
 
-for now, all actors are using the same hitbox.
-the hero's hitbox. so some enemies are really hard to
-hit, because visually it looks like they are bigger
-than their hitbox says they are in-game. this has been
-fine so far, but we want MORE CONTROL over hitboxes...
--related to-
-projectiles++
-projectiles should be cast based on the caster's collision rec.
-spawn() should account for collision rec and always spawn projectile
-in a position that isn't overlapping caster's hitBox. this allows bosses
-to spawn projectiles, since their collision rec isn't the same size
-as heros, and we're basing all our projectile spawns off hero's hitbox.
-this is a pretty important change.
