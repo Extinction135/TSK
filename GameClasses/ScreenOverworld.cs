@@ -50,8 +50,8 @@ namespace DungeonRun
 
             MapLocation colliseum = new MapLocation(true, new Vector2(306, 195));
             locations.Add(colliseum);
-            MapLocation ship = new MapLocation(false, new Vector2(281, 234));
-            locations.Add(ship);
+            MapLocation boat = new MapLocation(true, new Vector2(281, 234));
+            locations.Add(boat);
 
             //right side of top map
             MapLocation colliseumRight = new MapLocation(false, new Vector2(365, 175));
@@ -120,8 +120,8 @@ namespace DungeonRun
             #region Set maplocation's neighbors
 
             //dev neighbors - this may remain
-            ship.neighborDown = centerIsland;
-            centerIsland.neighborUp = ship;
+            boat.neighborDown = centerIsland;
+            centerIsland.neighborUp = boat;
 
             //standard neighbors
             rightCastleTown.neighborLeft = castle;
@@ -147,8 +147,8 @@ namespace DungeonRun
 
             colliseum.neighborRight = colliseumRight;
             colliseum.neighborLeft = colliseumLeft;
-            colliseum.neighborDown = ship;
-            ship.neighborUp = colliseum;
+            colliseum.neighborDown = boat;
+            boat.neighborUp = colliseum;
 
             colliseumLeft.neighborRight = colliseum;
             colliseumLeft.neighborUp = forestDungeon;
@@ -200,9 +200,11 @@ namespace DungeonRun
 
             //1. Setup accessible level's ID
             colliseum.ID = LevelID.Colliseum;
-            forestDungeon.ID = LevelID.Forest_Entrance;
             centerIsland.ID = LevelID.TheFarm;
             leftTown2.ID = LevelID.LeftTown2;
+            boat.ID = LevelID.Boat;
+
+            forestDungeon.ID = LevelID.Forest_Entrance;
             caveDungeon.ID = LevelID.Mountain_Entrance;
             swampDungeon.ID = LevelID.Swamp_Entrance;
 
@@ -213,17 +215,17 @@ namespace DungeonRun
             { currentLocation = centerIsland; }
             else if (LevelSet.field.ID == LevelID.LeftTown2)
             { currentLocation = leftTown2; }
-
             else if (LevelSet.field.ID == LevelID.Colliseum
                 || LevelSet.field.ID == LevelID.ColliseumPit)
             { currentLocation = colliseum; }
 
+            else if (LevelSet.field.ID == LevelID.Boat)
+            { currentLocation = boat; }
+
             else if (LevelSet.field.ID == LevelID.Forest_Entrance)
             { currentLocation = forestDungeon; }
-
             else if (LevelSet.field.ID == LevelID.Mountain_Entrance)
             { currentLocation = caveDungeon; }
-
             else if (LevelSet.field.ID == LevelID.Swamp_Entrance)
             { currentLocation = swampDungeon; }
 

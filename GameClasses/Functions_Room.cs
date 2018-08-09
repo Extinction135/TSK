@@ -198,6 +198,11 @@ namespace DungeonRun
                     RoomXmlData = LevelData.LeftTown2;
                     LevelSet.currentLevel.isField = true;
                 }
+                else if (Room.roomID == RoomID.Boat)
+                {
+                    RoomXmlData = LevelData.Boat;
+                    LevelSet.currentLevel.isField = true;
+                }
 
                 #endregion
 

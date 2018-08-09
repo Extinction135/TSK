@@ -193,6 +193,13 @@ namespace DungeonRun
                 Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.LeftTown2);
                 LevelSet.currentLevel.rooms.Add(field);
             }
+            else if (LevelSet.currentLevel.ID == LevelID.Boat)
+            {
+                Functions_Music.PlayMusic(Music.LightWorld);
+                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.Boat);
+                LevelSet.currentLevel.rooms.Add(field);
+            }
+
 
             #endregion
 

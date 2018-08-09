@@ -59,14 +59,16 @@ Today:
 
 
 
+Boat++
+
+added boat location to overworld map.
+copied swamp xml to create base boat level.
+updated systems to handle boat level.
+tested, boat level works as expected.
 
 
 
 
-Boat ++
-
-added boat widget object to editor, in
-prep for adding boat objects and testing.
 
 
 
