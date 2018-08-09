@@ -39,6 +39,7 @@ namespace DungeonRun
         //level sheets
         public static Texture2D townLevelSheet;
         public static Texture2D colliseumLevelSheet;
+        public static Texture2D boatLevelSheet;
 
         public static Texture2D forestLevelSheet;
         public static Texture2D mountainLevelSheet;
@@ -209,6 +210,7 @@ namespace DungeonRun
 
             townLevelSheet = content.Load<Texture2D>(@"Sprites_Level_Town");
             colliseumLevelSheet = content.Load<Texture2D>(@"Sprites_Level_Colliseum");
+            boatLevelSheet = content.Load<Texture2D>(@"Sprites_Level_Boat");
 
             forestLevelSheet = content.Load<Texture2D>(@"Sprites_Level_Forest");
             mountainLevelSheet = content.Load<Texture2D>(@"Sprites_Level_Mountain");

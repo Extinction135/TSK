@@ -61,26 +61,130 @@ Today:
 
 
 
+Boat Objs
 
 
-Swamp++
+
+
+
+
+
+Boat++
+
+created boat sprite sheet, added to Dx and Uwp
+projects. updated UWP project with latest textures.
+
+
+
+
+
+
+
+
+
+BOAT LEVEL
+
+the boat always exists at center bottom of a level.
+in addition to the boat, we add objects to theme the level.
+
+for example, the swamp level has the swamp entrance obj, plus
+vines and various decorations. 
+
+for the coastline level (island boat), we have coastline
+objects above the boat, with a bridge and pier.
+
+need function to create boat at boat location, because 
+making that damn boat each time will be a PITA.
+link boat function to a editor menu button, create boat
+for coastline and swamp levels. link coastline level
+up to overworld. leave swamp location for testing, for now.
+
+
+
+
+
+
+
+
+
+
+
+
+on the boat, we have the captain roomObj. speaking with 
+the captain pops up the destination vendor dialog screen.
+there are two destinations: swamp and coastline.
+these are purchased using menuItems, just like colliseum
+challenges or items. upon purchase, the level is reloaded
+with a diff level ID corresponding to the menuItem type.
+this allows player to move between levels via the captain
+object. this allows the game to 'hide' levels from the
+overworld, only making them accessible via destination vendor.
+also allows for connection to a different overworld map.
+
+remove swamp level location on map.
+create coastline boat level location on map and in game.
+
+
+
+the boat acts as a very short training/intro level.
+link initially starts out on boat level, without ability to
+exit boat (no stairs). there is one enemy on board that link
+has to defeat - and he has some hp. the captain obj exists
+on board, talking with him begs link to kill the pirate.
+once link defeats the pirate, the captain changes to the hands
+up animtion with exclamation point particle. link speaks
+with captain completing the first story boolean: save
+the captain. captain thanks link for saving his life and 
+turns into the standard captain obj.
+
+on this intro level, however, player can only select sm island
+destination. the captain says it's the closest location that 
+has supplies so he can repair his ship.. 
+*link discovers the hyrule tournament poster on this tiny island*
+(which would then open Hyrule as a destination on the boat)
+this would also introduce the player to
+a smaller overworld map and moving between locations, plus
+it would be interesting to switch overworld maps so early
+in the game - alluding to a larger game scope and complexity.
+*the 'supplies' are a reward for defeating a miniboss in
+a special intro dungeon on the island. in the supplies is a 
+poster for a tournament in hyrule.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 add more swamp objects:
 
-
-vines - blocking, unless underwater
-
-push actor in opposite direction upon collision with vine,
-unless actor in underwater.
-
-
-
-
-
 bulb - annoying small blocking obj
 sm plant - blocking, but can be destroyed like bush
+
+
+
+
+
+Underwater Sorting
+
+when hero is underwater, we should sort to -30.
+water sorts to -40.
+vines should sort to -20, so we stay below
+the vines when underwater, but above them when
+above water.
+
+
 
 
 
@@ -91,21 +195,13 @@ swamp entrance is in the sea, accessed via BOAT.
 
 
 
-build boat level. this should function in the most
-general sense possible: a boat with a bridge to a pier.
-that's it. no level ground or decorations that make
-this boat level biome specific, because we have to
-reuse this boat level as the departing and dropoff
-levels for anything the boat connects to.
 
 
 
 
 
 
-swamp entrance level design
--must swim UNDERWATER under objects to gain access to dungeon entrance.
-this is swimming under VINES
+
 
 
 
@@ -125,17 +221,6 @@ we can add these into dungeon rooms as well.
 
 
 
-
-
-
-
-
-* we can also put posts in the water
-
-
-
-
-
 waterfall and coastline sprites exist!
 
 
@@ -143,15 +228,21 @@ waterfall and coastline sprites exist!
 
 
 
-we also have the boat sprites ready to go,
-so we can setup the boat level soon too.
 
 
 
-we can do boat and swamp level designs at the same time, 
-since they are mostly water tile based levels
-we are just adding specific objects to these
-levels to make them swampy or boaty... i'm dumb.
+
+
+
+swamp dungeon should be diff than mountain dungeon
+in size and complexity. because it takes longer to
+move in water, it will feel like the dungeon is harder
+on a base level, so the dungeon shouldnt be that large
+or complex. we're also going to be adding a water lever
+critical path into this dungeon, so it needs to remain
+about the size of the forest dungeon. the boss room
+should connect to the hub room as well.
+
 
 
 
