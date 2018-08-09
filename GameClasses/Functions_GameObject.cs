@@ -2174,7 +2174,7 @@ namespace DungeonRun
 
             //Boat Objects
 
-            #region Ship Objects
+            #region Front
 
             else if (Type == ObjType.Wor_Boat_Front)
             {   //nonstandard size
@@ -2206,8 +2206,6 @@ namespace DungeonRun
                 Obj.compCollision.blocking = true;
             }
 
-
-
             else if (Type == ObjType.Wor_Boat_Front_ConnectorLeft
                 || Type == ObjType.Wor_Boat_Front_ConnectorRight)
             {   //nonstandard size
@@ -2234,7 +2232,33 @@ namespace DungeonRun
 
             #endregion
 
+            #region Bannisters + Stairs
 
+            else if (Type == ObjType.Wor_Boat_Bannister_Left
+                || Type == ObjType.Wor_Boat_Bannister_Right)
+            {   //nonstandard size
+                Obj.compSprite.drawRec.Width = 16 * 2; Obj.compSprite.drawRec.Height = 16 * 1;
+                Obj.compCollision.rec.Width = 8;
+                Obj.compCollision.rec.Height = 16; Obj.compCollision.offsetY = -8;
+
+                if (Type == ObjType.Wor_Boat_Bannister_Right)
+                {
+                    Obj.compCollision.offsetX = +16;
+                    Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Bannister_Right;
+                }
+                else
+                {
+                    Obj.compCollision.offsetX = -8;
+                    Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Bannister_Left;
+                }
+                Obj.compSprite.texture = Assets.boatLevelSheet;
+
+                Obj.compSprite.zOffset = 0;
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = true;
+            }
+
+            #endregion
 
 
 

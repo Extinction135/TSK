@@ -61,13 +61,15 @@ Today:
 
 
 
+
+
 Boat++
 
-separated the front and the connectors,
-so the transition is better for the front
-of the ship. boat level is looking better
-as well.
-
+improved front ship sprites for Dx.
+added left and right bannister objects.
+improved boat level. fixed an issue with
+mirroring boat objects causing pixel
+repeating visual problem.
 
 
 
@@ -77,8 +79,6 @@ as well.
 
 Boat Objs
 
-
-boat bannister
 boat stairs top
 boat stairs open
 boat stairs closed

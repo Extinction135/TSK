@@ -511,6 +511,9 @@ namespace DungeonRun
         Wor_Boat_Front_ConnectorLeft,
         Wor_Boat_Front_ConnectorRight,
 
+        Wor_Boat_Bannister_Left,
+        Wor_Boat_Bannister_Right,
+
         #endregion
 
 

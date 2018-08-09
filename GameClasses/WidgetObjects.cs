@@ -595,16 +595,16 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[19], ObjType.Unknown);//
 
             //row 6
-            Functions_GameObject.SetType(objList[20], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[21], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[20], ObjType.Wor_Boat_Bannister_Left);
+            Functions_GameObject.SetType(objList[21], ObjType.Unknown);//
             Functions_GameObject.SetType(objList[22], ObjType.Unknown);//
             Functions_GameObject.SetType(objList[23], ObjType.Unknown);//
 
             //row 7
             Functions_GameObject.SetType(objList[24], ObjType.Unknown);
             Functions_GameObject.SetType(objList[25], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[26], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[27], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[26], ObjType.Wor_Boat_Bannister_Right);
+            Functions_GameObject.SetType(objList[27], ObjType.Unknown);//
 
             //row 8
             Functions_GameObject.SetType(objList[28], ObjType.Unknown);
@@ -654,9 +654,9 @@ namespace DungeonRun
             //connectors
             objList[12].compCollision.rec.Width = 16 * 2;
             objList[16].compCollision.rec.Width = 16 * 2;
-
-
-
+            //bannisters
+            objList[20].compCollision.rec.Width = 16 * 2;
+            objList[26].compCollision.rec.Width = 16 * 2;
 
 
             //hide the dungeon objs covered by other objs
@@ -675,9 +675,10 @@ namespace DungeonRun
             Functions_Widget.HideObj(objList[17]);
             Functions_Widget.HideObj(objList[18]);
             Functions_Widget.HideObj(objList[19]);
+            Functions_Widget.HideObj(objList[21]);
             Functions_Widget.HideObj(objList[22]);
             Functions_Widget.HideObj(objList[23]);
-
+            Functions_Widget.HideObj(objList[27]);
 
             // - we could simply hide all unknown objects?
         }

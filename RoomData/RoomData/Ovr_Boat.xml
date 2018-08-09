@@ -401,20 +401,20 @@
     <ObjXmlData>
       <type>Wor_Water</type>
       <direction>Down</direction>
-      <posX>344</posX>
-      <posY>504</posY>
+      <posX>424</posX>
+      <posY>488</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Water</type>
       <direction>Down</direction>
-      <posX>344</posX>
-      <posY>536</posY>
+      <posX>424</posX>
+      <posY>552</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Water</type>
       <direction>Down</direction>
-      <posX>344</posX>
-      <posY>472</posY>
+      <posX>456</posX>
+      <posY>488</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Water</type>
@@ -499,6 +499,66 @@
       <direction>Down</direction>
       <posX>552</posX>
       <posY>424</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Boat_Bannister_Left</type>
+      <direction>Down</direction>
+      <posX>488</posX>
+      <posY>488</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Boat_Bannister_Left</type>
+      <direction>Down</direction>
+      <posX>488</posX>
+      <posY>504</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Boat_Bannister_Left</type>
+      <direction>Down</direction>
+      <posX>488</posX>
+      <posY>520</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Boat_Bannister_Right</type>
+      <direction>Down</direction>
+      <posX>552</posX>
+      <posY>488</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Boat_Bannister_Right</type>
+      <direction>Down</direction>
+      <posX>552</posX>
+      <posY>504</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Boat_Bannister_Right</type>
+      <direction>Down</direction>
+      <posX>552</posX>
+      <posY>520</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>456</posX>
+      <posY>520</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>456</posX>
+      <posY>552</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>456</posX>
+      <posY>584</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>424</posX>
+      <posY>520</posY>
     </ObjXmlData>
   </objs>
 </RoomXmlData>
