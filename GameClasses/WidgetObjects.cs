@@ -567,7 +567,7 @@ namespace DungeonRun
             //row 1
             Functions_GameObject.SetType(objList[0], ObjType.Wor_Boat_Front_Left);
             Functions_GameObject.SetType(objList[1], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[2], ObjType.Wor_Boat_Front);//
+            Functions_GameObject.SetType(objList[2], ObjType.Wor_Boat_Front_Right);//
             Functions_GameObject.SetType(objList[3], ObjType.Unknown);//
 
             //row 2
@@ -585,25 +585,25 @@ namespace DungeonRun
             //row 4
             Functions_GameObject.SetType(objList[12], ObjType.Wor_Boat_Front_ConnectorLeft);
             Functions_GameObject.SetType(objList[13], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[14], ObjType.Wor_Boat_Front_Right);
+            Functions_GameObject.SetType(objList[14], ObjType.Wor_Boat_Front_ConnectorRight);
             Functions_GameObject.SetType(objList[15], ObjType.Unknown);//
 
             //row 5
-            Functions_GameObject.SetType(objList[16], ObjType.Wor_Boat_Front_ConnectorRight);
+            Functions_GameObject.SetType(objList[16], ObjType.Wor_Boat_Bannister_Left);
             Functions_GameObject.SetType(objList[17], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[18], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[18], ObjType.Wor_Boat_Bannister_Right);
             Functions_GameObject.SetType(objList[19], ObjType.Unknown);//
 
             //row 6
-            Functions_GameObject.SetType(objList[20], ObjType.Wor_Boat_Bannister_Left);
+            Functions_GameObject.SetType(objList[20], ObjType.Wor_Boat_Stairs_Top_Left);
             Functions_GameObject.SetType(objList[21], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[22], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[22], ObjType.Wor_Boat_Stairs_Top_Right);
             Functions_GameObject.SetType(objList[23], ObjType.Unknown);//
 
             //row 7
-            Functions_GameObject.SetType(objList[24], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[25], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[26], ObjType.Wor_Boat_Bannister_Right);
+            Functions_GameObject.SetType(objList[24], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[25], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[26], ObjType.Unknown);//
             Functions_GameObject.SetType(objList[27], ObjType.Unknown);//
 
             //row 8
@@ -631,10 +631,10 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[43], ObjType.Unknown);
 
             //row 12 - cheat and put these beyond widget bounds cause they big
-            Functions_GameObject.SetType(objList[44], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[45], ObjType.Unknown);// by left pillar
+            Functions_GameObject.SetType(objList[44], ObjType.Wor_Boat_Front);
+            Functions_GameObject.SetType(objList[45], ObjType.Unknown);
             Functions_GameObject.SetType(objList[46], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[47], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[47], ObjType.Wor_Boat_Front); //engine
 
             //position the objs relative to the window frame
             Functions_Widget.PositionObjs(this);
@@ -653,10 +653,17 @@ namespace DungeonRun
 
             //connectors
             objList[12].compCollision.rec.Width = 16 * 2;
-            objList[16].compCollision.rec.Width = 16 * 2;
+            objList[14].compCollision.rec.Width = 16 * 2;
             //bannisters
+            objList[16].compCollision.rec.Width = 16 * 2;
+            objList[18].compCollision.rec.Width = 16 * 2;
+            //stairs
             objList[20].compCollision.rec.Width = 16 * 2;
-            objList[26].compCollision.rec.Width = 16 * 2;
+            objList[20].compCollision.rec.Height = 16 * 2;
+            objList[22].compCollision.rec.Width = 16 * 2;
+            objList[22].compCollision.rec.Height = 16 * 2;
+
+
 
 
             //hide the dungeon objs covered by other objs
@@ -673,12 +680,16 @@ namespace DungeonRun
             Functions_Widget.HideObj(objList[13]);
             Functions_Widget.HideObj(objList[15]);
             Functions_Widget.HideObj(objList[17]);
-            Functions_Widget.HideObj(objList[18]);
             Functions_Widget.HideObj(objList[19]);
             Functions_Widget.HideObj(objList[21]);
-            Functions_Widget.HideObj(objList[22]);
             Functions_Widget.HideObj(objList[23]);
+            Functions_Widget.HideObj(objList[24]);
+            Functions_Widget.HideObj(objList[25]);
+            Functions_Widget.HideObj(objList[26]);
             Functions_Widget.HideObj(objList[27]);
+
+
+
 
             // - we could simply hide all unknown objects?
         }

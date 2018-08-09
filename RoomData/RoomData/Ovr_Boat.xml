@@ -560,5 +560,17 @@
       <posX>424</posX>
       <posY>520</posY>
     </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Boat_Stairs_Top_Left</type>
+      <direction>Down</direction>
+      <posX>488</posX>
+      <posY>536</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Boat_Stairs_Top_Right</type>
+      <direction>Down</direction>
+      <posX>552</posX>
+      <posY>536</posY>
+    </ObjXmlData>
   </objs>
 </RoomXmlData>

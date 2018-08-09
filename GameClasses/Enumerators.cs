@@ -514,6 +514,9 @@ namespace DungeonRun
         Wor_Boat_Bannister_Left,
         Wor_Boat_Bannister_Right,
 
+        Wor_Boat_Stairs_Top_Left,
+        Wor_Boat_Stairs_Top_Right,
+
         #endregion
 
 

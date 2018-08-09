@@ -2258,6 +2258,30 @@ namespace DungeonRun
                 Obj.compCollision.blocking = true;
             }
 
+            else if (Type == ObjType.Wor_Boat_Stairs_Top_Left
+                || Type == ObjType.Wor_Boat_Stairs_Top_Right)
+            {   //nonstandard size
+                Obj.compSprite.drawRec.Width = 16 * 2; Obj.compSprite.drawRec.Height = 16 * 2;
+                Obj.compCollision.rec.Width = 8;
+                Obj.compCollision.rec.Height = 32; Obj.compCollision.offsetY = -8;
+
+                if (Type == ObjType.Wor_Boat_Stairs_Top_Right)
+                {
+                    Obj.compCollision.offsetX = +16;
+                    Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Stairs_Top_Right;
+                }
+                else
+                {
+                    Obj.compCollision.offsetX = -8;
+                    Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Stairs_Top_Left;
+                }
+                Obj.compSprite.texture = Assets.boatLevelSheet;
+
+                Obj.compSprite.zOffset = 0;
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = true;
+            }
+
             #endregion
 
 

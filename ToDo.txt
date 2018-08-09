@@ -61,15 +61,11 @@ Today:
 
 
 
-
-
 Boat++
 
-improved front ship sprites for Dx.
-added left and right bannister objects.
-improved boat level. fixed an issue with
-mirroring boat objects causing pixel
-repeating visual problem.
+added boat top stairs left and right
+
+
 
 
 
@@ -79,13 +75,15 @@ repeating visual problem.
 
 Boat Objs
 
-boat stairs top
-boat stairs open
-boat stairs closed
-boat stairs bottom
+boat stairs top LR
+boat stairs open LR
+boat stairs closed LR
+boat stairs bottom LR
+
 boat engine
 boat blocking obj
 boat bridge
+
 (boat stairs cover)
 (boat stairs)
 
