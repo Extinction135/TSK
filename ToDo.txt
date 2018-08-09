@@ -61,21 +61,43 @@ Today:
 
 
 
+
+
+Boat ++
+
+added boat widget object to editor, in
+prep for adding boat objects and testing.
+
+
+
+
+
+
+
+
 Boat Objs
 
 
+boat front
+boat front connector left
+boat front connector right
+boat bannister
+boat stairs top
+boat stairs open
+boat stairs closed
+boat stairs bottom
+boat engine
+boat blocking obj
+boat bridge
+(boat stairs cover)
+(boat stairs)
+
++ water tiles = barebones boat level
 
 
 
 
-
-Boat++
-
-created boat sprite sheet, added to Dx and Uwp
-projects. updated UWP project with latest textures.
-
-
-
+we need boat widget objects
 
 
 

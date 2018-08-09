@@ -106,15 +106,28 @@ namespace DungeonRun
                     {   //leads to colliseum
                         currentSheet.compText.text = "colliseum";
                         Widgets.WO_Colliseum.visible = true;
+                        //Widgets.WE_Colliseum.visible = true; //doesn't exist
                         levelBeingDisplayed = LevelID.Colliseum;
                     }
                     else if(levelBeingDisplayed == LevelID.Colliseum)
+                    {   //leads to boat
+                        currentSheet.compText.text = "boat";
+                        Widgets.WO_Boat.visible = true;
+                        //Widgets.WE_Boat.visible = true; //doesn't exist
+                        levelBeingDisplayed = LevelID.Boat;
+                    }
+                    else if (levelBeingDisplayed == LevelID.Boat)
                     {   //leads to forest
                         currentSheet.compText.text = "forest";
                         Widgets.WO_Forest.visible = true;
                         Widgets.WE_Forest.visible = true;
                         levelBeingDisplayed = LevelID.Forest_Entrance;
                     }
+
+
+
+
+
                     else if (levelBeingDisplayed == LevelID.Forest_Entrance)
                     {   //leads to mountain
                         currentSheet.compText.text = "mountain";
@@ -137,10 +150,14 @@ namespace DungeonRun
                         levelBeingDisplayed = LevelID.LeftTown2;
                     }
                     
+
+
+
                     else
                     {   //any other case resets button's sequence, leads to forest
                         currentSheet.compText.text = "forest";
                         Widgets.WO_Forest.visible = true;
+                        Widgets.WE_Forest.visible = true;
                         levelBeingDisplayed = LevelID.Forest_Entrance;
                     }
 
@@ -195,6 +212,7 @@ namespace DungeonRun
 
             if (Widgets.WO_Town.visible) { Widgets.WO_Town.Update(); Widgets.WO_Town.Draw(); }
             if (Widgets.WO_Colliseum.visible) { Widgets.WO_Colliseum.Update(); Widgets.WO_Colliseum.Draw(); }
+            if (Widgets.WO_Boat.visible) { Widgets.WO_Boat.Update(); Widgets.WO_Boat.Draw(); }
 
             if (Widgets.WO_DEV.visible) { Widgets.WO_DEV.Update(); Widgets.WO_DEV.Draw(); }
 
@@ -247,7 +265,8 @@ namespace DungeonRun
             Widgets.WO_Swamp.visible = false;
             Widgets.WO_Town.visible = false;
             Widgets.WO_Colliseum.visible = false;
-            
+            Widgets.WO_Boat.visible = false;
+
             //set actor widgets not visible
             Widgets.WE_Forest.visible = false;
             Widgets.WE_Mountain.visible = false;

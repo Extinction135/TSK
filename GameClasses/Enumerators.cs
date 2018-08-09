@@ -81,6 +81,7 @@ namespace DungeonRun
         ColliseumPit,
         TheFarm, 
         LeftTown2,
+        Boat,
 
         //fields, with dungeon entrances
         Forest_Entrance, 
@@ -118,7 +119,7 @@ namespace DungeonRun
 
         TheFarm,
         LeftTown2,
-
+        Boat,
 
         //these DEV rooms are used for testing
         DEV_Field, //represents any 'outdoor' / overworld level
