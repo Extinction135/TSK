@@ -607,15 +607,15 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[27], ObjType.Unknown);//
 
             //row 8
-            Functions_GameObject.SetType(objList[28], ObjType.Wor_Boat_Stairs_Open_Left);
+            Functions_GameObject.SetType(objList[28], ObjType.Wor_Boat_Stairs_Left);
             Functions_GameObject.SetType(objList[29], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[30], ObjType.Wor_Boat_Stairs_Open_Right);
+            Functions_GameObject.SetType(objList[30], ObjType.Wor_Boat_Stairs_Right);
             Functions_GameObject.SetType(objList[31], ObjType.Unknown);//
 
             //row 9
-            Functions_GameObject.SetType(objList[32], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[32], ObjType.Wor_Boat_Stairs_Bottom_Left);
             Functions_GameObject.SetType(objList[33], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[34], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[34], ObjType.Wor_Boat_Stairs_Bottom_Right);
             Functions_GameObject.SetType(objList[35], ObjType.Unknown);//
 
             //row 10
@@ -644,12 +644,8 @@ namespace DungeonRun
             //manually set collision recs for some objs
             objList[0].compCollision.rec.Width = 16 * 2;
             objList[0].compCollision.rec.Height = 16 * 3;
-
             objList[2].compCollision.rec.Width = 16 * 2;
             objList[2].compCollision.rec.Height = 16 * 3;
-
-            objList[14].compCollision.rec.Width = 16 * 2;
-            objList[14].compCollision.rec.Height = 16 * 3;
 
             //connectors
             objList[12].compCollision.rec.Width = 16 * 2;
@@ -657,14 +653,17 @@ namespace DungeonRun
             //bannisters
             objList[16].compCollision.rec.Width = 16 * 2;
             objList[18].compCollision.rec.Width = 16 * 2;
-            //stairs
+            //top stairs
             objList[20].compCollision.rec.Width = 16 * 2;
             objList[20].compCollision.rec.Height = 16 * 2;
             objList[22].compCollision.rec.Width = 16 * 2;
             objList[22].compCollision.rec.Height = 16 * 2;
+            //stairs
             objList[28].compCollision.rec.Width = 16 * 2;
-            objList[30].compCollision.rec.Height = 16 * 2;
-
+            objList[30].compCollision.rec.Width = 16 * 2;
+            //bottom stairs
+            objList[32].compCollision.rec.Width = 16 * 2;
+            objList[34].compCollision.rec.Width = 16 * 2;
 
 
             //hide the dungeon objs covered by other objs
@@ -690,11 +689,9 @@ namespace DungeonRun
             Functions_Widget.HideObj(objList[27]);
             Functions_Widget.HideObj(objList[29]);
             Functions_Widget.HideObj(objList[31]);
-
-            Functions_Widget.HideObj(objList[32]);
             Functions_Widget.HideObj(objList[33]);
-            Functions_Widget.HideObj(objList[34]);
             Functions_Widget.HideObj(objList[35]);
+
 
             // - we could simply hide all unknown objects?
         }

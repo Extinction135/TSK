@@ -2225,12 +2225,13 @@ namespace DungeonRun
                 }
                 Obj.compSprite.texture = Assets.boatLevelSheet;
 
-                Obj.compSprite.zOffset = 0;
+                Obj.compSprite.zOffset = -32; //sort above water
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = true;
             }
 
             #endregion
+
 
             #region Bannisters + Stairs
 
@@ -2253,7 +2254,7 @@ namespace DungeonRun
                 }
                 Obj.compSprite.texture = Assets.boatLevelSheet;
 
-                Obj.compSprite.zOffset = 0;
+                Obj.compSprite.zOffset = -32; //sort above water
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = true;
             }
@@ -2277,36 +2278,52 @@ namespace DungeonRun
                 }
                 Obj.compSprite.texture = Assets.boatLevelSheet;
 
-                Obj.compSprite.zOffset = 0;
+                Obj.compSprite.zOffset = -32; //sort above water
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = true;
             }
 
-
-            else if (Type == ObjType.Wor_Boat_Stairs_Open_Left
-                || Type == ObjType.Wor_Boat_Stairs_Open_Right)
+            else if (Type == ObjType.Wor_Boat_Stairs_Left
+                || Type == ObjType.Wor_Boat_Stairs_Right)
             {   //nonstandard size
-                Obj.compSprite.drawRec.Width = 16 * 2; Obj.compSprite.drawRec.Height = 16 * 2;
-                Obj.compCollision.rec.Width = 8;
-                Obj.compCollision.rec.Height = 32; Obj.compCollision.offsetY = -8;
+                Obj.compSprite.drawRec.Width = 16 * 2; Obj.compSprite.drawRec.Height = 16 * 1;
+                Obj.compCollision.rec.Width = 16 * 2; Obj.compCollision.offsetX = -8;
+                Obj.compCollision.rec.Height = 16; Obj.compCollision.offsetY = -8;
 
-                if (Type == ObjType.Wor_Boat_Stairs_Open_Right)
+                if (Type == ObjType.Wor_Boat_Stairs_Right)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Stairs_Right; }
+                else
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Stairs_Left; }
+                Obj.compSprite.texture = Assets.boatLevelSheet;
+
+                Obj.compSprite.zOffset = -32; //sort above water
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = false;
+            }
+
+            else if (Type == ObjType.Wor_Boat_Stairs_Bottom_Left
+                || Type == ObjType.Wor_Boat_Stairs_Bottom_Right)
+            {   //nonstandard size
+                Obj.compSprite.drawRec.Width = 16 * 2; Obj.compSprite.drawRec.Height = 16 * 1;
+                Obj.compCollision.rec.Width = 8;
+                Obj.compCollision.rec.Height = 16; Obj.compCollision.offsetY = -8;
+
+                if (Type == ObjType.Wor_Boat_Stairs_Bottom_Right)
                 {
                     Obj.compCollision.offsetX = +16;
-                    Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Stairs_Open_Right;
+                    Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Stairs_Bottom_Right;
                 }
                 else
                 {
                     Obj.compCollision.offsetX = -8;
-                    Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Stairs_Open_Left;
+                    Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Stairs_Bottom_Left;
                 }
                 Obj.compSprite.texture = Assets.boatLevelSheet;
 
-                Obj.compSprite.zOffset = 0;
+                Obj.compSprite.zOffset = -32; //sort above water
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = true;
             }
-
 
             #endregion
 

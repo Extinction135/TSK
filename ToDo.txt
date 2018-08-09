@@ -63,7 +63,19 @@ Today:
 
 Boat++
 
-added boat stairs open objs.
+removed closed stairs. not working.
+modified open stairs to just be stairs.
+stairs on boat now working again.
+
+added bottom stairs. improved boat level.
+actually feels like a boat now, can transition
+on/off of boat into water with a splash.
+
+
+
+
+
+
 
 
 
@@ -74,10 +86,7 @@ added boat stairs open objs.
 
 Boat Objs
 
-boat stairs open LR
-boat stairs closed LR
-
-boat stairs bottom LR
+make back of boat?
 
 boat engine
 boat blocking obj
