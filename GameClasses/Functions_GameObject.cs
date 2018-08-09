@@ -2143,6 +2143,20 @@ namespace DungeonRun
                 Obj.compCollision.blocking = true;
             }
 
+            else if (Type == ObjType.Wor_Swamp_Vine)
+            {   //nonstandard size
+                Obj.compSprite.drawRec.Width = 16 * 2; Obj.compSprite.drawRec.Height = 16 * 1;
+                Obj.compCollision.rec.Width = 16 * 2; Obj.compCollision.offsetX = -8;
+                Obj.compCollision.rec.Height = 12; Obj.compCollision.offsetY = -6;
+
+                Obj.compSprite.texture = Assets.swampLevelSheet;
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Swamp_Vine;
+
+                Obj.compSprite.zOffset = 0;
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = false;
+            }
+
             #endregion
 
 

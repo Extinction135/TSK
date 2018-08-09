@@ -552,6 +552,35 @@ namespace DungeonRun
                 #endregion
 
 
+                #region Swamp Vines
+
+                else if (Obj.type == ObjType.Wor_Swamp_Vine)
+                {
+
+                    if(Actor.underwater)
+                    {
+                        //ignore interactions with vine
+                        return;
+                    }
+                    else
+                    {
+                        //just prevent overlap (push opposite direction)
+                        Functions_Movement.Push(
+                            Actor.compMove, 
+                            Functions_Direction.GetOppositeCardinal(
+                                Actor.compCollision.rec.Center, 
+                                Obj.compCollision.rec.Center),
+                            1.0f);
+                        return;
+                    }
+                }
+
+                #endregion
+
+
+
+
+
                 #region Coastlines
 
                 else if (Obj.type == ObjType.Wor_Coastline_Corner_Exterior
@@ -586,15 +615,16 @@ namespace DungeonRun
                         Obj.compSprite.position.X,
                         Obj.compSprite.position.Y,
                         Direction.Down);
-                    return; //required
-                    //otherwise code below will evaluate this obj as a pitTrap
-                    //and will lock hero into being pulled into pit, no recourse
+                    //note: this section of code must always come
+                    //before dungeon_pit interaction code, otherwise
+                    //the pit's interaction happens this frame
                 }
 
                 #endregion
 
 
                 //bridge just doesn't cause actor to fall into pit
+                //lillypad just doesn't cause actor to be put into swimming state
             }
         }
 

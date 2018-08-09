@@ -340,6 +340,7 @@ namespace DungeonRun
 
         public static List<Byte4> Wor_Swamp_LillyPad = new List<Byte4> { new Byte4(3, 6, 0, 0) };
         public static List<Byte4> Wor_Swamp_BigPlant = new List<Byte4> { new Byte4(2, 6, 0, 0) };
+        public static List<Byte4> Wor_Swamp_Vine = new List<Byte4> { new Byte4(2, 14, 0, 0) };
 
         #endregion
 

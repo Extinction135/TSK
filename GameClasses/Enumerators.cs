@@ -496,7 +496,7 @@ namespace DungeonRun
         Wor_Swamp_LillyPad,
         Wor_Swamp_BigPlant,
 
-
+        Wor_Swamp_Vine,
 
         #endregion
 

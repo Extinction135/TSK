@@ -63,78 +63,65 @@ Today:
 
 
 
-
-
-
-
-
-
-
-
 Swamp++
 
-tentacles should move slower. done.
-kraken should move more above water.
-this prevents a state where kraken is
-stuck in a spot that is difficult to hit.
-done - kinda. increased the probability
-kraken will move in a direction each frame,
-also increased his movement speed so any
-input would have more effect on his position.
-overtime, this will lead to more varied
-positions for the kraken, giving the player
-more opportunities for a distance strike,
-such as with the bow or fireball.
 
-updated obj widget to hide objects to hide
-objs covered by lily pad + plant objs.
+
+add more swamp objects:
+
+
+vines - blocking, unless underwater
+
+push actor in opposite direction upon collision with vine,
+unless actor in underwater.
 
 
 
+
+
+bulb - annoying small blocking obj
+sm plant - blocking, but can be destroyed like bush
 
 
 
 
 
 
+swamp entrance is in the sea, accessed via BOAT.
 
 
 
+build boat level. this should function in the most
+general sense possible: a boat with a bridge to a pier.
+that's it. no level ground or decorations that make
+this boat level biome specific, because we have to
+reuse this boat level as the departing and dropoff
+levels for anything the boat connects to.
 
 
-before we can properly 'design' the swamp hub room, we need
-to have the new set of water objects: lily pads, rafts, bridges,
-etc.. because we need to able to navigate the swamp water.
-same goes for hub rooms. and it's going to be sooo awesome too.
-
-
-
-lily pad needs to be a 2x2 obj because it's going to exist
-alongside / within bodies of water. it has no functionality,
-it simply functions as the absence of a watertile, thus 
-no swimming state for any actor that overlaps it. 
-
-
-lillies - stand on top of to fight
-plants - blocking water objs
-vines - blocking, unless underwater (swim under, blocks swamp entrance)
-bulb - annoying blocking obj
-sm plant - 
 
 
 
 
 swamp entrance level design
 -must swim UNDERWATER under objects to gain access to dungeon entrance.
+this is swimming under VINES
 
+
+
+
+
+
+
+
+
+spikeblocks++
 
 spikeblocks = swim under. indestructible. immobile.
 we need immobile spikeblocks!
+we can add these into dungeon rooms as well.
 
 
-what happens to hero if he surfaces above water
-into a vine? should the vine push him? very gently,
-since he's in water. this would prevent overlap.
 
 
 
