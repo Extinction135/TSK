@@ -207,6 +207,9 @@ namespace DungeonRun
             Functions_Widget.HideObj(objList[17]);
             Functions_Widget.HideObj(objList[20]);
             Functions_Widget.HideObj(objList[21]);
+
+            //fix sorting issues with certain objs
+            objList[16].compSprite.zOffset = 0;
         }
     }
 
@@ -626,8 +629,8 @@ namespace DungeonRun
 
             //row 11
             Functions_GameObject.SetType(objList[40], ObjType.Wor_Boat_Floor);
-            Functions_GameObject.SetType(objList[41], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[42], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[41], ObjType.Wor_Boat_Barrel);
+            Functions_GameObject.SetType(objList[42], ObjType.Wor_Boat_Stairs_Cover);
             Functions_GameObject.SetType(objList[43], ObjType.Unknown);
 
             //row 12 - cheat and put these beyond widget bounds cause they big

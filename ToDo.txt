@@ -59,14 +59,15 @@ Today:
 
 
 
+Boat++
 
-Boat Engine
+added boat barrel obj, fixed sorting issue
+with boat's floor objects. created pier sprites.
+changed how pier bridge is going to work..
 
-add engine object to boat and game.
-this makes the old time wooden boat kinda
-seem steampunk-ish because the engine is
-more modern and steel-ish. which is fine.
-the look is good.
+created boat stairs cover, added to boat near
+bottom to add some visual interest. updated
+boat level a little bit too.
 
 
 
@@ -80,17 +81,27 @@ the look is good.
 
 Boat Objs
 
-boat barrels
-boat bridge
 
-boat stairs cover
-
-
+boat bridge top + bottom - used for 2 hitboxes to
+keep link inside the bridge so he cant fall off.
+this bridge always attaches to a pier.
 
 
 
+Pier Objs
+this is standard 3x3 grid of sprites,
+which we can reduce to 2x3 grid, with flips.
 
 
+
+
+
+
+
+
+
+we need a captain object.
+we need a captain / destination vendor dialog screen.
 
 
 

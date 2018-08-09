@@ -531,6 +531,8 @@ namespace DungeonRun
 
         Wor_Boat_Floor,
         Wor_Boat_Engine,
+        Wor_Boat_Barrel,
+        Wor_Boat_Stairs_Cover,
 
         #endregion
 

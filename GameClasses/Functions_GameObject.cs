@@ -1378,7 +1378,7 @@ namespace DungeonRun
 
             else if (Type == ObjType.Wor_Water)
             {   //use less pool objs by making water tiles 2x2
-                Obj.compSprite.zOffset = -256;
+                Obj.compSprite.zOffset = -128;
                 Obj.compCollision.blocking = false;
                 Obj.canBeSaved = true;
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Water;
@@ -2382,6 +2382,7 @@ namespace DungeonRun
 
             #endregion
 
+
             #region Other Boat Objects
 
             else if (Type == ObjType.Wor_Boat_Floor)
@@ -2389,10 +2390,24 @@ namespace DungeonRun
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Floor;
                 Obj.compSprite.texture = Assets.boatLevelSheet;
 
-                Obj.compSprite.zOffset = -16; //sort above water
+                Obj.compSprite.zOffset = -40; //sort above water
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = false;
             }
+
+            else if (Type == ObjType.Wor_Boat_Barrel)
+            {
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Barrel;
+                Obj.compSprite.texture = Assets.boatLevelSheet;
+
+                Obj.compCollision.rec.Width = 12; Obj.compCollision.offsetX = -6;
+                Obj.compCollision.rec.Height = 10; Obj.compCollision.offsetY = -5+3;
+
+                Obj.compSprite.zOffset = 0; //sort above water
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = true;
+            }
+
             else if (Type == ObjType.Wor_Boat_Engine)
             {   //nonstandard size
                 Obj.compSprite.drawRec.Width = 16 * 6; Obj.compSprite.drawRec.Height = 16 * 5;
@@ -2402,11 +2417,23 @@ namespace DungeonRun
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Engine;
                 Obj.compSprite.texture = Assets.boatLevelSheet;
 
-                Obj.compSprite.zOffset = 32; //has height
+                Obj.compSprite.zOffset = 33; //has height
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = true;
             }
-            
+
+            else if (Type == ObjType.Wor_Boat_Stairs_Cover)
+            {
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Stairs_Cover;
+                Obj.compSprite.texture = Assets.boatLevelSheet;
+
+                Obj.compCollision.rec.Width = 16; Obj.compCollision.offsetX = -8;
+                Obj.compCollision.rec.Height = 16; Obj.compCollision.offsetY = -8;
+
+                Obj.compSprite.zOffset = 0; //sort above water
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = false;
+            }
 
             #endregion
 
