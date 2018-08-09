@@ -505,6 +505,9 @@ namespace DungeonRun
         #region Boat Objects
 
         Wor_Boat_Front,
+        Wor_Boat_Front_Left,
+        Wor_Boat_Front_Right,
+
         Wor_Boat_Front_ConnectorLeft,
         Wor_Boat_Front_ConnectorRight,
 

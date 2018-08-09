@@ -384,37 +384,37 @@
       <type>Wor_Boat_Front</type>
       <direction>Down</direction>
       <posX>520</posX>
-      <posY>456</posY>
+      <posY>424</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Boat_Front_ConnectorLeft</type>
       <direction>Down</direction>
       <posX>488</posX>
-      <posY>456</posY>
+      <posY>472</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Boat_Front_ConnectorRight</type>
       <direction>Down</direction>
       <posX>552</posX>
-      <posY>456</posY>
+      <posY>472</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Water</type>
       <direction>Down</direction>
-      <posX>552</posX>
-      <posY>456</posY>
+      <posX>344</posX>
+      <posY>504</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Water</type>
       <direction>Down</direction>
-      <posX>520</posX>
-      <posY>456</posY>
+      <posX>344</posX>
+      <posY>536</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Water</type>
       <direction>Down</direction>
-      <posX>488</posX>
-      <posY>456</posY>
+      <posX>344</posX>
+      <posY>472</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Water</type>
@@ -486,6 +486,18 @@
       <type>Wor_Water</type>
       <direction>Down</direction>
       <posX>616</posX>
+      <posY>424</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Boat_Front_Left</type>
+      <direction>Down</direction>
+      <posX>488</posX>
+      <posY>424</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Boat_Front_Right</type>
+      <direction>Down</direction>
+      <posX>552</posX>
       <posY>424</posY>
     </ObjXmlData>
   </objs>

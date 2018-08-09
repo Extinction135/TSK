@@ -2189,19 +2189,45 @@ namespace DungeonRun
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = true;
             }
-            else if (Type == ObjType.Wor_Boat_Front_ConnectorLeft
-                || Type == ObjType.Wor_Boat_Front_ConnectorRight)
+            else if (Type == ObjType.Wor_Boat_Front_Left
+                || Type == ObjType.Wor_Boat_Front_Right)
             {   //nonstandard size
                 Obj.compSprite.drawRec.Width = 16 * 2; Obj.compSprite.drawRec.Height = 16 * 3;
                 Obj.compCollision.rec.Width = 16 * 2; Obj.compCollision.offsetX = -8;
                 Obj.compCollision.rec.Height = 16; Obj.compCollision.offsetY = -8+32;
 
-                if (Type == ObjType.Wor_Boat_Front_ConnectorRight)
-                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Front_ConnectorRight; }
-                else { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Front_ConnectorLeft; }
+                if (Type == ObjType.Wor_Boat_Front_Right)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Front_Right; }
+                else { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Front_Left; }
                 Obj.compSprite.texture = Assets.boatLevelSheet;
 
                 Obj.compSprite.zOffset = 20; //has height
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = true;
+            }
+
+
+
+            else if (Type == ObjType.Wor_Boat_Front_ConnectorLeft
+                || Type == ObjType.Wor_Boat_Front_ConnectorRight)
+            {   //nonstandard size
+                Obj.compSprite.drawRec.Width = 16 * 2; Obj.compSprite.drawRec.Height = 16 * 1;
+                Obj.compCollision.rec.Width = 8; 
+                Obj.compCollision.rec.Height = 16; Obj.compCollision.offsetY = -8;
+
+                if (Type == ObjType.Wor_Boat_Front_ConnectorRight)
+                {
+                    Obj.compCollision.offsetX = +16;
+                    Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Front_ConnectorRight;
+                }
+                else
+                {
+                    Obj.compCollision.offsetX = -8;
+                    Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Front_ConnectorLeft;
+                }
+                Obj.compSprite.texture = Assets.boatLevelSheet;
+
+                Obj.compSprite.zOffset = 0;
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = true;
             }

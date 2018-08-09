@@ -61,13 +61,12 @@ Today:
 
 
 
+Boat++
 
-
-Boat Objs++
-
-added boat front, front connectors left
-and right. upgraded boat level as well.
-tested to make sure front sorts properly.
+separated the front and the connectors,
+so the transition is better for the front
+of the ship. boat level is looking better
+as well.
 
 
 
@@ -77,15 +76,6 @@ tested to make sure front sorts properly.
 
 
 Boat Objs
-
-
-boat front
-boat front connector left
-boat front connector right
-
-
-
-
 
 
 boat bannister
