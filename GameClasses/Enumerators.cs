@@ -529,6 +529,8 @@ namespace DungeonRun
         Wor_Boat_Back_Right_Connector,
         Wor_Boat_Back_Right,
 
+        Wor_Boat_Floor,
+
         #endregion
 
 

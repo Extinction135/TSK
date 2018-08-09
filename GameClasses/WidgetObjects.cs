@@ -625,7 +625,7 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[39], ObjType.Unknown);
 
             //row 11
-            Functions_GameObject.SetType(objList[40], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[40], ObjType.Wor_Boat_Floor);
             Functions_GameObject.SetType(objList[41], ObjType.Unknown);
             Functions_GameObject.SetType(objList[42], ObjType.Unknown);
             Functions_GameObject.SetType(objList[43], ObjType.Unknown);

@@ -2382,7 +2382,19 @@ namespace DungeonRun
 
             #endregion
 
+            #region Other Boat Objects
 
+            else if (Type == ObjType.Wor_Boat_Floor)
+            {   
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Floor;
+                Obj.compSprite.texture = Assets.boatLevelSheet;
+
+                Obj.compSprite.zOffset = -16; //sort above water
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = false;
+            }
+
+            #endregion
 
 
 

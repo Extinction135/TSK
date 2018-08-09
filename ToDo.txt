@@ -60,20 +60,16 @@ Today:
 
 
 
+
+
 Boat++
 
-added back of boat. remade boat level so
-boat is further away from bottom of level.
-this makes it easier to explore all around
-the boat.
+improved the back boat sprites to better
+correspond to their hitbox.
+added boat floor, completed basic boat level.
+playtested boat level ALOT, and it looks
+really good and feels really good.
 
-changed water tiles to sort to -256 on zxis.
-they just sort really far behind eveything now.
-this fixes sprite issue with back of boat.
-
-added center part of back boat. lots of testing
-to make sure proper collisions with all of
-boat in and out of water.
 
 
 
@@ -85,8 +81,6 @@ boat in and out of water.
 
 
 Boat Objs
-
-boat floor
 
 boat engine
 boat barrels
