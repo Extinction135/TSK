@@ -523,6 +523,12 @@ namespace DungeonRun
         Wor_Boat_Stairs_Bottom_Left,
         Wor_Boat_Stairs_Bottom_Right,
 
+        Wor_Boat_Back_Left,
+        Wor_Boat_Back_Left_Connector,
+        Wor_Boat_Back_Center,
+        Wor_Boat_Back_Right_Connector,
+        Wor_Boat_Back_Right,
+
         #endregion
 
 

@@ -1378,7 +1378,7 @@ namespace DungeonRun
 
             else if (Type == ObjType.Wor_Water)
             {   //use less pool objs by making water tiles 2x2
-                Obj.compSprite.zOffset = -40;
+                Obj.compSprite.zOffset = -256;
                 Obj.compCollision.blocking = false;
                 Obj.canBeSaved = true;
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Water;
@@ -2327,6 +2327,60 @@ namespace DungeonRun
 
             #endregion
 
+
+            #region Back
+
+            else if (Type == ObjType.Wor_Boat_Back_Left
+                || Type == ObjType.Wor_Boat_Back_Right)
+            {   //nonstandard size
+                Obj.compSprite.drawRec.Width = 16 * 1; Obj.compSprite.drawRec.Height = 16 * 4;
+                Obj.compCollision.rec.Width = 16; Obj.compCollision.offsetX = -8;
+                Obj.compCollision.rec.Height = 16 * 3; Obj.compCollision.offsetY = -8;
+
+                if (Type == ObjType.Wor_Boat_Back_Right)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Back_Right; }
+                else
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Back_Left; }
+                Obj.compSprite.texture = Assets.boatLevelSheet;
+
+                Obj.compSprite.zOffset = -32; //sort above water
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = true;
+            }
+
+            else if (Type == ObjType.Wor_Boat_Back_Left_Connector
+                || Type == ObjType.Wor_Boat_Back_Right_Connector)
+            {   //nonstandard size
+                Obj.compSprite.drawRec.Width = 16 * 1; Obj.compSprite.drawRec.Height = 16 * 4;
+                Obj.compCollision.rec.Width = 16; Obj.compCollision.offsetX = -8;
+                Obj.compCollision.rec.Height = 16 * 3 + 8; Obj.compCollision.offsetY = -8;
+
+                if (Type == ObjType.Wor_Boat_Back_Right_Connector)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Back_Right_Connector; }
+                else
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Back_Left_Connector; }
+                Obj.compSprite.texture = Assets.boatLevelSheet;
+
+                Obj.compSprite.zOffset = -32; //sort above water
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = true;
+            }
+
+            else if (Type == ObjType.Wor_Boat_Back_Center)
+            {   //nonstandard size
+                Obj.compSprite.drawRec.Width = 16 * 2; Obj.compSprite.drawRec.Height = 16 * 4;
+                Obj.compCollision.rec.Width = 16 * 2; Obj.compCollision.offsetX = -8;
+                Obj.compCollision.rec.Height = 16 * 2 - 4; Obj.compCollision.offsetY = 16 + 2 + 2;
+
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Back_Center;
+                Obj.compSprite.texture = Assets.boatLevelSheet;
+
+                Obj.compSprite.zOffset = -24; //sort above water
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = true;
+            }
+
+            #endregion
 
 
 

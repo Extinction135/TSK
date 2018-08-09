@@ -366,6 +366,12 @@ namespace DungeonRun
         public static List<Byte4> Wor_Boat_Stairs_Bottom_Left = new List<Byte4> { new Byte4(0, 9, 0, 0) };
         public static List<Byte4> Wor_Boat_Stairs_Bottom_Right = new List<Byte4> { new Byte4(2, 9, 0, 0) };
 
+        public static List<Byte4> Wor_Boat_Back_Left = new List<Byte4> { new Byte4(0, 3, 0, 0) };
+        public static List<Byte4> Wor_Boat_Back_Left_Connector = new List<Byte4> { new Byte4(1, 3, 0, 0) };
+        public static List<Byte4> Wor_Boat_Back_Center = new List<Byte4> { new Byte4(1, 3, 0, 0) };
+        public static List<Byte4> Wor_Boat_Back_Right_Connector = new List<Byte4> { new Byte4(4, 3, 0, 0) };
+        public static List<Byte4> Wor_Boat_Back_Right = new List<Byte4> { new Byte4(5, 3, 0, 0) };
+
         #endregion
 
 

@@ -60,20 +60,20 @@ Today:
 
 
 
-
 Boat++
 
-removed closed stairs. not working.
-modified open stairs to just be stairs.
-stairs on boat now working again.
+added back of boat. remade boat level so
+boat is further away from bottom of level.
+this makes it easier to explore all around
+the boat.
 
-added bottom stairs. improved boat level.
-actually feels like a boat now, can transition
-on/off of boat into water with a splash.
+changed water tiles to sort to -256 on zxis.
+they just sort really far behind eveything now.
+this fixes sprite issue with back of boat.
 
-
-
-
+added center part of back boat. lots of testing
+to make sure proper collisions with all of
+boat in and out of water.
 
 
 
@@ -86,21 +86,30 @@ on/off of boat into water with a splash.
 
 Boat Objs
 
-make back of boat?
+boat floor
 
 boat engine
-boat blocking obj
+boat barrels
 boat bridge
 
-(boat stairs cover)
-(boat stairs)
-
-+ water tiles = barebones boat level
+boat stairs cover
 
 
 
 
-we need boat widget objects
+
+link can have a real boat.
+this boat can have something on the front of it.
+this can be saved in the game data using an enum.
+a vendor can sell different boat decorations for gold.
+this allows link to customize his boat and save
+those customizations. this is essentially sea of
+theives.
+
+
+
+
+
 
 
 

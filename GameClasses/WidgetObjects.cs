@@ -634,7 +634,7 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[44], ObjType.Unknown);
             Functions_GameObject.SetType(objList[45], ObjType.Unknown);
             Functions_GameObject.SetType(objList[46], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[47], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[47], ObjType.Wor_Boat_Front);
 
             //position the objs relative to the window frame
             Functions_Widget.PositionObjs(this);
@@ -711,10 +711,10 @@ namespace DungeonRun
             for (i = 0; i < 4 * 12; i++) { objList.Add(new GameObject()); }
 
             //row 1
-            Functions_GameObject.SetType(objList[0], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[1], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[2], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[3], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[0], ObjType.Wor_Boat_Back_Left);
+            Functions_GameObject.SetType(objList[1], ObjType.Wor_Boat_Back_Left_Connector);
+            Functions_GameObject.SetType(objList[2], ObjType.Wor_Boat_Back_Right_Connector);
+            Functions_GameObject.SetType(objList[3], ObjType.Wor_Boat_Back_Right);
 
             //row 2
             Functions_GameObject.SetType(objList[4], ObjType.Unknown);//
@@ -729,28 +729,28 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[11], ObjType.Unknown);//
 
             //row 4
-            Functions_GameObject.SetType(objList[12], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[12], ObjType.Unknown);//
             Functions_GameObject.SetType(objList[13], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[14], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[14], ObjType.Unknown);//
             Functions_GameObject.SetType(objList[15], ObjType.Unknown);//
 
             //row 5
             Functions_GameObject.SetType(objList[16], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[17], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[17], ObjType.Unknown);
             Functions_GameObject.SetType(objList[18], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[19], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[19], ObjType.Unknown);
 
             //row 6
             Functions_GameObject.SetType(objList[20], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[21], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[21], ObjType.Unknown);
             Functions_GameObject.SetType(objList[22], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[23], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[23], ObjType.Unknown);
 
             //row 7
-            Functions_GameObject.SetType(objList[24], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[25], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[26], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[27], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[24], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[25], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[26], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[27], ObjType.Unknown);
 
             //row 8
             Functions_GameObject.SetType(objList[28], ObjType.Unknown);
@@ -777,7 +777,7 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[43], ObjType.Unknown);
 
             //row 12 - cheat and put these beyond widget bounds cause they big
-            Functions_GameObject.SetType(objList[44], ObjType.Wor_Boat_Front);
+            Functions_GameObject.SetType(objList[44], ObjType.Wor_Boat_Back_Center);
             Functions_GameObject.SetType(objList[45], ObjType.Unknown);
             Functions_GameObject.SetType(objList[46], ObjType.Unknown);
             Functions_GameObject.SetType(objList[47], ObjType.Wor_Boat_Front); //engine
@@ -785,7 +785,26 @@ namespace DungeonRun
             //position the objs relative to the window frame
             Functions_Widget.PositionObjs(this);
 
-            
+            //set collision rec
+            objList[0].compCollision.rec.Height = 16 * 4;
+            objList[1].compCollision.rec.Height = 16 * 4;
+            objList[2].compCollision.rec.Height = 16 * 4;
+            objList[3].compCollision.rec.Height = 16 * 4;
+
+            //hide covered objs
+            Functions_Widget.HideObj(objList[4]);
+            Functions_Widget.HideObj(objList[5]);
+            Functions_Widget.HideObj(objList[6]);
+            Functions_Widget.HideObj(objList[7]);
+            Functions_Widget.HideObj(objList[8]);
+            Functions_Widget.HideObj(objList[9]);
+            Functions_Widget.HideObj(objList[10]);
+            Functions_Widget.HideObj(objList[11]);
+            Functions_Widget.HideObj(objList[12]);
+            Functions_Widget.HideObj(objList[13]);
+            Functions_Widget.HideObj(objList[14]);
+            Functions_Widget.HideObj(objList[15]);
+
         }
     }
 
