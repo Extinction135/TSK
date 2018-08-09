@@ -373,6 +373,7 @@ namespace DungeonRun
         public static List<Byte4> Wor_Boat_Back_Right = new List<Byte4> { new Byte4(5, 3, 0, 0) };
 
         public static List<Byte4> Wor_Boat_Floor = new List<Byte4> { new Byte4(0, 4, 0, 0) };
+        public static List<Byte4> Wor_Boat_Engine = new List<Byte4> { new Byte4(1, 2, 0, 0) };
         
         #endregion
 

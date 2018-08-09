@@ -8,10 +8,10 @@ and this we should do freely and generously."
 	
 Roadmap
 
-0.76 - swamp levels + dungeon + enemies
+0.76 - swamp levels + dungeon + enemies + boat
 0.77 - castle, city, royal vendors
 0.78 - king, fight with king, lightworld storyline
-0.79 - BOAT level, intro, farming + seeds + crops
+0.79 - intro, farming + seeds + crops
 
 0.80 - dark world map + 1st level + transition to/from
 0.81 - volcano levels + dungeon + enemies
@@ -60,15 +60,13 @@ Today:
 
 
 
+Boat Engine
 
-
-Boat++
-
-improved the back boat sprites to better
-correspond to their hitbox.
-added boat floor, completed basic boat level.
-playtested boat level ALOT, and it looks
-really good and feels really good.
+add engine object to boat and game.
+this makes the old time wooden boat kinda
+seem steampunk-ish because the engine is
+more modern and steel-ish. which is fine.
+the look is good.
 
 
 
@@ -82,11 +80,15 @@ really good and feels really good.
 
 Boat Objs
 
-boat engine
 boat barrels
 boat bridge
 
 boat stairs cover
+
+
+
+
+
 
 
 

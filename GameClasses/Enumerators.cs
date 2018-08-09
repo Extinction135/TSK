@@ -530,6 +530,7 @@ namespace DungeonRun
         Wor_Boat_Back_Right,
 
         Wor_Boat_Floor,
+        Wor_Boat_Engine,
 
         #endregion
 

@@ -780,7 +780,7 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[44], ObjType.Wor_Boat_Back_Center);
             Functions_GameObject.SetType(objList[45], ObjType.Unknown);
             Functions_GameObject.SetType(objList[46], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[47], ObjType.Wor_Boat_Front); //engine
+            Functions_GameObject.SetType(objList[47], ObjType.Wor_Boat_Engine); //engine
 
             //position the objs relative to the window frame
             Functions_Widget.PositionObjs(this);
