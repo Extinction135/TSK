@@ -607,16 +607,16 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[27], ObjType.Unknown);//
 
             //row 8
-            Functions_GameObject.SetType(objList[28], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[29], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[30], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[31], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[28], ObjType.Wor_Boat_Stairs_Open_Left);
+            Functions_GameObject.SetType(objList[29], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[30], ObjType.Wor_Boat_Stairs_Open_Right);
+            Functions_GameObject.SetType(objList[31], ObjType.Unknown);//
 
             //row 9
-            Functions_GameObject.SetType(objList[32], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[33], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[34], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[35], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[32], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[33], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[34], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[35], ObjType.Unknown);//
 
             //row 10
             Functions_GameObject.SetType(objList[36], ObjType.Unknown);
@@ -662,7 +662,8 @@ namespace DungeonRun
             objList[20].compCollision.rec.Height = 16 * 2;
             objList[22].compCollision.rec.Width = 16 * 2;
             objList[22].compCollision.rec.Height = 16 * 2;
-
+            objList[28].compCollision.rec.Width = 16 * 2;
+            objList[30].compCollision.rec.Height = 16 * 2;
 
 
 
@@ -687,9 +688,13 @@ namespace DungeonRun
             Functions_Widget.HideObj(objList[25]);
             Functions_Widget.HideObj(objList[26]);
             Functions_Widget.HideObj(objList[27]);
+            Functions_Widget.HideObj(objList[29]);
+            Functions_Widget.HideObj(objList[31]);
 
-
-
+            Functions_Widget.HideObj(objList[32]);
+            Functions_Widget.HideObj(objList[33]);
+            Functions_Widget.HideObj(objList[34]);
+            Functions_Widget.HideObj(objList[35]);
 
             // - we could simply hide all unknown objects?
         }

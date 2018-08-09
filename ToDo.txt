@@ -63,13 +63,7 @@ Today:
 
 Boat++
 
-added another boat widget, because there's
-just alot of boat objects. migrated boat
-front obj to the 2nd boat widget, aptly
-named boat back widget.
-
-
-
+added boat stairs open objs.
 
 
 

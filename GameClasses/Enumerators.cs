@@ -517,6 +517,12 @@ namespace DungeonRun
         Wor_Boat_Stairs_Top_Left,
         Wor_Boat_Stairs_Top_Right,
 
+        Wor_Boat_Stairs_Open_Left,
+        Wor_Boat_Stairs_Open_Right,
+
+
+
+
         #endregion
 
 
