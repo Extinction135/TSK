@@ -69,7 +69,9 @@ namespace DungeonRun
                 //unique WOs
                 if (Widgets.WO_Town.visible) { CheckObjList(Widgets.WO_Town); }
                 if (Widgets.WO_Colliseum.visible) { CheckObjList(Widgets.WO_Colliseum); }
-                if (Widgets.WO_Boat.visible) { CheckObjList(Widgets.WO_Boat); }
+                if (Widgets.WO_Boat_Front.visible) { CheckObjList(Widgets.WO_Boat_Front); }
+                if (Widgets.WO_Boat_Back.visible) { CheckObjList(Widgets.WO_Boat_Back); }
+
                 //
                 if (Widgets.WO_Forest.visible) { CheckObjList(Widgets.WO_Forest); }
                 if (Widgets.WO_Mountain.visible) { CheckObjList(Widgets.WO_Mountain); }
@@ -113,7 +115,8 @@ namespace DungeonRun
                     else if(levelBeingDisplayed == LevelID.Colliseum)
                     {   //leads to boat
                         currentSheet.compText.text = "boat";
-                        Widgets.WO_Boat.visible = true;
+                        Widgets.WO_Boat_Front.visible = true;
+                        Widgets.WO_Boat_Back.visible = true;
                         //Widgets.WE_Boat.visible = true; //doesn't exist
                         levelBeingDisplayed = LevelID.Boat;
                     }
@@ -213,7 +216,8 @@ namespace DungeonRun
 
             if (Widgets.WO_Town.visible) { Widgets.WO_Town.Update(); Widgets.WO_Town.Draw(); }
             if (Widgets.WO_Colliseum.visible) { Widgets.WO_Colliseum.Update(); Widgets.WO_Colliseum.Draw(); }
-            if (Widgets.WO_Boat.visible) { Widgets.WO_Boat.Update(); Widgets.WO_Boat.Draw(); }
+            if (Widgets.WO_Boat_Front.visible) { Widgets.WO_Boat_Front.Update(); Widgets.WO_Boat_Front.Draw(); }
+            if (Widgets.WO_Boat_Back.visible) { Widgets.WO_Boat_Back.Update(); Widgets.WO_Boat_Back.Draw(); }
 
             if (Widgets.WO_DEV.visible) { Widgets.WO_DEV.Update(); Widgets.WO_DEV.Draw(); }
 
@@ -266,7 +270,8 @@ namespace DungeonRun
             Widgets.WO_Swamp.visible = false;
             Widgets.WO_Town.visible = false;
             Widgets.WO_Colliseum.visible = false;
-            Widgets.WO_Boat.visible = false;
+            Widgets.WO_Boat_Front.visible = false;
+            Widgets.WO_Boat_Back.visible = false;
 
             //set actor widgets not visible
             Widgets.WE_Forest.visible = false;

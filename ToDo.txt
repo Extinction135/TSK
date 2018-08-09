@@ -63,7 +63,12 @@ Today:
 
 Boat++
 
-added boat top stairs left and right
+added another boat widget, because there's
+just alot of boat objects. migrated boat
+front obj to the 2nd boat widget, aptly
+named boat back widget.
+
+
 
 
 
@@ -75,9 +80,9 @@ added boat top stairs left and right
 
 Boat Objs
 
-boat stairs top LR
 boat stairs open LR
 boat stairs closed LR
+
 boat stairs bottom LR
 
 boat engine

@@ -35,7 +35,8 @@ namespace DungeonRun
         //unique object widgets
         public static WidgetObjects_Town WO_Town = new WidgetObjects_Town();
         public static WidgetObjects_Colliseum WO_Colliseum = new WidgetObjects_Colliseum();
-        public static WidgetObjects_Boat WO_Boat = new WidgetObjects_Boat();
+        public static WidgetObjects_Boat_Front WO_Boat_Front = new WidgetObjects_Boat_Front();
+        public static WidgetObjects_Boat_Back WO_Boat_Back = new WidgetObjects_Boat_Back();
 
         public static WidgetObjects_Forest WO_Forest = new WidgetObjects_Forest();
         public static WidgetObjects_Mountain WO_Mountain = new WidgetObjects_Mountain();
