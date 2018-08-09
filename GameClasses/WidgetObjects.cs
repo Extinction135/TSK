@@ -565,43 +565,40 @@ namespace DungeonRun
             for (i = 0; i < 4 * 12; i++) { objList.Add(new GameObject()); }
 
             //row 1
-            Functions_GameObject.SetType(objList[0], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[0], ObjType.Wor_Boat_Front_ConnectorLeft);
             Functions_GameObject.SetType(objList[1], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[2], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[3], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[2], ObjType.Wor_Boat_Front);//
+            Functions_GameObject.SetType(objList[3], ObjType.Unknown);//
 
             //row 2
             Functions_GameObject.SetType(objList[4], ObjType.Unknown);//
             Functions_GameObject.SetType(objList[5], ObjType.Unknown);//
             Functions_GameObject.SetType(objList[6], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[7], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[7], ObjType.Unknown);//
 
             //row 3
             Functions_GameObject.SetType(objList[8], ObjType.Unknown);//
             Functions_GameObject.SetType(objList[9], ObjType.Unknown);//
             Functions_GameObject.SetType(objList[10], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[11], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[11], ObjType.Unknown);//
 
             //row 4
-            Functions_GameObject.SetType(objList[12], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[13], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[14], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[15], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[12], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[13], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[14], ObjType.Wor_Boat_Front_ConnectorRight);
+            Functions_GameObject.SetType(objList[15], ObjType.Unknown);//
 
             //row 5
             Functions_GameObject.SetType(objList[16], ObjType.Unknown);
             Functions_GameObject.SetType(objList[17], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[18], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[19], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[18], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[19], ObjType.Unknown);//
 
             //row 6
-            Functions_GameObject.SetType(objList[20], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[21], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[20], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[21], ObjType.Unknown);
             Functions_GameObject.SetType(objList[22], ObjType.Unknown);//
             Functions_GameObject.SetType(objList[23], ObjType.Unknown);//
-
-
-
 
             //row 7
             Functions_GameObject.SetType(objList[24], ObjType.Unknown);
@@ -645,19 +642,32 @@ namespace DungeonRun
 
 
             //manually set collision recs for some objs
-            //objList[0].compCollision.rec.Width = 16 * 3;
-            //objList[0].compCollision.rec.Height = 16 * 4;
+            objList[0].compCollision.rec.Width = 16 * 2;
+            objList[0].compCollision.rec.Height = 16 * 2;
+
+            objList[2].compCollision.rec.Width = 16 * 2;
+            objList[2].compCollision.rec.Height = 16 * 2;
 
 
 
 
             //hide the dungeon objs covered by other objs
             Functions_Widget.HideObj(objList[1]);
-            
+            Functions_Widget.HideObj(objList[3]);
+            Functions_Widget.HideObj(objList[4]);
+            Functions_Widget.HideObj(objList[5]);
+            Functions_Widget.HideObj(objList[6]);
+            Functions_Widget.HideObj(objList[7]);
+            Functions_Widget.HideObj(objList[8]);
+            Functions_Widget.HideObj(objList[9]);
+            Functions_Widget.HideObj(objList[10]);
+            Functions_Widget.HideObj(objList[11]);
 
-
-
-
+            Functions_Widget.HideObj(objList[15]);
+            Functions_Widget.HideObj(objList[18]);
+            Functions_Widget.HideObj(objList[19]);
+            Functions_Widget.HideObj(objList[22]);
+            Functions_Widget.HideObj(objList[23]);
         }
     }
 

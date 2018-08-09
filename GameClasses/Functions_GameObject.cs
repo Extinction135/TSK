@@ -1986,9 +1986,8 @@ namespace DungeonRun
 
             //Mountain Objects
 
-            #region Mountain Objects
+            #region Walls
             
-
             else if (Type == ObjType.Wor_MountainWall_Top)
             {   //nonstandard size
                 Obj.compSprite.drawRec.Width = 16 * 4; Obj.compSprite.drawRec.Height = 16 * 1;
@@ -2029,6 +2028,11 @@ namespace DungeonRun
                 Obj.group = ObjGroup.Wall_Climbable;
             }
 
+            #endregion
+
+
+            #region Footholds
+
             else if (Type == ObjType.Wor_MountainWall_Foothold
                 || Type == ObjType.Wor_MountainWall_Ladder
                 || Type == ObjType.Wor_MountainWall_Ladder_Trap)
@@ -2056,6 +2060,10 @@ namespace DungeonRun
                 else { Obj.compSprite.flipHorizontally = false; }
             }
 
+            #endregion
+
+
+            #region Alcoves
 
             else if (Type == ObjType.Wor_MountainWall_Alcove_Left
                 || Type == ObjType.Wor_MountainWall_Alcove_Right)
@@ -2081,7 +2089,10 @@ namespace DungeonRun
                 Obj.group = ObjGroup.Object;
             }
 
+            #endregion
 
+
+            #region Caves
 
             else if (Type == ObjType.Wor_MountainWall_Cave_Bare
                 || Type == ObjType.Wor_MountainWall_Cave_Covered)
@@ -2103,8 +2114,6 @@ namespace DungeonRun
                 Obj.compCollision.blocking = true;
             }
 
-
-
             #endregion
 
 
@@ -2114,7 +2123,7 @@ namespace DungeonRun
 
             //Swamp Objects
 
-            #region 
+            #region LillyPads, Plants, Vines
 
             else if (Type == ObjType.Wor_Swamp_LillyPad)
             {   //nonstandard size
@@ -2158,6 +2167,51 @@ namespace DungeonRun
             }
 
             #endregion
+
+
+
+
+
+            //Boat Objects
+
+            #region Ship Objects
+
+            else if (Type == ObjType.Wor_Boat_Front)
+            {   //nonstandard size
+                Obj.compSprite.drawRec.Width = 16 * 2; Obj.compSprite.drawRec.Height = 16 * 3;
+                Obj.compCollision.rec.Width = 16 * 2; Obj.compCollision.offsetX = -8;
+                Obj.compCollision.rec.Height = 4; Obj.compCollision.offsetY = 32-8;
+
+                Obj.compSprite.texture = Assets.boatLevelSheet;
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Front;
+
+                Obj.compSprite.zOffset = 20; //has height
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = true;
+            }
+            else if (Type == ObjType.Wor_Boat_Front_ConnectorLeft
+                || Type == ObjType.Wor_Boat_Front_ConnectorRight)
+            {   //nonstandard size
+                Obj.compSprite.drawRec.Width = 16 * 2; Obj.compSprite.drawRec.Height = 16 * 3;
+                Obj.compCollision.rec.Width = 16 * 2; Obj.compCollision.offsetX = -8;
+                Obj.compCollision.rec.Height = 16; Obj.compCollision.offsetY = -8+32;
+
+                if (Type == ObjType.Wor_Boat_Front_ConnectorRight)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Front_ConnectorRight; }
+                else { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Front_ConnectorLeft; }
+                Obj.compSprite.texture = Assets.boatLevelSheet;
+
+                Obj.compSprite.zOffset = 20; //has height
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = true;
+            }
+
+            #endregion
+
+
+
+
+
 
 
 

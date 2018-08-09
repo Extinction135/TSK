@@ -69,6 +69,7 @@ namespace DungeonRun
                 //unique WOs
                 if (Widgets.WO_Town.visible) { CheckObjList(Widgets.WO_Town); }
                 if (Widgets.WO_Colliseum.visible) { CheckObjList(Widgets.WO_Colliseum); }
+                if (Widgets.WO_Boat.visible) { CheckObjList(Widgets.WO_Boat); }
                 //
                 if (Widgets.WO_Forest.visible) { CheckObjList(Widgets.WO_Forest); }
                 if (Widgets.WO_Mountain.visible) { CheckObjList(Widgets.WO_Mountain); }

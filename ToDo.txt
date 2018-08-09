@@ -59,16 +59,15 @@ Today:
 
 
 
-Boat++
-
-added boat location to overworld map.
-copied swamp xml to create base boat level.
-updated systems to handle boat level.
-tested, boat level works as expected.
 
 
 
 
+Boat Objs++
+
+added boat front, front connectors left
+and right. upgraded boat level as well.
+tested to make sure front sorts properly.
 
 
 
@@ -83,6 +82,12 @@ Boat Objs
 boat front
 boat front connector left
 boat front connector right
+
+
+
+
+
+
 boat bannister
 boat stairs top
 boat stairs open

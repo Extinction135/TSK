@@ -502,9 +502,13 @@ namespace DungeonRun
         #endregion
 
 
+        #region Boat Objects
 
+        Wor_Boat_Front,
+        Wor_Boat_Front_ConnectorLeft,
+        Wor_Boat_Front_ConnectorRight,
 
-
+        #endregion
 
 
         #region RoomObj Enemies

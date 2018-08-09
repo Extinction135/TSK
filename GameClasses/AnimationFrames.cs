@@ -345,7 +345,13 @@ namespace DungeonRun
         #endregion
 
 
+        #region Boat Objects
 
+        public static List<Byte4> Wor_Boat_Front = new List<Byte4> { new Byte4(1, 0, 0, 0) };
+        public static List<Byte4> Wor_Boat_Front_ConnectorLeft = new List<Byte4> { new Byte4(0, 0, 0, 0) };
+        public static List<Byte4> Wor_Boat_Front_ConnectorRight = new List<Byte4> { new Byte4(0, 0, 1, 0) };
+
+        #endregion
 
 
         #region World Enemies
