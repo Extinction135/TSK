@@ -475,15 +475,17 @@ namespace DungeonRun
                 {
                     CompleteSale(Item);
                     CloseVendorScreen();
-
-                    Functions_Level.BuildLevel(LevelID.Boat); //default to boat level
+                    //load island overworld, with boat as default level
+                    LevelSet.currentLevel.ID = LevelID.Boat;
+                    Functions_Level.CloseLevel(ExitAction.Overworld);
                 }
                 else if (Item.type == MenuItemType.Ship_Destination_Sea)
                 {
                     CompleteSale(Item);
                     CloseVendorScreen();
-
-                    Functions_Level.BuildLevel(LevelID.Swamp_Entrance); //default to boat level
+                    //load sea overworld, with swamp entrance as default level
+                    LevelSet.currentLevel.ID = LevelID.Swamp_Entrance;
+                    Functions_Level.CloseLevel(ExitAction.Overworld);
                 }
 
                 #endregion

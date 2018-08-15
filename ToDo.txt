@@ -59,33 +59,21 @@ Today:
 
 
 
+Ship Travel++
 
-Ship Travel
-
-brandy is now a vendor.
-added vendor dialog for brandy.
-added ship destinations to menuItem enum.
-added ship destination defs to menuItem.setType().
-added routines to PurchaseItem() to complete the
-functionality of destination purchases. the level
-is rebuilt based on a new levelID value, which is
-determined by the type of menuItem destination 
-purchased. we can now travel between overworlds.
-tested and working as expected.
-
-
-
-
-
-
-
-
-
-Ship Travel
 purchasing a trip should exit to the overworld
 screen, but should also set the current level.
 that way, the overworld screen uses the current
 level value to determine which overworld to display.
+this has the net effect of displaying the proper
+overworld map when hero purchases a trip from
+boat captain, brandy.
+
+
+
+
+
+
 
 
 
@@ -94,22 +82,17 @@ the entire level should be water.
 
 
 
-
+-when we died in the swamp dungeon, we spawned on the boat level
+at the island.
 
 
 -while facing south, brandy should sometimes blink,
 and sometimes she should raise her hands up in the air.
 
 
-
-all trips should be free for now.
-
-
-
 *we need a unique menuItem sprite for ship destinations.
 for now, we're just using the colliseum challenges sprites.
-
-
+this should be a treasure map or something 'mappy'.
 
 
 
