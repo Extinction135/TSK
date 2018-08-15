@@ -786,6 +786,7 @@ namespace DungeonRun
         //pet menuItems
         PetDog_Gray,
 
+
         #region Colliseum Challenges
 
         Challenge_Blobs,
@@ -797,6 +798,11 @@ namespace DungeonRun
         Challenge_Bosses_BigBat,
 
         #endregion
+
+
+        //ship destinations
+        Ship_Destination_Island,
+        Ship_Destination_Sea
 
     }
 

@@ -102,7 +102,11 @@ namespace DungeonRun
                 Widgets.ForSale.window.title.text = "Shhh!";
             }
 
-
+            else if (vendorRef == ObjType.Wor_Boat_Captain_Brandy)
+            {
+                welcomeDialog = "i'm brandy, the ship's captain.\nwhere to today, link?";
+                Widgets.ForSale.window.title.text = "Let's go!";
+            }
 
 
 
@@ -464,6 +468,25 @@ namespace DungeonRun
 
                 #endregion
 
+
+                #region Ship Destinations
+
+                else if (Item.type == MenuItemType.Ship_Destination_Island)
+                {
+                    CompleteSale(Item);
+                    CloseVendorScreen();
+
+                    Functions_Level.BuildLevel(LevelID.Boat); //default to boat level
+                }
+                else if (Item.type == MenuItemType.Ship_Destination_Sea)
+                {
+                    CompleteSale(Item);
+                    CloseVendorScreen();
+
+                    Functions_Level.BuildLevel(LevelID.Swamp_Entrance); //default to boat level
+                }
+
+                #endregion
 
 
 

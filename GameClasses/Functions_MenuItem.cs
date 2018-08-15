@@ -348,9 +348,6 @@ namespace DungeonRun
             #endregion
 
 
-
-
-
             #region Colliseum Challenge menuItems
 
             //standards
@@ -401,6 +398,29 @@ namespace DungeonRun
 
             #endregion
 
+
+
+
+            #region Ship Destination menuItems
+
+            else if (Type == MenuItemType.Ship_Destination_Island)
+            {
+                MenuItem.name = "Island";
+                MenuItem.description = "travel to the \nmain island.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Challenge;
+                MenuItem.compSprite.texture = Assets.colliseumLevelSheet;
+                MenuItem.price = 0;
+            }
+            else if (Type == MenuItemType.Ship_Destination_Sea)
+            {
+                MenuItem.name = "Sea";
+                MenuItem.description = "travel to the \nsea location.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Challenge;
+                MenuItem.compSprite.texture = Assets.colliseumLevelSheet;
+                MenuItem.price = 0;
+            }
+
+            #endregion
 
 
 

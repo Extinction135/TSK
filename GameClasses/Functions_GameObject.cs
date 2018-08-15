@@ -2451,6 +2451,8 @@ namespace DungeonRun
                 Obj.compSprite.zOffset = 0; //sorts normally
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = true;
+
+                Obj.group = ObjGroup.Vendor;
             }
 
             #endregion

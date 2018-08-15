@@ -1,5 +1,48 @@
 
 
+
+
+
+
+the boat acts as a very short training/intro level.
+link initially starts out on boat level, without ability to
+exit boat (no stairs). there is one enemy on board that link
+has to defeat - and he has some hp. the captain obj exists
+on board, talking with him begs link to kill the pirate.
+once link defeats the pirate, the captain changes to the hands
+up animtion with exclamation point particle. link speaks
+with captain completing the first story boolean: save
+the captain. captain thanks link for saving his life and 
+turns into the standard captain obj.
+
+on this intro level, however, player can only select sm island
+destination. the captain says it's the closest location that 
+has supplies so he can repair his ship.. 
+*link discovers the hyrule tournament poster on this tiny island*
+(which would then open Hyrule as a destination on the boat)
+this would also introduce the player to
+a smaller overworld map and moving between locations, plus
+it would be interesting to switch overworld maps so early
+in the game - alluding to a larger game scope and complexity.
+*the 'supplies' are a reward for defeating a miniboss in
+a special intro dungeon on the island. in the supplies is a 
+poster for a tournament in hyrule.
+
+
+
+
+
+
+Editor++
+
+we need to be able to mass select and move objects.
+drag a rectangle around objects, move them in 16 px
+increments using arrow keys. button up on top menu
+allows for 'mass move' mode.
+
+
+
+
 Magic Mirror
 use it in a dungeon to return to the exit (starting room). 
 exiting dungeon takes us to field.

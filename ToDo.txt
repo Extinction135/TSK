@@ -8,7 +8,7 @@ and this we should do freely and generously."
 	
 Roadmap
 
-0.76 - swamp levels + dungeon + enemies + boat
+0.76 - swamp level + dungeon + enemies + boat level
 0.77 - castle, city, royal vendors
 0.78 - king, fight with king, lightworld storyline
 0.79 - intro, farming + seeds + crops
@@ -59,43 +59,19 @@ Today:
 
 
 
-Ship++
 
-added brandy, ship's captain object.
-fixed sorting issue with the stairs cover on the boat.
-modified swamp entrance level.
-modified boat level. both levels use the same boat
-object layout, so the boat is consistent across levels.
-compiled roomdata for testing.
+Ship Travel
 
-
-
-
-
-
-
-
-
-
-Editor++
-
-we need to be able to mass select and move objects.
-drag a rectangle around objects, move them in 16 px
-increments using arrow keys. button up on top menu
-allows for 'mass move' mode.
-
-
-
-
-
-
-Boat++
-
-*move brandy's boat to where link spawns on the boat,
-when the swamp level loads.
-*move brandy's boat to where link spawns on the boat,
-when the ship level loads.
-*this will be done via mass move tool.
+brandy is now a vendor.
+added vendor dialog for brandy.
+added ship destinations to menuItem enum.
+added ship destination defs to menuItem.setType().
+added routines to PurchaseItem() to complete the
+functionality of destination purchases. the level
+is rebuilt based on a new levelID value, which is
+determined by the type of menuItem destination 
+purchased. we can now travel between overworlds.
+tested and working as expected.
 
 
 
@@ -105,51 +81,33 @@ when the ship level loads.
 
 
 
+Ship Travel
+purchasing a trip should exit to the overworld
+screen, but should also set the current level.
+that way, the overworld screen uses the current
+level value to determine which overworld to display.
 
 
-we should be able to interact with brandy, she
-should be a vendor.
 
-
-
-Brandy, Ship's Captain
-
-we have captain sprites.
-
--capt. brandy faces up or down based on hero's pos.
-this makes her feel alive.
--while facing south, brandy will sometimes blink
--brandy has a hands up animation too
-
-Brandy functions as a vendor for now.
-
-
-how do we transition between overworlds?
-by talking to brandy, the captain, which pops a vendor
-dialog screen (for now), where travel can be purchased
-for nothing. there are two locations for travel: island
-and swamp.
+complete adding water tiles to both swamp and boat levels.
+the entire level should be water.
 
 
 
 
 
 
+-while facing south, brandy should sometimes blink,
+and sometimes she should raise her hands up in the air.
 
 
-remove swamp level from island.
-add captain obj to ship (brandy)
-create vendor menuItems for brandy
-setup vendor screen for brandy
-purchasing a trip should reload the level,
-just like colliseum. once the swamp level is
-loaded, exiting the level should take hero to 
-sea overworld screen. 
-should be able to purchase trip back to island too.
+
 all trips should be free for now.
 
 
 
+*we need a unique menuItem sprite for ship destinations.
+for now, we're just using the colliseum challenges sprites.
 
 
 
@@ -159,20 +117,11 @@ all trips should be free for now.
 
 
 
-
-
-overworlds ++
+swamp level++
 move the swamp level onto a new overworld. this level
 should also have sunken/broken ships around, with vines
-and various water objects. brandy's ship should exist
-on this level as well, with brandy. this should be a complete
-level.
-
-the 2nd overworld is just a single location with a ship
-sprite and debris around it. waves are created all over
-the screen.
-
-
+and various water objects. we need broken/damaged ship parts
+to build decorative ships around the level.
 
 
 
@@ -190,75 +139,11 @@ update the 1st overworld map: remove the swamp location
 and swamp island sprite from map. keep the sprite in PSD
 for later use, tho.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-*we can create other boats without brandy that
-serve as areas to explore in some water levels.
-*we could even create sunken ships to explore.
-*and add vines to lock areas off..
-*add broken/sunken ship to swamp level near entrance.
-*brandy should anchor far away.
-
-
-
-
-
-create ship flag animation sprites.
-remove the jolly roger from it.
-we'll use this as an overlay later on if needed.
-add ship flag.
-
-
-
-
-
-
-
-
-
-
-
-
-
 Boat Objs
-
 
 boat bridge top + bottom - used for 2 hitboxes to
 keep link inside the bridge so he cant fall off.
 this bridge always attaches to a pier.
-
 
 
 Pier Objs
@@ -268,111 +153,11 @@ which we can reduce to 2x3 grid, with flips.
 
 
 
-
-
-
-
-
-we need a captain object.
-we need a captain / destination vendor dialog screen.
-
-
-
-link can have a real boat.
-this boat can have something on the front of it.
-this can be saved in the game data using an enum.
-a vendor can sell different boat decorations for gold.
-this allows link to customize his boat and save
-those customizations. this is essentially sea of
-theives.
-
-
-
-
-
-
-
-
-
-
-
-BOAT LEVEL
-
-the boat always exists at center bottom of a level.
-in addition to the boat, we add objects to theme the level.
-
-for example, the swamp level has the swamp entrance obj, plus
-vines and various decorations. 
-
-for the coastline level (island boat), we have coastline
-objects above the boat, with a bridge and pier.
-
-need function to create boat at boat location, because 
-making that damn boat each time will be a PITA.
-link boat function to a editor menu button, create boat
-for coastline and swamp levels. link coastline level
-up to overworld. leave swamp location for testing, for now.
-
-
-
-
-
-
-
-
-
-
-
-
-on the boat, we have the captain roomObj. speaking with 
-the captain pops up the destination vendor dialog screen.
-there are two destinations: swamp and coastline.
-these are purchased using menuItems, just like colliseum
-challenges or items. upon purchase, the level is reloaded
-with a diff level ID corresponding to the menuItem type.
-this allows player to move between levels via the captain
-object. this allows the game to 'hide' levels from the
-overworld, only making them accessible via destination vendor.
-also allows for connection to a different overworld map.
-
-remove swamp level location on map.
-create coastline boat level location on map and in game.
-
-
-
-the boat acts as a very short training/intro level.
-link initially starts out on boat level, without ability to
-exit boat (no stairs). there is one enemy on board that link
-has to defeat - and he has some hp. the captain obj exists
-on board, talking with him begs link to kill the pirate.
-once link defeats the pirate, the captain changes to the hands
-up animtion with exclamation point particle. link speaks
-with captain completing the first story boolean: save
-the captain. captain thanks link for saving his life and 
-turns into the standard captain obj.
-
-on this intro level, however, player can only select sm island
-destination. the captain says it's the closest location that 
-has supplies so he can repair his ship.. 
-*link discovers the hyrule tournament poster on this tiny island*
-(which would then open Hyrule as a destination on the boat)
-this would also introduce the player to
-a smaller overworld map and moving between locations, plus
-it would be interesting to switch overworld maps so early
-in the game - alluding to a larger game scope and complexity.
-*the 'supplies' are a reward for defeating a miniboss in
-a special intro dungeon on the island. in the supplies is a 
-poster for a tournament in hyrule.
-
-
-
-
-
-
-
-
-
-
+create ship flag animation sprites.
+remove the jolly roger from it.
+we'll use this as an overlay later on if needed.
+add ship flag. it should animate and bring life
+to the level.
 
 
 
@@ -385,8 +170,6 @@ add more swamp objects:
 
 bulb - annoying small blocking obj
 sm plant - blocking, but can be destroyed like bush
-
-
 
 
 
@@ -403,28 +186,6 @@ above water.
 
 
 
-
-
-swamp entrance is in the sea, accessed via BOAT.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 spikeblocks++
 
 spikeblocks = swim under. indestructible. immobile.
@@ -433,16 +194,7 @@ we can add these into dungeon rooms as well.
 
 
 
-
-
 waterfall and coastline sprites exist!
-
-
-
-
-
-
-
 
 
 
@@ -456,6 +208,8 @@ or complex. we're also going to be adding a water lever
 critical path into this dungeon, so it needs to remain
 about the size of the forest dungeon. the boss room
 should connect to the hub room as well.
+
+
 
 
 
@@ -487,15 +241,6 @@ hitBox, and then larger enemies can have larger hitboxes while also
 being able to cast projectiles...
 plus, projectiles could properly implement their behaviors - by
 tracking the actor's hitbox instead of their newPosition..
-
-
-
-
-
-
-
-
-
 
 
 
@@ -538,22 +283,10 @@ create 2 armored spiders in hub room for mountain.
 
 
 
-
-
-
-
 *this also sets up the possibility of water colliseum battles.
 *judge should be sitting on a lilly pad.
 *we'd just need to flood the colliseum with water tiles, then
 place lilly pads / rafts / bridges / etc in specific areas.
-
-
-
-
-
-
-
-
 
 
 
@@ -575,7 +308,6 @@ does now, but better.
 darkworld dungeon entrance level design idea:
 must grow foilage to enter dungeon, which
 also grows monsters and stuff..
-
 
 
 
@@ -608,34 +340,12 @@ should be wide as well.
 
 
 
-
-
-
-
-
-
 My Chickens!
 now that we have posts, we can make this sidequest.
 this is an NPC with an expanding hitBox check for 4 chickens
 nearby. surrounding the NPC is the posts, which form a chicken
 pen. link has to pickup and deliver the 4 chickens to the pen,
 then he gets the reward.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

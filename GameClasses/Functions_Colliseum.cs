@@ -134,7 +134,8 @@ namespace DungeonRun
                 Functions_GameObject.SetType(objRef, ObjType.Wor_Colliseum_Pillar_Top);
             }
 
-            //respawn hero inside of pit
+            //respawn hero inside of pit - this line is actually not needed,
+            //because spawn in current room is called from level.buildLevel()..
             Functions_Hero.SpawnInCurrentRoom();
 
             //create the judge obj
