@@ -119,7 +119,8 @@ namespace DungeonRun
 
                     else if (exitAction == ExitAction.Overworld)
                     {
-                        ScreenManager.ExitAndLoad(Screens.Overworld_Sea);
+                        //exit level, loading proper overworld map
+                        Functions_Overworld.OpenMap();
                     }
                     else if (exitAction == ExitAction.Title)
                     {

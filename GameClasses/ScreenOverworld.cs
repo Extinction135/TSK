@@ -13,6 +13,26 @@ using Microsoft.Xna.Framework.Media;
 namespace DungeonRun
 {
 
+
+    public static class Functions_Overworld
+    {
+        public static void OpenMap()
+        {
+            //based on the last level that hero was on, load proper overworld
+
+            if(LevelSet.currentLevel.ID == LevelID.Swamp_Entrance
+                || LevelSet.currentLevel.ID == LevelID.Swamp_Dungeon)
+            {   //these levels point to sea overworld
+                ScreenManager.ExitAndLoad(Screens.Overworld_Sea);
+            }
+            else
+            {   //all other levels point to island overworld
+                ScreenManager.ExitAndLoad(Screens.Overworld_Island);
+            }
+        }
+    }
+
+
     //there are multiple overworld screens, this is the base class they inherit from
     public class ScreenOverworld : Screen
     {
@@ -329,7 +349,7 @@ namespace DungeonRun
             locations.Add(leftTownChurch);
             MapLocation leftIslandConnector = new MapLocation(false, new Vector2(175, 296));
             locations.Add(leftIslandConnector);
-            MapLocation swampDungeon = new MapLocation(true, new Vector2(117, 275));
+            MapLocation swampDungeon = new MapLocation(false, new Vector2(117, 275));
             locations.Add(swampDungeon);
 
             //bottom right part of map
@@ -442,7 +462,6 @@ namespace DungeonRun
 
             forestDungeon.ID = LevelID.Forest_Entrance;
             caveDungeon.ID = LevelID.Mountain_Entrance;
-            swampDungeon.ID = LevelID.Swamp_Entrance;
 
 
             //2. Setup current MAP location based on current FIELD id
@@ -462,8 +481,6 @@ namespace DungeonRun
             { currentLocation = forestDungeon; }
             else if (LevelSet.field.ID == LevelID.Mountain_Entrance)
             { currentLocation = caveDungeon; }
-            else if (LevelSet.field.ID == LevelID.Swamp_Entrance)
-            { currentLocation = swampDungeon; }
 
             else //default to colliseum if unknown
             { currentLocation = colliseum; }
@@ -532,7 +549,8 @@ namespace DungeonRun
 
     }
 
-    //sea overworld contains swamp level, for now
+
+    //sea overworld only contains swamp level, for now
     public class ScreenOverworld_Sea : ScreenOverworld
     {
         public ScreenOverworld_Sea()
@@ -563,6 +581,8 @@ namespace DungeonRun
             ship.ID = LevelID.Swamp_Entrance;
 
             if (LevelSet.field.ID == LevelID.Swamp_Entrance)
+            { currentLocation = ship; }
+            else if (LevelSet.field.ID == LevelID.Swamp_Dungeon)
             { currentLocation = ship; }
 
             //default to ship if unknown
@@ -617,6 +637,4 @@ namespace DungeonRun
     }
 
 
-
-    
 }

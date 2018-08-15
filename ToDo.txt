@@ -58,23 +58,32 @@ Roadmap
 Today:
 
 
+
+
 Overworld++
 
-added sea overworld texture to project.
-renamed overworld island and sea textures in both
-Dx and UWP projects.
+swamp dungeon/entrance no longer exists on island.
+this level now only exists on sea overworld.
 
-heavily modified overworld screen: now there are two
-overworld screens, which inherit from a base overworld
-screen which contains all the screen logic. the island
-and sea overworld screens then implement their own set
-of locations, bkg texture, and particles. this is the
-foundation for multiple overworld screens, allowing for
-different locations and sea travel via ship captain.
+created Functions_overworld.OpenMap(), which acts as
+a controller to determine which overworld map should
+be loaded, based on the last level hero was on.
 
-modified all overworld paths to converge on the new
-sea overworld screen, for testing purposes. working as
-expected, including entering and exiting swamp level.
+updated codebase to load overworld screens thru
+overworld.openMap(). however, this cannot be tested
+as is because we don't have a way to physically get
+to the sea overworld map yet - this will be done via
+Brandy, the Ship's Captain.
+
+
+
+
+
+
+
+
+Brandy, Ship's Captain
+
 
 
 
