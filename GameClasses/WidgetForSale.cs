@@ -220,6 +220,9 @@ namespace DungeonRun
             {   //if any menuItem is known, display it's cost
                 if (menuItems[i].type != MenuItemType.Unknown)
                 { DisplayItemCost(menuItems[i], amounts[i]); }
+                //if any menuItem is 0, don't display it's cost
+                if (menuItems[i].price == 0)
+                { amounts[i].visible = false; }
             }
         }
 

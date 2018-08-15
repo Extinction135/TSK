@@ -19,8 +19,12 @@ namespace DungeonRun
         public static void OpenMap()
         {
             //based on the last level that hero was on, load proper overworld
-            Debug.WriteLine("Functions_Overworld.OpenMap(): current level id: " + LevelSet.currentLevel.ID);
-
+            if(Flags.PrintOutput)
+            {
+                Debug.WriteLine(
+                    "Functions_Overworld.OpenMap(): current level id: " + 
+                    LevelSet.currentLevel.ID);
+            }
 
             if(LevelSet.currentLevel.ID == LevelID.Swamp_Entrance
                 || LevelSet.currentLevel.ID == LevelID.Swamp_Dungeon)

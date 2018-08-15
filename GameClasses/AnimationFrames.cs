@@ -379,6 +379,7 @@ namespace DungeonRun
         public static List<Byte4> Wor_Boat_Engine = new List<Byte4> { new Byte4(1, 2, 0, 0) };
 
         public static List<Byte4> Wor_Boat_Captain_Brandy = new List<Byte4> { new Byte4(6, 0, 0, 0) };
+        public static List<Byte4> Wor_Boat_Ship_Destination = new List<Byte4> { new Byte4(6, 1, 0, 0) };
 
         #endregion
 

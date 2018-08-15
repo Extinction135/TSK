@@ -2,6 +2,50 @@
 
 
 
+My Chickens!
+now that we have posts, we can make this sidequest.
+this is an NPC with an expanding hitBox check for 4 chickens
+nearby. surrounding the NPC is the posts, which form a chicken
+pen. link has to pickup and deliver the 4 chickens to the pen,
+then he gets the reward.
+
+
+
+
+
+
+TITLE SCREEN + TEST AI
+
+title screen is the menu with input over a level screen
+played by an AI. this AI doesn't have to be good. it just
+has to move around and attack and explore stuff - and it can't
+die. after a period of time, randomly load a different level
+or dungeon. should start inside a dungeon.
+
+
+
+
+
+
+
+
+add a 'clean room' button - removes all roomObjs
+not of group wall or door. thats it.
+leaves us with a blank room with walls, doors,
+statues, and floors.
+add this button to a new widget.. somewhere..
+
+
+
+add to forest dungeon:
+eye statue - doesn't attack, can be picked up like turtle. 
+doesnt move. hand placed.
+
+floating sm eye - randomly floats around, explodes if near hero,
+hand placed.
+
+
+
 
 
 the boat acts as a very short training/intro level.

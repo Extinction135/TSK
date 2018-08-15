@@ -194,10 +194,10 @@ namespace DungeonRun
         //Equipment
         public MenuItemType currentEquipment = MenuItemType.Unknown;
         public Boolean equipmentRing = true;
-        //public Boolean equipmentPearl = false;
-        //public Boolean equipmentNecklace = false;
-        //public Boolean equipmentGlove = false;
-        //public Boolean equipmentPin = false;
+        public Boolean equipmentPearl = false;
+        public Boolean equipmentNecklace = false;
+        public Boolean equipmentGlove = false;
+        public Boolean equipmentPin = false;
 
         //setup default enemy items
         public MenuItemType enemyItem = MenuItemType.Unknown;

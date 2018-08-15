@@ -60,26 +60,19 @@ Today:
 
 
 
+Destinations++
+
+added unique menuItem sprite for ship destinations.
+vaguely looks like a treasure map.
 
 
-Summary Screen++
+Item Costs++
 
-summary screen is never reset.
-updated summary screen to set it's display state to
-opening via Open() method. this allows summary screen
-to display more than once. duh. ouch.
-
-summary screen sets the current level based on saveData.
-this used to be useful, but now we always know what the
-last level loaded was, via levelSet.currentLevel. so, we
-dont really need to set the level from summary screen.
-this has the net effect of allowing the player to die
-in the swamp and then displays the sea overworld,
-instead of the island overworld - keeping things consistent.
-
-tested, working. dying in a level or dungeon
-returns link to the proper overworld screen,
-once the summary screen has completed.
+if an item costs 0, then it's cost shouldn't be displayed
+on any vendor screen. done. this makes it easier to
+see destination menuItems, plus it conveys the 'cost'
+of the item visually - there is no cost for this item.
+this affect pets, as pets are all free. tested, working.
 
 
 
@@ -91,69 +84,34 @@ once the summary screen has completed.
 
 
 
-
-complete adding water tiles to both swamp and boat levels.
-the entire levels should be water.
-
-
-
-
+Brandy++
 
 -while facing south, brandy should sometimes blink,
-and sometimes she should raise her hands up in the air.
-
-
-*we need a unique menuItem sprite for ship destinations.
-for now, we're just using the colliseum challenges sprites.
-this should be a treasure map or something 'mappy'.
-
-
+-sometimes she should raise her hands up in the air.
+*brandy gets AI, and randomly that AI sets her animation
+frames to hands up or blink. blink is more common, hands
+up is more rare. this varies her appearance and gets
+the player's attention.
 
 
 
 
 
-swamp level++
-move the swamp level onto a new overworld. this level
-should also have sunken/broken ships around, with vines
+
+
+
+
+
+
+
+Swamp level++
+add sunken/broken ships around, with vines
 and various water objects. we need broken/damaged ship parts
 to build decorative ships around the level.
 
 
 
 
-
-Ship level on Island
-we need to complete this level:
-ship is docked at a pier, with bridge.
-north in level is coastline, with animated water
-fx for waves hitting coast. these are implemented
-ontop of the existing water tiles, so we don't modify
-the swimming system already in place.
-
-update the 1st overworld map: remove the swamp location
-and swamp island sprite from map. keep the sprite in PSD
-for later use, tho.
-
-Boat Objs
-
-boat bridge top + bottom - used for 2 hitboxes to
-keep link inside the bridge so he cant fall off.
-this bridge always attaches to a pier.
-
-
-Pier Objs
-this is standard 3x3 grid of sprites,
-which we can reduce to 2x3 grid, with flips.
-
-
-
-
-create ship flag animation sprites.
-remove the jolly roger from it.
-we'll use this as an overlay later on if needed.
-add ship flag. it should animate and bring life
-to the level.
 
 
 
@@ -180,19 +138,11 @@ above water.
 
 
 
-
-
 spikeblocks++
 
 spikeblocks = swim under. indestructible. immobile.
 we need immobile spikeblocks!
 we can add these into dungeon rooms as well.
-
-
-
-waterfall and coastline sprites exist!
-
-
 
 
 
@@ -204,6 +154,59 @@ or complex. we're also going to be adding a water lever
 critical path into this dungeon, so it needs to remain
 about the size of the forest dungeon. the boss room
 should connect to the hub room as well.
+
+
+
+
+
+
+
+
+
+
+
+
+
+waterfall and coastline sprites exist!
+
+
+Ship level on Island
+we need to complete this level:
+ship is docked at a pier, with bridge.
+north in level is coastline, with animated water
+fx for waves hitting coast. these are implemented
+ontop of the existing water tiles, so we don't modify
+the swimming system already in place.
+
+update the 1st overworld map: remove the swamp location
+and swamp island sprite from map. keep the sprite in PSD
+for later use, tho.
+
+
+Boat Objs
+boat bridge top + bottom - used for 2 hitboxes to
+keep link inside the bridge so he cant fall off.
+this bridge always attaches to a pier.
+
+
+Pier Objs
+this is standard 3x3 grid of sprites,
+which we can reduce to 2x3 grid, with flips.
+
+
+
+Boat Flag
+create ship flag animation sprites.
+remove the jolly roger from it.
+we'll use this as an overlay later on if needed.
+add ship flag. it should animate and bring life
+to the level.
+
+
+
+
+
+
 
 
 
@@ -301,12 +304,6 @@ bonus: grass under the trees should act as a fuse for a
 massive forest fire across the whole level. kinda like it
 does now, but better.
 
-darkworld dungeon entrance level design idea:
-must grow foilage to enter dungeon, which
-also grows monsters and stuff..
-
-
-
 
 
 
@@ -336,30 +333,11 @@ should be wide as well.
 
 
 
-My Chickens!
-now that we have posts, we can make this sidequest.
-this is an NPC with an expanding hitBox check for 4 chickens
-nearby. surrounding the NPC is the posts, which form a chicken
-pen. link has to pickup and deliver the 4 chickens to the pen,
-then he gets the reward.
-
-
-
-
-
-
-
 Polish + Fixes
 
 explosions should push roomObjects that they touch.
 that are moveable. that dont get destroyed?
 are explosions pushing objects?
-
-add a 'clean room' button - removes all roomObjs
-not of group wall or door. thats it.
-leaves us with a blank room with walls, doors,
-statues, and floors.
-add this button to a new widget.. somewhere..
 
 
 rats and crabs should "bite", but turtles dont.
@@ -377,32 +355,7 @@ widget, if we extende the widget.
 footholds were pushed off the mountain wall.
 i assume a frame of interaction happened prior to
 the roomObj types being updated. 
-*when we reset the pool, stopMovement() on all objs too.
-
-
-
-
-
-
-
-
-TITLE SCREEN + TEST AI
-
-title screen is the menu with input over a level screen
-played by an AI. this AI doesn't have to be good. it just
-has to move around and attack and explore stuff - and it can't
-die. after a period of time, randomly load a different level
-or dungeon. should start inside a dungeon.
-
-
-
-
-add to forest dungeon:
-eye statue - doesn't attack, can be picked up like turtle. 
-doesnt move. hand placed.
-
-floating sm eye - randomly floats around, explodes if near hero,
-hand placed.
+*when we reset the pool, stopMovement() on all objs.
 
 
 
