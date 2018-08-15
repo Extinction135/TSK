@@ -631,7 +631,7 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[40], ObjType.Wor_Boat_Floor);
             Functions_GameObject.SetType(objList[41], ObjType.Wor_Boat_Barrel);
             Functions_GameObject.SetType(objList[42], ObjType.Wor_Boat_Stairs_Cover);
-            Functions_GameObject.SetType(objList[43], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[43], ObjType.Wor_Boat_Captain_Brandy);
 
             //row 12 - cheat and put these beyond widget bounds cause they big
             Functions_GameObject.SetType(objList[44], ObjType.Unknown);

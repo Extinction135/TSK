@@ -534,6 +534,8 @@ namespace DungeonRun
         Wor_Boat_Barrel,
         Wor_Boat_Stairs_Cover,
 
+        Wor_Boat_Captain_Brandy,
+
         #endregion
 
 

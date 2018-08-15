@@ -2430,7 +2430,7 @@ namespace DungeonRun
                 Obj.compCollision.rec.Width = 16; Obj.compCollision.offsetX = -8;
                 Obj.compCollision.rec.Height = 16; Obj.compCollision.offsetY = -8;
 
-                Obj.compSprite.zOffset = 0; //sort above water
+                Obj.compSprite.zOffset = -24; //sort below hero
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = false;
             }
@@ -2438,6 +2438,22 @@ namespace DungeonRun
             #endregion
 
 
+            #region Boat Captain Brandy
+
+            else if (Type == ObjType.Wor_Boat_Captain_Brandy)
+            {
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Captain_Brandy;
+                Obj.compSprite.texture = Assets.boatLevelSheet;
+
+                Obj.compCollision.rec.Width = 16; Obj.compCollision.offsetX = -8;
+                Obj.compCollision.rec.Height = 16; Obj.compCollision.offsetY = -8;
+
+                Obj.compSprite.zOffset = 0; //sorts normally
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = true;
+            }
+
+            #endregion
 
 
 

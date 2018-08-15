@@ -59,30 +59,76 @@ Today:
 
 
 
+Ship++
 
-Overworld++
-
-swamp dungeon/entrance no longer exists on island.
-this level now only exists on sea overworld.
-
-created Functions_overworld.OpenMap(), which acts as
-a controller to determine which overworld map should
-be loaded, based on the last level hero was on.
-
-updated codebase to load overworld screens thru
-overworld.openMap(). however, this cannot be tested
-as is because we don't have a way to physically get
-to the sea overworld map yet - this will be done via
-Brandy, the Ship's Captain.
+added brandy, ship's captain object.
+fixed sorting issue with the stairs cover on the boat.
+modified swamp entrance level.
+modified boat level. both levels use the same boat
+object layout, so the boat is consistent across levels.
+compiled roomdata for testing.
 
 
 
 
 
+
+
+
+
+
+Editor++
+
+we need to be able to mass select and move objects.
+drag a rectangle around objects, move them in 16 px
+increments using arrow keys. button up on top menu
+allows for 'mass move' mode.
+
+
+
+
+
+
+Boat++
+
+*move brandy's boat to where link spawns on the boat,
+when the swamp level loads.
+*move brandy's boat to where link spawns on the boat,
+when the ship level loads.
+*this will be done via mass move tool.
+
+
+
+
+
+
+
+
+
+
+
+we should be able to interact with brandy, she
+should be a vendor.
 
 
 
 Brandy, Ship's Captain
+
+we have captain sprites.
+
+-capt. brandy faces up or down based on hero's pos.
+this makes her feel alive.
+-while facing south, brandy will sometimes blink
+-brandy has a hands up animation too
+
+Brandy functions as a vendor for now.
+
+
+how do we transition between overworlds?
+by talking to brandy, the captain, which pops a vendor
+dialog screen (for now), where travel can be purchased
+for nothing. there are two locations for travel: island
+and swamp.
 
 
 
@@ -126,25 +172,8 @@ the 2nd overworld is just a single location with a ship
 sprite and debris around it. waves are created all over
 the screen.
 
-how do we transition between overworlds?
-by talking to brandy, the captain, which pops a vendor
-dialog screen (for now), where travel can be purchased
-for nothing. there are two locations for travel: island
-and swamp.
 
 
-
-
-Ship Captain
-
-we have captain sprites.
-
--capt. brandy faces up or down based on hero's pos.
-this makes her feel alive.
--while facing south, brandy will sometimes blink
--brandy has a hands up animation too
-
-Brandy functions as a vendor for now.
 
 
 
