@@ -221,7 +221,7 @@ namespace DungeonRun
                 //get last location
                 LevelSet.currentLevel.ID = PlayerData.current.lastLocation;
                 //exit all screens, return to overworld
-                ScreenManager.ExitAndLoad(Screens.Overworld);
+                ScreenManager.ExitAndLoad(Screens.Overworld_Sea);
             }
 
             #endregion

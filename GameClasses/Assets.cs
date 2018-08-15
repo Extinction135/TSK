@@ -46,10 +46,13 @@ namespace DungeonRun
         public static Texture2D swampLevelSheet;
 
 
+        //overworld sheets
+        public static Texture2D overworld_island;
+        public static Texture2D overworld_sea;
 
 
+        //misc
         public static Texture2D bigTextSheet;
-        public static Texture2D overworldSheet;
         public static Texture2D titleBkgSheet;
 
 
@@ -196,10 +199,11 @@ namespace DungeonRun
             //fonts
             font = content.Load<SpriteFont>(@"pixelFont");
             medFont = content.Load<SpriteFont>(@"mediumFont");
-
-            overworldSheet = content.Load<Texture2D>(@"OverworldTexture");
             titleBkgSheet = content.Load<Texture2D>(@"TitleBkg");
 
+            //overworld textures
+            overworld_island = content.Load<Texture2D>(@"Overworld_Island");
+            overworld_sea = content.Load<Texture2D>(@"Overworld_Sea");
 
             //load all sprite textures
             bigTextSheet = content.Load<Texture2D>(@"Sprites_BigText");

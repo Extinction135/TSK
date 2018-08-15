@@ -223,7 +223,7 @@ namespace DungeonRun
                 //from lsn screen to overworld
                 if(exitAction == ExitAction.GameLoaded)
                 {   //exit all screens, load overworld level
-                    ScreenManager.ExitAndLoad(Screens.Overworld);
+                    ScreenManager.ExitAndLoad(Screens.Overworld_Sea);
                 }
                 //from inventory screen to title
                 else if(exitAction == ExitAction.Title)

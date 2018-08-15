@@ -119,7 +119,7 @@ namespace DungeonRun
 
                     else if (exitAction == ExitAction.Overworld)
                     {
-                        ScreenManager.ExitAndLoad(Screens.Overworld);
+                        ScreenManager.ExitAndLoad(Screens.Overworld_Sea);
                     }
                     else if (exitAction == ExitAction.Title)
                     {
