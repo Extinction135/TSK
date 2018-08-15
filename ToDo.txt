@@ -59,15 +59,30 @@ Today:
 
 
 
-Ship Travel++
 
-purchasing a trip should exit to the overworld
-screen, but should also set the current level.
-that way, the overworld screen uses the current
-level value to determine which overworld to display.
-this has the net effect of displaying the proper
-overworld map when hero purchases a trip from
-boat captain, brandy.
+
+
+Summary Screen++
+
+summary screen is never reset.
+updated summary screen to set it's display state to
+opening via Open() method. this allows summary screen
+to display more than once. duh. ouch.
+
+summary screen sets the current level based on saveData.
+this used to be useful, but now we always know what the
+last level loaded was, via levelSet.currentLevel. so, we
+dont really need to set the level from summary screen.
+this has the net effect of allowing the player to die
+in the swamp and then displays the sea overworld,
+instead of the island overworld - keeping things consistent.
+
+tested, working. dying in a level or dungeon
+returns link to the proper overworld screen,
+once the summary screen has completed.
+
+
+
 
 
 
@@ -78,12 +93,10 @@ boat captain, brandy.
 
 
 complete adding water tiles to both swamp and boat levels.
-the entire level should be water.
+the entire levels should be water.
 
 
 
--when we died in the swamp dungeon, we spawned on the boat level
-at the island.
 
 
 -while facing south, brandy should sometimes blink,
