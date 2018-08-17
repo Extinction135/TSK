@@ -498,6 +498,8 @@ namespace DungeonRun
         Wor_Swamp_BigPlant,
 
         Wor_Swamp_Vine,
+        Wor_Swamp_Bulb,
+        Wor_Swamp_SmPlant,
 
         #endregion
 

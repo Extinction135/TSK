@@ -2166,6 +2166,31 @@ namespace DungeonRun
                 Obj.compCollision.blocking = false;
             }
 
+            else if (Type == ObjType.Wor_Swamp_Bulb)
+            {
+                Obj.compCollision.rec.Width = 6; Obj.compCollision.offsetX = -3;
+                Obj.compCollision.rec.Height = 4; Obj.compCollision.offsetY = 2;
+
+                Obj.compSprite.texture = Assets.swampLevelSheet;
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Swamp_Bulb;
+
+                Obj.compSprite.zOffset = 1;
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = true;
+            }
+            else if (Type == ObjType.Wor_Swamp_SmPlant)
+            {   
+                Obj.compCollision.rec.Width = 10; Obj.compCollision.offsetX = -5;
+                Obj.compCollision.rec.Height = 4; Obj.compCollision.offsetY = 2;
+
+                Obj.compSprite.texture = Assets.swampLevelSheet;
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Swamp_SmPlant;
+
+                Obj.compSprite.zOffset = 1;
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = true;
+            }
+
             #endregion
 
 

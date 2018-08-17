@@ -1099,13 +1099,13 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[15], ObjType.Dungeon_Statue);
 
             //row 5
-            Functions_GameObject.SetType(objList[16], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[16], ObjType.Wor_Swamp_SmPlant);
             Functions_GameObject.SetType(objList[17], ObjType.Wor_Swamp_BigPlant);
             Functions_GameObject.SetType(objList[18], ObjType.Unknown);//
             Functions_GameObject.SetType(objList[19], ObjType.Wor_Swamp_LillyPad);
 
             //row 6
-            Functions_GameObject.SetType(objList[20], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[20], ObjType.Wor_Swamp_Bulb);
             Functions_GameObject.SetType(objList[21], ObjType.Unknown);//
             Functions_GameObject.SetType(objList[22], ObjType.Unknown);//
             Functions_GameObject.SetType(objList[23], ObjType.Unknown);//
