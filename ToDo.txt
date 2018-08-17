@@ -49,57 +49,11 @@ Today:
 
 
 
-Pier Objs
 
-pier objs connect to the boat's bridge.
-this is reserved for civilized locations, where
-a pier might be present in a maintained port.
-in non-civilized locations, the swamp entrance
-for example, there would be no such bridge to
-a pier. instead link would just dive into the 
-water from the boat. done.
+Coastlines++
 
-added animated water waves to the pier obj corners.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Ship level on Island
-
-we need to complete this level:
-ship is docked at a pier, with bridge.
-north in level is coastline, with animated water
-fx for waves hitting coast. these are implemented
-ontop of the existing water tiles, so we don't modify
-the swimming system already in place.
-
-
-
-
-
-coastline sprites!
-setup north exit of boat level to look like island.
-
-
-
-
-
-
-
-
+added coastline objects, completed essential
+island boat level.
 
 
 

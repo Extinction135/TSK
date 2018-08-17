@@ -2559,6 +2559,25 @@ namespace DungeonRun
             #endregion
 
 
+            #region CoastLine
+
+            //coastline sprites only exist on boat sheet for now
+            else if (Type == ObjType.Wor_Boat_Coastline)
+            {   //nonstandard size
+                Obj.compSprite.drawRec.Width = 16 * 1; Obj.compSprite.drawRec.Height = 16 * 2;
+                Obj.compCollision.rec.Width = 16 * 1; Obj.compCollision.offsetX = -8;
+                Obj.compCollision.rec.Height = 16 * 2; Obj.compCollision.offsetY = -8;
+
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Coastline;
+                Obj.compSprite.texture = Assets.boatLevelSheet;
+                
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = false;
+                Obj.compSprite.zOffset = -128; //same as water tiles
+            }
+
+
+            #endregion
 
 
 

@@ -412,9 +412,11 @@ namespace DungeonRun
         
         public static List<Byte4> Wor_Boat_Pier_BottomRight = new List<Byte4>
         { new Byte4(8, 9, 1, 0), new Byte4(10, 9, 0, 0) };
-        
 
 
+
+        public static List<Byte4> Wor_Boat_Coastline = new List<Byte4>
+        { new Byte4(8, 1, 0, 0), new Byte4(9, 1, 0, 0), new Byte4(10, 1, 0, 0), new Byte4(11, 1, 0, 0) };
 
 
 

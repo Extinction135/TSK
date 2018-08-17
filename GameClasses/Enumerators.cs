@@ -553,7 +553,7 @@ namespace DungeonRun
         Wor_Boat_Pier_BottomMiddle,
         Wor_Boat_Pier_BottomRight,
 
-
+        Wor_Boat_Coastline,
 
         #endregion
 

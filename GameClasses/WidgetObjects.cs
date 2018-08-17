@@ -753,13 +753,13 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[24], ObjType.Wor_Boat_Pier_TopLeft);
             Functions_GameObject.SetType(objList[25], ObjType.Wor_Boat_Pier_TopMiddle);
             Functions_GameObject.SetType(objList[26], ObjType.Wor_Boat_Pier_TopRight);
-            Functions_GameObject.SetType(objList[27], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[27], ObjType.Wor_Boat_Coastline);
 
             //row 8
             Functions_GameObject.SetType(objList[28], ObjType.Wor_Boat_Pier_Left);
             Functions_GameObject.SetType(objList[29], ObjType.Wor_Boat_Pier_Middle);
             Functions_GameObject.SetType(objList[30], ObjType.Wor_Boat_Pier_Right);
-            Functions_GameObject.SetType(objList[31], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[31], ObjType.Unknown);//
 
             //row 9
             Functions_GameObject.SetType(objList[32], ObjType.Wor_Boat_Pier_BottomLeft);
@@ -798,7 +798,7 @@ namespace DungeonRun
             objList[16].compCollision.rec.Width = 16 * 2;
             objList[20].compCollision.rec.Width = 16 * 2;
 
-
+            objList[27].compCollision.rec.Height = 16 * 2;
 
             //hide covered objs
             Functions_Widget.HideObj(objList[4]);
@@ -816,6 +816,8 @@ namespace DungeonRun
 
             Functions_Widget.HideObj(objList[17]);
             Functions_Widget.HideObj(objList[21]);
+            Functions_Widget.HideObj(objList[31]);
+
 
         }
     }

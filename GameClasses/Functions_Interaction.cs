@@ -585,7 +585,8 @@ namespace DungeonRun
 
                 else if (Obj.type == ObjType.Wor_Coastline_Corner_Exterior
                     || Obj.type == ObjType.Wor_Coastline_Corner_Interior
-                    || Obj.type == ObjType.Wor_Coastline_Straight)
+                    || Obj.type == ObjType.Wor_Coastline_Straight
+                    || Obj.type == ObjType.Wor_Boat_Coastline)
                 {   //display animated ripple at actor's feet
                     Functions_Actor.DisplayWetFeet(Actor);
                 }
