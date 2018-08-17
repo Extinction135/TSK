@@ -690,6 +690,12 @@ namespace DungeonRun
             { Functions_GameObject_World.HideRoofs(); }
             //else game should display all roofs
             else { Functions_GameObject_World.ShowRoofs(); }
+
+            //set hero's zoffset based on state
+            if (Pool.hero.underwater)
+            { Pool.hero.compSprite.zOffset = -30; } //sort under vines
+            //sort normally
+            else { Pool.hero.compSprite.zOffset = 0; }
         }
 
         public static void SetLoadout()

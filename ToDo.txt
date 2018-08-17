@@ -60,35 +60,16 @@ Today:
 
 
 
+
+
 Underwater Sorting
-when hero is underwater, we should sort to -30.
-water sorts to -40.
-vines should sort to -20, so we stay below
-the vines when underwater, but above them when
-above water.
 
+when hero is underwater, he should sort to -30.
+water sorts to -40. vines should sort to -20, 
+so we stay below the vines when underwater, 
+but above them when above water. done.
 
-
-
-
-
-
-
-
-
-
-
-
-
-Swamp level++
-add more swamp objects:
-bulb - annoying small blocking obj
-sm plant - blocking, but can be destroyed like bush
-
-complete swamp level, using these new objects.
-the level should immediately look different than boat
-level from island.
-
+this was implemented only for hero, in hero.update().
 
 
 
