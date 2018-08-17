@@ -750,21 +750,21 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[23], ObjType.Unknown);
 
             //row 7
-            Functions_GameObject.SetType(objList[24], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[25], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[26], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[24], ObjType.Wor_Boat_Pier_TopLeft);
+            Functions_GameObject.SetType(objList[25], ObjType.Wor_Boat_Pier_TopMiddle);
+            Functions_GameObject.SetType(objList[26], ObjType.Wor_Boat_Pier_TopRight);
             Functions_GameObject.SetType(objList[27], ObjType.Unknown);
 
             //row 8
-            Functions_GameObject.SetType(objList[28], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[29], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[30], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[28], ObjType.Wor_Boat_Pier_Left);
+            Functions_GameObject.SetType(objList[29], ObjType.Wor_Boat_Pier_Middle);
+            Functions_GameObject.SetType(objList[30], ObjType.Wor_Boat_Pier_Right);
             Functions_GameObject.SetType(objList[31], ObjType.Unknown);
 
             //row 9
-            Functions_GameObject.SetType(objList[32], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[33], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[34], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[32], ObjType.Wor_Boat_Pier_BottomLeft);
+            Functions_GameObject.SetType(objList[33], ObjType.Wor_Boat_Pier_BottomMiddle);
+            Functions_GameObject.SetType(objList[34], ObjType.Wor_Boat_Pier_BottomRight);
             Functions_GameObject.SetType(objList[35], ObjType.Unknown);
 
             //row 10

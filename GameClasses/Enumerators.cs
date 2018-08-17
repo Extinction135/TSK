@@ -541,6 +541,19 @@ namespace DungeonRun
         Wor_Boat_Bridge_Top,
         Wor_Boat_Bridge_Bottom,
 
+        Wor_Boat_Pier_TopLeft,
+        Wor_Boat_Pier_TopMiddle,
+        Wor_Boat_Pier_TopRight,
+
+        Wor_Boat_Pier_Left,
+        Wor_Boat_Pier_Middle,
+        Wor_Boat_Pier_Right,
+
+        Wor_Boat_Pier_BottomLeft,
+        Wor_Boat_Pier_BottomMiddle,
+        Wor_Boat_Pier_BottomRight,
+
+
 
         #endregion
 

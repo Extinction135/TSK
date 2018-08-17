@@ -396,6 +396,28 @@ namespace DungeonRun
         public static List<Byte4> Wor_Boat_Bridge_Top = new List<Byte4> { new Byte4(3, 8, 0, 0) };
         public static List<Byte4> Wor_Boat_Bridge_Bottom = new List<Byte4> { new Byte4(3, 9, 0, 0) };
 
+
+
+        public static List<Byte4> Wor_Boat_Pier_TopLeft = new List<Byte4> { new Byte4(8, 7, 0, 0) };
+        public static List<Byte4> Wor_Boat_Pier_TopMiddle = new List<Byte4> { new Byte4(9, 7, 0, 0) };
+        public static List<Byte4> Wor_Boat_Pier_TopRight = new List<Byte4> { new Byte4(8, 7, 1, 0) };
+
+        public static List<Byte4> Wor_Boat_Pier_Left = new List<Byte4> { new Byte4(8, 8, 0, 0) };
+        public static List<Byte4> Wor_Boat_Pier_Middle = new List<Byte4> { new Byte4(9, 8, 0, 0) };
+        public static List<Byte4> Wor_Boat_Pier_Right = new List<Byte4> { new Byte4(8, 8, 1, 0) };
+
+        public static List<Byte4> Wor_Boat_Pier_BottomMiddle = new List<Byte4> { new Byte4(9, 9, 0, 0) };
+        public static List<Byte4> Wor_Boat_Pier_BottomLeft = new List<Byte4>
+        { new Byte4(8, 9, 0, 0), new Byte4(10, 9, 1, 0) };
+        
+        public static List<Byte4> Wor_Boat_Pier_BottomRight = new List<Byte4>
+        { new Byte4(8, 9, 1, 0), new Byte4(10, 9, 0, 0) };
+        
+
+
+
+
+
         #endregion
 
 

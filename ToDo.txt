@@ -49,9 +49,30 @@ Today:
 
 
 
+Pier Objs
 
-coastline sprites!
-setup north exit of boat level to look like island.
+pier objs connect to the boat's bridge.
+this is reserved for civilized locations, where
+a pier might be present in a maintained port.
+in non-civilized locations, the swamp entrance
+for example, there would be no such bridge to
+a pier. instead link would just dive into the 
+water from the boat. done.
+
+added animated water waves to the pier obj corners.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -69,27 +90,8 @@ the swimming system already in place.
 
 
 
-
-
-
-Boat Bridge Objs
-
-the bridge connects to the boat via the staircase.
-link shouldn't be able to jump off this bridge.
-link can't swim under it either. bridge hitboxes
-should match stairs, so no hangups happen while
-dashing around the stairs corner onto the bridge.
-
-how is this done? using two bridge objects.
-boat bridge top is the wooden top part, with a
-hitbox keeping link from moving north.
-boat bridge bottom is the legs in the water
-part, with a hitbox keeping link from moving
-south. together these two objects occupy the same
-space as a water tile (2x2). so they fit into 
-the existing water tile design.
-
-added boat bridge objects to the boat island level.
+coastline sprites!
+setup north exit of boat level to look like island.
 
 
 
@@ -101,12 +103,27 @@ added boat bridge objects to the boat island level.
 
 
 
-Pier Objs
-this is standard 3x3 grid of sprites,
-which we can reduce to 2x3 grid, with flips.
 
-*would be nice to have animated water on corners
-of pier.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Editor++
+
+remove roofs button in top menu
+ignore water tiles button in top menu
+
 
 
 

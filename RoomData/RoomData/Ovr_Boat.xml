@@ -173,12 +173,6 @@
     <ObjXmlData>
       <type>Wor_Water</type>
       <direction>Down</direction>
-      <posX>920</posX>
-      <posY>440</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Water</type>
-      <direction>Down</direction>
       <posX>696</posX>
       <posY>552</posY>
     </ObjXmlData>
@@ -503,8 +497,8 @@
     <ObjXmlData>
       <type>Wor_Water</type>
       <direction>Down</direction>
-      <posX>872</posX>
-      <posY>424</posY>
+      <posX>792</posX>
+      <posY>456</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Water</type>
@@ -701,8 +695,8 @@
     <ObjXmlData>
       <type>Wor_Water</type>
       <direction>Down</direction>
-      <posX>888</posX>
-      <posY>488</posY>
+      <posX>792</posX>
+      <posY>584</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Water</type>
@@ -1993,6 +1987,192 @@
       <direction>Down</direction>
       <posX>760</posX>
       <posY>536</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Boat_Pier_TopLeft</type>
+      <direction>Down</direction>
+      <posX>792</posX>
+      <posY>488</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Boat_Pier_Left</type>
+      <direction>Down</direction>
+      <posX>792</posX>
+      <posY>504</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Boat_Pier_BottomLeft</type>
+      <direction>Down</direction>
+      <posX>792</posX>
+      <posY>536</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Boat_Pier_BottomMiddle</type>
+      <direction>Down</direction>
+      <posX>808</posX>
+      <posY>536</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Boat_Pier_Right</type>
+      <direction>Down</direction>
+      <posX>840</posX>
+      <posY>520</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Boat_Pier_BottomRight</type>
+      <direction>Down</direction>
+      <posX>840</posX>
+      <posY>536</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Boat_Pier_TopRight</type>
+      <direction>Down</direction>
+      <posX>840</posX>
+      <posY>488</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Boat_Pier_TopMiddle</type>
+      <direction>Down</direction>
+      <posX>808</posX>
+      <posY>488</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Boat_Pier_Middle</type>
+      <direction>Down</direction>
+      <posX>808</posX>
+      <posY>504</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Boat_Pier_Middle</type>
+      <direction>Down</direction>
+      <posX>808</posX>
+      <posY>520</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Boat_Pier_Left</type>
+      <direction>Down</direction>
+      <posX>792</posX>
+      <posY>520</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Boat_Pier_Right</type>
+      <direction>Down</direction>
+      <posX>840</posX>
+      <posY>504</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>792</posX>
+      <posY>552</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>824</posX>
+      <posY>552</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Boat_Pier_Middle</type>
+      <direction>Down</direction>
+      <posX>824</posX>
+      <posY>504</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>824</posX>
+      <posY>584</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Boat_Pier_Middle</type>
+      <direction>Down</direction>
+      <posX>824</posX>
+      <posY>520</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Boat_Pier_BottomMiddle</type>
+      <direction>Down</direction>
+      <posX>824</posX>
+      <posY>536</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Boat_Pier_TopMiddle</type>
+      <direction>Down</direction>
+      <posX>824</posX>
+      <posY>488</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>792</posX>
+      <posY>424</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>792</posX>
+      <posY>392</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>824</posX>
+      <posY>392</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>824</posX>
+      <posY>424</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>824</posX>
+      <posY>456</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>856</posX>
+      <posY>392</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>856</posX>
+      <posY>424</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>856</posX>
+      <posY>456</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>856</posX>
+      <posY>488</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>856</posX>
+      <posY>520</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>856</posX>
+      <posY>552</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Water</type>
+      <direction>Down</direction>
+      <posX>856</posX>
+      <posY>584</posY>
     </ObjXmlData>
   </objs>
 </RoomXmlData>

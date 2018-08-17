@@ -2513,6 +2513,48 @@ namespace DungeonRun
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = true;
             }
+            else if (
+                Type == ObjType.Wor_Boat_Pier_TopLeft
+                || Type == ObjType.Wor_Boat_Pier_TopMiddle
+                || Type == ObjType.Wor_Boat_Pier_TopRight
+
+                || Type == ObjType.Wor_Boat_Pier_Left
+                || Type == ObjType.Wor_Boat_Pier_Middle
+                || Type == ObjType.Wor_Boat_Pier_Right
+
+                || Type == ObjType.Wor_Boat_Pier_BottomMiddle
+                || Type == ObjType.Wor_Boat_Pier_BottomLeft
+                || Type == ObjType.Wor_Boat_Pier_BottomRight
+                )
+            {
+                Obj.compCollision.rec.Width = 16; Obj.compCollision.offsetX = -8;
+                Obj.compCollision.rec.Height = 16; Obj.compCollision.offsetY = -8;
+                Obj.compSprite.texture = Assets.boatLevelSheet;
+                Obj.compSprite.zOffset = -15;
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = false;
+
+                if (Type == ObjType.Wor_Boat_Pier_TopLeft)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Pier_TopLeft; }
+                else if (Type == ObjType.Wor_Boat_Pier_TopMiddle)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Pier_TopMiddle; }
+                else if (Type == ObjType.Wor_Boat_Pier_TopRight)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Pier_TopRight; }
+
+                else if (Type == ObjType.Wor_Boat_Pier_Left)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Pier_Left; }
+                else if (Type == ObjType.Wor_Boat_Pier_Middle)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Pier_Middle; }
+                else if (Type == ObjType.Wor_Boat_Pier_Right)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Pier_Right; }
+
+                else if (Type == ObjType.Wor_Boat_Pier_BottomMiddle)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Pier_BottomMiddle; }
+                else if (Type == ObjType.Wor_Boat_Pier_BottomLeft)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Pier_BottomLeft; }
+                else if (Type == ObjType.Wor_Boat_Pier_BottomRight)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Pier_BottomRight; }
+            }
 
             #endregion
 
