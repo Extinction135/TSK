@@ -4,8 +4,7 @@ we should be glad for an opportunity to serve others by an invention of ours,
 and this we should do freely and generously."
 - Benjamin Franklin	
 	
-	
-	
+
 Roadmap
 
 0.76 - swamp level + dungeon + enemies + boat level
@@ -39,22 +38,6 @@ Roadmap
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Today:
 
 
@@ -62,34 +45,19 @@ Today:
 
 
 
-Underwater Sorting
-
-when hero is underwater, he should sort to -30.
-water sorts to -40. vines should sort to -20, 
-so we stay below the vines when underwater, 
-but above them when above water. done.
-
-this was implemented only for hero, in hero.update().
 
 
 
 
 
+coastline sprites!
+setup north exit of boat level to look like island.
 
 
-
-
-
-
-
-
-
-
-
-waterfall and coastline sprites exist!
 
 
 Ship level on Island
+
 we need to complete this level:
 ship is docked at a pier, with bridge.
 north in level is coastline, with animated water
@@ -97,20 +65,60 @@ fx for waves hitting coast. these are implemented
 ontop of the existing water tiles, so we don't modify
 the swimming system already in place.
 
-update the 1st overworld map: remove the swamp location
-and swamp island sprite from map. keep the sprite in PSD
-for later use, tho.
 
 
-Boat Objs
-boat bridge top + bottom - used for 2 hitboxes to
-keep link inside the bridge so he cant fall off.
-this bridge always attaches to a pier.
+
+
+
+
+
+Boat Bridge Objs
+
+the bridge connects to the boat via the staircase.
+link shouldn't be able to jump off this bridge.
+link can't swim under it either. bridge hitboxes
+should match stairs, so no hangups happen while
+dashing around the stairs corner onto the bridge.
+
+how is this done? using two bridge objects.
+boat bridge top is the wooden top part, with a
+hitbox keeping link from moving north.
+boat bridge bottom is the legs in the water
+part, with a hitbox keeping link from moving
+south. together these two objects occupy the same
+space as a water tile (2x2). so they fit into 
+the existing water tile design.
+
+added boat bridge objects to the boat island level.
+
+
+
+
+
+
+
+
+
 
 
 Pier Objs
 this is standard 3x3 grid of sprites,
 which we can reduce to 2x3 grid, with flips.
+
+*would be nice to have animated water on corners
+of pier.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

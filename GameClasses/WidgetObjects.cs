@@ -738,14 +738,14 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[15], ObjType.Unknown);//
 
             //row 5
-            Functions_GameObject.SetType(objList[16], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[17], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[16], ObjType.Wor_Boat_Bridge_Top);
+            Functions_GameObject.SetType(objList[17], ObjType.Unknown);//
             Functions_GameObject.SetType(objList[18], ObjType.Unknown);
             Functions_GameObject.SetType(objList[19], ObjType.Unknown);
 
             //row 6
-            Functions_GameObject.SetType(objList[20], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[21], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[20], ObjType.Wor_Boat_Bridge_Bottom);
+            Functions_GameObject.SetType(objList[21], ObjType.Unknown);//
             Functions_GameObject.SetType(objList[22], ObjType.Unknown);
             Functions_GameObject.SetType(objList[23], ObjType.Unknown);
 
@@ -788,11 +788,17 @@ namespace DungeonRun
             //position the objs relative to the window frame
             Functions_Widget.PositionObjs(this);
 
+
             //set collision rec
             objList[0].compCollision.rec.Height = 16 * 4;
             objList[1].compCollision.rec.Height = 16 * 4;
             objList[2].compCollision.rec.Height = 16 * 4;
             objList[3].compCollision.rec.Height = 16 * 4;
+
+            objList[16].compCollision.rec.Width = 16 * 2;
+            objList[20].compCollision.rec.Width = 16 * 2;
+
+
 
             //hide covered objs
             Functions_Widget.HideObj(objList[4]);
@@ -807,6 +813,9 @@ namespace DungeonRun
             Functions_Widget.HideObj(objList[13]);
             Functions_Widget.HideObj(objList[14]);
             Functions_Widget.HideObj(objList[15]);
+
+            Functions_Widget.HideObj(objList[17]);
+            Functions_Widget.HideObj(objList[21]);
 
         }
     }

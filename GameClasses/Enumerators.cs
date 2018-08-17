@@ -538,6 +538,10 @@ namespace DungeonRun
 
         Wor_Boat_Captain_Brandy,
 
+        Wor_Boat_Bridge_Top,
+        Wor_Boat_Bridge_Bottom,
+
+
         #endregion
 
 

@@ -2485,6 +2485,38 @@ namespace DungeonRun
             #endregion
 
 
+            #region Boat Bridge, Pier
+
+            else if (Type == ObjType.Wor_Boat_Bridge_Top)
+            {   //nonstandard size
+                Obj.compSprite.drawRec.Width = 16 * 2; Obj.compSprite.drawRec.Height = 16 * 1;
+                Obj.compCollision.rec.Width = 16 * 2; Obj.compCollision.offsetX = -8;
+                Obj.compCollision.rec.Height = 2; Obj.compCollision.offsetY = -8-2;
+
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Bridge_Top;
+                Obj.compSprite.texture = Assets.boatLevelSheet;
+
+                Obj.compSprite.zOffset = -16;
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = true;
+            }
+            else if (Type == ObjType.Wor_Boat_Bridge_Bottom)
+            {   //nonstandard size
+                Obj.compSprite.drawRec.Width = 16 * 2; Obj.compSprite.drawRec.Height = 16 * 1;
+                Obj.compCollision.rec.Width = 16 * 2; Obj.compCollision.offsetX = -8;
+                Obj.compCollision.rec.Height = 14; Obj.compCollision.offsetY = -8;
+
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Bridge_Bottom;
+                Obj.compSprite.texture = Assets.boatLevelSheet;
+
+                Obj.compSprite.zOffset = -16;
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = true;
+            }
+
+            #endregion
+
+
 
 
 
