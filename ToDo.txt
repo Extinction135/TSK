@@ -50,10 +50,15 @@ Today:
 
 
 
-Coastlines++
 
-added coastline objects, completed essential
-island boat level.
+
+
+Coastline++
+
+improved boat coastline sprites to better fit
+in with the existing coastline sprites.
+
+
 
 
 
