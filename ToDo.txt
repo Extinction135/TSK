@@ -60,41 +60,13 @@ Today:
 
 
 
-Destinations++
-
-added unique menuItem sprite for ship destinations.
-vaguely looks like a treasure map.
-
-
-Item Costs++
-
-if an item costs 0, then it's cost shouldn't be displayed
-on any vendor screen. done. this makes it easier to
-see destination menuItems, plus it conveys the 'cost'
-of the item visually - there is no cost for this item.
-this affect pets, as pets are all free. tested, working.
-
-
-
-
-
-
-
-
-
-
-
 Brandy++
 
--while facing south, brandy should sometimes blink,
--sometimes she should raise her hands up in the air.
-*brandy gets AI, and randomly that AI sets her animation
-frames to hands up or blink. blink is more common, hands
-up is more rare. this varies her appearance and gets
-the player's attention.
-
-
-
+while facing south, brandy should sometimes blink,
+sometimes she should raise her hands up in the air.
+brandy gets AI, and randomly that AI sets her animation
+frames to hands up or blink. this varies her appearance 
+and gets the player's attention. < done & tested.
 
 
 
@@ -105,62 +77,20 @@ the player's attention.
 
 
 Swamp level++
-add sunken/broken ships around, with vines
-and various water objects. we need broken/damaged ship parts
-to build decorative ships around the level.
-
-
-
-
-
-
-
-
-
-
-
-
 add more swamp objects:
-
 bulb - annoying small blocking obj
 sm plant - blocking, but can be destroyed like bush
 
 
 
-Underwater Sorting
 
+
+Underwater Sorting
 when hero is underwater, we should sort to -30.
 water sorts to -40.
 vines should sort to -20, so we stay below
 the vines when underwater, but above them when
 above water.
-
-
-
-
-spikeblocks++
-
-spikeblocks = swim under. indestructible. immobile.
-we need immobile spikeblocks!
-we can add these into dungeon rooms as well.
-
-
-
-swamp dungeon should be diff than mountain dungeon
-in size and complexity. because it takes longer to
-move in water, it will feel like the dungeon is harder
-on a base level, so the dungeon shouldnt be that large
-or complex. we're also going to be adding a water lever
-critical path into this dungeon, so it needs to remain
-about the size of the forest dungeon. the boss room
-should connect to the hub room as well.
-
-
-
-
-
-
-
 
 
 
@@ -220,26 +150,6 @@ to the level.
 
 
 
-Actor Refs
-
-a projectile's caster should be an actor reference.
-if a projectile's caster is null, then it should have no behavior.
-this is because some gameobjects cast projectiles,
-but in that case the projectile wouldn't have any behavior
-related to the caster.
-
-this simplifies the current system for handling projectiles,
-which uses the moveComponent. using this moveComp, projectile.update
-attempts to prevent projectiles from ovrelapping with their casters,
-but this is based on the compMove and not the hitBox, which is
-actually the target of importance. we need to have access to
-the entire actor object, not just it's compMove! we need to
-touch the actor's hitBox from projectile.update, and we can't currently.
-once we do this, we can check and align projectiles to the actor's
-hitBox, and then larger enemies can have larger hitboxes while also
-being able to cast projectiles...
-plus, projectiles could properly implement their behaviors - by
-tracking the actor's hitbox instead of their newPosition..
 
 
 
@@ -276,6 +186,19 @@ off of the level id.
 
 create 3 cotomouths in hub room for swamp.
 create 2 armored spiders in hub room for mountain.
+
+
+swamp dungeon should be diff than mountain dungeon
+in size and complexity. because it takes longer to
+move in water, it will feel like the dungeon is harder
+on a base level, so the dungeon shouldnt be that large
+or complex. we're also going to be adding a water lever
+critical path into this dungeon, so it needs to remain
+about the size of the forest dungeon. the boss room
+should connect to the hub room as well.
+
+
+
 
 
 
@@ -356,6 +279,45 @@ footholds were pushed off the mountain wall.
 i assume a frame of interaction happened prior to
 the roomObj types being updated. 
 *when we reset the pool, stopMovement() on all objs.
+
+
+
+
+
+
+
+Actor Refs
+
+a projectile's caster should be an actor reference.
+if a projectile's caster is null, then it should have no behavior.
+this is because some gameobjects cast projectiles,
+but in that case the projectile wouldn't have any behavior
+related to the caster.
+
+this simplifies the current system for handling projectiles,
+which uses the moveComponent. using this moveComp, projectile.update
+attempts to prevent projectiles from ovrelapping with their casters,
+but this is based on the compMove and not the hitBox, which is
+actually the target of importance. we need to have access to
+the entire actor object, not just it's compMove! we need to
+touch the actor's hitBox from projectile.update, and we can't currently.
+once we do this, we can check and align projectiles to the actor's
+hitBox, and then larger enemies can have larger hitboxes while also
+being able to cast projectiles...
+plus, projectiles could properly implement their behaviors - by
+tracking the actor's hitbox instead of their newPosition..
+
+
+
+
+
+
+
+Release version 0.76
+test install on windows10 via Dx.
+test install/run on xbox one via UWP.
+print media for 0.76 (main gif, playthru video).
+update readme with links.
 
 
 

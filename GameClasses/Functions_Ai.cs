@@ -1479,6 +1479,33 @@ namespace DungeonRun
             #endregion
 
 
+            #region Brandy, Ship's Captain
+
+            else if (Obj.type == ObjType.Wor_Boat_Captain_Brandy)
+            {   //she only transitions into a special animation if she's standing idle
+                if (Obj.compAnim.currentAnimation == AnimationFrames.Wor_Boat_Captain_Brandy)
+                {   //randomly play hands up or blink animation
+                    if (Functions_Random.Int(0, 1001) > 990)
+                    {
+                        Obj.compAnim.index = 0;
+                        if (Functions_Random.Int(0, 101) > 50)
+                        { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Captain_Brandy_Blink; }
+                        else
+                        { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Captain_Brandy_HandsUp; }
+                    }
+                }
+                else if(Obj.compAnim.index == Obj.compAnim.currentAnimation.Count)
+                {   //once we hit the end of the special animation, return to idle
+                    Obj.compAnim.index = 0;
+                    Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Captain_Brandy;
+                }
+            }
+
+            #endregion
+
+
+
+
 
         }
 

@@ -2453,6 +2453,8 @@ namespace DungeonRun
                 Obj.compCollision.blocking = true;
 
                 Obj.group = ObjGroup.Vendor;
+                Obj.getsAI = true;
+                Obj.interactiveFrame = 60;
             }
 
             #endregion

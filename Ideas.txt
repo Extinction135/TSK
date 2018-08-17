@@ -1,6 +1,24 @@
 
 
 
+Ship Graveyard
+add sunken/broken ships around, with vines
+and various water objects. we need broken/damaged ship parts
+to build decorative ships around the level.
+
+
+
+
+
+
+Spikeblocks++
+spikeblocks = swim under. indestructible. immobile.
+we need immobile spikeblocks!
+we can add these into dungeon rooms as well.
+
+
+
+
 
 My Chickens!
 now that we have posts, we can make this sidequest.
