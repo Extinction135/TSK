@@ -50,13 +50,27 @@ Today:
 
 
 
+Map Screen++
+
+there is an issue with map screen not resetting it's 
+scroll sprites when it's opened for the 2nd time..
+
+created ResetScroll() in functions_scroll.
+this is called from the Open() method of level map screen.
+this ensures the scroll is reset to an opening state,
+so when the screen tries to open the scroll, it actually
+can... done, tested, working.
+
+also improved the scroll sprites too, cause why not?
 
 
 
-Coastline++
 
-improved boat coastline sprites to better fit
-in with the existing coastline sprites.
+
+
+
+
+
 
 
 
@@ -92,13 +106,8 @@ ignore water tiles button in top menu
 
 
 
-
-
-
-
-
-
 Boat Flag
+
 create ship flag animation sprites.
 remove the jolly roger from it.
 we'll use this as an overlay later on if needed.
@@ -116,22 +125,19 @@ to the level.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 Boss And Hub Room Upgrade
 
 *we need a watery hub room for swamp mini
 *we need a watery boss room for swamp boss
-*we need small tiles that the hero can stand on, above water (water lillies!)
+
+
+extending from this idea, we should have swamp rooms that
+are filled with water. these will need to be designed by hand,
+and we will need to be able to 'tie' certain roomData to specific
+dungeons.
+
+
+
 
 *we need swamp dungeon to specifically load these mini & boss rooms.
 **in fact, it would be good to have dungeons specifically load the hub

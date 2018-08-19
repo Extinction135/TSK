@@ -145,7 +145,8 @@ namespace DungeonRun
 
             #endregion
 
-
+            //reset the scroll to an open state, then open the screen
+            Functions_Scroll.ResetScroll(scroll);
             scroll.displayState = DisplayState.Opening;
         }
 

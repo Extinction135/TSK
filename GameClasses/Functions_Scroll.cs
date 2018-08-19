@@ -18,6 +18,22 @@ namespace DungeonRun
 
 
 
+
+        
+        public static void ResetScroll(Scroll scroll)
+        {   //only have to reset the horizontal X axis position
+            for(i = 0; i < scroll.leftScroll.Count; i++)
+            {   //for the left scroll
+                scroll.leftScroll[i].position.X = scroll.startPos.X;
+            }
+
+            for (i = 0; i < scroll.rightScroll.Count; i++)
+            {   //and the right scroll
+                scroll.rightScroll[i].position.X = scroll.startPos.X;
+            }
+            //we dont need to reset the scrollBkg, those sprites will auto-draw properly
+        }
+
         public static void CreateColumn(Boolean Bkg, Boolean Flip, int Height, Vector2 Pos, List<ComponentSprite> List)
         {   //can create a scroll or background column
             byte xFrame = 0;
