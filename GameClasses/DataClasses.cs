@@ -33,6 +33,7 @@ namespace DungeonRun
         public static Boolean ProcessAI = true; //apply AI input to enemies / actors
         public static Boolean ShowEnemySpawns = false; //create & draw enemySpawn gameObjects?
         public static Boolean PrintOutput = true; //print output to the debugger
+        public static Boolean IgnoreWaterTiles = false; //enable/disable pickup/selection of waterTiles
 
         //option flags
         public static Boolean PlayMusic = false; //turns music on/off
@@ -882,19 +883,29 @@ namespace DungeonRun
             rec = new Rectangle(0, 0, 640, 13);
 
             buttons = new List<ComponentButton>();
-            buttons.Add(new ComponentButton(
-                "f1 draw recs", new Point(2, 2)));
-            buttons.Add(new ComponentButton(
-                "f2 draw info", new Point(buttons[0].rec.X + buttons[0].rec.Width + 2, 2)));
-            buttons.Add(new ComponentButton(
-                "f3 hide widgets", new Point(buttons[1].rec.X + buttons[1].rec.Width + 2, 2)));
-            buttons.Add(new ComponentButton(
-                "f4 compile xml", new Point(buttons[2].rec.X + buttons[2].rec.Width + 2, 2)));
-            buttons.Add(new ComponentButton(
-                "f5 pause", new Point(buttons[3].rec.X + buttons[3].rec.Width + 2, 2)));
+
+
 
             buttons.Add(new ComponentButton(
-                "backspace = menu", new Point(buttons[4].rec.X + buttons[4].rec.Width + 2, 2)));
+                "backspace = menu", new Point(2, 2)));
+
+            buttons.Add(new ComponentButton(
+                "f1 draw recs", new Point(buttons[0].rec.X + buttons[0].rec.Width + 2, 2)));
+            buttons.Add(new ComponentButton(
+                "f2 draw info", new Point(buttons[1].rec.X + buttons[1].rec.Width + 2, 2)));
+            buttons.Add(new ComponentButton(
+                "f3 hide widgets", new Point(buttons[2].rec.X + buttons[2].rec.Width + 2, 2)));
+
+            buttons.Add(new ComponentButton(
+                "f4 compile xml", new Point(buttons[3].rec.X + buttons[3].rec.Width + 2, 2)));
+            buttons.Add(new ComponentButton(
+                "f5 pause", new Point(buttons[4].rec.X + buttons[4].rec.Width + 2, 2)));
+            buttons.Add(new ComponentButton(
+                "f6 ignore waterTiles", new Point(buttons[5].rec.X + buttons[5].rec.Width + 2, 2)));
+
+
+
+
 
             #region Setup Debug Displays
 
@@ -908,6 +919,7 @@ namespace DungeonRun
             DebugDisplay_Collisions = new DebugDisplay(Xpos, DebugDisplay_BuildTimes.bkg.position.Y + 16 * 3 + 4);
 
             #endregion
+
 
         }
     }

@@ -47,40 +47,16 @@ Today:
 
 
 
+Editor++
 
+f6 - ignore water tiles button in top menu
 
-
-Map Screen++
-
-there is an issue with map screen not resetting it's 
-scroll sprites when it's opened for the 2nd time..
-
-created ResetScroll() in functions_scroll.
-this is called from the Open() method of level map screen.
-this ensures the scroll is reset to an opening state,
-so when the screen tries to open the scroll, it actually
-can... done, tested, working.
-
-also improved the scroll sprites too, cause why not?
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+this is done, and awesome. by pressing f6,
+all water tiles are now ignored in object
+pickup routines for editor. this means editors
+can interact with objects on top of water
+in a much easier and faster way, allowing for
+faster revisions and better final designs.
 
 
 
@@ -95,24 +71,7 @@ also improved the scroll sprites too, cause why not?
 Editor++
 
 remove roofs button in top menu
-ignore water tiles button in top menu
 
-
-
-
-
-
-
-
-
-
-Boat Flag
-
-create ship flag animation sprites.
-remove the jolly roger from it.
-we'll use this as an overlay later on if needed.
-add ship flag. it should animate and bring life
-to the level.
 
 
 

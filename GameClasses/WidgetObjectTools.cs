@@ -471,9 +471,24 @@ namespace DungeonRun
                 if (Pool.roomObjPool[Pool.roomObjCounter].active)
                 {   //check collisions between worldPos and obj, grab any colliding obj
                     if (Pool.roomObjPool[Pool.roomObjCounter].compCollision.rec.Contains(worldPos))
-                    {   
-                        SelectObject(Pool.roomObjPool[Pool.roomObjCounter]);
-                        return true;
+                    {
+
+                        #region Editor Based Selection Cases
+
+                        //check for specific conditions, like ignoring water tiles
+                        if (Flags.IgnoreWaterTiles & Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Water)
+                        {
+                            //literally do nothing, we want to continue checking objects in the list
+                        }
+
+                        #endregion
+
+
+                        else
+                        {   
+                            SelectObject(Pool.roomObjPool[Pool.roomObjCounter]);
+                            return true;
+                        }
                     }
                 }
             }

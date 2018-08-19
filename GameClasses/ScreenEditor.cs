@@ -114,12 +114,12 @@ namespace DungeonRun
                 if (Flags.DrawCollisions)
                 {
                     Flags.DrawCollisions = false;
-                    TopDebugMenu.buttons[0].currentColor = Assets.colorScheme.buttonUp;
+                    TopDebugMenu.buttons[1].currentColor = Assets.colorScheme.buttonUp;
                 }
                 else
                 {
                     Flags.DrawCollisions = true;
-                    TopDebugMenu.buttons[0].currentColor = Assets.colorScheme.buttonDown;
+                    TopDebugMenu.buttons[1].currentColor = Assets.colorScheme.buttonDown;
                 }
             }
 
@@ -133,12 +133,12 @@ namespace DungeonRun
                 if (Flags.EnableDebugInfo)
                 {
                     Flags.EnableDebugInfo = false;
-                    TopDebugMenu.buttons[1].currentColor = Assets.colorScheme.buttonUp;
+                    TopDebugMenu.buttons[2].currentColor = Assets.colorScheme.buttonUp;
                 }
                 else
                 {
                     Flags.EnableDebugInfo = true;
-                    TopDebugMenu.buttons[1].currentColor = Assets.colorScheme.buttonDown;
+                    TopDebugMenu.buttons[2].currentColor = Assets.colorScheme.buttonDown;
                 }
             }
 
@@ -166,6 +166,7 @@ namespace DungeonRun
 
             else if (Functions_Input.IsNewKeyPress(Keys.F4))
             {
+                TopDebugMenu.buttons[4].currentColor = Assets.colorScheme.buttonDown;
                 Functions_Backend.ConvertXMLtoCS();
             }
 
@@ -179,16 +180,41 @@ namespace DungeonRun
                 if (Flags.Paused)
                 {
                     Flags.Paused = false;
-                    TopDebugMenu.buttons[4].currentColor = Assets.colorScheme.buttonUp;
+                    TopDebugMenu.buttons[5].currentColor = Assets.colorScheme.buttonUp;
                 }
                 else
                 {
                     Flags.Paused = true;
-                    TopDebugMenu.buttons[4].currentColor = Assets.colorScheme.buttonDown;
+                    TopDebugMenu.buttons[5].currentColor = Assets.colorScheme.buttonDown;
                 }
             }
 
             #endregion
+
+
+            #region F6 - Ignore Water Tiles
+
+            else if (Functions_Input.IsNewKeyPress(Keys.F6))
+            {
+                if (Flags.IgnoreWaterTiles)
+                {
+                    Flags.IgnoreWaterTiles = false;
+                    TopDebugMenu.buttons[6].currentColor = Assets.colorScheme.buttonUp;
+                }
+                else
+                {
+                    Flags.IgnoreWaterTiles = true;
+                    TopDebugMenu.buttons[6].currentColor = Assets.colorScheme.buttonDown;
+                }
+            }
+
+            #endregion
+
+
+
+
+
+
 
 
             #region Inspect Ctrl-Clicked Obj
@@ -202,7 +228,6 @@ namespace DungeonRun
 
             #endregion
 
-            
         }
 
         public override void Update(GameTime GameTime)

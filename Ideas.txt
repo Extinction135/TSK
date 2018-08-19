@@ -9,6 +9,18 @@ to build decorative ships around the level.
 
 
 
+Boat Flag
+
+create ship flag animation sprites.
+remove the jolly roger from it.
+we'll use this as an overlay later on if needed.
+add ship flag. it should animate and bring life
+to the level.
+
+
+
+
+
 
 
 Spikeblocks++
