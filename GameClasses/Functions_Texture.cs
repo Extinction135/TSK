@@ -25,8 +25,12 @@ namespace DungeonRun
             if (LevelSet.currentLevel.ID == LevelID.LeftTown2) { currentTexture = Assets.townLevelSheet; }
             else if (LevelSet.currentLevel.ID == LevelID.TheFarm) { currentTexture = Assets.townLevelSheet; }
 
-            else if (LevelSet.currentLevel.ID == LevelID.Colliseum) { currentTexture = Assets.colliseumLevelSheet; }
-            else if (LevelSet.currentLevel.ID == LevelID.ColliseumPit) { currentTexture = Assets.colliseumLevelSheet; }
+            //all colliseum levels point to the colliseum sheet, obvs
+            else if (LevelSet.currentLevel.ID == LevelID.Colliseum
+                || LevelSet.currentLevel.ID == LevelID.ColliseumPit
+                || LevelSet.currentLevel.ID == LevelID.ColliseumPit_Water
+                || LevelSet.currentLevel.ID == LevelID.ColliseumPit_Water_Kraken)
+            { currentTexture = Assets.colliseumLevelSheet; }
 
             else if (LevelSet.currentLevel.ID == LevelID.Forest_Entrance) { currentTexture = Assets.forestLevelSheet; }
             else if (LevelSet.currentLevel.ID == LevelID.Forest_Dungeon) { currentTexture = Assets.forestLevelSheet; }

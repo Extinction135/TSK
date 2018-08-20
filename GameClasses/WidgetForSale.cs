@@ -196,7 +196,7 @@ namespace DungeonRun
                 
                 Functions_MenuItem.SetType(MenuItemType.Challenge_Bosses_BigEye, menuItems[5]);
                 Functions_MenuItem.SetType(MenuItemType.Challenge_Bosses_BigBat, menuItems[6]);
-                //7
+                Functions_MenuItem.SetType(MenuItemType.Challenge_Bosses_Kraken, menuItems[7]);
                 //8
                 //9
             }

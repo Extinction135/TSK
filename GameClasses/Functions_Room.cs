@@ -166,6 +166,17 @@ namespace DungeonRun
                     RoomXmlData = LevelData.ColliseumPit;
                     LevelSet.currentLevel.isField = true;
                 }
+                else if (Room.roomID == RoomID.ColliseumPit_Water)
+                {
+                    RoomXmlData = LevelData.ColliseumPit_Water;
+                    LevelSet.currentLevel.isField = true;
+                }
+                else if (Room.roomID == RoomID.ColliseumPit_Water_Kraken)
+                {
+                    RoomXmlData = LevelData.ColliseumPit_Water_Kraken;
+                    LevelSet.currentLevel.isField = true;
+                }
+
 
                 #endregion
 

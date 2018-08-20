@@ -26,6 +26,8 @@ namespace DungeonRun
         public static List<ActorType> Bosses_BigEye;
         public static List<ActorType> Bosses_BigBat;
 
+        public static List<ActorType> Bosses_Kraken;
+
         static Challenges()
         {
             Blobs = new List<ActorType>();
@@ -53,6 +55,12 @@ namespace DungeonRun
             Bosses_BigBat = new List<ActorType>();
             for (i = 0; i < 1; i++)
             { Bosses_BigBat.Add(ActorType.Boss_BigBat); }
+
+            Bosses_Kraken = new List<ActorType>();
+            for (i = 0; i < 1; i++)
+            { Bosses_Kraken.Add(ActorType.Boss_OctoHead); }
+            for (i = 0; i < 4; i++)
+            { Bosses_Kraken.Add(ActorType.Special_Tentacle); }
         }
     }
 
@@ -70,7 +78,12 @@ namespace DungeonRun
 
         public static void BeginChallenge(List<ActorType> Challenge)
         {
-            //rebuild the pit, fading in from black
+            if(Challenge == Challenges.Bosses_Kraken)
+            {   //flood the colliseum with water and swamp objs
+                LevelSet.currentLevel.ID = LevelID.ColliseumPit_Water_Kraken;
+            }
+
+            //rebuild the colliseum pit, fading in from black
             Functions_Level.BuildLevel(LevelSet.currentLevel.ID);
 
             //this method assums the current level + room is colliseum pit

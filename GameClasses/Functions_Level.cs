@@ -157,6 +157,20 @@ namespace DungeonRun
                 Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.ColliseumPit);
                 LevelSet.currentLevel.rooms.Add(field);
             }
+            else if (LevelSet.currentLevel.ID == LevelID.ColliseumPit_Water)
+            {
+                Functions_Music.PlayMusic(Music.CrowdWaiting);
+                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.ColliseumPit_Water);
+                LevelSet.currentLevel.rooms.Add(field);
+            }
+            else if (LevelSet.currentLevel.ID == LevelID.ColliseumPit_Water_Kraken)
+            {
+                Functions_Music.PlayMusic(Music.CrowdWaiting); //gets overwritten by challenge method
+                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.ColliseumPit_Water_Kraken);
+                LevelSet.currentLevel.rooms.Add(field);
+            }
+
+
 
 
             //entrances

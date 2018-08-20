@@ -395,6 +395,14 @@ namespace DungeonRun
                 MenuItem.compSprite.texture = Assets.colliseumLevelSheet;
                 MenuItem.price = 10;
             }
+            else if (Type == MenuItemType.Challenge_Bosses_Kraken)
+            {
+                MenuItem.name = "Boss - Kraken";
+                MenuItem.description = "Defeat Kraken \nfor 99 gold.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Challenge;
+                MenuItem.compSprite.texture = Assets.colliseumLevelSheet;
+                MenuItem.price = 10;
+            }
 
             #endregion
 

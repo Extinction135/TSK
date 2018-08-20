@@ -74,11 +74,18 @@ namespace DungeonRun
 
 
 
+
+
+
     public enum LevelID
     {
         //overworld levels (fields)
         Colliseum,
         ColliseumPit,
+        ColliseumPit_Water,
+        ColliseumPit_Water_Kraken,
+
+
         TheFarm, 
         LeftTown2,
         Boat,
@@ -112,6 +119,8 @@ namespace DungeonRun
         //these OVERWORLD rooms are non-procedural (handmade)
         Colliseum,
         ColliseumPit,
+        ColliseumPit_Water,
+        ColliseumPit_Water_Kraken,
 
         ForestEntrance,
         MountainEntrance,
@@ -131,6 +140,12 @@ namespace DungeonRun
 
 
     
+
+
+
+
+
+
 
 
     public enum Music
@@ -815,6 +830,7 @@ namespace DungeonRun
 
         Challenge_Bosses_BigEye,
         Challenge_Bosses_BigBat,
+        Challenge_Bosses_Kraken,
 
         #endregion
 

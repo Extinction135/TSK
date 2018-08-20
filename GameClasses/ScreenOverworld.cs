@@ -477,7 +477,9 @@ namespace DungeonRun
             else if (LevelSet.field.ID == LevelID.LeftTown2)
             { currentLocation = leftTown2; }
             else if (LevelSet.field.ID == LevelID.Colliseum
-                || LevelSet.field.ID == LevelID.ColliseumPit)
+                || LevelSet.field.ID == LevelID.ColliseumPit
+                || LevelSet.field.ID == LevelID.ColliseumPit_Water
+                || LevelSet.field.ID == LevelID.ColliseumPit_Water_Kraken)
             { currentLocation = colliseum; }
 
             else if (LevelSet.field.ID == LevelID.Boat)

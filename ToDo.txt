@@ -47,30 +47,87 @@ Today:
 
 
 
-Editor++
+Kraken Challenge
 
-f6 - ignore water tiles button in top menu
+designed coliseum pit filled with water. 
+added into roomData. integrated into game via
+coliseum challenges vendor.
 
-this is done, and awesome. by pressing f6,
-all water tiles are now ignored in object
-pickup routines for editor. this means editors
-can interact with objects on top of water
-in a much easier and faster way, allowing for
-faster revisions and better final designs.
+from this base water coliseum pit level, 
+created kraken themed level with lily pads and
+swamp objects.
 
-
-
-
-
+and tested the challenge. and it's the funnest
+i've had playing the game. it's so awesome.
+i'll post a video to the youtubes.
 
 
 
 
 
 
-Editor++
 
-remove roofs button in top menu
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Dungeon Theme-ing
+
+we are now seperating dungeon rooms into specific dungeon
+categories: forest, mountain, and swamp.
+
+this means we have an entire set of rooms for forest.
+an entire set of rooms for mountain.
+and most importantly: an entire set of rooms FILLED with
+WATER TILES for the swamp dungeon.
+
+in addition to this, we are designing HUB and BOSS rooms
+specifically for each dungeon too. and since the system 
+already supports it, we should have different versions of
+HUB and BOSS rooms, which are appropriately setup for the
+miniboss or boss within them.
+
+forest
+miniboss blackeye: this should be super easy.
+pillars to hide behind, lots of skulls.
+boss floating eye: pit objs at the edges of the room,
+forcing player towards the boss, except from the entrance
+door, where the player will continually respawn once they
+fall. this also to teach the player that falling doesn't
+cause damage.
+
+mountain
+armored spider: objs that can spawn bombs or fireballs.
+either way, this is how we break the armor.
+big bat: pillars to block his final attack. *these could
+be put on conveyor belts for extra challenge. ver1 & 2?
+
+swamp
+mouth tentacle: lilly pads strategically placed, but sparsely.
+kraken: lilly pads all around the edges, none in center.
+
+
+
+
+
+
+
+
 
 
 
@@ -143,10 +200,7 @@ should connect to the hub room as well.
 
 
 
-*this also sets up the possibility of water colliseum battles.
-*judge should be sitting on a lilly pad.
-*we'd just need to flood the colliseum with water tiles, then
-place lilly pads / rafts / bridges / etc in specific areas.
+
 
 
 

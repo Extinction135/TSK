@@ -1255,7 +1255,8 @@ namespace DungeonRun
 
                     //bosses
                     else if (Functions_Colliseum.currentChallenge == Challenges.Bosses_BigEye
-                        || Functions_Colliseum.currentChallenge == Challenges.Bosses_BigBat)
+                        || Functions_Colliseum.currentChallenge == Challenges.Bosses_BigBat
+                        || Functions_Colliseum.currentChallenge == Challenges.Bosses_Kraken)
                     {   //reward hero with gold
                         PlayerData.current.gold += 99;
                     }
