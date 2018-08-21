@@ -47,40 +47,6 @@ Today:
 
 
 
-Kraken Challenge
-
-designed coliseum pit filled with water. 
-added into roomData. integrated into game via
-coliseum challenges vendor.
-
-from this base water coliseum pit level, 
-created kraken themed level with lily pads and
-swamp objects.
-
-and tested the challenge. and it's the funnest
-i've had playing the game. it's so awesome.
-i'll post a video to the youtubes.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -102,6 +68,10 @@ already supports it, we should have different versions of
 HUB and BOSS rooms, which are appropriately setup for the
 miniboss or boss within them.
 
+for now, we will only implement dungeon specific hub and
+boss rooms, but design the system to handle an update later
+where all rooms can be dungeon specific.
+
 forest
 miniboss blackeye: this should be super easy.
 pillars to hide behind, lots of skulls.
@@ -109,7 +79,7 @@ boss floating eye: pit objs at the edges of the room,
 forcing player towards the boss, except from the entrance
 door, where the player will continually respawn once they
 fall. this also to teach the player that falling doesn't
-cause damage.
+cause damage
 
 mountain
 armored spider: objs that can spawn bombs or fireballs.
@@ -121,7 +91,39 @@ swamp
 mouth tentacle: lilly pads strategically placed, but sparsely.
 kraken: lilly pads all around the edges, none in center.
 
+Systems++
+game updated to expected properly levelID'd boss and hub rooms.
+we will have to manually set these up, but it allows the dungeons
+hub and boss rooms to be specific. we only need 1 version of these,
+but the system can accept many versions, however it only chooses
+last valid one. so there should only be one roomData xml doc
+for forest hub, forest boss, mountain hub, mountain boss, etc..
 
+RoomData++
+designed boss and hub rooms for all 3 dungeons.
+now the room is based on the miniboss or boss the
+player fights, leading to more predictable strats.
+
+Saving XML++
+when we load the XML data, we aren't transferring the LevelID value
+onto the roomData representation in memory, which doesn't even have
+a LevelID value. so we need to make that. then, we need to complete
+the trip LevelID takes from XML to roomData in Ram back to XML.
+
+the process from XML to CS works just fine.
+
+added levelID to Room class.
+updated SaveCurrentRoom() in WidgetRoomTools to pass the
+levelID to the roomData instance it creates prior to serializing
+it to xml via the backend functions class. this preserves the
+levelID data we add to hub/boss room xml. tested and working.
+
+so, hub and boss rooms should be specific to dungeons now.
+
+Bugs++
+recorded video fighting kraken in swamp room, fixed a bug
+where entering the room from the bottom could put link into
+a blocking object.
 
 
 

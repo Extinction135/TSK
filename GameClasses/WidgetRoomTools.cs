@@ -253,6 +253,10 @@ namespace DungeonRun
             {   //we may be saving a proper GAME room/level or field
                 roomData.type = id;
             }
+
+            //transfer the levelID
+            roomData.levelID = LevelSet.currentLevel.currentRoom.levelID;
+
             //populate roomData with roomObjs
             for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
             { SaveObject(Pool.roomObjPool[Pool.roomObjCounter], roomData); }
@@ -293,6 +297,8 @@ namespace DungeonRun
                 LevelSet.currentLevel.map = false;
 
                 Room room = new Room(Functions_Level.buildPosition, RoomXmlData.type);
+                room.levelID = RoomXmlData.levelID; //transfer levelID to room
+
                 LevelSet.currentLevel.rooms.Add(room);
                 LevelSet.currentLevel.currentRoom = room;
                 Functions_Dungeon.AddDevDoors(room);

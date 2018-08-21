@@ -19,7 +19,7 @@ namespace DungeonRun
         public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.76f; //the version of the game
-        public static BootRoutine bootRoutine = BootRoutine.Editor_Level; //boot to game or editor?
+        public static BootRoutine bootRoutine = BootRoutine.Editor_Room; //boot to game or editor?
 
         //dev flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
@@ -259,6 +259,7 @@ namespace DungeonRun
         public Byte2 size = new Byte2(0, 0); //in 16 pixel tiles
         public Point center = new Point(0, 0);
         public RoomID roomID;
+        public LevelID levelID = LevelID.Forest_Dungeon;
         public PuzzleType puzzleType = PuzzleType.None; //most rooms aren't puzzles
         public int dataIndex; //if dungeon room, what roomData index is used to populate?
 
@@ -285,6 +286,7 @@ namespace DungeonRun
     public class RoomXmlData
     {
         public RoomID type = RoomID.Row;
+        public LevelID levelID = LevelID.Forest_Dungeon;
         public List<ObjXmlData> objs = new List<ObjXmlData>();
     }
 

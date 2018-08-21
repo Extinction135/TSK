@@ -151,7 +151,6 @@ namespace DungeonRun
             if (RoomXmlData == null)
             {   
                 
-                
 
                 #region Setup Colliseum levels
 
@@ -220,9 +219,17 @@ namespace DungeonRun
 
                 #region Setup dungeon room data
 
+                //here is where we need to tie specific roomData to dungeon types
+
                 else if (Room.roomID == RoomID.Boss)
                 {
-                    RoomXmlData = RoomData.bossRooms[Room.dataIndex];
+                    //find a matching bossRoom to use
+                    for (i = 0; i < RoomData.bossRooms.Count; i++)
+                    {   //this works for now, >> put on list based on levelID, then randomly choose from
+                        if (RoomData.bossRooms[i].levelID == LevelSet.currentLevel.ID)
+                        { RoomXmlData = RoomData.bossRooms[i]; } //grabs last valid one (consistently)
+                    }
+                    //RoomXmlData = RoomData.bossRooms[Room.dataIndex];
                     LevelSet.currentLevel.isField = false;
                 }
                 else if (Room.roomID == RoomID.Column)
@@ -237,7 +244,13 @@ namespace DungeonRun
                 }
                 else if (Room.roomID == RoomID.Hub)
                 {
-                    RoomXmlData = RoomData.hubRooms[Room.dataIndex];
+                    //find a matching hubRoom to use
+                    for (i = 0; i < RoomData.hubRooms.Count; i++)
+                    {   //this works for now, >> put on list based on levelID, then randomly choose from
+                        if (RoomData.hubRooms[i].levelID == LevelSet.currentLevel.ID)
+                        { RoomXmlData = RoomData.hubRooms[i]; } //grabs last valid one (consistently)
+                    }
+                    //RoomXmlData = RoomData.hubRooms[Room.dataIndex];
                     LevelSet.currentLevel.isField = false;
                 }
                 else if (Room.roomID == RoomID.Key)

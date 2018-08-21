@@ -168,9 +168,11 @@ namespace DungeonRun
                     csOutput += "\t\t\t{\n";
 
                     csOutput += "\t\t\t\tRoomXmlData room = new RoomXmlData();\n";
-                    csOutput += "\t\t\t\troom.type = RoomID." + roomData[i].type + ";\n";
-                    csOutput += "\t\t\t\troom.objs = new List<ObjXmlData>();\n";
+                    csOutput += "\t\t\t\t"; //save both room and level ID enums
+                    csOutput += "room.type = RoomID." + roomData[i].type + "; ";
+                    csOutput += "room.levelID = LevelID." + roomData[i].levelID + ";\n";
 
+                    csOutput += "\t\t\t\troom.objs = new List<ObjXmlData>();\n";
                     for (int g = 0; g < roomData[i].objs.Count(); g++)
                     {
                         csOutput += "\t\t\t\t{";
