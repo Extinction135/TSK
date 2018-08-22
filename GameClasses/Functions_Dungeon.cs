@@ -603,17 +603,23 @@ namespace DungeonRun
             }
             else if (LevelSet.currentLevel.ID == LevelID.Mountain_Dungeon)
             {
-                Functions_Actor.SpawnActor(
-                    ActorType.MiniBoss_Spider_Armored,
-                    Room.center.X + 8,
-                    Room.center.Y + 8);
+                for (i=0; i < 2; i++)
+                {   //2 spiders
+                    Functions_Actor.SpawnActor(
+                        ActorType.MiniBoss_Spider_Armored,
+                        Room.center.X + 8,
+                        Room.center.Y + 8);
+                }
             }
             else if (LevelSet.currentLevel.ID == LevelID.Swamp_Dungeon)
-            {
-                Functions_Actor.SpawnActor(
-                    ActorType.MiniBoss_OctoMouth,
-                    Room.center.X + 8,
-                    Room.center.Y + 8);
+            {   //3 mouths
+                for (i = 0; i < 3; i++)
+                {
+                    Functions_Actor.SpawnActor(
+                        ActorType.MiniBoss_OctoMouth,
+                        Room.center.X + 8,
+                        Room.center.Y + 8);
+                }
             }
         }
 

@@ -7,7 +7,11 @@ and this we should do freely and generously."
 
 Roadmap
 
-0.76 - swamp level + dungeon + enemies + boat level
+0.76 - swamp level + dungeon + enemies 
++ boat level + captain brandy + overworlds
++ custom miniboss and boss rooms
+
+
 0.77 - castle, city, royal vendors
 0.78 - king, fight with king, lightworld storyline
 0.79 - intro, farming + seeds + crops
@@ -46,145 +50,33 @@ Today:
 
 
 
+Minibosses ++
 
-
-
-
-
-
-Dungeon Theme-ing
-
-we are now seperating dungeon rooms into specific dungeon
-categories: forest, mountain, and swamp.
-
-this means we have an entire set of rooms for forest.
-an entire set of rooms for mountain.
-and most importantly: an entire set of rooms FILLED with
-WATER TILES for the swamp dungeon.
-
-in addition to this, we are designing HUB and BOSS rooms
-specifically for each dungeon too. and since the system 
-already supports it, we should have different versions of
-HUB and BOSS rooms, which are appropriately setup for the
-miniboss or boss within them.
-
-for now, we will only implement dungeon specific hub and
-boss rooms, but design the system to handle an update later
-where all rooms can be dungeon specific.
-
-forest
-miniboss blackeye: this should be super easy.
-pillars to hide behind, lots of skulls.
-boss floating eye: pit objs at the edges of the room,
-forcing player towards the boss, except from the entrance
-door, where the player will continually respawn once they
-fall. this also to teach the player that falling doesn't
-cause damage
-
-mountain
-armored spider: objs that can spawn bombs or fireballs.
-either way, this is how we break the armor.
-big bat: pillars to block his final attack. *these could
-be put on conveyor belts for extra challenge. ver1 & 2?
-
-swamp
-mouth tentacle: lilly pads strategically placed, but sparsely.
-kraken: lilly pads all around the edges, none in center.
-
-Systems++
-game updated to expected properly levelID'd boss and hub rooms.
-we will have to manually set these up, but it allows the dungeons
-hub and boss rooms to be specific. we only need 1 version of these,
-but the system can accept many versions, however it only chooses
-last valid one. so there should only be one roomData xml doc
-for forest hub, forest boss, mountain hub, mountain boss, etc..
-
-RoomData++
-designed boss and hub rooms for all 3 dungeons.
-now the room is based on the miniboss or boss the
-player fights, leading to more predictable strats.
-
-Saving XML++
-when we load the XML data, we aren't transferring the LevelID value
-onto the roomData representation in memory, which doesn't even have
-a LevelID value. so we need to make that. then, we need to complete
-the trip LevelID takes from XML to roomData in Ram back to XML.
-
-the process from XML to CS works just fine.
-
-added levelID to Room class.
-updated SaveCurrentRoom() in WidgetRoomTools to pass the
-levelID to the roomData instance it creates prior to serializing
-it to xml via the backend functions class. this preserves the
-levelID data we add to hub/boss room xml. tested and working.
-
-so, hub and boss rooms should be specific to dungeons now.
-
-Bugs++
-recorded video fighting kraken in swamp room, fixed a bug
-where entering the room from the bottom could put link into
-a blocking object.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Boss And Hub Room Upgrade
-
-*we need a watery hub room for swamp mini
-*we need a watery boss room for swamp boss
-
-
-extending from this idea, we should have swamp rooms that
-are filled with water. these will need to be designed by hand,
-and we will need to be able to 'tie' certain roomData to specific
-dungeons.
-
-
-
-
-*we need swamp dungeon to specifically load these mini & boss rooms.
-**in fact, it would be good to have dungeons specifically load the hub
-and boss rooms, so we dont have insane boss battles on ice.
-
-we need to 'texture id' each room to a dungeon type using an enum, in xml data.
-then loop over the hub rooms, looking for forest id enum, then build it.
-we could even collect a list of hub rooms with forest id enum,
-and randomly choose one, allowing for variation. we could even
-place forest specific objects in these rooms, because we know they
-will always be built in the forest sheet (so we dont have two level
-sheets on screen at once).
-
-this could be the way to set the level's texture as well.
-if the room has a dungeon type enum, then we know what texture that
-room requires to be displayed correctly. when we load the room,
-we could simply set the texture based on the room's texture enum.
-
-*this removes the need for SetTexture() to exist, as we load/set
-the texture based on the texture enum found in xml data, instead.
-
-some rooms would have the texture enum id of any, corresponding to
-any of the texture sheets. in this case, we would base the texture
-off of the level id.
-
-create 3 cotomouths in hub room for swamp.
 create 2 armored spiders in hub room for mountain.
+create 3 octomouths in hub room for swamp.
+this is a linear difficulty increase.
 
 
+
+
+
+
+
+kraken should move around more.
+ocotomouths should move around more too.
+
+
+
+
+
+
+
+
+
+
+
+
+swamp rooms ++
 swamp dungeon should be diff than mountain dungeon
 in size and complexity. because it takes longer to
 move in water, it will feel like the dungeon is harder
@@ -194,6 +86,27 @@ critical path into this dungeon, so it needs to remain
 about the size of the forest dungeon. the boss room
 should connect to the hub room as well.
 
+we desperatly need to improve the ugly swamp wall sprtes.
+fix this to look slimy and grotesque.
+
+
+
+
+
+
+
+this means we need to implement hub/boss approach for 
+square, column, row rooms. 
+
+
+
+
+Exits++
+we should be able to make exits specific to dungeons as
+well. they should visually introduce the dungeon, as well
+as any basic mechanics: for example the swamp exit should
+transtion from land to water, from the exit door obj. this
+symbolizes that this dungeon uses alot of water tiles.
 
 
 
@@ -248,6 +161,61 @@ should be wide as well.
 
 
 
+it would be nice to show the currently selected objects
+important parameters, like moveable, grounded, etc..
+we could put this info next to the object in the objTools
+widget, if we extende the widget.
+
+
+footholds were pushed off the mountain wall.
+i assume a frame of interaction happened prior to
+the roomObj types being updated. 
+*when we reset the pool, stopMovement() on all objs.
+
+
+
+
+
+
+
+
+
+Release version 0.76
+test install on windows10 via Dx.
+test install/run on xbox one via UWP.
+print media for 0.76 (main gif, playthru video).
+update readme with links.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+really important things that i should really fix i think?
+
 
 
 Polish + Fixes
@@ -261,19 +229,6 @@ rats and crabs should "bite", but turtles dont.
 all types can be picked up and carried, but rats
 and crabs will eventually bite link, causing link
 to throw the creature and take 1 damage.
-
-
-it would be nice to show the currently selected objects
-important parameters, like moveable, grounded, etc..
-we could put this info next to the object in the objTools
-widget, if we extende the widget.
-
-
-footholds were pushed off the mountain wall.
-i assume a frame of interaction happened prior to
-the roomObj types being updated. 
-*when we reset the pool, stopMovement() on all objs.
-
 
 
 
@@ -302,16 +257,6 @@ plus, projectiles could properly implement their behaviors - by
 tracking the actor's hitbox instead of their newPosition..
 
 
-
-
-
-
-
-Release version 0.76
-test install on windows10 via Dx.
-test install/run on xbox one via UWP.
-print media for 0.76 (main gif, playthru video).
-update readme with links.
 
 
 
