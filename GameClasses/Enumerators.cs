@@ -85,9 +85,9 @@ namespace DungeonRun
         ColliseumPit_Water,
         ColliseumPit_Water_Kraken,
 
-
         TheFarm, 
-        LeftTown2,
+        LeftTown,
+        RightTown,
         Boat,
 
         //fields, with dungeon entrances
@@ -127,7 +127,8 @@ namespace DungeonRun
         SwampEntrance,
 
         TheFarm,
-        LeftTown2,
+        LeftTown,
+        //RightTown,
         Boat,
 
         //these DEV rooms are used for testing

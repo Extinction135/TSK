@@ -105,7 +105,7 @@ namespace DungeonRun
                     
 
                     //Iterate thru forest, town, colliseum, mountain, etc...
-                    if (levelBeingDisplayed == LevelID.LeftTown2)
+                    if (levelBeingDisplayed == LevelID.LeftTown)
                     {   //leads to colliseum
                         currentSheet.compText.text = "colliseum";
                         Widgets.WO_Colliseum.visible = true;
@@ -151,7 +151,7 @@ namespace DungeonRun
                         currentSheet.compText.text = "town";
                         Widgets.WO_Town.visible = true;
                         Widgets.WE_Town.visible = true;
-                        levelBeingDisplayed = LevelID.LeftTown2;
+                        levelBeingDisplayed = LevelID.LeftTown;
                     }
                     
 

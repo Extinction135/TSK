@@ -201,10 +201,16 @@ namespace DungeonRun
                 Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.TheFarm);
                 LevelSet.currentLevel.rooms.Add(field);
             }
-            else if (LevelSet.currentLevel.ID == LevelID.LeftTown2)
+            else if (LevelSet.currentLevel.ID == LevelID.LeftTown)
             {
                 Functions_Music.PlayMusic(Music.LightWorld);
-                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.LeftTown2);
+                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.LeftTown);
+                LevelSet.currentLevel.rooms.Add(field);
+            }
+            else if (LevelSet.currentLevel.ID == LevelID.RightTown)
+            {
+                Functions_Music.PlayMusic(Music.LightWorld);
+                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.LeftTown);
                 LevelSet.currentLevel.rooms.Add(field);
             }
             else if (LevelSet.currentLevel.ID == LevelID.Boat)

@@ -179,11 +179,17 @@ namespace DungeonRun
                 ScreenManager.AddScreen(Screens.Dialog);
             }
 
-            else if(LevelSet.currentLevel.ID == LevelID.LeftTown2)
+            else if(LevelSet.currentLevel.ID == LevelID.LeftTown)
             {
-                Screens.Dialog.SetDialog(AssetsDialog.Signpost_LeftTown2);
+                Screens.Dialog.SetDialog(AssetsDialog.Signpost_LeftTown);
                 ScreenManager.AddScreen(Screens.Dialog);
             }
+            else if (LevelSet.currentLevel.ID == LevelID.RightTown)
+            {
+                Screens.Dialog.SetDialog(AssetsDialog.Signpost_RightTown);
+                ScreenManager.AddScreen(Screens.Dialog);
+            }
+
             else if (LevelSet.currentLevel.ID == LevelID.TheFarm)
             {
                 Screens.Dialog.SetDialog(AssetsDialog.Signpost_TheFarm);

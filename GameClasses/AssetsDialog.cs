@@ -180,13 +180,21 @@ namespace DungeonRun
 
 
 
-        public static List<Dialog> Signpost_LeftTown2 = new List<Dialog>
+        public static List<Dialog> Signpost_LeftTown = new List<Dialog>
         {
             new Dialog(ObjType.Hero_Idle, "Welcome To Left Town",
                 "it says 'welcome to left town'.\n" +
                 "that's an odd name for a town..",
                 Assets.sfxTextLetter, false, false)
         };
+        public static List<Dialog> Signpost_RightTown = new List<Dialog>
+        {
+            new Dialog(ObjType.Hero_Idle, "Welcome To Right Town",
+                "it says 'welcome to right town'.\n" +
+                "that's a dumb name for a town..",
+                Assets.sfxTextLetter, false, false)
+        };
+
 
         public static List<Dialog> Signpost_TheFarm = new List<Dialog>
         {

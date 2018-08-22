@@ -203,11 +203,19 @@ namespace DungeonRun
                     RoomXmlData = LevelData.TheFarm;
                     LevelSet.currentLevel.isField = true;
                 }
-                else if (Room.roomID == RoomID.LeftTown2)
+                else if (Room.roomID == RoomID.LeftTown)
                 {
-                    RoomXmlData = LevelData.LeftTown2;
+                    RoomXmlData = LevelData.LeftTown;
                     LevelSet.currentLevel.isField = true;
                 }
+                /*
+                else if (Room.roomID == RoomID.RightTown)
+                {
+                    RoomXmlData = LevelData.RightTown;
+                    LevelSet.currentLevel.isField = true;
+                }
+                */
+
                 else if (Room.roomID == RoomID.Boat)
                 {
                     RoomXmlData = LevelData.Boat;

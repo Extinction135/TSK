@@ -1,6 +1,187 @@
 
 
 
+
+------------------------- Farming ------------------------- 
+
+
+implement the idea of seeds, sold by the farmer - 
+AFTER link fixes his crops. link should only have to
+fix his crops once. then we load the fixed farm level
+instead of the dry farm level. 
+
+
+should be able to plant crops, water them via ditches,
+and then wait for them to grow into loot or special items.
+this functions just like bushes and grass do in the game
+already.
+
+seeds are sold by the farmer, who is already implemented
+in game. now, post-reward he becomes the seed vendor.
+forcing the player to figure out how to regrow bushes
+is the foundation of farming - watering seeds!
+
+
+
+
+Farmers story:
+the farmers family left because he couldnt feed them.
+he couldn't provide for his family, and considers himself
+a failure. when link regrows his crops, he thanks link
+profusely and tells him that his family have been farmers
+for generations, and they use special beans on their farm.
+the farmer agrees to sell link his special beans, and gives
+link a few to try out. he hopes to make enough money to 
+get his family back. we should put an int value in saveData
+to represent how much money link has given this farmer.
+when this value exceeds 1000, then we should load the family
+farm level, instead of the watered farm level (loaded instead
+of the initial drk farm level). this gives the player a sense
+of progress in the game, along with a cheerful reward for 
+spending money with the farmer. essentially, doing business
+with the farmer turned his life around and brought his family
+back. double bonus: speaking with the wife or kids could open
+additional sidequests or just reward link with special items.
+
+Beans for Sale -
+HeartBean : grows a plant that spawns hearts.
+FairyBean : grows a plant that spawns fairies.
+GreenBean : grows a plant that spawns magic pots.
+ArrowBean : grows a plant that spawns arrows.
+BombBean : grows a plant that spawns bombs.
+
+
+Very Special Beans (cannot be bought) -
+CloudBean : grows an interactive (dialog) beanstalk to cloud city.
+**this is given to link by farmer's wife when she returns to farm**
+
+DarkBean : opens a portal to darkworld.
+
+Seeds: DarkBeans
+we should be able to purchase dark beans
+growing these beans creates a dark world 
+portal that link can pass thru to the dark world. 
+however, dark world creatures will randomly spawn 
+from this portal too, so it's extremely dangerous
+to open a dark world portal. but for the first 4
+seconds (255 frames) no dark world creatures will
+spawn, giving the player enough time to jump through
+it, which also closes the portal, and would teleport
+link to the dark overworld screen.
+
+Seed: CloudStalk
+like super mario bros, grows a beanstalk into the sky.
+link asks "should i climb this? A/B".
+doing so takes him to the cloud world.
+
+
+My Chickens!
+now that we have posts, we can make this sidequest.
+this is an NPC with an expanding hitBox check for 4 chickens
+nearby. surrounding the NPC is the posts, which form a chicken
+pen. link has to pickup and deliver the 4 chickens to the pen,
+then he gets the reward. this is part of the farm level.
+however the NPC that checks for this (the farmer's wife),
+wont return to the farm until link has spent 1000 rupees with
+the farmer, purchasing his beans.
+
+
+Hidden Seeds / Vendor Items
+*if we push a shelf obj up to the farmer vendor,
+he will sell you special seeds from his secret family
+locker.. he mentions that he forgot about where he
+put it prior to this - so the player has at least a hint.
+this can be done by simply expnding the NPCs hitbox and
+then checking for the obj in question.
+
+
+
+
+
+--------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+SWAMP ++
+
+swamp rooms ++
+swamp dungeon should be diff than mountain dungeon
+in size and complexity. because it takes longer to
+move in water, it will feel like the dungeon is harder
+on a base level, so the dungeon shouldnt be that large
+or complex. we're also going to be adding a water lever
+critical path into this dungeon, so it needs to remain
+about the size of the forest dungeon. the boss room
+should connect to the hub room as well.
+
+we desperatly need to improve the ugly swamp wall sprtes.
+fix this to look slimy and grotesque.
+
+- water temple / swamp dungeon ++
+build crit path to hub, crit path to key, crit path to boss, 
+*crit path to water switch (pullable lever)
+*place water switch randomly in room/hub room
+water pullable lever flips high/low water level boolean
+when rooms are built they build high or low water levels, 
+low water levels prevent hero from passing thru rooms 
+there are low water levels in rooms along the key or boss crit path.
+hero must flip switch to access key or boss rooms, or not.
+boss is tentacles squid
+
+Water Temple
+	- implement water temple (big lever to change water level outside).
+	- this makes the temple accessible by lowering the water to reveal the entrance.
+	- water temple contains additional critical path to big lever inside.
+	- pulling big lever inside lowers the water level, so big key can be accessed.
+	- this is done by boolean in dungeon/level, waterLevelHigh.
+	- rooms on the key path are filled with high water if waterLevelHigh is true.
+	- else they are filled with low level water, which simply creates the feetFX.
+	*important that player knows how big levers work prior to entering water temple.
+	- for now, the water temple boss and enemies are same as forest dungeon.
+	
+WaterTemple
+the water temple is accessible by changing the water level outside
+via a big push lever. changing the water level is the dungeon's theme,
+so the player needs to know how this mechanic works prior to entering.
+once inside, the various critical paths need to be created with the
+understanding that some of those rooms will be "flooded" and impassable,
+and the path to the lever that drains those rooms MUST be passable,
+or in this case - not flooded.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Ship Graveyard
 add sunken/broken ships around, with vines
 and various water objects. we need broken/damaged ship parts
@@ -27,6 +208,10 @@ remove roofs button in top menu
 
 
 
+FireTornado
+I don't know how, but lets make a tornado that creates
+groundfires where-ever it travels. that seems fun.
+
 
 
 
@@ -34,17 +219,6 @@ Spikeblocks++
 spikeblocks = swim under. indestructible. immobile.
 we need immobile spikeblocks!
 we can add these into dungeon rooms as well.
-
-
-
-
-
-My Chickens!
-now that we have posts, we can make this sidequest.
-this is an NPC with an expanding hitBox check for 4 chickens
-nearby. surrounding the NPC is the posts, which form a chicken
-pen. link has to pickup and deliver the 4 chickens to the pen,
-then he gets the reward.
 
 
 
@@ -84,7 +258,7 @@ hand placed.
 
 
 
-
+Intro / Demo?
 the boat acts as a very short training/intro level.
 link initially starts out on boat level, without ability to
 exit boat (no stairs). there is one enemy on board that link
@@ -114,12 +288,17 @@ poster for a tournament in hyrule.
 
 
 
+
+
+
 Editor++
 
 we need to be able to mass select and move objects.
 drag a rectangle around objects, move them in 16 px
 increments using arrow keys. button up on top menu
 allows for 'mass move' mode.
+
+
 
 
 
@@ -132,20 +311,6 @@ using magic mirror in field level takes hero to overworld screen.
 it does not serve as a connection between worlds, because it has
 been broken. the history of why it was broken can be explained.
 *need sprite in ui sheet
-
-
-
-
-Levels++
-
-Left Towns
-add a 2nd town level on the left of the map, below left town.
-add a 3rd town level on the left of the colliseum connector.
-this makes 3 towns on the left.
-
-right town level
-
-campground level
 
 
 
@@ -231,15 +396,10 @@ that maybe they don't need to attack the blobs.
 
 
 
-Town++
-we are going to rebuild the town level completely..
-completely! with a few goals in mind: smaller houses
-that are father apart. all roofs fade out when link
-enters a house, so we don't want multiple houses on
-screen at once. only one. we'll also be creating the
-My Chickens! sidequest soon, so create a gated area
-for chickens, add chickens. hitting a chicken should
-make it cluck, of course.
+
+
+
+
 
 
 
@@ -409,6 +569,8 @@ just decorative 'throwback' and isn't really useful..
 
 
 
+
+
 Sky Islands
 grow a beanstalk from a special seed.
 this beanstalk takes link to the sky island hub,
@@ -422,16 +584,19 @@ at link - if this happens we could take link
 somewhere else (level) or just damage push him.
 
 
+
+
+
+
 EDITOR +++++++++
 
 editor++
 it would be nice to be able to toggle roofs on/off.
 and hide their collisionrecs too, so we can't accidentally pick them up.
-it would also be nice to "lock" water tiles somehow, so we can't
-mess them up. maybe different selection modes: landscape, building.
-it would be nice to be able to drag select a rec around a set of objects,
-then move them with the arrow keys, in 16 pixel increments. this would allow
-us to edit parts of rooms just like we edit pixels in photoshop.
+
+
+
+
 
 
 Magic Mirror
@@ -468,14 +633,6 @@ the scroll sprite. rename map window title to nothing.
 
 
 
-
-Hidden Seeds / Vendor Items
-*if we push a shelf obj up to the farmer vendor,
-he will sell you special seeds from his secret family
-locker.. he mentions that he forgot about where he
-put it prior to this - so the player has at least a hint.
-this can be done by simply expnding the NPCs hitbox and
-then checking for the obj in question.
 
 
 
@@ -583,37 +740,6 @@ they need to save their game before exiting.
 
 
 
-Farming
-cut grass should grow into tall grass if near coastlines,
-or filled ditches. implement the idea of seeds, sold by the
-farmer - AFTER link fixes his crops (each time).
-
-
-should be able to plant crops, water them via ditches,
-and then wait for them to grow into loot or special items.
-
-seeds are sold by the farmer, who is already implemented
-in game. now, post-reward he becomes the seed vendor.
-forcing the player to figure out how to regrow bushes
-is the foundation of farming - watering seeds!
-
-Seeds: DarkBeans
-we should be able to purchase dark beans
-growing these beans creates a dark world 
-portal that link can pass thru to the dark world. 
-however, dark world creatures will randomly spawn 
-from this portal too, so it's extremely dangerous
-to open a dark world portal. but for the first 4
-seconds (255 frames) no dark world creatures will
-spawn, giving the player enough time to jump through
-it, which also closes the portal, and would teleport
-link to the dark world level equivalent, however that
-system is designed.
-
-Seed: CloudStalk
-like super mario bros, grows a beanstalk into the sky.
-link asks "should i climb this? A/B".
-doing so takes him to the cloud world.
 
 
 
@@ -625,45 +751,11 @@ doing so takes him to the cloud world.
 
 
 
-Fire++
-when fire expands, it should expand further vertically,
-because it doesn't always transfer from bush to bush,
-because bush hitboxes are small.
 
 
 
 
 
-Enemy Spawns
-
-standard - usually 3 hit.
-
-easy - 1 hit, usually many or they explode.
-- we have seekers, they need to be renamed.
-- we also have fun floaty eye that should be mob outside of boss room
-
-*hard - more than 3 hits, less than 10.
--we dont have a hard boss for forest dungeon yet.
--make one
-
-Enemies++
-
-Seeker : seeks towards player, exlodes (done)
-Standard : 3 hits, with a melee attack (usually sword).
-
-OneHit : fast moving, low melee, low health.
-Distance : projectile attack (unlimited), med move, low health.
-Healing : healing magic (set amount), med move, no attack.
-Aggro : tank, slow, strong melee attack.
-Flanking : rogue, weak, fast, with strong attack.
-
-Miniboss : done
-Boss : done
-
-we'll need to change the enemy spawn 2, or miniboss spawn to be
-Enemy_Spawn_Weak, Enemy_Spawn_Strong. later on, it's likely this 
-will expand to also include Enemy_Spawn_Ranged, Enemy_Spawn_Healer,
-etc...
 
 
 
@@ -737,14 +829,6 @@ machines.. sure, why not?
 
 
 
-Houses in Water
-
-can we build a house over water tiles? 
-sure, why not? this means we can build an
-entire town in the ocean...
-
-
-
 
 
 Exploit : Trap Door Pit Teleport
@@ -784,32 +868,6 @@ set as the last / active door.
 
 
 
-when water spreads to other tiles, it shouldn't play
-the water splash soundfx, this takes waaay too long.
-it should play the water walk sfx, or we should shorten
-the water splash sound fx dramatically. either or.
-or we should create a water spreading soundfx,
-then use the splash fx shortened. i dunno.
-
- 
-  
-
-Improve Projectile.Spawn()
-
-*miniboss cant shoot fireballs south - why?
-?= pro.spawn() assumes that the actor's collRec is 16x16 - it shouldn't.
-this means only 16x16 actors can safely shoot fireballs without damaging
-themselves, which is some valve level stupid. this method should take
-the actor as a parameter, and then we should base the offsets FOR ALL
-PROJECTILES off of the actor's collision rec width and height. this
-would allow larger actors, like bosses, to SHOOT FIREBALLS. geez.
-
-Special Attacks / Boss "USE"
-bigeye uses the shut + bloodshot frames for his special.
-bigeye: spawns A TON of exploding seekers while in his special.
-
-
-
 
 
 we can handle plot/level changes like this:
@@ -821,9 +879,6 @@ that happened in the story, or something the player did.
 -perhaps the player irrigated a farmers crops (B would have filled ditches, A wouldn't).
 -theres alot we can do here.
 
-
-in hard mode, pits should deal 1 damage.
-in normal mode, pits deal no damage.
 
 
 
@@ -947,7 +1002,7 @@ these shadow objects should go around the colliseum entrance?
 
 
 
-Dreams (Ideas)
+-------------------------------------------- Dreams (Ideas)
 
 clean beds appear in overworld levels (only
 light world). dirty beds appear in dungeons
@@ -994,6 +1049,7 @@ only has certain equipment, or can only have 1
 heatlh max, or has infinite health, or inf magic,
 etc...
 
+-------------------------------------------- 
 
 
 
@@ -1002,10 +1058,11 @@ etc...
 
 
 
-- mountain dungeon (diff enemies, boss, dungeon sprites)
+
+
+
 
 - Non-room repeating Dungeon, additional rooms
-- Blob AI improvements - sword, bomb based on weapon / item loadout 
 
 - room keys - these only work for the room and only unlock 1 door, and
 these rooms turn all their doors into locked doors upon close, similar to puzzled rooms
@@ -1022,74 +1079,6 @@ and clear that inventory item when link enters a new room (pre-build).
 
 
 
-
-- create 'boat' level, with boat captain, who has dialog with link
-- offers to take link to a variety of locations, using vendor screen
-- only available location is water temple, for low gold price (since link 'hires' crew)
-- this level is the boat obj + a dungeon entrance obj + a bunch of water tiles (maybe a small island)
-- links path is to/from the boat to the dungeon entrance
-
-- water temple / swamp dungeon: 
-	build crit path to hub, crit path to key, crit path to boss, 
-	*crit path to water switch (pullable lever)
-	*place water switch randomly in room/hub room
-	water pullable lever flips high/low water level boolean
-	when rooms are built they build high or low water levels, 
-	low water levels prevent hero from passing thru rooms 
-	there are low water levels in rooms along the key or boss crit path.
-	hero must flip switch to access key or boss rooms, or not.
-	boss is tentacles squid
-	
-	
-	
-	
-
-We still need a stationary spike block obj.
-this is super easy to do, btw.
-
-
-
-
-
-
-Swim Instructor NPC
-
-we need a swim instructor NPC that stands in front of a large pond,
-on the colliseum level. has dialog like:
-
-do you know how to swim? i'm sure you do.
-just hop in the water.
-
-press B while moving to swim faster.
-press X to dive underwater for a bit.
-
-while underwater, enemies can't see you,
-but you swim slower. 
-
-try picking up objects and carrying them
-into the water as well. have fun!
-
-*this should be at the colliseum level.
-make the pond an actual pool-like arrangement.
-
-
-
-
-
-
-
-Water Temple
-	- implement water temple (big lever to change water level outside).
-	- this makes the temple accessible by lowering the water to reveal the entrance.
-	- water temple contains additional critical path to big lever inside.
-	- pulling big lever inside lowers the water level, so big key can be accessed.
-	- this is done by boolean in dungeon/level, waterLevelHigh.
-	- rooms on the key path are filled with high water if waterLevelHigh is true.
-	- else they are filled with low level water, which simply creates the feetFX.
-	*important that player knows how big levers work prior to entering water temple.
-	- for now, the water temple boss and enemies are same as forest dungeon.
-	
-	
 	
 	
 	
@@ -1138,22 +1127,6 @@ this could hide a dungeon entrance, for example.
 
 
 
-WaterTemple
-the water temple is accessible by changing the water level outside
-via a big push lever. changing the water level is the dungeon's theme,
-so the player needs to know how this mechanic works prior to entering.
-once inside, the various critical paths need to be created with the
-understanding that some of those rooms will be "flooded" and impassable,
-and the path to the lever that drains those rooms MUST be passable,
-or in this case - not flooded.
-
-
-
-- blocking water objects (destructible via explosions, become debris)
-*we can use blocking objs to block off the water dungeon entrance
-
-
-
 mirage effect from snes:
 
 for a set of pixels, copy the top left pixel into the rest.
@@ -1183,8 +1156,6 @@ then when we place a square room, we ID it, and strip that room off the roomsLis
 and if we run out of square rooms, then we just try columns, or rows.
 this way the dungeon algorithm can never reach a point where there are no more rooms to use
 which would be game breaking. also, we need atleast 10 fo each row, square, column rooms.
-
-
 
 
 
@@ -1302,11 +1273,6 @@ this is done randomly
 
 
 
-
-X becomes dodge underwater when link is in water.
-this removes use of weapons while in water, but some
-items can be used, like magic, where link has a reward state.
-
 when hero dies in water, he sinks undewater..
 
 
@@ -1322,17 +1288,10 @@ we could even have the sprite animated to get smaller!
 
 
 
-
-*add a signpost outside the dungeon entrance that says "forest dungeon - caution!"
-we could stuff this into the interaction comp as a string.
-if obj's compInt string isn't null, pop dialog displaying obj as speaker.
-
-
-
-
+DUNGEON FLOORS !!!!!!
 we should have multiple rooms, each representing a floor, with an obj that transfers
-hero between floors. this is  easiest, ad we can have as many floors as needed per room.
-plus these rooms form a set, so we can build puzzles across floors, using an int or byte to 
+hero between floors. this is easiest, and we can have as many floors as needed per room.
+plus these rooms form a set, so we can build puzzles across floors, using a byte to 
 track the room's floor level (basement, ground, 1st, etc...). plus pits can just drop hero to
 a lower floor/room, unless it's the lowest floor which the spawns hero back at last door.
 
@@ -1357,15 +1316,6 @@ to the trials. he explains the trials, and grants entry.
 
 
 
-
-
-
-
-
-
-
-
-
 we can model height of objects with feet byte.
 then we can check feet byte to see if projectile can fly over it.
 smaller projectiles, like arrows, can fly over anything small. fireballs
@@ -1373,16 +1323,6 @@ need more space, etc... switches become 0 feet tall. levers 4 feet.
 we move the interaction of objects into a realm that is familiar: height.
 walls are 10 feet. then it makes sense.
 
-
-
-
-
-use a shovel on ground, ground becomes trench obj.
-every 30 frames, water tiles check to see if they touch a trech obj.
-if they do, trench becomes water tile. this allows hero to dig trenches
-and fill them with water. cascade effect: low water, med water, deep water
-objs act the same way, high to med to low to trench. this causes the water
-to visually 'rise' up over a period of 2 seconds.
 
 
 
@@ -1397,14 +1337,8 @@ this is first 'story item'.
 
 
 
+---------------- Final Fight With Ganon -----------------
 
-
-
-
-
-
-
-Final Fight With Ganon
 should take place in a destructible field overworld level, 
 in the dark world. and part of ganon's attacks should Push()
 the hero - which means Ganon can win simply by pushing Link
@@ -1446,7 +1380,7 @@ to set him free. if link sets him free, then we flip
 the ganon battle boolean false, reload level, 
 and start it all over again. lol.
 
-
+----------------------------------------------------- 
 
 
 
@@ -1487,21 +1421,6 @@ placing bombs next to one another would be unpredictable past 2-3 interactions
 
 
 
-Game Intro - music: our final descent or the great expanse
-(this should look very feng zhu concept art-y, with big landscapes and small ppl)
-(find concept art that matches what we're describing, downrez it grayscale it.)
-link on a small raft sailing towards hyrule, queens tournament poster in hand.
-crashes against the shore, simply walks away from the wreckage of his boat.
-walks up to the colliseum, people looking his way - half afraid, half interested.
-walks up to the tournament enroll NPC, smashes down the poster.
-NPC asks for the hero's name...
-*pop screen to enter hero's name*
-next frame is links face, scarred from years of adventure, old
-dialog simply says the name the player entered.
-
-next we jump into the 'training' section of the game.
-
-
 
 - can we 'reboot' in 1920x1080? can we have player input to set the size?
 on Dx, this is easy. on UWP, this is not so easy, but also doesn't matter terribly.
@@ -1528,20 +1447,6 @@ plus, this tree looks like it belongs in the dark world. rt.
 
 
 add signpost obj that hero can read to dungeon entrance level discussing dungeon.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1598,49 +1503,30 @@ this also means we need to 'unbake' the shadows from ALL objects and actors.
 
 
 
-
-
-
-Fences ++
-if link hits a fence obj, it should play an animation
-with two frames: fence straight, and fence bent (rounded).
-this will make it look like the fence was bouncing from the hit.
-this can be done by creating a fence bouncing obj,
-then switching the fence to bouncing version, then after
-60/120 frames, the bouncing version switches to the normal
-fence. should also have a fence bouncing sound effect.
-we can also do this with the vertical fences. which would
-be a very nice type of interaction polish.
-
-
-
-
-
-
-
-
-
-
 Special Sword Attack
 should be able to charge up attack and spin just like Lttp.
 
 
 
-Improve GameObj Naming Conventions
-we should shorten the dungeon_ prefix for gameObj to dun_.
-and world_ to wor_ .
-this will help those items better fit into the objTools widget
-plus, this shortens the overall size of the roomData xml by removing chars.
 
 
 
 
+********** ENUM FIELDS - OH MY GOD, IF THIS WORKS... **************
 
-ENUM FIELDS - OH MY GOD, IF THIS WORKS...
 masterwork: the bitFields used in cursedCastle were FASSSST.
-and we recently learned that booleans / bits are the same cost in
-ram gets/sets as ints, which we can abstract into enums.
-so instead of bitFields, create enumFields.
+recall that bytes are the same cost in ram gets/sets as booleans, 
+which we can abstract into enums.
+so instead of booleanFields, create byteFields, using enums.
+
+byteField 1 : blocking objs (walls, doors, objs, etc)
+byteField 2 : decorations (test to see if decoration tile is 
+occupied by blocking obj tile, via byte comparison)
+if(decorationField[10] > 0 & blockingField[10] > 0) {} //remove decoration, it's overlapping.
+this is faster than the collision check approach we use now.
+WAAAAAAAAY FASTER. so we can build more procedurally complex rooms,
+faster.
+
 they'll be just as fast, and you can model each tile as
 many different ways as you want to, for water / islands / rooms
 anything.. this could actually make procedurally creating rooms
@@ -1649,6 +1535,15 @@ lists - one for the doors / walls, and one for the interior objs (xml objs).
 we wouldn't need to do collision checking between objects, because
 we'd be setting the tiles by value, and not by position (conceptually).
 so, maybe we spend some time investigating enumFields...
+
+********************************************************************
+
+
+
+
+
+
+
 
 
 
@@ -1962,21 +1857,6 @@ so we could prompt the user with a dialog that asks 'load uncorrupted data?'
 
 
 
-	
-	
-	
-	
-
-
-where do we display the kill ratio?
-this is displayed in a stats widget somewhere that hasn't been designed yet
-equation for determining skill rating in percentage.
-this is: total enemies killed / damage taken
-ex: 10/1 = 10.   245/73 = 3.35.
-
-
-
-
 
 
 *************************************************************************
@@ -1999,12 +1879,9 @@ the overall dungeon.
 BITE from all the other awesome games you love:
 	theres so much to do and explore
 	we need more to do and explore
-	should be able to have a pet, like a dog
 	should be able to speak with more people/npcs
 	should be able to manage traders, adventurers, etc.. (blackflag?)
 	should be able to craft advanced items, using special parts + gold
-	
-	
 	
 Make the AI system Behavior based, where a Behavior is an enumerator
 
@@ -2043,15 +1920,6 @@ the top contributor each day until one bites and starts the hug of death.
 
 2. spam 4chan with gifs that have the game's release link burned in,
 bypassing spam filters entirely.. lol
-
-
-
-
-
-
-
-
-
 
 
 

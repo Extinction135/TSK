@@ -22,8 +22,10 @@ namespace DungeonRun
         {   //based on level id, set the current texture
             currentTexture = Assets.forestLevelSheet; //default to forest
 
-            if (LevelSet.currentLevel.ID == LevelID.LeftTown2) { currentTexture = Assets.townLevelSheet; }
-            else if (LevelSet.currentLevel.ID == LevelID.TheFarm) { currentTexture = Assets.townLevelSheet; }
+            if (LevelSet.currentLevel.ID == LevelID.LeftTown
+                || LevelSet.currentLevel.ID == LevelID.RightTown
+                || LevelSet.currentLevel.ID == LevelID.TheFarm)
+            { currentTexture = Assets.townLevelSheet; }
 
             //all colliseum levels point to the colliseum sheet, obvs
             else if (LevelSet.currentLevel.ID == LevelID.Colliseum

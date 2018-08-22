@@ -330,7 +330,8 @@ namespace DungeonRun
             locations.Add(rightCastleTown);
             MapLocation wallConnector = new MapLocation(false, new Vector2(465, 187));
             locations.Add(wallConnector);
-            MapLocation rightTown = new MapLocation(false, new Vector2(514, 189));
+
+            MapLocation rightTown = new MapLocation(true, new Vector2(514, 189));
             locations.Add(rightTown);
 
             MapLocation colliseumLeft = new MapLocation(false, new Vector2(258, 178));
@@ -345,8 +346,8 @@ namespace DungeonRun
             locations.Add(caveDungeon);
 
             //top left town and town south of it
-            MapLocation leftTown2 = new MapLocation(true, new Vector2(126, 182));
-            locations.Add(leftTown2);
+            MapLocation leftTown = new MapLocation(true, new Vector2(126, 182));
+            locations.Add(leftTown);
             MapLocation leftTown1 = new MapLocation(false, new Vector2(115, 219));
             locations.Add(leftTown1);
 
@@ -419,12 +420,12 @@ namespace DungeonRun
 
             leftTown3.neighborRight = colliseumLeft;
             leftTown3.neighborUp = caveDungeon;
-            leftTown3.neighborLeft = leftTown2;
+            leftTown3.neighborLeft = leftTown;
             caveDungeon.neighborDown = leftTown3;
 
-            leftTown2.neighborRight = leftTown3;
-            leftTown2.neighborDown = leftTown1;
-            leftTown1.neighborUp = leftTown2;
+            leftTown.neighborRight = leftTown3;
+            leftTown.neighborDown = leftTown1;
+            leftTown1.neighborUp = leftTown;
             leftTown1.neighborDown = leftTownChurch;
             leftTown1.neighborRight = leftTownChurch;
             leftTownChurch.neighborUp = leftTown1;
@@ -463,7 +464,8 @@ namespace DungeonRun
             //1. Setup accessible level's ID
             colliseum.ID = LevelID.Colliseum;
             centerIsland.ID = LevelID.TheFarm;
-            leftTown2.ID = LevelID.LeftTown2;
+            leftTown.ID = LevelID.LeftTown;
+            rightTown.ID = LevelID.RightTown;
             boat.ID = LevelID.Boat;
 
             forestDungeon.ID = LevelID.Forest_Entrance;
@@ -474,8 +476,10 @@ namespace DungeonRun
 
             if (LevelSet.field.ID == LevelID.TheFarm)
             { currentLocation = centerIsland; }
-            else if (LevelSet.field.ID == LevelID.LeftTown2)
-            { currentLocation = leftTown2; }
+            else if (LevelSet.field.ID == LevelID.LeftTown)
+            { currentLocation = leftTown; }
+            else if (LevelSet.field.ID == LevelID.RightTown)
+            { currentLocation = rightTown; }
             else if (LevelSet.field.ID == LevelID.Colliseum
                 || LevelSet.field.ID == LevelID.ColliseumPit
                 || LevelSet.field.ID == LevelID.ColliseumPit_Water

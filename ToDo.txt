@@ -45,18 +45,7 @@ Roadmap
 Today:
 
 
-
-
-
-
-
-Upload++
-
-recorded video entering swamp hub room, minibosses will
-light interior grass on fire - it's a nice visual pop.
-done. the kraken fight was actually entertaining too.
-removed 3 octomouths. there only needs to be one.
-compiled xml roomdata to cs.
+release v0.76
 
 
 
@@ -65,24 +54,79 @@ compiled xml roomdata to cs.
 
 
 
+Adding Towns
+
+renamed LeftTown2 to LeftTown in codebase.
+added RightTown to game.
+make sure they work with overworld properly.
+*redesign left and right towns.
+
+and then I hit a MAJOR WALL.
+and i need to document this, because it's stupid.
+i'm writing level data to XML.
+then a method i wrote turns that XML
+into c sharp formatted text in a .cs file.
+this file is linked to by visual studio, 
+using a project reference. it's reloaded into
+visual studio each time it's updated automatically,
+so i don't think or worry about it's size.
+well, it reached the size of 16,000 * 7, and
+apparently that's the limit where visual studio
+goes "no! you can't do that anymore that way!"
+and the graceful IDE she is threw the deadly error:
+insuficient memory to continue execution of the program,
+error writing CSC debug information.. yada yada yada..
+this essentially means the file is just too big.
+visual studio isn't actually out of ram at all,
+it's touching 500-600mb total. laughably bad dev work,
+microsoft. why? do read on.
+
+Tricking Visual Studio
+because visual studio is 32bit, it addresses 4gb of ram.
+cool. so the devs put in some checks to make sure other
+devs weren't doing dumb things. i'm doing one of those
+dumb things, and now i've got to trick visual studio (those
+other devs) into letting me do that dumb thing - just in
+their specified way. trust me - it's still a dumb thing.
+and i wish i didn't have to do it, but i have to do it
+in order to get the game to run on UWP, the UNIVERSAL
+WINDOWS PLATFORM. yes. i have to trick microsoft in order
+to get my code to run on their platform, using their IDE.
+i raise my hands in praise and awe of this moment.
+
+in order to perform this trick i will simply split
+the assetsLevelData.cs file into multiple files, essentially
+making each one represent some section of level data.
+this was tested to work by copying two large levels from
+assets level data to assets room data, where there was more
+"room" available in the text file. the game built just fine,
+no error, even though I exceeded the "imaginary memory limit"
+visual studio was imposing. so i added more level data.
+compiled fine. i added all the level data. error came back.
+
+Summary
+so we just have a limit on how big these level data files
+can become before visual studio scolds me by pretending to
+run out of memory. whatever. it's fine, i can work around 
+it - but it would be much better if visual studio reported
+an error that was related to the root cause of the problem,
+such as debug running out of values to index this large set
+of data by - because that's what's actually happening here.
+as soon as i move the data to another array (mysteriously
+inside visual studio's blackbox program), my game builds.
+visual studio isn't running of memory, it's running out of
+values to index large datasets. i'm guessing the value used
+to index objects is an integer or double, and perhaps i'm
+reaching that limit somehow / someway - because that's what
+the system's feedback is telling me. anyways, now I need
+to design how the new system will work, assuming there are
+limits on the sizes of level data files.
 
 
 
 
 
 
-swamp rooms ++
-swamp dungeon should be diff than mountain dungeon
-in size and complexity. because it takes longer to
-move in water, it will feel like the dungeon is harder
-on a base level, so the dungeon shouldnt be that large
-or complex. we're also going to be adding a water lever
-critical path into this dungeon, so it needs to remain
-about the size of the forest dungeon. the boss room
-should connect to the hub room as well.
-
-we desperatly need to improve the ugly swamp wall sprtes.
-fix this to look slimy and grotesque.
 
 
 
@@ -90,8 +134,153 @@ fix this to look slimy and grotesque.
 
 
 
-this means we need to implement hub/boss approach for 
-square, column, row rooms. 
+
+
+
+
+
+
+
+House Design Guidelines
+
+*we are no longer designing large houses*
+this is because they look bad. the game handles
+them fine, but it's not zelda-esque.
+
+*we are no longer designing houses with backdoors*
+again, the game can handle it fine, it just
+doesn't make any sense for a small house to have
+a back door. however, we may create a house where
+the ONLY entrance is a backdoor - backdoors are
+generally hidden until hero overlaps a roof tile.
+so it would be a tiny puzzle.
+
+
+
+
+
+
+
+
+Overworld++
+
+diversify the town levels.
+we need two town levels on left.
+more npcs on farm level south (plus chicken pen + posts).
+we need a blank level on right, where the fire is.
+we need a town level on right with some npcs there too.
+
+this adds many locations to the primary overworld,
+spreading out the NPCs and making the levels a bit simpler.
+
+
+
+
+
+
+Houses in Water
+
+can we build a house over water tiles? 
+sure, why not? this means we can build an
+entire town in the ocean...
+
+do a mockup of this in a town by the water.
+
+Swim Instructor NPC - should be near house in water.
+
+we need a swim instructor NPC that stands in front of a large pond.
+has dialog like:
+
+do you know how to swim? i'm sure you do.
+just hop in the water.
+
+press B while moving to swim faster.
+press X to dive underwater for a bit.
+
+while underwater, enemies can't see you,
+but you swim slower. 
+
+try picking up objects and carrying them
+into the water as well. have fun!
+
+make the pond an actual pool-like arrangement.
+
+
+
+
+
+
+
+
+
+
+Levels++
+
+Left Towns
+add a 2nd town level on the left of the map, below left town.
+add a 3rd town level on the left of the colliseum connector.
+this makes 3 towns on the left.
+
+right town level
+
+campground level
+
+
+
+
+
+
+
+
+improve the swamp entrance level.
+lock the water tiles and add a bunch of swamp objects around everywhere
+
+
+
+when water spreads to other tiles, it shouldn't play
+the water splash soundfx, this takes waaay too long.
+it should play the water walk sfx, or we should shorten
+the water splash sound fx dramatically. either or.
+or we should create a water spreading soundfx,
+then use the splash fx shortened. i dunno.
+
+
+
+
+
+
+
+
+
+Burning Bushes ++
+
+burning bushes dont transfer fire south to other bushes.
+this can be fixed by touching the expanding hitbox in ai functions.
+it should expand further south in it's vertical spread check.
+
+
+
+Grass++
+
+cut grass should grow into tall grass if near coastlines,
+or filled ditches. 
+
+
+
+
+
+
+dungeon map should display legend if hero has visited that
+room. this makes it easier to track where special rooms are,
+once the dungeon has been explored.
+
+add dungeon vendors to dungeon systems. these vendors exist
+in some rooms randomly (added in editor). should have to solve
+a puzzle to get to them too. they sell special items and enemy
+items. they can be marked with a V on the dungeon map.
+
+
+
 
 
 
@@ -108,18 +297,6 @@ symbolizes that this dungeon uses alot of water tiles.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 forest level redesign -
 a horizontal set of trees block the dungeon entrance.
 the entrance is surrounded by indestructible objs.
@@ -128,10 +305,6 @@ this teaches player objs can be destroyed.
 bonus: grass under the trees should act as a fuse for a
 massive forest fire across the whole level. kinda like it
 does now, but better.
-
-
-
-
 
 
 Mountain Sprites
@@ -149,8 +322,6 @@ a massive entrance. then put those skull pillars on the side. why?
 to match the entrance/exit sizes between the colliseum levels.
 the exit from the interior is pretty wide, so the entrance
 should be wide as well.
-
-
 
 
 
@@ -251,7 +422,19 @@ being able to cast projectiles...
 plus, projectiles could properly implement their behaviors - by
 tracking the actor's hitbox instead of their newPosition..
 
+Improve Projectile.Spawn()
 
+*miniboss cant shoot fireballs south - why?
+?= pro.spawn() assumes that the actor's collRec is 16x16 - it shouldn't.
+this means only 16x16 actors can safely shoot fireballs without damaging
+themselves, which is some valve level stupid. this method should take
+the actor as a parameter, and then we should base the offsets FOR ALL
+PROJECTILES off of the actor's collision rec width and height. this
+would allow larger actors, like bosses, to SHOOT FIREBALLS. geez.
+
+Special Attacks / Boss "USE"
+bigeye uses the shut + bloodshot frames for his special.
+bigeye: spawns A TON of exploding seekers while in his special.
 
 
 

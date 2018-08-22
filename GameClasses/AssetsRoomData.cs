@@ -14,7 +14,9 @@ namespace DungeonRun
 		public static List<RoomXmlData> secretRooms = new List<RoomXmlData>();
 		public static List<RoomXmlData> squareRooms = new List<RoomXmlData>();
 
-		static RoomData()
+        
+
+        static RoomData()
 		{
 
 			#region Room - Boss
@@ -5860,8 +5862,9 @@ namespace DungeonRun
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_BlockDark; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 120; room.objs.Add(Obj);}
 				 squareRooms.Add(room);
 			}
-			#endregion
+            #endregion
 
-		}
-	}
+
+        }
+    }
 }
