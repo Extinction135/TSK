@@ -49,62 +49,24 @@ Today:
 
 
 
-Version 0.76 Release
-
-because of the limits imposed on visual studio datasets,
-i'm just going to release this version as is and move forward
-with some pretty complicated structural changes to the loading
-and saving of level data.
-
-+ added compressed release version of 0.75 for Dx to repo.
-i think i'll start archiving the releases. note: thats the
-first one that actually installed correctly. yay.
-
-built release version 0.76. install tested.
-all subsequent release media will be played 
-through the 0.76 installed version. *fingers crossed*
-
-built release v0.76 for UWP. I have not tested this.
-And I'm not going to. You can. On your XboxOne. then
-tell me about it on youtube. be mean. it's fine. pls.
-
-uploaded both release versions to dropbox.
-updated readme with links to 0.76.
-everyone gets the 0.76 install files when I do now.
-we all get to discover the bugs and record stuff at
-the same time. why? because I get to do things my way.
-and it's really fun. let's go.
-
-
-
-
-
-
-
 
 
 
 Version 0.76 Media
 
+note: soak tested at title screen for about 
+100 mins prior to recording with OBS at 60fps. 
 
+recorded multiple playthroughs.
+recorded several gifs.
+edited together into a v076 release gif.
 
-record playthroughs:
-(all of these should be done with dog)
-record playing through forest dungeon.
-record playing through mountain dungeon.
-record playing through coliseum challenges.
-record destroying the town and completing the
-farmer's challenge.
-record climbing mountain.
+added recorded gifs to /gifs/ folder in repo.
+modified VERSIONS.md to better present timeline
+of development in gifs.
 
-
-record gifs of boss and miniboss fights.
-gif of climbing with dog on back.
-gif of brandy on ship.
-
-remake readme to only load 1 gif.
-with link to versions page, where ALL gifs should 
-be posted/linked to. too much media here.
+remade readme to only load 1 gif, which is only
+5mb and a much better presentation of the game.
 
 
 
@@ -150,6 +112,14 @@ be posted/linked to. too much media here.
 
 
 
+notes:
+
+only spawn 1 floating eye in forest dungeon rooms.
+
+if a room with a switch in it has been solved, (visited)
+then remove the floor switch obj post room build.
+
+if player has the map, dont spawn the miniboss.
 
 
 
@@ -158,6 +128,37 @@ be posted/linked to. too much media here.
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+0.77 - Islands in RAM
 
 level data files cant be too BIG.
 

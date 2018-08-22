@@ -104,6 +104,102 @@ Each version of DungeonRun expands on the game's mechanics and design.
 + Tons of visual & audio improvemtents, bug fixes.
 
 
+## Version 0.7 - (no longer tracking commits / days)  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/0p7Preview2.gif)  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/0p7BombSliding.gif)  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/0p7BushInteractions.gif)  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/0p7GrassInteractions.gif)  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/0p7groundfiresMiyamoto.gif)  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/0p7KeyRooms.gif)  
+
+
+## Version 0.72
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/0p72miyamoto.gif)  
+
+
+## Version 0.73
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/0p73.gif)  
+
+
+## Version 0.74
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/074boomerang.gif)  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/074bossDefeat.gif)  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/074challengeA.gif)  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/074challengeB.gif)  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/074colliseum.gif)  
+
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/074digIceTilesBoss.gif)  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/074ditches.gif)  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/074doggoInDungeon.gif)  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/074dungeonA.gif)  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/074dungeonB.gif)  
+
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/074dungeonC.gif)  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/074dungeonExit.gif)  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/074forestFire.gif)  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/074grassFire.gif)  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/074medHouseDestruction.gif)  
+
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/074overworld.gif)  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/074petSwimming.gif)  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/074sidequest.gif)  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/074smHouseDestruction.gif)  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/074treeBolting.gif)  
+
+
+
+## Version 0.76
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/076presentation.gif)  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/076boatSwamp.gif)  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/076climbingWithPet.gif)  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/076forestBoss.gif)  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/076forestBoss2.gif)  
+
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/076forestMiniBoss.gif)  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/076mountainBoss.gif)  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/076mountainBoss2.gif)  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/076mountainMiniBoss.gif)  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/076swampBoss.gif)  
+
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/076swampMiniBoss.gif)  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

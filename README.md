@@ -1,10 +1,11 @@
-# DungeonRun
-+ A sequel to The Legend of Zelda: A Link to the Past, circa 1995-1997.  
+# DungeonRun - v0.76 - 2018.8.22
++ A combination of several Zelda games, circa 1995-1997.  
   
-![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/074petSwimming.gif)   
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/076presentation.gif)   
   
 + youtube channel with weekly video content:  
 + https://www.youtube.com/channel/UCsgpfZB1USgAe0Lv2ZI18uw  
++ to see a bunch of cool gifs and learn about the timeline, look at the VERSIONS page.
 
 
 ## Goals
@@ -34,25 +35,6 @@
 + So please help me keep this project quiet until v1.0.  
 + Starring, cloning, and forking are fine. Just dont tell reddit or 4chan. Please. 
 + https://gamingreinvented.com/nintendoarticles/top-ten-nintendo-fanworks-cancelled-due-legal-complaints/  
-
-
-
-# Version 0.75 - 2018.07.06 
-  
-![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/074boomerang.gif)   
-![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/074challengeA.gif)   
-![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/074challengeB.gif)   
-![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/074ditches.gif)   
-![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/074doggoInDungeon.gif)   
-
-![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/074dungeonB.gif)   
-![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/074dungeonExit.gif)   
-![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/074forestFire.gif)   
-![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/074grassFire.gif)   
-![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/074overworld.gif)   
-![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/074smHouseDestruction.gif)   
-
-
 
 
 ## Playing the Game (Windows 10 + Xbox1)
