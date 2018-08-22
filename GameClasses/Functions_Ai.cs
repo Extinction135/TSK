@@ -215,13 +215,13 @@ namespace DungeonRun
                 //setup movement speeds
                 if (Actor.health < 5)
                 {   //move ALOT faster
-                    Actor.walkSpeed = 1.00f;
+                    Actor.walkSpeed = 1.20f;
                     Actor.dashSpeed = 4.00f;
                 }
                 else
                 {
-                    Actor.walkSpeed = 0.20f;
-                    Actor.dashSpeed = 0.80f;
+                    Actor.walkSpeed = 0.40f;
+                    Actor.dashSpeed = 1.00f;
                 }
 
 
@@ -230,7 +230,7 @@ namespace DungeonRun
                 if (Actor.underwater)
                 {
                     //randomly change directions
-                    if (Functions_Random.Int(0, 100) > 80)
+                    if (Functions_Random.Int(0, 100) > 70)
                     {
                         if (Actor.health < 5)
                         {   //move towards hero
@@ -245,7 +245,7 @@ namespace DungeonRun
                     }
 
                     //randomly dash
-                    if (Functions_Random.Int(0, 100) > 80) { Actor.compInput.dash = true; }
+                    if (Functions_Random.Int(0, 100) > 70) { Actor.compInput.dash = true; }
 
                     //use breath counter to keep enemy underwater for a moment
                     Actor.breathCounter++;
@@ -498,7 +498,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region OctoHead
+            #region OctoHead / Kraken
 
             else if (Actor.aiType == ActorAI.Boss_OctoHead)
             {
@@ -547,11 +547,8 @@ namespace DungeonRun
                     Actor.direction = Direction.Down;
                     //but don't move in any direction
                     Actor.compInput.direction = Direction.None;
-                    //stop any movement
-                    Functions_Movement.StopMovement(Actor.compMove);
 
                     //boss waits for something to hit him to dive
-
                     if (Actor.health < 5)
                     {
                         //often taunt the player

@@ -1058,7 +1058,7 @@ namespace DungeonRun
                 Actor.sfx.kill = Assets.sfxEnemyKill;
 
                 //ai params
-                Actor.chaseRadius = 16 * 10;
+                Actor.chaseRadius = 16 * 30; //massive search space
                 Actor.attackRadius = 18;
             }
 

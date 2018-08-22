@@ -48,22 +48,50 @@ Today:
 
 
 
+Swamp Dungeon++
 
+Swamp Hub Room ++
+fixed some issues with swamp hub room.
+improved it so the minibosses always light
+the inner circle of bushes on fire, creating
+a fun spectacle each time the player enters 
+the room. which is nice.
 
-Minibosses ++
+Swamp Boss Room ++
+fixed some issues with lily pads, allowing
+for more opportunities to hit boss while 
+remaining mobile, based on playback.
 
-create 2 armored spiders in hub room for mountain.
-create 3 octomouths in hub room for swamp.
-this is a linear difficulty increase.
-
-
-
-
-
-
-
+water enemy mobility (GOAL)
 kraken should move around more.
 ocotomouths should move around more too.
+
+increased movement values for octomouth.
+increased chance of ocotmouth dashing and
+picking a direction to move in each frame,
+while underwater.=
+
+fixed competing logic in ocothead/kraken's 
+ai, causing the enemy to stop its movement
+each frame it was above water. now, the kraken
+should actually move while above water.
+tested, he actually moves around and the fight
+is enjoyable again.
+
+Tentacle AI++
+tentacles should always know where player is.
+increased tentacle search space to 16*30, from
+16*10. this has the net effect of always having
+tentacles chasing the player, which is desired.
+
+GOAL complete.
+
+
+
+
+
+
+
 
 
 
