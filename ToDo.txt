@@ -45,7 +45,35 @@ Roadmap
 Today:
 
 
-release v0.76
+
+
+
+
+Version 0.76 Release
+
+because of the limits imposed on visual studio datasets,
+i'm just going to release this version as is and move forward
+with some pretty complicated structural changes to the loading
+and saving of level data.
+
++ added compressed release version of 0.75 for Dx to repo.
+i think i'll start archiving the releases. note: thats the
+first one that actually installed correctly. yay.
+
+built release version 0.76. install tested.
+all subsequent release media will be played 
+through the 0.76 installed version. *fingers crossed*
+
+built release v0.76 for UWP. I have not tested this.
+And I'm not going to. You can. On your XboxOne. then
+tell me about it on youtube. be mean. it's fine. pls.
+
+uploaded both release versions to dropbox.
+updated readme with links to 0.76.
+everyone gets the 0.76 install files when I do now.
+we all get to discover the bugs and record stuff at
+the same time. why? because I get to do things my way.
+and it's really fun. let's go.
 
 
 
@@ -54,73 +82,29 @@ release v0.76
 
 
 
-Adding Towns
 
-renamed LeftTown2 to LeftTown in codebase.
-added RightTown to game.
-make sure they work with overworld properly.
-*redesign left and right towns.
 
-and then I hit a MAJOR WALL.
-and i need to document this, because it's stupid.
-i'm writing level data to XML.
-then a method i wrote turns that XML
-into c sharp formatted text in a .cs file.
-this file is linked to by visual studio, 
-using a project reference. it's reloaded into
-visual studio each time it's updated automatically,
-so i don't think or worry about it's size.
-well, it reached the size of 16,000 * 7, and
-apparently that's the limit where visual studio
-goes "no! you can't do that anymore that way!"
-and the graceful IDE she is threw the deadly error:
-insuficient memory to continue execution of the program,
-error writing CSC debug information.. yada yada yada..
-this essentially means the file is just too big.
-visual studio isn't actually out of ram at all,
-it's touching 500-600mb total. laughably bad dev work,
-microsoft. why? do read on.
+Version 0.76 Media
 
-Tricking Visual Studio
-because visual studio is 32bit, it addresses 4gb of ram.
-cool. so the devs put in some checks to make sure other
-devs weren't doing dumb things. i'm doing one of those
-dumb things, and now i've got to trick visual studio (those
-other devs) into letting me do that dumb thing - just in
-their specified way. trust me - it's still a dumb thing.
-and i wish i didn't have to do it, but i have to do it
-in order to get the game to run on UWP, the UNIVERSAL
-WINDOWS PLATFORM. yes. i have to trick microsoft in order
-to get my code to run on their platform, using their IDE.
-i raise my hands in praise and awe of this moment.
 
-in order to perform this trick i will simply split
-the assetsLevelData.cs file into multiple files, essentially
-making each one represent some section of level data.
-this was tested to work by copying two large levels from
-assets level data to assets room data, where there was more
-"room" available in the text file. the game built just fine,
-no error, even though I exceeded the "imaginary memory limit"
-visual studio was imposing. so i added more level data.
-compiled fine. i added all the level data. error came back.
 
-Summary
-so we just have a limit on how big these level data files
-can become before visual studio scolds me by pretending to
-run out of memory. whatever. it's fine, i can work around 
-it - but it would be much better if visual studio reported
-an error that was related to the root cause of the problem,
-such as debug running out of values to index this large set
-of data by - because that's what's actually happening here.
-as soon as i move the data to another array (mysteriously
-inside visual studio's blackbox program), my game builds.
-visual studio isn't running of memory, it's running out of
-values to index large datasets. i'm guessing the value used
-to index objects is an integer or double, and perhaps i'm
-reaching that limit somehow / someway - because that's what
-the system's feedback is telling me. anyways, now I need
-to design how the new system will work, assuming there are
-limits on the sizes of level data files.
+record playthroughs:
+(all of these should be done with dog)
+record playing through forest dungeon.
+record playing through mountain dungeon.
+record playing through coliseum challenges.
+record destroying the town and completing the
+farmer's challenge.
+record climbing mountain.
+
+
+record gifs of boss and miniboss fights.
+gif of climbing with dog on back.
+gif of brandy on ship.
+
+remake readme to only load 1 gif.
+with link to versions page, where ALL gifs should 
+be posted/linked to. too much media here.
 
 
 
@@ -135,6 +119,63 @@ limits on the sizes of level data files.
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+level data files cant be too BIG.
+
+colliseum should exist on it's own.
+dungeon entrances can exist on their own too.
+brandys boat level can exist on its own too.
+(boat level always has coastline + pier, or anchored at sea).
+
+an overworld is then composed of about 10 levels.
+because that's the max we can fit into a single .cs class in vs (lol).
+these levels can link to dungeons, no problemo.
+dungeon rooms can be split into col, row, square, key, and TheRest.
+this way we dont run into this problem MUCH later in development,
+when we start adding more and more roomData
+
+
+
+biomes?
 
 
 

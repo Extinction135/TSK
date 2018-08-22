@@ -331,7 +331,7 @@ namespace DungeonRun
             MapLocation wallConnector = new MapLocation(false, new Vector2(465, 187));
             locations.Add(wallConnector);
 
-            MapLocation rightTown = new MapLocation(true, new Vector2(514, 189));
+            MapLocation rightTown = new MapLocation(false, new Vector2(514, 189));
             locations.Add(rightTown);
 
             MapLocation colliseumLeft = new MapLocation(false, new Vector2(258, 178));
@@ -465,7 +465,6 @@ namespace DungeonRun
             colliseum.ID = LevelID.Colliseum;
             centerIsland.ID = LevelID.TheFarm;
             leftTown.ID = LevelID.LeftTown;
-            rightTown.ID = LevelID.RightTown;
             boat.ID = LevelID.Boat;
 
             forestDungeon.ID = LevelID.Forest_Entrance;
@@ -478,8 +477,7 @@ namespace DungeonRun
             { currentLocation = centerIsland; }
             else if (LevelSet.field.ID == LevelID.LeftTown)
             { currentLocation = leftTown; }
-            else if (LevelSet.field.ID == LevelID.RightTown)
-            { currentLocation = rightTown; }
+
             else if (LevelSet.field.ID == LevelID.Colliseum
                 || LevelSet.field.ID == LevelID.ColliseumPit
                 || LevelSet.field.ID == LevelID.ColliseumPit_Water

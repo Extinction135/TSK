@@ -56,8 +56,10 @@
 
 
 ## Playing the Game (Windows 10 + Xbox1)
-+ DirectX: https://www.dropbox.com/s/mqsawbx4ceexxbf/DR_075_Dx.zip?dl=0  
-+ UWP: https://www.dropbox.com/s/3rak0eosi8m0q5h/DR_075_UWP.zip?dl=0  
++ 0.75 DirectX: https://www.dropbox.com/s/mqsawbx4ceexxbf/DR_075_Dx.zip?dl=0  
++ 0.75 UWP: https://www.dropbox.com/s/3rak0eosi8m0q5h/DR_075_UWP.zip?dl=0  
++ 0.76 DirectX: https://www.dropbox.com/s/zwsua9p3051m4lc/DR_076_Dx.zip?dl=0  
++ 0.76 UWP: https://www.dropbox.com/s/nasl9aecdfyzyvf/DR_076_UWP.zip?dl=0  
 + You can sideload the UWP version onto your Xbox one using this guide:  
 + https://gbatemp.net/threads/how-to-sideload-dungeonrun-indie-game-on-xbox-one.470374/  
 
