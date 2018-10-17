@@ -1,0 +1,71 @@
+
+
+
+
+
+
+
+Level / Puzzle Design Guidelines
+
+employ fincher's technique: ask a question, then let the viewer
+discover the answer. don't tell them about it, lead them to it.
+setup the puzzle, but let them solve it. don't hold their hand.
+drawing out the moment here can be done by intentionally leaving
+out hints or info needed to solve the puzzle.
+
+miyamoto does this properly in lttp, poorly in zelda 1, and then
+far too obviously in every other zelda game since lttp. so, bite
+lttp's setup here - not obvious, but there.
+
+
+
+
+
+
+Game Design Guidelines
+
+we should cater to each tier of player:
+newbie: there are easy and fun things to do in each level, interaction.
+novice: dungeons are challenging, bosses are fun.
+advanced: the shadow dungeon and boss exist for these folks.
+expert: optional quests and bosses exist for these folks.
+
+
+
+
+
+
+
+
+Overworld Design Direction
+
+the overworld MUST CHANGE when link accomplishes certain things.
+when link beats a castle, the castle crumbles on the map.
+when link beats a temple, the temple crumbles on the map.
+when link beats a dungeon, the boss location opens up.
+if the boss location is available, then the skull's eyes get
+fire particles that light up and maybe smoke, signalling the
+boss is ready to fight.
+when link defeats a boss, the boss skull crumbles on the map.
+the shadowo king's shadows are animated as well.
+among other things...
+
+
+
+
+
+
+
+House Design Guidelines
+
+*we are no longer designing large houses*
+this is because they look bad. the game handles
+them fine, but it's not zelda-esque.
+
+*we are no longer designing houses with backdoors*
+again, the game can handle it fine, it just
+doesn't make any sense for a small house to have
+a back door. however, we may create a house where
+the ONLY entrance is a backdoor - backdoors are
+generally hidden until hero overlaps a roof tile.
+so it would be a tiny puzzle.

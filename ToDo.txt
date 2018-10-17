@@ -3,42 +3,55 @@
 we should be glad for an opportunity to serve others by an invention of ours,
 and this we should do freely and generously."
 - Benjamin Franklin	
-	
+
+
+
+
 
 Roadmap
 
-0.76 - swamp level + dungeon + enemies 
-+ boat level + captain brandy + overworlds
-+ custom miniboss and boss rooms
+0.77 - Overworld added, temp levels setup, COLOR.
+0.78 - ShadowKing coliseum, town, blocked shadow dungeon entrance
+0.79 - Forest Islands
+0.80 - Lava Islands
+0.81 - Cloud Islands
+0.82 - Swamp Islands
+0.83 - Death Mountain Islands
+0.84 - Thieve's Hideout
+0.85 - Shadow Dungeon, Shadow King fight
 
 
-0.77 - castle, city, royal vendors
-0.78 - king, fight with king, lightworld storyline
-0.79 - intro, farming + seeds + crops
+0.86 - port to Switch
+0.87 - sidequests + hidden Ganon story
+0.88 - hidden blob story, etc..
+0.89 - ???
 
-0.80 - dark world map + 1st level + transition to/from
-0.81 - volcano levels + dungeon + enemies
-0.82 - ice levels + dungeon + enemies
-0.83 - graveyard levels + dungeon + enemies
 
-0.84 - darkworld castle level/dungeon + enemies
-0.85 - darkworld queen battle
-0.86 - darkworld storyline
-0.87 - ganon battle + storyline
+Video To Make -
+playthrough videos
+development videos
+intro to codebase / systems design
+overall design & direction of TSK
+thoughts on zelda franchise
+seperating collisions + interactions
 
-0.88 - secrets
-0.89 - sidequests, extra
-0.90 - COLOR!!! (keep grayscale as texture option)
 
-0.91 - playthrough videos
-0.92 - development videos
-0.93 - intro to codebase / systems design
-0.94 - overall design & direction of TSK
-0.95 - thoughts on zelda franchise
 
-???
 
-1.0 - official release
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -48,25 +61,12 @@ Today:
 
 
 
+New Overworld
 
-
-
-
-Version 0.76 Media
-
-note: soak tested at title screen for about 
-100 mins prior to recording with OBS at 60fps. 
-
-recorded multiple playthroughs.
-recorded several gifs.
-edited together into a v076 release gif.
-
-added recorded gifs to /gifs/ folder in repo.
-modified VERSIONS.md to better present timeline
-of development in gifs.
-
-remade readme to only load 1 gif, which is only
-5mb and a much better presentation of the game.
+created new overworld image.
+this is discussed via video: https://youtu.be/4IV1r_6_efI
+redesigned direction of game, story, roadmap.
+reorganized project dev notes.
 
 
 
@@ -81,6 +81,113 @@ remade readme to only load 1 gif, which is only
 
 
 
+The Overworld
+
+everything is island themed in the game now.
+this means we can implement color, and we have a color
+pallette to use from the overworld. we are ready to go.
+
+first, we replace the overworld map with the new map, and
+update the camera to follow link. then we need to write tools
+to handle the development of the new overworld, because there 
+are alot of locations and levels.
+
+we need a tool to create & move locations.
+click to create a location, which neighbors to link's current
+location - so we can move to it. create mode. move mode: grab a 
+location, held down drags it, mouse up releases location and prints
+its XY pos to the output window along with it's name.
+this will allow for much faster location placing and connections.
+this setup should be a value placed into the boot routine enum,
+game, roomEd, levelEd, overworldEd. we would have a note along
+bottom saying 'use f5 to toggle between create and move', so we
+dont have to create a button, altho that isn't hard.
+
+now we place locations all over the overworld map, linking them
+appropriately so the player can traverse the entire map. once this
+is done, we can shift focus to levels.
+
+
+
+
+New Levels
+
+there are a few base levels we need to make first, that are
+essentially ready to go:
+port town: all the vendors / npcs + farmer.
+mountain dungeon entrance + dungeon.
+forest dungeon entrance + dungeon.
+swamp dungeon entrance + dungeon.
+shadow coliseum: as is coliseum for now.
+
+these levels should use objects with full color,
+including the dungeons, enemies, and bosses.
+
+
+
+
+
+UI Color
+
+transition the UI into the current color pallette.
+we will not make this color pallette modifyiable - hardcode it.
+but it needs to look good.
+
+
+
+
+
+Title Screen
+
+replace text with "The Shadow King" in big text. no allusion to
+LOZ or Nintendo yet.
+
+
+
+Release 0.77. Overworld and Color implemented.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Overworld ++
+
+locations should have a camera offset. so, when link lands on
+a boss location, the camera centers on the skull, instead of link.
+we can also do this with special locations, such as the cloud castle:
+the camera should focus on the castles, panning the right.
+this shifts the focus off of link and onto a specific obj in overworld,
+drawing players attention to it - saying 'hey this is important'.
+
+locations should be named on the map - this will help knowing each
+location and how they are connected, and will aid in development.
+however, this should be a static ui element overlay, that changes when
+links lands on a location. thus, locations need string names to query.
+
+a dungeon is composed of rooms, a field is a large room. we can
+chain fields together using objects, similar to how we make dungeons.
+this allows for a series of fields leading up to a dungeon or target.r
+
+locations are connected to each other via a line (ref theorem code).
+this allows the player to visually see where they can go, while also
+allowing for easy debugging, since the lines show the neighbors.
+if these lines are calculated each frame, and only for the current locations
+on screen, then the locations can move around and be animated while
+still properly being connected. link should track to his landed location
+each frame as well, in case it moves around. we can even have location connect
+dynamically, if they are close enough together. this would create a window
+of opportunity for the player to move to this isloted location, which could
+be useful or interesting in some way later.
 
 
 
@@ -111,8 +218,75 @@ remade readme to only load 1 gif, which is only
 
 
 
+initial level : at sea, boat is attacked, link uses his sword
+to defend brandy from attackers. the ship cannot be left (stairs up).
+once the attack is over, brandy converts to mission complete obj.
+talking with brandy then ends the intro level and takes us to skull
+island overworld location.
 
-notes:
+skull island - final boss, coliseum, vendors
+
+link talks to the shadow king, who confirms that he holds brandys
+love in his prison of death. the shadow king agrees to release 
+brandys love if link brings the shadow king the 4 mythical beasts,
+and defeats them in his coliseum for tsk's entertainment.
+this sets the stage for 4 dungeons, then 4 boss battles.
+
+undead island? we have graveyard enemies.
+we could put these on skull island as special coliseum
+fighters? secret skull island dungeon?
+
+anyway, link defeats the 4 dungeons, beats the 4 bosses,
+then confronts tsk, and demands brandys love be set free.
+tsk laughs and then they battle. after battle, tsk tells
+brandy the only way for her to see her love again is to
+pass on to the other side, which she agrees to do.
+link says goodbye, brandy becomes a ghost.
+the final image is the boat sailing away with caption
+'link continues on his quest..'
+
+brandy's silver locket contained a map of these islands,
+which brought brandy there. she knows her lost love is
+somewhere on one of these islands.
+
+
+
+
+
+we should change how dungeons / bosses work.
+unlocking the boss door should exit the dungeon,
+placing link at the boss location. each boss battle
+should take place in a field, where the player has
+the option to exit anytime they want, plus they have
+more space to fight this larger / harder enemy in.
+
+this means players kind of 'save progress' once they
+beat the dungeon, and dont have to suffer through it
+again if they dont want to. also, they can fight that
+specific boss anytime they want, in a level designed for
+that boss battle.
+
+when the player "beats" the dungeon, part of the skull
+should collapse, revealing the boss location, which is
+now linked to the entrance location.
+
+
+
+
+
+
+notes
+*all game objs ref the main 1k sheet.
+themed objs ref their specific sheet,
+set in Obj.SetType().
+
+
+
+
+
+
+
+post-release notes:
 
 only spawn 1 floating eye in forest dungeon rooms.
 
@@ -121,322 +295,14 @@ then remove the floor switch obj post room build.
 
 if player has the map, dont spawn the miniboss.
 
+fix those really hard column and row rooms.
+make more versions of really easy row and column rooms.
+we need more room data overall.
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-0.77 - Islands in RAM
-
-level data files cant be too BIG.
-
-colliseum should exist on it's own.
-dungeon entrances can exist on their own too.
-brandys boat level can exist on its own too.
-(boat level always has coastline + pier, or anchored at sea).
-
-an overworld is then composed of about 10 levels.
-because that's the max we can fit into a single .cs class in vs (lol).
-these levels can link to dungeons, no problemo.
-dungeon rooms can be split into col, row, square, key, and TheRest.
-this way we dont run into this problem MUCH later in development,
-when we start adding more and more roomData
-
-
-
-biomes?
-
-
-
-
-
-
-House Design Guidelines
-
-*we are no longer designing large houses*
-this is because they look bad. the game handles
-them fine, but it's not zelda-esque.
-
-*we are no longer designing houses with backdoors*
-again, the game can handle it fine, it just
-doesn't make any sense for a small house to have
-a back door. however, we may create a house where
-the ONLY entrance is a backdoor - backdoors are
-generally hidden until hero overlaps a roof tile.
-so it would be a tiny puzzle.
-
-
-
-
-
-
-
-
-Overworld++
-
-diversify the town levels.
-we need two town levels on left.
-more npcs on farm level south (plus chicken pen + posts).
-we need a blank level on right, where the fire is.
-we need a town level on right with some npcs there too.
-
-this adds many locations to the primary overworld,
-spreading out the NPCs and making the levels a bit simpler.
-
-
-
-
-
-
-Houses in Water
-
-can we build a house over water tiles? 
-sure, why not? this means we can build an
-entire town in the ocean...
-
-do a mockup of this in a town by the water.
-
-Swim Instructor NPC - should be near house in water.
-
-we need a swim instructor NPC that stands in front of a large pond.
-has dialog like:
-
-do you know how to swim? i'm sure you do.
-just hop in the water.
-
-press B while moving to swim faster.
-press X to dive underwater for a bit.
-
-while underwater, enemies can't see you,
-but you swim slower. 
-
-try picking up objects and carrying them
-into the water as well. have fun!
-
-make the pond an actual pool-like arrangement.
-
-
-
-
-
-
-
-
-
-
-Levels++
-
-Left Towns
-add a 2nd town level on the left of the map, below left town.
-add a 3rd town level on the left of the colliseum connector.
-this makes 3 towns on the left.
-
-right town level
-
-campground level
-
-
-
-
-
-
-
-
-improve the swamp entrance level.
-lock the water tiles and add a bunch of swamp objects around everywhere
-
-
-
-when water spreads to other tiles, it shouldn't play
-the water splash soundfx, this takes waaay too long.
-it should play the water walk sfx, or we should shorten
-the water splash sound fx dramatically. either or.
-or we should create a water spreading soundfx,
-then use the splash fx shortened. i dunno.
-
-
-
-
-
-
-
-
-
-Burning Bushes ++
-
-burning bushes dont transfer fire south to other bushes.
-this can be fixed by touching the expanding hitbox in ai functions.
-it should expand further south in it's vertical spread check.
-
-
-
-Grass++
-
-cut grass should grow into tall grass if near coastlines,
-or filled ditches. 
-
-
-
-
-
-
-dungeon map should display legend if hero has visited that
-room. this makes it easier to track where special rooms are,
-once the dungeon has been explored.
-
-add dungeon vendors to dungeon systems. these vendors exist
-in some rooms randomly (added in editor). should have to solve
-a puzzle to get to them too. they sell special items and enemy
-items. they can be marked with a V on the dungeon map.
-
-
-
-
-
-
-
-Exits++
-we should be able to make exits specific to dungeons as
-well. they should visually introduce the dungeon, as well
-as any basic mechanics: for example the swamp exit should
-transtion from land to water, from the exit door obj. this
-symbolizes that this dungeon uses alot of water tiles.
-
-
-
-
-
-
-forest level redesign -
-a horizontal set of trees block the dungeon entrance.
-the entrance is surrounded by indestructible objs.
-player HAS TO BURN down the trees to get access to dungeon.
-this teaches player objs can be destroyed.
-bonus: grass under the trees should act as a fuse for a
-massive forest fire across the whole level. kinda like it
-does now, but better.
-
-
-Mountain Sprites
-add black pixels to the corners of the mountain wall sprites.
-this will make the rooms appear rounded, which further visually
-separates them. 
-
-
-
-
-Colliseum Entrance Obj++
-the colliseum entrance obj should just be a wide black entrance,
-like the center sprite. we dupe that for a total of 3, so we have
-a massive entrance. then put those skull pillars on the side. why?
-to match the entrance/exit sizes between the colliseum levels.
-the exit from the interior is pretty wide, so the entrance
-should be wide as well.
-
-
-
-
-
-it would be nice to show the currently selected objects
-important parameters, like moveable, grounded, etc..
-we could put this info next to the object in the objTools
-widget, if we extende the widget.
-
-
-footholds were pushed off the mountain wall.
-i assume a frame of interaction happened prior to
-the roomObj types being updated. 
-*when we reset the pool, stopMovement() on all objs.
-
-
-
-
-
-
-
-
-
-Release version 0.76
-test install on windows10 via Dx.
-test install/run on xbox one via UWP.
-print media for 0.76 (main gif, playthru video).
-update readme with links.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-really important things that i should really fix i think?
-
-
-
-Polish + Fixes
-
-explosions should push roomObjects that they touch.
-that are moveable. that dont get destroyed?
-are explosions pushing objects?
-
-
-rats and crabs should "bite", but turtles dont.
-all types can be picked up and carried, but rats
-and crabs will eventually bite link, causing link
-to throw the creature and take 1 damage.
 
 
 
