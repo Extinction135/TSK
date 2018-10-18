@@ -60,21 +60,34 @@ Today:
 
 
 
-Locations++
-
-fixed zdepth issue with map.
-created bottom row and top crown of locations
-around skull island (19 locations). this path
-allows for a decent peak of the overworld map.
 
 
 
 
 
+Locations and Levels ++
+
+created coliseum level location.
+created port town level location.
+created location paths to these levels.
+linked up coliseum, boat, and town existing
+levels to these levels for testing and dev
+purposes. working as intended.
 
 
-create coliseum level.
-create port town level.
+
+
+
+
+
+
+
+
+
+
+wipe all other levels & level enums from enums, except
+dungeon entrance levels. we will connect these next.
+
 
 
 

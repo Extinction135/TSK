@@ -335,7 +335,7 @@ namespace DungeonRun
             #region Skull Island
 
             MapLocation SkullIsland_ShadowDungeon = new MapLocation(true, new Vector2(1038, 487));
-            SkullIsland_ShadowDungeon.ID = LevelID.Colliseum;
+            SkullIsland_ShadowDungeon.ID = LevelID.Boat;
             locations.Add(SkullIsland_ShadowDungeon);
 
             //bottom rounded bowl shaped row of locations
@@ -383,16 +383,64 @@ namespace DungeonRun
             MapLocation SkullIsland_TopCrown_11 = new MapLocation(false, new Vector2(1224, 421));
             locations.Add(SkullIsland_TopCrown_11);
 
+            //path to coliseum
+            MapLocation SkullIsland_Coliseum = new MapLocation(true, new Vector2(858, 445));
+            SkullIsland_Coliseum.ID = LevelID.Colliseum;
+            locations.Add(SkullIsland_Coliseum);
+            MapLocation SkullIsland_Coliseum_South_1 = new MapLocation(false, new Vector2(869, 474));
+            locations.Add(SkullIsland_Coliseum_South_1);
+            MapLocation SkullIsland_Coliseum_South_2 = new MapLocation(false, new Vector2(926, 499));
+            locations.Add(SkullIsland_Coliseum_South_2);
+
+            //path to town
+            MapLocation SkullIsland_Town = new MapLocation(true, new Vector2(1158, 436));
+            SkullIsland_Town.ID = LevelID.LeftTown;
+            locations.Add(SkullIsland_Town);
+            MapLocation SkullIsland_Town_South_1 = new MapLocation(false, new Vector2(1162, 469));
+            locations.Add(SkullIsland_Town_South_1);
+            MapLocation SkullIsland_Town_South_2 = new MapLocation(false, new Vector2(1131, 489));
+            locations.Add(SkullIsland_Town_South_2);
 
 
 
             #region Setup location neighbors
 
-            //level path connections to bottom row
+
+            #region Level path connections to bottom row
+
+            //shadow king
             SkullIsland_ShadowDungeon.neighborDown = SkullIsland_BottomRow_5;
             SkullIsland_BottomRow_5.neighborUp = SkullIsland_ShadowDungeon;
 
-            //bottom row connections right
+            //town path (up)
+            SkullIsland_BottomRow_7.neighborUp = SkullIsland_Town_South_2;
+            SkullIsland_Town_South_2.neighborUp = SkullIsland_Town_South_1;
+            SkullIsland_Town_South_1.neighborUp = SkullIsland_Town;
+            //(down)
+            SkullIsland_Town.neighborDown = SkullIsland_Town_South_1;
+            SkullIsland_Town_South_1.neighborDown = SkullIsland_Town_South_2;
+            SkullIsland_Town_South_2.neighborDown = SkullIsland_BottomRow_7;
+            //(polish)
+            SkullIsland_Town_South_2.neighborRight = SkullIsland_Town_South_1;
+
+            //coliseum path (up)
+            SkullIsland_BottomRow_3.neighborUp = SkullIsland_Coliseum_South_2;
+            SkullIsland_Coliseum_South_2.neighborUp = SkullIsland_Coliseum_South_1;
+            SkullIsland_Coliseum_South_1.neighborUp = SkullIsland_Coliseum;
+            //(down)
+            SkullIsland_Coliseum.neighborDown = SkullIsland_Coliseum_South_1;
+            SkullIsland_Coliseum_South_1.neighborDown = SkullIsland_Coliseum_South_2;
+            SkullIsland_Coliseum_South_2.neighborDown = SkullIsland_BottomRow_3;
+            //(polish)
+            SkullIsland_Coliseum_South_2.neighborLeft = SkullIsland_Coliseum_South_1;
+            SkullIsland_Coliseum_South_1.neighborLeft = SkullIsland_Coliseum;
+
+            #endregion
+
+
+            #region Bottom row connections 
+
+            //right
             SkullIsland_BottomRow_1.neighborRight = SkullIsland_BottomRow_2;
             SkullIsland_BottomRow_2.neighborRight = SkullIsland_BottomRow_3;
             SkullIsland_BottomRow_3.neighborRight = SkullIsland_BottomRow_4;
@@ -400,8 +448,7 @@ namespace DungeonRun
             SkullIsland_BottomRow_5.neighborRight = SkullIsland_BottomRow_6;
             SkullIsland_BottomRow_6.neighborRight = SkullIsland_BottomRow_7;
             SkullIsland_BottomRow_7.neighborRight = SkullIsland_BottomRow_8;
-
-            //bottom row connections left
+            //left
             SkullIsland_BottomRow_8.neighborLeft = SkullIsland_BottomRow_7;
             SkullIsland_BottomRow_7.neighborLeft = SkullIsland_BottomRow_6;
             SkullIsland_BottomRow_6.neighborLeft = SkullIsland_BottomRow_5;
@@ -410,6 +457,9 @@ namespace DungeonRun
             SkullIsland_BottomRow_3.neighborLeft = SkullIsland_BottomRow_2;
             SkullIsland_BottomRow_2.neighborLeft = SkullIsland_BottomRow_1;
 
+            #endregion
+
+
             //bottom row connections to crown
             SkullIsland_TopCrown_1.neighborDown = SkullIsland_BottomRow_1;
             SkullIsland_BottomRow_1.neighborUp = SkullIsland_TopCrown_1;
@@ -417,7 +467,9 @@ namespace DungeonRun
             SkullIsland_TopCrown_11.neighborDown = SkullIsland_BottomRow_8;
             SkullIsland_BottomRow_8.neighborUp = SkullIsland_TopCrown_11;
 
-            //top crown connections - tricky!
+
+            #region Top crown connections - tricky!
+
             SkullIsland_TopCrown_1.neighborUp = SkullIsland_TopCrown_2;
             SkullIsland_TopCrown_1.neighborRight = SkullIsland_TopCrown_2;
             SkullIsland_TopCrown_2.neighborDown = SkullIsland_TopCrown_1;
@@ -452,6 +504,9 @@ namespace DungeonRun
 
             SkullIsland_TopCrown_10.neighborDown = SkullIsland_TopCrown_11;
             SkullIsland_TopCrown_11.neighborUp = SkullIsland_TopCrown_10;
+
+            #endregion
+
 
             #endregion
 
