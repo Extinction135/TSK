@@ -26,13 +26,13 @@ namespace DungeonRun
                     LevelSet.currentLevel.ID);
             }
 
-            //all levels point to island overworld
-            ScreenManager.ExitAndLoad(Screens.Overworld_Island);
+            //all levels point to shadowking overworld
+            ScreenManager.ExitAndLoad(Screens.Overworld_ShadowKing);
         }
     }
 
 
-    //there are multiple overworld screens, this is the base class they inherit from
+    //there can be multiple overworld screens, this is the base class they inherit from
     public class ScreenOverworld : Screen
     {
         public ScreenRec overlay = new ScreenRec();
@@ -166,6 +166,12 @@ namespace DungeonRun
             Functions_Actor.SetAnimationDirection(hero);
             Functions_Animation.Animate(hero.compAnim, hero.compSprite);
 
+            //always track the hero
+            //(later locations will have an offset to pull attention when necessary)
+            Camera2D.targetPosition.X = hero.compSprite.position.X;
+            Camera2D.targetPosition.Y = hero.compSprite.position.Y;
+            Functions_Camera2D.Update();
+
             //we used to display the location 'name' like this
             //scroll.title.text = "Overworld Map - " + currentLocation.ID;
 
@@ -240,7 +246,8 @@ namespace DungeonRun
                 #endregion
 
 
-                //update particle list - particle animate and move (waves)
+                #region Update particle list - particle animate and move (waves)
+
                 for (i = 0; i < Pool.particleCount; i++)
                 {
                     if (Pool.particlePool[i].active)
@@ -256,6 +263,9 @@ namespace DungeonRun
                         Functions_Particle.Update(Pool.particlePool[i]);
                     }
                 }
+
+                #endregion
+
             }
             else if (displayState == DisplayState.Closing)
             {   //fade overlay in
@@ -276,109 +286,70 @@ namespace DungeonRun
 
         public override void Draw(GameTime GameTime)
         {
-            ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
+
+            #region Draw from Camera View
+
+            ScreenManager.spriteBatch.Begin(
+                        SpriteSortMode.BackToFront,
+                        BlendState.AlphaBlend,
+                        SamplerState.PointClamp,
+                        null, null, null, Camera2D.view);
 
             Functions_Draw.Draw(map);
             Functions_Pool.Draw();
-            for (i = 0; i < locations.Count; i++)
-            { Functions_Draw.Draw(locations[i].compSprite); }
+            for (i = 0; i < locations.Count; i++) { Functions_Draw.Draw(locations[i].compSprite); }
             Functions_Draw.Draw(hero.compSprite);
-            Functions_Draw.Draw(overlay);
 
             ScreenManager.spriteBatch.End();
+
+            #endregion
+
+
+            #region Draw UI
+
+            ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
+            Functions_Draw.Draw(overlay);
+            ScreenManager.spriteBatch.End();
+
+            #endregion
+
         }
 
     }
 
 
-    //island overworld is main map, for now
-    public class ScreenOverworld_Island : ScreenOverworld
+    //there is only one overworld implemented right now
+    public class Overworld_ShadowKing : ScreenOverworld
     {
-        public ScreenOverworld_Island()
+        public Overworld_ShadowKing()
         {
-            this.name = "island overworld";
+            this.name = "shadowking";
 
 
             #region Create locations
 
             locations = new List<MapLocation>();
 
-            MapLocation colliseum = new MapLocation(true, new Vector2(306, 195));
-            locations.Add(colliseum);
-            MapLocation boat = new MapLocation(true, new Vector2(281, 234));
-            locations.Add(boat);
 
-            //right side of top map
-            MapLocation colliseumRight = new MapLocation(false, new Vector2(365, 175));
-            locations.Add(colliseumRight);
-            MapLocation centerTown = new MapLocation(false, new Vector2(339, 141));
-            locations.Add(centerTown);
-            MapLocation gate = new MapLocation(false, new Vector2(421, 160));
-            locations.Add(gate);
-            MapLocation castle = new MapLocation(false, new Vector2(442, 135));
-            locations.Add(castle);
-            MapLocation leftCastleTown = new MapLocation(false, new Vector2(431, 111));
-            locations.Add(leftCastleTown);
-            MapLocation rightCastleTown = new MapLocation(false, new Vector2(482, 137));
-            locations.Add(rightCastleTown);
-            MapLocation wallConnector = new MapLocation(false, new Vector2(465, 187));
-            locations.Add(wallConnector);
 
-            MapLocation rightTown = new MapLocation(false, new Vector2(514, 189));
-            locations.Add(rightTown);
 
-            MapLocation colliseumLeft = new MapLocation(false, new Vector2(258, 178));
-            locations.Add(colliseumLeft);
-            MapLocation forestDungeon = new MapLocation(true, new Vector2(265, 125));
-            locations.Add(forestDungeon);
+            //skull island
+            MapLocation shadowKing = new MapLocation(true, new Vector2(1038, 487));
+            shadowKing.ID = LevelID.Colliseum;
+            currentLocation = shadowKing;
+            targetLocation = shadowKing;
+            locations.Add(shadowKing);
 
-            //town south of cave entrance
-            MapLocation leftTown3 = new MapLocation(false, new Vector2(182, 179));
-            locations.Add(leftTown3);
-            MapLocation caveDungeon = new MapLocation(true, new Vector2(166, 150));
-            locations.Add(caveDungeon);
 
-            //top left town and town south of it
-            MapLocation leftTown = new MapLocation(true, new Vector2(126, 182));
-            locations.Add(leftTown);
-            MapLocation leftTown1 = new MapLocation(false, new Vector2(115, 219));
-            locations.Add(leftTown1);
 
-            //bottom left building (church)
-            MapLocation leftTownChurch = new MapLocation(false, new Vector2(174, 255));
-            locations.Add(leftTownChurch);
-            MapLocation leftIslandConnector = new MapLocation(false, new Vector2(175, 296));
-            locations.Add(leftIslandConnector);
-            MapLocation swampDungeon = new MapLocation(false, new Vector2(117, 275));
-            locations.Add(swampDungeon);
 
-            //bottom right part of map
-            MapLocation tentTown = new MapLocation(false, new Vector2(483, 256));
-            locations.Add(tentTown);
-            MapLocation tentTownLeft = new MapLocation(false, new Vector2(447, 228));
-            locations.Add(tentTownLeft);
-            MapLocation cathedral = new MapLocation(false, new Vector2(396, 245));
-            locations.Add(cathedral);
-            MapLocation rightIslandConnector = new MapLocation(false, new Vector2(430, 300));
-            locations.Add(rightIslandConnector);
-            MapLocation monumentConnector = new MapLocation(false, new Vector2(485, 308));
-            locations.Add(monumentConnector);
-            MapLocation monument = new MapLocation(false, new Vector2(543, 298));
-            locations.Add(monument);
-
-            //The Farm
-            MapLocation centerIsland = new MapLocation(true, new Vector2(344, 293));
-            locations.Add(centerIsland);
 
             #endregion
 
 
             #region Set maplocation's neighbors
 
-            //dev neighbors - this may remain
-            boat.neighborDown = centerIsland;
-            centerIsland.neighborUp = boat;
-
+            /*
             //standard neighbors
             rightCastleTown.neighborLeft = castle;
             castle.neighborRight = rightCastleTown;
@@ -386,69 +357,13 @@ namespace DungeonRun
             leftCastleTown.neighborDown = castle;
             castle.neighborLeft = leftCastleTown;
             castle.neighborUp = leftCastleTown;
+            */
 
-            castle.neighborDown = gate;
-            gate.neighborUp = castle;
-
-            gate.neighborLeft = colliseumRight;
-            gate.neighborRight = wallConnector;
-            wallConnector.neighborLeft = gate;
-            wallConnector.neighborRight = rightTown;
-            rightTown.neighborLeft = wallConnector;
-
-            colliseumRight.neighborRight = gate;
-            colliseumRight.neighborLeft = colliseum;
-            colliseumRight.neighborUp = centerTown;
-            centerTown.neighborDown = colliseumRight;
-
-            colliseum.neighborRight = colliseumRight;
-            colliseum.neighborLeft = colliseumLeft;
-            colliseum.neighborDown = boat;
-            boat.neighborUp = colliseum;
-
-            colliseumLeft.neighborRight = colliseum;
-            colliseumLeft.neighborUp = forestDungeon;
-            colliseumLeft.neighborLeft = leftTown3;
-            forestDungeon.neighborDown = colliseumLeft;
-
-            leftTown3.neighborRight = colliseumLeft;
-            leftTown3.neighborUp = caveDungeon;
-            leftTown3.neighborLeft = leftTown;
-            caveDungeon.neighborDown = leftTown3;
-
-            leftTown.neighborRight = leftTown3;
-            leftTown.neighborDown = leftTown1;
-            leftTown1.neighborUp = leftTown;
-            leftTown1.neighborDown = leftTownChurch;
-            leftTown1.neighborRight = leftTownChurch;
-            leftTownChurch.neighborUp = leftTown1;
-            leftTownChurch.neighborLeft = leftTown1;
-            leftTownChurch.neighborDown = leftIslandConnector;
-            leftIslandConnector.neighborUp = leftTownChurch;
-            leftIslandConnector.neighborLeft = swampDungeon;
-            swampDungeon.neighborRight = leftIslandConnector;
-
-            rightTown.neighborDown = tentTown;
-            tentTown.neighborUp = rightTown;
-            tentTown.neighborLeft = tentTownLeft;
-            tentTown.neighborDown = rightIslandConnector;
-
-            tentTownLeft.neighborRight = tentTown;
-            tentTownLeft.neighborLeft = cathedral;
-            cathedral.neighborRight = tentTownLeft;
-
-            rightIslandConnector.neighborUp = tentTown;
-            rightIslandConnector.neighborRight = monumentConnector;
-            rightIslandConnector.neighborLeft = centerIsland;
-            centerIsland.neighborRight = rightIslandConnector;
-
-            monumentConnector.neighborLeft = rightIslandConnector;
-            monumentConnector.neighborRight = monument;
-            monument.neighborLeft = monumentConnector;
 
             #endregion
 
 
+            /*
             #region Setup accessible locations
 
             //requires that the 'true' boolean is passed into the MapLocation
@@ -491,26 +406,18 @@ namespace DungeonRun
             targetLocation = currentLocation;
 
             #endregion
+            */
 
 
+            
             #region Setup wave spawn positions
 
             //create a list of positions where to place waves
             waveSpawnPositions = new List<Vector2>();
-            waveSpawnPositions.Add(new Vector2(334 + 8, 238 + 6));
-            waveSpawnPositions.Add(new Vector2(207 + 8, 226 + 6));
-            waveSpawnPositions.Add(new Vector2(260 + 8, 254 + 6));
-            waveSpawnPositions.Add(new Vector2(360 + 8, 270 + 6));
-            waveSpawnPositions.Add(new Vector2(407 + 8, 277 + 6));
-            waveSpawnPositions.Add(new Vector2(237 + 8, 293 + 6));
-            waveSpawnPositions.Add(new Vector2(089 + 8, 305 + 6));
-            waveSpawnPositions.Add(new Vector2(557 + 8, 259 + 6));
-            waveSpawnPositions.Add(new Vector2(555 + 8, 125 + 6));
-            waveSpawnPositions.Add(new Vector2(506 + 8, 090 + 6));
-            waveSpawnPositions.Add(new Vector2(120 + 8, 090 + 6));
-            waveSpawnPositions.Add(new Vector2(094 + 8, 121 + 6));
+            waveSpawnPositions.Add(new Vector2(1087, 483));
 
             #endregion
+            
 
         }
 
@@ -518,14 +425,13 @@ namespace DungeonRun
         {
             //setup map texture
             map = new ComponentSprite(
-                 Assets.overworld_island,
-                 new Vector2(640 / 2, 360 / 2),
+                 Assets.overworld_image,
+                 new Vector2(2000/2, 900/2),
                  new Byte4(0, 0, 0, 0),
-                 new Point(1280, 720));
-            map.position.X = map.drawRec.Width / 2;
-            map.position.Y = map.drawRec.Height / 2;
+                 new Point(2000, 900));
             base.Open();
 
+            /*
             //spawn map campfires
             Functions_Particle.Spawn(ObjType.Particle_Map_Campfire, 505, 257); //tent town
             Functions_Particle.Spawn(ObjType.Particle_Map_Campfire, 299, 297); //center island
@@ -543,8 +449,7 @@ namespace DungeonRun
             Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 320 + 8, 113 + 6); //old town
             Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 357 + 8, 99 + 6); //old town
             Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 305 + 8, 147 + 6); //colliseum
-
-            //we need a ship flag
+            */
 
             Functions_Music.PlayMusic(Music.Title); //play overworld music
             Assets.colorScheme.background = Assets.colorScheme.bkg_lightWorld;

@@ -605,7 +605,7 @@
 /processorParam:TextureFormat=Color
 /build:Sprites_Level_Boat.png
 
-#begin Overworld_Island.png
+#begin Overworld_Image.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -615,17 +615,5 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Overworld_Island.png
-
-#begin Overworld_Sea.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Overworld_Sea.png
+/build:Overworld_Image.png
 

@@ -33,8 +33,8 @@ namespace DungeonRun
         public static ScreenEditor Editor = new ScreenEditor();
         public static ScreenEditorMenu EditorMenu = new ScreenEditorMenu();
 
-        //we have multiple overworld screens now
-        public static ScreenOverworld_Island Overworld_Island = new ScreenOverworld_Island();
+        //we can have multiple overworld screens in the future
+        public static Overworld_ShadowKing Overworld_ShadowKing = new Overworld_ShadowKing();
 
         public static ScreenLevel Level = new ScreenLevel();
         public static ScreenLevelMap LevelMap = new ScreenLevelMap();

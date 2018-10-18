@@ -60,21 +60,42 @@ Today:
 
 
 
+Overworld++
+
+modified project's content directory to use single
+overworld sheet. this includes Dx and UWP.
+
+updated name and texture of overworld sheet.
+modified overworld island to be overworld shadowking.
+updated shadowking overworld to only accessible map.
+modified locations to get screen setup and working,
+in prep for overworld editor and map tools.
+
+updated overworld screen to use the global 2d camera.
+this camera tracks link on the overworld now.
+tested, working great.
 
 
 
 
-Prep for overworld
-
-removed sea overworld from game.
-modified brandy to be npc with guide dialog.
-tested.
 
 
 
 
 
 
+Boot Routine++
+
+we want to be able to jump right to the overworld
+map, with an editor enabled. this starts with adding
+a value to the boot routine enum.
+
+
+
+
+
+
+1087 y:483
 
 
 
