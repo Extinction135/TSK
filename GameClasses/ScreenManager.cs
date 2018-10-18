@@ -62,6 +62,10 @@ namespace DungeonRun
             {
                 ExitAndLoad(new ScreenEditor());
             }
+            else if (Flags.bootRoutine == BootRoutine.Editor_Map)
+            {
+                ExitAndLoad(new Overworld_ShadowKing());
+            }
         }
 
         public static void Update(GameTime GameTime)

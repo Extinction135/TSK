@@ -36,11 +36,11 @@ namespace DungeonRun
     public class ScreenOverworld : Screen
     {
         public ScreenRec overlay = new ScreenRec();
+        //default map to shadowking texture
         public static ComponentSprite map;
         public List<MapLocation> locations;
         public int i;
-
-        public Actor hero;
+        
         public Direction cardinal;
         public MapLocation currentLocation; //where hero is currently
         public MapLocation targetLocation; //where hero is going to
@@ -56,36 +56,6 @@ namespace DungeonRun
             overlay.alpha = 1.0f;
             overlay.fadeInSpeed = 0.04f;
             overlay.fadeOutSpeed = 0.04f;
-
-            //setup hero overworld actor
-            hero = Pool.hero;
-            hero.feetFX.visible = false;
-
-            //teleport hero to current location
-            Functions_Movement.Teleport(hero.compMove,
-                currentLocation.compSprite.position.X,
-                currentLocation.compSprite.position.Y - 8);
-            Functions_Component.Align(hero);
-
-            //prevents drown sprite from appearing, if hero died in water
-            hero.underwater = false; hero.swimming = false;
-            Functions_Actor.Update(hero);
-
-            //prevent kick drum from playing during overworld map
-            if (Pool.hero.health < 3) { Pool.hero.health = 3; }
-
-            //reset the pool
-            Functions_Pool.Reset();
-
-            //set the player's sprite based on the hero.actorType
-            if (PlayerData.current.actorType == ActorType.Blob)
-            { hero.compSprite.texture = Assets.blobSheet; }
-            else if (PlayerData.current.actorType == ActorType.Hero)
-            { hero.compSprite.texture = Assets.heroSheet; }
-
-            //load hero's type + loadout
-            Functions_Actor.SetType(Pool.hero, PlayerData.current.actorType);
-            Functions_Hero.SetLoadout();
             //open the screen
             Assets.Play(Assets.sfxMapOpen);
             displayState = DisplayState.Opening;
@@ -93,9 +63,12 @@ namespace DungeonRun
 
         public override void HandleInput(GameTime GameTime)
         {
+
+            #region GamePlay Input
+
             if (displayState == DisplayState.Opened)
             {   //only allow input if the screen has opened completely..
-                if (hero.compMove.position == hero.compMove.newPosition)
+                if (Pool.hero.compMove.position == Pool.hero.compMove.newPosition)
                 {   //only allow player input if hero currently occupies a map location
                     if (Input.gamePadDirection != Input.lastGamePadDirection)
                     {   //get the cardinal direction of new gamepad input
@@ -113,20 +86,20 @@ namespace DungeonRun
                         if (currentLocation != targetLocation)
                         {   //if mapLocation doesn't point to itself, then hero can move to target location
                             //change hero's animation to moving, inherit cardinal direction
-                            hero.state = ActorState.Move;
-                            hero.direction = cardinal;
+                            Pool.hero.state = ActorState.Move;
+                            Pool.hero.direction = cardinal;
                             Assets.Play(Assets.sfxMapWalking);
                             //spawn a dash puff at the hero's feet
                             Functions_Particle.Spawn(ObjType.Particle_RisingSmoke,
-                                hero.compSprite.position.X,
-                                hero.compSprite.position.Y + 4);
+                                Pool.hero.compSprite.position.X,
+                                Pool.hero.compSprite.position.Y + 4);
                         }
                         else//if hero dies, he appears on map sitting
                         {   //pressing a direction will make him stand back up
-                            hero.state = ActorState.Idle;
+                            Pool.hero.state = ActorState.Idle;
                             //hero.direction = Direction.Down;
                             //face hero in the direction of the input
-                            hero.direction = cardinal;
+                            Pool.hero.direction = cardinal;
                         }
                     }
                     //check to see if player wants to load a level
@@ -141,11 +114,11 @@ namespace DungeonRun
                             PlayerData.current.lastLocation = currentLocation.ID;
 
                             //animate link into reward state
-                            hero.state = ActorState.Reward;
-                            hero.direction = Direction.Down;
+                            Pool.hero.state = ActorState.Reward;
+                            Pool.hero.direction = Direction.Down;
                             displayState = DisplayState.Closing;
                             //force an animation update
-                            Functions_Animation.Animate(hero.compAnim, hero.compSprite);
+                            Functions_Animation.Animate(Pool.hero.compAnim, Pool.hero.compSprite);
                             Assets.Play(Assets.sfxTextDone);
                             Assets.Play(Assets.sfxWindowClose);
 
@@ -157,19 +130,32 @@ namespace DungeonRun
                     { ScreenManager.AddScreen(Screens.Inventory); }
                 }
             }
+
+            #endregion
+
+
+            #region Editor Input
+
+            if(Flags.bootRoutine == BootRoutine.Editor_Map)
+            {
+                //here we can click, grab, drag, release and get pos info for locations
+            }
+
+            #endregion
+
         }
 
         public override void Update(GameTime GameTime)
         {
             //always animate the hero
-            Functions_Actor.SetAnimationGroup(hero);
-            Functions_Actor.SetAnimationDirection(hero);
-            Functions_Animation.Animate(hero.compAnim, hero.compSprite);
+            Functions_Actor.SetAnimationGroup(Pool.hero);
+            Functions_Actor.SetAnimationDirection(Pool.hero);
+            Functions_Animation.Animate(Pool.hero.compAnim, Pool.hero.compSprite);
 
             //always track the hero
             //(later locations will have an offset to pull attention when necessary)
-            Camera2D.targetPosition.X = hero.compSprite.position.X;
-            Camera2D.targetPosition.Y = hero.compSprite.position.Y;
+            Camera2D.targetPosition.X = Pool.hero.compSprite.position.X;
+            Camera2D.targetPosition.Y = Pool.hero.compSprite.position.Y;
             Functions_Camera2D.Update();
 
             //we used to display the location 'name' like this
@@ -188,40 +174,40 @@ namespace DungeonRun
                 #region Map Movement Routine
 
                 //get hero's newPosition
-                hero.compMove.newPosition.X = targetLocation.compSprite.position.X;
-                hero.compMove.newPosition.Y = targetLocation.compSprite.position.Y - 8;
+                Pool.hero.compMove.newPosition.X = targetLocation.compSprite.position.X;
+                Pool.hero.compMove.newPosition.Y = targetLocation.compSprite.position.Y - 8;
 
                 //get distance between hero and location
-                distance = hero.compMove.newPosition - hero.compMove.position;
+                distance = Pool.hero.compMove.newPosition - Pool.hero.compMove.position;
 
                 //check to see if hero is close enough to snap positions
                 if (Math.Abs(distance.X) < 1)
-                { hero.compMove.position.X = hero.compMove.newPosition.X; }
+                { Pool.hero.compMove.position.X = Pool.hero.compMove.newPosition.X; }
                 if (Math.Abs(distance.Y) < 1)
-                { hero.compMove.position.Y = hero.compMove.newPosition.Y; }
+                { Pool.hero.compMove.position.Y = Pool.hero.compMove.newPosition.Y; }
 
                 //move hero towards location
-                if (hero.compMove.position.X != hero.compMove.newPosition.X)
-                { hero.compMove.position.X += distance.X * speed; }
-                if (hero.compMove.position.Y != hero.compMove.newPosition.Y)
-                { hero.compMove.position.Y += distance.Y * speed; }
+                if (Pool.hero.compMove.position.X != Pool.hero.compMove.newPosition.X)
+                { Pool.hero.compMove.position.X += distance.X * speed; }
+                if (Pool.hero.compMove.position.Y != Pool.hero.compMove.newPosition.Y)
+                { Pool.hero.compMove.position.Y += distance.Y * speed; }
 
                 //align hero's sprite to current move position
-                hero.compSprite.position.X = (int)hero.compMove.position.X;
-                hero.compSprite.position.Y = (int)hero.compMove.position.Y;
+                Pool.hero.compSprite.position.X = (int)Pool.hero.compMove.position.X;
+                Pool.hero.compSprite.position.Y = (int)Pool.hero.compMove.position.Y;
 
                 //check to see if hero just arrived at a location
-                if (hero.state == ActorState.Move)
+                if (Pool.hero.state == ActorState.Move)
                 {   //if hero just reached destination.. (moving + position match)
-                    if (hero.compMove.position == hero.compMove.newPosition)
+                    if (Pool.hero.compMove.position == Pool.hero.compMove.newPosition)
                     {   //set hero's animation to idle down
-                        hero.state = ActorState.Idle;
-                        hero.direction = Direction.Down;
+                        Pool.hero.state = ActorState.Idle;
+                        Pool.hero.direction = Direction.Down;
                         currentLocation = targetLocation;
                         //spawn attention particle at hero's feet
                         Functions_Particle.Spawn(ObjType.Particle_Attention,
-                            hero.compSprite.position.X,
-                            hero.compSprite.position.Y + 6);
+                            Pool.hero.compSprite.position.X,
+                            Pool.hero.compSprite.position.Y + 6);
                         //play arrival sound fx
                         Assets.Play(Assets.sfxMapLocation);
 
@@ -296,9 +282,9 @@ namespace DungeonRun
                         null, null, null, Camera2D.view);
 
             Functions_Draw.Draw(map);
-            Functions_Pool.Draw();
             for (i = 0; i < locations.Count; i++) { Functions_Draw.Draw(locations[i].compSprite); }
-            Functions_Draw.Draw(hero.compSprite);
+            Functions_Pool.Draw();
+            Functions_Draw.Draw(Pool.hero.compSprite);
 
             ScreenManager.spriteBatch.End();
 
@@ -308,7 +294,9 @@ namespace DungeonRun
             #region Draw UI
 
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
+
             Functions_Draw.Draw(overlay);
+
             ScreenManager.spriteBatch.End();
 
             #endregion
@@ -321,6 +309,7 @@ namespace DungeonRun
     //there is only one overworld implemented right now
     public class Overworld_ShadowKing : ScreenOverworld
     {
+
         public Overworld_ShadowKing()
         {
             this.name = "shadowking";
@@ -330,21 +319,18 @@ namespace DungeonRun
 
             locations = new List<MapLocation>();
 
-
-
-
             //skull island
             MapLocation shadowKing = new MapLocation(true, new Vector2(1038, 487));
             shadowKing.ID = LevelID.Colliseum;
-            currentLocation = shadowKing;
-            targetLocation = shadowKing;
             locations.Add(shadowKing);
 
-
-
-
-
             #endregion
+
+            //default to shadowking location
+            currentLocation = locations[0];
+            targetLocation = locations[0];
+
+
 
 
             #region Set maplocation's neighbors
@@ -409,7 +395,7 @@ namespace DungeonRun
             */
 
 
-            
+
             #region Setup wave spawn positions
 
             //create a list of positions where to place waves
@@ -429,7 +415,27 @@ namespace DungeonRun
                  new Vector2(2000/2, 900/2),
                  new Byte4(0, 0, 0, 0),
                  new Point(2000, 900));
+
+            Functions_Pool.Reset();
+
+            //teleport hero to current location
+            Functions_Movement.Teleport(Pool.hero.compMove,
+                currentLocation.compSprite.position.X,
+                currentLocation.compSprite.position.Y - 8);
+            Functions_Component.Align(Pool.hero);
+            //prevents drown sprite from appearing, if hero died in water
+            Pool.hero.underwater = false;
+            Pool.hero.swimming = false;
+            Pool.hero.feetFX.visible = false;
+            //prevent kick drum from playing during overworld map
+            if (Pool.hero.health < 3) { Pool.hero.health = 3; }
+            Functions_Actor.Update(Pool.hero);
+
+
             base.Open();
+
+            
+            
 
             /*
             //spawn map campfires

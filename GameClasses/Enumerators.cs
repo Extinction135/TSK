@@ -31,6 +31,7 @@ namespace DungeonRun
         Game,   //loads title screen
         Editor_Room,  //loads editor in room mode
         Editor_Level,  //loads editor in level mode
+        Editor_Map,  //loads editor in overworld map mode
     }
 
     public enum WidgetDisplaySet { World, Dungeon, None }
