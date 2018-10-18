@@ -139,6 +139,18 @@ namespace DungeonRun
             if(Flags.bootRoutine == BootRoutine.Editor_Map)
             {
                 //here we can click, grab, drag, release and get pos info for locations
+
+                if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
+                {
+                    if(Flags.PrintOutput)
+                    {
+                        Debug.WriteLine("map pos:" + 
+                            Functions_Camera2D.ConvertScreenToWorld(Input.cursorPos.X, Input.cursorPos.Y) 
+                            + "");
+                    }
+                }
+
+
             }
 
             #endregion

@@ -60,13 +60,13 @@ Today:
 
 
 
-
-
 Overworld++
 
-added a 2nd location to test overworld map.
-fixed zdepth issue with locations and link.
-base foundation working, now to add more.
+added basic tool which prints out the world X,Y
+position of where the user clicks on the map.
+this makes it much easier to determine where
+location positions are, and reduces development
+time. tested and working perfectly.
 
 
 
@@ -77,20 +77,40 @@ base foundation working, now to add more.
 
 
 
-we need a tool to create & move locations.
-click to create a location, which neighbors to link's current
-location - so we can move to it. create mode. move mode: grab a 
-location, held down drags it, mouse up releases location and prints
-its XY pos to the output window along with it's name.
-this will allow for much faster location placing and connections.
-this setup should be a value placed into the boot routine enum,
-game, roomEd, levelEd, overworldEd. we would have a note along
-bottom saying 'use f5 to toggle between create and move', so we
-dont have to create a button, altho that isn't hard.
 
-now we place locations all over the overworld map, linking them
-appropriately so the player can traverse the entire map. once this
-is done, we can shift focus to levels.
+create coliseum level.
+create port town level.
+create linking locations, part of skull island.
+this includes the crown up top.
+
+
+
+
+
+
+
+we push for color: consolidate all objects
+to one sheet that are used consistently.
+these get one color pallette.
+editor widgets get modified too.
+can we display all the widgets at once?
+then click thru each one to get the obj we want?
+lessens complexity? maybe?
+
+we are going to need to rewrite how levels are saved,
+which means we have to tag them with an id of what savedata
+they 'belong' to. port, tsk, and coliseum all belong to skull island.
+so we collect fields, check their id tag of what save data they
+belong to, then sort them to the correct lists. then write those
+lists like we do currently.
+
+
+
+
+
+
+
+
 
 
 
