@@ -151,6 +151,8 @@ namespace DungeonRun
             Functions_Actor.SetAnimationGroup(Pool.hero);
             Functions_Actor.SetAnimationDirection(Pool.hero);
             Functions_Animation.Animate(Pool.hero.compAnim, Pool.hero.compSprite);
+            //update hero's zdepth
+            Functions_Component.SetZdepth(Pool.hero.compSprite);
 
             //always track the hero
             //(later locations will have an offset to pull attention when necessary)
@@ -324,75 +326,47 @@ namespace DungeonRun
             shadowKing.ID = LevelID.Colliseum;
             locations.Add(shadowKing);
 
+            MapLocation shadowKing_south = new MapLocation(false, new Vector2(1043, 536));
+            locations.Add(shadowKing_south);
+
             #endregion
-
-            //default to shadowking location
-            currentLocation = locations[0];
-            targetLocation = locations[0];
+            
 
 
+            #region Setup location neighbors
 
-
-            #region Set maplocation's neighbors
-
-            /*
-            //standard neighbors
-            rightCastleTown.neighborLeft = castle;
-            castle.neighborRight = rightCastleTown;
-            leftCastleTown.neighborRight = castle;
-            leftCastleTown.neighborDown = castle;
-            castle.neighborLeft = leftCastleTown;
-            castle.neighborUp = leftCastleTown;
-            */
-
+            shadowKing.neighborDown = shadowKing_south;
+            shadowKing_south.neighborUp = shadowKing;
 
             #endregion
 
 
-            /*
-            #region Setup accessible locations
 
-            //requires that the 'true' boolean is passed into the MapLocation
-            //constructor for the location created above. else, ignored.
+            #region Setup location levels
 
-            //1. Setup accessible level's ID
-            colliseum.ID = LevelID.Colliseum;
-            centerIsland.ID = LevelID.TheFarm;
-            leftTown.ID = LevelID.LeftTown;
-            boat.ID = LevelID.Boat;
+            //set currentlocation based on last loaded level
+            if (LevelSet.field.ID == LevelID.Colliseum)
+            { currentLocation = shadowKing; }
 
-            forestDungeon.ID = LevelID.Forest_Entrance;
-            caveDungeon.ID = LevelID.Mountain_Entrance;
+            //default to shadowking if last level is unknown
+            else { currentLocation = shadowKing; }
 
-
-            //2. Setup current MAP location based on current FIELD id
-
-            if (LevelSet.field.ID == LevelID.TheFarm)
-            { currentLocation = centerIsland; }
-            else if (LevelSet.field.ID == LevelID.LeftTown)
-            { currentLocation = leftTown; }
-
-            else if (LevelSet.field.ID == LevelID.Colliseum
-                || LevelSet.field.ID == LevelID.ColliseumPit
-                || LevelSet.field.ID == LevelID.ColliseumPit_Water
-                || LevelSet.field.ID == LevelID.ColliseumPit_Water_Kraken)
-            { currentLocation = colliseum; }
-
-            else if (LevelSet.field.ID == LevelID.Boat)
-            { currentLocation = boat; }
-
-            else if (LevelSet.field.ID == LevelID.Forest_Entrance)
-            { currentLocation = forestDungeon; }
-            else if (LevelSet.field.ID == LevelID.Mountain_Entrance)
-            { currentLocation = caveDungeon; }
-
-            else //default to colliseum if unknown
-            { currentLocation = colliseum; }
             //set target to current (no initial target)
             targetLocation = currentLocation;
 
             #endregion
-            */
+
+
+
+            #region Setup location zDepths
+
+            for(i = 0; i < locations.Count; i++)
+            {
+                locations[i].compSprite.zOffset = -32;
+                Functions_Component.SetZdepth(locations[i].compSprite);
+            }
+
+            #endregion
 
 
 
@@ -434,9 +408,7 @@ namespace DungeonRun
 
             base.Open();
 
-            
-            
-
+       
             /*
             //spawn map campfires
             Functions_Particle.Spawn(ObjType.Particle_Map_Campfire, 505, 257); //tent town

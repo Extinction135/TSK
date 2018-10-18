@@ -62,15 +62,11 @@ Today:
 
 
 
+Overworld++
 
-
-
-Boot Routine++
-
-added boot routine for overworld map editing.
-this allows me to jump directly into the map,
-bypassing title or level screens - for faster
-iteration and development. tested.
+added a 2nd location to test overworld map.
+fixed zdepth issue with locations and link.
+base foundation working, now to add more.
 
 
 
@@ -80,29 +76,6 @@ iteration and development. tested.
 
 
 
-fixes
-
-locations have incorrect zdepth?
-link is behind them.
-
-
-
-
-
-
-
-
-
-The Overworld
-
-everything is island themed in the game now.
-this means we can implement color, and we have a color
-pallette to use from the overworld. we are ready to go.
-
-first, we replace the overworld map with the new map, and
-update the camera to follow link. then we need to write tools
-to handle the development of the new overworld, because there 
-are alot of locations and levels.
 
 we need a tool to create & move locations.
 click to create a location, which neighbors to link's current
