@@ -60,17 +60,12 @@ Today:
 
 
 
-Overworld++
+Locations++
 
-added basic tool which prints out the world X,Y
-position of where the user clicks on the map.
-this makes it much easier to determine where
-location positions are, and reduces development
-time. tested and working perfectly.
-
-
-
-
+fixed zdepth issue with map.
+created bottom row and top crown of locations
+around skull island (19 locations). this path
+allows for a decent peak of the overworld map.
 
 
 
@@ -80,8 +75,15 @@ time. tested and working perfectly.
 
 create coliseum level.
 create port town level.
-create linking locations, part of skull island.
-this includes the crown up top.
+
+
+
+
+
+
+we need to be setting a name string for each location
+this printing this to the output each time link lands on
+a location.
 
 
 

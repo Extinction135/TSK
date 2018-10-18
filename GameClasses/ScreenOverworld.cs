@@ -137,9 +137,7 @@ namespace DungeonRun
             #region Editor Input
 
             if(Flags.bootRoutine == BootRoutine.Editor_Map)
-            {
-                //here we can click, grab, drag, release and get pos info for locations
-
+            {   //print the position of the cursor to aid in placing locations
                 if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
                 {
                     if(Flags.PrintOutput)
@@ -149,8 +147,6 @@ namespace DungeonRun
                             + "");
                     }
                 }
-
-
             }
 
             #endregion
@@ -327,28 +323,135 @@ namespace DungeonRun
         public Overworld_ShadowKing()
         {
             this.name = "shadowking";
-
-
-            #region Create locations
-
+            //create locations master list
             locations = new List<MapLocation>();
 
-            //skull island
-            MapLocation shadowKing = new MapLocation(true, new Vector2(1038, 487));
-            shadowKing.ID = LevelID.Colliseum;
-            locations.Add(shadowKing);
 
-            MapLocation shadowKing_south = new MapLocation(false, new Vector2(1043, 536));
-            locations.Add(shadowKing_south);
 
-            #endregion
-            
+
+            //create island locations + levels
+
+
+            #region Skull Island
+
+            MapLocation SkullIsland_ShadowDungeon = new MapLocation(true, new Vector2(1038, 487));
+            SkullIsland_ShadowDungeon.ID = LevelID.Colliseum;
+            locations.Add(SkullIsland_ShadowDungeon);
+
+            //bottom rounded bowl shaped row of locations
+            MapLocation SkullIsland_BottomRow_1 = new MapLocation(false, new Vector2(794, 476));
+            locations.Add(SkullIsland_BottomRow_1);
+            MapLocation SkullIsland_BottomRow_2 = new MapLocation(false, new Vector2(829, 501));
+            locations.Add(SkullIsland_BottomRow_2);
+            MapLocation SkullIsland_BottomRow_3 = new MapLocation(false, new Vector2(890, 522));
+            locations.Add(SkullIsland_BottomRow_3);
+            MapLocation SkullIsland_BottomRow_4 = new MapLocation(false, new Vector2(965, 534));
+            locations.Add(SkullIsland_BottomRow_4);
+            MapLocation SkullIsland_BottomRow_5 = new MapLocation(false, new Vector2(1043, 536));
+            locations.Add(SkullIsland_BottomRow_5);
+
+            MapLocation SkullIsland_BottomRow_6 = new MapLocation(false, new Vector2(1114, 528));
+            locations.Add(SkullIsland_BottomRow_6);
+            MapLocation SkullIsland_BottomRow_7 = new MapLocation(false, new Vector2(1163, 508));
+            locations.Add(SkullIsland_BottomRow_7);
+            MapLocation SkullIsland_BottomRow_8 = new MapLocation(false, new Vector2(1216, 471));
+            locations.Add(SkullIsland_BottomRow_8);
+
+            //top crown shaped row of location
+            MapLocation SkullIsland_TopCrown_1 = new MapLocation(false, new Vector2(791, 426));
+            locations.Add(SkullIsland_TopCrown_1);
+            MapLocation SkullIsland_TopCrown_2 = new MapLocation(false, new Vector2(822, 377));
+            locations.Add(SkullIsland_TopCrown_2);
+            MapLocation SkullIsland_TopCrown_3 = new MapLocation(false, new Vector2(896, 345));
+            locations.Add(SkullIsland_TopCrown_3);
+            MapLocation SkullIsland_TopCrown_4 = new MapLocation(false, new Vector2(888, 282));
+            locations.Add(SkullIsland_TopCrown_4);
+            MapLocation SkullIsland_TopCrown_5 = new MapLocation(false, new Vector2(955, 277));
+            locations.Add(SkullIsland_TopCrown_5);
+
+            MapLocation SkullIsland_TopCrown_6 = new MapLocation(false, new Vector2(1008, 237));
+            locations.Add(SkullIsland_TopCrown_6);
+            MapLocation SkullIsland_TopCrown_7 = new MapLocation(false, new Vector2(1060, 279));
+            locations.Add(SkullIsland_TopCrown_7);
+            MapLocation SkullIsland_TopCrown_8 = new MapLocation(false, new Vector2(1131, 286));
+            locations.Add(SkullIsland_TopCrown_8);
+            MapLocation SkullIsland_TopCrown_9 = new MapLocation(false, new Vector2(1112, 347));
+            locations.Add(SkullIsland_TopCrown_9);
+            MapLocation SkullIsland_TopCrown_10 = new MapLocation(false, new Vector2(1187, 377));
+            locations.Add(SkullIsland_TopCrown_10);
+
+            MapLocation SkullIsland_TopCrown_11 = new MapLocation(false, new Vector2(1224, 421));
+            locations.Add(SkullIsland_TopCrown_11);
+
+
 
 
             #region Setup location neighbors
 
-            shadowKing.neighborDown = shadowKing_south;
-            shadowKing_south.neighborUp = shadowKing;
+            //level path connections to bottom row
+            SkullIsland_ShadowDungeon.neighborDown = SkullIsland_BottomRow_5;
+            SkullIsland_BottomRow_5.neighborUp = SkullIsland_ShadowDungeon;
+
+            //bottom row connections right
+            SkullIsland_BottomRow_1.neighborRight = SkullIsland_BottomRow_2;
+            SkullIsland_BottomRow_2.neighborRight = SkullIsland_BottomRow_3;
+            SkullIsland_BottomRow_3.neighborRight = SkullIsland_BottomRow_4;
+            SkullIsland_BottomRow_4.neighborRight = SkullIsland_BottomRow_5;
+            SkullIsland_BottomRow_5.neighborRight = SkullIsland_BottomRow_6;
+            SkullIsland_BottomRow_6.neighborRight = SkullIsland_BottomRow_7;
+            SkullIsland_BottomRow_7.neighborRight = SkullIsland_BottomRow_8;
+
+            //bottom row connections left
+            SkullIsland_BottomRow_8.neighborLeft = SkullIsland_BottomRow_7;
+            SkullIsland_BottomRow_7.neighborLeft = SkullIsland_BottomRow_6;
+            SkullIsland_BottomRow_6.neighborLeft = SkullIsland_BottomRow_5;
+            SkullIsland_BottomRow_5.neighborLeft = SkullIsland_BottomRow_4;
+            SkullIsland_BottomRow_4.neighborLeft = SkullIsland_BottomRow_3;
+            SkullIsland_BottomRow_3.neighborLeft = SkullIsland_BottomRow_2;
+            SkullIsland_BottomRow_2.neighborLeft = SkullIsland_BottomRow_1;
+
+            //bottom row connections to crown
+            SkullIsland_TopCrown_1.neighborDown = SkullIsland_BottomRow_1;
+            SkullIsland_BottomRow_1.neighborUp = SkullIsland_TopCrown_1;
+
+            SkullIsland_TopCrown_11.neighborDown = SkullIsland_BottomRow_8;
+            SkullIsland_BottomRow_8.neighborUp = SkullIsland_TopCrown_11;
+
+            //top crown connections - tricky!
+            SkullIsland_TopCrown_1.neighborUp = SkullIsland_TopCrown_2;
+            SkullIsland_TopCrown_1.neighborRight = SkullIsland_TopCrown_2;
+            SkullIsland_TopCrown_2.neighborDown = SkullIsland_TopCrown_1;
+
+            SkullIsland_TopCrown_2.neighborRight = SkullIsland_TopCrown_3;
+            SkullIsland_TopCrown_3.neighborLeft = SkullIsland_TopCrown_2;
+
+            SkullIsland_TopCrown_3.neighborUp = SkullIsland_TopCrown_4;
+            SkullIsland_TopCrown_4.neighborDown = SkullIsland_TopCrown_3;
+
+            SkullIsland_TopCrown_4.neighborRight = SkullIsland_TopCrown_5;
+            SkullIsland_TopCrown_5.neighborLeft = SkullIsland_TopCrown_4;
+
+            //crown top = 6
+            SkullIsland_TopCrown_5.neighborUp = SkullIsland_TopCrown_6;
+            SkullIsland_TopCrown_5.neighborRight = SkullIsland_TopCrown_6;
+            SkullIsland_TopCrown_6.neighborLeft = SkullIsland_TopCrown_5;
+            SkullIsland_TopCrown_6.neighborRight = SkullIsland_TopCrown_7;
+            SkullIsland_TopCrown_7.neighborLeft = SkullIsland_TopCrown_6;
+            SkullIsland_TopCrown_7.neighborUp = SkullIsland_TopCrown_6;
+
+            //
+            SkullIsland_TopCrown_7.neighborRight = SkullIsland_TopCrown_8;
+            SkullIsland_TopCrown_8.neighborLeft = SkullIsland_TopCrown_7;
+
+            SkullIsland_TopCrown_8.neighborDown = SkullIsland_TopCrown_9;
+            SkullIsland_TopCrown_9.neighborUp = SkullIsland_TopCrown_8;
+
+            SkullIsland_TopCrown_9.neighborRight = SkullIsland_TopCrown_10;
+            SkullIsland_TopCrown_9.neighborDown = SkullIsland_TopCrown_10;
+            SkullIsland_TopCrown_10.neighborLeft = SkullIsland_TopCrown_9;
+
+            SkullIsland_TopCrown_10.neighborDown = SkullIsland_TopCrown_11;
+            SkullIsland_TopCrown_11.neighborUp = SkullIsland_TopCrown_10;
 
             #endregion
 
@@ -358,10 +461,10 @@ namespace DungeonRun
 
             //set currentlocation based on last loaded level
             if (LevelSet.field.ID == LevelID.Colliseum)
-            { currentLocation = shadowKing; }
+            { currentLocation = SkullIsland_ShadowDungeon; }
 
             //default to shadowking if last level is unknown
-            else { currentLocation = shadowKing; }
+            else { currentLocation = SkullIsland_ShadowDungeon; }
 
             //set target to current (no initial target)
             targetLocation = currentLocation;
@@ -369,17 +472,24 @@ namespace DungeonRun
             #endregion
 
 
+            #endregion
+
+
+
+
+
+
+
+
+
+            //prep overworld for interaction
 
             #region Setup location zDepths
 
-            for(i = 0; i < locations.Count; i++)
-            {
-                locations[i].compSprite.zOffset = -32;
-                Functions_Component.SetZdepth(locations[i].compSprite);
-            }
+            for (i = 0; i < locations.Count; i++)
+            { Functions_Component.SetZdepth(locations[i].compSprite); }
 
             #endregion
-
 
 
             #region Setup wave spawn positions
@@ -390,7 +500,6 @@ namespace DungeonRun
 
             #endregion
             
-
         }
 
         public override void Open()
@@ -401,6 +510,8 @@ namespace DungeonRun
                  new Vector2(2000/2, 900/2),
                  new Byte4(0, 0, 0, 0),
                  new Point(2000, 900));
+            map.zOffset = -450; //set many layers behind link & locations
+            Functions_Component.SetZdepth(map);
 
             Functions_Pool.Reset();
 

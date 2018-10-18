@@ -1555,6 +1555,7 @@ namespace DungeonRun
             isLevel = IsLevel;
             compSprite = new ComponentSprite(Assets.entitiesSheet,
                 Position, new Byte4(11, 0, 0, 0), new Point(16, 8));
+            compSprite.zOffset = -32; //always sort under hero
             //determine if location should use small or large sprite
             if (IsLevel) { compSprite.currentFrame.Y = 1; }
             neighborUp = this; neighborDown = this;
