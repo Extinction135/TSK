@@ -20,7 +20,7 @@ namespace DungeonRun
         public ComponentButton currentSheet;
 
         //used to track what level widgets are being displayed
-        public LevelID levelBeingDisplayed = LevelID.Forest_Entrance;
+        public LevelID levelBeingDisplayed = LevelID.SkullIsland_Colliseum;
 
 
 
@@ -104,6 +104,11 @@ namespace DungeonRun
 
                     
 
+
+                    //we need a different way to display widgets using the new system
+
+                    /*
+
                     //Iterate thru forest, town, colliseum, mountain, etc...
                     if (levelBeingDisplayed == LevelID.LeftTown)
                     {   //leads to colliseum
@@ -164,6 +169,13 @@ namespace DungeonRun
                         Widgets.WE_Forest.visible = true;
                         levelBeingDisplayed = LevelID.Forest_Entrance;
                     }
+
+                    */
+
+
+
+
+
 
 
                     //pass the new levelID to current level, so if we save it later it has right ID

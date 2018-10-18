@@ -144,81 +144,41 @@ namespace DungeonRun
             #region Build Overworld Field Levels
 
 
-            //special levels
-            else if (LevelSet.currentLevel.ID == LevelID.Colliseum)
+
+            #region Skull Island
+
+            else if (LevelSet.currentLevel.ID == LevelID.SkullIsland_Colliseum)
             {
                 Functions_Music.PlayMusic(Music.LightWorld);
-                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.Colliseum);
+                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.SkullIsland_Colliseum);
                 LevelSet.currentLevel.rooms.Add(field);
             }
-            else if (LevelSet.currentLevel.ID == LevelID.ColliseumPit)
+            else if (LevelSet.currentLevel.ID == LevelID.SkullIsland_ColliseumPit)
             {
                 Functions_Music.PlayMusic(Music.CrowdWaiting);
-                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.ColliseumPit);
+                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.SkullIsland_ColliseumPit);
                 LevelSet.currentLevel.rooms.Add(field);
             }
-            else if (LevelSet.currentLevel.ID == LevelID.ColliseumPit_Water)
+            else if (LevelSet.currentLevel.ID == LevelID.SkullIsland_Town)
             {
-                Functions_Music.PlayMusic(Music.CrowdWaiting);
-                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.ColliseumPit_Water);
+                Functions_Music.PlayMusic(Music.LightWorld);
+                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.SkullIsland_Town);
                 LevelSet.currentLevel.rooms.Add(field);
             }
-            else if (LevelSet.currentLevel.ID == LevelID.ColliseumPit_Water_Kraken)
+            else if (LevelSet.currentLevel.ID == LevelID.SkullIsland_ShadowKing)
             {
-                Functions_Music.PlayMusic(Music.CrowdWaiting); //gets overwritten by challenge method
-                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.ColliseumPit_Water_Kraken);
+                Functions_Music.PlayMusic(Music.LightWorld);
+                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.SkullIsland_ShadowKing);
                 LevelSet.currentLevel.rooms.Add(field);
             }
+
+            #endregion
 
 
 
 
-            //entrances
-            else if (LevelSet.currentLevel.ID == LevelID.Forest_Entrance)
-            {
-                Functions_Music.PlayMusic(Music.LightWorld);
-                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.ForestEntrance);
-                LevelSet.currentLevel.rooms.Add(field);
-            }
-            else if (LevelSet.currentLevel.ID == LevelID.Mountain_Entrance)
-            {
-                Functions_Music.PlayMusic(Music.LightWorld);
-                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.MountainEntrance);
-                LevelSet.currentLevel.rooms.Add(field);
-            }
-            else if (LevelSet.currentLevel.ID == LevelID.Swamp_Entrance)
-            {
-                Functions_Music.PlayMusic(Music.LightWorld);
-                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.SwampEntrance);
-                LevelSet.currentLevel.rooms.Add(field);
-            }
 
 
-            //standard levels
-            else if (LevelSet.currentLevel.ID == LevelID.TheFarm)
-            {
-                Functions_Music.PlayMusic(Music.LightWorld);
-                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.TheFarm);
-                LevelSet.currentLevel.rooms.Add(field);
-            }
-            else if (LevelSet.currentLevel.ID == LevelID.LeftTown)
-            {
-                Functions_Music.PlayMusic(Music.LightWorld);
-                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.LeftTown);
-                LevelSet.currentLevel.rooms.Add(field);
-            }
-            else if (LevelSet.currentLevel.ID == LevelID.RightTown)
-            {
-                Functions_Music.PlayMusic(Music.LightWorld);
-                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.LeftTown);
-                LevelSet.currentLevel.rooms.Add(field);
-            }
-            else if (LevelSet.currentLevel.ID == LevelID.Boat)
-            {
-                Functions_Music.PlayMusic(Music.LightWorld);
-                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.Boat);
-                LevelSet.currentLevel.rooms.Add(field);
-            }
 
 
             #endregion

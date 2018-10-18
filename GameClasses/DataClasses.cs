@@ -136,7 +136,7 @@ namespace DungeonRun
         public int mins = 0;
         public int secs = 0;
 
-        public LevelID lastLocation = LevelID.Colliseum;
+        public LevelID lastLocation = LevelID.SkullIsland_Colliseum;
 
 
         public ActorType actorType = ActorType.Hero;
@@ -239,7 +239,7 @@ namespace DungeonRun
 
     public class Level
     {
-        public LevelID ID = LevelID.Colliseum;
+        public LevelID ID = LevelID.SkullIsland_Colliseum;
         public List<Room> rooms = new List<Room>();
         public Room currentRoom; //points to one in list above
         public List<Door> doors = new List<Door>();

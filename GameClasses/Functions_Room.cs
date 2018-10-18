@@ -149,80 +149,41 @@ namespace DungeonRun
             //Setup RoomData OR DevRooms
 
             if (RoomXmlData == null)
-            {   
-                
-
-                #region Setup Colliseum levels
+            {
 
 
-                if (Room.roomID == RoomID.Colliseum)
-                {
-                    RoomXmlData = LevelData.Colliseum;
-                    LevelSet.currentLevel.isField = true;
-                }
-                else if (Room.roomID == RoomID.ColliseumPit)
-                {
-                    RoomXmlData = LevelData.ColliseumPit;
-                    LevelSet.currentLevel.isField = true;
-                }
-                else if (Room.roomID == RoomID.ColliseumPit_Water)
-                {
-                    RoomXmlData = LevelData.ColliseumPit_Water;
-                    LevelSet.currentLevel.isField = true;
-                }
-                else if (Room.roomID == RoomID.ColliseumPit_Water_Kraken)
-                {
-                    RoomXmlData = LevelData.ColliseumPit_Water_Kraken;
-                    LevelSet.currentLevel.isField = true;
-                }
 
+                #region Setup SkullIsland Rooms (Levels)
 
-                #endregion
-
-
-                #region Setup overworld field level data
-
-                else if (Room.roomID == RoomID.ForestEntrance)
+                if (Room.roomID == RoomID.SkullIsland_Colliseum)
                 {
-                    RoomXmlData = LevelData.ForestEntrance;
+                    RoomXmlData = LevelData.SkullIsland_Colliseum;
                     LevelSet.currentLevel.isField = true;
                 }
-                else if (Room.roomID == RoomID.MountainEntrance)
+                else if (Room.roomID == RoomID.SkullIsland_ColliseumPit)
                 {
-                    RoomXmlData = LevelData.MountainEntrance;
+                    RoomXmlData = LevelData.SkullIsland_ColliseumPit;
                     LevelSet.currentLevel.isField = true;
                 }
-                else if (Room.roomID == RoomID.SwampEntrance)
+                else if (Room.roomID == RoomID.SkullIsland_Town)
                 {
-                    RoomXmlData = LevelData.SwampEntrance;
+                    RoomXmlData = LevelData.SkullIsland_Town;
                     LevelSet.currentLevel.isField = true;
                 }
-
-                else if (Room.roomID == RoomID.TheFarm)
+                else if (Room.roomID == RoomID.SkullIsland_ShadowKing)
                 {
-                    RoomXmlData = LevelData.TheFarm;
-                    LevelSet.currentLevel.isField = true;
-                }
-                else if (Room.roomID == RoomID.LeftTown)
-                {
-                    RoomXmlData = LevelData.LeftTown;
-                    LevelSet.currentLevel.isField = true;
-                }
-                /*
-                else if (Room.roomID == RoomID.RightTown)
-                {
-                    RoomXmlData = LevelData.RightTown;
-                    LevelSet.currentLevel.isField = true;
-                }
-                */
-
-                else if (Room.roomID == RoomID.Boat)
-                {
-                    RoomXmlData = LevelData.Boat;
+                    RoomXmlData = LevelData.SkullIsland_ShadowKing;
                     LevelSet.currentLevel.isField = true;
                 }
 
                 #endregion
+
+
+
+
+
+
+
 
 
                 #region Setup dungeon room data

@@ -335,7 +335,7 @@ namespace DungeonRun
             #region Skull Island
 
             MapLocation SkullIsland_ShadowDungeon = new MapLocation(true, new Vector2(1038, 487));
-            SkullIsland_ShadowDungeon.ID = LevelID.Boat;
+            SkullIsland_ShadowDungeon.ID = LevelID.SkullIsland_ShadowKing;
             locations.Add(SkullIsland_ShadowDungeon);
 
             //bottom rounded bowl shaped row of locations
@@ -385,7 +385,7 @@ namespace DungeonRun
 
             //path to coliseum
             MapLocation SkullIsland_Coliseum = new MapLocation(true, new Vector2(858, 445));
-            SkullIsland_Coliseum.ID = LevelID.Colliseum;
+            SkullIsland_Coliseum.ID = LevelID.SkullIsland_Colliseum;
             locations.Add(SkullIsland_Coliseum);
             MapLocation SkullIsland_Coliseum_South_1 = new MapLocation(false, new Vector2(869, 474));
             locations.Add(SkullIsland_Coliseum_South_1);
@@ -394,7 +394,7 @@ namespace DungeonRun
 
             //path to town
             MapLocation SkullIsland_Town = new MapLocation(true, new Vector2(1158, 436));
-            SkullIsland_Town.ID = LevelID.LeftTown;
+            SkullIsland_Town.ID = LevelID.SkullIsland_Town;
             locations.Add(SkullIsland_Town);
             MapLocation SkullIsland_Town_South_1 = new MapLocation(false, new Vector2(1162, 469));
             locations.Add(SkullIsland_Town_South_1);
@@ -515,8 +515,13 @@ namespace DungeonRun
             #region Setup location levels
 
             //set currentlocation based on last loaded level
-            if (LevelSet.field.ID == LevelID.Colliseum)
+            if (LevelSet.field.ID == LevelID.SkullIsland_ShadowKing)
             { currentLocation = SkullIsland_ShadowDungeon; }
+            else if (LevelSet.field.ID == LevelID.SkullIsland_Colliseum
+                || LevelSet.field.ID == LevelID.SkullIsland_ColliseumPit)
+            { currentLocation = SkullIsland_Coliseum; }
+            else if (LevelSet.field.ID == LevelID.SkullIsland_Town)
+            { currentLocation = SkullIsland_Town; }
 
             //default to shadowking if last level is unknown
             else { currentLocation = SkullIsland_ShadowDungeon; }

@@ -59,22 +59,20 @@ Today:
 
 
 
+Prep for XML to CS rewrite
 
+removed a variety of levels in order to simplify the
+task of rewwriting the XML to CS pipeline to accomodate
+for more islands.
 
+created saveData id enum, to tag level data to island
+biome (for level saving purposes).
 
-
-
-
-Locations and Levels ++
-
-created coliseum level location.
-created port town level location.
-created location paths to these levels.
-linked up coliseum, boat, and town existing
-levels to these levels for testing and dev
-purposes. working as intended.
-
-
+editor is disabled by this push, due to how widgets
+are looped thru to be displayed. I need to consolidate
+textures soon anyway, and this will greatly affect how
+widgts are displayed and handled, so this disabling
+doesn't bother me too much right now.
 
 
 
@@ -82,12 +80,31 @@ purposes. working as intended.
 
 
 
+XML to CS rewrite
+
+*we are working on the XML to CS pipeline, making it modular
+to handle islands and their levels in a generic way.
+
+this will start with skull island. once this works,
+we will add forest island, bring back the forest entrance
+level as the only level, then further design the pipeline.
 
 
 
-wipe all other levels & level enums from enums, except
-dungeon entrance levels. we will connect these next.
 
+
+
+
+
+
+
+
+we are going to need to rewrite how levels are saved,
+which means we have to tag them with an id of what savedata
+they 'belong' to. port, tsk, and coliseum all belong to skull island.
+so we collect fields, check their id tag of what save data they
+belong to, then sort them to the correct lists. then write those
+lists like we do currently.
 
 
 
@@ -104,6 +121,29 @@ a location.
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 we push for color: consolidate all objects
 to one sheet that are used consistently.
 these get one color pallette.
@@ -111,14 +151,6 @@ editor widgets get modified too.
 can we display all the widgets at once?
 then click thru each one to get the obj we want?
 lessens complexity? maybe?
-
-we are going to need to rewrite how levels are saved,
-which means we have to tag them with an id of what savedata
-they 'belong' to. port, tsk, and coliseum all belong to skull island.
-so we collect fields, check their id tag of what save data they
-belong to, then sort them to the correct lists. then write those
-lists like we do currently.
-
 
 
 

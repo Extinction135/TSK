@@ -168,34 +168,12 @@ namespace DungeonRun
             //based on level.id, and sometimes roomID, signs point to diff dialogs
 
             //field signposts
-            if (LevelSet.currentLevel.ID == LevelID.Forest_Entrance)
-            {
-                Screens.Dialog.SetDialog(AssetsDialog.Signpost_ForestEntrance);
-                ScreenManager.AddScreen(Screens.Dialog);
-            }
-            else if (LevelSet.currentLevel.ID == LevelID.Mountain_Entrance)
-            {
-                Screens.Dialog.SetDialog(AssetsDialog.Signpost_MountainEntrance);
-                ScreenManager.AddScreen(Screens.Dialog);
-            }
-
-            else if(LevelSet.currentLevel.ID == LevelID.LeftTown)
+            if(LevelSet.currentLevel.ID == LevelID.SkullIsland_Town)
             {
                 Screens.Dialog.SetDialog(AssetsDialog.Signpost_LeftTown);
                 ScreenManager.AddScreen(Screens.Dialog);
             }
-            else if (LevelSet.currentLevel.ID == LevelID.RightTown)
-            {
-                Screens.Dialog.SetDialog(AssetsDialog.Signpost_RightTown);
-                ScreenManager.AddScreen(Screens.Dialog);
-            }
-
-            else if (LevelSet.currentLevel.ID == LevelID.TheFarm)
-            {
-                Screens.Dialog.SetDialog(AssetsDialog.Signpost_TheFarm);
-                ScreenManager.AddScreen(Screens.Dialog);
-            }
-            else if (LevelSet.currentLevel.ID == LevelID.Colliseum)
+            else if (LevelSet.currentLevel.ID == LevelID.SkullIsland_Colliseum)
             {
                 Screens.Dialog.SetDialog(AssetsDialog.Signpost_Colliseum);
                 ScreenManager.AddScreen(Screens.Dialog);

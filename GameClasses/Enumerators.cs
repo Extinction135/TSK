@@ -78,23 +78,31 @@ namespace DungeonRun
 
 
 
+
+
+
+    public enum SaveData_ID
+    {
+        SkullIsland,
+        ForestIsland,
+        ThievesHideout,
+        DeathMountain,
+        HauntedSwamps,
+        CloudIsland,
+        LavaIsland
+
+        //expand this to handle the smaller map islands too
+    }
+
     public enum LevelID
     {
         //overworld levels (fields)
-        Colliseum,
-        ColliseumPit,
-        ColliseumPit_Water,
-        ColliseumPit_Water_Kraken,
 
-        TheFarm, 
-        LeftTown,
-        RightTown,
-        Boat,
-
-        //fields, with dungeon entrances
-        Forest_Entrance, 
-        Mountain_Entrance,
-        Swamp_Entrance,
+        //skull island
+        SkullIsland_Colliseum,
+        SkullIsland_ColliseumPit,
+        SkullIsland_Town,
+        SkullIsland_ShadowKing,
 
         //dungeons, series of rooms
         Forest_Dungeon, 
@@ -118,19 +126,15 @@ namespace DungeonRun
         Column, Row, Square, Secret,
 
         //these OVERWORLD rooms are non-procedural (handmade)
-        Colliseum,
-        ColliseumPit,
-        ColliseumPit_Water,
-        ColliseumPit_Water_Kraken,
 
-        ForestEntrance,
-        MountainEntrance,
-        SwampEntrance,
+        //skull island
+        SkullIsland_Colliseum,
+        SkullIsland_ColliseumPit,
+        SkullIsland_Town,
+        SkullIsland_ShadowKing,
 
-        TheFarm,
-        LeftTown,
-        //RightTown,
-        Boat,
+
+
 
         //these DEV rooms are used for testing
         DEV_Field, //represents any 'outdoor' / overworld level

@@ -44,7 +44,7 @@ namespace DungeonRun
             Functions_Level.ResetLevel(LevelSet.currentLevel);
             //pre-build a standard field level too
             LevelSet.currentLevel = LevelSet.field;
-            Functions_Level.BuildLevel(LevelID.Colliseum);
+            Functions_Level.BuildLevel(LevelID.SkullIsland_Colliseum);
             //the level hero loads into will be decided by overworld later on
 
 

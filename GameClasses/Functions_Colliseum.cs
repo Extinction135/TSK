@@ -78,11 +78,6 @@ namespace DungeonRun
 
         public static void BeginChallenge(List<ActorType> Challenge)
         {
-            if(Challenge == Challenges.Bosses_Kraken)
-            {   //flood the colliseum with water and swamp objs
-                LevelSet.currentLevel.ID = LevelID.ColliseumPit_Water_Kraken;
-            }
-
             //rebuild the colliseum pit, fading in from black
             Functions_Level.BuildLevel(LevelSet.currentLevel.ID);
 

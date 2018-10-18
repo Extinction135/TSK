@@ -95,11 +95,9 @@ namespace DungeonRun
                 if(heroRec.Intersects(LevelSet.currentLevel.currentRoom.rec) == false)
                 {
                     //some fields return to other fields
-                    if (LevelSet.currentLevel.ID == LevelID.ColliseumPit ||
-                        LevelSet.currentLevel.ID == LevelID.ColliseumPit_Water ||
-                        LevelSet.currentLevel.ID == LevelID.ColliseumPit_Water_Kraken)
+                    if (LevelSet.currentLevel.ID == LevelID.SkullIsland_ColliseumPit)
                     {   //return to colliseum exterior level
-                        LevelSet.field.ID = LevelID.Colliseum;
+                        LevelSet.field.ID = LevelID.SkullIsland_Colliseum;
                         Functions_Level.CloseLevel(ExitAction.Field);
                     }
                     //all other fields return to overworld screen
@@ -629,9 +627,7 @@ namespace DungeonRun
             //teleport hero to level's spawn position (field or dungeon)
             if(LevelSet.currentLevel == LevelSet.field)
             {
-                if (LevelSet.currentLevel.ID == LevelID.ColliseumPit
-                    || LevelSet.currentLevel.ID == LevelID.ColliseumPit_Water
-                    || LevelSet.currentLevel.ID == LevelID.ColliseumPit_Water_Kraken)
+                if (LevelSet.currentLevel.ID == LevelID.SkullIsland_ColliseumPit)
                 {   //ALWAYS spawn hero in south position, but don't use spawnPos ref
                     Functions_Movement.Teleport(
                         Pool.hero.compMove,

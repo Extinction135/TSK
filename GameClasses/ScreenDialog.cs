@@ -123,7 +123,7 @@ namespace DungeonRun
                         //enter colliseum from exterior colliseum field level
                         else if (dialogs == AssetsDialog.Enter_Colliseum)
                         {
-                            LevelSet.field.ID = LevelID.ColliseumPit;
+                            LevelSet.field.ID = LevelID.SkullIsland_ColliseumPit;
                             ExitDialog(); Assets.Play(Assets.sfxEnterDungeon);
                         }
 

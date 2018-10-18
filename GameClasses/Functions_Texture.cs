@@ -22,25 +22,16 @@ namespace DungeonRun
         {   //based on level id, set the current texture
             currentTexture = Assets.forestLevelSheet; //default to forest
 
-            if (LevelSet.currentLevel.ID == LevelID.LeftTown
-                || LevelSet.currentLevel.ID == LevelID.RightTown
-                || LevelSet.currentLevel.ID == LevelID.TheFarm)
+            if (LevelSet.currentLevel.ID == LevelID.SkullIsland_Town)
             { currentTexture = Assets.townLevelSheet; }
 
             //all colliseum levels point to the colliseum sheet, obvs
-            else if (LevelSet.currentLevel.ID == LevelID.Colliseum
-                || LevelSet.currentLevel.ID == LevelID.ColliseumPit
-                || LevelSet.currentLevel.ID == LevelID.ColliseumPit_Water
-                || LevelSet.currentLevel.ID == LevelID.ColliseumPit_Water_Kraken)
+            else if (LevelSet.currentLevel.ID == LevelID.SkullIsland_Colliseum
+                || LevelSet.currentLevel.ID == LevelID.SkullIsland_ColliseumPit)
             { currentTexture = Assets.colliseumLevelSheet; }
-
-            else if (LevelSet.currentLevel.ID == LevelID.Forest_Entrance) { currentTexture = Assets.forestLevelSheet; }
+            
             else if (LevelSet.currentLevel.ID == LevelID.Forest_Dungeon) { currentTexture = Assets.forestLevelSheet; }
-
-            else if (LevelSet.currentLevel.ID == LevelID.Mountain_Entrance) { currentTexture = Assets.mountainLevelSheet; }
             else if (LevelSet.currentLevel.ID == LevelID.Mountain_Dungeon) { currentTexture = Assets.mountainLevelSheet; }
-
-            else if (LevelSet.currentLevel.ID == LevelID.Swamp_Entrance) { currentTexture = Assets.swampLevelSheet; }
             else if (LevelSet.currentLevel.ID == LevelID.Swamp_Dungeon) { currentTexture = Assets.swampLevelSheet; }
         }
 
