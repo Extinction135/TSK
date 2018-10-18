@@ -26,15 +26,8 @@ namespace DungeonRun
                     LevelSet.currentLevel.ID);
             }
 
-            if(LevelSet.currentLevel.ID == LevelID.Swamp_Entrance
-                || LevelSet.currentLevel.ID == LevelID.Swamp_Dungeon)
-            {   //these levels point to sea overworld
-                ScreenManager.ExitAndLoad(Screens.Overworld_Sea);
-            }
-            else
-            {   //all other levels point to island overworld
-                ScreenManager.ExitAndLoad(Screens.Overworld_Island);
-            }
+            //all levels point to island overworld
+            ScreenManager.ExitAndLoad(Screens.Overworld_Island);
         }
     }
 
@@ -558,93 +551,6 @@ namespace DungeonRun
         }
 
     }
-
-
-    //sea overworld only contains swamp level, for now
-    public class ScreenOverworld_Sea : ScreenOverworld
-    {
-        public ScreenOverworld_Sea()
-        {
-            this.name = "sea overworld";
-
-
-            #region Create locations
-
-            locations = new List<MapLocation>();
-
-            MapLocation ship = new MapLocation(true, new Vector2(306-10, 200));
-            locations.Add(ship);
-
-            #endregion
-
-
-            #region Setup location neighbors
-
-            //boat.neighborDown = centerIsland;
-            //centerIsland.neighborUp = boat;
-
-            #endregion
-
-
-            #region Setup accessible locations
-
-            ship.ID = LevelID.Swamp_Entrance;
-
-            if (LevelSet.field.ID == LevelID.Swamp_Entrance)
-            { currentLocation = ship; }
-            else if (LevelSet.field.ID == LevelID.Swamp_Dungeon)
-            { currentLocation = ship; }
-
-            //default to ship if unknown
-            else { currentLocation = ship; }
-
-            //set target to current (no initial target)
-            targetLocation = currentLocation;
-
-            #endregion
-
-
-            #region Setup wave spawn positions
-
-            //create a list of positions where to place waves
-            waveSpawnPositions = new List<Vector2>();
-            waveSpawnPositions.Add(new Vector2(334 + 8, 238 + 6));
-            waveSpawnPositions.Add(new Vector2(207 + 8, 226 + 6));
-            waveSpawnPositions.Add(new Vector2(260 + 8, 254 + 6));
-            waveSpawnPositions.Add(new Vector2(360 + 8, 270 + 6));
-            waveSpawnPositions.Add(new Vector2(407 + 8, 277 + 6));
-            waveSpawnPositions.Add(new Vector2(237 + 8, 293 + 6));
-            waveSpawnPositions.Add(new Vector2(089 + 8, 305 + 6));
-            waveSpawnPositions.Add(new Vector2(557 + 8, 259 + 6));
-            waveSpawnPositions.Add(new Vector2(555 + 8, 125 + 6));
-            waveSpawnPositions.Add(new Vector2(506 + 8, 090 + 6));
-            waveSpawnPositions.Add(new Vector2(120 + 8, 090 + 6));
-            waveSpawnPositions.Add(new Vector2(094 + 8, 121 + 6));
-
-            #endregion
-
-        }
-
-        public override void Open()
-        {
-            //setup map texture
-            map = new ComponentSprite(
-                 Assets.overworld_sea,
-                 new Vector2(640 / 2, 360 / 2),
-                 new Byte4(0, 0, 0, 0),
-                 new Point(1280, 720));
-            map.position.X = map.drawRec.Width / 2;
-            map.position.Y = map.drawRec.Height / 2;
-            base.Open();
-
-            //ship flag
-            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 465 + 8, 71 + 6);
-
-            Functions_Music.PlayMusic(Music.Title); //play overworld music
-            Assets.colorScheme.background = Assets.colorScheme.bkg_lightWorld;
-        }
-
-    }
-
+    
 
 }

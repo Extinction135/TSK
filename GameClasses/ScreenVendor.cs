@@ -101,12 +101,7 @@ namespace DungeonRun
                 welcomeDialog = "don't tell mrgrak I let you play with these..\nhe'd remove me from the game..";
                 Widgets.ForSale.window.title.text = "Shhh!";
             }
-
-            else if (vendorRef == ObjType.Wor_Boat_Captain_Brandy)
-            {
-                welcomeDialog = "i'm brandy, the ship's captain.\nwhere to today, link?";
-                Widgets.ForSale.window.title.text = "Let's go!";
-            }
+            
 
 
 
@@ -474,29 +469,7 @@ namespace DungeonRun
 
 
                 #endregion
-
-
-                #region Ship Destinations
-
-                else if (Item.type == MenuItemType.Ship_Destination_Island)
-                {
-                    CompleteSale(Item);
-                    CloseVendorScreen();
-                    //load island overworld, with boat as default level
-                    LevelSet.currentLevel.ID = LevelID.Boat;
-                    Functions_Level.CloseLevel(ExitAction.Overworld);
-                }
-                else if (Item.type == MenuItemType.Ship_Destination_Sea)
-                {
-                    CompleteSale(Item);
-                    CloseVendorScreen();
-                    //load sea overworld, with swamp entrance as default level
-                    LevelSet.currentLevel.ID = LevelID.Swamp_Entrance;
-                    Functions_Level.CloseLevel(ExitAction.Overworld);
-                }
-
-                #endregion
-
+                
 
 
             } //else, hero doesn't have enough gold to purchase the item

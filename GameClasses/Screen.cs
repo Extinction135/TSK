@@ -35,7 +35,6 @@ namespace DungeonRun
 
         //we have multiple overworld screens now
         public static ScreenOverworld_Island Overworld_Island = new ScreenOverworld_Island();
-        public static ScreenOverworld_Sea Overworld_Sea = new ScreenOverworld_Sea();
 
         public static ScreenLevel Level = new ScreenLevel();
         public static ScreenLevelMap LevelMap = new ScreenLevelMap();

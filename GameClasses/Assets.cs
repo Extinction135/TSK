@@ -48,7 +48,6 @@ namespace DungeonRun
 
         //overworld sheets
         public static Texture2D overworld_island;
-        public static Texture2D overworld_sea;
 
 
         //misc
@@ -203,7 +202,6 @@ namespace DungeonRun
 
             //overworld textures
             overworld_island = content.Load<Texture2D>(@"Overworld_Island");
-            overworld_sea = content.Load<Texture2D>(@"Overworld_Sea");
 
             //load all sprite textures
             bigTextSheet = content.Load<Texture2D>(@"Sprites_BigText");

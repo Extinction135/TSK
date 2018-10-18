@@ -61,14 +61,14 @@ Today:
 
 
 
-New Overworld
-
-created new overworld image.
-this is discussed via video: https://youtu.be/4IV1r_6_efI
-redesigned direction of game, story, roadmap.
-reorganized project dev notes.
 
 
+
+Prep for overworld
+
+removed sea overworld from game.
+modified brandy to be npc with guide dialog.
+tested.
 
 
 

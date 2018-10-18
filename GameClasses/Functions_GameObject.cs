@@ -2477,7 +2477,7 @@ namespace DungeonRun
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = true;
 
-                Obj.group = ObjGroup.Vendor;
+                Obj.group = ObjGroup.NPC;
                 Obj.getsAI = true;
                 Obj.interactiveFrame = 60;
             }

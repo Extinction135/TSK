@@ -395,6 +395,17 @@ namespace DungeonRun
 
                 #endregion
 
+
+                #region Brandy Ships Captain
+
+                else if (Obj.type == ObjType.Wor_Boat_Captain_Brandy)
+                {
+                    Screens.Dialog.SetDialog(AssetsDialog.Guide); //fix this later
+                    ScreenManager.AddScreen(Screens.Dialog);
+                }
+
+                #endregion
+
             }
 
 

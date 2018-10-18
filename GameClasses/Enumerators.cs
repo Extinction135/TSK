@@ -833,10 +833,7 @@ namespace DungeonRun
 
         #endregion
 
-
-        //ship destinations
-        Ship_Destination_Island,
-        Ship_Destination_Sea
+        
 
     }
 

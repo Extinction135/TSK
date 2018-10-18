@@ -408,27 +408,7 @@ namespace DungeonRun
 
 
 
-
-            #region Ship Destination menuItems
-
-            else if (Type == MenuItemType.Ship_Destination_Island)
-            {
-                MenuItem.name = "Island Destination";
-                MenuItem.description = "travel to the island. \ntravel is free.";
-                MenuItem.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Ship_Destination;
-                MenuItem.compSprite.texture = Assets.boatLevelSheet;
-                MenuItem.price = 0;
-            }
-            else if (Type == MenuItemType.Ship_Destination_Sea)
-            {
-                MenuItem.name = "Sea Destination";
-                MenuItem.description = "travel to the sea. \ntravel is free.";
-                MenuItem.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Ship_Destination;
-                MenuItem.compSprite.texture = Assets.boatLevelSheet;
-                MenuItem.price = 0;
-            }
-
-            #endregion
+            
 
 
 

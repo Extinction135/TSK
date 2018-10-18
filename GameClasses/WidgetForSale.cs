@@ -207,12 +207,6 @@ namespace DungeonRun
                 Functions_MenuItem.SetType(MenuItemType.MagicBat, menuItems[1]);
             }
 
-            else if (VendorType == ObjType.Wor_Boat_Captain_Brandy)
-            {
-                Functions_MenuItem.SetType(MenuItemType.Ship_Destination_Island, menuItems[0]);
-                Functions_MenuItem.SetType(MenuItemType.Ship_Destination_Sea, menuItems[1]);
-            }
-
             #endregion
 
 
