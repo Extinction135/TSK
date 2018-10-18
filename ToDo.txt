@@ -59,21 +59,15 @@ Today:
 
 
 
-Prep for XML to CS rewrite
 
-removed a variety of levels in order to simplify the
-task of rewwriting the XML to CS pipeline to accomodate
-for more islands.
 
-created saveData id enum, to tag level data to island
-biome (for level saving purposes).
+7 lists for each island
 
-editor is disabled by this push, due to how widgets
-are looped thru to be displayed. I need to consolidate
-textures soon anyway, and this will greatly affect how
-widgts are displayed and handled, so this disabling
-doesn't bother me too much right now.
 
+
+
+
+relink project to the new LEVELDATA_stuff .cs files, created by the new pipeline.
 
 
 
@@ -82,8 +76,41 @@ doesn't bother me too much right now.
 
 XML to CS rewrite
 
-*we are working on the XML to CS pipeline, making it modular
-to handle islands and their levels in a generic way.
+instead of having all level data in a single .cs file, 
+there will be many .cs files specific for each island.
+in order for this to be done well, the xml to cs pipeline
+must change and should be made more modular to work on
+island level sets. this is done using the islandID.
+
+the islandID is an enum that becomes a global static public
+class in the game. these global classes are then accessed by
+the game upon the next build. this is how the level data is
+stored inside the game, in binary format. this allows the game
+to be easily ported to many different systems, including UWP.
+however, .cs files can't get to big or be too complex, so
+we have to break them into manageable sizes for visual studio.
+
+created writeXMLtoCS() in DirectX backend class.
+this handles lists of xml room data in conjunction with an
+IslandID parameter to properly write each island set c# file.
+for now, the boat level is being used as dummy data for each
+island set. working as expected.
+
+updated UWP project to ref new level data files.
+actually playtested the UWP version. hmm. working.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 this will start with skull island. once this works,
 we will add forest island, bring back the forest entrance
@@ -95,16 +122,6 @@ level as the only level, then further design the pipeline.
 
 
 
-
-
-
-
-we are going to need to rewrite how levels are saved,
-which means we have to tag them with an id of what savedata
-they 'belong' to. port, tsk, and coliseum all belong to skull island.
-so we collect fields, check their id tag of what save data they
-belong to, then sort them to the correct lists. then write those
-lists like we do currently.
 
 
 

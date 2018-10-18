@@ -23,10 +23,94 @@ namespace DungeonRun
 
         
 
+
+
+
+        //this was created to write overworld islandsets (lists of levels/rooms)
+        public static void writeXMLtoCS(List<RoomXmlData> Levels, IslandID islandID)
+        {
+            Debug.WriteLine("writing " + islandID + " XML to CS... wait...");
+
+            string csOutput = "";
+            csOutput += "using System.Collections.Generic;\n";
+            csOutput += "\n";
+            csOutput += "namespace DungeonRun\n";
+            csOutput += "{\n";
+
+            csOutput += "\tpublic static class " + islandID + "\n";
+            csOutput += "\t{\n";
+
+            //field defs
+            csOutput += "\t\t//levels specific to this island\n";
+            for (int i = 0; i < Levels.Count(); i++)
+            {
+                csOutput += "\t\tpublic static RoomXmlData " + Levels[i].type + " = new RoomXmlData();\n";
+            }
+            csOutput += "\n";
+
+            //populate fields
+            csOutput += "\t\t//level data\n";
+            csOutput += "\t\tstatic " + islandID + "()\n";
+            csOutput += "\t\t{\n";
+
+            for (int i = 0; i < Levels.Count(); i++)
+            {
+                Debug.WriteLine("writing level " + i + " of " + (Levels.Count - 1));
+
+                csOutput += "\n";
+                csOutput += "\t\t\t#region " + Levels[i].type + "\n\n";
+
+                csOutput += "\t\t\t" + Levels[i].type + ".type = RoomID." + Levels[i].type + ";\n"; //lol
+                csOutput += "\t\t\t" + Levels[i].type + ".objs = new List<ObjXmlData>();\n";
+
+                for (int g = 0; g < Levels[i].objs.Count(); g++)
+                {
+                    csOutput += "\t\t\t{";
+
+                    csOutput += "ObjXmlData obj = new ObjXmlData(); ";
+
+                    csOutput += "obj.type = ObjType." + Levels[i].objs[g].type + "; ";
+                    csOutput += "obj.direction = Direction." + Levels[i].objs[g].direction + "; ";
+                    csOutput += "obj.posX = " + Levels[i].objs[g].posX + "; ";
+                    csOutput += "obj.posY = " + Levels[i].objs[g].posY + "; ";
+
+                    csOutput += "" + Levels[i].type + ".objs.Add(obj);";
+
+                    csOutput += "}\n";
+                }
+
+                csOutput += "\t\t\t#endregion\n";
+                csOutput += "\n";
+            }
+            csOutput += "\t\t}\n";
+            csOutput += "\t}\n";
+            csOutput += "}";
+
+            string islandAddress = @"C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\GameClasses\" + islandID + @".cs";
+            File.WriteAllText(islandAddress, csOutput);
+        }
+
+
+        //this writes BOTH overworld level data and room data
         public static void ConvertXMLtoCS()
         {
             Debug.WriteLine("Beginning XML to CS conversion... wait...");
-            List<RoomXmlData> levelData = new List<RoomXmlData>();
+
+
+            List<RoomXmlData> SkullIsland_Data = new List<RoomXmlData>();
+            List<RoomXmlData> ForestIsland_Data = new List<RoomXmlData>();
+            List<RoomXmlData> ThievesHideout_Data = new List<RoomXmlData>();
+            List<RoomXmlData> DeathMountain_Data = new List<RoomXmlData>();
+            List<RoomXmlData> HauntedSwamps_Data = new List<RoomXmlData>();
+            List<RoomXmlData> CloudIsland_Data = new List<RoomXmlData>();
+            List<RoomXmlData> LavaIsland_Data = new List<RoomXmlData>();
+
+
+
+
+
+
+            //List<RoomXmlData> levelData = new List<RoomXmlData>();
             List<RoomXmlData> roomData = new List<RoomXmlData>();
             
 
@@ -43,6 +127,10 @@ namespace DungeonRun
                 {
                     RoomData = (RoomXmlData)serializer.Deserialize(stream);
                     //place roomData onto level or room list based on type
+
+
+
+                    //dungeon room data
                     if (RoomData.type == RoomID.Boss ||
                        RoomData.type == RoomID.Column ||
                        RoomData.type == RoomID.Exit ||
@@ -50,8 +138,67 @@ namespace DungeonRun
                        RoomData.type == RoomID.Key ||
                        RoomData.type == RoomID.Row ||
                        RoomData.type == RoomID.Square)
-                    { roomData.Add(RoomData); }
-                    else { levelData.Add(RoomData); }
+                    {
+                        roomData.Add(RoomData);
+                    }
+
+
+
+                    //skull island
+                    else if(RoomData.type == RoomID.SkullIsland_Colliseum ||
+                        RoomData.type == RoomID.SkullIsland_ColliseumPit ||
+                        RoomData.type == RoomID.SkullIsland_ShadowKing ||
+                        RoomData.type == RoomID.SkullIsland_Town
+                        )
+                    {
+                        SkullIsland_Data.Add(RoomData);
+                    }
+
+
+                    //improper way!
+                    //fake populate these files with boat level data for testing/dev
+                    if (RoomData.type == RoomID.SkullIsland_ShadowKing)
+                    {
+                        ForestIsland_Data.Add(RoomData);
+                        ThievesHideout_Data.Add(RoomData);
+                        DeathMountain_Data.Add(RoomData);
+                        HauntedSwamps_Data.Add(RoomData);
+                        CloudIsland_Data.Add(RoomData);
+                        LavaIsland_Data.Add(RoomData);
+                    }
+
+
+
+
+                    /* example
+                    //forest island
+                    else if (RoomData.type == RoomID.SkullIsland_Colliseum ||
+                        RoomData.type == RoomID.SkullIsland_ColliseumPit ||
+                        RoomData.type == RoomID.SkullIsland_ShadowKing ||
+                        RoomData.type == RoomID.SkullIsland_Town
+                        )
+                    {
+                        ForestIsland_Data.Add(RoomData);
+                    }
+                    */
+
+
+                    //thieves hideout
+
+                    //death mountain
+
+                    //haunted swamps
+
+                    //cloud island
+
+                    //lava island
+
+
+
+
+
+
+
                 }
             }
 
@@ -62,69 +209,15 @@ namespace DungeonRun
             if (Flags.bootRoutine == BootRoutine.Editor_Level)
             {
 
-                #region Write Level Data
+                #region Write Island (Level) Data
 
-                string csOutput = "";
-                csOutput += "using System.Collections.Generic;\n";
-                csOutput += "\n";
-                csOutput += "namespace DungeonRun\n";
-                csOutput += "{\n";
-
-                csOutput += "\tpublic static class LevelData\n";
-                csOutput += "\t{\n";
-
-                //create fields
-                csOutput += "\t\t//all levels in game\n";
-                for (int i = 0; i < levelData.Count(); i++)
-                {
-                    csOutput += "\t\tpublic static RoomXmlData " + levelData[i].type + " = new RoomXmlData();\n";
-                }
-
-                csOutput += "\n";
-
-                //populate fields
-                csOutput += "\t\t//level data\n";
-                csOutput += "\t\tstatic LevelData()\n";
-                csOutput += "\t\t{\n";
-
-                for (int i = 0; i < levelData.Count(); i++)
-                {
-                    Debug.WriteLine("writing FIELD " + i + " of " + (levelData.Count-1));
-
-                    csOutput += "\n";
-                    csOutput += "\t\t\t#region " + levelData[i].type + "\n\n";
-
-                    csOutput += "\t\t\t" + levelData[i].type + ".type = RoomID." + levelData[i].type + ";\n"; //lol
-                    csOutput += "\t\t\t" + levelData[i].type + ".objs = new List<ObjXmlData>();\n";
-
-                    for (int g = 0; g < levelData[i].objs.Count(); g++)
-                    {
-                        csOutput += "\t\t\t{";
-
-                        csOutput += "ObjXmlData obj = new ObjXmlData(); ";
-
-                        csOutput += "obj.type = ObjType." + levelData[i].objs[g].type + "; ";
-                        csOutput += "obj.direction = Direction." + levelData[i].objs[g].direction + "; ";
-                        csOutput += "obj.posX = " + levelData[i].objs[g].posX + "; ";
-                        csOutput += "obj.posY = " + levelData[i].objs[g].posY + "; ";
-
-                        csOutput += "" + levelData[i].type + ".objs.Add(obj);";
-
-                        csOutput += "}\n";
-                    }
-
-                    csOutput += "\t\t\t#endregion\n";
-                    csOutput += "\n";
-                }
-
-                csOutput += "\t\t}\n";
-                csOutput += "\t}\n";
-                csOutput += "}";
-
-                string levelAddress = @"C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\GameClasses\AssetsLevelData.cs";
-                //string csFile = @"C:\Users\Gx000000\Desktop\AssetsLevelData.cs";
-                //File.Create(levelAddress).Dispose();
-                File.WriteAllText(levelAddress, csOutput);
+                writeXMLtoCS(SkullIsland_Data, IslandID.LevelData_SkullIsland);
+                writeXMLtoCS(ForestIsland_Data, IslandID.LevelData_ForestIsland);
+                writeXMLtoCS(ThievesHideout_Data, IslandID.LevelData_ThievesHideout);
+                writeXMLtoCS(DeathMountain_Data, IslandID.LevelData_DeathMountain);
+                writeXMLtoCS(HauntedSwamps_Data, IslandID.LevelData_HauntedSwamps);
+                writeXMLtoCS(CloudIsland_Data, IslandID.LevelData_CloudIsland);
+                writeXMLtoCS(LavaIsland_Data, IslandID.LevelData_LavaIsland);
 
                 #endregion
 

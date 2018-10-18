@@ -81,15 +81,15 @@ namespace DungeonRun
 
 
 
-    public enum SaveData_ID
+    public enum IslandID
     {
-        SkullIsland,
-        ForestIsland,
-        ThievesHideout,
-        DeathMountain,
-        HauntedSwamps,
-        CloudIsland,
-        LavaIsland
+        LevelData_SkullIsland,
+        LevelData_ForestIsland,
+        LevelData_ThievesHideout,
+        LevelData_DeathMountain,
+        LevelData_HauntedSwamps,
+        LevelData_CloudIsland,
+        LevelData_LavaIsland
 
         //expand this to handle the smaller map islands too
     }

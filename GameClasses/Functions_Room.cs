@@ -157,22 +157,22 @@ namespace DungeonRun
 
                 if (Room.roomID == RoomID.SkullIsland_Colliseum)
                 {
-                    RoomXmlData = LevelData.SkullIsland_Colliseum;
+                    RoomXmlData = LevelData_SkullIsland.SkullIsland_Colliseum;
                     LevelSet.currentLevel.isField = true;
                 }
                 else if (Room.roomID == RoomID.SkullIsland_ColliseumPit)
                 {
-                    RoomXmlData = LevelData.SkullIsland_ColliseumPit;
+                    RoomXmlData = LevelData_SkullIsland.SkullIsland_ColliseumPit;
                     LevelSet.currentLevel.isField = true;
                 }
                 else if (Room.roomID == RoomID.SkullIsland_Town)
                 {
-                    RoomXmlData = LevelData.SkullIsland_Town;
+                    RoomXmlData = LevelData_SkullIsland.SkullIsland_Town;
                     LevelSet.currentLevel.isField = true;
                 }
                 else if (Room.roomID == RoomID.SkullIsland_ShadowKing)
                 {
-                    RoomXmlData = LevelData.SkullIsland_ShadowKing;
+                    RoomXmlData = LevelData_SkullIsland.SkullIsland_ShadowKing;
                     LevelSet.currentLevel.isField = true;
                 }
 

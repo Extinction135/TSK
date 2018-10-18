@@ -87,9 +87,6 @@
     <Compile Include="..\..\GameClasses\AssetsDialog.cs">
       <Link>Classes\AssetsDialog.cs</Link>
     </Compile>
-    <Compile Include="..\..\GameClasses\AssetsLevelData.cs">
-      <Link>Classes\AssetsLevelData.cs</Link>
-    </Compile>
     <Compile Include="..\..\GameClasses\AssetsRoomData.cs">
       <Link>Classes\AssetsRoomData.cs</Link>
     </Compile>
@@ -215,6 +212,27 @@
     </Compile>
     <Compile Include="..\..\GameClasses\Functions_WorldUI.cs">
       <Link>Classes\Functions_WorldUI.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\LevelData_CloudIsland.cs">
+      <Link>Classes\LevelData_CloudIsland.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\LevelData_DeathMountain.cs">
+      <Link>Classes\LevelData_DeathMountain.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\LevelData_ForestIsland.cs">
+      <Link>Classes\LevelData_ForestIsland.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\LevelData_HauntedSwamps.cs">
+      <Link>Classes\LevelData_HauntedSwamps.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\LevelData_LavaIsland.cs">
+      <Link>Classes\LevelData_LavaIsland.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\LevelData_SkullIsland.cs">
+      <Link>Classes\LevelData_SkullIsland.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\LevelData_ThievesHideout.cs">
+      <Link>Classes\LevelData_ThievesHideout.cs</Link>
     </Compile>
     <Compile Include="..\..\GameClasses\Screen.cs">
       <Link>Classes\Screen.cs</Link>
