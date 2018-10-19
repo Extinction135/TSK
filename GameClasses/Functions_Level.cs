@@ -176,6 +176,18 @@ namespace DungeonRun
 
 
 
+            #region Death Mountain
+
+            else if (LevelSet.currentLevel.ID == LevelID.DeathMountain_MainEntrance)
+            {
+                Functions_Music.PlayMusic(Music.LightWorld);
+                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.DeathMountain_MainEntrance);
+                LevelSet.currentLevel.rooms.Add(field);
+            }
+
+            #endregion
+
+
 
 
 

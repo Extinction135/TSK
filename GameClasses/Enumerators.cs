@@ -104,6 +104,12 @@ namespace DungeonRun
         SkullIsland_Town,
         SkullIsland_ShadowKing,
 
+        //death mountain
+        DeathMountain_MainEntrance,
+
+
+
+
         //dungeons, series of rooms
         Forest_Dungeon, 
         Mountain_Dungeon,
@@ -132,6 +138,10 @@ namespace DungeonRun
         SkullIsland_ColliseumPit,
         SkullIsland_Town,
         SkullIsland_ShadowKing,
+
+        //death mountain
+        DeathMountain_MainEntrance,
+
 
 
 

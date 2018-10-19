@@ -60,114 +60,73 @@ Today:
 
 
 
+DeathMountain++
 
-7 lists for each island
+built path to death mountain, 21 locations.
+brought back the death mountain climbing level, to the
+mountain dungeon entrance. this tests the modular 
+level saving system just designed.
 
+added death mountain main entrance level back to game.
+linked up this level via functions_room.buildRoom().
+tested, loaded into level fine.
 
+exited level back at coliseum. bug.
+added additional location output 'name' to
+map locations, using string in map location class.
+this is to make map dev easier.
 
+linked mountain entrance back to overworld properly,
+so exiting this level loads the correct map location.
+polished how some connections were made, so it's 
+easier to get around the map.
 
 
-relink project to the new LEVELDATA_stuff .cs files, created by the new pipeline.
 
 
 
 
 
 
-XML to CS rewrite
 
-instead of having all level data in a single .cs file, 
-there will be many .cs files specific for each island.
-in order for this to be done well, the xml to cs pipeline
-must change and should be made more modular to work on
-island level sets. this is done using the islandID.
 
-the islandID is an enum that becomes a global static public
-class in the game. these global classes are then accessed by
-the game upon the next build. this is how the level data is
-stored inside the game, in binary format. this allows the game
-to be easily ported to many different systems, including UWP.
-however, .cs files can't get to big or be too complex, so
-we have to break them into manageable sizes for visual studio.
 
-created writeXMLtoCS() in DirectX backend class.
-this handles lists of xml room data in conjunction with an
-IslandID parameter to properly write each island set c# file.
-for now, the boat level is being used as dummy data for each
-island set. working as expected.
 
-updated UWP project to ref new level data files.
-actually playtested the UWP version. hmm. working.
 
 
 
+Editor ++
 
 
+we will need to touch the editor next.
+which means we can consolidate sheets now.
 
+we should display as many objects on screen as possible,
+using a few widgets. we should cycle thru widgets, and
+consolidate them when possible.
 
 
-
-
-
-
-
-
-this will start with skull island. once this works,
-we will add forest island, bring back the forest entrance
-level as the only level, then further design the pipeline.
-
-
-
-
-
-
-
-
-
-
-
-
-
-we need to be setting a name string for each location
-this printing this to the output each time link lands on
-a location.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+one texture for the majority of shared objects, like water and
+busehs and trees and effects and stuff. but each dungeon
+still gets it's own texture sheet, so we can pallette swap.
 
 
 we push for color: consolidate all objects
 to one sheet that are used consistently.
 these get one color pallette.
-editor widgets get modified too.
-can we display all the widgets at once?
-then click thru each one to get the obj we want?
-lessens complexity? maybe?
+
+
+
+
+COLOR
+
+color link, objects, and levels.
+this will be alot of bouncing between editor and photoshop.
+
+
+
+
+
 
 
 

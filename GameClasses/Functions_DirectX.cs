@@ -154,6 +154,18 @@ namespace DungeonRun
                         SkullIsland_Data.Add(RoomData);
                     }
 
+                    //death mountain
+                    else if (RoomData.type == RoomID.DeathMountain_MainEntrance
+                        )
+                    {
+                        DeathMountain_Data.Add(RoomData);
+                    }
+
+
+
+
+
+
 
                     //improper way!
                     //fake populate these files with boat level data for testing/dev
@@ -161,7 +173,6 @@ namespace DungeonRun
                     {
                         ForestIsland_Data.Add(RoomData);
                         ThievesHideout_Data.Add(RoomData);
-                        DeathMountain_Data.Add(RoomData);
                         HauntedSwamps_Data.Add(RoomData);
                         CloudIsland_Data.Add(RoomData);
                         LavaIsland_Data.Add(RoomData);

@@ -222,7 +222,7 @@ namespace DungeonRun
                         Assets.Play(Assets.sfxMapLocation);
 
                         if (Flags.PrintOutput)
-                        { Debug.WriteLine("location: " + currentLocation.ID); }
+                        { Debug.WriteLine("location name: " + currentLocation.name + ", ID:" + currentLocation.ID); }
                     }
                 }
 
@@ -320,9 +320,34 @@ namespace DungeonRun
     public class Overworld_ShadowKing : ScreenOverworld
     {
 
+
+        //levels
+        static MapLocation SkullIsland_ShadowDungeon;
+        static MapLocation SkullIsland_Coliseum;
+        static MapLocation SkullIsland_Town;
+
+        static MapLocation DeathMountain_MainEntrance;
+
+
+
+
+
+
+
+
         public Overworld_ShadowKing()
         {
             this.name = "shadowking";
+
+            //setup map texture
+            map = new ComponentSprite(
+                 Assets.overworld_image,
+                 new Vector2(2000 / 2, 900 / 2),
+                 new Byte4(0, 0, 0, 0),
+                 new Point(2000, 900));
+            map.zOffset = -450; //set many layers behind link & locations
+            Functions_Component.SetZdepth(map);
+
             //create locations master list
             locations = new List<MapLocation>();
 
@@ -334,77 +359,77 @@ namespace DungeonRun
 
             #region Skull Island
 
-            MapLocation SkullIsland_ShadowDungeon = new MapLocation(true, new Vector2(1038, 487));
+            SkullIsland_ShadowDungeon = new MapLocation(true, new Vector2(1038, 487), "SkullIsland_ShadowDungeon");
             SkullIsland_ShadowDungeon.ID = LevelID.SkullIsland_ShadowKing;
             locations.Add(SkullIsland_ShadowDungeon);
 
             //bottom rounded bowl shaped row of locations
-            MapLocation SkullIsland_BottomRow_1 = new MapLocation(false, new Vector2(794, 476));
+            MapLocation SkullIsland_BottomRow_1 = new MapLocation(false, new Vector2(794, 476), "SkullIsland_BottomRow_1");
             locations.Add(SkullIsland_BottomRow_1);
-            MapLocation SkullIsland_BottomRow_2 = new MapLocation(false, new Vector2(829, 501));
+            MapLocation SkullIsland_BottomRow_2 = new MapLocation(false, new Vector2(829, 501), "SkullIsland_BottomRow_2");
             locations.Add(SkullIsland_BottomRow_2);
-            MapLocation SkullIsland_BottomRow_3 = new MapLocation(false, new Vector2(890, 522));
+            MapLocation SkullIsland_BottomRow_3 = new MapLocation(false, new Vector2(890, 522), "SkullIsland_BottomRow_3");
             locations.Add(SkullIsland_BottomRow_3);
-            MapLocation SkullIsland_BottomRow_4 = new MapLocation(false, new Vector2(965, 534));
+            MapLocation SkullIsland_BottomRow_4 = new MapLocation(false, new Vector2(965, 534), "SkullIsland_BottomRow_4");
             locations.Add(SkullIsland_BottomRow_4);
-            MapLocation SkullIsland_BottomRow_5 = new MapLocation(false, new Vector2(1043, 536));
+            MapLocation SkullIsland_BottomRow_5 = new MapLocation(false, new Vector2(1043, 536), "SkullIsland_BottomRow_5");
             locations.Add(SkullIsland_BottomRow_5);
 
-            MapLocation SkullIsland_BottomRow_6 = new MapLocation(false, new Vector2(1114, 528));
+            MapLocation SkullIsland_BottomRow_6 = new MapLocation(false, new Vector2(1114, 528), "SkullIsland_BottomRow_6");
             locations.Add(SkullIsland_BottomRow_6);
-            MapLocation SkullIsland_BottomRow_7 = new MapLocation(false, new Vector2(1163, 508));
+            MapLocation SkullIsland_BottomRow_7 = new MapLocation(false, new Vector2(1163, 508), "SkullIsland_BottomRow_7");
             locations.Add(SkullIsland_BottomRow_7);
-            MapLocation SkullIsland_BottomRow_8 = new MapLocation(false, new Vector2(1216, 471));
+            MapLocation SkullIsland_BottomRow_8 = new MapLocation(false, new Vector2(1216, 471), "SkullIsland_BottomRow_8");
             locations.Add(SkullIsland_BottomRow_8);
 
             //top crown shaped row of location
-            MapLocation SkullIsland_TopCrown_1 = new MapLocation(false, new Vector2(791, 426));
+            MapLocation SkullIsland_TopCrown_1 = new MapLocation(false, new Vector2(791, 426), "SkullIsland_TopCrown_1");
             locations.Add(SkullIsland_TopCrown_1);
-            MapLocation SkullIsland_TopCrown_2 = new MapLocation(false, new Vector2(822, 377));
+            MapLocation SkullIsland_TopCrown_2 = new MapLocation(false, new Vector2(822, 377), "SkullIsland_TopCrown_2");
             locations.Add(SkullIsland_TopCrown_2);
-            MapLocation SkullIsland_TopCrown_3 = new MapLocation(false, new Vector2(896, 345));
+            MapLocation SkullIsland_TopCrown_3 = new MapLocation(false, new Vector2(896, 345), "SkullIsland_TopCrown_3");
             locations.Add(SkullIsland_TopCrown_3);
-            MapLocation SkullIsland_TopCrown_4 = new MapLocation(false, new Vector2(888, 282));
+            MapLocation SkullIsland_TopCrown_4 = new MapLocation(false, new Vector2(888, 282), "SkullIsland_TopCrown_4");
             locations.Add(SkullIsland_TopCrown_4);
-            MapLocation SkullIsland_TopCrown_5 = new MapLocation(false, new Vector2(955, 277));
+            MapLocation SkullIsland_TopCrown_5 = new MapLocation(false, new Vector2(955, 277), "SkullIsland_TopCrown_5");
             locations.Add(SkullIsland_TopCrown_5);
 
-            MapLocation SkullIsland_TopCrown_6 = new MapLocation(false, new Vector2(1008, 237));
+            MapLocation SkullIsland_TopCrown_6 = new MapLocation(false, new Vector2(1008, 237), "SkullIsland_TopCrown_6");
             locations.Add(SkullIsland_TopCrown_6);
-            MapLocation SkullIsland_TopCrown_7 = new MapLocation(false, new Vector2(1060, 279));
+            MapLocation SkullIsland_TopCrown_7 = new MapLocation(false, new Vector2(1060, 279), "SkullIsland_TopCrown_7");
             locations.Add(SkullIsland_TopCrown_7);
-            MapLocation SkullIsland_TopCrown_8 = new MapLocation(false, new Vector2(1131, 286));
+            MapLocation SkullIsland_TopCrown_8 = new MapLocation(false, new Vector2(1131, 286), "SkullIsland_TopCrown_8");
             locations.Add(SkullIsland_TopCrown_8);
-            MapLocation SkullIsland_TopCrown_9 = new MapLocation(false, new Vector2(1112, 347));
+            MapLocation SkullIsland_TopCrown_9 = new MapLocation(false, new Vector2(1112, 347), "SkullIsland_TopCrown_9");
             locations.Add(SkullIsland_TopCrown_9);
-            MapLocation SkullIsland_TopCrown_10 = new MapLocation(false, new Vector2(1187, 377));
+            MapLocation SkullIsland_TopCrown_10 = new MapLocation(false, new Vector2(1187, 377), "SkullIsland_TopCrown_10");
             locations.Add(SkullIsland_TopCrown_10);
 
-            MapLocation SkullIsland_TopCrown_11 = new MapLocation(false, new Vector2(1224, 421));
+            MapLocation SkullIsland_TopCrown_11 = new MapLocation(false, new Vector2(1224, 421), "SkullIsland_TopCrown_11");
             locations.Add(SkullIsland_TopCrown_11);
 
             //path to coliseum
-            MapLocation SkullIsland_Coliseum = new MapLocation(true, new Vector2(858, 445));
+            SkullIsland_Coliseum = new MapLocation(true, new Vector2(858, 445), "SkullIsland_Coliseum");
             SkullIsland_Coliseum.ID = LevelID.SkullIsland_Colliseum;
             locations.Add(SkullIsland_Coliseum);
-            MapLocation SkullIsland_Coliseum_South_1 = new MapLocation(false, new Vector2(869, 474));
+            MapLocation SkullIsland_Coliseum_South_1 = new MapLocation(false, new Vector2(869, 474), "SkullIsland_Coliseum_South_1");
             locations.Add(SkullIsland_Coliseum_South_1);
-            MapLocation SkullIsland_Coliseum_South_2 = new MapLocation(false, new Vector2(926, 499));
+            MapLocation SkullIsland_Coliseum_South_2 = new MapLocation(false, new Vector2(926, 499), "SkullIsland_Coliseum_South_2");
             locations.Add(SkullIsland_Coliseum_South_2);
 
             //path to town
-            MapLocation SkullIsland_Town = new MapLocation(true, new Vector2(1158, 436));
+            SkullIsland_Town = new MapLocation(true, new Vector2(1158, 436), "SkullIsland_Town");
             SkullIsland_Town.ID = LevelID.SkullIsland_Town;
             locations.Add(SkullIsland_Town);
-            MapLocation SkullIsland_Town_South_1 = new MapLocation(false, new Vector2(1162, 469));
+            MapLocation SkullIsland_Town_South_1 = new MapLocation(false, new Vector2(1162, 469), "SkullIsland_Town_South_1");
             locations.Add(SkullIsland_Town_South_1);
-            MapLocation SkullIsland_Town_South_2 = new MapLocation(false, new Vector2(1131, 489));
+            MapLocation SkullIsland_Town_South_2 = new MapLocation(false, new Vector2(1131, 489), "SkullIsland_Town_South_2");
             locations.Add(SkullIsland_Town_South_2);
 
 
 
-            #region Setup location neighbors
 
+            //Setup location neighbors
 
             #region Level path connections to bottom row
 
@@ -434,6 +459,8 @@ namespace DungeonRun
             //(polish)
             SkullIsland_Coliseum_South_2.neighborLeft = SkullIsland_Coliseum_South_1;
             SkullIsland_Coliseum_South_1.neighborLeft = SkullIsland_Coliseum;
+            SkullIsland_Coliseum.neighborRight = SkullIsland_Coliseum_South_1;
+            SkullIsland_Coliseum_South_1.neighborRight = SkullIsland_Coliseum_South_2;
 
             #endregion
 
@@ -460,12 +487,15 @@ namespace DungeonRun
             #endregion
 
 
-            //bottom row connections to crown
+            #region Bottom row connections to crown
+
             SkullIsland_TopCrown_1.neighborDown = SkullIsland_BottomRow_1;
             SkullIsland_BottomRow_1.neighborUp = SkullIsland_TopCrown_1;
 
             SkullIsland_TopCrown_11.neighborDown = SkullIsland_BottomRow_8;
             SkullIsland_BottomRow_8.neighborUp = SkullIsland_TopCrown_11;
+
+            #endregion
 
 
             #region Top crown connections - tricky!
@@ -511,36 +541,155 @@ namespace DungeonRun
             #endregion
 
 
+            #region Death Mountain
 
-            #region Setup location levels
+            DeathMountain_MainEntrance = new MapLocation(true, new Vector2(1676, 503), "DeathMountain_MainEntrance");
+            DeathMountain_MainEntrance.ID = LevelID.DeathMountain_MainEntrance;
+            locations.Add(DeathMountain_MainEntrance);
 
-            //set currentlocation based on last loaded level
-            if (LevelSet.field.ID == LevelID.SkullIsland_ShadowKing)
-            { currentLocation = SkullIsland_ShadowDungeon; }
-            else if (LevelSet.field.ID == LevelID.SkullIsland_Colliseum
-                || LevelSet.field.ID == LevelID.SkullIsland_ColliseumPit)
-            { currentLocation = SkullIsland_Coliseum; }
-            else if (LevelSet.field.ID == LevelID.SkullIsland_Town)
-            { currentLocation = SkullIsland_Town; }
+            MapLocation DeathMountain_EntConnection = new MapLocation(false, new Vector2(1620, 503), "DeathMountain_EntConnection");
+            locations.Add(DeathMountain_EntConnection);
 
-            //default to shadowking if last level is unknown
-            else { currentLocation = SkullIsland_ShadowDungeon; }
+            //main center path connected to skull island triway
+            MapLocation DeathMountain_MainPath_1 = new MapLocation(false, new Vector2(1280, 450), "DeathMountain_MainPath_1");
+            locations.Add(DeathMountain_MainPath_1);
+            MapLocation DeathMountain_MainPath_2 = new MapLocation(false, new Vector2(1342, 475), "DeathMountain_MainPath_2");
+            locations.Add(DeathMountain_MainPath_2);
+            MapLocation DeathMountain_MainPath_3 = new MapLocation(false, new Vector2(1408, 472), "DeathMountain_MainPath_3");
+            locations.Add(DeathMountain_MainPath_3);
+            MapLocation DeathMountain_MainPath_4 = new MapLocation(false, new Vector2(1475, 484), "DeathMountain_MainPath_4");
+            locations.Add(DeathMountain_MainPath_4);
+            MapLocation DeathMountain_MainPath_5 = new MapLocation(false, new Vector2(1519, 517), "DeathMountain_MainPath_5");
+            locations.Add(DeathMountain_MainPath_5);
 
-            //set target to current (no initial target)
-            targetLocation = currentLocation;
+            MapLocation DeathMountain_MainPath_6 = new MapLocation(false, new Vector2(1582, 528), "DeathMountain_MainPath_6");
+            locations.Add(DeathMountain_MainPath_6);
+            MapLocation DeathMountain_MainPath_7 = new MapLocation(false, new Vector2(1630, 549), "DeathMountain_MainPath_7");
+            locations.Add(DeathMountain_MainPath_7);
+            MapLocation DeathMountain_MainPath_8 = new MapLocation(false, new Vector2(1685, 542), "DeathMountain_MainPath_8");
+            locations.Add(DeathMountain_MainPath_8);
+            MapLocation DeathMountain_MainPath_9 = new MapLocation(false, new Vector2(1727, 532), "DeathMountain_MainPath_9");
+            locations.Add(DeathMountain_MainPath_9);
+            MapLocation DeathMountain_MainPath_10 = new MapLocation(false, new Vector2(1772, 544), "DeathMountain_MainPath_10");
+            locations.Add(DeathMountain_MainPath_10);
+
+            MapLocation DeathMountain_MainPath_11 = new MapLocation(false, new Vector2(1816, 520), "DeathMountain_MainPath_11");
+            locations.Add(DeathMountain_MainPath_11);
+            MapLocation DeathMountain_MainPath_12 = new MapLocation(false, new Vector2(1801, 477), "DeathMountain_MainPath_12");
+            locations.Add(DeathMountain_MainPath_12);
+            MapLocation DeathMountain_MainPath_13 = new MapLocation(false, new Vector2(1846, 451), "DeathMountain_MainPath_13");
+            locations.Add(DeathMountain_MainPath_13);
+            MapLocation DeathMountain_MainPath_14 = new MapLocation(false, new Vector2(1905, 454), "DeathMountain_MainPath_14");
+            locations.Add(DeathMountain_MainPath_14);
+            MapLocation DeathMountain_MainPath_15 = new MapLocation(false, new Vector2(1936, 489), "DeathMountain_MainPath_15");
+            locations.Add(DeathMountain_MainPath_15);
+
+            MapLocation DeathMountain_MainPath_16 = new MapLocation(false, new Vector2(1920, 522), "DeathMountain_MainPath_16");
+            locations.Add(DeathMountain_MainPath_16);
+            MapLocation DeathMountain_MainPath_17 = new MapLocation(false, new Vector2(1945, 554), "DeathMountain_MainPath_17");
+            locations.Add(DeathMountain_MainPath_17);
+            MapLocation DeathMountain_MainPath_18 = new MapLocation(false, new Vector2(1905, 568), "DeathMountain_MainPath_18");
+            locations.Add(DeathMountain_MainPath_18);
+            MapLocation DeathMountain_MainPath_19 = new MapLocation(false, new Vector2(1866, 552), "DeathMountain_MainPath_19");
+            locations.Add(DeathMountain_MainPath_19);
+
+
+
+
+
+            //Setup location neighbors
+
+            #region Connection to Skull Island
+
+            SkullIsland_BottomRow_8.neighborRight = DeathMountain_MainPath_1;
+            SkullIsland_TopCrown_11.neighborRight = DeathMountain_MainPath_1;
+            DeathMountain_MainPath_1.neighborLeft = SkullIsland_BottomRow_8;
+            DeathMountain_MainPath_1.neighborUp = SkullIsland_TopCrown_11;
 
             #endregion
 
 
+            #region Main Path L/R
+
+            //path right
+            DeathMountain_MainPath_1.neighborRight = DeathMountain_MainPath_2;
+            DeathMountain_MainPath_2.neighborRight = DeathMountain_MainPath_3;
+            DeathMountain_MainPath_3.neighborRight = DeathMountain_MainPath_4;
+            DeathMountain_MainPath_4.neighborRight = DeathMountain_MainPath_5;
+
+            DeathMountain_MainPath_5.neighborRight = DeathMountain_MainPath_6;
+            DeathMountain_MainPath_6.neighborRight = DeathMountain_MainPath_7;
+            DeathMountain_MainPath_6.neighborDown = DeathMountain_MainPath_7;
+            DeathMountain_MainPath_7.neighborRight = DeathMountain_MainPath_8;
+            DeathMountain_MainPath_8.neighborRight = DeathMountain_MainPath_9;
+            DeathMountain_MainPath_9.neighborRight = DeathMountain_MainPath_10;
+
+            DeathMountain_MainPath_10.neighborRight = DeathMountain_MainPath_11;
+            DeathMountain_MainPath_11.neighborUp = DeathMountain_MainPath_12;
+            DeathMountain_MainPath_12.neighborUp = DeathMountain_MainPath_13;
+            DeathMountain_MainPath_12.neighborRight = DeathMountain_MainPath_13;
+            DeathMountain_MainPath_13.neighborRight = DeathMountain_MainPath_14;
+            DeathMountain_MainPath_14.neighborRight = DeathMountain_MainPath_15;
+            DeathMountain_MainPath_14.neighborDown = DeathMountain_MainPath_15;
+            DeathMountain_MainPath_15.neighborDown = DeathMountain_MainPath_16;
+
+            DeathMountain_MainPath_16.neighborDown = DeathMountain_MainPath_17;
+            DeathMountain_MainPath_17.neighborLeft = DeathMountain_MainPath_18;
+            DeathMountain_MainPath_18.neighborLeft = DeathMountain_MainPath_19;
+
+
+            //path left
+            DeathMountain_MainPath_2.neighborLeft = DeathMountain_MainPath_1;
+            DeathMountain_MainPath_3.neighborLeft = DeathMountain_MainPath_2;
+            DeathMountain_MainPath_4.neighborLeft = DeathMountain_MainPath_3;
+            DeathMountain_MainPath_5.neighborLeft = DeathMountain_MainPath_4;
+
+            DeathMountain_MainPath_6.neighborLeft = DeathMountain_MainPath_5;
+            DeathMountain_MainPath_7.neighborLeft = DeathMountain_MainPath_6;
+            DeathMountain_MainPath_8.neighborLeft = DeathMountain_MainPath_7;
+            DeathMountain_MainPath_9.neighborLeft = DeathMountain_MainPath_8;
+            DeathMountain_MainPath_10.neighborLeft = DeathMountain_MainPath_9;
+
+            DeathMountain_MainPath_11.neighborLeft = DeathMountain_MainPath_10;
+            DeathMountain_MainPath_11.neighborDown = DeathMountain_MainPath_10;
+            DeathMountain_MainPath_12.neighborDown = DeathMountain_MainPath_11;
+            DeathMountain_MainPath_13.neighborDown = DeathMountain_MainPath_12;
+            DeathMountain_MainPath_13.neighborLeft = DeathMountain_MainPath_12;
+            DeathMountain_MainPath_14.neighborLeft = DeathMountain_MainPath_13;
+            DeathMountain_MainPath_15.neighborUp = DeathMountain_MainPath_14;
+            DeathMountain_MainPath_15.neighborLeft = DeathMountain_MainPath_14;
+
+            DeathMountain_MainPath_16.neighborRight = DeathMountain_MainPath_15;
+            DeathMountain_MainPath_16.neighborUp = DeathMountain_MainPath_15;
+            DeathMountain_MainPath_17.neighborUp = DeathMountain_MainPath_16;
+            DeathMountain_MainPath_18.neighborRight = DeathMountain_MainPath_17;
+            DeathMountain_MainPath_19.neighborRight = DeathMountain_MainPath_18;
+
+            #endregion
+
+
+            #region Entrance Connection Path
+
+            DeathMountain_MainPath_6.neighborUp = DeathMountain_EntConnection;
+            DeathMountain_EntConnection.neighborLeft = DeathMountain_MainPath_6;
+            DeathMountain_EntConnection.neighborDown = DeathMountain_MainPath_6;
+
+            DeathMountain_EntConnection.neighborRight = DeathMountain_MainEntrance;
+            DeathMountain_MainEntrance.neighborLeft = DeathMountain_EntConnection;
+            DeathMountain_MainEntrance.neighborDown = DeathMountain_MainPath_8;
+
+            DeathMountain_MainPath_8.neighborUp = DeathMountain_MainEntrance;
+
+            #endregion
+
+
+
             #endregion
 
 
 
 
-
-
-
-
+            
 
             //prep overworld for interaction
 
@@ -564,16 +713,38 @@ namespace DungeonRun
 
         public override void Open()
         {
-            //setup map texture
-            map = new ComponentSprite(
-                 Assets.overworld_image,
-                 new Vector2(2000/2, 900/2),
-                 new Byte4(0, 0, 0, 0),
-                 new Point(2000, 900));
-            map.zOffset = -450; //set many layers behind link & locations
-            Functions_Component.SetZdepth(map);
+            
+            
 
-            Functions_Pool.Reset();
+            #region Setup ALL location level IDs HERE
+            //set currentlocation based on last loaded level
+
+            Debug.WriteLine("field id to load: " + LevelSet.field.ID);
+
+
+            //skull island levels
+            if (LevelSet.field.ID == LevelID.SkullIsland_ShadowKing)
+            { currentLocation = SkullIsland_ShadowDungeon; }
+            else if (LevelSet.field.ID == LevelID.SkullIsland_Colliseum
+                || LevelSet.field.ID == LevelID.SkullIsland_ColliseumPit)
+            { currentLocation = SkullIsland_Coliseum; }
+            else if (LevelSet.field.ID == LevelID.SkullIsland_Town)
+            { currentLocation = SkullIsland_Town; }
+
+
+            //death mountain levels
+            else if (LevelSet.field.ID == LevelID.DeathMountain_MainEntrance)
+            { currentLocation = DeathMountain_MainEntrance; }
+
+
+            //default to shadowking if last level is unknown
+            else { currentLocation = SkullIsland_ShadowDungeon; }
+            //set target to current (no initial target)
+            targetLocation = currentLocation;
+
+            #endregion
+
+
 
             //teleport hero to current location
             Functions_Movement.Teleport(Pool.hero.compMove,
@@ -590,27 +761,14 @@ namespace DungeonRun
 
 
             base.Open();
+            Functions_Pool.Reset();
 
-       
-            /*
-            //spawn map campfires
-            Functions_Particle.Spawn(ObjType.Particle_Map_Campfire, 505, 257); //tent town
-            Functions_Particle.Spawn(ObjType.Particle_Map_Campfire, 299, 297); //center island
-
-            //spawn castle flags
-            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 451 + 8, 97 + 6);
-            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 468 + 8, 106 + 6);
-            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 485 + 8, 98 + 6);
-            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 464 + 8, 82 + 6);
-            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 474 + 8, 79 + 6);
-            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 465 + 8, 71 + 6);
-
-            //spawn additional flags
-            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 334 + 8, 97 + 6); //old town
-            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 320 + 8, 113 + 6); //old town
-            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 357 + 8, 99 + 6); //old town
-            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 305 + 8, 147 + 6); //colliseum
-            */
+            
+            //spawn campfire
+            //Functions_Particle.Spawn(ObjType.Particle_Map_Campfire, 505, 257); //tent town
+            //spawn flags
+            //Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 334 + 8, 97 + 6); //old town
+            
 
             Functions_Music.PlayMusic(Music.Title); //play overworld music
             Assets.colorScheme.background = Assets.colorScheme.bkg_lightWorld;

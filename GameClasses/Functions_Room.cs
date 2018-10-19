@@ -181,6 +181,18 @@ namespace DungeonRun
 
 
 
+                #region Setup DeathMountain Rooms (Levels)
+
+                else if (Room.roomID == RoomID.DeathMountain_MainEntrance)
+                {
+                    RoomXmlData = LevelData_DeathMountain.DeathMountain_MainEntrance;
+                    LevelSet.currentLevel.isField = true;
+                }
+
+                #endregion
+
+
+
 
 
 

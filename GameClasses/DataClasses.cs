@@ -20,7 +20,7 @@ namespace DungeonRun
         public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.77f; //the version of the game
-        public static BootRoutine bootRoutine = BootRoutine.Editor_Level; //boot to game or editor?
+        public static BootRoutine bootRoutine = BootRoutine.Editor_Map; //boot to game or editor?
 
         //dev flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
@@ -1544,13 +1544,14 @@ namespace DungeonRun
         public ComponentSprite compSprite;
         public Boolean isLevel = false; //is level or connector location?
         public LevelID ID = LevelID.Road; //roads cannot be visited
+        public string name = "default";
 
         //cardinal neighbors this location links with
         public MapLocation neighborUp;
         public MapLocation neighborRight;
         public MapLocation neighborDown;
         public MapLocation neighborLeft;
-        public MapLocation(Boolean IsLevel, Vector2 Position)
+        public MapLocation(Boolean IsLevel, Vector2 Position, string Name)
         {
             isLevel = IsLevel;
             compSprite = new ComponentSprite(Assets.entitiesSheet,
@@ -1560,6 +1561,7 @@ namespace DungeonRun
             if (IsLevel) { compSprite.currentFrame.Y = 1; }
             neighborUp = this; neighborDown = this;
             neighborLeft = this; neighborRight = this;
+            name = Name;
         }
     }
 
