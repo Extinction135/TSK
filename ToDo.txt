@@ -59,29 +59,19 @@ Today:
 
 
 
-Color++
-
-updated location and level sprites tp have color,
-along with various entity sprites as well.
-tested color on overworld. perfect.
 
 
 
 
 
 
+Media++
+
+recorded youTube video with VO showing link moving around 
+the map, in full color. posted to youtube.
 
 
 
-
-
-record video with VO showing link moving around the map.
-post to youtube.
-
-record video for instagram showing link moving around
-the map.
-
-sleep.
 
 
 

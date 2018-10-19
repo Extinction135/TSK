@@ -37,7 +37,7 @@ namespace DungeonRun
         public static Boolean IgnoreWaterTiles = false; //enable/disable pickup/selection of waterTiles
 
         //option flags
-        public static Boolean PlayMusic = false; //turns music on/off
+        public static Boolean PlayMusic = true; //turns music on/off
         public static Boolean PlaySoundFX = true; //turns soundfx on/off
         public static Boolean HardMode = false; //makes the game harder
         public static Boolean CameraTracksHero = false; //camera tracks hero or centers to dungeon room
