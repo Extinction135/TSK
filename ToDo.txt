@@ -60,26 +60,15 @@ Today:
 
 
 
-DeathMountain++
 
-built path to death mountain, 21 locations.
-brought back the death mountain climbing level, to the
-mountain dungeon entrance. this tests the modular 
-level saving system just designed.
+Link ++
 
-added death mountain main entrance level back to game.
-linked up this level via functions_room.buildRoom().
-tested, loaded into level fine.
+made link sprite in full color, using 
+pallette from overworld map link ref.
+looks good against overworld map.
+updated UWP with new link sheet too.
+i'm in a generous mood.
 
-exited level back at coliseum. bug.
-added additional location output 'name' to
-map locations, using string in map location class.
-this is to make map dev easier.
-
-linked mountain entrance back to overworld properly,
-so exiting this level loads the correct map location.
-polished how some connections were made, so it's 
-easier to get around the map.
 
 
 
