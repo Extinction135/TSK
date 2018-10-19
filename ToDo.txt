@@ -59,15 +59,31 @@ Today:
 
 
 
+Color++
+
+updated location and level sprites tp have color,
+along with various entity sprites as well.
+tested color on overworld. perfect.
 
 
-Link ++
 
-made link sprite in full color, using 
-pallette from overworld map link ref.
-looks good against overworld map.
-updated UWP with new link sheet too.
-i'm in a generous mood.
+
+
+
+
+
+
+
+
+record video with VO showing link moving around the map.
+post to youtube.
+
+record video for instagram showing link moving around
+the map.
+
+sleep.
+
+
 
 
 
