@@ -107,6 +107,8 @@ namespace DungeonRun
         //death mountain
         DeathMountain_MainEntrance,
 
+        //forest island
+        ForestIsland_MainEntrance,
 
 
 
@@ -142,7 +144,8 @@ namespace DungeonRun
         //death mountain
         DeathMountain_MainEntrance,
 
-
+        //forest island
+        ForestIsland_MainEntrance,
 
 
 

@@ -315,18 +315,24 @@ namespace DungeonRun
 
     }
 
-
+    
     //there is only one overworld implemented right now
     public class Overworld_ShadowKing : ScreenOverworld
     {
 
 
         //levels
+
+        //skullisland
         static MapLocation SkullIsland_ShadowDungeon;
         static MapLocation SkullIsland_Coliseum;
         static MapLocation SkullIsland_Town;
 
+        //death mtn
         static MapLocation DeathMountain_MainEntrance;
+
+        //forest island
+        static MapLocation ForestIsland_MainEntrance;
 
 
 
@@ -687,9 +693,155 @@ namespace DungeonRun
             #endregion
 
 
+            #region Forest Island
+
+            ForestIsland_MainEntrance = new MapLocation(true, new Vector2(554, 831), "ForestIsland_MainEntrance");
+            ForestIsland_MainEntrance.ID = LevelID.ForestIsland_MainEntrance;
+            locations.Add(ForestIsland_MainEntrance);
+
+            //main path from skull island to dungeon entrance, around to left temple too
+            MapLocation ForestIsland_MainPath_1 = new MapLocation(false, new Vector2(849, 550), "ForestIsland_MainPath_1");
+            locations.Add(ForestIsland_MainPath_1);
+            MapLocation ForestIsland_MainPath_2 = new MapLocation(false, new Vector2(876, 596), "ForestIsland_MainPath_2");
+            locations.Add(ForestIsland_MainPath_2);
+            MapLocation ForestIsland_MainPath_3 = new MapLocation(false, new Vector2(907, 620), "ForestIsland_MainPath_3");
+            locations.Add(ForestIsland_MainPath_3);
+            MapLocation ForestIsland_MainPath_4 = new MapLocation(false, new Vector2(877, 650), "ForestIsland_MainPath_4");
+            locations.Add(ForestIsland_MainPath_4);
+            MapLocation ForestIsland_MainPath_5 = new MapLocation(false, new Vector2(825, 670), "ForestIsland_MainPath_5");
+            locations.Add(ForestIsland_MainPath_5);
+
+            MapLocation ForestIsland_MainPath_6 = new MapLocation(false, new Vector2(809, 703), "ForestIsland_MainPath_6");
+            locations.Add(ForestIsland_MainPath_6);
+            MapLocation ForestIsland_MainPath_7 = new MapLocation(false, new Vector2(824, 731), "ForestIsland_MainPath_7");
+            locations.Add(ForestIsland_MainPath_7);
+            MapLocation ForestIsland_MainPath_8 = new MapLocation(false, new Vector2(885, 746), "ForestIsland_MainPath_8");
+            locations.Add(ForestIsland_MainPath_8);
+            MapLocation ForestIsland_MainPath_9 = new MapLocation(false, new Vector2(897, 795), "ForestIsland_MainPath_9");
+            locations.Add(ForestIsland_MainPath_9);
+            MapLocation ForestIsland_MainPath_10 = new MapLocation(false, new Vector2(850, 817), "ForestIsland_MainPath_10");
+            locations.Add(ForestIsland_MainPath_10);
+
+            MapLocation ForestIsland_MainPath_11 = new MapLocation(false, new Vector2(797, 834), "ForestIsland_MainPath_11");
+            locations.Add(ForestIsland_MainPath_11);
+            MapLocation ForestIsland_MainPath_12 = new MapLocation(false, new Vector2(748, 824), "ForestIsland_MainPath_12");
+            locations.Add(ForestIsland_MainPath_12);
+            MapLocation ForestIsland_MainPath_13 = new MapLocation(false, new Vector2(715, 798), "ForestIsland_MainPath_13");
+            locations.Add(ForestIsland_MainPath_13);
+            MapLocation ForestIsland_MainPath_14 = new MapLocation(false, new Vector2(673, 808), "ForestIsland_MainPath_14");
+            locations.Add(ForestIsland_MainPath_14);
+            MapLocation ForestIsland_MainPath_15 = new MapLocation(false, new Vector2(666, 832), "ForestIsland_MainPath_15");
+            locations.Add(ForestIsland_MainPath_15);
+
+            MapLocation ForestIsland_MainPath_16 = new MapLocation(false, new Vector2(611, 842), "ForestIsland_MainPath_16");
+            locations.Add(ForestIsland_MainPath_16);
+            //17 is the skull/dungeon entrance
+            //MapLocation ForestIsland_MainPath_17 = new MapLocation(false, new Vector2(554, 831), "ForestIsland_MainPath_17");
+            //locations.Add(ForestIsland_MainPath_17);
+            MapLocation ForestIsland_MainPath_18 = new MapLocation(false, new Vector2(521, 816), "ForestIsland_MainPath_18");
+            locations.Add(ForestIsland_MainPath_18);
+            MapLocation ForestIsland_MainPath_19 = new MapLocation(false, new Vector2(491, 793), "ForestIsland_MainPath_19");
+            locations.Add(ForestIsland_MainPath_19);
+            MapLocation ForestIsland_MainPath_20 = new MapLocation(false, new Vector2(456, 780), "ForestIsland_MainPath_20");
+            locations.Add(ForestIsland_MainPath_20);
+
+            MapLocation ForestIsland_MainPath_21 = new MapLocation(false, new Vector2(411, 779), "ForestIsland_MainPath_21");
+            locations.Add(ForestIsland_MainPath_21);
+            MapLocation ForestIsland_MainPath_22 = new MapLocation(false, new Vector2(385, 722), "ForestIsland_MainPath_22");
+            locations.Add(ForestIsland_MainPath_22);
+            MapLocation ForestIsland_MainPath_23 = new MapLocation(false, new Vector2(403, 674), "ForestIsland_MainPath_23");
+            locations.Add(ForestIsland_MainPath_23);
+            MapLocation ForestIsland_MainPath_24 = new MapLocation(false, new Vector2(361, 658), "ForestIsland_MainPath_24");
+            locations.Add(ForestIsland_MainPath_24);
+            MapLocation ForestIsland_MainPath_25 = new MapLocation(false, new Vector2(374, 622), "ForestIsland_MainPath_25");
+            locations.Add(ForestIsland_MainPath_25);
 
 
-            
+            //setup location neighbors
+
+            #region Connection to Skull Island
+
+            SkullIsland_BottomRow_3.neighborDown = ForestIsland_MainPath_1;
+            ForestIsland_MainPath_1.neighborUp = SkullIsland_BottomRow_3;
+
+            #endregion
+
+
+            #region Main Path Connections
+
+            //(down)
+            ForestIsland_MainPath_1.neighborDown = ForestIsland_MainPath_2;
+            ForestIsland_MainPath_2.neighborDown = ForestIsland_MainPath_3;
+            ForestIsland_MainPath_3.neighborDown = ForestIsland_MainPath_4;
+            ForestIsland_MainPath_4.neighborLeft = ForestIsland_MainPath_5;
+
+            ForestIsland_MainPath_5.neighborDown = ForestIsland_MainPath_6;
+            ForestIsland_MainPath_6.neighborDown = ForestIsland_MainPath_7;
+            ForestIsland_MainPath_7.neighborRight = ForestIsland_MainPath_8;
+            ForestIsland_MainPath_8.neighborDown = ForestIsland_MainPath_9;
+            ForestIsland_MainPath_9.neighborLeft = ForestIsland_MainPath_10;
+
+            ForestIsland_MainPath_10.neighborLeft = ForestIsland_MainPath_11;
+            ForestIsland_MainPath_11.neighborLeft = ForestIsland_MainPath_12;
+            ForestIsland_MainPath_12.neighborLeft = ForestIsland_MainPath_13;
+            ForestIsland_MainPath_13.neighborLeft = ForestIsland_MainPath_14;
+            ForestIsland_MainPath_14.neighborLeft = ForestIsland_MainPath_15;
+            ForestIsland_MainPath_14.neighborDown = ForestIsland_MainPath_15;
+
+            ForestIsland_MainPath_15.neighborLeft = ForestIsland_MainPath_16;
+            ForestIsland_MainPath_16.neighborLeft = ForestIsland_MainEntrance;
+            ForestIsland_MainEntrance.neighborLeft = ForestIsland_MainPath_18;
+            ForestIsland_MainPath_18.neighborLeft = ForestIsland_MainPath_19;
+            ForestIsland_MainPath_19.neighborLeft = ForestIsland_MainPath_20;
+
+            ForestIsland_MainPath_20.neighborLeft = ForestIsland_MainPath_21;
+            ForestIsland_MainPath_21.neighborUp = ForestIsland_MainPath_22;
+            ForestIsland_MainPath_22.neighborUp = ForestIsland_MainPath_23;
+            ForestIsland_MainPath_23.neighborUp = ForestIsland_MainPath_24;
+            ForestIsland_MainPath_24.neighborUp = ForestIsland_MainPath_25;
+
+
+            //(up)
+            ForestIsland_MainPath_2.neighborUp = ForestIsland_MainPath_1;
+            ForestIsland_MainPath_3.neighborUp = ForestIsland_MainPath_2;
+            ForestIsland_MainPath_4.neighborUp = ForestIsland_MainPath_3;
+            ForestIsland_MainPath_5.neighborRight = ForestIsland_MainPath_4;
+
+            ForestIsland_MainPath_6.neighborUp = ForestIsland_MainPath_5;
+            ForestIsland_MainPath_7.neighborUp = ForestIsland_MainPath_6;
+            ForestIsland_MainPath_8.neighborLeft = ForestIsland_MainPath_7;
+            ForestIsland_MainPath_9.neighborUp = ForestIsland_MainPath_8;
+            ForestIsland_MainPath_10.neighborRight = ForestIsland_MainPath_9;
+
+            ForestIsland_MainPath_11.neighborRight = ForestIsland_MainPath_10;
+            ForestIsland_MainPath_12.neighborRight = ForestIsland_MainPath_11;
+            ForestIsland_MainPath_13.neighborRight = ForestIsland_MainPath_12;
+            ForestIsland_MainPath_14.neighborRight = ForestIsland_MainPath_13;
+            ForestIsland_MainPath_15.neighborRight = ForestIsland_MainPath_14;
+            ForestIsland_MainPath_15.neighborUp = ForestIsland_MainPath_14;
+
+            ForestIsland_MainPath_16.neighborRight = ForestIsland_MainPath_15;
+            ForestIsland_MainEntrance.neighborRight = ForestIsland_MainPath_16;
+            ForestIsland_MainPath_18.neighborRight = ForestIsland_MainEntrance;
+            ForestIsland_MainPath_19.neighborRight = ForestIsland_MainPath_18;
+            ForestIsland_MainPath_20.neighborRight = ForestIsland_MainPath_19;
+
+            ForestIsland_MainPath_21.neighborRight = ForestIsland_MainPath_20;
+            ForestIsland_MainPath_22.neighborDown = ForestIsland_MainPath_21;
+            ForestIsland_MainPath_23.neighborDown = ForestIsland_MainPath_22;
+            ForestIsland_MainPath_24.neighborDown = ForestIsland_MainPath_23;
+            ForestIsland_MainPath_25.neighborDown = ForestIsland_MainPath_24;
+
+            #endregion
+
+
+            #endregion
+
+
+
+
+
+
 
             //prep overworld for interaction
 
@@ -716,13 +868,13 @@ namespace DungeonRun
             
             
 
-            #region Setup ALL location level IDs HERE
-            //set currentlocation based on last loaded level
+            #region What location should the game place Link upon opening?
 
+            //set currentlocation based on last loaded level
             Debug.WriteLine("field id to load: " + LevelSet.field.ID);
 
 
-            //skull island levels
+            //skull island
             if (LevelSet.field.ID == LevelID.SkullIsland_ShadowKing)
             { currentLocation = SkullIsland_ShadowDungeon; }
             else if (LevelSet.field.ID == LevelID.SkullIsland_Colliseum
@@ -731,10 +883,14 @@ namespace DungeonRun
             else if (LevelSet.field.ID == LevelID.SkullIsland_Town)
             { currentLocation = SkullIsland_Town; }
 
-
-            //death mountain levels
+            //death mountain
             else if (LevelSet.field.ID == LevelID.DeathMountain_MainEntrance)
             { currentLocation = DeathMountain_MainEntrance; }
+
+            //forest island
+            else if (LevelSet.field.ID == LevelID.ForestIsland_MainEntrance)
+            { currentLocation = ForestIsland_MainEntrance; }
+
 
 
             //default to shadowking if last level is unknown

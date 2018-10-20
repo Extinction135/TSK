@@ -190,6 +190,18 @@ namespace DungeonRun
 
 
 
+            #region Forest Island
+
+            else if (LevelSet.currentLevel.ID == LevelID.ForestIsland_MainEntrance)
+            {
+                Functions_Music.PlayMusic(Music.LightWorld);
+                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.ForestIsland_MainEntrance);
+                LevelSet.currentLevel.rooms.Add(field);
+            }
+
+            #endregion
+
+
 
 
 

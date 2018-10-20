@@ -109,10 +109,13 @@ namespace DungeonRun
 
 
 
-
-            //List<RoomXmlData> levelData = new List<RoomXmlData>();
+            
             List<RoomXmlData> roomData = new List<RoomXmlData>();
             
+
+
+
+
 
             #region Get all the data from roomData folder
 
@@ -161,7 +164,12 @@ namespace DungeonRun
                         DeathMountain_Data.Add(RoomData);
                     }
 
-
+                    //forest island
+                    else if (RoomData.type == RoomID.ForestIsland_MainEntrance
+                        )
+                    {
+                        ForestIsland_Data.Add(RoomData);
+                    }
 
 
 
@@ -171,7 +179,6 @@ namespace DungeonRun
                     //fake populate these files with boat level data for testing/dev
                     if (RoomData.type == RoomID.SkullIsland_ShadowKing)
                     {
-                        ForestIsland_Data.Add(RoomData);
                         ThievesHideout_Data.Add(RoomData);
                         HauntedSwamps_Data.Add(RoomData);
                         CloudIsland_Data.Add(RoomData);

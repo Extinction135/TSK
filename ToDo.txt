@@ -62,24 +62,11 @@ Today:
 
 
 
+Overworld++
 
-
-
-Media++
-
-recorded youTube video with VO showing link moving around 
-the map, in full color. posted to youtube.
-
-
-
-
-
-
-
-
-
-
-
+add path to forest dungeon entrance level.
+add forest dungeon entrance level, integrated
+into binary savedata as well. tested.
 
 
 
