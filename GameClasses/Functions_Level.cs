@@ -234,6 +234,18 @@ namespace DungeonRun
             #endregion
 
 
+            #region Thieves Den
+
+            else if (LevelSet.currentLevel.ID == LevelID.ThievesDen_GateEntrance)
+            {
+                Functions_Music.PlayMusic(Music.LightWorld);
+                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.ThievesDen_GateEntrance);
+                LevelSet.currentLevel.rooms.Add(field);
+            }
+
+            #endregion
+
+
             //or
 
             #region Build Dungeons

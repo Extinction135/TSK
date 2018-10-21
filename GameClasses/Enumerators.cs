@@ -119,7 +119,8 @@ namespace DungeonRun
         //swamp island
         SwampIsland_MainEntrance,
 
-
+        //thieves den island
+        ThievesDen_GateEntrance,
 
 
 
@@ -187,7 +188,8 @@ namespace DungeonRun
         //swamp island
         SwampIsland_MainEntrance,
 
-
+        //thieves den island
+        ThievesDen_GateEntrance,
 
 
 

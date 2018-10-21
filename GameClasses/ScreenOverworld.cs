@@ -343,7 +343,8 @@ namespace DungeonRun
         //swamp island
         static MapLocation SwampIsland_MainEntrance;
 
-
+        //thieves den island
+        static MapLocation ThievesDen_GateEntrance;
 
 
 
@@ -1200,6 +1201,147 @@ namespace DungeonRun
 
 
 
+            #region Theives Den - Bottom Path
+
+            //ThievesDen_GateEntrance
+
+            ThievesDen_GateEntrance = new MapLocation(true, new Vector2(1277, 789), "ThievesDen_GateEntrance");
+            ThievesDen_GateEntrance.ID = LevelID.ThievesDen_GateEntrance;
+            locations.Add(ThievesDen_GateEntrance);
+
+            //main path - starting going right from forest main path at sm plateau island
+            MapLocation ThievesDen_ExtBottomPath_1 = new MapLocation(false, new Vector2(956, 800), "ThievesDen_ExtBottomPath_1");
+            locations.Add(ThievesDen_ExtBottomPath_1);
+            MapLocation ThievesDen_ExtBottomPath_2 = new MapLocation(false, new Vector2(1019, 793), "ThievesDen_ExtBottomPath_2");
+            locations.Add(ThievesDen_ExtBottomPath_2);
+            MapLocation ThievesDen_ExtBottomPath_3 = new MapLocation(false, new Vector2(1061, 768), "ThievesDen_ExtBottomPath_3");
+            locations.Add(ThievesDen_ExtBottomPath_3);
+            MapLocation ThievesDen_ExtBottomPath_4 = new MapLocation(false, new Vector2(1119, 764), "ThievesDen_ExtBottomPath_4");
+            locations.Add(ThievesDen_ExtBottomPath_4);
+            MapLocation ThievesDen_ExtBottomPath_5 = new MapLocation(false, new Vector2(1156, 808), "ThievesDen_ExtBottomPath_5");
+            locations.Add(ThievesDen_ExtBottomPath_5);
+
+            MapLocation ThievesDen_ExtBottomPath_6 = new MapLocation(false, new Vector2(1231, 821), "ThievesDen_ExtBottomPath_6");
+            locations.Add(ThievesDen_ExtBottomPath_6);
+            MapLocation ThievesDen_ExtBottomPath_7 = new MapLocation(false, new Vector2(1283, 811), "ThievesDen_ExtBottomPath_7");
+            locations.Add(ThievesDen_ExtBottomPath_7);
+            MapLocation ThievesDen_ExtBottomPath_8 = new MapLocation(false, new Vector2(1309, 821), "ThievesDen_ExtBottomPath_8");
+            locations.Add(ThievesDen_ExtBottomPath_8);
+            MapLocation ThievesDen_ExtBottomPath_9 = new MapLocation(false, new Vector2(1347, 822), "ThievesDen_ExtBottomPath_9");
+            locations.Add(ThievesDen_ExtBottomPath_9);
+            MapLocation ThievesDen_ExtBottomPath_10 = new MapLocation(false, new Vector2(1371, 802), "ThievesDen_ExtBottomPath_10");
+            locations.Add(ThievesDen_ExtBottomPath_10);
+
+            MapLocation ThievesDen_ExtBottomPath_11 = new MapLocation(false, new Vector2(1414, 798), "ThievesDen_ExtBottomPath_11");
+            locations.Add(ThievesDen_ExtBottomPath_11);
+            MapLocation ThievesDen_ExtBottomPath_12 = new MapLocation(false, new Vector2(1454, 801), "ThievesDen_ExtBottomPath_12");
+            locations.Add(ThievesDen_ExtBottomPath_12);
+            MapLocation ThievesDen_ExtBottomPath_13 = new MapLocation(false, new Vector2(1487, 811), "ThievesDen_ExtBottomPath_13");
+            locations.Add(ThievesDen_ExtBottomPath_13);
+            MapLocation ThievesDen_ExtBottomPath_14 = new MapLocation(false, new Vector2(1524, 804), "ThievesDen_ExtBottomPath_14");
+            locations.Add(ThievesDen_ExtBottomPath_14);
+            MapLocation ThievesDen_ExtBottomPath_15 = new MapLocation(false, new Vector2(1560, 778), "ThievesDen_ExtBottomPath_15");
+            locations.Add(ThievesDen_ExtBottomPath_15);
+
+            MapLocation ThievesDen_ExtBottomPath_16 = new MapLocation(false, new Vector2(1607, 777), "ThievesDen_ExtBottomPath_16");
+            locations.Add(ThievesDen_ExtBottomPath_16);
+            MapLocation ThievesDen_ExtBottomPath_17 = new MapLocation(false, new Vector2(1642, 784), "ThievesDen_ExtBottomPath_17");
+            locations.Add(ThievesDen_ExtBottomPath_17);
+            MapLocation ThievesDen_ExtBottomPath_18 = new MapLocation(false, new Vector2(1663, 801), "ThievesDen_ExtBottomPath_18");
+            locations.Add(ThievesDen_ExtBottomPath_18);
+            MapLocation ThievesDen_ExtBottomPath_19 = new MapLocation(false, new Vector2(1696, 795), "ThievesDen_ExtBottomPath_19");
+            locations.Add(ThievesDen_ExtBottomPath_19);
+            MapLocation ThievesDen_ExtBottomPath_20 = new MapLocation(false, new Vector2(1734, 795), "ThievesDen_ExtBottomPath_20");
+            locations.Add(ThievesDen_ExtBottomPath_20);
+
+
+
+            //setup location neighbors
+
+            #region Connection to Skull Island
+
+            ForestIsland_MainPath_9.neighborRight = ThievesDen_ExtBottomPath_1;
+            ThievesDen_ExtBottomPath_1.neighborLeft = ForestIsland_MainPath_9;
+
+            #endregion
+
+
+            #region Main Path Connections
+
+            //right
+            ThievesDen_ExtBottomPath_1.neighborRight = ThievesDen_ExtBottomPath_2;
+            ThievesDen_ExtBottomPath_2.neighborRight = ThievesDen_ExtBottomPath_3;
+            ThievesDen_ExtBottomPath_3.neighborRight = ThievesDen_ExtBottomPath_4;
+            ThievesDen_ExtBottomPath_4.neighborRight = ThievesDen_ExtBottomPath_5;
+
+            ThievesDen_ExtBottomPath_5.neighborRight = ThievesDen_ExtBottomPath_6;
+            ThievesDen_ExtBottomPath_6.neighborUp = ThievesDen_GateEntrance;
+            ThievesDen_ExtBottomPath_6.neighborRight = ThievesDen_ExtBottomPath_7;
+            ThievesDen_ExtBottomPath_7.neighborRight = ThievesDen_ExtBottomPath_8;
+            ThievesDen_ExtBottomPath_8.neighborRight = ThievesDen_ExtBottomPath_9;
+            ThievesDen_ExtBottomPath_9.neighborRight = ThievesDen_ExtBottomPath_10;
+
+            ThievesDen_ExtBottomPath_10.neighborRight = ThievesDen_ExtBottomPath_11;
+            ThievesDen_ExtBottomPath_11.neighborRight = ThievesDen_ExtBottomPath_12;
+            ThievesDen_ExtBottomPath_12.neighborRight = ThievesDen_ExtBottomPath_13;
+            ThievesDen_ExtBottomPath_13.neighborRight = ThievesDen_ExtBottomPath_14;
+            ThievesDen_ExtBottomPath_14.neighborRight = ThievesDen_ExtBottomPath_15;
+
+            ThievesDen_ExtBottomPath_15.neighborRight = ThievesDen_ExtBottomPath_16;
+            ThievesDen_ExtBottomPath_16.neighborRight = ThievesDen_ExtBottomPath_17;
+            ThievesDen_ExtBottomPath_17.neighborRight = ThievesDen_ExtBottomPath_18;
+            ThievesDen_ExtBottomPath_18.neighborRight = ThievesDen_ExtBottomPath_19;
+            ThievesDen_ExtBottomPath_19.neighborRight = ThievesDen_ExtBottomPath_20;
+
+
+            //left
+            ThievesDen_ExtBottomPath_2.neighborLeft = ThievesDen_ExtBottomPath_1;
+            ThievesDen_ExtBottomPath_3.neighborLeft = ThievesDen_ExtBottomPath_2;
+            ThievesDen_ExtBottomPath_4.neighborLeft = ThievesDen_ExtBottomPath_3;
+            ThievesDen_ExtBottomPath_5.neighborLeft = ThievesDen_ExtBottomPath_4;
+
+            ThievesDen_ExtBottomPath_6.neighborLeft = ThievesDen_ExtBottomPath_5;
+            ThievesDen_GateEntrance.neighborLeft = ThievesDen_ExtBottomPath_6;
+            ThievesDen_GateEntrance.neighborRight = ThievesDen_GateEntrance.neighborDown = ThievesDen_ExtBottomPath_7;
+            ThievesDen_ExtBottomPath_7.neighborLeft = ThievesDen_ExtBottomPath_6;
+            ThievesDen_ExtBottomPath_7.neighborUp = ThievesDen_GateEntrance;
+            ThievesDen_ExtBottomPath_8.neighborLeft = ThievesDen_ExtBottomPath_7;
+            ThievesDen_ExtBottomPath_9.neighborLeft = ThievesDen_ExtBottomPath_8;
+            ThievesDen_ExtBottomPath_10.neighborLeft = ThievesDen_ExtBottomPath_9;
+
+            ThievesDen_ExtBottomPath_11.neighborLeft = ThievesDen_ExtBottomPath_10;
+            ThievesDen_ExtBottomPath_12.neighborLeft = ThievesDen_ExtBottomPath_11;
+            ThievesDen_ExtBottomPath_13.neighborLeft = ThievesDen_ExtBottomPath_12;
+            ThievesDen_ExtBottomPath_14.neighborLeft = ThievesDen_ExtBottomPath_13;
+            ThievesDen_ExtBottomPath_15.neighborLeft = ThievesDen_ExtBottomPath_14;
+
+            ThievesDen_ExtBottomPath_16.neighborLeft = ThievesDen_ExtBottomPath_15;
+            ThievesDen_ExtBottomPath_17.neighborLeft = ThievesDen_ExtBottomPath_16;
+            ThievesDen_ExtBottomPath_18.neighborLeft = ThievesDen_ExtBottomPath_17;
+            ThievesDen_ExtBottomPath_19.neighborLeft = ThievesDen_ExtBottomPath_18;
+            ThievesDen_ExtBottomPath_20.neighborLeft = ThievesDen_ExtBottomPath_19;
+
+            #endregion
+
+
+            #region Additonal Connections
+
+
+
+
+            #endregion
+
+
+
+
+
+            #endregion
+
+
+
+
+
+
 
             //prep overworld for interaction
 
@@ -1260,6 +1402,10 @@ namespace DungeonRun
             //swamp island
             else if (LevelSet.field.ID == LevelID.SwampIsland_MainEntrance)
             { currentLocation = SwampIsland_MainEntrance; }
+
+            //thieves den
+            else if (LevelSet.field.ID == LevelID.ThievesDen_GateEntrance)
+            { currentLocation = ThievesDen_GateEntrance; }
 
 
 

@@ -199,42 +199,17 @@ namespace DungeonRun
                         HauntedSwamps_Data.Add(RoomData);
                     }
 
-
-
-                    //improper way!
-                    //fake populate these files with boat level data for testing/dev
-                    if (RoomData.type == RoomID.SkullIsland_ShadowKing)
+                    //thieves den
+                    else if (RoomData.type == RoomID.ThievesDen_GateEntrance
+                        )
                     {
                         ThievesHideout_Data.Add(RoomData);
                     }
 
+                    
 
-
-
-                    /* example
-                    //forest island
-                    else if (RoomData.type == RoomID.SkullIsland_Colliseum ||
-                        RoomData.type == RoomID.SkullIsland_ColliseumPit ||
-                        RoomData.type == RoomID.SkullIsland_ShadowKing ||
-                        RoomData.type == RoomID.SkullIsland_Town
-                        )
-                    {
-                        ForestIsland_Data.Add(RoomData);
-                    }
-                    */
-
-
-                    //thieves hideout
-
-                    //death mountain
-
-                    //haunted swamps
-
-                    //cloud island
-
-                    //lava island
-
-
+                    //plateau island?
+                    
 
 
 

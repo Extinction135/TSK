@@ -62,46 +62,47 @@ Today:
 
 
 
-SwampIsland++
-
-implemented swamp main path - 19 locations.
-added swamp dungeon entrance level.
-updated swamp ent level to old better swamp level.
-compiled level data, tested.
 
 
+ThievesDen++
 
-
-
-
-
-
-Complete the Overworld Main Paths
-
-
-test path, imp level
-
-
-
-
-
-swamp main path + dungeon ent + skull crown connection
-
-path, THEN level!
-
-
-
-
-crown 10 connection to crown 9
+implemented thieves den exterior southern path.
+added thieves den gate entrance to level data,
+built thieves den into leveldata pipeline, tested.
 
 
 
 
 
 
-thieves den exterior bottom path (connects to forest main path)
 
-thieves den exterior left path (connects to skull island)
+
+
+
+
+thieves den ext left path
+
+1124.560 - connects north to skull bottom row 6
+1155.577
+1116.606
+1114.637
+1077.652
+
+1057.677
+1075.716 - connects south to theives den ext bottom path 3
+
+
+
+
+
+
+
+
+locations++
+
+
+1786.766 <- hole in the sea level pos, is part of right path
+
 
 thieves den exterior right path (loops dth mtn and btm path)
 

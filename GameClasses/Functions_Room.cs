@@ -242,6 +242,15 @@ namespace DungeonRun
                 #endregion
 
 
+                #region Setup Thieves Den Rooms (Levels)
+
+                else if (Room.roomID == RoomID.ThievesDen_GateEntrance)
+                {
+                    RoomXmlData = LevelData_ThievesHideout.ThievesDen_GateEntrance;
+                    LevelSet.currentLevel.isField = true;
+                }
+
+                #endregion
 
 
 
