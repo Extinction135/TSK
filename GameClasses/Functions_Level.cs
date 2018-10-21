@@ -216,7 +216,16 @@ namespace DungeonRun
             #endregion
 
 
+            #region Cloud Island
 
+            else if (LevelSet.currentLevel.ID == LevelID.CloudIsland_MainEntrance)
+            {
+                Functions_Music.PlayMusic(Music.LightWorld);
+                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.CloudIsland_MainEntrance);
+                LevelSet.currentLevel.rooms.Add(field);
+            }
+
+            #endregion
 
 
 

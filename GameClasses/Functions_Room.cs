@@ -186,9 +186,7 @@ namespace DungeonRun
 
                 #endregion
 
-
-
-
+                
                 #region Setup DeathMountain Rooms (Levels)
 
                 else if (Room.roomID == RoomID.DeathMountain_MainEntrance)
@@ -198,8 +196,6 @@ namespace DungeonRun
                 }
 
                 #endregion
-
-
 
 
                 #region Setup ForestIsland Rooms (Levels)
@@ -213,8 +209,6 @@ namespace DungeonRun
                 #endregion
 
 
-
-
                 #region Setup LavaIsland Rooms (Levels)
 
                 else if (Room.roomID == RoomID.LavaIsland_MainEntrance)
@@ -225,14 +219,25 @@ namespace DungeonRun
 
                 #endregion
 
+                #region Setup CloudIsland Rooms (Levels)
+
+                else if (Room.roomID == RoomID.CloudIsland_MainEntrance)
+                {
+                    RoomXmlData = LevelData_CloudIsland.CloudIsland_MainEntrance;
+                    LevelSet.currentLevel.isField = true;
+                }
+
+                #endregion
 
 
-                
+
+
+
 
                 #region Specific RoomData (Hub and Boss rooms)
 
                 //boss rooms
-                else if(Room.roomID == RoomID.ForestIsland_BossRoom
+                else if (Room.roomID == RoomID.ForestIsland_BossRoom
                     || Room.roomID == RoomID.DeathMountain_BossRoom
                     || Room.roomID == RoomID.SwampIsland_BossRoom)
                 {   //loop over all boss rooms

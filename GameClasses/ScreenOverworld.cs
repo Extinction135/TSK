@@ -337,7 +337,8 @@ namespace DungeonRun
         //lava island
         static MapLocation LavaIsland_MainEntrance;
 
-
+        //cloud island
+        static MapLocation CloudIsland_MainEntrance;
 
 
 
@@ -860,7 +861,7 @@ namespace DungeonRun
             LavaIsland_MainEntrance.ID = LevelID.LavaIsland_MainEntrance;
             locations.Add(LavaIsland_MainEntrance);
 
-            //main path from skull island to dungeon entrance, around to left temple too
+            //main path from skull island to dungeon entrance, past to castle
             MapLocation LavaIsland_MainPath_1 = new MapLocation(false, new Vector2(743, 484), "LavaIsland_MainPath_1");
             locations.Add(LavaIsland_MainPath_1);
             MapLocation LavaIsland_MainPath_2 = new MapLocation(false, new Vector2(740, 520), "LavaIsland_MainPath_2");
@@ -971,6 +972,94 @@ namespace DungeonRun
             #endregion
 
 
+            #region Cloud Island
+
+
+            CloudIsland_MainEntrance = new MapLocation(true, new Vector2(678, 264), "CloudIsland_MainEntrance");
+            CloudIsland_MainEntrance.ID = LevelID.CloudIsland_MainEntrance;
+            locations.Add(CloudIsland_MainEntrance);
+
+            //main path - starting and extending up and left from skull island crown 2, (left side)
+            MapLocation CloudIsland_MainPath_1 = new MapLocation(false, new Vector2(760, 348), "CloudIsland_MainPath_1");
+            locations.Add(CloudIsland_MainPath_1);
+            MapLocation CloudIsland_MainPath_2 = new MapLocation(false, new Vector2(742, 302), "CloudIsland_MainPath_2");
+            locations.Add(CloudIsland_MainPath_2);
+            //this is dungeon entrance
+            //MapLocation CloudIsland_MainPath_3 = new MapLocation(false, new Vector2(678, 264), "CloudIsland_MainPath_3");
+            //locations.Add(CloudIsland_MainPath_3);
+            MapLocation CloudIsland_MainPath_4 = new MapLocation(false, new Vector2(651, 310), "CloudIsland_MainPath_4");
+            locations.Add(CloudIsland_MainPath_4);
+            MapLocation CloudIsland_MainPath_5 = new MapLocation(false, new Vector2(567, 324), "CloudIsland_MainPath_5");
+            locations.Add(CloudIsland_MainPath_5);
+
+            MapLocation CloudIsland_MainPath_6 = new MapLocation(false, new Vector2(507, 298), "CloudIsland_MainPath_6");
+            locations.Add(CloudIsland_MainPath_6);
+            MapLocation CloudIsland_MainPath_7 = new MapLocation(false, new Vector2(460, 277), "CloudIsland_MainPath_7");
+            locations.Add(CloudIsland_MainPath_7);
+            MapLocation CloudIsland_MainPath_8 = new MapLocation(false, new Vector2(410, 258), "CloudIsland_MainPath_8");
+            locations.Add(CloudIsland_MainPath_8);
+            MapLocation CloudIsland_MainPath_9 = new MapLocation(false, new Vector2(404, 212), "CloudIsland_MainPath_9");
+            locations.Add(CloudIsland_MainPath_9);
+            MapLocation CloudIsland_MainPath_10 = new MapLocation(false, new Vector2(422, 170), "CloudIsland_MainPath_10");
+            locations.Add(CloudIsland_MainPath_10);
+
+
+
+
+
+            //setup location neighbors
+
+            #region Connection to Skull Island
+
+            SkullIsland_TopCrown_2.neighborLeft = CloudIsland_MainPath_1;
+            CloudIsland_MainPath_1.neighborRight = SkullIsland_TopCrown_2;
+
+            #endregion
+
+
+            #region Main Path Connections
+
+            //left up from skull island
+            CloudIsland_MainPath_1.neighborLeft = CloudIsland_MainPath_1.neighborUp = CloudIsland_MainPath_2;
+            CloudIsland_MainPath_2.neighborLeft = CloudIsland_MainPath_2.neighborUp = CloudIsland_MainEntrance;
+            CloudIsland_MainEntrance.neighborLeft = CloudIsland_MainPath_4;
+            CloudIsland_MainPath_4.neighborLeft = CloudIsland_MainPath_5;
+
+            CloudIsland_MainPath_5.neighborLeft = CloudIsland_MainPath_5.neighborUp = CloudIsland_MainPath_6;
+            CloudIsland_MainPath_6.neighborUp = CloudIsland_MainPath_7;
+            CloudIsland_MainPath_7.neighborLeft = CloudIsland_MainPath_7.neighborUp = CloudIsland_MainPath_8;
+            CloudIsland_MainPath_8.neighborUp = CloudIsland_MainPath_9;
+            CloudIsland_MainPath_9.neighborUp = CloudIsland_MainPath_10;
+
+            //return connections
+            CloudIsland_MainPath_2.neighborRight = CloudIsland_MainPath_2.neighborDown = CloudIsland_MainPath_1;
+            CloudIsland_MainEntrance.neighborRight = CloudIsland_MainPath_2;
+            CloudIsland_MainPath_4.neighborRight = CloudIsland_MainPath_4.neighborUp = CloudIsland_MainEntrance;
+            CloudIsland_MainPath_5.neighborRight = CloudIsland_MainPath_4;
+
+            CloudIsland_MainPath_6.neighborRight = CloudIsland_MainPath_5;
+            CloudIsland_MainPath_7.neighborRight = CloudIsland_MainPath_6;
+            CloudIsland_MainPath_8.neighborRight = CloudIsland_MainPath_7;
+            CloudIsland_MainPath_9.neighborDown = CloudIsland_MainPath_8;
+            CloudIsland_MainPath_10.neighborDown = CloudIsland_MainPath_9;
+
+
+
+            #endregion
+
+
+            #region Additonal Connections
+
+
+
+            #endregion
+
+
+            #endregion
+
+
+
+
 
 
             //prep overworld for interaction
@@ -1020,6 +1109,14 @@ namespace DungeonRun
             //forest island
             else if (LevelSet.field.ID == LevelID.ForestIsland_MainEntrance)
             { currentLocation = ForestIsland_MainEntrance; }
+
+            //lava island
+            else if (LevelSet.field.ID == LevelID.LavaIsland_MainEntrance)
+            { currentLocation = LavaIsland_MainEntrance; }
+
+            //lava island
+            else if (LevelSet.field.ID == LevelID.CloudIsland_MainEntrance)
+            { currentLocation = CloudIsland_MainEntrance; }
 
 
 

@@ -15,24 +15,24 @@ namespace DungeonRun
 
 			LavaIsland_MainEntrance.type = RoomID.LavaIsland_MainEntrance;
 			LavaIsland_MainEntrance.objs = new List<ObjXmlData>();
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 504; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 440; LavaIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 520; LavaIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 536; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = -24; obj.posY = 344; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 408; LavaIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 552; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder_Trap; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 392; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 536; LavaIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 568; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = -24; obj.posY = 312; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 744; obj.posY = 536; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 808; obj.posY = 536; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 472; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 872; obj.posY = 536; LavaIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 568; LavaIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 568; LavaIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 520; LavaIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 792; obj.posY = 568; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 936; obj.posY = 536; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = -24; obj.posY = 280; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 504; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 744; obj.posY = 504; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 808; obj.posY = 504; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 536; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 872; obj.posY = 504; LavaIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 536; LavaIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 536; LavaIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 792; obj.posY = 552; LavaIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 552; LavaIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 792; obj.posY = 536; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 936; obj.posY = 504; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = -24; obj.posY = 248; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 1000; obj.posY = 536; LavaIsland_MainEntrance.objs.Add(obj);}
@@ -61,19 +61,19 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1256; obj.posY = 440; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 936; obj.posY = 440; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 936; obj.posY = 376; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 872; obj.posY = 408; LavaIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 808; obj.posY = 520; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 808; obj.posY = 376; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 808; obj.posY = 440; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 872; obj.posY = 472; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 744; obj.posY = 472; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder_Trap; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 440; LavaIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 824; obj.posY = 536; LavaIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 824; obj.posY = 552; LavaIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 568; LavaIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 552; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 376; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 376; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 440; LavaIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 568; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 472; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 456; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = -24; obj.posY = 184; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 504; LavaIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 552; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder; obj.direction = Direction.Down; obj.posX = 472; obj.posY = 520; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 424; obj.posY = 440; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 424; obj.posY = 376; LavaIsland_MainEntrance.objs.Add(obj);}
@@ -97,7 +97,7 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = -24; obj.posY = 504; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = -24; obj.posY = 440; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = -24; obj.posY = 376; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 536; LavaIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 520; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 488; obj.posY = 536; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder; obj.direction = Direction.Down; obj.posX = 440; obj.posY = 504; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Bottom; obj.direction = Direction.Down; obj.posX = 360; obj.posY = 536; LavaIsland_MainEntrance.objs.Add(obj);}
@@ -145,15 +145,14 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 424; obj.posY = 472; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 440; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 488; obj.posY = 376; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 408; LavaIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 536; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 488; obj.posY = 504; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 472; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 408; LavaIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 536; LavaIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 744; obj.posY = 568; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 744; obj.posY = 376; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 744; obj.posY = 440; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 808; obj.posY = 408; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 808; obj.posY = 472; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 872; obj.posY = 440; LavaIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 520; LavaIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 824; obj.posY = 568; LavaIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 808; obj.posY = 552; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 872; obj.posY = 376; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 936; obj.posY = 408; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 936; obj.posY = 472; LavaIsland_MainEntrance.objs.Add(obj);}
@@ -167,18 +166,13 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 1192; obj.posY = 472; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 472; obj.posY = 552; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 504; obj.posY = 552; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 552; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 408; obj.posY = 552; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 440; obj.posY = 584; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 472; obj.posY = 584; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 504; obj.posY = 584; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 584; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 552; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 584; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 552; LavaIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 552; LavaIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 552; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 344; obj.posY = 568; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 552; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 552; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Up; obj.posX = 424; obj.posY = 616; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 408; obj.posY = 584; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 376; obj.posY = 552; LavaIsland_MainEntrance.objs.Add(obj);}
@@ -188,18 +182,7 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Up; obj.posX = 488; obj.posY = 616; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Up; obj.posX = 504; obj.posY = 616; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Up; obj.posX = 520; obj.posY = 616; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Up; obj.posX = 536; obj.posY = 616; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Up; obj.posX = 552; obj.posY = 616; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Up; obj.posX = 568; obj.posY = 616; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Up; obj.posX = 584; obj.posY = 616; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Up; obj.posX = 408; obj.posY = 616; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Corner_Exterior; obj.direction = Direction.Up; obj.posX = 600; obj.posY = 616; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Left; obj.posX = 600; obj.posY = 600; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Up; obj.posX = 616; obj.posY = 584; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Corner_Exterior; obj.direction = Direction.Up; obj.posX = 632; obj.posY = 584; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Left; obj.posX = 632; obj.posY = 568; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Left; obj.posX = 632; obj.posY = 552; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Corner_Interior; obj.direction = Direction.Up; obj.posX = 600; obj.posY = 584; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Corner_Exterior; obj.direction = Direction.Right; obj.posX = 392; obj.posY = 616; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Right; obj.posX = 392; obj.posY = 600; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Up; obj.posX = 376; obj.posY = 584; LavaIsland_MainEntrance.objs.Add(obj);}
@@ -207,28 +190,10 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Right; obj.posX = 360; obj.posY = 552; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Corner_Exterior; obj.direction = Direction.Right; obj.posX = 360; obj.posY = 584; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Corner_Interior; obj.direction = Direction.Right; obj.posX = 392; obj.posY = 584; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 808; obj.posY = 552; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 536; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 520; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 504; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 488; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 472; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 472; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 472; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 456; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 744; obj.posY = 408; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 424; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 408; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Alcove_Left; obj.direction = Direction.Down; obj.posX = 424; obj.posY = 312; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Alcove_Right; obj.direction = Direction.Down; obj.posX = 456; obj.posY = 312; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 456; obj.posY = 360; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 456; obj.posY = 344; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 472; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 456; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 440; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 424; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 408; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 440; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 456; obj.posY = 328; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 40; obj.posY = 120; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 104; obj.posY = 88; LavaIsland_MainEntrance.objs.Add(obj);}
@@ -276,22 +241,6 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 488; obj.posY = 632; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 504; obj.posY = 632; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 520; obj.posY = 632; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 632; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 632; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 632; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 632; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 632; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 616; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 600; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 600; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 584; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 568; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 584; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 568; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 552; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 600; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 616; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 632; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 376; obj.posY = 632; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 360; obj.posY = 616; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 344; obj.posY = 600; LavaIsland_MainEntrance.objs.Add(obj);}
@@ -299,25 +248,14 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 328; obj.posY = 552; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 328; obj.posY = 568; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 328; obj.posY = 584; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 552; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 568; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 552; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 328; obj.posY = 600; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 312; obj.posY = 552; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 312; obj.posY = 568; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 360; obj.posY = 632; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 648; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 648; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 648; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 424; obj.posY = 648; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 440; obj.posY = 648; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 616; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 584; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 552; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 568; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 248; obj.posY = 552; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 264; obj.posY = 552; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Cut; obj.direction = Direction.Down; obj.posX = 744; obj.posY = 552; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 296; obj.posY = 552; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 232; obj.posY = 552; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 264; obj.posY = 568; LavaIsland_MainEntrance.objs.Add(obj);}
@@ -331,26 +269,12 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 440; obj.posY = 664; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 456; obj.posY = 648; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 520; obj.posY = 648; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 664; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 664; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 648; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 664; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 648; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 648; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 632; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 600; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 648; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 568; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 552; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 568; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 328; obj.posY = 584; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 248; obj.posY = 568; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 584; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 296; obj.posY = 584; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 504; obj.posY = 648; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 488; obj.posY = 648; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 392; obj.posY = 648; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 632; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Top; obj.direction = Direction.Down; obj.posX = 360; obj.posY = 72; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 168; obj.posY = 88; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 104; obj.posY = 120; LavaIsland_MainEntrance.objs.Add(obj);}
@@ -465,15 +389,7 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 280; obj.posY = 552; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 344; obj.posY = 632; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 472; obj.posY = 648; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 664; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 840; obj.posY = 552; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 584; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 792; obj.posY = 568; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 616; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 232; obj.posY = 632; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 664; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Signpost; obj.direction = Direction.Down; obj.posX = 744; obj.posY = 568; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 552; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Entrance_MountainDungeon; obj.direction = Direction.Down; obj.posX = 504; obj.posY = 120; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 152; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 184; LavaIsland_MainEntrance.objs.Add(obj);}
@@ -645,7 +561,6 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 216; obj.posY = 232; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 200; obj.posY = 232; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 184; obj.posY = 216; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 488; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 168; obj.posY = 200; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 184; obj.posY = 184; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 200; obj.posY = 168; LavaIsland_MainEntrance.objs.Add(obj);}
@@ -658,11 +573,6 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 296; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 280; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder_Trap; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 360; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Alcove_Right; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 472; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Alcove_Left; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 472; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 504; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 520; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Cave_Covered; obj.direction = Direction.Down; obj.posX = 776; obj.posY = 536; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Cave_Bare; obj.direction = Direction.Down; obj.posX = 312; obj.posY = 408; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Alcove_Right; obj.direction = Direction.Down; obj.posX = 328; obj.posY = 440; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Alcove_Left; obj.direction = Direction.Down; obj.posX = 488; obj.posY = 184; LavaIsland_MainEntrance.objs.Add(obj);}
@@ -672,7 +582,6 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder; obj.direction = Direction.Down; obj.posX = 328; obj.posY = 520; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder; obj.direction = Direction.Down; obj.posX = 328; obj.posY = 536; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Foothold; obj.direction = Direction.Down; obj.posX = 328; obj.posY = 456; LavaIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Cave_Bare; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 440; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Cave_Covered; obj.direction = Direction.Down; obj.posX = 184; obj.posY = 536; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 184; obj.posY = 56; LavaIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 184; obj.posY = 8; LavaIsland_MainEntrance.objs.Add(obj);}

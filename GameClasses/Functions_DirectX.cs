@@ -184,7 +184,15 @@ namespace DungeonRun
                     {
                         LavaIsland_Data.Add(RoomData);
                     }
-                    
+
+                    //cloud island
+                    else if (RoomData.type == RoomID.CloudIsland_MainEntrance
+                        )
+                    {
+                        CloudIsland_Data.Add(RoomData);
+                    }
+
+
 
 
 
@@ -194,7 +202,6 @@ namespace DungeonRun
                     {
                         ThievesHideout_Data.Add(RoomData);
                         HauntedSwamps_Data.Add(RoomData);
-                        CloudIsland_Data.Add(RoomData);
                     }
 
 

@@ -96,7 +96,7 @@ namespace DungeonRun
 
     public enum LevelID
     {
-        //overworld levels (fields)
+        //overworld levels (fields) - overworld accessible
 
         //skull island
         SkullIsland_Colliseum,
@@ -113,16 +113,25 @@ namespace DungeonRun
         //lava island
         LavaIsland_MainEntrance,
 
+        //cloud island
+        CloudIsland_MainEntrance,
 
 
 
-        //dungeons, series of rooms
-        Forest_Dungeon, 
-        Mountain_Dungeon,
-        Swamp_Dungeon,
 
         //locations that cannot be visited
         Road, //used for connecting levels on map
+
+
+
+
+
+
+
+        //dungeons, series of rooms - not overworld accessible
+        Forest_Dungeon, 
+        Mountain_Dungeon,
+        Swamp_Dungeon,
 
         //dev (hidden) unreachable locations from game
         DEV_Room, //single room with walls/doors + rules
@@ -135,10 +144,13 @@ namespace DungeonRun
         Exit,
         Key,
 
-        //Hub,
-        //Boss,
-        
+        //these DUNGEON rooms are mostly non-procedural and handmade
+        Column,
+        Row,
+        Square,
+        Secret,
 
+        //these dungeon rooms are specific to dungeon and handmade
         ForestIsland_BossRoom,
         DeathMountain_BossRoom,
         SwampIsland_BossRoom,
@@ -149,8 +161,7 @@ namespace DungeonRun
 
 
 
-        //these DUNGEON rooms are mostly non-procedural and handmade
-        Column, Row, Square, Secret,
+        
 
         //these OVERWORLD rooms are non-procedural (handmade)
 
@@ -166,8 +177,13 @@ namespace DungeonRun
         //forest island
         ForestIsland_MainEntrance,
 
-        //forest island
+        //lava island
         LavaIsland_MainEntrance,
+
+        //cloud island
+        CloudIsland_MainEntrance,
+
+
 
 
 
