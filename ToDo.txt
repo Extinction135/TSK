@@ -60,37 +60,13 @@ Today:
 
 
 
-
-
-
 Overworld++
 
-fixed a visual bug where the camera would sometimes
-'fly-in' based on where it was on the last loaded
-level or dungeon.
+implemented left path thieves den, connecting 
+skullisland to thieves den bottom path.
 
 
 
-
-
-
-
-
-
-
-
-
-
-thieves den ext left path
-
-1124.560 - connects north to skull bottom row 6
-1155.577
-1116.606
-1114.637
-1077.652
-
-1057.677
-1075.716 - connects south to theives den ext bottom path 3
 
 
 

@@ -1202,8 +1202,6 @@ namespace DungeonRun
 
             #region Theives Den - Bottom Path
 
-            //ThievesDen_GateEntrance
-
             ThievesDen_GateEntrance = new MapLocation(true, new Vector2(1277, 789), "ThievesDen_GateEntrance");
             ThievesDen_GateEntrance.ID = LevelID.ThievesDen_GateEntrance;
             locations.Add(ThievesDen_GateEntrance);
@@ -1336,6 +1334,56 @@ namespace DungeonRun
 
             #endregion
 
+
+            #region Thieves Den - Left Path
+
+            //main path - starting from skul bottom row6 down to thieves den bottom path 3
+            MapLocation ThievesDen_ExtLeftPath_1 = new MapLocation(false, new Vector2(1124, 560), "ThievesDen_ExtLeftPath_1");
+            locations.Add(ThievesDen_ExtLeftPath_1);
+            MapLocation ThievesDen_ExtLeftPath_2 = new MapLocation(false, new Vector2(1155, 577), "ThievesDen_ExtLeftPath_2");
+            locations.Add(ThievesDen_ExtLeftPath_2);
+            MapLocation ThievesDen_ExtLeftPath_3 = new MapLocation(false, new Vector2(1116, 606), "ThievesDen_ExtLeftPath_3");
+            locations.Add(ThievesDen_ExtLeftPath_3);
+            MapLocation ThievesDen_ExtLeftPath_4 = new MapLocation(false, new Vector2(1114, 637), "ThievesDen_ExtLeftPath_4");
+            locations.Add(ThievesDen_ExtLeftPath_4);
+            MapLocation ThievesDen_ExtLeftPath_5 = new MapLocation(false, new Vector2(1077, 652), "ThievesDen_ExtLeftPath_5");
+            locations.Add(ThievesDen_ExtLeftPath_5);
+
+            MapLocation ThievesDen_ExtLeftPath_6 = new MapLocation(false, new Vector2(1057, 677), "ThievesDen_ExtLeftPath_6");
+            locations.Add(ThievesDen_ExtLeftPath_6);
+            MapLocation ThievesDen_ExtLeftPath_7 = new MapLocation(false, new Vector2(1075, 716), "ThievesDen_ExtLeftPath_7");
+            locations.Add(ThievesDen_ExtLeftPath_7);
+
+
+            #region Neighbors
+
+            //skull island connection
+            ThievesDen_ExtLeftPath_1.neighborUp = SkullIsland_BottomRow_6;
+            SkullIsland_BottomRow_6.neighborDown = ThievesDen_ExtLeftPath_1;
+
+            //down
+            ThievesDen_ExtLeftPath_1.neighborDown = ThievesDen_ExtLeftPath_1.neighborRight = ThievesDen_ExtLeftPath_2;
+            ThievesDen_ExtLeftPath_2.neighborDown = ThievesDen_ExtLeftPath_2.neighborLeft = ThievesDen_ExtLeftPath_3;
+            ThievesDen_ExtLeftPath_3.neighborDown = ThievesDen_ExtLeftPath_4;
+            ThievesDen_ExtLeftPath_4.neighborDown = ThievesDen_ExtLeftPath_4.neighborLeft = ThievesDen_ExtLeftPath_5;
+            ThievesDen_ExtLeftPath_5.neighborDown = ThievesDen_ExtLeftPath_6;
+            ThievesDen_ExtLeftPath_6.neighborDown = ThievesDen_ExtLeftPath_7;
+            ThievesDen_ExtLeftPath_7.neighborDown = ThievesDen_ExtBottomPath_3;
+
+            //up
+            ThievesDen_ExtLeftPath_2.neighborUp = ThievesDen_ExtLeftPath_2.neighborLeft = ThievesDen_ExtLeftPath_1;
+            ThievesDen_ExtLeftPath_3.neighborUp = ThievesDen_ExtLeftPath_3.neighborRight = ThievesDen_ExtLeftPath_2;
+            ThievesDen_ExtLeftPath_4.neighborUp = ThievesDen_ExtLeftPath_3;
+            ThievesDen_ExtLeftPath_5.neighborUp = ThievesDen_ExtLeftPath_5.neighborRight = ThievesDen_ExtLeftPath_4;
+            ThievesDen_ExtLeftPath_6.neighborUp = ThievesDen_ExtLeftPath_5;
+            ThievesDen_ExtLeftPath_7.neighborUp = ThievesDen_ExtLeftPath_6;
+            ThievesDen_ExtBottomPath_3.neighborUp = ThievesDen_ExtLeftPath_7;
+
+            #endregion
+
+
+
+            #endregion
 
 
 
