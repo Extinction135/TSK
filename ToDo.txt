@@ -60,12 +60,14 @@ Today:
 
 
 
+
+
 Overworld++
 
-implemented left path thieves den, connecting 
-skullisland to thieves den bottom path.
-
-
+added thieves den right exterior path, and
+giant hole in the sea location. disabled this
+as a level for now, since it's beyond the scope
+of these series of commits towards 0.77.
 
 
 
@@ -78,13 +80,6 @@ skullisland to thieves den bottom path.
 locations++
 
 
-1786.766 <- hole in the sea level pos, is part of right path
-
-
-thieves den exterior right path (loops dth mtn and btm path)
-
-
-
 
 
 
@@ -93,12 +88,7 @@ more locations
 * fishermans path (forest)
 * lava to cloud loop
 * plateau island main path
-
-
-
-
-//teleport camera to hero upon overworld screen OPNE()
-
+* various lava locations and levels
 
 
 
@@ -108,6 +98,11 @@ more locations
 
 
 
+
+
+
+
+Overworld++
 
 fix bkg color to match clouds
 *this involves modifying color scheme in assets

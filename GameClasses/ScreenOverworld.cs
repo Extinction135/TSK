@@ -346,6 +346,8 @@ namespace DungeonRun
         //thieves den island
         static MapLocation ThievesDen_GateEntrance;
 
+        //mist
+        static MapLocation Sea_GiantHole;
 
 
 
@@ -363,13 +365,27 @@ namespace DungeonRun
             map.zOffset = -450; //set many layers behind link & locations
             Functions_Component.SetZdepth(map);
 
+
+
+
+
             //create locations master list
             locations = new List<MapLocation>();
-
-
-
-
             //create island locations + levels
+
+
+
+            #region Misc locations
+
+            //bottom right of map, giant hole in the sea
+            Sea_GiantHole = new MapLocation(false, new Vector2(1786, 766), "Sea_GiantHole");
+            Sea_GiantHole.ID = LevelID.SkullIsland_ShadowKing;
+            locations.Add(Sea_GiantHole);
+
+            #endregion
+
+
+
 
 
             #region Skull Island
@@ -1384,6 +1400,120 @@ namespace DungeonRun
 
 
             #endregion
+
+
+            #region Thieves Den - Right Path
+
+            //main path - starting from death mth main path down to thieves den bottom path
+            MapLocation ThievesDen_ExtRightPath_1 = new MapLocation(false, new Vector2(1606, 581), "ThievesDen_ExtRightPath_1");
+            locations.Add(ThievesDen_ExtRightPath_1);
+            MapLocation ThievesDen_ExtRightPath_2 = new MapLocation(false, new Vector2(1656, 609), "ThievesDen_ExtRightPath_2");
+            locations.Add(ThievesDen_ExtRightPath_2);
+            MapLocation ThievesDen_ExtRightPath_3 = new MapLocation(false, new Vector2(1610, 647), "ThievesDen_ExtRightPath_3");
+            locations.Add(ThievesDen_ExtRightPath_3);
+            MapLocation ThievesDen_ExtRightPath_4 = new MapLocation(false, new Vector2(1634, 675), "ThievesDen_ExtRightPath_4");
+            locations.Add(ThievesDen_ExtRightPath_4);
+            MapLocation ThievesDen_ExtRightPath_5 = new MapLocation(false, new Vector2(1643, 709), "ThievesDen_ExtRightPath_5");
+            locations.Add(ThievesDen_ExtRightPath_5);
+
+            MapLocation ThievesDen_ExtRightPath_6 = new MapLocation(false, new Vector2(1696, 720), "ThievesDen_ExtRightPath_6");
+            locations.Add(ThievesDen_ExtRightPath_6);
+            MapLocation ThievesDen_ExtRightPath_7 = new MapLocation(false, new Vector2(1747, 718), "ThievesDen_ExtRightPath_7");
+            locations.Add(ThievesDen_ExtRightPath_7);
+            MapLocation ThievesDen_ExtRightPath_8 = new MapLocation(false, new Vector2(1790, 699), "ThievesDen_ExtRightPath_8");
+            locations.Add(ThievesDen_ExtRightPath_8);
+            MapLocation ThievesDen_ExtRightPath_9 = new MapLocation(false, new Vector2(1849, 699), "ThievesDen_ExtRightPath_9");
+            locations.Add(ThievesDen_ExtRightPath_9);
+            MapLocation ThievesDen_ExtRightPath_10 = new MapLocation(false, new Vector2(1888, 720), "ThievesDen_ExtRightPath_10");
+            locations.Add(ThievesDen_ExtRightPath_10);
+
+            MapLocation ThievesDen_ExtRightPath_11 = new MapLocation(false, new Vector2(1897, 755), "ThievesDen_ExtRightPath_11");
+            locations.Add(ThievesDen_ExtRightPath_11);
+            MapLocation ThievesDen_ExtRightPath_12 = new MapLocation(false, new Vector2(1884, 794), "ThievesDen_ExtRightPath_12");
+            locations.Add(ThievesDen_ExtRightPath_12);
+            MapLocation ThievesDen_ExtRightPath_13 = new MapLocation(false, new Vector2(1850, 806), "ThievesDen_ExtRightPath_13");
+            locations.Add(ThievesDen_ExtRightPath_13);
+            MapLocation ThievesDen_ExtRightPath_14 = new MapLocation(false, new Vector2(1834, 779), "ThievesDen_ExtRightPath_14");
+            locations.Add(ThievesDen_ExtRightPath_14);
+
+
+
+
+            #region Neighbors
+
+            //top connection to death mtn
+            DeathMountain_MainPath_7.neighborDown = ThievesDen_ExtRightPath_1;
+            ThievesDen_ExtRightPath_1.neighborUp = DeathMountain_MainPath_7;
+
+            //down
+            ThievesDen_ExtRightPath_1.neighborDown = ThievesDen_ExtRightPath_2;
+            ThievesDen_ExtRightPath_2.neighborDown = ThievesDen_ExtRightPath_3;
+            ThievesDen_ExtRightPath_3.neighborDown = ThievesDen_ExtRightPath_4;
+            ThievesDen_ExtRightPath_4.neighborDown = ThievesDen_ExtRightPath_5;
+
+            ThievesDen_ExtRightPath_5.neighborRight = ThievesDen_ExtRightPath_6;
+            ThievesDen_ExtRightPath_6.neighborRight = ThievesDen_ExtRightPath_7;
+            ThievesDen_ExtRightPath_7.neighborRight = ThievesDen_ExtRightPath_8;
+            ThievesDen_ExtRightPath_8.neighborRight = ThievesDen_ExtRightPath_9;
+            ThievesDen_ExtRightPath_9.neighborRight = ThievesDen_ExtRightPath_10;
+
+            ThievesDen_ExtRightPath_10.neighborDown = ThievesDen_ExtRightPath_11;
+            ThievesDen_ExtRightPath_11.neighborDown = ThievesDen_ExtRightPath_12;
+            ThievesDen_ExtRightPath_12.neighborLeft = ThievesDen_ExtRightPath_13;
+            ThievesDen_ExtRightPath_13.neighborLeft = ThievesDen_ExtRightPath_13.neighborUp = ThievesDen_ExtRightPath_14;
+
+
+            //up
+            ThievesDen_ExtRightPath_2.neighborUp = ThievesDen_ExtRightPath_1;
+            ThievesDen_ExtRightPath_3.neighborUp = ThievesDen_ExtRightPath_2;
+            ThievesDen_ExtRightPath_4.neighborUp = ThievesDen_ExtRightPath_3;
+            ThievesDen_ExtRightPath_5.neighborUp = ThievesDen_ExtRightPath_4;
+
+            ThievesDen_ExtRightPath_6.neighborUp = ThievesDen_ExtRightPath_5;
+            ThievesDen_ExtRightPath_7.neighborUp = ThievesDen_ExtRightPath_6;
+            ThievesDen_ExtRightPath_8.neighborUp = ThievesDen_ExtRightPath_7;
+            ThievesDen_ExtRightPath_9.neighborUp = ThievesDen_ExtRightPath_8;
+            ThievesDen_ExtRightPath_10.neighborUp = ThievesDen_ExtRightPath_9;
+
+
+
+
+
+
+
+            //bottom connection to thieves den bottom path
+            //ThievesDen_ExtBottomPath_3.neighborUp = ThievesDen_ExtLeftPath_7;
+
+
+
+
+            #endregion
+
+
+
+            #endregion
+
+
+
+
+
+
+
+
+            #region Giant Hole in the Sea Connections
+
+            Sea_GiantHole.neighborDown = ThievesDen_ExtBottomPath_20;
+            ThievesDen_ExtBottomPath_20.neighborUp = Sea_GiantHole;
+
+            Sea_GiantHole.neighborRight = ThievesDen_ExtRightPath_14;
+            ThievesDen_ExtRightPath_14.neighborLeft = Sea_GiantHole;
+
+            //should also connect to the sub path of td's ext right path
+
+            #endregion
+
+
+
 
 
 
