@@ -68,21 +68,23 @@ Today:
 
 
 
-UI Color - Round 1
-
-updated global color scheme's ui colors,
-based on pallette defined from overworld dev.
-update the scroll sprite as well.
-updated HUB sprites as well.
 
 
 
 
+Scroll++
+
+centered highlite on map scroll, since lighting isnt
+consistently from the top left. improved various
+sprites for the UI and inventory. looking better.
 
 
 
-center highlite on map scroll, since lighting isnt
-consistently from the top left.
+
+
+
+
+
 
 
 
