@@ -60,13 +60,17 @@ Today:
 
 
 
+forest path
+
+
 
 
 Overworld++
 
-add path to forest dungeon entrance level.
-add forest dungeon entrance level, integrated
-into binary savedata as well. tested.
+added lava main path.
+connected forest main path to lava main path.
+so, that's the first loop implemented in the
+overworld map.
 
 
 
@@ -77,8 +81,44 @@ into binary savedata as well. tested.
 
 
 
-Editor ++
 
+
+
+
+
+map paths and basic levels for each island
+
+path to swamp ent (old)
+
+path to cloud entrance (blank) - only has 1 main path
+
+path to volcano entrance (blank) - from skull mtn
+
+path to thieves left secret watch tower entrance (blank) - very complicated
+
+
+
+
+
+
+fix bkg color to match clouds
+*this involves modifying color scheme in assets
+we'll need a separate color for overworld bkg.
+then a color for level bkg, dungeon bkg.
+should be easy.
+
+
+
+
+
+
+
+
+
+
+
+
+Editor & Textures
 
 we will need to touch the editor next.
 which means we can consolidate sheets now.
@@ -99,11 +139,6 @@ these get one color pallette.
 
 
 
-
-COLOR
-
-color link, objects, and levels.
-this will be alot of bouncing between editor and photoshop.
 
 
 

@@ -334,7 +334,8 @@ namespace DungeonRun
         //forest island
         static MapLocation ForestIsland_MainEntrance;
 
-
+        //lava island
+        static MapLocation LavaIsland_MainEntrance;
 
 
 
@@ -756,6 +757,11 @@ namespace DungeonRun
             MapLocation ForestIsland_MainPath_25 = new MapLocation(false, new Vector2(374, 622), "ForestIsland_MainPath_25");
             locations.Add(ForestIsland_MainPath_25);
 
+            MapLocation ForestIsland_MainPath_26 = new MapLocation(false, new Vector2(324, 592), "ForestIsland_MainPath_26");
+            locations.Add(ForestIsland_MainPath_26);
+            MapLocation ForestIsland_MainPath_27 = new MapLocation(false, new Vector2(279, 553), "ForestIsland_MainPath_27");
+            locations.Add(ForestIsland_MainPath_27); 
+
 
             //setup location neighbors
 
@@ -785,8 +791,7 @@ namespace DungeonRun
             ForestIsland_MainPath_11.neighborLeft = ForestIsland_MainPath_12;
             ForestIsland_MainPath_12.neighborLeft = ForestIsland_MainPath_13;
             ForestIsland_MainPath_13.neighborLeft = ForestIsland_MainPath_14;
-            ForestIsland_MainPath_14.neighborLeft = ForestIsland_MainPath_15;
-            ForestIsland_MainPath_14.neighborDown = ForestIsland_MainPath_15;
+            ForestIsland_MainPath_14.neighborLeft = ForestIsland_MainPath_14.neighborDown = ForestIsland_MainPath_15;
 
             ForestIsland_MainPath_15.neighborLeft = ForestIsland_MainPath_16;
             ForestIsland_MainPath_16.neighborLeft = ForestIsland_MainEntrance;
@@ -800,6 +805,8 @@ namespace DungeonRun
             ForestIsland_MainPath_23.neighborUp = ForestIsland_MainPath_24;
             ForestIsland_MainPath_24.neighborUp = ForestIsland_MainPath_25;
 
+            ForestIsland_MainPath_25.neighborLeft = ForestIsland_MainPath_25.neighborUp = ForestIsland_MainPath_26;
+            ForestIsland_MainPath_26.neighborLeft = ForestIsland_MainPath_26.neighborUp = ForestIsland_MainPath_27;
 
             //(up)
             ForestIsland_MainPath_2.neighborUp = ForestIsland_MainPath_1;
@@ -817,8 +824,7 @@ namespace DungeonRun
             ForestIsland_MainPath_12.neighborRight = ForestIsland_MainPath_11;
             ForestIsland_MainPath_13.neighborRight = ForestIsland_MainPath_12;
             ForestIsland_MainPath_14.neighborRight = ForestIsland_MainPath_13;
-            ForestIsland_MainPath_15.neighborRight = ForestIsland_MainPath_14;
-            ForestIsland_MainPath_15.neighborUp = ForestIsland_MainPath_14;
+            ForestIsland_MainPath_15.neighborRight = ForestIsland_MainPath_15.neighborUp = ForestIsland_MainPath_14;
 
             ForestIsland_MainPath_16.neighborRight = ForestIsland_MainPath_15;
             ForestIsland_MainEntrance.neighborRight = ForestIsland_MainPath_16;
@@ -832,13 +838,137 @@ namespace DungeonRun
             ForestIsland_MainPath_24.neighborDown = ForestIsland_MainPath_23;
             ForestIsland_MainPath_25.neighborDown = ForestIsland_MainPath_24;
 
+            ForestIsland_MainPath_26.neighborDown = ForestIsland_MainPath_26.neighborRight = ForestIsland_MainPath_25;
+            ForestIsland_MainPath_27.neighborDown = ForestIsland_MainPath_27.neighborRight = ForestIsland_MainPath_26;
+
+            #endregion
+
+
+            #region Additonal Connections
+
+
+
             #endregion
 
 
             #endregion
 
 
+            #region Lava Island
 
+            LavaIsland_MainEntrance = new MapLocation(true, new Vector2(372, 447), "LavaIsland_MainEntrance");
+            LavaIsland_MainEntrance.ID = LevelID.LavaIsland_MainEntrance;
+            locations.Add(LavaIsland_MainEntrance);
+
+            //main path from skull island to dungeon entrance, around to left temple too
+            MapLocation LavaIsland_MainPath_1 = new MapLocation(false, new Vector2(743, 484), "LavaIsland_MainPath_1");
+            locations.Add(LavaIsland_MainPath_1);
+            MapLocation LavaIsland_MainPath_2 = new MapLocation(false, new Vector2(740, 520), "LavaIsland_MainPath_2");
+            locations.Add(LavaIsland_MainPath_2);
+            MapLocation LavaIsland_MainPath_3 = new MapLocation(false, new Vector2(698, 548), "LavaIsland_MainPath_3");
+            locations.Add(LavaIsland_MainPath_3);
+            MapLocation LavaIsland_MainPath_4 = new MapLocation(false, new Vector2(637, 551), "LavaIsland_MainPath_4");
+            locations.Add(LavaIsland_MainPath_4);
+            MapLocation LavaIsland_MainPath_5 = new MapLocation(false, new Vector2(600, 542), "LavaIsland_MainPath_5");
+            locations.Add(LavaIsland_MainPath_5);
+
+            MapLocation LavaIsland_MainPath_6 = new MapLocation(false, new Vector2(577, 516), "LavaIsland_MainPath_6");
+            locations.Add(LavaIsland_MainPath_6);
+            MapLocation LavaIsland_MainPath_7 = new MapLocation(false, new Vector2(533, 514), "LavaIsland_MainPath_7");
+            locations.Add(LavaIsland_MainPath_7);
+            MapLocation LavaIsland_MainPath_8 = new MapLocation(false, new Vector2(521, 478), "LavaIsland_MainPath_8");
+            locations.Add(LavaIsland_MainPath_8);
+            MapLocation LavaIsland_MainPath_9 = new MapLocation(false, new Vector2(457, 475), "LavaIsland_MainPath_9");
+            locations.Add(LavaIsland_MainPath_9);
+            MapLocation LavaIsland_MainPath_10 = new MapLocation(false, new Vector2(429, 443), "LavaIsland_MainPath_10");
+            locations.Add(LavaIsland_MainPath_10);
+
+            MapLocation LavaIsland_MainPath_11 = new MapLocation(false, new Vector2(358, 481), "LavaIsland_MainPath_11");
+            locations.Add(LavaIsland_MainPath_11);
+            MapLocation LavaIsland_MainPath_12 = new MapLocation(false, new Vector2(296, 500), "LavaIsland_MainPath_12");
+            locations.Add(LavaIsland_MainPath_12);
+            MapLocation LavaIsland_MainPath_13 = new MapLocation(false, new Vector2(244, 470), "LavaIsland_MainPath_13");
+            locations.Add(LavaIsland_MainPath_13);
+            MapLocation LavaIsland_MainPath_14 = new MapLocation(false, new Vector2(178, 465), "LavaIsland_MainPath_14");
+            locations.Add(LavaIsland_MainPath_14);
+            MapLocation LavaIsland_MainPath_15 = new MapLocation(false, new Vector2(133, 484), "LavaIsland_MainPath_15");
+            locations.Add(LavaIsland_MainPath_15);
+
+            MapLocation LavaIsland_MainPath_16 = new MapLocation(false, new Vector2(77, 474), "LavaIsland_MainPath_16");
+            locations.Add(LavaIsland_MainPath_16);
+            MapLocation LavaIsland_MainPath_17 = new MapLocation(false, new Vector2(55, 440), "LavaIsland_MainPath_17");
+            locations.Add(LavaIsland_MainPath_17);
+
+
+            //setup location neighbors
+
+            #region Connection to Skull Island
+
+            SkullIsland_BottomRow_1.neighborLeft = LavaIsland_MainPath_1;
+            LavaIsland_MainPath_1.neighborRight = SkullIsland_BottomRow_1;
+
+            #endregion
+
+
+            #region Main Path Connections
+
+            //(left)
+            LavaIsland_MainPath_1.neighborDown = LavaIsland_MainPath_2;
+            LavaIsland_MainPath_2.neighborLeft = LavaIsland_MainPath_3;
+            LavaIsland_MainPath_3.neighborLeft = LavaIsland_MainPath_4;
+            LavaIsland_MainPath_4.neighborLeft = LavaIsland_MainPath_5;
+            LavaIsland_MainPath_5.neighborLeft = LavaIsland_MainPath_6;
+            LavaIsland_MainPath_6.neighborLeft = LavaIsland_MainPath_7;
+            LavaIsland_MainPath_7.neighborUp = LavaIsland_MainPath_8;
+            LavaIsland_MainPath_8.neighborLeft = LavaIsland_MainPath_9;
+            LavaIsland_MainPath_9.neighborUp = LavaIsland_MainPath_9.neighborLeft = LavaIsland_MainPath_10;
+            LavaIsland_MainPath_10.neighborLeft = LavaIsland_MainEntrance;
+
+            LavaIsland_MainEntrance.neighborLeft = LavaIsland_MainEntrance.neighborDown = LavaIsland_MainPath_11;
+            LavaIsland_MainPath_11.neighborLeft = LavaIsland_MainPath_12;
+            LavaIsland_MainPath_12.neighborLeft = LavaIsland_MainPath_13;
+            LavaIsland_MainPath_13.neighborLeft = LavaIsland_MainPath_14;
+            LavaIsland_MainPath_14.neighborLeft = LavaIsland_MainPath_15;
+
+            LavaIsland_MainPath_15.neighborLeft = LavaIsland_MainPath_16;
+            LavaIsland_MainPath_16.neighborLeft = LavaIsland_MainPath_17;
+
+
+            //(right)
+            LavaIsland_MainPath_2.neighborUp = LavaIsland_MainPath_1;
+            LavaIsland_MainPath_3.neighborRight = LavaIsland_MainPath_2;
+            LavaIsland_MainPath_4.neighborRight = LavaIsland_MainPath_3;
+            LavaIsland_MainPath_5.neighborRight = LavaIsland_MainPath_4;
+            LavaIsland_MainPath_6.neighborRight = LavaIsland_MainPath_5;
+
+            LavaIsland_MainPath_7.neighborRight = LavaIsland_MainPath_6;
+            LavaIsland_MainPath_8.neighborDown = LavaIsland_MainPath_7;
+            LavaIsland_MainPath_9.neighborRight = LavaIsland_MainPath_8;
+            LavaIsland_MainPath_10.neighborDown = LavaIsland_MainPath_10.neighborRight = LavaIsland_MainPath_9;
+            LavaIsland_MainEntrance.neighborRight = LavaIsland_MainPath_10;
+
+            LavaIsland_MainPath_11.neighborRight = LavaIsland_MainPath_11.neighborUp = LavaIsland_MainEntrance;
+            LavaIsland_MainPath_12.neighborRight = LavaIsland_MainPath_11;
+            LavaIsland_MainPath_13.neighborRight = LavaIsland_MainPath_12;
+            LavaIsland_MainPath_14.neighborRight = LavaIsland_MainPath_13;
+            LavaIsland_MainPath_15.neighborRight = LavaIsland_MainPath_14;
+
+            LavaIsland_MainPath_16.neighborRight = LavaIsland_MainPath_15;
+            LavaIsland_MainPath_17.neighborRight = LavaIsland_MainPath_16;
+
+            #endregion
+
+
+            #region Additonal Connections
+
+            //connection to forest path
+            ForestIsland_MainPath_27.neighborUp = LavaIsland_MainPath_12;
+            LavaIsland_MainPath_12.neighborDown = ForestIsland_MainPath_27;
+
+            #endregion
+
+
+            #endregion
 
 
 

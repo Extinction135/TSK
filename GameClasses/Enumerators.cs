@@ -110,6 +110,10 @@ namespace DungeonRun
         //forest island
         ForestIsland_MainEntrance,
 
+        //lava island
+        LavaIsland_MainEntrance,
+
+
 
 
         //dungeons, series of rooms
