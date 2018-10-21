@@ -34,11 +34,19 @@ namespace DungeonRun
             {
                 Room.size.X = 11; Room.size.Y = 11;
             }
-            else if (ID == RoomID.Hub || ID == RoomID.DEV_Hub)
+            else if (
+                ID == RoomID.ForestIsland_HubRoom ||
+                ID == RoomID.DeathMountain_HubRoom ||
+                ID == RoomID.SwampIsland_HubRoom ||
+                ID == RoomID.DEV_Hub)
             {
                 Room.size.X = 19; Room.size.Y = 19;
             }
-            else if (ID == RoomID.Boss || ID == RoomID.DEV_Boss)
+            else if (
+                ID == RoomID.ForestIsland_BossRoom ||
+                ID == RoomID.DeathMountain_BossRoom ||
+                ID == RoomID.SwampIsland_BossRoom ||
+                ID == RoomID.DEV_Boss)
             {
                 Room.size.X = 19; Room.size.Y = 11;
             }
@@ -194,7 +202,7 @@ namespace DungeonRun
 
 
 
-                #region Setup DeathMountain Rooms (Levels)
+                #region Setup ForestIsland Rooms (Levels)
 
                 else if (Room.roomID == RoomID.ForestIsland_MainEntrance)
                 {
@@ -207,22 +215,56 @@ namespace DungeonRun
 
 
 
+                #region Setup LavaIsland Rooms (Levels)
 
-                #region Setup dungeon room data
-
-                //here is where we need to tie specific roomData to dungeon types
-
-                else if (Room.roomID == RoomID.Boss)
+                else if (Room.roomID == RoomID.LavaIsland_MainEntrance)
                 {
-                    //find a matching bossRoom to use
-                    for (i = 0; i < RoomData.bossRooms.Count; i++)
-                    {   //this works for now, >> put on list based on levelID, then randomly choose from
-                        if (RoomData.bossRooms[i].levelID == LevelSet.currentLevel.ID)
-                        { RoomXmlData = RoomData.bossRooms[i]; } //grabs last valid one (consistently)
-                    }
-                    //RoomXmlData = RoomData.bossRooms[Room.dataIndex];
-                    LevelSet.currentLevel.isField = false;
+                    RoomXmlData = LevelData_LavaIsland.LavaIsland_MainEntrance;
+                    LevelSet.currentLevel.isField = true;
                 }
+
+                #endregion
+
+
+
+                
+
+                #region Specific RoomData (Hub and Boss rooms)
+
+                //boss rooms
+                else if(Room.roomID == RoomID.ForestIsland_BossRoom
+                    || Room.roomID == RoomID.DeathMountain_BossRoom
+                    || Room.roomID == RoomID.SwampIsland_BossRoom)
+                {   //loop over all boss rooms
+                    for (i = 0; i < RoomData.bossRooms.Count; i++)
+                    {   //find the proper bossRoom to use based on roomID
+                        if (RoomData.bossRooms[i].type == Room.roomID)
+                        { RoomXmlData = RoomData.bossRooms[i]; }
+                        //we have to load something
+                        else { RoomXmlData = RoomData.bossRooms[0]; }
+                        LevelSet.currentLevel.isField = false;
+                    }
+                }
+                //hub rooms
+                else if (Room.roomID == RoomID.ForestIsland_HubRoom
+                    || Room.roomID == RoomID.DeathMountain_HubRoom
+                    || Room.roomID == RoomID.SwampIsland_HubRoom)
+                {   //loop over all hub rooms
+                    for (i = 0; i < RoomData.hubRooms.Count; i++)
+                    {   //find the proper bossRoom to use based on roomID
+                        if (RoomData.hubRooms[i].type == Room.roomID)
+                        { RoomXmlData = RoomData.hubRooms[i]; }
+                        //we have to load something
+                        else { RoomXmlData = RoomData.hubRooms[0]; }
+                        LevelSet.currentLevel.isField = false;
+                    }
+                }
+
+                #endregion
+
+
+                #region Generic Roomdata (for now)
+
                 else if (Room.roomID == RoomID.Column)
                 {
                     RoomXmlData = RoomData.columnRooms[Room.dataIndex];
@@ -231,17 +273,6 @@ namespace DungeonRun
                 else if (Room.roomID == RoomID.Exit)
                 {
                     RoomXmlData = RoomData.exitRooms[Room.dataIndex];
-                    LevelSet.currentLevel.isField = false;
-                }
-                else if (Room.roomID == RoomID.Hub)
-                {
-                    //find a matching hubRoom to use
-                    for (i = 0; i < RoomData.hubRooms.Count; i++)
-                    {   //this works for now, >> put on list based on levelID, then randomly choose from
-                        if (RoomData.hubRooms[i].levelID == LevelSet.currentLevel.ID)
-                        { RoomXmlData = RoomData.hubRooms[i]; } //grabs last valid one (consistently)
-                    }
-                    //RoomXmlData = RoomData.hubRooms[Room.dataIndex];
                     LevelSet.currentLevel.isField = false;
                 }
                 else if (Room.roomID == RoomID.Key)
@@ -261,6 +292,11 @@ namespace DungeonRun
                 }
 
                 #endregion
+
+
+
+
+
 
             }
 
@@ -305,7 +341,11 @@ namespace DungeonRun
 
             #region Handle room specific initial events (like setting music)
 
-            if (Room.roomID == RoomID.Boss)
+            if (
+                Room.roomID == RoomID.ForestIsland_BossRoom ||
+                Room.roomID == RoomID.DeathMountain_BossRoom ||
+                Room.roomID == RoomID.SwampIsland_BossRoom
+                )
             {
                 Assets.Play(Assets.sfxBossIntro);
                 Functions_Music.PlayMusic(Music.Boss);

@@ -119,32 +119,51 @@ namespace DungeonRun
             {   //decorate this death as special / explosive
                 Functions_Particle.Spawn_Explosion(ObjType.Particle_Debris,
                     Actor.compSprite.position.X, Actor.compSprite.position.Y, true);
-                
-                //End Dungeon
-                if (LevelSet.currentLevel.currentRoom.roomID == RoomID.Boss)
-                {   //boss must die in boss room to end dungeon
-                    DungeonRecord.beatDungeon = true; //player beat dungeon
-                    Functions_Level.CloseLevel(ExitAction.Summary);
 
-                    //flip dungeon booleans
-                    if (Actor.type == ActorType.Boss_BigEye)
-                    { PlayerData.current.story_forestDungeon = true; }
-                    else if (Actor.type == ActorType.Boss_BigBat)
-                    { PlayerData.current.story_mountainDungeon = true; }
-                    else if (Actor.type == ActorType.Boss_OctoHead)
-                    { PlayerData.current.story_swampDungeon = true; }
-                }
 
-                //Cleanup any boss mobs leftover
-                if(Actor.type == ActorType.Boss_OctoHead)
+                #region Cleanup any boss mobs leftover
+
+                if (Actor.type == ActorType.Boss_OctoHead)
                 {
                     //loop over all actors, checking for active tentacles, and kill em'
-                    for(k = 0; k < Pool.actorCount; k++)
+                    for (k = 0; k < Pool.actorCount; k++)
                     {
                         if (Pool.actorPool[k].active & Pool.actorPool[k].type == ActorType.Special_Tentacle)
                         { SetDeathState(Pool.actorPool[k]); }
                     }
                 }
+
+                #endregion
+
+
+                #region Handle Dungeon Progress / Boss Death Events
+
+                //specific boss must die in specific boss room to end dungeon/advance progress
+
+                if (Actor.type == ActorType.Boss_BigEye &
+                    LevelSet.currentLevel.currentRoom.roomID == RoomID.ForestIsland_BossRoom)
+                {
+                    DungeonRecord.beatDungeon = true;
+                    PlayerData.current.story_forestDungeon = true;
+                    Functions_Level.CloseLevel(ExitAction.Summary);
+                }
+                else if(Actor.type == ActorType.Boss_BigBat &
+                    LevelSet.currentLevel.currentRoom.roomID == RoomID.DeathMountain_BossRoom)
+                {
+                    DungeonRecord.beatDungeon = true;
+                    PlayerData.current.story_mountainDungeon = true;
+                    Functions_Level.CloseLevel(ExitAction.Summary);
+                }
+                else if(Actor.type == ActorType.Boss_OctoHead &
+                    LevelSet.currentLevel.currentRoom.roomID == RoomID.SwampIsland_BossRoom)
+                {
+                    DungeonRecord.beatDungeon = true;
+                    PlayerData.current.story_swampDungeon = true;
+                    Functions_Level.CloseLevel(ExitAction.Summary);
+                }
+
+                #endregion
+
 
             }
 

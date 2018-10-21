@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RoomXmlData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <type>Hub</type>
-  <levelID>Forest_Dungeon</levelID>
+  <type>ForestIsland_HubRoom</type>
   <objs>
     <ObjXmlData>
       <type>Wor_Flowers</type>

@@ -14,16 +14,14 @@ namespace DungeonRun
 		public static List<RoomXmlData> secretRooms = new List<RoomXmlData>();
 		public static List<RoomXmlData> squareRooms = new List<RoomXmlData>();
 
-        
-
-        static RoomData()
+		static RoomData()
 		{
 
-			#region Room - Boss
+			#region Room - ForestIsland_BossRoom
 
 			{
 				RoomXmlData room = new RoomXmlData();
-				room.type = RoomID.Boss; room.levelID = LevelID.Forest_Dungeon;
+				room.type = RoomID.ForestIsland_BossRoom;
 				room.objs = new List<ObjXmlData>();
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pit; Obj.direction = Direction.Down; Obj.posX = 8; Obj.posY = 8; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pit; Obj.direction = Direction.Down; Obj.posX = 8; Obj.posY = 24; room.objs.Add(Obj);}
@@ -104,11 +102,11 @@ namespace DungeonRun
 			#endregion
 
 
-			#region Room - Boss
+			#region Room - DeathMountain_BossRoom
 
 			{
 				RoomXmlData room = new RoomXmlData();
-				room.type = RoomID.Boss; room.levelID = LevelID.Mountain_Dungeon;
+				room.type = RoomID.DeathMountain_BossRoom;
 				room.objs = new List<ObjXmlData>();
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_BlockLight; Obj.direction = Direction.Down; Obj.posX = 40; Obj.posY = 24; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_BlockLight; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 40; room.objs.Add(Obj);}
@@ -180,11 +178,11 @@ namespace DungeonRun
 			#endregion
 
 
-			#region Room - Boss
+			#region Room - SwampIsland_BossRoom
 
 			{
 				RoomXmlData room = new RoomXmlData();
-				room.type = RoomID.Boss; room.levelID = LevelID.Swamp_Dungeon;
+				room.type = RoomID.SwampIsland_BossRoom;
 				room.objs = new List<ObjXmlData>();
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Swamp_LillyPad; Obj.direction = Direction.Down; Obj.posX = 104; Obj.posY = 8; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Swamp_LillyPad; Obj.direction = Direction.Down; Obj.posX = 136; Obj.posY = 8; room.objs.Add(Obj);}
@@ -292,7 +290,7 @@ namespace DungeonRun
 
 			{
 				RoomXmlData room = new RoomXmlData();
-				room.type = RoomID.Column; room.levelID = LevelID.Forest_Dungeon;
+				room.type = RoomID.Column;
 				room.objs = new List<ObjXmlData>();
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_SpawnMob; Obj.direction = Direction.Down; Obj.posX = 152; Obj.posY = 24; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_SpawnMob; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 24; room.objs.Add(Obj);}
@@ -447,7 +445,7 @@ namespace DungeonRun
 
 			{
 				RoomXmlData room = new RoomXmlData();
-				room.type = RoomID.Column; room.levelID = LevelID.Forest_Dungeon;
+				room.type = RoomID.Column;
 				room.objs = new List<ObjXmlData>();
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_IceTile; Obj.direction = Direction.Down; Obj.posX = 56; Obj.posY = 40; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_IceTile; Obj.direction = Direction.Down; Obj.posX = 72; Obj.posY = 40; room.objs.Add(Obj);}
@@ -569,7 +567,7 @@ namespace DungeonRun
 
 			{
 				RoomXmlData room = new RoomXmlData();
-				room.type = RoomID.Column; room.levelID = LevelID.Forest_Dungeon;
+				room.type = RoomID.Column;
 				room.objs = new List<ObjXmlData>();
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_PitTrap; Obj.direction = Direction.Left; Obj.posX = 8; Obj.posY = 8; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_SwitchBlockUp; Obj.direction = Direction.Down; Obj.posX = 152; Obj.posY = 280; room.objs.Add(Obj);}
@@ -727,7 +725,7 @@ namespace DungeonRun
 
 			{
 				RoomXmlData room = new RoomXmlData();
-				room.type = RoomID.Column; room.levelID = LevelID.Forest_Dungeon;
+				room.type = RoomID.Column;
 				room.objs = new List<ObjXmlData>();
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Bush; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 72; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Bush; Obj.direction = Direction.Down; Obj.posX = 40; Obj.posY = 72; room.objs.Add(Obj);}
@@ -855,7 +853,7 @@ namespace DungeonRun
 
 			{
 				RoomXmlData room = new RoomXmlData();
-				room.type = RoomID.Column; room.levelID = LevelID.Forest_Dungeon;
+				room.type = RoomID.Column;
 				room.objs = new List<ObjXmlData>();
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_ConveyorBeltOn; Obj.direction = Direction.Right; Obj.posX = 88; Obj.posY = 200; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_ConveyorBeltOn; Obj.direction = Direction.Right; Obj.posX = 40; Obj.posY = 104; room.objs.Add(Obj);}
@@ -1042,7 +1040,7 @@ namespace DungeonRun
 
 			{
 				RoomXmlData room = new RoomXmlData();
-				room.type = RoomID.Column; room.levelID = LevelID.Forest_Dungeon;
+				room.type = RoomID.Column;
 				room.objs = new List<ObjXmlData>();
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Enemy_Turtle; Obj.direction = Direction.Down; Obj.posX = 40; Obj.posY = 232; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Enemy_Turtle; Obj.direction = Direction.Down; Obj.posX = 136; Obj.posY = 232; room.objs.Add(Obj);}
@@ -1152,7 +1150,7 @@ namespace DungeonRun
 
 			{
 				RoomXmlData room = new RoomXmlData();
-				room.type = RoomID.Column; room.levelID = LevelID.Forest_Dungeon;
+				room.type = RoomID.Column;
 				room.objs = new List<ObjXmlData>();
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_SpawnMob; Obj.direction = Direction.Down; Obj.posX = 40; Obj.posY = 72; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_SpawnMob; Obj.direction = Direction.Down; Obj.posX = 40; Obj.posY = 248; room.objs.Add(Obj);}
@@ -1294,7 +1292,7 @@ namespace DungeonRun
 
 			{
 				RoomXmlData room = new RoomXmlData();
-				room.type = RoomID.Column; room.levelID = LevelID.Forest_Dungeon;
+				room.type = RoomID.Column;
 				room.objs = new List<ObjXmlData>();
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_SpawnMob; Obj.direction = Direction.Down; Obj.posX = 88; Obj.posY = 152; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_SpawnMob; Obj.direction = Direction.Down; Obj.posX = 88; Obj.posY = 88; room.objs.Add(Obj);}
@@ -1384,7 +1382,7 @@ namespace DungeonRun
 
 			{
 				RoomXmlData room = new RoomXmlData();
-				room.type = RoomID.Column; room.levelID = LevelID.Forest_Dungeon;
+				room.type = RoomID.Column;
 				room.objs = new List<ObjXmlData>();
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Coastline_Straight; Obj.direction = Direction.Down; Obj.posX = 120; Obj.posY = 40; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_SkullPillar; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 88; room.objs.Add(Obj);}
@@ -1484,7 +1482,7 @@ namespace DungeonRun
 
 			{
 				RoomXmlData room = new RoomXmlData();
-				room.type = RoomID.Column; room.levelID = LevelID.Forest_Dungeon;
+				room.type = RoomID.Column;
 				room.objs = new List<ObjXmlData>();
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_TorchLit; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 72; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_TorchLit; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 216; room.objs.Add(Obj);}
@@ -1538,7 +1536,7 @@ namespace DungeonRun
 
 			{
 				RoomXmlData room = new RoomXmlData();
-				room.type = RoomID.Exit; room.levelID = LevelID.Forest_Dungeon;
+				room.type = RoomID.Exit;
 				room.objs = new List<ObjXmlData>();
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pit; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 24; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Pit; Obj.direction = Direction.Down; Obj.posX = 40; Obj.posY = 24; room.objs.Add(Obj);}
@@ -1594,7 +1592,7 @@ namespace DungeonRun
 
 			{
 				RoomXmlData room = new RoomXmlData();
-				room.type = RoomID.Exit; room.levelID = LevelID.Forest_Dungeon;
+				room.type = RoomID.Exit;
 				room.objs = new List<ObjXmlData>();
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Enemy_Rat; Obj.direction = Direction.Down; Obj.posX = 168; Obj.posY = 8; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Enemy_Rat; Obj.direction = Direction.Down; Obj.posX = 8; Obj.posY = 8; room.objs.Add(Obj);}
@@ -1655,11 +1653,11 @@ namespace DungeonRun
 			#endregion
 
 
-			#region Room - Hub
+			#region Room - ForestIsland_HubRoom
 
 			{
 				RoomXmlData room = new RoomXmlData();
-				room.type = RoomID.Hub; room.levelID = LevelID.Forest_Dungeon;
+				room.type = RoomID.ForestIsland_HubRoom;
 				room.objs = new List<ObjXmlData>();
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Flowers; Obj.direction = Direction.Down; Obj.posX = 104; Obj.posY = 120; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Flowers; Obj.direction = Direction.Down; Obj.posX = 200; Obj.posY = 200; room.objs.Add(Obj);}
@@ -1794,11 +1792,11 @@ namespace DungeonRun
 			#endregion
 
 
-			#region Room - Hub
+			#region Room - DeathMountain_HubRoom
 
 			{
 				RoomXmlData room = new RoomXmlData();
-				room.type = RoomID.Hub; room.levelID = LevelID.Mountain_Dungeon;
+				room.type = RoomID.DeathMountain_HubRoom;
 				room.objs = new List<ObjXmlData>();
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Barrel; Obj.direction = Direction.Down; Obj.posX = 72; Obj.posY = 72; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Barrel; Obj.direction = Direction.Down; Obj.posX = 88; Obj.posY = 72; room.objs.Add(Obj);}
@@ -1958,11 +1956,11 @@ namespace DungeonRun
 			#endregion
 
 
-			#region Room - Hub
+			#region Room - SwampIsland_HubRoom
 
 			{
 				RoomXmlData room = new RoomXmlData();
-				room.type = RoomID.Hub; room.levelID = LevelID.Swamp_Dungeon;
+				room.type = RoomID.SwampIsland_HubRoom;
 				room.objs = new List<ObjXmlData>();
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Bush; Obj.direction = Direction.Down; Obj.posX = 104; Obj.posY = 24; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Bush; Obj.direction = Direction.Down; Obj.posX = 56; Obj.posY = 24; room.objs.Add(Obj);}
@@ -2214,7 +2212,7 @@ namespace DungeonRun
 
 			{
 				RoomXmlData room = new RoomXmlData();
-				room.type = RoomID.Key; room.levelID = LevelID.Forest_Dungeon;
+				room.type = RoomID.Key;
 				room.objs = new List<ObjXmlData>();
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_ChestKey; Obj.direction = Direction.Down; Obj.posX = 88; Obj.posY = 88; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_LeverOff; Obj.direction = Direction.Down; Obj.posX = 216; Obj.posY = 88; room.objs.Add(Obj);}
@@ -2358,7 +2356,7 @@ namespace DungeonRun
 
 			{
 				RoomXmlData room = new RoomXmlData();
-				room.type = RoomID.Key; room.levelID = LevelID.Forest_Dungeon;
+				room.type = RoomID.Key;
 				room.objs = new List<ObjXmlData>();
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_LeverOff; Obj.direction = Direction.Down; Obj.posX = 232; Obj.posY = 72; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_ChestKey; Obj.direction = Direction.Down; Obj.posX = 152; Obj.posY = 88; room.objs.Add(Obj);}
@@ -2512,7 +2510,7 @@ namespace DungeonRun
 
 			{
 				RoomXmlData room = new RoomXmlData();
-				room.type = RoomID.Key; room.levelID = LevelID.Forest_Dungeon;
+				room.type = RoomID.Key;
 				room.objs = new List<ObjXmlData>();
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_ChestKey; Obj.direction = Direction.Down; Obj.posX = 152; Obj.posY = 88; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_TorchUnlit; Obj.direction = Direction.Down; Obj.posX = 136; Obj.posY = 72; room.objs.Add(Obj);}
@@ -2718,7 +2716,7 @@ namespace DungeonRun
 
 			{
 				RoomXmlData room = new RoomXmlData();
-				room.type = RoomID.Key; room.levelID = LevelID.Forest_Dungeon;
+				room.type = RoomID.Key;
 				room.objs = new List<ObjXmlData>();
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_ChestKey; Obj.direction = Direction.Down; Obj.posX = 152; Obj.posY = 88; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_TorchUnlit; Obj.direction = Direction.Down; Obj.posX = 120; Obj.posY = 56; room.objs.Add(Obj);}
@@ -2840,7 +2838,7 @@ namespace DungeonRun
 
 			{
 				RoomXmlData room = new RoomXmlData();
-				room.type = RoomID.Key; room.levelID = LevelID.Forest_Dungeon;
+				room.type = RoomID.Key;
 				room.objs = new List<ObjXmlData>();
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_BlockLight; Obj.direction = Direction.Down; Obj.posX = 152; Obj.posY = 104; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_BlockDark; Obj.direction = Direction.Down; Obj.posX = 136; Obj.posY = 72; room.objs.Add(Obj);}
@@ -2935,7 +2933,7 @@ namespace DungeonRun
 
 			{
 				RoomXmlData room = new RoomXmlData();
-				room.type = RoomID.Key; room.levelID = LevelID.Forest_Dungeon;
+				room.type = RoomID.Key;
 				room.objs = new List<ObjXmlData>();
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Flamethrower; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 56; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_ChestKey; Obj.direction = Direction.Down; Obj.posX = 151; Obj.posY = 56; room.objs.Add(Obj);}
@@ -3122,7 +3120,7 @@ namespace DungeonRun
 
 			{
 				RoomXmlData room = new RoomXmlData();
-				room.type = RoomID.Key; room.levelID = LevelID.Forest_Dungeon;
+				room.type = RoomID.Key;
 				room.objs = new List<ObjXmlData>();
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_BlockDark; Obj.direction = Direction.Down; Obj.posX = 56; Obj.posY = 104; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_BlockDark; Obj.direction = Direction.Down; Obj.posX = 248; Obj.posY = 104; room.objs.Add(Obj);}
@@ -3297,7 +3295,7 @@ namespace DungeonRun
 
 			{
 				RoomXmlData room = new RoomXmlData();
-				room.type = RoomID.Key; room.levelID = LevelID.Forest_Dungeon;
+				room.type = RoomID.Key;
 				room.objs = new List<ObjXmlData>();
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Switch; Obj.direction = Direction.Down; Obj.posX = 232; Obj.posY = 136; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_BlockLight; Obj.direction = Direction.Down; Obj.posX = 72; Obj.posY = 152; room.objs.Add(Obj);}
@@ -3469,7 +3467,7 @@ namespace DungeonRun
 
 			{
 				RoomXmlData room = new RoomXmlData();
-				room.type = RoomID.Row; room.levelID = LevelID.Forest_Dungeon;
+				room.type = RoomID.Row;
 				room.objs = new List<ObjXmlData>();
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Coastline_Straight; Obj.direction = Direction.Down; Obj.posX = 120; Obj.posY = 40; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Coastline_Straight; Obj.direction = Direction.Down; Obj.posX = 136; Obj.posY = 40; room.objs.Add(Obj);}
@@ -3561,7 +3559,7 @@ namespace DungeonRun
 
 			{
 				RoomXmlData room = new RoomXmlData();
-				room.type = RoomID.Row; room.levelID = LevelID.Forest_Dungeon;
+				room.type = RoomID.Row;
 				room.objs = new List<ObjXmlData>();
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Water; Obj.direction = Direction.Down; Obj.posX = 56; Obj.posY = 56; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Water; Obj.direction = Direction.Down; Obj.posX = 88; Obj.posY = 56; room.objs.Add(Obj);}
@@ -3686,7 +3684,7 @@ namespace DungeonRun
 
 			{
 				RoomXmlData room = new RoomXmlData();
-				room.type = RoomID.Row; room.levelID = LevelID.Forest_Dungeon;
+				room.type = RoomID.Row;
 				room.objs = new List<ObjXmlData>();
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_BlockLight; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 152; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_BlockLight; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 24; room.objs.Add(Obj);}
@@ -3854,7 +3852,7 @@ namespace DungeonRun
 
 			{
 				RoomXmlData room = new RoomXmlData();
-				room.type = RoomID.Row; room.levelID = LevelID.Forest_Dungeon;
+				room.type = RoomID.Row;
 				room.objs = new List<ObjXmlData>();
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_SpawnMob; Obj.direction = Direction.Down; Obj.posX = 136; Obj.posY = 88; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_SpawnMob; Obj.direction = Direction.Down; Obj.posX = 152; Obj.posY = 88; room.objs.Add(Obj);}
@@ -3965,7 +3963,7 @@ namespace DungeonRun
 
 			{
 				RoomXmlData room = new RoomXmlData();
-				room.type = RoomID.Row; room.levelID = LevelID.Forest_Dungeon;
+				room.type = RoomID.Row;
 				room.objs = new List<ObjXmlData>();
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_BlockLight; Obj.direction = Direction.Down; Obj.posX = 152; Obj.posY = 136; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_BlockLight; Obj.direction = Direction.Down; Obj.posX = 184; Obj.posY = 40; room.objs.Add(Obj);}
@@ -4157,7 +4155,7 @@ namespace DungeonRun
 
 			{
 				RoomXmlData room = new RoomXmlData();
-				room.type = RoomID.Row; room.levelID = LevelID.Forest_Dungeon;
+				room.type = RoomID.Row;
 				room.objs = new List<ObjXmlData>();
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Coastline_Corner_Exterior; Obj.direction = Direction.Down; Obj.posX = 8; Obj.posY = 8; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Coastline_Corner_Exterior; Obj.direction = Direction.Right; Obj.posX = 8; Obj.posY = 168; room.objs.Add(Obj);}
@@ -4387,7 +4385,7 @@ namespace DungeonRun
 
 			{
 				RoomXmlData room = new RoomXmlData();
-				room.type = RoomID.Row; room.levelID = LevelID.Forest_Dungeon;
+				room.type = RoomID.Row;
 				room.objs = new List<ObjXmlData>();
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_BlockDark; Obj.direction = Direction.Down; Obj.posX = 248; Obj.posY = 88; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_SwitchBlockDown; Obj.direction = Direction.Down; Obj.posX = 40; Obj.posY = 88; room.objs.Add(Obj);}
@@ -4528,7 +4526,7 @@ namespace DungeonRun
 
 			{
 				RoomXmlData room = new RoomXmlData();
-				room.type = RoomID.Row; room.levelID = LevelID.Forest_Dungeon;
+				room.type = RoomID.Row;
 				room.objs = new List<ObjXmlData>();
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Water; Obj.direction = Direction.Down; Obj.posX = 152; Obj.posY = 136; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Water; Obj.direction = Direction.Down; Obj.posX = 248; Obj.posY = 136; room.objs.Add(Obj);}
@@ -4654,7 +4652,7 @@ namespace DungeonRun
 
 			{
 				RoomXmlData room = new RoomXmlData();
-				room.type = RoomID.Row; room.levelID = LevelID.Forest_Dungeon;
+				room.type = RoomID.Row;
 				room.objs = new List<ObjXmlData>();
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Switch; Obj.direction = Direction.Down; Obj.posX = 152; Obj.posY = 88; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_ChestEmpty; Obj.direction = Direction.Down; Obj.posX = 152; Obj.posY = 104; room.objs.Add(Obj);}
@@ -4800,7 +4798,7 @@ namespace DungeonRun
 
 			{
 				RoomXmlData room = new RoomXmlData();
-				room.type = RoomID.Row; room.levelID = LevelID.Forest_Dungeon;
+				room.type = RoomID.Row;
 				room.objs = new List<ObjXmlData>();
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_IceTile; Obj.direction = Direction.Down; Obj.posX = 56; Obj.posY = 56; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_BlockDark; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 40; room.objs.Add(Obj);}
@@ -4954,7 +4952,7 @@ namespace DungeonRun
 
 			{
 				RoomXmlData room = new RoomXmlData();
-				room.type = RoomID.Square; room.levelID = LevelID.Forest_Dungeon;
+				room.type = RoomID.Square;
 				room.objs = new List<ObjXmlData>();
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_BlockDark; Obj.direction = Direction.Down; Obj.posX = 40; Obj.posY = 152; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_BlockDark; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 136; room.objs.Add(Obj);}
@@ -5006,7 +5004,7 @@ namespace DungeonRun
 
 			{
 				RoomXmlData room = new RoomXmlData();
-				room.type = RoomID.Square; room.levelID = LevelID.Forest_Dungeon;
+				room.type = RoomID.Square;
 				room.objs = new List<ObjXmlData>();
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_BlockLight; Obj.direction = Direction.Down; Obj.posX = 72; Obj.posY = 88; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_BlockLight; Obj.direction = Direction.Down; Obj.posX = 88; Obj.posY = 72; room.objs.Add(Obj);}
@@ -5086,7 +5084,7 @@ namespace DungeonRun
 
 			{
 				RoomXmlData room = new RoomXmlData();
-				room.type = RoomID.Square; room.levelID = LevelID.Forest_Dungeon;
+				room.type = RoomID.Square;
 				room.objs = new List<ObjXmlData>();
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_PitBridge; Obj.direction = Direction.Down; Obj.posX = 8; Obj.posY = 8; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_PitBridge; Obj.direction = Direction.Down; Obj.posX = 168; Obj.posY = 8; room.objs.Add(Obj);}
@@ -5170,7 +5168,7 @@ namespace DungeonRun
 
 			{
 				RoomXmlData room = new RoomXmlData();
-				room.type = RoomID.Square; room.levelID = LevelID.Forest_Dungeon;
+				room.type = RoomID.Square;
 				room.objs = new List<ObjXmlData>();
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_PitBridge; Obj.direction = Direction.Down; Obj.posX = 88; Obj.posY = 88; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_SpawnMob; Obj.direction = Direction.Down; Obj.posX = 8; Obj.posY = 8; room.objs.Add(Obj);}
@@ -5284,7 +5282,7 @@ namespace DungeonRun
 
 			{
 				RoomXmlData room = new RoomXmlData();
-				room.type = RoomID.Square; room.levelID = LevelID.Forest_Dungeon;
+				room.type = RoomID.Square;
 				room.objs = new List<ObjXmlData>();
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_ConveyorBeltOn; Obj.direction = Direction.Left; Obj.posX = 24; Obj.posY = 136; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_ConveyorBeltOn; Obj.direction = Direction.Left; Obj.posX = 24; Obj.posY = 40; room.objs.Add(Obj);}
@@ -5396,7 +5394,7 @@ namespace DungeonRun
 
 			{
 				RoomXmlData room = new RoomXmlData();
-				room.type = RoomID.Square; room.levelID = LevelID.Forest_Dungeon;
+				room.type = RoomID.Square;
 				room.objs = new List<ObjXmlData>();
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_SkullPillar; Obj.direction = Direction.Down; Obj.posX = 88; Obj.posY = 72; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Flowers; Obj.direction = Direction.Down; Obj.posX = 72; Obj.posY = 88; room.objs.Add(Obj);}
@@ -5436,7 +5434,7 @@ namespace DungeonRun
 
 			{
 				RoomXmlData room = new RoomXmlData();
-				room.type = RoomID.Square; room.levelID = LevelID.Forest_Dungeon;
+				room.type = RoomID.Square;
 				room.objs = new List<ObjXmlData>();
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Coastline_Corner_Exterior; Obj.direction = Direction.Down; Obj.posX = 8; Obj.posY = 8; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Coastline_Corner_Exterior; Obj.direction = Direction.Left; Obj.posX = 168; Obj.posY = 8; room.objs.Add(Obj);}
@@ -5550,7 +5548,7 @@ namespace DungeonRun
 
 			{
 				RoomXmlData room = new RoomXmlData();
-				room.type = RoomID.Square; room.levelID = LevelID.Forest_Dungeon;
+				room.type = RoomID.Square;
 				room.objs = new List<ObjXmlData>();
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Bumper; Obj.direction = Direction.Down; Obj.posX = 88; Obj.posY = 88; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_IceTile; Obj.direction = Direction.Down; Obj.posX = 168; Obj.posY = 24; room.objs.Add(Obj);}
@@ -5690,7 +5688,7 @@ namespace DungeonRun
 
 			{
 				RoomXmlData room = new RoomXmlData();
-				room.type = RoomID.Square; room.levelID = LevelID.Forest_Dungeon;
+				room.type = RoomID.Square;
 				room.objs = new List<ObjXmlData>();
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_PitTeethTop; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 24; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_PitTeethTop; Obj.direction = Direction.Down; Obj.posX = 152; Obj.posY = 24; room.objs.Add(Obj);}
@@ -5801,7 +5799,7 @@ namespace DungeonRun
 
 			{
 				RoomXmlData room = new RoomXmlData();
-				room.type = RoomID.Square; room.levelID = LevelID.Forest_Dungeon;
+				room.type = RoomID.Square;
 				room.objs = new List<ObjXmlData>();
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Barrel; Obj.direction = Direction.Down; Obj.posX = 88; Obj.posY = 24; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Barrel; Obj.direction = Direction.Down; Obj.posX = 88; Obj.posY = 152; room.objs.Add(Obj);}
@@ -5862,9 +5860,8 @@ namespace DungeonRun
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_BlockDark; Obj.direction = Direction.Down; Obj.posX = 24; Obj.posY = 120; room.objs.Add(Obj);}
 				 squareRooms.Add(room);
 			}
-            #endregion
+			#endregion
 
-
-        }
-    }
+		}
+	}
 }

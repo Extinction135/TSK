@@ -132,7 +132,22 @@ namespace DungeonRun
     public enum RoomID
     {
         //these DUNGEON rooms have procedural objs added to them
-        Exit, Hub, Boss, Key,
+        Exit,
+        Key,
+
+        //Hub,
+        //Boss,
+        
+
+        ForestIsland_BossRoom,
+        DeathMountain_BossRoom,
+        SwampIsland_BossRoom,
+
+        ForestIsland_HubRoom,
+        DeathMountain_HubRoom,
+        SwampIsland_HubRoom,
+
+
 
         //these DUNGEON rooms are mostly non-procedural and handmade
         Column, Row, Square, Secret,
@@ -150,6 +165,9 @@ namespace DungeonRun
 
         //forest island
         ForestIsland_MainEntrance,
+
+        //forest island
+        LavaIsland_MainEntrance,
 
 
 

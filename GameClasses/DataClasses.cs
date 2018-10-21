@@ -20,7 +20,7 @@ namespace DungeonRun
         public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.77f; //the version of the game
-        public static BootRoutine bootRoutine = BootRoutine.Editor_Map; //boot to game or editor?
+        public static BootRoutine bootRoutine = BootRoutine.Editor_Room; //boot to game or editor?
 
         //dev flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
@@ -287,7 +287,6 @@ namespace DungeonRun
     public class RoomXmlData
     {
         public RoomID type = RoomID.Row;
-        public LevelID levelID = LevelID.Forest_Dungeon;
         public List<ObjXmlData> objs = new List<ObjXmlData>();
     }
 

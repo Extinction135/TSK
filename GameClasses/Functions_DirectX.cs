@@ -108,8 +108,7 @@ namespace DungeonRun
 
 
 
-
-            
+            //this will become roomdata per island/dungeon/theme later on
             List<RoomXmlData> roomData = new List<RoomXmlData>();
             
 
@@ -134,13 +133,21 @@ namespace DungeonRun
 
 
                     //dungeon room data
-                    if (RoomData.type == RoomID.Boss ||
+                    if (
                        RoomData.type == RoomID.Column ||
                        RoomData.type == RoomID.Exit ||
-                       RoomData.type == RoomID.Hub ||
                        RoomData.type == RoomID.Key ||
                        RoomData.type == RoomID.Row ||
-                       RoomData.type == RoomID.Square)
+                       RoomData.type == RoomID.Square ||
+
+                       RoomData.type == RoomID.ForestIsland_BossRoom ||
+                       RoomData.type == RoomID.DeathMountain_BossRoom ||
+                       RoomData.type == RoomID.SwampIsland_BossRoom ||
+
+                       RoomData.type == RoomID.ForestIsland_HubRoom ||
+                       RoomData.type == RoomID.DeathMountain_HubRoom ||
+                       RoomData.type == RoomID.SwampIsland_HubRoom
+                       )
                     {
                         roomData.Add(RoomData);
                     }
@@ -171,7 +178,13 @@ namespace DungeonRun
                         ForestIsland_Data.Add(RoomData);
                     }
 
-
+                    //lava island
+                    else if (RoomData.type == RoomID.LavaIsland_MainEntrance
+                        )
+                    {
+                        LavaIsland_Data.Add(RoomData);
+                    }
+                    
 
 
 
@@ -182,7 +195,6 @@ namespace DungeonRun
                         ThievesHideout_Data.Add(RoomData);
                         HauntedSwamps_Data.Add(RoomData);
                         CloudIsland_Data.Add(RoomData);
-                        LavaIsland_Data.Add(RoomData);
                     }
 
 
@@ -279,9 +291,8 @@ namespace DungeonRun
                     csOutput += "\t\t\t{\n";
 
                     csOutput += "\t\t\t\tRoomXmlData room = new RoomXmlData();\n";
-                    csOutput += "\t\t\t\t"; //save both room and level ID enums
-                    csOutput += "room.type = RoomID." + roomData[i].type + "; ";
-                    csOutput += "room.levelID = LevelID." + roomData[i].levelID + ";\n";
+                    csOutput += "\t\t\t\t"; //transfer (preserve) RoomID - set this by hand in XML
+                    csOutput += "room.type = RoomID." + roomData[i].type + ";\n";
 
                     csOutput += "\t\t\t\troom.objs = new List<ObjXmlData>();\n";
                     for (int g = 0; g < roomData[i].objs.Count(); g++)
@@ -296,15 +307,23 @@ namespace DungeonRun
                         csOutput += "}\n";
                     }
 
-                    if (roomData[i].type == RoomID.Boss)
+                    if (
+                        roomData[i].type == RoomID.ForestIsland_BossRoom ||
+                        roomData[i].type == RoomID.DeathMountain_BossRoom ||
+                        roomData[i].type == RoomID.SwampIsland_BossRoom
+                        )
                     { csOutput += "\t\t\t\t bossRooms.Add(room);\n"; }
+                    else if (
+                        roomData[i].type == RoomID.ForestIsland_HubRoom ||
+                        roomData[i].type == RoomID.DeathMountain_HubRoom ||
+                        roomData[i].type == RoomID.SwampIsland_HubRoom
+                        )
+                    { csOutput += "\t\t\t\t hubRooms.Add(room);\n"; }
+
                     else if (roomData[i].type == RoomID.Column)
                     { csOutput += "\t\t\t\t columnRooms.Add(room);\n"; }
                     else if (roomData[i].type == RoomID.Exit)
                     { csOutput += "\t\t\t\t exitRooms.Add(room);\n"; }
-                    else if (roomData[i].type == RoomID.Hub)
-                    { csOutput += "\t\t\t\t hubRooms.Add(room);\n"; }
-
                     else if (roomData[i].type == RoomID.Key)
                     { csOutput += "\t\t\t\t keyRooms.Add(room);\n"; }
                     else if (roomData[i].type == RoomID.Row)

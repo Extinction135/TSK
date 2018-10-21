@@ -242,10 +242,10 @@ namespace DungeonRun
             RoomID id = LevelSet.currentLevel.currentRoom.roomID; //shorten roomID
             
             //convert DEV room types into proper GAME room types
-            if (id == RoomID.DEV_Boss) { roomData.type = RoomID.Boss; }
+            if (id == RoomID.DEV_Boss) { roomData.type = RoomID.ForestIsland_BossRoom; }
             else if (id == RoomID.DEV_Column) { roomData.type = RoomID.Column; }
             else if (id == RoomID.DEV_Exit) { roomData.type = RoomID.Exit; }
-            else if (id == RoomID.DEV_Hub) { roomData.type = RoomID.Hub; }
+            else if (id == RoomID.DEV_Hub) { roomData.type = RoomID.ForestIsland_HubRoom; }
             else if (id == RoomID.DEV_Key) { roomData.type = RoomID.Key; }
             else if (id == RoomID.DEV_Row) { roomData.type = RoomID.Row; }
             else if (id == RoomID.DEV_Square) { roomData.type = RoomID.Square; }
@@ -255,7 +255,7 @@ namespace DungeonRun
             }
 
             //transfer the levelID
-            roomData.levelID = LevelSet.currentLevel.currentRoom.levelID;
+            //roomData.levelID = LevelSet.currentLevel.currentRoom.levelID;
 
             //populate roomData with roomObjs
             for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
@@ -296,8 +296,8 @@ namespace DungeonRun
                 LevelSet.currentLevel.bigKey = false;
                 LevelSet.currentLevel.map = false;
 
+                //constructor takes TYPE - transforms into RoomID
                 Room room = new Room(Functions_Level.buildPosition, RoomXmlData.type);
-                room.levelID = RoomXmlData.levelID; //transfer levelID to room
 
                 LevelSet.currentLevel.rooms.Add(room);
                 LevelSet.currentLevel.currentRoom = room;

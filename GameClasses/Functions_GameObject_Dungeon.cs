@@ -346,7 +346,11 @@ namespace DungeonRun
 
         public static void DropMap(float X, float Y)
         {   //a map drop only comes from a miniboss death in a hub room
-            if (LevelSet.currentLevel.currentRoom.roomID == RoomID.Hub)
+            if (
+                LevelSet.currentLevel.currentRoom.roomID == RoomID.ForestIsland_HubRoom ||
+                LevelSet.currentLevel.currentRoom.roomID == RoomID.DeathMountain_HubRoom ||
+                LevelSet.currentLevel.currentRoom.roomID == RoomID.SwampIsland_HubRoom
+                )
             {   //a map will only spawn if hero doesn't have the map
                 if (LevelSet.currentLevel.map == false)
                 {

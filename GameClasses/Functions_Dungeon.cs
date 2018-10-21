@@ -170,9 +170,18 @@ namespace DungeonRun
                 //default dungeon floors to normal sprite
                 Pool.floorPool[i].currentFrame = AnimationFrames.Dungeon_FloorNormal[0];
                 //based on type, change the default floor sprite to special or boss
-                if (Room.roomID == RoomID.Hub || Room.roomID == RoomID.Key)
+                if (
+                    Room.roomID == RoomID.Key ||
+                    Room.roomID == RoomID.ForestIsland_HubRoom ||
+                    Room.roomID == RoomID.DeathMountain_HubRoom ||
+                    Room.roomID == RoomID.SwampIsland_HubRoom
+                    )
                 { Pool.floorPool[i].currentFrame = AnimationFrames.Dungeon_FloorSpecial[0]; }
-                else if (Room.roomID == RoomID.Boss)
+                else if (
+                    Room.roomID == RoomID.ForestIsland_BossRoom ||
+                    Room.roomID == RoomID.DeathMountain_BossRoom ||
+                    Room.roomID == RoomID.SwampIsland_BossRoom
+                    )
                 { Pool.floorPool[i].currentFrame = AnimationFrames.Dungeon_FloorBoss[0]; }
             }
         }
@@ -212,7 +221,10 @@ namespace DungeonRun
                                 }
 
                                 //finally, override door types based on specific room.type
-                                if (Room.roomID == RoomID.Boss)
+                                if (Room.roomID == RoomID.ForestIsland_BossRoom ||
+                                    Room.roomID == RoomID.DeathMountain_BossRoom ||
+                                    Room.roomID == RoomID.SwampIsland_BossRoom
+                                    )
                                 {   
                                     //all doors inside boss room are trap doors (push hero + close)
                                     Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_DoorTrap);
@@ -303,7 +315,11 @@ namespace DungeonRun
                 AddCrackedWalls(Room);
                 ScatterDebris(Room);
             }
-            else if (Room.roomID == RoomID.Hub)
+            else if (
+                Room.roomID == RoomID.ForestIsland_HubRoom ||
+                Room.roomID == RoomID.DeathMountain_HubRoom ||
+                Room.roomID == RoomID.SwampIsland_HubRoom
+                )
             {
                 FinishHubRoom(Room);
                 //dont add wall statues, cause they damage miniboss
@@ -311,7 +327,11 @@ namespace DungeonRun
                 AddCrackedWalls(Room);
                 ScatterDebris(Room);
             }
-            else if (Room.roomID == RoomID.Boss)
+            else if (
+                Room.roomID == RoomID.ForestIsland_BossRoom ||
+                Room.roomID == RoomID.DeathMountain_BossRoom ||
+                Room.roomID == RoomID.SwampIsland_BossRoom
+                )
             {
                 ShutDoors(Room);
                 FinishBossRoom(Room);
@@ -709,7 +729,17 @@ namespace DungeonRun
 
             //create hub north of last room
             lastRoom = LevelSet.currentLevel.rooms.Count() - 1;
-            Room hubRoom = new Room(new Point(0, 0), RoomID.Hub);
+            RoomID hubType = RoomID.ForestIsland_HubRoom;
+            //set hubType based on dungeon type
+            if (LevelSet.currentLevel.ID == LevelID.Forest_Dungeon)
+            { hubType = RoomID.ForestIsland_HubRoom; } //ocd
+            else if (LevelSet.currentLevel.ID == LevelID.Mountain_Dungeon)
+            { hubType = RoomID.DeathMountain_HubRoom; }
+            else if (LevelSet.currentLevel.ID == LevelID.Swamp_Dungeon)
+            { hubType = RoomID.SwampIsland_HubRoom; }
+
+            //create and move hub room
+            Room hubRoom = new Room(new Point(0, 0), hubType);
             Functions_Room.MoveRoom(hubRoom,
                 LevelSet.currentLevel.rooms[lastRoom].rec.X,
                 LevelSet.currentLevel.rooms[lastRoom].rec.Y - (16 * hubRoom.size.Y) - 16);
@@ -733,7 +763,18 @@ namespace DungeonRun
 
             //place boss north of last room added
             lastRoom = LevelSet.currentLevel.rooms.Count() - 1;
-            Room bossRoom = new Room(new Point(0, 0), RoomID.Boss);
+
+            RoomID bossID = RoomID.ForestIsland_BossRoom;
+            //determine what boss room to load based on current level id
+            if (LevelSet.currentLevel.ID == LevelID.Forest_Dungeon)
+            { bossID = RoomID.ForestIsland_BossRoom; }
+            else if (LevelSet.currentLevel.ID == LevelID.Mountain_Dungeon)
+            { bossID = RoomID.DeathMountain_BossRoom; }
+            else if (LevelSet.currentLevel.ID == LevelID.Swamp_Dungeon)
+            { bossID = RoomID.SwampIsland_BossRoom; }
+
+            //create and move boss room
+            Room bossRoom = new Room(new Point(0, 0), bossID);
             Functions_Room.MoveRoom(bossRoom,
                 LevelSet.currentLevel.rooms[lastRoom].rec.X,
                 LevelSet.currentLevel.rooms[lastRoom].rec.Y - (16 * bossRoom.size.Y) - 16);
@@ -843,7 +884,19 @@ namespace DungeonRun
                 {
                     connectRooms = true;
                     //only the boss room can connect to the hub room
-                    if (buildList[0].roomID == RoomID.Boss && buildList[b].roomID != RoomID.Hub)
+                    if (
+                        (
+                        buildList[0].roomID == RoomID.ForestIsland_BossRoom ||
+                        buildList[0].roomID == RoomID.DeathMountain_BossRoom ||
+                        buildList[0].roomID == RoomID.SwampIsland_BossRoom
+                        )
+                        & 
+                        (
+                        buildList[b].roomID != RoomID.ForestIsland_HubRoom ||
+                        buildList[b].roomID != RoomID.DeathMountain_HubRoom ||
+                        buildList[b].roomID != RoomID.SwampIsland_HubRoom
+                        )
+                       )
                     { connectRooms = false; }
 
                     if (connectRooms)
@@ -887,12 +940,14 @@ namespace DungeonRun
                 //this allows the room to build with the same roomData each time hero enters it
                 //but this can also build the same room multiple times in a dungeon
 
-                if (LevelSet.currentLevel.rooms[b].roomID == RoomID.Boss)
-                { LevelSet.currentLevel.rooms[b].dataIndex = Functions_Random.Int(0, RoomData.bossRooms.Count); }
-                else if (LevelSet.currentLevel.rooms[b].roomID == RoomID.Column)
+                //if (LevelSet.currentLevel.rooms[b].roomID == RoomID.Boss)
+                //{ LevelSet.currentLevel.rooms[b].dataIndex = Functions_Random.Int(0, RoomData.bossRooms.Count); }
+                //else if (LevelSet.currentLevel.rooms[b].roomID == RoomID.Hub)
+                //{ LevelSet.currentLevel.rooms[b].dataIndex = Functions_Random.Int(0, RoomData.hubRooms.Count); }
+
+
+                if (LevelSet.currentLevel.rooms[b].roomID == RoomID.Column)
                 { LevelSet.currentLevel.rooms[b].dataIndex = Functions_Random.Int(0, RoomData.columnRooms.Count); }
-                else if (LevelSet.currentLevel.rooms[b].roomID == RoomID.Hub)
-                { LevelSet.currentLevel.rooms[b].dataIndex = Functions_Random.Int(0, RoomData.hubRooms.Count); }
                 else if (LevelSet.currentLevel.rooms[b].roomID == RoomID.Key)
                 { LevelSet.currentLevel.rooms[b].dataIndex = Functions_Random.Int(0, RoomData.keyRooms.Count); }
                 else if (LevelSet.currentLevel.rooms[b].roomID == RoomID.Row)

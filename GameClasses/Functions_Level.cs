@@ -204,6 +204,21 @@ namespace DungeonRun
 
 
 
+            #region Lava Island
+
+            else if (LevelSet.currentLevel.ID == LevelID.LavaIsland_MainEntrance)
+            {
+                Functions_Music.PlayMusic(Music.LightWorld);
+                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.LavaIsland_MainEntrance);
+                LevelSet.currentLevel.rooms.Add(field);
+            }
+
+            #endregion
+
+
+
+
+
 
             #endregion
 
@@ -399,8 +414,16 @@ namespace DungeonRun
             //randomly convert some open doors to bombable doors
             if (Functions_Random.Int(0, 101) > 70) { door.type = DoorType.Bombable; }
             //convert doors based on parent and child room types
-            if (Parent.roomID == RoomID.Boss) { door.type = DoorType.Boss; }
-            else if (Child.roomID == RoomID.Boss) { door.type = DoorType.Boss; }
+            if (Parent.roomID == RoomID.ForestIsland_BossRoom ||
+                Parent.roomID == RoomID.DeathMountain_BossRoom ||
+                Parent.roomID == RoomID.SwampIsland_BossRoom)
+            { door.type = DoorType.Boss; }
+            else if (
+                Child.roomID == RoomID.ForestIsland_BossRoom ||
+                Child.roomID == RoomID.DeathMountain_BossRoom ||
+                Child.roomID == RoomID.SwampIsland_BossRoom)
+            { door.type = DoorType.Boss; }
+
             if (Parent.roomID == RoomID.Secret) { door.type = DoorType.Bombable; }
             else if (Child.roomID == RoomID.Secret) { door.type = DoorType.Bombable; }
 
@@ -475,7 +498,10 @@ namespace DungeonRun
             for (int i = 0; i < coreRoomCount; i++)
             {
                 if (LevelSet.currentLevel.rooms[i].roomID == RoomID.Exit) { }
-                else if (LevelSet.currentLevel.rooms[i].roomID == RoomID.Boss) { }
+                else if (LevelSet.currentLevel.rooms[i].roomID == RoomID.ForestIsland_BossRoom ||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.DeathMountain_BossRoom ||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.SwampIsland_BossRoom)
+                { } //only one entrance to boss rooms
                 else if (LevelSet.currentLevel.rooms[i].roomID == RoomID.Key) { }
                 else
                 {
@@ -491,9 +517,15 @@ namespace DungeonRun
             for (int i = 0; i < coreRoomCount; i++)
             {
                 if (LevelSet.currentLevel.rooms[i].roomID == RoomID.Exit) { }
-                else if (LevelSet.currentLevel.rooms[i].roomID == RoomID.Boss) { }
+                else if (LevelSet.currentLevel.rooms[i].roomID == RoomID.ForestIsland_BossRoom ||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.DeathMountain_BossRoom ||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.SwampIsland_BossRoom)
+                { }
                 else if (LevelSet.currentLevel.rooms[i].roomID == RoomID.Secret) { }
-                else if (LevelSet.currentLevel.rooms[i].roomID == RoomID.Hub) { }
+                else if (LevelSet.currentLevel.rooms[i].roomID == RoomID.ForestIsland_HubRoom ||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.DeathMountain_HubRoom ||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.SwampIsland_HubRoom)
+                { }
                 else
                 {
                     Room room = new Room(new Point(0, 0), RoomID.Secret);

@@ -106,9 +106,20 @@ namespace DungeonRun
                     iconPos = new Vector2( //the center of the current mapRoom
                         mapRoom.rec.X + (mapRoom.rec.Width / 2) - 1,
                         mapRoom.rec.Y + (mapRoom.rec.Height / 2) - 7);
-                    if (dungeonRoom.roomID == RoomID.Boss) { bossIcon.position = iconPos; }
+                    if (
+                        dungeonRoom.roomID == RoomID.ForestIsland_BossRoom ||
+                        dungeonRoom.roomID == RoomID.DeathMountain_BossRoom ||
+                        dungeonRoom.roomID == RoomID.SwampIsland_BossRoom
+                        )
+                    { bossIcon.position = iconPos; }
+                    else if (
+                        dungeonRoom.roomID == RoomID.ForestIsland_HubRoom ||
+                        dungeonRoom.roomID == RoomID.DeathMountain_HubRoom ||
+                        dungeonRoom.roomID == RoomID.SwampIsland_HubRoom
+                        )
+                    { hubIcon.position = iconPos; }
+
                     else if (dungeonRoom.roomID == RoomID.Key) { keyIcon.position = iconPos; }
-                    else if (dungeonRoom.roomID == RoomID.Hub) { hubIcon.position = iconPos; }
                     else if (dungeonRoom.roomID == RoomID.Exit) { exitIcon.position = iconPos; }
                 }
             }

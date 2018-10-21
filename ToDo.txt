@@ -60,17 +60,54 @@ Today:
 
 
 
-forest path
 
 
 
 
-Overworld++
+LavaIsland++
 
-added lava main path.
-connected forest main path to lava main path.
-so, that's the first loop implemented in the
-overworld map.
+implemented lava dungeon entrance level, which for
+now is just a copy of death mtn entrance level, since
+the game has neither a lava themed dungeon or entrance
+level / object. sent thru obj to xml to cs pipeline.
+working. save method from editor adds ForestDungeon
+levelID to file. is this needed in current pipeline?
+
+Refactoring++
+
+it's not needed for FIELDS, but it was planned for DUNGEONS.
+however, we can are theme-ing dungeon rooms differently now,
+so I'm just going to remove this piece of level data.
+
+done, but this affects how hub and boss rooms are loaded
+in the dungeon, and to keep the dungeon working I need to
+update how this is handled.
+
+this involves removing the generic Hub and Boss enums from
+RoomID and replacing them with island specific values, which
+then need to be propagated to the XML, then passed thru the
+level compilation pipeline to c# code. no problemo.
+
+XML roomdata has been cleaned up manually, all instances of
+LeveID have been removed. updated Functions_Room.BuildRoom()
+to load proper hub and boss roomData based on RoomID, instead
+of the confusing double enumerator design from before.
+
+Dungeons++(?)
+
+modified vast amounts of code to work with new Boss and Hub
+RoomIDs, likely breaking some dungeon generation algorithms.
+i'll fix this later, when the dungeon redesign comes down.
+i'm leaving this untested for now, but codebase doesn't have
+errors. so, i got that going for me. onto more locations
+and levels for the overworld map. eh, i tested the forest
+dungeon and it generated just fine. so, i feel better about
+this commit.
+
+also compiled all of roomData to cs, to test the lack of
+LevelID in roomData XML files. working fine.
+
+
 
 
 
@@ -91,8 +128,6 @@ map paths and basic levels for each island
 path to swamp ent (old)
 
 path to cloud entrance (blank) - only has 1 main path
-
-path to volcano entrance (blank) - from skull mtn
 
 path to thieves left secret watch tower entrance (blank) - very complicated
 
