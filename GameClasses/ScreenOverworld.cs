@@ -1382,7 +1382,7 @@ namespace DungeonRun
             ThievesDen_ExtLeftPath_2.neighborDown = ThievesDen_ExtLeftPath_2.neighborLeft = ThievesDen_ExtLeftPath_3;
             ThievesDen_ExtLeftPath_3.neighborDown = ThievesDen_ExtLeftPath_4;
             ThievesDen_ExtLeftPath_4.neighborDown = ThievesDen_ExtLeftPath_4.neighborLeft = ThievesDen_ExtLeftPath_5;
-            ThievesDen_ExtLeftPath_5.neighborDown = ThievesDen_ExtLeftPath_6;
+            ThievesDen_ExtLeftPath_5.neighborDown = ThievesDen_ExtLeftPath_5.neighborLeft = ThievesDen_ExtLeftPath_6;
             ThievesDen_ExtLeftPath_6.neighborDown = ThievesDen_ExtLeftPath_7;
             ThievesDen_ExtLeftPath_7.neighborDown = ThievesDen_ExtBottomPath_3;
 
@@ -1391,7 +1391,7 @@ namespace DungeonRun
             ThievesDen_ExtLeftPath_3.neighborUp = ThievesDen_ExtLeftPath_3.neighborRight = ThievesDen_ExtLeftPath_2;
             ThievesDen_ExtLeftPath_4.neighborUp = ThievesDen_ExtLeftPath_3;
             ThievesDen_ExtLeftPath_5.neighborUp = ThievesDen_ExtLeftPath_5.neighborRight = ThievesDen_ExtLeftPath_4;
-            ThievesDen_ExtLeftPath_6.neighborUp = ThievesDen_ExtLeftPath_5;
+            ThievesDen_ExtLeftPath_6.neighborUp = ThievesDen_ExtLeftPath_6.neighborRight = ThievesDen_ExtLeftPath_5;
             ThievesDen_ExtLeftPath_7.neighborUp = ThievesDen_ExtLeftPath_6;
             ThievesDen_ExtBottomPath_3.neighborUp = ThievesDen_ExtLeftPath_7;
 
@@ -1500,6 +1500,9 @@ namespace DungeonRun
 
 
 
+
+
+
             #region Giant Hole in the Sea Connections
 
             Sea_GiantHole.neighborDown = ThievesDen_ExtBottomPath_20;
@@ -1513,8 +1516,29 @@ namespace DungeonRun
             #endregion
 
 
+            #region Forest Path Connecting Right to Thieves Den Path on Left
 
+            //shortcut path from right of forest castle right to td watchtower
+            MapLocation ForestIsland_To_ThievesDenLeft_1 = new MapLocation(false, new Vector2(928, 660), "ForestIsland_To_ThievesDenLeft_1");
+            locations.Add(ForestIsland_To_ThievesDenLeft_1);
+            MapLocation ForestIsland_To_ThievesDenLeft_2 = new MapLocation(false, new Vector2(976, 658), "ForestIsland_To_ThievesDenLeft_2");
+            locations.Add(ForestIsland_To_ThievesDenLeft_2);
+            MapLocation ForestIsland_To_ThievesDenLeft_3 = new MapLocation(false, new Vector2(1021, 665), "ForestIsland_To_ThievesDenLeft_3");
+            locations.Add(ForestIsland_To_ThievesDenLeft_3);
 
+            //neighbors right
+            ForestIsland_MainPath_4.neighborRight = ForestIsland_To_ThievesDenLeft_1;
+            ForestIsland_To_ThievesDenLeft_1.neighborRight = ForestIsland_To_ThievesDenLeft_2;
+            ForestIsland_To_ThievesDenLeft_2.neighborRight = ForestIsland_To_ThievesDenLeft_3;
+            ForestIsland_To_ThievesDenLeft_3.neighborRight = ThievesDen_ExtLeftPath_6;
+
+            //neighbors left
+            ThievesDen_ExtLeftPath_6.neighborLeft = ForestIsland_To_ThievesDenLeft_3;
+            ForestIsland_To_ThievesDenLeft_3.neighborLeft = ForestIsland_To_ThievesDenLeft_2;
+            ForestIsland_To_ThievesDenLeft_2.neighborLeft = ForestIsland_To_ThievesDenLeft_1;
+            ForestIsland_To_ThievesDenLeft_1.neighborLeft = ForestIsland_MainPath_4;
+
+            #endregion
 
 
 

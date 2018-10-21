@@ -59,15 +59,9 @@ Today:
 
 
 
-
-
-
-Overworld++
-
-added thieves den right exterior path, and
-giant hole in the sea location. disabled this
-as a level for now, since it's beyond the scope
-of these series of commits towards 0.77.
+added shortcut path between forest main path and
+thieves den exterior left path. tested, working.
+polished existing pathing.
 
 
 
@@ -76,8 +70,6 @@ of these series of commits towards 0.77.
 
 
 
-
-locations++
 
 
 
@@ -89,9 +81,6 @@ more locations
 * lava to cloud loop
 * plateau island main path
 * various lava locations and levels
-
-
-
 
 
 
