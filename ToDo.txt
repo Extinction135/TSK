@@ -63,12 +63,13 @@ Today:
 
 
 
+Overworld++
 
-ThievesDen++
+fixed a visual bug where the camera would sometimes
+'fly-in' based on where it was on the last loaded
+level or dungeon.
 
-implemented thieves den exterior southern path.
-added thieves den gate entrance to level data,
-built thieves den into leveldata pipeline, tested.
+
 
 
 
@@ -120,6 +121,7 @@ more locations
 
 
 
+//teleport camera to hero upon overworld screen OPNE()
 
 
 

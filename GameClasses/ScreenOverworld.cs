@@ -1200,7 +1200,6 @@ namespace DungeonRun
             #endregion
 
 
-
             #region Theives Den - Bottom Path
 
             //ThievesDen_GateEntrance
@@ -1432,6 +1431,11 @@ namespace DungeonRun
             if (Pool.hero.health < 3) { Pool.hero.health = 3; }
             Functions_Actor.Update(Pool.hero);
 
+            //teleport camera to hero's position - no fly in
+            Camera2D.targetPosition.X = Pool.hero.compSprite.position.X;
+            Camera2D.targetPosition.Y = Pool.hero.compSprite.position.Y;
+            Camera2D.currentPosition = Camera2D.targetPosition;
+            Functions_Camera2D.SetView();
 
             base.Open();
             Functions_Pool.Reset();
