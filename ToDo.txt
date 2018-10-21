@@ -55,6 +55,10 @@ seperating collisions + interactions
 
 
 
+
+
+
+
 Today:
 
 
@@ -63,26 +67,13 @@ Today:
 
 
 
-Overworld++
 
-fix bkg color to match clouds.
-this involves modifying color scheme in assets
-we'll need a separate color for overworld bkg.
-then a color for level bkg, and dungeon bkg.
+UI Color - Round 1
 
-ColorScheme Refactor
-
-color scheme is becoming global, as there is only one color scheme.
-done, touched a variety of classes that referenced the instanced
-color scheme in assets.cs. simplified the handling of overworld,
-level, and dungeon room color schemes.
-
-Overworld++
-
-added test particles into overworld: flag and campfire.
-more polish on location neighbor connections. i'm essentially
-updating some overworld locations to accept diagonal input,
-so players can move easier between locations.
+updated global color scheme's ui colors,
+based on pallette defined from overworld dev.
+update the scroll sprite as well.
+updated HUB sprites as well.
 
 
 
@@ -90,13 +81,15 @@ so players can move easier between locations.
 
 
 
+center highlite on map scroll, since lighting isnt
+consistently from the top left.
 
 
 
 
 
 
-more locations:
+more overworld locations TODO:
 
 skull island sub path (2)
 952.567 -> up neigh = skull island bottom row 4
@@ -180,6 +173,13 @@ lava cave 3 path (2)
 lava to cloud connection (5)
 
 
+
+
+
+
+SWAMP LOCATIONS+++
+DEATH MOUNTAIN LOCATIONS+++
+THIEVES DEN LOCATIONS+++
 
 
 

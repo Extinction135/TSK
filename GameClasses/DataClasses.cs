@@ -135,17 +135,19 @@ namespace DungeonRun
         //covers the screen, fading in/out (usually black)
         public static Color overlay = new Color(0, 0, 0, 255);
 
-        public static Color windowBkg = new Color(0, 0, 0);
-        public static Color windowBorder = new Color(210, 210, 210);
-        public static Color windowInset = new Color(130, 130, 130);
-        public static Color windowInterior = new Color(156, 156, 156);
+        public static Color windowBkg = new Color(44, 38, 25); //0.0.0.
+        public static Color windowBorder = new Color(236, 224, 198); //250?
+        public static Color windowInset = new Color(166, 143, 104); //130
+        public static Color windowInterior = new Color(188, 176, 151); //156
 
         public static Color textLight = new Color(255, 255, 255);
         public static Color textDark = new Color(0, 0, 0);
 
-        public static Color mapNotVisited = new Color(130, 130, 130);
-        public static Color mapVisited = new Color(70, 70, 70);
-        public static Color mapBlinker = new Color(255, 255, 255);
+        public static Color mapNotVisited = new Color(118, 102, 62);
+        public static Color mapVisited = new Color(69, 58, 31);
+        public static Color mapBlinker = new Color(236, 224, 198);
+        //map bkg?
+
 
         //editor colors - dont touch
         public static Color debugBkg = new Color(20, 20, 20, 255);
