@@ -826,7 +826,7 @@ namespace DungeonRun
             ForestIsland_MainPath_20.neighborLeft = ForestIsland_MainPath_21;
             ForestIsland_MainPath_21.neighborUp = ForestIsland_MainPath_22;
             ForestIsland_MainPath_22.neighborUp = ForestIsland_MainPath_23;
-            ForestIsland_MainPath_23.neighborUp = ForestIsland_MainPath_24;
+            ForestIsland_MainPath_23.neighborUp = ForestIsland_MainPath_23.neighborLeft = ForestIsland_MainPath_24;
             ForestIsland_MainPath_24.neighborUp = ForestIsland_MainPath_25;
 
             ForestIsland_MainPath_25.neighborLeft = ForestIsland_MainPath_25.neighborUp = ForestIsland_MainPath_26;
@@ -859,7 +859,7 @@ namespace DungeonRun
             ForestIsland_MainPath_21.neighborRight = ForestIsland_MainPath_20;
             ForestIsland_MainPath_22.neighborDown = ForestIsland_MainPath_21;
             ForestIsland_MainPath_23.neighborDown = ForestIsland_MainPath_22;
-            ForestIsland_MainPath_24.neighborDown = ForestIsland_MainPath_23;
+            ForestIsland_MainPath_24.neighborDown = ForestIsland_MainPath_24.neighborRight = ForestIsland_MainPath_23;
             ForestIsland_MainPath_25.neighborDown = ForestIsland_MainPath_24;
 
             ForestIsland_MainPath_26.neighborDown = ForestIsland_MainPath_26.neighborRight = ForestIsland_MainPath_25;
@@ -1643,14 +1643,18 @@ namespace DungeonRun
             Functions_Pool.Reset();
 
             
+            //particle testing
             //spawn campfire
-            //Functions_Particle.Spawn(ObjType.Particle_Map_Campfire, 505, 257); //tent town
+            Functions_Particle.Spawn(ObjType.Particle_Map_Campfire, 987, 483); //test
             //spawn flags
-            //Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 334 + 8, 97 + 6); //old town
+            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 987, 483); //test
             
 
+
+
+
             Functions_Music.PlayMusic(Music.Title); //play overworld music
-            Assets.colorScheme.background = Assets.colorScheme.bkg_lightWorld;
+            ColorScheme.background = ColorScheme.bkg_overworld;
         }
 
     }

@@ -57,7 +57,7 @@ namespace DungeonRun
             {
                 labels.Add(new ComponentText(Assets.font,
                   "...\n...", new Vector2(-100, -100),
-                  Assets.colorScheme.textDark));
+                  ColorScheme.textDark));
             }
 
             //create menuitems

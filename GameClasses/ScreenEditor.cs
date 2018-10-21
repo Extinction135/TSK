@@ -114,12 +114,12 @@ namespace DungeonRun
                 if (Flags.DrawCollisions)
                 {
                     Flags.DrawCollisions = false;
-                    TopDebugMenu.buttons[1].currentColor = Assets.colorScheme.buttonUp;
+                    TopDebugMenu.buttons[1].currentColor = ColorScheme.buttonUp;
                 }
                 else
                 {
                     Flags.DrawCollisions = true;
-                    TopDebugMenu.buttons[1].currentColor = Assets.colorScheme.buttonDown;
+                    TopDebugMenu.buttons[1].currentColor = ColorScheme.buttonDown;
                 }
             }
 
@@ -133,12 +133,12 @@ namespace DungeonRun
                 if (Flags.EnableDebugInfo)
                 {
                     Flags.EnableDebugInfo = false;
-                    TopDebugMenu.buttons[2].currentColor = Assets.colorScheme.buttonUp;
+                    TopDebugMenu.buttons[2].currentColor = ColorScheme.buttonUp;
                 }
                 else
                 {
                     Flags.EnableDebugInfo = true;
-                    TopDebugMenu.buttons[2].currentColor = Assets.colorScheme.buttonDown;
+                    TopDebugMenu.buttons[2].currentColor = ColorScheme.buttonDown;
                 }
             }
 
@@ -166,7 +166,7 @@ namespace DungeonRun
 
             else if (Functions_Input.IsNewKeyPress(Keys.F4))
             {
-                TopDebugMenu.buttons[4].currentColor = Assets.colorScheme.buttonDown;
+                TopDebugMenu.buttons[4].currentColor = ColorScheme.buttonDown;
                 Functions_Backend.ConvertXMLtoCS();
             }
 
@@ -180,12 +180,12 @@ namespace DungeonRun
                 if (Flags.Paused)
                 {
                     Flags.Paused = false;
-                    TopDebugMenu.buttons[5].currentColor = Assets.colorScheme.buttonUp;
+                    TopDebugMenu.buttons[5].currentColor = ColorScheme.buttonUp;
                 }
                 else
                 {
                     Flags.Paused = true;
-                    TopDebugMenu.buttons[5].currentColor = Assets.colorScheme.buttonDown;
+                    TopDebugMenu.buttons[5].currentColor = ColorScheme.buttonDown;
                 }
             }
 
@@ -199,12 +199,12 @@ namespace DungeonRun
                 if (Flags.IgnoreWaterTiles)
                 {
                     Flags.IgnoreWaterTiles = false;
-                    TopDebugMenu.buttons[6].currentColor = Assets.colorScheme.buttonUp;
+                    TopDebugMenu.buttons[6].currentColor = ColorScheme.buttonUp;
                 }
                 else
                 {
                     Flags.IgnoreWaterTiles = true;
-                    TopDebugMenu.buttons[6].currentColor = Assets.colorScheme.buttonDown;
+                    TopDebugMenu.buttons[6].currentColor = ColorScheme.buttonDown;
                 }
             }
 
@@ -250,7 +250,7 @@ namespace DungeonRun
                 ScreenManager.spriteBatch.Draw(
                     Assets.dummyTexture,
                     TopDebugMenu.rec,
-                    Assets.colorScheme.debugBkg);
+                    ColorScheme.debugBkg);
                 //loop draw all the buttons
                 for (TopDebugMenu.counter = 0;
                     TopDebugMenu.counter < TopDebugMenu.buttons.Count;

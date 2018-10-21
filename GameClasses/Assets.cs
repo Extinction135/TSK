@@ -23,9 +23,6 @@ namespace DungeonRun
         public static SpriteFont font;
         public static SpriteFont medFont;
 
-        //the color scheme for the game
-        public static ColorScheme colorScheme;
-
         //actor sheets
         public static Texture2D heroSheet;
         public static Texture2D blobSheet;
@@ -191,7 +188,6 @@ namespace DungeonRun
         public static void Load(GraphicsDevice GraphicsDevice, ContentManager ContentManager)
         {
             content = ContentManager;
-            colorScheme = new ColorScheme();
             dummyTexture = new Texture2D(GraphicsDevice, 1, 1);
             dummyTexture.SetData(new Color[] { Color.White });
 

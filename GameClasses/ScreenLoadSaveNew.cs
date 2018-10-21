@@ -74,7 +74,7 @@ namespace DungeonRun
             arrow.rotation = Rotation.Clockwise90;
             //create action text
             actionText = new ComponentText(Assets.font, "",
-                new Vector2(0, 0), Assets.colorScheme.textDark);
+                new Vector2(0, 0), ColorScheme.textDark);
 
 
             #region Create & set window and dividers
@@ -85,7 +85,7 @@ namespace DungeonRun
             for (i = 0; i < 5; i++)
             {
                 window.lines.Add(new MenuRectangle(new Point(0, 0),
-                    new Point(0, 0), Assets.colorScheme.windowInset));
+                    new Point(0, 0), ColorScheme.windowInset));
             }
             window.lines[2].position.Y = window.background.position.Y + 16 * 2;
             window.lines[3].position.Y = window.background.position.Y + 16 * 4;
@@ -120,13 +120,13 @@ namespace DungeonRun
             texts = new List<ComponentText>();
             texts.Add(new ComponentText(Assets.font, "Game 1",
                 new Vector2(window.background.rec.X + 8, window.background.rec.Y + 16 * 1 + 1),
-                Assets.colorScheme.textDark));
+                ColorScheme.textDark));
             texts.Add(new ComponentText(Assets.font, "Game 2",
                 new Vector2(window.background.rec.X + 8, window.background.rec.Y + 16 * 4 + 1),
-                Assets.colorScheme.textDark));
+                ColorScheme.textDark));
             texts.Add(new ComponentText(Assets.font, "Game 3",
                 new Vector2(window.background.rec.X + 8, window.background.rec.Y + 16 * 7 + 1),
-                Assets.colorScheme.textDark));
+                ColorScheme.textDark));
 
             #endregion
 

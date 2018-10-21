@@ -29,7 +29,7 @@ namespace DungeonRun
             for (i = 0; i < 8; i++)
             { labels.Add(new ComponentText(Assets.font, 
                 "test\ntest", new Vector2(-100, -100), 
-                Assets.colorScheme.textDark));
+                ColorScheme.textDark));
             }
 
             //create menuitems

@@ -50,17 +50,17 @@ namespace DungeonRun
             summaryText = new ComponentText(Assets.medFont,
                 "time \nenemies \ndamage \nrating",
                 new Vector2(220, 150),
-                Assets.colorScheme.textLight);
+                ColorScheme.textLight);
             summaryText.alpha = 0.0f;
             summaryData = new ComponentText(Assets.medFont,
                 "00:00:00 \n0 \n0 \n0",
                 new Vector2(330, 150),
-                Assets.colorScheme.textLight);
+                ColorScheme.textLight);
             summaryData.alpha = 0.0f;
             continueText = new ComponentText(Assets.medFont,
                 "press any button\n      to continue",
                 new Vector2(220, 260),
-                Assets.colorScheme.textLight);
+                ColorScheme.textLight);
             continueText.alpha = 0.0f;
 
             #endregion

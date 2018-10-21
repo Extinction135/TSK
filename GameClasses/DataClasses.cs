@@ -119,7 +119,46 @@ namespace DungeonRun
 
     }
 
-    
+
+
+
+
+    public static class ColorScheme
+    {
+        //points to a bkg_color based on the level loaded
+        public static Color background = new Color(0, 0, 0, 255); //refs one below
+
+        public static Color bkg_overworld = new Color(206, 199, 185, 255); //cloud gray
+        public static Color bkg_level_room = new Color(88, 127, 62, 255); //grass green
+        public static Color bkg_dungeon_room = new Color(0, 0, 0, 255); //black
+
+        //covers the screen, fading in/out (usually black)
+        public static Color overlay = new Color(0, 0, 0, 255);
+
+        public static Color windowBkg = new Color(0, 0, 0);
+        public static Color windowBorder = new Color(210, 210, 210);
+        public static Color windowInset = new Color(130, 130, 130);
+        public static Color windowInterior = new Color(156, 156, 156);
+
+        public static Color textLight = new Color(255, 255, 255);
+        public static Color textDark = new Color(0, 0, 0);
+
+        public static Color mapNotVisited = new Color(130, 130, 130);
+        public static Color mapVisited = new Color(70, 70, 70);
+        public static Color mapBlinker = new Color(255, 255, 255);
+
+        //editor colors - dont touch
+        public static Color debugBkg = new Color(20, 20, 20, 255);
+
+        public static Color collision = new Color(100, 0, 0, 50);
+        public static Color interaction = new Color(0, 100, 0, 50);
+        public static Color roomRec = new Color(0, 0, 100, 50);
+
+        public static Color buttonUp = new Color(44, 44, 44);
+        public static Color buttonOver = new Color(66, 66, 66);
+        public static Color buttonDown = new Color(100, 100, 100);
+    }
+
 
 
 
@@ -127,7 +166,7 @@ namespace DungeonRun
 
 
     #region Save data, level data, room data, door data
-    
+
 
     public class SaveData
     {   //data that will be saved/loaded from game session to session
@@ -370,6 +409,8 @@ namespace DungeonRun
             timer.Reset();
         }
     }
+
+    
 
     public static class Pool
     {
@@ -826,9 +867,9 @@ namespace DungeonRun
 
             //create the frametime & autosave text components
             frametime = new ComponentText(Assets.font, "test",
-                new Vector2(0, 0), Assets.colorScheme.textLight);
+                new Vector2(0, 0), ColorScheme.textLight);
             autosaveText = new ComponentText(Assets.font, "autosaving",
-                new Vector2(0, 0), Assets.colorScheme.textLight);
+                new Vector2(0, 0), ColorScheme.textLight);
 
             //place frametime & autosave texts
             frametime.position.X = 16+4+2;
@@ -1003,42 +1044,16 @@ namespace DungeonRun
         public AnimationGroup climbing;
     }
 
-    public class ColorScheme
-    {
-        //game colors
 
-        //points to a bkg_color based on the level loaded
-        public Color background = new Color(0, 0, 0, 255); //refs one below
-        public Color bkg_lightWorld = new Color(150, 150, 150, 255);
-        public Color bkg_darkWorld = new Color(75, 75, 75, 255);
-        public Color bkg_dungeon = new Color(0, 0, 0, 255);
 
-        //covers the screen, fading in/out (usually black)
-        public Color overlay = new Color(0, 0, 0, 255);
 
-        public Color windowBkg = new Color(0, 0, 0);
-        public Color windowBorder = new Color(210, 210, 210);
-        public Color windowInset = new Color(130, 130, 130);
-        public Color windowInterior = new Color(156, 156, 156);
+    
 
-        public Color textLight = new Color(255, 255, 255);
-        public Color textDark = new Color(0, 0, 0);
 
-        public Color mapNotVisited = new Color(130, 130, 130);
-        public Color mapVisited = new Color(70, 70, 70);
-        public Color mapBlinker = new Color(255, 255, 255);
 
-        //editor colors
-        public Color debugBkg = new Color(20, 20, 20, 255);
 
-        public Color collision = new Color(100, 0, 0, 50);
-        public Color interaction = new Color(0, 100, 0, 50);
-        public Color roomRec = new Color(0, 0, 100, 50);
 
-        public Color buttonUp = new Color(44, 44, 44);
-        public Color buttonOver = new Color(66, 66, 66);
-        public Color buttonDown = new Color(100, 100, 100);
-    }
+
 
     public class Scroll
     {
@@ -1081,7 +1096,7 @@ namespace DungeonRun
             //create title + header line
             title = new ComponentText(Assets.font, "title",
                 startPos + new Vector2(20, 6), 
-                Assets.colorScheme.textDark);
+                ColorScheme.textDark);
             headerline = new Rectangle( //Assets.colorScheme.windowInset
                 new Point((int)title.position.X + 0, (int)title.position.Y + 14),
                 new Point(16 * size.X - 23, 1));
@@ -1124,11 +1139,11 @@ namespace DungeonRun
             bkg = new MenuRectangle(
                 new Point(X, Y),
                 new Point(16 * 3, 16 * 3),
-                Assets.colorScheme.windowBkg);
+                ColorScheme.windowBkg);
             textComp = new ComponentText(Assets.font,
                 "test\ntest\ntest\ntest\ntest",
                 new Vector2(bkg.position.X + 2, bkg.position.Y - 2),
-                Assets.colorScheme.textLight);
+                ColorScheme.textLight);
         }
     }
 
@@ -1338,21 +1353,21 @@ namespace DungeonRun
         public MenuWindow(Point Position, Point Size, String Title)
         {
             size = Size;
-            title = new ComponentText(Assets.font, "", new Vector2(0, 0), Assets.colorScheme.textDark);
+            title = new ComponentText(Assets.font, "", new Vector2(0, 0), ColorScheme.textDark);
             //create the window components
             background = new MenuRectangle(
-                new Point(0, 0), new Point(0, 0), Assets.colorScheme.windowBkg);
+                new Point(0, 0), new Point(0, 0), ColorScheme.windowBkg);
             border = new MenuRectangle(
-                new Point(0, 0), new Point(0, 0), Assets.colorScheme.windowBorder);
+                new Point(0, 0), new Point(0, 0), ColorScheme.windowBorder);
             inset = new MenuRectangle(
-                new Point(0, 0), new Point(0, 0), Assets.colorScheme.windowInset);
+                new Point(0, 0), new Point(0, 0), ColorScheme.windowInset);
             interior = new MenuRectangle(
-                new Point(0, 0), new Point(0, 0), Assets.colorScheme.windowInterior);
+                new Point(0, 0), new Point(0, 0), ColorScheme.windowInterior);
             lines = new List<MenuRectangle>();
             lines.Add(new MenuRectangle(
-                new Point(0, 0), new Point(0, 0), Assets.colorScheme.windowInset)); //header
+                new Point(0, 0), new Point(0, 0), ColorScheme.windowInset)); //header
             lines.Add(new MenuRectangle(
-                new Point(0, 0), new Point(0, 0), Assets.colorScheme.windowInset)); //footer
+                new Point(0, 0), new Point(0, 0), ColorScheme.windowInset)); //footer
             //set the openDelay to cascade in all the components
             background.openDelay = 0;
             border.openDelay = 2;
@@ -1372,7 +1387,7 @@ namespace DungeonRun
             new Byte4(0, 0, 0, 0), new Point(16, 16));
         public ComponentText timeDateText = new ComponentText(
             Assets.font, "time:/ndate:", new Vector2(-100, 1000),
-            Assets.colorScheme.textDark);
+            ColorScheme.textDark);
         public MenuItem lastStoryItem = new MenuItem();
     }
 
@@ -1512,9 +1527,9 @@ namespace DungeonRun
         {
             rec = new Rectangle(Position, new Point(0, 9));
             compText = new ComponentText(Assets.font, 
-                Text, new Vector2(0, 0), Assets.colorScheme.textLight);
+                Text, new Vector2(0, 0), ColorScheme.textLight);
             selected = false;
-            currentColor = Assets.colorScheme.buttonUp;
+            currentColor = ColorScheme.buttonUp;
             Functions_Component.CenterText(this);
         }
     }
@@ -1527,7 +1542,7 @@ namespace DungeonRun
         public ComponentAmountDisplay(int Amount, int X, int Y)
         {
             amount = new ComponentText(Assets.font, "" + Amount,
-                new Vector2(X, Y), Assets.colorScheme.textLight);
+                new Vector2(X, Y), ColorScheme.textLight);
             bkg = new Rectangle(new Point(X, Y), new Point(9, 7));
             visible = true;
         }

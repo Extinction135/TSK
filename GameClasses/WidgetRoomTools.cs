@@ -203,10 +203,10 @@ namespace DungeonRun
 
             for (i = 0; i < buttons.Count; i++)
             {   //by default, set buttons to up color
-                buttons[i].currentColor = Assets.colorScheme.buttonUp;
+                buttons[i].currentColor = ColorScheme.buttonUp;
                 //if user hovers over a button, set button to down color
                 if (buttons[i].rec.Contains(Input.cursorPos))
-                { buttons[i].currentColor = Assets.colorScheme.buttonDown; }
+                { buttons[i].currentColor = ColorScheme.buttonDown; }
             }
 
             #endregion

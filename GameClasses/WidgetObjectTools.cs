@@ -97,7 +97,7 @@ namespace DungeonRun
             currentObjDirectionText = new ComponentText(
                 Assets.font, "",
                 new Vector2(0, 0),
-                Assets.colorScheme.textDark);
+                ColorScheme.textDark);
 
             selectionBoxObj = new ComponentSprite(
                 Assets.uiItemsSheet,

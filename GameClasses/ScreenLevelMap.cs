@@ -23,13 +23,13 @@ namespace DungeonRun
         public Rectangle marker = new Rectangle(-100, -100, 1, 1); //marks current room
         public float markerAlpha = 0.0f;
         public ComponentText bossIcon = new ComponentText(
-            Assets.font, "B", new Vector2(), Assets.colorScheme.textDark);
+            Assets.font, "B", new Vector2(), ColorScheme.textDark);
         public ComponentText keyIcon = new ComponentText(
-            Assets.font, "K", new Vector2(), Assets.colorScheme.textDark);
+            Assets.font, "K", new Vector2(), ColorScheme.textDark);
         public ComponentText hubIcon = new ComponentText(
-            Assets.font, "H", new Vector2(), Assets.colorScheme.textDark);
+            Assets.font, "H", new Vector2(), ColorScheme.textDark);
         public ComponentText exitIcon = new ComponentText(
-            Assets.font, "E", new Vector2(), Assets.colorScheme.textDark);
+            Assets.font, "E", new Vector2(), ColorScheme.textDark);
 
         int verticalOffset = 16 * 2; //how far map is pushed down from screen center
 
@@ -214,13 +214,13 @@ namespace DungeonRun
                         {   //draw visited rooms with Visited color
                             ScreenManager.spriteBatch.Draw(
                                 Assets.dummyTexture, rooms[i].rec,
-                                Assets.colorScheme.mapVisited);
+                                ColorScheme.mapVisited);
                         }
                         else//hero has map
                         {   //draw unvisited rooms with NotVisited color
                             ScreenManager.spriteBatch.Draw(
                                 Assets.dummyTexture, rooms[i].rec,
-                                Assets.colorScheme.mapNotVisited);
+                                ColorScheme.mapNotVisited);
                         }
                     }
                 }
@@ -238,13 +238,13 @@ namespace DungeonRun
                         {   //draw visited doors with Visited color
                             ScreenManager.spriteBatch.Draw(
                                 Assets.dummyTexture, doors[i].rec,
-                                Assets.colorScheme.mapVisited);
+                                ColorScheme.mapVisited);
                         }
                         else//hero has map
                         {   //draw unvisited doors with NotVisited color
                             ScreenManager.spriteBatch.Draw(
                                 Assets.dummyTexture, doors[i].rec,
-                                Assets.colorScheme.mapNotVisited);
+                                ColorScheme.mapNotVisited);
                         }
                     }
                 }
@@ -263,7 +263,7 @@ namespace DungeonRun
                 //draw marker
                 ScreenManager.spriteBatch.Draw(
                     Assets.dummyTexture, marker,
-                    Assets.colorScheme.mapBlinker * markerAlpha);
+                    ColorScheme.mapBlinker * markerAlpha);
                 //pulse marker alpha
                 if (markerAlpha < 1.0) { markerAlpha += 0.05f; }
                 else { markerAlpha = 0.0f; }

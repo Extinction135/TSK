@@ -86,12 +86,13 @@ namespace DungeonRun
 
             //for now, set to either lightworld or dungeon bkg colors
             if (LevelSet.currentLevel.isField)
-            { Assets.colorScheme.background = Assets.colorScheme.bkg_lightWorld; }
+            {
+                //grass green bkg color, as most levels occur on land
+                ColorScheme.background = ColorScheme.bkg_level_room;
+                //in the future we may make the bkg sea blue
+            }
             else
-            { Assets.colorScheme.background = Assets.colorScheme.bkg_dungeon; }
-
-            //planned for darkworld colorscheme like this (missing check):
-            //Assets.colorScheme.background = Assets.colorScheme.bkg_darkWorld;
+            { ColorScheme.background = ColorScheme.bkg_dungeon_room; }
 
             #endregion
 

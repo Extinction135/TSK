@@ -111,7 +111,7 @@ namespace DungeonRun
                 Functions_Draw.Draw(Scroll.title);
                 ScreenManager.spriteBatch.Draw(
                     Assets.dummyTexture, Scroll.headerline,
-                    Assets.colorScheme.windowInset);
+                    ColorScheme.windowInset);
             }
             //always draw scroll pillars / ends
             for (i = 0; i < Scroll.leftScroll.Count; i++)

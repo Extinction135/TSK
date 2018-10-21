@@ -59,45 +59,132 @@ Today:
 
 
 
-added shortcut path between forest main path and
-thieves den exterior left path. tested, working.
-polished existing pathing.
-
-
-
-
-
-
-
-
-
-
-
-
-
-more locations
-
-* fishermans path (forest)
-* lava to cloud loop
-* plateau island main path
-* various lava locations and levels
-
-
-
-
-
-
 
 
 
 
 Overworld++
 
-fix bkg color to match clouds
-*this involves modifying color scheme in assets
+fix bkg color to match clouds.
+this involves modifying color scheme in assets
 we'll need a separate color for overworld bkg.
-then a color for level bkg, dungeon bkg.
-should be easy.
+then a color for level bkg, and dungeon bkg.
+
+ColorScheme Refactor
+
+color scheme is becoming global, as there is only one color scheme.
+done, touched a variety of classes that referenced the instanced
+color scheme in assets.cs. simplified the handling of overworld,
+level, and dungeon room color schemes.
+
+Overworld++
+
+added test particles into overworld: flag and campfire.
+more polish on location neighbor connections. i'm essentially
+updating some overworld locations to accept diagonal input,
+so players can move easier between locations.
+
+
+
+
+
+
+
+
+
+
+
+
+
+more locations:
+
+skull island sub path (2)
+952.567 -> up neigh = skull island bottom row 4
+991.591
+
+
+crest path (4)
+880.692 -> up neigh = forest island main path 4
+928.707
+975.692
+988.720
+
+
+fishermans path (forest) (7)
+782.549
+-> lneigh = lava island main path 2
+-> rneigh = forest island main path 1
+719.621
+682.682 - fisherman's house
+725.660
+752.693 -> rneigh = forest island main path 6
+730.724
+
+
+
+water coliseum path (forest) (6)
+645.575 -> up neigh = lavaisland main path 4
+612.589
+571.585
+536.609
+565.644
+530.671
+
+temple 1 path (2)
+514.591
+480.581
+
+water coliseum level (connected to path above)
+499.706
+
+lava ship 1 path (2)
+567.455 -> down neigh = lava island main path 8
+572.406
+
+
+lava cave 1 path (3)
+508.538 -> up/r neigh = lavaisland main path 7
+458.545
+420.522
+
+volcano coliseum path (6) (left to right)
+150.522 -> up neigh = lave island main path 15
+113.530
+99.553
+138.562
+180.562
+217.571 -> right neighbor = forest main path 27
+
+
+
+
+
+
+
+plateau island main path (12)
+
+plateau island misc paths (2)
+
+plateau ship path (2)
+299.629
+255.616
+
+lava sub path (7)
+
+lava ship 2 path (1)
+
+lava cave 2 path (2)
+
+lava cave 3 path (2)
+
+lava to cloud connection (5)
+
+
+
+
+
+
+
 
 
 

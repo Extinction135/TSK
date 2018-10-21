@@ -23,7 +23,7 @@ namespace DungeonRun
                 ScreenManager.spriteBatch.Draw(
                     Assets.dummyTexture,
                     LevelSet.currentLevel.rooms[i].rec,
-                    Assets.colorScheme.roomRec);
+                    ColorScheme.roomRec);
             }
             //draw the dungeon doors
             for (i = 0; i < LevelSet.currentLevel.doors.Count; i++)
@@ -31,7 +31,7 @@ namespace DungeonRun
                 ScreenManager.spriteBatch.Draw(
                     Assets.dummyTexture,
                     LevelSet.currentLevel.doors[i].rec,
-                    Assets.colorScheme.interaction);
+                    ColorScheme.interaction);
             }
         }
 
@@ -146,13 +146,13 @@ namespace DungeonRun
             {
                 ScreenManager.spriteBatch.Draw(
                     Assets.dummyTexture, Coll.rec,
-                    Assets.colorScheme.collision);
+                    ColorScheme.collision);
             }
             else
             {
                 ScreenManager.spriteBatch.Draw(
                     Assets.dummyTexture, Coll.rec,
-                    Assets.colorScheme.interaction);
+                    ColorScheme.interaction);
             }
         }
 
@@ -198,7 +198,7 @@ namespace DungeonRun
         {  //draw the amnt.bkg & amnt.text component
             ScreenManager.spriteBatch.Draw(
                 Assets.dummyTexture, Amnt.bkg,
-                Assets.colorScheme.windowBkg);
+                ColorScheme.windowBkg);
             Draw(Amnt.amount);
         }
 
@@ -206,7 +206,7 @@ namespace DungeonRun
         {  
             ScreenManager.spriteBatch.Draw(
                 Assets.dummyTexture, Rec.rec, 
-                Assets.colorScheme.overlay * Rec.alpha);
+                ColorScheme.overlay * Rec.alpha);
         }
 
         public static void Draw(GameDisplayData Display)

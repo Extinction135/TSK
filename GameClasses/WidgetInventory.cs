@@ -29,14 +29,14 @@ namespace DungeonRun
             for (i = 0; i < 4; i++)
             {
                 window.lines.Add(new MenuRectangle(new Point(0, 0), 
-                    new Point(0, 0), Assets.colorScheme.windowInset));
+                    new Point(0, 0), ColorScheme.windowInset));
             }
             //create labels
             labels = new List<ComponentText>();
             labels.Add(new ComponentText(Assets.font, "ITEMS (X)", 
-                new Vector2(0, 0), Assets.colorScheme.textDark));
+                new Vector2(0, 0), ColorScheme.textDark));
             labels.Add(new ComponentText(Assets.font, "equipment",
-                new Vector2(0, 0), Assets.colorScheme.textDark));
+                new Vector2(0, 0), ColorScheme.textDark));
             //create menuitems
             menuItems = new List<MenuItem>();
             for (i = 0; i < (7 * 6); i++)

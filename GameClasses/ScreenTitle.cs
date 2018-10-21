@@ -88,13 +88,13 @@ namespace DungeonRun
             //row 1
             labels.Add(new ComponentText(Assets.font, "new\ngame",
                 newGame.compSprite.position + new Vector2(11, -12),
-                Assets.colorScheme.textDark));
+                ColorScheme.textDark));
             labels.Add(new ComponentText(Assets.font, "load\ngame",
                 loadGame.compSprite.position + new Vector2(11, -12),
-                Assets.colorScheme.textDark));
+                ColorScheme.textDark));
             labels.Add(new ComponentText(Assets.font, "quit\ngame",
                 quitGame.compSprite.position + new Vector2(11, -12),
-                Assets.colorScheme.textDark));
+                ColorScheme.textDark));
 
             #endregion
 

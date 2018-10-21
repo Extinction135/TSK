@@ -26,7 +26,7 @@ namespace DungeonRun
             window = new MenuWindow(new Point(-100, -100), new Point(100, 100), "");
             speaker = new GameObject();
             Functions_GameObject.SetType(speaker, ObjType.NPC_Story);
-            dialog = new ComponentText(Assets.font, "", new Vector2(0, 0), Assets.colorScheme.textDark);
+            dialog = new ComponentText(Assets.font, "", new Vector2(0, 0), ColorScheme.textDark);
         }
 
         public override void Reset(int X, int Y)

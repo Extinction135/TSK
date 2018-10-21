@@ -27,9 +27,9 @@ namespace DungeonRun
             infoItem = new MenuItem();
             description = new ComponentText(Assets.font, 
                 "default description \ntext here...", new Vector2(-100, -100), 
-                Assets.colorScheme.textDark);
+                ColorScheme.textDark);
             divider1 = new MenuRectangle(new Point(-100, -100), 
-                new Point(0, 0), Assets.colorScheme.windowInset);
+                new Point(0, 0), ColorScheme.windowInset);
             window.lines.Add(divider1);
             //create gold amount display
             goldDisplay = new ComponentAmountDisplay(0, 0, 0);
