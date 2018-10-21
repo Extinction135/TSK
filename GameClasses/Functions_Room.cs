@@ -219,11 +219,23 @@ namespace DungeonRun
 
                 #endregion
 
+
                 #region Setup CloudIsland Rooms (Levels)
 
                 else if (Room.roomID == RoomID.CloudIsland_MainEntrance)
                 {
                     RoomXmlData = LevelData_CloudIsland.CloudIsland_MainEntrance;
+                    LevelSet.currentLevel.isField = true;
+                }
+
+                #endregion
+
+
+                #region Setup SwampIsland Rooms (Levels)
+
+                else if (Room.roomID == RoomID.SwampIsland_MainEntrance)
+                {
+                    RoomXmlData = LevelData_HauntedSwamps.SwampIsland_MainEntrance;
                     LevelSet.currentLevel.isField = true;
                 }
 

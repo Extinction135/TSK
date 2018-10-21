@@ -192,7 +192,12 @@ namespace DungeonRun
                         CloudIsland_Data.Add(RoomData);
                     }
 
-
+                    //swamp island
+                    else if (RoomData.type == RoomID.SwampIsland_MainEntrance
+                        )
+                    {
+                        HauntedSwamps_Data.Add(RoomData);
+                    }
 
 
 
@@ -201,7 +206,6 @@ namespace DungeonRun
                     if (RoomData.type == RoomID.SkullIsland_ShadowKing)
                     {
                         ThievesHideout_Data.Add(RoomData);
-                        HauntedSwamps_Data.Add(RoomData);
                     }
 
 

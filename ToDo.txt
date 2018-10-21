@@ -62,14 +62,12 @@ Today:
 
 
 
+SwampIsland++
 
-CloudIsland++
-
-cloud main path implemented.
-cloud dungeon entrance temp level added.
-tested, working. moving on.
-
-
+implemented swamp main path - 19 locations.
+added swamp dungeon entrance level.
+updated swamp ent level to old better swamp level.
+compiled level data, tested.
 
 
 
@@ -81,15 +79,25 @@ tested, working. moving on.
 Complete the Overworld Main Paths
 
 
+test path, imp level
 
 
 
-* lava to cloud loop
 
 
 swamp main path + dungeon ent + skull crown connection
 
-plateau island main path
+path, THEN level!
+
+
+
+
+crown 10 connection to crown 9
+
+
+
+
+
 
 thieves den exterior bottom path (connects to forest main path)
 
@@ -100,9 +108,13 @@ thieves den exterior right path (loops dth mtn and btm path)
 
 
 
+
+
+more locations
+
 * fishermans path (forest)
-
-
+* lava to cloud loop
+* plateau island main path
 
 
 

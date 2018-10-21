@@ -141,8 +141,7 @@ namespace DungeonRun
 
             //or
 
-            #region Build Overworld Field Levels
-
+            //Build Overworld Field Levels
 
 
             #region Skull Island
@@ -175,7 +174,6 @@ namespace DungeonRun
             #endregion
 
 
-
             #region Death Mountain
 
             else if (LevelSet.currentLevel.ID == LevelID.DeathMountain_MainEntrance)
@@ -188,8 +186,6 @@ namespace DungeonRun
             #endregion
 
 
-
-
             #region Forest Island
 
             else if (LevelSet.currentLevel.ID == LevelID.ForestIsland_MainEntrance)
@@ -200,8 +196,6 @@ namespace DungeonRun
             }
 
             #endregion
-
-
 
 
             #region Lava Island
@@ -228,8 +222,17 @@ namespace DungeonRun
             #endregion
 
 
+            #region Swamp Island
+
+            else if (LevelSet.currentLevel.ID == LevelID.SwampIsland_MainEntrance)
+            {
+                Functions_Music.PlayMusic(Music.LightWorld);
+                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.SwampIsland_MainEntrance);
+                LevelSet.currentLevel.rooms.Add(field);
+            }
 
             #endregion
+
 
             //or
 

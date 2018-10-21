@@ -116,17 +116,18 @@ namespace DungeonRun
         //cloud island
         CloudIsland_MainEntrance,
 
+        //swamp island
+        SwampIsland_MainEntrance,
+
+
+
+
+
 
 
 
         //locations that cannot be visited
         Road, //used for connecting levels on map
-
-
-
-
-
-
 
         //dungeons, series of rooms - not overworld accessible
         Forest_Dungeon, 
@@ -182,6 +183,11 @@ namespace DungeonRun
 
         //cloud island
         CloudIsland_MainEntrance,
+
+        //swamp island
+        SwampIsland_MainEntrance,
+
+
 
 
 

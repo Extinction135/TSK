@@ -340,6 +340,12 @@ namespace DungeonRun
         //cloud island
         static MapLocation CloudIsland_MainEntrance;
 
+        //swamp island
+        static MapLocation SwampIsland_MainEntrance;
+
+
+
+
 
 
 
@@ -541,7 +547,7 @@ namespace DungeonRun
             SkullIsland_TopCrown_10.neighborLeft = SkullIsland_TopCrown_9;
 
             SkullIsland_TopCrown_10.neighborDown = SkullIsland_TopCrown_11;
-            SkullIsland_TopCrown_11.neighborUp = SkullIsland_TopCrown_10;
+            SkullIsland_TopCrown_11.neighborUp = SkullIsland_TopCrown_11.neighborLeft = SkullIsland_TopCrown_10;
 
             #endregion
 
@@ -974,7 +980,6 @@ namespace DungeonRun
 
             #region Cloud Island
 
-
             CloudIsland_MainEntrance = new MapLocation(true, new Vector2(678, 264), "CloudIsland_MainEntrance");
             CloudIsland_MainEntrance.ID = LevelID.CloudIsland_MainEntrance;
             locations.Add(CloudIsland_MainEntrance);
@@ -1058,6 +1063,140 @@ namespace DungeonRun
             #endregion
 
 
+            #region Swamp Island
+
+
+            SwampIsland_MainEntrance = new MapLocation(true, new Vector2(1319, 237), "SwampIsland_MainEntrance");
+            SwampIsland_MainEntrance.ID = LevelID.SwampIsland_MainEntrance;
+            locations.Add(SwampIsland_MainEntrance);
+
+            //main path - starting and extending up and left from skull island crown 2, (left side)
+            MapLocation SwampIsland_MainPath_1 = new MapLocation(false, new Vector2(1086, 222), "SwampIsland_MainPath_1");
+            locations.Add(SwampIsland_MainPath_1);
+            MapLocation SwampIsland_MainPath_2 = new MapLocation(false, new Vector2(1103, 239), "SwampIsland_MainPath_2");
+            locations.Add(SwampIsland_MainPath_2);
+            MapLocation SwampIsland_MainPath_3 = new MapLocation(false, new Vector2(1139, 248), "SwampIsland_MainPath_3");
+            locations.Add(SwampIsland_MainPath_3);
+            MapLocation SwampIsland_MainPath_4 = new MapLocation(false, new Vector2(1190, 228), "SwampIsland_MainPath_4");
+            locations.Add(SwampIsland_MainPath_4);
+            MapLocation SwampIsland_MainPath_5 = new MapLocation(false, new Vector2(1248, 245), "SwampIsland_MainPath_5");
+            locations.Add(SwampIsland_MainPath_5);
+
+            MapLocation SwampIsland_Main_Connection = new MapLocation(false, new Vector2(1204, 276), "SwampIsland_Main_Connection");
+            locations.Add(SwampIsland_Main_Connection);
+
+            MapLocation SwampIsland_MainPath_6 = new MapLocation(false, new Vector2(1317, 259), "SwampIsland_MainPath_6");
+            locations.Add(SwampIsland_MainPath_6);
+            MapLocation SwampIsland_MainPath_7 = new MapLocation(false, new Vector2(1402, 275), "SwampIsland_MainPath_7");
+            locations.Add(SwampIsland_MainPath_7);
+            MapLocation SwampIsland_MainPath_8 = new MapLocation(false, new Vector2(1407, 319), "SwampIsland_MainPath_8");
+            locations.Add(SwampIsland_MainPath_8);
+            MapLocation SwampIsland_MainPath_9 = new MapLocation(false, new Vector2(1469, 332), "SwampIsland_MainPath_9");
+            locations.Add(SwampIsland_MainPath_9);
+            MapLocation SwampIsland_MainPath_10 = new MapLocation(false, new Vector2(1539, 321), "SwampIsland_MainPath_10");
+            locations.Add(SwampIsland_MainPath_10);
+
+            MapLocation SwampIsland_MainPath_11 = new MapLocation(false, new Vector2(1596, 300), "SwampIsland_MainPath_11");
+            locations.Add(SwampIsland_MainPath_11);
+            MapLocation SwampIsland_MainPath_12 = new MapLocation(false, new Vector2(1626, 271), "SwampIsland_MainPath_12");
+            locations.Add(SwampIsland_MainPath_12);
+            MapLocation SwampIsland_MainPath_13 = new MapLocation(false, new Vector2(1653, 237), "SwampIsland_MainPath_13");
+            locations.Add(SwampIsland_MainPath_13);
+            MapLocation SwampIsland_MainPath_14 = new MapLocation(false, new Vector2(1713, 231), "SwampIsland_MainPath_14");
+            locations.Add(SwampIsland_MainPath_14);
+            MapLocation SwampIsland_MainPath_15 = new MapLocation(false, new Vector2(1755, 258), "SwampIsland_MainPath_15");
+            locations.Add(SwampIsland_MainPath_15);
+
+            MapLocation SwampIsland_MainPath_16 = new MapLocation(false, new Vector2(1816, 247), "SwampIsland_MainPath_16");
+            locations.Add(SwampIsland_MainPath_16);
+            MapLocation SwampIsland_MainPath_17 = new MapLocation(false, new Vector2(1834, 284), "SwampIsland_MainPath_17");
+            locations.Add(SwampIsland_MainPath_17);
+            MapLocation SwampIsland_MainPath_18 = new MapLocation(false, new Vector2(1895, 280), "SwampIsland_MainPath_18");
+            locations.Add(SwampIsland_MainPath_18);
+            MapLocation SwampIsland_MainPath_19 = new MapLocation(false, new Vector2(1949, 325), "SwampIsland_MainPath_19");
+            locations.Add(SwampIsland_MainPath_19);
+
+
+            //setup location neighbors
+
+            #region Connection to Skull Island
+
+            //this is done thru the islands MAIN CONNECTION instance
+            SwampIsland_Main_Connection.neighborLeft = SkullIsland_TopCrown_8;
+            SkullIsland_TopCrown_8.neighborRight = SwampIsland_Main_Connection;
+
+            #endregion
+
+
+            #region Main Path Connections
+
+            //left to right, from mental hospital graveyard thing
+            SwampIsland_MainPath_1.neighborRight = SwampIsland_MainPath_2;
+            SwampIsland_MainPath_2.neighborRight = SwampIsland_MainPath_3;
+            SwampIsland_MainPath_3.neighborRight = SwampIsland_MainPath_4;
+            SwampIsland_MainPath_4.neighborRight = SwampIsland_MainPath_5;
+
+            SwampIsland_MainPath_5.neighborDown = SwampIsland_Main_Connection;
+            SwampIsland_MainPath_5.neighborRight = SwampIsland_MainPath_6;
+            SwampIsland_MainPath_6.neighborUp = SwampIsland_MainEntrance;
+            SwampIsland_MainPath_6.neighborRight = SwampIsland_MainPath_7;
+            SwampIsland_MainPath_7.neighborDown = SwampIsland_MainPath_8;
+            SwampIsland_MainPath_8.neighborRight = SwampIsland_MainPath_9;
+            SwampIsland_MainPath_9.neighborRight = SwampIsland_MainPath_10;
+
+            SwampIsland_MainPath_10.neighborRight = SwampIsland_MainPath_10.neighborUp = SwampIsland_MainPath_11;
+            SwampIsland_MainPath_11.neighborRight = SwampIsland_MainPath_11.neighborUp = SwampIsland_MainPath_12;
+            SwampIsland_MainPath_12.neighborRight = SwampIsland_MainPath_12.neighborUp = SwampIsland_MainPath_13;
+            SwampIsland_MainPath_13.neighborRight = SwampIsland_MainPath_14;
+            SwampIsland_MainPath_14.neighborDown = SwampIsland_MainPath_14.neighborRight = SwampIsland_MainPath_15;
+
+            SwampIsland_MainPath_15.neighborRight = SwampIsland_MainPath_15.neighborDown = SwampIsland_MainPath_16;
+            SwampIsland_MainPath_16.neighborRight = SwampIsland_MainPath_16.neighborDown = SwampIsland_MainPath_17;
+            SwampIsland_MainPath_17.neighborRight = SwampIsland_MainPath_18;
+            SwampIsland_MainPath_18.neighborRight = SwampIsland_MainPath_18.neighborDown = SwampIsland_MainPath_19;
+
+
+
+            //return connections
+            SwampIsland_MainPath_2.neighborLeft = SwampIsland_MainPath_1;
+            SwampIsland_MainPath_3.neighborLeft = SwampIsland_MainPath_2;
+            SwampIsland_MainPath_4.neighborLeft = SwampIsland_MainPath_3;
+
+            SwampIsland_MainPath_5.neighborLeft = SwampIsland_MainPath_4;
+            SwampIsland_Main_Connection.neighborUp = SwampIsland_Main_Connection.neighborRight = SwampIsland_MainPath_5;
+            SwampIsland_MainPath_6.neighborLeft = SwampIsland_MainPath_5;
+            SwampIsland_MainEntrance.neighborDown = SwampIsland_MainPath_6;
+            SwampIsland_MainPath_7.neighborLeft = SwampIsland_MainPath_6;
+            SwampIsland_MainPath_8.neighborUp = SwampIsland_MainPath_7;
+            SwampIsland_MainPath_9.neighborLeft = SwampIsland_MainPath_8;
+            SwampIsland_MainPath_10.neighborLeft = SwampIsland_MainPath_9;
+
+            SwampIsland_MainPath_11.neighborDown = SwampIsland_MainPath_11.neighborLeft = SwampIsland_MainPath_10;
+            SwampIsland_MainPath_12.neighborDown = SwampIsland_MainPath_11;
+            SwampIsland_MainPath_13.neighborDown = SwampIsland_MainPath_12;
+            SwampIsland_MainPath_14.neighborLeft = SwampIsland_MainPath_13;
+            SwampIsland_MainPath_15.neighborLeft = SwampIsland_MainPath_14;
+
+            SwampIsland_MainPath_16.neighborLeft = SwampIsland_MainPath_16.neighborUp = SwampIsland_MainPath_15;
+            SwampIsland_MainPath_17.neighborLeft = SwampIsland_MainPath_16;
+            SwampIsland_MainPath_18.neighborLeft = SwampIsland_MainPath_17;
+            SwampIsland_MainPath_19.neighborUp = SwampIsland_MainPath_19.neighborLeft = SwampIsland_MainPath_18;
+
+
+            #endregion
+
+
+            #region Additonal Connections
+
+
+
+            #endregion
+
+
+
+
+
+            #endregion
 
 
 
@@ -1114,9 +1253,14 @@ namespace DungeonRun
             else if (LevelSet.field.ID == LevelID.LavaIsland_MainEntrance)
             { currentLocation = LavaIsland_MainEntrance; }
 
-            //lava island
+            //cloud island
             else if (LevelSet.field.ID == LevelID.CloudIsland_MainEntrance)
             { currentLocation = CloudIsland_MainEntrance; }
+
+            //swamp island
+            else if (LevelSet.field.ID == LevelID.SwampIsland_MainEntrance)
+            { currentLocation = SwampIsland_MainEntrance; }
+
 
 
 
