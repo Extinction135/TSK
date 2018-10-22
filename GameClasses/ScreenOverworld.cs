@@ -346,7 +346,7 @@ namespace DungeonRun
         //thieves den island
         static MapLocation ThievesDen_GateEntrance;
 
-        //mist
+        //misc
         static MapLocation Sea_GiantHole;
 
 
@@ -399,14 +399,14 @@ namespace DungeonRun
             locations.Add(SkullIsland_BottomRow_1);
             MapLocation SkullIsland_BottomRow_2 = new MapLocation(false, new Vector2(829, 501), "SkullIsland_BottomRow_2");
             locations.Add(SkullIsland_BottomRow_2);
-            MapLocation SkullIsland_BottomRow_3 = new MapLocation(false, new Vector2(890, 522), "SkullIsland_BottomRow_3");
+            MapLocation SkullIsland_BottomRow_3 = new MapLocation(false, new Vector2(890, 521), "SkullIsland_BottomRow_3");
             locations.Add(SkullIsland_BottomRow_3);
             MapLocation SkullIsland_BottomRow_4 = new MapLocation(false, new Vector2(965, 534), "SkullIsland_BottomRow_4");
             locations.Add(SkullIsland_BottomRow_4);
-            MapLocation SkullIsland_BottomRow_5 = new MapLocation(false, new Vector2(1043, 536), "SkullIsland_BottomRow_5");
+            MapLocation SkullIsland_BottomRow_5 = new MapLocation(false, new Vector2(1043, 533), "SkullIsland_BottomRow_5");
             locations.Add(SkullIsland_BottomRow_5);
 
-            MapLocation SkullIsland_BottomRow_6 = new MapLocation(false, new Vector2(1114, 528), "SkullIsland_BottomRow_6");
+            MapLocation SkullIsland_BottomRow_6 = new MapLocation(false, new Vector2(1115, 527), "SkullIsland_BottomRow_6");
             locations.Add(SkullIsland_BottomRow_6);
             MapLocation SkullIsland_BottomRow_7 = new MapLocation(false, new Vector2(1163, 508), "SkullIsland_BottomRow_7");
             locations.Add(SkullIsland_BottomRow_7);
@@ -1475,16 +1475,10 @@ namespace DungeonRun
             ThievesDen_ExtRightPath_9.neighborUp = ThievesDen_ExtRightPath_8;
             ThievesDen_ExtRightPath_10.neighborUp = ThievesDen_ExtRightPath_9;
 
-
-
-
-
-
-
-            //bottom connection to thieves den bottom path
-            //ThievesDen_ExtBottomPath_3.neighborUp = ThievesDen_ExtLeftPath_7;
-
-
+            ThievesDen_ExtRightPath_11.neighborUp = ThievesDen_ExtRightPath_10;
+            ThievesDen_ExtRightPath_12.neighborUp = ThievesDen_ExtRightPath_12.neighborRight = ThievesDen_ExtRightPath_11;
+            ThievesDen_ExtRightPath_13.neighborRight = ThievesDen_ExtRightPath_12;
+            ThievesDen_ExtRightPath_14.neighborRight = ThievesDen_ExtRightPath_14.neighborDown = ThievesDen_ExtRightPath_13;
 
 
             #endregion
@@ -1494,26 +1488,56 @@ namespace DungeonRun
             #endregion
 
 
+            #region Giant Sea Hole
+
+            //connects right path to giant sea hole via south connection
+            MapLocation SeaHole_Path_1 = new MapLocation(false, new Vector2(1735, 743), "SeaHole_Path_1");
+            locations.Add(SeaHole_Path_1);
+            MapLocation SeaHole_Path_2 = new MapLocation(false, new Vector2(1749, 762), "SeaHole_Path_2");
+            locations.Add(SeaHole_Path_2);
 
 
+            #region Neighbors
 
+            ThievesDen_ExtRightPath_7.neighborDown = SeaHole_Path_1;
+            SeaHole_Path_1.neighborUp = ThievesDen_ExtRightPath_7;
 
+            SeaHole_Path_1.neighborDown = SeaHole_Path_1.neighborRight = SeaHole_Path_2;
+            SeaHole_Path_2.neighborUp = SeaHole_Path_2.neighborLeft = SeaHole_Path_1;
 
-
-
-
-
-            #region Giant Hole in the Sea Connections
+            SeaHole_Path_2.neighborRight = Sea_GiantHole;
+            Sea_GiantHole.neighborLeft = SeaHole_Path_2;
 
             Sea_GiantHole.neighborDown = ThievesDen_ExtBottomPath_20;
             ThievesDen_ExtBottomPath_20.neighborUp = Sea_GiantHole;
+            ThievesDen_ExtBottomPath_20.neighborRight = Sea_GiantHole;
 
             Sea_GiantHole.neighborRight = ThievesDen_ExtRightPath_14;
             ThievesDen_ExtRightPath_14.neighborLeft = Sea_GiantHole;
 
-            //should also connect to the sub path of td's ext right path
+            #endregion
+
 
             #endregion
+
+
+
+
+
+
+
+
+            #region Skull Island SubPath
+
+            #endregion
+
+            
+
+
+
+
+
+
 
 
             #region Forest Path Connecting Right to Thieves Den Path on Left

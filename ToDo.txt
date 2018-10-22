@@ -66,17 +66,33 @@ Today:
 
 
 
+Overworld++
+
+fixed minor bug with thieves path right and bottom
+connecting to giant sea hole.
+
+added connections for giant sea hole, making it a
+tri-way connection. tested, working great.
+
+polished placement of bottom skull island locations.
 
 
 
 
 
 
-Scroll++
+consolidate sheets, fix editor, fix assets + textures
 
-centered highlite on map scroll, since lighting isnt
-consistently from the top left. improved various
-sprites for the UI and inventory. looking better.
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -96,6 +112,7 @@ more overworld locations TODO:
 skull island sub path (2)
 952.567 -> up neigh = skull island bottom row 4
 991.591
+
 
 
 crest path (4)
