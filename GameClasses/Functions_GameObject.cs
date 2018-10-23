@@ -263,7 +263,7 @@ namespace DungeonRun
         {
             //reset the obj
             Obj.group = ObjGroup.Object; //assume object is a generic object
-            Obj.type = ObjType.Dungeon_WallStraight; //reset the type
+            Obj.type = ObjType.Wor_Bush; //reset the type
             Obj.direction = Direction.Down;
             Obj.active = true; //assume this object should draw / animate
             Obj.getsAI = false; //most objects do not get any AI input
@@ -279,7 +279,7 @@ namespace DungeonRun
             Obj.compSprite.flipHorizontally = false;
             Obj.compSprite.rotation = Rotation.None;
             Obj.compSprite.scale = 1.0f;
-            Obj.compSprite.texture = Assets.forestLevelSheet;
+            Obj.compSprite.texture = Assets.CommonObjsSheet;
             Obj.compSprite.visible = true;
 
             //reset the animation component
@@ -407,13 +407,27 @@ namespace DungeonRun
             //set the type and texture first
             Obj.type = Type;
 
+
+
+
+            //this obj is either on common objs sheet, or dungeon sheet
+            //certain obj enemies are on the enemies sheet too
+            //or is entity (pro, part, etc..)
+
+
+
+
             //these objs inherit their texture sheets from prev obj state
             if (Obj.type == ObjType.ExplodingObject) { }
-            //set the obj's texture based on level.id
-            else { Functions_Texture.SetObjTexture(Obj); }
+            //default to the common objs sheet - obj def will overwrite this if needed
+            else { Obj.compSprite.texture = Assets.CommonObjsSheet; }
             
             //below in type checks, objs/particles/projectiles/pickups 
             //switch their textures to whatever sheet they need
+
+
+
+
 
 
             #region Unknown Obj
@@ -439,6 +453,7 @@ namespace DungeonRun
             else if (Type == ObjType.Dungeon_ExitPillarLeft ||
                Type == ObjType.Dungeon_ExitPillarRight)
             {
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compSprite.drawRec.Height = 16 * 3; //nonstandard size
                 Obj.compSprite.zOffset = -32; //sort to floor
                 Obj.group = ObjGroup.Door;
@@ -451,6 +466,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Dungeon_Exit)
             {
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compSprite.drawRec.Height = 16 * 3; //nonstandard size
                 Obj.compSprite.zOffset = -32; //sort to floor
                 Obj.group = ObjGroup.Door;
@@ -464,6 +480,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Dungeon_ExitLight)
             {
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compSprite.drawRec.Height = 16 * 2; //nonstandard size
                 Obj.compCollision.offsetY = 0;
                 Obj.compSprite.zOffset = 256; //sort above everything
@@ -478,12 +495,14 @@ namespace DungeonRun
 
             else if (Type == ObjType.Dungeon_DoorOpen)
             {
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compSprite.zOffset = +32; //sort very high (over / in front of hero)
                 Obj.group = ObjGroup.Door;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_DoorOpen;
             }
             else if(Type == ObjType.Dungeon_DoorTrap)
             {
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compCollision.blocking = false;
                 Obj.compSprite.zOffset = -32; //sort very low (behind hero)
                 Obj.group = ObjGroup.Door;
@@ -492,6 +511,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Dungeon_DoorBombable)
             {
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compSprite.zOffset = -32; //sort very low (behind hero)
                 Obj.group = ObjGroup.Door;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_WallStraightCracked;
@@ -499,6 +519,7 @@ namespace DungeonRun
             }
             else if(Type == ObjType.Dungeon_DoorBoss)
             {
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compSprite.zOffset = -32; //sort very low (behind hero)
                 Obj.group = ObjGroup.Door;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_DoorBoss;
@@ -507,6 +528,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Dungeon_DoorShut)
             {
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compSprite.zOffset = -32; //sort very low (behind hero)
                 Obj.group = ObjGroup.Door;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_DoorShut;
@@ -514,6 +536,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Dungeon_DoorFake)
             {
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compSprite.zOffset = -32; //sort very low (behind hero)
                 Obj.group = ObjGroup.Door;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_WallStraightCracked;
@@ -529,37 +552,42 @@ namespace DungeonRun
 
             else if (Type == ObjType.Dungeon_WallStraight)
             {
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compSprite.zOffset = -32; //sort very low (behind hero)
                 Obj.group = ObjGroup.Wall;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_WallStraight;
             }
             else if(Type == ObjType.Dungeon_WallStraightCracked)
             {
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compSprite.zOffset = -32; //sort very low (behind hero)
                 Obj.group = ObjGroup.Wall;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_WallStraightCracked;
             }
             else if (Type == ObjType.Dungeon_WallInteriorCorner)
             {
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compSprite.zOffset = -32; //sort very low (behind hero)
                 Obj.group = ObjGroup.Wall;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_WallInteriorCorner;
-                
             }
             else if (Type == ObjType.Dungeon_WallExteriorCorner)
             {
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compSprite.zOffset = -32; //sort very low (behind hero)
                 Obj.group = ObjGroup.Wall;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_WallExteriorCorner;
             }
             else if (Type == ObjType.Dungeon_WallPillar)
             {
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compSprite.zOffset = -32; //sort very low (behind hero)
                 Obj.group = ObjGroup.Wall;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_WallPillar;
             }
             else if (Type == ObjType.Dungeon_WallStatue)
             {
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compSprite.zOffset = -16; //sort low, but over walls
                 Obj.group = ObjGroup.Wall;
                 Obj.getsAI = true; //obj gets AI
@@ -567,6 +595,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Dungeon_WallTorch)
             {
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compSprite.zOffset = -16; //sort low, but over walls
                 Obj.group = ObjGroup.Wall;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_WallTorch;
@@ -578,13 +607,16 @@ namespace DungeonRun
             #region Boss Decal + Floor Blood
 
             else if (Type == ObjType.Dungeon_FloorDecal)
-            {   
+            {
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compSprite.zOffset = -32; //sort low, but over floor
                 Obj.compCollision.blocking = false;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_FloorDecal;
             }
             else if(Type == ObjType.Dungeon_FloorBlood)
-            {   //collision rec is smaller so more debris is left when room is cleanedUp()
+            {
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
+                //collision rec is smaller so more debris is left when room is cleanedUp()
                 Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
                 Obj.compSprite.zOffset = -32; //sort low, but over floor
@@ -598,7 +630,9 @@ namespace DungeonRun
             #region Pits
 
             else if (Type == ObjType.Dungeon_Pit)
-            {   //this pit interacts with actor
+            {
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
+                //this pit interacts with actor
                 Obj.compSprite.zOffset = -64; //sort under pit teeth
                 Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
@@ -609,6 +643,7 @@ namespace DungeonRun
             }
             else if(Type == ObjType.Dungeon_PitBridge)
             {
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compCollision.blocking = false;
                 Obj.compSprite.zOffset = -64; //sort to floor
                 Obj.canBeSaved = true;
@@ -616,6 +651,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Dungeon_PitTeethTop)
             {
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compSprite.zOffset = -60; //sort above pits & pit bubbles
                 Obj.compCollision.rec.Width = 16; Obj.compCollision.rec.Height = 8;
                 Obj.compCollision.blocking = false;
@@ -624,6 +660,7 @@ namespace DungeonRun
             }
             else if(Type == ObjType.Dungeon_PitTeethBottom)
             {
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compSprite.zOffset = -60; //sort above pits & pit bubbles
                 Obj.compCollision.rec.Width = 16; Obj.compCollision.rec.Height = 8;
                 Obj.compCollision.offsetY = 4;
@@ -633,7 +670,9 @@ namespace DungeonRun
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_PitTeethBottom;
             }
             else if (Type == ObjType.Dungeon_PitTrap)
-            {   //this becomes a pit upon collision with hero
+            {
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
+                //this becomes a pit upon collision with hero
                 Obj.compCollision.offsetX = -12; Obj.compCollision.offsetY = -12;
                 Obj.compCollision.rec.Width = 24; Obj.compCollision.rec.Height = 24;
                 Obj.compSprite.zOffset = -32; //sort to floor
@@ -649,6 +688,7 @@ namespace DungeonRun
 
             else if (Type == ObjType.Dungeon_Statue)
             {
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compCollision.rec.Height = 8;
                 Obj.compCollision.offsetY = -1;
                 Obj.canBeSaved = true;
@@ -659,6 +699,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Dungeon_SkullPillar)
             {
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compSprite.drawRec.Height = 16 * 2; //nonstandard size
                 Obj.compSprite.zOffset = +10;
                 Obj.compCollision.offsetY = +8;
@@ -677,6 +718,7 @@ namespace DungeonRun
             else if (Type == ObjType.Dungeon_Chest || 
                 Type == ObjType.Dungeon_ChestKey)
             {
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 11;
                 Obj.compSprite.zOffset = -7;
@@ -688,6 +730,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Dungeon_ChestEmpty)
             {
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 11;
                 Obj.compSprite.zOffset = -7;
@@ -699,6 +742,7 @@ namespace DungeonRun
             }
             else if(Type == ObjType.Dungeon_Map)
             {
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_Map;
                 Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
@@ -710,24 +754,11 @@ namespace DungeonRun
             #endregion
 
 
-            #region Dungeon_Signpost
-
-            else if (Type == ObjType.Dungeon_Signpost)
-            {
-                Obj.compCollision.offsetY = +4; Obj.compCollision.rec.Height = 4;
-                Obj.compSprite.zOffset = +4;
-                Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_Signpost;
-                Obj.sfx.hit = Assets.sfxTapMetallic;
-                Obj.canBeSaved = true;
-            }
-
-            #endregion
-
-
             #region Blocks
 
             else if (Type == ObjType.Dungeon_BlockDark || Type == ObjType.Dungeon_BlockLight)
             {
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compSprite.zOffset = -7;
                 Obj.canBeSaved = true;
                 if (Type == ObjType.Dungeon_BlockLight)
@@ -740,6 +771,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Dungeon_BlockSpike)
             {
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compSprite.zOffset = -7;
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -7;
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 14;
@@ -761,6 +793,7 @@ namespace DungeonRun
 
             else if (Type == ObjType.Dungeon_LeverOn || Type == ObjType.Dungeon_LeverOff)
             {
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = 2;
                 Obj.compCollision.rec.Width = 12; Obj.compCollision.rec.Height = 5;
                 Obj.compSprite.zOffset = -3;
@@ -771,6 +804,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Dungeon_SpikesFloorOn || Type == ObjType.Dungeon_SpikesFloorOff)
             {
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
                 Obj.compSprite.zOffset = -32; //sort to floor
@@ -782,6 +816,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Dungeon_ConveyorBeltOn || Type == ObjType.Dungeon_ConveyorBeltOff)
             {
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compSprite.zOffset = -31; //sort just above floor
                 Obj.compAnim.speed = 10; //in frames
                 Obj.compCollision.blocking = false;
@@ -798,6 +833,7 @@ namespace DungeonRun
 
             else if (Type == ObjType.Dungeon_Pot)
             {
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -3;
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 11;
                 Obj.compSprite.zOffset = -7;
@@ -809,6 +845,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Dungeon_Barrel)
             {
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 13;
                 Obj.compSprite.zOffset = -7;
@@ -819,12 +856,14 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Dungeon_Bumper)
             {
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compCollision.blocking = false;
                 Obj.canBeSaved = true;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_Bumper;
             }
             else if (Type == ObjType.Dungeon_Flamethrower)
             {
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compSprite.zOffset = -30; //sort slightly above floor
                 Obj.compCollision.blocking = true;
                 Obj.getsAI = true; //obj gets AI
@@ -834,6 +873,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Dungeon_IceTile)
             {
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compCollision.offsetX = -6; Obj.compCollision.offsetY = -6;
                 Obj.compCollision.rec.Width = 12; Obj.compCollision.rec.Height = 12;
                 Obj.compSprite.zOffset = -30; //sort a little above floor
@@ -849,6 +889,7 @@ namespace DungeonRun
 
             else if (Type == ObjType.Dungeon_Switch || Type == ObjType.Dungeon_SwitchDown)
             {
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compCollision.offsetX = -4; Obj.compCollision.offsetY = -3;
                 Obj.compCollision.rec.Width = 8; Obj.compCollision.rec.Height = 8;
                 Obj.compCollision.blocking = false;
@@ -869,6 +910,7 @@ namespace DungeonRun
 
             else if (Type == ObjType.Dungeon_SwitchBlockBtn)
             {
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -4;
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 12;
                 Obj.compSprite.zOffset = -7;
@@ -879,6 +921,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Dungeon_SwitchBlockDown)
             {
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compSprite.zOffset = -32; //sort to floor
                 Obj.compCollision.blocking = false;
                 Obj.canBeSaved = true;
@@ -886,6 +929,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Dungeon_SwitchBlockUp)
             {
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compCollision.offsetX = -8; Obj.compCollision.offsetY = -8;
                 Obj.compCollision.rec.Width = 16; Obj.compCollision.rec.Height = 16;
                 Obj.compSprite.zOffset = -7; //sort normally
@@ -902,6 +946,7 @@ namespace DungeonRun
 
             else if (Type == ObjType.Dungeon_TorchUnlit || Type == ObjType.Dungeon_TorchLit)
             {
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compCollision.offsetX = -8; Obj.compCollision.offsetY = -4;
                 Obj.compCollision.rec.Width = 16; Obj.compCollision.rec.Height = 12;
                 Obj.compSprite.zOffset = -7;
@@ -920,6 +965,7 @@ namespace DungeonRun
 
             else if (Type == ObjType.Dungeon_Fairy)
             {
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compSprite.zOffset = 8; //sort to air
                 Obj.lifetime = 0; //stay around forever
                 Obj.compAnim.speed = 6; //in frames
@@ -940,6 +986,7 @@ namespace DungeonRun
 
             else if (Type == ObjType.Dungeon_SpawnMob)
             {
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compSprite.zOffset = -32; //sort to floor
                 Obj.compCollision.blocking = false;
                 Obj.group = ObjGroup.EnemySpawn;
@@ -1093,13 +1140,12 @@ namespace DungeonRun
             #endregion
 
 
-            #region Level Entrances
+            #region Dungeon Entrances
 
             else if (Type == ObjType.Wor_Entrance_ForestDungeon)
             {
                 Obj.compSprite.drawRec.Width = 16 * 3; //nonstandard size
                 Obj.compSprite.drawRec.Height = 16 * 4; //nonstandard size
-                Obj.compSprite.texture = Assets.forestLevelSheet;
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_Dungeon;
                 //set collision rec near bottom of entrance
                 Obj.compCollision.rec.Width = 16*3-4; Obj.compCollision.offsetX = -6;
@@ -1115,7 +1161,6 @@ namespace DungeonRun
             {
                 Obj.compSprite.drawRec.Width = 16 * 3; //nonstandard size
                 Obj.compSprite.drawRec.Height = 16 * 4; //nonstandard size
-                Obj.compSprite.texture = Assets.mountainLevelSheet;
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_Dungeon;
                 
                 //set collision rec near bottom of entrance
@@ -1132,7 +1177,6 @@ namespace DungeonRun
             {
                 Obj.compSprite.drawRec.Width = 16 * 3; //nonstandard size
                 Obj.compSprite.drawRec.Height = 16 * 4; //nonstandard size
-                Obj.compSprite.texture = Assets.swampLevelSheet;
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_Dungeon;
                 //set collision rec near bottom of entrance
                 Obj.compCollision.rec.Width = 16 * 2 + 4; Obj.compCollision.offsetX = -2;
@@ -1145,12 +1189,15 @@ namespace DungeonRun
             }
 
 
+            #endregion
+
+
+            #region Coliseum Entrances
 
             else if (Type == ObjType.Wor_Entrance_Colliseum)
             {
                 Obj.compSprite.drawRec.Width = 16 * 3; //nonstandard size
                 Obj.compSprite.drawRec.Height = 16 * 4; //nonstandard size
-                Obj.compSprite.texture = Assets.colliseumLevelSheet;
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_Dungeon;
                 //set collision rec near bottom of entrance
                 Obj.compCollision.rec.Width = 16 * 3 - 4; Obj.compCollision.offsetX = -6;
@@ -1161,8 +1208,6 @@ namespace DungeonRun
                 Obj.compCollision.blocking = true;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
             }
-
-
 
             #endregion
 
@@ -1192,7 +1237,6 @@ namespace DungeonRun
                 || Type == ObjType.Wor_Sink
                 || Type == ObjType.Wor_Chair)
             {
-                Obj.compSprite.texture = Assets.townLevelSheet;
                 Obj.compCollision.offsetY = 0; Obj.compCollision.rec.Height = 8;
                 Obj.compSprite.zOffset = -7;
                 Obj.canBeSaved = true;
@@ -1219,7 +1263,6 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Wor_TableSingle )
             {
-                Obj.compSprite.texture = Assets.townLevelSheet;
                 Obj.canBeSaved = true;
                 Obj.compMove.moveable = true;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
@@ -1233,7 +1276,6 @@ namespace DungeonRun
             else if(Type == ObjType.Wor_TableDoubleLeft
                 || Type == ObjType.Wor_TableDoubleRight)
             {
-                Obj.compSprite.texture = Assets.townLevelSheet;
                 Obj.canBeSaved = true;
                 //Obj.compMove.moveable = true;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
@@ -1277,7 +1319,6 @@ namespace DungeonRun
                 Type == ObjType.Vendor_NPC_Armor || Type == ObjType.Vendor_NPC_Equipment
                 || Type == ObjType.Vendor_NPC_Pets)
             {
-                Obj.compSprite.texture = Assets.townLevelSheet;
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 11;
                 Obj.compSprite.zOffset = 0;
@@ -1295,7 +1336,6 @@ namespace DungeonRun
             }
             else if(Type == ObjType.Vendor_Colliseum_Mob || Type == ObjType.Vendor_NPC_EnemyItems)
             {
-                Obj.compSprite.texture = Assets.colliseumLevelSheet;
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 11;
                 Obj.compSprite.zOffset = 0;
@@ -1317,7 +1357,6 @@ namespace DungeonRun
             //story NPC
             else if (Type == ObjType.NPC_Story)
             {
-                Obj.compSprite.texture = Assets.townLevelSheet;
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 11;
                 Obj.compSprite.zOffset = 0;
@@ -1339,8 +1378,7 @@ namespace DungeonRun
                 if (Type == ObjType.NPC_Farmer) //initial farmer checks often for
                 { Obj.interactiveFrame = 30; } //completion condition, while reward
                 else { Obj.interactiveFrame = 60; } //farmer gently spams exclamation point
-
-                Obj.compSprite.texture = Assets.townLevelSheet;
+                
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 11;
                 Obj.compSprite.zOffset = 0;
@@ -1356,7 +1394,6 @@ namespace DungeonRun
             //colliseum judge
             else if (Type == ObjType.Judge_Colliseum)
             {
-                Obj.compSprite.texture = Assets.colliseumLevelSheet;
                 Obj.compAnim.currentAnimation = AnimationFrames.Vendor_Colliseum_Mob;
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 11;
@@ -1505,7 +1542,6 @@ namespace DungeonRun
             
             else if (Type == ObjType.Wor_Fence_Vertical_Left || Type == ObjType.Wor_Fence_Vertical_Right)
             {
-                Obj.compSprite.texture = Assets.townLevelSheet;
                 Obj.canBeSaved = true;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
                 Obj.compSprite.zOffset = 0;
@@ -1527,7 +1563,6 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Wor_Fence_Horizontal || Type == ObjType.Wor_Fence_Gate)
             {
-                Obj.compSprite.texture = Assets.townLevelSheet;
                 Obj.canBeSaved = true;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
                 Obj.compSprite.zOffset = 4;
@@ -1549,7 +1584,6 @@ namespace DungeonRun
                 || Type == ObjType.Wor_Build_Wall_FrontB
                 || Type == ObjType.Wor_Build_Wall_Back)
             {
-                Obj.compSprite.texture = Assets.townLevelSheet;
                 Obj.canBeSaved = true;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
                 Obj.compSprite.zOffset = 0; //sort over sidewalls
@@ -1565,7 +1599,6 @@ namespace DungeonRun
             }
             else if(Type == ObjType.Wor_Build_Wall_Side_Left)
             {
-                Obj.compSprite.texture = Assets.townLevelSheet;
                 Obj.canBeSaved = true;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
                 Obj.compSprite.zOffset = 1;
@@ -1576,7 +1609,6 @@ namespace DungeonRun
             }
             else if(Type == ObjType.Wor_Build_Wall_Side_Right)
             {
-                Obj.compSprite.texture = Assets.townLevelSheet;
                 Obj.canBeSaved = true;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
                 Obj.compSprite.zOffset = 1;
@@ -1587,7 +1619,6 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Wor_Build_Door_Shut)
             {
-                Obj.compSprite.texture = Assets.townLevelSheet;
                 Obj.canBeSaved = true;
                 Obj.compSprite.zOffset = 0;
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Build_Door_Shut;
@@ -1597,7 +1628,6 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Wor_Build_Door_Open)
             {
-                Obj.compSprite.texture = Assets.townLevelSheet;
                 Obj.canBeSaved = true;
                 Obj.compSprite.zOffset = 0;
                 Obj.compCollision.blocking = false;
@@ -1608,7 +1638,6 @@ namespace DungeonRun
             else if (Type == ObjType.Wor_Build_Roof_Bottom
                 || Type == ObjType.Wor_Build_Roof_Top)
             {
-                Obj.compSprite.texture = Assets.townLevelSheet;
                 Obj.canBeSaved = true;
                 Obj.compSprite.zOffset = 48; //sort over most other things
                 Obj.compCollision.blocking = false;
@@ -1619,7 +1648,6 @@ namespace DungeonRun
             }
             else if(Type == ObjType.Wor_Build_Roof_Chimney)
             {
-                Obj.compSprite.texture = Assets.townLevelSheet;
                 Obj.canBeSaved = true;
                 Obj.compSprite.zOffset = 48; //sort over most other things
                 Obj.compCollision.blocking = false;
@@ -1683,11 +1711,23 @@ namespace DungeonRun
                 //animFrame
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Post_Horizontal;
             }
-            
+
 
             #endregion
 
 
+            #region Signpost
+
+            else if (Type == ObjType.Dungeon_Signpost) //not dungeon specific, lol
+            {
+                Obj.compCollision.offsetY = +4; Obj.compCollision.rec.Height = 4;
+                Obj.compSprite.zOffset = +4;
+                Obj.compAnim.currentAnimation = AnimationFrames.Signpost;
+                Obj.sfx.hit = Assets.sfxTapMetallic;
+                Obj.canBeSaved = true;
+            }
+
+            #endregion
 
 
             //Object Enemies
@@ -1744,7 +1784,6 @@ namespace DungeonRun
             else if (Type == ObjType.Wor_SeekerExploder)
             {
                 Obj.group = ObjGroup.Enemy;
-                Obj.compSprite.texture = Assets.forestLevelSheet;
                 Obj.canBeSaved = true;
                 Obj.compSprite.zOffset = 0;
                 Obj.compMove.moveable = true;
@@ -1776,7 +1815,6 @@ namespace DungeonRun
 
             else if (Type == ObjType.Wor_Colliseum_Gate_Center)
             {
-                Obj.compSprite.texture = Assets.colliseumLevelSheet;
                 Obj.compSprite.drawRec.Width = 16 * 1; //nonstandard size
                 Obj.compSprite.drawRec.Height = 16 * 4; //nonstandard size
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Colliseum_Gate_Center;
@@ -1792,7 +1830,6 @@ namespace DungeonRun
             else if (Type == ObjType.Wor_Colliseum_Gate_Pillar_Left
                 || Type == ObjType.Wor_Colliseum_Gate_Pillar_Right)
             {
-                Obj.compSprite.texture = Assets.colliseumLevelSheet;
                 Obj.compSprite.drawRec.Width = 16 * 2; //nonstandard size
                 Obj.compSprite.drawRec.Height = 16 * 4; //nonstandard size
                 if (Type == ObjType.Wor_Colliseum_Gate_Pillar_Left)
@@ -1819,7 +1856,6 @@ namespace DungeonRun
                 || Type == ObjType.Wor_Colliseum_Stairs_Handrail_Bottom
                 )
             {
-                Obj.compSprite.texture = Assets.colliseumLevelSheet;
                 //Obj.compCollision.offsetY = 0; Obj.compCollision.rec.Height = 8;
                 Obj.compSprite.zOffset = 0;
                 Obj.canBeSaved = true;
@@ -1840,7 +1876,6 @@ namespace DungeonRun
                 || Type == ObjType.Wor_Colliseum_Stairs_Right
                 )
             {
-                Obj.compSprite.texture = Assets.colliseumLevelSheet;
                 Obj.compSprite.zOffset = -16;
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = false;
@@ -1867,7 +1902,6 @@ namespace DungeonRun
                 || Type == ObjType.Wor_Colliseum_Pillar_Bottom
                 )
             {
-                Obj.compSprite.texture = Assets.colliseumLevelSheet;
                 Obj.compSprite.zOffset = 0;
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = true;
@@ -1895,7 +1929,6 @@ namespace DungeonRun
                 || Type == ObjType.Wor_Colliseum_Bricks_Right
                 )
             {
-                Obj.compSprite.texture = Assets.colliseumLevelSheet;
                 Obj.compSprite.drawRec.Width = 16 * 1; //nonstandard size
                 Obj.compSprite.drawRec.Height = 16 * 2; //nonstandard size
                 Obj.compCollision.rec.Width = 16; Obj.compCollision.offsetX = -8;
@@ -1935,7 +1968,6 @@ namespace DungeonRun
                 //|| Type == ObjType.Wor_Colliseum_Bricks_Middle1
                 )
             {
-                Obj.compSprite.texture = Assets.colliseumLevelSheet;
                 Obj.compSprite.zOffset = -64; //floortile
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = false;
@@ -1957,8 +1989,7 @@ namespace DungeonRun
                 Obj.compSprite.drawRec.Height = 16 * 1; 
                 Obj.compCollision.rec.Width = 16 * 4; Obj.compCollision.offsetX = - 8;
                 Obj.compCollision.rec.Height = 16 * 1; Obj.compCollision.offsetY = -8;
-
-                Obj.compSprite.texture = Assets.colliseumLevelSheet;
+                
                 Obj.compSprite.zOffset = 64; //sort over others like a roof
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = false;
@@ -1993,8 +2024,7 @@ namespace DungeonRun
                 Obj.compSprite.drawRec.Width = 16 * 4; Obj.compSprite.drawRec.Height = 16 * 1;
                 Obj.compCollision.rec.Width = 16 * 4; Obj.compCollision.offsetX = -8;
                 Obj.compCollision.rec.Height = 16 * 1; Obj.compCollision.offsetY = -8;
-
-                Obj.compSprite.texture = Assets.mountainLevelSheet;
+                
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_MountainWall_Top;
                 Obj.compSprite.zOffset = -18; //sorts under footholds
                 Obj.canBeSaved = true;
@@ -2006,8 +2036,7 @@ namespace DungeonRun
                 Obj.compSprite.drawRec.Width = 16 * 4; Obj.compSprite.drawRec.Height = 16 * 2;
                 Obj.compCollision.rec.Width = 16 * 4; Obj.compCollision.offsetX = -8;
                 Obj.compCollision.rec.Height = 16 * 2; Obj.compCollision.offsetY = -8;
-
-                Obj.compSprite.texture = Assets.mountainLevelSheet;
+                
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_MountainWall_Mid;
                 Obj.compSprite.zOffset = -18; //sorts under footholds
                 Obj.canBeSaved = true;
@@ -2019,8 +2048,7 @@ namespace DungeonRun
                 Obj.compSprite.drawRec.Width = 16 * 4; Obj.compSprite.drawRec.Height = 16 * 1;
                 Obj.compCollision.rec.Width = 16 * 4; Obj.compCollision.offsetX = -8;
                 Obj.compCollision.rec.Height = 16 * 1; Obj.compCollision.offsetY = -8;
-
-                Obj.compSprite.texture = Assets.mountainLevelSheet;
+                
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_MountainWall_Bottom;
                 Obj.compSprite.zOffset = -18; //sorts under footholds
                 Obj.canBeSaved = true;
@@ -2040,8 +2068,6 @@ namespace DungeonRun
                 Obj.compSprite.drawRec.Width = 16 * 1; Obj.compSprite.drawRec.Height = 16 * 1;
                 Obj.compCollision.rec.Width = 20; Obj.compCollision.offsetX = -10;
                 Obj.compCollision.rec.Height = 20; Obj.compCollision.offsetY = -10;
-
-                Obj.compSprite.texture = Assets.mountainLevelSheet;
 
                 if (Type == ObjType.Wor_MountainWall_Foothold)
                 { Obj.compAnim.currentAnimation = AnimationFrames.Wor_MountainWall_Foothold; }
@@ -2070,7 +2096,6 @@ namespace DungeonRun
             {   //nonstandard size
                 Obj.compSprite.drawRec.Width = 16*2; Obj.compSprite.drawRec.Height = 16 * 2;
                 Obj.compCollision.rec.Width = 12; Obj.compCollision.rec.Height = 16 * 2;
-                Obj.compSprite.texture = Assets.mountainLevelSheet;
 
                 if (Type == ObjType.Wor_MountainWall_Alcove_Left)
                 {   //set collision rec left
@@ -2100,7 +2125,6 @@ namespace DungeonRun
                 Obj.compSprite.drawRec.Width = 16 * 2; Obj.compSprite.drawRec.Height = 16 * 2;
                 Obj.compCollision.rec.Width = 16 * 2; Obj.compCollision.rec.Height = 16 * 2;
                 Obj.compCollision.offsetX = -8; Obj.compCollision.offsetY = -8;
-                Obj.compSprite.texture = Assets.mountainLevelSheet;
 
                 if (Type == ObjType.Wor_MountainWall_Cave_Bare)
                 { Obj.compAnim.currentAnimation = AnimationFrames.Wor_MountainWall_Cave_Bare; }
@@ -2130,10 +2154,7 @@ namespace DungeonRun
                 Obj.compSprite.drawRec.Width = 16 * 2; Obj.compSprite.drawRec.Height = 16 * 2;
                 Obj.compCollision.rec.Width = 16 * 2; Obj.compCollision.offsetX = -8;
                 Obj.compCollision.rec.Height = 16 * 2; Obj.compCollision.offsetY = -8;
-
-                Obj.compSprite.texture = Assets.swampLevelSheet;
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Swamp_LillyPad;
-
                 Obj.compSprite.zOffset = -39; //sorts just above water (-40)
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = false;
@@ -2143,10 +2164,7 @@ namespace DungeonRun
                 Obj.compSprite.drawRec.Width = 16 * 2; Obj.compSprite.drawRec.Height = 16 * 2;
                 Obj.compCollision.rec.Width = 16 * 2; Obj.compCollision.offsetX = -8;
                 Obj.compCollision.rec.Height = 16 * 2; Obj.compCollision.offsetY = -8;
-
-                Obj.compSprite.texture = Assets.swampLevelSheet;
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Swamp_BigPlant;
-
                 Obj.compSprite.zOffset = 6; //has height
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = true;
@@ -2157,10 +2175,7 @@ namespace DungeonRun
                 Obj.compSprite.drawRec.Width = 16 * 2; Obj.compSprite.drawRec.Height = 16 * 1;
                 Obj.compCollision.rec.Width = 16 * 2; Obj.compCollision.offsetX = -8;
                 Obj.compCollision.rec.Height = 12; Obj.compCollision.offsetY = -6;
-
-                Obj.compSprite.texture = Assets.swampLevelSheet;
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Swamp_Vine;
-
                 Obj.compSprite.zOffset = 0;
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = false;
@@ -2170,10 +2185,7 @@ namespace DungeonRun
             {
                 Obj.compCollision.rec.Width = 6; Obj.compCollision.offsetX = -3;
                 Obj.compCollision.rec.Height = 4; Obj.compCollision.offsetY = 2;
-
-                Obj.compSprite.texture = Assets.swampLevelSheet;
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Swamp_Bulb;
-
                 Obj.compSprite.zOffset = 1;
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = true;
@@ -2182,10 +2194,7 @@ namespace DungeonRun
             {   
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.offsetX = -5;
                 Obj.compCollision.rec.Height = 4; Obj.compCollision.offsetY = 2;
-
-                Obj.compSprite.texture = Assets.swampLevelSheet;
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Swamp_SmPlant;
-
                 Obj.compSprite.zOffset = 1;
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = true;
@@ -2206,8 +2215,6 @@ namespace DungeonRun
                 Obj.compSprite.drawRec.Width = 16 * 2; Obj.compSprite.drawRec.Height = 16 * 3;
                 Obj.compCollision.rec.Width = 16 * 2; Obj.compCollision.offsetX = -8;
                 Obj.compCollision.rec.Height = 4; Obj.compCollision.offsetY = 32-8;
-
-                Obj.compSprite.texture = Assets.boatLevelSheet;
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Front;
 
                 Obj.compSprite.zOffset = 20; //has height
@@ -2224,7 +2231,6 @@ namespace DungeonRun
                 if (Type == ObjType.Wor_Boat_Front_Right)
                 { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Front_Right; }
                 else { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Front_Left; }
-                Obj.compSprite.texture = Assets.boatLevelSheet;
 
                 Obj.compSprite.zOffset = 20; //has height
                 Obj.canBeSaved = true;
@@ -2248,7 +2254,6 @@ namespace DungeonRun
                     Obj.compCollision.offsetX = -8;
                     Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Front_ConnectorLeft;
                 }
-                Obj.compSprite.texture = Assets.boatLevelSheet;
 
                 Obj.compSprite.zOffset = -32; //sort above water
                 Obj.canBeSaved = true;
@@ -2277,8 +2282,6 @@ namespace DungeonRun
                     Obj.compCollision.offsetX = -8;
                     Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Bannister_Left;
                 }
-                Obj.compSprite.texture = Assets.boatLevelSheet;
-
                 Obj.compSprite.zOffset = -32; //sort above water
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = true;
@@ -2301,8 +2304,6 @@ namespace DungeonRun
                     Obj.compCollision.offsetX = -8;
                     Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Stairs_Top_Left;
                 }
-                Obj.compSprite.texture = Assets.boatLevelSheet;
-
                 Obj.compSprite.zOffset = -32; //sort above water
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = true;
@@ -2319,7 +2320,6 @@ namespace DungeonRun
                 { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Stairs_Right; }
                 else
                 { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Stairs_Left; }
-                Obj.compSprite.texture = Assets.boatLevelSheet;
 
                 Obj.compSprite.zOffset = -32; //sort above water
                 Obj.canBeSaved = true;
@@ -2343,8 +2343,6 @@ namespace DungeonRun
                     Obj.compCollision.offsetX = -8;
                     Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Stairs_Bottom_Left;
                 }
-                Obj.compSprite.texture = Assets.boatLevelSheet;
-
                 Obj.compSprite.zOffset = -32; //sort above water
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = true;
@@ -2366,7 +2364,6 @@ namespace DungeonRun
                 { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Back_Right; }
                 else
                 { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Back_Left; }
-                Obj.compSprite.texture = Assets.boatLevelSheet;
 
                 Obj.compSprite.zOffset = -32; //sort above water
                 Obj.canBeSaved = true;
@@ -2384,7 +2381,6 @@ namespace DungeonRun
                 { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Back_Right_Connector; }
                 else
                 { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Back_Left_Connector; }
-                Obj.compSprite.texture = Assets.boatLevelSheet;
 
                 Obj.compSprite.zOffset = -32; //sort above water
                 Obj.canBeSaved = true;
@@ -2398,7 +2394,6 @@ namespace DungeonRun
                 Obj.compCollision.rec.Height = 16 * 2 - 4; Obj.compCollision.offsetY = 16 + 2 + 2;
 
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Back_Center;
-                Obj.compSprite.texture = Assets.boatLevelSheet;
 
                 Obj.compSprite.zOffset = -24; //sort above water
                 Obj.canBeSaved = true;
@@ -2413,8 +2408,6 @@ namespace DungeonRun
             else if (Type == ObjType.Wor_Boat_Floor)
             {   
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Floor;
-                Obj.compSprite.texture = Assets.boatLevelSheet;
-
                 Obj.compSprite.zOffset = -40; //sort above water
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = false;
@@ -2423,8 +2416,6 @@ namespace DungeonRun
             else if (Type == ObjType.Wor_Boat_Barrel)
             {
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Barrel;
-                Obj.compSprite.texture = Assets.boatLevelSheet;
-
                 Obj.compCollision.rec.Width = 12; Obj.compCollision.offsetX = -6;
                 Obj.compCollision.rec.Height = 10; Obj.compCollision.offsetY = -5+3;
 
@@ -2440,8 +2431,6 @@ namespace DungeonRun
                 Obj.compCollision.rec.Height = 16 * 4 + 8; Obj.compCollision.offsetY = 0;
 
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Engine;
-                Obj.compSprite.texture = Assets.boatLevelSheet;
-
                 Obj.compSprite.zOffset = 33; //has height
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = true;
@@ -2450,8 +2439,6 @@ namespace DungeonRun
             else if (Type == ObjType.Wor_Boat_Stairs_Cover)
             {
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Stairs_Cover;
-                Obj.compSprite.texture = Assets.boatLevelSheet;
-
                 Obj.compCollision.rec.Width = 16; Obj.compCollision.offsetX = -8;
                 Obj.compCollision.rec.Height = 16; Obj.compCollision.offsetY = -8;
 
@@ -2468,8 +2455,6 @@ namespace DungeonRun
             else if (Type == ObjType.Wor_Boat_Captain_Brandy)
             {
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Captain_Brandy;
-                Obj.compSprite.texture = Assets.boatLevelSheet;
-
                 Obj.compCollision.rec.Width = 16; Obj.compCollision.offsetX = -8;
                 Obj.compCollision.rec.Height = 16; Obj.compCollision.offsetY = -8;
 
@@ -2492,10 +2477,7 @@ namespace DungeonRun
                 Obj.compSprite.drawRec.Width = 16 * 2; Obj.compSprite.drawRec.Height = 16 * 1;
                 Obj.compCollision.rec.Width = 16 * 2; Obj.compCollision.offsetX = -8;
                 Obj.compCollision.rec.Height = 2; Obj.compCollision.offsetY = -8-2;
-
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Bridge_Top;
-                Obj.compSprite.texture = Assets.boatLevelSheet;
-
                 Obj.compSprite.zOffset = -16;
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = true;
@@ -2505,10 +2487,7 @@ namespace DungeonRun
                 Obj.compSprite.drawRec.Width = 16 * 2; Obj.compSprite.drawRec.Height = 16 * 1;
                 Obj.compCollision.rec.Width = 16 * 2; Obj.compCollision.offsetX = -8;
                 Obj.compCollision.rec.Height = 14; Obj.compCollision.offsetY = -8;
-
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Bridge_Bottom;
-                Obj.compSprite.texture = Assets.boatLevelSheet;
-
                 Obj.compSprite.zOffset = -16;
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = true;
@@ -2529,7 +2508,6 @@ namespace DungeonRun
             {
                 Obj.compCollision.rec.Width = 16; Obj.compCollision.offsetX = -8;
                 Obj.compCollision.rec.Height = 16; Obj.compCollision.offsetY = -8;
-                Obj.compSprite.texture = Assets.boatLevelSheet;
                 Obj.compSprite.zOffset = -15;
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = false;
@@ -2567,10 +2545,7 @@ namespace DungeonRun
                 Obj.compSprite.drawRec.Width = 16 * 1; Obj.compSprite.drawRec.Height = 16 * 2;
                 Obj.compCollision.rec.Width = 16 * 1; Obj.compCollision.offsetX = -8;
                 Obj.compCollision.rec.Height = 16 * 2; Obj.compCollision.offsetY = -8;
-
-                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Coastline;
-                Obj.compSprite.texture = Assets.boatLevelSheet;
-                
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Coastline_Long;
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = false;
                 Obj.compSprite.zOffset = -128; //same as water tiles
@@ -2852,20 +2827,23 @@ namespace DungeonRun
             #endregion
 
 
-            #region Projectiles - World - Thrown
+            #region Projectiles - Thrown
 
             else if (Type == ObjType.ProjectileBush
                 || Type == ObjType.ProjectilePot
                 || Type == ObjType.ProjectilePotSkull)
             {
+                //bushes and pots exist on commonObjs sheet,
+                //but skull pot exists on the dungeon sheet
+                if (Type == ObjType.ProjectilePotSkull)
+                { Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; }
+
+                //thrown projectile attributes
                 Obj.group = ObjGroup.Projectile;
                 Obj.compSprite.zOffset = 32;
-
                 Obj.lifetime = 20; //in frames
                 Obj.compMove.grounded = false; //obj is airborne
                 Obj.compMove.friction = 0.984f; //some air friction
-                Obj.compSprite.texture = Assets.forestLevelSheet;
-
                 //refine this hitBox later
                 Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
@@ -2918,7 +2896,6 @@ namespace DungeonRun
                 Obj.compSprite.texture = Assets.entitiesSheet; //null / doesn't matter cause..
                 Obj.compSprite.visible = false; //..this projectile isnt drawn
                 Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Sword; //null too
-
             }
 
             else if (Type == ObjType.ProjectileBat)
@@ -2935,7 +2912,7 @@ namespace DungeonRun
                 Obj.compMove.moveable = true;
                 Obj.compMove.grounded = false; //obj is airborne
                 Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Bat;
-                Obj.compSprite.texture = Assets.mountainLevelSheet;
+                Obj.compSprite.texture = Assets.EnemySheet;
                 Obj.sfx.kill = Assets.sfxRatSqueak;
                 Obj.sfx.hit = null;
             }
@@ -2960,7 +2937,7 @@ namespace DungeonRun
                 Obj.compAnim.speed = 10; //in frames
                 Obj.compAnim.currentAnimation = AnimationFrames.Particle_PitBubble;
                 //not on the entities sheet, on dungeon sheet
-                Obj.compSprite.texture = Assets.forestLevelSheet;
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet;
             }
 
             #endregion
@@ -3038,8 +3015,6 @@ namespace DungeonRun
                 if (Type == ObjType.Particle_Debris)
                 { Obj.compAnim.currentAnimation = AnimationFrames.Particle_Debris; }
                 else { Obj.compAnim.currentAnimation = AnimationFrames.Particle_Leaf; }
-                //not on the entities sheet, on dungeon sheet
-                Obj.compSprite.texture = Assets.forestLevelSheet;
             }
 
 
@@ -3134,12 +3109,12 @@ namespace DungeonRun
                 if (Type == ObjType.Particle_RewardKey)
                 {   //this obj is on the dungeon sheet
                     Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_BossKey;
-                    Obj.compSprite.texture = Assets.forestLevelSheet;
+                    Obj.compSprite.texture = Assets.Dungeon_CurrentSheet;
                 }
                 else if (Type == ObjType.Particle_RewardMap)
                 {   //this obj is on the dungeon sheet
                     Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_Map;
-                    Obj.compSprite.texture = Assets.forestLevelSheet;
+                    Obj.compSprite.texture = Assets.Dungeon_CurrentSheet;
                 }
                 else if (Type == ObjType.Particle_BottleEmpty)
                 { Obj.compAnim.currentAnimation = AnimationFrames.Bottle_Empty; }
@@ -3225,7 +3200,6 @@ namespace DungeonRun
                 Obj.getsAI = true; //obj gets ai too (track to hero, set anim frames)
 
                 Obj.compCollision.blocking = false; //dont block
-                Obj.compSprite.texture = Assets.townLevelSheet;
                 Obj.canBeSaved = true;
                 //set initial animation frame
                 Obj.compAnim.currentAnimation = AnimationFrames.Pet_Chicken_Idle;
@@ -3262,6 +3236,10 @@ namespace DungeonRun
             {   //all wall objs have same sfx
                 Obj.sfx.hit = Assets.sfxTapMetallic;
                 Obj.sfx.kill = null; //cant kill wall
+            }
+            else if(Obj.group == ObjGroup.Enemy)
+            {   //all enemies exist on the enemy sheet
+                Obj.compSprite.texture = Assets.EnemySheet;
             }
 
             #endregion

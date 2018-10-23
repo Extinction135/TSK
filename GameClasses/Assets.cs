@@ -33,14 +33,24 @@ namespace DungeonRun
         public static Texture2D entitiesSheet;
         public static Texture2D uiItemsSheet;
 
-        //level sheets
-        public static Texture2D townLevelSheet;
-        public static Texture2D colliseumLevelSheet;
-        public static Texture2D boatLevelSheet;
 
-        public static Texture2D forestLevelSheet;
-        public static Texture2D mountainLevelSheet;
-        public static Texture2D swampLevelSheet;
+
+
+        //level sheets
+        public static Texture2D CommonObjsSheet;
+        public static Texture2D EnemySheet;
+        //dungeon sheets
+        public static Texture2D Dungeon_CurrentSheet; //points to one below
+        public static Texture2D Dungeon_DefaultSheet;
+        public static Texture2D Dungeon_ForestSheet;
+        public static Texture2D Dungeon_MountainSheet;
+        public static Texture2D Dungeon_SwampSheet;
+
+
+
+
+
+
 
 
         //overworld sheets
@@ -206,13 +216,19 @@ namespace DungeonRun
             blobSheet = content.Load<Texture2D>(@"Sprites_Hero_Blob");
             heroSheet = content.Load<Texture2D>(@"Sprites_Hero_Link");
 
-            townLevelSheet = content.Load<Texture2D>(@"Sprites_Level_Town");
-            colliseumLevelSheet = content.Load<Texture2D>(@"Sprites_Level_Colliseum");
-            boatLevelSheet = content.Load<Texture2D>(@"Sprites_Level_Boat");
 
-            forestLevelSheet = content.Load<Texture2D>(@"Sprites_Level_Forest");
-            mountainLevelSheet = content.Load<Texture2D>(@"Sprites_Level_Mountain");
-            swampLevelSheet = content.Load<Texture2D>(@"Sprites_Level_Swamp");
+            //new sheets
+            CommonObjsSheet = content.Load<Texture2D>(@"Sprites_CommonObjs");
+            EnemySheet = content.Load<Texture2D>(@"Sprites_Enemies");
+
+            Dungeon_DefaultSheet = content.Load<Texture2D>(@"Sprites_Dungeon_Default");
+            Dungeon_ForestSheet = content.Load<Texture2D>(@"Sprites_Dungeon_Forest");
+            Dungeon_MountainSheet = content.Load<Texture2D>(@"Sprites_Dungeon_Mountain");
+            Dungeon_SwampSheet = content.Load<Texture2D>(@"Sprites_Dungeon_Swamp");
+
+            //points to default sheet upon creation
+            Dungeon_CurrentSheet = Dungeon_DefaultSheet;
+
 
             petsSheet = content.Load<Texture2D>(@"Sprites_Pets");
             uiItemsSheet = content.Load<Texture2D>(@"Sprites_Ui");

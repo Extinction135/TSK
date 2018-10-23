@@ -66,10 +66,34 @@ Today:
 
 
 
+Textures++
 
-Texture Reorganization - Part 1
+updated Dx and UWP project and content folders with
+new texture sheets. updated assets.cs to load new
+texture sheets. redesigned how textures will be handled.
 
-moving sprites and coloring them.
+updated editor to properly display widget objects.
+updated dungeon object anim frames.
+updated world object anim frames.
+updated coliseum object anim frames.
+updated mountain object anim frames.
+updated swamp object anim frames.
+updated boat object anim frames.
+updated enemy, vendor, and npc anim frames.
+
+updated enemy actor anim frames : all minis, 
+bosses, and mobs. whew.
+
+updated all textures and sheets, including 
+title sheet..
+
+Title Screen ++
+
+made awesome new title sheet, based on someone's
+pixel art I found online. overtime, this image will
+be changed to be more 'shadow king-y', but it's a
+great starting point. tested, looking good, but
+of course there are bugs.
 
 
 
@@ -78,22 +102,77 @@ moving sprites and coloring them.
 
 
 
-color all sheets:
-
-boat sheet
-all dungeon sheets
-dungeon enemies sheet
-common objs sheet
-ui sheet
-entities sheet
 
 
 
-UPDATE TEXTURES + ANIMATION FRAMES FOR ALL GAMEOBJ DEFS
-**during this entire process, we cannot remove or rename any objs**
 
 
 
+
+Fix Texture Bugs
+
+
+display issues:
+*bat projectile
+*world debris (small bits) 
+world leaf debris too
+*world tree burnt
+
+boat back center
+back left + connector
+back right + connector
+
+all dungeon entrances - these need to be specifically defined
+
+world building wall back - incorrect grey?
+world build door shut - coastline?
+
+boat bridge - wrong sprite? tree bush? lol
+front house doors
+open doors appear as closed doors
+coliseum walls appear as npcs? lol
+coliseum challenge sprite appears wrong
+
+
+
+
+Color++
+we only have clean beds rn - color this one
+color all boat sprites
+color base dungeon sprites
+
+create color version of forest, swamp, mountain dungeons
+update those sheets - these dungeons can have unique wall colors
+
+
+
+
+
+
+
+art++
+remove orange/red from coliseum spectators
+make spectators much more brown and less obvious
+
+color all UI items
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+editor++
+signpost shold be part of env objs widget (is part of dungeon widget)
 
 
 
@@ -122,60 +201,12 @@ thieves den dungeon sheet
 
 
 
-update all animation frames for all game objects, from
-top to bottom
 
 
 
 
-
-
-
-
-Editor & Textures
-
-we will need to touch the editor next.
-which means we can consolidate sheets now.
-
-we should display as many objects on screen as possible,
-using a few widgets. we should cycle thru widgets, and
-consolidate them when possible.
-
-
-one texture for the majority of shared objects, like water and
-busehs and trees and effects and stuff. but each dungeon
-still gets it's own texture sheet, so we can pallette swap.
-
-
-we push for color: consolidate all objects
-to one sheet that are used consistently.
-these get one color pallette.
-
-
-
-
-consolidate sheets, fix editor, fix assets + textures
-
-
-
-
-
-
-
-common objs sheet - most everything
-
-dungeon sheets - 7 sheets, smaller, based on 1 blueprint
-
-
-
-
-
-
-
-
-
-
-
+*** add coliseum enemy widget to editor, to contain creature
+challenges coming up soon.
 
 
 
@@ -187,16 +218,6 @@ dungeon entrances sheet? or per obj, standardized to
 128x128 sheet? which is massive btw.. and we can repeat it,
 if the sprite is repeatable horizontally, for even larger
 entrances....
-
-
-
-
-
-
-
-
-
-
 
 
 

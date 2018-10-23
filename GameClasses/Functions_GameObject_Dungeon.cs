@@ -148,7 +148,6 @@ namespace DungeonRun
         {
             //turn into exploding barrel
             Barrel.compAnim.currentAnimation = AnimationFrames.Dungeon_BarrelExploding;
-            Barrel.compSprite.texture = Assets.forestLevelSheet;
             //if barrel has a hit direction, push in that direction
             if (Barrel.compMove.direction != Direction.None)
             { Functions_Movement.Push(Barrel.compMove, Barrel.compMove.direction, 6.0f); }

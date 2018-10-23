@@ -715,7 +715,7 @@ namespace DungeonRun
                 Actor.compMove.grounded = false; //is flying
 
                 Actor.enemy = true;
-                Actor.compSprite.texture = Assets.forestLevelSheet;
+                Actor.compSprite.texture = Assets.EnemySheet;
                 Actor.animList = AnimationFrames.Standard_AngryEye_Animations;
                 Actor.health = 3;
                 ResetActorLoadout(Actor);
@@ -749,7 +749,7 @@ namespace DungeonRun
                 Actor.compMove.grounded = false; //is flying
 
                 Actor.enemy = true;
-                Actor.compSprite.texture = Assets.mountainLevelSheet;
+                Actor.compSprite.texture = Assets.EnemySheet;
                 Actor.animList = AnimationFrames.Standard_BeefyBat_Animations;
 
                 Actor.health = 2;
@@ -791,7 +791,7 @@ namespace DungeonRun
                 Actor.compMove.grounded = false; //is flying
 
                 Actor.enemy = true;
-                Actor.compSprite.texture = Assets.forestLevelSheet;
+                Actor.compSprite.texture = Assets.EnemySheet;
                 Actor.animList = AnimationFrames.MiniBoss_BlackEye_Animations;
                 Actor.health = 15;
                 ResetActorLoadout(Actor);
@@ -822,7 +822,7 @@ namespace DungeonRun
                 Actor.aiType = ActorAI.Basic;
 
                 Actor.enemy = true;
-                Actor.compSprite.texture = Assets.mountainLevelSheet;
+                Actor.compSprite.texture = Assets.EnemySheet;
                 Actor.animList = AnimationFrames.MiniBoss_SpiderArmored_Animations;
                 Actor.health = 1; //simply takes 1 damage, then becomes unarmored
 
@@ -856,7 +856,7 @@ namespace DungeonRun
                 Actor.compCollision.blocking = true; //actor was 'dead'
 
                 Actor.enemy = true;
-                Actor.compSprite.texture = Assets.mountainLevelSheet;
+                Actor.compSprite.texture = Assets.EnemySheet;
                 Actor.animList = AnimationFrames.MiniBoss_SpiderUnarmored_Animations;
                 Actor.health = 5; //actual miniboss
 
@@ -896,7 +896,7 @@ namespace DungeonRun
                 
                 Actor.enemy = true;
                 Actor.underwaterEnemy = true;
-                Actor.compSprite.texture = Assets.swampLevelSheet;
+                Actor.compSprite.texture = Assets.EnemySheet;
                 Actor.animList = AnimationFrames.MiniBoss_OctoMouth_Animations;
                 Actor.health = 10;
                 ResetActorLoadout(Actor);
@@ -933,7 +933,7 @@ namespace DungeonRun
                 Actor.compMove.grounded = false; //is flying
 
                 Actor.enemy = true;
-                Actor.compSprite.texture = Assets.forestLevelSheet;
+                Actor.compSprite.texture = Assets.EnemySheet;
                 Actor.animList = AnimationFrames.Boss_BigEye_Animations;
                 Actor.health = 30;
 
@@ -970,7 +970,7 @@ namespace DungeonRun
                 Actor.compMove.grounded = false; //is flying
 
                 Actor.enemy = true;
-                Actor.compSprite.texture = Assets.mountainLevelSheet;
+                Actor.compSprite.texture = Assets.EnemySheet;
                 Actor.animList = AnimationFrames.Boss_BigBat_Animations;
                 Actor.health = 20;
 
@@ -1010,7 +1010,7 @@ namespace DungeonRun
 
                 Actor.enemy = true;
                 Actor.underwaterEnemy = true;
-                Actor.compSprite.texture = Assets.swampLevelSheet;
+                Actor.compSprite.texture = Assets.EnemySheet;
                 Actor.animList = AnimationFrames.Boss_OctoHead_Animations;
                 Actor.health = 8; //each time head takes damage he spawns a tentacle actor
                 ResetActorLoadout(Actor);
@@ -1054,7 +1054,7 @@ namespace DungeonRun
 
                 Actor.enemy = true;
                 Actor.underwaterEnemy = true;
-                Actor.compSprite.texture = Assets.swampLevelSheet;
+                Actor.compSprite.texture = Assets.EnemySheet;
                 Actor.animList = AnimationFrames.Special_Tentacle_Animations;
                 Actor.health = 30; //not meant to be killed, but they can be
 

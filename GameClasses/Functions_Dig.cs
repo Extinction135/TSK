@@ -434,8 +434,7 @@ namespace DungeonRun
                         //we need to blend this ditch tile with the nearby water tile
                         //so we get a floor sprite and place it at this location
                         floorSprite = Functions_Pool.GetFloor();
-                        //set the texture and animation frame to water tile
-                        floorSprite.texture = Assets.forestLevelSheet;
+                        //set the animation frame to water tile
                         floorSprite.currentFrame = AnimationFrames.Wor_Water[0];
                         //place the water tile
                         floorSprite.position.X = objRef.compSprite.position.X;

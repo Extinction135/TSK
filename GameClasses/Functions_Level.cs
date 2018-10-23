@@ -277,13 +277,24 @@ namespace DungeonRun
 
 
 
-            //build the 1st room on Level.rooms list (index0) - exit/spawn room
+            //set current room to exitRoom - index 0
             LevelSet.currentLevel.rooms[0].visited = true;
             LevelSet.currentLevel.currentRoom = LevelSet.currentLevel.rooms[0];
 
-            //this actually builds everything in the first room
-            Functions_Room.BuildRoom(LevelSet.currentLevel.currentRoom);
+            //update the dungeon texture based on levelID (sets themed sheet)
+            Functions_Texture.UpdateDungeonTexture();
             Functions_Texture.SetFloorTextures();
+
+            //actually build everything in the first room
+            Functions_Room.BuildRoom(LevelSet.currentLevel.currentRoom);
+
+
+
+
+
+
+
+            //actually spawn hero in the starting room
             Functions_Hero.SpawnInCurrentRoom();
 
             //give hero a minimum amount of health

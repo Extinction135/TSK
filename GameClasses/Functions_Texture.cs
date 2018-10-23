@@ -14,42 +14,34 @@ namespace DungeonRun
 {
     public static class Functions_Texture
     {
-        static Texture2D currentTexture; //points to a texture in assets
         static int i;
 
-
-        static void SetTexture()
-        {   //based on level id, set the current texture
-            currentTexture = Assets.forestLevelSheet; //default to forest
-
-            if (LevelSet.currentLevel.ID == LevelID.SkullIsland_Town)
-            { currentTexture = Assets.townLevelSheet; }
-
-            //all colliseum levels point to the colliseum sheet, obvs
-            else if (LevelSet.currentLevel.ID == LevelID.SkullIsland_Colliseum
-                || LevelSet.currentLevel.ID == LevelID.SkullIsland_ColliseumPit)
-            { currentTexture = Assets.colliseumLevelSheet; }
-            
-            else if (LevelSet.currentLevel.ID == LevelID.Forest_Dungeon) { currentTexture = Assets.forestLevelSheet; }
-            else if (LevelSet.currentLevel.ID == LevelID.Mountain_Dungeon) { currentTexture = Assets.mountainLevelSheet; }
-            else if (LevelSet.currentLevel.ID == LevelID.Swamp_Dungeon) { currentTexture = Assets.swampLevelSheet; }
-        }
-
-
-        public static void SetObjTexture(GameObject Obj)
+        //called just after a dungeon is built
+        public static void UpdateDungeonTexture()
         {
-            SetTexture();
-            Obj.compSprite.texture = currentTexture;
+            //default dungeon texture to base sheet
+            Assets.Dungeon_CurrentSheet = Assets.Dungeon_DefaultSheet;
+            //based on the dungeon level loaded, set the dungeon texture
+            if (LevelSet.currentLevel.ID == LevelID.Forest_Dungeon)
+            { Assets.Dungeon_CurrentSheet = Assets.Dungeon_ForestSheet; }
+            else if (LevelSet.currentLevel.ID == LevelID.Mountain_Dungeon)
+            { Assets.Dungeon_CurrentSheet = Assets.Dungeon_MountainSheet; }
+            else if (LevelSet.currentLevel.ID == LevelID.Swamp_Dungeon)
+            { Assets.Dungeon_CurrentSheet = Assets.Dungeon_SwampSheet; }
         }
 
+        //called just after a dungeon is built
         public static void SetFloorTextures()
         {
-            SetTexture();
             //update all floor texture references
             for (Pool.floorCounter = 0; Pool.floorCounter < Pool.floorCount; Pool.floorCounter++)
-            { Pool.floorPool[Pool.floorCounter].texture = currentTexture; }
+            { Pool.floorPool[Pool.floorCounter].texture = Assets.Dungeon_CurrentSheet; }
         }
 
+
+
+
+        //this method should be used to update the dungeon objects widget later
         public static void SetWOTexture(WidgetObject WO)
         {   //12 rows, with 4 objs per row
             for (i = 0; i < 12 * 4; i++)
@@ -62,6 +54,7 @@ namespace DungeonRun
                 WO.objList[i].compCollision.rec.Y = (int)WO.objList[i].compSprite.position.Y - 8;
             }
         }
+
 
 
 

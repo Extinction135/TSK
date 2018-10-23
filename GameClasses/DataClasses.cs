@@ -20,7 +20,7 @@ namespace DungeonRun
         public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.77f; //the version of the game
-        public static BootRoutine bootRoutine = BootRoutine.Editor_Map; //boot to game or editor?
+        public static BootRoutine bootRoutine = BootRoutine.Editor_Level; //boot to game or editor?
 
         //dev flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
@@ -509,7 +509,7 @@ namespace DungeonRun
             floorPool = new List<ComponentSprite>();
             for (floorCounter = 0; floorCounter < floorCount; floorCounter++)
             {
-                floorPool.Add(new ComponentSprite(Assets.forestLevelSheet,
+                floorPool.Add(new ComponentSprite(Assets.Dungeon_DefaultSheet,
                     new Vector2(0, 0), 
                     new Byte4(15, 0, 0, 0), 
                     new Point(16, 16)));
@@ -1238,7 +1238,7 @@ namespace DungeonRun
             feetAnim = new ComponentAnimation();
             feetAnim.currentAnimation = AnimationFrames.ActorFX_GrassyFeet;
             feetFX = new ComponentSprite(
-                Assets.forestLevelSheet,
+                Assets.CommonObjsSheet,
                 new Vector2(100, 100),
                 feetAnim.currentAnimation[0], 
                 new Point(16, 8));
@@ -1272,7 +1272,7 @@ namespace DungeonRun
 
         public GameObject()
         {   //initialize to default value - data is changed later
-            compSprite = new ComponentSprite(Assets.forestLevelSheet, 
+            compSprite = new ComponentSprite(Assets.CommonObjsSheet, 
                 new Vector2(50, 50), new Byte4(0, 0, 0, 0), new Point(16, 16));
             Functions_GameObject.SetType(this, type);
         }

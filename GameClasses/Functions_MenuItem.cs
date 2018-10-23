@@ -356,7 +356,7 @@ namespace DungeonRun
                 MenuItem.name = "Mobs - Blobs";
                 MenuItem.description = "Defeat 25 enemies \nfor 25 gold.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Challenge;
-                MenuItem.compSprite.texture = Assets.colliseumLevelSheet;
+                MenuItem.compSprite.texture = Assets.CommonObjsSheet;
                 MenuItem.price = 10;
             }
 
@@ -366,7 +366,7 @@ namespace DungeonRun
                 MenuItem.name = "Miniboss - Blackeyes";
                 MenuItem.description = "Defeat 2 blackeyes \nfor 99 gold.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Challenge;
-                MenuItem.compSprite.texture = Assets.colliseumLevelSheet;
+                MenuItem.compSprite.texture = Assets.CommonObjsSheet;
                 MenuItem.price = 10;
             }
             else if (Type == MenuItemType.Challenge_Mini_Spiders)
@@ -374,7 +374,7 @@ namespace DungeonRun
                 MenuItem.name = "Miniboss - Spiders";
                 MenuItem.description = "Defeat 2 spiders \nfor 99 gold.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Challenge;
-                MenuItem.compSprite.texture = Assets.colliseumLevelSheet;
+                MenuItem.compSprite.texture = Assets.CommonObjsSheet;
                 MenuItem.price = 10;
             }
 
@@ -384,7 +384,7 @@ namespace DungeonRun
                 MenuItem.name = "Boss - BigEye";
                 MenuItem.description = "Defeat BigEye \nfor 99 gold.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Challenge;
-                MenuItem.compSprite.texture = Assets.colliseumLevelSheet;
+                MenuItem.compSprite.texture = Assets.CommonObjsSheet;
                 MenuItem.price = 10;
             }
             else if (Type == MenuItemType.Challenge_Bosses_BigBat)
@@ -392,7 +392,7 @@ namespace DungeonRun
                 MenuItem.name = "Boss - BigBat";
                 MenuItem.description = "Defeat BigBat \nfor 99 gold.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Challenge;
-                MenuItem.compSprite.texture = Assets.colliseumLevelSheet;
+                MenuItem.compSprite.texture = Assets.CommonObjsSheet;
                 MenuItem.price = 10;
             }
             else if (Type == MenuItemType.Challenge_Bosses_Kraken)
@@ -400,7 +400,7 @@ namespace DungeonRun
                 MenuItem.name = "Boss - Kraken";
                 MenuItem.description = "Defeat Kraken \nfor 99 gold.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Challenge;
-                MenuItem.compSprite.texture = Assets.colliseumLevelSheet;
+                MenuItem.compSprite.texture = Assets.CommonObjsSheet;
                 MenuItem.price = 10;
             }
 
@@ -427,14 +427,14 @@ namespace DungeonRun
                 MenuItem.name = "Dungeon Map";
                 MenuItem.description = "This map displays\nthe dungeon's rooms.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Dungeon_Map;
-                MenuItem.compSprite.texture = Assets.forestLevelSheet;
+                MenuItem.compSprite.texture = Assets.Dungeon_CurrentSheet;
             }
             else if (Type == MenuItemType.InventoryKey)
             {
                 MenuItem.name = "Dungeon Key";
                 MenuItem.description = "This key unlocks\nthe boss door.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Dungeon_BossKey;
-                MenuItem.compSprite.texture = Assets.forestLevelSheet;
+                MenuItem.compSprite.texture = Assets.Dungeon_CurrentSheet;
             }
             
 

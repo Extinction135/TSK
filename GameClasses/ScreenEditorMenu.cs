@@ -19,10 +19,6 @@ namespace DungeonRun
         public ScreenRec bkgRec = new ScreenRec();
         public ComponentButton currentSheet;
 
-        //used to track what level widgets are being displayed
-        public LevelID levelBeingDisplayed = LevelID.SkullIsland_Colliseum;
-
-
 
 
         public ScreenEditorMenu()
@@ -100,96 +96,74 @@ namespace DungeonRun
             {
                 if (currentSheet.rec.Contains(Input.cursorPos))
                 {
-                    ResetWidgets();
-
-                    
 
 
-                    //we need a different way to display widgets using the new system
+                    #region Iterate thru widget objs + widget enemy objs
 
-                    /*
-
-                    //Iterate thru forest, town, colliseum, mountain, etc...
-                    if (levelBeingDisplayed == LevelID.LeftTown)
-                    {   //leads to colliseum
-                        currentSheet.compText.text = "colliseum";
-                        Widgets.WO_Colliseum.visible = true;
-                        //Widgets.WE_Colliseum.visible = true; //doesn't exist
-                        levelBeingDisplayed = LevelID.Colliseum;
-                    }
-                    else if(levelBeingDisplayed == LevelID.Colliseum)
-                    {   //leads to boat
-                        currentSheet.compText.text = "boat";
-                        Widgets.WO_Boat_Front.visible = true;
-                        Widgets.WO_Boat_Back.visible = true;
-                        //Widgets.WE_Boat.visible = true; //doesn't exist
-                        levelBeingDisplayed = LevelID.Boat;
-                    }
-                    else if (levelBeingDisplayed == LevelID.Boat)
-                    {   //leads to forest
+                    if(Widgets.WO_Town.visible == true)
+                    {   //TOWN
+                        ResetWidgets(); //goto forest
                         currentSheet.compText.text = "forest";
                         Widgets.WO_Forest.visible = true;
                         Widgets.WE_Forest.visible = true;
-                        levelBeingDisplayed = LevelID.Forest_Entrance;
                     }
-
-
-
-
-
-                    else if (levelBeingDisplayed == LevelID.Forest_Entrance)
-                    {   //leads to mountain
+                    else if (Widgets.WO_Forest.visible == true)
+                    {   //FOREST
+                        ResetWidgets(); //goto mountain
                         currentSheet.compText.text = "mountain";
                         Widgets.WO_Mountain.visible = true;
                         Widgets.WE_Mountain.visible = true;
-                        levelBeingDisplayed = LevelID.Mountain_Entrance;
                     }
-                    else if (levelBeingDisplayed == LevelID.Mountain_Entrance)
-                    {   //leads to swamp
+                    else if(Widgets.WO_Mountain.visible == true)
+                    {   //MOUNTAIN
+                        ResetWidgets(); //goto swamp
                         currentSheet.compText.text = "swamp";
                         Widgets.WO_Swamp.visible = true;
                         Widgets.WE_Swamp.visible = true;
-                        levelBeingDisplayed = LevelID.Swamp_Entrance;
                     }
-                    else if (levelBeingDisplayed == LevelID.Swamp_Entrance)
-                    {   //leads to town
+                    else if(Widgets.WO_Swamp.visible == true)
+                    {   //SWAMP
+                        ResetWidgets(); //goto coliseum
+                        currentSheet.compText.text = "coliseum";
+                        Widgets.WO_Colliseum.visible = true;
+                        //Widgets.WE_Colliseum.visible = true; //not yet
+                    }
+                    else if (Widgets.WO_Colliseum.visible == true)
+                    {   //COLISEUM
+                        ResetWidgets(); //goto boat
+                        currentSheet.compText.text = "boat";
+                        Widgets.WO_Boat_Front.visible = true;
+                        Widgets.WO_Boat_Back.visible = true;
+                    }
+                    else if (Widgets.WO_Boat_Front.visible == true)
+                    {   //BOAT
+                        ResetWidgets(); //goto Town
                         currentSheet.compText.text = "town";
                         Widgets.WO_Town.visible = true;
                         Widgets.WE_Town.visible = true;
-                        levelBeingDisplayed = LevelID.LeftTown;
-                    }
-                    
-
-
-
-                    else
-                    {   //any other case resets button's sequence, leads to forest
-                        currentSheet.compText.text = "forest";
-                        Widgets.WO_Forest.visible = true;
-                        Widgets.WE_Forest.visible = true;
-                        levelBeingDisplayed = LevelID.Forest_Entrance;
                     }
 
-                    */
+                    #endregion
 
 
 
-
-
-
-
-                    //pass the new levelID to current level, so if we save it later it has right ID
-                    LevelSet.currentLevel.ID = levelBeingDisplayed;
-
-
-
-                    //update level floors and room objects
+                    //get current dungeon texture, update floors and roomObjs
+                    Functions_Texture.UpdateDungeonTexture();
                     Functions_Texture.SetFloorTextures();
                     for(int i = 0; i < Pool.roomObjCount; i++)
                     { Functions_GameObject.SetType(Pool.roomObjPool[i], Pool.roomObjPool[i].type); }
-                    //update all shared widget objects
-                    Functions_Texture.SetWOTexture(Widgets.WO_Dungeon);
-                    Functions_Texture.SetWOTexture(Widgets.WO_Environment);
+
+
+
+
+                    //in the future, we will need to update the dungeon widget objects texture
+                    //Functions_Texture.SetWOTexture(Widgets.WO_Dungeon);
+                    //^ like that, but based on a button or value to track dungeon type
+                    //works, because current dungeon tex was set in UpdateDunTex() above
+
+
+
+
 
                     //hide obj tools selection box offscreen
                     //because it's likely positioned over something different now
