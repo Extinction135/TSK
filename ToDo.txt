@@ -66,83 +66,50 @@ Today:
 
 
 
-Textures++
-
-updated Dx and UWP project and content folders with
-new texture sheets. updated assets.cs to load new
-texture sheets. redesigned how textures will be handled.
-
-updated editor to properly display widget objects.
-updated dungeon object anim frames.
-updated world object anim frames.
-updated coliseum object anim frames.
-updated mountain object anim frames.
-updated swamp object anim frames.
-updated boat object anim frames.
-updated enemy, vendor, and npc anim frames.
-
-updated enemy actor anim frames : all minis, 
-bosses, and mobs. whew.
-
-updated all textures and sheets, including 
-title sheet..
-
-Title Screen ++
-
-made awesome new title sheet, based on someone's
-pixel art I found online. overtime, this image will
-be changed to be more 'shadow king-y', but it's a
-great starting point. tested, looking good, but
-of course there are bugs.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Fix Texture Bugs
 
+obj texture bugs fixed:
+> bat projectile
+> world debris
+> leaf debris
+> world tree burnt
+> boat back center
+> back left + connector
+> back right + connector
+> world building wall back
+> world build door shut
+> boat bridge
+> open doors
+> coliseum walls
+> coliseum challenge ui
 
-display issues:
-*bat projectile
-*world debris (small bits) 
-world leaf debris too
-*world tree burnt
+added color to objs:
+> bed
+> all boat objs
+> all dungeon objs
 
-boat back center
-back left + connector
-back right + connector
+playtested, looking really good.
 
-all dungeon entrances - these need to be specifically defined
 
-world building wall back - incorrect grey?
-world build door shut - coastline?
 
-boat bridge - wrong sprite? tree bush? lol
-front house doors
-open doors appear as closed doors
-coliseum walls appear as npcs? lol
-coliseum challenge sprite appears wrong
+
+
+
+
+
+
+
+
 
 
 
 
 Color++
-we only have clean beds rn - color this one
-color all boat sprites
-color base dungeon sprites
+
 
 create color version of forest, swamp, mountain dungeons
 update those sheets - these dungeons can have unique wall colors
+
 
 
 
@@ -159,6 +126,7 @@ color all UI items
 
 
 
+all dungeon entrances - these need to be specifically defined
 
 
 
@@ -197,7 +165,9 @@ thieves den dungeon sheet
 
 
 
-
+Art++
+grass that is burned should become a different sprite,
+like a burned grass sprite.
 
 
 

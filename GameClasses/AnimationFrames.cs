@@ -125,7 +125,7 @@ namespace DungeonRun
 
         public static List<Byte4> World_Tree = new List<Byte4> { new Byte4(4, 5, 0, 0) };
         public static List<Byte4> World_TreeStump = new List<Byte4> { new Byte4(5, 5, 0, 0) };
-        public static List<Byte4> World_TreeBurnt = new List<Byte4> { new Byte4(6, 4, 0, 0) };
+        public static List<Byte4> World_TreeBurnt = new List<Byte4> { new Byte4(6, 5, 0, 0) };
 
         //foilage
         public static List<Byte4> World_Grass_Tall = new List<Byte4> { new Byte4(0, 8, 0, 0) };
@@ -218,13 +218,13 @@ namespace DungeonRun
         //building objs
         public static List<Byte4> Wor_Build_Wall_FrontA = new List<Byte4> { new Byte4(15, 10, 0, 0) };
         public static List<Byte4> Wor_Build_Wall_FrontB = new List<Byte4> { new Byte4(16, 10, 0, 0) };
-        public static List<Byte4> Wor_Build_Wall_Back = new List<Byte4> { new Byte4(15, 5, 0, 0) };
+        public static List<Byte4> Wor_Build_Wall_Back = new List<Byte4> { new Byte4(15, 8, 0, 0) };
 
         public static List<Byte4> Wor_Build_Wall_Side_Left = new List<Byte4> { new Byte4(15, 9, 0, 0) };
         public static List<Byte4> Wor_Build_Wall_Side_Right = new List<Byte4> { new Byte4(15, 9, 1, 0) };
 
-        public static List<Byte4> Wor_Build_Door_Shut = new List<Byte4> { new Byte4(14, 11, 0, 0) };
-        public static List<Byte4> Wor_Build_Door_Open = new List<Byte4> { new Byte4(15, 11, 0, 0) };
+        public static List<Byte4> Wor_Build_Door_Shut = new List<Byte4> { new Byte4(15, 11, 0, 0) };
+        public static List<Byte4> Wor_Build_Door_Open = new List<Byte4> { new Byte4(16, 11, 0, 0) };
 
         //roofs
         public static List<Byte4> Wor_Build_Roof_Top = new List<Byte4> { new Byte4(16, 8, 0, 0) };
@@ -279,10 +279,10 @@ namespace DungeonRun
         public static List<Byte4> Wor_Colliseum_Stairs_Middle = new List<Byte4> { new Byte4(21, 13, 0, 0) };
         public static List<Byte4> Wor_Colliseum_Stairs_Right = new List<Byte4> { new Byte4(21, 12, 1, 0) };
 
-        public static List<Byte4> Wor_Colliseum_Bricks_Left = new List<Byte4> { new Byte4(16, 12, 0, 0) };
-        public static List<Byte4> Wor_Colliseum_Bricks_Middle1 = new List<Byte4> { new Byte4(17, 12, 0, 0) };
-        public static List<Byte4> Wor_Colliseum_Bricks_Middle2 = new List<Byte4> { new Byte4(18, 12, 0, 0) };
-        public static List<Byte4> Wor_Colliseum_Bricks_Right = new List<Byte4> { new Byte4(19, 12, 0, 0) };
+        public static List<Byte4> Wor_Colliseum_Bricks_Left = new List<Byte4> { new Byte4(16, 7, 0, 0) };
+        public static List<Byte4> Wor_Colliseum_Bricks_Middle1 = new List<Byte4> { new Byte4(17, 7, 0, 0) };
+        public static List<Byte4> Wor_Colliseum_Bricks_Middle2 = new List<Byte4> { new Byte4(18, 7, 0, 0) };
+        public static List<Byte4> Wor_Colliseum_Bricks_Right = new List<Byte4> { new Byte4(19, 7, 0, 0) };
 
         public static List<Byte4> Wor_Colliseum_Outdoors_Floor = new List<Byte4> { new Byte4(21, 14, 0, 0) };
 
@@ -354,22 +354,24 @@ namespace DungeonRun
 
 
         //back section
-        public static List<Byte4> Wor_Boat_Back_Left = new List<Byte4> { new Byte4(0, 12, 0, 0) };
-        public static List<Byte4> Wor_Boat_Back_Left_Connector = new List<Byte4> { new Byte4(1, 12, 0, 0) };
-        public static List<Byte4> Wor_Boat_Back_Center = new List<Byte4> { new Byte4(1, 9, 0, 0) };
-        public static List<Byte4> Wor_Boat_Back_Right_Connector = new List<Byte4> { new Byte4(4, 12, 0, 0) };
-        public static List<Byte4> Wor_Boat_Back_Right = new List<Byte4> { new Byte4(5, 12, 0, 0) };
+        public static List<Byte4> Wor_Boat_Back_Left = new List<Byte4> { new Byte4(0, 7, 0, 0) };
+        public static List<Byte4> Wor_Boat_Back_Left_Connector = new List<Byte4> { new Byte4(1, 7, 0, 0) };
+        public static List<Byte4> Wor_Boat_Back_Center = new List<Byte4> { new Byte4(1, 7, 0, 0) };
+        public static List<Byte4> Wor_Boat_Back_Right_Connector = new List<Byte4> { new Byte4(4, 7, 0, 0) };
+        public static List<Byte4> Wor_Boat_Back_Right = new List<Byte4> { new Byte4(5, 7, 0, 0) };
 
-        public static List<Byte4> Wor_Boat_Floor = new List<Byte4> { new Byte4(2, 30, 0, 0) };
-        public static List<Byte4> Wor_Boat_Barrel = new List<Byte4> { new Byte4(3, 31, 0, 0) };
-        public static List<Byte4> Wor_Boat_Stairs_Cover = new List<Byte4> { new Byte4(2, 31, 0, 0) };
+
+
+        public static List<Byte4> Wor_Boat_Floor = new List<Byte4> { new Byte4(2, 25, 0, 0) };
+        public static List<Byte4> Wor_Boat_Barrel = new List<Byte4> { new Byte4(3, 26, 0, 0) };
+        public static List<Byte4> Wor_Boat_Stairs_Cover = new List<Byte4> { new Byte4(2, 26, 0, 0) };
         //missing boat stairs anim frame
         public static List<Byte4> Wor_Boat_Engine = new List<Byte4> { new Byte4(1, 5, 0, 0) };
 
 
         //bridge and pier
-        public static List<Byte4> Wor_Boat_Bridge_Top = new List<Byte4> { new Byte4(3, 10, 0, 0) };
-        public static List<Byte4> Wor_Boat_Bridge_Bottom = new List<Byte4> { new Byte4(3, 11, 0, 0) };
+        public static List<Byte4> Wor_Boat_Bridge_Top = new List<Byte4> { new Byte4(3, 20, 0, 0) };
+        public static List<Byte4> Wor_Boat_Bridge_Bottom = new List<Byte4> { new Byte4(3, 21, 0, 0) };
 
         public static List<Byte4> Wor_Boat_Pier_TopLeft = new List<Byte4> { new Byte4(8, 19, 0, 0) };
         public static List<Byte4> Wor_Boat_Pier_TopMiddle = new List<Byte4> { new Byte4(9, 19, 0, 0) };
@@ -573,7 +575,7 @@ namespace DungeonRun
         };
 
         public static List<Byte4> Projectile_Bat = new List<Byte4>
-        { new Byte4(31, 1, 0, 0), new Byte4(31, 2, 0, 0) };
+        { new Byte4(31, 4, 0, 0), new Byte4(31, 5, 0, 0) };
 
         #endregion
 
@@ -618,11 +620,11 @@ namespace DungeonRun
 
         public static List<Byte4> Particle_Leaf = new List<Byte4>
         {
-            new Byte4(10, 10, 0, 0), new Byte4(11, 10, 0, 0)
+            new Byte4(0, 22, 0, 0), new Byte4(1, 22, 0, 0)
         };
         public static List<Byte4> Particle_Debris = new List<Byte4>
         {
-            new Byte4(10, 11, 0, 0), new Byte4(11, 11, 0, 0)
+            new Byte4(0, 23, 0, 0), new Byte4(1, 23, 0, 0)
         };
 
 
@@ -794,7 +796,7 @@ namespace DungeonRun
 
 
         //challenges
-        public static List<Byte4> Ui_MenuItem_Challenge = new List<Byte4> { new Byte4(15, 15, 0, 0) };
+        public static List<Byte4> Ui_MenuItem_Challenge = new List<Byte4> { new Byte4(20, 15, 0, 0) };
 
         #endregion
 
