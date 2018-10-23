@@ -42,14 +42,16 @@ namespace DungeonRun
 
             background = new ComponentSprite(Assets.titleBkgSheet,
                 new Vector2(640 / 2, 360 / 2), new Byte4(0, 0, 0, 0), new Point(640, 360));
-            window = new MenuWindow(
-                new Point(16 * 15 + 8, 16 * 15 + 8),
-                new Point(16 * 9 + 8, 16 * 4),
-                "Main Menu");
+
             title = new ComponentSprite(Assets.bigTextSheet,
-                new Vector2(583 - 256, 200), //center
+                new Vector2(583 - 256, 200-32-5), //center
                 new Byte4(0, 0, 0, 0),
                 new Point(16 * 16, 16 * 4));
+            window = new MenuWindow(
+                new Point(16 * 15 + 8, 16 * 13 + 8),
+                new Point(16 * 9 + 8, 16 * 4),
+                "Main Menu");
+            
 
 
             #region Create the menuItems
@@ -239,9 +241,13 @@ namespace DungeonRun
                 Functions_Animation.ScaleSpriteDown(currentlySelected.compSprite);
 
                 //flicker title
-                if (title.alpha >= 1.0f) { title.alpha = 0.85f; }
-                else if (title.alpha < 0.85f) { title.alpha += 0.03f; }
-                title.alpha += 0.005f;
+                //if (title.alpha >= 1.0f) { title.alpha = 0.85f; }
+                //else if (title.alpha < 0.85f) { title.alpha += 0.03f; }
+                //title.alpha += 0.005f;
+
+                //fade title to 100%
+                if (title.alpha < 1.0f) { title.alpha += 0.03f; }
+                else { title.alpha = 1.0f; }
             }
         }
 

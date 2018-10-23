@@ -66,33 +66,18 @@ Today:
 
 
 
-Fix Texture Bugs
-
-obj texture bugs fixed:
-> bat projectile
-> world debris
-> leaf debris
-> world tree burnt
-> boat back center
-> back left + connector
-> back right + connector
-> world building wall back
-> world build door shut
-> boat bridge
-> open doors
-> coliseum walls
-> coliseum challenge ui
-
-added color to objs:
-> bed
-> all boat objs
-> all dungeon objs
-
-playtested, looking really good.
 
 
 
 
+UWP++
+
+updated UWP content. tested UWP project.
+working as expected.
+
+Title++
+
+updated title screen to look even better.
 
 
 
