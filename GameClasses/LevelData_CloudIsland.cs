@@ -56,10 +56,10 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 232; CloudIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 296; CloudIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 328; CloudIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 328; CloudIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 328; CloudIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 408; CloudIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 408; CloudIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 360; CloudIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 392; CloudIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Right; obj.posX = 648; obj.posY = 392; CloudIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 392; CloudIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 360; CloudIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Boat_Floor; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 600; CloudIsland_MainEntrance.objs.Add(obj);}
@@ -157,12 +157,12 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 456; CloudIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 824; obj.posY = 520; CloudIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 392; CloudIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 360; CloudIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 392; CloudIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 360; CloudIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Corner_Interior; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 408; CloudIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Corner_Exterior; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 376; CloudIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 376; CloudIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 792; obj.posY = 584; CloudIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 360; CloudIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 360; CloudIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Corner_Interior; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 376; CloudIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Right; obj.posX = 680; obj.posY = 360; CloudIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 552; CloudIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 392; CloudIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 680; CloudIsland_MainEntrance.objs.Add(obj);}
@@ -202,15 +202,15 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 8; CloudIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 296; CloudIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 264; CloudIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 296; CloudIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 264; CloudIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 296; CloudIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 264; CloudIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 296; CloudIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 328; CloudIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 328; CloudIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Right; obj.posX = 680; obj.posY = 344; CloudIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Right; obj.posX = 680; obj.posY = 328; CloudIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Right; obj.posX = 680; obj.posY = 312; CloudIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Up; obj.posX = 664; obj.posY = 296; CloudIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Corner_Interior; obj.direction = Direction.Right; obj.posX = 680; obj.posY = 296; CloudIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Corner_Interior; obj.direction = Direction.Left; obj.posX = 600; obj.posY = 408; CloudIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Left; obj.posX = 600; obj.posY = 392; CloudIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 264; CloudIsland_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 296; CloudIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Left; obj.posX = 568; obj.posY = 360; CloudIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 232; CloudIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 264; CloudIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 328; CloudIsland_MainEntrance.objs.Add(obj);}
@@ -1061,6 +1061,26 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 1208; obj.posY = 712; CloudIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 1208; obj.posY = 744; CloudIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 1176; obj.posY = 744; CloudIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Left; obj.posX = 568; obj.posY = 344; CloudIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Left; obj.posX = 568; obj.posY = 328; CloudIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Left; obj.posX = 568; obj.posY = 312; CloudIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Left; obj.posX = 600; obj.posY = 280; CloudIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Up; obj.posX = 584; obj.posY = 296; CloudIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Corner_Exterior; obj.direction = Direction.Up; obj.posX = 600; obj.posY = 296; CloudIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Up; obj.posX = 616; obj.posY = 264; CloudIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Up; obj.posX = 632; obj.posY = 264; CloudIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Right; obj.posX = 648; obj.posY = 280; CloudIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 376; CloudIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Corner_Exterior; obj.direction = Direction.Left; obj.posX = 600; obj.posY = 376; CloudIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Corner_Exterior; obj.direction = Direction.Right; obj.posX = 648; obj.posY = 296; CloudIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Corner_Interior; obj.direction = Direction.Left; obj.posX = 568; obj.posY = 376; CloudIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Corner_Interior; obj.direction = Direction.Up; obj.posX = 568; obj.posY = 296; CloudIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Corner_Interior; obj.direction = Direction.Up; obj.posX = 600; obj.posY = 264; CloudIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Corner_Interior; obj.direction = Direction.Right; obj.posX = 648; obj.posY = 264; CloudIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 328; CloudIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 328; CloudIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 344; CloudIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 344; CloudIsland_MainEntrance.objs.Add(obj);}
 			#endregion
 
 		}

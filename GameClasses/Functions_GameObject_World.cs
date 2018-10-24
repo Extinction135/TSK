@@ -170,12 +170,12 @@ namespace DungeonRun
             //field signposts
             if(LevelSet.currentLevel.ID == LevelID.SkullIsland_Town)
             {
-                Screens.Dialog.SetDialog(AssetsDialog.Signpost_LeftTown);
+                Screens.Dialog.SetDialog(AssetsDialog.Signpost_ShadowTown);
                 ScreenManager.AddScreen(Screens.Dialog);
             }
             else if (LevelSet.currentLevel.ID == LevelID.SkullIsland_Colliseum)
             {
-                Screens.Dialog.SetDialog(AssetsDialog.Signpost_Colliseum);
+                Screens.Dialog.SetDialog(AssetsDialog.Signpost_ShadowColliseum);
                 ScreenManager.AddScreen(Screens.Dialog);
             }
 
@@ -186,6 +186,9 @@ namespace DungeonRun
                 Screens.Dialog.SetDialog(AssetsDialog.Signpost_ExitRoom);
                 ScreenManager.AddScreen(Screens.Dialog);
             }
+
+
+
 
 
             else

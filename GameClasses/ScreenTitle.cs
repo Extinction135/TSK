@@ -44,11 +44,11 @@ namespace DungeonRun
                 new Vector2(640 / 2, 360 / 2), new Byte4(0, 0, 0, 0), new Point(640, 360));
 
             title = new ComponentSprite(Assets.bigTextSheet,
-                new Vector2(583 - 256, 200-32-5), //center
+                new Vector2(583 - 256, 200-32-15), //center
                 new Byte4(0, 0, 0, 0),
                 new Point(16 * 16, 16 * 4));
             window = new MenuWindow(
-                new Point(16 * 15 + 8, 16 * 13 + 8),
+                new Point(16 * 15 + 8, 16 * 12 + 8),
                 new Point(16 * 9 + 8, 16 * 4),
                 "Main Menu");
             

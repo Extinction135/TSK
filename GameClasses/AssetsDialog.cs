@@ -152,6 +152,7 @@ namespace DungeonRun
 
         #region Signpost Dialogs
 
+
         public static List<Dialog> Signpost_Standard = new List<Dialog>
         {
             new Dialog(ObjType.Hero_Idle, "Hmm..",
@@ -180,35 +181,21 @@ namespace DungeonRun
 
 
 
-        public static List<Dialog> Signpost_LeftTown = new List<Dialog>
+        public static List<Dialog> Signpost_ShadowTown = new List<Dialog>
         {
-            new Dialog(ObjType.Hero_Idle, "Welcome To Left Town",
-                "it says 'welcome to left town'.\n" +
-                "that's an odd name for a town..",
-                Assets.sfxTextLetter, false, false)
-        };
-        public static List<Dialog> Signpost_RightTown = new List<Dialog>
-        {
-            new Dialog(ObjType.Hero_Idle, "Welcome To Right Town",
-                "it says 'welcome to right town'.\n" +
-                "that's a dumb name for a town..",
+            new Dialog(ObjType.Hero_Idle, "Shadow Town",
+                "'a beautiful place to stay, forever'..\n" +
+                "hmm.. i want to leave already..",
                 Assets.sfxTextLetter, false, false)
         };
 
+        
 
-        public static List<Dialog> Signpost_TheFarm = new List<Dialog>
+        public static List<Dialog> Signpost_ShadowColliseum = new List<Dialog>
         {
-            new Dialog(ObjType.Hero_Idle, "The Farm",
-                "welcome to the farm...\n" +
-                "..well that's really boring..",
-                Assets.sfxTextLetter, false, false)
-        };
-
-        public static List<Dialog> Signpost_Colliseum = new List<Dialog>
-        {
-            new Dialog(ObjType.Hero_Idle, "The Colliseum",
-                "The Colliseum is open.\n" +
-                "<- Do not trust the man to the left.",
+            new Dialog(ObjType.Hero_Idle, "Shadow Coliseum",
+                "The Colliseum is officially open.\n" +
+                "Win gold for defeating enemies, or die shamefully.",
                 Assets.sfxTextLetter, false, false)
         };
 

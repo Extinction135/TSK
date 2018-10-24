@@ -64,33 +64,34 @@ Today:
 
 
 
-ShadowKing Coliseum
-
-remade shadow king coliseum.
-looks much better and fits into the overworld
-design as well. retouched interior coliseum.
-
-
-
-
-
-
-
-
 
 
 
 Levels++
 
-
-*remake town - smaller houses, easier to see NPCs
-
-*create a landmass to walk on on cloud level. nothing else for now.
-
-
+remade town - smaller houses, easier to see NPCs.
+added landmass to cloud entrance level.
+this will be updated later. updated UWP content.
+UWP project should by sync'd to Dx project now.
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+Signposts++
+
+add a signpost to town, coliseum, and mountain dungeon entrance
+these are setup to 'read' properly now.
 
 
 
@@ -105,7 +106,33 @@ transitions, as the coliseum landing requires this to match
 overworld, plus we could build paths thru the grass later
 using these objects. so, very useful.
 
-we also need 'windows' that look into the coliseum.
+
+Coliseum++
+
+we also need 'windows' that look into the coliseum,
+like the overworld sprite depicts. plus, I don't like
+how the coliseum level is unbalanced and to the right.
+instead, the coliseum - and all subsequent coliseums -
+will be entrance centered to level, north of spawn.
+this 'presents' the level much better, because coliseums
+have no required puzzle for entry.
+
+
+
+
+
+
+Destruction++
+
+*should be able to destroy wooden fence posts
+wooden posts should also burn - become a darker color, ashy.
+also they should look smaller and frailer.
+
+
+Wire Fences
+
+they don't line up, because we built them the wrong way conceptually.
+design them based on the wooden fences that actually work, you doofus.
 
 
 
@@ -114,11 +141,13 @@ we also need 'windows' that look into the coliseum.
 
 
 
+Editor++
 
-
-
-
-
+**should be able to hide and disable all interaction with roofs.
+hide roofs, disable interaction with roofs, remove all roofs.
+these should be editor button options from menu screen.
+**water tiles should be treated the same, and modified from
+editor menu screen as well.
 
 
 
