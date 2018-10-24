@@ -68,19 +68,6 @@ Today:
 
 
 
-Dungeon Entrances++
-
-Dungeon Entrances each need their own animFrame defs.
-and their gameobj defs need to couple to these defs.
-done, tested, all dungeon entrances display appropriately.
-
-
-
-
-
-
-
-
 Base Levels
 
 to speed up development of certain levels, it would
@@ -88,6 +75,7 @@ be advantageous to create template levels that can be
 copied and extended.
 
 Base Boat + Sea Level
+
 the boat can only be created in one position, 
 where link spawns. so, just create a base sea 
 level with boat, then use that level to build 
@@ -96,6 +84,37 @@ more complex levels that depend upon the boat
 the boat is built the same way each time, and
 give the editor an idea of what level space is
 available.
+
+actually, this is not entirely true. the boat can
+also be placed at a position where it is 'halfway'
+in the level, still with stair access for later.
+this gives the level more space for objs, and is
+used in death mountains dungeon entrance level.
+
+so, both base levels were created. then additional
+planning was done based on the idea of base levels.
+
+
+
+
+
+
+
+
+
+Levels++
+
+*remake death mountain dungeon entrance level using
+the new half boat in sea base level.
+
+*shadow dungeon entrance level gets the full boat
+in sea base level, with nothing else for now.
+
+*forest dungeon ent is half boat in sea, along with
+swamp dungeon entrance too. this change removes the 
+dungeon entrances from these levels, cutting off 
+access from the game. for now, only the mountain
+dungeon will be accessible.
 
 
 
