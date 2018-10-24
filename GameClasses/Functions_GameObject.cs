@@ -1146,7 +1146,7 @@ namespace DungeonRun
             {
                 Obj.compSprite.drawRec.Width = 16 * 3; //nonstandard size
                 Obj.compSprite.drawRec.Height = 16 * 4; //nonstandard size
-                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_Dungeon;
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_ForestDungeon;
                 //set collision rec near bottom of entrance
                 Obj.compCollision.rec.Width = 16*3-4; Obj.compCollision.offsetX = -6;
                 Obj.compCollision.rec.Height = 16*3; Obj.compCollision.offsetY = +8;
@@ -1156,7 +1156,6 @@ namespace DungeonRun
                 Obj.compCollision.blocking = true;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
             }
-
             else if (Type == ObjType.Wor_Entrance_MountainDungeon)
             {
                 Obj.compSprite.drawRec.Width = 16 * 2; //nonstandard size
@@ -1172,12 +1171,11 @@ namespace DungeonRun
                 Obj.compCollision.blocking = true;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
             }
-
             else if (Type == ObjType.Wor_Entrance_SwampDungeon)
             {
                 Obj.compSprite.drawRec.Width = 16 * 3; //nonstandard size
                 Obj.compSprite.drawRec.Height = 16 * 4; //nonstandard size
-                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_Dungeon;
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_SwampDungeon;
                 //set collision rec near bottom of entrance
                 Obj.compCollision.rec.Width = 16 * 2 + 4; Obj.compCollision.offsetX = -2;
                 Obj.compCollision.rec.Height = 16 * 1 + 8; Obj.compCollision.offsetY = 16 * 2;
@@ -1188,7 +1186,6 @@ namespace DungeonRun
                 Obj.sfx.hit = Assets.sfxTapMetallic;
             }
 
-
             #endregion
 
 
@@ -1198,7 +1195,7 @@ namespace DungeonRun
             {
                 Obj.compSprite.drawRec.Width = 16 * 3; //nonstandard size
                 Obj.compSprite.drawRec.Height = 16 * 4; //nonstandard size
-                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_Dungeon;
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_Coliseum_SkullIsland;
                 //set collision rec near bottom of entrance
                 Obj.compCollision.rec.Width = 16 * 3 - 4; Obj.compCollision.offsetX = -6;
                 Obj.compCollision.rec.Height = 16 * 3; Obj.compCollision.offsetY = +8;
@@ -1210,6 +1207,12 @@ namespace DungeonRun
             }
 
             #endregion
+
+
+
+
+
+
 
 
             #region Pot

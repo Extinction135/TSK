@@ -68,23 +68,34 @@ Today:
 
 
 
+Dungeon Entrances++
 
-Levels++
-
-updated montain dungeon entrance level, based on new overworld
-design. though mostly barren, the base idea is there.
-
-DungeonEntrances++
-
-dungeon entrances all point to the same animation frame. they
-each actually have their own animation frames now. and are sized
-differently.
-
-playtested, and it's working and looking very well, but the
-mountain entrance needs to be bigger. a 4x4 obj, instead of a
-2x4 obj.
+Dungeon Entrances each need their own animFrame defs.
+and their gameobj defs need to couple to these defs.
+done, tested, all dungeon entrances display appropriately.
 
 
+
+
+
+
+
+
+Base Levels
+
+to speed up development of certain levels, it would
+be advantageous to create template levels that can be
+copied and extended.
+
+Base Boat + Sea Level
+the boat can only be created in one position, 
+where link spawns. so, just create a base sea 
+level with boat, then use that level to build 
+more complex levels that depend upon the boat 
++ sea objs / context. this also ensures that
+the boat is built the same way each time, and
+give the editor an idea of what level space is
+available.
 
 
 
@@ -113,11 +124,6 @@ and over again.
 
 
 
-created better version of mountain dungeon entrance,
-in color. 
-
-update mountain dungeon entrance to be more like overworld
-representation.
 
 
 
@@ -129,7 +135,18 @@ representation.
 
 
 
-Dungeon Entrances
+
+
+
+
+
+
+
+
+
+
+
+
 
 all dungeon entrances - these need to be specifically defined
 they are not implemented properly, as they assume each entrance

@@ -250,58 +250,22 @@ namespace DungeonRun
 
 
 
+        
 
 
-
-
-        //Generic Dungeon/Level Entrance Object, 3x4 entrance object at 0,0
-        public static List<Byte4> Wor_Entrance_Dungeon = new List<Byte4> { new Byte4(0, 0, 0, 0) };
-
-
-
-
-
-        #region Colliseum Objects
-
-        public static List<Byte4> Wor_Colliseum_Gate_Center = new List<Byte4> { new Byte4(24, 3, 0, 0) };
-        public static List<Byte4> Wor_Colliseum_Gate_Pillar_Left = new List<Byte4> { new Byte4(11, 3, 0, 0) };
-        public static List<Byte4> Wor_Colliseum_Gate_Pillar_Right = new List<Byte4> { new Byte4(11, 3, 1, 0) };
-
-        public static List<Byte4> Wor_Colliseum_Pillar_Top = new List<Byte4> { new Byte4(15, 12, 0, 0) };
-        public static List<Byte4> Wor_Colliseum_Pillar_Middle = new List<Byte4> { new Byte4(15, 13, 0, 0) };
-        public static List<Byte4> Wor_Colliseum_Pillar_Bottom = new List<Byte4> { new Byte4(15, 14, 0, 0) };
-
-        public static List<Byte4> Wor_Colliseum_Stairs_Handrail_Top = new List<Byte4> { new Byte4(20, 12, 0, 0) };
-        public static List<Byte4> Wor_Colliseum_Stairs_Handrail_Middle = new List<Byte4> { new Byte4(20, 13, 0, 0) };
-        public static List<Byte4> Wor_Colliseum_Stairs_Handrail_Bottom = new List<Byte4> { new Byte4(20, 14, 0, 0) };
-
-        public static List<Byte4> Wor_Colliseum_Stairs_Left = new List<Byte4> { new Byte4(21, 12, 0, 0) };
-        public static List<Byte4> Wor_Colliseum_Stairs_Middle = new List<Byte4> { new Byte4(21, 13, 0, 0) };
-        public static List<Byte4> Wor_Colliseum_Stairs_Right = new List<Byte4> { new Byte4(21, 12, 1, 0) };
-
-        public static List<Byte4> Wor_Colliseum_Bricks_Left = new List<Byte4> { new Byte4(16, 7, 0, 0) };
-        public static List<Byte4> Wor_Colliseum_Bricks_Middle1 = new List<Byte4> { new Byte4(17, 7, 0, 0) };
-        public static List<Byte4> Wor_Colliseum_Bricks_Middle2 = new List<Byte4> { new Byte4(18, 7, 0, 0) };
-        public static List<Byte4> Wor_Colliseum_Bricks_Right = new List<Byte4> { new Byte4(19, 7, 0, 0) };
-
-        public static List<Byte4> Wor_Colliseum_Outdoors_Floor = new List<Byte4> { new Byte4(21, 14, 0, 0) };
-
-        public static List<Byte4> Wor_Colliseum_Spectator = new List<Byte4>
-        { new Byte4(4, 12, 0, 0), new Byte4(4, 13, 0, 0) };
-
-        #endregion
 
 
         #region Forest Objects
 
         //
+        public static List<Byte4> Wor_Entrance_ForestDungeon = new List<Byte4> { new Byte4(0, 0, 0, 0) }; //3x4 obj
 
         #endregion
 
 
         #region Mountain Objects
 
-        
+
         public static List<Byte4> Wor_Entrance_MountainDungeon = new List<Byte4> { new Byte4(6, 3, 0, 0) }; //2x4 obj
 
         public static List<Byte4> Wor_MountainWall_Mid = new List<Byte4> { new Byte4(0, 6, 0, 0) };
@@ -322,6 +286,8 @@ namespace DungeonRun
 
 
         #region Swamp Objects
+
+        public static List<Byte4> Wor_Entrance_SwampDungeon = new List<Byte4> { new Byte4(1, 0, 0, 0) }; //3x4 obj
 
         public static List<Byte4> Wor_Swamp_LillyPad = new List<Byte4> { new Byte4(4, 8, 0, 0) };
         public static List<Byte4> Wor_Swamp_BigPlant = new List<Byte4> { new Byte4(3, 8, 0, 0) };
@@ -404,6 +370,39 @@ namespace DungeonRun
         {
             new Byte4(25, 26, 0, 0), new Byte4(27, 26, 0, 0), new Byte4(25, 26, 0, 0), new Byte4(27, 26, 0, 0)
         };
+
+        #endregion
+
+
+        #region Colliseum Objects
+
+        public static List<Byte4> Wor_Entrance_Coliseum_SkullIsland = new List<Byte4> { new Byte4(0, 1, 0, 0) }; //3x4 obj
+
+        public static List<Byte4> Wor_Colliseum_Gate_Center = new List<Byte4> { new Byte4(24, 3, 0, 0) };
+        public static List<Byte4> Wor_Colliseum_Gate_Pillar_Left = new List<Byte4> { new Byte4(11, 3, 0, 0) };
+        public static List<Byte4> Wor_Colliseum_Gate_Pillar_Right = new List<Byte4> { new Byte4(11, 3, 1, 0) };
+
+        public static List<Byte4> Wor_Colliseum_Pillar_Top = new List<Byte4> { new Byte4(15, 12, 0, 0) };
+        public static List<Byte4> Wor_Colliseum_Pillar_Middle = new List<Byte4> { new Byte4(15, 13, 0, 0) };
+        public static List<Byte4> Wor_Colliseum_Pillar_Bottom = new List<Byte4> { new Byte4(15, 14, 0, 0) };
+
+        public static List<Byte4> Wor_Colliseum_Stairs_Handrail_Top = new List<Byte4> { new Byte4(20, 12, 0, 0) };
+        public static List<Byte4> Wor_Colliseum_Stairs_Handrail_Middle = new List<Byte4> { new Byte4(20, 13, 0, 0) };
+        public static List<Byte4> Wor_Colliseum_Stairs_Handrail_Bottom = new List<Byte4> { new Byte4(20, 14, 0, 0) };
+
+        public static List<Byte4> Wor_Colliseum_Stairs_Left = new List<Byte4> { new Byte4(21, 12, 0, 0) };
+        public static List<Byte4> Wor_Colliseum_Stairs_Middle = new List<Byte4> { new Byte4(21, 13, 0, 0) };
+        public static List<Byte4> Wor_Colliseum_Stairs_Right = new List<Byte4> { new Byte4(21, 12, 1, 0) };
+
+        public static List<Byte4> Wor_Colliseum_Bricks_Left = new List<Byte4> { new Byte4(16, 7, 0, 0) };
+        public static List<Byte4> Wor_Colliseum_Bricks_Middle1 = new List<Byte4> { new Byte4(17, 7, 0, 0) };
+        public static List<Byte4> Wor_Colliseum_Bricks_Middle2 = new List<Byte4> { new Byte4(18, 7, 0, 0) };
+        public static List<Byte4> Wor_Colliseum_Bricks_Right = new List<Byte4> { new Byte4(19, 7, 0, 0) };
+
+        public static List<Byte4> Wor_Colliseum_Outdoors_Floor = new List<Byte4> { new Byte4(21, 14, 0, 0) };
+
+        public static List<Byte4> Wor_Colliseum_Spectator = new List<Byte4>
+        { new Byte4(4, 12, 0, 0), new Byte4(4, 13, 0, 0) };
 
         #endregion
 
