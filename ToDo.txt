@@ -64,40 +64,11 @@ Today:
 
 
 
+ShadowKing Coliseum
 
-
-
-Editor++
-
-the last display set from editor screen should display when
-the screen is reopened(). it's a pita to have to click back
-to the widget display set you need, just for one obj, over
-and over again.
-
-this was actually majorly easy to do: moved the forest state
-initialization routine into the constructor for editor menu screen.
-it was in the Open() method, which was resetting the widgets.
-this change saves me MASSIVE amounts of time editing levels.
-
-
-
-
-
-
-
-
-Editor++
-
-*editor's selectionbox should be world positioned, and drawn thru the camera view,
-so that it stays put when we move the camera.
-
-
-
-
-
-
-
-
+remade shadow king coliseum.
+looks much better and fits into the overworld
+design as well. retouched interior coliseum.
 
 
 
@@ -112,11 +83,37 @@ so that it stays put when we move the camera.
 Levels++
 
 
-*remake coliseum
-
 *remake town - smaller houses, easier to see NPCs
 
 *create a landmass to walk on on cloud level. nothing else for now.
+
+
+
+
+
+
+
+
+
+
+
+
+Dirt + Grass Transition Tiles
+
+we need dirt floor objs. we could also use grass to dirt 
+transitions, as the coliseum landing requires this to match
+overworld, plus we could build paths thru the grass later
+using these objects. so, very useful.
+
+we also need 'windows' that look into the coliseum.
+
+
+
+
+
+
+
+
 
 
 

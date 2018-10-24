@@ -173,14 +173,14 @@
     <ObjXmlData>
       <type>Dungeon_TorchLit</type>
       <direction>Down</direction>
-      <posX>728</posX>
-      <posY>616</posY>
+      <posX>744</posX>
+      <posY>600</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_TorchLit</type>
       <direction>Down</direction>
-      <posX>568</posX>
-      <posY>616</posY>
+      <posX>552</posX>
+      <posY>600</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Grass_2</type>
@@ -3985,6 +3985,18 @@
       <direction>Down</direction>
       <posX>168</posX>
       <posY>104</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Colliseum_Pillar_Top</type>
+      <direction>Down</direction>
+      <posX>568</posX>
+      <posY>616</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Colliseum_Pillar_Top</type>
+      <direction>Down</direction>
+      <posX>728</posX>
+      <posY>616</posY>
     </ObjXmlData>
   </objs>
 </RoomXmlData>

@@ -240,6 +240,31 @@ namespace DungeonRun
         {
             base.Draw(GameTime);
 
+
+
+
+            /*
+            #region Draw from Camera View
+            ScreenManager.spriteBatch.Begin(
+                        SpriteSortMode.BackToFront,
+                        BlendState.AlphaBlend,
+                        SamplerState.PointClamp,
+                        null, null, null, Camera2D.view);
+
+            //things you need to draw from camera view: ?
+
+            ScreenManager.spriteBatch.End();
+
+            #endregion
+            */
+
+
+
+
+
+
+            #region Draw the TOP MENU + Buttons
+
             if (TopDebugMenu.hideAll == false)
             {   //open the spritebatch
                 ScreenManager.spriteBatch.Begin(
@@ -256,11 +281,17 @@ namespace DungeonRun
                     TopDebugMenu.counter < TopDebugMenu.buttons.Count;
                     TopDebugMenu.counter++)
                 { Functions_Draw.Draw(TopDebugMenu.buttons[TopDebugMenu.counter]); }
+                
                 //draw the object tools
                 Widgets.ObjectTools.Draw();
+
                 //close up the spritebatch
                 ScreenManager.spriteBatch.End();
             }
+
+            #endregion
+
+
         }
     }
 }
