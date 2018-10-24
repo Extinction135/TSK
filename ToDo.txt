@@ -70,19 +70,22 @@ Today:
 
 
 
-UWP++
 
-updated UWP content. tested UWP project.
-working as expected.
+Color++
 
-Title++
-
-updated title screen to look even better.
+updated UI items to be in color.
+tested, looking great.
 
 
 
+fix expansion of ground fires to properly spread
 
 
+
+
+record bushes burning and regrowing in a loop,
+in color. lots of em, and over water.
+record video, post to insta'.
 
 
 
