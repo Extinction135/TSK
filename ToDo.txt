@@ -70,15 +70,15 @@ Today:
 
 
 
+GroundFires
 
-Color++
+fixed expansion of ground fires to properly spread
+from bushes to bushes, grass to grass. this allows
+for more complex level designs, utilizing the burning
+and growing mechanic.
 
-updated UI items to be in color.
-tested, looking great.
 
 
-
-fix expansion of ground fires to properly spread
 
 
 
@@ -86,6 +86,9 @@ fix expansion of ground fires to properly spread
 record bushes burning and regrowing in a loop,
 in color. lots of em, and over water.
 record video, post to insta'.
+
+
+
 
 
 
