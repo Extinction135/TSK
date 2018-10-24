@@ -69,13 +69,20 @@ Today:
 
 
 
+Levels++
 
-GroundFires
+updated montain dungeon entrance level, based on new overworld
+design. though mostly barren, the base idea is there.
 
-fixed expansion of ground fires to properly spread
-from bushes to bushes, grass to grass. this allows
-for more complex level designs, utilizing the burning
-and growing mechanic.
+DungeonEntrances++
+
+dungeon entrances all point to the same animation frame. they
+each actually have their own animation frames now. and are sized
+differently.
+
+playtested, and it's working and looking very well, but the
+mountain entrance needs to be bigger. a 4x4 obj, instead of a
+2x4 obj.
 
 
 
@@ -83,9 +90,83 @@ and growing mechanic.
 
 
 
-record bushes burning and regrowing in a loop,
-in color. lots of em, and over water.
-record video, post to insta'.
+
+
+
+
+
+
+
+
+Editor++
+
+*editor's selectionbox should be world positioned, and drawn thru the camera view,
+so that it stays put when we move the camera.
+
+
+the last display set from editor screen should display when
+the screen is reopened(). it's a pita to have to click back
+to the widget display set you need, just for one obj, over
+and over again.
+
+
+
+
+
+created better version of mountain dungeon entrance,
+in color. 
+
+update mountain dungeon entrance to be more like overworld
+representation.
+
+
+
+
+
+
+
+
+
+
+
+Dungeon Entrances
+
+all dungeon entrances - these need to be specifically defined
+they are not implemented properly, as they assume each entrance
+exists in the same location on different sheets. the logic handling
+this is wonky too.
+
+
+
+
+
+How do we do Dungeon Entrances? properly.
+
+shadow: from water + ship, into animated shadows (hard) - all black obj 
+forest: from water, thru large rock teeth, water bushes (med) - under rock formation
+mountain: from water, climbing up mountain to cave (easy) - into cave
+swamp: from sea, thru slime, short climb up mountain side to teeth - to darkness
+
+town level should be renamed and remade: smaller houses,
+npcs inside and outside, no water features.
+
+skull coliseum: entrance is 3x4 door obj, with skull decorations.
+coliseum walls build a rounded exterior appearance.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -112,12 +193,9 @@ art++
 remove orange/red from coliseum spectators
 make spectators much more brown and less obvious
 
-color all UI items
 
 
 
-
-all dungeon entrances - these need to be specifically defined
 
 
 

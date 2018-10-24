@@ -1159,9 +1159,9 @@ namespace DungeonRun
 
             else if (Type == ObjType.Wor_Entrance_MountainDungeon)
             {
-                Obj.compSprite.drawRec.Width = 16 * 3; //nonstandard size
+                Obj.compSprite.drawRec.Width = 16 * 2; //nonstandard size
                 Obj.compSprite.drawRec.Height = 16 * 4; //nonstandard size
-                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_Dungeon;
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_MountainDungeon;
                 
                 //set collision rec near bottom of entrance
                 Obj.compCollision.rec.Width = 16 * 2; Obj.compCollision.offsetX = -8;

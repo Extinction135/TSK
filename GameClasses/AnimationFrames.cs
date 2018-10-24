@@ -301,6 +301,9 @@ namespace DungeonRun
 
         #region Mountain Objects
 
+        
+        public static List<Byte4> Wor_Entrance_MountainDungeon = new List<Byte4> { new Byte4(6, 3, 0, 0) }; //2x4 obj
+
         public static List<Byte4> Wor_MountainWall_Mid = new List<Byte4> { new Byte4(0, 6, 0, 0) };
         public static List<Byte4> Wor_MountainWall_Bottom = new List<Byte4> { new Byte4(0, 14, 0, 0) };
         public static List<Byte4> Wor_MountainWall_Top = new List<Byte4> { new Byte4(0, 15, 0, 0) };
