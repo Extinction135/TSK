@@ -67,6 +67,29 @@ Today:
 
 
 
+Editor++
+
+the last display set from editor screen should display when
+the screen is reopened(). it's a pita to have to click back
+to the widget display set you need, just for one obj, over
+and over again.
+
+this was actually majorly easy to do: moved the forest state
+initialization routine into the constructor for editor menu screen.
+it was in the Open() method, which was resetting the widgets.
+this change saves me MASSIVE amounts of time editing levels.
+
+
+
+
+
+
+
+
+Editor++
+
+*editor's selectionbox should be world positioned, and drawn thru the camera view,
+so that it stays put when we move the camera.
 
 
 
@@ -79,17 +102,21 @@ Today:
 
 
 
-DeathMountain
-
-add dungeon entrance obj to mountain wall on death mountain
-level, along with multiple paths up the wall. these paths
-shouldn't be too hard as the player will have to do them
-several times. also, we're going to add wind later, which
-will try to blow link off the mountain side.
 
 
-test - record video climbing wall to dungeon..
-done, working as expected.
+
+
+
+
+
+Levels++
+
+
+*remake coliseum
+
+*remake town - smaller houses, easier to see NPCs
+
+*create a landmass to walk on on cloud level. nothing else for now.
 
 
 
@@ -115,44 +142,7 @@ ID or type, then selecting the proper dialog string.
 
 
 
-
-
-
-
-*shadow dungeon entrance level gets the full boat
-in sea base level, with nothing else for now.
-
-*forest dungeon ent is half boat in sea, along with
-swamp dungeon entrance too. this change removes the 
-dungeon entrances from these levels, cutting off 
-access from the game. 
-
-X cloud dung ent = full boat
-X lava ent = half boat
-X forest ent = half boat
-X thieves gate - half boat
-X death mnt - half boat + mtn + dungeon ent
-X swamp - half boat
-X skull dung - full boat
-
-
-*remake coliseum
-*remake town - smaller houses, easier to see NPCs
-
-
-
-
-
-
-
-
-
 DungeonEntrances++
-
-*create a landmass to walk on on cloud level. nothing else for now.
-
-
-
 
 *create forest dungeon entrance objs + level details
 *create swamp dungeon entrance objs + level details - SLIME obj
@@ -180,16 +170,12 @@ release 0.77?
 
 
 
-Editor++
-
-*editor's selectionbox should be world positioned, and drawn thru the camera view,
-so that it stays put when we move the camera.
 
 
-the last display set from editor screen should display when
-the screen is reopened(). it's a pita to have to click back
-to the widget display set you need, just for one obj, over
-and over again.
+
+
+
+
 
 
 

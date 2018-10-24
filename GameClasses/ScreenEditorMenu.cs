@@ -26,6 +26,12 @@ namespace DungeonRun
             this.name = "Editor Menu Screen";
             currentSheet = new ComponentButton("---", new Point(16, 16 + 2));
             currentSheet.rec.Width = 16 * 5;
+
+            //initialize to forest state
+            ResetWidgets();
+            currentSheet.compText.text = "forest";
+            Widgets.WO_Forest.visible = true;
+            Widgets.WE_Forest.visible = true;
         }
 
         public override void Open()
@@ -34,12 +40,6 @@ namespace DungeonRun
             bkgRec.fadeInSpeed = 0.12f;
             bkgRec.maxAlpha = 0.5f;
             bkgRec.fadeState = FadeState.FadeIn;
-
-            //initialize to forest state
-            ResetWidgets();
-            currentSheet.compText.text = "forest";
-            Widgets.WO_Forest.visible = true;
-            Widgets.WE_Forest.visible = true;
         }
 
         public override void HandleInput(GameTime GameTime)
