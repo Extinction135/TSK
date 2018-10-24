@@ -371,14 +371,14 @@
     <ObjXmlData>
       <type>Wor_Boat_Stairs_Cover</type>
       <direction>Down</direction>
-      <posX>648</posX>
-      <posY>632</posY>
+      <posX>632</posX>
+      <posY>472</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Boat_Floor</type>
       <direction>Down</direction>
       <posX>632</posX>
-      <posY>632</posY>
+      <posY>552</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Boat_Bannister_Left</type>
@@ -390,7 +390,7 @@
       <type>Wor_Boat_Engine</type>
       <direction>Down</direction>
       <posX>600</posX>
-      <posY>552</posY>
+      <posY>568</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Boat_Bannister_Right</type>
@@ -573,10 +573,10 @@
       <posY>488</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Wor_Boat_Floor</type>
+      <type>Wor_Boat_Barrel</type>
       <direction>Down</direction>
       <posX>632</posX>
-      <posY>472</posY>
+      <posY>456</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Boat_Floor</type>
@@ -599,7 +599,7 @@
     <ObjXmlData>
       <type>Wor_Boat_Captain_Brandy</type>
       <direction>Down</direction>
-      <posX>632</posX>
+      <posX>648</posX>
       <posY>456</posY>
     </ObjXmlData>
     <ObjXmlData>
@@ -6307,6 +6307,12 @@
       <direction>Down</direction>
       <posX>1176</posX>
       <posY>744</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Boat_Floor</type>
+      <direction>Down</direction>
+      <posX>648</posX>
+      <posY>552</posY>
     </ObjXmlData>
   </objs>
 </RoomXmlData>

@@ -68,44 +68,74 @@ Today:
 
 
 
+
+
+
 Base Levels
 
-to speed up development of certain levels, it would
-be advantageous to create template levels that can be
-copied and extended.
+updated all dungeon entrances to use the appropriate
+base levels. additional themed objs will be used to
+further define these level details and functions.
+upon playtesting, the boat can be improved further.
 
-Base Boat + Sea Level
+Boat++
 
-the boat can only be created in one position, 
-where link spawns. so, just create a base sea 
-level with boat, then use that level to build 
-more complex levels that depend upon the boat 
-+ sea objs / context. this also ensures that
-the boat is built the same way each time, and
-give the editor an idea of what level space is
-available.
-
-actually, this is not entirely true. the boat can
-also be placed at a position where it is 'halfway'
-in the level, still with stair access for later.
-this gives the level more space for objs, and is
-used in death mountains dungeon entrance level.
-
-so, both base levels were created. then additional
-planning was done based on the idea of base levels.
-
-
-
-
-
-
-
-
+remake how the boat is designed: the stairs should be
+at the front next to brandy. also, link should spawn
+safely, with the engine just behind him, and plenty of
+deck space to move around.
 
 Levels++
 
-*remake death mountain dungeon entrance level using
-the new half boat in sea base level.
+update the dungeon levels to be half boats for all.
+shadowking dungeon entrance is only level with full boat.
+
+**important**
+with this commit, all dungeons entrances have been
+removed and are no longer accessible in-game. so,
+the next commit will add death mountain's dungeon
+entrance back to the game. 
+
+
+
+
+
+
+
+DeathMountain
+
+add dungeon entrance obj to mountain wall on death mountain
+level, along with multiple paths up the wall. these paths
+shouldn't be too hard as the player will have to do them
+several times. also, we're going to add wind later, which
+will try to blow link off the mountain side.
+
+
+
+
+
+
+
+
+
+
+Brandy++
+*brandy should provide some tip or clue about each level
+that she's on. we can do this simply by checking the level
+ID or type, then selecting the proper dialog string.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 *shadow dungeon entrance level gets the full boat
 in sea base level, with nothing else for now.
@@ -113,8 +143,48 @@ in sea base level, with nothing else for now.
 *forest dungeon ent is half boat in sea, along with
 swamp dungeon entrance too. this change removes the 
 dungeon entrances from these levels, cutting off 
-access from the game. for now, only the mountain
-dungeon will be accessible.
+access from the game. 
+
+X cloud dung ent = full boat
+X lava ent = half boat
+X forest ent = half boat
+X thieves gate - half boat
+X death mnt - half boat + mtn + dungeon ent
+X swamp - half boat
+X skull dung - full boat
+
+
+*remake coliseum
+*remake town - smaller houses, easier to see NPCs
+
+
+
+
+
+
+
+
+
+DungeonEntrances++
+
+*create a landmass to walk on on cloud level. nothing else for now.
+
+
+
+
+*create forest dungeon entrance objs + level details
+*create swamp dungeon entrance objs + level details - SLIME obj
+*create lava dungeon entrance objs + level details - LAVA conveyor belt objs
+
+
+
+
+
+release 0.77?
+
+
+
+
 
 
 
