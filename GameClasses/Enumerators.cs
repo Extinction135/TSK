@@ -499,6 +499,13 @@ namespace DungeonRun
         Wor_Post_Corner_Left,
         Wor_Post_Vertical_Left,
 
+        Wor_PostBurned_Vertical_Right,
+        Wor_PostBurned_Corner_Right,
+        Wor_PostBurned_Horizontal,
+        Wor_PostBurned_Corner_Left,
+        Wor_PostBurned_Vertical_Left,
+
+
 
         #endregion
 

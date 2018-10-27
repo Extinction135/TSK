@@ -237,8 +237,13 @@ namespace DungeonRun
         public static List<Byte4> Wor_Post_Corner_Left = new List<Byte4> { new Byte4(9, 11, 0, 0) };
         public static List<Byte4> Wor_Post_Vertical_Right = new List<Byte4> { new Byte4(9, 10, 1, 0) };
         public static List<Byte4> Wor_Post_Corner_Right = new List<Byte4> { new Byte4(9, 11, 1, 0) };
-
         public static List<Byte4> Wor_Post_Horizontal = new List<Byte4> { new Byte4(10, 11, 0, 0) };
+
+        public static List<Byte4> Wor_PostBurned_Vertical_Left = new List<Byte4> { new Byte4(18, 10, 0, 0) };
+        public static List<Byte4> Wor_PostBurned_Corner_Left = new List<Byte4> { new Byte4(18, 11, 0, 0) };
+        public static List<Byte4> Wor_PostBurned_Vertical_Right = new List<Byte4> { new Byte4(18, 10, 1, 0) };
+        public static List<Byte4> Wor_PostBurned_Corner_Right = new List<Byte4> { new Byte4(18, 11, 1, 0) };
+        public static List<Byte4> Wor_PostBurned_Horizontal = new List<Byte4> { new Byte4(19, 11, 0, 0) };
 
         //signpost
         public static List<Byte4> Signpost = new List<Byte4> { new Byte4(10, 10, 0, 0) };

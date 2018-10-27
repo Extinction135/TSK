@@ -1673,7 +1673,10 @@ namespace DungeonRun
 
             #region Posts
 
-            else if (Type == ObjType.Wor_Post_Vertical_Left || Type == ObjType.Wor_Post_Corner_Left)
+            else if (
+                Type == ObjType.Wor_Post_Vertical_Left || Type == ObjType.Wor_Post_Corner_Left ||
+                Type == ObjType.Wor_PostBurned_Vertical_Left || Type == ObjType.Wor_PostBurned_Corner_Left
+                )
             {
                 Obj.canBeSaved = true;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
@@ -1684,11 +1687,18 @@ namespace DungeonRun
                 //animframes
                 if (Type == ObjType.Wor_Post_Vertical_Left)
                 { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Post_Vertical_Left; }
-                else
+                else if (Type == ObjType.Wor_Post_Corner_Left)
                 { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Post_Corner_Left; }
+                else if (Type == ObjType.Wor_PostBurned_Vertical_Left)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_PostBurned_Corner_Left; }
+                else if (Type == ObjType.Wor_PostBurned_Corner_Left)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_PostBurned_Corner_Left; }
             }
 
-            else if (Type == ObjType.Wor_Post_Vertical_Right || Type == ObjType.Wor_Post_Corner_Right)
+            else if (
+                Type == ObjType.Wor_Post_Vertical_Right || Type == ObjType.Wor_Post_Corner_Right ||
+                Type == ObjType.Wor_PostBurned_Vertical_Right || Type == ObjType.Wor_PostBurned_Corner_Right
+                )
             {
                 Obj.canBeSaved = true;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
@@ -1699,11 +1709,15 @@ namespace DungeonRun
                 //animframes
                 if (Type == ObjType.Wor_Post_Vertical_Right)
                 { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Post_Vertical_Right; }
-                else
+                else if(Type == ObjType.Wor_Post_Corner_Right)
                 { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Post_Corner_Right; }
+                else if (Type == ObjType.Wor_PostBurned_Vertical_Right)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_PostBurned_Vertical_Right; }
+                else if (Type == ObjType.Wor_PostBurned_Corner_Right)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_PostBurned_Corner_Right; }
             }
 
-            else if (Type == ObjType.Wor_Post_Horizontal)
+            else if (Type == ObjType.Wor_Post_Horizontal || Type == ObjType.Wor_PostBurned_Horizontal)
             {
                 Obj.canBeSaved = true;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
@@ -1712,7 +1726,10 @@ namespace DungeonRun
                 Obj.compCollision.rec.Width = 16; Obj.compCollision.offsetX = -8;
                 Obj.compCollision.rec.Height = 8; Obj.compCollision.offsetY = 0;
                 //animFrame
-                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Post_Horizontal;
+                if (Type == ObjType.Wor_Post_Horizontal)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Post_Horizontal; }
+                else { Obj.compAnim.currentAnimation = AnimationFrames.Wor_PostBurned_Horizontal; }
+                
             }
 
 

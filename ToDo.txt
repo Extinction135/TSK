@@ -64,47 +64,6 @@ Today:
 
 
 
-Signs++
-
-fixed ReadSign() by removing the Dev_Room value 
-from LevelID enum. it didn't make much sense.
-it makes MUCH more sense now.
-
- - details -
-
-updated readSign() with dialog for reading
-a sign while in the editor. this is based on
-the level's ID, and while in the editor, all
-levels are DEV levels. which, I should probably
-fix actually... hmm..
-
-Editor++
-
-why are levels dev levels in editor?
-they should be inheriting the XML level type
-upon load. thus, signposts should work fine.
-
-ok, sooo many problems with editor loading xml.
-first, we assume dev_room on anything
-loaded in room mode. this should default to
-a DUNGEON TYPE, like forest. done. ouch.
-
-but, the bigger problem is the Dev_Room value
-in the LevelID enum, which is a leftover artifact
-from earlier systems. so, it needs to be removed.
-
-Enums--
-
-removed DEV_Room value from LevelID enumerators.
-only generated 5 errors, showing how absolutely
-needless it actually is.
-
-fixed a variety of conceptual issues with loading
-roomData and levelData side by side in editor.
-basically, the old system was designed for dungeon
-rooms only. then fields were added on. then various 
-updates to the codebase happened, which left these 
-functions a little rusty. so i cleaned em up a bit.
 
 
 
@@ -113,6 +72,45 @@ functions a little rusty. so i cleaned em up a bit.
 
 
 
+
+
+
+
+
+
+Fire++
+
+ground fires should spread across wooden posts.
+this makes sense and adds another level of interaction
+and design to the game. now, wooden fences are functionally
+fuses or dominos in a puzzle, in addition to being nice
+decorative blocking objects.
+
+fixed signpost shadows, 
+which fixed post sprites.
+
+created burned post sprites.
+linked up ground fires to convert post to
+their burned version upon contact. plus,
+the fire spreads to the post. so, posts
+now act as fuses.
+
+tested and working.
+
+
+
+
+
+
+
+
+
+
+Bombs++
+
+when bombs explode, they should leave a ground fire.
+this makes their interaction with the world more
+generic and decoupled from specific initial interactions.
 
 
 
@@ -121,11 +119,35 @@ functions a little rusty. so i cleaned em up a bit.
 Destruction++
 
 *should be able to destroy wooden fence posts
-wooden posts should also burn - become a darker color, ashy.
-also they should look smaller and frailer.
+
+change blowUpTree() to explodeTree().
+add explodePost(). self-explanatory.
 
 
-we should be able to burn posts, just like grass.
+
+
+
+
+
+
+
+
+Burned Posts++
+
+burned posts should be able to be cut down with a sword,
+because they are frail.
+
+
+
+
+
+
+
+
+*improved burned post sprites.
+
+
+
 
 
 

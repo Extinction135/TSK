@@ -830,13 +830,31 @@ namespace DungeonRun
                                 ObjType.ProjectileGroundFire,
                                 RoomObj.compSprite.position.X,
                                 RoomObj.compSprite.position.Y - 3);
+                            //destroy the bush
                             Functions_GameObject_World.DestroyBush(RoomObj);
                             Assets.Play(Assets.sfxLightFire);
                         }
+                        //groundfires light explosive barrels on fire
                         else if(RoomObj.type == ObjType.Dungeon_Barrel)
                         {   //dont push the barrel in any direction
                             RoomObj.compMove.direction = Direction.None;
                             Functions_GameObject_Dungeon.HitBarrel(RoomObj);
+                        }
+                        //groundfires burn wooden posts
+                        else if(RoomObj.type == ObjType.Wor_Post_Corner_Left ||
+                            RoomObj.type == ObjType.Wor_Post_Corner_Right ||
+                            RoomObj.type == ObjType.Wor_Post_Horizontal ||
+                            RoomObj.type == ObjType.Wor_Post_Vertical_Left ||
+                            RoomObj.type == ObjType.Wor_Post_Vertical_Right)
+                        {
+                            //spread the fire 
+                            Functions_Projectile.Spawn(
+                                ObjType.ProjectileGroundFire,
+                                RoomObj.compSprite.position.X,
+                                RoomObj.compSprite.position.Y - 3);
+                            //burn the post
+                            Functions_GameObject_World.BurnPost(RoomObj);
+                            Assets.Play(Assets.sfxLightFire);
                         }
                     }
 

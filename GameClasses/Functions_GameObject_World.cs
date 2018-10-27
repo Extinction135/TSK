@@ -18,6 +18,8 @@ namespace DungeonRun
 
 
 
+        //cuts
+
         public static void CutTallGrass(GameObject TallGrass)
         {   //pop an attention particle on grass pos
             Functions_Particle.Spawn(ObjType.Particle_Attention,
@@ -30,6 +32,12 @@ namespace DungeonRun
             if (Functions_Random.Int(0, 101) > 90) //cut that grass boi
             { Functions_Loot.SpawnLoot(TallGrass.compSprite.position); }
         }
+
+
+
+
+
+        //burns
 
         public static void DestroyBush(GameObject Bush)
         {   //pop leaf explosion
@@ -56,6 +64,25 @@ namespace DungeonRun
                 Tree.compSprite.position.X,
                 Tree.compSprite.position.Y + 16);
         }
+
+        public static void BurnPost(GameObject Post)
+        {
+            //switch to burned post
+            if (Post.type == ObjType.Wor_Post_Vertical_Right)
+            { Functions_GameObject.SetType(Post, ObjType.Wor_PostBurned_Vertical_Right); }
+            else if (Post.type == ObjType.Wor_Post_Corner_Right)
+            { Functions_GameObject.SetType(Post, ObjType.Wor_PostBurned_Corner_Right); }
+            else if (Post.type == ObjType.Wor_Post_Horizontal)
+            { Functions_GameObject.SetType(Post, ObjType.Wor_PostBurned_Horizontal); }
+            else if (Post.type == ObjType.Wor_Post_Corner_Left)
+            { Functions_GameObject.SetType(Post, ObjType.Wor_PostBurned_Corner_Left); }
+            else if (Post.type == ObjType.Wor_Post_Vertical_Left)
+            { Functions_GameObject.SetType(Post, ObjType.Wor_PostBurned_Vertical_Left); }
+        }
+
+
+
+        //explosions
 
         public static void BlowUpTree(GameObject Tree, Boolean popLeaves)
         {
@@ -87,6 +114,13 @@ namespace DungeonRun
             }
         }
 
+
+
+
+
+
+        //world doors (not dungeon doors)
+
         public static void OpenFencedGate(GameObject Gate)
         {   //pop attention particle
             Functions_Particle.Spawn(
@@ -110,6 +144,13 @@ namespace DungeonRun
             //play an unlocking sound effect
             Assets.Play(Assets.sfxDoorOpen); //could be better
         }
+
+
+
+
+
+
+        //roofs
 
         public static void HideRoofs()
         {   //for over active roomObjs, hide any roof obj found
@@ -218,10 +259,7 @@ namespace DungeonRun
         }
 
 
-        
-
-
-
+       
 
 
     }
