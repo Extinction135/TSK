@@ -234,10 +234,6 @@ namespace DungeonRun
                     ObjType.Particle_ImpactDust,
                     pro.compSprite.position.X + 4,
                     pro.compSprite.position.Y - 8);
-                //create groundfire
-                Spawn(ObjType.ProjectileGroundFire,
-                    pro.compSprite.position.X,
-                    pro.compSprite.position.Y - 2);
             }
 
             #endregion
@@ -442,16 +438,22 @@ namespace DungeonRun
 
 
             else if (Obj.type == ObjType.ProjectileBomb)
-            {   //create explosion projectile
+            {   
+                //create explosion projectile + ground fire
                 Spawn(ObjType.ProjectileExplosion, Obj.compMove.position.X, Obj.compMove.position.Y);
+                //create groundfire
+                Spawn(ObjType.ProjectileGroundFire, Obj.compMove.position.X, Obj.compMove.position.Y);
             }
             else if (Obj.type == ObjType.ProjectileFireball)
             {   //create explosion
                 Spawn(ObjType.ProjectileExplosion, Obj.compMove.position.X, Obj.compMove.position.Y);
+                //create groundfire
+                Spawn(ObjType.ProjectileGroundFire, Obj.compMove.position.X, Obj.compMove.position.Y);
             }
 
 
 
+            #region Thrown Objs
 
             else if(Obj.type == ObjType.ProjectileBush)
             {
@@ -474,6 +476,9 @@ namespace DungeonRun
                     Obj.compSprite.position.Y,
                     true);
             }
+
+            #endregion
+
 
             //all objects are released upon death
             if (Obj.sfx.kill != null) { Assets.Play(Obj.sfx.kill); }

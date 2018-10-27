@@ -70,47 +70,34 @@ Today:
 
 
 
-
-
-
-
-
-
-
-
-Fire++
-
-ground fires should spread across wooden posts.
-this makes sense and adds another level of interaction
-and design to the game. now, wooden fences are functionally
-fuses or dominos in a puzzle, in addition to being nice
-decorative blocking objects.
-
-fixed signpost shadows, 
-which fixed post sprites.
-
-created burned post sprites.
-linked up ground fires to convert post to
-their burned version upon contact. plus,
-the fire spreads to the post. so, posts
-now act as fuses.
-
-tested and working.
-
-
-
-
-
-
-
-
-
-
 Bombs++
 
 when bombs explode, they should leave a ground fire.
 this makes their interaction with the world more
 generic and decoupled from specific initial interactions.
+
+moved call to create ground fire from explosions birth
+event to bombs death event. apparently, i can't call
+Spawn() from Spawn() cause that causes problems.
+
+*this problem exists with fireballs too. fixed.
+
+now bombs and fireballs spawn groundfires properly,
+which make them more interactive with the gameworld,
+thus increasing their gameplay value (to me).
+
+recorded video literally destroying the town.
+which was fun.
+
+
+
+
+
+
+
+
+
+
 
 
 
