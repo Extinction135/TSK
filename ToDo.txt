@@ -63,31 +63,10 @@ Today:
 
 
 
+UWP++
 
-
-
-
-
-
-
-Bombs++
-
-when bombs explode, they should leave a ground fire.
-this makes their interaction with the world more
-generic and decoupled from specific initial interactions.
-
-moved call to create ground fire from explosions birth
-event to bombs death event. apparently, i can't call
-Spawn() from Spawn() cause that causes problems.
-
-*this problem exists with fireballs too. fixed.
-
-now bombs and fireballs spawn groundfires properly,
-which make them more interactive with the gameworld,
-thus increasing their gameplay value (to me).
-
-recorded video literally destroying the town.
-which was fun.
+updated the UWP project's content.
+sync'd to Dx now.
 
 
 
@@ -115,23 +94,16 @@ add explodePost(). self-explanatory.
 
 
 
-
-
-
-
 Burned Posts++
 
 burned posts should be able to be cut down with a sword,
-because they are frail.
+because they are frail. 
+
+*improved burned post sprites. super uggo rn.
 
 
 
 
-
-
-
-
-*improved burned post sprites.
 
 
 
@@ -188,8 +160,8 @@ editor menu screen as well.
 
 Brandy++
 *brandy should provide some tip or clue about each level
-that she's on. we can do this simply by checking the level
-ID or type, then selecting the proper dialog string.
+that she's on. we can do this simply by checking the level's current room ID.
+then selecting the proper dialog string.
 
 
 
@@ -204,9 +176,10 @@ DungeonEntrances++
 
 *create forest dungeon entrance objs + level details
 *create swamp dungeon entrance objs + level details - SLIME obj
-*create lava dungeon entrance objs + level details - LAVA conveyor belt objs
 
-
+we can do the slime obj rn - this just drops player mobility to 
+pushing/dragging speed upon contact. super easy. then update the
+swamp level, so swimming thru slime is annoyingly slow.
 
 
 
@@ -219,6 +192,12 @@ release 0.77?
 
 
 
+
+
+Islands++
+
+
+*create lava dungeon entrance objs + level details - LAVA conveyor belt objs
 
 
 
