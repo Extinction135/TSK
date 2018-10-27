@@ -143,18 +143,19 @@ namespace DungeonRun
                             {
                                 //based on state, set level id
                                 if (state == WidgetRoomToolsState.Room)
-                                {
-                                    LevelSet.currentLevel.ID = LevelID.DEV_Room;
+                                {   //default level to forest row room
+                                    LevelSet.currentLevel.ID = LevelID.Forest_Dungeon;
                                 }
                                 else
-                                {
+                                {   //a blank, disconnected (from map) field
                                     LevelSet.currentLevel.ID = LevelID.DEV_Field;
                                     roomID = RoomID.DEV_Field;
                                 }
-                                //hack: stuff roomID into roomTool's roomData
+
+                                //store the roomID in roomTool's roomData type
                                 Widgets.RoomTools.roomData = new RoomXmlData();
                                 Widgets.RoomTools.roomData.type = roomID;
-                                //then ref roomData in build level to get roomType
+                                //reference that roomData in buildLevel() to get roomID & levelID
                                 Functions_Level.BuildLevel(LevelSet.currentLevel.ID);
 
                                 Debug.WriteLine("level id: " + LevelSet.currentLevel.ID);
@@ -288,11 +289,16 @@ namespace DungeonRun
 
             if (state == WidgetRoomToolsState.Room)
             {
-                LevelSet.currentLevel.ID = LevelID.DEV_Room;
+                //set level to dungeon
+                LevelSet.currentLevel = LevelSet.dungeon;
+
+                //defaults to forest dungeon level
+                LevelSet.currentLevel.ID = LevelID.Forest_Dungeon;
                 LevelSet.currentLevel.rooms = new List<Room>();
                 LevelSet.currentLevel.doors = new List<Door>();
 
                 //reset the level flags
+
                 LevelSet.currentLevel.bigKey = false;
                 LevelSet.currentLevel.map = false;
 
@@ -311,9 +317,14 @@ namespace DungeonRun
                 LevelSet.spawnPos_Dungeon.Y = LevelSet.currentLevel.currentRoom.rec.Y;
             }
             else
-            {   //clear all objs, add xml objs
+            {
+                //set level to field
+                LevelSet.currentLevel = LevelSet.field;
+
+                //FIELD: clear all objs, add xml objs
                 Functions_Pool.Reset();
                 Functions_Room.BuildRoomXmlData(RoomXmlData);
+
                 //pass the room type into the built room
                 LevelSet.currentLevel.currentRoom.roomID = RoomXmlData.type;
 

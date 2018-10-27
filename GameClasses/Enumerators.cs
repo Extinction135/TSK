@@ -136,7 +136,6 @@ namespace DungeonRun
         Swamp_Dungeon,
 
         //dev (hidden) unreachable locations from game
-        DEV_Room, //single room with walls/doors + rules
         DEV_Field, //single room without walls/doors
     }
 

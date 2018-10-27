@@ -316,6 +316,14 @@ namespace DungeonRun
                 Assets.sfxError, true, false)
         };
 
+        public static List<Dialog> Signpost_CantRead = new List<Dialog>
+        {
+            new Dialog(ObjType.Hero_Idle, "error",
+                "this room has an improper id, or you're in the \n" +
+                "editor, so every room is a dev room.",
+                Assets.sfxTextLetter, false, false)
+        };
+
         #endregion
 
 

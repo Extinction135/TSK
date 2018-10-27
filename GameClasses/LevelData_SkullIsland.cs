@@ -4470,7 +4470,7 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 1240; obj.posY = 488; SkullIsland_Town.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 1224; obj.posY = 488; SkullIsland_Town.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 1240; obj.posY = 504; SkullIsland_Town.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 1256; obj.posY = 504; SkullIsland_Town.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 1256; obj.posY = 520; SkullIsland_Town.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 1256; obj.posY = 520; SkullIsland_Town.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 1240; obj.posY = 520; SkullIsland_Town.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 1224; obj.posY = 536; SkullIsland_Town.objs.Add(obj);}
@@ -4887,7 +4887,6 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Roof_Chimney; obj.direction = Direction.Down; obj.posX = 1096; obj.posY = 536; SkullIsland_Town.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Roof_Bottom; obj.direction = Direction.Down; obj.posX = 1080; obj.posY = 536; SkullIsland_Town.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Roof_Bottom; obj.direction = Direction.Down; obj.posX = 1080; obj.posY = 552; SkullIsland_Town.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Boat_Floor; obj.direction = Direction.Down; obj.posX = 904; obj.posY = 488; SkullIsland_Town.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Roof_Bottom; obj.direction = Direction.Down; obj.posX = 1112; obj.posY = 552; SkullIsland_Town.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Roof_Bottom; obj.direction = Direction.Down; obj.posX = 1112; obj.posY = 536; SkullIsland_Town.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Build_Roof_Bottom; obj.direction = Direction.Down; obj.posX = 1128; obj.posY = 536; SkullIsland_Town.objs.Add(obj);}

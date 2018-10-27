@@ -163,17 +163,25 @@ namespace DungeonRun
         }
 
 
+
+
+
+
+
+
         public static void ReadSign(GameObject Sign)
         {
-            //based on level.id, and sometimes roomID, signs point to diff dialogs
+            //based on current roomid, signs point to diff dialogs
+            //everything is based on currentRoom's ID, never levelID
+
 
             //field signposts
-            if(LevelSet.currentLevel.ID == LevelID.SkullIsland_Town)
+            if(LevelSet.currentLevel.currentRoom.roomID == RoomID.SkullIsland_Town)
             {
                 Screens.Dialog.SetDialog(AssetsDialog.Signpost_ShadowTown);
                 ScreenManager.AddScreen(Screens.Dialog);
             }
-            else if (LevelSet.currentLevel.ID == LevelID.SkullIsland_Colliseum)
+            else if (LevelSet.currentLevel.currentRoom.roomID == RoomID.SkullIsland_Colliseum)
             {
                 Screens.Dialog.SetDialog(AssetsDialog.Signpost_ShadowColliseum);
                 ScreenManager.AddScreen(Screens.Dialog);
@@ -188,6 +196,17 @@ namespace DungeonRun
             }
 
 
+            //editor dialogs
+            else if(LevelSet.currentLevel.currentRoom.roomID == RoomID.DEV_Field)
+            {
+                Screens.Dialog.SetDialog(AssetsDialog.Signpost_CantRead);
+                ScreenManager.AddScreen(Screens.Dialog);
+            }
+            else if(LevelSet.currentLevel.currentRoom.roomID == RoomID.DEV_Exit)
+            {
+                Screens.Dialog.SetDialog(AssetsDialog.Signpost_CantRead);
+                ScreenManager.AddScreen(Screens.Dialog);
+            }
 
 
 

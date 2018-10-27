@@ -56,9 +56,7 @@ namespace DungeonRun
             //handle DUNGEON setup
             if (levelID == LevelID.Forest_Dungeon
                 || levelID == LevelID.Mountain_Dungeon
-                || levelID == LevelID.Swamp_Dungeon
-                //and dev set too
-                || levelID == LevelID.DEV_Room)
+                || levelID == LevelID.Swamp_Dungeon)
             {
                 //reset dungeon data
                 ResetLevel(LevelSet.dungeon);
@@ -115,28 +113,49 @@ namespace DungeonRun
 
             #region Build DEV Levels
 
-            if (LevelSet.currentLevel.ID == LevelID.DEV_Room)
+            if(Flags.bootRoutine != BootRoutine.Game) //we may be building dev levels
             {
-                //make a new room, which inherits the RoomTool's roomData type
-                RoomID roomType = RoomID.DEV_Row;
-                if (Widgets.RoomTools.roomData != null)
-                { roomType = Widgets.RoomTools.roomData.type; }
+                //i'm lazy sometimes
+                if (Widgets.RoomTools.roomData == null) { return; }
 
-                //build the dev room based on roomType
-                Room room = new Room(new Point(buildPosition.X, buildPosition.Y), roomType);
-                LevelSet.currentLevel.rooms.Add(room); //spawn room must be index0
+                if (
+                    //check to see if editor just built a new dungeon room to work on
+                    Widgets.RoomTools.roomData.type == RoomID.DEV_Boss ||
+                    Widgets.RoomTools.roomData.type == RoomID.DEV_Column ||
+                    Widgets.RoomTools.roomData.type == RoomID.DEV_Exit ||
+                    Widgets.RoomTools.roomData.type == RoomID.DEV_Hub ||
+                    Widgets.RoomTools.roomData.type == RoomID.DEV_Key ||
+                    Widgets.RoomTools.roomData.type == RoomID.DEV_Row ||
+                    Widgets.RoomTools.roomData.type == RoomID.DEV_Square
+                    )
+                {
+                    //make a new room, which inherits the RoomTool's roomData type
+                    RoomID roomType = Widgets.RoomTools.roomData.type;
 
-                //set spawnPos (outside TopLeft of new dev room)
-                LevelSet.spawnPos_Dungeon.X = room.rec.X - 32;
-                LevelSet.spawnPos_Dungeon.Y = room.rec.Y;
-            }
-            else if (LevelSet.currentLevel.ID == LevelID.DEV_Field)
-            {
-                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.DEV_Field);
-                LevelSet.currentLevel.rooms.Add(field);
-                //set spawnPos (centered south to room)
-                Functions_Hero.ResetFieldSpawnPos();
-            }
+                    //build the dev room based on roomType
+                    Room room = new Room(new Point(buildPosition.X, buildPosition.Y), roomType);
+                    LevelSet.currentLevel.rooms.Add(room); //spawn/exit room must be at index 0
+
+                    //set spawnPos (outside TopLeft of new dev room)
+                    LevelSet.spawnPos_Dungeon.X = room.rec.X - 32;
+                    LevelSet.spawnPos_Dungeon.Y = room.rec.Y;
+                }
+                //or if editor just built a new field to work on 
+                else if (Widgets.RoomTools.roomData.type == RoomID.DEV_Field)
+                {
+                    Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.DEV_Field);
+                    LevelSet.currentLevel.rooms.Add(field);
+                    //manually set field spawnposition
+
+                    //starting Xpos + half width
+                    LevelSet.spawnPos_Field.X = buildPosition.X + 20 * 16;
+                    //starting Ypos + field height - spawn offset
+                    LevelSet.spawnPos_Field.Y = buildPosition.Y + 16 * 46 - 16 * 4;
+                }
+            } 
+
+            //that's all the editor builds, if we load a level in the editor thats
+            //not a dev level, it will build and interact normally, as in game.
 
             #endregion
 
@@ -265,6 +284,9 @@ namespace DungeonRun
             }
 
             #endregion
+
+
+
 
 
 

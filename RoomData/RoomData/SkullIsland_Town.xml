@@ -7764,7 +7764,7 @@
       <type>Wor_Grass_Tall</type>
       <direction>Down</direction>
       <posX>1256</posX>
-      <posY>504</posY>
+      <posY>520</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Grass_Tall</type>
@@ -10261,12 +10261,6 @@
       <direction>Down</direction>
       <posX>1080</posX>
       <posY>552</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Boat_Floor</type>
-      <direction>Down</direction>
-      <posX>904</posX>
-      <posY>488</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Build_Roof_Bottom</type>

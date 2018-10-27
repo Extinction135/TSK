@@ -64,15 +64,50 @@ Today:
 
 
 
+Signs++
+
+fixed ReadSign() by removing the Dev_Room value 
+from LevelID enum. it didn't make much sense.
+it makes MUCH more sense now.
+
+ - details -
+
+updated readSign() with dialog for reading
+a sign while in the editor. this is based on
+the level's ID, and while in the editor, all
+levels are DEV levels. which, I should probably
+fix actually... hmm..
+
+Editor++
+
+why are levels dev levels in editor?
+they should be inheriting the XML level type
+upon load. thus, signposts should work fine.
+
+ok, sooo many problems with editor loading xml.
+first, we assume dev_room on anything
+loaded in room mode. this should default to
+a DUNGEON TYPE, like forest. done. ouch.
+
+but, the bigger problem is the Dev_Room value
+in the LevelID enum, which is a leftover artifact
+from earlier systems. so, it needs to be removed.
+
+Enums--
+
+removed DEV_Room value from LevelID enumerators.
+only generated 5 errors, showing how absolutely
+needless it actually is.
+
+fixed a variety of conceptual issues with loading
+roomData and levelData side by side in editor.
+basically, the old system was designed for dungeon
+rooms only. then fields were added on. then various 
+updates to the codebase happened, which left these 
+functions a little rusty. so i cleaned em up a bit.
 
 
 
-Levels++
-
-remade town - smaller houses, easier to see NPCs.
-added landmass to cloud entrance level.
-this will be updated later. updated UWP content.
-UWP project should by sync'd to Dx project now.
 
 
 
@@ -83,15 +118,17 @@ UWP project should by sync'd to Dx project now.
 
 
 
+Destruction++
+
+*should be able to destroy wooden fence posts
+wooden posts should also burn - become a darker color, ashy.
+also they should look smaller and frailer.
+
+
+we should be able to burn posts, just like grass.
 
 
 
-
-
-Signposts++
-
-add a signpost to town, coliseum, and mountain dungeon entrance
-these are setup to 'read' properly now.
 
 
 
@@ -121,22 +158,10 @@ have no required puzzle for entry.
 
 
 
-
-Destruction++
-
-*should be able to destroy wooden fence posts
-wooden posts should also burn - become a darker color, ashy.
-also they should look smaller and frailer.
-
-
 Wire Fences
 
 they don't line up, because we built them the wrong way conceptually.
 design them based on the wooden fences that actually work, you doofus.
-
-
-
-
 
 
 
@@ -148,8 +173,6 @@ hide roofs, disable interaction with roofs, remove all roofs.
 these should be editor button options from menu screen.
 **water tiles should be treated the same, and modified from
 editor menu screen as well.
-
-
 
 
 
