@@ -41,6 +41,11 @@ namespace DungeonRun
         public GameObject grabbedObj; //obj/entity that is picked up/dragged/dropped in room
         public GameObject activeTool; //points to a ToolObj on the obj list
 
+        Boolean ignoreObj = false; //helper for modeling editor ignore state
+
+
+
+
 
 
         public WidgetObjectTools()
@@ -355,23 +360,40 @@ namespace DungeonRun
                             if (Pool.roomObjPool[Pool.roomObjCounter].compCollision.rec.Contains(worldPos))
                             {
 
-                                
+                                ignoreObj = false;
+
+
+
                                 #region Editor Based Selection Cases
 
                                 //check for specific conditions, like ignoring water tiles
                                 if (Flags.IgnoreWaterTiles & Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Water)
-                                { } //ignore this object
+                                { ignoreObj = true; } //ignore this object
+
+                                //ignoring roof tiles for deletion
+                                if (Flags.IgnoreRoofTiles)
+                                {
+                                    if(
+                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Build_Roof_Bottom ||
+                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Build_Roof_Chimney ||
+                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Build_Roof_Top
+                                        )
+                                    { ignoreObj = true; } //ignore this object
+                                }
 
 
                                 #endregion
 
 
 
-
-                                else
-                                {   //most of the time, we just release the object
+                                if(ignoreObj == false)
+                                {
+                                    //if we aren't ignoring the object, then release it
                                     Functions_Pool.Release(Pool.roomObjPool[Pool.roomObjCounter]);
                                 }
+
+
+                                
                             }
                         }
                     }
@@ -490,6 +512,12 @@ namespace DungeonRun
             currentObjDirectionText.text = "dir: " + currentObjRef.direction;
         }
 
+
+
+
+
+
+        
         public Boolean GrabRoomObject()
         {   //grab roomObjs
             for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
@@ -498,23 +526,39 @@ namespace DungeonRun
                 {   //check collisions between worldPos and obj, grab any colliding obj
                     if (Pool.roomObjPool[Pool.roomObjCounter].compCollision.rec.Contains(worldPos))
                     {
+                        ignoreObj = false;
+
 
                         #region Editor Based Selection Cases
 
                         //check for specific conditions, like ignoring water tiles
-                        if (Flags.IgnoreWaterTiles & Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Water)
+                        if (Flags.IgnoreWaterTiles)
                         {
-                            //literally do nothing, we want to continue checking objects in the list
+                            if(Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Water)
+                            { ignoreObj = true; } //ignore this object
+                        }
+
+                        //ignoring roof tiles for selection
+                        if (Flags.IgnoreRoofTiles)
+                        {
+                            if (
+                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Build_Roof_Bottom ||
+                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Build_Roof_Chimney ||
+                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Build_Roof_Top
+                                )
+                            { ignoreObj = true; } //ignore this object
                         }
 
                         #endregion
 
 
-                        else
-                        {   
+                        //editor can ignore certain object types to make editing easier
+                        if (ignoreObj == false)
+                        {
                             SelectObject(Pool.roomObjPool[Pool.roomObjCounter]);
                             return true;
                         }
+                        else { } //continue onto the next object
                     }
                 }
             }

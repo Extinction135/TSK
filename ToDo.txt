@@ -69,31 +69,39 @@ Today:
 
 
 
-
-
 Editor++
 
-now, we need to make sure ignore water tiles actually works.
-this includes deleting water tiles. they should be completely
-ignored. tested, working perfectly.
-
-
-
-
-
-
-
-
-
-
-Editor++
-
-third, we implement roof ignore button. just like water button.
+now, we implement roof ignore button. just like water button.
 no picking them up, no deleting them, plus no showing them.
 implemented in game, this hides all the roofs that have been built.
 we should also add a button to clear all the roofs, which loops
 over all roomObjs and removes all roof types. this is liekly an 
 obj.group check, i can't recall right now. or by type if needed.
+
+it was by type, and it's been added. when ignore roof tiles
+have been enabled, roofs cannot be selected or deleted.
+
+tested, working awesomely.
+
+
+
+
+
+
+
+
+
+
+Editor++
+
++ clear all roof objects
+
+++ ignore roof tiles should hide them from drawing too - set visibility to false
+each frame befoe drawing game world.
+
+
+
+
 
 
 

@@ -25,7 +25,7 @@ namespace DungeonRun
         //ui buttons
         public ComponentButton currentSheet;
         public ComponentButton ignoreWaterTiles;
-
+        public ComponentButton ignoreRoofTiles;
 
 
 
@@ -47,6 +47,10 @@ namespace DungeonRun
             ignoreWaterTiles.rec.Width = 16 * 5;
             ignoreWaterTiles.compText.text = "ignore water tiles";
 
+            //setup ignoreRoofTiles button
+            ignoreRoofTiles = new ComponentButton("---", new Point(16 * 12, 16 + 2));
+            ignoreRoofTiles.rec.Width = 16 * 5;
+            ignoreRoofTiles.compText.text = "ignore roof tiles";
 
         }
 
@@ -197,6 +201,22 @@ namespace DungeonRun
                         ignoreWaterTiles.currentColor = ColorScheme.buttonDown;
                     }
                 }
+
+
+
+                else if (ignoreRoofTiles.rec.Contains(Input.cursorPos))
+                {
+                    if (Flags.IgnoreRoofTiles)
+                    {
+                        Flags.IgnoreRoofTiles = false;
+                        ignoreRoofTiles.currentColor = ColorScheme.buttonUp;
+                    }
+                    else
+                    {
+                        Flags.IgnoreRoofTiles = true;
+                        ignoreRoofTiles.currentColor = ColorScheme.buttonDown;
+                    }
+                }
             }
 
             #endregion
@@ -252,6 +272,8 @@ namespace DungeonRun
             //draw additional tools
             Functions_Draw.Draw(currentSheet);
             Functions_Draw.Draw(ignoreWaterTiles);
+            Functions_Draw.Draw(ignoreRoofTiles);
+
 
             ScreenManager.spriteBatch.End();
         }

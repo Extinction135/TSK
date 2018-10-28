@@ -34,7 +34,8 @@ namespace DungeonRun
         public static Boolean ProcessAI = true; //apply AI input to enemies / actors
         public static Boolean ShowEnemySpawns = false; //create & draw enemySpawn gameObjects?
         public static Boolean PrintOutput = true; //print output to the debugger
-        public static Boolean IgnoreWaterTiles = false; //enable/disable pickup/selection of waterTiles
+        public static Boolean IgnoreWaterTiles = false; //enable/disable pickup/selection/deletion of waterTiles
+        public static Boolean IgnoreRoofTiles = false; //enable/disable pickup/selection of roofTiles
 
         //option flags
         public static Boolean PlayMusic = true; //turns music on/off
