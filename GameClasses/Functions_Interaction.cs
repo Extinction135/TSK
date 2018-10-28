@@ -689,15 +689,8 @@ namespace DungeonRun
                     {   
                         if (Object.lifeCounter == 1) //perform these interactions only once
                         {
-
-                            if (RoomObj.type == ObjType.po)
-                            { }
-                            Functions_GameObject_World.BlowUpPost();
-                            
                             //explosions call power level 2 destruction routines
                             Functions_GameObject.BlowUp(RoomObj, Object);
-                            //drop a groundfire as well
-
                         }
                     }
 

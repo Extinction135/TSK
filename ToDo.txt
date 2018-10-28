@@ -64,46 +64,75 @@ Today:
 
 
 
-
-Destruction++
-
-updated Functions_GameObject.BlowUp(RoomObj, Projectile)
-with additional checks for all post objects. this means all
-posts can now be destroy by anything in game that calls BlowUp(),
-like bomb explosions, fireball explosions, lightning, etc..
-this was easily done because the post is a blocking object,
-and the codepath for projectile vs blocking object destruction
-is very well established.
-
-Thoughts
-
-*there are issues with how fire spreads from explosions + posts.
-basically, when a post is destroyed, it should spawn a ground fire
-at it's location. this means the posts should exist outside of the
-standard BlowUp() method. likely as fun_worldObj.BlowUpPost(Obj).
-
-Thoughts
-
-we should be modeling 'burnable' state as a boolean in objs.
-this makes the check to add ground fires to objs much simpler,
-and allows it to scale, as we are likely going to add more
-burnable objects into the game. plus, we could likely consolidate
-or simplify the concept of 'objects burning' in the codebase.
-added Boolean burnable to GameObject class.
-
-
-
-
-
-
-
-
-
 Burning GameObjects
 
 in order to have a clear path forward for burning (and destroying)
 gameobjs, we need to define and design the system to handle scale 
-and modifications / crazy ideas.
+and modifications / crazy ideas. this will be based on the 
+obj.burnable boolean added in the previous commit. also, that 
+previous commit wont compile. so.. yeah.
+
+Burning - The Path Forward (psuedo code)
+
+if obj.burnable, -> spawn ground fire at base of obj
+FuncName: Functions_GameObject_World.BurnObject();
+-this function spawns the ground fire, and kills() obj.
+
+if !obj.burnable -> pass to established Fun_Obj.BlowUp();
+-that's it, boss.
+
+we just need to start flipping the burnable booleans in Obj.SetType().
+
+Contention
+
+the current system is setup to handle this by obj.type,
+and this allow for a greater degree of control than by boolean
+modeling. this scales linearly with obj definitions and intractions,
+where modeling burnable would be less than linear, but give up
+the ability to allow for unique burning interactions - for example
+setting a torch on fire by having grass burn up to it. which, now
+that i think about it - this should be possible within the game!
+and we wouldn't be able to model the next layer of interaction
+using a boolean 'burable' based approach. these decisions are so
+small and subtle, but have so many consequences that are often 
+difficult to see quickly - or sometimes at all. leading to an
+investment of work and a subsequent desire to believe 'that was
+the right decision to make', when it was actually wrong - and
+that takes time to realize. very glad i didn't commit to this
+idea without running it through the best IDE there is: the brain.
+
+This Commit
+
+posts were given their own method for destruction, where
+they will always spawn a ground fire. this allows for proper
+spreading of fire between posts, keeping them consisten in
+interaction with grass, bushes, etc.. 'burnable' objects.
+this was also added into the region 'World Obj - special cases',
+which was created specifically for object explosion interactions
+such as these. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+Interaction++
+
+Torches should light on fire, if ground fires neighbor them.
+this includes fireballs. so a nearmiss with a fireball on a
+torch will still light it on fire, because it passed by the
+torch as it's neighbor. how do we do this? by making unlit
+torches an interactive object that checks once every 10 frames
+by expanding it's hitbox and collision checking it's neighboring
+objs, just like groundfires, and just like filled ditches.
+
 
 
 
@@ -124,6 +153,22 @@ burned posts should be treated as the 'weakest' of all blocking
 objs, conceptually. a boomerang hit would knock them down. a
 strong gust of wind would knock them down.. which we will have
 later..
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
