@@ -59,6 +59,18 @@ namespace DungeonRun
                 Functions_GameObject_World.OpenBuildingDoor(RoomObj);
             }
 
+            //burned posts
+            else if(
+                RoomObj.type == ObjType.Wor_PostBurned_Corner_Left ||
+                RoomObj.type == ObjType.Wor_PostBurned_Corner_Right ||
+                RoomObj.type == ObjType.Wor_PostBurned_Horizontal ||
+                RoomObj.type == ObjType.Wor_PostBurned_Vertical_Left ||
+                RoomObj.type == ObjType.Wor_PostBurned_Vertical_Right
+                )
+            {
+                Kill(RoomObj, true, true);
+            }
+
             #endregion
 
 

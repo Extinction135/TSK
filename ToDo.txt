@@ -70,108 +70,6 @@ Today:
 
 
 
-
-obj.burnable has been removed from codebase.
-
-
-
-
-
-
-Interaction++
-
-Torches should light on fire, if ground fires neighbor them.
-this includes fireballs. so a nearmiss with a fireball on a
-torch will still light it on fire, because it passed by the
-torch as it's neighbor. how do we do this? by making unlit
-torches an interactive object that checks once every 10 frames
-by expanding it's hitbox and collision checking it's neighboring
-objs, just like groundfires, and just like filled ditches.
-
-updated interactions between groundfire and unlit torch to 
-modify unlit torch to lit torch and play firesfx. updated
-obj.settype() for unlit torches to getAi and have an interactive
-frame of 10, because it doesn't make sense to spam this
-hitbox expansion every frame. groundfires and passing fireballs
-would be nearby long enough to push this value to probably
-even every 30 frames.
-
-began design of unlit torch ai based on bushes hitbox
-expansion section of code. actually, thats wrong.
-this is a projectile vs object check. not a room obj v 
-room obj check. this is all wrong.
-
-however, unlit torches will be lit on fire by ground fires.
-but fireballs - they need proper interaction routines added
-for unlit torches.
-
-this is modeled from the projectiles view, not the roomObjs.
-fireballs have no interaction with roomObjs - yet. we can add
-these now, which will cause passing fireballs to light all 
-kinds of roomObjects on fire: bushes, trees, posts, unlit torches.
-and likely more in the future.
-
-Fireballs++
-
-we are copying ground fires projectile functionality into
-fireballs, which allows us to expand the fireballs hitbox every
-few frames to see if it collides with any specific objects.
-
-Fireballs++++++++++
-
-fireballs passing by objects inherently creates a state 
-where many objects can be triggered at once by a passing 
-fireball. this draws on screen in a cascading effect.
-this is now known as 'fireball cascade', and I am proud of it.
-objects that can be cascaded include: posts, barrels, bushes,
-unlit torches, and tall grass. so fireballs just got multiple
-layers of interaction added to them, within the existing game
-world. expected visual outcome should be amazing. will record.
-
-fireballs now smoke ALOT while traveling, making them look
-AWESOME! also, because the hitbox is reset before drawing,
-this hitbox collision check DOES NOT DEBUG DRAW. it's hidden.
-i could change this to leave the fireballs hitbox expanded,
-then draw it, then on the next frame ensure that all fireballs
-hitboxes were normal, but that's a bit complicated and I dont 
-care.
-
-changed how fireball hitboxes are handled to draw properly.
-turns out, actually i do care, because they aren't working
-and its driving me crazy. done, fixed the problem, recorded
-a sweet video using a test room designed for the fireball
-passing mechanic. working beautifully. moved the reset
-hitbox code back into the projectile functions HandleBehavior()
-method, where it needs to live to do things properly, in
-my opinion. done.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Burned Posts++
 
 burned posts should be able to be cut down with a sword,
@@ -181,11 +79,32 @@ objs, conceptually. a boomerang hit would knock them down. a
 strong gust of wind would knock them down.. which we will have
 later..
 
+so we are putting burned posts into the HandleCommon() method
+of func_gameObj class. this adds burned posts into a response
+to an action caused by arrows, explosions, swords, shovels,
+any kind of thrown projectile, etc... so posts become deeply
+integrated into the gameworld with this simple addition.
+
+updated common objs sheet. tested, working as expected.
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+Ship Barrel Interactions++
+
+Ship Barrels should be destroyable. cant push or pull them,
+but explosions and lightning can blow them up.
 
 
 
