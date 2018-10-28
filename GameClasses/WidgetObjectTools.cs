@@ -344,15 +344,39 @@ namespace DungeonRun
 
                 else if (TopDebugMenu.objToolState == ObjToolState.DeleteObj)
                 {   //check collisions between cursor worldPos and obj, release() any colliding objs
+                    
+                    
+                    
                     //delete roomObjs
                     for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
                     {
                         if (Pool.roomObjPool[Pool.roomObjCounter].active)
                         {
                             if (Pool.roomObjPool[Pool.roomObjCounter].compCollision.rec.Contains(worldPos))
-                            { Functions_Pool.Release(Pool.roomObjPool[Pool.roomObjCounter]); }
+                            {
+
+                                
+                                #region Editor Based Selection Cases
+
+                                //check for specific conditions, like ignoring water tiles
+                                if (Flags.IgnoreWaterTiles & Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Water)
+                                { } //ignore this object
+
+
+                                #endregion
+
+
+
+
+                                else
+                                {   //most of the time, we just release the object
+                                    Functions_Pool.Release(Pool.roomObjPool[Pool.roomObjCounter]);
+                                }
+                            }
                         }
                     }
+
+
                     //delete entityObjs
                     for (Pool.projectileCounter = 0; Pool.projectileCounter < Pool.projectileCount; Pool.projectileCounter++)
                     {
@@ -362,6 +386,8 @@ namespace DungeonRun
                             { Functions_Pool.Release(Pool.projectilePool[Pool.projectileCounter]); }
                         }
                     }
+
+
                 }
 
                 #endregion

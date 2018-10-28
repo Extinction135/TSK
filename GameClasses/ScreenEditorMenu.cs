@@ -43,8 +43,8 @@ namespace DungeonRun
             Widgets.WE_Forest.visible = true;
 
             //setup ignore water tiles button
-            ignoreWaterTiles = new ComponentButton("---", new Point(16 * 6, 16 + 2));
-            ignoreWaterTiles.rec.Width = 16 * 6;
+            ignoreWaterTiles = new ComponentButton("---", new Point(16 * 6 + 8, 16 + 2));
+            ignoreWaterTiles.rec.Width = 16 * 5;
             ignoreWaterTiles.compText.text = "ignore water tiles";
 
 

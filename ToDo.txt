@@ -71,34 +71,16 @@ Today:
 
 
 
-
-
 Editor++
 
-**should be able to hide and disable all interaction with roofs.
-hide roofs, disable interaction with roofs, remove all roofs.
-these should be editor button options from menu screen.
-**water tiles should be treated the same, and modified from
-editor menu screen as well.
-
-first we need to move the ignore water tiles fucntionality 
-into a button on editor menu screen, just like the widget
-selection button. done. but, we can still delete them.
-
-
-
-
-
-
-
-
-
-
-Editor++
-
-second, we need to make sure ignore water tiles actually works.
+now, we need to make sure ignore water tiles actually works.
 this includes deleting water tiles. they should be completely
-ignored.
+ignored. tested, working perfectly.
+
+
+
+
+
 
 
 
@@ -145,6 +127,18 @@ with actors and roomObjects. if it is not moving, then the
 axe is laying on the ground and is ignored.
 
 *axe in hand, axe in air, and axe on ground sprites all added.
+
+the axe must become MAGICAL before it will return to link.
+so we have two axes: axe and magical axe. two different behaviors,
+but one item, essentially. the axe just dupes sword behavior,
+but when upgraded to magical status it becomes kratos' axe.
+*axe should collide and collect pickups for link upon returning,
+and throwing (while moving, basically). so, lining up the perfect
+group of mobs and pulling an axe thru them also rewards the 
+player with some of loot instantly. no elemental aspect to this
+weapon please - no fire or ice or poison affects. this is a 
+simple throw, wait, call item with specific destructive power
+that keeps it in check.
 
 
 
