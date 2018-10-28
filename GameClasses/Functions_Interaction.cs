@@ -653,6 +653,10 @@ namespace DungeonRun
             #endregion
 
 
+            
+
+
+
             // *** Projectile vs Blocking RoomObj Interactions *** \\
 
             if (RoomObj.compCollision.blocking)
@@ -855,6 +859,12 @@ namespace DungeonRun
                                 RoomObj.compSprite.position.Y - 3);
                             //burn the post
                             Functions_GameObject_World.BurnPost(RoomObj);
+                            Assets.Play(Assets.sfxLightFire);
+                        }
+                        //groundfires light unlit torches on fire (of course!)
+                        else if (RoomObj.type == ObjType.Dungeon_TorchUnlit)
+                        {
+                            Functions_GameObject.SetType(RoomObj, ObjType.Dungeon_TorchLit);
                             Assets.Play(Assets.sfxLightFire);
                         }
                     }

@@ -64,52 +64,6 @@ Today:
 
 
 
-Burning GameObjects
-
-in order to have a clear path forward for burning (and destroying)
-gameobjs, we need to define and design the system to handle scale 
-and modifications / crazy ideas. this will be based on the 
-obj.burnable boolean added in the previous commit. also, that 
-previous commit wont compile. so.. yeah.
-
-Burning - The Path Forward (psuedo code)
-
-if obj.burnable, -> spawn ground fire at base of obj
-FuncName: Functions_GameObject_World.BurnObject();
--this function spawns the ground fire, and kills() obj.
-
-if !obj.burnable -> pass to established Fun_Obj.BlowUp();
--that's it, boss.
-
-we just need to start flipping the burnable booleans in Obj.SetType().
-
-Contention
-
-the current system is setup to handle this by obj.type,
-and this allow for a greater degree of control than by boolean
-modeling. this scales linearly with obj definitions and intractions,
-where modeling burnable would be less than linear, but give up
-the ability to allow for unique burning interactions - for example
-setting a torch on fire by having grass burn up to it. which, now
-that i think about it - this should be possible within the game!
-and we wouldn't be able to model the next layer of interaction
-using a boolean 'burable' based approach. these decisions are so
-small and subtle, but have so many consequences that are often 
-difficult to see quickly - or sometimes at all. leading to an
-investment of work and a subsequent desire to believe 'that was
-the right decision to make', when it was actually wrong - and
-that takes time to realize. very glad i didn't commit to this
-idea without running it through the best IDE there is: the brain.
-
-This Commit
-
-posts were given their own method for destruction, where
-they will always spawn a ground fire. this allows for proper
-spreading of fire between posts, keeping them consisten in
-interaction with grass, bushes, etc.. 'burnable' objects.
-this was also added into the region 'World Obj - special cases',
-which was created specifically for object explosion interactions
-such as these. 
 
 
 
@@ -117,6 +71,7 @@ such as these.
 
 
 
+obj.burnable has been removed from codebase.
 
 
 
@@ -132,6 +87,78 @@ torch as it's neighbor. how do we do this? by making unlit
 torches an interactive object that checks once every 10 frames
 by expanding it's hitbox and collision checking it's neighboring
 objs, just like groundfires, and just like filled ditches.
+
+updated interactions between groundfire and unlit torch to 
+modify unlit torch to lit torch and play firesfx. updated
+obj.settype() for unlit torches to getAi and have an interactive
+frame of 10, because it doesn't make sense to spam this
+hitbox expansion every frame. groundfires and passing fireballs
+would be nearby long enough to push this value to probably
+even every 30 frames.
+
+began design of unlit torch ai based on bushes hitbox
+expansion section of code. actually, thats wrong.
+this is a projectile vs object check. not a room obj v 
+room obj check. this is all wrong.
+
+however, unlit torches will be lit on fire by ground fires.
+but fireballs - they need proper interaction routines added
+for unlit torches.
+
+this is modeled from the projectiles view, not the roomObjs.
+fireballs have no interaction with roomObjs - yet. we can add
+these now, which will cause passing fireballs to light all 
+kinds of roomObjects on fire: bushes, trees, posts, unlit torches.
+and likely more in the future.
+
+Fireballs++
+
+we are copying ground fires projectile functionality into
+fireballs, which allows us to expand the fireballs hitbox every
+few frames to see if it collides with any specific objects.
+
+Fireballs++++++++++
+
+fireballs passing by objects inherently creates a state 
+where many objects can be triggered at once by a passing 
+fireball. this draws on screen in a cascading effect.
+this is now known as 'fireball cascade', and I am proud of it.
+objects that can be cascaded include: posts, barrels, bushes,
+unlit torches, and tall grass. so fireballs just got multiple
+layers of interaction added to them, within the existing game
+world. expected visual outcome should be amazing. will record.
+
+fireballs now smoke ALOT while traveling, making them look
+AWESOME! also, because the hitbox is reset before drawing,
+this hitbox collision check DOES NOT DEBUG DRAW. it's hidden.
+i could change this to leave the fireballs hitbox expanded,
+then draw it, then on the next frame ensure that all fireballs
+hitboxes were normal, but that's a bit complicated and I dont 
+care.
+
+changed how fireball hitboxes are handled to draw properly.
+turns out, actually i do care, because they aren't working
+and its driving me crazy. done, fixed the problem, recorded
+a sweet video using a test room designed for the fireball
+passing mechanic. working beautifully. moved the reset
+hitbox code back into the projectile functions HandleBehavior()
+method, where it needs to live to do things properly, in
+my opinion. done.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

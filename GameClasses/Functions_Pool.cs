@@ -198,7 +198,7 @@ namespace DungeonRun
 
 
 
-            //the following phases affect actors, room objects, and projectiles all at once
+            //the following phases affect actors, room objects, and projectiles
 
             #region Phase 1 - Get Input, Update, Animate, & Check Interactions
 

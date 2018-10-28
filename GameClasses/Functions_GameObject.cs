@@ -975,8 +975,15 @@ namespace DungeonRun
                 Obj.canBeSaved = true;
                 Obj.compMove.moveable = true;
                 if (Type == ObjType.Dungeon_TorchUnlit)
-                { Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_TorchUnlit; }
-                else { Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_TorchLit; }
+                {
+                    Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_TorchUnlit;
+                    Obj.getsAI = true; //unlit torches check neighbors for fire
+                    Obj.interactiveFrame = 10; //only does this ever 10 frames
+                }
+                else
+                {
+                    Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_TorchLit;
+                }
                 Obj.sfx.hit = Assets.sfxTapMetallic;
             }
 

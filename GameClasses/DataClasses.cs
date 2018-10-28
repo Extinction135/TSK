@@ -1258,18 +1258,17 @@ namespace DungeonRun
         public Direction direction = Direction.Down; //direction obj/sprite is facing
 
         public Boolean active = true; //does object draw, update?
-        public Boolean getsAI = false; //does object get passed to Functions_AI.HandleObj()?
+        
         public Boolean canBeSaved = false; //can this obj be saved to RoomXMLData?
         public Byte lifetime; //how many frames this object exists for, 0 = forever/ignore
         public Byte lifeCounter; //counts up to lifetime value
 
+        public Boolean getsAI = false; //obj goes to Functions_AI.HandleObj()
         public int interactiveFrame = 0; 
-        //0 = always interactive, >0 = just that one # frame of interaction
+        //0 = always interactive, >0 = just that one # frame of interaction in ai.handleObj()
 
         public Boolean underWater = false; //is obj underwater
         public Boolean inWater = false; //is obj partially submerged in water? ex: swimming
-
-        public Boolean burnable = false; //can this object be set on fire?
 
         public GameObject()
         {   //initialize to default value - data is changed later

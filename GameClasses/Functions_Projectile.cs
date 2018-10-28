@@ -593,7 +593,7 @@ namespace DungeonRun
 
             #region Ground Fire
 
-            if (Pro.type == ObjType.ProjectileGroundFire)
+            else if (Pro.type == ObjType.ProjectileGroundFire)
             {
                 if (Functions_Random.Int(0, 101) > 86)
                 {   //often place randomly offset rising smoke
@@ -601,6 +601,7 @@ namespace DungeonRun
                         Pro.compSprite.position.X + 5 + Functions_Random.Int(-4, 4),
                         Pro.compSprite.position.Y + 1 + Functions_Random.Int(-8, 2));
                 }
+                //expand groundfires hitbox to cause interactions with room objs
                 if(Pro.lifeCounter == Pro.interactiveFrame)
                 {   //spread horizontally on interaction frame
                     Pro.compCollision.offsetX = -17; Pro.compCollision.rec.Width = 34;
@@ -620,6 +621,132 @@ namespace DungeonRun
 
             #endregion
 
+
+            #region Fireballs
+
+            else if (Pro.type == ObjType.ProjectileFireball)
+            {
+                //Debug.WriteLine("processing fireball behavior");
+                if (Functions_Random.Int(0, 101) > 50)
+                {   //often place randomly offset rising smoke
+                    Functions_Particle.Spawn(ObjType.Particle_RisingSmoke,
+                        Pro.compSprite.position.X + 5 + Functions_Random.Int(-4, 4),
+                        Pro.compSprite.position.Y + 1 + Functions_Random.Int(-8, 2));
+                }
+
+                //expand fireballs hitbox to cause interactions with SOME room objs or actors
+                if (Pro.lifeCounter == 10 ||
+                    Pro.lifeCounter == 20 ||
+                    Pro.lifeCounter == 30 ||
+                    Pro.lifeCounter == 40 ||
+                    Pro.lifeCounter == 50) //only lives to 50
+                {   //expand every 10 frames
+                    //this allows fireballs to light passing objects on fire / alter them
+
+                    //do a big expansion of the hitbox
+                    Pro.compCollision.offsetX = -25; Pro.compCollision.rec.Width = 50;
+                    Pro.compCollision.offsetY = -25; Pro.compCollision.rec.Height = 50;
+                    //update the hitbox position
+                    Pro.compCollision.rec.X = (int)Pro.compMove.position.X + Pro.compCollision.offsetX;
+                    Pro.compCollision.rec.Y = (int)Pro.compMove.position.Y + Pro.compCollision.offsetY;
+                    
+                    //loop roomObjs, checking for specific roomObjs
+                    for (i = 0; i < Pool.roomObjCount; i++)
+                    {   //check for active objects, then overlap
+                        if(Pool.roomObjPool[i].active)
+                        {
+                            if(Pro.compCollision.rec.Contains(Pool.roomObjPool[i].compCollision.rec))
+                            {
+
+                                #region Fireballs Passing By a RoomObject Effects
+
+                                //first, this allow for cascade spreading, where a single fireball
+                                //touches several of these objects in sequence as it travels
+                                //this creates a cascade effect, handled here - keep this in mind
+
+                                //fireballs can cascade spread across unlit torches
+                                if (Pool.roomObjPool[i].type == ObjType.Dungeon_TorchUnlit)
+                                {
+                                    Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_TorchLit);
+                                    Assets.Play(Assets.sfxLightFire);
+                                }
+                                //fireballs can cascade spread across tall grass
+                                else if (Pool.roomObjPool[i].type == ObjType.Wor_Grass_Tall)
+                                {   //'burn' the grass
+                                    Functions_GameObject_World.CutTallGrass(Pool.roomObjPool[i]);
+                                    //spread the fire 
+                                    Functions_Projectile.Spawn(
+                                        ObjType.ProjectileGroundFire,
+                                        Pool.roomObjPool[i].compSprite.position.X,
+                                        Pool.roomObjPool[i].compSprite.position.Y - 3);
+                                }
+                                //fireballs can cascade spread across bushes
+                                else if (Pool.roomObjPool[i].type == ObjType.Wor_Bush)
+                                {   //spread the fire 
+                                    Functions_Projectile.Spawn(
+                                        ObjType.ProjectileGroundFire,
+                                        Pool.roomObjPool[i].compSprite.position.X,
+                                        Pool.roomObjPool[i].compSprite.position.Y - 3);
+                                    //destroy the bush
+                                    Functions_GameObject_World.DestroyBush(Pool.roomObjPool[i]);
+                                    Assets.Play(Assets.sfxLightFire);
+                                }
+
+                                //not across trees tho - those take longer to burn
+
+                                //fireballs can cascade spread across barrels too
+                                else if (Pool.roomObjPool[i].type == ObjType.Dungeon_Barrel)
+                                {
+                                    //inherit the direction of the fireball
+                                    Pool.roomObjPool[i].compMove.direction = Pro.compMove.direction;
+                                    Functions_GameObject_Dungeon.HitBarrel(Pool.roomObjPool[i]);
+                                }
+
+                                //fireballs burn wooden posts
+                                else if (Pool.roomObjPool[i].type == ObjType.Wor_Post_Corner_Left ||
+                                    Pool.roomObjPool[i].type == ObjType.Wor_Post_Corner_Right ||
+                                    Pool.roomObjPool[i].type == ObjType.Wor_Post_Horizontal ||
+                                    Pool.roomObjPool[i].type == ObjType.Wor_Post_Vertical_Left ||
+                                    Pool.roomObjPool[i].type == ObjType.Wor_Post_Vertical_Right)
+                                {
+                                    //spread the fire 
+                                    Functions_Projectile.Spawn(
+                                        ObjType.ProjectileGroundFire,
+                                        Pool.roomObjPool[i].compSprite.position.X,
+                                        Pool.roomObjPool[i].compSprite.position.Y - 3);
+                                    //burn the post
+                                    Functions_GameObject_World.BurnPost(Pool.roomObjPool[i]);
+                                    Assets.Play(Assets.sfxLightFire);
+                                }
+
+                                #endregion
+
+                            }
+                        }
+                    }
+
+                    //we reset hitbox like this, but this means debug wont draw this larger rec
+                    //set collision rec to normal
+                    Pro.compCollision.offsetX = -5; Pro.compCollision.offsetY = -5;
+                    Pro.compCollision.rec.Width = 10; Pro.compCollision.rec.Height = 10;
+                    //update the hitbox position again
+                    Pro.compCollision.rec.X = (int)Pro.compMove.position.X + Pro.compCollision.offsetX;
+                    Pro.compCollision.rec.Y = (int)Pro.compMove.position.Y + Pro.compCollision.offsetY;
+                }
+            }
+
+            #endregion
+
+
+
+
+
+
+
+
+
+
+            //magic stuff
 
             #region Bombos 
 
