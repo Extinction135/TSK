@@ -1627,7 +1627,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Building Objects
+            #region Building WALLS & DOORS
 
             else if (Type == ObjType.Wor_Build_Wall_FrontA 
                 || Type == ObjType.Wor_Build_Wall_FrontB
@@ -1683,7 +1683,11 @@ namespace DungeonRun
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Build_Door_Open;
             }
 
-            //roofs
+            #endregion
+
+
+            #region Roofs
+
             else if (Type == ObjType.Wor_Build_Roof_Bottom
                 || Type == ObjType.Wor_Build_Roof_Top)
             {
@@ -1695,7 +1699,7 @@ namespace DungeonRun
                 { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Build_Roof_Bottom; }
                 else { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Build_Roof_Top; }
             }
-            else if(Type == ObjType.Wor_Build_Roof_Chimney)
+            else if (Type == ObjType.Wor_Build_Roof_Chimney)
             {
                 Obj.canBeSaved = true;
                 Obj.compSprite.zOffset = 48; //sort over most other things
@@ -1703,11 +1707,11 @@ namespace DungeonRun
                 Obj.getsAI = true; //create smoke
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Build_Roof_Chimney;
             }
-            else if(Type == ObjType.Wor_Build_Roof_Collapsing)
+            else if (Type == ObjType.Wor_Build_Roof_Collapsing)
             {
                 //this obj inherits the attributes of the previous roof obj it once was
                 //this means we dont modify the attributes at all
-                
+
                 Obj.getsAI = true; //but collapsing roofs always get AI
                 Obj.interactiveFrame = 20; //base speed of collapse spread
                 Obj.interactiveFrame += Functions_Random.Int(-10, 10); //vary spreadtime

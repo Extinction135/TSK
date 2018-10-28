@@ -26,7 +26,7 @@ namespace DungeonRun
         public ComponentButton currentSheet;
         public ComponentButton ignoreWaterTiles;
         public ComponentButton ignoreRoofTiles;
-
+        public ComponentButton clearRoofTiles;
 
 
         public ScreenEditorMenu()
@@ -52,6 +52,10 @@ namespace DungeonRun
             ignoreRoofTiles.rec.Width = 16 * 5;
             ignoreRoofTiles.compText.text = "ignore roof tiles";
 
+            //setup ignoreRoofTiles button
+            clearRoofTiles = new ComponentButton("---", new Point(16 * 18 + 8, 16 + 2));
+            clearRoofTiles.rec.Width = 16 * 5;
+            clearRoofTiles.compText.text = "clear roof tiles";
         }
 
         public override void Open()
@@ -114,6 +118,10 @@ namespace DungeonRun
 
             if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
             {
+
+
+                #region Button - CurrentSheet 
+
                 if (currentSheet.rec.Contains(Input.cursorPos))
                 {
 
@@ -187,6 +195,10 @@ namespace DungeonRun
                     Widgets.ObjectTools.selectionBoxObj.position.X = 2048;
                 }
 
+                #endregion
+
+
+                #region Button - Ignore Water Tiles
 
                 else if(ignoreWaterTiles.rec.Contains(Input.cursorPos))
                 {
@@ -202,7 +214,12 @@ namespace DungeonRun
                     }
                 }
 
+                #endregion
 
+
+
+
+                #region Button - Ignore Roof Tiles
 
                 else if (ignoreRoofTiles.rec.Contains(Input.cursorPos))
                 {
@@ -215,8 +232,39 @@ namespace DungeonRun
                     {
                         Flags.IgnoreRoofTiles = true;
                         ignoreRoofTiles.currentColor = ColorScheme.buttonDown;
+                        
                     }
                 }
+
+                #endregion
+
+
+
+
+                #region Button - Clear Roof Tiles
+
+                else if (clearRoofTiles.rec.Contains(Input.cursorPos))
+                {
+                    clearRoofTiles.currentColor = ColorScheme.buttonDown;
+
+                    //loop through all roomObjs, releasing any roof type
+                    for (int i = 0; i < Pool.roomObjCount; i++)
+                    {
+                        if(
+                            Pool.roomObjPool[i].type == ObjType.Wor_Build_Roof_Bottom ||
+                            Pool.roomObjPool[i].type == ObjType.Wor_Build_Roof_Chimney ||
+                            Pool.roomObjPool[i].type == ObjType.Wor_Build_Roof_Top
+                            )
+                        {
+                            Functions_Pool.Release(Pool.roomObjPool[i]);
+                        }
+                    }
+
+                    //update the gameworld / level roomObjects (so roof disappear in bkg)
+                    Functions_Pool.Update(); //fire the main game loop once
+                }
+
+                #endregion
             }
 
             #endregion
@@ -273,6 +321,8 @@ namespace DungeonRun
             Functions_Draw.Draw(currentSheet);
             Functions_Draw.Draw(ignoreWaterTiles);
             Functions_Draw.Draw(ignoreRoofTiles);
+            Functions_Draw.Draw(clearRoofTiles);
+
 
 
             ScreenManager.spriteBatch.End();

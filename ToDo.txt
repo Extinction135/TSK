@@ -69,35 +69,53 @@ Today:
 
 
 
-Editor++
-
-now, we implement roof ignore button. just like water button.
-no picking them up, no deleting them, plus no showing them.
-implemented in game, this hides all the roofs that have been built.
-we should also add a button to clear all the roofs, which loops
-over all roomObjs and removes all roof types. this is liekly an 
-obj.group check, i can't recall right now. or by type if needed.
-
-it was by type, and it's been added. when ignore roof tiles
-have been enabled, roofs cannot be selected or deleted.
-
-tested, working awesomely.
-
-
-
-
-
-
-
-
 
 
 Editor++
 
-+ clear all roof objects
+added button to remove all roof objects, based on type.
+this button also makes the very ballsy call to Pool.Update()
+from the editor menu screen - which hopefully updates the game
+world once in the background, while the editor menu is up.
 
-++ ignore roof tiles should hide them from drawing too - set visibility to false
-each frame befoe drawing game world.
+tested, worked exactly as expected. also updated links position,
+which should happen after a level load - which i will add into
+the level loading routines shortly.
+
+Ignore RoofTiles++
+
+ignore roof tiles should hide them from drawing too - this was done
+by calling hideRoofs() from worldObj functions, then adding a boolean
+check into hero functions, where the hideRoofs() method is used already.
+the other logical path through this code calls the showRoofs() method
+each frame, so we would have a hard time adding anything around this
+binary path that is now 3 paths.
+
+tested editor vs roofs, working quite well.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Roof Options
+
+** we can make hiding roof tiles a menu option! not an editor thing,
+but an ingame preference. this is easy to do. and helpful in our editing
+case. we only need to flip the Flags.IgnoreRoofTiles boolean to true or
+false, via an options screen button.
+
+
 
 
 
@@ -112,6 +130,24 @@ ignoring boat objects would be useful too - this helps when
 working on beat sea levels, plus the interior floors of the
 homes are the boat floors, so bonus: this also ignores house
 floors, making moving furniture around inside houses much easier.
+
+
+
+
+
+
+
+
+
+
+Editor++
+
+fire the main game loop once after loading roomData
+call Functions_Pool.Update(); 
+then teleport the camera.
+this will place link in the level and update the camera to his
+pos, so the level loads in a more proper manner.
+
 
 
 

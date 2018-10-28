@@ -699,6 +699,11 @@ namespace DungeonRun
             //if the hero is under a roof, then hide all roofs
             if (underRoof)
             { Functions_GameObject_World.HideRoofs(); }
+
+            //editor connection here - this can become a menu option
+            else if(Flags.IgnoreRoofTiles)
+            { Functions_GameObject_World.HideRoofs(); }
+
             //else game should display all roofs
             else { Functions_GameObject_World.ShowRoofs(); }
 
