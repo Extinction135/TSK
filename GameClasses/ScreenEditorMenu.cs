@@ -23,39 +23,45 @@ namespace DungeonRun
 
 
         //ui buttons
-        public ComponentButton currentSheet;
+        public ComponentButton widgetDisplaySet_Btn;
         public ComponentButton ignoreWaterTiles;
         public ComponentButton ignoreRoofTiles;
         public ComponentButton clearRoofTiles;
 
+        public ComponentButton ignoreBoatTiles;
 
         public ScreenEditorMenu()
         {
             this.name = "Editor Menu Screen";
 
             //setup current sheet button
-            currentSheet = new ComponentButton("---", new Point(16 * 1, 16 + 2));
-            currentSheet.rec.Width = 16 * 5;
+            widgetDisplaySet_Btn = new ComponentButton("---", new Point(16 * 1, 16 + 2));
+            widgetDisplaySet_Btn.rec.Width = 16 * 5;
             //initialize to forest state
             ResetWidgets();
-            currentSheet.compText.text = "forest";
+            widgetDisplaySet_Btn.compText.text = "forest";
             Widgets.WO_Forest.visible = true;
             Widgets.WE_Forest.visible = true;
 
             //setup ignore water tiles button
             ignoreWaterTiles = new ComponentButton("---", new Point(16 * 6 + 8, 16 + 2));
             ignoreWaterTiles.rec.Width = 16 * 5;
-            ignoreWaterTiles.compText.text = "ignore water tiles";
+            ignoreWaterTiles.compText.text = "ignore water objs";
 
             //setup ignoreRoofTiles button
             ignoreRoofTiles = new ComponentButton("---", new Point(16 * 12, 16 + 2));
             ignoreRoofTiles.rec.Width = 16 * 5;
-            ignoreRoofTiles.compText.text = "ignore roof tiles";
+            ignoreRoofTiles.compText.text = "ignore roof objs";
 
             //setup ignoreRoofTiles button
-            clearRoofTiles = new ComponentButton("---", new Point(16 * 18 + 8, 16 + 2));
+            clearRoofTiles = new ComponentButton("---", new Point(16 * 17 + 8, 16 + 2));
             clearRoofTiles.rec.Width = 16 * 5;
-            clearRoofTiles.compText.text = "clear roof tiles";
+            clearRoofTiles.compText.text = "clear roof objs";
+            
+            //setup ignoreBoatTiles button
+            ignoreBoatTiles = new ComponentButton("---", new Point(16 * 23, 16 + 2));
+            ignoreBoatTiles.rec.Width = 16 * 5;
+            ignoreBoatTiles.compText.text = "ignore boat objs";
         }
 
         public override void Open()
@@ -120,9 +126,9 @@ namespace DungeonRun
             {
 
 
-                #region Button - CurrentSheet 
+                #region Button - Widget Display Set 
 
-                if (currentSheet.rec.Contains(Input.cursorPos))
+                if (widgetDisplaySet_Btn.rec.Contains(Input.cursorPos))
                 {
 
 
@@ -131,42 +137,42 @@ namespace DungeonRun
                     if(Widgets.WO_Town.visible == true)
                     {   //TOWN
                         ResetWidgets(); //goto forest
-                        currentSheet.compText.text = "forest";
+                        widgetDisplaySet_Btn.compText.text = "forest";
                         Widgets.WO_Forest.visible = true;
                         Widgets.WE_Forest.visible = true;
                     }
                     else if (Widgets.WO_Forest.visible == true)
                     {   //FOREST
                         ResetWidgets(); //goto mountain
-                        currentSheet.compText.text = "mountain";
+                        widgetDisplaySet_Btn.compText.text = "mountain";
                         Widgets.WO_Mountain.visible = true;
                         Widgets.WE_Mountain.visible = true;
                     }
                     else if(Widgets.WO_Mountain.visible == true)
                     {   //MOUNTAIN
                         ResetWidgets(); //goto swamp
-                        currentSheet.compText.text = "swamp";
+                        widgetDisplaySet_Btn.compText.text = "swamp";
                         Widgets.WO_Swamp.visible = true;
                         Widgets.WE_Swamp.visible = true;
                     }
                     else if(Widgets.WO_Swamp.visible == true)
                     {   //SWAMP
                         ResetWidgets(); //goto coliseum
-                        currentSheet.compText.text = "coliseum";
+                        widgetDisplaySet_Btn.compText.text = "coliseum";
                         Widgets.WO_Colliseum.visible = true;
                         //Widgets.WE_Colliseum.visible = true; //not yet
                     }
                     else if (Widgets.WO_Colliseum.visible == true)
                     {   //COLISEUM
                         ResetWidgets(); //goto boat
-                        currentSheet.compText.text = "boat";
+                        widgetDisplaySet_Btn.compText.text = "boat";
                         Widgets.WO_Boat_Front.visible = true;
                         Widgets.WO_Boat_Back.visible = true;
                     }
                     else if (Widgets.WO_Boat_Front.visible == true)
                     {   //BOAT
                         ResetWidgets(); //goto Town
-                        currentSheet.compText.text = "town";
+                        widgetDisplaySet_Btn.compText.text = "town";
                         Widgets.WO_Town.visible = true;
                         Widgets.WE_Town.visible = true;
                     }
@@ -217,8 +223,6 @@ namespace DungeonRun
                 #endregion
 
 
-
-
                 #region Button - Ignore Roof Tiles
 
                 else if (ignoreRoofTiles.rec.Contains(Input.cursorPos))
@@ -237,8 +241,6 @@ namespace DungeonRun
                 }
 
                 #endregion
-
-
 
 
                 #region Button - Clear Roof Tiles
@@ -265,6 +267,32 @@ namespace DungeonRun
                 }
 
                 #endregion
+
+
+                #region Button - Ignore Boat Tiles
+
+                else if (ignoreBoatTiles.rec.Contains(Input.cursorPos))
+                {
+                    if (Flags.IgnoreBoatTiles)
+                    {
+                        Flags.IgnoreBoatTiles = false;
+                        ignoreBoatTiles.currentColor = ColorScheme.buttonUp;
+                    }
+                    else
+                    {
+                        Flags.IgnoreBoatTiles = true;
+                        ignoreBoatTiles.currentColor = ColorScheme.buttonDown;
+
+                    }
+                }
+
+                #endregion
+
+
+
+
+
+
             }
 
             #endregion
@@ -318,10 +346,11 @@ namespace DungeonRun
             Widgets.ObjectTools.Draw();
 
             //draw additional tools
-            Functions_Draw.Draw(currentSheet);
+            Functions_Draw.Draw(widgetDisplaySet_Btn);
             Functions_Draw.Draw(ignoreWaterTiles);
             Functions_Draw.Draw(ignoreRoofTiles);
             Functions_Draw.Draw(clearRoofTiles);
+            Functions_Draw.Draw(ignoreBoatTiles);
 
 
 
@@ -345,7 +374,7 @@ namespace DungeonRun
 
         public void ResetWidgets()
         {
-            currentSheet.compText.text = "nothing";
+            widgetDisplaySet_Btn.compText.text = "nothing";
 
             //set shared widgets to be visible
             Widgets.WO_Environment.visible = true;

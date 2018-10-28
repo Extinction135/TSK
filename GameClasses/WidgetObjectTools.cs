@@ -363,7 +363,6 @@ namespace DungeonRun
                                 ignoreObj = false;
 
 
-
                                 #region Editor Based Selection Cases
 
                                 //check for specific conditions, like ignoring water tiles
@@ -381,19 +380,61 @@ namespace DungeonRun
                                     { ignoreObj = true; } //ignore this object
                                 }
 
+                                //boat tiles
+                                if (Flags.IgnoreBoatTiles)
+                                {
+                                    if (
+                                        //all the boat objs, in groups of 5 - should we model this as an obj.group value?
+                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Back_Center ||
+                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Back_Left ||
+                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Back_Left_Connector ||
+                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Back_Right ||
+                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Back_Right_Connector ||
+
+                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Bannister_Left ||
+                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Bannister_Right ||
+                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Bridge_Bottom ||
+                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Bridge_Top ||
+                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Engine ||
+
+                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Front ||
+                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Front_ConnectorLeft ||
+                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Front_ConnectorRight ||
+                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Front_Left ||
+                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Front_Right ||
+
+                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Stairs_Bottom_Left ||
+                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Stairs_Bottom_Right ||
+                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Stairs_Cover ||
+                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Stairs_Left ||
+                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Stairs_Right ||
+
+                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Stairs_Top_Left ||
+                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Stairs_Top_Right ||
+
+                                        //this one is special, because we use this obj as interior house floor
+                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Floor
+                                        //ignore boat button also ignores floors = easy to move furniture around
+                                        )
+                                    { ignoreObj = true; } //ignore this object
+                                }
+
+
+
+
+
+
+
 
                                 #endregion
 
 
 
-                                if(ignoreObj == false)
+                                if (ignoreObj == false)
                                 {
                                     //if we aren't ignoring the object, then release it
                                     Functions_Pool.Release(Pool.roomObjPool[Pool.roomObjCounter]);
                                 }
-
-
-                                
                             }
                         }
                     }
@@ -534,7 +575,10 @@ namespace DungeonRun
                         //check for specific conditions, like ignoring water tiles
                         if (Flags.IgnoreWaterTiles)
                         {
-                            if(Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Water)
+                            if(
+                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Water ||
+                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Coastline
+                                )
                             { ignoreObj = true; } //ignore this object
                         }
 
@@ -545,6 +589,45 @@ namespace DungeonRun
                                 Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Build_Roof_Bottom ||
                                 Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Build_Roof_Chimney ||
                                 Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Build_Roof_Top
+                                )
+                            { ignoreObj = true; } //ignore this object
+                        }
+
+                        //boat tiles
+                        if (Flags.IgnoreBoatTiles)
+                        {
+                            if (
+                                //all the boat objs, in groups of 5 - should we model this as an obj.group value?
+                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Back_Center ||
+                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Back_Left ||
+                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Back_Left_Connector ||
+                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Back_Right ||
+                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Back_Right_Connector ||
+
+                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Bannister_Left ||
+                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Bannister_Right ||
+                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Bridge_Bottom ||
+                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Bridge_Top ||
+                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Engine ||
+                                
+                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Front ||
+                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Front_ConnectorLeft ||
+                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Front_ConnectorRight ||
+                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Front_Left ||
+                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Front_Right ||
+
+                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Stairs_Bottom_Left ||
+                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Stairs_Bottom_Right ||
+                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Stairs_Cover ||
+                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Stairs_Left ||
+                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Stairs_Right ||
+
+                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Stairs_Top_Left ||
+                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Stairs_Top_Right ||
+
+                                //this one is special, because we use this obj as interior house floor
+                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Floor
+                                //ignore boat button also ignores floors = easy to move furniture around
                                 )
                             { ignoreObj = true; } //ignore this object
                         }

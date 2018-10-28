@@ -35,14 +35,19 @@ namespace DungeonRun
         public static Boolean ShowEnemySpawns = false; //create & draw enemySpawn gameObjects?
         public static Boolean PrintOutput = true; //print output to the debugger
         public static Boolean IgnoreWaterTiles = false; //enable/disable pickup/selection/deletion of waterTiles
-        public static Boolean IgnoreRoofTiles = false; //enable/disable pickup/selection of roofTiles
+        public static Boolean IgnoreBoatTiles = false; //enable/disable pickup/selection/deletion of boatTiles
 
         //option flags
         public static Boolean PlayMusic = true; //turns music on/off
         public static Boolean PlaySoundFX = true; //turns soundfx on/off
         public static Boolean HardMode = false; //makes the game harder
         public static Boolean CameraTracksHero = false; //camera tracks hero or centers to dungeon room
-        
+        public static Boolean IgnoreRoofTiles = false; //enable/disable pickup/selection of roofTiles
+
+
+
+
+
         //cheat flags
         public static Boolean Invincibility = true; //does hero ignore damage?
         public static Boolean InfiniteMagic = true; //does hero ignore magic costs?

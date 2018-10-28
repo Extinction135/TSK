@@ -215,16 +215,6 @@ namespace DungeonRun
 
         public override void Update(GameTime GameTime)
         {
-
-
-            if (Flags.IgnoreRoofTiles)
-            { Functions_GameObject_World.HideRoofs(); }
-            
-
-
-
-
-
             base.Update(GameTime);
             Widgets.ObjectTools.Update();
         }
