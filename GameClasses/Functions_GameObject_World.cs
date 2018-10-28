@@ -17,6 +17,12 @@ namespace DungeonRun
         static int i;
 
 
+        //these functions refer to objects that are normally not part of a dungeon
+
+
+
+
+
 
         //cuts
 
@@ -37,23 +43,7 @@ namespace DungeonRun
 
 
 
-        //burns
-
-        public static void DestroyBush(GameObject Bush)
-        {   //pop leaf explosion
-            Functions_Particle.Spawn_Explosion(
-                ObjType.Particle_Leaf,
-                Bush.compSprite.position.X,
-                Bush.compSprite.position.Y);
-            //covert bush to stump, play sfx
-            Functions_GameObject.SetType(Bush, ObjType.Wor_Bush_Stump);
-            Assets.Play(Assets.sfxBushCut);
-            //pop an attention particle
-            Functions_Particle.Spawn(ObjType.Particle_Attention,
-                Bush.compSprite.position.X, Bush.compSprite.position.Y);
-            //rarely spawn loot
-            Functions_Loot.SpawnLoot(Bush.compSprite.position, 20);
-        }
+        //objects transforming from burning/fire effects
 
         public static void BurnTree(GameObject Tree)
         {   //switch to burned tree
@@ -82,7 +72,7 @@ namespace DungeonRun
 
 
 
-        //explosions
+        //objects transforming from explosions
 
         public static void BlowUpTree(GameObject Tree, Boolean popLeaves)
         {
@@ -113,6 +103,40 @@ namespace DungeonRun
                     Tree.compSprite.position.Y + 4, true);
             }
         }
+
+        public static void BlowUpPost(GameObject Post)
+        {
+            //posts spawn groundfires upon explosion
+            Functions_Projectile.Spawn(
+                ObjType.ProjectileGroundFire,
+                Post.compSprite.position.X,
+                Post.compSprite.position.Y - 3);
+            Functions_GameObject.Kill(Post, true, true);
+        }
+
+
+
+        //unique object transformations
+
+        public static void DestroyBush(GameObject Bush)
+        {   //pop leaf explosion
+            Functions_Particle.Spawn_Explosion(
+                ObjType.Particle_Leaf,
+                Bush.compSprite.position.X,
+                Bush.compSprite.position.Y);
+            //covert bush to stump, play sfx
+            Functions_GameObject.SetType(Bush, ObjType.Wor_Bush_Stump);
+            Assets.Play(Assets.sfxBushCut);
+            //pop an attention particle
+            Functions_Particle.Spawn(ObjType.Particle_Attention,
+                Bush.compSprite.position.X, Bush.compSprite.position.Y);
+            //rarely spawn loot
+            Functions_Loot.SpawnLoot(Bush.compSprite.position, 20);
+        }
+
+
+
+
 
 
 
@@ -208,7 +232,7 @@ namespace DungeonRun
 
 
 
-
+        //signs
 
         public static void ReadSign(GameObject Sign)
         {

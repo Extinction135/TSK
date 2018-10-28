@@ -1264,11 +1264,12 @@ namespace DungeonRun
         public Byte lifeCounter; //counts up to lifetime value
 
         public int interactiveFrame = 0; 
-        //0 = always interactive
-        //>0 = just that one # frame of interaction
+        //0 = always interactive, >0 = just that one # frame of interaction
 
         public Boolean underWater = false; //is obj underwater
         public Boolean inWater = false; //is obj partially submerged in water? ex: swimming
+
+        public Boolean burnable = false; //can this object be set on fire?
 
         public GameObject()
         {   //initialize to default value - data is changed later

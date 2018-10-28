@@ -166,7 +166,10 @@ namespace DungeonRun
             #region Objs - General cases
 
             else if (
+
                 //dungeon objs
+
+                //limited set for now
                 Obj.type == ObjType.Dungeon_Statue
                 || Obj.type == ObjType.Dungeon_Signpost
 
@@ -195,6 +198,17 @@ namespace DungeonRun
                 || Obj.type == ObjType.Wor_Fence_Vertical_Left
                 || Obj.type == ObjType.Wor_Fence_Vertical_Right
                 || Obj.type == ObjType.Wor_Fence_Gate
+                //posts + burned posts
+                || Obj.type == ObjType.Wor_PostBurned_Corner_Left
+                || Obj.type == ObjType.Wor_PostBurned_Corner_Right
+                || Obj.type == ObjType.Wor_PostBurned_Horizontal
+                || Obj.type == ObjType.Wor_PostBurned_Vertical_Left
+                || Obj.type == ObjType.Wor_PostBurned_Vertical_Right
+                || Obj.type == ObjType.Wor_Post_Corner_Left
+                || Obj.type == ObjType.Wor_Post_Corner_Right
+                || Obj.type == ObjType.Wor_Post_Horizontal
+                || Obj.type == ObjType.Wor_Post_Vertical_Left
+                || Obj.type == ObjType.Wor_Post_Vertical_Right
                 )
             {
                 Kill(Obj, true, true);

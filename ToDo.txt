@@ -65,32 +65,51 @@ Today:
 
 
 
-Burned Posts
-
-improved burned posts sprite.
-looks more burned, plus i removed the connecting
-plank south, which would allow link to walk
-between burned posts, adding another level of
-interaction to the game. burn the posts, then
-walk between them..hm.. to actually implement
-this in game, we need to modify the posts hitbox.
-done.
-
-
-
-
-
-
-
-
-
-
 Destruction++
 
-*should be able to destroy wooden fence posts
+updated Functions_GameObject.BlowUp(RoomObj, Projectile)
+with additional checks for all post objects. this means all
+posts can now be destroy by anything in game that calls BlowUp(),
+like bomb explosions, fireball explosions, lightning, etc..
+this was easily done because the post is a blocking object,
+and the codepath for projectile vs blocking object destruction
+is very well established.
 
-change blowUpTree() to explodeTree().
-add explodePost(). self-explanatory.
+Thoughts
+
+*there are issues with how fire spreads from explosions + posts.
+basically, when a post is destroyed, it should spawn a ground fire
+at it's location. this means the posts should exist outside of the
+standard BlowUp() method. likely as fun_worldObj.BlowUpPost(Obj).
+
+Thoughts
+
+we should be modeling 'burnable' state as a boolean in objs.
+this makes the check to add ground fires to objs much simpler,
+and allows it to scale, as we are likely going to add more
+burnable objects into the game. plus, we could likely consolidate
+or simplify the concept of 'objects burning' in the codebase.
+added Boolean burnable to GameObject class.
+
+
+
+
+
+
+
+
+
+Burning GameObjects
+
+in order to have a clear path forward for burning (and destroying)
+gameobjs, we need to define and design the system to handle scale 
+and modifications / crazy ideas.
+
+
+
+
+
+
 
 
 
@@ -100,9 +119,15 @@ add explodePost(). self-explanatory.
 Burned Posts++
 
 burned posts should be able to be cut down with a sword,
-because they are frail. 
+because they are frail. another level of interaction. in fact,
+burned posts should be treated as the 'weakest' of all blocking 
+objs, conceptually. a boomerang hit would knock them down. a
+strong gust of wind would knock them down.. which we will have
+later..
 
-*improved burned post sprites. super uggo rn.
+
+
+
 
 
 
