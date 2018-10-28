@@ -17,21 +17,37 @@ namespace DungeonRun
     public class ScreenEditorMenu : Screen
     {
         public ScreenRec bkgRec = new ScreenRec();
+
+
+
+
+
+        //ui buttons
         public ComponentButton currentSheet;
+        public ComponentButton ignoreWaterTiles;
+
 
 
 
         public ScreenEditorMenu()
         {
             this.name = "Editor Menu Screen";
-            currentSheet = new ComponentButton("---", new Point(16, 16 + 2));
-            currentSheet.rec.Width = 16 * 5;
 
+            //setup current sheet button
+            currentSheet = new ComponentButton("---", new Point(16 * 1, 16 + 2));
+            currentSheet.rec.Width = 16 * 5;
             //initialize to forest state
             ResetWidgets();
             currentSheet.compText.text = "forest";
             Widgets.WO_Forest.visible = true;
             Widgets.WE_Forest.visible = true;
+
+            //setup ignore water tiles button
+            ignoreWaterTiles = new ComponentButton("---", new Point(16 * 6, 16 + 2));
+            ignoreWaterTiles.rec.Width = 16 * 6;
+            ignoreWaterTiles.compText.text = "ignore water tiles";
+
+
         }
 
         public override void Open()
@@ -161,13 +177,25 @@ namespace DungeonRun
                     //^ like that, but based on a button or value to track dungeon type
                     //works, because current dungeon tex was set in UpdateDunTex() above
 
-
-
-
-
+                    
                     //hide obj tools selection box offscreen
                     //because it's likely positioned over something different now
                     Widgets.ObjectTools.selectionBoxObj.position.X = 2048;
+                }
+
+
+                else if(ignoreWaterTiles.rec.Contains(Input.cursorPos))
+                {
+                    if (Flags.IgnoreWaterTiles)
+                    {
+                        Flags.IgnoreWaterTiles = false;
+                        ignoreWaterTiles.currentColor = ColorScheme.buttonUp;
+                    }
+                    else
+                    {
+                        Flags.IgnoreWaterTiles = true;
+                        ignoreWaterTiles.currentColor = ColorScheme.buttonDown;
+                    }
                 }
             }
 
@@ -223,6 +251,7 @@ namespace DungeonRun
 
             //draw additional tools
             Functions_Draw.Draw(currentSheet);
+            Functions_Draw.Draw(ignoreWaterTiles);
 
             ScreenManager.spriteBatch.End();
         }

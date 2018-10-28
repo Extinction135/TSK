@@ -5,6 +5,10 @@ and this we should do freely and generously."
 - Benjamin Franklin	
 
 
+VisualStudio Shortcuts
+F12 + selected word = goto definition
+CTRL + M, +O = opens, closes regions
+
 
 
 
@@ -63,20 +67,23 @@ Today:
 
 
 
-Ship Barrel Interactions++
-
-Ship Barrels should be destroyable. cant push or pull them,
-but explosions and lightning can blow them up. actually no,
-they should respond to destruction level 1 routines - so i'll
-just put them into the obj.handleCommon() method. boar barrels
-can now be destroyed by arrows, fireballs, anything thrown, etc..
-they act just like world pots do.
 
 
 
 
 
 
+Editor++
+
+**should be able to hide and disable all interaction with roofs.
+hide roofs, disable interaction with roofs, remove all roofs.
+these should be editor button options from menu screen.
+**water tiles should be treated the same, and modified from
+editor menu screen as well.
+
+first we need to move the ignore water tiles fucntionality 
+into a button on editor menu screen, just like the widget
+selection button. done. but, we can still delete them.
 
 
 
@@ -87,11 +94,63 @@ they act just like world pots do.
 
 
 
-Bomerang++
+Editor++
 
-Should be able to return the boomerang to your hand with another
-press of the Y button - it should get a temp speed boost towards
-the player. ANOTHER LAYER OF INTERACTION PLEASE!
+second, we need to make sure ignore water tiles actually works.
+this includes deleting water tiles. they should be completely
+ignored.
+
+
+
+
+
+Editor++
+
+third, we implement roof ignore button. just like water button.
+no picking them up, no deleting them, plus no showing them.
+implemented in game, this hides all the roofs that have been built.
+we should also add a button to clear all the roofs, which loops
+over all roomObjs and removes all roof types. this is liekly an 
+obj.group check, i can't recall right now. or by type if needed.
+
+
+
+
+Editor++
+
+ignoring boat objects would be useful too - this helps when
+working on beat sea levels, plus the interior floors of the
+homes are the boat floors, so bonus: this also ignores house
+floors, making moving furniture around inside houses much easier.
+
+
+
+
+
+
+
+
+
+The Axe
+
+I'm straight ripping Kratos' axe here. This is an obj
+much like the boomerang - thrown by Link. once it reaches
+max distance, it falls to the ground. this isn't far.
+pressing Y aggain then returns the axe to link's hand,
+at maximum magnitude, through anykind of object or enemy.
+
+notes
+if this projectile is moving, then it has interaction checks
+with actors and roomObjects. if it is not moving, then the
+axe is laying on the ground and is ignored.
+
+*axe in hand, axe in air, and axe on ground sprites all added.
+
+
+
+
+
+
 
 
 
@@ -143,13 +202,7 @@ design them based on the wooden fences that actually work, you doofus.
 
 
 
-Editor++
 
-**should be able to hide and disable all interaction with roofs.
-hide roofs, disable interaction with roofs, remove all roofs.
-these should be editor button options from menu screen.
-**water tiles should be treated the same, and modified from
-editor menu screen as well.
 
 
 

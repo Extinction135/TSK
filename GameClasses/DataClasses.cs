@@ -945,8 +945,8 @@ namespace DungeonRun
                 "f4 compile xml", new Point(buttons[3].rec.X + buttons[3].rec.Width + 2, 2)));
             buttons.Add(new ComponentButton(
                 "f5 pause", new Point(buttons[4].rec.X + buttons[4].rec.Width + 2, 2)));
-            buttons.Add(new ComponentButton(
-                "f6 ignore waterTiles", new Point(buttons[5].rec.X + buttons[5].rec.Width + 2, 2)));
+            //buttons.Add(new ComponentButton(
+            //    "f6 ignore waterTiles", new Point(buttons[5].rec.X + buttons[5].rec.Width + 2, 2)));
 
 
 

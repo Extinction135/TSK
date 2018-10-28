@@ -191,24 +191,7 @@ namespace DungeonRun
 
             #endregion
 
-
-            #region F6 - Ignore Water Tiles
-
-            else if (Functions_Input.IsNewKeyPress(Keys.F6))
-            {
-                if (Flags.IgnoreWaterTiles)
-                {
-                    Flags.IgnoreWaterTiles = false;
-                    TopDebugMenu.buttons[6].currentColor = ColorScheme.buttonUp;
-                }
-                else
-                {
-                    Flags.IgnoreWaterTiles = true;
-                    TopDebugMenu.buttons[6].currentColor = ColorScheme.buttonDown;
-                }
-            }
-
-            #endregion
+            
 
 
 
@@ -293,5 +276,6 @@ namespace DungeonRun
 
 
         }
+
     }
 }
