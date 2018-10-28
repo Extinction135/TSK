@@ -1690,9 +1690,15 @@ namespace DungeonRun
                 else if (Type == ObjType.Wor_Post_Corner_Left)
                 { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Post_Corner_Left; }
                 else if (Type == ObjType.Wor_PostBurned_Vertical_Left)
-                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_PostBurned_Corner_Left; }
+                {   //burned posts have different hitboxes
+                    Obj.compAnim.currentAnimation = AnimationFrames.Wor_PostBurned_Corner_Left;
+                    Obj.compCollision.rec.Height = 4; Obj.compCollision.offsetY = 3;
+                }
                 else if (Type == ObjType.Wor_PostBurned_Corner_Left)
-                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_PostBurned_Corner_Left; }
+                {
+                    Obj.compAnim.currentAnimation = AnimationFrames.Wor_PostBurned_Corner_Left;
+                    Obj.compCollision.rec.Height = 4; Obj.compCollision.offsetY = 3;
+                }
             }
 
             else if (
@@ -1712,9 +1718,15 @@ namespace DungeonRun
                 else if(Type == ObjType.Wor_Post_Corner_Right)
                 { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Post_Corner_Right; }
                 else if (Type == ObjType.Wor_PostBurned_Vertical_Right)
-                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_PostBurned_Vertical_Right; }
+                {   //burned posts have different hitboxes
+                    Obj.compAnim.currentAnimation = AnimationFrames.Wor_PostBurned_Vertical_Right;
+                    Obj.compCollision.rec.Height = 4; Obj.compCollision.offsetY = 3;
+                }
                 else if (Type == ObjType.Wor_PostBurned_Corner_Right)
-                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_PostBurned_Corner_Right; }
+                {
+                    Obj.compAnim.currentAnimation = AnimationFrames.Wor_PostBurned_Corner_Right;
+                    Obj.compCollision.rec.Height = 4; Obj.compCollision.offsetY = 3;
+                }
             }
 
             else if (Type == ObjType.Wor_Post_Horizontal || Type == ObjType.Wor_PostBurned_Horizontal)
@@ -1722,14 +1734,13 @@ namespace DungeonRun
                 Obj.canBeSaved = true;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
                 Obj.compSprite.zOffset = 0;
-                //hitbox 
+                //hitbox - same for burned and non burned
                 Obj.compCollision.rec.Width = 16; Obj.compCollision.offsetX = -8;
                 Obj.compCollision.rec.Height = 8; Obj.compCollision.offsetY = 0;
                 //animFrame
                 if (Type == ObjType.Wor_Post_Horizontal)
                 { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Post_Horizontal; }
                 else { Obj.compAnim.currentAnimation = AnimationFrames.Wor_PostBurned_Horizontal; }
-                
             }
 
 

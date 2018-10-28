@@ -63,15 +63,18 @@ Today:
 
 
 
-UWP++
-
-updated the UWP project's content.
-sync'd to Dx now.
 
 
+Burned Posts
 
-
-
+improved burned posts sprite.
+looks more burned, plus i removed the connecting
+plank south, which would allow link to walk
+between burned posts, adding another level of
+interaction to the game. burn the posts, then
+walk between them..hm.. to actually implement
+this in game, we need to modify the posts hitbox.
+done.
 
 
 
