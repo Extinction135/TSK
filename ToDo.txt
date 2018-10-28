@@ -63,48 +63,14 @@ Today:
 
 
 
-
-
-
-
-
-
-
-Burned Posts++
-
-burned posts should be able to be cut down with a sword,
-because they are frail. another level of interaction. in fact,
-burned posts should be treated as the 'weakest' of all blocking 
-objs, conceptually. a boomerang hit would knock them down. a
-strong gust of wind would knock them down.. which we will have
-later..
-
-so we are putting burned posts into the HandleCommon() method
-of func_gameObj class. this adds burned posts into a response
-to an action caused by arrows, explosions, swords, shovels,
-any kind of thrown projectile, etc... so posts become deeply
-integrated into the gameworld with this simple addition.
-
-updated common objs sheet. tested, working as expected.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Ship Barrel Interactions++
 
 Ship Barrels should be destroyable. cant push or pull them,
-but explosions and lightning can blow them up.
+but explosions and lightning can blow them up. actually no,
+they should respond to destruction level 1 routines - so i'll
+just put them into the obj.handleCommon() method. boar barrels
+can now be destroyed by arrows, fireballs, anything thrown, etc..
+they act just like world pots do.
 
 
 
@@ -115,6 +81,17 @@ but explosions and lightning can blow them up.
 
 
 
+
+
+
+
+
+
+Bomerang++
+
+Should be able to return the boomerang to your hand with another
+press of the Y button - it should get a temp speed boost towards
+the player. ANOTHER LAYER OF INTERACTION PLEASE!
 
 
 

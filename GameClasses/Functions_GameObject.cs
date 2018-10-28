@@ -70,6 +70,11 @@ namespace DungeonRun
             {
                 Kill(RoomObj, true, true);
             }
+            //boat barrels 
+            else if(RoomObj.type == ObjType.Wor_Boat_Barrel)
+            {
+                Kill(RoomObj, true, true);
+            }
 
             #endregion
 
