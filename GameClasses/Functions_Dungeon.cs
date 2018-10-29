@@ -139,24 +139,24 @@ namespace DungeonRun
         public static void BuildRoomFrom(RoomXmlData RoomXmlData)
         {
             //reset pool, get blank room, fill with floors + walls
-            BuildEmptyRoom(LevelSet.currentLevel.currentRoom);
+            BuildEmptyRoom(LevelSet.dungeon.currentRoom);
             //set the floortile frames properly based on room.type
-            SetFloors(LevelSet.currentLevel.currentRoom);
+            SetFloors(LevelSet.dungeon.currentRoom);
             //change certain walls to doors based on collisions with Level.doors
-            SetDoors(LevelSet.currentLevel.currentRoom);
+            SetDoors(LevelSet.dungeon.currentRoom);
             //build the xml objects over the empty dungeon room
             Functions_Room.BuildRoomXmlData(RoomXmlData);
             //add decorative objs and check for torches/switches/etc..
-            ProcedurallyFinish(LevelSet.currentLevel.currentRoom);
+            ProcedurallyFinish(LevelSet.dungeon.currentRoom);
 
             if (Flags.HardMode)
             {   //setup the rooms puzzle everytime hero enters it
-                SetupPuzzle(LevelSet.currentLevel.currentRoom);
+                SetupPuzzle(LevelSet.dungeon.currentRoom);
             }
             else//puzzle rooms on normal mode only require solving once
             {   //if this room hasn't been visited, setup any puzzle it contains
-                if (LevelSet.currentLevel.currentRoom.visited == false)
-                { SetupPuzzle(LevelSet.currentLevel.currentRoom); }
+                if (LevelSet.dungeon.currentRoom.visited == false)
+                { SetupPuzzle(LevelSet.dungeon.currentRoom); }
             }
 
             Assets.Play(Assets.sfxDoorOpen); //play door sfx
@@ -185,6 +185,7 @@ namespace DungeonRun
                 { Pool.floorPool[i].currentFrame = AnimationFrames.Dungeon_FloorBoss[0]; }
             }
         }
+
 
         public static void SetDoors(Room Room)
         {
@@ -575,7 +576,7 @@ namespace DungeonRun
                 {   //find any chest objects in the key room
                     if (Pool.roomObjPool[i].group == ObjGroup.Chest)
                     {   //check the dungeon.bigKey boolean to see if this chest should be filled
-                        if (LevelSet.currentLevel.bigKey)
+                        if (LevelSet.dungeon.bigKey)
                         { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_ChestEmpty); }
                         else //if hero has found the map, this chest is empty, else it has a key
                         { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_ChestKey); }
@@ -587,21 +588,21 @@ namespace DungeonRun
         //spawn BOSSes
         public static void FinishBossRoom(Room Room)
         {   //spawn boss in center of room
-            if(LevelSet.currentLevel.ID == LevelID.Forest_Dungeon)
+            if(LevelSet.dungeon.ID == LevelID.Forest_Dungeon)
             {
                 Functions_Actor.SpawnActor(
                     ActorType.Boss_BigEye,
                     Room.center.X + 8,
                     Room.center.Y + 8);
             }
-            else if (LevelSet.currentLevel.ID == LevelID.Mountain_Dungeon)
+            else if (LevelSet.dungeon.ID == LevelID.Mountain_Dungeon)
             {
                 Functions_Actor.SpawnActor(
                     ActorType.Boss_BigBat,
                     Room.center.X + 8,
                     Room.center.Y + 8);
             }
-            else if (LevelSet.currentLevel.ID == LevelID.Swamp_Dungeon)
+            else if (LevelSet.dungeon.ID == LevelID.Swamp_Dungeon)
             {
                 Functions_Actor.SpawnActor(
                     ActorType.Boss_OctoHead,
@@ -614,14 +615,14 @@ namespace DungeonRun
         public static void FinishHubRoom(Room Room)
         {
             //spawn miniboss in center of room
-            if (LevelSet.currentLevel.ID == LevelID.Forest_Dungeon)
+            if (LevelSet.dungeon.ID == LevelID.Forest_Dungeon)
             {
                 Functions_Actor.SpawnActor(
                     ActorType.MiniBoss_BlackEye,
                     Room.center.X + 8,
                     Room.center.Y + 8);
             }
-            else if (LevelSet.currentLevel.ID == LevelID.Mountain_Dungeon)
+            else if (LevelSet.dungeon.ID == LevelID.Mountain_Dungeon)
             {
                 Functions_Actor.SpawnActor(
                         ActorType.MiniBoss_Spider_Armored,
@@ -632,7 +633,7 @@ namespace DungeonRun
                         Room.center.X + 8,
                         Room.center.Y + 8);
             }
-            else if (LevelSet.currentLevel.ID == LevelID.Swamp_Dungeon)
+            else if (LevelSet.dungeon.ID == LevelID.Swamp_Dungeon)
             {
                 Functions_Actor.SpawnActor(
                         ActorType.MiniBoss_OctoMouth,
@@ -710,8 +711,9 @@ namespace DungeonRun
             Functions_Room.MoveRoom(exitRoom, 
                 Functions_Level.buildPosition.X, 
                 Functions_Level.buildPosition.Y);
-            LevelSet.currentLevel.rooms.Add(exitRoom); //exit room must be at index0
-            lastRoom = LevelSet.currentLevel.rooms.Count() - 1;
+
+            LevelSet.dungeon.rooms.Add(exitRoom); //exit room must be at index0
+            lastRoom = LevelSet.dungeon.rooms.Count() - 1;
 
             //create a north path to the hub room (keeps hub centered to map)
             //we *could* randomly choose which direction these rooms are built,
@@ -719,33 +721,33 @@ namespace DungeonRun
             //which seems buggy and cheap and too easy - so we build away from exit room (north)
             for (b = 0; b < numOfRoomsBetween; b++)
             {
-                lastRoom = LevelSet.currentLevel.rooms.Count() - 1;
+                lastRoom = LevelSet.dungeon.rooms.Count() - 1;
                 Room room = new Room(new Point(0, 0), Functions_Level.GetRandomRoomType());
                 Functions_Room.MoveRoom(room,
-                    LevelSet.currentLevel.rooms[lastRoom].rec.X,
-                    LevelSet.currentLevel.rooms[lastRoom].rec.Y - (16 * room.size.Y) - 16);
-                LevelSet.currentLevel.rooms.Add(room);
+                    LevelSet.dungeon.rooms[lastRoom].rec.X,
+                    LevelSet.dungeon.rooms[lastRoom].rec.Y - (16 * room.size.Y) - 16);
+                LevelSet.dungeon.rooms.Add(room);
             }
 
             //create hub north of last room
-            lastRoom = LevelSet.currentLevel.rooms.Count() - 1;
+            lastRoom = LevelSet.dungeon.rooms.Count() - 1;
             RoomID hubType = RoomID.ForestIsland_HubRoom;
             //set hubType based on dungeon type
-            if (LevelSet.currentLevel.ID == LevelID.Forest_Dungeon)
+            if (LevelSet.dungeon.ID == LevelID.Forest_Dungeon)
             { hubType = RoomID.ForestIsland_HubRoom; } //ocd
-            else if (LevelSet.currentLevel.ID == LevelID.Mountain_Dungeon)
+            else if (LevelSet.dungeon.ID == LevelID.Mountain_Dungeon)
             { hubType = RoomID.DeathMountain_HubRoom; }
-            else if (LevelSet.currentLevel.ID == LevelID.Swamp_Dungeon)
+            else if (LevelSet.dungeon.ID == LevelID.Swamp_Dungeon)
             { hubType = RoomID.SwampIsland_HubRoom; }
 
             //create and move hub room
             Room hubRoom = new Room(new Point(0, 0), hubType);
             Functions_Room.MoveRoom(hubRoom,
-                LevelSet.currentLevel.rooms[lastRoom].rec.X,
-                LevelSet.currentLevel.rooms[lastRoom].rec.Y - (16 * hubRoom.size.Y) - 16);
-            LevelSet.currentLevel.rooms.Add(hubRoom);
+                LevelSet.dungeon.rooms[lastRoom].rec.X,
+                LevelSet.dungeon.rooms[lastRoom].rec.Y - (16 * hubRoom.size.Y) - 16);
+            LevelSet.dungeon.rooms.Add(hubRoom);
             //track the hub's index
-            hubIndex = LevelSet.currentLevel.rooms.Count() - 1;
+            hubIndex = LevelSet.dungeon.rooms.Count() - 1;
         }
 
         static void BuildDungeon_AddBossPath(byte numOfRoomsBetween)
@@ -753,12 +755,12 @@ namespace DungeonRun
             //add rooms north of starting room
             for (b = 0; b < numOfRoomsBetween; b++)
             {
-                lastRoom = LevelSet.currentLevel.rooms.Count() - 1;
+                lastRoom = LevelSet.dungeon.rooms.Count() - 1;
                 Room room = new Room(new Point(0, 0), Functions_Level.GetRandomRoomType());
                 Functions_Room.MoveRoom(room,
-                    LevelSet.currentLevel.rooms[lastRoom].rec.X,
-                    LevelSet.currentLevel.rooms[lastRoom].rec.Y - (16 * room.size.Y) - 16);
-                LevelSet.currentLevel.rooms.Add(room);
+                    LevelSet.dungeon.rooms[lastRoom].rec.X,
+                    LevelSet.dungeon.rooms[lastRoom].rec.Y - (16 * room.size.Y) - 16);
+                LevelSet.dungeon.rooms.Add(room);
             }
 
             //place boss north of last room added
@@ -766,21 +768,21 @@ namespace DungeonRun
 
             RoomID bossID = RoomID.ForestIsland_BossRoom;
             //determine what boss room to load based on current level id
-            if (LevelSet.currentLevel.ID == LevelID.Forest_Dungeon)
+            if (LevelSet.dungeon.ID == LevelID.Forest_Dungeon)
             { bossID = RoomID.ForestIsland_BossRoom; }
-            else if (LevelSet.currentLevel.ID == LevelID.Mountain_Dungeon)
+            else if (LevelSet.dungeon.ID == LevelID.Mountain_Dungeon)
             { bossID = RoomID.DeathMountain_BossRoom; }
-            else if (LevelSet.currentLevel.ID == LevelID.Swamp_Dungeon)
+            else if (LevelSet.dungeon.ID == LevelID.Swamp_Dungeon)
             { bossID = RoomID.SwampIsland_BossRoom; }
 
             //create and move boss room
             Room bossRoom = new Room(new Point(0, 0), bossID);
             Functions_Room.MoveRoom(bossRoom,
-                LevelSet.currentLevel.rooms[lastRoom].rec.X,
-                LevelSet.currentLevel.rooms[lastRoom].rec.Y - (16 * bossRoom.size.Y) - 16);
-            LevelSet.currentLevel.rooms.Add(bossRoom);
+                LevelSet.dungeon.rooms[lastRoom].rec.X,
+                LevelSet.dungeon.rooms[lastRoom].rec.Y - (16 * bossRoom.size.Y) - 16);
+            LevelSet.dungeon.rooms.Add(bossRoom);
             //track the boss's index
-            bossIndex = LevelSet.currentLevel.rooms.Count() - 1;
+            bossIndex = LevelSet.dungeon.rooms.Count() - 1;
         }
 
         static void BuildDungeon_KeyPath(byte numOfRoomsBetween)
@@ -792,9 +794,9 @@ namespace DungeonRun
             
             //randomly select a room that isn't exit(0), boss(count-1), or hub(count-2)
             //*this only works if it follows exit to hub, then add boss path...
-            int random = Functions_Random.Int(1, LevelSet.currentLevel.rooms.Count() - 2);
+            int random = Functions_Random.Int(1, LevelSet.dungeon.rooms.Count() - 2);
             //try to attach the starting key path room to the target room 20 times
-            Functions_Level.AddRoom(LevelSet.currentLevel.rooms[random], keyPathStart, 20, true);
+            Functions_Level.AddRoom(LevelSet.dungeon.rooms[random], keyPathStart, 20, true);
 
             //we could improve this by randomizing which room we try
             //to attach key path start to, each time. we'd need a boolean
@@ -804,15 +806,15 @@ namespace DungeonRun
             //the key path start room is the last room added to Level.rooms
             for (b = 0; b < numOfRoomsBetween; b++)
             {
-                lastRoom = LevelSet.currentLevel.rooms.Count() - 1;
+                lastRoom = LevelSet.dungeon.rooms.Count() - 1;
                 Room room = new Room(new Point(0, 0), Functions_Level.GetRandomRoomType());
-                Functions_Level.AddRoom(LevelSet.currentLevel.rooms[lastRoom], room, 20, false);
+                Functions_Level.AddRoom(LevelSet.dungeon.rooms[lastRoom], room, 20, false);
             }
 
             //create key randomly around last room
-            lastRoom = LevelSet.currentLevel.rooms.Count() - 1;
+            lastRoom = LevelSet.dungeon.rooms.Count() - 1;
             Room keyRoom = new Room(new Point(0, 0), RoomID.Key);
-            Functions_Level.AddRoom(LevelSet.currentLevel.rooms[lastRoom], keyRoom, 20, true);
+            Functions_Level.AddRoom(LevelSet.dungeon.rooms[lastRoom], keyRoom, 20, true);
         }
 
         static void BuildDungeon_ImproveExit()
@@ -821,9 +823,9 @@ namespace DungeonRun
             //this diversifies the initial paths presented to player
             for (b = 0; b < 2; b++)
             {
-                lastRoom = LevelSet.currentLevel.rooms.Count() - 1;
+                lastRoom = LevelSet.dungeon.rooms.Count() - 1;
                 Room room = new Room(new Point(0, 0), Functions_Level.GetRandomRoomType());
-                Functions_Level.AddRoom(LevelSet.currentLevel.rooms[0], room, 20, true);
+                Functions_Level.AddRoom(LevelSet.dungeon.rooms[0], room, 20, true);
             }
         }
 
@@ -870,8 +872,8 @@ namespace DungeonRun
             //create the temporary build list
             //(we will destructively edit this list)
             List<Room> buildList = new List<Room>();
-            for (b = 0; b < LevelSet.currentLevel.rooms.Count; b++)
-            { buildList.Add(LevelSet.currentLevel.rooms[b]); }
+            for (b = 0; b < LevelSet.dungeon.rooms.Count; b++)
+            { buildList.Add(LevelSet.dungeon.rooms[b]); }
 
 
             #region Connect Rooms with Doors
@@ -912,8 +914,8 @@ namespace DungeonRun
             }
             if (Flags.PrintOutput)
             {
-                Debug.WriteLine("connected " + LevelSet.currentLevel.rooms.Count + " rooms");
-                Debug.WriteLine("created  " + LevelSet.currentLevel.doors.Count + " doors");
+                Debug.WriteLine("connected " + LevelSet.dungeon.rooms.Count + " rooms");
+                Debug.WriteLine("created  " + LevelSet.dungeon.doors.Count + " doors");
             }
 
             #endregion
@@ -922,19 +924,19 @@ namespace DungeonRun
             #region Choose Dungeon Music
 
             //select the dungeon music
-            if (LevelSet.currentLevel.dungeonTrack == 0) { Functions_Music.PlayMusic(Music.DungeonA); }
-            else if (LevelSet.currentLevel.dungeonTrack == 1) { Functions_Music.PlayMusic(Music.DungeonB); }
-            else if (LevelSet.currentLevel.dungeonTrack == 2) { Functions_Music.PlayMusic(Music.DungeonC); }
+            if (LevelSet.dungeon.dungeonTrack == 0) { Functions_Music.PlayMusic(Music.DungeonA); }
+            else if (LevelSet.dungeon.dungeonTrack == 1) { Functions_Music.PlayMusic(Music.DungeonB); }
+            else if (LevelSet.dungeon.dungeonTrack == 2) { Functions_Music.PlayMusic(Music.DungeonC); }
             //cycle thru dungeon music tracks
-            LevelSet.currentLevel.dungeonTrack++;
-            if (LevelSet.currentLevel.dungeonTrack > 2) { LevelSet.currentLevel.dungeonTrack = 0; }
+            LevelSet.dungeon.dungeonTrack++;
+            if (LevelSet.dungeon.dungeonTrack > 2) { LevelSet.dungeon.dungeonTrack = 0; }
 
             #endregion
 
 
             #region Setup room's roomData index
 
-            for (b = 0; b < LevelSet.currentLevel.rooms.Count; b++)
+            for (b = 0; b < LevelSet.dungeon.rooms.Count; b++)
             {
                 //based on type, set room's data index to random roomData ref
                 //this allows the room to build with the same roomData each time hero enters it
@@ -946,16 +948,16 @@ namespace DungeonRun
                 //{ LevelSet.currentLevel.rooms[b].dataIndex = Functions_Random.Int(0, RoomData.hubRooms.Count); }
 
 
-                if (LevelSet.currentLevel.rooms[b].roomID == RoomID.Column)
-                { LevelSet.currentLevel.rooms[b].dataIndex = Functions_Random.Int(0, RoomData.columnRooms.Count); }
-                else if (LevelSet.currentLevel.rooms[b].roomID == RoomID.Key)
-                { LevelSet.currentLevel.rooms[b].dataIndex = Functions_Random.Int(0, RoomData.keyRooms.Count); }
-                else if (LevelSet.currentLevel.rooms[b].roomID == RoomID.Row)
-                { LevelSet.currentLevel.rooms[b].dataIndex = Functions_Random.Int(0, RoomData.rowRooms.Count); }
-                else if (LevelSet.currentLevel.rooms[b].roomID == RoomID.Square)
-                { LevelSet.currentLevel.rooms[b].dataIndex = Functions_Random.Int(0, RoomData.squareRooms.Count); }
-                else if (LevelSet.currentLevel.rooms[b].roomID == RoomID.Exit)
-                { LevelSet.currentLevel.rooms[b].dataIndex = Functions_Random.Int(0, RoomData.exitRooms.Count); }
+                if (LevelSet.dungeon.rooms[b].roomID == RoomID.Column)
+                { LevelSet.dungeon.rooms[b].dataIndex = Functions_Random.Int(0, RoomData.columnRooms.Count); }
+                else if (LevelSet.dungeon.rooms[b].roomID == RoomID.Key)
+                { LevelSet.dungeon.rooms[b].dataIndex = Functions_Random.Int(0, RoomData.keyRooms.Count); }
+                else if (LevelSet.dungeon.rooms[b].roomID == RoomID.Row)
+                { LevelSet.dungeon.rooms[b].dataIndex = Functions_Random.Int(0, RoomData.rowRooms.Count); }
+                else if (LevelSet.dungeon.rooms[b].roomID == RoomID.Square)
+                { LevelSet.dungeon.rooms[b].dataIndex = Functions_Random.Int(0, RoomData.squareRooms.Count); }
+                else if (LevelSet.dungeon.rooms[b].roomID == RoomID.Exit)
+                { LevelSet.dungeon.rooms[b].dataIndex = Functions_Random.Int(0, RoomData.exitRooms.Count); }
             }
 
             #endregion

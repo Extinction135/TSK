@@ -49,13 +49,17 @@ namespace DungeonRun
         }
 
         public static void ResetFieldSpawnPos()
-        {   //set to center of room, plus south offset
-            LevelSet.spawnPos_Field.X = LevelSet.field.currentRoom.center.X;
-            LevelSet.spawnPos_Field.Y = LevelSet.field.currentRoom.rec.Y;
-            //spawn hero at bottom of level
-            LevelSet.spawnPos_Field.Y += LevelSet.field.currentRoom.rec.Height - 16 * 4;
+        {
+            //starting Xpos + half width
+            LevelSet.spawnPos_Field.X = Functions_Level.buildPosition.X + 40 * 16;
+            //starting Ypos + field height - spawn offset
+            LevelSet.spawnPos_Field.Y = Functions_Level.buildPosition.Y + 16 * 46 - 16 * 4;
         }
         
+
+
+
+
 
 
 
@@ -92,7 +96,7 @@ namespace DungeonRun
 
                 #region Handle hero transferring to overworld screen or field
 
-                if(heroRec.Intersects(LevelSet.currentLevel.currentRoom.rec) == false)
+                if(heroRec.Intersects(LevelSet.currentLevel.currentRoom.rec) == false) //died here
                 {
                     //some fields return to other fields
                     if (LevelSet.currentLevel.ID == LevelID.SkullIsland_ColliseumPit)
@@ -654,8 +658,6 @@ namespace DungeonRun
             //kill movement, reset hero to proper starting state
             Functions_Movement.StopMovement(Pool.hero.compMove);
             ResetHero();
-
-            
         }
 
         public static void ResetHero()

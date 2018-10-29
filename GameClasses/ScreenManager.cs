@@ -209,7 +209,6 @@ namespace DungeonRun
         {   //remove every screen on screens list
             while (screens.Count > 0)
             {
-                //try {  } catch { }
                 screens[0].Close();
                 screens.Remove(screens[0]);
             }

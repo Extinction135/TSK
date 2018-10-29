@@ -45,6 +45,28 @@ namespace DungeonRun
             Functions_Hero.SetLoadout();
             //open the screen
             displayState = DisplayState.Opening;
+
+
+
+
+
+            
+
+
+
+
+
+
+
+            /*
+            //setup current room upon open
+            if (LevelSet.currentLevel.isField)
+            { LevelSet.currentLevel.currentRoom = LevelSet.field.rooms[0]; }
+            else { LevelSet.currentLevel.currentRoom = LevelSet.dungeon.rooms[0]; }
+            */
+
+
+
         }
 
         public override void HandleInput(GameTime GameTime)
@@ -74,8 +96,10 @@ namespace DungeonRun
 
             if(!Flags.Paused)
             {
+                //handle screen state
 
-                #region Handle Screen State
+
+                #region Opening
 
                 if(displayState == DisplayState.Opening) //fade overlay to 0
                 {   //fade overlay out
@@ -84,10 +108,23 @@ namespace DungeonRun
                     if (overlay.fadeState == FadeState.FadeComplete)
                     { displayState = DisplayState.Opened; }
                 }
+
+                #endregion
+
+
+                #region Opened
+
                 else if (displayState == DisplayState.Opened)
-                {   //set overlay alpha to a negative value
+                {
+                    //set overlay alpha to a negative value
                     overlay.alpha = -1.5f; //delays closing state a bit
                 }   //delay gives player time to understand what's happening
+
+                #endregion
+
+
+                #region Closing
+
                 else if (displayState == DisplayState.Closing) //fade overlay to 1.0
                 {
                     if (overlay.alpha == -1.5f) //just began fading in overlay
@@ -109,6 +146,12 @@ namespace DungeonRun
                     if (overlay.fadeState == FadeState.FadeComplete)
                     { displayState = DisplayState.Closed; }
                 }
+
+                #endregion
+
+
+                #region Closed
+
                 else if (displayState == DisplayState.Closed)
                 {
                     DungeonRecord.timer.Stop();
@@ -146,29 +189,27 @@ namespace DungeonRun
                 #endregion
 
 
-                //if the screen is closed, don't play any sounds or do any work
-                if (displayState != DisplayState.Closed)
-                {   //update and move actors, objects, projectiles, and camera
-                    Functions_Pool.Update();
-                    Functions_WorldUI.Update();
 
 
-                    #region Track Hero in Fields and Dungeons
+                #region World Update Routine - any state except closing
 
+                if(displayState != DisplayState.Closed)
+                {   
+                    //track Hero in Fields and Dungeons
                     if (LevelSet.currentLevel.isField)
                     {
                         //center camera to field
-                        Camera2D.targetPosition.X = LevelSet.currentLevel.currentRoom.center.X;
-                        Camera2D.targetPosition.Y = LevelSet.currentLevel.currentRoom.center.Y;
+                        Camera2D.targetPosition.X = LevelSet.field.currentRoom.center.X;
+                        Camera2D.targetPosition.Y = LevelSet.field.currentRoom.center.Y;
                         //move 50% toward hero
                         Camera2D.targetPosition.X -=
-                                (LevelSet.currentLevel.currentRoom.center.X - Pool.hero.compSprite.position.X) * 0.5f;
+                                (LevelSet.field.currentRoom.center.X - Pool.hero.compSprite.position.X) * 0.5f;
                         Camera2D.targetPosition.Y -=
-                            (LevelSet.currentLevel.currentRoom.center.Y - Pool.hero.compSprite.position.Y) * 0.5f;
+                            (LevelSet.field.currentRoom.center.Y - Pool.hero.compSprite.position.Y) * 0.5f;
                     }
                     else
                     {   //hero is in a dungeon
-                        if(Flags.CameraTracksHero)
+                        if (Flags.CameraTracksHero)
                         {
                             Camera2D.tracks = false; //teleport to/follow hero
                             Camera2D.targetPosition.X = Pool.hero.compSprite.position.X;
@@ -177,17 +218,18 @@ namespace DungeonRun
                         else
                         {
                             //center camera to current room
-                            Camera2D.targetPosition.X = LevelSet.currentLevel.currentRoom.center.X;
-                            Camera2D.targetPosition.Y = LevelSet.currentLevel.currentRoom.center.Y + 16 * 1;
+                            Camera2D.targetPosition.X = LevelSet.dungeon.currentRoom.center.X;
+                            Camera2D.targetPosition.Y = LevelSet.dungeon.currentRoom.center.Y + 16 * 1;
                             Camera2D.tracks = true; //wait until room change, then move
                         }
                     }
-
-                    #endregion
-                    
-
                     Functions_Camera2D.Update();
+                    Functions_Pool.Update();
+                    Functions_WorldUI.Update();
                 }
+
+                #endregion
+
             }
 
             Timing.stopWatch.Stop();

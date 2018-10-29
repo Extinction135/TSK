@@ -52,7 +52,6 @@ namespace DungeonRun
             LevelSet.dungeon.isField = false;
             LevelSet.field.isField = true;
 
-
             //handle DUNGEON setup
             if (levelID == LevelID.Forest_Dungeon
                 || levelID == LevelID.Mountain_Dungeon
@@ -61,64 +60,63 @@ namespace DungeonRun
                 //reset dungeon data
                 ResetLevel(LevelSet.dungeon);
                 //point current level to dungeon
+                LevelSet.dungeon.ID = levelID;
                 LevelSet.currentLevel = LevelSet.dungeon;
+                //set background color
+                ColorScheme.background = ColorScheme.bkg_dungeon_room;
             }
 
             //handle FIELD setup
             else
-            {
-                //reset field data
+            {   //reset field data
                 ResetLevel(LevelSet.field);
                 //point current level to field
+                LevelSet.field.ID = levelID;
                 LevelSet.currentLevel = LevelSet.field;
-            }
-
-            //pass levelID to the current field or dungeon
-            LevelSet.currentLevel.ID = levelID;
-
-
-
-
-
-            #region Set The Background Color
-
-            //for now, set to either lightworld or dungeon bkg colors
-            if (LevelSet.currentLevel.isField)
-            {
-                //grass green bkg color, as most levels occur on land
+                //set bkg color: green, as most levels occur on land
                 ColorScheme.background = ColorScheme.bkg_level_room;
-                //in the future we may make the bkg sea blue
             }
-            else
-            { ColorScheme.background = ColorScheme.bkg_dungeon_room; }
-
-            #endregion
+            
 
 
 
 
-            //setup the room (level), or series of rooms (dungeon)
+
             if (Flags.PrintOutput)
-            { Debug.WriteLine("-- building level: " + LevelSet.currentLevel.ID + " --"); }
+            {   //lets debug some stuff
+                string output = "building level....";
+                output += "currLevel: " + LevelSet.currentLevel.ID + "\n";
+                output += "field: " + LevelSet.field.ID + "\n";
+                output += "dungeon: " + LevelSet.dungeon.ID + "\n";
+                Debug.WriteLine("" + output);
+            }
+
+
+
+
+
+
+
+
+
+            
+            //start building levels
             stopWatch.Reset(); stopWatch.Start();
-
-
-
-
-
-
-
-
+            //setup the room (level), or series of rooms (dungeon)
 
 
             #region Build DEV Levels
 
-            if(Flags.bootRoutine != BootRoutine.Game) //we may be building dev levels
+            if (Flags.bootRoutine != BootRoutine.Game) //we may be building dev levels
             {
-                //i'm lazy sometimes
-                if (Widgets.RoomTools.roomData == null) { return; }
+                if (Widgets.RoomTools.roomData == null)
+                {
 
-                if (
+                }
+                else
+                {
+
+                    if (
                     //check to see if editor just built a new dungeon room to work on
                     Widgets.RoomTools.roomData.type == RoomID.DEV_Boss ||
                     Widgets.RoomTools.roomData.type == RoomID.DEV_Column ||
@@ -128,29 +126,27 @@ namespace DungeonRun
                     Widgets.RoomTools.roomData.type == RoomID.DEV_Row ||
                     Widgets.RoomTools.roomData.type == RoomID.DEV_Square
                     )
-                {
-                    //make a new room, which inherits the RoomTool's roomData type
-                    RoomID roomType = Widgets.RoomTools.roomData.type;
+                    {
+                        //make a new room, which inherits the RoomTool's roomData type
+                        RoomID roomType = Widgets.RoomTools.roomData.type;
 
-                    //build the dev room based on roomType
-                    Room room = new Room(new Point(buildPosition.X, buildPosition.Y), roomType);
-                    LevelSet.currentLevel.rooms.Add(room); //spawn/exit room must be at index 0
+                        //build the dev room based on roomType
+                        Room room = new Room(new Point(buildPosition.X, buildPosition.Y), roomType);
+                        LevelSet.currentLevel.rooms.Add(room); //spawn/exit room must be at index 0
+                        LevelSet.currentLevel.currentRoom = LevelSet.currentLevel.rooms[0];
 
-                    //set spawnPos (outside TopLeft of new dev room)
-                    LevelSet.spawnPos_Dungeon.X = room.rec.X - 32;
-                    LevelSet.spawnPos_Dungeon.Y = room.rec.Y;
-                }
-                //or if editor just built a new field to work on 
-                else if (Widgets.RoomTools.roomData.type == RoomID.DEV_Field)
-                {
-                    Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.DEV_Field);
-                    LevelSet.currentLevel.rooms.Add(field);
-                    //manually set field spawnposition
-
-                    //starting Xpos + half width
-                    LevelSet.spawnPos_Field.X = buildPosition.X + 20 * 16;
-                    //starting Ypos + field height - spawn offset
-                    LevelSet.spawnPos_Field.Y = buildPosition.Y + 16 * 46 - 16 * 4;
+                        //set spawnPos (outside TopLeft of new dev room)
+                        LevelSet.spawnPos_Dungeon.X = room.rec.X - 32;
+                        LevelSet.spawnPos_Dungeon.Y = room.rec.Y;
+                    }
+                    //or if editor just built a new field to work on 
+                    else if (Widgets.RoomTools.roomData.type == RoomID.DEV_Field)
+                    {
+                        Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.DEV_Field);
+                        LevelSet.currentLevel.rooms.Add(field);
+                        LevelSet.currentLevel.currentRoom = LevelSet.currentLevel.rooms[0];
+                        Functions_Hero.ResetFieldSpawnPos();
+                    }
                 }
             } 
 
@@ -166,7 +162,7 @@ namespace DungeonRun
 
             #region Skull Island
 
-            else if (LevelSet.currentLevel.ID == LevelID.SkullIsland_Colliseum)
+            if (LevelSet.currentLevel.ID == LevelID.SkullIsland_Colliseum)
             {
                 Functions_Music.PlayMusic(Music.LightWorld);
                 Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.SkullIsland_Colliseum);
@@ -288,35 +284,34 @@ namespace DungeonRun
 
 
 
+            
 
 
-
-
-
-
-
-
-
-
-
-            //set current room to exitRoom - index 0
             LevelSet.currentLevel.rooms[0].visited = true;
             LevelSet.currentLevel.currentRoom = LevelSet.currentLevel.rooms[0];
+            Functions_Room.BuildRoom(LevelSet.currentLevel.currentRoom);
+
+            if (Flags.PrintOutput)
+            {
+                Debug.WriteLine("current room level ID = " + LevelSet.currentLevel.currentRoom.levelID);
+                Debug.WriteLine("current room room ID = " + LevelSet.currentLevel.currentRoom.roomID);
+            }
+
+
+
+
+
+
+
+
+
 
             //update the dungeon texture based on levelID (sets themed sheet)
             Functions_Texture.UpdateDungeonTexture();
             Functions_Texture.SetFloorTextures();
 
-            //actually build everything in the first room
-            Functions_Room.BuildRoom(LevelSet.currentLevel.currentRoom);
 
-
-
-
-
-
-
-            //actually spawn hero in the starting room
+            //spawn hero in the starting room
             Functions_Hero.SpawnInCurrentRoom();
 
             //give hero a minimum amount of health

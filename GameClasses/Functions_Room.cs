@@ -355,6 +355,7 @@ namespace DungeonRun
             {   //we are building an outdoor overworld field room
                 Functions_Pool.Reset();
                 BuildRoomXmlData(RoomXmlData);
+                LevelSet.currentLevel.currentRoom = LevelSet.field.rooms[0];
             }
             else
             {   //else, we are building an interior dungeon room

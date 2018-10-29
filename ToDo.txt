@@ -71,29 +71,18 @@ Today:
 
 
 
-Wave Spawns on Overworld ++
+Flags++
 
-the location variation needs to be smaller, so we
-can more accurately place wave positions. they are
-too big right now.
+place a bunch on flags on skull coliseum, port town houses,
+and houses in the water. this is the start of something fun.
+fixed left house's flag post to line up better with flag particle.
+added many flag poles to skull island overworld pixels.
+fixed some bugs.
 
-reduced from 12 to 8. see how that looks.
-looked good, but i reduced it down to 6 to make
-it just a little more accurate.
+fixed a loading bug between overworld and level.
+involved levelset.field + current room. it was messy.
 
-added more wave spawn locations.
-i think waves should spawn less.
-
-wave generation reduced from 20% to 10% (per frame).
-60 chances at 10% a chance to spawn a wave at any
-randomy wave generation position. might reduce to
-7 or 5%. feels too busy right now. went with 5%.
-looks good. not too busy.
-
-
-
-
-
+playtested, working very well.
 
 
 
@@ -107,15 +96,24 @@ looks good. not too busy.
 
 
 Flags++
-
-place a bunch on flags on skull coliseum, port town houses,
-and houses in the water. this is the start of something fun.
-
+*randomize the starting frames of flag particles, so flags
+dont sync up and it looks more natural.
 
 
 
-
-
+	
+	
+	
+	
+	
+dump LevelSet.field.currentRoom when we're exiting overworld..
+opening level screen too... wtf...
+	
+	
+	
+	
+	
+	
 	
 	
 	

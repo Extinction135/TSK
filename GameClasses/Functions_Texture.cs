@@ -22,11 +22,11 @@ namespace DungeonRun
             //default dungeon texture to base sheet
             Assets.Dungeon_CurrentSheet = Assets.Dungeon_DefaultSheet;
             //based on the dungeon level loaded, set the dungeon texture
-            if (LevelSet.currentLevel.ID == LevelID.Forest_Dungeon)
+            if (LevelSet.dungeon.ID == LevelID.Forest_Dungeon)
             { Assets.Dungeon_CurrentSheet = Assets.Dungeon_ForestSheet; }
-            else if (LevelSet.currentLevel.ID == LevelID.Mountain_Dungeon)
+            else if (LevelSet.dungeon.ID == LevelID.Mountain_Dungeon)
             { Assets.Dungeon_CurrentSheet = Assets.Dungeon_MountainSheet; }
-            else if (LevelSet.currentLevel.ID == LevelID.Swamp_Dungeon)
+            else if (LevelSet.dungeon.ID == LevelID.Swamp_Dungeon)
             { Assets.Dungeon_CurrentSheet = Assets.Dungeon_SwampSheet; }
         }
 

@@ -279,7 +279,7 @@ namespace DungeonRun
             }
             else if (displayState == DisplayState.Closed)
             {
-                //set the level id based on the current location, load into field
+                //setup level id based on current location, load into field
                 LevelSet.field.ID = currentLocation.ID;
                 LevelSet.currentLevel = LevelSet.field;
                 //load the level, building the room(s)
@@ -1721,22 +1721,40 @@ namespace DungeonRun
             #region Skull island decorations
 
             //various decorative flags
-            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 919, 460);
+            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 920, 459); //left house in water
+
+            //coliseum flags - left to right (15)
+
+            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 847, 410); //1
+            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 849, 415); //2
+            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 854, 418); //3
+            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 859, 421); //4
+            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 865, 423); //5
+            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 873, 425); //6
+            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 882, 426); //7 - door top left
+            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 893, 426); //8 - door top right
+            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 903, 425); //9
+            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 911, 423); //10
+            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 917, 421); //11
+            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 922, 419); //12
+            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 926, 416); //13
+            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 925, 410); //14
+            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 920, 406); //15
+
+
+
+
 
             //skull king campfires
-            Functions_Particle.Spawn(ObjType.Particle_Map_Campfire, 1014, 485); //left
-            Functions_Particle.Spawn(ObjType.Particle_Map_Campfire, 1062, 477); //right
+            Functions_Particle.Spawn(ObjType.Particle_Map_Campfire, 1018, 490); //left
+            Functions_Particle.Spawn(ObjType.Particle_Map_Campfire, 1062, 482); //right
 
             //wave spawn locations
             waveSpawnPositions.Add(new Vector2(1090, 483)); //in front right skullking
             waveSpawnPositions.Add(new Vector2(1095, 458)); //in front right skullking
-
             waveSpawnPositions.Add(new Vector2(963, 482)); //in front left skullking
-
             waveSpawnPositions.Add(new Vector2(1010, 290)); //above center skull king
-
             waveSpawnPositions.Add(new Vector2(937, 355)); //above left skull king
-
             waveSpawnPositions.Add(new Vector2(1083, 336)); //above left skull king
 
             #endregion
