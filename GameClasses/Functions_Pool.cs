@@ -124,6 +124,7 @@ namespace DungeonRun
             ResetProjectilePool();
             ResetPickupPool();
             ResetFloorPool();
+            ResetLinePool();
         }
 
         public static void ResetActorPool()
@@ -166,6 +167,25 @@ namespace DungeonRun
             }
             Pool.floorIndex = 0; //reset total count
         }
+
+        public static void ResetLinePool()
+        {
+            for(Pool.lineCounter = 0; Pool.lineCounter < Pool.lineCount; Pool.lineCounter++)
+            {   //hide offscreen
+                Pool.linePool[Pool.lineCounter].visible = false;
+                Pool.linePool[Pool.lineCounter].length = 0;
+                Pool.linePool[Pool.lineCounter].endPosX = 0;
+                Pool.linePool[Pool.lineCounter].endPosY = 0;
+                Pool.linePool[Pool.lineCounter].startPosX = 0;
+                Pool.linePool[Pool.lineCounter].startPosY = 0;
+            }
+        }
+
+
+
+
+
+
 
 
 
@@ -513,6 +533,12 @@ namespace DungeonRun
 
             //handle hero related updates (room checking, shadow match, pickup interactions)
             Functions_Hero.Update();
+
+
+
+            //update lines
+            for (Pool.lineCounter = 0; Pool.lineCounter < Pool.lineCount; Pool.lineCounter++)
+            { Functions_Line.UpdateLine(Pool.linePool[Pool.lineCounter]); }
         }
         
         public static void Draw()
@@ -520,6 +546,11 @@ namespace DungeonRun
             //floor pool
             for (Pool.floorCounter = 0; Pool.floorCounter < Pool.floorCount; Pool.floorCounter++)
             { Functions_Draw.Draw(Pool.floorPool[Pool.floorCounter]); }
+
+            //line pool
+            for (Pool.lineCounter = 0; Pool.lineCounter < Pool.lineCount; Pool.lineCounter++)
+            { Functions_Draw.Draw(Pool.linePool[Pool.lineCounter]); }
+
             //roomObj pool
             for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
             { Functions_Draw.Draw(Pool.roomObjPool[Pool.roomObjCounter]); }
@@ -536,6 +567,8 @@ namespace DungeonRun
             for (Pool.actorCounter = 0; Pool.actorCounter < Pool.actorCount; Pool.actorCounter++)
             { Functions_Draw.Draw(Pool.actorPool[Pool.actorCounter]); }
         }
+
+
 
     }
 }

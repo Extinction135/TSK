@@ -20,7 +20,7 @@ namespace DungeonRun
         public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.77f; //the version of the game
-        public static BootRoutine bootRoutine = BootRoutine.Editor_Level; //boot to game or editor?
+        public static BootRoutine bootRoutine = BootRoutine.Editor_Map; //boot to game or editor?
 
         //dev flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
@@ -127,7 +127,7 @@ namespace DungeonRun
 
 
 
-
+    #region Color Scheme
 
     public static class ColorScheme
     {
@@ -152,11 +152,10 @@ namespace DungeonRun
         public static Color mapNotVisited = new Color(118, 102, 62);
         public static Color mapVisited = new Color(69, 58, 31);
         public static Color mapBlinker = new Color(236, 224, 198);
-        //map bkg?
 
 
         //editor colors - dont touch
-        public static Color debugBkg = new Color(20, 20, 20, 255);
+        public static Color debugBkg = new Color(20, 20, 20, 255); 
 
         public static Color collision = new Color(100, 0, 0, 50);
         public static Color interaction = new Color(0, 100, 0, 50);
@@ -167,7 +166,7 @@ namespace DungeonRun
         public static Color buttonDown = new Color(100, 100, 100);
     }
 
-
+    #endregion
 
 
 
@@ -423,43 +422,51 @@ namespace DungeonRun
     public static class Pool
     {
         //actor pool handles all actors in the room including hero
-        public static int actorCount;           //total count of actors in pool
-        public static List<Actor> actorPool;    //the actual list of actors
+        public static int actorCount = 30;           //total count of actors in pool
+        public static List<Actor> actorPool = new List<Actor>();//the actual list of actors
         public static int actorIndex;           //used to iterate thru the pool
         public static int actorCounter = 0;
 
         //obj pool handles room objects, from dungeon & main sheet
-        public static int roomObjCount;
-        public static List<GameObject> roomObjPool;
+        public static int roomObjCount = 3000;
+        public static List<GameObject> roomObjPool = new List<GameObject>();
         public static int roomObjIndex;
         public static int roomObjCounter = 0;
 
         //particle pool - main sheet only
-        public static int particleCount;
-        public static List<GameObject> particlePool;
+        public static int particleCount = 750;
+        public static List<GameObject> particlePool = new List<GameObject>();
         public static int particleIndex;
         public static int particleCounter = 0;
 
         //projectile pool - main sheet only
-        public static int projectileCount;
-        public static List<Projectile> projectilePool;
+        public static int projectileCount = 300;
+        public static List<Projectile> projectilePool = new List<Projectile>();
         public static int projectileIndex;
         public static int projectileCounter = 0;
 
         //pickup pool - main sheet only
-        public static int pickupCount;
-        public static List<GameObject> pickupPool;
+        public static int pickupCount = 50;
+        public static List<GameObject> pickupPool = new List<GameObject>();
         public static int pickupIndex;
         public static int pickupCounter = 0;
 
         //floor pool - dungeon sheet only
-        public static int floorCount;
-        public static List<ComponentSprite> floorPool;
+        public static int floorCount = 500;
+        public static List<ComponentSprite> floorPool = new List<ComponentSprite>();
         public static int floorIndex;
         public static int floorCounter = 0;
 
-        public static int activeActor = 1; //tracks the current actor being handled by AI
+        //lines
+        public static int lineCount = 25;
+        public static List<Line> linePool = new List<Line>();
+        public static int lineCounter = 0;
 
+
+
+
+
+        public static int activeActor = 1; //tracks the current actor being handled by AI
         public static Actor hero; //points to actorPool[0]
         public static GameObject herosPet; //points to roomObj[1]
 
@@ -468,16 +475,7 @@ namespace DungeonRun
 
         public static void Initialize()
         {
-            //set pool sizes
-            actorCount = 30;
-            floorCount = 500;
-            roomObjCount = 3000;
-            particleCount = 750;
-            projectileCount = 300;
-            pickupCount = 50;
-
             //actor pool
-            actorPool = new List<Actor>();
             for (actorCounter = 0; actorCounter < actorCount; actorCounter++)
             {
                 actorPool.Add(new Actor());
@@ -488,31 +486,26 @@ namespace DungeonRun
             actorIndex = 1;
 
             //room obj pool
-            roomObjPool = new List<GameObject>();
             for (roomObjCounter = 0; roomObjCounter < roomObjCount; roomObjCounter++)
             { roomObjPool.Add(new GameObject()); }
             roomObjIndex = 1;
 
             //particle pool
-            particlePool = new List<GameObject>();
             for (particleCounter = 0; particleCounter < particleCount; particleCounter++)
             { particlePool.Add(new GameObject()); }
             particleIndex = 0;
 
             //projectile pool
-            projectilePool = new List<Projectile>();
             for (projectileCounter = 0; projectileCounter < projectileCount; projectileCounter++)
             { projectilePool.Add(new Projectile()); }
             projectileIndex = 0;
 
             //pickup pool
-            pickupPool = new List<GameObject>();
             for (pickupCounter = 0; pickupCounter < pickupCount; pickupCounter++)
             { pickupPool.Add(new GameObject()); }
             pickupIndex = 0;
 
             //floor pool
-            floorPool = new List<ComponentSprite>();
             for (floorCounter = 0; floorCounter < floorCount; floorCounter++)
             {
                 floorPool.Add(new ComponentSprite(Assets.Dungeon_DefaultSheet,
@@ -521,6 +514,14 @@ namespace DungeonRun
                     new Point(16, 16)));
             }
             floorIndex = 0;
+
+            //line pool
+            for(lineCounter = 0; lineCounter < lineCount; lineCounter++)
+            {
+                linePool.Add(new Line()); //recycled later
+            }
+
+
 
             //reset all pools
             Functions_Pool.Reset();
@@ -1597,5 +1598,69 @@ namespace DungeonRun
         public FadeState fadeState = FadeState.FadeIn;
         public Boolean fade = true;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public class Line
+    {
+        //this is a single pixel line drawn from posA to posB,
+        //using a color - added to a list of lines, used in a pool
+        //based approach
+
+        public int startPosX = 0;
+        public int startPosY = 0;
+
+        public int endPosX = 0;
+        public int endPosY = 0;
+
+        public float angle = 0.0f;
+        public int length = 0;
+        public Boolean visible = false;
+        public float zDepth = 0.0f; //modeled same as sprite components zDepth
+
+        public Rectangle rec = new Rectangle(0, 0, 1, 1); //this is drawn
+
+        public Texture2D texture = Assets.lineTexture; //never changes
+        public Rectangle texRec = new Rectangle(0, 0, 16, 16);
+        public Vector2 texOrigin = new Vector2(0, 0);
+    }
+
+
+
+
+
+
 
 }

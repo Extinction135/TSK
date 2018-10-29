@@ -93,6 +93,8 @@ namespace DungeonRun
                             Functions_Particle.Spawn(ObjType.Particle_RisingSmoke,
                                 Pool.hero.compSprite.position.X,
                                 Pool.hero.compSprite.position.Y + 4);
+                            //release all the lines being used
+                            Functions_Pool.ResetLinePool();
                         }
                         else//if hero dies, he appears on map sitting
                         {   //pressing a direction will make him stand back up
@@ -221,8 +223,12 @@ namespace DungeonRun
                         //play arrival sound fx
                         Assets.Play(Assets.sfxMapLocation);
 
+                        //gimme some feedback
                         if (Flags.PrintOutput)
                         { Debug.WriteLine("location name: " + currentLocation.name + ", ID:" + currentLocation.ID); }
+
+                        //setup the new location's connection lines
+                        SetupLinesToNeighbors();
                     }
                 }
 
@@ -261,6 +267,17 @@ namespace DungeonRun
                 }
 
                 #endregion
+
+
+                #region Update Pool Line List
+
+                for (i = 0; i < Pool.lineCount; i++)
+                {   //this allows lines to change their start & end pos, but still draw correctly
+                    Functions_Line.UpdateLine(Pool.linePool[i]);
+                }
+
+                #endregion
+
 
             }
             else if (displayState == DisplayState.Closing)
@@ -312,6 +329,44 @@ namespace DungeonRun
             #endregion
 
         }
+
+
+
+
+
+        public void SetupLinesToNeighbors()
+        {
+            //reset all the lines prior to setting up new ones
+            Functions_Pool.ResetLinePool();
+
+            //now lets add all the neighbors as lines
+            Functions_Line.AddLine( //neighbor right
+                (int)currentLocation.compSprite.position.X,
+                (int)currentLocation.compSprite.position.Y,
+                (int)currentLocation.neighborRight.compSprite.position.X,
+                (int)currentLocation.neighborRight.compSprite.position.Y
+            );
+            Functions_Line.AddLine( //neighbor left
+                (int)currentLocation.compSprite.position.X,
+                (int)currentLocation.compSprite.position.Y,
+                (int)currentLocation.neighborLeft.compSprite.position.X,
+                (int)currentLocation.neighborLeft.compSprite.position.Y
+            );
+            Functions_Line.AddLine( //neighbor up
+                (int)currentLocation.compSprite.position.X,
+                (int)currentLocation.compSprite.position.Y,
+                (int)currentLocation.neighborUp.compSprite.position.X,
+                (int)currentLocation.neighborUp.compSprite.position.Y
+            );
+            Functions_Line.AddLine( //neighbor down
+                (int)currentLocation.compSprite.position.X,
+                (int)currentLocation.compSprite.position.Y,
+                (int)currentLocation.neighborDown.compSprite.position.X,
+                (int)currentLocation.neighborDown.compSprite.position.Y
+            );
+        }
+
+
 
     }
 
@@ -1675,10 +1730,10 @@ namespace DungeonRun
             
 
 
-
-
             Functions_Music.PlayMusic(Music.Title); //play overworld music
             ColorScheme.background = ColorScheme.bkg_overworld;
+
+            base.SetupLinesToNeighbors(); //draw the starting neighbor lines
         }
 
     }

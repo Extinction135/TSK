@@ -165,6 +165,9 @@
     <Compile Include="..\..\GameClasses\Functions_Level.cs">
       <Link>Classes\Functions_Level.cs</Link>
     </Compile>
+    <Compile Include="..\..\GameClasses\Functions_Line.cs">
+      <Link>Classes\Functions_Line.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\Functions_Loot.cs">
       <Link>Classes\Functions_Loot.cs</Link>
     </Compile>

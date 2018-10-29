@@ -83,6 +83,8 @@ namespace DungeonRun
 
     public enum IslandID
     {
+        #region IslandID
+
         LevelData_SkullIsland,
         LevelData_ForestIsland,
         LevelData_ThievesHideout,
@@ -92,10 +94,13 @@ namespace DungeonRun
         LevelData_LavaIsland
 
         //expand this to handle the smaller map islands too
-    }
 
+        #endregion
+    }
     public enum LevelID
     {
+        #region LevelID
+
         //overworld levels (fields) - overworld accessible
 
         //skull island
@@ -131,16 +136,19 @@ namespace DungeonRun
         Road, //used for connecting levels on map
 
         //dungeons, series of rooms - not overworld accessible
-        Forest_Dungeon, 
+        Forest_Dungeon,
         Mountain_Dungeon,
         Swamp_Dungeon,
 
         //dev (hidden) unreachable locations from game
         DEV_Field, //single room without walls/doors
-    }
 
+        #endregion    }
+    }
     public enum RoomID
     {
+        #region RoomID
+
         //these DUNGEON rooms have procedural objs added to them
         Exit,
         Key,
@@ -200,6 +208,8 @@ namespace DungeonRun
         //dungeon rooms that are built empty, for adding objs (development)
         DEV_Exit, DEV_Hub, DEV_Boss, DEV_Key,
         DEV_Column, DEV_Row, DEV_Square
+
+        #endregion
     }
 
 

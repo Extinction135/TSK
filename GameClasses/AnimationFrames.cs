@@ -592,8 +592,8 @@ namespace DungeonRun
         //8x8 particles - small
         public static List<Byte4> Particle_RisingSmoke = new List<Byte4>
         {
-            new Byte4(0, 0, 0, 0), new Byte4(1, 0, 0, 0),
-            new Byte4(2, 0, 0, 0), new Byte4(3, 0, 0, 0)
+            new Byte4(0, 1, 0, 0), new Byte4(1, 1, 0, 0),
+            new Byte4(2, 1, 0, 0), new Byte4(3, 1, 0, 0)
         };
         public static List<Byte4> Particle_ImpactDust = new List<Byte4>
         {

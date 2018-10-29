@@ -34,6 +34,9 @@ namespace DungeonRun
         public static Texture2D uiItemsSheet;
 
 
+        //line texture
+        public static Texture2D lineTexture;
+
 
 
         //level sheets
@@ -205,6 +208,11 @@ namespace DungeonRun
             font = content.Load<SpriteFont>(@"pixelFont");
             medFont = content.Load<SpriteFont>(@"mediumFont");
             titleBkgSheet = content.Load<Texture2D>(@"TitleBkg");
+
+            //textures used by drawn lines
+            lineTexture = content.Load<Texture2D>(@"LineTexture");
+
+
 
             //overworld textures
             overworld_image = content.Load<Texture2D>(@"Overworld_Image");

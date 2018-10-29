@@ -73,20 +73,77 @@ Today:
 
 
 
+Draw Single Line Function
+
+we need to be able to draw a line from posA to posB, with a color.
+this line will always be 1 pixel wide, without any smoothing.
+
+Functions_Draw.Draw(); should be updated with
+Draw(Vector2 PosA, Vector2 PosB, Color Color);
+reff'd from previous codebase.
+
+then we can draw lines between hookshot and caster.
+plus we can draw lines between locations on overworld map's neighbors.
+means we can remove lines from the overworld map texture.
+
+To fit with the codebase's current multi-paradigm approach, we need
+to add an object pool for lines. lines need to be objects defined
+in data class.cs, and we need to have about 100 of them. hmmm.
+more like 25 of them. they will be used sparingly. *they should
+have a visible boolean, so we can quickly iterate the list and
+not draw most of the lines (that will be the game state 99% of the
+time).
+
+Line Data Class
+
+StartPos, EndPos, Color, Active Boolean. That's it.
+defined line class in data class.cs. now we nee to build
+the line pool, so we can draw and update it, just like 
+other data objects.
+
+moved rising smoke down 1 y line to make room for line color
+texture sprite, required for this line drawing approach.
+
+spriteBatch.Draw(
+	texture, 
+	destinationRectangle: new Rectangle(0, 0, 300, 300), 
+	origin:new Vector2(texture.Width/2,texture.Height/2), 
+	rotation:-45f );
+
+in this case use
+
+Draw(
+	Texture, 
+	new Rectangle(0, 0, 300, 300), 
+	new Rectangle(0, 0, texture.Width, texture.Height), 
+	Color.White, 
+	-45f, 
+	new Vector2(texture.Width / 2, texture.Height / 2), 
+	SpriteEffects.None, 
+	0);
+	
+working....	added line pool.
+added functions for drawing line, drawing line pool,
+if active. we are not setting an lines active yet.
+
+is this drawing in game? we have to link it up to overworld
+map and see....
+
+overworld map location neighbors should draw... remove 
+location connection lines from overworld map. done.
+
+in order to draw a line, we must make one active.
+find the first available inactive line and return it.
+or, add that into the pool. additional systems added.
+honestly, this felt like a ton of code. but, it's working.
+the overworld map now draws to a location's neighbors
+using a single pixel yellow line. now we can refine and 
+modify the system in place.
+	
+updated UWP project to have functions_line class ref.
 
 
 
-Editor++
-
-fire the main game loop once after loading roomData
-call Functions_Pool.Update(); 
-then teleport the camera.
-this will place link in the level and update the camera to his
-pos, so the level loads in a more proper manner.
-
-tested, working better. designed a new outdoor
-puzzle based on fireballs and things burning. looks
-cool. happy with this commit.
 
 
 
@@ -97,7 +154,29 @@ cool. happy with this commit.
 
 
 
+	
+LINES++
 
+why do lines draw on top of hero?
+they should draw behind hero on overworld always.
+their zdepth should be anchored just above the bkg texture.
+then ingame we will actually use their zdepth.
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 The Axe
 
 I'm straight ripping Kratos' axe here. This is an obj
@@ -106,7 +185,7 @@ max distance, it falls to the ground. this isn't far.
 pressing Y aggain then returns the axe to link's hand,
 at maximum magnitude, through anykind of object or enemy.
 
-notes
+- notes - 
 if this projectile is moving, then it has interaction checks
 with actors and roomObjects. if it is not moving, then the
 axe is laying on the ground and is ignored.
@@ -124,6 +203,85 @@ player with some of loot instantly. no elemental aspect to this
 weapon please - no fire or ice or poison affects. this is a 
 simple throw, wait, call item with specific destructive power
 that keeps it in check.
+
++ added updated entities sheet to the game.
+
+Design Parameters for Projectile Interaction with Actors
+
+* the axe should stick into enemies.
+* arrows should stick into enemies.
+* at the same time, the hookshot should
+pull whatever actor it is attached to (meaning
+some enemies could pull themselves across gaps,
+just like link does).
+
+we have to design how projectiles stick to actors.
+initial design is to put a projectile reference into
+actor class. once stuck to the actor, the projectile
+would live for 255 frames (life counter reset to 0, behavior
+suppressed, only decoration), and then be released(), or in
+the case of the axe, it would stick around until the caster
+returned it, resetting it's lifecounter to 0 every 100
+frames - living forever - unless the projectile pool is reset.
+which is a safe way to add this idea into the current systems.
+
+we should be modeling boomerang in actor class, along with
+the magical axe. this allows enemies to use these items
+using the same systems as the hero.
+
+How Does this Affect Hookshot Design?
+
+Hookshot Design: for each actor, there are projectile references.
+if something is 'stuck' into the actor - like an arrow or axe.
+hookshot can stick into an actor too, pulling that actor towards
+the caster while dealing them 1 damage. but also, if hookshot
+hits a blocking object, then hookshot drags the caster towards
+it's location for 4 seconds, after a pretty swift speed. after
+255 frames, the magnetic pull no longer happens. 
+
+then we need only to decorate the line between caster and
+hookshot tip. we need two sprites: hookshot tip and chain,
+which is animated in lttp, so we'll do that too. we'll use
+more sprites however, to make the chain seem more connected.
+and i think we should use actual links of chain, not the spike
+stuff, and the chains should connect visually, so they need to
+be center connected. the tip connects centered too. if done this way,
+we dont need an animation. we could spawn a random sparkle particle
+on a chain if we wanted to, to draw attention to it.
+
+important - we need to be updating how many chains the hookshot
+has each frame! we cant just use 4 or 8 and 'deal with it'. calculate
+the distance between the tip and caster each frame, then place
+chain particles along the line between caster and hookshot tip,
+in 16 pixel increments vertically or horizontally. we'll disable
+casting hookshot diagonally, and we'll extend the actor's stateLocked
+state to prevent them from moving until the hookshot completes it's 
+travel...ugh... too complicated.
+
+lets just draw a line between the hookshot tip and the caster,
+as a black rectangle. we need to add this code into the codebase
+anyway. then we can reuse it for the overworld, draw lines between
+neighbors. ok, designs ready.
+
+*the axe should draw a straight line from it's pickup point to caster,
+upon it's returning state.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

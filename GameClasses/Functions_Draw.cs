@@ -48,21 +48,21 @@ namespace DungeonRun
                     {
                         Draw(Obj.compCollision);
                     }
-                    
+
                 }
             }
         }
 
         public static void Draw(Actor Actor)
         {
-            if(Actor.active)
+            if (Actor.active)
             {
                 Draw(Actor.compSprite);
                 if (Flags.DrawCollisions)
                 { Draw(Actor.compCollision); }
 
                 //draw actor feet fx
-                if(Actor.feetFX.visible & Actor.swimming == false)
+                if (Actor.feetFX.visible & Actor.swimming == false)
                 {   //cant see actors feet if in water
                     Functions_Animation.Animate(Actor.feetAnim, Actor.feetFX);
                     Actor.feetFX.position.X = Actor.compSprite.position.X;
@@ -72,14 +72,14 @@ namespace DungeonRun
                 }
 
                 //place and draw any heldObj
-                if(Actor.carrying)
+                if (Actor.carrying)
                 {
-                    if(Actor.heldObj != null)
+                    if (Actor.heldObj != null)
                     {   //force this object to stay active
                         Actor.heldObj.active = true;
 
                         //where we place this heldObj depends on actor's state
-                        if(Actor.swimming)
+                        if (Actor.swimming)
                         {
                             if (Actor.underwater) //place heldObj in water
                             { Actor.heldObj.compMove.newPosition.Y = Actor.compSprite.position.Y - 1; }
@@ -107,7 +107,7 @@ namespace DungeonRun
 
         public static void Draw(List<ComponentSprite> Sprites)
         {
-            for(i = 0; i < Sprites.Count; i++) { Draw(Sprites[i]); }
+            for (i = 0; i < Sprites.Count; i++) { Draw(Sprites[i]); }
         }
 
         public static void Draw(ComponentSprite Sprite)
@@ -142,7 +142,7 @@ namespace DungeonRun
 
         public static void Draw(ComponentCollision Coll)
         {   //draw the collision rec of the collision component
-            if(Coll.blocking)
+            if (Coll.blocking)
             {
                 ScreenManager.spriteBatch.Draw(
                     Assets.dummyTexture, Coll.rec,
@@ -157,7 +157,7 @@ namespace DungeonRun
         }
 
         public static void Draw(ComponentText Text)
-        {   
+        {
             ScreenManager.spriteBatch.DrawString(
                 Text.font, Text.text, Text.position,
                 Text.color * Text.alpha, Text.rotation, Vector2.Zero,
@@ -175,8 +175,8 @@ namespace DungeonRun
         public static void Draw(MenuRectangle MenuRec)
         {
             ScreenManager.spriteBatch.Draw(
-                Assets.dummyTexture, 
-                MenuRec.rec, 
+                Assets.dummyTexture,
+                MenuRec.rec,
                 MenuRec.color);
         }
 
@@ -203,9 +203,9 @@ namespace DungeonRun
         }
 
         public static void Draw(ScreenRec Rec)
-        {  
+        {
             ScreenManager.spriteBatch.Draw(
-                Assets.dummyTexture, Rec.rec, 
+                Assets.dummyTexture, Rec.rec,
                 ColorScheme.overlay * Rec.alpha);
         }
 
@@ -223,6 +223,38 @@ namespace DungeonRun
             Draw(Display.bkg);
             Draw(Display.textComp);
         }
+
+
+
+
+
+
+
+
+        public static void Draw(Line Line)
+        {
+            if (Line.visible)
+            {
+                ScreenManager.spriteBatch.Draw(
+                    Line.texture,
+                    Line.rec, //draw rec
+                    Line.texRec, //texture rec
+                    Color.White, //at 100% alpha
+                    Line.angle,
+                    Line.texOrigin, //wat is this Vector2 origin parameter?
+                    SpriteEffects.None,
+                    Line.zDepth
+                );
+            }
+        }
+
+
+
+
+
+
+
+
 
 
 
