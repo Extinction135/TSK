@@ -73,102 +73,43 @@ Today:
 
 
 
-Draw Single Line Function
-
-we need to be able to draw a line from posA to posB, with a color.
-this line will always be 1 pixel wide, without any smoothing.
-
-Functions_Draw.Draw(); should be updated with
-Draw(Vector2 PosA, Vector2 PosB, Color Color);
-reff'd from previous codebase.
-
-then we can draw lines between hookshot and caster.
-plus we can draw lines between locations on overworld map's neighbors.
-means we can remove lines from the overworld map texture.
-
-To fit with the codebase's current multi-paradigm approach, we need
-to add an object pool for lines. lines need to be objects defined
-in data class.cs, and we need to have about 100 of them. hmmm.
-more like 25 of them. they will be used sparingly. *they should
-have a visible boolean, so we can quickly iterate the list and
-not draw most of the lines (that will be the game state 99% of the
-time).
-
-Line Data Class
-
-StartPos, EndPos, Color, Active Boolean. That's it.
-defined line class in data class.cs. now we nee to build
-the line pool, so we can draw and update it, just like 
-other data objects.
-
-moved rising smoke down 1 y line to make room for line color
-texture sprite, required for this line drawing approach.
-
-spriteBatch.Draw(
-	texture, 
-	destinationRectangle: new Rectangle(0, 0, 300, 300), 
-	origin:new Vector2(texture.Width/2,texture.Height/2), 
-	rotation:-45f );
-
-in this case use
-
-Draw(
-	Texture, 
-	new Rectangle(0, 0, 300, 300), 
-	new Rectangle(0, 0, texture.Width, texture.Height), 
-	Color.White, 
-	-45f, 
-	new Vector2(texture.Width / 2, texture.Height / 2), 
-	SpriteEffects.None, 
-	0);
 	
-working....	added line pool.
-added functions for drawing line, drawing line pool,
-if active. we are not setting an lines active yet.
-
-is this drawing in game? we have to link it up to overworld
-map and see....
-
-overworld map location neighbors should draw... remove 
-location connection lines from overworld map. done.
-
-in order to draw a line, we must make one active.
-find the first available inactive line and return it.
-or, add that into the pool. additional systems added.
-honestly, this felt like a ton of code. but, it's working.
-the overworld map now draws to a location's neighbors
-using a single pixel yellow line. now we can refine and 
-modify the system in place.
-	
-updated UWP project to have functions_line class ref.
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-LINES++
+Overworld Map Lines++
 
 why do lines draw on top of hero?
 they should draw behind hero on overworld always.
 their zdepth should be anchored just above the bkg texture.
 then ingame we will actually use their zdepth.
 
+fixed lines to use proper zdepth, drawing behind hero and over map.
+this was done in a very fast way, so we'll likely laugh at
+these implementations later on and i'll redesign them
+when i have more time to focus on their design.
 
 
 
 
-	
-	
-	
+
+
+
+
+
+
+
+Overworld++
+
+fix the wave animation particle to not have a red pixel.
+modify overworld to make two campfires in front of skull king.
+move flag to ontop of houses, and coliseum.
+
+these are still in development.
+
+
+
+
+
+
+
 	
 	
 	
@@ -265,6 +206,7 @@ neighbors. ok, designs ready.
 
 *the axe should draw a straight line from it's pickup point to caster,
 upon it's returning state.
+
 
 
 

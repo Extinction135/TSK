@@ -269,16 +269,6 @@ namespace DungeonRun
                 #endregion
 
 
-                #region Update Pool Line List
-
-                for (i = 0; i < Pool.lineCount; i++)
-                {   //this allows lines to change their start & end pos, but still draw correctly
-                    Functions_Line.UpdateLine(Pool.linePool[i]);
-                }
-
-                #endregion
-
-
             }
             else if (displayState == DisplayState.Closing)
             {   //fade overlay in
@@ -364,6 +354,16 @@ namespace DungeonRun
                 (int)currentLocation.neighborDown.compSprite.position.X,
                 (int)currentLocation.neighborDown.compSprite.position.Y
             );
+
+            //prep lines for display
+            for (i = 0; i < Pool.lineCount; i++)
+            {
+                //sets up angles, length, etc..
+                Functions_Line.UpdateLine(Pool.linePool[i]);
+                //force lines to layer under hero, over map
+                Pool.linePool[i].zDepth = 0.9999f;
+            }
+            
         }
 
 
@@ -375,9 +375,7 @@ namespace DungeonRun
     public class Overworld_ShadowKing : ScreenOverworld
     {
 
-
-        //levels
-
+        
         //skullisland
         static MapLocation SkullIsland_ShadowDungeon;
         static MapLocation SkullIsland_Coliseum;

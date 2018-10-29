@@ -28,6 +28,7 @@ namespace DungeonRun
                     Pool.linePool[i].startPosY = StartPosY;
                     Pool.linePool[i].endPosX = EndPosX;
                     Pool.linePool[i].endPosY = EndPosY;
+                    Pool.linePool[i].zDepth = 0.000001f; //set to lowest layer over map
                     return;
                 }
             }
