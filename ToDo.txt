@@ -71,31 +71,6 @@ Today:
 
 
 
-
-
-	
-Overworld Map Lines++
-
-why do lines draw on top of hero?
-they should draw behind hero on overworld always.
-their zdepth should be anchored just above the bkg texture.
-then ingame we will actually use their zdepth.
-
-fixed lines to use proper zdepth, drawing behind hero and over map.
-this was done in a very fast way, so we'll likely laugh at
-these implementations later on and i'll redesign them
-when i have more time to focus on their design.
-
-
-
-
-
-
-
-
-
-
-
 Overworld++
 
 fix the wave animation particle to not have a red pixel.
@@ -104,6 +79,45 @@ move flag to ontop of houses, and coliseum.
 
 these are still in development.
 
+fixed wave particle sprite.
+which also fixed map campfire sprite.
+moved campfire sprite to skullking.
+
+added ALOT of wave spawn positions, which makes
+the map look a ton better. tested, working.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Wave Spawns on Overworld
+
+the location variation needs to be smaller, so we
+can more accurately place wave positions. they are
+too big right now.
+
+
+
+
+
+
+
+
+Flags++
+
+place a bunch on flags on skull coliseum, port town houses,
+and houses in the water. this is the start of something fun.
 
 
 

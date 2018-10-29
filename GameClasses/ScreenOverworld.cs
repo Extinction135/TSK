@@ -1630,14 +1630,7 @@ namespace DungeonRun
 
             #endregion
 
-
-            #region Setup wave spawn positions
-
-            //create a list of positions where to place waves
-            waveSpawnPositions = new List<Vector2>();
-            waveSpawnPositions.Add(new Vector2(1087, 483));
-
-            #endregion
+            
             
         }
 
@@ -1719,13 +1712,35 @@ namespace DungeonRun
             base.Open();
             Functions_Pool.Reset();
 
-            
-            //particle testing
-            //spawn campfire
-            Functions_Particle.Spawn(ObjType.Particle_Map_Campfire, 987, 483); //test
-            //spawn flags
-            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 987, 483); //test
-            
+            //clear out all wave spawn positions, we will set them below
+            waveSpawnPositions = new List<Vector2>();
+
+
+
+
+            #region Skull island decorations
+
+            //various decorative flags
+            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 919, 460);
+
+            //skull king campfires
+            Functions_Particle.Spawn(ObjType.Particle_Map_Campfire, 1014, 485); //left
+            Functions_Particle.Spawn(ObjType.Particle_Map_Campfire, 1062, 477); //right
+
+            //wave spawn locations
+            waveSpawnPositions.Add(new Vector2(1090, 483)); //in front right skullking
+            waveSpawnPositions.Add(new Vector2(963, 482)); //in front left skullking
+
+            waveSpawnPositions.Add(new Vector2(1010, 290)); //above center skull king
+
+            #endregion
+
+
+            //other wave spawn locations
+            waveSpawnPositions.Add(new Vector2(783, 550)); //entering fishermans path
+            waveSpawnPositions.Add(new Vector2(738, 444)); //near intro lava cave
+            waveSpawnPositions.Add(new Vector2(1272, 481)); //heading towards death mountain
+
 
 
             Functions_Music.PlayMusic(Music.Title); //play overworld music
