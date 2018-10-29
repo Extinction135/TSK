@@ -71,41 +71,33 @@ Today:
 
 
 
-Overworld++
-
-fix the wave animation particle to not have a red pixel.
-modify overworld to make two campfires in front of skull king.
-move flag to ontop of houses, and coliseum.
-
-these are still in development.
-
-fixed wave particle sprite.
-which also fixed map campfire sprite.
-moved campfire sprite to skullking.
-
-added ALOT of wave spawn positions, which makes
-the map look a ton better. tested, working.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Wave Spawns on Overworld
+Wave Spawns on Overworld ++
 
 the location variation needs to be smaller, so we
 can more accurately place wave positions. they are
 too big right now.
+
+reduced from 12 to 8. see how that looks.
+looked good, but i reduced it down to 6 to make
+it just a little more accurate.
+
+added more wave spawn locations.
+i think waves should spawn less.
+
+wave generation reduced from 20% to 10% (per frame).
+60 chances at 10% a chance to spawn a wave at any
+randomy wave generation position. might reduce to
+7 or 5%. feels too busy right now. went with 5%.
+looks good. not too busy.
+
+
+
+
+
+
+
+
+
 
 
 

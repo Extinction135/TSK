@@ -237,12 +237,12 @@ namespace DungeonRun
 
                 #region Wave Generation Routine
 
-                if (Functions_Random.Int(0, 100) > 80)
+                if (Functions_Random.Int(0, 100) > 94) //5% chance to spawn wave
                 {   //randomly create a wave particle at a wave spawn location with random offset
                     wavePos = waveSpawnPositions[Functions_Random.Int(0, waveSpawnPositions.Count)];
                     Functions_Particle.Spawn(ObjType.Particle_Map_Wave,
-                        wavePos.X + Functions_Random.Int(-12, 12),
-                        wavePos.Y + Functions_Random.Int(-12, 12));
+                        wavePos.X + Functions_Random.Int(-6, 6),
+                        wavePos.Y + Functions_Random.Int(-6, 6));
                 }
 
                 #endregion
@@ -1729,16 +1729,22 @@ namespace DungeonRun
 
             //wave spawn locations
             waveSpawnPositions.Add(new Vector2(1090, 483)); //in front right skullking
+            waveSpawnPositions.Add(new Vector2(1095, 458)); //in front right skullking
+
             waveSpawnPositions.Add(new Vector2(963, 482)); //in front left skullking
 
             waveSpawnPositions.Add(new Vector2(1010, 290)); //above center skull king
+
+            waveSpawnPositions.Add(new Vector2(937, 355)); //above left skull king
+
+            waveSpawnPositions.Add(new Vector2(1083, 336)); //above left skull king
 
             #endregion
 
 
             //other wave spawn locations
-            waveSpawnPositions.Add(new Vector2(783, 550)); //entering fishermans path
-            waveSpawnPositions.Add(new Vector2(738, 444)); //near intro lava cave
+            waveSpawnPositions.Add(new Vector2(786, 553)); //entering fishermans path
+            waveSpawnPositions.Add(new Vector2(741, 447)); //near intro lava cave
             waveSpawnPositions.Add(new Vector2(1272, 481)); //heading towards death mountain
 
 
