@@ -332,9 +332,19 @@ namespace DungeonRun
                 Functions_Hero.ResetFieldSpawnPos();
             }
 
-            Functions_Pool.Update(); //update roomObjs once
+
+
+            //Pool.hero.direction = Direction.Up;
             Functions_Hero.SpawnInCurrentRoom(); //spawn hero in room
-            Pool.hero.direction = Direction.Down;
+
+            //teleport camera to hero
+            Camera2D.targetPosition = Pool.hero.compSprite.position;
+            Camera2D.currentPosition = Camera2D.targetPosition;
+            Functions_Camera2D.SetView();
+
+            //update editor world once, but pause game
+            Screens.Editor.Update(ScreenManager.gameTime);
+            Screens.Editor.Draw(ScreenManager.gameTime);
             Flags.Paused = true;
         }
 

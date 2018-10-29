@@ -78,58 +78,16 @@ Today:
 
 Editor++
 
-current sheet button needs to be renamed to widget display.
-done.
-
-ignoring boat objects would be useful too - this helps when
-working on beat sea levels, plus the interior floors of the
-homes are the boat floors, so bonus: this also ignores house
-floors, making moving furniture around inside houses much easier.
-
-added Flags.IgnoreBoatTiles. modeled after ignore water tiles.
-
-
-*coastlines have been added to the water tiles that are ignored
-by Flags.IgnoreWaterTiles.
-
-
-boatobjs are now ignored in selection routines, and deletion
-editor routines. along with the ignore boat button in editor 
-menu. test -> working as expected.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Roof Options
-
-** we can make hiding roof tiles a menu option! not an editor thing,
-but an ingame preference. this is easy to do. and helpful in our editing
-case. we only need to flip the Flags.IgnoreRoofTiles boolean to true or
-false, via an options screen button.
-
-
-
-
-
-
-
-Editor++
-
 fire the main game loop once after loading roomData
 call Functions_Pool.Update(); 
 then teleport the camera.
 this will place link in the level and update the camera to his
 pos, so the level loads in a more proper manner.
+
+tested, working better. designed a new outdoor
+puzzle based on fireballs and things burning. looks
+cool. happy with this commit.
+
 
 
 
