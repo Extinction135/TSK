@@ -444,7 +444,7 @@ namespace DungeonRun
         public static List<Byte4> Wor_SeekerExploder_Idle = new List<Byte4>
         { new Byte4(0, 3, 0, 0), new Byte4(1, 3, 0, 0) };
         public static List<Byte4> Wor_SeekerExploder_Chase = new List<Byte4>
-        { new Byte4(2, 3, 0, 0), new Byte4(3, 3, 0, 0) };
+        { new Byte4(1, 3, 0, 0), new Byte4(2, 3, 0, 0) };
 
         #endregion
 
@@ -1295,7 +1295,7 @@ namespace DungeonRun
             //dash is semi-shut eye
             MiniBoss_SpiderUnarmored_Animations.dash = new AnimationGroup();
             MiniBoss_SpiderUnarmored_Animations.dash.down = new List<Byte4>
-            { new Byte4(6, 4, 0, 0), new Byte4(6, 4, 1, 0) };
+            { new Byte4(7, 4, 0, 0), new Byte4(7, 4, 1, 0) };
             MiniBoss_SpiderUnarmored_Animations.dash.up = MiniBoss_SpiderUnarmored_Animations.dash.down;
             MiniBoss_SpiderUnarmored_Animations.dash.right = MiniBoss_SpiderUnarmored_Animations.dash.down;
             MiniBoss_SpiderUnarmored_Animations.dash.left = MiniBoss_SpiderUnarmored_Animations.dash.down;
@@ -1504,7 +1504,10 @@ namespace DungeonRun
 
             Boss_BigBat_Animations.attack = new AnimationGroup();
             Boss_BigBat_Animations.attack.down = new List<Byte4>
-            { new Byte4(11, 0, 0, 0), new Byte4(11, 0, 0, 0) };
+            {   //bite towards the ground
+                new Byte4(11, 0, 0, 0), new Byte4(12, 0, 0, 0),
+                new Byte4(11, 0, 0, 0), new Byte4(12, 0, 0, 0),
+            };
             Boss_BigBat_Animations.attack.up = Boss_BigBat_Animations.attack.down;
             Boss_BigBat_Animations.attack.right = Boss_BigBat_Animations.attack.down;
             Boss_BigBat_Animations.attack.left = Boss_BigBat_Animations.attack.down;
@@ -1523,8 +1526,10 @@ namespace DungeonRun
             Boss_BigBat_Animations.death_heroic_water = Boss_BigBat_Animations.death_blank;
             Boss_BigBat_Animations.death_blank = new AnimationGroup();
             Boss_BigBat_Animations.death_blank.down = new List<Byte4>
-            {   //laying on ground
-                new Byte4(12, 0, 0, 0), new Byte4(12, 0, 0, 0)
+            {   //falls, to laying on ground
+                new Byte4(10, 0, 0, 0), new Byte4(10, 0, 0, 0),
+                new Byte4(11, 0, 0, 0), new Byte4(11, 0, 0, 0),
+                new Byte4(12, 0, 0, 0), new Byte4(12, 0, 0, 0),
             };
             Boss_BigBat_Animations.death_blank.up = Boss_BigBat_Animations.death_blank.down;
             Boss_BigBat_Animations.death_blank.right = Boss_BigBat_Animations.death_blank.down;

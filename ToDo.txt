@@ -59,11 +59,38 @@ Today:
 
 
 
+Mountain Dungeon++
+
+BatBoss++
+
+expanded bat bosses death animation. 
+updated animframes for bat boss death
+and attack. this boss is now in color.
+
+SpiderMiniBoss++
+
+fixed a visual bug where unarmored spider
+would display armored spider sprite when
+dashing. this miniboss is now in color.
+
+Forest Dungeon
+
+explosive seeker was colored and lost a frame.
+animFrames updated. no change in visuals, just
+a sprite saving frame dupe'.
+
+completed color additions to forest miniboss.
+all enemies updated with color now.
+we should test fighting big eye in the coliseum.
 
 
-Swamp++
 
-color added to all current swamp enemies.
+
+
+
+
+
+
 
 
 
@@ -83,6 +110,13 @@ color pet doggo.
 
 
 
+Forest Entrance Level
+
+swamp dungeon is not connected properly, rn.
+cave is. forest will be soon, we just need a
+big black shadow to go between a big rock wall
+resembling some teeth going into water. this is the 
+forest entrance level.
 
 
 
@@ -109,7 +143,7 @@ the miniboss to really shine in.
 
 BUGS!
 
-unarmored spider uses armored attack frame.
+
 that bumper spike room needs to be removed. 
 floor cracks should only be able to be oriented one way: down.
 *this is part of gameobj rotation/settype attributes.
@@ -144,11 +178,7 @@ have no required puzzle for entry.
 DungeonEntrances++
 
 *create forest dungeon entrance objs + level details
-*create swamp dungeon entrance objs + level details - SLIME obj
 
-we can do the slime obj rn - this just drops player mobility to 
-pushing/dragging speed upon contact. super easy. then update the
-swamp level, so swimming thru slime is annoyingly slow.
 
 
 
@@ -175,6 +205,52 @@ release 0.77?
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+0.78 - SLIME, Swamp Dungeon
+
+-because we're close to finishing the swamp dungeon,
+we can use it as a prototype endgame dungeon (hard difficulty).
+
+*create swamp dungeon entrance objs + level details - SLIME obj
+
+we can do the slime obj rn - this just drops player mobility to 
+pushing/dragging speed upon contact. super easy. then update the
+swamp level, so swimming thru slime is annoyingly slow.
+
+
+
+
+
+
+Difficulty
+
++++++ we need to be able to scale the dungeon difficulty (complexity)
+based on the difficulty settings of easy, medium, hard.
+easy creates simple dungeons, medium has the spectrum,
+hard is size 2-3 dungeons, and maybe we have expert level too,
+where all dungons are size 3 or greater.
 
 
 
