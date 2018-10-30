@@ -5,6 +5,38 @@
 
 
 
+
+
+
+Brandy++
+*brandy should provide some tip or clue about each level
+that she's on. we can do this simply by checking the level's current room ID.
+then selecting the proper dialog string.
+
+
+
+
+
+
+Fisherman
+
+sits alone, at his house, fishing, wistling a tune.
+around him are 4 bushes. talking to him shows a dialog
+that he just wistles a tune and keeps fishing. digging
+ditches to regrow the bushes around him changes his tune.
+an exclamation point appears over his head. speaking with
+him now, he says "my father was a farmer. i left and became
+a fisherman. my father gave me these beans, but i've never
+found a use for them. you seem to know how to grow things.
+here, take them. he'd want you to have them.."
+and then he returns to wistling his tune, just as before.
+this is how link acquires the bag of magic beans.
+
+
+
+
+
+
 Art++
 grass that is burned should become a different sprite,
 like a burned grass sprite.

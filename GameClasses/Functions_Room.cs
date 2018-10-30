@@ -271,6 +271,12 @@ namespace DungeonRun
                         //we have to load something
                         else { RoomXmlData = RoomData.bossRooms[0]; }
                         LevelSet.currentLevel.isField = false;
+
+                        //manually set the dungeon room's spawnpos to center of room
+                        LevelSet.spawnPos_Dungeon.X = Room.center.X + 8;
+                        LevelSet.spawnPos_Dungeon.Y = Room.center.Y;
+                        //set to bottom center of room, north of door
+                        LevelSet.spawnPos_Dungeon.Y += 5 * 16;
                     }
                 }
                 //hub rooms

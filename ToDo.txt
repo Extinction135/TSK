@@ -61,20 +61,111 @@ Today:
 
 
 
-Game++
-
-Updated SkullIsland Town level.
-
-recorded a video playthrough of 0.77, where my
-dog somehow got shrunk to half-size and it was
-hilarious. and i'm fine with it.
 
 
+Boss Door Bug
+
+big bug: falling into a pit returns hero to last door
+passed thru - this does not work on boss rooms, and
+instead returns hero to the previous room's last door.
+and this breaks the boss room and can put link into
+a wall, locking him, breaking the game. fix this.
+
+how we fix this: when hero enters a boss room,
+this LevelSet.spawnPos_Dungeon XY is set to the room's only door.
+this means any call to spawn in current room() puts link
+at the bosses entrance door, and that kicks him forward into
+the room again. learn more about the bug..
+
+this door that hero touches and sets pos with, 
+is NOT A DOOR ROOMOBJECT. it is a piece of data
+stored along with the rooms recs that define a dungeon.
+do we have a 'door rec' on the boss room door? probably not.
+because if we did, link would collide with it and the
+code that you wrote, thats been tested, that has worked
+until this point, is behaving as expected and you
+probably just messed up. let's see..
+
+yep. the logic to create the boss door is super wonky.
+we gotta clean it up. here's what's happening: upon
+dungeon generation, when we connect all the rooms
+with door data pieces, we were skipping the door that
+connected the boss room to the random room in the
+cave dungeon, because the door connection routine
+was only connecting boss rooms to hub rooms, with
+door data. the fix is simple: the boss room always 
+has to connect to the hub room.
+
+and this must be added when the hub room is created.
+done and done. modified forest to be size 1, cave to
+be size 2, swamp to be size 3. this is to test the
+dungeon recipes tho. and to see if the map scroll
+can display a size 3 dungeon properly. 
+
+lets test these dungeons out now.
+added all dungeon entrances to the shadow king level.
+compiled all the level data to cs, for easy testing.
+
+upon testing, this bug is not fixed. but, the door
+is indeed there. let's manually set the spawnPos for
+link when he enters the boss room. this will be just
+north of the entrance door..
+
+done. tested and fixed.
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+Dungeons++
+
+*armored spiders are being loaded into a room that has
+forest hub room data. or is this the base hub room data?
+either way, each hub room needs it's own roomData for
+the miniboss to really shine in.
+
+*all boss roomData is the same too, and we should change this.
+*all dungeon textures are the same as well.
+
+
+
+
+
+
+
+
+
+
+
+remove the kraken challenge from coliseum. this
+level data doesn't exist anymore and loading this
+would likely break the game as well.
+
+
+
+
+
+
+
+
+
+
+
+Playthrough Notes
+
+unarmored spider uses armored attack frame.
+that bumper spike room needs to be removed. 
+floor cracks should only be able to be oriented one way: down.
+*this is part of gameobj rotation/settype attributes.
 
 
 
@@ -92,6 +183,13 @@ space in the common objs sheet.
 
 
 
+
+Color++
+
+color all bosses, minibosses, standard enemies.
+*bosses should stand out - use slightly different colors
+*minibosses can stand out too
+color pet doggo.
 
 
 
@@ -126,9 +224,12 @@ series of trees, so we can fill up 'forests' efficiently.
 
 
 
-**
+Steel Fences--
+
 remove fences from the game, they serve no real purpose,
 now that we have wooden posts.
+
+
 
 
 
@@ -153,20 +254,6 @@ we will be adding coliseum windows too.
 
 
 
-Fisherman
-
-sits alone, at his house, fishing, wistling a tune.
-around him are 4 bushes. talking to him shows a dialog
-that he just wistles a tune and keeps fishing. digging
-ditches to regrow the bushes around him changes his tune.
-an exclamation point appears over his head. speaking with
-him now, he says "my father was a farmer. i left and became
-a fisherman. my father gave me these beans, but i've never
-found a use for them. you seem to know how to grow things.
-here, take them. he'd want you to have them.."
-and then he returns to wistling his tune, just as before.
-this is how link acquires the bag of magic beans.
-
 
 
 
@@ -190,24 +277,6 @@ have no required puzzle for entry.
 
 
 
-Wire Fences
-
-they don't line up, because we built them the wrong way conceptually.
-design them based on the wooden fences that actually work, you doofus.
-
-
-
-
-
-
-
-
-
-Brandy++
-*brandy should provide some tip or clue about each level
-that she's on. we can do this simply by checking the level's current room ID.
-then selecting the proper dialog string.
-
 
 
 
@@ -229,6 +298,22 @@ swamp level, so swimming thru slime is annoyingly slow.
 
 
 release 0.77?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

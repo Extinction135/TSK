@@ -662,10 +662,13 @@ namespace DungeonRun
 
         public static void BuildDungeon_Forest()
         {
-            //easy difficulty
-            BuildDungeon_ExitToHub(2); //med size
-            BuildDungeon_AddBossPath(0); //sm size
-            BuildDungeon_KeyPath(2); //med size
+            //recipe for size 1 dungeon - very easy
+
+            //base dungeon
+            BuildDungeon_ExitToHub(1); //short
+            BuildDungeon_AddBossRoom();
+            //small size
+            BuildDungeon_KeyPath(1); //sm size
             BuildDungeon_ImproveExit();
             BuildDungeon_Expand(1); //small, secrets++
             BuildDungeon_Finalize();
@@ -673,9 +676,12 @@ namespace DungeonRun
 
         public static void BuildDungeon_Mountain()
         {
-            //medium difficulty
-            BuildDungeon_ExitToHub(2); //med size
-            BuildDungeon_AddBossPath(1); //med size
+            //recipe for size 2 dungeon - normal challenge
+
+            //base dungeon
+            BuildDungeon_ExitToHub(1); //short
+            BuildDungeon_AddBossRoom();
+            //medium size
             BuildDungeon_KeyPath(2); //med size
             BuildDungeon_ImproveExit();
             BuildDungeon_Expand(2); //med size/secrets
@@ -684,13 +690,66 @@ namespace DungeonRun
 
         public static void BuildDungeon_Swamp()
         {
-            //medium difficulty - dupes mountain for now
-            BuildDungeon_ExitToHub(2); //med size
-            BuildDungeon_AddBossPath(1); //med size
-            BuildDungeon_KeyPath(2); //med size
+            //recipe for size 3 dungeon: warning - very big
+            
+            //base dungeon
+            BuildDungeon_ExitToHub(2); //med
+            BuildDungeon_AddBossRoom();
+
+            //huge size
+            BuildDungeon_KeyPath(3); //med size
             BuildDungeon_ImproveExit();
-            BuildDungeon_Expand(2); //med size/secrets
+            BuildDungeon_Expand(2);
+            BuildDungeon_Expand(2);
+            //lots of secrets
+            Functions_Level.AddSecretRooms();
+            Functions_Level.AddSecretRooms();
+            Functions_Level.AddSecretRooms();
+            //ok stop
             BuildDungeon_Finalize();
+            
+
+
+            /*
+            //test idea: can we hide the key path behind a secret room?
+            //YES WE CAN!
+            //base dungeon
+            BuildDungeon_ExitToHub(3); //long
+            BuildDungeon_AddBossRoom();
+
+            //lots of secret rooms
+            Functions_Level.AddSecretRooms();
+            Functions_Level.AddSecretRooms();
+            Functions_Level.AddSecretRooms();
+            Functions_Level.AddSecretRooms();
+            Functions_Level.AddSecretRooms();
+            //huge size
+            BuildDungeon_KeyPath(1); //stay short so it cant touch hub
+            BuildDungeon_ImproveExit();
+
+            //lots of secret rooms
+            Functions_Level.AddSecretRooms();
+            Functions_Level.AddSecretRooms();
+            Functions_Level.AddSecretRooms();
+            Functions_Level.AddSecretRooms();
+            Functions_Level.AddSecretRooms();
+
+            //some connecting rooms
+            Functions_Level.AddMoreRooms();
+
+            //lots of secret rooms
+            Functions_Level.AddSecretRooms();
+            Functions_Level.AddSecretRooms();
+            Functions_Level.AddSecretRooms();
+            Functions_Level.AddSecretRooms();
+            Functions_Level.AddSecretRooms();
+
+            //ok stop
+            BuildDungeon_Finalize();
+            */
+
+
+
         }
 
 
@@ -750,21 +809,11 @@ namespace DungeonRun
             hubIndex = LevelSet.dungeon.rooms.Count() - 1;
         }
 
-        static void BuildDungeon_AddBossPath(byte numOfRoomsBetween)
+        static void BuildDungeon_AddBossRoom()
         {
-            //add rooms north of starting room
-            for (b = 0; b < numOfRoomsBetween; b++)
-            {
-                lastRoom = LevelSet.dungeon.rooms.Count() - 1;
-                Room room = new Room(new Point(0, 0), Functions_Level.GetRandomRoomType());
-                Functions_Room.MoveRoom(room,
-                    LevelSet.dungeon.rooms[lastRoom].rec.X,
-                    LevelSet.dungeon.rooms[lastRoom].rec.Y - (16 * room.size.Y) - 16);
-                LevelSet.dungeon.rooms.Add(room);
-            }
-
-            //place boss north of last room added
+            //place boss north of hub room added - hub must be last room
             lastRoom = LevelSet.currentLevel.rooms.Count() - 1;
+            //AddBossRoom() MUST immediately follow call to ExitToHub()
 
             RoomID bossID = RoomID.ForestIsland_BossRoom;
             //determine what boss room to load based on current level id
@@ -869,7 +918,7 @@ namespace DungeonRun
 
         static void BuildDungeon_Finalize()
         {
-            //create the temporary build list
+            //create a temporary build list
             //(we will destructively edit this list)
             List<Room> buildList = new List<Room>();
             for (b = 0; b < LevelSet.dungeon.rooms.Count; b++)
@@ -885,21 +934,28 @@ namespace DungeonRun
                 for (b = 1; b < buildList.Count(); b++)
                 {
                     connectRooms = true;
-                    //only the boss room can connect to the hub room
-                    if (
-                        (
-                        buildList[0].roomID == RoomID.ForestIsland_BossRoom ||
-                        buildList[0].roomID == RoomID.DeathMountain_BossRoom ||
-                        buildList[0].roomID == RoomID.SwampIsland_BossRoom
-                        )
-                        & 
-                        (
-                        buildList[b].roomID != RoomID.ForestIsland_HubRoom ||
-                        buildList[b].roomID != RoomID.DeathMountain_HubRoom ||
-                        buildList[b].roomID != RoomID.SwampIsland_HubRoom
-                        )
-                       )
+
+
+                    #region Boss Rooms can only connect to Hub Rooms, for now
+
+                    //forest boss room can only connect to forest hub room
+                    if(buildList[0].roomID == RoomID.ForestIsland_BossRoom & 
+                        buildList[b].roomID != RoomID.ForestIsland_HubRoom)
                     { connectRooms = false; }
+
+                    //cave boss room can only connect to cave hub room
+                    else if (buildList[0].roomID == RoomID.DeathMountain_BossRoom &
+                        buildList[b].roomID != RoomID.DeathMountain_HubRoom)
+                    { connectRooms = false; }
+
+                    //swamp boss room can only connect to swamp hub room
+                    if (buildList[0].roomID == RoomID.SwampIsland_BossRoom &
+                        buildList[b].roomID != RoomID.SwampIsland_HubRoom)
+                    { connectRooms = false; }
+
+                    #endregion
+
+
 
                     if (connectRooms)
                     {   //if the two rooms are nearby, create door between them
