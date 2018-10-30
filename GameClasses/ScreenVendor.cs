@@ -460,12 +460,6 @@ namespace DungeonRun
                     CloseVendorScreen();
                     Functions_Colliseum.BeginChallenge(Challenges.Bosses_BigBat);
                 }
-                else if (Item.type == MenuItemType.Challenge_Bosses_Kraken)
-                {
-                    CompleteSale(Item);
-                    CloseVendorScreen();
-                    Functions_Colliseum.BeginChallenge(Challenges.Bosses_Kraken);
-                }
 
 
                 #endregion

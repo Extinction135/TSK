@@ -82,7 +82,6 @@ namespace DungeonRun
             Functions_Level.BuildLevel(LevelSet.currentLevel.ID);
 
             //this method assums the current level + room is colliseum pit
-            //note this method works for both light and dark world colliseums :p
             currentChallenge = Challenge;
 
             //remove all vendors (and any other decoration)
@@ -133,7 +132,7 @@ namespace DungeonRun
                     + 16 * i //from there, place objs in a horizontal line
                     + 8, //with a small alignment offset
 
-                    //LevelSet.currentLevel.currentRoom.spawnPos.Y + 16 * 2 - 8
+                    //set Ypos
                     LevelSet.currentLevel.currentRoom.rec.Y //start with Y pos
                     + LevelSet.currentLevel.currentRoom.rec.Height //add height
                     - 16 - 8); //apply final offset

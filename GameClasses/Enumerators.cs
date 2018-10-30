@@ -915,7 +915,6 @@ namespace DungeonRun
 
         Challenge_Bosses_BigEye,
         Challenge_Bosses_BigBat,
-        Challenge_Bosses_Kraken,
 
         #endregion
 
