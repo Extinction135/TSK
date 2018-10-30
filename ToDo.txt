@@ -60,25 +60,12 @@ Today:
 
 
 
-Steel Fences--
 
-remove fences from the game, they serve no real purpose,
-now that we have wooden posts. done. not even going to
-test this commit.
+Swamp++
 
+color added to all current swamp enemies.
 
 
-
-
-
-
-
-BoatObjs++
-
-it's time to consolidate the ship objects.
-we dont need the right boat objects, as we can
-simply mirror the left ones. this gives us more
-space in the common objs sheet.
 
 
 
