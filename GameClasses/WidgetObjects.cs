@@ -360,10 +360,10 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[11], ObjType.Wor_Build_Roof_Bottom);
 
             //row 4
-            Functions_GameObject.SetType(objList[12], ObjType.Wor_Fence_Vertical_Left);
-            Functions_GameObject.SetType(objList[13], ObjType.Wor_Fence_Horizontal);
-            Functions_GameObject.SetType(objList[14], ObjType.Wor_Fence_Gate);
-            Functions_GameObject.SetType(objList[15], ObjType.Wor_Fence_Vertical_Right);
+            Functions_GameObject.SetType(objList[12], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[13], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[14], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[15], ObjType.Unknown);
 
             //row 5
             Functions_GameObject.SetType(objList[16], ObjType.NPC_Story);

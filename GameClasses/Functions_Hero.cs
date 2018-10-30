@@ -523,12 +523,8 @@ namespace DungeonRun
             #endregion
 
 
-            #region Gate and House Doors
+            #region House Doors
 
-            else if (Obj.type == ObjType.Wor_Fence_Gate)
-            {
-                Functions_GameObject_World.OpenFencedGate(Obj);
-            }
             else if (Obj.type == ObjType.Wor_Build_Door_Shut)
             {
                 Functions_GameObject_World.OpenBuildingDoor(Obj);

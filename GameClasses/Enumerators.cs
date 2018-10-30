@@ -480,11 +480,15 @@ namespace DungeonRun
         Wor_Ditch_Empty_Endcap_Horizontal,
         Wor_Ditch_Empty_Endcap_North,
 
+
+        /*
         //fence and gate
         Wor_Fence_Horizontal,
         Wor_Fence_Vertical_Left,
         Wor_Fence_Vertical_Right,
         Wor_Fence_Gate,
+        */
+
 
         //building objs
         Wor_Build_Wall_FrontA,

@@ -206,14 +206,7 @@ namespace DungeonRun
         public static List<Byte4> Wor_Ditch_Filled_Endcap_North = new List<Byte4> { new Byte4(31, 9, 0, 0) };
 
 
-
-
-
-        //fence and gate
-        public static List<Byte4> Wor_Fence_Horizontal = new List<Byte4> { new Byte4(20, 11, 0, 0) }; 
-        public static List<Byte4> Wor_Fence_Vertical_Left = new List<Byte4> { new Byte4(20, 10, 0, 0) };
-        public static List<Byte4> Wor_Fence_Vertical_Right = new List<Byte4> { new Byte4(20, 10, 1, 0) };
-        public static List<Byte4> Wor_Fence_Gate = new List<Byte4> { new Byte4(21, 11, 0, 0) };
+        
 
         //building objs
         public static List<Byte4> Wor_Build_Wall_FrontA = new List<Byte4> { new Byte4(15, 10, 0, 0) };

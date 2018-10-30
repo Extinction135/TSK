@@ -60,36 +60,16 @@ Today:
 
 
 
-
-
-Kraken--
-
-remove the kraken challenge from coliseum. this
-level data doesn't exist anymore and loading this
-would likely break the game as well. *check that
-swamp bossroom is setup to handle kraken.
-
-kraken challenge enum value removed.
-challenge sections removed as well.
-the coliseum challenge set has been kept,
-as the kraken will appear as a water coliseum
-boss, and will likely not even be the swamp
-boss upon 1.0 release.
-
-
-
-
-
-
-
-
-
-
 Steel Fences--
 
 remove fences from the game, they serve no real purpose,
-now that we have wooden posts. *they should no longer
-be in room data either*
+now that we have wooden posts. done. not even going to
+test this commit.
+
+
+
+
+
 
 
 

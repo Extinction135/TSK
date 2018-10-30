@@ -145,18 +145,6 @@ namespace DungeonRun
 
         //world doors (not dungeon doors)
 
-        public static void OpenFencedGate(GameObject Gate)
-        {   //pop attention particle
-            Functions_Particle.Spawn(
-                ObjType.Particle_Attention,
-                Gate.compSprite.position.X,
-                Gate.compSprite.position.Y);
-            //remove the gate
-            Functions_Pool.Release(Gate);
-            //play an unlocking sound effect
-            Assets.Play(Assets.sfxDoorOpen); //could be better
-        }
-
         public static void OpenBuildingDoor(GameObject Door)
         {   //pop attention particle
             Functions_Particle.Spawn(

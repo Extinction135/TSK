@@ -50,10 +50,6 @@ namespace DungeonRun
                 RoomObj.compMove.direction = HitDirection; 
                 Functions_GameObject_World.DestroyBush(RoomObj);
             }
-            else if (RoomObj.type == ObjType.Wor_Fence_Gate)
-            {
-                Functions_GameObject_World.OpenFencedGate(RoomObj);
-            }
             else if (RoomObj.type == ObjType.Wor_Build_Door_Shut)
             {
                 Functions_GameObject_World.OpenBuildingDoor(RoomObj);
@@ -229,11 +225,6 @@ namespace DungeonRun
                 || Obj.type == ObjType.Wor_TableDoubleRight
                 || Obj.type == ObjType.Wor_Chair
                 || Obj.type == ObjType.Wor_Bed
-                //fences and gates
-                || Obj.type == ObjType.Wor_Fence_Horizontal
-                || Obj.type == ObjType.Wor_Fence_Vertical_Left
-                || Obj.type == ObjType.Wor_Fence_Vertical_Right
-                || Obj.type == ObjType.Wor_Fence_Gate
                 )
             {
                 Kill(Obj, true, true);
@@ -1582,46 +1573,6 @@ namespace DungeonRun
                 { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Empty_Endcap_Horizontal; }
                 else if (Type == ObjType.Wor_Ditch_Empty_Endcap_North)
                 { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Empty_Endcap_North; }
-            }
-
-            #endregion
-
-
-            #region Fences and Gate
-            
-            else if (Type == ObjType.Wor_Fence_Vertical_Left || Type == ObjType.Wor_Fence_Vertical_Right)
-            {
-                Obj.canBeSaved = true;
-                Obj.sfx.hit = Assets.sfxTapMetallic;
-                Obj.compSprite.zOffset = 0;
-
-                if (Type == ObjType.Wor_Fence_Vertical_Left)
-                {
-                    Obj.compAnim.currentAnimation = AnimationFrames.Wor_Fence_Vertical_Left;
-                    //note - these hitboxes are custom for a reason
-                    Obj.compCollision.rec.Width = 3; Obj.compCollision.offsetX = -8;
-                    Obj.compCollision.rec.Height = 16; Obj.compCollision.offsetY = -8;
-                }
-                else
-                {
-                    Obj.compAnim.currentAnimation = AnimationFrames.Wor_Fence_Vertical_Right;
-                    //note - these hitboxes are custom for a reason
-                    Obj.compCollision.rec.Width = 3; Obj.compCollision.offsetX = +5;
-                    Obj.compCollision.rec.Height = 16; Obj.compCollision.offsetY = -8;
-                }
-            }
-            else if (Type == ObjType.Wor_Fence_Horizontal || Type == ObjType.Wor_Fence_Gate)
-            {
-                Obj.canBeSaved = true;
-                Obj.sfx.hit = Assets.sfxTapMetallic;
-                Obj.compSprite.zOffset = 4;
-                //note - these hitboxes are custom for a reason
-                Obj.compCollision.rec.Width = 16; Obj.compCollision.offsetX = -8;
-                Obj.compCollision.rec.Height = 4; Obj.compCollision.offsetY = +4;
-                //set anim frame based on type
-                if (Type == ObjType.Wor_Fence_Horizontal)
-                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Fence_Horizontal; }
-                else { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Fence_Gate; }
             }
 
             #endregion
