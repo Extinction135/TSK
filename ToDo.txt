@@ -10,6 +10,13 @@ F12 + selected word = goto definition
 CTRL + M, +O = opens, closes regions
 
 
+The Big 4:
+"Give the player meaningful choices to make."
+"Remind the player of their choices."
+"Recognize and respond to what the player does."
+"The Gameworld is a character that reacts to the player."
+
+
 
 
 Roadmap
@@ -24,11 +31,7 @@ Roadmap
 0.84 - Thieve's Hideout
 0.85 - Shadow Dungeon, Shadow King fight
 
-
-0.86 - port to Switch
-0.87 - sidequests + hidden Ganon story
-0.88 - hidden blob story, etc..
-0.89 - ???
+0.86+ - ???
 
 
 Video To Make -
@@ -52,37 +55,35 @@ seperating collisions + interactions
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 Today:
 
 
 
 
+Dirt + Grass Transition Tiles
+
+we need dirt floor objs. we could also use grass to dirt 
+transitions, as the coliseum landing requires this to match
+overworld, plus we could build paths thru the grass later
+using these objects. so, very useful.
+
+added grass to dirt transition sprites, modeled based on
+the water to grass transition sprites already in game.
+added obj type enum values for dirt and 3 transition objs.
+added obj defs for all dirt tiles into gameobj.setType().
+added dirt tile to env widget, tested, working fine.
+added all other dirt tiles to env widget, tested, 
+working very well. now I can update the town level
+with dirt tiles. and i can remake the coliseum
+level to be centered, with a large dirt area.
 
 
 
-Flags++
-
-place a bunch on flags on skull coliseum, port town houses,
-and houses in the water. this is the start of something fun.
-fixed left house's flag post to line up better with flag particle.
-added many flag poles to skull island overworld pixels.
-fixed some bugs.
-
-fixed a loading bug between overworld and level.
-involved levelset.field + current room. it was messy.
-
-playtested, working very well.
+Ctrl + S should open the save as dialog while in level/room
+editor. this prevents us from accidentally loading a level
+file when we're trying to save one. yeah, i loaded one instead
+of saving one, and lost about an hour of design work on town.
+sigh..
 
 
 
@@ -93,35 +94,289 @@ playtested, working very well.
 
 
 
+Skull Island Town++
+
+remake town level, based on personal design preferences.
 
 
-Flags++
-*randomize the starting frames of flag particles, so flags
-dont sync up and it looks more natural.
 
 
 
-	
-	
-	
-	
-	
-dump LevelSet.field.currentRoom when we're exiting overworld..
-opening level screen too... wtf...
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+**
+remove fences from the game, they serve no real purpose,
+now that we have wooden posts.
+
+
+
+
+
+
+remake coliseum level, centered, with dirt path leading up
+we will be adding coliseum windows too.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Fisherman
+
+sits alone, at his house, fishing, wistling a tune.
+around him are 4 bushes. talking to him shows a dialog
+that he just wistles a tune and keeps fishing. digging
+ditches to regrow the bushes around him changes his tune.
+an exclamation point appears over his head. speaking with
+him now, he says "my father was a farmer. i left and became
+a fisherman. my father gave me these beans, but i've never
+found a use for them. you seem to know how to grow things.
+here, take them. he'd want you to have them.."
+and then he returns to wistling his tune, just as before.
+this is how link acquires the bag of magic beans.
+
+
+
+
+
+
+
+
+
+
+Coliseum++
+
+we also need 'windows' that look into the coliseum,
+like the overworld sprite depicts. plus, I don't like
+how the coliseum level is unbalanced and to the right.
+instead, the coliseum - and all subsequent coliseums -
+will be entrance centered to level, north of spawn.
+this 'presents' the level much better, because coliseums
+have no required puzzle for entry.
+
+
+
+
+
+Wire Fences
+
+they don't line up, because we built them the wrong way conceptually.
+design them based on the wooden fences that actually work, you doofus.
+
+
+
+
+
+
+
+
+
+Brandy++
+*brandy should provide some tip or clue about each level
+that she's on. we can do this simply by checking the level's current room ID.
+then selecting the proper dialog string.
+
+
+
+
+
+
+
+
+
+
+DungeonEntrances++
+
+*create forest dungeon entrance objs + level details
+*create swamp dungeon entrance objs + level details - SLIME obj
+
+we can do the slime obj rn - this just drops player mobility to 
+pushing/dragging speed upon contact. super easy. then update the
+swamp level, so swimming thru slime is annoyingly slow.
+
+
+
+release 0.77?
+
+
+
+
+
+
+
+
+
+all dungeon entrances - these need to be specifically defined
+they are not implemented properly, as they assume each entrance
+exists in the same location on different sheets. the logic handling
+this is wonky too.
+
+
+
+How do we do Dungeon Entrances? properly.
+
+
+forest: from water, thru large rock teeth, water bushes (med) - under rock formation
+swamp: from sea, thru slime, short climb up mountain side to teeth - to darkness
+
+skull coliseum: entrance is 3x4 door obj, with skull decorations.
+coliseum walls build a rounded exterior appearance.
+
+
+
+
+
+
+
+Color++
+
+
+create color version of forest, swamp, mountain dungeons
+update those sheets - these dungeons can have unique wall colors
+
+
+art++
+remove orange/red from coliseum spectators
+make spectators much more brown and less obvious
+
+
+
+editor++
+signpost shold be part of env objs widget (is part of dungeon widget)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+more overworld locations TODO:
+
+skull island sub path (2)
+952.567 -> up neigh = skull island bottom row 4
+991.591
+
+
+
+crest path (4)
+880.692 -> up neigh = forest island main path 4
+928.707
+975.692
+988.720
+
+
+fishermans path (forest) (7)
+782.549
+-> lneigh = lava island main path 2
+-> rneigh = forest island main path 1
+719.621
+682.682 - fisherman's house
+725.660
+752.693 -> rneigh = forest island main path 6
+730.724
+
+
+
+water coliseum path (forest) (6)
+645.575 -> up neigh = lavaisland main path 4
+612.589
+571.585
+536.609
+565.644
+530.671
+
+temple 1 path (2)
+514.591
+480.581
+
+water coliseum level (connected to path above)
+499.706
+
+lava ship 1 path (2)
+567.455 -> down neigh = lava island main path 8
+572.406
+
+
+lava cave 1 path (3)
+508.538 -> up/r neigh = lavaisland main path 7
+458.545
+420.522
+
+volcano coliseum path (6) (left to right)
+150.522 -> up neigh = lave island main path 15
+113.530
+99.553
+138.562
+180.562
+217.571 -> right neighbor = forest main path 27
+
+
+
+
+
+plateau island main path (12)
+
+plateau island misc paths (2)
+
+plateau ship path (2)
+299.629
+255.616
+
+lava sub path (7)
+
+lava ship 2 path (1)
+
+lava cave 2 path (2)
+
+lava cave 3 path (2)
+
+lava to cloud connection (5)
+
+
+
+
+SWAMP LOCATIONS+++
+DEATH MOUNTAIN LOCATIONS+++
+
+
+
+Release 0.77. Overworld and Color implemented.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+As a reward for releasing 0.77, will now implement The
+Magical Axe, and The Hookshot (at the same time).
+
+
+
 The Axe
 
 I'm straight ripping Kratos' axe here. This is an obj
@@ -224,451 +479,13 @@ upon it's returning state.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Dirt + Grass Transition Tiles
-
-we need dirt floor objs. we could also use grass to dirt 
-transitions, as the coliseum landing requires this to match
-overworld, plus we could build paths thru the grass later
-using these objects. so, very useful.
-
-
-Coliseum++
-
-we also need 'windows' that look into the coliseum,
-like the overworld sprite depicts. plus, I don't like
-how the coliseum level is unbalanced and to the right.
-instead, the coliseum - and all subsequent coliseums -
-will be entrance centered to level, north of spawn.
-this 'presents' the level much better, because coliseums
-have no required puzzle for entry.
-
-
-
-
-
-Wire Fences
-
-they don't line up, because we built them the wrong way conceptually.
-design them based on the wooden fences that actually work, you doofus.
-
-
-
-
-
-
-
-
-
-Brandy++
-*brandy should provide some tip or clue about each level
-that she's on. we can do this simply by checking the level's current room ID.
-then selecting the proper dialog string.
-
-
-
-
-
-
-
-
-
-
-DungeonEntrances++
-
-*create forest dungeon entrance objs + level details
-*create swamp dungeon entrance objs + level details - SLIME obj
-
-we can do the slime obj rn - this just drops player mobility to 
-pushing/dragging speed upon contact. super easy. then update the
-swamp level, so swimming thru slime is annoyingly slow.
-
-
-
-release 0.77?
-
-
-
-
-
-
-
-
-
-
-Islands++
-
+Slime and Lava Dungeons, Objs, Enemy Sets
 
 *create lava dungeon entrance objs + level details - LAVA conveyor belt objs
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-all dungeon entrances - these need to be specifically defined
-they are not implemented properly, as they assume each entrance
-exists in the same location on different sheets. the logic handling
-this is wonky too.
-
-
-
-
-
-How do we do Dungeon Entrances? properly.
-
 shadow: from water + ship, into animated shadows (hard) - all black obj 
-forest: from water, thru large rock teeth, water bushes (med) - under rock formation
-mountain: from water, climbing up mountain to cave (easy) - into cave
-swamp: from sea, thru slime, short climb up mountain side to teeth - to darkness
-
-town level should be renamed and remade: smaller houses,
-npcs inside and outside, no water features.
-
-skull coliseum: entrance is 3x4 door obj, with skull decorations.
-coliseum walls build a rounded exterior appearance.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Color++
-
-
-create color version of forest, swamp, mountain dungeons
-update those sheets - these dungeons can have unique wall colors
-
-
-
-
-
-
-
-
-art++
-remove orange/red from coliseum spectators
-make spectators much more brown and less obvious
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-editor++
-signpost shold be part of env objs widget (is part of dungeon widget)
-
-
-
-
-
-Textures Refactor
-
-text sheet - this can be 256x256
-entities sheet
-ui items sheet - this can be 256x256
-common objs sheet
-
-(these are 256x256 sheets now)
-forest dungeon sheet
-lava dungeon sheet
-cloud dungeon sheet
-swamp dungeon sheet
-mountain dungeon sheet
-thieves den dungeon sheet
-
-
-
-
-
-Art++
-grass that is burned should become a different sprite,
-like a burned grass sprite.
-
-
-
-
-
-
-
-*** add coliseum enemy widget to editor, to contain creature
-challenges coming up soon.
-
-
-
-
-
-specific island sheets, when needed
-
-dungeon entrances sheet? or per obj, standardized to
-128x128 sheet? which is massive btw.. and we can repeat it,
-if the sprite is repeatable horizontally, for even larger
-entrances....
-
-
-
-
-
-
-
-
-
-
-
-more overworld locations TODO:
-
-skull island sub path (2)
-952.567 -> up neigh = skull island bottom row 4
-991.591
-
-
-
-crest path (4)
-880.692 -> up neigh = forest island main path 4
-928.707
-975.692
-988.720
-
-
-fishermans path (forest) (7)
-782.549
--> lneigh = lava island main path 2
--> rneigh = forest island main path 1
-719.621
-682.682 - fisherman's house
-725.660
-752.693 -> rneigh = forest island main path 6
-730.724
-
-
-
-water coliseum path (forest) (6)
-645.575 -> up neigh = lavaisland main path 4
-612.589
-571.585
-536.609
-565.644
-530.671
-
-temple 1 path (2)
-514.591
-480.581
-
-water coliseum level (connected to path above)
-499.706
-
-lava ship 1 path (2)
-567.455 -> down neigh = lava island main path 8
-572.406
-
-
-lava cave 1 path (3)
-508.538 -> up/r neigh = lavaisland main path 7
-458.545
-420.522
-
-volcano coliseum path (6) (left to right)
-150.522 -> up neigh = lave island main path 15
-113.530
-99.553
-138.562
-180.562
-217.571 -> right neighbor = forest main path 27
-
-
-
-
-
-
-
-plateau island main path (12)
-
-plateau island misc paths (2)
-
-plateau ship path (2)
-299.629
-255.616
-
-lava sub path (7)
-
-lava ship 2 path (1)
-
-lava cave 2 path (2)
-
-lava cave 3 path (2)
-
-lava to cloud connection (5)
-
-
-
-
-
-
-SWAMP LOCATIONS+++
-DEATH MOUNTAIN LOCATIONS+++
-THIEVES DEN LOCATIONS+++
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-New Levels
-
-there are a few base levels we need to make first, that are
-essentially ready to go:
-port town: all the vendors / npcs + farmer.
-mountain dungeon entrance + dungeon.
-forest dungeon entrance + dungeon.
-swamp dungeon entrance + dungeon.
-shadow coliseum: as is coliseum for now.
-
-these levels should use objects with full color,
-including the dungeons, enemies, and bosses.
-
-
-
-
-
-UI Color
-
-transition the UI into the current color pallette.
-we will not make this color pallette modifyiable - hardcode it.
-but it needs to look good.
-
-
-
-
-
-Title Screen
-
-replace text with "The Shadow King" in big text. no allusion to
-LOZ or Nintendo yet.
-
-
-
-Release 0.77. Overworld and Color implemented.
-
-
-
-
-
-
-
 
 
 
@@ -695,9 +512,10 @@ a dungeon is composed of rooms, a field is a large room. we can
 chain fields together using objects, similar to how we make dungeons.
 this allows for a series of fields leading up to a dungeon or target.r
 
-locations are connected to each other via a line (ref theorem code).
-this allows the player to visually see where they can go, while also
-allowing for easy debugging, since the lines show the neighbors.
+
+
+Overworld+++
+
 if these lines are calculated each frame, and only for the current locations
 on screen, then the locations can move around and be animated while
 still properly being connected. link should track to his landed location
@@ -788,14 +606,6 @@ should collapse, revealing the boss location, which is
 now linked to the entrance location.
 
 
-
-
-
-
-notes
-*all game objs ref the main 1k sheet.
-themed objs ref their specific sheet,
-set in Obj.SetType().
 
 
 

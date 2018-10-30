@@ -248,14 +248,20 @@ namespace DungeonRun
         //signpost
         public static List<Byte4> Signpost = new List<Byte4> { new Byte4(10, 10, 0, 0) };
 
-
+        //dirt + dirt to grass transitions
+        public static List<Byte4> Wor_Dirt_A = new List<Byte4> { new Byte4(2, 8, 0, 0) };
+        public static List<Byte4> Wor_Dirt_B = new List<Byte4> { new Byte4(2, 9, 0, 0) };
+        public static List<Byte4> Wor_DirtToGrass_Straight_A = new List<Byte4> { new Byte4(3, 8, 0, 0) };
+        public static List<Byte4> Wor_DirtToGrass_Straight_B = new List<Byte4> { new Byte4(3, 9, 0, 0) };
+        public static List<Byte4> Wor_DirtToGrass_Corner_Interior = new List<Byte4> { new Byte4(6, 8, 0, 0) };
+        public static List<Byte4> Wor_DirtToGrass_Corner_Exterior = new List<Byte4> { new Byte4(6, 9, 0, 0) };
 
 
         #endregion
 
 
 
-        
+
 
 
 

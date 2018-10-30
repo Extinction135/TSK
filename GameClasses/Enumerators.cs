@@ -515,6 +515,12 @@ namespace DungeonRun
         Wor_PostBurned_Corner_Left,
         Wor_PostBurned_Vertical_Left,
 
+        //dirt + transition objs
+        Wor_Dirt,
+        Wor_DirtToGrass_Straight,
+        Wor_DirtToGrass_Corner_Exterior,
+        Wor_DirtToGrass_Corner_Interior,
+
 
 
         #endregion

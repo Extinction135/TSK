@@ -5,6 +5,21 @@
 
 
 
+Art++
+grass that is burned should become a different sprite,
+like a burned grass sprite.
+
+
+
+
+
+
+
+could sell swords, bombs from one vendor..
+the blacksmith.. he has explosive barrels nearby
+
+
+
 
 
 Quest items should complete by rewarding player with a useful or interesting
@@ -12,6 +27,13 @@ item, like the raft. but, it appears in that questline's menuItem slot on the
 UI - so we aren't wasting that space once the quest completes.
 
 
+
+
+Vendors++
+we need to decorate each vendor as special, and really think
+about how we dispay them. quickly, but also intuitively and cool
+looking. the current menu system is satisfactory, but would
+look better with larger, custom pixel art for each vendor.
 
 
 

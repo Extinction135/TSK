@@ -236,7 +236,7 @@ namespace DungeonRun
             //row 1
             Functions_GameObject.SetType(objList[0], ObjType.Wor_Grass_Tall);
             Functions_GameObject.SetType(objList[1], ObjType.Wor_Grass_Cut);
-            Functions_GameObject.SetType(objList[2], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[2], ObjType.Wor_Dirt);
             Functions_GameObject.SetType(objList[3], ObjType.Wor_Grass_2);
 
             //row 2
@@ -259,27 +259,27 @@ namespace DungeonRun
 
             //row 5
             Functions_GameObject.SetType(objList[16], ObjType.Wor_Water);
-            Functions_GameObject.SetType(objList[17], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[17], ObjType.Unknown); //covered
             Functions_GameObject.SetType(objList[18], ObjType.Wor_Coastline_Corner_Exterior);
             Functions_GameObject.SetType(objList[19], ObjType.Wor_Coastline_Corner_Interior);
 
             //row 6
-            Functions_GameObject.SetType(objList[20], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[21], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[20], ObjType.Unknown); //covered
+            Functions_GameObject.SetType(objList[21], ObjType.Unknown); //covered
             Functions_GameObject.SetType(objList[22], ObjType.Wor_Coastline_Straight);
-            Functions_GameObject.SetType(objList[23], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[23], ObjType.Wor_DirtToGrass_Straight);
 
             //row 7
             Functions_GameObject.SetType(objList[24], ObjType.Wor_Post_Vertical_Left);
             Functions_GameObject.SetType(objList[25], ObjType.Wor_Debris);
             Functions_GameObject.SetType(objList[26], ObjType.Wor_Post_Vertical_Right);
-            Functions_GameObject.SetType(objList[27], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[27], ObjType.Wor_DirtToGrass_Corner_Exterior);
 
             //row 8
             Functions_GameObject.SetType(objList[28], ObjType.Wor_Post_Corner_Left);
             Functions_GameObject.SetType(objList[29], ObjType.Wor_Post_Horizontal);
             Functions_GameObject.SetType(objList[30], ObjType.Wor_Post_Corner_Right);
-            Functions_GameObject.SetType(objList[31], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[31], ObjType.Wor_DirtToGrass_Corner_Interior);
 
             //row 9
             Functions_GameObject.SetType(objList[32], ObjType.Unknown);

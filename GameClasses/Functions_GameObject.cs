@@ -1811,6 +1811,58 @@ namespace DungeonRun
             #endregion
 
 
+            #region Dirt and Dirt Transition Tiles
+
+            else if(
+                Type == ObjType.Wor_Dirt || 
+                Type == ObjType.Wor_DirtToGrass_Straight ||
+                Type == ObjType.Wor_DirtToGrass_Corner_Exterior || 
+                Type == ObjType.Wor_DirtToGrass_Corner_Interior
+                )
+            {   //sort above water, below everything else
+                Obj.compSprite.zOffset = -40; 
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = false;
+
+                //set anim frame, based on type some anim frames are random
+                if(Type == ObjType.Wor_Dirt)
+                {
+                    if (Functions_Random.Int(0, 101) > 50)
+                    { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Dirt_A; }
+                    else { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Dirt_B; }
+                }
+                else if(Type == ObjType.Wor_DirtToGrass_Straight)
+                {
+                    if (Functions_Random.Int(0, 101) > 50)
+                    { Obj.compAnim.currentAnimation = AnimationFrames.Wor_DirtToGrass_Straight_A; }
+                    else { Obj.compAnim.currentAnimation = AnimationFrames.Wor_DirtToGrass_Straight_B; }
+                }
+                else if(Type == ObjType.Wor_DirtToGrass_Corner_Exterior)
+                {
+                    Obj.compAnim.currentAnimation = AnimationFrames.Wor_DirtToGrass_Corner_Exterior;
+                }
+                else if (Type == ObjType.Wor_DirtToGrass_Corner_Interior)
+                {
+                    Obj.compAnim.currentAnimation = AnimationFrames.Wor_DirtToGrass_Corner_Interior;
+                }
+            }
+
+            #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             //Object Enemies
 
 
