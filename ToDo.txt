@@ -60,30 +60,42 @@ Today:
 
 
 
-Dirt + Grass Transition Tiles
 
-we need dirt floor objs. we could also use grass to dirt 
-transitions, as the coliseum landing requires this to match
-overworld, plus we could build paths thru the grass later
-using these objects. so, very useful.
+Game++
 
-added grass to dirt transition sprites, modeled based on
-the water to grass transition sprites already in game.
-added obj type enum values for dirt and 3 transition objs.
-added obj defs for all dirt tiles into gameobj.setType().
-added dirt tile to env widget, tested, working fine.
-added all other dirt tiles to env widget, tested, 
-working very well. now I can update the town level
-with dirt tiles. and i can remake the coliseum
-level to be centered, with a large dirt area.
+Updated SkullIsland Town level.
+
+recorded a video playthrough of 0.77, where my
+dog somehow got shrunk to half-size and it was
+hilarious. and i'm fine with it.
 
 
 
-Ctrl + S should open the save as dialog while in level/room
-editor. this prevents us from accidentally loading a level
-file when we're trying to save one. yeah, i loaded one instead
-of saving one, and lost about an hour of design work on town.
-sigh..
+
+
+
+
+
+
+
+
+
+
+BoatObjs++
+
+it's time to consolidate the ship objects.
+we dont need the right boat objects, as we can
+simply mirror the left ones. this gives us more
+space in the common objs sheet.
+
+
+
+
+
+
+
+
+
 
 
 
@@ -96,7 +108,19 @@ sigh..
 
 Skull Island Town++
 
-remake town level, based on personal design preferences.
+tall grass leads to bushes leads to trees.
+we need to create indestructible large tree objects, or
+series of trees, so we can fill up 'forests' efficiently.
+
+
+
+
+
+
+
+
+
+
 
 
 
