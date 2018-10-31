@@ -351,22 +351,22 @@ namespace DungeonRun
                 if (Obj.direction == Direction.Down || Obj.direction == Direction.Left)
                 { Obj.compSprite.flipHorizontally = true; }
             }
-            else if (Obj.type == ObjType.ProjectileBomb
+            else if (
+                //roomObjs
+                Obj.type == ObjType.Dungeon_PitTrap
+                || Obj.type == ObjType.Dungeon_PitTeethBottom
+                || Obj.type == ObjType.Dungeon_PitTeethTop
+                //pros
+                || Obj.type == ObjType.ProjectileBomb
                 || Obj.type == ObjType.ProjectilePot
                 || Obj.type == ObjType.ProjectilePotSkull
                 || Obj.type == ObjType.ProjectileBush
                 || Obj.type == ObjType.ProjectileBoomerang
-                || Obj.type == ObjType.ProjectileBat)
+                || Obj.type == ObjType.ProjectileBat
+                )
             {   //some objects only face Direction.Down
                 Obj.direction = Direction.Down;
             }
-
-            /*
-            else if(Obj.type == ObjType.Dungeon_PitTrap)
-            {   //some objects are randomly rotated
-                Obj.direction = Functions_Direction.GetRandomCardinal();
-            }
-            */
 
             else if(Obj.type == ObjType.Dungeon_FloorBlood
                 || Obj.type == ObjType.Dungeon_PitTrap)

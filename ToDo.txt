@@ -63,51 +63,13 @@ Today:
 
 
 
+PitTraps++
 
+fixed a minor bug where pit traps could appear
+rotated to direction that wasn't down, causing
+their sprite to look super weird. also added
+pit teeth into the down facing routine.
 
-
-
-
-
-Forest Entrance Level ++
-
-swamp dungeon is not connected properly, rn.
-cave is. forest will be soon, we just need a
-big black shadow to go between a big rock wall
-resembling some teeth going into water. this is the 
-forest entrance level.
-
-created massive shadow sprite, to serve as a main dungeon
-entrance obj for a variety of locations. created big rocky
-tooth in water object for forest entrance level.
-
-- colliseum entrance is now big shadow.
-- forest entrance is now big shadow as well.
-- added obj to represent big skull tooth.
-- added to forest main entrance, foundation looks good.
-
-fixed hotboxes on dungeon entrance + teeth
-
-
-
-
-
-
-
-
-
-
-*this would be a great time to add water blocking objs
-*and waterfalls
-
-
-
-
-
-
-*need tooth continuing up, rocky arch from up to vertical transition.
-vertical repeatin rocky tile. *we could also make these climabale?
-and integrate them into the mountain tileset?
 
 
 
@@ -136,7 +98,6 @@ BUGS!
 that bumper spike room needs to be removed. 
 we need to make all dungeon rooms fun, and easy, for now.
 the hard rooms are stupid hard.
-
 
 
 floor cracks should only be able to be oriented one way: down.
@@ -169,6 +130,19 @@ will be entrance centered to level, north of spawn.
 this 'presents' the level much better, because coliseums
 have no required puzzle for entry.
 
+
+
+
+
+
+
+Forest Entrance Level++
+
+*need tooth continuing up, rocky arch from up to vertical transition.
+vertical repeatin rocky tile.
+
+*this would be a great time to add water blocking objs, to block
+player from going between the other teeth.
 
 
 
