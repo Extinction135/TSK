@@ -63,12 +63,10 @@ Today:
 
 
 
-PitTraps++
+Coliseum++
 
-fixed a minor bug where pit traps could appear
-rotated to direction that wasn't down, causing
-their sprite to look super weird. also added
-pit teeth into the down facing routine.
+remade coliseum to be centered, and to look more
+skull themed. next, windows.
 
 
 
@@ -76,19 +74,18 @@ pit teeth into the down facing routine.
 
 
 
+Coliseum++
+
+we also need 'windows' that look into the coliseum,
+like the overworld sprite depicts. plus, I don't like
+how the coliseum level is unbalanced and to the right.
+instead, the coliseum - and all subsequent coliseums -
+will be entrance centered to level, north of spawn.
+this 'presents' the level much better, because coliseums
+have no required puzzle for entry.
 
 
 
-
-Dungeons++
-
-*armored spiders are being loaded into a room that has
-forest hub room data. or is this the base hub room data?
-either way, each hub room needs it's own roomData for
-the miniboss to really shine in.
-
-*all boss roomData is the same too, and we should change this.
-*all dungeon textures are the same as well.
 
 
 
@@ -99,11 +96,7 @@ that bumper spike room needs to be removed.
 we need to make all dungeon rooms fun, and easy, for now.
 the hard rooms are stupid hard.
 
-
-floor cracks should only be able to be oriented one way: down.
-*this is part of gameobj rotation/settype attributes.
-
-
+MAKE COLISEUM WINDOW OBJ
 
 
 
@@ -115,20 +108,9 @@ tall grass leads to bushes leads to trees.
 we need to create indestructible large tree objects, or
 series of trees, so we can fill up 'forests' efficiently.
 
+MAKE BIG TREE OBJS
 
 
-Coliseum++
-
-remake coliseum level, centered, with dirt path leading up
-we will be adding coliseum windows too.
-
-we also need 'windows' that look into the coliseum,
-like the overworld sprite depicts. plus, I don't like
-how the coliseum level is unbalanced and to the right.
-instead, the coliseum - and all subsequent coliseums -
-will be entrance centered to level, north of spawn.
-this 'presents' the level much better, because coliseums
-have no required puzzle for entry.
 
 
 
@@ -149,19 +131,21 @@ player from going between the other teeth.
 
 
 
+
+
+
 release 0.77?
 
 
+Dungeons++
 
+*armored spiders are being loaded into a room that has
+forest hub room data. or is this the base hub room data?
+either way, each hub room needs it's own roomData for
+the miniboss to really shine in.
 
-
-
-
-
-
-
-
-
+*all boss roomData is the same too, and we should change this.
+*all dungeon textures are the same as well.
 
 
 
