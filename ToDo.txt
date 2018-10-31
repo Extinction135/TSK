@@ -59,29 +59,6 @@ Today:
 
 
 
-Mountain Dungeon++
-
-BatBoss++
-
-expanded bat bosses death animation. 
-updated animframes for bat boss death
-and attack. this boss is now in color.
-
-SpiderMiniBoss++
-
-fixed a visual bug where unarmored spider
-would display armored spider sprite when
-dashing. this miniboss is now in color.
-
-Forest Dungeon
-
-explosive seeker was colored and lost a frame.
-animFrames updated. no change in visuals, just
-a sprite saving frame dupe'.
-
-completed color additions to forest miniboss.
-all enemies updated with color now.
-we should test fighting big eye in the coliseum.
 
 
 
@@ -92,25 +69,7 @@ we should test fighting big eye in the coliseum.
 
 
 
-
-
-
-
-
-
-
-Color++
-
-color all bosses, minibosses, standard enemies.
-*bosses should stand out - use slightly different colors
-*minibosses can stand out too
-color pet doggo.
-
-
-
-
-
-Forest Entrance Level
+Forest Entrance Level ++
 
 swamp dungeon is not connected properly, rn.
 cave is. forest will be soon, we just need a
@@ -118,6 +77,37 @@ big black shadow to go between a big rock wall
 resembling some teeth going into water. this is the 
 forest entrance level.
 
+created massive shadow sprite, to serve as a main dungeon
+entrance obj for a variety of locations. created big rocky
+tooth in water object for forest entrance level.
+
+- colliseum entrance is now big shadow.
+- forest entrance is now big shadow as well.
+- added obj to represent big skull tooth.
+- added to forest main entrance, foundation looks good.
+
+fixed hotboxes on dungeon entrance + teeth
+
+
+
+
+
+
+
+
+
+
+*this would be a great time to add water blocking objs
+*and waterfalls
+
+
+
+
+
+
+*need tooth continuing up, rocky arch from up to vertical transition.
+vertical repeatin rocky tile. *we could also make these climabale?
+and integrate them into the mountain tileset?
 
 
 
@@ -143,10 +133,18 @@ the miniboss to really shine in.
 
 BUGS!
 
-
 that bumper spike room needs to be removed. 
+we need to make all dungeon rooms fun, and easy, for now.
+the hard rooms are stupid hard.
+
+
+
 floor cracks should only be able to be oriented one way: down.
 *this is part of gameobj rotation/settype attributes.
+
+
+
+
 
 
 
@@ -173,11 +171,6 @@ have no required puzzle for entry.
 
 
 
-
-
-DungeonEntrances++
-
-*create forest dungeon entrance objs + level details
 
 
 
@@ -223,7 +216,14 @@ release 0.77?
 
 
 
+Doggo++
 
+color pet doggo.
+make doggo not shrink when in pits.
+make doggo not fall into pits.
+make doggo stick real close to hero.
+doggo can never get too far away now.
+doggo always spawns with hero in room.
 
 
 

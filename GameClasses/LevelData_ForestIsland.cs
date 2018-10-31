@@ -1061,6 +1061,19 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 1208; obj.posY = 712; ForestIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 1208; obj.posY = 744; ForestIsland_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 1176; obj.posY = 744; ForestIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_SkullToothInWater_Left; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 184; ForestIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_SkullToothInWater_Right; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 184; ForestIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Entrance_ForestDungeon; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 152; ForestIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_SkullToothInWater_Right; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 184; ForestIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_SkullToothInWater_Left; obj.direction = Direction.Down; obj.posX = 504; obj.posY = 184; ForestIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Entrance_ForestDungeon; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 152; ForestIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_SkullToothInWater_Left; obj.direction = Direction.Down; obj.posX = 328; obj.posY = 152; ForestIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_SkullToothInWater_Right; obj.direction = Direction.Down; obj.posX = 376; obj.posY = 152; ForestIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_SkullToothInWater_Left; obj.direction = Direction.Down; obj.posX = 840; obj.posY = 120; ForestIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_SkullToothInWater_Right; obj.direction = Direction.Down; obj.posX = 888; obj.posY = 120; ForestIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Signpost; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 296; ForestIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_SkullPillar; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 232; ForestIsland_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_SkullPillar; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 232; ForestIsland_MainEntrance.objs.Add(obj);}
 			#endregion
 
 		}

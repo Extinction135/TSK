@@ -262,7 +262,9 @@ namespace DungeonRun
         #region Forest Objects
 
         //
-        public static List<Byte4> Wor_Entrance_ForestDungeon = new List<Byte4> { new Byte4(0, 0, 0, 0) }; //3x4 obj
+        public static List<Byte4> Wor_Entrance_ForestDungeon = new List<Byte4> { new Byte4(0, 1, 0, 0) }; //3x4 obj
+        public static List<Byte4> Wor_SkullToothInWater_Left = new List<Byte4> { new Byte4(1, 1, 0, 0) }; //3x4 obj
+        public static List<Byte4> Wor_SkullToothInWater_Right = new List<Byte4> { new Byte4(1, 1, 1, 0) }; //3x4 obj
 
         #endregion
 

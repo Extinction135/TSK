@@ -1177,81 +1177,6 @@ namespace DungeonRun
             #endregion
 
 
-            #region Dungeon Entrances
-
-            else if (Type == ObjType.Wor_Entrance_ForestDungeon)
-            {
-                Obj.compSprite.drawRec.Width = 16 * 3; //nonstandard size
-                Obj.compSprite.drawRec.Height = 16 * 4; //nonstandard size
-                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_ForestDungeon;
-                //set collision rec near bottom of entrance
-                Obj.compCollision.rec.Width = 16*3-4; Obj.compCollision.offsetX = -6;
-                Obj.compCollision.rec.Height = 16*3; Obj.compCollision.offsetY = +8;
-                //sort save and block
-                Obj.compSprite.zOffset = +16*3 - 2;
-                Obj.canBeSaved = true;
-                Obj.compCollision.blocking = true;
-                Obj.sfx.hit = Assets.sfxTapMetallic;
-            }
-            else if (Type == ObjType.Wor_Entrance_MountainDungeon)
-            {
-                Obj.compSprite.drawRec.Width = 16 * 2; //nonstandard size
-                Obj.compSprite.drawRec.Height = 16 * 4; //nonstandard size
-                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_MountainDungeon;
-                
-                //set collision rec near bottom of entrance
-                Obj.compCollision.rec.Width = 16 * 2; Obj.compCollision.offsetX = -8;
-                Obj.compCollision.rec.Height = 16 * 2; Obj.compCollision.offsetY = +8+16;
-                //sort save and block
-                Obj.compSprite.zOffset = +16 * 3 - 2;
-                Obj.canBeSaved = true;
-                Obj.compCollision.blocking = true;
-                Obj.sfx.hit = Assets.sfxTapMetallic;
-            }
-            else if (Type == ObjType.Wor_Entrance_SwampDungeon)
-            {
-                Obj.compSprite.drawRec.Width = 16 * 3; //nonstandard size
-                Obj.compSprite.drawRec.Height = 16 * 4; //nonstandard size
-                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_SwampDungeon;
-                //set collision rec near bottom of entrance
-                Obj.compCollision.rec.Width = 16 * 2 + 4; Obj.compCollision.offsetX = -2;
-                Obj.compCollision.rec.Height = 16 * 1 + 8; Obj.compCollision.offsetY = 16 * 2;
-                //sort save and block
-                Obj.compSprite.zOffset = +16 * 3 - 2;
-                Obj.canBeSaved = true;
-                Obj.compCollision.blocking = true;
-                Obj.sfx.hit = Assets.sfxTapMetallic;
-            }
-
-            #endregion
-
-
-            #region Coliseum Entrances
-
-            else if (Type == ObjType.Wor_Entrance_Colliseum)
-            {
-                Obj.compSprite.drawRec.Width = 16 * 3; //nonstandard size
-                Obj.compSprite.drawRec.Height = 16 * 4; //nonstandard size
-                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_Coliseum_SkullIsland;
-                //set collision rec near bottom of entrance
-                Obj.compCollision.rec.Width = 16 * 3 - 4; Obj.compCollision.offsetX = -6;
-                Obj.compCollision.rec.Height = 16 * 3; Obj.compCollision.offsetY = +8;
-                //sort save and block
-                Obj.compSprite.zOffset = +16 * 3 - 2;
-                Obj.canBeSaved = true;
-                Obj.compCollision.blocking = true;
-                Obj.sfx.hit = Assets.sfxTapMetallic;
-            }
-
-            #endregion
-
-
-
-
-
-
-
-
             #region Pot
 
             else if (Type == ObjType.Wor_Pot) //same as Dungeon_Pot
@@ -1892,7 +1817,28 @@ namespace DungeonRun
 
 
 
+
+
             //Colliseum Objects
+
+            #region Entrance Objects
+
+            else if (Type == ObjType.Wor_Entrance_Colliseum)
+            {
+                Obj.compSprite.drawRec.Width = 16 * 3; //nonstandard size
+                Obj.compSprite.drawRec.Height = 16 * 4; //nonstandard size
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_Coliseum_SkullIsland;
+                //set collision rec near bottom of entrance
+                Obj.compCollision.rec.Width = 16 * 3 - 4; Obj.compCollision.offsetX = -6;
+                Obj.compCollision.rec.Height = 16 * 3; Obj.compCollision.offsetY = +8;
+                //sort save and block
+                Obj.compSprite.zOffset = +16 * 3 - 2;
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = true;
+                Obj.sfx.hit = Assets.sfxTapMetallic;
+            }
+
+            #endregion
 
 
             #region Gates
@@ -2099,10 +2045,90 @@ namespace DungeonRun
 
 
 
+
+
+
+
+            //Forest Objects
+
+            #region Entrance Objs
+
+            else if (Type == ObjType.Wor_Entrance_ForestDungeon)
+            {
+                Obj.compSprite.drawRec.Width = 16 * 3; //nonstandard size
+                Obj.compSprite.drawRec.Height = 16 * 4; //nonstandard size
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_ForestDungeon;
+                //set collision rec near bottom of entrance
+                Obj.compCollision.rec.Width = 16 * 3; Obj.compCollision.offsetX = -8;
+                Obj.compCollision.rec.Height = 16 * 4; Obj.compCollision.offsetY = -8;
+                //sort save and block
+                Obj.compSprite.zOffset = +16 * 3 - 2;
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = true;
+                Obj.sfx.hit = null;
+            }
+            else if (Type == ObjType.Wor_SkullToothInWater_Left)
+            {
+                Obj.compSprite.drawRec.Width = 16 * 3; //nonstandard size
+                Obj.compSprite.drawRec.Height = 16 * 4; //nonstandard size
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_SkullToothInWater_Left;
+                //set collision rec near bottom of entrance
+                Obj.compCollision.rec.Width = 16 * 3 - 4; Obj.compCollision.offsetX = -4;
+                Obj.compCollision.rec.Height = 16 * 3; Obj.compCollision.offsetY = +4;
+                //sort save and block
+                Obj.compSprite.zOffset = +16 * 3 - 2;
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = true;
+                Obj.sfx.hit = Assets.sfxTapMetallic;
+            }
+            else if (Type == ObjType.Wor_SkullToothInWater_Right)
+            {
+                Obj.compSprite.drawRec.Width = 16 * 3; //nonstandard size
+                Obj.compSprite.drawRec.Height = 16 * 4; //nonstandard size
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_SkullToothInWater_Right;
+                //set collision rec near bottom of entrance
+                Obj.compCollision.rec.Width = 16 * 3 - 4; Obj.compCollision.offsetX = -8;
+                Obj.compCollision.rec.Height = 16 * 3; Obj.compCollision.offsetY = +4;
+                //sort save and block
+                Obj.compSprite.zOffset = +16 * 3 - 2;
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = true;
+                Obj.sfx.hit = Assets.sfxTapMetallic;
+            }
+
+            #endregion
+
+
+
+
+
+
+
             //Mountain Objects
 
+            #region Entrance Objs
+
+            else if (Type == ObjType.Wor_Entrance_MountainDungeon)
+            {
+                Obj.compSprite.drawRec.Width = 16 * 2; //nonstandard size
+                Obj.compSprite.drawRec.Height = 16 * 4; //nonstandard size
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_MountainDungeon;
+
+                //set collision rec near bottom of entrance
+                Obj.compCollision.rec.Width = 16 * 2; Obj.compCollision.offsetX = -8;
+                Obj.compCollision.rec.Height = 16 * 2; Obj.compCollision.offsetY = +8 + 16;
+                //sort save and block
+                Obj.compSprite.zOffset = +16 * 3 - 2;
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = true;
+                Obj.sfx.hit = Assets.sfxTapMetallic;
+            }
+
+            #endregion
+
+
             #region Walls
-            
+
             else if (Type == ObjType.Wor_MountainWall_Top)
             {   //nonstandard size
                 Obj.compSprite.drawRec.Width = 16 * 4; Obj.compSprite.drawRec.Height = 16 * 1;
@@ -2230,6 +2256,26 @@ namespace DungeonRun
 
 
             //Swamp Objects
+
+            #region Entrance Objs
+
+            else if (Type == ObjType.Wor_Entrance_SwampDungeon)
+            {
+                Obj.compSprite.drawRec.Width = 16 * 3; //nonstandard size
+                Obj.compSprite.drawRec.Height = 16 * 4; //nonstandard size
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_SwampDungeon;
+                //set collision rec near bottom of entrance
+                Obj.compCollision.rec.Width = 16 * 2 + 4; Obj.compCollision.offsetX = -2;
+                Obj.compCollision.rec.Height = 16 * 1 + 8; Obj.compCollision.offsetY = 16 * 2;
+                //sort save and block
+                Obj.compSprite.zOffset = +16 * 3 - 2;
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = true;
+                Obj.sfx.hit = Assets.sfxTapMetallic;
+            }
+
+            #endregion
+
 
             #region LillyPads, Plants, Vines
 

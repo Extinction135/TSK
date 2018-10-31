@@ -208,16 +208,6 @@ namespace DungeonRun
 
 
 
-
-
-
-
-
-
-
-
-
-
     //world-wide widget objects
 
     public class WidgetObjects_Environment : WidgetObject
@@ -327,6 +317,14 @@ namespace DungeonRun
             objList[16].compSprite.zOffset = 0;
         }
     }
+
+
+
+
+
+
+
+
 
     public class WidgetObjects_Town : WidgetObject
     {
@@ -866,28 +864,28 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[15], ObjType.Wor_SeekerExploder);
 
             //row 5
-            Functions_GameObject.SetType(objList[16], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[17], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[18], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[19], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[16], ObjType.Wor_SkullToothInWater_Left);
+            Functions_GameObject.SetType(objList[17], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[18], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[19], ObjType.Wor_SkullToothInWater_Right);
 
             //row 6
-            Functions_GameObject.SetType(objList[20], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[21], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[22], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[23], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[20], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[21], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[22], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[23], ObjType.Unknown);//
 
             //row 7
-            Functions_GameObject.SetType(objList[24], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[25], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[26], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[27], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[24], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[25], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[26], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[27], ObjType.Unknown);//
 
             //row 8
-            Functions_GameObject.SetType(objList[28], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[29], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[30], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[31], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[28], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[29], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[30], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[31], ObjType.Unknown);//
 
             //row 9
             Functions_GameObject.SetType(objList[32], ObjType.Unknown);
@@ -935,6 +933,22 @@ namespace DungeonRun
             Functions_Widget.HideObj(objList[12]);
             Functions_Widget.HideObj(objList[13]);
             Functions_Widget.HideObj(objList[14]);
+
+            //left tooth in water
+            Functions_Widget.HideObj(objList[17]);
+            Functions_Widget.HideObj(objList[18]);
+            Functions_Widget.HideObj(objList[20]);
+            Functions_Widget.HideObj(objList[21]);
+            Functions_Widget.HideObj(objList[22]);
+            Functions_Widget.HideObj(objList[23]);
+            Functions_Widget.HideObj(objList[24]);
+            Functions_Widget.HideObj(objList[25]);
+            Functions_Widget.HideObj(objList[26]);
+            Functions_Widget.HideObj(objList[27]);
+            Functions_Widget.HideObj(objList[28]);
+            Functions_Widget.HideObj(objList[29]);
+            Functions_Widget.HideObj(objList[30]);
+            Functions_Widget.HideObj(objList[31]);
         }
     }
 
@@ -1279,6 +1293,14 @@ namespace DungeonRun
             
         }
     }
+
+
+
+
+
+
+
+
 
 
 
