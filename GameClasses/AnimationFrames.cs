@@ -1532,6 +1532,7 @@ namespace DungeonRun
                 new Byte4(10, 0, 0, 0), new Byte4(10, 0, 0, 0),
                 new Byte4(11, 0, 0, 0), new Byte4(11, 0, 0, 0),
                 new Byte4(12, 0, 0, 0), new Byte4(12, 0, 0, 0),
+                new Byte4(13, 0, 0, 0), new Byte4(13, 0, 0, 0),
             };
             Boss_BigBat_Animations.death_blank.up = Boss_BigBat_Animations.death_blank.down;
             Boss_BigBat_Animations.death_blank.right = Boss_BigBat_Animations.death_blank.down;

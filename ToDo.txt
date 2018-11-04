@@ -62,57 +62,16 @@ Today:
 
 
 
-
-
-
-
-Dungeon RoomData++
-
-Hub RoomData is uniquely designed. The code is loading
-roomData properly.
-
-Editor++
-
-in editor, we should not be spawning minibosses in hub rooms.
-we can manually spawn them if we want, and if they auto-spawn,
-they start destroying the level on the next few frames.. lol.
-done, polished forest and mountain hub rooms.
-
-Playtest
-
-test that hub rooms properly load in-game.
-mountain hub room does not! well, actually,
-it says the current level id is forest dungeon.
-not mountain dungeon. so, we're not in the
-right dungeon, or we messed up the enum value 
-along the path of loading.
-
-we are spawning the right boss room though, for
-the bat miniboss.
-
-found and fixed the logic bug causing the hubRoom to default
-to hub room data 0. my bad.
-
-dungeons tested, all loading proper room data for
-hubs and boss rooms.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Animation++
 
 bat boss death animation did not complete.
-stayed on last falling frame.
+stayed on last falling frame. this is because
+we just didn't add the last frame of animation
+to his animList. so now that's done and he dies
+properly.
+
+
+
 
 
 
