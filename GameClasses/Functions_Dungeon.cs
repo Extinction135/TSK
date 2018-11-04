@@ -322,7 +322,10 @@ namespace DungeonRun
                 Room.roomID == RoomID.SwampIsland_HubRoom
                 )
             {
-                FinishHubRoom(Room);
+                //we dont want the miniboss to spawn in the editor
+                //we can manually spawn him - he destroys the room
+                if (Flags.bootRoutine == BootRoutine.Game) { SpawnMiniBoss(Room); }
+                
                 //dont add wall statues, cause they damage miniboss
                 //AddWallStatues(Room);
                 AddCrackedWalls(Room);
@@ -335,7 +338,9 @@ namespace DungeonRun
                 )
             {
                 ShutDoors(Room);
-                FinishBossRoom(Room);
+                //we dont want the boss to spawn in the editor
+                //we can manually spawn him - he destroys the room
+                if (Flags.bootRoutine == BootRoutine.Game) { SpawnBoss(Room); }
                 //dont add wall statues, cause they damage boss
                 //AddWallStatues(Room);
                 AddCrackedWalls(Room);
@@ -379,7 +384,6 @@ namespace DungeonRun
             }
             else if(Room.roomID == RoomID.DEV_Boss)
             {
-                FinishBossRoom(Room); //this just spawns the boss
                 ShutDoors(Room); //we do want to shut the doors tho
             }
             else if(Room.roomID == RoomID.DEV_Exit)
@@ -388,7 +392,7 @@ namespace DungeonRun
             }
             else if(Room.roomID == RoomID.DEV_Hub)
             {
-                FinishHubRoom(Room);
+                //nothing at all
             }
             else if (Room.roomID == RoomID.DEV_Key)
             {
@@ -585,10 +589,14 @@ namespace DungeonRun
             }
         }
 
-        //spawn BOSSes
-        public static void FinishBossRoom(Room Room)
+
+
+
+
+
+        public static void SpawnBoss(Room Room)
         {   //spawn boss in center of room
-            if(LevelSet.dungeon.ID == LevelID.Forest_Dungeon)
+            if (LevelSet.dungeon.ID == LevelID.Forest_Dungeon)
             {
                 Functions_Actor.SpawnActor(
                     ActorType.Boss_BigEye,
@@ -611,10 +619,8 @@ namespace DungeonRun
             }
         }
 
-        //spawn MINIBOSSes
-        public static void FinishHubRoom(Room Room)
-        {
-            //spawn miniboss in center of room
+        public static void SpawnMiniBoss(Room Room)
+        {   //spawn miniboss in center of room
             if (LevelSet.dungeon.ID == LevelID.Forest_Dungeon)
             {
                 Functions_Actor.SpawnActor(

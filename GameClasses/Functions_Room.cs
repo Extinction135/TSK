@@ -263,34 +263,38 @@ namespace DungeonRun
                 else if (Room.roomID == RoomID.ForestIsland_BossRoom
                     || Room.roomID == RoomID.DeathMountain_BossRoom
                     || Room.roomID == RoomID.SwampIsland_BossRoom)
-                {   //loop over all boss rooms
+                {
+                    //set boss room to default to something
+                    RoomXmlData = RoomData.bossRooms[0];
+                    LevelSet.currentLevel.isField = false;
+
+                    //manually set the dungeon room's spawnpos to center of room
+                    LevelSet.spawnPos_Dungeon.X = Room.center.X + 8;
+                    LevelSet.spawnPos_Dungeon.Y = Room.center.Y;
+                    //set to bottom center of room, north of door
+                    LevelSet.spawnPos_Dungeon.Y += 5 * 16;
+
+                    //loop over all boss rooms
                     for (i = 0; i < RoomData.bossRooms.Count; i++)
                     {   //find the proper bossRoom to use based on roomID
                         if (RoomData.bossRooms[i].type == Room.roomID)
                         { RoomXmlData = RoomData.bossRooms[i]; }
-                        //we have to load something
-                        else { RoomXmlData = RoomData.bossRooms[0]; }
-                        LevelSet.currentLevel.isField = false;
-
-                        //manually set the dungeon room's spawnpos to center of room
-                        LevelSet.spawnPos_Dungeon.X = Room.center.X + 8;
-                        LevelSet.spawnPos_Dungeon.Y = Room.center.Y;
-                        //set to bottom center of room, north of door
-                        LevelSet.spawnPos_Dungeon.Y += 5 * 16;
                     }
                 }
                 //hub rooms
                 else if (Room.roomID == RoomID.ForestIsland_HubRoom
                     || Room.roomID == RoomID.DeathMountain_HubRoom
                     || Room.roomID == RoomID.SwampIsland_HubRoom)
-                {   //loop over all hub rooms
+                {
+                    //set hub room to default to something
+                    RoomXmlData = RoomData.hubRooms[0];
+                    LevelSet.currentLevel.isField = false;
+
+                    //loop over all hub rooms
                     for (i = 0; i < RoomData.hubRooms.Count; i++)
-                    {   //find the proper bossRoom to use based on roomID
+                    {   //find the proper hubRoom to use based on roomID
                         if (RoomData.hubRooms[i].type == Room.roomID)
                         { RoomXmlData = RoomData.hubRooms[i]; }
-                        //we have to load something
-                        else { RoomXmlData = RoomData.hubRooms[0]; }
-                        LevelSet.currentLevel.isField = false;
                     }
                 }
 

@@ -63,26 +63,58 @@ Today:
 
 
 
-Coliseum++
-
-remade coliseum to be centered, and to look more
-skull themed. next, windows.
 
 
 
+Dungeon RoomData++
+
+Hub RoomData is uniquely designed. The code is loading
+roomData properly.
+
+Editor++
+
+in editor, we should not be spawning minibosses in hub rooms.
+we can manually spawn them if we want, and if they auto-spawn,
+they start destroying the level on the next few frames.. lol.
+done, polished forest and mountain hub rooms.
+
+Playtest
+
+test that hub rooms properly load in-game.
+mountain hub room does not! well, actually,
+it says the current level id is forest dungeon.
+not mountain dungeon. so, we're not in the
+right dungeon, or we messed up the enum value 
+along the path of loading.
+
+we are spawning the right boss room though, for
+the bat miniboss.
+
+found and fixed the logic bug causing the hubRoom to default
+to hub room data 0. my bad.
+
+dungeons tested, all loading proper room data for
+hubs and boss rooms.
 
 
 
 
-Coliseum++
 
-we also need 'windows' that look into the coliseum,
-like the overworld sprite depicts. plus, I don't like
-how the coliseum level is unbalanced and to the right.
-instead, the coliseum - and all subsequent coliseums -
-will be entrance centered to level, north of spawn.
-this 'presents' the level much better, because coliseums
-have no required puzzle for entry.
+
+
+
+
+
+
+
+
+
+
+
+bat boss death animation did not complete.
+stayed on last falling frame.
+
+
 
 
 
@@ -96,7 +128,31 @@ that bumper spike room needs to be removed.
 we need to make all dungeon rooms fun, and easy, for now.
 the hard rooms are stupid hard.
 
-MAKE COLISEUM WINDOW OBJ
+
+
+
+Dungeons++
+
+all dungeon textures need to be different for each dungeon.
+
+
+
+
+
+bushes should regrow if they touch water tiles too.
+this allows the swamp miniboss room to regrow, creating
+more interaction and visual distraction.
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -109,6 +165,40 @@ we need to create indestructible large tree objects, or
 series of trees, so we can fill up 'forests' efficiently.
 
 MAKE BIG TREE OBJS
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Coliseum++
+
+we need 'windows' that look into the coliseum,
+like the overworld sprite depicts. plus, I don't like
+how the coliseum level is unbalanced and to the right.
+instead, the coliseum - and all subsequent coliseums -
+will be entrance centered to level, north of spawn.
+this 'presents' the level much better, because coliseums
+have no required puzzle for entry.
+
+a window is a 3x4 obj, with baked in bkg.
+so this saves us a lot of roomObjs.
+
 
 
 
@@ -134,18 +224,12 @@ player from going between the other teeth.
 
 
 
-release 0.77?
 
 
-Dungeons++
+release 0.77? YEPPPpp
 
-*armored spiders are being loaded into a room that has
-forest hub room data. or is this the base hub room data?
-either way, each hub room needs it's own roomData for
-the miniboss to really shine in.
 
-*all boss roomData is the same too, and we should change this.
-*all dungeon textures are the same as well.
+
 
 
 

@@ -89,12 +89,6 @@
     <ObjXmlData>
       <type>Wor_Swamp_Vine</type>
       <direction>Down</direction>
-      <posX>-88</posX>
-      <posY>152</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Swamp_Vine</type>
-      <direction>Down</direction>
       <posX>56</posX>
       <posY>168</posY>
     </ObjXmlData>
