@@ -62,32 +62,14 @@ Today:
 
 
 
-Editor++
-
-Camera needs to center to room upon load in editor.
-Done. Much easier to edit. Now we can fix up roomData.
-
-RoomData++
-
-dungeons should be fun. later dungeons can be more
-challenging. optional dungeons can be so difficult it's
-funny to try and beat them. so start with fun.
-
-remade all roomData to be "funner".
-
-
-
-
-
-
-
-
-
 
 ObjWidget++
-extend obj widget, so we can see the whole objects name.
 
-extension of 4*16 + 8
+extended obj widget, so we can see the whole objects name.
+looks and interacts with better/easier.
+
+
+
 
 
 
@@ -112,8 +94,8 @@ color..
 
 
 
-
-
+blood floor
+blood floor animframe is wrong.. is missing? sprite or animfrmae?
 
 
 

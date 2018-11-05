@@ -52,7 +52,7 @@ namespace DungeonRun
         {
             window = new MenuWindow(
                 new Point(0, 0),
-                new Point(16 * 6, 16 * 4),
+                new Point(16 * 8, 16 * 4),
                 "Object Tools");
 
 
