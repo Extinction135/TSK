@@ -895,7 +895,9 @@ namespace DungeonRun
             {
                 Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compSprite.zOffset = -30; //sort slightly above floor
-                Obj.compCollision.blocking = true;
+                Obj.compCollision.offsetX = -4; Obj.compCollision.offsetY = -4;
+                Obj.compCollision.rec.Width = 8; Obj.compCollision.rec.Height = 8;
+                Obj.compCollision.blocking = false;
                 Obj.getsAI = true; //obj gets AI
                 Obj.canBeSaved = true;
                 Obj.compMove.moveable = true;

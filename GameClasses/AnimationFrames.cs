@@ -66,10 +66,10 @@ namespace DungeonRun
         public static List<Byte4> Dungeon_SwitchBlockBtn = new List<Byte4> { new Byte4(3, 4, 0, 0) };
         public static List<Byte4> Dungeon_SwitchBlockDown = new List<Byte4> { new Byte4(4, 4, 0, 0) };
         public static List<Byte4> Dungeon_SwitchBlockUp = new List<Byte4> { new Byte4(5, 4, 0, 0) };
-        public static List<Byte4> Dungeon_FloorBlood = new List<Byte4> { new Byte4(6, 4, 0, 0) };
+        public static List<Byte4> Dungeon_FloorBlood = new List<Byte4> { new Byte4(7, 4, 0, 0) };
 
 
-        
+       
 
 
         public static List<Byte4> Dungeon_Barrel = new List<Byte4> { new Byte4(0, 5, 0, 0) };

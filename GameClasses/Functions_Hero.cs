@@ -560,6 +560,21 @@ namespace DungeonRun
 
 
 
+            //dev/editor/cheat interactions
+
+            #region Dungeon Exit Obj
+
+            else if(Obj.type == ObjType.Dungeon_Exit)
+            {   //movement has already been stopped, hero is interacting
+                ExitDungeon();
+            }
+
+            #endregion
+
+
+
+
+
             if (Pool.hero.swimming) { return; }
 
             //Objects that can only be interacted with from Land
@@ -783,6 +798,21 @@ namespace DungeonRun
             //setup testing enemy weapon/item
             PlayerData.current.enemyItem = MenuItemType.MagicBat;
             PlayerData.current.enemyWeapon = MenuItemType.WeaponFang;
+        }
+
+
+
+
+
+        public static void ExitDungeon()
+        {
+            if (Screens.Level.displayState == DisplayState.Opened)
+            {
+                DungeonRecord.Reset();
+                Assets.Play(Assets.sfxDoorOpen);
+                //return hero to last field level
+                Functions_Level.CloseLevel(ExitAction.Field);
+            }
         }
 
 

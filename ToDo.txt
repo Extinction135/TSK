@@ -63,11 +63,59 @@ Today:
 
 
 
-ObjWidget++
+Floor Blood++
 
-extended obj widget, so we can see the whole objects name.
-looks and interacts with better/easier.
+fixed a bug where floor blood's animFrame was wrong.
+as a result, dungeons are much messier (with blood).
+however, I removed all hue from the blood, so it appears
+more as a stain. this is for color harmony purposes,
+until a better color for blood is chosen.
 
+Dungeon Sheets++
+
+updated dungeon textures to their color versions,
+this is to ensure the texture loading routines are
+working properly.
+
+Exiting Dungeons++
+
+pressing A (hero interaction) with an exit obj
+should exit the dungeon. this allows a clipping
+hero to exit the dungeon. otherwise, we have to
+drop out of clipping, and that wastes seconds
+we could be doing something else. plus, we jump
+right back into clipping post-exit. so.... duh.
+done. this makes testing much easier/faster.
+
+game dungeons tested, working properly, tho
+they could use *alot* of coloring love.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Tree Shadows++
+
+tree shadows should cast black at 50% opacity, like
+all other shadows. because they cast to dark green,
+they don't properly combine with the color/sprite 
+underneath them, unless it's the outside green color.
 
 
 
@@ -75,28 +123,8 @@ looks and interacts with better/easier.
 
 Flamethrower bug
 
-flamethrower collision recs should be 8x8.
-very small, cause they throw fire and they hit themselves
-rn cause they're hitbox is too big (16x16).
-
-
-
-
-
-Dungeons++
-
-all dungeon textures need to be different for each dungeon.
-floors need to be more green than brown, since grass usually
-is added ontop of these floor tiles. the walls can be whatever
-color..
-
-
-
-
-
-blood floor
-blood floor animframe is wrong.. is missing? sprite or animfrmae?
-
+fireballs aren't inheriting a direction/velocity from 
+flamethrowers - so only actors throw fireballs rn.
 
 
 
