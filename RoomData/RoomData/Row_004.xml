@@ -11,12 +11,6 @@
     <ObjXmlData>
       <type>Dungeon_SpawnMob</type>
       <direction>Down</direction>
-      <posX>152</posX>
-      <posY>88</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpawnMob</type>
-      <direction>Down</direction>
       <posX>168</posX>
       <posY>88</posY>
     </ObjXmlData>

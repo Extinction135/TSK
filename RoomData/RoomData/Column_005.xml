@@ -3,6 +3,30 @@
   <type>Column</type>
   <objs>
     <ObjXmlData>
+      <type>Dungeon_PitBridge</type>
+      <direction>Left</direction>
+      <posX>56</posX>
+      <posY>200</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_PitBridge</type>
+      <direction>Left</direction>
+      <posX>120</posX>
+      <posY>104</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_PitBridge</type>
+      <direction>Down</direction>
+      <posX>88</posX>
+      <posY>72</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_PitBridge</type>
+      <direction>Down</direction>
+      <posX>88</posX>
+      <posY>232</posY>
+    </ObjXmlData>
+    <ObjXmlData>
       <type>Dungeon_ConveyorBeltOn</type>
       <direction>Right</direction>
       <posX>88</posX>
@@ -239,12 +263,6 @@
     <ObjXmlData>
       <type>Dungeon_Pit</type>
       <direction>Down</direction>
-      <posX>24</posX>
-      <posY>24</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_Pit</type>
-      <direction>Down</direction>
       <posX>40</posX>
       <posY>24</posY>
     </ObjXmlData>
@@ -402,12 +420,6 @@
       <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>136</posX>
-      <posY>24</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_Pit</type>
-      <direction>Down</direction>
-      <posX>152</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
@@ -611,12 +623,6 @@
     <ObjXmlData>
       <type>Dungeon_Pit</type>
       <direction>Down</direction>
-      <posX>152</posX>
-      <posY>280</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_Pit</type>
-      <direction>Down</direction>
       <posX>136</posX>
       <posY>280</posY>
     </ObjXmlData>
@@ -738,12 +744,6 @@
       <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>40</posX>
-      <posY>280</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_Pit</type>
-      <direction>Down</direction>
-      <posX>24</posX>
       <posY>280</posY>
     </ObjXmlData>
     <ObjXmlData>
@@ -864,18 +864,6 @@
       <type>Dungeon_PitBridge</type>
       <direction>Down</direction>
       <posX>88</posX>
-      <posY>72</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_PitBridge</type>
-      <direction>Down</direction>
-      <posX>88</posX>
-      <posY>232</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_PitBridge</type>
-      <direction>Down</direction>
-      <posX>88</posX>
       <posY>248</posY>
     </ObjXmlData>
     <ObjXmlData>
@@ -893,12 +881,6 @@
     <ObjXmlData>
       <type>Dungeon_PitBridge</type>
       <direction>Left</direction>
-      <posX>56</posX>
-      <posY>200</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_PitBridge</type>
-      <direction>Left</direction>
       <posX>40</posX>
       <posY>200</posY>
     </ObjXmlData>
@@ -907,12 +889,6 @@
       <direction>Left</direction>
       <posX>24</posX>
       <posY>200</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_PitBridge</type>
-      <direction>Left</direction>
-      <posX>120</posX>
-      <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_PitBridge</type>
@@ -930,7 +906,7 @@
       <type>Dungeon_PitTeethTop</type>
       <direction>Down</direction>
       <posX>24</posX>
-      <posY>24</posY>
+      <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_PitTeethTop</type>
@@ -978,13 +954,13 @@
       <type>Dungeon_PitTeethTop</type>
       <direction>Down</direction>
       <posX>152</posX>
-      <posY>24</posY>
+      <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_PitTeethBottom</type>
       <direction>Down</direction>
       <posX>24</posX>
-      <posY>280</posY>
+      <posY>264</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_PitTeethBottom</type>
@@ -1032,31 +1008,7 @@
       <type>Dungeon_PitTeethBottom</type>
       <direction>Down</direction>
       <posX>152</posX>
-      <posY>280</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpawnMob</type>
-      <direction>Down</direction>
-      <posX>88</posX>
-      <posY>72</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpawnMob</type>
-      <direction>Down</direction>
-      <posX>120</posX>
-      <posY>104</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpawnMob</type>
-      <direction>Down</direction>
-      <posX>56</posX>
-      <posY>200</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpawnMob</type>
-      <direction>Down</direction>
-      <posX>88</posX>
-      <posY>232</posY>
+      <posY>264</posY>
     </ObjXmlData>
   </objs>
 </RoomXmlData>

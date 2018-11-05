@@ -3,6 +3,12 @@
   <type>Row</type>
   <objs>
     <ObjXmlData>
+      <type>Wor_Bush</type>
+      <direction>Down</direction>
+      <posX>120</posX>
+      <posY>72</posY>
+    </ObjXmlData>
+    <ObjXmlData>
       <type>Wor_Water</type>
       <direction>Down</direction>
       <posX>152</posX>
@@ -291,12 +297,6 @@
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_SpawnMob</type>
-      <direction>Down</direction>
-      <posX>120</posX>
-      <posY>72</posY>
-    </ObjXmlData>
-    <ObjXmlData>
       <type>Wor_Coastline_Corner_Interior</type>
       <direction>Right</direction>
       <posX>104</posX>
@@ -409,24 +409,6 @@
       <direction>Down</direction>
       <posX>24</posX>
       <posY>56</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpawnMob</type>
-      <direction>Down</direction>
-      <posX>248</posX>
-      <posY>56</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpawnMob</type>
-      <direction>Down</direction>
-      <posX>232</posX>
-      <posY>136</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpawnMob</type>
-      <direction>Down</direction>
-      <posX>72</posX>
-      <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Coastline_Straight</type>

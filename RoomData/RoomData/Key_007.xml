@@ -3,6 +3,54 @@
   <type>Key</type>
   <objs>
     <ObjXmlData>
+      <type>Dungeon_Bumper</type>
+      <direction>Down</direction>
+      <posX>56</posX>
+      <posY>120</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_Bumper</type>
+      <direction>Down</direction>
+      <posX>56</posX>
+      <posY>136</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_Bumper</type>
+      <direction>Down</direction>
+      <posX>248</posX>
+      <posY>120</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_Bumper</type>
+      <direction>Down</direction>
+      <posX>248</posX>
+      <posY>136</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_Bumper</type>
+      <direction>Down</direction>
+      <posX>200</posX>
+      <posY>136</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_Bumper</type>
+      <direction>Down</direction>
+      <posX>104</posX>
+      <posY>136</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_ConveyorBeltOn</type>
+      <direction>Right</direction>
+      <posX>88</posX>
+      <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_ConveyorBeltOn</type>
+      <direction>Right</direction>
+      <posX>216</posX>
+      <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
       <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>56</posX>
@@ -21,7 +69,7 @@
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_TorchUnlit</type>
+      <type>Dungeon_TorchLit</type>
       <direction>Down</direction>
       <posX>40</posX>
       <posY>152</posY>
@@ -85,18 +133,6 @@
       <direction>Down</direction>
       <posX>152</posX>
       <posY>72</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_Flamethrower</type>
-      <direction>Down</direction>
-      <posX>248</posX>
-      <posY>120</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_Flamethrower</type>
-      <direction>Down</direction>
-      <posX>248</posX>
-      <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_Pit</type>
@@ -279,12 +315,6 @@
       <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>104</posX>
-      <posY>136</posY>
-    </ObjXmlData>
-    <ObjXmlData>
       <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>184</posX>
@@ -371,12 +401,6 @@
     <ObjXmlData>
       <type>Dungeon_IceTile</type>
       <direction>Down</direction>
-      <posX>88</posX>
-      <posY>40</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
       <posX>104</posX>
       <posY>40</posY>
     </ObjXmlData>
@@ -384,12 +408,6 @@
       <type>Dungeon_IceTile</type>
       <direction>Down</direction>
       <posX>200</posX>
-      <posY>40</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>216</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
@@ -615,12 +633,6 @@
       <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>200</posX>
-      <posY>136</posY>
-    </ObjXmlData>
-    <ObjXmlData>
       <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>88</posX>
@@ -675,12 +687,6 @@
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_Flamethrower</type>
-      <direction>Down</direction>
-      <posX>56</posX>
-      <posY>120</posY>
-    </ObjXmlData>
-    <ObjXmlData>
       <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>248</posX>
@@ -691,12 +697,6 @@
       <direction>Down</direction>
       <posX>248</posX>
       <posY>88</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_Flamethrower</type>
-      <direction>Down</direction>
-      <posX>56</posX>
-      <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_IceTile</type>

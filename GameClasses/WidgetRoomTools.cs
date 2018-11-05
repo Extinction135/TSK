@@ -315,6 +315,11 @@ namespace DungeonRun
                 //set spawnPos outside TopLeft of new dev room
                 LevelSet.spawnPos_Dungeon.X = LevelSet.currentLevel.currentRoom.rec.X - 32;
                 LevelSet.spawnPos_Dungeon.Y = LevelSet.currentLevel.currentRoom.rec.Y;
+                Functions_Hero.SpawnInCurrentRoom(); //spawn hero in room
+
+                //set camera to center of room (so we can see it upon load)
+                Camera2D.targetPosition.X = LevelSet.currentLevel.currentRoom.center.X;
+                Camera2D.targetPosition.Y = LevelSet.currentLevel.currentRoom.center.Y;
             }
             else
             {
@@ -330,15 +335,14 @@ namespace DungeonRun
 
                 //set spawnPos
                 Functions_Hero.ResetFieldSpawnPos();
+                Functions_Hero.SpawnInCurrentRoom(); //spawn hero in room
+
+                //set camera to room spawnpos (where hero just spawned)
+                Camera2D.targetPosition.X = LevelSet.spawnPos_Dungeon.X;
+                Camera2D.targetPosition.Y = LevelSet.spawnPos_Dungeon.Y;
             }
 
-
-
-            //Pool.hero.direction = Direction.Up;
-            Functions_Hero.SpawnInCurrentRoom(); //spawn hero in room
-
-            //teleport camera to hero
-            Camera2D.targetPosition = Pool.hero.compSprite.position;
+            //teleport camera to it's starting position, set above
             Camera2D.currentPosition = Camera2D.targetPosition;
             Functions_Camera2D.SetView();
 

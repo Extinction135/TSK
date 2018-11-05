@@ -59,33 +59,44 @@ Today:
 
 
 
-Stumps++
-
-bush stumps should regrow if they touch water tiles too.
-this is really interaction between stump and waterTile.
-expanded stumps ai to also regrow if a water tile is
-nearby, allowing for better swamp miniboss room interactions.
-tested, working as expected.
 
 
 
+Editor++
 
+Camera needs to center to room upon load in editor.
+Done. Much easier to edit. Now we can fix up roomData.
 
+RoomData++
 
+dungeons should be fun. later dungeons can be more
+challenging. optional dungeons can be so difficult it's
+funny to try and beat them. so start with fun.
 
-
-
-
+remade all roomData to be "funner".
 
 
 
 
 
-BUGS!
 
-that bumper spike room needs to be removed. 
-we need to make all dungeon rooms fun, and easy, for now.
-the hard rooms are stupid hard.
+
+
+
+
+ObjWidget++
+extend obj widget, so we can see the whole objects name.
+
+extension of 4*16 + 8
+
+
+
+Flamethrower bug
+
+flamethrower collision recs should be 8x8.
+very small, cause they throw fire and they hit themselves
+rn cause they're hitbox is too big (16x16).
+
 
 
 
@@ -93,7 +104,9 @@ the hard rooms are stupid hard.
 Dungeons++
 
 all dungeon textures need to be different for each dungeon.
-
+floors need to be more green than brown, since grass usually
+is added ontop of these floor tiles. the walls can be whatever
+color..
 
 
 

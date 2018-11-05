@@ -3,6 +3,42 @@
   <type>Key</type>
   <objs>
     <ObjXmlData>
+      <type>Dungeon_BlockLight</type>
+      <direction>Down</direction>
+      <posX>232</posX>
+      <posY>88</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_BlockLight</type>
+      <direction>Down</direction>
+      <posX>216</posX>
+      <posY>104</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_BlockLight</type>
+      <direction>Down</direction>
+      <posX>200</posX>
+      <posY>72</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_BlockLight</type>
+      <direction>Down</direction>
+      <posX>232</posX>
+      <posY>72</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_BlockLight</type>
+      <direction>Down</direction>
+      <posX>232</posX>
+      <posY>104</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_BlockLight</type>
+      <direction>Down</direction>
+      <posX>200</posX>
+      <posY>104</posY>
+    </ObjXmlData>
+    <ObjXmlData>
       <type>Dungeon_ChestKey</type>
       <direction>Down</direction>
       <posX>88</posX>
@@ -371,12 +407,6 @@
     <ObjXmlData>
       <type>Dungeon_SpikesFloorOn</type>
       <direction>Down</direction>
-      <posX>184</posX>
-      <posY>88</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
       <posX>152</posX>
       <posY>56</posY>
     </ObjXmlData>
@@ -571,12 +601,6 @@
       <direction>Left</direction>
       <posX>152</posX>
       <posY>136</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_BlockLight</type>
-      <direction>Down</direction>
-      <posX>120</posX>
-      <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_ConveyorBeltOn</type>
@@ -689,7 +713,7 @@
     <ObjXmlData>
       <type>Dungeon_BlockLight</type>
       <direction>Down</direction>
-      <posX>184</posX>
+      <posX>216</posX>
       <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>

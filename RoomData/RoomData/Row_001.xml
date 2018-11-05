@@ -3,6 +3,30 @@
   <type>Row</type>
   <objs>
     <ObjXmlData>
+      <type>Wor_Bush</type>
+      <direction>Down</direction>
+      <posX>216</posX>
+      <posY>72</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Bush</type>
+      <direction>Down</direction>
+      <posX>88</posX>
+      <posY>104</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_Statue</type>
+      <direction>Down</direction>
+      <posX>88</posX>
+      <posY>88</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_Statue</type>
+      <direction>Down</direction>
+      <posX>216</posX>
+      <posY>88</posY>
+    </ObjXmlData>
+    <ObjXmlData>
       <type>Wor_Coastline_Straight</type>
       <direction>Down</direction>
       <posX>120</posX>
@@ -461,26 +485,14 @@
     <ObjXmlData>
       <type>Dungeon_SpawnMob</type>
       <direction>Down</direction>
-      <posX>88</posX>
+      <posX>136</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_SpawnMob</type>
       <direction>Down</direction>
-      <posX>216</posX>
+      <posX>168</posX>
       <posY>88</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpawnMob</type>
-      <direction>Down</direction>
-      <posX>120</posX>
-      <posY>72</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpawnMob</type>
-      <direction>Down</direction>
-      <posX>184</posX>
-      <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_Switch</type>
