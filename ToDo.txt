@@ -62,25 +62,6 @@ Today:
 
 
 
-Trees++
-
-Big Tree - indestructible, blocking
-Med Tree - indestructible, blocking
-Med Tree Stump - indestructible, blocking
-
-these objs were added to help present, and
-block off the town level, and other various levels
-as well. added to forest widget, hitboxes 
-tested and working very well. now we can finish
-town and coliseum levels for 0.77 release.
-
-
-
-
-
-
-
-
 
 
 Tree Shadows++
@@ -89,18 +70,7 @@ tree shadows should cast black at 50% opacity, like
 all other shadows. because they cast to dark green,
 they don't properly combine with the color/sprite 
 underneath them, unless it's the outside green color.
-
-
-
-
-
-
-
-
-
-
-
-
+done.
 
 
 
@@ -112,6 +82,14 @@ Skull Island Town++
 tall grass leads to bushes leads to med + big trees.
 we need to create large tree objects, so we can fill 
 up 'forests' efficiently. done. add them to town.
+
+
+
+
+
+
+
+
 
 
 
