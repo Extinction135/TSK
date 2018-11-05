@@ -888,28 +888,28 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[31], ObjType.Unknown);//
 
             //row 9
-            Functions_GameObject.SetType(objList[32], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[33], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[32], ObjType.Wor_Tree_Med);
+            Functions_GameObject.SetType(objList[33], ObjType.Unknown);//
             Functions_GameObject.SetType(objList[34], ObjType.Unknown);
             Functions_GameObject.SetType(objList[35], ObjType.Unknown);
 
             //row 10
-            Functions_GameObject.SetType(objList[36], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[37], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[36], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[37], ObjType.Unknown);//
             Functions_GameObject.SetType(objList[38], ObjType.Unknown);
             Functions_GameObject.SetType(objList[39], ObjType.Unknown);
 
             //row 11
-            Functions_GameObject.SetType(objList[40], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[41], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[40], ObjType.Wor_Tree_Med_Stump);
+            Functions_GameObject.SetType(objList[41], ObjType.Unknown);//
             Functions_GameObject.SetType(objList[42], ObjType.Unknown);
             Functions_GameObject.SetType(objList[43], ObjType.Unknown);
 
             //row 12
-            Functions_GameObject.SetType(objList[44], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[45], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[44], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[45], ObjType.Unknown);//
             Functions_GameObject.SetType(objList[46], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[47], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[47], ObjType.Wor_Tree_Big);
 
             //position the objs relative to the window frame
             Functions_Widget.PositionObjs(this);
@@ -949,6 +949,14 @@ namespace DungeonRun
             Functions_Widget.HideObj(objList[29]);
             Functions_Widget.HideObj(objList[30]);
             Functions_Widget.HideObj(objList[31]);
+
+            Functions_Widget.HideObj(objList[33]);
+            Functions_Widget.HideObj(objList[36]);
+            Functions_Widget.HideObj(objList[37]);
+
+            Functions_Widget.HideObj(objList[41]);
+            Functions_Widget.HideObj(objList[44]);
+            Functions_Widget.HideObj(objList[45]);
         }
     }
 

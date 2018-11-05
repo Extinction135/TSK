@@ -250,6 +250,11 @@ namespace DungeonRun
         public static List<Byte4> Wor_DirtToGrass_Corner_Exterior = new List<Byte4> { new Byte4(6, 9, 0, 0) };
 
 
+        //med + big trees
+        public static List<Byte4> Wor_Tree_Med = new List<Byte4> { new Byte4(7, 8, 0, 0) };
+        public static List<Byte4> Wor_Tree_Med_Stump = new List<Byte4> { new Byte4(6, 8, 0, 0) };
+        public static List<Byte4> Wor_Tree_Big = new List<Byte4> { new Byte4(3, 4, 0, 0) };
+
         #endregion
 
 

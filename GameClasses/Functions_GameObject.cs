@@ -1728,6 +1728,54 @@ namespace DungeonRun
             #endregion
 
 
+            #region Medium and Big Trees
+
+            
+            else if (Type == ObjType.Wor_Tree_Med)
+            {   
+                Obj.compSprite.zOffset = 8;
+                Obj.compCollision.blocking = true;
+                Obj.canBeSaved = true;
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Tree_Med;
+                //double size
+                Obj.compSprite.drawRec.Width = 16 * 2;
+                Obj.compSprite.drawRec.Height = 16 * 2;
+                Obj.compCollision.rec.Width = 16 * 2 - 6;
+                Obj.compCollision.rec.Height = 14;
+                Obj.compCollision.offsetX = -8 + 3;
+                Obj.compCollision.offsetY = +8;
+            }
+            else if (Type == ObjType.Wor_Tree_Med_Stump)
+            {
+                Obj.compSprite.zOffset = 8;
+                Obj.compCollision.blocking = true;
+                Obj.canBeSaved = true;
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Tree_Med_Stump;
+                //double size
+                Obj.compSprite.drawRec.Width = 16 * 2;
+                Obj.compSprite.drawRec.Height = 16 * 2;
+                Obj.compCollision.rec.Width = 16 * 2 - 6;
+                Obj.compCollision.rec.Height = 14;
+                Obj.compCollision.offsetX = -8 + 3;
+                Obj.compCollision.offsetY = +8;
+            }
+            else if (Type == ObjType.Wor_Tree_Big)
+            {
+                Obj.compSprite.zOffset = 16 * 2 + 4;
+                Obj.compCollision.blocking = true;
+                Obj.canBeSaved = true;
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Tree_Big;
+                //double size
+                Obj.compSprite.drawRec.Width = 16 * 4;
+                Obj.compSprite.drawRec.Height = 16 * 5;
+                //hitbox is custom
+                Obj.compCollision.rec.Width = 16 * 4 - 10;
+                Obj.compCollision.rec.Height = 16 * 2 + 4;
+                Obj.compCollision.offsetX = -8 + 5;
+                Obj.compCollision.offsetY = 16 * 2 - 2;
+            }
+
+            #endregion
 
 
 

@@ -62,44 +62,17 @@ Today:
 
 
 
+Trees++
 
-Floor Blood++
+Big Tree - indestructible, blocking
+Med Tree - indestructible, blocking
+Med Tree Stump - indestructible, blocking
 
-fixed a bug where floor blood's animFrame was wrong.
-as a result, dungeons are much messier (with blood).
-however, I removed all hue from the blood, so it appears
-more as a stain. this is for color harmony purposes,
-until a better color for blood is chosen.
-
-Dungeon Sheets++
-
-updated dungeon textures to their color versions,
-this is to ensure the texture loading routines are
-working properly.
-
-Exiting Dungeons++
-
-pressing A (hero interaction) with an exit obj
-should exit the dungeon. this allows a clipping
-hero to exit the dungeon. otherwise, we have to
-drop out of clipping, and that wastes seconds
-we could be doing something else. plus, we jump
-right back into clipping post-exit. so.... duh.
-done. this makes testing much easier/faster.
-
-game dungeons tested, working properly, tho
-they could use *alot* of coloring love.
-
-
-
-
-
-
-
-
-
-
-
+these objs were added to help present, and
+block off the town level, and other various levels
+as well. added to forest widget, hitboxes 
+tested and working very well. now we can finish
+town and coliseum levels for 0.77 release.
 
 
 
@@ -121,10 +94,8 @@ underneath them, unless it's the outside green color.
 
 
 
-Flamethrower bug
 
-fireballs aren't inheriting a direction/velocity from 
-flamethrowers - so only actors throw fireballs rn.
+
 
 
 
@@ -138,11 +109,9 @@ flamethrowers - so only actors throw fireballs rn.
 
 Skull Island Town++
 
-tall grass leads to bushes leads to trees.
-we need to create indestructible large tree objects, or
-series of trees, so we can fill up 'forests' efficiently.
-
-MAKE BIG TREE OBJS
+tall grass leads to bushes leads to med + big trees.
+we need to create large tree objects, so we can fill 
+up 'forests' efficiently. done. add them to town.
 
 
 
@@ -162,6 +131,14 @@ MAKE BIG TREE OBJS
 
 
 
+
+
+
+
+Flamethrower bug
+
+fireballs aren't inheriting a direction/velocity from 
+flamethrowers - so only actors throw fireballs rn.
 
 
 Coliseum++

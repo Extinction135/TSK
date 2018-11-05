@@ -515,6 +515,11 @@ namespace DungeonRun
         Wor_DirtToGrass_Corner_Exterior,
         Wor_DirtToGrass_Corner_Interior,
 
+        //med & big trees
+        Wor_Tree_Med,
+        Wor_Tree_Med_Stump,
+        Wor_Tree_Big,
+
 
 
         #endregion
