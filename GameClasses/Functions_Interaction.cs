@@ -1183,6 +1183,8 @@ namespace DungeonRun
                     //otherwise the obj sinks as soon as it touches a water tile,
                     //which looks early. and bad. cause we tried it. no good.
                 }
+
+                //bushes and stumps are grounded, not pushable, and dont eval() here
             }
 
             #endregion

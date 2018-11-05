@@ -990,12 +990,19 @@ namespace DungeonRun
                         return;
                     }
 
-                    //loop over all active roomObjs, looking at filled ditches
+                    //loop over all active roomObjs, looking at filled ditches + water tiles
                     for (i = 0; i < Pool.roomObjCount; i++)
                     {
-                        if (Pool.roomObjPool[i].active &
+                        if (
+                            //filled ditch
+                            (Pool.roomObjPool[i].active &
                             Pool.roomObjPool[i].group == ObjGroup.Ditch &
-                            Pool.roomObjPool[i].getsAI == true) //filled
+                            Pool.roomObjPool[i].getsAI == true)
+                            ||
+                            //water tile
+                            (Pool.roomObjPool[i].active &
+                            Pool.roomObjPool[i].type == ObjType.Wor_Water)
+                            )
                         {
                             //check collisions
                             if (Pool.roomObjPool[i].compCollision.rec.Intersects(Obj.compCollision.rec))

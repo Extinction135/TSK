@@ -59,16 +59,16 @@ Today:
 
 
 
+Stumps++
+
+bush stumps should regrow if they touch water tiles too.
+this is really interaction between stump and waterTile.
+expanded stumps ai to also regrow if a water tile is
+nearby, allowing for better swamp miniboss room interactions.
+tested, working as expected.
 
 
 
-Animation++
-
-bat boss death animation did not complete.
-stayed on last falling frame. this is because
-we just didn't add the last frame of animation
-to his animList. so now that's done and he dies
-properly.
 
 
 
@@ -97,10 +97,6 @@ all dungeon textures need to be different for each dungeon.
 
 
 
-
-bushes should regrow if they touch water tiles too.
-this allows the swamp miniboss room to regrow, creating
-more interaction and visual distraction.
 
 
 
