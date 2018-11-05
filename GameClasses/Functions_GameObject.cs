@@ -1769,10 +1769,10 @@ namespace DungeonRun
                 Obj.compSprite.drawRec.Width = 16 * 4;
                 Obj.compSprite.drawRec.Height = 16 * 5;
                 //hitbox is custom
-                Obj.compCollision.rec.Width = 16 * 4 - 10;
-                Obj.compCollision.rec.Height = 16 * 2 + 4;
-                Obj.compCollision.offsetX = -8 + 5;
-                Obj.compCollision.offsetY = 16 * 2 - 2;
+                Obj.compCollision.rec.Width = 16 * 4 - 8;
+                Obj.compCollision.rec.Height = 16 * 2 + 10;
+                Obj.compCollision.offsetX = -8 + 4;
+                Obj.compCollision.offsetY = 16 * 2 - 5;
             }
 
             #endregion

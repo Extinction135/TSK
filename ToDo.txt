@@ -62,33 +62,15 @@ Today:
 
 
 
-
-
-Tree Shadows++
-
-tree shadows should cast black at 50% opacity, like
-all other shadows. because they cast to dark green,
-they don't properly combine with the color/sprite 
-underneath them, unless it's the outside green color.
-done.
-
-
-
-
-
-
 Skull Island Town++
 
 tall grass leads to bushes leads to med + big trees.
 we need to create large tree objects, so we can fill 
 up 'forests' efficiently. done. add them to town.
 
-
-
-
-
-
-
+increase vertical hitbox of big trees. slightly.
+done. this allows big trees to completely enclose a
+level, limiting where the player can go.
 
 
 
