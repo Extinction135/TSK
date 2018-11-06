@@ -65,34 +65,19 @@ Prep for 0.77 Release
 
 > forest island level entrance complete.
 > signposts working, all dialog working, including brandy.
-> keyboard input, based on wasd for movement, weapon & item should be set-able
 > fix date on save/load game screen
-> fix flamethrowers + fireballs
 > blobs need to be full color
 > groundfires on bushes still dont spread south
 > win/defeat screen should ACTUALLY WORK PLS
 > bug where initial exit room's walls still use prev sheet (update em'?)
+> boomerang red w/ white trim
 
 
 
+Blobs++
 
-
-
-Flamethrower bug
-
-fireballs aren't inheriting a direction/velocity from 
-flamethrowers - so only actors throw fireballs rn.
-this break some puzzles, and is priority for release.
-
-so, to fix this, Projectile.Spawn() now requires a Direction,
-instead of that being an optional parameter. 34 errors.
-fixed, modified pro.spawn() to be more like it's brother
-pro.spawn(Actor caster). tested, flamethrowers working again.
-
-
-
-
-
+blobs are now in color, completing the swamp dungeon visuals.
+tested.
 
 
 
@@ -146,6 +131,10 @@ release 0.77? YEPPPpp
 
 
 Tweens
+
+
+> keyboard input, based on wasd for movement, weapon & item should be set-able
+this is likely a screen with custom input.
 
 
 
