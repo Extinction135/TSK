@@ -1496,7 +1496,6 @@ namespace DungeonRun
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Coastline_Straight; Obj.direction = Direction.Right; Obj.posX = 8; Obj.posY = 72; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Coastline_Straight; Obj.direction = Direction.Right; Obj.posX = 8; Obj.posY = 88; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Coastline_Straight; Obj.direction = Direction.Right; Obj.posX = 8; Obj.posY = 104; room.objs.Add(Obj);}
-				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Swamp_Bulb; Obj.direction = Direction.Down; Obj.posX = -88; Obj.posY = 40; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Bush; Obj.direction = Direction.Down; Obj.posX = 104; Obj.posY = 56; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Coastline_Straight; Obj.direction = Direction.Left; Obj.posX = 168; Obj.posY = 24; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Wor_Coastline_Straight; Obj.direction = Direction.Left; Obj.posX = 168; Obj.posY = 40; room.objs.Add(Obj);}

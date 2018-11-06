@@ -241,6 +241,31 @@ namespace DungeonRun
                 ScreenManager.AddScreen(Screens.Dialog);
             }
 
+            else if (LevelSet.currentLevel.currentRoom.roomID == RoomID.ForestIsland_MainEntrance)
+            {
+                Screens.Dialog.SetDialog(AssetsDialog.Signpost_ForestEntrance);
+                ScreenManager.AddScreen(Screens.Dialog);
+            }
+            else if (LevelSet.currentLevel.currentRoom.roomID == RoomID.DeathMountain_MainEntrance)
+            {
+                Screens.Dialog.SetDialog(AssetsDialog.Signpost_MountainEntrance);
+                ScreenManager.AddScreen(Screens.Dialog);
+            }
+
+
+
+            //this is a temp hack for 0.77 release and will change in future commits
+            else if (LevelSet.currentLevel.currentRoom.roomID == RoomID.SkullIsland_ShadowKing)
+            {
+                Screens.Dialog.SetDialog(AssetsDialog.Signpost_SwampEntrance);
+                ScreenManager.AddScreen(Screens.Dialog);
+            }
+
+
+
+
+
+
 
             //dungeon signposts
             else if (LevelSet.currentLevel.currentRoom.roomID == RoomID.Exit)

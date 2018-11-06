@@ -150,6 +150,14 @@ namespace DungeonRun
         #endregion
 
 
+
+
+
+
+
+
+
+
         #region Signpost Dialogs
 
 
@@ -162,35 +170,35 @@ namespace DungeonRun
         };
 
 
-
+        //field level signposts
         public static List<Dialog> Signpost_ForestEntrance = new List<Dialog>
         {
-            new Dialog(ObjType.Hero_Idle, "Hyrule Forest",
-                "'Please Respect our community - no logging!'\n" +
-                "..I guess they really care about their wood.",
+            new Dialog(ObjType.Hero_Idle, "The Forest Dungeon",
+                "A small, easy dungeon.\n" +
+                "Have fun!",
                 Assets.sfxTextLetter, false, false)
         };
-
         public static List<Dialog> Signpost_MountainEntrance = new List<Dialog>
         {
-            new Dialog(ObjType.Hero_Idle, "Climbing The Mountain",
+            new Dialog(ObjType.Hero_Idle, "The Mountain Dungeon",
                 "Climb using A to grab onto a foothold.\n" +
-                "Press B to jump off the wall. Be careful.",
+                "Climb up the mountain to the cave. Med difficulty.",
                 Assets.sfxTextLetter, false, false)
         };
-
-
-
+        public static List<Dialog> Signpost_SwampEntrance = new List<Dialog>
+        {
+            new Dialog(ObjType.Hero_Idle, "The Swamp Dungeon",
+                "End game dungeon. You'll need to swim alot.\n" +
+                "Caution: very difficult.",
+                Assets.sfxTextLetter, false, false)
+        };
         public static List<Dialog> Signpost_ShadowTown = new List<Dialog>
         {
             new Dialog(ObjType.Hero_Idle, "Shadow Town",
-                "'a beautiful place to stay, forever'..\n" +
-                "hmm.. i want to leave already..",
+                "all vendors located here for your convienence..\n" +
+                "...",
                 Assets.sfxTextLetter, false, false)
         };
-
-        
-
         public static List<Dialog> Signpost_ShadowColliseum = new List<Dialog>
         {
             new Dialog(ObjType.Hero_Idle, "Shadow Coliseum",
@@ -201,6 +209,9 @@ namespace DungeonRun
 
 
 
+
+
+        
         //dungeon signposts
         public static List<Dialog> Signpost_ExitRoom = new List<Dialog>
         {
@@ -211,6 +222,13 @@ namespace DungeonRun
         };
 
         #endregion
+
+
+
+
+
+
+
 
 
 
@@ -243,13 +261,6 @@ namespace DungeonRun
 
 
         #region Dungeon dialogs
-
-
-
-
-
-
-
 
         public static List<Dialog> DoesNotHaveKey = new List<Dialog>
         {

@@ -67,23 +67,14 @@ Prep for 0.77 Release
 > signposts working, all dialog working, including brandy.
 > groundfires on bushes still dont spread south
 > bug where initial exit room's walls still use prev sheet (update em'?)
+
 > more overworld locations, all paths + connections, pls.
-> add creatures to overworld levels: crab, rat, turtle
-> no chickens? no chicken sounds unless obj hit. then cluck. add chicken to town.
 
 
 
 
-End Game Update to LSN Screen.
 
-when player loads or saves or creates a game, the load/save/new
-screen appears. now, when savedata shows all three dungeons have
-been beaten, the text - "beaten!" appears next to the game name.
-this is just a simple way to let the player know they did indeed
-beat the game, as there is no end title or credits screen yet,
-and i'm not in a big rush to make one.
 
-implemented and tested, via xml editing.
 
 
 
@@ -93,218 +84,34 @@ implemented and tested, via xml editing.
 
 
 
+Signposts++
 
+signposts didn't have complete logic to link various
+levels to their proper signpost. this has been fixed.
 
-*need to make boat anchor object - this is already in common objs,
-and can be used to further decorate piers.
+misc
 
+removed vine from water exit room. pls.
+compiled all roomData and levelData.
 
 
 
 
 
 
-Signposts
 
-signposts are likely related to not using levelset.currentLevel,
-and instead targeting the field or room specifically. needed for
-dungeon room signs, but use currentLevel for all field signposts.
 
 
 
-how do we add brandy into signposts?
 
 
-remove vine from water exit room. pls.
 
 
+Dialogs++
 
+how do we add brandy into dialogs?
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-release 0.77? YEPPPpp
-
-
-
-
-Record playthrough
-Upload to youtube, cut gifs
-Edit 0.77 gif together
-
--post gif to gbatemp thread
--post playthrough video to: insta, discord
--post gif to insta - can we do this without compression? via usb transfer?
-
-
-
-
-
-
-
-
-
-
-
-
-Tweens
-
-
-> keyboard input, based on wasd for movement, weapon & item should be set-able
-this is likely a screen with custom input.
-
-
-
-notes:
-torches should be common objs, as they exist outside
-of dungeons. same with map, key, flamethrower, ice tile,
-fairy, explosive barrel, pit, pit bridge, conveyor belt,
-enemy spawns, and finally pit spikes on/off.
-
-this may make the dungeon sheet sizeable down a power.
-YES WE CAN! and up next, the dungeon sheets will drop to
-128x128 sheets, reducing the ram footprint of the game.
-which is good, if you are planning on porting to ram
-restricted systems... 
-
-
-
-
-Coliseum++
-
-we need 'windows' that look into the coliseum,
-like the overworld sprite depicts. plus, I don't like
-how the coliseum level is unbalanced and to the right.
-instead, the coliseum - and all subsequent coliseums -
-will be entrance centered to level, north of spawn.
-this 'presents' the level much better, because coliseums
-have no required puzzle for entry.
-
-a window is a 3x4 obj, with baked in bkg.
-so this saves us a lot of roomObjs.
-
-
-
-
-Doggo++
-
-color pet doggo.
-make doggo not shrink when in pits.
-make doggo not fall into pits.
-make doggo stick real close to hero.
-doggo can never get too far away now.
-doggo always spawns with hero in room.
-
-
-
-
-
-House Roofs++
-
-add detail to roof sprites: we can have roof
-sides and corners, to better show where the roof
-ends. like rain gutters and trim and stuff.
-houses can look much better.
-
-
-
-
-Water++
-
-*we could have animated floating lily pads, much like the animated
-flowers that sit over the grass levels. this would add some decoration
-to the otherwise bland sea water.
-
-
-
-
-
-
-
-
-
-
-0.78 - SLIME, Swamp Dungeon
-
--because we're close to finishing the swamp dungeon,
-we can use it as a prototype endgame dungeon (hard difficulty).
-
-*create swamp dungeon entrance objs + level details - SLIME obj
-
-we can do the slime obj rn - this just drops player mobility to 
-pushing/dragging speed upon contact. super easy. then update the
-swamp level, so swimming thru slime is annoyingly slow.
-
-
-
-
-
-
-Difficulty
-
-+++++ we need to be able to scale the dungeon difficulty (complexity)
-based on the difficulty settings of easy, medium, hard.
-easy creates simple dungeons, medium has the spectrum,
-hard is size 2-3 dungeons, and maybe we have expert level too,
-where all dungons are size 3 or greater.
-
-
-
-
-
-
-
-
-
-all dungeon entrances - these need to be specifically defined
-they are not implemented properly, as they assume each entrance
-exists in the same location on different sheets. the logic handling
-this is wonky too.
-
-
-
-How do we do Dungeon Entrances? properly.
-
-
-forest: from water, thru large rock teeth, water bushes (med) - under rock formation
-swamp: from sea, thru slime, short climb up mountain side to teeth - to darkness
-
-skull coliseum: entrance is 3x4 door obj, with skull decorations.
-coliseum walls build a rounded exterior appearance.
-
-
-
-
-
-
-
-Color++
-
-
-create color version of forest, swamp, mountain dungeons
-update those sheets - these dungeons can have unique wall colors
-
-
-art++
-remove orange/red from coliseum spectators
-make spectators much more brown and less obvious
-
-
-
-editor++
-signpost shold be part of env objs widget (is part of dungeon widget)
-
-
+update dungeon entrance dialogs.
 
 
 
@@ -409,7 +216,222 @@ DEATH MOUNTAIN LOCATIONS+++
 
 
 
-Release 0.77. Overworld and Color implemented.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+release 0.77? YEPPPpp
+
+
+
+
+Record playthrough
+Upload to youtube, cut gifs
+Edit 0.77 gif together
+
+-post gif to gbatemp thread
+-post playthrough video to: insta, discord
+-post gif to insta - can we do this without compression? via usb transfer?
+
+
+
+
+
+
+
+
+
+
+
+
+Tweens
+
+
+
+big chests should exist in dungeons, and reward the master key.
+this allows smaller chests to exist outside of keyroom and dungeons
+altogether. also, we could randomly reward player with loot when
+they open the chest, including magic or fairys or whatever.
+
+
+
+
+
+> keyboard input, based on wasd for movement, weapon & item should be set-able
+this is likely a screen with custom input.
+
+
+
+notes:
+torches should be common objs, as they exist outside
+of dungeons. same with map, key, flamethrower, ice tile,
+fairy, explosive barrel, pit, pit bridge, conveyor belt,
+enemy spawns, and finally pit spikes on/off.
+
+this may make the dungeon sheet sizeable down a power.
+YES WE CAN! and up next, the dungeon sheets will drop to
+128x128 sheets, reducing the ram footprint of the game.
+which is good, if you are planning on porting to ram
+restricted systems... 
+
+
+
+
+Coliseum++
+
+we need 'windows' that look into the coliseum,
+like the overworld sprite depicts. plus, I don't like
+how the coliseum level is unbalanced and to the right.
+instead, the coliseum - and all subsequent coliseums -
+will be entrance centered to level, north of spawn.
+this 'presents' the level much better, because coliseums
+have no required puzzle for entry.
+
+a window is a 3x4 obj, with baked in bkg.
+so this saves us a lot of roomObjs.
+
+
+
+
+Doggo++
+
+color pet doggo.
+make doggo not shrink when in pits.
+make doggo not fall into pits.
+make doggo stick real close to hero.
+doggo can never get too far away now.
+doggo always spawns with hero in room.
+
+
+
+
+
+House Roofs++
+
+add detail to roof sprites: we can have roof
+sides and corners, to better show where the roof
+ends. like rain gutters and trim and stuff.
+houses can look much better.
+
+
+
+
+Water++
+
+*we could have animated floating lily pads, much like the animated
+flowers that sit over the grass levels. this would add some decoration
+to the otherwise bland sea water.
+
+
+
+
+*need to make boat anchor object - this is already in common objs,
+and can be used to further decorate piers.
+
+
+
+
+
+
+
+
+
+
+
+
+0.78 - SLIME, Swamp Dungeon
+
+-because we're close to finishing the swamp dungeon,
+we can use it as a prototype endgame dungeon (hard difficulty).
+
+*create swamp dungeon entrance objs + level details - SLIME obj
+
+we can do the slime obj rn - this just drops player mobility to 
+pushing/dragging speed upon contact. super easy. then update the
+swamp level, so swimming thru slime is annoyingly slow.
+
+
+
+
+
+
+Difficulty
+
++++++ we need to be able to scale the dungeon difficulty (complexity)
+based on the difficulty settings of easy, medium, hard.
+easy creates simple dungeons, medium has the spectrum,
+hard is size 2-3 dungeons, and maybe we have expert level too,
+where all dungons are size 3 or greater.
+
+
+
+
+
+
+
+
+
+all dungeon entrances - these need to be specifically defined
+they are not implemented properly, as they assume each entrance
+exists in the same location on different sheets. the logic handling
+this is wonky too.
+
+
+
+How do we do Dungeon Entrances? properly.
+
+
+forest: from water, thru large rock teeth, water bushes (med) - under rock formation
+swamp: from sea, thru slime, short climb up mountain side to teeth - to darkness
+
+skull coliseum: entrance is 3x4 door obj, with skull decorations.
+coliseum walls build a rounded exterior appearance.
+
+
+> no chickens? no chicken sounds unless obj hit. then cluck. add chicken to town.
+
+
+
+
+
+
+art++
+remove orange/red from coliseum spectators
+make spectators much more brown and less obvious
+
+
+
+editor++
+signpost shold be part of env objs widget (is part of dungeon widget)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
