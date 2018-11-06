@@ -1705,7 +1705,7 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 392; SkullIsland_ShadowKing.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 360; SkullIsland_ShadowKing.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Boat_Back_Center; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 664; SkullIsland_ShadowKing.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 360; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Swamp_LillyPad; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 360; SkullIsland_ShadowKing.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 392; SkullIsland_ShadowKing.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Boat_Floor; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 664; SkullIsland_ShadowKing.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Boat_Floor; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 664; SkullIsland_ShadowKing.objs.Add(obj);}
@@ -1799,7 +1799,7 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 456; SkullIsland_ShadowKing.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 824; obj.posY = 520; SkullIsland_ShadowKing.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 392; SkullIsland_ShadowKing.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 360; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Swamp_LillyPad; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 360; SkullIsland_ShadowKing.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 392; SkullIsland_ShadowKing.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 360; SkullIsland_ShadowKing.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 584; SkullIsland_ShadowKing.objs.Add(obj);}
@@ -2449,7 +2449,111 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Boat_Pier_TopMiddle; obj.direction = Direction.Down; obj.posX = 744; obj.posY = 488; SkullIsland_ShadowKing.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Boat_Pier_TopMiddle; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 488; SkullIsland_ShadowKing.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Signpost; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 488; SkullIsland_ShadowKing.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Pot; obj.direction = Direction.Down; obj.posX = 744; obj.posY = 488; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Pot; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 424; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockMed; obj.direction = Direction.Down; obj.posX = 872; obj.posY = 392; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockMed; obj.direction = Direction.Down; obj.posX = 376; obj.posY = 408; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockMed; obj.direction = Direction.Down; obj.posX = 344; obj.posY = 584; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockMed; obj.direction = Direction.Down; obj.posX = 456; obj.posY = 632; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockMed; obj.direction = Direction.Down; obj.posX = 920; obj.posY = 520; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockMed; obj.direction = Direction.Down; obj.posX = 856; obj.posY = 632; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockMed; obj.direction = Direction.Down; obj.posX = 424; obj.posY = 504; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockSm; obj.direction = Direction.Down; obj.posX = 328; obj.posY = 344; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockSm; obj.direction = Direction.Down; obj.posX = 408; obj.posY = 376; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockSm; obj.direction = Direction.Down; obj.posX = 424; obj.posY = 488; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockSm; obj.direction = Direction.Down; obj.posX = 360; obj.posY = 504; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockSm; obj.direction = Direction.Down; obj.posX = 376; obj.posY = 616; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockSm; obj.direction = Direction.Down; obj.posX = 952; obj.posY = 584; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockSm; obj.direction = Direction.Down; obj.posX = 776; obj.posY = 632; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockSm; obj.direction = Direction.Down; obj.posX = 888; obj.posY = 408; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockSm; obj.direction = Direction.Down; obj.posX = 952; obj.posY = 344; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockUnderwater; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 376; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockUnderwater; obj.direction = Direction.Down; obj.posX = 792; obj.posY = 440; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockUnderwater; obj.direction = Direction.Down; obj.posX = 472; obj.posY = 472; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockUnderwater; obj.direction = Direction.Down; obj.posX = 360; obj.posY = 520; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockUnderwater; obj.direction = Direction.Down; obj.posX = 424; obj.posY = 616; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockUnderwater; obj.direction = Direction.Down; obj.posX = 344; obj.posY = 392; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockUnderwater; obj.direction = Direction.Down; obj.posX = 920; obj.posY = 376; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockUnderwater; obj.direction = Direction.Down; obj.posX = 888; obj.posY = 488; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockUnderwater; obj.direction = Direction.Down; obj.posX = 936; obj.posY = 632; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockUnderwater; obj.direction = Direction.Down; obj.posX = 840; obj.posY = 600; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Pot; obj.direction = Direction.Down; obj.posX = 472; obj.posY = 424; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Pot; obj.direction = Direction.Down; obj.posX = 424; obj.posY = 520; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Pot; obj.direction = Direction.Down; obj.posX = 872; obj.posY = 408; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Pot; obj.direction = Direction.Down; obj.posX = 936; obj.posY = 472; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Pot; obj.direction = Direction.Down; obj.posX = 904; obj.posY = 568; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Pot; obj.direction = Direction.Down; obj.posX = 920; obj.posY = 632; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Pot; obj.direction = Direction.Down; obj.posX = 376; obj.posY = 344; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Pot; obj.direction = Direction.Down; obj.posX = 344; obj.posY = 472; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Pot; obj.direction = Direction.Down; obj.posX = 328; obj.posY = 568; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Pot; obj.direction = Direction.Down; obj.posX = 456; obj.posY = 616; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Post_Vertical_Right; obj.direction = Direction.Down; obj.posX = 504; obj.posY = 536; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Post_Vertical_Right; obj.direction = Direction.Down; obj.posX = 504; obj.posY = 552; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Post_Vertical_Right; obj.direction = Direction.Down; obj.posX = 504; obj.posY = 568; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Post_Corner_Right; obj.direction = Direction.Down; obj.posX = 504; obj.posY = 584; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Post_Corner_Right; obj.direction = Direction.Down; obj.posX = 504; obj.posY = 616; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Post_Vertical_Left; obj.direction = Direction.Down; obj.posX = 856; obj.posY = 456; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Post_Vertical_Left; obj.direction = Direction.Down; obj.posX = 856; obj.posY = 472; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Post_Vertical_Left; obj.direction = Direction.Down; obj.posX = 856; obj.posY = 488; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Post_Corner_Left; obj.direction = Direction.Down; obj.posX = 856; obj.posY = 504; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Post_Corner_Left; obj.direction = Direction.Down; obj.posX = 856; obj.posY = 536; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Swamp_BigPlant; obj.direction = Direction.Down; obj.posX = 872; obj.posY = 456; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Swamp_SmPlant; obj.direction = Direction.Down; obj.posX = 488; obj.posY = 376; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Swamp_BigPlant; obj.direction = Direction.Down; obj.posX = 472; obj.posY = 536; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Swamp_SmPlant; obj.direction = Direction.Down; obj.posX = 792; obj.posY = 616; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Swamp_SmPlant; obj.direction = Direction.Down; obj.posX = 856; obj.posY = 376; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Swamp_SmPlant; obj.direction = Direction.Down; obj.posX = 344; obj.posY = 568; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Swamp_SmPlant; obj.direction = Direction.Down; obj.posX = 344; obj.posY = 408; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Swamp_SmPlant; obj.direction = Direction.Down; obj.posX = 936; obj.posY = 536; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Swamp_Bulb; obj.direction = Direction.Down; obj.posX = 424; obj.posY = 424; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Swamp_Bulb; obj.direction = Direction.Down; obj.posX = 392; obj.posY = 568; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Swamp_Bulb; obj.direction = Direction.Down; obj.posX = 840; obj.posY = 424; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Swamp_Bulb; obj.direction = Direction.Down; obj.posX = 904; obj.posY = 600; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Swamp_Bulb; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 632; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 600; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 616; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 632; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 616; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 632; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 648; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 664; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 648; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockUnderwater; obj.direction = Direction.Down; obj.posX = 488; obj.posY = 696; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockUnderwater; obj.direction = Direction.Down; obj.posX = 888; obj.posY = 696; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockSm; obj.direction = Direction.Down; obj.posX = 360; obj.posY = 632; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockSm; obj.direction = Direction.Down; obj.posX = 392; obj.posY = 696; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockSm; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 696; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockSm; obj.direction = Direction.Down; obj.posX = 824; obj.posY = 664; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockSm; obj.direction = Direction.Down; obj.posX = 776; obj.posY = 696; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockMed; obj.direction = Direction.Down; obj.posX = 952; obj.posY = 696; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockMed; obj.direction = Direction.Down; obj.posX = 840; obj.posY = 696; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockMed; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 696; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockMed; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 712; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockMed; obj.direction = Direction.Down; obj.posX = 360; obj.posY = 664; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Swamp_SmPlant; obj.direction = Direction.Down; obj.posX = 424; obj.posY = 680; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Swamp_SmPlant; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 680; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Swamp_SmPlant; obj.direction = Direction.Down; obj.posX = 920; obj.posY = 680; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_TorchLit; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 360; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_TorchLit; obj.direction = Direction.Down; obj.posX = 744; obj.posY = 360; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_TorchLit; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 376; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_TorchLit; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 376; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_TorchLit; obj.direction = Direction.Down; obj.posX = 744; obj.posY = 376; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_TorchLit; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 360; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_TorchLit; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 376; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_TorchLit; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 360; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Post_Horizontal; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 408; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Post_Horizontal; obj.direction = Direction.Down; obj.posX = 744; obj.posY = 408; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Post_Horizontal; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 408; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Post_Horizontal; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 408; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Post_Horizontal; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 408; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Post_Corner_Right; obj.direction = Direction.Down; obj.posX = 776; obj.posY = 408; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Post_Vertical_Right; obj.direction = Direction.Down; obj.posX = 776; obj.posY = 392; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Post_Vertical_Right; obj.direction = Direction.Down; obj.posX = 776; obj.posY = 376; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Post_Corner_Left; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 408; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Post_Vertical_Left; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 392; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_LeverOff; obj.direction = Direction.Down; obj.posX = 744; obj.posY = 488; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Pot; obj.direction = Direction.Down; obj.posX = 744; obj.posY = 424; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Pot; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 424; SkullIsland_ShadowKing.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Pot; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 424; SkullIsland_ShadowKing.objs.Add(obj);}
 			#endregion
 
 

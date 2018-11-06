@@ -408,7 +408,7 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 312; obj.posY = 424; DeathMountain_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 312; obj.posY = 456; DeathMountain_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 376; obj.posY = 456; DeathMountain_MainEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 376; obj.posY = 424; DeathMountain_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Alcove_Right; obj.direction = Direction.Down; obj.posX = 408; obj.posY = 424; DeathMountain_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 376; obj.posY = 392; DeathMountain_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 376; obj.posY = 360; DeathMountain_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Mid; obj.direction = Direction.Down; obj.posX = 376; obj.posY = 328; DeathMountain_MainEntrance.objs.Add(obj);}
@@ -864,6 +864,47 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 488; obj.posY = 504; DeathMountain_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 504; obj.posY = 504; DeathMountain_MainEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 504; DeathMountain_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Alcove_Left; obj.direction = Direction.Down; obj.posX = 376; obj.posY = 424; DeathMountain_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder; obj.direction = Direction.Down; obj.posX = 392; obj.posY = 456; DeathMountain_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder; obj.direction = Direction.Down; obj.posX = 392; obj.posY = 472; DeathMountain_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Ladder; obj.direction = Direction.Down; obj.posX = 392; obj.posY = 488; DeathMountain_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Cave_Bare; obj.direction = Direction.Down; obj.posX = 392; obj.posY = 392; DeathMountain_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_MountainWall_Cave_Covered; obj.direction = Direction.Down; obj.posX = 904; obj.posY = 488; DeathMountain_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockSm; obj.direction = Direction.Down; obj.posX = 504; obj.posY = 568; DeathMountain_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockSm; obj.direction = Direction.Down; obj.posX = 376; obj.posY = 616; DeathMountain_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockSm; obj.direction = Direction.Down; obj.posX = 920; obj.posY = 616; DeathMountain_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockSm; obj.direction = Direction.Down; obj.posX = 776; obj.posY = 552; DeathMountain_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockMed; obj.direction = Direction.Down; obj.posX = 344; obj.posY = 536; DeathMountain_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockMed; obj.direction = Direction.Down; obj.posX = 856; obj.posY = 680; DeathMountain_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockMed; obj.direction = Direction.Down; obj.posX = 424; obj.posY = 680; DeathMountain_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockUnderwater; obj.direction = Direction.Down; obj.posX = 376; obj.posY = 632; DeathMountain_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockUnderwater; obj.direction = Direction.Down; obj.posX = 872; obj.posY = 568; DeathMountain_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockUnderwater; obj.direction = Direction.Down; obj.posX = 904; obj.posY = 680; DeathMountain_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water_RockUnderwater; obj.direction = Direction.Down; obj.posX = 520; obj.posY = 568; DeathMountain_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 344; obj.posY = 504; DeathMountain_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 328; obj.posY = 504; DeathMountain_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 936; obj.posY = 504; DeathMountain_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 888; obj.posY = 488; DeathMountain_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Pot; obj.direction = Direction.Down; obj.posX = 872; obj.posY = 504; DeathMountain_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_SkullPillar; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 488; DeathMountain_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_SkullPillar; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 488; DeathMountain_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Post_Horizontal; obj.direction = Direction.Down; obj.posX = 824; obj.posY = 536; DeathMountain_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Post_Horizontal; obj.direction = Direction.Down; obj.posX = 840; obj.posY = 536; DeathMountain_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Post_Horizontal; obj.direction = Direction.Down; obj.posX = 856; obj.posY = 536; DeathMountain_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Post_Horizontal; obj.direction = Direction.Down; obj.posX = 872; obj.posY = 536; DeathMountain_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Post_Horizontal; obj.direction = Direction.Down; obj.posX = 888; obj.posY = 536; DeathMountain_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Post_Vertical_Right; obj.direction = Direction.Down; obj.posX = 952; obj.posY = 504; DeathMountain_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Post_Vertical_Right; obj.direction = Direction.Down; obj.posX = 952; obj.posY = 520; DeathMountain_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Post_Vertical_Right; obj.direction = Direction.Down; obj.posX = 952; obj.posY = 536; DeathMountain_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Post_Vertical_Right; obj.direction = Direction.Down; obj.posX = 952; obj.posY = 552; DeathMountain_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Post_Corner_Right; obj.direction = Direction.Down; obj.posX = 952; obj.posY = 568; DeathMountain_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Post_Vertical_Left; obj.direction = Direction.Down; obj.posX = 440; obj.posY = 552; DeathMountain_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Post_Vertical_Left; obj.direction = Direction.Down; obj.posX = 440; obj.posY = 568; DeathMountain_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Post_Vertical_Left; obj.direction = Direction.Down; obj.posX = 440; obj.posY = 584; DeathMountain_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Post_Corner_Left; obj.direction = Direction.Down; obj.posX = 440; obj.posY = 600; DeathMountain_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Post_Horizontal; obj.direction = Direction.Down; obj.posX = 456; obj.posY = 600; DeathMountain_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Post_Corner_Right; obj.direction = Direction.Down; obj.posX = 808; obj.posY = 536; DeathMountain_MainEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Post_Corner_Right; obj.direction = Direction.Down; obj.posX = 488; obj.posY = 600; DeathMountain_MainEntrance.objs.Add(obj);}
 			#endregion
 
 		}

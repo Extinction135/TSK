@@ -63,53 +63,11 @@ Today:
 
 Prep for 0.77 Release
 
-> complete forest island level entrance!!!
 > win/defeat screen should ACTUALLY WORK PLS
-> end game condition: check booleans on LSN screen, add "GAME WON!" text - easy!
-
 > signposts working, all dialog working, including brandy.
 > groundfires on bushes still dont spread south
 > bug where initial exit room's walls still use prev sheet (update em'?)
-> boomerang red w/ white trim
 > more overworld locations, all paths + connections, pls.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Blocking Water Objs (Rocks) + Underwater Obj
-
-we already have these in the common objs sheet.
-all they do is block, no destruction or interaction at all.
-and, we can use these objs to upgrade forest dungeon 
-entrance level even further. added objs. upgraded level.
-
-underwater rock should be two anim frames that flip horizontally.
-done.
-
-notes
-this is something animated underwater.. this object was also
-updated to not be blocking, and instead is simply decoration for
-water for now. this sprite will also be used for secret items hidden
-underwater, so this behavior sets the stage for that to happen.
-basically, this obj is just decoration - but is actually distraction.
-by littering a level with these useless objs, then hiding one useful
-obj within them, that looks like them, they become useful - as
-camouflage. 
-
-
-
 
 
 
@@ -124,21 +82,38 @@ Mountain Dungeon Entrance++
 mountain dungeon entrance level should get various additional
 objects, to teash whats possible:
 cave entrances, duh, with additional plateaus
-more water objects
-an area to dock, with a small house. nothing inside.
+more water objects..
+
+TSK Entrance Level++
+
+updated tsk entrance level with various water objs too.
+
+Misc
+
+fixed cave entrance to properly blend with mountain walls 
+and alcoves.
 
 
 
 
-Swamp Entrance Level
-
-update tsk entrance level with various water objs...
 
 
 
 
 
 
+
+
+> boomerang red w/ white trim
+
+> end game condition: check booleans on LSN screen, add "GAME WON!" text - easy!
+
+> add creatures to overworld levels: crab, rat, turtle
+
+
+
+*need to make boat anchor object - this is already in common objs,
+and can be used to further decorate piers.
 
 
 
