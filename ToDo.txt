@@ -67,7 +67,6 @@ Prep for 0.77 Release
 > temp shadowking swamp dungeon entrance setup
 > signposts working, all dialog working, including brandy.
 > keyboard input, based on wasd for movement, weapon & item should be set-able
-> better color on the dungeon sheets
 > fix date on save/load game screen
 > fix flamethrowers + fireballs
 > blobs need to be full color
@@ -83,54 +82,60 @@ Prep for 0.77 Release
 
 
 
-Dungeon Sheets++
+Dungeon Entrances ++
 
-first, the bkg color needs to change per dungeon.
-this should be set in color scheme. this will add alot
-to the differences between dungeons. 
+swamp dungeon entrance can be big shadow sprite,
+just like forest entrance. spread these objs horizontally
+across the shadow king level. then, when we exit the swamp
+dungeon, goto the shadowking level entrance.
 
-second, we need to borrow color from lttp's dungeon
-sheets, and migrate colors, where appropriate, back to
-tsk's color scheme. this will add variation to the 
-dungeons, but also make them feel more like a lttp's
-dungeon.
+ShadowObj++
 
-updated codebase with color instances for each dungeon.
-now dungeons have their own bkg colors. what those colors
-are now needs to be decided.
+added 3x4 big shadow cover obj.
+added to dev widget, in a wonky but space saving way.
 
-swamp bkg color updated, based on lttps swamp dungeon
-+ migration to tsk pallette.
+ShadowKing Dungeon Entrance++
 
-based on playtesting, need to:
-add light green line along top of swamp walls.
-fix wall statue to match wall bkg. < done.
-fix cracked swamp wall dark green corners. < done.
+spread shadow entrances across this level horizontally.
+added shadow objs to shadow king dungeon entrance level.
+this completes the visual side. looks menacing.
 
-*wall statues shouldn't shoot arrows for now.
-it's just distracting and confusing. comment out
-this obj's ai. done, with note.
+Overworld Connections++
 
-updated all dungeon colors based on tsk pallette.
-forest gets darkest green, cave gets darkest brown,
-then swamp gets medium green.
+now we need to link swamp dungeon to shadow king
+dungeon entrance level, instead of swamp in upper
+right corner of map. done.
 
-reformatted dungeon sheet to make coloring dungeons
-easier, based on swamp color implementation.
+Misc
 
-colored forest and mountain dungeon sheets.
+fixed collisions on swamp entrance.
 
-cave dungeon++
+removed big log in ground from sprite sheet. this was acting
+as the forest dungeon's entrance for awhile. now it's likely
+going to be a side quest entrance or something..
 
-the rounded corners should be 1 shade darker brown.
-pit teeth should match floor colors. < dones.
+added various skull objects and a dock to shadow king
+dungeon entrance level. and a signpost, which we'll need
+to make functional soon.
 
-forest dungeon++
+removed water tiles in exit room containing lily pad. 
+this fixes the bug present in the room.
 
-rounded corners are darkest green.
-pit teeth should be darker brown at bottom. < done.
 
-playtested, dungeons are looking MUCH better.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

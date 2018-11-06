@@ -520,7 +520,8 @@ namespace DungeonRun
         Wor_Tree_Med_Stump,
         Wor_Tree_Big,
 
-
+        //big shadow cover
+        Wor_Shadow_Big,
 
         #endregion
 

@@ -394,7 +394,7 @@ namespace DungeonRun
         static MapLocation CloudIsland_MainEntrance;
 
         //swamp island
-        static MapLocation SwampIsland_MainEntrance;
+        static MapLocation SwampIsland_MainEntrance_OLD;
 
         //thieves den island
         static MapLocation ThievesDen_GateEntrance;
@@ -1135,10 +1135,10 @@ namespace DungeonRun
 
             #region Swamp Island
 
-
-            SwampIsland_MainEntrance = new MapLocation(true, new Vector2(1319, 237), "SwampIsland_MainEntrance");
-            SwampIsland_MainEntrance.ID = LevelID.SwampIsland_MainEntrance;
-            locations.Add(SwampIsland_MainEntrance);
+            //in the future, this will become the swamp main entrance, but it's empty for now
+            SwampIsland_MainEntrance_OLD = new MapLocation(false, new Vector2(1319, 237), "SwampIsland_MainEntrance");
+            SwampIsland_MainEntrance_OLD.ID = LevelID.SwampIsland_MainEntrance;
+            locations.Add(SwampIsland_MainEntrance_OLD);
 
             //main path - starting and extending up and left from skull island crown 2, (left side)
             MapLocation SwampIsland_MainPath_1 = new MapLocation(false, new Vector2(1086, 222), "SwampIsland_MainPath_1");
@@ -1208,7 +1208,7 @@ namespace DungeonRun
 
             SwampIsland_MainPath_5.neighborDown = SwampIsland_Main_Connection;
             SwampIsland_MainPath_5.neighborRight = SwampIsland_MainPath_6;
-            SwampIsland_MainPath_6.neighborUp = SwampIsland_MainEntrance;
+            SwampIsland_MainPath_6.neighborUp = SwampIsland_MainEntrance_OLD;
             SwampIsland_MainPath_6.neighborRight = SwampIsland_MainPath_7;
             SwampIsland_MainPath_7.neighborDown = SwampIsland_MainPath_8;
             SwampIsland_MainPath_8.neighborRight = SwampIsland_MainPath_9;
@@ -1235,7 +1235,7 @@ namespace DungeonRun
             SwampIsland_MainPath_5.neighborLeft = SwampIsland_MainPath_4;
             SwampIsland_Main_Connection.neighborUp = SwampIsland_Main_Connection.neighborRight = SwampIsland_MainPath_5;
             SwampIsland_MainPath_6.neighborLeft = SwampIsland_MainPath_5;
-            SwampIsland_MainEntrance.neighborDown = SwampIsland_MainPath_6;
+            SwampIsland_MainEntrance_OLD.neighborDown = SwampIsland_MainPath_6;
             SwampIsland_MainPath_7.neighborLeft = SwampIsland_MainPath_6;
             SwampIsland_MainPath_8.neighborUp = SwampIsland_MainPath_7;
             SwampIsland_MainPath_9.neighborLeft = SwampIsland_MainPath_8;
@@ -1672,7 +1672,7 @@ namespace DungeonRun
 
             //swamp island
             else if (LevelSet.field.ID == LevelID.SwampIsland_MainEntrance)
-            { currentLocation = SwampIsland_MainEntrance; }
+            { currentLocation = SkullIsland_ShadowDungeon; }
 
             //thieves den
             else if (LevelSet.field.ID == LevelID.ThievesDen_GateEntrance)

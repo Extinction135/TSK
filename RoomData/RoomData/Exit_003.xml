@@ -41,12 +41,6 @@
     <ObjXmlData>
       <type>Wor_Water</type>
       <direction>Down</direction>
-      <posX>56</posX>
-      <posY>56</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Water</type>
-      <direction>Down</direction>
       <posX>88</posX>
       <posY>56</posY>
     </ObjXmlData>
@@ -113,8 +107,8 @@
     <ObjXmlData>
       <type>Wor_Bush</type>
       <direction>Down</direction>
-      <posX>72</posX>
-      <posY>56</posY>
+      <posX>88</posX>
+      <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Swamp_SmPlant</type>
@@ -281,8 +275,8 @@
     <ObjXmlData>
       <type>Wor_Swamp_Bulb</type>
       <direction>Down</direction>
-      <posX>72</posX>
-      <posY>72</posY>
+      <posX>-88</posX>
+      <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Bush</type>
@@ -335,7 +329,7 @@
     <ObjXmlData>
       <type>Wor_Swamp_LillyPad</type>
       <direction>Down</direction>
-      <posX>40</posX>
+      <posX>56</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>

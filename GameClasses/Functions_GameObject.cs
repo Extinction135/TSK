@@ -1778,7 +1778,25 @@ namespace DungeonRun
             #endregion
 
 
+            #region Big Shadow Cover
 
+            else if (Type == ObjType.Wor_Shadow_Big)
+            {   //big decoration
+                Obj.canBeSaved = true;
+                Obj.compSprite.zOffset = 16 * 10; //sort over everything ominously
+                Obj.compMove.moveable = true;
+                //setup hitbox
+                Obj.compCollision.blocking = true; //hmm..
+                Obj.compCollision.offsetX = -8; Obj.compCollision.rec.Width = 16*3;
+                Obj.compCollision.offsetY = -8; Obj.compCollision.rec.Height = 16*4;
+                //setup animFrame
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Shadow_Big;
+                Obj.compSprite.drawRec.Width = 16 * 3; //nonstandard size
+                Obj.compSprite.drawRec.Height = 16 * 4; //nonstandard size
+            }
+
+
+            #endregion
 
 
 
@@ -2315,13 +2333,14 @@ namespace DungeonRun
                 Obj.compSprite.drawRec.Height = 16 * 4; //nonstandard size
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_SwampDungeon;
                 //set collision rec near bottom of entrance
-                Obj.compCollision.rec.Width = 16 * 2 + 4; Obj.compCollision.offsetX = -2;
-                Obj.compCollision.rec.Height = 16 * 1 + 8; Obj.compCollision.offsetY = 16 * 2;
+                Obj.compCollision.offsetX = -8; Obj.compCollision.rec.Width = 16 * 3;
+                //let link overlap the shadow bottom a little bit..
+                Obj.compCollision.offsetY = -8; Obj.compCollision.rec.Height = 16 * 4 - 4; //..by -4
                 //sort save and block
                 Obj.compSprite.zOffset = +16 * 3 - 2;
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = true;
-                Obj.sfx.hit = Assets.sfxTapMetallic;
+                Obj.sfx.hit = null; //in water
             }
 
             #endregion

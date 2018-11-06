@@ -1227,26 +1227,26 @@ namespace DungeonRun
             //row 1
             Functions_GameObject.SetType(objList[0], ObjType.Unknown);
             Functions_GameObject.SetType(objList[1], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[2], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[3], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[2], ObjType.Wor_Shadow_Big);
+            Functions_GameObject.SetType(objList[3], ObjType.Unknown);//
 
             //row 2
             Functions_GameObject.SetType(objList[4], ObjType.Unknown);
             Functions_GameObject.SetType(objList[5], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[6], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[7], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[6], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[7], ObjType.Unknown);//
 
             //row 3
             Functions_GameObject.SetType(objList[8], ObjType.Unknown);
             Functions_GameObject.SetType(objList[9], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[10], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[11], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[10], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[11], ObjType.Unknown);//
 
             //row 4
             Functions_GameObject.SetType(objList[12], ObjType.Unknown);
             Functions_GameObject.SetType(objList[13], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[14], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[15], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[14], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[15], ObjType.Unknown);//
 
             //row 5
             Functions_GameObject.SetType(objList[16], ObjType.Unknown);
@@ -1298,7 +1298,16 @@ namespace DungeonRun
 
             //position the objs relative to the window frame
             Functions_Widget.PositionObjs(this);
-            
+
+            //hide objs covered by big shadow
+            Functions_Widget.HideObj(objList[3]);
+            Functions_Widget.HideObj(objList[6]);
+            Functions_Widget.HideObj(objList[7]);
+            Functions_Widget.HideObj(objList[10]);
+            Functions_Widget.HideObj(objList[11]);
+            Functions_Widget.HideObj(objList[14]);
+            Functions_Widget.HideObj(objList[15]);
+
         }
     }
 

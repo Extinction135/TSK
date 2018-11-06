@@ -254,6 +254,10 @@ namespace DungeonRun
         public static List<Byte4> Wor_Tree_Med = new List<Byte4> { new Byte4(7, 8, 0, 0) };
         public static List<Byte4> Wor_Tree_Med_Stump = new List<Byte4> { new Byte4(6, 8, 0, 0) };
         public static List<Byte4> Wor_Tree_Big = new List<Byte4> { new Byte4(3, 4, 0, 0) };
+        
+        //big shadow
+        public static List<Byte4> Wor_Shadow_Big = new List<Byte4> { new Byte4(0, 0, 0, 0) }; //3x4 obj
+
 
         #endregion
 
@@ -266,8 +270,9 @@ namespace DungeonRun
 
         #region Forest Objects
 
-        //
+        //big shadow
         public static List<Byte4> Wor_Entrance_ForestDungeon = new List<Byte4> { new Byte4(0, 1, 0, 0) }; //3x4 obj
+
         public static List<Byte4> Wor_SkullToothInWater_Left = new List<Byte4> { new Byte4(1, 1, 0, 0) }; //3x4 obj
         public static List<Byte4> Wor_SkullToothInWater_Right = new List<Byte4> { new Byte4(1, 1, 1, 0) }; //3x4 obj
 
@@ -276,7 +281,7 @@ namespace DungeonRun
 
         #region Mountain Objects
 
-
+        //special cave entrance
         public static List<Byte4> Wor_Entrance_MountainDungeon = new List<Byte4> { new Byte4(6, 3, 0, 0) }; //2x4 obj
 
         public static List<Byte4> Wor_MountainWall_Mid = new List<Byte4> { new Byte4(0, 6, 0, 0) };
@@ -298,7 +303,8 @@ namespace DungeonRun
 
         #region Swamp Objects
 
-        public static List<Byte4> Wor_Entrance_SwampDungeon = new List<Byte4> { new Byte4(1, 0, 0, 0) }; //3x4 obj
+        //big shadow
+        public static List<Byte4> Wor_Entrance_SwampDungeon = new List<Byte4> { new Byte4(0, 1, 0, 0) }; //3x4 obj
 
         public static List<Byte4> Wor_Swamp_LillyPad = new List<Byte4> { new Byte4(4, 8, 0, 0) };
         public static List<Byte4> Wor_Swamp_BigPlant = new List<Byte4> { new Byte4(3, 8, 0, 0) };
