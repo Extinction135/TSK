@@ -860,6 +860,9 @@ namespace DungeonRun
                         Functions_Direction.GetCardinalDirectionToHero(Obj.compSprite.position));
                 }
             }
+
+            //removed for 0.77 release - until projectile.spawn is fixed to consider obj.compColl size
+            /*
             else if (Obj.type == ObjType.Dungeon_WallStatue)
             {
                 if (Functions_Random.Int(0, 2000) > 1998) //rarely shoots
@@ -870,6 +873,8 @@ namespace DungeonRun
                     Obj.direction);
                 }
             }
+            */
+
             else if (Obj.type == ObjType.Dungeon_Pit)
             {
                 if (Functions_Random.Int(0, 2000) > 1997) //occasionally bubbles

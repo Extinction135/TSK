@@ -20,7 +20,7 @@ namespace DungeonRun
         public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.77f; //the version of the game
-        public static BootRoutine bootRoutine = BootRoutine.Editor_Level; //boot to game or editor?
+        public static BootRoutine bootRoutine = BootRoutine.Game; //boot to game or editor?
 
         //dev flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
@@ -136,7 +136,18 @@ namespace DungeonRun
 
         public static Color bkg_overworld = new Color(206, 199, 185, 255); //cloud gray
         public static Color bkg_level_room = new Color(88, 127, 62, 255); //grass green
-        public static Color bkg_dungeon_room = new Color(0, 0, 0, 255); //black
+
+
+        //dungeons now have their own bkg colors
+        public static Color bkg_dungeon_forest = new Color(25, 53, 25, 255); //darkest green
+        public static Color bkg_dungeon_mountain = new Color(44, 38, 25, 255); //darkest brown
+        public static Color bkg_dungeon_swamp = new Color(88, 127, 62, 255); //slime green
+
+        //public static Color bkg_dungeon_room = new Color(0, 0, 0, 255); //black
+
+
+
+
 
         //covers the screen, fading in/out (usually black)
         public static Color overlay = new Color(0, 0, 0, 255);

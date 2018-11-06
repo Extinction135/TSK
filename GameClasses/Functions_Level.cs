@@ -63,7 +63,12 @@ namespace DungeonRun
                 LevelSet.dungeon.ID = levelID;
                 LevelSet.currentLevel = LevelSet.dungeon;
                 //set background color
-                ColorScheme.background = ColorScheme.bkg_dungeon_room;
+                if (levelID == LevelID.Forest_Dungeon)
+                { ColorScheme.background = ColorScheme.bkg_dungeon_forest; }
+                else if (levelID == LevelID.Mountain_Dungeon)
+                { ColorScheme.background = ColorScheme.bkg_dungeon_mountain; }
+                else if (levelID == LevelID.Swamp_Dungeon)
+                { ColorScheme.background = ColorScheme.bkg_dungeon_swamp; }
             }
 
             //handle FIELD setup
