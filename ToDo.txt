@@ -63,14 +63,26 @@ Today:
 
 Prep for 0.77 Release
 
-> forest island level entrance complete.
+> complete forest island level entrance!!!
+> win/defeat screen should ACTUALLY WORK PLS
+> end game condition: check booleans on LSN screen, add "GAME WON!" text - easy!
+
 > signposts working, all dialog working, including brandy.
 > groundfires on bushes still dont spread south
-> win/defeat screen should ACTUALLY WORK PLS
 > bug where initial exit room's walls still use prev sheet (update em'?)
 > boomerang red w/ white trim
 > more overworld locations, all paths + connections, pls.
-> end game condition
+
+
+
+
+
+Forest Entrance Level++
+
+added various rocky teeth objects to compose the forest
+dungeon entrance level (skull in water on overworld).
+lots of development and testing for this initial push
+to look good. lots of room for improvement.
 
 
 
@@ -82,40 +94,18 @@ Prep for 0.77 Release
 
 
 
+Blocking Water Objs
 
-.Net, and it's various failures
+we already have these in the common objs sheet.
+all they do is block, no destruction or interaction at all.
 
-This line:
-displayData.timeDateText.text += "\ndate: " + saveData.dateTime.ToString("yyyy.m.d");
-displays as "date: 2018.13.08". obvs, there is no 13th month.
-perhaps I am wrong? perhaps I inadventantly added 2 values to the month, when
-saving the data? nope. loading the data? nope. hmm..
-let's try the pedantic route, .Net.
-displayData.timeDateText.text += "\ndate: ";
-displayData.timeDateText.text += "" + saveData.dateTime.Year;
-displayData.timeDateText.text += "." + saveData.dateTime.Month;
-displayData.timeDateText.text += "." + saveData.dateTime.Day;
-displays as "date: 2018.11.08". there, that's better .Net.
-you go take a nap now .Net, you're drunk.
-
-ok.. so, that's what Bug #2 I've found? moving on.
+we can use these objs to upgrade forest dungeon entrance even further.
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-remove vine from water exit room. pls.
 
 
 
@@ -131,18 +121,10 @@ dungeon room signs, but use currentLevel for all field signposts.
 
 
 
+how do we add brandy into signposts?
 
 
-
-
-
-Forest Entrance Level++
-
-*need tooth continuing up, rocky arch from up to vertical transition.
-vertical repeatin rocky tile.
-
-*this would be a great time to add water blocking objs, to block
-player from going between the other teeth.
+remove vine from water exit room. pls.
 
 
 
@@ -154,14 +136,8 @@ player from going between the other teeth.
 
 
 
-End Game Condition
-beating kraken checks all saveData story booleans.
-if all are true, then the game is over.
-create end game screen, with music.
-simply shows credits and some info about
-the player's playthrough for now.
-pressing any button returns player to
-title screen. should save data before exiting.
+
+
 
 
 
@@ -171,8 +147,13 @@ release 0.77? YEPPPpp
 
 
 
+Record playthrough
+Upload to youtube, cut gifs
+Edit 0.77 gif together
 
-
+-post gif to gbatemp thread
+-post playthrough video to: insta, discord
+-post gif to insta - can we do this without compression? via usb transfer?
 
 
 

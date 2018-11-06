@@ -273,8 +273,18 @@ namespace DungeonRun
         //big shadow
         public static List<Byte4> Wor_Entrance_ForestDungeon = new List<Byte4> { new Byte4(0, 1, 0, 0) }; //3x4 obj
 
-        public static List<Byte4> Wor_SkullToothInWater_Left = new List<Byte4> { new Byte4(1, 1, 0, 0) }; //3x4 obj
-        public static List<Byte4> Wor_SkullToothInWater_Right = new List<Byte4> { new Byte4(1, 1, 1, 0) }; //3x4 obj
+        public static List<Byte4> Wor_SkullToothInWater_Left = new List<Byte4> { new Byte4(1, 1, 1, 0) }; //3x4 obj
+        public static List<Byte4> Wor_SkullToothInWater_Right = new List<Byte4> { new Byte4(1, 1, 0, 0) }; //3x4 obj
+
+        public static List<Byte4> Wor_SkullToothInWater_EndCap_Left = new List<Byte4> { new Byte4(2, 1, 0, 0) }; //3x4 obj
+        public static List<Byte4> Wor_SkullToothInWater_EndCap_Right = new List<Byte4> { new Byte4(2, 1, 1, 0) }; //3x4 obj
+
+        public static List<Byte4> Wor_SkullToothInWater_Arch_Left = new List<Byte4> { new Byte4(1, 3, 1, 0) }; //1x4 obj
+        public static List<Byte4> Wor_SkullToothInWater_Arch_Right = new List<Byte4> { new Byte4(1, 3, 0, 0) }; //1x4 obj
+
+        public static List<Byte4> Wor_SkullToothInWater_Center = new List<Byte4> { new Byte4(1, 0, 0, 0) }; //4x3 obj
+        public static List<Byte4> Wor_SkullToothInWater_Arch_Extension = new List<Byte4> { new Byte4(8, 3, 0, 0) }; //1x1
+        
 
         #endregion
 

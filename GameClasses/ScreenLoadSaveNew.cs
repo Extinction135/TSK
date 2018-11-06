@@ -419,7 +419,6 @@ namespace DungeonRun
             displayData.timeDateText.text += "";
 
 
-
             /*
             //convert seconds to hhhh.mm.ss
             double total = saveData.seconds;
@@ -433,6 +432,7 @@ namespace DungeonRun
                 else if (total - 1 >= 0) { seconds++; }
             }
             */
+
 
             //set date of game
             //displayData.timeDateText.text += "\ndate: " + saveData.dateTime.ToString("yyyy.m.d");

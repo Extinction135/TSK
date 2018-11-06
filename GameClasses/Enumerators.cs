@@ -564,9 +564,20 @@ namespace DungeonRun
 
         #region Forest Objects
 
-        Wor_Entrance_ForestDungeon,
+        Wor_Entrance_ForestDungeon, //big shadow between teeth in water
+
+        //objects that build the skull teeth
         Wor_SkullToothInWater_Left,
         Wor_SkullToothInWater_Right,
+
+        Wor_SkullToothInWater_Arch_Left,
+        Wor_SkullToothInWater_Arch_Right,
+        Wor_SkullToothInWater_Arch_Extension,
+
+        Wor_SkullToothInWater_Center,
+
+        Wor_SkullToothInWater_EndCap_Left,
+        Wor_SkullToothInWater_EndCap_Right,
 
 
         #endregion

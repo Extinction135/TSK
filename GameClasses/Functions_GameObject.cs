@@ -2136,34 +2136,104 @@ namespace DungeonRun
                 Obj.compCollision.blocking = true;
                 Obj.sfx.hit = null;
             }
-            else if (Type == ObjType.Wor_SkullToothInWater_Left)
+
+
+            else if (Type == ObjType.Wor_SkullToothInWater_Left ||
+                Type == ObjType.Wor_SkullToothInWater_Right)
             {
                 Obj.compSprite.drawRec.Width = 16 * 3; //nonstandard size
                 Obj.compSprite.drawRec.Height = 16 * 4; //nonstandard size
-                Obj.compAnim.currentAnimation = AnimationFrames.Wor_SkullToothInWater_Left;
-                //set collision rec near bottom of entrance
-                Obj.compCollision.rec.Width = 16 * 3 - 4; Obj.compCollision.offsetX = -4;
-                Obj.compCollision.rec.Height = 16 * 3; Obj.compCollision.offsetY = +4;
                 //sort save and block
-                Obj.compSprite.zOffset = +16 * 3 - 2;
+                Obj.compSprite.zOffset = +16 * 3 - 2; //based on hero sorting
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = true;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
+                Obj.compCollision.rec.Height = 16 * 4 - 4; Obj.compCollision.offsetY = -8;
+                Obj.compCollision.rec.Width = 16 * 3 - 4;
+
+                if (Type == ObjType.Wor_SkullToothInWater_Left)
+                {   //left
+                    Obj.compAnim.currentAnimation = AnimationFrames.Wor_SkullToothInWater_Left;
+                    Obj.compCollision.offsetX = -4;
+                }
+                else
+                {   //right
+                    Obj.compAnim.currentAnimation = AnimationFrames.Wor_SkullToothInWater_Right;
+                    Obj.compCollision.offsetX = -8;
+                }
             }
-            else if (Type == ObjType.Wor_SkullToothInWater_Right)
+            else if (Type == ObjType.Wor_SkullToothInWater_EndCap_Left ||
+                Type == ObjType.Wor_SkullToothInWater_EndCap_Right)
             {
                 Obj.compSprite.drawRec.Width = 16 * 3; //nonstandard size
                 Obj.compSprite.drawRec.Height = 16 * 4; //nonstandard size
-                Obj.compAnim.currentAnimation = AnimationFrames.Wor_SkullToothInWater_Right;
-                //set collision rec near bottom of entrance
-                Obj.compCollision.rec.Width = 16 * 3 - 4; Obj.compCollision.offsetX = -8;
-                Obj.compCollision.rec.Height = 16 * 3; Obj.compCollision.offsetY = +4;
                 //sort save and block
-                Obj.compSprite.zOffset = +16 * 3 - 2;
+                Obj.compSprite.zOffset = +16 * 20; //top most
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = true;
-                Obj.sfx.hit = Assets.sfxTapMetallic;
+                Obj.compCollision.rec.Height = 16 * 4; Obj.compCollision.offsetY = -8;
+                Obj.compCollision.rec.Width = 16 * 3; Obj.compCollision.offsetX = -8;
+                Obj.compCollision.rec.Width = 16 * 3 - 4;
+
+                if (Type == ObjType.Wor_SkullToothInWater_EndCap_Left)
+                {
+                    Obj.compAnim.currentAnimation = AnimationFrames.Wor_SkullToothInWater_EndCap_Left;
+                    Obj.compCollision.offsetX = -4;
+                }
+                else
+                {
+                    Obj.compAnim.currentAnimation = AnimationFrames.Wor_SkullToothInWater_EndCap_Right;
+                    Obj.compCollision.offsetX = -8;
+                }
             }
+
+
+
+
+            else if (Type == ObjType.Wor_SkullToothInWater_Arch_Left ||
+                Type == ObjType.Wor_SkullToothInWater_Arch_Right)
+            {
+                Obj.compSprite.drawRec.Width = 16 * 4; //nonstandard size
+                Obj.compSprite.drawRec.Height = 16 * 1; //nonstandard size
+                //sort save and block
+                Obj.compSprite.zOffset = +16 * 20; //top most
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = false; //allows hidden caves
+                Obj.compCollision.rec.Height = 16 * 1; Obj.compCollision.offsetY = -8;
+                Obj.compCollision.rec.Width = 16 * 4; Obj.compCollision.offsetX = -8;
+
+                if (Type == ObjType.Wor_SkullToothInWater_Arch_Left)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_SkullToothInWater_Arch_Left; }
+                else
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_SkullToothInWater_Arch_Right; }
+            }
+
+            else if (Type == ObjType.Wor_SkullToothInWater_Center)
+            {
+                Obj.compSprite.drawRec.Width = 16 * 4; //nonstandard size
+                Obj.compSprite.drawRec.Height = 16 * 3; //nonstandard size
+                //sort save and block
+                Obj.compSprite.zOffset = +16 * 9; //under arch extensions
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = false; //allows hidden caves
+                Obj.compCollision.rec.Height = 16 * 3; Obj.compCollision.offsetY = -8;
+                Obj.compCollision.rec.Width = 16 * 4; Obj.compCollision.offsetX = -8;
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_SkullToothInWater_Center;
+            }
+
+            
+            else if (Type == ObjType.Wor_SkullToothInWater_Arch_Extension)
+            {   //sort save and block
+                Obj.compSprite.zOffset = +16 * 10; //under most other teeth objs
+                Obj.canBeSaved = true;
+                Obj.compCollision.blocking = false; //allows hidden caves
+                Obj.compCollision.rec.Height = 16 * 1; Obj.compCollision.offsetY = -8;
+                Obj.compCollision.rec.Width = 16 * 1; Obj.compCollision.offsetX = -8;
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_SkullToothInWater_Arch_Extension;
+            }
+
+
+
 
             #endregion
 

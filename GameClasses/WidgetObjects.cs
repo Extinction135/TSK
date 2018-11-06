@@ -275,25 +275,25 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[32], ObjType.Unknown);
             Functions_GameObject.SetType(objList[33], ObjType.Unknown);
             Functions_GameObject.SetType(objList[34], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[35], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[35], ObjType.Wor_Tree_Big);
 
             //row 10
             Functions_GameObject.SetType(objList[36], ObjType.Unknown);
             Functions_GameObject.SetType(objList[37], ObjType.Unknown);
             Functions_GameObject.SetType(objList[38], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[39], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[39], ObjType.Wor_Tree_Med_Stump);
 
             //row 11
             Functions_GameObject.SetType(objList[40], ObjType.Unknown);
             Functions_GameObject.SetType(objList[41], ObjType.Unknown);
             Functions_GameObject.SetType(objList[42], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[43], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[43], ObjType.Unknown);//
 
             //row 12
             Functions_GameObject.SetType(objList[44], ObjType.Wor_Enemy_Turtle);
             Functions_GameObject.SetType(objList[45], ObjType.Wor_Enemy_Crab);
             Functions_GameObject.SetType(objList[46], ObjType.Wor_Enemy_Rat);
-            Functions_GameObject.SetType(objList[47], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[47], ObjType.Wor_Tree_Med);
 
             //position the objs relative to the window frame
             Functions_Widget.PositionObjs(this);
@@ -312,6 +312,8 @@ namespace DungeonRun
             Functions_Widget.HideObj(objList[17]);
             Functions_Widget.HideObj(objList[20]);
             Functions_Widget.HideObj(objList[21]);
+
+            Functions_Widget.HideObj(objList[43]);
 
             //fix sorting issues with certain objs
             objList[16].compSprite.zOffset = 0;
@@ -842,74 +844,74 @@ namespace DungeonRun
             //this is a 3x4 * 16 sized sprite/obj
             Functions_GameObject.SetType(objList[0], ObjType.Wor_Entrance_ForestDungeon);
             Functions_GameObject.SetType(objList[1], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[2], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[3], ObjType.Wor_SeekerExploder);
+            Functions_GameObject.SetType(objList[2], ObjType.Wor_SkullToothInWater_Arch_Extension);
+            Functions_GameObject.SetType(objList[3], ObjType.Wor_SkullToothInWater_Arch_Left);
 
             //row 2
             Functions_GameObject.SetType(objList[4], ObjType.Unknown);//
             Functions_GameObject.SetType(objList[5], ObjType.Unknown);//
             Functions_GameObject.SetType(objList[6], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[7], ObjType.Wor_SeekerExploder);
+            Functions_GameObject.SetType(objList[7], ObjType.Unknown);
 
             //row 3
             Functions_GameObject.SetType(objList[8], ObjType.Unknown);//
             Functions_GameObject.SetType(objList[9], ObjType.Unknown);//
             Functions_GameObject.SetType(objList[10], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[11], ObjType.Wor_SeekerExploder);
+            Functions_GameObject.SetType(objList[11], ObjType.Wor_SkullToothInWater_Arch_Right);
 
             //row 4
             Functions_GameObject.SetType(objList[12], ObjType.Unknown);//
             Functions_GameObject.SetType(objList[13], ObjType.Unknown);//
             Functions_GameObject.SetType(objList[14], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[15], ObjType.Wor_SeekerExploder);
+            Functions_GameObject.SetType(objList[15], ObjType.Unknown);
 
             //row 5
             Functions_GameObject.SetType(objList[16], ObjType.Wor_SkullToothInWater_Left);
-            Functions_GameObject.SetType(objList[17], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[18], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[19], ObjType.Wor_SkullToothInWater_Right);
+            Functions_GameObject.SetType(objList[17], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[18], ObjType.Wor_SkullToothInWater_Right);
+            Functions_GameObject.SetType(objList[19], ObjType.Unknown);
 
             //row 6
             Functions_GameObject.SetType(objList[20], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[21], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[21], ObjType.Unknown);
             Functions_GameObject.SetType(objList[22], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[23], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[23], ObjType.Unknown);
 
             //row 7
             Functions_GameObject.SetType(objList[24], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[25], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[25], ObjType.Unknown);
             Functions_GameObject.SetType(objList[26], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[27], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[27], ObjType.Unknown);
 
             //row 8
             Functions_GameObject.SetType(objList[28], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[29], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[29], ObjType.Unknown);
             Functions_GameObject.SetType(objList[30], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[31], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[31], ObjType.Unknown);
 
             //row 9
-            Functions_GameObject.SetType(objList[32], ObjType.Wor_Tree_Med);
-            Functions_GameObject.SetType(objList[33], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[34], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[32], ObjType.Wor_SkullToothInWater_EndCap_Left);
+            Functions_GameObject.SetType(objList[33], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[34], ObjType.Wor_SkullToothInWater_EndCap_Right);
             Functions_GameObject.SetType(objList[35], ObjType.Unknown);
 
             //row 10
             Functions_GameObject.SetType(objList[36], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[37], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[38], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[37], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[38], ObjType.Unknown);//
             Functions_GameObject.SetType(objList[39], ObjType.Unknown);
 
             //row 11
-            Functions_GameObject.SetType(objList[40], ObjType.Wor_Tree_Med_Stump);
-            Functions_GameObject.SetType(objList[41], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[42], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[40], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[41], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[42], ObjType.Unknown);//
             Functions_GameObject.SetType(objList[43], ObjType.Unknown);
 
             //row 12
-            Functions_GameObject.SetType(objList[44], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[45], ObjType.Unknown);//
+            Functions_GameObject.SetType(objList[44], ObjType.Wor_SkullToothInWater_Center);
+            Functions_GameObject.SetType(objList[45], ObjType.Unknown);
             Functions_GameObject.SetType(objList[46], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[47], ObjType.Wor_Tree_Big);
+            Functions_GameObject.SetType(objList[47], ObjType.Unknown);
 
             //position the objs relative to the window frame
             Functions_Widget.PositionObjs(this);
@@ -920,7 +922,7 @@ namespace DungeonRun
 
             //hide the dungeon objs covered by dungeon entrance
             Functions_Widget.HideObj(objList[1]);
-            Functions_Widget.HideObj(objList[2]);
+            //Functions_Widget.HideObj(objList[2]);
 
             Functions_Widget.HideObj(objList[4]);
             Functions_Widget.HideObj(objList[5]);
@@ -935,28 +937,29 @@ namespace DungeonRun
             Functions_Widget.HideObj(objList[14]);
 
             //left tooth in water
-            Functions_Widget.HideObj(objList[17]);
-            Functions_Widget.HideObj(objList[18]);
+            //Functions_Widget.HideObj(objList[17]);
             Functions_Widget.HideObj(objList[20]);
-            Functions_Widget.HideObj(objList[21]);
+            //Functions_Widget.HideObj(objList[21]);
             Functions_Widget.HideObj(objList[22]);
-            Functions_Widget.HideObj(objList[23]);
+            //Functions_Widget.HideObj(objList[23]);
             Functions_Widget.HideObj(objList[24]);
-            Functions_Widget.HideObj(objList[25]);
+            //Functions_Widget.HideObj(objList[25]);
             Functions_Widget.HideObj(objList[26]);
-            Functions_Widget.HideObj(objList[27]);
+            //Functions_Widget.HideObj(objList[27]);
             Functions_Widget.HideObj(objList[28]);
-            Functions_Widget.HideObj(objList[29]);
+            //Functions_Widget.HideObj(objList[29]);
             Functions_Widget.HideObj(objList[30]);
-            Functions_Widget.HideObj(objList[31]);
+            //Functions_Widget.HideObj(objList[31]);
 
-            Functions_Widget.HideObj(objList[33]);
+            //Functions_Widget.HideObj(objList[33]);
             Functions_Widget.HideObj(objList[36]);
-            Functions_Widget.HideObj(objList[37]);
-
-            Functions_Widget.HideObj(objList[41]);
-            Functions_Widget.HideObj(objList[44]);
-            Functions_Widget.HideObj(objList[45]);
+            //Functions_Widget.HideObj(objList[37]);
+            Functions_Widget.HideObj(objList[38]);
+            Functions_Widget.HideObj(objList[40]);
+            //Functions_Widget.HideObj(objList[41]);
+            Functions_Widget.HideObj(objList[42]);
+            //Functions_Widget.HideObj(objList[44]);
+            //Functions_Widget.HideObj(objList[45]);
         }
     }
 
