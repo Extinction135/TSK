@@ -828,7 +828,8 @@ namespace DungeonRun
                         Functions_Projectile.Spawn(
                             ObjType.ProjectileExplosion,
                             Obj.compSprite.position.X,
-                            Obj.compSprite.position.Y);
+                            Obj.compSprite.position.Y,
+                            Direction.None);
                         Functions_Pool.Release(Obj);
                     }
                 }
@@ -1426,7 +1427,8 @@ namespace DungeonRun
                     Functions_Projectile.Spawn(
                         ObjType.ProjectileExplosion,
                         Obj.compSprite.position.X,
-                        Obj.compSprite.position.Y);
+                        Obj.compSprite.position.Y,
+                        Direction.None);
                     Functions_GameObject.Kill(Obj, true, false);
                 }
             }

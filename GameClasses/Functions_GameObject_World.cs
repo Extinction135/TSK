@@ -110,7 +110,8 @@ namespace DungeonRun
             Functions_Projectile.Spawn(
                 ObjType.ProjectileGroundFire,
                 Post.compSprite.position.X,
-                Post.compSprite.position.Y - 3);
+                Post.compSprite.position.Y - 3,
+                Direction.None);
             Functions_GameObject.Kill(Post, true, true);
         }
 

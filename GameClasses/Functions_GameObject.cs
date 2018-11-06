@@ -162,7 +162,8 @@ namespace DungeonRun
                 Functions_Projectile.Spawn(
                     ObjType.ProjectileGroundFire,
                     Obj.compSprite.position.X,
-                    Obj.compSprite.position.Y - 4);
+                    Obj.compSprite.position.Y - 4,
+                    Direction.None);
             }
             else if (Obj.type == ObjType.Wor_Tree || Obj.type == ObjType.Wor_Tree_Burning)
             {   //blow up tree, showing leaf explosion

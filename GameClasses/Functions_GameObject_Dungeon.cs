@@ -220,7 +220,8 @@ namespace DungeonRun
             Functions_Projectile.Spawn(
                 ObjType.ProjectileGroundFire,
                 UnlitTorch.compSprite.position.X + 0,
-                UnlitTorch.compSprite.position.Y - 7);
+                UnlitTorch.compSprite.position.Y - 7,
+                Direction.None);
             Assets.Play(Assets.sfxLightFire);
             CheckForPuzzles(false); //may of solved room
         }

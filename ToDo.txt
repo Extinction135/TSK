@@ -64,7 +64,6 @@ Today:
 Prep for 0.77 Release
 
 > forest island level entrance complete.
-> temp shadowking swamp dungeon entrance setup
 > signposts working, all dialog working, including brandy.
 > keyboard input, based on wasd for movement, weapon & item should be set-able
 > fix date on save/load game screen
@@ -79,81 +78,24 @@ Prep for 0.77 Release
 
 
 
-
-
-
-Dungeon Entrances ++
-
-swamp dungeon entrance can be big shadow sprite,
-just like forest entrance. spread these objs horizontally
-across the shadow king level. then, when we exit the swamp
-dungeon, goto the shadowking level entrance.
-
-ShadowObj++
-
-added 3x4 big shadow cover obj.
-added to dev widget, in a wonky but space saving way.
-
-ShadowKing Dungeon Entrance++
-
-spread shadow entrances across this level horizontally.
-added shadow objs to shadow king dungeon entrance level.
-this completes the visual side. looks menacing.
-
-Overworld Connections++
-
-now we need to link swamp dungeon to shadow king
-dungeon entrance level, instead of swamp in upper
-right corner of map. done.
-
-Misc
-
-fixed collisions on swamp entrance.
-
-removed big log in ground from sprite sheet. this was acting
-as the forest dungeon's entrance for awhile. now it's likely
-going to be a side quest entrance or something..
-
-added various skull objects and a dock to shadow king
-dungeon entrance level. and a signpost, which we'll need
-to make functional soon.
-
-removed water tiles in exit room containing lily pad. 
-this fixes the bug present in the room.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Flamethrower bug
 
 fireballs aren't inheriting a direction/velocity from 
 flamethrowers - so only actors throw fireballs rn.
+this break some puzzles, and is priority for release.
+
+so, to fix this, Projectile.Spawn() now requires a Direction,
+instead of that being an optional parameter. 34 errors.
+fixed, modified pro.spawn() to be more like it's brother
+pro.spawn(Actor caster). tested, flamethrowers working again.
+
+
+
+
+
+
+
+
 
 
 

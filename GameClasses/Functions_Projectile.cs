@@ -20,7 +20,7 @@ namespace DungeonRun
         static int i;
 
         
-        public static void Spawn(ObjType Type, float X, float Y, Direction Dir = Direction.None)
+        public static void Spawn(ObjType Type, float X, float Y, Direction Dir)
         {
             //this method is used for projectiles that dont have casters, like groundfires
             //get a projectile to spawn
@@ -36,19 +36,41 @@ namespace DungeonRun
             Functions_Movement.Teleport(pro.compMove, X, Y);
             pro.compMove.moving = true;
             Functions_GameObject.SetType(pro, Type);
+            Functions_Component.Align(pro);
 
-            //certain projectiles are only spawned using this spawn method
-            if(Type == ObjType.ProjectileLightningBolt)
+
+
+            #region Lightning Bolt
+
+            if (Type == ObjType.ProjectileLightningBolt)
             {   //push bolts a little bit, play sfx
                 Functions_Movement.Push(pro.compMove, Dir, 2.0f);
                 Assets.Play(Assets.sfxShock);
             }
-            //other projectiles partially-impement spawn routines from other spawn method
+
+            #endregion
+
+
+            #region Projectile Bomb
+
             else if (Type == ObjType.ProjectileBomb)
             {
                 Assets.Play(Assets.sfxBombDrop);
             }
 
+            #endregion
+
+
+            #region Fireball
+
+            else if (Type == ObjType.ProjectileFireball)
+            {
+                Functions_Movement.Push(pro.compMove, Dir, 4.0f);
+                Assets.Play(Assets.sfxFireballCast);
+                pushLines = true;
+            }
+
+            #endregion
 
 
             HandleBehavior(pro);
@@ -440,15 +462,15 @@ namespace DungeonRun
             else if (Obj.type == ObjType.ProjectileBomb)
             {   
                 //create explosion projectile + ground fire
-                Spawn(ObjType.ProjectileExplosion, Obj.compMove.position.X, Obj.compMove.position.Y);
+                Spawn(ObjType.ProjectileExplosion, Obj.compMove.position.X, Obj.compMove.position.Y, Direction.None);
                 //create groundfire
-                Spawn(ObjType.ProjectileGroundFire, Obj.compMove.position.X, Obj.compMove.position.Y);
+                Spawn(ObjType.ProjectileGroundFire, Obj.compMove.position.X, Obj.compMove.position.Y, Direction.None);
             }
             else if (Obj.type == ObjType.ProjectileFireball)
             {   //create explosion
-                Spawn(ObjType.ProjectileExplosion, Obj.compMove.position.X, Obj.compMove.position.Y);
+                Spawn(ObjType.ProjectileExplosion, Obj.compMove.position.X, Obj.compMove.position.Y, Direction.None);
                 //create groundfire
-                Spawn(ObjType.ProjectileGroundFire, Obj.compMove.position.X, Obj.compMove.position.Y);
+                Spawn(ObjType.ProjectileGroundFire, Obj.compMove.position.X, Obj.compMove.position.Y, Direction.None);
             }
 
 
@@ -678,7 +700,8 @@ namespace DungeonRun
                                     Functions_Projectile.Spawn(
                                         ObjType.ProjectileGroundFire,
                                         Pool.roomObjPool[i].compSprite.position.X,
-                                        Pool.roomObjPool[i].compSprite.position.Y - 3);
+                                        Pool.roomObjPool[i].compSprite.position.Y - 3,
+                                        Direction.None);
                                 }
                                 //fireballs can cascade spread across bushes
                                 else if (Pool.roomObjPool[i].type == ObjType.Wor_Bush)
@@ -686,7 +709,8 @@ namespace DungeonRun
                                     Functions_Projectile.Spawn(
                                         ObjType.ProjectileGroundFire,
                                         Pool.roomObjPool[i].compSprite.position.X,
-                                        Pool.roomObjPool[i].compSprite.position.Y - 3);
+                                        Pool.roomObjPool[i].compSprite.position.Y - 3,
+                                        Direction.None);
                                     //destroy the bush
                                     Functions_GameObject_World.DestroyBush(Pool.roomObjPool[i]);
                                     Assets.Play(Assets.sfxLightFire);
@@ -713,7 +737,8 @@ namespace DungeonRun
                                     Functions_Projectile.Spawn(
                                         ObjType.ProjectileGroundFire,
                                         Pool.roomObjPool[i].compSprite.position.X,
-                                        Pool.roomObjPool[i].compSprite.position.Y - 3);
+                                        Pool.roomObjPool[i].compSprite.position.Y - 3,
+                                        Direction.None);
                                     //burn the post
                                     Functions_GameObject_World.BurnPost(Pool.roomObjPool[i]);
                                     Assets.Play(Assets.sfxLightFire);
@@ -758,7 +783,8 @@ namespace DungeonRun
                 {   //create bombs most frames, for the entire screen
                     Spawn(ObjType.ProjectileBomb,
                         Camera2D.currentPosition.X + Functions_Random.Int(-16 * 22, 16 * 22),
-                        Camera2D.currentPosition.Y + Functions_Random.Int(-16 * 12, 16 * 12));
+                        Camera2D.currentPosition.Y + Functions_Random.Int(-16 * 12, 16 * 12),
+                        Direction.None);
                 }
                 //when bombos reaches a certain age, play multiple explosions sfx
                 //this plays right around the time bombs should start exploding

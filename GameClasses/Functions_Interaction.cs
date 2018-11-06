@@ -827,7 +827,8 @@ namespace DungeonRun
                             Functions_Projectile.Spawn(
                                 ObjType.ProjectileGroundFire,
                                 RoomObj.compSprite.position.X,
-                                RoomObj.compSprite.position.Y - 3);
+                                RoomObj.compSprite.position.Y - 3,
+                                Direction.None);
                             //destroy the bush
                             Functions_GameObject_World.DestroyBush(RoomObj);
                             Assets.Play(Assets.sfxLightFire);
@@ -849,7 +850,8 @@ namespace DungeonRun
                             Functions_Projectile.Spawn(
                                 ObjType.ProjectileGroundFire,
                                 RoomObj.compSprite.position.X,
-                                RoomObj.compSprite.position.Y - 3);
+                                RoomObj.compSprite.position.Y - 3,
+                                Direction.None);
                             //burn the post
                             Functions_GameObject_World.BurnPost(RoomObj);
                             Assets.Play(Assets.sfxLightFire);
@@ -1124,7 +1126,8 @@ namespace DungeonRun
                     Functions_Projectile.Spawn(
                         ObjType.ProjectileGroundFire,
                         RoomObj.compSprite.position.X,
-                        RoomObj.compSprite.position.Y - 3);
+                        RoomObj.compSprite.position.Y - 3,
+                        Direction.None);
                 }
                 else if (Object.type == ObjType.ProjectileSword)
                 {   //pass the obj's direction into the grass (fake inertia)
@@ -1138,7 +1141,8 @@ namespace DungeonRun
                     Functions_Projectile.Spawn(
                         ObjType.ProjectileGroundFire,
                         RoomObj.compSprite.position.X,
-                        RoomObj.compSprite.position.Y - 3);
+                        RoomObj.compSprite.position.Y - 3,
+                        Direction.None);
                     //Assets.Play(Assets.sfxLightFire);
                 }
             }
