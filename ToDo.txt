@@ -74,14 +74,10 @@ Prep for 0.77 Release
 
 
 
+Boomerang++
 
-
-> win/defeat screen should ACTUALLY WORK PLS
-
-this was due to only setting/checking for game won/loss
-state in the constructor, and then we changed this class to
-be global, with an Open() method called instead. moved that
-won/loss logic and title update into Open().
+boomerang is now red w/ gold trim. this is to make
+it stand out more against various backgrounds.
 
 
 
@@ -90,10 +86,6 @@ won/loss logic and title update into Open().
 
 
 
-
-
-
-> boomerang red w/ white trim
 
 > end game condition: check booleans on LSN screen, add "GAME WON!" text - easy!
 
