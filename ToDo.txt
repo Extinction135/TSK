@@ -65,19 +65,71 @@ Prep for 0.77 Release
 
 > forest island level entrance complete.
 > signposts working, all dialog working, including brandy.
-> fix date on save/load game screen
-> blobs need to be full color
 > groundfires on bushes still dont spread south
 > win/defeat screen should ACTUALLY WORK PLS
 > bug where initial exit room's walls still use prev sheet (update em'?)
 > boomerang red w/ white trim
+> more overworld locations, all paths + connections, pls.
+> end game condition
 
 
 
-Blobs++
 
-blobs are now in color, completing the swamp dungeon visuals.
-tested.
+
+
+
+
+
+
+
+
+.Net, and it's various failures
+
+This line:
+displayData.timeDateText.text += "\ndate: " + saveData.dateTime.ToString("yyyy.m.d");
+displays as "date: 2018.13.08". obvs, there is no 13th month.
+perhaps I am wrong? perhaps I inadventantly added 2 values to the month, when
+saving the data? nope. loading the data? nope. hmm..
+let's try the pedantic route, .Net.
+displayData.timeDateText.text += "\ndate: ";
+displayData.timeDateText.text += "" + saveData.dateTime.Year;
+displayData.timeDateText.text += "." + saveData.dateTime.Month;
+displayData.timeDateText.text += "." + saveData.dateTime.Day;
+displays as "date: 2018.11.08". there, that's better .Net.
+you go take a nap now .Net, you're drunk.
+
+ok.. so, that's what Bug #2 I've found? moving on.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+remove vine from water exit room. pls.
+
+
+
+
+
+
+
+Signposts
+
+signposts are likely related to not using levelset.currentLevel,
+and instead targeting the field or room specifically. needed for
+dungeon room signs, but use currentLevel for all field signposts.
+
+
 
 
 
@@ -102,11 +154,14 @@ player from going between the other teeth.
 
 
 
-
-
-
-
-
+End Game Condition
+beating kraken checks all saveData story booleans.
+if all are true, then the game is over.
+create end game screen, with music.
+simply shows credits and some info about
+the player's playthrough for now.
+pressing any button returns player to
+title screen. should save data before exiting.
 
 
 
@@ -152,7 +207,6 @@ restricted systems...
 
 
 
-s
 
 Coliseum++
 
@@ -183,8 +237,12 @@ doggo always spawns with hero in room.
 
 
 
+House Roofs++
 
-
+add detail to roof sprites: we can have roof
+sides and corners, to better show where the roof
+ends. like rain gutters and trim and stuff.
+houses can look much better.
 
 
 
