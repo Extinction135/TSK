@@ -63,7 +63,7 @@ Today:
 
 Prep for 0.77 Release
 
-> win/defeat screen should ACTUALLY WORK PLS
+
 > signposts working, all dialog working, including brandy.
 > groundfires on bushes still dont spread south
 > bug where initial exit room's walls still use prev sheet (update em'?)
@@ -76,23 +76,12 @@ Prep for 0.77 Release
 
 
 
+> win/defeat screen should ACTUALLY WORK PLS
 
-Mountain Dungeon Entrance++
-
-mountain dungeon entrance level should get various additional
-objects, to teash whats possible:
-cave entrances, duh, with additional plateaus
-more water objects..
-
-TSK Entrance Level++
-
-updated tsk entrance level with various water objs too.
-
-Misc
-
-fixed cave entrance to properly blend with mountain walls 
-and alcoves.
-
+this was due to only setting/checking for game won/loss
+state in the constructor, and then we changed this class to
+be global, with an Open() method called instead. moved that
+won/loss logic and title update into Open().
 
 
 

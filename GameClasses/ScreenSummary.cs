@@ -34,11 +34,9 @@ namespace DungeonRun
 
             #region Create Title
 
-            Byte4 frame = new Byte4(0, 1, 0, 0);
-            if (DungeonRecord.beatDungeon) { frame.Y = 2; }
             title = new ComponentSprite(Assets.bigTextSheet,
                     new Vector2(583 - 256, 80),
-                    frame,
+                    new Byte4(0, 1, 0, 0),
                     new Point(16 * 16, 16 * 4));
             title.alpha = 0.0f;
 
@@ -73,6 +71,16 @@ namespace DungeonRun
             Functions_Music.PlayMusic(Music.Title); //play title music
             //fill hero's health up to max - prevents drum track from playing
             Pool.hero.health = PlayerData.current.heartsTotal;
+
+
+            #region Update title
+
+            if (DungeonRecord.beatDungeon) //won
+            { title.currentFrame.Y = 2; }
+            else
+            { title.currentFrame.Y = 1; } //loss
+
+            #endregion
 
 
             #region Calculate skill ratings + ratings change
