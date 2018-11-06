@@ -68,28 +68,30 @@ Prep for 0.77 Release
 > groundfires on bushes still dont spread south
 > bug where initial exit room's walls still use prev sheet (update em'?)
 > more overworld locations, all paths + connections, pls.
-
-
-
-
-
-
-Boomerang++
-
-boomerang is now red w/ gold trim. this is to make
-it stand out more against various backgrounds.
-
-
-
-
-
-
-
-
-
-> end game condition: check booleans on LSN screen, add "GAME WON!" text - easy!
-
 > add creatures to overworld levels: crab, rat, turtle
+> no chickens? no chicken sounds unless obj hit. then cluck. add chicken to town.
+
+
+
+
+End Game Update to LSN Screen.
+
+when player loads or saves or creates a game, the load/save/new
+screen appears. now, when savedata shows all three dungeons have
+been beaten, the text - "beaten!" appears next to the game name.
+this is just a simple way to let the player know they did indeed
+beat the game, as there is no end title or credits screen yet,
+and i'm not in a big rush to make one.
+
+implemented and tested, via xml editing.
+
+
+
+
+
+
+
+
 
 
 

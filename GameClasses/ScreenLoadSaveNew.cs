@@ -177,7 +177,17 @@ namespace DungeonRun
                 16 * 13 + 8 + 4, 16 * 6,
                 new Point(16 * 12 + 8, 16 * 11), "Default");
 
+            //reset game names
+            texts[0].text = "Game 1";
+            texts[1].text = "Game 2";
+            texts[2].text = "Game 3";
 
+            //Determine any beaten games - alters game's title
+            CheckForBeatenGame(PlayerData.game1, texts[0]);
+            CheckForBeatenGame(PlayerData.game2, texts[1]);
+            CheckForBeatenGame(PlayerData.game3, texts[2]);
+
+            //populate each game display
             PopulateDisplay(PlayerData.game1, game1);
             PopulateDisplay(PlayerData.game2, game2);
             PopulateDisplay(PlayerData.game3, game3);
@@ -202,6 +212,8 @@ namespace DungeonRun
             //open the screen
             displayState = DisplayState.Opening;
             Assets.Play(Assets.sfxWindowOpen);
+
+
         }
 
         public override void Close()
@@ -407,32 +419,11 @@ namespace DungeonRun
 
         public void PopulateDisplay(SaveData saveData, GameDisplayData displayData)
         {
-            texts[0].text = "Game 1";
-            texts[1].text = "Game 2";
-            texts[2].text = "Game 3";
-
             //set time of game
             //displayData.timeDateText.text = "time: " + saveData.timeSpan.ToString(@"hh\:mm\:ss");
+            //ok, let's try that again, .Net
             displayData.timeDateText.text = "time: ";
             displayData.timeDateText.text += @"" + saveData.hours + ":" + saveData.mins + ":" + saveData.secs;
-
-            displayData.timeDateText.text += "";
-
-
-            /*
-            //convert seconds to hhhh.mm.ss
-            double total = saveData.seconds;
-            int hours = 0;
-            int mins = 0;
-            int seconds = 0;
-            while(total > 0)
-            {
-                if (total - (60*60) >= 0) { hours++; }
-                else if (total - 60 >= 0) { mins++; }
-                else if (total - 1 >= 0) { seconds++; }
-            }
-            */
-
 
             //set date of game
             //displayData.timeDateText.text += "\ndate: " + saveData.dateTime.ToString("yyyy.m.d");
@@ -447,7 +438,31 @@ namespace DungeonRun
             { displayData.hero.texture = Assets.heroSheet; }
             else if (saveData.actorType == ActorType.Blob)
             { displayData.hero.texture = Assets.blobSheet; }
+
+            
         }
+
+
+
+
+        public void CheckForBeatenGame(SaveData saveData, ComponentText gameTitle)
+        {   //note if player has beaten the game so far
+            if (
+                saveData.story_forestDungeon &
+                saveData.story_mountainDungeon &
+                saveData.story_swampDungeon
+                )
+            {   //all dungeons have been beaten - note this
+                gameTitle.text += @" - beaten! ";
+            }
+        }
+
+
+
+
+
+
+
 
     }
 }
