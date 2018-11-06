@@ -77,12 +77,6 @@ Prep for 0.77 Release
 
 
 
-Forest Entrance Level++
-
-added various rocky teeth objects to compose the forest
-dungeon entrance level (skull in water on overworld).
-lots of development and testing for this initial push
-to look good. lots of room for improvement.
 
 
 
@@ -94,12 +88,51 @@ to look good. lots of room for improvement.
 
 
 
-Blocking Water Objs
+Blocking Water Objs (Rocks) + Underwater Obj
 
 we already have these in the common objs sheet.
 all they do is block, no destruction or interaction at all.
+and, we can use these objs to upgrade forest dungeon 
+entrance level even further. added objs. upgraded level.
 
-we can use these objs to upgrade forest dungeon entrance even further.
+underwater rock should be two anim frames that flip horizontally.
+done.
+
+notes
+this is something animated underwater.. this object was also
+updated to not be blocking, and instead is simply decoration for
+water for now. this sprite will also be used for secret items hidden
+underwater, so this behavior sets the stage for that to happen.
+basically, this obj is just decoration - but is actually distraction.
+by littering a level with these useless objs, then hiding one useful
+obj within them, that looks like them, they become useful - as
+camouflage. 
+
+
+
+
+
+
+
+
+
+
+
+
+Mountain Dungeon Entrance++
+
+mountain dungeon entrance level should get various additional
+objects, to teash whats possible:
+cave entrances, duh, with additional plateaus
+more water objects
+an area to dock, with a small house. nothing inside.
+
+
+
+
+Swamp Entrance Level
+
+update tsk entrance level with various water objs...
 
 
 
@@ -224,6 +257,15 @@ add detail to roof sprites: we can have roof
 sides and corners, to better show where the roof
 ends. like rain gutters and trim and stuff.
 houses can look much better.
+
+
+
+
+Water++
+
+*we could have animated floating lily pads, much like the animated
+flowers that sit over the grass levels. this would add some decoration
+to the otherwise bland sea water.
 
 
 

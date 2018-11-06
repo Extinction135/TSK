@@ -1785,7 +1785,7 @@ namespace DungeonRun
             {   //big decoration
                 Obj.canBeSaved = true;
                 Obj.compSprite.zOffset = 16 * 10; //sort over everything ominously
-                Obj.compMove.moveable = true;
+                Obj.compMove.moveable = false;
                 //setup hitbox
                 Obj.compCollision.blocking = true; //hmm..
                 Obj.compCollision.offsetX = -8; Obj.compCollision.rec.Width = 16*3;
@@ -1800,6 +1800,34 @@ namespace DungeonRun
             #endregion
 
 
+            #region Blocking Water Objects (water rocks)
+
+            else if (Type == ObjType.Wor_Water_RockSm ||
+                Type == ObjType.Wor_Water_RockMed)
+            {   
+                Obj.canBeSaved = true;
+                Obj.compSprite.zOffset = -7; //sort under hero
+                //setup hitbox
+                Obj.compCollision.blocking = true;
+                Obj.compCollision.offsetX = -5; Obj.compCollision.rec.Width = 10;
+                Obj.compCollision.offsetY = -5; Obj.compCollision.rec.Height = 10;
+                //setup animFrame
+                if (Type == ObjType.Wor_Water_RockSm)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Water_RockSm; }
+                else
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Water_RockMed; }
+            }
+
+            //underwater object
+            else if(Type == ObjType.Wor_Water_RockUnderwater)
+            {
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Water_RockUnderwater;
+                Obj.canBeSaved = true;
+                Obj.compSprite.zOffset = -7; //sort under hero
+                Obj.compCollision.blocking = false; //just decoration
+            }
+
+            #endregion
 
 
 

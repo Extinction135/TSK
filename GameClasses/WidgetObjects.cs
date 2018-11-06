@@ -272,9 +272,9 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[31], ObjType.Wor_DirtToGrass_Corner_Interior);
 
             //row 9
-            Functions_GameObject.SetType(objList[32], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[33], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[34], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[32], ObjType.Wor_Water_RockSm);
+            Functions_GameObject.SetType(objList[33], ObjType.Wor_Water_RockMed);
+            Functions_GameObject.SetType(objList[34], ObjType.Wor_Water_RockUnderwater);
             Functions_GameObject.SetType(objList[35], ObjType.Wor_Tree_Big);
 
             //row 10

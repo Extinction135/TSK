@@ -259,6 +259,12 @@ namespace DungeonRun
         public static List<Byte4> Wor_Shadow_Big = new List<Byte4> { new Byte4(0, 0, 0, 0) }; //3x4 obj
 
 
+        //water rocks
+        public static List<Byte4> Wor_Water_RockSm = new List<Byte4> { new Byte4(10, 8, 0, 0) };
+        public static List<Byte4> Wor_Water_RockMed = new List<Byte4> { new Byte4(10, 9, 0, 0) };
+        public static List<Byte4> Wor_Water_RockUnderwater = new List<Byte4>
+        { new Byte4(9, 9, 0, 0), new Byte4(9, 9, 1, 0) };
+
         #endregion
 
 

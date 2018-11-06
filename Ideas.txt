@@ -18,6 +18,16 @@ then selecting the proper dialog string.
 
 
 
+
+Ship Roof
+put a house or roof objs on a SHIP and have a captain's
+quarters or steering area ontop of the ship deck.
+maybe even have stairs up to it. this could be part of an
+abandoned ship, or broken ship. 
+
+
+
+
 Fisherman
 
 sits alone, at his house, fishing, wistling a tune.

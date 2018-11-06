@@ -523,6 +523,11 @@ namespace DungeonRun
         //big shadow cover
         Wor_Shadow_Big,
 
+        //blocking water objects
+        Wor_Water_RockSm,
+        Wor_Water_RockMed,
+        Wor_Water_RockUnderwater,
+
         #endregion
 
 
