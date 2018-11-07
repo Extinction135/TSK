@@ -693,7 +693,7 @@ namespace DungeonRun
                 Actor.enemy = true;
                 Actor.compSprite.texture = Assets.blobSheet;
                 Actor.animList = AnimationFrames.Hero_Animations; //actor is hero
-                Actor.health = 3;
+                Actor.health = 3; //base hero hp
                 ResetActorLoadout(Actor);
                 Actor.weapon = MenuItemType.WeaponSword;
                 Actor.walkSpeed = 0.05f;
@@ -717,7 +717,7 @@ namespace DungeonRun
                 Actor.enemy = true;
                 Actor.compSprite.texture = Assets.EnemySheet;
                 Actor.animList = AnimationFrames.Standard_AngryEye_Animations;
-                Actor.health = 3;
+                Actor.health = 1; //very easy
                 ResetActorLoadout(Actor);
                 Actor.weapon = MenuItemType.WeaponFang;
                 Actor.walkSpeed = 0.05f;
@@ -752,7 +752,7 @@ namespace DungeonRun
                 Actor.compSprite.texture = Assets.EnemySheet;
                 Actor.animList = AnimationFrames.Standard_BeefyBat_Animations;
 
-                Actor.health = 2;
+                Actor.health = 2; //med
                 Actor.chaseRadius = 16 * 3; //decrease chase radius
 
 

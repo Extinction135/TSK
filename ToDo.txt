@@ -62,53 +62,52 @@ Today:
 
 
 
+0.77 Release - (dramatic foghorn plays)
 
-
-
-Test Environment++
-
-*if game is in game mode, then exiting a field
-should work even if hero is clipping. this is in
-functions_hero, where we set the current room.
-done, tested, working perfectly.
-
-this means: if game is in game mode, and clipping 
-is turned on, hero will still exit any field level
-if he walks offscreen. this allows for faster testing
-of level data, as i no longer have to enter, modify,
-exit the cheat menu each time i want to exit a field
-level. - this is a sister commit to the commit addressing
-dungeon exits: while clipping i couldn't exit a dungeon
-and had to go into the cheat menu and turn clipping off.
-to speed up exiting dungeons while clipping, i added
-code to allow hero to interact with the dungeon exit
-(A button press), which then exits the level. again,
-all this is being done to make testing the game faster,
-specifically: i need to load into levels, run around them
-ensuring all objects are in the right place, then exit
-the field level and move onto the next one. this change
-(exiting while in clipping mode) saves me untold, countless
-seconds over the next months/years of development.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Prep GameData for 0.77 Release - (dramatic foghorn plays)
-
-compile level and roomData for last time.
 check all levels for errors (using clipping).
+check all dungeons one last time for messed up rooms.
+done.
+
+floating eyes should only have 1 hp. very
+easy to kill - this is intro dungeon! done.
+
+DirectX - Install Testing + Game Icon
+
+uninstalled DungeonRun prototype from home PC.
+
+created ICON.psd for game .ico development.
+created sweet red Z against brown gradient bkg.
+linked new icon file to directX project.
+test build, icon displays in title window.
+mother cluckin' iconsss! aww yisssss
+
+published first 0.77 install pkg for Dx.
+installed properly, pinned icon on taskbar looks
+mega-naisu. quick playtest works perfectly.
+DirectX version is ready for consumption.
+
+UWP
+
+created alot of images for the UWP manifest file,
+so it would be happy with me. now i actually know
+what the splash screen looks like... hmmm.
+splash screen setup and looking nice now. 
+how profesh!
+
+created first appX package for 0.77.
+i assume it installs and sideloads.
+
+Archiving
+
+created .zip versions of Dx and UWP install folders.
+Dx is at 66mb, while UWP is at 99mb.
+copied 0.76 and 0.77 Dx archives into repo/releases.
+this adds about 120mb to the overall repo size.
+
+Upload
+
+uploaded Dx and UWP archives to Dropbox.
+made links public and available.
 
 
 
@@ -117,8 +116,10 @@ check all levels for errors (using clipping).
 
 
 
+Update readme, repo to reflect new version.
 
-
+uwp: https://www.dropbox.com/s/9r0xcyfhilc99mo/TSK_077_UWP.zip?dl=0
+dx: https://www.dropbox.com/s/sppi2wilhef1qso/TSK_077_Dx.zip?dl=0
 
 
 
@@ -143,7 +144,8 @@ Edit 0.77 gif together
 
 
 
-
+TODO - create UWP tiles/app icons for AppX pkg.
+UGHHH!
 
 
 
