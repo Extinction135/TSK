@@ -1269,6 +1269,35 @@ namespace DungeonRun
             #endregion
 
 
+            #region Swamp Island Sub Path - connecting skull crown to tentacles on island tip
+
+            MapLocation SwampIsland_SubPath_1 = new MapLocation(false, new Vector2(1238, 329), "SwampIsland_SubPath_1");
+            locations.Add(SwampIsland_SubPath_1);
+            MapLocation SwampIsland_SubPath_2 = new MapLocation(false, new Vector2(1290, 352), "SwampIsland_SubPath_2");
+            locations.Add(SwampIsland_SubPath_2);
+            MapLocation SwampIsland_SubPath_3 = new MapLocation(false, new Vector2(1361, 343), "SwampIsland_SubPath_3");
+            locations.Add(SwampIsland_SubPath_3);
+
+
+            //neighbors
+            SwampIsland_SubPath_1.neighborLeft = SkullIsland_TopCrown_10;
+            SkullIsland_TopCrown_10.neighborRight = SwampIsland_SubPath_1;
+
+            SwampIsland_SubPath_1.neighborRight = SwampIsland_SubPath_2;
+            SwampIsland_SubPath_2.neighborLeft = SwampIsland_SubPath_1;
+
+            SwampIsland_SubPath_2.neighborRight = SwampIsland_SubPath_3;
+            SwampIsland_SubPath_3.neighborLeft = SwampIsland_SubPath_2;
+
+            SwampIsland_SubPath_3.neighborRight = SwampIsland_MainPath_8;
+            SwampIsland_MainPath_8.neighborLeft = SwampIsland_SubPath_3;
+
+            #endregion
+
+
+
+
+
             #region Theives Den - Bottom Path
 
             ThievesDen_GateEntrance = new MapLocation(true, new Vector2(1277, 789), "ThievesDen_GateEntrance");
