@@ -1712,6 +1712,25 @@ namespace DungeonRun
 
 
 
+
+
+
+            #region Cloud Temple
+
+            MapLocation CloudTemple = new MapLocation(false, new Vector2(767, 400), "CloudTemple");
+            locations.Add(CloudTemple);
+
+            //neighbors
+            CloudTemple.neighborRight = SkullIsland_TopCrown_1;
+            SkullIsland_TopCrown_1.neighborLeft = CloudTemple;
+
+
+            #endregion
+
+
+
+
+
             //prep overworld for interaction
 
             #region Setup location zDepths

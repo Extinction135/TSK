@@ -73,11 +73,7 @@ Prep for 0.77 Release
 
 
 
-Forest Castle Path + Location
 
-this is a small dungeon, which rewards a unique item.
-it's connected to the left of forest island main path 5
-@789.659
 
 
 
