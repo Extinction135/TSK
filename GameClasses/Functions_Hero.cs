@@ -81,6 +81,13 @@ namespace DungeonRun
             heroRec = new Rectangle(0, 0, 16, 16);
         }
 
+
+
+
+
+
+
+
         public static void CheckRoomCollision()
         {
             //only process this method if the level screen is completely open
@@ -88,34 +95,42 @@ namespace DungeonRun
             //otherwise it processes while level is closing causing bugs
 
             if (LevelSet.currentLevel.isField)
-            {   //hero is in level
-
-                if (Flags.Clipping) //if player has enabled clipping
-                { return; } //prevent exit of field level (for editing)
-
-
-                #region Handle hero transferring to overworld screen or field
-
-                if(heroRec.Intersects(LevelSet.currentLevel.currentRoom.rec) == false) //died here
-                {
-                    //some fields return to other fields
-                    if (LevelSet.currentLevel.ID == LevelID.SkullIsland_ColliseumPit)
-                    {   //return to colliseum exterior level
-                        LevelSet.field.ID = LevelID.SkullIsland_Colliseum;
-                        Functions_Level.CloseLevel(ExitAction.Field);
+            {   
+                //Handle hero leaving Field level
+                if(heroRec.Intersects(LevelSet.currentLevel.currentRoom.rec) == false)
+                {   
+                    //if we're clipping, in a dev mode, don't exit the field level
+                    if(Flags.Clipping & Flags.bootRoutine != BootRoutine.Game)
+                    {
+                        return; //allows for more editor control
                     }
-                    //all other fields return to overworld screen
                     else
                     {
-                        Functions_Level.CloseLevel(ExitAction.Overworld);
+                        //if we're clipping, and in game mode, this evaluates (making testing faster)
+                        //if we're not clipping, this evaluates (game functions normally)
+
+
+                        #region Based on Field, return to Overworld or other Field level
+
+                        //some fields return to other fields
+                        if (LevelSet.currentLevel.ID == LevelID.SkullIsland_ColliseumPit)
+                        {   //return to colliseum exterior level
+                            LevelSet.field.ID = LevelID.SkullIsland_Colliseum;
+                            Functions_Level.CloseLevel(ExitAction.Field);
+                        }
+                        //all other fields return to overworld screen
+                        else
+                        {
+                            Functions_Level.CloseLevel(ExitAction.Overworld);
+                        }
+
+                        #endregion
+
+
+                        //stop hero's movement upon exiting level
+                        Functions_Movement.StopMovement(Pool.hero.compMove);
                     }
-
-                    //stop hero's movement
-                    Functions_Movement.StopMovement(Pool.hero.compMove);
                 }
-
-                #endregion
-
             }
             else
             {
@@ -190,6 +205,11 @@ namespace DungeonRun
 
             }
         }
+
+
+
+
+
 
         public static void ClearInteractionRec()
         {   //move the interaction point offscreen

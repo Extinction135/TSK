@@ -62,25 +62,34 @@ Today:
 
 
 
-Coliseum Level++
-
-completed building, added foilage.
-compiled level data for final time, for 0.77 release.
-more dialog updates for hilarity.
-
-
-
-
-
-
-
 
 
 
 Test Environment++
+
 *if game is in game mode, then exiting a field
 should work even if hero is clipping. this is in
 functions_hero, where we set the current room.
+done, tested, working perfectly.
+
+this means: if game is in game mode, and clipping 
+is turned on, hero will still exit any field level
+if he walks offscreen. this allows for faster testing
+of level data, as i no longer have to enter, modify,
+exit the cheat menu each time i want to exit a field
+level. - this is a sister commit to the commit addressing
+dungeon exits: while clipping i couldn't exit a dungeon
+and had to go into the cheat menu and turn clipping off.
+to speed up exiting dungeons while clipping, i added
+code to allow hero to interact with the dungeon exit
+(A button press), which then exits the level. again,
+all this is being done to make testing the game faster,
+specifically: i need to load into levels, run around them
+ensuring all objects are in the right place, then exit
+the field level and move onto the next one. this change
+(exiting while in clipping mode) saves me untold, countless
+seconds over the next months/years of development.
+
 
 
 
