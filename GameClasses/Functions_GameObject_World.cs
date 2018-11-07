@@ -275,6 +275,36 @@ namespace DungeonRun
             }
 
 
+            //hack for 0.77 - secret vendor exists in column room, find him, set signpost dialog
+            else if (LevelSet.currentLevel.currentRoom.roomID == RoomID.Column)
+            {
+                //default dialog
+                Screens.Dialog.SetDialog(AssetsDialog.Signpost_Standard);
+
+                //loop over all roomObjs to find secret vendor obj
+                for (i = 0; i < Pool.roomObjCount; i++)
+                {
+                    if(Pool.roomObjPool[i].active)
+                    {
+                        if(Pool.roomObjPool[i].type == ObjType.Vendor_NPC_EnemyItems)
+                        {   //set the secret vendor dialog
+                            Screens.Dialog.SetDialog(AssetsDialog.Signpost_SecretVendor);
+                        }
+                    }
+                }
+
+                //either add default dialog or secret vendor dialog
+                ScreenManager.AddScreen(Screens.Dialog);
+            }
+
+
+
+
+
+
+
+
+
             //editor dialogs
             else if(LevelSet.currentLevel.currentRoom.roomID == RoomID.DEV_Field)
             {

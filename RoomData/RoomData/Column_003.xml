@@ -3,55 +3,79 @@
   <type>Column</type>
   <objs>
     <ObjXmlData>
-      <type>Dungeon_Signpost</type>
+      <type>Wor_Boat_Barrel</type>
+      <direction>Down</direction>
+      <posX>136</posX>
+      <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Boat_Barrel</type>
+      <direction>Down</direction>
+      <posX>120</posX>
+      <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Boat_Barrel</type>
       <direction>Down</direction>
       <posX>56</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_Signpost</type>
+      <type>Wor_Boat_Barrel</type>
       <direction>Down</direction>
       <posX>136</posX>
       <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_Signpost</type>
+      <type>Wor_Boat_Barrel</type>
       <direction>Down</direction>
       <posX>136</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_Signpost</type>
+      <type>Dungeon_PitTrap</type>
       <direction>Down</direction>
-      <posX>40</posX>
-      <posY>120</posY>
+      <posX>136</posX>
+      <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_Signpost</type>
+      <type>Wor_Boat_Barrel</type>
       <direction>Down</direction>
       <posX>40</posX>
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_Signpost</type>
+      <type>Wor_Boat_Barrel</type>
       <direction>Down</direction>
-      <posX>136</posX>
-      <posY>184</posY>
+      <posX>40</posX>
+      <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_Signpost</type>
+      <type>Wor_Boat_Barrel</type>
       <direction>Down</direction>
       <posX>136</posX>
       <posY>200</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_Signpost</type>
+      <type>Wor_Boat_Barrel</type>
+      <direction>Down</direction>
+      <posX>136</posX>
+      <posY>216</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Boat_Barrel</type>
+      <direction>Down</direction>
+      <posX>40</posX>
+      <posY>248</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Boat_Barrel</type>
       <direction>Down</direction>
       <posX>40</posX>
       <posY>232</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_Signpost</type>
+      <type>Wor_Boat_Barrel</type>
       <direction>Down</direction>
       <posX>120</posX>
       <posY>248</posY>
@@ -59,26 +83,44 @@
     <ObjXmlData>
       <type>Dungeon_Signpost</type>
       <direction>Down</direction>
-      <posX>136</posX>
-      <posY>40</posY>
+      <posX>104</posX>
+      <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_Signpost</type>
+      <type>Wor_Boat_Barrel</type>
       <direction>Down</direction>
-      <posX>120</posX>
-      <posY>40</posY>
+      <posX>72</posX>
+      <posY>264</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_Signpost</type>
+      <type>Wor_Boat_Barrel</type>
       <direction>Down</direction>
-      <posX>120</posX>
-      <posY>184</posY>
+      <posX>88</posX>
+      <posY>264</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_Signpost</type>
+      <type>Wor_Boat_Barrel</type>
+      <direction>Down</direction>
+      <posX>56</posX>
+      <posY>88</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Boat_Barrel</type>
       <direction>Down</direction>
       <posX>40</posX>
-      <posY>248</posY>
+      <posY>88</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Boat_Barrel</type>
+      <direction>Down</direction>
+      <posX>40</posX>
+      <posY>104</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Boat_Barrel</type>
+      <direction>Down</direction>
+      <posX>136</posX>
+      <posY>184</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Vendor_NPC_EnemyItems</type>
@@ -145,12 +187,6 @@
       <direction>Down</direction>
       <posX>72</posX>
       <posY>152</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Boat_Barrel</type>
-      <direction>Down</direction>
-      <posX>104</posX>
-      <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Boat_Barrel</type>
@@ -229,12 +265,6 @@
       <direction>Down</direction>
       <posX>40</posX>
       <posY>40</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_PitTrap</type>
-      <direction>Down</direction>
-      <posX>136</posX>
-      <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_PitTrap</type>
@@ -330,18 +360,6 @@
       <type>Wor_Pot</type>
       <direction>Down</direction>
       <posX>104</posX>
-      <posY>264</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Pot</type>
-      <direction>Down</direction>
-      <posX>88</posX>
-      <posY>264</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Pot</type>
-      <direction>Down</direction>
-      <posX>72</posX>
       <posY>264</posY>
     </ObjXmlData>
     <ObjXmlData>

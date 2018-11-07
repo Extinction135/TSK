@@ -69,37 +69,51 @@ namespace DungeonRun
 
             if (vendorRef == ObjType.Vendor_NPC_Armor)
             {
-                welcomeDialog = "The shawl doesn't actually do anything yet..";
+                Widgets.ForSale.window.title.text = "Tailor";
+                welcomeDialog = "A fine set of cloth? A sturdy set of armor?\n";
+                welcomeDialog += "A light and silent shawl? I'm quite busy with my designs..";
             }
             else if (vendorRef == ObjType.Vendor_NPC_Equipment)
             {
-                welcomeDialog = "I'm working on expanding my seletion...";
+                Widgets.ForSale.window.title.text = "Jewler";
+                welcomeDialog = "I'm working on expanding my selection..\n";
+                welcomeDialog += "but you should equip the ring if you haven't already.";
             }
             else if (vendorRef == ObjType.Vendor_NPC_Items)
             {
-                welcomeDialog = "I hope you have enough gold this time..";
+                Widgets.ForSale.window.title.text = "Item Dealer";
+                welcomeDialog = "What I've got, you won't find anywhere else.\n";
+                welcomeDialog += "So pay my prices or kick dust. HaHaHa!";
             }
             else if (vendorRef == ObjType.Vendor_NPC_Magic)
             {
-                welcomeDialog = "I found these. Not really sure what they do.\nSure are shiny..";
+                Widgets.ForSale.window.title.text = "Lonely Kid";
+                welcomeDialog = "I found these while diving in the sea. Not sure what they do..\n";
+                welcomeDialog += "But I know they're worth something.. so don't play me cheap, mister!";
             }
             else if (vendorRef == ObjType.Vendor_NPC_Potions)
             {
-                welcomeDialog = "Drink up...\nHehehehe...";
+                Widgets.ForSale.window.title.text = "Old Woman";
+                welcomeDialog = "I carefully craft all my potions from local, non-gmo plants\n";
+                welcomeDialog += "grown in my garden right here. Guaranteed no side effects!";
             }
             else if (vendorRef == ObjType.Vendor_NPC_Weapons)
             {
-                welcomeDialog = "You'll need all these eventually..";
+                Widgets.ForSale.window.title.text = "Blacksmith";
+                welcomeDialog = "All I need is my forge and my bed. I keep it simple.\n";
+                welcomeDialog += "You'll need everything I make, if you want to beat him..";
             }
             else if (vendorRef == ObjType.Vendor_NPC_Pets)
             {
-                welcomeDialog = "Please adopt a pet, mister! They all need good homes..";
                 Widgets.ForSale.window.title.text = "For Adoption";
+                welcomeDialog = "Please adopt a pet, mister! They all need good homes..\n";
+                welcomeDialog += "My dad says I can't keep all these puppies..";
             }
             else if (vendorRef == ObjType.Vendor_NPC_EnemyItems)
             {
-                welcomeDialog = "don't tell mrgrak I let you play with these..\nhe'd remove me from the game..";
-                Widgets.ForSale.window.title.text = "Shhh!";
+                Widgets.ForSale.window.title.text = "Secret Dungeon Vendor";
+                welcomeDialog = "don't tell mr.grak I let you play with these secret items..\n";
+                welcomeDialog += "he'd kick me from the game.. or worse.. turn me into a chicken.";
             }
             
 
@@ -512,6 +526,14 @@ namespace DungeonRun
                 "thank you for adopting this loveable pet.");
             Assets.Play(Assets.sfxBeatDungeon);
         }
+
+
+
+
+
+
+
+        //vendor specific dialogs
 
         public void DialogNotEnoughGold()
         {

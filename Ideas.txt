@@ -19,6 +19,13 @@ where all dungons are size 3 or greater.
 
 
 
+Puzzles++
+if a room with a switch in it has been solved, (visited)
+then remove the floor switch obj post room build.
+
+
+
+
 
 
 Ship Roof

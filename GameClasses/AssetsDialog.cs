@@ -70,6 +70,12 @@ namespace DungeonRun
 
 
 
+        
+
+
+
+
+
 
 
 
@@ -238,8 +244,8 @@ namespace DungeonRun
         public static List<Dialog> Signpost_SwampEntrance = new List<Dialog>
         {
             new Dialog(ObjType.Hero_Idle, "The Swamp Dungeon",
-                "End game dungeon. You'll need to swim alot.\n" +
-                "Caution: very difficult.",
+                "Caution: End game dungeon. Enter the Shadow above to begin.\n" +
+                "Do not touch the lever to left ..You were warned.",
                 Assets.sfxTextLetter, false, false)
         };
         public static List<Dialog> Signpost_ShadowTown = new List<Dialog>
@@ -270,6 +276,17 @@ namespace DungeonRun
                 "with signpost, so current data is fetched.",
                 Assets.sfxTextLetter, false, false)
         };
+
+        public static List<Dialog> Signpost_SecretVendor = new List<Dialog>
+        {
+            new Dialog(ObjType.Hero_Idle, "Attention!",
+                "If you see anyone giving away secret items, please report them.\n" +
+                "-MGMT",
+                Assets.sfxTextLetter, false, false)
+        };
+
+
+
 
         #endregion
 

@@ -61,65 +61,35 @@ Today:
 
 
 
-Prep for 0.77 Release
 
 
 
 
-
-
-
-
-
-
-
-
-
-Input Polish
-
-due to the input update, players can now simply hold down X to
-spam attacks, hold down Y to spam use items, and hold down A to
-put themselves into a perpetual INTERACT state, where link is bending
-over. so, we'll go back to forcing new button presses for all these
-actions, simply because that's not how I want input to feel.
-done, tested, working as expected.
-
-
-
-
-
-
-Polish++
+Prep for 0.77 Release - (dramatic foghorn plays)
 
 for the swamp dungeon entrance dialog, we should add
-"do not play with the switch to the left."
-
-
-
-
-
-
-
-
-
-Player2 Input
-
-*we are not modeling player2 input at all right now.
-*we need to do this.
-
-
-
-
-
-Finish Coliseum Level
-we need trees, and foilage, and finish the building!
-
-
-
+"do not play with the switch to the left." < done.
 
 Vendors++
 Change all Vendor Dialogs to be Shadow King supportive,
 creepy, and weird. and punctually/grammatically correct.
+done.
+
+
+
+Secret Vendor++
+
+updated dungeon vendors room to only have one signpost.
+
+
+
+
+add code to read signpost in dungeon room where vendor is
+present. this is a column room, but we can loop over all
+roomObjs looking for vendor and modify dialog as needed.
+should say "if you see anyone giving away secret items,
+please report them to mgmt! -mr.grak".
+*find this column room, place ONE signpost near vendor.
 
 
 
@@ -128,6 +98,24 @@ creepy, and weird. and punctually/grammatically correct.
 
 
 
+Coliseum Level++
+we need trees, and foilage, and finish the building!
+
+
+
+Test Environment++
+*if game is in game mode, then exiting a field
+should work even if hero is clipping. this is in
+functions_hero, where we set the current room.
+
+
+
+
+
+
+Creatures Fang++
+creatures fang should destroy objects - it doesn't.
+this means some enemies can't destroy objects at all.
 
 
 
@@ -135,26 +123,10 @@ creepy, and weird. and punctually/grammatically correct.
 
 
 
+Prep GameData for 0.77 Release 
 
-
-
-
-
-
-Allow Player 2 to Control the Doggo
-
-if hero has a pet, and controller 2 exists, then
-pass this input to the pet. any button makes the dog
-bark. b makes the dog dash. d pad sets direction.
-
-the dog's bark pushes enemies or objects, so player2
-can actually be useful. pet update: should only be able
-to purchase a pet if player two presses A on the controller
-during the vendor screen. this is because they will be
-controlling the dog the entire game. no more dog AI.
-if there is no controller 2, no pet.
-if there is no controller 2 input, no movement.
-pet cannot die, isn't actor, is roomObj with primitive inputs.
+compile level and roomData for last time.
+check all levels for errors (using clipping).
 
 
 
@@ -173,11 +145,6 @@ release 0.77? YEPPPpp
 
 
 
-//right shift for back button? do we use select in nes controller?
-if (IsNewKeyPress(Keys.RightShift)) { }
-
-
-
 
 
 Record playthrough
@@ -187,6 +154,10 @@ Edit 0.77 gif together
 -post gif to gbatemp thread
 -post playthrough video to: insta, discord
 -post gif to insta - can we do this without compression? via usb transfer?
+
+
+
+
 
 
 
@@ -214,6 +185,13 @@ jump attack, from rescue dog.
 
 
 
+Player2 Input
+
+*we are not modeling player2 input at all right now.
+*we need to do this.
+
+
+
 
 
 
@@ -223,6 +201,26 @@ big chests should exist in dungeons, and reward the master key.
 this allows smaller chests to exist outside of keyroom and dungeons
 altogether. also, we could randomly reward player with loot when
 they open the chest, including magic or fairys or whatever.
+
+
+
+
+
+
+Allow Player 2 to Control the Doggo
+
+if hero has a pet, and controller 2 exists, then
+pass this input to the pet. any button makes the dog
+bark. b makes the dog dash. d pad sets direction.
+
+the dog's bark pushes enemies or objects, so player2
+can actually be useful. pet update: should only be able
+to purchase a pet if player two presses A on the controller
+during the vendor screen. this is because they will be
+controlling the dog the entire game. no more dog AI.
+if there is no controller 2, no pet.
+if there is no controller 2 input, no movement.
+pet cannot die, isn't actor, is roomObj with primitive inputs.
 
 
 
@@ -637,24 +635,6 @@ somewhere on one of these islands.
 
 
 
-
-
-
-
-
-
-post-release notes:
-
-only spawn 1 floating eye in forest dungeon rooms.
-
-if a room with a switch in it has been solved, (visited)
-then remove the floor switch obj post room build.
-
-if player has the map, dont spawn the miniboss.
-
-fix those really hard column and row rooms.
-make more versions of really easy row and column rooms.
-we need more room data overall.
 
 
 
