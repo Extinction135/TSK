@@ -17,12 +17,8 @@ The Big 4:
 "The Gameworld is a character that reacts to the player."
 
 
-
-
-Roadmap
-
-0.77 - Overworld added, temp levels setup, COLOR.
-0.78 - ShadowKing coliseum, town, blocked shadow dungeon entrance
+Roadmap (this is wrong rn)
+0.78 - 
 0.79 - Forest Islands
 0.80 - Lava Islands
 0.81 - Cloud Islands
@@ -30,27 +26,7 @@ Roadmap
 0.83 - Death Mountain Islands
 0.84 - Thieve's Hideout
 0.85 - Shadow Dungeon, Shadow King fight
-
 0.86+ - ???
-
-
-Video To Make -
-playthrough videos
-development videos
-intro to codebase / systems design
-overall design & direction of TSK
-thoughts on zelda franchise
-seperating collisions + interactions
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -60,23 +36,36 @@ Today:
 
 
 
+0.77 Playthrough
 
+Record playthrough, post to youtube.
 
-
-Updated readme with links to v0.77.
-
-uwp: https://www.dropbox.com/s/9r0xcyfhilc99mo/TSK_077_UWP.zip?dl=0
-dx: https://www.dropbox.com/s/sppi2wilhef1qso/TSK_077_Dx.zip?dl=0
+0.77 playthrough: https://youtu.be/_b7qclGTffE
 
 
 
 
+0.77 Release Gif
 
-0.77 Media
+Cut gifs using licecap.
+Edit 0.77 gif together from lice cuts.
+Post this gif to repo landing page.
 
-Record playthrough
-Upload to youtube, cut gifs
-Edit 0.77 gif together
+
+
+
+
+link 0.77 playthru on landing page, after .gif.
+in the media section. keep the youtub channel link too.
+
+
+
+
+
+
+
+
+
 
 
 
@@ -85,7 +74,6 @@ Edit 0.77 gif together
 
 0.77 Release Testing
 
--update repo with gif, update landing page too.
 -post gif to gbatemp thread
 -post playthrough video to discord, asking for playtesters on win10 - keyboard and gamepad support
 -post gif to insta - can we do this without compression? via usb transfer? as.mp4? thinkso...
@@ -104,6 +92,35 @@ Cleanup
 clean up IDEAS - removing ideas : completed, infeasible, stupid
 compress overworld pics development in repo, after batch resizing
 them to be smaller (again?)
+
+
+Moving Forward
+
+update design.md with more topics.
+update versions page with words discussing development of 0.76 and
+0.77, including the overworld development process.
+
+
+REMAKE ROADMAP
+- things have changed dramatically, since we've done so much.
+
+
+
+
+
+
+Playtesting Bugs
+
+purchased bow, left level, bow was gone.
+
+upon dying, loadout is reset. dont do that.
+
+the summary screen resets it's values to 0 after
+first run, but upon second run those values dont
+increase to show player progress. either the summ
+screen is messed up or the dungeon record is not
+being updated for the dungeon playthrough.
+
 
 
 
