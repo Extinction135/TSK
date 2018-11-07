@@ -163,11 +163,14 @@ namespace DungeonRun
 
         public override void HandleInput(GameTime GameTime)
         {
+            //Exit Screen Input
             if (scroll.displayState == DisplayState.Opened)
-            {   //close screen upon start, b button, or left shoulder button press
-                if (Functions_Input.IsNewButtonPress(Buttons.Start)
-                    || Functions_Input.IsNewButtonPress(Buttons.B)
-                    || Functions_Input.IsNewButtonPress(Buttons.LeftShoulder))
+            {   //exit this screen upon start / b button
+                if (
+                    (Input.Player1.Start & Input.Player1.Start_Prev == false)
+                    ||
+                    (Input.Player1.B & Input.Player1.B_Prev == false)
+                    )
                 {
                     Assets.Play(Assets.sfxWindowClose);
                     scroll.displayState = DisplayState.Closing;

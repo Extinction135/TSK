@@ -66,13 +66,20 @@ namespace DungeonRun
 
             #region GamePlay Input
 
+            //only allow input if the screen has opened completely..
             if (displayState == DisplayState.Opened)
-            {   //only allow input if the screen has opened completely..
+            {   //only allow player input if hero currently occupies a map location
                 if (Pool.hero.compMove.position == Pool.hero.compMove.newPosition)
-                {   //only allow player input if hero currently occupies a map location
-                    if (Input.gamePadDirection != Input.lastGamePadDirection)
-                    {   //get the cardinal direction of new gamepad input
-                        cardinal = Functions_Direction.GetCardinalDirection(Input.gamePadDirection);
+                {
+
+
+                    #region Move to New Location
+
+                    //and prevent spamming of direction
+                    if (Input.Player1.direction != Input.Player1.direction_Prev)
+                    {
+                        //get direction of player1 input
+                        cardinal = Functions_Direction.GetCardinalDirection(Input.Player1.direction);
                         //set the currentLocation based on cardinal direction
                         if (cardinal == Direction.Up)
                         { targetLocation = currentLocation.neighborUp; }
@@ -104,8 +111,14 @@ namespace DungeonRun
                             Pool.hero.direction = cardinal;
                         }
                     }
-                    //check to see if player wants to load a level
-                    if (Functions_Input.IsNewButtonPress(Buttons.A))
+
+                    #endregion
+
+
+                    #region Load Level via Interaction Input
+
+                    //if player pressed A button this frame, load level
+                    if(Input.Player1.A & Input.Player1.A_Prev == false)
                     {   //upon A button press, check to see if current location is a level
                         if (currentLocation.isLevel) //if so, close the scroll
                         {
@@ -128,7 +141,12 @@ namespace DungeonRun
                             Functions_Hero.ResetFieldSpawnPos();
                         }
                     }
-                    else if (Functions_Input.IsNewButtonPress(Buttons.Start))
+
+                    #endregion
+
+
+                    //allow player access to inventory screen from overworld map
+                    if (Input.Player1.Start & Input.Player1.Start_Prev == false)
                     { ScreenManager.AddScreen(Screens.Inventory); }
                 }
             }

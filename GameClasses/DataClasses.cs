@@ -544,24 +544,46 @@ namespace DungeonRun
 
     }
 
+
+
+
+    //used to contain the global inputs for player1, 2
     public static class Input
     {
+        //there can only be 1 keyboard input at a time
         public static KeyboardState currentKeyboardState = new KeyboardState();
         public static KeyboardState lastKeyboardState = new KeyboardState();
-
         public static MouseState currentMouseState = new MouseState();
         public static MouseState lastMouseState = new MouseState();
 
-        public static Point cursorPos = new Point(0, 0);
-        public static ComponentCollision cursorColl = new ComponentCollision();
 
-        public static GamePadState currentGamePadState = new GamePadState();
-        public static GamePadState lastGamePadState = new GamePadState();
+        //but, there can be multiple gamepad inputs at a time
+
+
+        #region Player 1 input instances
+
+        public static GameInput Player1 = new GameInput();
+        public static GamePadState currentGamePadState_1 = new GamePadState();
+        public static Direction gamePadDirection_1 = Direction.None;
+
+        #endregion
+
+
+        #region Player 2 input instances
+
+        //player 2 input instances
+        public static GameInput Player2 = new GameInput();
+        public static GamePadState currentGamePadState_2 = new GamePadState();
+        public static Direction gamePadDirection_2 = Direction.None;
+
+        #endregion
+
 
         //the amount of joystick movement classified as noise
-        public static float deadzone = 0.10f; 
-        public static Direction gamePadDirection = Direction.None;
-        public static Direction lastGamePadDirection = Direction.None;
+        public static float deadzone = 0.10f;
+        //used to visually display a hand icon as cursor in editor
+        public static Point cursorPos = new Point(0, 0);
+        public static ComponentCollision cursorColl = new ComponentCollision();
 
         static Input()
         {
@@ -570,6 +592,10 @@ namespace DungeonRun
             cursorColl.blocking = false;
         }
     }
+
+
+
+
 
     public static class WaterMark
     {
@@ -686,7 +712,7 @@ namespace DungeonRun
 
         }
 
-        public static void ReadController()
+        public static void ReadInput()
         {
 
             #region Directions
@@ -700,33 +726,33 @@ namespace DungeonRun
             //directions = up, right, down, left
 
             //handle cardinals
-            if (Input.gamePadDirection == Direction.Up)
+            if (Input.Player1.direction == Direction.Up)
             { directions[0].currentFrame = AnimationFrames.Input_Arrow_Selected[0]; }
-            else if (Input.gamePadDirection == Direction.Right)
+            else if (Input.Player1.direction == Direction.Right)
             { directions[1].currentFrame = AnimationFrames.Input_Arrow_Selected[0]; }
-            else if (Input.gamePadDirection == Direction.Down)
+            else if (Input.Player1.direction == Direction.Down)
             { directions[2].currentFrame = AnimationFrames.Input_Arrow_Selected[0]; }
-            else if (Input.gamePadDirection == Direction.Left)
+            else if (Input.Player1.direction == Direction.Left)
             { directions[3].currentFrame = AnimationFrames.Input_Arrow_Selected[0]; }
 
             //handle dialgonals
-            else if (Input.gamePadDirection == Direction.UpRight)
+            else if (Input.Player1.direction == Direction.UpRight)
             {
                 directions[0].currentFrame = AnimationFrames.Input_Arrow_Selected[0];
                 directions[1].currentFrame = AnimationFrames.Input_Arrow_Selected[0];
             }
-            else if (Input.gamePadDirection == Direction.UpLeft)
+            else if (Input.Player1.direction == Direction.UpLeft)
             {
                 directions[0].currentFrame = AnimationFrames.Input_Arrow_Selected[0];
                 directions[3].currentFrame = AnimationFrames.Input_Arrow_Selected[0];
             }
 
-            else if (Input.gamePadDirection == Direction.DownRight)
+            else if (Input.Player1.direction == Direction.DownRight)
             {
                 directions[2].currentFrame = AnimationFrames.Input_Arrow_Selected[0];
                 directions[1].currentFrame = AnimationFrames.Input_Arrow_Selected[0];
             }
-            else if (Input.gamePadDirection == Direction.DownLeft)
+            else if (Input.Player1.direction == Direction.DownLeft)
             {
                 directions[2].currentFrame = AnimationFrames.Input_Arrow_Selected[0];
                 directions[3].currentFrame = AnimationFrames.Input_Arrow_Selected[0];
@@ -745,15 +771,15 @@ namespace DungeonRun
             buttons[4].currentFrame = AnimationFrames.Input_ButtonStart_Unselected[0];
 
             //buttons = A, X, Y, B, Start
-            if(Functions_Input.IsNewButtonPress(Buttons.A))
+            if(Input.Player1.A || Input.Player1.A_Prev)
             { buttons[0].currentFrame = AnimationFrames.Input_ButtonA_Selected[0]; }
-            if (Functions_Input.IsNewButtonPress(Buttons.X))
+            if (Input.Player1.X || Input.Player1.X_Prev)
             { buttons[1].currentFrame = AnimationFrames.Input_ButtonX_Selected[0]; }
-            if (Functions_Input.IsNewButtonPress(Buttons.Y))
+            if (Input.Player1.Y || Input.Player1.Y_Prev)
             { buttons[2].currentFrame = AnimationFrames.Input_ButtonY_Selected[0]; }
-            if (Functions_Input.IsNewButtonPress(Buttons.B))
+            if (Input.Player1.B || Input.Player1.B_Prev)
             { buttons[3].currentFrame = AnimationFrames.Input_ButtonB_Selected[0]; }
-            if (Functions_Input.IsNewButtonPress(Buttons.Start))
+            if (Input.Player1.Start || Input.Player1.Start_Prev)
             { buttons[4].currentFrame = AnimationFrames.Input_ButtonStart_Selected[0]; }
 
             #endregion
@@ -993,6 +1019,30 @@ namespace DungeonRun
 
 
     #region Instanced Classes
+
+
+
+    //models player input, used for player 1 and 2
+    public class GameInput
+    {   //direction values
+        public Direction direction = Direction.None;
+        public Direction direction_Prev = Direction.None;
+
+        //button booleans
+        public Boolean A = false;
+        public Boolean X = false;
+        public Boolean Y = false;
+        public Boolean B = false;
+
+        public Boolean A_Prev = false;
+        public Boolean X_Prev = false;
+        public Boolean Y_Prev = false;
+        public Boolean B_Prev = false;
+
+        //start booleans
+        public Boolean Start = false;
+        public Boolean Start_Prev = false;
+    }
 
     public class Byte2
     {

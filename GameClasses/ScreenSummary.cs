@@ -144,11 +144,13 @@ namespace DungeonRun
         {
             if (displayState == DisplayState.Opened)
             {
-                if (Functions_Input.IsNewButtonPress(Buttons.Start) ||
-                    Functions_Input.IsNewButtonPress(Buttons.A) ||
-                    Functions_Input.IsNewButtonPress(Buttons.B) ||
-                    Functions_Input.IsNewButtonPress(Buttons.X) ||
-                    Functions_Input.IsNewButtonPress(Buttons.Y))
+                if (
+                    (Input.Player1.A & Input.Player1.A_Prev == false)
+                    ||
+                    (Input.Player1.B & Input.Player1.B_Prev == false)
+                    ||
+                    (Input.Player1.Start & Input.Player1.Start_Prev == false)
+                    )
                 {
                     displayState = DisplayState.Closing; //only happens once
                     DungeonRecord.timer.Reset();

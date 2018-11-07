@@ -1160,9 +1160,10 @@ namespace DungeonRun
                         #region Swim Dive (toggled, only for Hero)
 
                         if(Actor == Pool.hero)
-                        {   //only hero has sweet diving action rn
-                            if(Functions_Input.IsNewButtonPress(Buttons.X))
-                            {   //toggle dive state only on new button press
+                        {   
+                            //hero can dive on new X button press
+                            if(Input.Player1.X & Input.Player1.X_Prev == false)
+                            {   //toggle dive state
                                 if (Actor.underwater == false) //setup new dive
                                 { Actor.underwater = true; Actor.breathCounter = 0; }
                                 else { Actor.underwater = false; }
@@ -1226,9 +1227,11 @@ namespace DungeonRun
                     #region Grabbing State
 
                     if (Actor == Pool.hero)
-                    {   //make sure A button is down and hero is in grab state
-                        if (Functions_Input.IsButtonDown(Buttons.A))
-                        {   //alter hero's friction - slow
+                    {
+                        //make sure A button is down and hero is in grab state
+                        if (Input.Player1.A)
+                        {
+                            //alter hero's friction - slow
                             Actor.compMove.friction = World.frictionUse;
                             //push obj hero has grabbed
                             Functions_Hero.PushGrabbedObj();
@@ -1335,32 +1338,34 @@ namespace DungeonRun
 
                     if (Actor == Pool.hero)
                     {
-                        if (Functions_Input.IsNewButtonPress(Buttons.A))
+                        //this means player can't hold down A to auto-grab - must time it right
+                        if(Input.Player1.A & Input.Player1.A_Prev == false)
                         {
+
 
                             #region Resolve input direction to left or right
 
-                            if (Input.gamePadDirection == Direction.Up 
-                                || Input.gamePadDirection == Direction.Down)
-                            { Input.gamePadDirection = Direction.None; }
+                            if (Pool.hero.compInput.direction == Direction.Up
+                                || Pool.hero.compInput.direction == Direction.Down)
+                            { Pool.hero.compInput.direction = Direction.None; }
 
-                            else if (Input.gamePadDirection == Direction.UpLeft
-                                || Input.gamePadDirection == Direction.DownLeft)
-                            { Input.gamePadDirection = Direction.Left; }
+                            else if (Pool.hero.compInput.direction == Direction.UpLeft
+                                || Pool.hero.compInput.direction == Direction.DownLeft)
+                            { Pool.hero.compInput.direction = Direction.Left; }
 
-                            else if (Input.gamePadDirection == Direction.UpRight
-                                || Input.gamePadDirection == Direction.DownRight)
-                            { Input.gamePadDirection = Direction.Right; }
+                            else if (Pool.hero.compInput.direction == Direction.UpRight
+                                || Pool.hero.compInput.direction == Direction.DownRight)
+                            { Pool.hero.compInput.direction = Direction.Right; }
 
                             #endregion
 
 
-                            //set hero.direction based on controller input *right now*
-                            Pool.hero.direction = Input.gamePadDirection;
+                            //set hero.direction based on hero input *right now*
+                            Pool.hero.direction = Pool.hero.compInput.direction;
                             //this direction will be used in check() below
                             //to set where interaction point is placed
                             //however, we dont want any up direction
-                            
+
                             //check to see if hero can grab a foothold/ladder
                             Functions_Hero.CheckInteractionRec();
 
@@ -1378,8 +1383,8 @@ namespace DungeonRun
                                 //place a (!) above hero's head as recognition
                                 Functions_Particle.Spawn(
                                     ObjType.Particle_ExclamationBubble,
-                                    Actor.compSprite.position.X, 
-                                    Actor.compSprite.position.Y - 4, 
+                                    Actor.compSprite.position.X,
+                                    Actor.compSprite.position.Y - 4,
                                     Direction.Down);
                                 //^ nowhere else can hero 'spawn' a (!)
 
@@ -1481,10 +1486,10 @@ namespace DungeonRun
                     #endregion
 
 
-                    //allow player to drop from climb using B button
+                    //allow player to drop from climb using B button press
                     if (Actor == Pool.hero)
                     {
-                        if (Functions_Input.IsNewButtonPress(Buttons.B))
+                        if(Input.Player1.B & Input.Player1.B_Prev == false)
                         {
                             Actor.state = ActorState.Falling;
                             //push actor north to fake a jump

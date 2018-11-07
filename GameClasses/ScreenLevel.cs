@@ -81,8 +81,10 @@ namespace DungeonRun
                     Functions_Ai.SetActorInput();
                     Functions_Ai.SetActorInput();
                 }
-                //map player input to hero
-                Functions_Input.MapPlayerInput(Pool.hero.compInput);
+
+                //allow player access to inventory screen from overworld map
+                if (Input.Player1.Start & Input.Player1.Start_Prev == false)
+                { ScreenManager.AddScreen(Screens.Inventory); }
             }
             else
             {   //screen is not opened, prevent all input mapping

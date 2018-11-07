@@ -120,8 +120,8 @@ namespace DungeonRun
         }
 
         public override void HandleInput(GameTime GameTime)
-        {   //select a menuItem with button A press
-            if (Functions_Input.IsNewButtonPress(Buttons.A))
+        {   //select a menuItem with new A button press
+            if (Input.Player1.A & Input.Player1.A_Prev == false)
             {
                 //scale up any known menuItem and play the selection sound
                 if (currentlySelected.type != MenuItemType.Unknown)
@@ -255,10 +255,12 @@ namespace DungeonRun
 
             #region Exit Screen Input
 
-            //exit this screen upon start / b button / right shoulder button press
-            else if (Functions_Input.IsNewButtonPress(Buttons.Start) 
-                || Functions_Input.IsNewButtonPress(Buttons.B)
-                || Functions_Input.IsNewButtonPress(Buttons.RightShoulder))
+            //exit this screen upon start / b button
+            if (
+                (Input.Player1.Start & Input.Player1.Start_Prev == false)
+                ||
+                (Input.Player1.B & Input.Player1.B_Prev == false)
+                )
             {
                 Assets.Play(Assets.sfxWindowClose);
                 displayState = DisplayState.Closing;
@@ -276,17 +278,17 @@ namespace DungeonRun
 
             //get the previouslySelected menuItem
             previouslySelected = currentlySelected;
-            //check to see if the gamePad direction is a new direction - prevents rapid scrolling
-            if (Input.gamePadDirection != Input.lastGamePadDirection)
+            // prevents rapid scrolling
+            if(Input.Player1.direction != Input.Player1.direction_Prev)
             {
                 //this is a new direction, allow movement between menuItems
-                if (Input.gamePadDirection == Direction.Right)
+                if (Input.Player1.direction == Direction.Right)
                 { currentlySelected = currentlySelected.neighborRight; }
-                else if (Input.gamePadDirection == Direction.Left)
+                else if (Input.Player1.direction == Direction.Left)
                 { currentlySelected = currentlySelected.neighborLeft; }
-                else if (Input.gamePadDirection == Direction.Down)
+                else if (Input.Player1.direction == Direction.Down)
                 { currentlySelected = currentlySelected.neighborDown; }
-                else if (Input.gamePadDirection == Direction.Up)
+                else if (Input.Player1.direction == Direction.Up)
                 { currentlySelected = currentlySelected.neighborUp; }
 
                 //check to see if we changed menuItems
@@ -298,6 +300,8 @@ namespace DungeonRun
                     selectionBox.scale = 2.0f;
                 }
             }
+
+            
 
             #endregion
 

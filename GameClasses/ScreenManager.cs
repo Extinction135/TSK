@@ -71,7 +71,11 @@ namespace DungeonRun
         public static void Update(GameTime GameTime)
         {
             gameTime = GameTime;
+
+            //set global inputs prior to screens processing
             Functions_Input.Update();
+            //fuzz hero input if testing
+            if (Flags.FuzzyInput) { Functions_Input.FuzzInput(Pool.hero.compInput); }
 
             if (screens.Count > 0)
             {
@@ -106,7 +110,7 @@ namespace DungeonRun
             {
                 Functions_Draw.Draw(InputDisplay.directionalBkg);
                 Functions_Draw.Draw(InputDisplay.buttonBkg);
-                InputDisplay.ReadController(); //set directions+buttons b4 draw
+                InputDisplay.ReadInput(); //set directions+buttons b4 draw
                 Functions_Draw.Draw(InputDisplay.directions);
                 Functions_Draw.Draw(InputDisplay.buttons);
             }

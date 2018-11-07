@@ -94,10 +94,13 @@ namespace DungeonRun
                     || dialogs == AssetsDialog.GameSavePls
                     )
                 {
-                    if (Functions_Input.IsNewButtonPress(Buttons.A))
+
+                    //process dialog forward 
+                    if (Input.Player1.A & Input.Player1.A_Prev == false)
                     {
 
-                        #region Dungeons
+
+                        #region Dungeon Entrance Dialogs
 
                         if (dialogs == AssetsDialog.Enter_ForestDungeon)
                         {
@@ -138,7 +141,9 @@ namespace DungeonRun
                             Functions_MenuWindow.Close(Widgets.Dialog.window);
                         }
                     }
-                    else if(Functions_Input.IsNewButtonPress(Buttons.B))
+
+
+                    if(Input.Player1.B & Input.Player1.B_Prev == false)
                     {
                         exitAction = ExitAction.ExitScreen; //reset exit action
                         ExitDialog(); //exit dialog
@@ -152,7 +157,7 @@ namespace DungeonRun
                 
                 else
                 {
-                    if (Functions_Input.IsNewButtonPress(Buttons.A))
+                    if (Input.Player1.A & Input.Player1.A_Prev == false)
                     {
                         if (dialogIndex >= dialogs.Count)
                         {   //no more dialogs, close dialog screen

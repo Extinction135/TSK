@@ -226,21 +226,28 @@ namespace DungeonRun
         public override void HandleInput(GameTime GameTime)
         {
             if (displayState == DisplayState.Opened)
-            {   //exit this screen upon start or b button press
-                if (Functions_Input.IsNewButtonPress(Buttons.B))
-                {
+            {
+
+                #region Exit Screen
+
+                if(Input.Player1.B & Input.Player1.B_Prev == false)
+                {   //upon B button press, exit this screen
                     Assets.Play(Assets.sfxWindowClose);
                     displayState = DisplayState.Closing;
                     Functions_MenuWindow.Close(window);
                 }
-                
+
+                #endregion
+
 
                 #region Handle load/save/new
 
                 //only allow input if the screen has opened completely
                 else if (
-                    Functions_Input.IsNewButtonPress(Buttons.Start) ||
-                    Functions_Input.IsNewButtonPress(Buttons.A))
+                    (Input.Player1.A & Input.Player1.A_Prev == false)
+                    ||
+                    (Input.Player1.Start & Input.Player1.Start_Prev == false)
+                    )
                 {
                     if (screenState == LoadSaveNewState.Load)
                     {   //load playerData
@@ -303,16 +310,18 @@ namespace DungeonRun
 
                 //get the previouslySelected menuItem
                 previouslySelected = currentlySelected;
-                //check to see if the gamePad direction is a new direction - prevents rapid scrolling
-                if (Input.gamePadDirection != Input.lastGamePadDirection)
-                {   //this is a new direction, allow movement between menuItems
-                    if (Input.gamePadDirection == Direction.Right)
+
+                //prevent rapid scrolling
+                if (Input.Player1.direction != Input.Player1.direction_Prev)
+                {
+                    //this is a new direction, allow movement between menuItems
+                    if (Input.Player1.direction == Direction.Right)
                     { currentlySelected = currentlySelected.neighborRight; }
-                    else if (Input.gamePadDirection == Direction.Left)
+                    else if (Input.Player1.direction == Direction.Left)
                     { currentlySelected = currentlySelected.neighborLeft; }
-                    else if (Input.gamePadDirection == Direction.Down)
+                    else if (Input.Player1.direction == Direction.Down)
                     { currentlySelected = currentlySelected.neighborDown; }
-                    else if (Input.gamePadDirection == Direction.Up)
+                    else if (Input.Player1.direction == Direction.Up)
                     { currentlySelected = currentlySelected.neighborUp; }
                     //check to see if we changed menuItems
                     if (previouslySelected != currentlySelected)

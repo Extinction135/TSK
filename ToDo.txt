@@ -65,36 +65,99 @@ Prep for 0.77 Release
 
 
 
+New Input System + Keyboard Input - Part 1
 
+gameInput class notes:
+models ALL input for game: direction, ABXY & start buttons.
+xna gamepad feeds into this gameInput class.
+keyboard feeds into this gameInput class.
+all other input will feed into this gameInput class as well.
 
+this abstracts game input into it's own data structure,
+allowing other types of input to 'map' into this structure,
+making porting to different types of input MUCH easier,
+for example: keyboard support.
 
-> keyboard input, based on wasd for movement, weapon & item should be set-able
-this is likely a screen with custom input.
-
-
-
-
-
-
-Coliseum Taunting 
-
-*we should have a 'you have died shamefully in the shadow coliseum'
-'the shadow king is entertained by your defeat.'
-
-judge should check for hero's death and pop dialog if so.
-this should only happen once, btw... done. this was implemented
-using a semi-dirty hack: by checking the screens.dialog.dialogs
-list against the global dialogs list to see if the failure dialog
-had been set yet. if not, then initial entry point for failure dialog.
-this sets the failure dialog, kicks it to player, then (due to the
-logic check) exits the dialog creation section, waiting for the
-final frame of the player's death before exiting the level (via
-closing the screen, which slowly fades out the world to black).
-tested.
+added keyboard input support.
+input display maps to new game input class.
+functions_input.Update() is processing game input instances right.
+all screens migrated to use gameInput.
+all actor interactions/actions migrated to use gameInput.
+migration complete.
 
 
 
 
+
+
+
+
+
+
+
+Input Bugs - Part 2
+
+*tehre is absolutely no input for hero
+*this is coming from level screen, we pulled input checks from it
+it's likely we aren't mapping input.player1 ro the hero's input component.
+this needs to be done in level screen.
+this also may need to be done in overworld screen.
+
+check all keyboard input to see that it works.
+check all gamepad input to see that it works.
+test to ensure new input is good to go.
+this is thorough check, ALL SCREENS.
+
+
+
+
+
+
+
+
+
+Player2 Input
+
+*we are not modeling player2 input at all right now.
+*we need to do this.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Allow Player 2 to Control the Doggo
+
+if hero has a pet, and controller 2 exists, then
+pass this input to the pet. any button makes the dog
+bark. b makes the dog dash. d pad sets direction.
+
+the dog's bark pushes enemies or objects, so player2
+can actually be useful. pet update: should only be able
+to purchase a pet if player two presses A on the controller
+during the vendor screen. this is because they will be
+controlling the dog the entire game. no more dog AI.
+if there is no controller 2, no pet.
+if there is no controller 2 input, no movement.
+pet cannot die, isn't actor, is roomObj with primitive inputs.
 
 
 
@@ -113,8 +176,8 @@ release 0.77? YEPPPpp
 
 
 
-
-
+//right shift for back button? do we use select in nes controller?
+if (IsNewKeyPress(Keys.RightShift)) { }
 
 
 
