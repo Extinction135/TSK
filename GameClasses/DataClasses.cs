@@ -773,12 +773,16 @@ namespace DungeonRun
             //buttons = A, X, Y, B, Start
             if(Input.Player1.A || Input.Player1.A_Prev)
             { buttons[0].currentFrame = AnimationFrames.Input_ButtonA_Selected[0]; }
+
             if (Input.Player1.X || Input.Player1.X_Prev)
             { buttons[1].currentFrame = AnimationFrames.Input_ButtonX_Selected[0]; }
+
             if (Input.Player1.Y || Input.Player1.Y_Prev)
             { buttons[2].currentFrame = AnimationFrames.Input_ButtonY_Selected[0]; }
+
             if (Input.Player1.B || Input.Player1.B_Prev)
             { buttons[3].currentFrame = AnimationFrames.Input_ButtonB_Selected[0]; }
+
             if (Input.Player1.Start || Input.Player1.Start_Prev)
             { buttons[4].currentFrame = AnimationFrames.Input_ButtonStart_Selected[0]; }
 

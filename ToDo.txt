@@ -66,12 +66,6 @@ Prep for 0.77 Release
 
 
 
-Input Bugs - Part 2
-
-all screen input is working, but we aren't mapping gameInput
-to the player, so there is no player input at all. fixed.
-tested, working as expected. keyboard input fully implemented.
-now we need to polish the input, because there are some side effects..
 
 
 
@@ -88,6 +82,18 @@ spam attacks, hold down Y to spam use items, and hold down A to
 put themselves into a perpetual INTERACT state, where link is bending
 over. so, we'll go back to forcing new button presses for all these
 actions, simply because that's not how I want input to feel.
+done, tested, working as expected.
+
+
+
+
+
+
+Polish++
+
+for the swamp dungeon entrance dialog, we should add
+"do not play with the switch to the left."
+
 
 
 
@@ -106,6 +112,14 @@ Player2 Input
 
 
 Finish Coliseum Level
+we need trees, and foilage, and finish the building!
+
+
+
+
+Vendors++
+Change all Vendor Dialogs to be Shadow King supportive,
+creepy, and weird. and punctually/grammatically correct.
 
 
 

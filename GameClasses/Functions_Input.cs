@@ -292,10 +292,19 @@ namespace DungeonRun
             ResetInputData(CompInput);
             //map direction
             CompInput.direction = InputIns.direction;
-            //map buttons
+
+            /*
+            //map buttons - method 1 : allows spamming
             CompInput.interact = InputIns.A;
             CompInput.attack = InputIns.X;
             CompInput.use = InputIns.Y;
+            CompInput.dash = InputIns.B;
+            */
+
+            //map buttons - method 2 : only dash is spammed
+            if (InputIns.A & !InputIns.A_Prev) { CompInput.interact = true; }
+            if (InputIns.X & !InputIns.X_Prev) { CompInput.attack = true; }
+            if (InputIns.Y & !InputIns.Y_Prev) { CompInput.use = true; }
             CompInput.dash = InputIns.B;
         }
 
