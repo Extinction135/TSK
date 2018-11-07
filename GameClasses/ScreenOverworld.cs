@@ -1728,6 +1728,17 @@ namespace DungeonRun
             #endregion
 
 
+            #region Lava Cave 
+
+            MapLocation Lava_Cave_1 = new MapLocation(false, new Vector2(694, 474), "Lava_Cave_1");
+            locations.Add(Lava_Cave_1);
+
+            //neighbors
+            Lava_Cave_1.neighborRight = LavaIsland_MainPath_1;
+            LavaIsland_MainPath_1.neighborLeft = Lava_Cave_1;
+
+
+            #endregion
 
 
 

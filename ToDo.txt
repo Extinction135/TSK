@@ -80,12 +80,19 @@ Prep for 0.77 Release
 
 
 
-Cloud Temple Location
-767.400, skull island top crown 1.neighbor left = cloud temple
+
 
 
 Lava Cave Location
-694.474, lava island main path.neighbor left = lava cave
+
+694.474, lava island main path.neighbor left = lava cave.
+done. tested.
+
+
+
+
+
+
 
 
 Cloud Coliseum Location
