@@ -16,13 +16,63 @@ namespace DungeonRun
     {
         //create instances for all the dialog in the game
 
+
+
+
         public static List<Dialog> Guide = new List<Dialog>
         {
             new Dialog(ObjType.NPC_Story, "Hi!",
-                "I don't have dialog yet.\n" + 
-                "Cool, huh?", 
+                "I'm the guide for the game. Basically, there's 3 dungeons and\n" +
+                "a bunch of fun items to play with. Soon, there will be more.", 
                 Assets.sfxTextLetter, false, false),
         };
+
+
+
+
+        #region Brandy Dialogs
+
+        public static List<Dialog> Brandy_Default = new List<Dialog>
+        {
+            new Dialog(ObjType.Wor_Boat_Captain_Brandy, "Hmm..",
+                "I'm not familiar with this place..\n" +
+                "Must be new..",
+                Assets.sfxTextLetter, false, false),
+        };
+
+        public static List<Dialog> Brandy_MountainEntrance = new List<Dialog>
+        {
+            new Dialog(ObjType.Wor_Boat_Captain_Brandy, "I see something up there..",
+                "..there's a cave up that mountain wall.. you can reach it if\n" +
+                "you climb for a bit. be careful.",
+                Assets.sfxTextLetter, false, false),
+        };
+        public static List<Dialog> Brandy_ForestEntrance = new List<Dialog>
+        {
+            new Dialog(ObjType.Wor_Boat_Captain_Brandy, "Hmm..",
+                "It seems like there might be something between those giant\n" +
+                "teeth over there in the water.. a cave of some sort..",
+                Assets.sfxTextLetter, false, false),
+        };
+        public static List<Dialog> Brandy_SwampEntrance = new List<Dialog>
+        {
+            new Dialog(ObjType.Wor_Boat_Captain_Brandy, "Psst..",
+                "You can dash while swimming by pressing or holding the B button.\n" +
+                "You can also dive underwater for awhile by pressing the X button.",
+                Assets.sfxTextLetter, false, false),
+        };
+
+
+
+        #endregion
+
+
+
+
+
+
+
+
 
 
         #region Farmer NPC Dialogs
@@ -118,8 +168,8 @@ namespace DungeonRun
         public static List<Dialog> Enter_ForestDungeon = new List<Dialog>
         {
             new Dialog(ObjType.Hero_Idle, "Hmm..",
-                "this hollow log looks slippery and dangerous..\n" +
-                "A) enter carefully    B) i'm just not into logs..",
+                "theres something really evil in here..\n" +
+                "A) enter carefully    B) no thanks..",
                 Assets.sfxTextLetter, false, false)
         };
 
@@ -134,16 +184,16 @@ namespace DungeonRun
         public static List<Dialog> Enter_MountainDungeon = new List<Dialog>
         {
             new Dialog(ObjType.Hero_Idle, "Hmm..",
-                "this dark cave smells terrible. there's probably nothing inside..\n" +
-                "A) enter anyway    B) i don't like dark, musty caves..",
+                "this dark cave smells terrible..\n" +
+                "A) enter anyway    B) i don't like dark caves..",
                 Assets.sfxTextLetter, false, false)
         };
 
         public static List<Dialog> Enter_SwampDungeon = new List<Dialog>
         {
             new Dialog(ObjType.Hero_Idle, "Hmm..",
-                "i really dont want to go in here..\n" +
-                "A) enter anyway    B) no calamari, thanks",
+                "this shadow stretches for as far as i can see, luring me in..\n" +
+                "A) enter    B) leave",
                 Assets.sfxTextLetter, false, false)
         };
 
@@ -249,7 +299,7 @@ namespace DungeonRun
         {
             new Dialog(ObjType.Judge_Colliseum, "Congratulations!",
                 "You have completed the challenge, and have been rewarded.\n" +
-                "We look forward to seeing your skills again soon...",
+                "The Shadow King was entertained by your struggle..",
                 Assets.sfxTextLetter, false, false),
         };
 

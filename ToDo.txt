@@ -77,41 +77,23 @@ Prep for 0.77 Release
 
 
 
-
-
-
-
-
-
-
-Signposts++
-
-signposts didn't have complete logic to link various
-levels to their proper signpost. this has been fixed.
-
-misc
-
-removed vine from water exit room. pls.
-compiled all roomData and levelData.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Dialogs++
 
-how do we add brandy into dialogs?
+added brandy into dialogs.
+updated dungeon entrance dialogs.
+untested, yolo. dinner time.
 
-update dungeon entrance dialogs.
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -260,6 +242,12 @@ Edit 0.77 gif together
 Tweens
 
 
+
+
+Coliseum++
+
+*we should have a 'you have died shamefully in the shadow coliseum'
+'the shadow king is entertained by your defeat.'
 
 big chests should exist in dungeons, and reward the master key.
 this allows smaller chests to exist outside of keyroom and dungeons

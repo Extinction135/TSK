@@ -402,7 +402,23 @@ namespace DungeonRun
 
                 else if (Obj.type == ObjType.Wor_Boat_Captain_Brandy)
                 {
-                    Screens.Dialog.SetDialog(AssetsDialog.Guide); //fix this later
+                    //for now, brandy offers no useful advice
+                    Screens.Dialog.SetDialog(AssetsDialog.Brandy_Default);
+
+                    //this advice is based on the current room.id,
+                    //and only overworld field levels have dialogs
+
+                    if (LevelSet.currentLevel.currentRoom.roomID == RoomID.DeathMountain_MainEntrance)
+                    { Screens.Dialog.SetDialog(AssetsDialog.Brandy_MountainEntrance); }
+
+                    else if (LevelSet.currentLevel.currentRoom.roomID == RoomID.ForestIsland_MainEntrance)
+                    { Screens.Dialog.SetDialog(AssetsDialog.Brandy_ForestEntrance); }
+
+                    //this is a hack for 0.77 - to be fixed in future commits
+                    else if (LevelSet.currentLevel.currentRoom.roomID == RoomID.SkullIsland_ShadowKing)
+                    { Screens.Dialog.SetDialog(AssetsDialog.Brandy_SwampEntrance); }
+
+                    //kick the dialog to the player
                     ScreenManager.AddScreen(Screens.Dialog);
                 }
 
