@@ -632,7 +632,8 @@ namespace DungeonRun
                 else if(Pro.lifeCounter == Pro.interactiveFrame + 1)
                 {   //spread vertically on next frame
                     Pro.compCollision.offsetX = -4; Pro.compCollision.rec.Width = 8;
-                    Pro.compCollision.offsetY = -17; Pro.compCollision.rec.Height = 34;
+                    //xtra south for south bushes/objs with lower hitboxes (further away)
+                    Pro.compCollision.offsetY = -17; Pro.compCollision.rec.Height = 38; 
                 }
                 else
                 {   //set collision rec back to normal on 3rd frame

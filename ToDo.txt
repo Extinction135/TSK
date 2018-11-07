@@ -64,47 +64,26 @@ Today:
 Prep for 0.77 Release
 
 
-> groundfires on bushes still dont spread south
+
+
+
+
+Bugs++
+
+> groundfires on bushes still dont spread south.
+this was fixed by expanding the fires vertical growth
+hitbox by 4 pixels. tested, working as expected. this
+fixes the swamp dungeon's miniboss room, so fire can
+constantly spread across bushes as they regrow.
+
+> get rid of the lonely dot on the underwtaer object sprtie.
+it's too distracting and off balance. done.
 
 
 
 
 
 
-Bug - Initial Dungeon Room (Exit)
-
-the exit inherits the previous dungeon's texture and displays
-incorrectly. this 'fixes' itself upon entry to 2nd room.
-
-why? update dungeon texture() and set floor textures() were
-being called after BuildRoom(), which I can only guess was
-changing a reference after the SetType() method had already
-been called, which actually sets the sprite's texture to the
-current dungeon sheet. Tested and fixed now.
-
-
-
-
-
-
-
-
-
-get rid of the lonely dot on the underwtaer object sprtie.
-it's too distracting and off balance.
-
-
-
-
-
-
-
-Testing++
-
-if release is false, then holding down both triggers should allow
-the hero to clip thru walls. this allows for quickly passing thru some
-objects, while going back to a normal state quickly, bypassing the
-cheat menu entirely.
 
 
 
