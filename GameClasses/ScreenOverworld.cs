@@ -1576,10 +1576,6 @@ namespace DungeonRun
 
 
 
-
-
-
-
             #region Skull Island SubPath
 
             MapLocation SkullIsland_SubPath_1 = new MapLocation(false, new Vector2(952, 567), "SkullIsland_SubPath_1");
@@ -1598,6 +1594,32 @@ namespace DungeonRun
 
 
 
+
+            #region Path into Crest (middle plateau) Island, from castle
+
+            MapLocation CrestIsland_Path_1 = new MapLocation(false, new Vector2(880, 692), "CrestIsland_Path_1");
+            locations.Add(CrestIsland_Path_1);
+            MapLocation CrestIsland_Path_2 = new MapLocation(false, new Vector2(928, 707), "CrestIsland_Path_2");
+            locations.Add(CrestIsland_Path_2);
+            MapLocation CrestIsland_Path_3 = new MapLocation(false, new Vector2(975, 692), "CrestIsland_Path_3");
+            locations.Add(CrestIsland_Path_3);
+            MapLocation CrestIsland_Path_4 = new MapLocation(false, new Vector2(988, 720), "CrestIsland_Path_4");
+            locations.Add(CrestIsland_Path_4);
+
+            //neighbors
+            CrestIsland_Path_1.neighborUp = ForestIsland_MainPath_4;
+            ForestIsland_MainPath_4.neighborDown = CrestIsland_Path_1;
+
+            CrestIsland_Path_1.neighborRight = CrestIsland_Path_2;
+            CrestIsland_Path_2.neighborLeft = CrestIsland_Path_1;
+
+            CrestIsland_Path_2.neighborUp = CrestIsland_Path_2.neighborRight = CrestIsland_Path_3;
+            CrestIsland_Path_3.neighborLeft = CrestIsland_Path_2;
+
+            CrestIsland_Path_3.neighborDown = CrestIsland_Path_4;
+            CrestIsland_Path_4.neighborUp = CrestIsland_Path_3;
+
+            #endregion
 
 
 

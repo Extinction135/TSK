@@ -74,7 +74,7 @@ Prep for 0.77 Release
 
 Overworld Paths ++
 
-added skull island subpath. tested.
+added crest island interior path. tested.
 
 
 
@@ -85,24 +85,6 @@ added skull island subpath. tested.
 
 
 
-
-
-> more overworld locations, all paths + connections, pls.
-
-
-more overworld locations TODO:
-
-skull island sub path (2)
-952.567 -> up neigh = skull island bottom row 4
-991.591
-
-
-
-crest path (4)
-880.692 -> up neigh = forest island main path 4
-928.707
-975.692
-988.720
 
 
 fishermans path (forest) (7)
