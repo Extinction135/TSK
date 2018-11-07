@@ -1671,7 +1671,17 @@ namespace DungeonRun
             #endregion
 
 
+            #region Forest Castle
 
+            MapLocation ForestCastle = new MapLocation(false, new Vector2(789, 659), "ForestCastle");
+            locations.Add(ForestCastle);
+
+            //neighbors
+            ForestCastle.neighborRight = ForestIsland_MainPath_5;
+            ForestIsland_MainPath_5.neighborLeft = ForestCastle;
+            
+
+            #endregion
 
 
             #region Forest Path Connecting Right to Thieves Den Path on Left

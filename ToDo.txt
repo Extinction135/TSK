@@ -72,31 +72,6 @@ Prep for 0.77 Release
 
 
 
-Overworld Paths ++
-
-added crest island interior path. tested.
-
-
-
-
-
-
-
-Fishermans Path
-
-fishermans path (forest) (7)
-782.549
--> lneigh = lava island main path 2
--> rneigh = forest island main path 1
-719.621
-682.682 - fisherman's house
-725.660
-752.693 -> rneigh = forest island main path 6
-730.724
-
-
-
-
 
 Forest Castle Path + Location
 
@@ -109,29 +84,36 @@ it's connected to the left of forest island main path 5
 
 
 
+Cloud Temple Location
+767.400, skull island top crown 1.neighbor left = cloud temple
+
+
+Lava Cave Location
+694.474, lava island main path.neighbor left = lava cave
+
+
+Cloud Coliseum Location
+882.241, north neighbor of top crown 4
 
 
 
-751.586
 
 
 
-Water Coliseum Path
+Swamp Sub Path
+1238.329, right and up neighbor of top crown 10
+1290.352, right neighbor of prev
+1361.343, right neighbor of prev (end point)
+(end point) right neighbor is swamp island main path 8 (this connects path)
 
-water coliseum path (forest) (6)
-645.575 -> up neigh = lavaisland main path 4
-612.589
-571.585
-536.609
-565.644
-530.671
 
-temple 1 path (2)
-514.591
-480.581
 
-water coliseum level (connected to path above)
-499.706
+
+
+
+
+
+
 
 
 
@@ -151,51 +133,7 @@ this needs to be more connected, just for movement reasons.
 
 
 
-lava ship 1 path (2)
-567.455 -> down neigh = lava island main path 8
-572.406
 
-
-lava cave 1 path (3)
-508.538 -> up/r neigh = lavaisland main path 7
-458.545
-420.522
-
-volcano coliseum path (6) (left to right)
-150.522 -> up neigh = lave island main path 15
-113.530
-99.553
-138.562
-180.562
-217.571 -> right neighbor = forest main path 27
-
-
-
-
-
-plateau island main path (12)
-
-plateau island misc paths (2)
-
-plateau ship path (2)
-299.629
-255.616
-
-lava sub path (7)
-
-lava ship 2 path (1)
-
-lava cave 2 path (2)
-
-lava cave 3 path (2)
-
-lava to cloud connection (5)
-
-
-
-
-
-DEATH MOUNTAIN LOCATIONS+++
 
 
 
@@ -343,6 +281,78 @@ and can be used to further decorate piers.
 
 
 
+
+
+
+
+
+Overworld++
+
+Water Coliseum Path
+
+water coliseum path (forest) (6)
+645.575 -> up neigh = lavaisland main path 4
+612.589
+571.585
+536.609
+565.644
+530.671
+
+temple 1 path (2)
+514.591
+480.581
+
+water coliseum level (connected to path above)
+499.706
+
+
+
+
+lava ship 1 path (2)
+567.455 -> down neigh = lava island main path 8
+572.406
+
+
+lava cave 1 path (3)
+508.538 -> up/r neigh = lavaisland main path 7
+458.545
+420.522
+
+volcano coliseum path (6) (left to right)
+150.522 -> up neigh = lave island main path 15
+113.530
+99.553
+138.562
+180.562
+217.571 -> right neighbor = forest main path 27
+
+
+
+
+
+plateau island main path (12)
+
+plateau island misc paths (2)
+
+plateau ship path (2)
+299.629
+255.616
+
+lava sub path (7)
+
+lava ship 2 path (1)
+
+lava cave 2 path (2)
+
+lava cave 3 path (2)
+
+lava to cloud connection (5)
+
+
+
+
+
+DEATH MOUNTAIN LOCATIONS+++
 
 
 
