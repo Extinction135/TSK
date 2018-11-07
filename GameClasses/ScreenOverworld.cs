@@ -1593,8 +1593,6 @@ namespace DungeonRun
             #endregion
 
 
-
-
             #region Path into Crest (middle plateau) Island, from castle
 
             MapLocation CrestIsland_Path_1 = new MapLocation(false, new Vector2(880, 692), "CrestIsland_Path_1");
@@ -1622,6 +1620,55 @@ namespace DungeonRun
             #endregion
 
 
+            #region Fisherman's Path, down left of marsh/forest castle
+
+            MapLocation Fishermans_Path_0 = new MapLocation(false, new Vector2(782, 549), "Fishermans_Path_0");
+            locations.Add(Fishermans_Path_0);
+            MapLocation Fishermans_Path_1 = new MapLocation(false, new Vector2(751, 586), "Fishermans_Path_1");
+            locations.Add(Fishermans_Path_1);
+            MapLocation Fishermans_Path_2 = new MapLocation(false, new Vector2(719, 621), "Fishermans_Path_2");
+            locations.Add(Fishermans_Path_2);
+            MapLocation Fishermans_Path_3 = new MapLocation(false, new Vector2(725, 660), "Fishermans_Path_3");
+            locations.Add(Fishermans_Path_3);
+
+            MapLocation Fishermans_House = new MapLocation(false, new Vector2(682, 629), "Fishermans_House");
+            locations.Add(Fishermans_House);
+
+            MapLocation Fishermans_Path_4 = new MapLocation(false, new Vector2(752, 693), "Fishermans_Path_4");
+            locations.Add(Fishermans_Path_4);
+            MapLocation Fishermans_Path_5 = new MapLocation(false, new Vector2(730, 724), "Fishermans_Path_5");
+            locations.Add(Fishermans_Path_5);
+
+
+            //neighbors
+            Fishermans_Path_0.neighborLeft = LavaIsland_MainPath_2;
+            LavaIsland_MainPath_2.neighborRight = Fishermans_Path_0;
+
+            Fishermans_Path_0.neighborRight = ForestIsland_MainPath_1;
+            ForestIsland_MainPath_1.neighborLeft = Fishermans_Path_0;
+
+            Fishermans_Path_0.neighborDown = Fishermans_Path_1;
+            Fishermans_Path_1.neighborUp = Fishermans_Path_0;
+
+            Fishermans_Path_1.neighborDown = Fishermans_Path_2;
+            Fishermans_Path_2.neighborUp = Fishermans_Path_1;
+
+            Fishermans_Path_2.neighborLeft = Fishermans_House;
+            Fishermans_House.neighborRight = Fishermans_Path_2;
+
+            Fishermans_Path_2.neighborDown = Fishermans_Path_3;
+            Fishermans_Path_3.neighborUp = Fishermans_Path_2;
+
+            Fishermans_Path_3.neighborDown = Fishermans_Path_4;
+            Fishermans_Path_4.neighborUp = Fishermans_Path_3;
+
+            Fishermans_Path_4.neighborDown = Fishermans_Path_5;
+            Fishermans_Path_5.neighborUp = Fishermans_Path_4;
+
+            Fishermans_Path_4.neighborRight = ForestIsland_MainPath_6;
+            ForestIsland_MainPath_6.neighborLeft = Fishermans_Path_4;
+
+            #endregion
 
 
 

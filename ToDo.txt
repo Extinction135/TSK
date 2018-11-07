@@ -82,10 +82,7 @@ added crest island interior path. tested.
 
 
 
-
-
-
-
+Fishermans Path
 
 fishermans path (forest) (7)
 782.549
@@ -98,6 +95,28 @@ fishermans path (forest) (7)
 730.724
 
 
+
+
+
+Forest Castle Path + Location
+
+this is a small dungeon, which rewards a unique item.
+it's connected to the left of forest island main path 5
+@789.659
+
+
+
+
+
+
+
+
+
+751.586
+
+
+
+Water Coliseum Path
 
 water coliseum path (forest) (6)
 645.575 -> up neigh = lavaisland main path 4
@@ -113,6 +132,24 @@ temple 1 path (2)
 
 water coliseum level (connected to path above)
 499.706
+
+
+
+
+
+
+SWAMP LOCATIONS+++
+
+this needs to be more connected, just for movement reasons.
+
+
+
+
+
+
+
+
+
 
 lava ship 1 path (2)
 567.455 -> down neigh = lava island main path 8
@@ -157,7 +194,7 @@ lava to cloud connection (5)
 
 
 
-SWAMP LOCATIONS+++
+
 DEATH MOUNTAIN LOCATIONS+++
 
 
