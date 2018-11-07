@@ -68,16 +68,31 @@ Prep for 0.77 Release
 
 
 
-Bugs++
+> keyboard input, based on wasd for movement, weapon & item should be set-able
+this is likely a screen with custom input.
 
-> groundfires on bushes still dont spread south.
-this was fixed by expanding the fires vertical growth
-hitbox by 4 pixels. tested, working as expected. this
-fixes the swamp dungeon's miniboss room, so fire can
-constantly spread across bushes as they regrow.
 
-> get rid of the lonely dot on the underwtaer object sprtie.
-it's too distracting and off balance. done.
+
+
+
+
+Coliseum Taunting 
+
+*we should have a 'you have died shamefully in the shadow coliseum'
+'the shadow king is entertained by your defeat.'
+
+judge should check for hero's death and pop dialog if so.
+this should only happen once, btw... done. this was implemented
+using a semi-dirty hack: by checking the screens.dialog.dialogs
+list against the global dialogs list to see if the failure dialog
+had been set yet. if not, then initial entry point for failure dialog.
+this sets the failure dialog, kicks it to player, then (due to the
+logic check) exits the dialog creation section, waiting for the
+final frame of the player's death before exiting the level (via
+closing the screen, which slowly fades out the world to black).
+tested.
+
+
 
 
 
@@ -142,10 +157,7 @@ jump attack, from rescue dog.
 
 
 
-Coliseum++
-
-*we should have a 'you have died shamefully in the shadow coliseum'
-'the shadow king is entertained by your defeat.'
+Big Chests
 
 big chests should exist in dungeons, and reward the master key.
 this allows smaller chests to exist outside of keyroom and dungeons
@@ -156,8 +168,7 @@ they open the chest, including magic or fairys or whatever.
 
 
 
-> keyboard input, based on wasd for movement, weapon & item should be set-able
-this is likely a screen with custom input.
+
 
 
 
@@ -310,29 +321,13 @@ DEATH MOUNTAIN LOCATIONS+++
 
 
 
-0.78 - SLIME, Swamp Dungeon
+Dungeons++
 
--because we're close to finishing the swamp dungeon,
-we can use it as a prototype endgame dungeon (hard difficulty).
-
-*create swamp dungeon entrance objs + level details - SLIME obj
-
-we can do the slime obj rn - this just drops player mobility to 
-pushing/dragging speed upon contact. super easy. then update the
-swamp level, so swimming thru slime is annoyingly slow.
-
-
-
-
-
-
-Difficulty
-
-+++++ we need to be able to scale the dungeon difficulty (complexity)
-based on the difficulty settings of easy, medium, hard.
-easy creates simple dungeons, medium has the spectrum,
-hard is size 2-3 dungeons, and maybe we have expert level too,
-where all dungons are size 3 or greater.
+when player defeats the boss of dungeon, the skull
+on the overworld needs to collapse. just the top part
+though - and it should smoke as if it's been changed.
+this is to visually signify that the dungeon has been
+beaten - ala SMB.
 
 
 
@@ -342,21 +337,8 @@ where all dungons are size 3 or greater.
 
 
 
-all dungeon entrances - these need to be specifically defined
-they are not implemented properly, as they assume each entrance
-exists in the same location on different sheets. the logic handling
-this is wonky too.
 
 
-
-How do we do Dungeon Entrances? properly.
-
-
-forest: from water, thru large rock teeth, water bushes (med) - under rock formation
-swamp: from sea, thru slime, short climb up mountain side to teeth - to darkness
-
-skull coliseum: entrance is 3x4 door obj, with skull decorations.
-coliseum walls build a rounded exterior appearance.
 
 
 > no chickens? no chicken sounds unless obj hit. then cluck. add chicken to town.
@@ -374,32 +356,6 @@ make spectators much more brown and less obvious
 
 editor++
 signpost shold be part of env objs widget (is part of dungeon widget)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -511,6 +467,30 @@ upon it's returning state.
 
 
 
+
+
+
+
+
+
+0.78 - SLIME, Swamp Dungeon
+
+-because we're close to finishing the swamp dungeon,
+we can use it as a prototype endgame dungeon (hard difficulty).
+
+*create swamp dungeon entrance objs + level details - SLIME obj
+
+we can do the slime obj rn - this just drops player mobility to 
+pushing/dragging speed upon contact. super easy. then update the
+swamp level, so swimming thru slime is annoyingly slow.
+
+
+
+
+
+
+
+
 Slime and Lava Dungeons, Objs, Enemy Sets
 
 *create lava dungeon entrance objs + level details - LAVA conveyor belt objs
@@ -518,10 +498,6 @@ Slime and Lava Dungeons, Objs, Enemy Sets
 
 
 shadow: from water + ship, into animated shadows (hard) - all black obj 
-
-
-
-
 
 
 
@@ -561,29 +537,7 @@ be useful or interesting in some way later.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Level 0 - masked tutorial level
 
 initial level : at sea, boat is attacked, link uses his sword
 to defend brandy from attackers. the ship cannot be left (stairs up).
@@ -620,22 +574,6 @@ somewhere on one of these islands.
 
 
 
-we should change how dungeons / bosses work.
-unlocking the boss door should exit the dungeon,
-placing link at the boss location. each boss battle
-should take place in a field, where the player has
-the option to exit anytime they want, plus they have
-more space to fight this larger / harder enemy in.
-
-this means players kind of 'save progress' once they
-beat the dungeon, and dont have to suffer through it
-again if they dont want to. also, they can fight that
-specific boss anytime they want, in a level designed for
-that boss battle.
-
-when the player "beats" the dungeon, part of the skull
-should collapse, revealing the boss location, which is
-now linked to the entrance location.
 
 
 

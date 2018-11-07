@@ -5,13 +5,15 @@
 
 
 
+Difficulty
+
++++++ we need to be able to scale the dungeon difficulty (complexity)
+based on the difficulty settings of easy, medium, hard.
+easy creates simple dungeons, medium has the spectrum,
+hard is size 2-3 dungeons, and maybe we have expert level too,
+where all dungons are size 3 or greater.
 
 
-
-Brandy++
-*brandy should provide some tip or clue about each level
-that she's on. we can do this simply by checking the level's current room ID.
-then selecting the proper dialog string.
 
 
 

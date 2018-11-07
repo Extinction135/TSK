@@ -1146,6 +1146,11 @@ namespace DungeonRun
             #endregion
 
 
+
+
+
+            //coliseum objects
+
             #region Colliseum Spectators
 
             else if (Obj.type == ObjType.Wor_Colliseum_Spectator)
@@ -1218,6 +1223,19 @@ namespace DungeonRun
                                 if(Pool.hero.state == ActorState.Dead)
                                 {
                                     // <<< exit condition : failed >>>
+
+
+                                    #region Pop Failure Dialog
+
+                                    //initially, current dialog wont be challenge failure, so only pops once
+                                    if(Screens.Dialog.dialogs != AssetsDialog.Colliseum_Challenge_Failure)
+                                    {   //this prevents spamming of failure dialog, which is annoying
+                                        Screens.Dialog.SetDialog(AssetsDialog.Colliseum_Challenge_Failure);
+                                        ScreenManager.AddScreen(Screens.Dialog);
+                                    }
+
+                                    #endregion
+
 
                                     //check to see if hero is at end of death animation,
                                     //this gives the player time to visually process hero 

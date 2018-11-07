@@ -298,8 +298,16 @@ namespace DungeonRun
         public static List<Dialog> Colliseum_Challenge_Complete = new List<Dialog>
         {
             new Dialog(ObjType.Judge_Colliseum, "Congratulations!",
-                "You have completed the challenge, and have been rewarded.\n" +
-                "The Shadow King was entertained by your struggle..",
+                "You have completed the challenge, and have been rewarded..\n" +
+                "The Shadow King was entertained by your victory.",
+                Assets.sfxTextLetter, false, false),
+        };
+
+        public static List<Dialog> Colliseum_Challenge_Failure = new List<Dialog>
+        {
+            new Dialog(ObjType.Judge_Colliseum, "Amusing!",
+                "You died shamefully in the shadow coliseum..\n" +
+                "The Shadow King was entertained by your defeat.",
                 Assets.sfxTextLetter, false, false),
         };
 
