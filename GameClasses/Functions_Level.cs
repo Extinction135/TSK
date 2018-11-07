@@ -289,9 +289,13 @@ namespace DungeonRun
 
 
 
-            
 
 
+            //update the dungeon texture based on levelID (sets themed sheet)
+            Functions_Texture.UpdateDungeonTexture();
+            Functions_Texture.SetFloorTextures();
+
+            //setup and build the first room
             LevelSet.currentLevel.rooms[0].visited = true;
             LevelSet.currentLevel.currentRoom = LevelSet.currentLevel.rooms[0];
             Functions_Room.BuildRoom(LevelSet.currentLevel.currentRoom);
@@ -301,19 +305,10 @@ namespace DungeonRun
                 Debug.WriteLine("current room level ID = " + LevelSet.currentLevel.currentRoom.levelID);
                 Debug.WriteLine("current room room ID = " + LevelSet.currentLevel.currentRoom.roomID);
             }
+            
 
 
 
-
-
-
-
-
-
-
-            //update the dungeon texture based on levelID (sets themed sheet)
-            Functions_Texture.UpdateDungeonTexture();
-            Functions_Texture.SetFloorTextures();
 
 
             //spawn hero in the starting room

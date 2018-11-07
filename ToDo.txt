@@ -65,7 +65,22 @@ Prep for 0.77 Release
 
 
 > groundfires on bushes still dont spread south
-> bug where initial exit room's walls still use prev sheet (update em'?)
+
+
+
+
+
+
+Bug - Initial Dungeon Room (Exit)
+
+the exit inherits the previous dungeon's texture and displays
+incorrectly. this 'fixes' itself upon entry to 2nd room.
+
+why? update dungeon texture() and set floor textures() were
+being called after BuildRoom(), which I can only guess was
+changing a reference after the SetType() method had already
+been called, which actually sets the sprite's texture to the
+current dungeon sheet. Tested and fixed now.
 
 
 
@@ -75,13 +90,8 @@ Prep for 0.77 Release
 
 
 
-Swamp Sub Path
-
-1238.329, right and up neighbor of top crown 10
-1290.352, right neighbor of prev
-1361.343, right neighbor of prev (end point)
-(end point) right neighbor is swamp island main path 8.
-done, tested.
+get rid of the lonely dot on the underwtaer object sprtie.
+it's too distracting and off balance.
 
 
 
@@ -89,19 +99,12 @@ done, tested.
 
 
 
+Testing++
 
-
-
-
-
-
-
-
-
-
-
-
-
+if release is false, then holding down both triggers should allow
+the hero to clip thru walls. this allows for quickly passing thru some
+objects, while going back to a normal state quickly, bypassing the
+cheat menu entirely.
 
 
 

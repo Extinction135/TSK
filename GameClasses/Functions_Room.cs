@@ -370,6 +370,7 @@ namespace DungeonRun
             else
             {   //else, we are building an interior dungeon room
                 Functions_Dungeon.BuildRoomFrom(RoomXmlData);
+                //current room is set by hero in this case
             }
 
             #endregion

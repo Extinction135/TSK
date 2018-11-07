@@ -37,6 +37,7 @@ namespace DungeonRun
         {   
             overlay.alpha = 1.0f;
             overlay.fadeOutSpeed = 0.025f;
+
             //level id is set by overworld screen
             Functions_Level.BuildLevel(LevelSet.currentLevel.ID); 
 

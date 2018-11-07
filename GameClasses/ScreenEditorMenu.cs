@@ -181,19 +181,21 @@ namespace DungeonRun
 
 
 
+                    //disgusting hack: as we iterate thru widgets, show
+                    //similar dungeon textures (should be in own button)
+
                     //get current dungeon texture, update floors and roomObjs
                     Functions_Texture.UpdateDungeonTexture();
                     Functions_Texture.SetFloorTextures();
                     for(int i = 0; i < Pool.roomObjCount; i++)
                     { Functions_GameObject.SetType(Pool.roomObjPool[i], Pool.roomObjPool[i].type); }
 
-
-
-
                     //in the future, we will need to update the dungeon widget objects texture
-                    //Functions_Texture.SetWOTexture(Widgets.WO_Dungeon);
+                    Functions_Texture.SetWOTexture(Widgets.WO_Dungeon);
                     //^ like that, but based on a button or value to track dungeon type
                     //works, because current dungeon tex was set in UpdateDunTex() above
+
+
 
                     
                     //hide obj tools selection box offscreen
