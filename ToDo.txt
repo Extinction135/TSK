@@ -76,25 +76,6 @@ Prep for 0.77 Release
 
 
 
-
-
-
-
-
-
-
-Lava Cave Location
-
-694.474, lava island main path.neighbor left = lava cave.
-done. tested.
-
-
-
-
-
-
-
-
 Cloud Coliseum Location
 882.241, north neighbor of top crown 4
 

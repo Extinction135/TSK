@@ -1712,18 +1712,17 @@ namespace DungeonRun
 
 
 
-
+            //so many paths
 
 
             #region Cloud Temple
 
-            MapLocation CloudTemple = new MapLocation(false, new Vector2(767, 400), "CloudTemple");
-            locations.Add(CloudTemple);
+            MapLocation Cloud_Temple = new MapLocation(false, new Vector2(767, 400), "Cloud_Temple");
+            locations.Add(Cloud_Temple);
 
             //neighbors
-            CloudTemple.neighborRight = SkullIsland_TopCrown_1;
-            SkullIsland_TopCrown_1.neighborLeft = CloudTemple;
-
+            Cloud_Temple.neighborRight = SkullIsland_TopCrown_1;
+            SkullIsland_TopCrown_1.neighborLeft = Cloud_Temple;
 
             #endregion
 
@@ -1737,8 +1736,28 @@ namespace DungeonRun
             Lava_Cave_1.neighborRight = LavaIsland_MainPath_1;
             LavaIsland_MainPath_1.neighborLeft = Lava_Cave_1;
 
+            #endregion
+
+
+            #region Cloud Coliseum 
+
+            MapLocation Cloud_Coliseum = new MapLocation(false, new Vector2(882, 241), "Cloud_Coliseum");
+            locations.Add(Cloud_Coliseum);
+
+            //neighbors
+            Cloud_Coliseum.neighborDown = SkullIsland_TopCrown_4;
+            SkullIsland_TopCrown_4.neighborUp = Cloud_Coliseum;
 
             #endregion
+
+
+
+
+
+
+
+
+
 
 
 
