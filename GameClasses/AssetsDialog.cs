@@ -21,9 +21,9 @@ namespace DungeonRun
 
         public static List<Dialog> Guide = new List<Dialog>
         {
-            new Dialog(ObjType.NPC_Story, "Hi!",
-                "I'm the guide for the game. Basically, there's 3 dungeons and\n" +
-                "a bunch of fun items to play with. Soon, there will be more.", 
+            new Dialog(ObjType.NPC_Story, "Hello!",
+                "I'm the guide. There's 3 dungeons, and some items to play around with.\n" +
+                "Not much of a story or main quest though, so just have fun for now..", 
                 Assets.sfxTextLetter, false, false),
         };
 

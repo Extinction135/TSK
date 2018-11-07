@@ -64,48 +64,30 @@ Today:
 Prep for 0.77 Release
 
 
-> signposts working, all dialog working, including brandy.
 > groundfires on bushes still dont spread south
 > bug where initial exit room's walls still use prev sheet (update em'?)
 
+
+
+
+
+
+Overworld Paths ++
+
+added skull island subpath. tested.
+
+
+
+
+
+
+
+
+
+
+
+
 > more overworld locations, all paths + connections, pls.
-
-
-
-
-
-
-
-
-Dialogs++
-
-added brandy into dialogs.
-updated dungeon entrance dialogs.
-untested, yolo. dinner time.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 more overworld locations TODO:
@@ -205,17 +187,13 @@ DEATH MOUNTAIN LOCATIONS+++
 
 
 
-
-
-
-
-
-
-
-
-
-
 release 0.77? YEPPPpp
+
+
+
+
+
+
 
 
 
@@ -240,6 +218,19 @@ Edit 0.77 gif together
 
 
 Tweens
+
+
+
+
+unarmored spiders++
+they need to retreat in a random direction for 4 seconds,
+away from hero, plus a random push sometimes. this makes their
+next attack path more varied, and more difficult to spam the
+forward attack strategy with them. also, there should be more
+armored spiders, and there should be smaller spiders that
+jump attack, from rescue dog.
+
+
 
 
 

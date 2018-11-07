@@ -1582,9 +1582,21 @@ namespace DungeonRun
 
             #region Skull Island SubPath
 
+            MapLocation SkullIsland_SubPath_1 = new MapLocation(false, new Vector2(952, 567), "SkullIsland_SubPath_1");
+            locations.Add(SkullIsland_SubPath_1);
+            MapLocation SkullIsland_SubPath_2 = new MapLocation(false, new Vector2(991, 591), "SkullIsland_SubPath_2");
+            locations.Add(SkullIsland_SubPath_2);
+
+            //neighbors
+            SkullIsland_SubPath_1.neighborUp = SkullIsland_BottomRow_4;
+            SkullIsland_BottomRow_4.neighborDown = SkullIsland_SubPath_1;
+
+            SkullIsland_SubPath_1.neighborDown = SkullIsland_SubPath_2;
+            SkullIsland_SubPath_2.neighborUp = SkullIsland_SubPath_1;
+
             #endregion
 
-            
+
 
 
 
@@ -1714,8 +1726,6 @@ namespace DungeonRun
 
             //clear out all wave spawn positions, we will set them below
             waveSpawnPositions = new List<Vector2>();
-
-
 
 
             #region Skull island decorations
