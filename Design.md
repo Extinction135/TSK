@@ -1,7 +1,82 @@
+
+
+
+
+
+
 # The Design of DungeonRun
-By design I'm referring to the gameloop and the gameplay.  
 
 
+(these notes are in development)  
+
+
+## Game + GamePlay Design
+
++ the visual, auditory, and temporal game experience
++ how it looks, sounds, and interacts with the player
+
++ using lttp as reference/source material for sprites
++ using lttp colors migrated to a smaller 21 pallete scheme
++ designing in black and white at first
++ migrating to color, and the changes (boomerang, color frequency)
++ the overworld, it's design, and how it links to levels
++ dungeon entrance and location design, based on overworld visuals
++ improving the boomerang
++ improving dashing
++ improving ground fires
++ improving swimming, diving
++ improving carrying, throwing in various states
++ climbing, falling, jumping, grabbing while falling
++ pets! 
++ coliseum, the economy and the restricted wallet, gambling
+
+
+
+
+## Codebase Design
+
++ codebase design, paradigms and ideas used
++ why ideas were used and how they fit together 
++ refers to: globals, ecs, functional, object, procedural, declarative
++ screens, screen manager, global classes and data
++ game input, actor input, program input (keyboard, mouse, gamepad)
+
++ the main game loop
++ collisions vs interactions, and systems seperation
++ interactions, movement, animation, resolving collisions as last step
++ interactions affecting movement, animation, etc...
+
++ what is a room? what is a level? what is a levelSet?
++ dungeon rooms, and their xml savedata, and roomIds
++ fields, and their xml savedata, and roomIds
++ converting xml to cs files, referencing those files in project
++ why leveldata is compiled to binary, visual studio limitations
+
++ dungeons, dungeon rooms, previous dungeon generation algorithms
++ the critical path approach, multiple critical paths (key)
++ changing textures, spawning enemies, minibosses, bosses
++ tricks (key behind secret room) and hacks
+
++ actors, gameobjects, projectiles - and their components
++ component functions, and why they are seperated and used
++ actors, gameobjects, projectiles - and their pools
++ object pools, the global pool, why pools are used
+
++ strategies for keeping the code as fast as possible
++ keeping data structures as small as possible
++ being aware of how 'large' the data moving thru registers is
++ comparison size of boolean, byte, int, float, double, etc..
+
+
+
+
+
+
+
+
+
+
+#Old Design Notes
 
 ## Gameloop
 + Load a dungeon level.
@@ -29,9 +104,11 @@ By design I'm referring to the gameloop and the gameplay.
 
 
 
+
+
+
+
 # Additional Development Notes
-
-
 
 ## UWP App Limitations
 + Target ram useage used to be < 128mb.

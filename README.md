@@ -1,8 +1,20 @@
-# DungeonRun - v0.76 - 2018.8.22
-+ A combination of several Zelda games, circa 1995-1997.  
+# DungeonRun - v0.77 - 2018.11.07
++ A super secret 2D Zelda game.. shh.. Don't tell anyone, ok?  
   
-![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/076presentation.gif)   
-  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/076presentation.gif)  
+
+
++ you can play the game right now, for free, if you are on windows10.  
++ you can also play the game on xbox 1 rn, ff, if you meet certain conditons, see below.
+
+## Playing the Game (Windows 10 + Xbox1)
++ 0.77 DirectX: https://www.dropbox.com/s/sppi2wilhef1qso/TSK_077_Dx.zip?dl=0  
++ 0.77 UWP: https://www.dropbox.com/s/9r0xcyfhilc99mo/TSK_077_UWP.zip?dl=0  
++ You can sideload the UWP version onto your Xbox one using this guide:  
++ https://gbatemp.net/threads/how-to-sideload-dungeonrun-indie-game-on-xbox-one.470374/  
+
+
+## Media
 + youtube channel with weekly video content:  
 + https://www.youtube.com/channel/UCsgpfZB1USgAe0Lv2ZI18uw  
 + to see a bunch of cool gifs and learn about the timeline, look at the VERSIONS page.
@@ -33,37 +45,42 @@
 + It's likely Nintendo will want/try to stop this. 
 + But I think there is potential in completing this.
 + So please help me keep this project quiet until v1.0.  
-+ Starring, cloning, and forking are fine. Just dont tell reddit or 4chan. Please. 
++ Starring, cloning, and forking are fine. Just dont tell nintendo, reddit or 4chan. Please. 
 + https://gamingreinvented.com/nintendoarticles/top-ten-nintendo-fanworks-cancelled-due-legal-complaints/  
 
 
-## Playing the Game (Windows 10 + Xbox1)
-+ 0.75 DirectX: https://www.dropbox.com/s/mqsawbx4ceexxbf/DR_075_Dx.zip?dl=0  
-+ 0.75 UWP: https://www.dropbox.com/s/3rak0eosi8m0q5h/DR_075_UWP.zip?dl=0  
+## Older Versions
++ version 0.76 is the last prototype version, in black and white.  
 + 0.76 DirectX: https://www.dropbox.com/s/zwsua9p3051m4lc/DR_076_Dx.zip?dl=0  
 + 0.76 UWP: https://www.dropbox.com/s/nasl9aecdfyzyvf/DR_076_UWP.zip?dl=0  
-+ You can sideload the UWP version onto your Xbox one using this guide:  
-+ https://gbatemp.net/threads/how-to-sideload-dungeonrun-indie-game-on-xbox-one.470374/  
+
+
+## Input
++ The game was designed to be played with an Xbox360 or XboxOne controller.  
++ You can play with a similar supported controller, or the Keyboard.  
++ Keyboard Input is WASD based for movement and JILK based for buttons.  
++ Keyboard input is not mappable right now, but will be in a future update.  
 
 
 ## Dependencies
-+ You'll need a compatible gamepad (Xbox360 or XboxOne controller) to play.
-+ You'll also need .Net4.5, and possibly SharpDx and Monogame installed.
-+ The game has been tested to run on Windows 10 and Xbox1.
-+ Alternatively, you can clone the repo and build the game yourself.
-+ You'll need Monogame and a compatible IDE installed to build it.
++ You'll need .Net4.5, and maybe SharpDx and Monogame installed.
++ The DirectX Install archive has been tested to work on Windows10.
++ The UWP Install archive has been tested to sideload on Xbox1.
++ If these install archives don't work for you, then Clone, Open and Build.
++ Clone the Repo to your local machine, then OPEN the VS project for Dx or UWP.
++ You'll need Monogame and a compatible IDE installed to BUILD it (F5).
 + All the information you need is provided in the Getting Started Guide.
 + https://github.com/MrGrak/Monogame-Getting-Started
+
 
 ## Intro To The Codebase  
 + Start with DataClasses, at the top.  
 + This is where you'll find the control flags to put the game into release mode.  
 + You can also put the game into edit mode, and play around with the level or room editor.  
 + Enumerators and DataClasses contain most of the data.
-+ Game Logic is contained within MANY Function_Whatever classes in /GameClasses.
++ Game Logic is contained within Function classes in /GameClasses.
 + Game State is managed via Screens and ScreenManager.  
 + I suggest using VisualStudio and the shortcut Ctrl+M, +O to navigate the regions.  
-+ I could write several books about the codebase, so I'll stop right here.  
 + Good Luck.  
 
 
