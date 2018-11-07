@@ -63,7 +63,7 @@ Today:
 
 
 
-Update readme with links to v0.77.
+Updated readme with links to v0.77.
 
 uwp: https://www.dropbox.com/s/9r0xcyfhilc99mo/TSK_077_UWP.zip?dl=0
 dx: https://www.dropbox.com/s/sppi2wilhef1qso/TSK_077_Dx.zip?dl=0

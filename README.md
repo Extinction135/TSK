@@ -1,15 +1,20 @@
 # DungeonRun - v0.77 - 2018.11.07
-+ A super secret 2D Zelda game.. shh.. Don't tell anyone, ok?  
++ My secret 2D Zelda game. Don't tell anyone, ok?  
   
 ![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/076presentation.gif)  
 
 
-+ you can play the game right now, for free, if you are on windows10.  
-+ you can also play the game on xbox 1 rn, ff, if you meet certain conditons, see below.
++ You can play my game right now, for free, if you are on Windows 10.  
++ You can also play my game on Xbox 1 right now, for free. See below. 
 
-## Playing the Game (Windows 10 + Xbox1)
-+ 0.77 DirectX: https://www.dropbox.com/s/sppi2wilhef1qso/TSK_077_Dx.zip?dl=0  
+
+## Playing the Game - Windows 10
++ You can install the DirectX version or the UWP version on Windows 10:
++ 0.77 DX: https://www.dropbox.com/s/sppi2wilhef1qso/TSK_077_Dx.zip?dl=0  
 + 0.77 UWP: https://www.dropbox.com/s/9r0xcyfhilc99mo/TSK_077_UWP.zip?dl=0  
+
+
+## Playing the Game - Xbox1
 + You can sideload the UWP version onto your Xbox one using this guide:  
 + https://gbatemp.net/threads/how-to-sideload-dungeonrun-indie-game-on-xbox-one.470374/  
 
