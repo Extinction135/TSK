@@ -281,7 +281,7 @@ namespace DungeonRun
         {
             new Dialog(ObjType.Hero_Idle, "Attention!",
                 "If you see anyone giving away secret items, please report them.\n" +
-                "-MGMT",
+                "-MGMT (I promise not to turn them into a chicken, like last time).",
                 Assets.sfxTextLetter, false, false)
         };
 

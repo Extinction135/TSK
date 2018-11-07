@@ -62,44 +62,18 @@ Today:
 
 
 
-
-
-
-Prep for 0.77 Release - (dramatic foghorn plays)
-
-for the swamp dungeon entrance dialog, we should add
-"do not play with the switch to the left." < done.
-
-Vendors++
-Change all Vendor Dialogs to be Shadow King supportive,
-creepy, and weird. and punctually/grammatically correct.
-done.
-
-
-
-Secret Vendor++
-
-updated dungeon vendors room to only have one signpost.
-
-
-
-
-add code to read signpost in dungeon room where vendor is
-present. this is a column room, but we can loop over all
-roomObjs looking for vendor and modify dialog as needed.
-should say "if you see anyone giving away secret items,
-please report them to mgmt! -mr.grak".
-*find this column room, place ONE signpost near vendor.
-
-
-
-
-
-
-
-
 Coliseum Level++
-we need trees, and foilage, and finish the building!
+
+completed building, added foilage.
+compiled level data for final time, for 0.77 release.
+more dialog updates for hilarity.
+
+
+
+
+
+
+
 
 
 
@@ -113,9 +87,6 @@ functions_hero, where we set the current room.
 
 
 
-Creatures Fang++
-creatures fang should destroy objects - it doesn't.
-this means some enemies can't destroy objects at all.
 
 
 
@@ -123,7 +94,9 @@ this means some enemies can't destroy objects at all.
 
 
 
-Prep GameData for 0.77 Release 
+
+
+Prep GameData for 0.77 Release - (dramatic foghorn plays)
 
 compile level and roomData for last time.
 check all levels for errors (using clipping).
@@ -191,7 +164,9 @@ Player2 Input
 *we need to do this.
 
 
-
+Creatures Fang++
+creatures fang should destroy objects - it doesn't.
+this means some enemies can't destroy objects at all.
 
 
 
