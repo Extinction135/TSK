@@ -65,49 +65,29 @@ Prep for 0.77 Release
 
 
 
-New Input System + Keyboard Input - Part 1
-
-gameInput class notes:
-models ALL input for game: direction, ABXY & start buttons.
-xna gamepad feeds into this gameInput class.
-keyboard feeds into this gameInput class.
-all other input will feed into this gameInput class as well.
-
-this abstracts game input into it's own data structure,
-allowing other types of input to 'map' into this structure,
-making porting to different types of input MUCH easier,
-for example: keyboard support.
-
-added keyboard input support.
-input display maps to new game input class.
-functions_input.Update() is processing game input instances right.
-all screens migrated to use gameInput.
-all actor interactions/actions migrated to use gameInput.
-migration complete.
-
-
-
-
-
-
-
-
-
-
 
 Input Bugs - Part 2
 
-*tehre is absolutely no input for hero
-*this is coming from level screen, we pulled input checks from it
-it's likely we aren't mapping input.player1 ro the hero's input component.
-this needs to be done in level screen.
-this also may need to be done in overworld screen.
+all screen input is working, but we aren't mapping gameInput
+to the player, so there is no player input at all. fixed.
+tested, working as expected. keyboard input fully implemented.
+now we need to polish the input, because there are some side effects..
 
-check all keyboard input to see that it works.
-check all gamepad input to see that it works.
-test to ensure new input is good to go.
-this is thorough check, ALL SCREENS.
 
+
+
+
+
+
+
+
+Input Polish
+
+due to the input update, players can now simply hold down X to
+spam attacks, hold down Y to spam use items, and hold down A to
+put themselves into a perpetual INTERACT state, where link is bending
+over. so, we'll go back to forcing new button presses for all these
+actions, simply because that's not how I want input to feel.
 
 
 
@@ -123,6 +103,9 @@ Player2 Input
 
 
 
+
+
+Finish Coliseum Level
 
 
 

@@ -287,6 +287,19 @@ namespace DungeonRun
             if (IsKeyDown(Keys.Enter)) { InputIns.Start = true; }
         }
 
+        public static void MapGameInputToInputComponent(GameInput InputIns, ComponentInput CompInput)
+        {   //reset actor input component
+            ResetInputData(CompInput);
+            //map direction
+            CompInput.direction = InputIns.direction;
+            //map buttons
+            CompInput.interact = InputIns.A;
+            CompInput.attack = InputIns.X;
+            CompInput.use = InputIns.Y;
+            CompInput.dash = InputIns.B;
+        }
+
+
 
 
 

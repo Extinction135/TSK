@@ -46,28 +46,6 @@ namespace DungeonRun
             Functions_Hero.SetLoadout();
             //open the screen
             displayState = DisplayState.Opening;
-
-
-
-
-
-            
-
-
-
-
-
-
-
-            /*
-            //setup current room upon open
-            if (LevelSet.currentLevel.isField)
-            { LevelSet.currentLevel.currentRoom = LevelSet.field.rooms[0]; }
-            else { LevelSet.currentLevel.currentRoom = LevelSet.dungeon.rooms[0]; }
-            */
-
-
-
         }
 
         public override void HandleInput(GameTime GameTime)
@@ -81,6 +59,15 @@ namespace DungeonRun
                     Functions_Ai.SetActorInput();
                     Functions_Ai.SetActorInput();
                 }
+                
+
+
+                //map input.player1 to Poolhero.compInput
+                //Functions_Input.MapPlayerInput(Pool.hero.compInput);
+                Functions_Input.MapGameInputToInputComponent(Input.Player1, Pool.hero.compInput);
+
+
+
 
                 //allow player access to inventory screen from overworld map
                 if (Input.Player1.Start & Input.Player1.Start_Prev == false)

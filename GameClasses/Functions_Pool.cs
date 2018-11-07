@@ -229,6 +229,7 @@ namespace DungeonRun
             {
                 if (Pool.actorPool[i].active)
                 {
+                    //map actor input state to actor input component
                     Functions_Input.SetInputState(Pool.actorPool[i].compInput, Pool.actorPool[i]);
 
                     //here we are essentially resetting the actor for interactions below
