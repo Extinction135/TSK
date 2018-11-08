@@ -29,18 +29,14 @@ Roadmap (this is wrong rn)
 0.86+ - ???
 
 
+0.77 playthru: https://youtu.be/_b7qclGTffE
+
+
+
+
 
 
 Today:
-
-
-
-
-0.77 Playthrough
-
-Record playthrough, post to youtube.
-
-0.77 playthrough: https://youtu.be/_b7qclGTffE
 
 
 
@@ -50,21 +46,6 @@ Record playthrough, post to youtube.
 Cut gifs using licecap.
 Edit 0.77 gif together from lice cuts.
 Post this gif to repo landing page.
-
-
-
-
-
-link 0.77 playthru on landing page, after .gif.
-in the media section. keep the youtub channel link too.
-
-
-
-
-
-
-
-
 
 
 
@@ -121,7 +102,8 @@ increase to show player progress. either the summ
 screen is messed up or the dungeon record is not
 being updated for the dungeon playthrough.
 
-
+barrels should have explosion/destruction noise
+they have null sfx
 
 
 

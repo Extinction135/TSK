@@ -1,13 +1,11 @@
 # DungeonRun - v0.77 - 2018.11.07
-+ My secret 2D Zelda game. Don't tell anyone, ok?  
++ My secret 2D Zelda game.. Keep this between us, ok?   
   
-![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/076presentation.gif)  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/077release.gif)  
+
 + 0.77 playthrough: https://youtu.be/_b7qclGTffE  
-
-
-
 + You can play my game right now, for free, if you are on Windows 10.  
-+ You can also play my game on Xbox 1 right now, for free. See below. 
++ You can also play my game on Xbox 1 right now, for free. See below.  
 
 
 ## Playing the Game - Windows 10
