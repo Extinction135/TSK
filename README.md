@@ -1,4 +1,4 @@
-# DungeonRun - v0.77 - 2018.11.07
+# Legend Of Zelda: The Shadow King - v0.77 - 2018.11.07
 + My secret 2D Zelda game.. Keep this between us, ok?   
   
 ![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/077release.gif)  
@@ -52,6 +52,7 @@
 + So please help me keep this project quiet until v1.0.  
 + Starring, cloning, and forking are fine. Just dont tell nintendo, reddit or 4chan. Please. 
 + https://gamingreinvented.com/nintendoarticles/top-ten-nintendo-fanworks-cancelled-due-legal-complaints/  
++ I'll finish it, I promise.  
 
 
 ## Older Versions
