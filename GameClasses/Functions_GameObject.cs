@@ -2518,6 +2518,7 @@ namespace DungeonRun
                 Obj.compSprite.zOffset = 20; //has height
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = true;
+                Obj.sfx.hit = Assets.sfxTapMetallic;
             }
             else if (Type == ObjType.Wor_Boat_Front_Left
                 || Type == ObjType.Wor_Boat_Front_Right)
@@ -2533,6 +2534,7 @@ namespace DungeonRun
                 Obj.compSprite.zOffset = 20; //has height
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = true;
+                Obj.sfx.hit = Assets.sfxTapMetallic;
             }
 
             else if (Type == ObjType.Wor_Boat_Front_ConnectorLeft
@@ -2556,6 +2558,7 @@ namespace DungeonRun
                 Obj.compSprite.zOffset = -32; //sort above water
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = true;
+                Obj.sfx.hit = Assets.sfxTapMetallic;
             }
 
             #endregion
@@ -2583,6 +2586,7 @@ namespace DungeonRun
                 Obj.compSprite.zOffset = -32; //sort above water
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = true;
+                Obj.sfx.hit = Assets.sfxTapMetallic;
             }
 
             else if (Type == ObjType.Wor_Boat_Stairs_Top_Left
@@ -2605,6 +2609,7 @@ namespace DungeonRun
                 Obj.compSprite.zOffset = -32; //sort above water
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = true;
+                Obj.sfx.hit = Assets.sfxTapMetallic;
             }
 
             else if (Type == ObjType.Wor_Boat_Stairs_Left
@@ -2622,6 +2627,7 @@ namespace DungeonRun
                 Obj.compSprite.zOffset = -32; //sort above water
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = false;
+                Obj.sfx.hit = Assets.sfxTapMetallic;
             }
 
             else if (Type == ObjType.Wor_Boat_Stairs_Bottom_Left
@@ -2644,6 +2650,7 @@ namespace DungeonRun
                 Obj.compSprite.zOffset = -32; //sort above water
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = true;
+                Obj.sfx.hit = Assets.sfxTapMetallic;
             }
 
             #endregion
@@ -2666,6 +2673,7 @@ namespace DungeonRun
                 Obj.compSprite.zOffset = -32; //sort above water
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = true;
+                Obj.sfx.hit = Assets.sfxTapMetallic;
             }
 
             else if (Type == ObjType.Wor_Boat_Back_Left_Connector
@@ -2683,6 +2691,7 @@ namespace DungeonRun
                 Obj.compSprite.zOffset = -32; //sort above water
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = true;
+                Obj.sfx.hit = Assets.sfxTapMetallic;
             }
 
             else if (Type == ObjType.Wor_Boat_Back_Center)
@@ -2696,6 +2705,7 @@ namespace DungeonRun
                 Obj.compSprite.zOffset = -24; //sort above water
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = true;
+                Obj.sfx.hit = Assets.sfxTapMetallic;
             }
 
             #endregion
@@ -2720,6 +2730,8 @@ namespace DungeonRun
                 Obj.compSprite.zOffset = 0; //sort above water
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = true;
+                Obj.sfx.hit = Assets.sfxEnemyHit;
+                Obj.sfx.kill = Assets.sfxShatter;
             }
 
             else if (Type == ObjType.Wor_Boat_Engine)
@@ -2729,9 +2741,10 @@ namespace DungeonRun
                 Obj.compCollision.rec.Height = 16 * 4 + 8; Obj.compCollision.offsetY = 0;
 
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Engine;
-                Obj.compSprite.zOffset = 33; //has height
+                Obj.compSprite.zOffset = 43; //has height
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = true;
+                Obj.sfx.hit = Assets.sfxTapMetallic;
             }
 
             else if (Type == ObjType.Wor_Boat_Stairs_Cover)

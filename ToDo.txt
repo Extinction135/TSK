@@ -60,91 +60,48 @@ Today:
 
 
 
-
-
-
-
-Bugs--
-
-upon dying, loadout is reset. dont do that.
-this was actually fixed as a consequnce of 
-the last commit, so we dont need to do this.
-tested and working. however,
-
-the summary screen works the first time.
-the second time - not so much.
-
-is this the screen or the dungoen record?
-
-first, we should only display the summary 
-screen if link dies in a dungeon. if level
-set.current points to the dungeon, then pop
-summary screen, otherwise, we just kick hero
-to the overworld screen via levelClose() and
-exit action to overworld map.
-
-second, we need to check that we are reset()ing
-the dungeon record dr.reset(), just as we finish
-building the dungeon - we do!
-
-
-test that summary screen pops and works:
-win/lose in dungeon - working. lose in field,
-back to overworld we go!
-	
-exit action for level screen was updated to stop
-the dungeon timer if the exit action was to summary
-screen.
-	
-The Cause
-
-if link uses a fairy to save himself from death,
-then it clears to an unknown item.. which is why his
-item disappears upon death in a tense battle (when
-you're not looking at the item swap happening).
-otherwise, the inventory and loadout systems are
-working as designed. so upon calling HandleDeath()
-for the hero, we simply store the hero's item in a 
-temp value, then restore that value post fairy
-bottle routines. this fixes the annoying bug
-of 'losing' your item upon a fairy-rez (self-rez).
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Playtesting Notes++
 
 barrels should have explosion/destruction noise
-they have null sfx
+they have null sfx. done. improved hit sfx for boat
+objects as well.
+
+
+sorting on boat engine should get +10.
+
+
 
 
 rats still dont have proper animation frames, lol
 
 fix centering of camera to dungeon rooms - hubs specifically..
 
-
-
 fix hitboxes on coliseum entrance - should be full sprite - lol
 
 
 
-Puzzles++
+
+Puzzles and Cheats++
+
 if a room with a switch in it has been solved, (visited)
-then remove the floor switch obj post room build. this makes
-backtracking through dungeons less of a chore, which is
-why i favor secret room navigation, which is bad imo.
+then remove the floor switch obj post room build. 
+no, we need an obj that looks like a down switch, that 
+really does nothing - or it autosolves the puzzle, which
+we could then use as a cheat! auto-solve dungeon puzzles.
+yessssssss...
+this makes backtracking through dungeons less of a chore.
 
 
 
+
+Input Polish
+when moving the joystick diagonally, the input *should* split evenly between up and say right.
+if i'm 60% up and 40% right, it should be up. right now, that diagonal just sets to right.
+even if it's 90% up and 10% right, it's set to right. it should be a 50/50 split.
+that will increase the precision of sloppy diagonal weapon attacks, aiming their intended direction.
+**this is not related to input direction, but rather it's related to how we resolve the player's
+facing direction to the cardinal casting direction of the arrow projectile, for example.
+^^^^^^^^^ this is super important for input 'feel'
 
 
 
@@ -161,6 +118,26 @@ YES WE CAN! and up next, the dungeon sheets will drop to
 128x128 sheets, reducing the ram footprint of the game.
 which is good, if you are planning on porting to ram
 restricted systems... 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -185,6 +162,9 @@ that can sit on the ground, indestructible. this way
 we can decorate the shadow coliseum appropriately.
 we should add this skull detail to the overworld map as
 well.
+
+
+
 
 
 
@@ -229,27 +209,10 @@ bigeye: spawns A TON of exploding seekers while in his special.
 
 
 
-input polish
-when moving the joystick diagonally, the input *should* split evenly between up and say right.
-if i'm 60% up and 40% right, it should be up. right now, that diagonal just sets to right.
-even if it's 90% up and 10% right, it's set to right. it should be a 50/50 split.
-that will increase the precision of sloppy diagonal weapon attacks, aiming their intended direction.
-**this is not related to input direction, but rather it's related to how we resolve the player's
-facing direction to the cardinal casting direction of the arrow projectile, for example.
-^^^^^^^^^ this is super important for input 'feel'
-
-
-
-
-
-
-
 Grass++
 
 cut grass should grow into tall grass if near coastlines,
 or filled ditches. 
-
-
 
 
 
@@ -283,9 +246,6 @@ should call Level.BuildLevel(Level.ID),
 which will cause the level to fade in from black,
 and place hero at the entrance the dungeon again.
 *this should only work in a dungeon. 
-
-
-
 
 
 

@@ -17,9 +17,9 @@ namespace DungeonRun
     public static class Flags
     {   
         // **********************************************************************************************************
-        public static Boolean Release = true; //puts game in release mode, overwrites other flags
+        public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
-        public static float Version = 0.77f; //the version of the game
+        public static float Version = 0.78f; //the version of the game
         public static BootRoutine bootRoutine = BootRoutine.Game; //boot to game or editor?
 
         //dev flags
@@ -38,7 +38,7 @@ namespace DungeonRun
         public static Boolean IgnoreBoatTiles = false; //enable/disable pickup/selection/deletion of boatTiles
 
         //option flags
-        public static Boolean PlayMusic = true; //turns music on/off
+        public static Boolean PlayMusic = false; //turns music on/off
         public static Boolean PlaySoundFX = true; //turns soundfx on/off
         public static Boolean HardMode = false; //makes the game harder
         public static Boolean CameraTracksHero = false; //camera tracks hero or centers to dungeon room
