@@ -1,6 +1,11 @@
 
 
 
+DREAMS AND MINIGAMES
+load a level, then change the hero's type to whatever enemy
+type we want, and then if he leaves the field, we simply 'wake up'
+or end the minigame, depending on how we want to do this.
+very powerful and fun stuff here.
 
 
 
@@ -10,7 +15,9 @@ that we could hit and move, but didn't destroy, then we could
 play a form of hockey, using the sword and this object, and a
 goal. we can decorate this goal with bumpers, or other things,
 even hockey goalie npcs, and other players that bump the 'puck'.
-this can be a mini-game.
+this can be a mini-game. this can be combined to create spiders
+on ice playing hockey, if you want, or it can just be random
+enemy types, depending on the dream.
 
 
 

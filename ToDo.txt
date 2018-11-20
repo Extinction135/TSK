@@ -57,61 +57,79 @@ Today:
 
 
 
-Sprites and Organization ++
 
-migrated dungeon objs from dungeon sheet to common sheet.
-resized dungeon sheets to 128x128, making them smaller,
-which makes them easier to understand and work on and create.
-updated uwp after playtesting dx version for bugs.
+Testing Enemy Actors using Player1 Input
 
+we need to be able to turn hero into an enemy.
+then, we can test the shooting routines, which test
+the projectile spawn routines, which we are going to update
+to use the actor's hitbox, instead of assuming they are
+all just the hero, with the hero's specific hitbox.
 
+this is done via pressing the f6 button in the editor,
+as noted by the top menu now. this simply sets the hero's
+type, using the actor.transform() method. this way, we
+iterate through all enemy types, checking their animations
+and interactions with the world. we can even load levels
+up, then play with them as different enemy types.
 
+THIS IS INCREDIBLY FUN. 
 
-
-
-
-
-
-the default dungeon sheet is the one we use for all
-overworld / field level dungeon objects. this means
-this 'dungeon' has a green grassy floor.
-
-
-
-
-
-
-
-
-
-visual bugs: 
-bottom spike lip of pit competes with middle pit black obj.
-also, the pit teeth default to brown, which is part of the default
-sheet. this default sheet should be thought of as the 'world' 
-dungeon sheet - these pits will appear on the overworld against the
-expected green bkg color. so the default pit teeth need to be green,
-leading into brown as they go down into the ground. 
+now that this is setup and ready, this can be the foundation
+for a number of dreams and mini-games, simply because we can
+load a level, then change the hero's type to whatever enemy
+type we want, and then if he leaves the field, we simply 'wake up'
+or end the minigame, depending on how we want to do this.
+very powerful and fun stuff here.
 
 
-Coliseum++
-we need 'windows' that look into the coliseum,
-like the overworld sprite depicts. plus, I don't like
-how the coliseum level is unbalanced and to the right.
-instead, the coliseum - and all subsequent coliseums -
-will be entrance centered to level, north of spawn.
-this 'presents' the level much better, because coliseums
-have no required puzzle for entry.
-
-a window is a 3x4 obj, with baked in bkg.
-so this saves us a lot of roomObjs.
 
 
-Coliseum++++
-we also need to have the large skulls be a 2nd object
-that can sit on the ground, indestructible. this way
-we can decorate the shadow coliseum appropriately.
-we should add this skull detail to the overworld map as
-well.
+
+
+
+
+
+miniboss black eye can't test create arrows, because 
+he doens't have the bow/arrow item equipped!
+
+miniboss watery mouth can't throw fireballs. no item equipped.
+
+big eye boss can spawn fangs, but they hit him from certain
+directions. also, he cannot spawn seekers via item use, which
+he should be able to. there should be magic for this, and the
+seeker should seek out the first actor that isn't it's caster.
+this maintains it's behavior, while making it useful to the player
+as well. this is enemy magic/items, so we can add it to the
+enemy vendor as well.
+
+boss kraken's swim waves are incorrect for swimming left/right,
+the swim waves need to be pushed south 16 pixels. for swimming
+north, they need to be pushed +16 pixel as well, maybe +32.
+also, the boss kraken should have a magic item that spawns a
+tentacle. this tentacle just makes a standard tentacle, which
+will attack link and can be spawned on land. we should update
+tentacles spawned in this manner to have no speed, so they spawn
+unable to move. they should randomly attack in every direction too,
+so link can create walls of angry tentacles, using this enemy magic.
+this should probably be two types of objects honestly: tentacles
+spawned by the boss (in water), and tentacles spawned by the hero
+(in water or on land) which are just stationary. this preserves the
+boss' implementation (using a magic item) and also gives the player 
+something intresting to use (using a magic item). *actually, the 
+kraken creates tentacle ACTORS, which seek hero. hero could create
+tentacle OBJS, using same sprites, that could attack random directions
+and form useful walls. this would also be the first instance of
+creating roomObjs by the hero/player.
+
+tentacle special actor should have the fang equipped for his
+ITEM, because he is in the water, and X causes him to dive. we have
+to preserve this state in order for hero to fully function, so
+enemies in the water can only use items, never weapons, limiting them
+to one type of attack. right now, tentacle actors
+
+
+
 
 
 
@@ -154,6 +172,58 @@ would allow larger actors, like bosses, to SHOOT FIREBALLS. geez.
 Special Attacks / Boss "USE"
 bigeye uses the shut + bloodshot frames for his special.
 bigeye: spawns A TON of exploding seekers while in his special.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Default Dungeon
+the default dungeon sheet is the one we use for all
+overworld / field level dungeon objects. this means
+this 'dungeon' has a green grassy floor.
+
+visual bugs: 
+bottom spike lip of pit competes with middle pit black obj.
+also, the pit teeth default to brown, which is part of the default
+sheet. this default sheet should be thought of as the 'world' 
+dungeon sheet - these pits will appear on the overworld against the
+expected green bkg color. so the default pit teeth need to be green,
+leading into brown as they go down into the ground. 
+
+
+Coliseum++
+we need 'windows' that look into the coliseum,
+like the overworld sprite depicts. plus, I don't like
+how the coliseum level is unbalanced and to the right.
+instead, the coliseum - and all subsequent coliseums -
+will be entrance centered to level, north of spawn.
+this 'presents' the level much better, because coliseums
+have no required puzzle for entry.
+
+a window is a 3x4 obj, with baked in bkg.
+so this saves us a lot of roomObjs.
+
+
+Coliseum++++
+we also need to have the large skulls be a 2nd object
+that can sit on the ground, indestructible. this way
+we can decorate the shadow coliseum appropriately.
+we should add this skull detail to the overworld map as
+well.
+
 
 
 

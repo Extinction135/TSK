@@ -191,9 +191,48 @@ namespace DungeonRun
 
             #endregion
 
-            
 
 
+            #region F6 - Increment Hero Type
+
+            else if (Functions_Input.IsNewKeyPress(Keys.F6))
+            {
+                //step through all actor types defined in actorType enum
+                if (Pool.hero.type == ActorType.Hero)
+                { Functions_Actor.Transform(Pool.hero, ActorType.Blob); }
+
+                //standards
+                else if (Pool.hero.type == ActorType.Blob)
+                { Functions_Actor.Transform(Pool.hero, ActorType.Standard_AngryEye); }
+                else if (Pool.hero.type == ActorType.Standard_AngryEye)
+                { Functions_Actor.Transform(Pool.hero, ActorType.Standard_BeefyBat); }
+                else if (Pool.hero.type == ActorType.Standard_BeefyBat)
+                { Functions_Actor.Transform(Pool.hero, ActorType.MiniBoss_BlackEye); }
+
+                //minibosses
+                else if (Pool.hero.type == ActorType.MiniBoss_BlackEye)
+                { Functions_Actor.Transform(Pool.hero, ActorType.MiniBoss_Spider_Armored); }
+                else if (Pool.hero.type == ActorType.MiniBoss_Spider_Armored)
+                { Functions_Actor.Transform(Pool.hero, ActorType.MiniBoss_Spider_Unarmored); }
+                else if (Pool.hero.type == ActorType.MiniBoss_Spider_Unarmored)
+                { Functions_Actor.Transform(Pool.hero, ActorType.MiniBoss_OctoMouth); }
+                else if (Pool.hero.type == ActorType.MiniBoss_OctoMouth)
+                { Functions_Actor.Transform(Pool.hero, ActorType.Boss_BigEye); }
+
+                //bosses
+                else if (Pool.hero.type == ActorType.Boss_BigEye)
+                { Functions_Actor.Transform(Pool.hero, ActorType.Boss_BigBat); }
+                else if (Pool.hero.type == ActorType.Boss_BigBat)
+                { Functions_Actor.Transform(Pool.hero, ActorType.Boss_OctoHead); }
+                else if (Pool.hero.type == ActorType.Boss_OctoHead)
+                { Functions_Actor.Transform(Pool.hero, ActorType.Special_Tentacle); }
+
+                //specials
+                else if (Pool.hero.type == ActorType.Special_Tentacle)
+                { Functions_Actor.Transform(Pool.hero, ActorType.Hero); }
+            }            
+
+            #endregion
 
 
 
