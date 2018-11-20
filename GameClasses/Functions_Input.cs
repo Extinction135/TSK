@@ -195,7 +195,31 @@ namespace DungeonRun
 
         public static void MapGamePadToInput(GamePadState PadIns, GameInput InputIns)
         {
-            //map gamepad Dpad to gamePadDirection
+            //map gamepad left joystick to gamePadDirection
+            if (PadIns.ThumbSticks.Left.X > Input.deadzone &
+                PadIns.ThumbSticks.Left.Y > Input.deadzone)
+            { InputIns.direction = Direction.UpRight; }
+            else if (PadIns.ThumbSticks.Left.X < -Input.deadzone &
+                PadIns.ThumbSticks.Left.Y > Input.deadzone)
+            { InputIns.direction = Direction.UpLeft; }
+
+            else if (PadIns.ThumbSticks.Left.X > Input.deadzone &
+                PadIns.ThumbSticks.Left.Y < -Input.deadzone)
+            { InputIns.direction = Direction.DownRight; }
+            else if (PadIns.ThumbSticks.Left.X < -Input.deadzone &
+                PadIns.ThumbSticks.Left.Y < -Input.deadzone)
+            { InputIns.direction = Direction.DownLeft; }
+
+            else if (PadIns.ThumbSticks.Left.X > Input.deadzone)
+            { InputIns.direction = Direction.Right; }
+            else if (PadIns.ThumbSticks.Left.X < -Input.deadzone)
+            { InputIns.direction = Direction.Left; }
+            else if (PadIns.ThumbSticks.Left.Y > Input.deadzone)
+            { InputIns.direction = Direction.Up; }
+            else if (PadIns.ThumbSticks.Left.Y < -Input.deadzone)
+            { InputIns.direction = Direction.Down; }
+
+            //map gamepad Dpad to gamePadDirection - simple and accurate
             if (PadIns.IsButtonDown(Buttons.DPadRight) &
                 PadIns.IsButtonDown(Buttons.DPadUp))
             { InputIns.direction = Direction.UpRight; }
@@ -217,36 +241,11 @@ namespace DungeonRun
             else if (PadIns.IsButtonDown(Buttons.DPadDown))
             { InputIns.direction = Direction.Down; }
 
-            //map gamepad left joystick to gamePadDirection
-            if (PadIns.ThumbSticks.Left.X > Input.deadzone &
-                PadIns.ThumbSticks.Left.Y > Input.deadzone)
-            { InputIns.direction = Direction.UpRight; }
-            else if (PadIns.ThumbSticks.Left.X < -Input.deadzone &
-                PadIns.ThumbSticks.Left.Y > Input.deadzone)
-            { InputIns.direction = Direction.UpLeft; }
-            else if (PadIns.ThumbSticks.Left.X > Input.deadzone &
-                PadIns.ThumbSticks.Left.Y < -Input.deadzone)
-            { InputIns.direction = Direction.DownRight; }
-            else if (PadIns.ThumbSticks.Left.X < -Input.deadzone &
-                PadIns.ThumbSticks.Left.Y < -Input.deadzone)
-            { InputIns.direction = Direction.DownLeft; }
-            else if (PadIns.ThumbSticks.Left.X > Input.deadzone)
-            { InputIns.direction = Direction.Right; }
-            else if (PadIns.ThumbSticks.Left.X < -Input.deadzone)
-            { InputIns.direction = Direction.Left; }
-            else if (PadIns.ThumbSticks.Left.Y > Input.deadzone)
-            { InputIns.direction = Direction.Up; }
-            else if (PadIns.ThumbSticks.Left.Y < -Input.deadzone)
-            { InputIns.direction = Direction.Down; }
-
             //map attack, use item, and interact button presses
             if (IsButtonDown(PadIns, Buttons.X)) { Input.Player1.X = true; }
             else if (IsButtonDown(PadIns, Buttons.Y)) { Input.Player1.Y = true; }
             else if (IsButtonDown(PadIns, Buttons.A)) { Input.Player1.A = true; }
-            //dash method 1 : hyper light drifter style dashing
-            //if (IsNewButtonPress(Buttons.B)) { CompInput.dash = true; }
-            //dash method 2 : hold down to dash
-            if (IsButtonDown(PadIns, Buttons.B)) { Input.Player1.B = true; }
+            else if (IsButtonDown(PadIns, Buttons.B)) { Input.Player1.B = true; }
 
             //map start button input
             if (IsButtonDown(PadIns, Buttons.Start)) { Input.Player1.Start = true; }
@@ -280,8 +279,7 @@ namespace DungeonRun
             if (IsKeyDown(Keys.J)) { InputIns.X = true; }
             else if (IsKeyDown(Keys.I)) { InputIns.Y = true; }
             else if (IsKeyDown(Keys.K)) { InputIns.A = true; }
-            //method2: hold down to dash
-            if (IsKeyDown(Keys.L)) { InputIns.B = true; }
+            else if (IsKeyDown(Keys.L)) { InputIns.B = true; }
 
             //start button
             if (IsKeyDown(Keys.Enter)) { InputIns.Start = true; }
@@ -294,14 +292,14 @@ namespace DungeonRun
             CompInput.direction = InputIns.direction;
 
             /*
-            //map buttons - method 1 : allows spamming
+            //map buttons - method 1 : allows spamming of all buttons
             CompInput.interact = InputIns.A;
             CompInput.attack = InputIns.X;
             CompInput.use = InputIns.Y;
             CompInput.dash = InputIns.B;
             */
 
-            //map buttons - method 2 : only dash is spammed
+            //map buttons - method 2 : only dash is allowed to be spammed
             if (InputIns.A & !InputIns.A_Prev) { CompInput.interact = true; }
             if (InputIns.X & !InputIns.X_Prev) { CompInput.attack = true; }
             if (InputIns.Y & !InputIns.Y_Prev) { CompInput.use = true; }

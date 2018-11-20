@@ -25,6 +25,7 @@ namespace DungeonRun
 
         #region Dungeon Objects
 
+        //dungeon objs on 128x128 dungeon sheet
         public static List<Byte4> Dungeon_ExitPillarLeft = new List<Byte4> { new Byte4(0, 0, 0, 0) };
         public static List<Byte4> Dungeon_ExitPillarRight = new List<Byte4> { new Byte4(0, 0, 1, 0) };
         public static List<Byte4> Dungeon_Exit = new List<Byte4> { new Byte4(1, 0, 0, 0) };
@@ -45,20 +46,8 @@ namespace DungeonRun
         public static List<Byte4> Dungeon_WallTorch = new List<Byte4>
         { new Byte4(6, 0, 0, 0), new Byte4(6, 1, 0, 0), new Byte4(6, 2, 0, 0) };
 
-        
-
-
         public static List<Byte4> Dungeon_Statue = new List<Byte4> { new Byte4(0, 3, 0, 0) };
-        public static List<Byte4> Dungeon_SkullPillar = new List<Byte4> { new Byte4(2, 5, 0, 0) };
-
-        public static List<Byte4> Dungeon_Fairy = new List<Byte4> { new Byte4(1, 3, 0, 0), new Byte4(2, 3, 0, 0) };
-        public static List<Byte4> Dungeon_BossKey = new List<Byte4> { new Byte4(4, 3, 0, 0) };
-        public static List<Byte4> Dungeon_Map = new List<Byte4> { new Byte4(3, 3, 0, 0) };
-        public static List<Byte4> Dungeon_IceTile = new List<Byte4> { new Byte4(6, 3, 0, 0) };
-        public static List<Byte4> Dungeon_FloorDecal = new List<Byte4> { new Byte4(7, 3, 0, 0) };
-
-
-        
+        public static List<Byte4> Dungeon_SkullPillar = new List<Byte4> { new Byte4(7, 3, 0, 0) };
 
         public static List<Byte4> Dungeon_BlockDark = new List<Byte4> { new Byte4(0, 4, 0, 0) };
         public static List<Byte4> Dungeon_BlockLight = new List<Byte4> { new Byte4(1, 4, 0, 0) };
@@ -66,52 +55,48 @@ namespace DungeonRun
         public static List<Byte4> Dungeon_SwitchBlockBtn = new List<Byte4> { new Byte4(3, 4, 0, 0) };
         public static List<Byte4> Dungeon_SwitchBlockDown = new List<Byte4> { new Byte4(4, 4, 0, 0) };
         public static List<Byte4> Dungeon_SwitchBlockUp = new List<Byte4> { new Byte4(5, 4, 0, 0) };
-        public static List<Byte4> Dungeon_FloorBlood = new List<Byte4> { new Byte4(7, 4, 0, 0) };
-
-
-       
-
-
-        public static List<Byte4> Dungeon_Barrel = new List<Byte4> { new Byte4(0, 5, 0, 0) };
-        public static List<Byte4> Dungeon_BarrelExploding = new List<Byte4> { new Byte4(0, 5, 0, 0), new Byte4(1, 5, 0, 0) };
-        public static List<Byte4> Dungeon_Bumper = new List<Byte4> { new Byte4(2, 5, 0, 0) };
         public static List<Byte4> Dungeon_FloorSwitchUp = new List<Byte4> { new Byte4(3, 5, 0, 0) };
         public static List<Byte4> Dungeon_FloorSwitchDown = new List<Byte4> { new Byte4(4, 5, 0, 0) };
-        public static List<Byte4> Dungeon_Flamethrower = new List<Byte4> { new Byte4(5, 5, 0, 0) };
-        public static List<Byte4> Dungeon_FloorCracked = new List<Byte4> { new Byte4(7, 5, 0, 0) };
-
-
-
         public static List<Byte4> Dungeon_Pot = new List<Byte4> { new Byte4(0, 6, 0, 0) };
         public static List<Byte4> Dungeon_ChestClosed = new List<Byte4> { new Byte4(1, 6, 0, 0) };
         public static List<Byte4> Dungeon_ChestOpened = new List<Byte4> { new Byte4(2, 6, 0, 0) };
-        public static List<Byte4> Dungeon_Pit = new List<Byte4> { new Byte4(0, 7, 0, 0) };
-        public static List<Byte4> Dungeon_PitBridge = new List<Byte4> { new Byte4(1, 7, 0, 0) };
         public static List<Byte4> Dungeon_PitTeethTop = new List<Byte4> { new Byte4(3, 7, 0, 0) }; //16x8
         public static List<Byte4> Dungeon_PitTeethBottom = new List<Byte4> { new Byte4(4, 7, 0, 0) }; //16x8
-
-
-    
-
-        public static List<Byte4> Dungeon_TorchUnlit = new List<Byte4> { new Byte4(0, 8, 0, 0) };
-        public static List<Byte4> Dungeon_TorchLit = new List<Byte4>
-        { new Byte4(1, 8, 0, 0), new Byte4(2, 8, 0, 0), new Byte4(3, 8, 0, 0) };
+        public static List<Byte4> Dungeon_FloorDecal = new List<Byte4> { new Byte4(7, 3, 0, 0) }; //boss decal
 
 
 
-
-        public static List<Byte4> Dungeon_LeverOn = new List<Byte4> { new Byte4(0, 9, 0, 0) };
-        public static List<Byte4> Dungeon_LeverOff = new List<Byte4> { new Byte4(0, 9, 1, 0) };
-
-        public static List<Byte4> Dungeon_FloorSpikesOn = new List<Byte4> { new Byte4(1, 9, 0, 0), new Byte4(2, 9, 0, 0) };
-        public static List<Byte4> Dungeon_FloorSpikesOff = new List<Byte4> { new Byte4(2, 9, 0, 0) };
-
-        public static List<Byte4> Dungeon_ConveyorBeltOn = new List<Byte4> { new Byte4(3, 9, 0, 0), new Byte4(4, 9, 0, 0) };
-        public static List<Byte4> Dungeon_ConveyorBeltOff = new List<Byte4> { new Byte4(4, 9, 0, 0) };
-
+        //dungeon objs on common objs sheet
+        public static List<Byte4> Dungeon_Fairy = new List<Byte4> { new Byte4(24, 6, 0, 0), new Byte4(25, 6, 0, 0) };
+        public static List<Byte4> Dungeon_BossKey = new List<Byte4> { new Byte4(27, 6, 0, 0) };
+        public static List<Byte4> Dungeon_Map = new List<Byte4> { new Byte4(26, 6, 0, 0) };
+        public static List<Byte4> Dungeon_IceTile = new List<Byte4> { new Byte4(26, 5, 0, 0) };
         
-        public static List<Byte4> Dungeon_SpawnMob = new List<Byte4> { new Byte4(5, 9, 0, 0) };
-        public static List<Byte4> Dungeon_SpawnMiniBoss = new List<Byte4> { new Byte4(6, 9, 0, 0) };
+        public static List<Byte4> Dungeon_FloorBlood = new List<Byte4> { new Byte4(27, 5, 0, 0) };
+        public static List<Byte4> Dungeon_Barrel = new List<Byte4> { new Byte4(24, 5, 0, 0) };
+        public static List<Byte4> Dungeon_BarrelExploding = new List<Byte4>
+        { new Byte4(24, 5, 0, 0), new Byte4(25, 5, 0, 0) };
+        public static List<Byte4> Dungeon_Bumper = new List<Byte4> { new Byte4(22, 5, 0, 0) };
+        
+        public static List<Byte4> Dungeon_Flamethrower = new List<Byte4> { new Byte4(23, 5, 0, 0) };
+        public static List<Byte4> Dungeon_FloorCracked = new List<Byte4> { new Byte4(27, 7, 0, 0) };
+        public static List<Byte4> Dungeon_Pit = new List<Byte4> { new Byte4(20, 5, 0, 0) };
+        public static List<Byte4> Dungeon_PitBridge = new List<Byte4> { new Byte4(21, 5, 0, 0) };
+        public static List<Byte4> Dungeon_TorchUnlit = new List<Byte4> { new Byte4(20, 6, 0, 0) };
+        public static List<Byte4> Dungeon_TorchLit = new List<Byte4>
+        { new Byte4(21, 6, 0, 0), new Byte4(22, 6, 0, 0), new Byte4(23, 6, 0, 0) };
+
+        public static List<Byte4> Dungeon_LeverOn = new List<Byte4> { new Byte4(20, 7, 0, 0) };
+        public static List<Byte4> Dungeon_LeverOff = new List<Byte4> { new Byte4(20, 7, 1, 0) };
+
+        public static List<Byte4> Dungeon_FloorSpikesOn = new List<Byte4> { new Byte4(21, 7, 0, 0), new Byte4(22, 7, 0, 0) };
+        public static List<Byte4> Dungeon_FloorSpikesOff = new List<Byte4> { new Byte4(22, 7, 0, 0) };
+
+        public static List<Byte4> Dungeon_ConveyorBeltOn = new List<Byte4> { new Byte4(23, 7, 0, 0), new Byte4(24, 7, 0, 0) };
+        public static List<Byte4> Dungeon_ConveyorBeltOff = new List<Byte4> { new Byte4(24, 7, 0, 0) };
+
+        public static List<Byte4> Dungeon_SpawnMob = new List<Byte4> { new Byte4(25, 7, 0, 0) };
+        public static List<Byte4> Dungeon_SpawnMiniBoss = new List<Byte4> { new Byte4(26, 7, 0, 0) };
         
 
 

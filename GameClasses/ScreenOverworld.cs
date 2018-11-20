@@ -79,7 +79,7 @@ namespace DungeonRun
                     if (Input.Player1.direction != Input.Player1.direction_Prev)
                     {
                         //get direction of player1 input
-                        cardinal = Functions_Direction.GetCardinalDirection(Input.Player1.direction);
+                        cardinal = Functions_Direction.GetCardinalDirection_LeftRight(Input.Player1.direction);
                         //set the currentLocation based on cardinal direction
                         if (cardinal == Direction.Up)
                         { targetLocation = currentLocation.neighborUp; }

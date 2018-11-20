@@ -106,8 +106,9 @@ namespace DungeonRun
                 || Type == ObjType.ProjectileBat)
             { } //do nothing, we want to be able to throw these projectiles diagonally
             else
-            {   //set the projectiles direction to a cardinal one
-                Dir = Functions_Direction.GetCardinalDirection(Dir);
+            {
+                //set the projectiles direction to a cardinal one
+                Dir = Functions_Direction.GetCardinalDirection_LeftRight(Dir);
             }
             pro.compMove.direction = Dir;
             pro.direction = Dir;
@@ -869,7 +870,7 @@ namespace DungeonRun
             //create a series of bolts in the facing direction of caster
 
             //resolve caster's direction to a cardinal one
-            Caster.direction = Functions_Direction.GetCardinalDirection(Caster.direction);
+            Caster.direction = Functions_Direction.GetCardinalDirection_LeftRight(Caster.direction);
             //setup offsets based on resolved caster's direction
             if(Caster.direction == Direction.Up) { offset.X = 0; offset.Y = -16; }
             else if (Caster.direction == Direction.Right) { offset.X = +16; offset.Y = 0; }

@@ -20,7 +20,7 @@ namespace DungeonRun
         public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.78f; //the version of the game
-        public static BootRoutine bootRoutine = BootRoutine.Game; //boot to game or editor?
+        public static BootRoutine bootRoutine = BootRoutine.Editor_Level; //boot to game or editor?
 
         //dev flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
@@ -588,7 +588,7 @@ namespace DungeonRun
 
 
         //the amount of joystick movement classified as noise
-        public static float deadzone = 0.10f;
+        public static float deadzone = 0.20f;
         //used to visually display a hand icon as cursor in editor
         public static Point cursorPos = new Point(0, 0);
         public static ComponentCollision cursorColl = new ComponentCollision();

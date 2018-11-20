@@ -639,14 +639,14 @@ namespace DungeonRun
 
             else if (Type == ObjType.Dungeon_FloorDecal)
             {
-                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
+                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is unique dungeonObj
                 Obj.compSprite.zOffset = -32; //sort low, but over floor
                 Obj.compCollision.blocking = false;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_FloorDecal;
             }
             else if(Type == ObjType.Dungeon_FloorBlood)
             {
-                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
+                //Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is common dungeonObj
                 //collision rec is smaller so more debris is left when room is cleanedUp()
                 Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
@@ -662,7 +662,7 @@ namespace DungeonRun
 
             else if (Type == ObjType.Dungeon_Pit)
             {
-                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
+                //Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is common dungeonObj
                 //this pit interacts with actor
                 Obj.compSprite.zOffset = -64; //sort under pit teeth
                 Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
@@ -674,7 +674,7 @@ namespace DungeonRun
             }
             else if(Type == ObjType.Dungeon_PitBridge)
             {
-                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
+                //Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is common dungeonObj
                 Obj.compCollision.blocking = false;
                 Obj.compSprite.zOffset = -64; //sort to floor
                 Obj.canBeSaved = true;
@@ -701,8 +701,8 @@ namespace DungeonRun
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_PitTeethBottom;
             }
             else if (Type == ObjType.Dungeon_PitTrap)
-            {
-                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
+            {   //modeled as 'floor crack' sprite
+                //Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is common dungeonObj
                 //this becomes a pit upon collision with hero
                 Obj.compCollision.offsetX = -12; Obj.compCollision.offsetY = -12;
                 Obj.compCollision.rec.Width = 24; Obj.compCollision.rec.Height = 24;
@@ -773,7 +773,7 @@ namespace DungeonRun
             }
             else if(Type == ObjType.Dungeon_Map)
             {
-                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
+                //Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is common dungeonObj
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_Map;
                 Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
@@ -824,7 +824,7 @@ namespace DungeonRun
 
             else if (Type == ObjType.Dungeon_LeverOn || Type == ObjType.Dungeon_LeverOff)
             {
-                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
+                //Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is common dungeonObj
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = 2;
                 Obj.compCollision.rec.Width = 12; Obj.compCollision.rec.Height = 5;
                 Obj.compSprite.zOffset = -3;
@@ -835,7 +835,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Dungeon_SpikesFloorOn || Type == ObjType.Dungeon_SpikesFloorOff)
             {
-                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
+                //Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is common dungeonObj
                 Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
                 Obj.compSprite.zOffset = -32; //sort to floor
@@ -847,7 +847,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Dungeon_ConveyorBeltOn || Type == ObjType.Dungeon_ConveyorBeltOff)
             {
-                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
+                //Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is common dungeonObj
                 Obj.compSprite.zOffset = -31; //sort just above floor
                 Obj.compAnim.speed = 10; //in frames
                 Obj.compCollision.blocking = false;
@@ -876,7 +876,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Dungeon_Barrel)
             {
-                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
+                //Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is common dungeonObj
                 Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 13;
                 Obj.compSprite.zOffset = -7;
@@ -887,14 +887,14 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Dungeon_Bumper)
             {
-                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
+                //Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is common dungeonObj
                 Obj.compCollision.blocking = false;
                 Obj.canBeSaved = true;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_Bumper;
             }
             else if (Type == ObjType.Dungeon_Flamethrower)
             {
-                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
+                //Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is common dungeonObj
                 Obj.compSprite.zOffset = -30; //sort slightly above floor
                 Obj.compCollision.offsetX = -4; Obj.compCollision.offsetY = -4;
                 Obj.compCollision.rec.Width = 8; Obj.compCollision.rec.Height = 8;
@@ -906,7 +906,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Dungeon_IceTile)
             {
-                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
+                //Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is common dungeonObj
                 Obj.compCollision.offsetX = -6; Obj.compCollision.offsetY = -6;
                 Obj.compCollision.rec.Width = 12; Obj.compCollision.rec.Height = 12;
                 Obj.compSprite.zOffset = -30; //sort a little above floor
@@ -981,7 +981,7 @@ namespace DungeonRun
 
             else if (Type == ObjType.Dungeon_TorchUnlit || Type == ObjType.Dungeon_TorchLit)
             {
-                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
+                //Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is common dungeonObj
                 Obj.compCollision.offsetX = -8; Obj.compCollision.offsetY = -4;
                 Obj.compCollision.rec.Width = 16; Obj.compCollision.rec.Height = 12;
                 Obj.compSprite.zOffset = -7;
@@ -1007,7 +1007,7 @@ namespace DungeonRun
 
             else if (Type == ObjType.Dungeon_Fairy)
             {
-                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
+                //Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is common dungeonObj
                 Obj.compSprite.zOffset = 8; //sort to air
                 Obj.lifetime = 0; //stay around forever
                 Obj.compAnim.speed = 6; //in frames
@@ -1028,7 +1028,7 @@ namespace DungeonRun
 
             else if (Type == ObjType.Dungeon_SpawnMob)
             {
-                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
+                //Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is common dungeonObj
                 Obj.compSprite.zOffset = -32; //sort to floor
                 Obj.compCollision.blocking = false;
                 Obj.group = ObjGroup.EnemySpawn;

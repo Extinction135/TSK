@@ -19,7 +19,18 @@ namespace DungeonRun
         static int randomDir = 0;
         static Direction dir = Direction.None;
 
-        public static Direction GetCardinalDirection(Direction Direction)
+
+        //favors up/down shooting
+        public static Direction GetCardinalDirection_UpDown(Direction Direction)
+        {   //converts a diagonal direction to a cardinal direction
+            if (Direction == Direction.UpRight) { return Direction.Up; }
+            else if (Direction == Direction.DownRight) { return Direction.Down; }
+            else if (Direction == Direction.UpLeft) { return Direction.Up; }
+            else if (Direction == Direction.DownLeft) { return Direction.Down; }
+            else { return Direction; } //Direction parameter is already Cardinal
+        }
+        //favors left/right shooting
+        public static Direction GetCardinalDirection_LeftRight(Direction Direction)
         {   //converts a diagonal direction to a cardinal direction
             if (Direction == Direction.UpRight) { return Direction.Right; }
             else if (Direction == Direction.DownRight) { return Direction.Right; }
@@ -27,6 +38,11 @@ namespace DungeonRun
             else if (Direction == Direction.DownLeft) { return Direction.Left; }
             else { return Direction; } //Direction parameter is already Cardinal
         }
+
+
+
+
+
 
         public static Direction GetOppositeDirection(Direction Direction)
         {   //returns opposite direction of direction

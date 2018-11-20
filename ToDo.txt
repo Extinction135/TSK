@@ -57,43 +57,12 @@ Today:
 
 
 
+Sprites and Organization ++
 
-AutoSolve++
-
-fixed a bug where autosolve didn't solve torch
-puzzles, because the value wasn't included in the
-torch checking routines.
-
-
-
-
-
-
-
-Input Polish
-when moving the joystick diagonally, the input *should* split evenly between up and say right.
-if i'm 60% up and 40% right, it should be up. right now, that diagonal just sets to right.
-even if it's 90% up and 10% right, it's set to right. it should be a 50/50 split.
-that will increase the precision of sloppy diagonal weapon attacks, aiming their intended direction.
-**this is not related to input direction, but rather it's related to how we resolve the player's
-facing direction to the cardinal casting direction of the arrow projectile, for example.
-^^^^^^^^^ this is super important for input 'feel'
-
-
-
-
-
-notes:
-torches should be common objs, as they exist outside
-of dungeons. same with map, key, flamethrower, ice tile,
-fairy, explosive barrel, pit, pit bridge, conveyor belt,
-enemy spawns, and finally pit spikes on/off.
-
-this may make the dungeon sheet sizeable down a power.
-YES WE CAN! and up next, the dungeon sheets will drop to
-128x128 sheets, reducing the ram footprint of the game.
-which is good, if you are planning on porting to ram
-restricted systems... 
+migrated dungeon objs from dungeon sheet to common sheet.
+resized dungeon sheets to 128x128, making them smaller,
+which makes them easier to understand and work on and create.
+updated uwp after playtesting dx version for bugs.
 
 
 
@@ -103,6 +72,9 @@ restricted systems...
 
 
 
+the default dungeon sheet is the one we use for all
+overworld / field level dungeon objects. this means
+this 'dungeon' has a green grassy floor.
 
 
 
@@ -112,11 +84,13 @@ restricted systems...
 
 
 
-
-
-
-
-
+visual bugs: 
+bottom spike lip of pit competes with middle pit black obj.
+also, the pit teeth default to brown, which is part of the default
+sheet. this default sheet should be thought of as the 'world' 
+dungeon sheet - these pits will appear on the overworld against the
+expected green bkg color. so the default pit teeth need to be green,
+leading into brown as they go down into the ground. 
 
 
 Coliseum++
@@ -180,6 +154,14 @@ would allow larger actors, like bosses, to SHOOT FIREBALLS. geez.
 Special Attacks / Boss "USE"
 bigeye uses the shut + bloodshot frames for his special.
 bigeye: spawns A TON of exploding seekers while in his special.
+
+
+
+
+Roofs++
+remove rear roofs from the overlap check - now hero
+can't peek into houses by walking behind them - he has
+to be underneath the main part or the chimney.
 
 
 

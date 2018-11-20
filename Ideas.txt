@@ -4,7 +4,13 @@
 
 
 
-
+HOCKEY MINIGAMES
+note: because we have ice tiles, if we added an object
+that we could hit and move, but didn't destroy, then we could
+play a form of hockey, using the sword and this object, and a
+goal. we can decorate this goal with bumpers, or other things,
+even hockey goalie npcs, and other players that bump the 'puck'.
+this can be a mini-game.
 
 
 

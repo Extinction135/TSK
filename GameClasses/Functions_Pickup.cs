@@ -25,7 +25,7 @@ namespace DungeonRun
             posRef.X = Actor.compSprite.position.X;
             posRef.Y = Actor.compSprite.position.Y;
             //get the actor's facing direction as cardinal direction
-            direction = Functions_Direction.GetCardinalDirection(Actor.direction);
+            direction = Functions_Direction.GetCardinalDirection_LeftRight(Actor.direction);
 
             if (Type == ObjType.Pickup_Rupee)
             {   //place dropped rupee away from hero, cardinal = direction actor was pushed

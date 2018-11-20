@@ -551,7 +551,7 @@ namespace DungeonRun
                 || Act.heldObj.type == ObjType.Wor_Enemy_Crab)
             {
                 //resolve act.direction to cardinal
-                Act.direction = Functions_Direction.GetCardinalDirection(Act.direction);
+                Act.direction = Functions_Direction.GetCardinalDirection_LeftRight(Act.direction);
                 //place enemy outside of hero's hitbox
                 if (Act.direction == Direction.Left)
                 {

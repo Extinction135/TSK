@@ -680,7 +680,7 @@ namespace DungeonRun
                 || activeObj.type == ObjType.Dungeon_ConveyorBeltOff
                 || activeObj.type == ObjType.Dungeon_BlockSpike)
             {   //flip thru cardinal directions
-                activeObj.direction = Functions_Direction.GetCardinalDirection(activeObj.direction);
+                activeObj.direction = Functions_Direction.GetCardinalDirection_LeftRight(activeObj.direction);
                 if (activeObj.direction == Direction.Up) { activeObj.direction = Direction.Left; }
                 else if (activeObj.direction == Direction.Left) { activeObj.direction = Direction.Down; }
                 else if (activeObj.direction == Direction.Down) { activeObj.direction = Direction.Right; }
@@ -695,7 +695,7 @@ namespace DungeonRun
             else
             {
                 //flip thru cardinal directions
-                activeObj.direction = Functions_Direction.GetCardinalDirection(activeObj.direction);
+                activeObj.direction = Functions_Direction.GetCardinalDirection_LeftRight(activeObj.direction);
                 if (activeObj.direction == Direction.Up) { activeObj.direction = Direction.Left; }
                 else if (activeObj.direction == Direction.Left) { activeObj.direction = Direction.Down; }
                 else if (activeObj.direction == Direction.Down) { activeObj.direction = Direction.Right; }
