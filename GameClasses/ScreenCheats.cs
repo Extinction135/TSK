@@ -124,9 +124,13 @@ namespace DungeonRun
             labels[8].text = "clip\nping";
             Functions_MenuItem.SetType(MenuItemType.CheatsClipping, menuItems[8]);
 
-            //CheatsClipping
+            //CheatsInfiniteFairys
             labels[9].text = "inf\nfair";
             Functions_MenuItem.SetType(MenuItemType.CheatsInfiniteFairies, menuItems[9]);
+
+            //CheatsInfiniteFairys
+            labels[10].text = "auto\nsolv";
+            Functions_MenuItem.SetType(MenuItemType.CheatsAutoSolvePuzzles, menuItems[10]);
 
             #endregion
 
@@ -230,6 +234,18 @@ namespace DungeonRun
                     else { Flags.InfiniteFairies = true; }
                 }
 
+                else if (currentlySelected.type == MenuItemType.CheatsAutoSolvePuzzles)
+                {
+                    if (Flags.AutoSolvePuzzle) { Flags.AutoSolvePuzzle = false; }
+                    else
+                    {   //prevents puzzle setup in future rooms
+                        Flags.AutoSolvePuzzle = true;
+                        //opens current room's doors (solves puzzle) rn
+                        LevelSet.currentLevel.currentRoom.puzzleType = PuzzleType.None;
+                        Functions_GameObject_Dungeon.OpenTrapDoors();
+                        Assets.Play(Assets.sfxSwitch);
+                    }
+                }
 
                 #endregion
 
@@ -382,6 +398,7 @@ namespace DungeonRun
             if (Flags.UnlockAll) { menuItems[7].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
             if (Flags.Clipping) { menuItems[8].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
             if (Flags.InfiniteFairies) { menuItems[9].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
+            if (Flags.AutoSolvePuzzle) { menuItems[10].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
             //expand this to include additional cheats
         }
 

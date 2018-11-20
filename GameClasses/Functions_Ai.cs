@@ -888,52 +888,56 @@ namespace DungeonRun
             #region Switches
 
             else if (Obj.type == ObjType.Dungeon_Switch || Obj.type == ObjType.Dungeon_SwitchDown)
-            {
-                overlap = false; //assume no hit
+            {   
+                //only if a level is a switch puzzle type do we enable switches
+                if(LevelSet.currentLevel.currentRoom.puzzleType == PuzzleType.Switch)
+                {
+                    overlap = false; //assume no hit
 
-                //loop over all active actors
-                for (i = 0; i < Pool.actorCount; i++)
-                {   //allow dead actor corpses to activate switches
-                    if (Pool.actorPool[i].active &
-                        Pool.actorPool[i].compCollision.blocking &
-                        Pool.actorPool[i].compCollision.rec.Intersects(Obj.compCollision.rec))
-                    { overlap = true; }
-                }
+                    //loop over all active actors
+                    for (i = 0; i < Pool.actorCount; i++)
+                    {   //allow dead actor corpses to activate switches
+                        if (Pool.actorPool[i].active &
+                            Pool.actorPool[i].compCollision.blocking &
+                            Pool.actorPool[i].compCollision.rec.Intersects(Obj.compCollision.rec))
+                        { overlap = true; }
+                    }
 
-                //loop over all active blocking roomObjs
-                for (i = 0; i < Pool.roomObjCount; i++)
-                {   //only blocking objs can activate switches
-                    if (Pool.roomObjPool[i].active & 
-                        Pool.roomObjPool[i].compCollision.blocking &
-                        Pool.roomObjPool[i].compCollision.rec.Intersects(Obj.compCollision.rec))
-                    { overlap = true; }
-                }
+                    //loop over all active blocking roomObjs
+                    for (i = 0; i < Pool.roomObjCount; i++)
+                    {   //only blocking objs can activate switches
+                        if (Pool.roomObjPool[i].active &
+                            Pool.roomObjPool[i].compCollision.blocking &
+                            Pool.roomObjPool[i].compCollision.rec.Intersects(Obj.compCollision.rec))
+                        { overlap = true; }
+                    }
 
-                //if any actors/objs overlap switch, openTrap doors
-                if (overlap)
-                {   
-                    Functions_GameObject_Dungeon.OpenTrapDoors();
-                    //bail if we already did this
-                    if (Obj.type == ObjType.Dungeon_SwitchDown) { return; }
-                    Functions_GameObject.SetType(Obj, ObjType.Dungeon_SwitchDown);
-                    Functions_Particle.Spawn(
-                        ObjType.Particle_Attention,
-                        Obj.compSprite.position.X,
-                        Obj.compSprite.position.Y);
-                    Assets.Play(Assets.sfxSwitch);
-                }
-                //else close all open doors to trap doors
-                else
-                {   
-                    Functions_GameObject_Dungeon.CloseTrapDoors();
-                    //bail if we already did this
-                    if (Obj.type == ObjType.Dungeon_Switch) { return; }
-                    Functions_GameObject.SetType(Obj, ObjType.Dungeon_Switch);
-                    Functions_Particle.Spawn(
-                        ObjType.Particle_Attention,
-                        Obj.compSprite.position.X,
-                        Obj.compSprite.position.Y);
-                    Assets.Play(Assets.sfxSwitch);
+                    //if any actors/objs overlap switch, openTrap doors
+                    if (overlap)
+                    {
+                        Functions_GameObject_Dungeon.OpenTrapDoors();
+                        //bail if we already did this
+                        if (Obj.type == ObjType.Dungeon_SwitchDown) { return; }
+                        Functions_GameObject.SetType(Obj, ObjType.Dungeon_SwitchDown);
+                        Functions_Particle.Spawn(
+                            ObjType.Particle_Attention,
+                            Obj.compSprite.position.X,
+                            Obj.compSprite.position.Y);
+                        Assets.Play(Assets.sfxSwitch);
+                    }
+                    //else close all open doors to trap doors
+                    else
+                    {
+                        Functions_GameObject_Dungeon.CloseTrapDoors();
+                        //bail if we already did this
+                        if (Obj.type == ObjType.Dungeon_Switch) { return; }
+                        Functions_GameObject.SetType(Obj, ObjType.Dungeon_Switch);
+                        Functions_Particle.Spawn(
+                            ObjType.Particle_Attention,
+                            Obj.compSprite.position.X,
+                            Obj.compSprite.position.Y);
+                        Assets.Play(Assets.sfxSwitch);
+                    }
                 }
             }
 

@@ -60,31 +60,43 @@ Today:
 
 
 
-
-Coliseum ++
-
-upon coliseum challenge completion, we should respawn in
-the coliseum interior, not exterior field level. this makes it easier
-to do challenges in a row, and only get kicked to overworld if we die.
-done.
-
-
-
-
-
-
-
-
-
 Puzzles and Cheats++
 
-if a room with a switch in it has been solved, (visited)
-then remove the floor switch obj post room build. 
-no, we need an obj that looks like a down switch, that 
-really does nothing - or it autosolves the puzzle, which
-we could then use as a cheat! auto-solve dungeon puzzles.
-yessssssss...
-this makes backtracking through dungeons less of a chore.
+Switch Down Perm Obj++
+
+this obj represents a solved version of a down dungeon button.
+it shares the same sprite. and it's used to change a room's 
+puzzle from a switch one to a solved version of that puzzle,
+based upon 3 values: flags.hardMode, flags.autoSolve, and if
+the room has been visited before if hard mode is false.
+
+Torches Bug 
+
+if 4 torches exist in a room, you need to unlight and relight
+one to trigger the 4 torches routine to open doors. this shouldn't
+lock if 4 torches are already lit.
+fixed, by only counting unlit torches in SetupPuzzle().
+
+AutoSolv Cheat++ 
+
+add new cheat for autosolving to cheats screen.
+enabling this cheat will also open the trap doors for
+the current room, and clear the puzzle type.
+
+updated switch ai routine to check room puzzle type,
+allowing switches to only work in a switch puzzle context,
+which is set by setupPuzzle(). this allows the cheat screen
+call() to open trap doors to actually work, otherwise,
+the next frame the ai would evaluate and close the doors.
+
+
+
+
+
+
+
+
+
 
 
 

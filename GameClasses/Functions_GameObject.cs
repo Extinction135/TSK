@@ -920,7 +920,8 @@ namespace DungeonRun
 
             #region Floor Switches
 
-            else if (Type == ObjType.Dungeon_Switch || Type == ObjType.Dungeon_SwitchDown)
+            else if (Type == ObjType.Dungeon_Switch || Type == ObjType.Dungeon_SwitchDown
+                || Type == ObjType.Dungeon_SwitchDownPerm)
             {
                 Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compCollision.offsetX = -4; Obj.compCollision.offsetY = -3;
@@ -934,6 +935,7 @@ namespace DungeonRun
                 else { Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_FloorSwitchDown; }
                 //this makes the switch work
                 Obj.getsAI = true;
+                if (Type == ObjType.Dungeon_SwitchDownPerm) { Obj.getsAI = false; }
             }
 
             #endregion

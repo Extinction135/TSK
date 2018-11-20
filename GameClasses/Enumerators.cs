@@ -401,8 +401,9 @@ namespace DungeonRun
         Dungeon_Flamethrower,
         Dungeon_IceTile,
 
-        Dungeon_Switch,
-        Dungeon_SwitchDown,
+        Dungeon_Switch, //the up switch, becomes down
+        Dungeon_SwitchDown, //down requires obj or actor on it
+        Dungeon_SwitchDownPerm, //special, bypasses switch puzzle
 
         Dungeon_SwitchBlockBtn,
         Dungeon_SwitchBlockDown,
@@ -870,7 +871,7 @@ namespace DungeonRun
         CheatsUnlockAll,
         CheatsClipping,
         CheatsInfiniteFairies,
-
+        CheatsAutoSolvePuzzles,
 
         #endregion
 

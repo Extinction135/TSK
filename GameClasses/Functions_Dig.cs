@@ -342,8 +342,11 @@ namespace DungeonRun
                         || Pool.roomObjPool[d].type == ObjType.Dungeon_SwitchBlockDown
                         || Pool.roomObjPool[d].type == ObjType.Dungeon_ConveyorBeltOff
                         || Pool.roomObjPool[d].type == ObjType.Dungeon_ConveyorBeltOn
+
                         || Pool.roomObjPool[d].type == ObjType.Dungeon_Switch
                         || Pool.roomObjPool[d].type == ObjType.Dungeon_SwitchDown
+                        || Pool.roomObjPool[d].type == ObjType.Dungeon_SwitchDownPerm
+
                         || Pool.roomObjPool[d].type == ObjType.Dungeon_BlockSpike
                         || Pool.roomObjPool[d].type == ObjType.Dungeon_SpikesFloorOff
                         || Pool.roomObjPool[d].type == ObjType.Dungeon_SpikesFloorOn

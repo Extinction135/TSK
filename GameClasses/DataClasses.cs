@@ -40,9 +40,13 @@ namespace DungeonRun
         //option flags
         public static Boolean PlayMusic = false; //turns music on/off
         public static Boolean PlaySoundFX = true; //turns soundfx on/off
-        public static Boolean HardMode = false; //makes the game harder
         public static Boolean CameraTracksHero = false; //camera tracks hero or centers to dungeon room
         public static Boolean IgnoreRoofTiles = false; //enable/disable pickup/selection of roofTiles
+        public static Boolean HardMode = false; //forces dun.room puzzle setup
+
+
+
+
 
         //cheat flags
         public static Boolean Invincibility = true; //does hero ignore damage?
@@ -56,6 +60,15 @@ namespace DungeonRun
         public static Boolean Clipping = false; //removes hero from collision/interaction/exit routines
         public static Boolean FuzzyInput = false; //fuzz controller input each frame (for testing) 
         public static Boolean InfiniteFairies = false; //hero always has fairy in a bottle
+        public static Boolean AutoSolvePuzzle = false; //solve dun.room puzzles (torches + switches)
+
+
+
+
+
+
+
+
 
 
         static Flags()

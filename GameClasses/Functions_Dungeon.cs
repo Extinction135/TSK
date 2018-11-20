@@ -148,17 +148,8 @@ namespace DungeonRun
             Functions_Room.BuildRoomXmlData(RoomXmlData);
             //add decorative objs and check for torches/switches/etc..
             ProcedurallyFinish(LevelSet.dungeon.currentRoom);
-
-            if (Flags.HardMode)
-            {   //setup the rooms puzzle everytime hero enters it
-                SetupPuzzle(LevelSet.dungeon.currentRoom);
-            }
-            else//puzzle rooms on normal mode only require solving once
-            {   //if this room hasn't been visited, setup any puzzle it contains
-                if (LevelSet.dungeon.currentRoom.visited == false)
-                { SetupPuzzle(LevelSet.dungeon.currentRoom); }
-            }
-
+            //always call the puzzle setup routine
+            SetupPuzzle(LevelSet.dungeon.currentRoom);
             Assets.Play(Assets.sfxDoorOpen); //play door sfx
         }
 
@@ -410,34 +401,49 @@ namespace DungeonRun
             Functions_Room.Cleanup(Room);
         }
 
+
+
+        static int torchCount;
         public static void SetupPuzzle(Room Room)
-        {   //this is called at the end of a room build
-            //this overwrites enemy puzzle type rooms
-            //meaning switches and torches have higher priority than enemies
-
-            int torchCount = 0;
-
+        {
+            //this is called at the end of a room build
+            torchCount = 0;
             for (i = 0; i < Pool.roomObjCount; i++)
             {
                 if (Pool.roomObjPool[i].active)
-                {   //if there is an active switch in the room
+                {   //if there is an active switch in the room - this is a switch puzzle
                     if (Pool.roomObjPool[i].type == ObjType.Dungeon_Switch)
-                    {   //set the room puzzleType and bail from method
-                        Room.puzzleType = PuzzleType.Switch;
-                        Functions_GameObject_Dungeon.CloseDoors(); //convert all openDoors to trapDoors
-                        return;
+                    {
+                        //if autosolve cheat is enabled, convert switch to perm down version
+                        if (Flags.AutoSolvePuzzle) 
+                        { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_SwitchDownPerm); }
+                        //if game isn't in hard mode, and we already visited this level, convert it too
+                        else if (Flags.HardMode == false & Room.visited == true)
+                        { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_SwitchDownPerm); }
+
+                        //if this room hasn't been visited, setup any puzzle it contains
+                        //if (LevelSet.dungeon.currentRoom.visited == false) { }
+
+                        //we haven't visited this room, or the game is in hard mode
+                        else
+                        {   //setup the switch puzzle
+                            Room.puzzleType = PuzzleType.Switch;
+                            Functions_GameObject_Dungeon.CloseDoors(); //convert all openDoors to trapDoors
+                            i = Pool.roomObjCount; //end loop
+                        }
                     }
-                    else if (Pool.roomObjPool[i].type == ObjType.Dungeon_TorchUnlit
-                        || Pool.roomObjPool[i].type == ObjType.Dungeon_TorchLit)
-                    { torchCount++; } //count all the lightable torches
+                    //count all the unlit torches
+                    else if (Pool.roomObjPool[i].type == ObjType.Dungeon_TorchUnlit)
+                    { torchCount++; } 
                 }
             }
+
             //check for more than 3 torches, if 4 or more, then 4 need to be lit
             if (torchCount > 3)
             {   //convert all openDoors to trapDoors
                 Room.puzzleType = PuzzleType.Torches;
                 Functions_GameObject_Dungeon.CloseDoors();
-            }
+            }   //torches > switches
         }
 
 

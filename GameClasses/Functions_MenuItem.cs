@@ -580,6 +580,13 @@ namespace DungeonRun
 
 
 
+            else if (Type == MenuItemType.CheatsAutoSolvePuzzles)
+            {
+                MenuItem.name = "Auto-solve Room Puzzles";
+                MenuItem.description = "Handles switches,\n aand torches.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_CheatOn;
+            }
+
             #endregion
 
 
