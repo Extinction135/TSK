@@ -10,12 +10,6 @@
 
 
 
-
-Tweens
-
-
-
-
 unarmored spiders++
 they need to retreat in a random direction for 4 seconds,
 away from hero, plus a random push sometimes. this makes their
@@ -26,29 +20,18 @@ jump attack, from rescue dog.
 
 
 
+
+
 Player2 Input
 
 *we are not modeling player2 input at all right now.
 *we need to do this.
 
-
-Creatures Fang++
-creatures fang should destroy objects - it doesn't.
-this means some enemies can't destroy objects at all.
-
-
-
-Big Chests
-
-big chests should exist in dungeons, and reward the master key.
-this allows smaller chests to exist outside of keyroom and dungeons
-altogether. also, we could randomly reward player with loot when
-they open the chest, including magic or fairys or whatever.
-
-
-
-
-
+Coliseum ++
+if a second controller is plugged in, 2nd player should be able to control any miniboss
+or boss in the coliseum, so players can fight each other. this also opens up a cheat where
+a player can have a boss just sit there with 2nd controller input inactive and farm them,
+but it's just easier to enable to inf gold cheat from the cheat screen, so why not?
 
 Allow Player 2 to Control the Doggo
 
@@ -65,6 +48,10 @@ if there is no controller 2, no pet.
 if there is no controller 2 input, no movement.
 pet cannot die, isn't actor, is roomObj with primitive inputs.
 
+while in battle with boss, player can choose to control boss or doggo,
+if doggo has been adopted. *this also allows for testing of bosses, using
+a second controller, so we get to keep that logic seperate from main input.
+yay!
 
 
 
@@ -73,33 +60,35 @@ pet cannot die, isn't actor, is roomObj with primitive inputs.
 
 
 
-notes:
-torches should be common objs, as they exist outside
-of dungeons. same with map, key, flamethrower, ice tile,
-fairy, explosive barrel, pit, pit bridge, conveyor belt,
-enemy spawns, and finally pit spikes on/off.
 
-this may make the dungeon sheet sizeable down a power.
-YES WE CAN! and up next, the dungeon sheets will drop to
-128x128 sheets, reducing the ram footprint of the game.
-which is good, if you are planning on porting to ram
-restricted systems... 
+Creatures Fang++
+creatures fang should destroy objects - it doesn't.
+this means some enemies can't destroy objects at all.
 
 
 
 
-Coliseum++
 
-we need 'windows' that look into the coliseum,
-like the overworld sprite depicts. plus, I don't like
-how the coliseum level is unbalanced and to the right.
-instead, the coliseum - and all subsequent coliseums -
-will be entrance centered to level, north of spawn.
-this 'presents' the level much better, because coliseums
-have no required puzzle for entry.
 
-a window is a 3x4 obj, with baked in bkg.
-so this saves us a lot of roomObjs.
+Big Chests
+
+big chests should exist in dungeons, and reward the master key.
+this allows smaller chests to exist outside of keyroom and dungeons
+altogether. also, we could randomly reward player with loot when
+they open the chest, including magic or fairys or whatever.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -127,17 +116,12 @@ houses can look much better.
 
 
 
-Water++
-
-*we could have animated floating lily pads, much like the animated
-flowers that sit over the grass levels. this would add some decoration
-to the otherwise bland sea water.
 
 
 
 
-*need to make boat anchor object - this is already in common objs,
-and can be used to further decorate piers.
+
+
 
 
 
@@ -222,13 +206,6 @@ DEATH MOUNTAIN LOCATIONS+++
 
 
 
-Dungeons++
-
-when player defeats the boss of dungeon, the skull
-on the overworld needs to collapse. just the top part
-though - and it should smoke as if it's been changed.
-this is to visually signify that the dungeon has been
-beaten - ala SMB.
 
 
 
@@ -241,12 +218,11 @@ beaten - ala SMB.
 
 
 
-
-> no chickens? no chicken sounds unless obj hit. then cluck. add chicken to town.
-
-
-
-
+> no chickens? no chicken sounds unless obj hit. then cluck. 
+add chickens to town, dungeon room variation of dungeon vendor.
+this dungeon vendor should exist in a square room, which we have
+more of. there should be two variations - one with the vendor + sign,
+and one with a chicken and sign that's different.
 
 
 art++
@@ -255,8 +231,11 @@ make spectators much more brown and less obvious
 
 
 
-editor++
-signpost shold be part of env objs widget (is part of dungeon widget)
+
+
+
+
+
 
 
 
@@ -368,7 +347,15 @@ upon it's returning state.
 
 
 
+>>>when does this happen? once all dungeons are created?<<<<
+Dungeons++
 
+when player defeats the boss of dungeon, the skull
+on the overworld needs to collapse. just the top part
+though - and it should smoke as if it's been changed.
+this is to visually signify that the dungeon has been
+beaten - ala SMB.
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
 
@@ -489,50 +476,6 @@ somewhere on one of these islands.
 
 
 
-Actor Refs
-
-a projectile's caster should be an actor reference.
-if a projectile's caster is null, then it should have no behavior.
-this is because some gameobjects cast projectiles,
-but in that case the projectile wouldn't have any behavior
-related to the caster.
-
-this simplifies the current system for handling projectiles,
-which uses the moveComponent. using this moveComp, projectile.update
-attempts to prevent projectiles from ovrelapping with their casters,
-but this is based on the compMove and not the hitBox, which is
-actually the target of importance. we need to have access to
-the entire actor object, not just it's compMove! we need to
-touch the actor's hitBox from projectile.update, and we can't currently.
-once we do this, we can check and align projectiles to the actor's
-hitBox, and then larger enemies can have larger hitboxes while also
-being able to cast projectiles...
-plus, projectiles could properly implement their behaviors - by
-tracking the actor's hitbox instead of their newPosition..
-
-Improve Projectile.Spawn()
-
-*miniboss cant shoot fireballs south - why?
-?= pro.spawn() assumes that the actor's collRec is 16x16 - it shouldn't.
-this means only 16x16 actors can safely shoot fireballs without damaging
-themselves, which is some valve level stupid. this method should take
-the actor as a parameter, and then we should base the offsets FOR ALL
-PROJECTILES off of the actor's collision rec width and height. this
-would allow larger actors, like bosses, to SHOOT FIREBALLS. geez.
-
-Special Attacks / Boss "USE"
-bigeye uses the shut + bloodshot frames for his special.
-bigeye: spawns A TON of exploding seekers while in his special.
-
-
-
-Difficulty
-
-+++++ we need to be able to scale the dungeon difficulty (complexity)
-based on the difficulty settings of easy, medium, hard.
-easy creates simple dungeons, medium has the spectrum,
-hard is size 2-3 dungeons, and maybe we have expert level too,
-where all dungons are size 3 or greater.
 
 
 
@@ -540,9 +483,9 @@ where all dungons are size 3 or greater.
 
 
 
-Puzzles++
-if a room with a switch in it has been solved, (visited)
-then remove the floor switch obj post room build.
+
+
+
 
 
 
@@ -553,7 +496,8 @@ Ship Roof
 put a house or roof objs on a SHIP and have a captain's
 quarters or steering area ontop of the ship deck.
 maybe even have stairs up to it. this could be part of an
-abandoned ship, or broken ship. 
+abandoned ship, or broken ship. this needs to look different
+tho- like a ship roof.
 
 
 
@@ -572,14 +516,42 @@ here, take them. he'd want you to have them.."
 and then he returns to wistling his tune, just as before.
 this is how link acquires the bag of magic beans.
 
+Fishing
+a fish obj can live in water tiles, hiding from link, displayed
+as an underwater object. if link is swimming and uses the net,
+he may catch the underwater fish in a bottle.
+*we could also have a fishing minigame, where player mashes X
+*using net in water could also pick up underwater objects
+
+Houses in Water (fisherman's house)
+
+can we build a house over water tiles? 
+sure, why not? this means we can build an
+entire town in the ocean...
+
+do a mockup of this in a town by the water.
+
+Swim Instructor NPC - should be near house in water.
+
+we need a swim instructor NPC that stands in front of a large pond.
+has dialog like:
+
+do you know how to swim? i'm sure you do.
+just hop in the water.
+
+press B while moving to swim faster.
+press X to dive underwater for a bit.
+
+while underwater, enemies can't see you,
+but you swim slower. 
+
+try picking up objects and carrying them
+into the water as well. have fun!
+
+make the pond an actual pool-like arrangement.
 
 
 
-
-
-Art++
-grass that is burned should become a different sprite,
-like a burned grass sprite.
 
 
 
@@ -593,11 +565,9 @@ the blacksmith.. he has explosive barrels nearby
 
 
 
-
 Quest items should complete by rewarding player with a useful or interesting
 item, like the raft. but, it appears in that questline's menuItem slot on the
 UI - so we aren't wasting that space once the quest completes.
-
 
 
 
@@ -606,6 +576,10 @@ we need to decorate each vendor as special, and really think
 about how we dispay them. quickly, but also intuitively and cool
 looking. the current menu system is satisfactory, but would
 look better with larger, custom pixel art for each vendor.
+these vendors should also animate, with custom pixel art frames,
+not 16x16 sprites. this adds another layer of art to the game.
+we can do a modern anime style or more traditional mange style.. depends..
+
 
 
 
@@ -699,11 +673,7 @@ wind and it coming towards them - allowing them to dodge.
 
 
 
-Coliseum ++
-if a second controller is plugged in, 2nd player should be able to control any miniboss
-or boss in the coliseum, so players can fight each other. this also opens up a cheat where
-a player can have a boss just sit there with 2nd controller input inactive and farm them,
-but it's just easier to enable to inf gold cheat from the cheat screen, so why not?
+
 
 
 
@@ -838,11 +808,6 @@ farmer + chicken coup (after wife comes back)
 
 
 
-
-
-locations are connected by lines, which are drawn at 20% alpha.
-when hero lands on a location, it's lines light up to 80% alpha.
-this visually shows the player the available locations.
 
 
 
@@ -1029,50 +994,11 @@ or in this case - not flooded.
 
 
 
-Burning Bushes ++
-
-burning bushes dont transfer fire south to other bushes.
-this can be fixed by touching the expanding hitbox in ai functions.
-it should expand further south in it's vertical spread check.
-
-
-
-Grass++
-
-cut grass should grow into tall grass if near coastlines,
-or filled ditches. 
 
 
 
 
 
-
-Houses in Water
-
-can we build a house over water tiles? 
-sure, why not? this means we can build an
-entire town in the ocean...
-
-do a mockup of this in a town by the water.
-
-Swim Instructor NPC - should be near house in water.
-
-we need a swim instructor NPC that stands in front of a large pond.
-has dialog like:
-
-do you know how to swim? i'm sure you do.
-just hop in the water.
-
-press B while moving to swim faster.
-press X to dive underwater for a bit.
-
-while underwater, enemies can't see you,
-but you swim slower. 
-
-try picking up objects and carrying them
-into the water as well. have fun!
-
-make the pond an actual pool-like arrangement.
 
 
 
@@ -1213,59 +1139,9 @@ hand placed.
 
 
 
-Intro / Demo?
-the boat acts as a very short training/intro level.
-link initially starts out on boat level, without ability to
-exit boat (no stairs). there is one enemy on board that link
-has to defeat - and he has some hp. the captain obj exists
-on board, talking with him begs link to kill the pirate.
-once link defeats the pirate, the captain changes to the hands
-up animtion with exclamation point particle. link speaks
-with captain completing the first story boolean: save
-the captain. captain thanks link for saving his life and 
-turns into the standard captain obj.
-
-on this intro level, however, player can only select sm island
-destination. the captain says it's the closest location that 
-has supplies so he can repair his ship.. 
-*link discovers the hyrule tournament poster on this tiny island*
-(which would then open Hyrule as a destination on the boat)
-this would also introduce the player to
-a smaller overworld map and moving between locations, plus
-it would be interesting to switch overworld maps so early
-in the game - alluding to a larger game scope and complexity.
-*the 'supplies' are a reward for defeating a miniboss in
-a special intro dungeon on the island. in the supplies is a 
-poster for a tournament in hyrule.
 
 
 
-
-
-
-
-
-
-Editor++
-
-we need to be able to mass select and move objects.
-drag a rectangle around objects, move them in 16 px
-increments using arrow keys. button up on top menu
-allows for 'mass move' mode.
-
-
-
-
-
-
-Magic Mirror
-use it in a dungeon to return to the exit (starting room). 
-exiting dungeon takes us to field.
-using magic mirror in field level takes hero to overworld screen.
-
-it does not serve as a connection between worlds, because it has
-been broken. the history of why it was broken can be explained.
-*need sprite in ui sheet
 
 
 
@@ -1359,14 +1235,6 @@ that maybe they don't need to attack the blobs.
 
 
 
-tell the backstory of the gameboy rom instead of
-telling the backstory of the game, from the title screen.
-include pictures.. make people believe, this
-creates a mythos that will bait and hook people into playing.
-
-
-
-
 HammerTime (sry, had2)
 create and implement hammer weapon.
 this is used to flatten some objects, & break armor.
@@ -1375,8 +1243,6 @@ breaking armor should be noted in the flavor text.
 armor can be broken using shovel or hammer.
 
 
-opening a portal to dark world should spawn a bunch of bat
-projectiles in all directions as a decoration, along with smoke poofs.
 
 
 
@@ -1443,21 +1309,6 @@ add *king's tournament challenge*
 
 
 
-Colliseum walls++
-make colliseum walls function just like mountain walls,
-pushing hero south. this means we need to add top + bottom wall
-sections - which will further reduce objects in the colliseum,
-since we are using pillar tops to 'seal' the wall up top.
-instead just make a top colliseum wall sprite, since its
-needed to climb up and exit walls anyway. then, we can add
-footholds to the colliseum's back wall, if player wants to
-climb around while a challenge is happening. we can even 
-make the back wall alot taller with more footholds too.
-
-
-
-
-
 
 additional achievements to add:
 cutting bushes achievement.
@@ -1466,18 +1317,8 @@ burning grass / objects achievement.
 
 
 
-
-
-
 *build level with spike blocks over water.
 have to dive underwater to avoid them...
-
-
-
-
-
-
-
 
 
 
@@ -1543,41 +1384,6 @@ somewhere else (level) or just damage push him.
 
 
 
-EDITOR +++++++++
-
-editor++
-it would be nice to be able to toggle roofs on/off.
-and hide their collisionrecs too, so we can't accidentally pick them up.
-
-
-
-
-
-
-Magic Mirror
-- returns link to dungeon entrance.
-- plays warp sound fx
-should call Level.BuildLevel(Level.ID),
-which will cause the level to fade in from black,
-and place hero at the entrance the dungeon again.
-*this should only work in a dungeon. 
-*magic mirror doesn't warp hero out of dark world
-back to light world like lttp did. 
-instead, magic mirror "reflects link's true image,
-keeping him human in the dark world".
-
-Whe link is first pulled into the dark world,
-his magic mirror should get cracked, so he becomes
-the familiar bunny again. this time he has to seek 
-out someone who can repair his magic mirror before
-he can become himself again. during this time,
-bunny link can only walk, dash, interact, pickup,
-throw, hide/sneak, swim, dive, and swim dash.
-no attacking or using items. the idea is to 
-make this part of the game a stealth mission:
-sneak past the overpowering enemies as a bunny,
-repair your magic mirror, and THEN fight.
-
 
 
 
@@ -1612,107 +1418,13 @@ take longer to push. /rantOver.
 
 
 
-Darkworld Map
-idea: keep most of the locations the same in darkworld map,
-so it seems like the two worlds are related. there can be some
-different locations, sure, but don't deviate too much.
-we'll need a dark world overworld map + screen.
-this means we can move most functionality out of
-overworld screen and into a base class, then just
-change the locations, neighbors, and corresponding levels
-for light + dark overworld screens.
-
-
-
-
-How are Darkworld levels / dungeons handled?
-the game sees no real difference between light and dark world
-levels and rooms, it's really just a texture change + different
-enemies + objects. 
-darkworld map locations point to specific xml.
-lightworld map locations point to different xml.
-darkworld dungeon rooms use same roomData as lightworld dungeons.
-but, darkworld dungeon has different sprites + music,
-plus different enemies spawn.
-*this means we can't have turtles and rats in rooms.
-*instead model this as a basic roomObj enemy, 
-and choose randomly from a list. maybe its a rat,
-maybe it's a bat. as long as it 'fits' the dungeon, who cares.
-
-
-
-
-
-
-Transitions Between Dark and Light Worlds
+Transitions Between Dark and Light rooms
 this happens in a level, via a special portal object.
 for now, we will use lttp's standard portal, but it will
 only work one way: touching this portal closes the level,
 and open the darkworld or lightworld map screen, depending
 on if link was in the dark or light world when he touched
 the portal. this doesn't transition between rooms.
-
-
-
-Light & Dark World Sprites
-lightworld forest entrance should be opening in trees
-dark world should be horrific tree trunk thing we have rn.
-
-
-
-
-
-
-Mountain Level++
-the summit, contains summit related things...
-the mountain dungeon entrance is NOT on the summit, because
-it would be difficult and time consuming to climb all the way back
-up when player has died in the dungeon. at the summit we could
-have an overlook - which creates a screen with nice concept art and music.
-like the player was looking at hyrule from atop a mountain.
-
-
-
-Force Player to Save Their Game upon an Exit
-
-this is from inventory menu. the player's latest data
-is sitting in autosave (playerData.current), and we need
-to save it to one of the 3 game data files. when we call
-exit, pop a save screen - hopefully player will understand
-they need to save their game before exiting.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1739,25 +1451,12 @@ can throw bombs. can attack with swords.
 
 
 
-Pathing
-
-We need dirt paths, without using alot of sprite space up.
-we could do vert transition to dirt + hori trans to dirt,
-but never actually have a dirt tile. putting two of these
-together could build a path, and then we just need corners.
-so, minimum of 4 - likely 6.
-
-
-
-
 HitBoxes++
 we're always expanding and contracting the hitBox.
 we need dedicated methods for doing this.
 we need to override/replace/rewrite xna's rectangle class.
 but we need to keep the intersects() and contains() methods,
 as they are, as fast as they are.
-
-
 
 
 
@@ -1774,7 +1473,7 @@ the someone that he is to meet.. this is possibly the
 3rd world in the game.. the 'machine world'..
 where link could fight awesome mech enemies,
 in some vain attempt to save the living from the
-machines.. sure, why not?
+machines.. sure, why not? ridic dlc ++
 
 
 
@@ -1786,39 +1485,7 @@ machines.. sure, why not?
 
 
 
-Exploit : Trap Door Pit Teleport
 
-the majority of what i do as a game developer is deal
-with cause and effect, how systems interact, and designing
-systems that do their job BUT ALSO get along with the
-other systems that exist in the global namespace (ecosphere).
-
-currently the system designed to track what door link
-went thru last is causing a problem with the system that
-represents the pit's functionality. this occurs in this
-particular state, and likely in others:
-
-hero enters a puzzle room where the doors become trap
-doors (this is only way to get trap doors). hero moves
-to a different trap door, touching it, activating it
-as the last door 'entered'. hero is then pushed, or
-falls into a pit (maybe with a certain direction).
-this causes the pit to pull hero in, then call 
-RespawnInCurrentRoom() on the hero, teleporting him
-to the last touched door, the 2nd trap door. with
-enough inertia, the hero can overcome the trap door's
-initial frame of pushing, and link can pop out into
-the room on the other side of the 2nd trap door.
-i experienced this exploit personally. not sure if
-it would work on vertical North/South doors, as
-it only happened to me for East/West doors.
-this is *likely* what's happening, tho I'm not
-exactly sure - but I do know how to fix it.
-
-the fix is simply to remove trap doors from the
-routine that sets the last 'touched' door / active door.
-in fact, only open doors or bombed doors should be
-set as the last / active door.
 
 
 
@@ -1844,12 +1511,7 @@ migrate hero's interaction rec and interaction rec functions into actor class.
 
 
 
-Implement Cane of Somara (or whatever)
-this is the cane that creates blocks that are pushable.
-this makes it MUCH easier to get thru dungeons, as many
-rooms rely on floor switches, which link can simply
-create a block over. if a block is created ontop of
-a blocking roomObject, the block ...
+
 
 PLATFORMS + BUILDING
 i like the idea of building platforms to cross pits or areas of insta-death.
@@ -1883,27 +1545,6 @@ what does this do? it should have a purpose.
 Should be able to light link on fire.
 dashing has a chance to put fire out.
 water puts fire out immediately.
-
-
-
-
-
-MetalGear++
-
-pickup an object. press x to enter 'sneaking' mode.
-while sneaking, link crouches down with object mostly
-covering him, moving very slowly. enemies cannot see link
-while he is sneaking in this mode. every 255 frames,
-kick link out of sneaking mode, so player has to keep
-managing the sneak via X button press.
-
-as of now, we're only checking if link is underwater.
-we should model this instead using a 'hidden' boolean.
-if link is hidden, enemies can't see him, dont chase/attack him.
-if link is underwater, he is hidden.
-if link is sneaking, he is hidden.
-
-
 
 
 
@@ -2019,23 +1660,10 @@ etc...
 
 - Non-room repeating Dungeon, additional rooms
 
-- room keys - these only work for the room and only unlock 1 door, and
-these rooms turn all their doors into locked doors upon close, similar to puzzled rooms
-link doesn't put them into inventory - he literally picks them up and walks over
-to a locked door then throws the key at it.
-this is kinda like super mario world style key gameplay.
-if obj.type == key & obj.hitBox.intersects lockedDoor.hitBox,
-convert lockedDoor to openDoor, release() key.
-- or - we put the key as a menuItem in inventory,
-and clear that inventory item when link enters a new room (pre-build).
 
 
 
 
-
-
-	
-	
 	
 Dancing
 standing still, press B to make link randomly dance.
@@ -2055,12 +1683,7 @@ contained within NPCs.
 
 
 
-Fishing
-a fish obj can live in water tiles, hiding from link, displayed
-as an underwater object. if link is swimming and uses the net,
-he may catch the underwater fish in a bottle.
-*we could also have a fishing minigame, where player mashes X
-*using net in water could also pick up underwater objects
+
 
 
 
@@ -2114,9 +1737,6 @@ which would be game breaking. also, we need atleast 10 fo each row, square, colu
 
 
 
-when we change rooms, we reset the particle pool (hopefully)
-when we call that reset, we should be resetting ALL particles,
-even ones that are alive currently.
 
 
 
@@ -2141,20 +1761,6 @@ if link touches him, link dies. reaper is unkillable,
 and can change directions randomly, or bounce like 
 spikeblock, etc.. reapers would roam mostly around
 dark world graveyards or death-related levels.
-
-
-
-
-Arrows++
-
-arrows should stick into objects until they expire from age.
-when the arrow hits an obj, the obj becomes the arrows caster,
-and arrow then tracks to it's caster with it's offset from obj (that frame).
-this will cause arrows to stick into objs, even objs that move.
-we can even switch this arrow projectile for a stuck arrow projectile,
-that is simply decoration (we must keep arrow as projectile so it can track to caster)
-
-
 
 
 
@@ -2184,14 +1790,6 @@ same with hit sound, death sound, use sound.
 
 
 
-
-input polish
-when moving the joystick diagonally, the input *should* split evenly between up and say right.
-if i'm 60% up and 40% right, it should be up. right now, that diagonal just sets to right.
-even if it's 90% up and 10% right, it's set to right. it should be a 50/50 split.
-that will increase the precision of sloppy diagonal weapon attacks, aiming their intended direction.
-**this is not related to input direction, but rather it's related to how we resolve the player's
-facing direction to the cardinal casting direction of the arrow projectile, for example.
 
 
 
@@ -2346,22 +1944,6 @@ and start it all over again. lol.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-slow finish / build becuase we call cleanRoom() twice, which is dumb af
-
-
-
 Darkworld hand enemy:
 this is the dungeon hand enemy from the dark world forest dungeon.
 drop randomly from the top of the screen, or burrows from underneath the ground.
@@ -2446,18 +2028,6 @@ freeze an enemy, sprinkle magic powder on them, smash with a hammer = full magic
 
 
 
-Implement Dynamic Shadows System
-
-an object pool for shadows would be great
-objects / actors could have a field for a shadow sprite reference
-then we could store a shadow offset, which allows us to fake depth on the Z axis
-if we keep the shadow in one place, while raising the obj/act, then we get depth off the ground
-this also sets the stage for flying obj/actors, as they would have changing shadow positions.
-this also means we need to 'unbake' the shadows from ALL objects and actors.
-
-
-
-
 Special Sword Attack
 should be able to charge up attack and spin just like Lttp.
 
@@ -2513,19 +2083,6 @@ then instead of drawing 200 floor sprites, we just draw 1 larger floor sprite
 
 
 Lttp Stuff we're missing:
-
-Keys!!!
-**we could have 'keys' in the game, which would be temporary for the room only
-the doors would shut and convert to locked versions, or only some of them would.
-inside the room is a chest that contains a key. hero picks up the key, unlocks 
-a door, key is used, continues on. the room resets, works the same later on.
-the key would be displayed in the inventory screen as a brittle rusty key.
-and when it's used, the key breaks. the flavor text says that the key will
-likely break after one use.
-
-we could lock one door randomly, or we could lock ALL THE DOORS, and then 
-force the player to choose which door they want to unlock.
-
 
 PULLABLE LEVERS
 these are built into the wall and open shut doors, just like a switch
@@ -2605,19 +2162,6 @@ just like hearts, this item should be sold be the items vendor.
 
 
 
-Arrows++
-when arrow collides with a blocking obj, 
-set arrow's speed to 0, increase it's friction slightly.
-it should 'sink' into a final position, inside the wall,
-where it will 'live' until frame 255, then be removed.
-this ONLY works on blocking objects without any magnitude.
-IF THE OBJ DOES HAVE A MAGNITUDE, 
-then we just kill the arrow upon collision.
-otherwise the obj would move, and the arrow wouldn't travel with it.
-and that would look WRONG.
-
-
-
 Slippery Slope!
 *if we slide a bomb across ice, then onto grass,
 the bomb keeps sliding as if it were on ice. it's a pro.
@@ -2648,28 +2192,7 @@ if life > 250, alpha = 100 - (life - 250) * 2;
 
 
 
-Explosion Surfing (Bomb Jumping)
 
-if an actor is hit, simply put them into a flying state.
-this will cause the actor to be able to fly across pits for a moment,
-but when the hit state ends, if they overlap the pit, they
-will be pulled in. but, this does allow a type of bomb jumping,
-or rather "explosion surfing". which sounds so much better.
-
-we could even put the actor into a 2nd type of hit state,
-a staggered state, which would hold the actor in the hit state for
-longer, allowing them to fly for longer, allowing them to cross
-single tile pits safely - and only an explosion would be able
-to set an actor into this 2nd hit staggered hit state.
-
-which, staggered seems like a poor name for this state.
-likely should be something like ExplosiveThrow, 
-so we know the actor is being thrown by an explosion.
-
-we can implement this now and ensure that bomb jumping is not
-only preserved, but supported officially in this game, and is
-known as explosion surfing, because you can also use fireballs
-to do these type of explosive throwing tricks.
 
 
 
@@ -2700,9 +2223,8 @@ any business or property over 99 rupees...
 
 OVERWORLD SCREEN MAP++
 add tiny smoke particles coming out of some houses
-add 'floating' animation to ship (should bob up and down)
-this means it needs to be a sprite in the main sheet
-make castlel ruins look more 'ruiny'
+
+
 
 
 MAGNETIC ISLAND
@@ -2860,21 +2382,6 @@ if actor.behavior[i] ==
 - throwsPots, picks up nearby pots, carrys them, and throws them at hero if hero is visible
 
 
-
-
-release strategies:
-
-1. goto reddit/gaming, find a top contributer.
-PM that contributor with a link to the youTube video,
-with a message along the lines of 'take the karma, i just want people
-to know my story'. the redditor should be capable of doing the rest,
-once they realize what they're watching. if they dont, just ping
-the top contributor each day until one bites and starts the hug of death.
-*you can also target r/videos
-*you can also target r/zelda
-
-2. spam 4chan with gifs that have the game's release link burned in,
-bypassing spam filters entirely.. lol
 
 
 

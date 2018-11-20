@@ -17,24 +17,40 @@ The Big 4:
 "The Gameworld is a character that reacts to the player."
 
 
-Roadmap (this is wrong rn)
-0.78 - 
-0.79 - Forest Islands
-0.80 - Lava Islands
-0.81 - Cloud Islands
-0.82 - Swamp Islands
-0.83 - Death Mountain Islands
-0.84 - Thieve's Hideout
-0.85 - Shadow Dungeon, Shadow King fight
-0.86+ - ???
+- Milestones -
+
+Forest Islands complete
+Death Mtn Islands complete
+Lava Islands complete
+
+Cloud Islands complete
+Swamp Islands complete
+Thieves Hideout complete
+
+Shadow Dungeon, TSK Fight complete
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 0.77 playthru: https://youtu.be/_b7qclGTffE
-
-
-
-
-
+0.78 goals:
+	more items (axe, hookshot, hammer, magic mirror)
+	more interaction (throwing objs, actors/objs in water, decorations)
+	better dungeon traversal (solved puzzles, marked map)
+	better coliseum - uniq objs + enemies
+	better overworld - more skulls, waves, cluds, vfx @skullIsland
+	smaller ram - dungeon sheets get smaller
+	fix projectile spawn system + enlarge boss hitboxes
 
 Today:
 
@@ -43,45 +59,20 @@ Today:
 
 
 
-Repo Migration
 
-semi-migrated repo to tsk naming convention,
-breaking all forks. i'm kinda scared to manually
-alter the cs project solution files for all the
-ports, so for now they'll stay named 'dungeonrun'.
+Cleaning Up
 
-changed watermark link to repo (shorter), and
-updated window title.
-
-sync'd changes to uwp port as well.
-455 changes to master? alright.
-
+updated design.md with words discussing development 
+of overworld. cleaned up ideas and setup a more realistic
+roadmap, based on how I see various systems and design
+choices coming together. I think items and interactions
+need to improve alongside dungeons and locations, which
+rely on underlying systems that really need to be updated.
+so, that's what I'll handle in the next version, which I
+think will improve the game in the 'right' direction.
 
 
 
-
-
-
-
-
-
-
-
-Cleanup
-
-clean up IDEAS - removing ideas : completed, infeasible, stupid
-
-
-
-Moving Forward
-
-update design.md with more topics.
-update versions page with words discussing development of 0.76 and
-0.77, including the overworld development process.
-
-
-REMAKE ROADMAP
-- things have changed dramatically, since we've done so much.
 
 
 
@@ -108,9 +99,256 @@ barrels should have explosion/destruction noise
 they have null sfx
 
 
+rats still dont have proper animation frames, lol
+
+fix centering of camera to dungeon rooms - hubs specifically..
 
 
 
 
 
+
+
+Puzzles++
+if a room with a switch in it has been solved, (visited)
+then remove the floor switch obj post room build. this makes
+backtracking through dungeons less of a chore, which is
+why i favor secret room navigation, which is bad imo.
+
+
+
+
+
+
+
+
+notes:
+torches should be common objs, as they exist outside
+of dungeons. same with map, key, flamethrower, ice tile,
+fairy, explosive barrel, pit, pit bridge, conveyor belt,
+enemy spawns, and finally pit spikes on/off.
+
+this may make the dungeon sheet sizeable down a power.
+YES WE CAN! and up next, the dungeon sheets will drop to
+128x128 sheets, reducing the ram footprint of the game.
+which is good, if you are planning on porting to ram
+restricted systems... 
+
+
+
+
+
+Coliseum++
+we need 'windows' that look into the coliseum,
+like the overworld sprite depicts. plus, I don't like
+how the coliseum level is unbalanced and to the right.
+instead, the coliseum - and all subsequent coliseums -
+will be entrance centered to level, north of spawn.
+this 'presents' the level much better, because coliseums
+have no required puzzle for entry.
+
+a window is a 3x4 obj, with baked in bkg.
+so this saves us a lot of roomObjs.
+
+
+Coliseum++++
+we also need to have the large skulls be a 2nd object
+that can sit on the ground, indestructible. this way
+we can decorate the shadow coliseum appropriately.
+we should add this skull detail to the overworld map as
+well.
+
+
+
+
+-PLS DO THIS NOW, IT'S HOLDING THE PROJECTILE SPAWN SYSTEM HOSTAGE-
+Actor Refs
+
+a projectile's caster should be an actor reference.
+if a projectile's caster is null, then it should have no behavior.
+this is because some gameobjects cast projectiles,
+but in that case the projectile wouldn't have any behavior
+related to the caster.
+
+this simplifies the current system for handling projectiles,
+which uses the moveComponent. using this moveComp, projectile.update
+attempts to prevent projectiles from ovrelapping with their casters,
+but this is based on the compMove and not the hitBox, which is
+actually the target of importance. we need to have access to
+the entire actor object, not just it's compMove! we need to
+touch the actor's hitBox from projectile.update, and we can't currently.
+once we do this, we can check and align projectiles to the actor's
+hitBox, and then larger enemies can have larger hitboxes while also
+being able to cast projectiles...
+plus, projectiles could properly implement their behaviors - by
+tracking the actor's hitbox instead of their newPosition..
+
+Improve Projectile.Spawn()
+
+*miniboss cant shoot fireballs south - why?
+?= pro.spawn() assumes that the actor's collRec is 16x16 - it shouldn't.
+this means only 16x16 actors can safely shoot fireballs without damaging
+themselves, which is some valve level stupid. this method should take
+the actor as a parameter, and then we should base the offsets FOR ALL
+PROJECTILES off of the actor's collision rec width and height. this
+would allow larger actors, like bosses, to SHOOT FIREBALLS. geez.
+
+Special Attacks / Boss "USE"
+bigeye uses the shut + bloodshot frames for his special.
+bigeye: spawns A TON of exploding seekers while in his special.
+
+
+
+
+
+input polish
+when moving the joystick diagonally, the input *should* split evenly between up and say right.
+if i'm 60% up and 40% right, it should be up. right now, that diagonal just sets to right.
+even if it's 90% up and 10% right, it's set to right. it should be a 50/50 split.
+that will increase the precision of sloppy diagonal weapon attacks, aiming their intended direction.
+**this is not related to input direction, but rather it's related to how we resolve the player's
+facing direction to the cardinal casting direction of the arrow projectile, for example.
+^^^^^^^^^ this is super important for input 'feel'
+
+
+
+
+
+
+
+Grass++
+
+cut grass should grow into tall grass if near coastlines,
+or filled ditches. 
+
+
+
+
+
+
+
+Water++
+
+*we could have animated floating lily pads, much like the animated
+flowers that sit over the grass levels. this would add some decoration
+to the otherwise bland sea water.
+
+*need to make boat anchor object - this is already in common objs,
+and can be used to further decorate piers.
+
+
+
+
+
+Magic Mirror
+use it in a dungeon to return to the exit (starting room). 
+exiting dungeon takes us to field.
+it can only be used in dungeons, and it's partially broken.
+it's use in the shadow dungeon is different, as it transfers
+link from the darkworld to the lightworld version, and does
+not take link back to the starting (exit) room.
+
+the history of why the magic mirror is broken can be explained.
+
+- plays warp sound fx
+should call Level.BuildLevel(Level.ID),
+which will cause the level to fade in from black,
+and place hero at the entrance the dungeon again.
+*this should only work in a dungeon. 
+
+
+
+
+
+
+
+
+
+Overworld++
+we need more skulls around the shadowking's island and sea. keep
+the shadow skull area sparse, cause it's going to be animated,
+and it will never 'collapse'
+
+
+
+
+Exploit : Trap Door Pit Teleport
+
+the fix is simply to remove trap doors from the
+routine that sets the last 'touched' door / active door.
+in fact, only open doors should be set as the last / active door.
+the other exploit is to touch a trap door or closed door to
+set your respawn point, which is not what i want.
+
+
+Implement Cane of Somara (or whatever)
+this is the cane that creates blocks that are pushable.
+this makes it MUCH easier to get thru dungeons, as many
+rooms rely on floor switches, which link can simply
+create a block over. if a block is created ontop of
+a blocking roomObject, the block ...
+
+
+
+
+
+Room keys - these only work for the room and only unlock 1 door, and
+these rooms turn all their doors into locked doors upon close, similar to puzzled rooms
+link doesn't put them into inventory - he literally picks them up and walks over
+to a locked door and collides with it. link should also be able to throw keys into
+locked doors, which means we need to throw objects directly in line from link,
+which simplifies how objs are thrown ALOT, and makes their throws more predictable.
+
+this is kinda like super mario world style key gameplay.
+if obj.type == key & obj.hitBox.intersects lockedDoor.hitBox,
+convert lockedDoor to openDoor, release() key.
+- or - we put the key as a menuItem in inventory,
+and clear that inventory item when link enters a new room (pre-build).
+
+Keys!!!
+**we could have 'keys' in the game, which would be temporary for the room only
+the doors would shut and convert to locked versions, or only some of them would.
+inside the room is a chest that contains a key. hero picks up the key, unlocks 
+a door, key is used, continues on. the room resets, works the same later on.
+the key would be displayed in the inventory screen as a brittle rusty key.
+and when it's used, the key breaks. the flavor text says that the key will
+likely break after one use.
+
+we could lock one door randomly, or we could lock ALL THE DOORS, and then 
+force the player to choose which door they want to unlock.
+
+
+
+
+Explosion Surfing (Bomb Jumping)
+
+if an actor is hit, simply put them into a flying state.
+this will cause the actor to be able to fly across pits for a moment,
+but when the hit state ends, if they overlap the pit, they
+will be pulled in. but, this does allow a type of bomb jumping,
+or rather "explosion surfing". which sounds so much better.
+
+we could even put the actor into a 2nd type of hit state,
+a staggered state, which would hold the actor in the hit state for
+longer, allowing them to fly for longer, allowing them to cross
+single tile pits safely - and only an explosion would be able
+to set an actor into this 2nd staggered hit state.
+
+which, staggered seems like a poor name for this state.
+likely should be something like ExplosiveThrow, 
+so we know the actor is being thrown by an explosion.
+
+we can implement this now and ensure that bomb jumping is not
+only preserved, but supported officially in this game, and is
+known as explosion surfing, because you can also use fireballs
+to do these type of explosive throwing tricks.
+
+
+
+
+
+
+Speed++
+slow finish / build becuase we call cleanRoom() twice, which is dumb af
+in dungeon / room routines.
 

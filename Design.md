@@ -68,8 +68,15 @@
 + comparison size of boolean, byte, int, float, double, etc..
 
 
-
-
+## Overworld Design  
+  
++ combining super mario brothers on snes' overworld with lttp's flute overworld
++ why the flute doesn't exist in game: it became a dedicated overworld map
++ then the idea of fields vs dungeon rooms was added to the overworld map  
++ link loads a field from overworld map, then explores into dungeons, other fields, etc..
++ skulls are the pervasive visual theme, along with tropical environment locale
++ overworld is largely based on lttp's overworld map, complete with clouds in the corners
++ the dungeon/skull destructionn is a wip right now, but i think it's going to be awesome
 
 
 
