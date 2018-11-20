@@ -1925,9 +1925,9 @@ namespace DungeonRun
                 Obj.compSprite.drawRec.Width = 16 * 3; //nonstandard size
                 Obj.compSprite.drawRec.Height = 16 * 4; //nonstandard size
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_Coliseum_SkullIsland;
-                //set collision rec near bottom of entrance
-                Obj.compCollision.rec.Width = 16 * 3 - 4; Obj.compCollision.offsetX = -6;
-                Obj.compCollision.rec.Height = 16 * 3; Obj.compCollision.offsetY = +8;
+                //set collision rec to full size
+                Obj.compCollision.rec.Width = 16 * 3; Obj.compCollision.offsetX = -8;
+                Obj.compCollision.rec.Height = 16 * 4; Obj.compCollision.offsetY = -8;
                 //sort save and block
                 Obj.compSprite.zOffset = +16 * 3 - 2;
                 Obj.canBeSaved = true;
@@ -2155,7 +2155,7 @@ namespace DungeonRun
                 Obj.compSprite.drawRec.Width = 16 * 3; //nonstandard size
                 Obj.compSprite.drawRec.Height = 16 * 4; //nonstandard size
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_ForestDungeon;
-                //set collision rec near bottom of entrance
+                //set collision rec to full size
                 Obj.compCollision.rec.Width = 16 * 3; Obj.compCollision.offsetX = -8;
                 Obj.compCollision.rec.Height = 16 * 4; Obj.compCollision.offsetY = -8;
                 //sort save and block

@@ -458,11 +458,11 @@ namespace DungeonRun
         public static List<Byte4> Wor_Enemy_Rat_Up = new List<Byte4>
         { new Byte4(3, 29, 0, 0), new Byte4(3, 29, 1, 0) };
         public static List<Byte4> Wor_Enemy_Rat_Right = new List<Byte4>
-        { new Byte4(2, 29, 0, 0), new Byte4(3, 29, 0, 0) };
+        { new Byte4(1, 29, 0, 0), new Byte4(2, 29, 0, 0) };
         public static List<Byte4> Wor_Enemy_Rat_Down = new List<Byte4>
         { new Byte4(0, 29, 0, 0), new Byte4(0, 29, 1, 0) };
         public static List<Byte4> Wor_Enemy_Rat_Left = new List<Byte4>
-        { new Byte4(2, 29, 1, 0), new Byte4(3, 29, 1, 0) };
+        { new Byte4(1, 29, 1, 0), new Byte4(2, 29, 1, 0) };
 
         #endregion
 
