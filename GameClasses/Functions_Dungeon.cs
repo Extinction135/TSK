@@ -1026,9 +1026,9 @@ namespace DungeonRun
 
 
             //reset the dungeon screen's dungeon record, passing dungeonID
-            DungeonRecord.Reset();
+            DungeonRecord.Clear();
             DungeonRecord.dungeonID = 0; //ID = 0 for now
-            DungeonRecord.timer.Start(); //start the record timer
+            DungeonRecord.timer.Restart(); //restart timer
         }
 
 

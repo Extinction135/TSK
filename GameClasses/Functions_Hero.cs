@@ -652,6 +652,10 @@ namespace DungeonRun
 
         }
 
+
+
+
+        static MenuItemType itemSwamp;
         public static void HandleDeath()
         {   //near the last frame of hero's death, create attention particles
             if (Pool.hero.compAnim.index == Pool.hero.compAnim.currentAnimation.Count - 2)
@@ -663,15 +667,35 @@ namespace DungeonRun
                         ObjType.Particle_Attention,
                         Pool.hero.compSprite.position.X,
                         Pool.hero.compSprite.position.Y);
+
+                //store the hero's currently equipped item
+                itemSwamp = Pool.hero.item;
                 //check to see if hero can save himself from death
-                if(Functions_Bottle.HeroDeathCheck()) { } //true, hero self-rezs
+                if (Functions_Bottle.HeroDeathCheck())
+                {   //restore hero's last item (since we item swapped to self-rez)
+                    Pool.hero.item = itemSwamp;
+                } 
                 else
                 {   //false, hero cannot self-rez and dies
-                    DungeonRecord.beatDungeon = false;
-                    Functions_Level.CloseLevel(ExitAction.Summary);
+                    if(LevelSet.currentLevel == LevelSet.dungeon)
+                    {
+                        //hero died in a dungeon, so we pop summary screen
+                        DungeonRecord.beatDungeon = false;
+                        Functions_Level.CloseLevel(ExitAction.Summary);
+                    }
+                    else
+                    {
+                        //hero died in a field, so we return to overworld
+                        Functions_Level.CloseLevel(ExitAction.Overworld);
+                    }
                 }
             }
         }
+
+
+
+
+
 
         public static void SpawnInCurrentRoom()
         {   
@@ -716,6 +740,10 @@ namespace DungeonRun
             boomerangInPlay = false; //boomerang could of been lost in prev room
             SpawnPet();
         }
+
+
+
+
 
         public static void Update()
         {
@@ -834,7 +862,7 @@ namespace DungeonRun
         {
             if (Screens.Level.displayState == DisplayState.Opened)
             {
-                DungeonRecord.Reset();
+                DungeonRecord.Clear(); //clear the dungeon record
                 Assets.Play(Assets.sfxDoorOpen);
                 //return hero to last field level
                 Functions_Level.CloseLevel(ExitAction.Field);

@@ -134,11 +134,13 @@ namespace DungeonRun
 
                 else if (displayState == DisplayState.Closed)
                 {
-                    DungeonRecord.timer.Stop();
 
                     //handle exit action
                     if (exitAction == ExitAction.Summary)
-                    { ScreenManager.ExitAndLoad(Screens.Summary); }
+                    {
+                        DungeonRecord.timer.Stop();
+                        ScreenManager.ExitAndLoad(Screens.Summary);
+                    }
 
                     else if (exitAction == ExitAction.Overworld)
                     {

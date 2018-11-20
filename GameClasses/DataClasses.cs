@@ -416,11 +416,10 @@ namespace DungeonRun
         public static int enemyCount = 0;
         public static int totalDamage = 0;
 
-        public static void Reset()
+        public static void Clear()
         {
             dungeonID = 0;
             beatDungeon = false;
-            timer = new Stopwatch();
             enemyCount = 0;
             totalDamage = 0;
             timer.Reset();
