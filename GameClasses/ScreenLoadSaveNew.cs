@@ -212,15 +212,20 @@ namespace DungeonRun
             //open the screen
             displayState = DisplayState.Opening;
             Assets.Play(Assets.sfxWindowOpen);
-
-
         }
 
         public override void Close()
-        {   //silently reload the latest game files
-            Functions_Backend.LoadGame(GameFile.Game1, false);
-            Functions_Backend.LoadGame(GameFile.Game2, false);
-            Functions_Backend.LoadGame(GameFile.Game3, false);
+        {
+            //assume we loaded or created or saved gamedata
+            //these operations set PlayerData.current to game1, 2, or 3.
+            //we need to sync this current data to the hero.
+            
+            //set the hero actor's type - he can be a blob
+            Functions_Actor.SetType(Pool.hero, PlayerData.current.actorType);
+            //load hero's items, weapons, equipment from current gamedata
+            Functions_Hero.SetLoadout();
+            //load his last location too
+            LevelSet.field.ID = PlayerData.current.lastLocation;
         }
 
         public override void HandleInput(GameTime GameTime)
@@ -232,6 +237,7 @@ namespace DungeonRun
 
                 if(Input.Player1.B & Input.Player1.B_Prev == false)
                 {   //upon B button press, exit this screen
+                    //close window, play and show closing
                     Assets.Play(Assets.sfxWindowClose);
                     displayState = DisplayState.Closing;
                     Functions_MenuWindow.Close(window);
@@ -249,6 +255,9 @@ namespace DungeonRun
                     (Input.Player1.Start & Input.Player1.Start_Prev == false)
                     )
                 {
+
+                    #region Load
+
                     if (screenState == LoadSaveNewState.Load)
                     {   //load playerData
                         if (currentlySelected == game1.menuItem)
@@ -258,6 +267,11 @@ namespace DungeonRun
                         else if (currentlySelected == game3.menuItem)
                         { Functions_Backend.LoadGame(GameFile.Game3, true); }
                     }
+
+                    #endregion
+
+
+
                     else//screenState == Save or New
                     {   //reset saveDatas, if screen is in 'new game' state
                         if (screenState == LoadSaveNewState.New)

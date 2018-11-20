@@ -37,13 +37,8 @@ namespace DungeonRun
         {   
             overlay.alpha = 1.0f;
             overlay.fadeOutSpeed = 0.025f;
-
             //level id is set by overworld screen
             Functions_Level.BuildLevel(LevelSet.currentLevel.ID); 
-
-            //load hero's type + loadout
-            Functions_Actor.SetType(Pool.hero, PlayerData.current.actorType);
-            Functions_Hero.SetLoadout();
             //open the screen
             displayState = DisplayState.Opening;
         }
@@ -60,14 +55,9 @@ namespace DungeonRun
                     Functions_Ai.SetActorInput();
                 }
                 
-
-
                 //map input.player1 to Poolhero.compInput
                 //Functions_Input.MapPlayerInput(Pool.hero.compInput);
                 Functions_Input.MapGameInputToInputComponent(Input.Player1, Pool.hero.compInput);
-
-
-
 
                 //allow player access to inventory screen from overworld map
                 if (Input.Player1.Start & Input.Player1.Start_Prev == false)

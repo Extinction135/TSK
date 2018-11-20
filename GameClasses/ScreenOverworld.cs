@@ -1882,6 +1882,7 @@ namespace DungeonRun
                 currentLocation.compSprite.position.X,
                 currentLocation.compSprite.position.Y - 8);
             Functions_Component.Align(Pool.hero);
+            
             //prevents drown sprite from appearing, if hero died in water
             Pool.hero.underwater = false;
             Pool.hero.swimming = false;
@@ -1945,16 +1946,18 @@ namespace DungeonRun
             #endregion
 
 
+            #region Additional Decorations
+
             //other wave spawn locations
             waveSpawnPositions.Add(new Vector2(786, 553)); //entering fishermans path
             waveSpawnPositions.Add(new Vector2(741, 447)); //near intro lava cave
             waveSpawnPositions.Add(new Vector2(1272, 481)); //heading towards death mountain
 
+            #endregion
 
 
             Functions_Music.PlayMusic(Music.Title); //play overworld music
-            ColorScheme.background = ColorScheme.bkg_overworld;
-
+            ColorScheme.background = ColorScheme.bkg_overworld; //cloud color
             base.SetupLinesToNeighbors(); //draw the starting neighbor lines
         }
 

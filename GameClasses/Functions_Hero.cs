@@ -763,14 +763,6 @@ namespace DungeonRun
             else { Pool.hero.compSprite.zOffset = 0; }
         }
 
-        public static void SetLoadout()
-        {   //set the hero's loadout based on playerdata.current
-            Pool.hero.item = PlayerData.current.currentItem;
-            Pool.hero.weapon = PlayerData.current.currentWeapon;
-            Pool.hero.armor = PlayerData.current.currentArmor;
-            Pool.hero.equipment = PlayerData.current.currentEquipment;
-            UnlockAll();
-        }
 
         public static void SpawnPet()
         {   //spawn the hero's dog
@@ -838,8 +830,6 @@ namespace DungeonRun
 
 
 
-
-
         public static void ExitDungeon()
         {
             if (Screens.Level.displayState == DisplayState.Opened)
@@ -850,8 +840,6 @@ namespace DungeonRun
                 Functions_Level.CloseLevel(ExitAction.Field);
             }
         }
-
-
 
 
 
@@ -871,6 +859,26 @@ namespace DungeonRun
                 }
             }
         }
+
+
+
+
+
+
+
+
+        public static void SetLoadout()
+        {   //set the hero's loadout based on playerdata.current
+            Pool.hero.item = PlayerData.current.currentItem;
+            Pool.hero.weapon = PlayerData.current.currentWeapon;
+            Pool.hero.armor = PlayerData.current.currentArmor;
+            Pool.hero.equipment = PlayerData.current.currentEquipment;
+            //called at the end of lsn's exit routines
+        }
+
+
+
+
 
 
 

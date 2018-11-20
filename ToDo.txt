@@ -60,16 +60,6 @@ Today:
 
 
 
-Cleaning Up
-
-updated design.md with words discussing development 
-of overworld. cleaned up ideas and setup a more realistic
-roadmap, based on how I see various systems and design
-choices coming together. I think items and interactions
-need to improve alongside dungeons and locations, which
-rely on underlying systems that really need to be updated.
-so, that's what I'll handle in the next version, which I
-think will improve the game in the 'right' direction.
 
 
 
@@ -78,14 +68,58 @@ think will improve the game in the 'right' direction.
 
 
 
-
-Playtesting Bugs
+Loading Saving Resetting GameData++
 
 purchased bow, left level, bow was gone.
-stop messing with player save data directly,
-just write to the autosave file instead, this
-forces player to save their progress each time
-they exit, via the reminder screen.
+
+we loaded player data, which overwrote the values we
+had changed in ram. this happened when we exited a level
+or loaded the overworld level - prolly from overworld
+load because we assumed we were coming from a lsn
+screen (which isn't wrong, but it's wiping progress).
+
+so, let's check the overworld load, and make it's coming
+from that path too.. it's not happening in the overworld
+open(), in base or shadowking class. def not in overworld
+screen, but we cleaned up the class a little bit too.
+
+moving onto functions_level and level screen..
+right off the bat i see a call to func_hero.setLoadout()
+in level screen, which was a call to make sure the
+loadout was properly setup prior to play for an instance
+based system design. this is only called by screel level,
+when it opens. this was moved into the exit routine of
+the load save new screen, so anytime that we leave that
+screen, the player's type and loadout is sync'd to the
+current data.
+
+this fixes the bug where we lose items in 0.77.
+
+however, testing reveals that we aren't properly loading
+the player's last selected items from saved data.
+we may of not saved this data, or we may default to
+a standard loadout and not even try to load last loadout.
+hmmm.... no, we have values for the current loadout
+in savedata...
+
+moved routines to set hero's loadout and type, and last
+location into the close() method of lsn screen. this assumes
+the current data is CURRENT (it is), and updates in game
+values. this solves the loadout bug, AND the overworld
+spawn bug - many tests were performed to ensure this works.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 upon dying, loadout is reset. dont do that.
 

@@ -20,14 +20,6 @@ namespace DungeonRun
 
 
 
-        
-
-
-
-
-
-
-
         //where exit/field room is placed - should be part of build functions
         public static Point buildPosition = new Point(16 * 10, 16 * 200);
 
