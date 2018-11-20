@@ -600,13 +600,14 @@ namespace DungeonRun
     public static class WaterMark
     {
         public static DebugDisplay display;
+
         static WaterMark()
         {   //remodel debugDisplay to be a single line
-            display = new DebugDisplay(495, 20);
-            display.bkg.size.X = 118;
+            display = new DebugDisplay(495+31, 20);
+            display.bkg.size.X = 118-31;
             display.bkg.size.Y = 9;
 
-            display.textComp.text = "github.com/mrgrak/dungeonrun";
+            display.textComp.text = "github.com/mrgrak/tsk";
             display.textComp.position.X = display.bkg.position.X + 2;
             display.textComp.position.Y = display.bkg.position.Y - 3;
 

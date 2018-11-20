@@ -7,17 +7,17 @@
 *.TMP
 
 # directories to ignore
-DungeonRunDirectX/.vs/
-DungeonRunDirectX/DungeonRun/bin/
-DungeonRunDirectX/DungeonRun/Content/obj/
-DungeonRunDirectX/DungeonRun/Content/bin/
-DungeonRunDirectX/DungeonRun/obj/
+TSK_DirectX/.vs/
+TSK_DirectX/DungeonRun/bin/
+TSK_DirectX/DungeonRun/Content/obj/
+TSK_DirectX/DungeonRun/Content/bin/
+TSK_DirectX/DungeonRun/obj/
 
-DungeonRunUWP/.vs/
-DungeonRunUWP/DungeonRun/bin/
-DungeonRunUWP/DungeonRun/Content/obj/
-DungeonRunUWP/DungeonRun/Content/bin/
-DungeonRunUWP/DungeonRun/obj/
+TSK_UWP/.vs/
+TSK_UWP/DungeonRun/bin/
+TSK_UWP/DungeonRun/Content/obj/
+TSK_UWP/DungeonRun/Content/bin/
+TSK_UWP/DungeonRun/obj/
 
 TestingRooms/
 

@@ -24,7 +24,7 @@ namespace DungeonRun
             //settings unique to DirectX
             graphics.PreferredBackBufferWidth = 1280;
             graphics.PreferredBackBufferHeight = 720;
-            Window.Title = "DungeonRun v" + Flags.Version;
+            Window.Title = "Legend Of Zelda: The Shadow King v" + Flags.Version;
             Window.AllowUserResizing = false;
         }
 

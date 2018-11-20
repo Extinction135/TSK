@@ -107,7 +107,7 @@ namespace DungeonRun
             Window.Current.Activate();
             //set the window title
             ApplicationView appView = ApplicationView.GetForCurrentView();
-            appView.Title = "DungeonRun v" + Flags.Version;
+            appView.Title = "Legend Of Zelda: The Shadow King v" + Flags.Version;
         }
 
         /// <summary>

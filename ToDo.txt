@@ -41,23 +41,22 @@ Today:
 
 
 
-0.77 Release Gif
-
-Cut gifs using licecap.
-Edit 0.77 gif together from lice cuts.
-Post this gif to repo landing page.
 
 
+Repo Migration
+
+semi-migrated repo to tsk naming convention,
+breaking all forks. i'm kinda scared to manually
+alter the cs project solution files for all the
+ports, so for now they'll stay named 'dungeonrun'.
+
+changed watermark link to repo (shorter), and
+updated window title.
+
+sync'd changes to uwp port as well.
+455 changes to master? alright.
 
 
-
-
-
-0.77 Release Testing
-
--post gif to gbatemp thread
--post playthrough video to discord, asking for playtesters on win10 - keyboard and gamepad support
--post gif to insta - can we do this without compression? via usb transfer? as.mp4? thinkso...
 
 
 
@@ -71,8 +70,7 @@ Post this gif to repo landing page.
 Cleanup
 
 clean up IDEAS - removing ideas : completed, infeasible, stupid
-compress overworld pics development in repo, after batch resizing
-them to be smaller (again?)
+
 
 
 Moving Forward
@@ -93,6 +91,10 @@ REMAKE ROADMAP
 Playtesting Bugs
 
 purchased bow, left level, bow was gone.
+stop messing with player save data directly,
+just write to the autosave file instead, this
+forces player to save their progress each time
+they exit, via the reminder screen.
 
 upon dying, loadout is reset. dont do that.
 
