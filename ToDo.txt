@@ -60,23 +60,14 @@ Today:
 
 
 
-Playtesting Notes++
 
-rats still dont have proper animation frames, lol. fxd.
-fxd centering of camera to dungeon rooms - hubs specifically.
-fxd hitboxes on coliseum entrance - should be full sprite - lol
-just like all dungeon entrances... done. this makes it much easier
-to enter. moved some uwp art around.
-
-
-
-
-
-
+Coliseum ++
 
 upon coliseum challenge completion, we should respawn in
 the coliseum interior, not exterior field level. this makes it easier
 to do challenges in a row, and only get kicked to overworld if we die.
+done.
+
 
 
 

@@ -1294,7 +1294,7 @@ namespace DungeonRun
 
                     // <<< exit condition : completed >>>
                     //exit level to pit level
-                    LevelSet.currentLevel.ID = LevelID.SkullIsland_Colliseum;
+                    LevelSet.currentLevel.ID = LevelID.SkullIsland_ColliseumPit;
                     Functions_Level.CloseLevel(ExitAction.Field);
 
                     //pop a new dialog screen telling player they completed challenge
