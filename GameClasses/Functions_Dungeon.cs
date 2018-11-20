@@ -438,6 +438,8 @@ namespace DungeonRun
                 }
             }
 
+            //autosolve torch puzzles too
+            if (Flags.AutoSolvePuzzle) { torchCount = 0; }
             //check for more than 3 torches, if 4 or more, then 4 need to be lit
             if (torchCount > 3)
             {   //convert all openDoors to trapDoors
