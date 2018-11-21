@@ -992,13 +992,24 @@ namespace DungeonRun
                     Obj.compCollision.rec.X = (int)Obj.compSprite.position.X - 16;
                     Obj.compCollision.rec.Y = (int)Obj.compSprite.position.Y - 16;
 
-                    //bail from this check if stump touches hero
-                    //we dont want to regrow a bush ontop of hero, locking him
-                    if(Pool.hero.compCollision.rec.Intersects(Obj.compCollision.rec))
-                    {   //reset hitBox, bail from method
-                        Functions_GameObject.SetType(Obj, ObjType.Wor_Bush_Stump);
-                        return;
+
+                    #region Prevent Growth ONTO active Actors in room
+
+                    //stop regrowing if bush touches ANY actor (else will grow-lock actors)
+                    for (i = 0; i < Pool.actorCount; i++)
+                    {   //note: this wont grow bushes over dead actors, but we could add a death check
+                        if (Pool.actorPool[i].active) 
+                        {
+                            if(Pool.actorPool[i].compCollision.rec.Intersects(Obj.compCollision.rec))
+                            {   //reset hitBox, bail from method
+                                Functions_GameObject.SetType(Obj, ObjType.Wor_Bush_Stump);
+                                return;
+                            }
+                        }
                     }
+
+                    #endregion
+
 
                     //loop over all active roomObjs, looking at filled ditches + water tiles
                     for (i = 0; i < Pool.roomObjCount; i++)

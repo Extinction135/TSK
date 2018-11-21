@@ -63,43 +63,38 @@ Today:
 
 
 
-Miniboss OctoMouth
 
-miniboss watery mouth can't throw fireballs. no item equipped.
-fixed, magic fireball equipped, ai rewritten to call useItem.
 
-but the hero can't use magic in the water - unless he is of
-a specific enemy type - octomouth and kraken and tentacle.
 
-non-hero actors can now use items in the water (while swimming).
-this allows enemies in the water to use items, if they want to.
 
-if the player is an actor type other than blob and link,
-then they attack with their weapon instead of diving underwater.
-a consequence, is that spiders now walk on water, and can
-attack on water, so they are insanely scary. and an unarmored
-spider moves very fast, and link would have no defense against
-this enemy in the water, so this matchup is very overpowered.
+Bush Growth
 
-modified octomouth's ai to dash when a direction is input,
-so this should make him more active when he's underwater.
-
-item use in water was modified to be based on the hero's
-compMove.grounded boolean, which models if an actor is flying
-or not. if the hero is a flying actor, then allow item use
-while swimming, because they're actually hovering above the water.
-
-playtested all enemies on land and on water. fun.
-the unarmored spider is not as fast as i thought, because
-we set the hero's friction to very slow when he goes
-into a swim state. the spider is in a swim state, but the
-swim anim frames redirect back to normal idle/walking frames.
-so the spider appears to walk on water, but is slow. i like it.
-
-update: link and the blob are only actors that cannot use items
-in water now. hero, as any other actor type, can use items in water.
-
-tested, most actors working as expected now.
+when a bush regrows (when it's near a water tile or
+ditch filled with water), it becomes a blocking object.
+it transforms from a non-blocking stump into a blocking
+bush (which can be destroyed easily, but still blocking).
+this is important because, one consequence of this system
+is that a bush can regrow on the hero, locking him 'into'
+the bush, making him unable to move. we handled that with
+a specific check in bush regrowth routines - but now i 
+realize that this should be extended to include all actors,
+simply because a bush can grow-lock minibosses or bosses,
+like they did when i was playtesting 0.77 in the miniboss
+room. in this room, we have a miniboss that shoots fireballs
+in a room filled with water and bushes. this leads to the
+cycle where fireballs burn bushes into stumps, which regrow
+into bushes again. however, the bushes were grow locking
+the miniboss, who would then still shoot fireballs, which
+caused the fireball to immediately hit the bush, creating
+an explosion, hurting the miniboss, causing him to go underwater,
+and right as he popped back up - the bush would regrow -
+continuing this cycle of never ending torture for the miniboss.
+while this was entertaining to watch, this was not the 
+intended behavior and this commit prevents this state from
+being possible - simply by preventing bush regrowth if
+the stump touches any actor at all. which loops over all
+actors, doing a collision check, which is mildly expensive.
+oh well.
 
 
 
@@ -117,9 +112,6 @@ tentacle should have fang as item, should use item.
 tentacle's swim dash needs ypos +16 offset.
 
 
-
-bushes should not regrow if any actor is touching them,
-otherwise actors get stuck in the bush and cannot move.
 
 
 
