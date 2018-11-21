@@ -231,23 +231,21 @@ namespace DungeonRun
 
                 if (Actor.underwater)
                 {
-                    //randomly change directions
+                    //randomly change directions and dash
                     if (Functions_Random.Int(0, 100) > 70)
                     {
                         if (Actor.health < 5)
                         {   //move towards hero
                             Actor.compInput.direction = 
                                 Functions_Direction.GetCardinalDirectionToHero(actorPos);
+                            Actor.compInput.dash = true;
                         }
                         else
                         {   //move randomly
                             Actor.compInput.direction = (Direction)Functions_Random.Int(0, 8);
+                            Actor.compInput.dash = true;
                         }
-                        
                     }
-
-                    //randomly dash
-                    if (Functions_Random.Int(0, 100) > 70) { Actor.compInput.dash = true; }
 
                     //use breath counter to keep enemy underwater for a moment
                     Actor.breathCounter++;
@@ -276,9 +274,9 @@ namespace DungeonRun
                     //shoot fireballs at hero
                     if (Functions_Random.Int(0, 100) > 92)
                     {   
-                        Functions_Projectile.Spawn(ObjType.ProjectileFireball, Actor,
-                            Functions_Direction.GetCardinalDirectionToHero(actorPos));
-                        Actor.compInput.attack = true;
+                        //shoot fireball magic towards hero
+                        Functions_Item.UseItem(Actor.item, Actor);
+                        Actor.compInput.use = true;
                     }
 
                     //rarely randomly dive (give hero time to attack them)

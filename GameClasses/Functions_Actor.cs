@@ -827,9 +827,8 @@ namespace DungeonRun
                 Actor.sfx.kill = Assets.sfxShatter; //sounds good
 
                 ResetActorLoadout(Actor);
-                //setup actoro with useable item, so player can shoot arrows
+                //setup actor with useable item, so player can shoot arrows
                 Actor.item = MenuItemType.ItemBow; 
-                //this is not used by AI, which directly spawns arrow projectiles
             }
 
             #endregion
@@ -935,6 +934,10 @@ namespace DungeonRun
                 Actor.sfxDash = null; //silent dash
                 Actor.sfx.hit = Assets.sfxBossHit;
                 Actor.sfx.kill = Assets.sfxEnemyKill;
+
+                ResetActorLoadout(Actor);
+                //setup actor with useable item, so player can shoot fireballs
+                Actor.item = MenuItemType.MagicFireball;
             }
 
             #endregion
@@ -1194,21 +1197,41 @@ namespace DungeonRun
                     else if (Actor.state == ActorState.Attack)
                     {
 
-                        #region Swim Dive (toggled, only for Hero)
+                        #region Swim Dive or Attack
 
                         if(Actor == Pool.hero)
                         {   
-                            //hero can dive on new X button press
+                            //if hero is link or blob, then he dives like normal
+                            //all other actors are flying and instead attack
+                            
+                            //only hero can dive on new X button press
                             if(Input.Player1.X & Input.Player1.X_Prev == false)
-                            {   //toggle dive state
-                                if (Actor.underwater == false) //setup new dive
-                                { Actor.underwater = true; Actor.breathCounter = 0; }
-                                else { Actor.underwater = false; }
-                                //make a splash
-                                Functions_Particle.Spawn(
-                                    ObjType.Particle_Splash,
-                                    Actor.compSprite.position.X,
-                                    Actor.compSprite.position.Y);
+                            {   
+
+                                //only link and blob have proper hero diving animations
+                                if(Pool.hero.type == ActorType.Hero
+                                    || Pool.hero.type == ActorType.Blob
+                                    //water based actors have dive animations too
+                                    || Pool.hero.type == ActorType.MiniBoss_OctoMouth
+                                    || Pool.hero.type == ActorType.Boss_OctoHead
+                                    || Pool.hero.type == ActorType.Special_Tentacle
+                                    )
+                                {
+                                    //toggle dive state
+                                    if (Actor.underwater == false) //setup new dive
+                                    { Actor.underwater = true; Actor.breathCounter = 0; }
+                                    else { Actor.underwater = false; }
+                                    //make a splash
+                                    Functions_Particle.Spawn(
+                                        ObjType.Particle_Splash,
+                                        Actor.compSprite.position.X,
+                                        Actor.compSprite.position.Y);
+                                }
+                                else
+                                {   //use the weapon item, assuming actor is above water (flying)
+                                    Functions_Item.UseItem(Actor.weapon, Actor);
+                                    WorldUI.currentWeapon.compSprite.scale = 2.0f;
+                                }
                             }
                         }
 
@@ -1217,8 +1240,23 @@ namespace DungeonRun
                     }
                     else if (Actor.state == ActorState.Use)
                     {
-                        //nothing
-                        //but in future we can use magic items, etc.. in water
+
+                        if (Actor == Pool.hero)
+                        {
+                            //the hero can use items in the water, but only as certain actors
+                            if(Pool.hero.type != ActorType.Hero & Pool.hero.type != ActorType.Blob)
+                            {
+                                //link and the blob cannot use items in the water, others can
+                                Functions_Item.UseItem(Actor.item, Actor);
+                                WorldUI.currentWeapon.compSprite.scale = 2.0f;
+                            }
+                        }
+                        else
+                        {
+                            //npc actors can use items in the water
+                            //this allows enemies ai to function properly
+                            Functions_Item.UseItem(Actor.item, Actor);
+                        }
                     }
                 }
                 else if(Actor.carrying)

@@ -56,15 +56,6 @@ Today:
 
 
 
-Miniboss Blackeye++
-
-blackeye got the bow item added to his loadout,
-and then his ai was updated to call useItem(),
-instead of directly calling spawn projectile(arrow).
-this small change makes the ai function more like
-user input, and also allows player1 to test the
-enemy using the expected Y button input to create
-arrow projectiles.
 
 
 
@@ -72,34 +63,86 @@ arrow projectiles.
 
 
 
-
-Testing Enemy Actors using Player1 Input
-
-these are issues that enemies have with their current
-implementation vs. being able to test that implementation.
-boss special moves aside, they should all be testable.
-because we're about to change their hitboxes, which requires
-a refactoring of the projectile spawn() and handleBehavior()
-methods, which govern if a projectile hit's it caster or not.
-currently, all enemy hitboxes match heros hitbox, just
-to ensure they can cast projetiles properly. this is bad wonky.
-
-
-
-miniboss black eye can't test create arrows, because 
-he doens't have the bow/arrow item equipped! fixed.
-playtested, working.
-
-
-
-
-
-
-
-
-
+Miniboss OctoMouth
 
 miniboss watery mouth can't throw fireballs. no item equipped.
+fixed, magic fireball equipped, ai rewritten to call useItem.
+
+but the hero can't use magic in the water - unless he is of
+a specific enemy type - octomouth and kraken and tentacle.
+
+non-hero actors can now use items in the water (while swimming).
+this allows enemies in the water to use items, if they want to.
+
+if the player is an actor type other than blob and link,
+then they attack with their weapon instead of diving underwater.
+a consequence, is that spiders now walk on water, and can
+attack on water, so they are insanely scary. and an unarmored
+spider moves very fast, and link would have no defense against
+this enemy in the water, so this matchup is very overpowered.
+
+modified octomouth's ai to dash when a direction is input,
+so this should make him more active when he's underwater.
+
+item use in water was modified to be based on the hero's
+compMove.grounded boolean, which models if an actor is flying
+or not. if the hero is a flying actor, then allow item use
+while swimming, because they're actually hovering above the water.
+
+playtested all enemies on land and on water. fun.
+the unarmored spider is not as fast as i thought, because
+we set the hero's friction to very slow when he goes
+into a swim state. the spider is in a swim state, but the
+swim anim frames redirect back to normal idle/walking frames.
+so the spider appears to walk on water, but is slow. i like it.
+
+update: link and the blob are only actors that cannot use items
+in water now. hero, as any other actor type, can use items in water.
+
+tested, most actors working as expected now.
+
+
+
+
+
+
+
+
+we want to preserve diving for specific actor types.
+this is ocotmouth, kraken, tentacle.
+
+
+
+tentacle should have fang as item, should use item.
+tentacle's swim dash needs ypos +16 offset.
+
+
+
+bushes should not regrow if any actor is touching them,
+otherwise actors get stuck in the bush and cannot move.
+
+
+
+
+projectiles should spawn based on caster's hitbox center,
+then add half width or height, plus a pixel bumper, based on
+the projectile's direction. each frame, the projectile
+either tracks it's caster's hitbox, or performs a unique
+behavior.
+
+
+
+hero should not be able to climb walls unless he is blob
+or link.
+
+
+
+
+
+
+
+
+
 
 big eye boss can spawn fangs, but they hit him from certain
 directions. also, he cannot spawn seekers via item use, which
