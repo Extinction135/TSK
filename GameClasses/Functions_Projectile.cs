@@ -519,27 +519,27 @@ namespace DungeonRun
         {
             //the following paths handle the per frame events, or behaviors, of a projectile
             //for example, tracking a sword to it's caster or whatevs..
-            
+
 
 
             //track to caster each frame
 
-            #region Sword, Net, Shovel, Bite/Fang
+            #region Bite/Fang
 
             //fang/bite simply tracks outside of the casters hitbox, centered
-            if(Pro.type == ObjType.ProjectileBite)
+            if (Pro.type == ObjType.ProjectileBite)
             {
                 if (Pro.direction == Direction.Down)
                 {   //place centered below casters hb
                     Functions_Movement.Teleport(Pro.compMove,
                         Pro.caster.compCollision.rec.Center.X,
-                        Pro.caster.compCollision.rec.Y + Pro.caster.compCollision.rec.Height + 8);
+                        Pro.caster.compCollision.rec.Y + Pro.caster.compCollision.rec.Height + 6);
                 }
                 else if (Pro.direction == Direction.Up)
                 {   //place centered above casters hb
                     Functions_Movement.Teleport(Pro.compMove,
                         Pro.caster.compCollision.rec.Center.X,
-                        Pro.caster.compCollision.rec.Y - 14);
+                        Pro.caster.compCollision.rec.Y - 8);
                 }
                 else if (Pro.direction == Direction.Right)
                 {   //place centered right side of casters hb
@@ -554,6 +554,11 @@ namespace DungeonRun
                         Pro.caster.compCollision.rec.Center.Y);
                 }
             }
+
+            #endregion
+
+
+            #region Sword, Net, Shovel
 
             //sword, net, shovel all track to the HERO'S HAND, based on direction
             else if (Pro.type == ObjType.ProjectileSword
@@ -890,10 +895,7 @@ namespace DungeonRun
         
 
 
-
-        //these methods setup certain projectile's births
-
-
+        
         //lightning is chain of bolts, each with offset, moving same
         public static void Cast_Bolt(Actor Caster)
         {

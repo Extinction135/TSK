@@ -39,8 +39,8 @@ Shadow Dungeon, TSK Fight complete
 	better dungeon traversal (X solved puzzles, marked map)
 	better coliseum - uniq objs + enemies
 	better overworld - more skulls, waves, cluds, vfx @skullIsland
-	smaller ram - X dungeon sheets get smaller
-	fix projectile spawn system + enlarge boss hitboxes
+	X smaller ram - dungeon sheets get smaller
+	X fix projectile spawn system + enlarge boss hitboxes
 	implement bed + dream sequences - special leveldata + set hero's type + dialog prompt
 	(exiting dream field ends the dream)
 	(we may split bed into two objects again, to make this interaction more expected)
@@ -55,62 +55,74 @@ Today:
 
 
 
+Enemies and Damage++
 
-Projectile System++ and Enemies++
+fangs now cause level1 damage, via HandleCommon().
+this means all enemies can now destroy most objects
+that a sword could destroy, just using their mouths.
 
-upgraded projectile.caster from a moveComponent to an
-actual actor reference, which gives pro accesss to the
-actors/casters hitbox, ensuring some pros never overlap
-and their frame behavior is accurate.
+but fangs dont cause damage to actor, so they need to stay
+active for longer than 1 frame... so now bigbat and bigeye
+are immune to bite damage, which the hero really shouldn't
+be dealing anyway. this allows these two fast moving
+actors to still bite while traveling quickly.
 
-vastly upgraded projectile system to place pros based
-on caster hitbox, instead of position. this allows enemies
-to have larger or smaller hitboxes and still function in game,
-as in - not hit themselves with their own weapon or item,
-causing them to kill themselves in front of the hero. lol.
+upgraded unarmored spiders to be immune to bites as well.
 
-improved bow behavior and sorting.
-improved sword, fang, net, shovel behavior.
-improved fireball, arrow behavior.
+tentacles are now immune to bite damage as well, making
+them invincible to each others attacks, making their ganging
+up strategy that much more effective.
 
-bow now centers to caster's hitbox.
-fang now centers to caster's hitbox too, making enemy
-attacks more consistent and predictable.
-
-make hitboxes larger for black eye miniboss, test all weapons
-and items to make sure they track and spawn properly. done, working.
-
-test big eye - he moves so fast this should break the system..
-yep - the issue now is that we need to completely stop all movement
-when an actor attacks, and this is a complete stop - magnitude becomes
-0, friction becomes max value. No movement in sky at all.
-
-updated bite projectile to only deal damage on the first frame
-it exists, but continune to live for 15 frames, so it can be
-drawn and debugged easily. this allows fast moving flying actors,
-like bigeye to properly use bite projectile, without hurting
-themselves, because bite will always be placed properly the
-first frame. after that, if the caster is moving fast enough,
-they may collide with the projectile and deal themselves damage.
-
-blackeye's hitbox should be 16x12. done.
-
-
-
-
-
-
-
-
-
-
-
-
-
-Hitboxes and Destruction++
+Hitboxes++
 
 now we can set collision recs for all enemies. so do it.
-fangs should be able to destroy level 1 objects.
+done. all enemies now have proper hitboxes and can spawn
+bite projectiles while moving and dashing.
+
+
+
+
+
+
+
+
+
+
+
+Interaction Limiting
+we should not be able to climb unless we are blob or link.
+we should not be able to pickup anything unless we are blob or link.
+dragging? falling into pits? these all need to be tested on 
+enemy actor types.
+
+
+
+
+Explosion Surfing (Bomb Jumping)
+
+if an actor is hit, simply put them into a flying state.
+this will cause the actor to be able to fly across pits for a moment,
+but when the hit state ends, if they overlap the pit, they
+will be pulled in. but, this does allow a type of bomb jumping,
+or rather "explosion surfing". which sounds so much better.
+
+we could even put the actor into a 2nd type of hit state,
+a staggered state, which would hold the actor in the hit state for
+longer, allowing them to fly for longer, allowing them to cross
+single tile pits safely - and only an explosion would be able
+to set an actor into this 2nd staggered hit state.
+
+which, staggered seems like a poor name for this state.
+likely should be something like ExplosiveThrow, 
+so we know the actor is being thrown by an explosion.
+
+we can implement this now and ensure that bomb jumping is not
+only preserved, but supported officially in this game, and is
+known as explosion surfing, because you can also use fireballs
+to do these type of explosive throwing tricks.
+
+these explosive throwing tricks dont apply to flying actors,
+they should be able to float right over pits, no problem.
 
 
 
@@ -130,11 +142,6 @@ and taunting every frame.
 
 
 
-Interaction Limiting
-we should not be able to climb unless we are blob or link.
-we should not be able to pickup anything unless we are blob or link.
-dragging? falling into pits? these all need to be tested on 
-enemy actor types.
 
 
 
@@ -143,7 +150,8 @@ enemy actor types.
 
 
 
-Tentacle Magic
+
+Tentacle Magic / Tentacle Walls
 
 the kraken summons tentacle actors upon being hit. this
 is not tentacle magic. instead, tentacle magic spawns a
@@ -162,6 +170,10 @@ around.
 *tentacles should be destructible with explosions, but
 not destructible with level1 type damage.
 
+level 1 is 1 tentacle
+level 2 is 5 tentacles
+level 3 creates a wall 10 tiles long
+level 4 creates a box around link
 
 
 
@@ -170,8 +182,26 @@ not destructible with level1 type damage.
 
 
 
+Dream Sequences
 
+'i dreamed i was a tentacle, lost at sea...'
+hero type = tentacle, empty sea level, with decorations.
+dying or exiting level ends the dream. super easy.
 
+'i dreamed i was part of a spider hockey league...'
+spider, level is ice tiles, with bumpers, and 'puck'.
+this obj inherits hit direction, but doesn't take
+damage at all, so it never gets destroyed. spiders
+have bite items which will hit the puck.
+
+starting one of these dreams is an interaction with
+a bed, popping a dialog asking if they want to sleep
+in this bed. A button starts the dream sequence by exiting
+the level to a dream setup screen, where text displays
+slowly on screen, centered, against complete black.
+
+once the text finishes, we wait for any button input.
+then we fade in the level like normal.
 
 
 
@@ -327,28 +357,7 @@ force the player to choose which door they want to unlock.
 
 
 
-Explosion Surfing (Bomb Jumping)
 
-if an actor is hit, simply put them into a flying state.
-this will cause the actor to be able to fly across pits for a moment,
-but when the hit state ends, if they overlap the pit, they
-will be pulled in. but, this does allow a type of bomb jumping,
-or rather "explosion surfing". which sounds so much better.
-
-we could even put the actor into a 2nd type of hit state,
-a staggered state, which would hold the actor in the hit state for
-longer, allowing them to fly for longer, allowing them to cross
-single tile pits safely - and only an explosion would be able
-to set an actor into this 2nd staggered hit state.
-
-which, staggered seems like a poor name for this state.
-likely should be something like ExplosiveThrow, 
-so we know the actor is being thrown by an explosion.
-
-we can implement this now and ensure that bomb jumping is not
-only preserved, but supported officially in this game, and is
-known as explosion surfing, because you can also use fireballs
-to do these type of explosive throwing tricks.
 
 
 

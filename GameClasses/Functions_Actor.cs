@@ -815,8 +815,6 @@ namespace DungeonRun
                 //this actor is a 2x1 enemy
                 Actor.compSprite.drawRec.Width = 16 * 1;
                 Actor.compSprite.drawRec.Height = 16 * 2;
-                Actor.compCollision.offsetY = -4;
-
                 //actor is floating in air
                 Actor.compSprite.zOffset = 16;
 
@@ -824,6 +822,12 @@ namespace DungeonRun
                 Actor.sfxDash = null; //silent dash
                 Actor.sfx.hit = Assets.sfxEnemyHit;
                 Actor.sfx.kill = Assets.sfxEnemyKill;
+
+                //custom hitbox
+                Actor.compCollision.rec.Width = 12;
+                Actor.compCollision.rec.Height = 10;
+                Actor.compCollision.offsetX = -6;
+                Actor.compCollision.offsetY = -9;
             }
 
             #endregion
@@ -843,23 +847,25 @@ namespace DungeonRun
 
                 Actor.health = 2; //med
                 Actor.chaseRadius = 16 * 3; //decrease chase radius
-
-
-
+                
                 ResetActorLoadout(Actor);
                 Actor.weapon = MenuItemType.WeaponFang;
                 Actor.walkSpeed = 0.05f;
                 Actor.dashSpeed = 0.30f;
-
-                //bias hitbox north
-                Actor.compCollision.offsetY = -2; 
-                //actor is flying, sort over
+                
+                //actor is flying, low
                 Actor.compSprite.zOffset = 16;
 
                 //set actor sound effects
                 Actor.sfxDash = null; //silent dash
                 Actor.sfx.hit = Assets.sfxEnemyHit;
                 Actor.sfx.kill = Assets.sfxEnemyKill;
+
+                //custom hitbox
+                Actor.compCollision.rec.Width = 12;
+                Actor.compCollision.rec.Height = 8;
+                Actor.compCollision.offsetX = -6;
+                Actor.compCollision.offsetY = -6;
             }
 
             #endregion
@@ -912,8 +918,8 @@ namespace DungeonRun
                 Actor.item = MenuItemType.ItemBow;
 
                 //enemy with a bigger hitbox
-                Actor.compCollision.rec.Width = 16;
-                Actor.compCollision.rec.Height = 12;
+                Actor.compCollision.rec.Width = 18;
+                Actor.compCollision.rec.Height = 14;
                 Actor.compCollision.offsetX = -8;
                 Actor.compCollision.offsetY = -8;
             }
@@ -949,6 +955,11 @@ namespace DungeonRun
                 Actor.sfxDash = Assets.sfxEnemyTaunt;
                 Actor.sfx.hit = Assets.sfxTapMetallic;
                 Actor.sfx.kill = Assets.sfxShatter;
+
+                Actor.compCollision.rec.Width = 16;
+                Actor.compCollision.rec.Height = 10;
+                Actor.compCollision.offsetX = -8;
+                Actor.compCollision.offsetY = -2;
             }
 
             #endregion
@@ -987,6 +998,11 @@ namespace DungeonRun
                 Actor.sfxDash = Assets.sfxEnemyTaunt;
                 Actor.sfx.hit = Assets.sfxBossHit;
                 Actor.sfx.kill = Assets.sfxBossHitDeath;
+
+                Actor.compCollision.rec.Width = 16;
+                Actor.compCollision.rec.Height = 10;
+                Actor.compCollision.offsetX = -8;
+                Actor.compCollision.offsetY = -2;
             }
 
 
@@ -1005,7 +1021,6 @@ namespace DungeonRun
                 Actor.compSprite.texture = Assets.EnemySheet;
                 Actor.animList = AnimationFrames.MiniBoss_OctoMouth_Animations;
                 Actor.health = 10;
-                ResetActorLoadout(Actor);
 
                 //walk and dash speeds are set in Functions_Ai
                 //because they change based on this actor's health
@@ -1025,6 +1040,11 @@ namespace DungeonRun
                 ResetActorLoadout(Actor);
                 //setup actor with useable item, so player can shoot fireballs
                 Actor.item = MenuItemType.MagicFireball;
+                //custom hitbox
+                Actor.compCollision.rec.Width = 16;
+                Actor.compCollision.rec.Height = 12;
+                Actor.compCollision.offsetX = -8;
+                Actor.compCollision.offsetY = -4;
             }
 
             #endregion
@@ -1077,6 +1097,12 @@ namespace DungeonRun
                 //boss parameters
                 Actor.attackRadius = 20;
                 Actor.chaseRadius = 16 * 20;
+
+                //custom hitbox
+                Actor.compCollision.rec.Width = 24;
+                Actor.compCollision.rec.Height = 16;
+                Actor.compCollision.offsetX = -12;
+                Actor.compCollision.offsetY = -7;
             }
 
             #endregion
@@ -1116,6 +1142,12 @@ namespace DungeonRun
                 //boss parameters
                 Actor.attackRadius = 20;
                 Actor.chaseRadius = 16 * 20;
+
+                //custom hitbox
+                Actor.compCollision.rec.Width = 24;
+                Actor.compCollision.rec.Height = 16;
+                Actor.compCollision.offsetX = -12;
+                Actor.compCollision.offsetY = -15;
             }
 
             #endregion
@@ -1191,8 +1223,6 @@ namespace DungeonRun
                 //this actor is a 2x3 special
                 Actor.compSprite.drawRec.Width = 16 * 2;
                 Actor.compSprite.drawRec.Height = 16 * 3;
-
-                Actor.compCollision.offsetY = 8;
                 Actor.compSprite.zOffset = 14;
 
                 //set actor sound effects
@@ -1207,6 +1237,11 @@ namespace DungeonRun
                 ResetActorLoadout(Actor);
                 //setup actor with useable item, so player can attack + dive
                 Actor.item = MenuItemType.WeaponFang;
+
+                Actor.compCollision.rec.Width = 14;
+                Actor.compCollision.rec.Height = 10;
+                Actor.compCollision.offsetX = -7;
+                Actor.compCollision.offsetY = 6;
             }
 
             #endregion

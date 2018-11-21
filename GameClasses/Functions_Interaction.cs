@@ -218,7 +218,7 @@ namespace DungeonRun
                 //limit bite to only the first frame of life
                 else if(Obj.type == ObjType.ProjectileBite)
                 {   //prevents fast moving caster overlap, while still remaining drawable
-                    if (Obj.lifeCounter > 0) { return; }
+                    if (Obj.lifeCounter > 1) { return; }
                 }
 
 
@@ -737,6 +737,25 @@ namespace DungeonRun
                         {   //these interactions happen mid-swing
                             Functions_GameObject.HandleCommon(RoomObj, Object.compMove.direction);
                         }
+                    }
+
+                    #endregion
+
+
+                    #region Fang / Bite / Invs Enemy Attack Projectile
+
+                    else if(Object.type == ObjType.ProjectileBite)
+                    {
+                        //center sparkle to bite
+                        Functions_Particle.Spawn(ObjType.Particle_Sparkle,
+                            Object.compSprite.position.X + 4,
+                            Object.compSprite.position.Y + 4);
+                        //play the hit objects hit soundfx
+                        Assets.Play(RoomObj.sfx.hit);
+                        //possibly destroy hit object
+                        Functions_GameObject.HandleCommon(RoomObj, Object.compMove.direction);
+                        //end projectile's life
+                        Object.lifeCounter = Object.lifetime;
                     }
 
                     #endregion

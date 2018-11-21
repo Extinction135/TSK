@@ -38,6 +38,7 @@ namespace DungeonRun
             //roomObj is blocking, interacted with arrow, explosion, sword/shovel, thrown bush/pot, etc..
             //hitDirection is used to push some objects in the direction they were hit
 
+
             #region World Objects
 
             if (RoomObj.type == ObjType.Wor_Pot)

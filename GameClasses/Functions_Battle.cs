@@ -130,11 +130,19 @@ namespace DungeonRun
 
             //2. ENEMY INVINCIBILITY - check actor v pro/obj status effects 
 
+            //this could also include blob type
+            //this does not include link type
+
+
             #region Standard Enemy - INVINCIBILITIES
 
             if (Actor.type == ActorType.Standard_BeefyBat)
-            {   //prevent friendly fire between bats attacking in groups
+            {   //prevent friendly fire between enemies attacking in groups
                 if (Obj.type == ObjType.ProjectileBite) { return; } //bail
+            }
+            else if (Actor.type == ActorType.Standard_AngryEye)
+            {
+                //
             }
 
             #endregion
@@ -163,25 +171,34 @@ namespace DungeonRun
                 //all other damaging objects are ignored
                 else { return; }
             }
+            else if (Actor.type == ActorType.MiniBoss_Spider_Unarmored)
+            {   //immune to bite projectiles
+                if (Obj.type == ObjType.ProjectileBite) { return; }
+            }   //fast moving, can overlap it's own bite pro
 
             #endregion
 
 
             #region Bosses - INVINCIBILITIES
 
+            else if (Actor.type == ActorType.Boss_BigEye)
+            {   //immune to bite projectiles
+                if (Obj.type == ObjType.ProjectileBite) { return; }
+            }   //he moves fast and can overlap his bite pro, self-harming
+
             else if (Actor.type == ActorType.Boss_BigBat)
-            {
-                //bat projectiles cant deal damage to the bat boss
+            {   //bat projectiles cant deal damage to the bat boss
                 //(he spawns them, and it would be cheap)
                 if (Obj.type == ObjType.ProjectileBat)
                 { Obj.lifeCounter = 0; return; } //keep bat alive, bail
-            }
+                //immune to bite projectiles
+                if (Obj.type == ObjType.ProjectileBite) { return; }
+            }   //same reason as big eye
 
-            else if(Actor.type == ActorType.Boss_OctoHead)
-            {
+            else if (Actor.type == ActorType.Boss_OctoHead)
+            {   //prevent boomerang from spawning tentacle accidentally
                 if (Obj.type == ObjType.ProjectileBoomerang)
-                {
-                    //stop all boomerang movement, bounce off object
+                {   //stop all boomerang movement, bounce off object
                     Functions_Movement.StopMovement(Obj.compMove);
                     Functions_Movement.Push(Obj.compMove,
                         Functions_Direction.GetOppositeCardinal(
@@ -191,7 +208,17 @@ namespace DungeonRun
                     Assets.Play(Assets.sfxActorLand);
                     Obj.lifeCounter = 200;
                     return;
-                } //set into return mode, bail
+                }   //set into return mode, bail
+            }
+
+            #endregion
+
+
+            #region Special Enemies (tentacle)
+
+            else if (Actor.type == ActorType.Special_Tentacle)
+            {   //prevent friendly fire between enemies attacking in groups
+                if (Obj.type == ObjType.ProjectileBite) { return; } //bail
             }
 
             #endregion
