@@ -32,27 +32,42 @@ Shadow Dungeon, TSK Fight complete
 
 
 
-
-
-
-
-
-
-
-
-
-
 0.77 playthru: https://youtu.be/_b7qclGTffE
 0.78 goals:
 	more items (axe, hookshot, hammer, magic mirror)
 	more interaction (throwing objs, actors/objs in water, decorations)
-	better dungeon traversal (solved puzzles, marked map)
+	better dungeon traversal (X solved puzzles, marked map)
 	better coliseum - uniq objs + enemies
 	better overworld - more skulls, waves, cluds, vfx @skullIsland
-	smaller ram - dungeon sheets get smaller
+	smaller ram - X dungeon sheets get smaller
 	fix projectile spawn system + enlarge boss hitboxes
+	implement bed + dream sequences - special leveldata + set hero's type + dialog prompt
+	(exiting dream field ends the dream)
+	(we may split bed into two objects again, to make this interaction more expected)
+
+
+
+
+
+
 
 Today:
+
+
+
+
+Miniboss Blackeye++
+
+blackeye got the bow item added to his loadout,
+and then his ai was updated to call useItem(),
+instead of directly calling spawn projectile(arrow).
+this small change makes the ai function more like
+user input, and also allows player1 to test the
+enemy using the expected Y button input to create
+arrow projectiles.
+
+
+
 
 
 
@@ -60,38 +75,29 @@ Today:
 
 Testing Enemy Actors using Player1 Input
 
-we need to be able to turn hero into an enemy.
-then, we can test the shooting routines, which test
-the projectile spawn routines, which we are going to update
-to use the actor's hitbox, instead of assuming they are
-all just the hero, with the hero's specific hitbox.
-
-this is done via pressing the f6 button in the editor,
-as noted by the top menu now. this simply sets the hero's
-type, using the actor.transform() method. this way, we
-iterate through all enemy types, checking their animations
-and interactions with the world. we can even load levels
-up, then play with them as different enemy types.
-
-THIS IS INCREDIBLY FUN. 
-
-now that this is setup and ready, this can be the foundation
-for a number of dreams and mini-games, simply because we can
-load a level, then change the hero's type to whatever enemy
-type we want, and then if he leaves the field, we simply 'wake up'
-or end the minigame, depending on how we want to do this.
-very powerful and fun stuff here.
-
-
-
-
-
-
+these are issues that enemies have with their current
+implementation vs. being able to test that implementation.
+boss special moves aside, they should all be testable.
+because we're about to change their hitboxes, which requires
+a refactoring of the projectile spawn() and handleBehavior()
+methods, which govern if a projectile hit's it caster or not.
+currently, all enemy hitboxes match heros hitbox, just
+to ensure they can cast projetiles properly. this is bad wonky.
 
 
 
 miniboss black eye can't test create arrows, because 
-he doens't have the bow/arrow item equipped!
+he doens't have the bow/arrow item equipped! fixed.
+playtested, working.
+
+
+
+
+
+
+
+
+
 
 miniboss watery mouth can't throw fireballs. no item equipped.
 
@@ -172,6 +178,18 @@ would allow larger actors, like bosses, to SHOOT FIREBALLS. geez.
 Special Attacks / Boss "USE"
 bigeye uses the shut + bloodshot frames for his special.
 bigeye: spawns A TON of exploding seekers while in his special.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -358,8 +376,6 @@ we can implement this now and ensure that bomb jumping is not
 only preserved, but supported officially in this game, and is
 known as explosion surfing, because you can also use fireballs
 to do these type of explosive throwing tricks.
-
-
 
 
 

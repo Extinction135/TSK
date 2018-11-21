@@ -664,6 +664,13 @@ namespace DungeonRun
             Actor.compCollision.offsetY = 0;
 
 
+
+
+
+
+
+
+
             //Standard Actors
 
             #region Hero
@@ -781,6 +788,14 @@ namespace DungeonRun
 
 
 
+
+
+
+
+
+
+
+
             //Minibosses
 
             #region Blackeye
@@ -810,6 +825,11 @@ namespace DungeonRun
                 Actor.sfxDash = null; //silent dash
                 Actor.sfx.hit = Assets.sfxBossHit;
                 Actor.sfx.kill = Assets.sfxShatter; //sounds good
+
+                ResetActorLoadout(Actor);
+                //setup actoro with useable item, so player can shoot arrows
+                Actor.item = MenuItemType.ItemBow; 
+                //this is not used by AI, which directly spawns arrow projectiles
             }
 
             #endregion
@@ -918,6 +938,16 @@ namespace DungeonRun
             }
 
             #endregion
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1038,6 +1068,13 @@ namespace DungeonRun
             }
 
             #endregion
+
+
+
+
+
+
+
 
 
 

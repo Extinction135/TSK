@@ -169,10 +169,11 @@ namespace DungeonRun
                     Actor.dashSpeed = 0.30f;
 
                     if (Functions_Random.Int(0, 100) > 95)
-                    {   //shoot fireballs at hero
-                        Functions_Projectile.Spawn(ObjType.ProjectileArrow, Actor,
-                            Functions_Direction.GetCardinalDirectionToHero(actorPos));
-                        Actor.compInput.attack = true;
+                    {
+                        //face hero, then use item, set use input true (displays a bow)
+                        Actor.direction = Functions_Direction.GetCardinalDirectionToHero(actorPos);
+                        Functions_Item.UseItem(Actor.item, Actor);
+                        Actor.compInput.use = true;
                     }
                 }
                 else //actor is at low health
@@ -191,10 +192,11 @@ namespace DungeonRun
                     );
 
                     if (Functions_Random.Int(0, 100) > 75)
-                    {   //shoot fireballs at hero more often
-                        Functions_Projectile.Spawn(ObjType.ProjectileArrow, Actor,
-                            Functions_Direction.GetCardinalDirectionToHero(actorPos));
-                        Actor.compInput.attack = true;
+                    {   //shoot arrows at hero more often
+                        //face hero, then use item, set use input true (displays a bow)
+                        Actor.direction = Functions_Direction.GetCardinalDirectionToHero(actorPos);
+                        Functions_Item.UseItem(Actor.item, Actor);
+                        Actor.compInput.use = true;
                     }
 
                     //rarely taunt the player
