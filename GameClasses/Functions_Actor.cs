@@ -626,18 +626,58 @@ namespace DungeonRun
 
         public static void CreateSplash(Actor Actor)
         {
+
+            #region Water Enemies get extra and specific splashes
+
             //decorate water transition based on actor type
             if (Actor.type == ActorType.Boss_OctoHead)
             {   //dis burlyboy requires more than one splash to look good
+                //front
                 Functions_Particle.Spawn(
                     ObjType.Particle_Splash,
                     Actor.compSprite.position.X - 8,
-                    Actor.compSprite.position.Y + 8);
+                    Actor.compSprite.position.Y + 20);
                 Functions_Particle.Spawn(
                     ObjType.Particle_Splash,
                     Actor.compSprite.position.X + 8,
-                    Actor.compSprite.position.Y + 8);
+                    Actor.compSprite.position.Y + 20);
+                //back
+                Functions_Particle.Spawn(
+                    ObjType.Particle_Splash,
+                    Actor.compSprite.position.X - 8,
+                    Actor.compSprite.position.Y - 16);
+                Functions_Particle.Spawn(
+                    ObjType.Particle_Splash,
+                    Actor.compSprite.position.X + 8,
+                    Actor.compSprite.position.Y - 16);
+                //and side to side
+                Functions_Particle.Spawn(
+                    ObjType.Particle_Splash,
+                    Actor.compSprite.position.X - 16,
+                    Actor.compSprite.position.Y + 10);
+                Functions_Particle.Spawn(
+                    ObjType.Particle_Splash,
+                    Actor.compSprite.position.X + 16,
+                    Actor.compSprite.position.Y + 10);
             }
+            else if(Actor.type == ActorType.MiniBoss_OctoMouth)
+            {
+                Functions_Particle.Spawn(
+                    ObjType.Particle_Splash,
+                    Actor.compSprite.position.X,
+                    Actor.compSprite.position.Y + 2);
+            }
+            else if (Actor.type == ActorType.Special_Tentacle)
+            {   //taller actor, offset splash towards bottom
+                Functions_Particle.Spawn(
+                    ObjType.Particle_Splash,
+                    Actor.compSprite.position.X,
+                    Actor.compSprite.position.Y + 10);
+            }
+
+            #endregion
+
+
             else
             {   //all other actors are small enough to use just one splash
                 Functions_Particle.Spawn(
@@ -1225,11 +1265,7 @@ namespace DungeonRun
                                     if (Actor.underwater == false) //setup new dive
                                     { Actor.underwater = true; Actor.breathCounter = 0; }
                                     else { Actor.underwater = false; }
-                                    //make a splash
-                                    Functions_Particle.Spawn(
-                                        ObjType.Particle_Splash,
-                                        Actor.compSprite.position.X,
-                                        Actor.compSprite.position.Y);
+                                    CreateSplash(Actor); //create right splash for actor type
                                 }
                                 else
                                 {   //use the weapon item, assuming actor is above water (flying)

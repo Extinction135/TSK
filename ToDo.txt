@@ -59,46 +59,28 @@ Today:
 
 
 
+Water Splashes++
 
+CreateSplash() should govern the creation of all water
+splashes, which are particles. this was being called from
+actor routines properly, but not from player input on hero.
+instead, just a single splash was being called directly,
+using the particle system, and this was being centered to
+the hero actor. which is fine, if the hero actor is link,
+or a comparable 16x16 actor, but not when link is transformed
+into a miniboss or boss. so now all codepaths that intersect
+splash responsibilities call CreateSplash(), which creates
+the proper number and position of splashes, based on the actor's
+type. this means:
 
+kraken now creates 6 splashes around him, lots of decoration.
+this is to signify that him going underwater is a big deal - and
+it is, because that tells the player he was hit PLUS he spawns
+an enemy tentacle when he comes back up - which is also decorated
+with a ton of splashes to signify this event as important.
 
-Water Logic and Actors ++
-
-we want to preserve diving for specific actor types.
-this is ocotmouth, kraken, tentacle. done. we can still
-dive using these actor types. now we can further improve 
-them.
-
-octomouth dives and shoots fireballs with player input. yep.
-tentacle dives and attacks with use action, using fang. not yet.
-
-
-tentacle should have fang as item, should use item.
-when this happens, tentacle attack animation doesn't play.
-this is for ai and actor input, so code isn't properly calling
-the use item animation for tentacle..
-
-this was caused by setAnimGroup(), which didn't set the use
-animation group to attack anim, for any actor in a swimming
-state. this was remedied using the same approach for allowing
-attacking in water: we check the actor.underwaterEnemy boolean,
-and allow underwater actors to attack and use items and weapons
-like normal.
-
-changed tentacle's ai to only set input, and not call
-useItem, which caused a state unlock, allowing spamming
-of attack/use while in water. this also fixed an invisible
-bug with octomouth, and a variety of other enemies, which
-would set use or attack to true, then call the useItem()
-method, which eval'd(), but then the input to update routines
-mapped input and caused the useItem() method to eval again,
-essentially creating two projectiles everytime certain 
-enemies attacked. that's a no-no.
-
-Bosses++
-
-upgraded big eye to rarely spawn seekers while in phase 2,
-which is chasing the hero.
+tentacle and octohead now have proper splash offsets relative
+to their sprite size.
 
 
 
@@ -108,17 +90,10 @@ which is chasing the hero.
 
 
 
-
-
-
-
-Water FX ++
-
-tentacle splash into water needs +16 y offset
-same with kraken octohead.
 
 
 Swim Dash++
+
 tentacle's swim dash needs ypos +16 offset.
 boss kraken's swim waves are incorrect for swimming left/right,
 the swim waves need to be pushed south 16 pixels. for swimming
