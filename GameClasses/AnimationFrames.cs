@@ -1681,9 +1681,9 @@ namespace DungeonRun
                 new Byte4(12, 3, 0, 0), new Byte4(12, 3, 0, 0)
             };
 
-            //there aren't really used
+            //these aren't really used
             Special_Tentacle_Animations.attack.down = Special_Tentacle_Animations.attack.left;
-            Special_Tentacle_Animations.attack.up = Special_Tentacle_Animations.attack.left;
+            Special_Tentacle_Animations.attack.up = Special_Tentacle_Animations.attack.right;
             Special_Tentacle_Animations.hit = Special_Tentacle_Animations.idle;
             //this guy can't die
             Special_Tentacle_Animations.death_blank = Special_Tentacle_Animations.idle;
@@ -1696,8 +1696,8 @@ namespace DungeonRun
             Special_Tentacle_Animations.push = Special_Tentacle_Animations.idle;
             Special_Tentacle_Animations.swim_idle = Special_Tentacle_Animations.idle;
             Special_Tentacle_Animations.swim_move = Special_Tentacle_Animations.idle;
-            Special_Tentacle_Animations.swim_dash = Special_Tentacle_Animations.idle;
-            Special_Tentacle_Animations.swim_hit = Special_Tentacle_Animations.idle;
+            Special_Tentacle_Animations.swim_dash = Special_Tentacle_Animations.dash;
+            Special_Tentacle_Animations.swim_hit = Special_Tentacle_Animations.hit;
             Special_Tentacle_Animations.swim_reward = Special_Tentacle_Animations.idle;
             Special_Tentacle_Animations.falling = Special_Tentacle_Animations.idle;
             Special_Tentacle_Animations.landed = Special_Tentacle_Animations.idle;

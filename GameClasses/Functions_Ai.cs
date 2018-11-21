@@ -171,8 +171,8 @@ namespace DungeonRun
                     if (Functions_Random.Int(0, 100) > 95)
                     {
                         //face hero, then use item, set use input true (displays a bow)
-                        Actor.direction = Functions_Direction.GetCardinalDirectionToHero(actorPos);
-                        Functions_Item.UseItem(Actor.item, Actor);
+                        Actor.compInput.direction = Functions_Direction.GetCardinalDirectionToHero(actorPos);
+                        Actor.direction = Actor.compInput.direction;
                         Actor.compInput.use = true;
                     }
                 }
@@ -194,8 +194,8 @@ namespace DungeonRun
                     if (Functions_Random.Int(0, 100) > 75)
                     {   //shoot arrows at hero more often
                         //face hero, then use item, set use input true (displays a bow)
-                        Actor.direction = Functions_Direction.GetCardinalDirectionToHero(actorPos);
-                        Functions_Item.UseItem(Actor.item, Actor);
+                        Actor.compInput.direction = Functions_Direction.GetCardinalDirectionToHero(actorPos);
+                        Actor.direction = Actor.compInput.direction;
                         Actor.compInput.use = true;
                     }
 
@@ -274,8 +274,6 @@ namespace DungeonRun
                     //shoot fireballs at hero
                     if (Functions_Random.Int(0, 100) > 92)
                     {   
-                        //shoot fireball magic towards hero
-                        Functions_Item.UseItem(Actor.item, Actor);
                         Actor.compInput.use = true;
                     }
 
@@ -364,6 +362,13 @@ namespace DungeonRun
                     if (Functions_Random.Int(0, 100) > 95)
                     {
                         Assets.Play(Assets.sfxEnemyTaunt);
+                    }
+
+                    //occasionally spawn a seeker
+                    if (Functions_Random.Int(0, 100) > 90)
+                    {   
+                        Functions_GameObject.Spawn(ObjType.Wor_SeekerExploder,
+                            actorPos.X, actorPos.Y, Direction.Down);
                     }
                 }
 
@@ -620,20 +625,14 @@ namespace DungeonRun
                     ChaseHero();
                     Actor.compInput.dash = false;
 
-                    //manually handle attack 
+                    //always face the direction of the hero (hivemind)
+                    Actor.compInput.direction = Functions_Direction.GetCardinalDirectionToHero(actorPos);
+                    Actor.direction = Actor.compInput.direction;
+
                     if (yDistance < Actor.attackRadius & xDistance < Actor.attackRadius)
                     {   //actor is close enough to hero to attack, do so
-                        Actor.compInput.direction = Functions_Direction.GetCardinalDirectionToHero(actorPos);
-                        Actor.compInput.attack = true;
-                        
-                        //manually spawn bite projectile 
-                        Actor.direction = Actor.compInput.direction; //face hero for manual spawn
-                        Functions_Projectile.Spawn(ObjType.ProjectileBite, Actor, Actor.direction);
+                        Actor.compInput.use = true;
                     }
-                    
-                    //always face the direction of the hero (hivemind)
-                    Actor.direction = Functions_Direction.GetCardinalDirectionToHero(actorPos);
-
                     //note: tentacle doesn't dive on it's own, HAS to be hit by projectile
                 }
 

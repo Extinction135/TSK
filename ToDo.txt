@@ -62,70 +62,86 @@ Today:
 
 
 
-
-
-
-
-
-Bush Growth
-
-when a bush regrows (when it's near a water tile or
-ditch filled with water), it becomes a blocking object.
-it transforms from a non-blocking stump into a blocking
-bush (which can be destroyed easily, but still blocking).
-this is important because, one consequence of this system
-is that a bush can regrow on the hero, locking him 'into'
-the bush, making him unable to move. we handled that with
-a specific check in bush regrowth routines - but now i 
-realize that this should be extended to include all actors,
-simply because a bush can grow-lock minibosses or bosses,
-like they did when i was playtesting 0.77 in the miniboss
-room. in this room, we have a miniboss that shoots fireballs
-in a room filled with water and bushes. this leads to the
-cycle where fireballs burn bushes into stumps, which regrow
-into bushes again. however, the bushes were grow locking
-the miniboss, who would then still shoot fireballs, which
-caused the fireball to immediately hit the bush, creating
-an explosion, hurting the miniboss, causing him to go underwater,
-and right as he popped back up - the bush would regrow -
-continuing this cycle of never ending torture for the miniboss.
-while this was entertaining to watch, this was not the 
-intended behavior and this commit prevents this state from
-being possible - simply by preventing bush regrowth if
-the stump touches any actor at all. which loops over all
-actors, doing a collision check, which is mildly expensive.
-oh well.
-
-
-
-
-
-
-
+Water Logic and Actors ++
 
 we want to preserve diving for specific actor types.
-this is ocotmouth, kraken, tentacle.
+this is ocotmouth, kraken, tentacle. done. we can still
+dive using these actor types. now we can further improve 
+them.
 
+octomouth dives and shoots fireballs with player input. yep.
+tentacle dives and attacks with use action, using fang. not yet.
 
 
 tentacle should have fang as item, should use item.
+when this happens, tentacle attack animation doesn't play.
+this is for ai and actor input, so code isn't properly calling
+the use item animation for tentacle..
+
+this was caused by setAnimGroup(), which didn't set the use
+animation group to attack anim, for any actor in a swimming
+state. this was remedied using the same approach for allowing
+attacking in water: we check the actor.underwaterEnemy boolean,
+and allow underwater actors to attack and use items and weapons
+like normal.
+
+changed tentacle's ai to only set input, and not call
+useItem, which caused a state unlock, allowing spamming
+of attack/use while in water. this also fixed an invisible
+bug with octomouth, and a variety of other enemies, which
+would set use or attack to true, then call the useItem()
+method, which eval'd(), but then the input to update routines
+mapped input and caused the useItem() method to eval again,
+essentially creating two projectiles everytime certain 
+enemies attacked. that's a no-no.
+
+Bosses++
+
+upgraded big eye to rarely spawn seekers while in phase 2,
+which is chasing the hero.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Water FX ++
+
+tentacle splash into water needs +16 y offset
+same with kraken octohead.
+
+
+Swim Dash++
 tentacle's swim dash needs ypos +16 offset.
+boss kraken's swim waves are incorrect for swimming left/right,
+the swim waves need to be pushed south 16 pixels. for swimming
+north, they need to be pushed +16 pixel as well, maybe +32.
 
 
 
 
 
 
-projectiles should spawn based on caster's hitbox center,
-then add half width or height, plus a pixel bumper, based on
-the projectile's direction. each frame, the projectile
-either tracks it's caster's hitbox, or performs a unique
-behavior.
 
 
 
-hero should not be able to climb walls unless he is blob
-or link.
+
+Kraken Magic
+
+kraken needs tentacle spawn magic. for kraken, this creates
+a tentacle actor. if hero uses this magic, it creates a tentacle
+roomObj, which simply attacks any actor within it's range. uses
+the same animation frames as tentacle actor tho.. lasts until room
+death, so player can build walls of angry tentacles.
+
+
 
 
 
@@ -144,33 +160,19 @@ this maintains it's behavior, while making it useful to the player
 as well. this is enemy magic/items, so we can add it to the
 enemy vendor as well.
 
-boss kraken's swim waves are incorrect for swimming left/right,
-the swim waves need to be pushed south 16 pixels. for swimming
-north, they need to be pushed +16 pixel as well, maybe +32.
-also, the boss kraken should have a magic item that spawns a
-tentacle. this tentacle just makes a standard tentacle, which
-will attack link and can be spawned on land. we should update
-tentacles spawned in this manner to have no speed, so they spawn
-unable to move. they should randomly attack in every direction too,
-so link can create walls of angry tentacles, using this enemy magic.
-this should probably be two types of objects honestly: tentacles
-spawned by the boss (in water), and tentacles spawned by the hero
-(in water or on land) which are just stationary. this preserves the
-boss' implementation (using a magic item) and also gives the player 
-something intresting to use (using a magic item). *actually, the 
-kraken creates tentacle ACTORS, which seek hero. hero could create
-tentacle OBJS, using same sprites, that could attack random directions
-and form useful walls. this would also be the first instance of
-creating roomObjs by the hero/player.
-
-tentacle special actor should have the fang equipped for his
-ITEM, because he is in the water, and X causes him to dive. we have
-to preserve this state in order for hero to fully function, so
-enemies in the water can only use items, never weapons, limiting them
-to one type of attack. right now, tentacle actors
 
 
 
+
+
+
+
+
+projectiles should spawn based on caster's hitbox center,
+then add half width or height, plus a pixel bumper, based on
+the projectile's direction. each frame, the projectile
+either tracks it's caster's hitbox, or performs a unique
+behavior.
 
 
 
@@ -213,12 +215,18 @@ would allow larger actors, like bosses, to SHOOT FIREBALLS. geez.
 Special Attacks / Boss "USE"
 bigeye uses the shut + bloodshot frames for his special.
 bigeye: spawns A TON of exploding seekers while in his special.
+we simply can't do these specials as the hero/player.
 
 
 
 
-
-
+what about picking and throwing objects as different actor types?
+we should only be able to do this as blob or link. BUT, we should
+be able to normally interact with other objects, so we likely need
+to split this interaction rec check into two loops: one for interactions
+and one specifically for picking objects up. we should still be able
+to push objects as any enemy type. we should not be able to climb unless
+we are blob or link.
 
 
 

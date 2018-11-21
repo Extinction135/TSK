@@ -374,7 +374,10 @@ namespace DungeonRun
             else if (Actor.state == ActorState.Use)
             {
                 if (Actor.swimming)
-                { }
+                {
+                    if (Actor.underwaterEnemy)
+                    { Actor.animGroup = Actor.animList.attack; }
+                }
                 else if (Actor.carrying)
                 { }
                 else { Actor.animGroup = Actor.animList.attack; }
@@ -1096,10 +1099,7 @@ namespace DungeonRun
                 Actor.underwaterEnemy = true;
                 Actor.compSprite.texture = Assets.EnemySheet;
                 Actor.animList = AnimationFrames.Special_Tentacle_Animations;
-                Actor.health = 30; //not meant to be killed, but they can be
-
-                ResetActorLoadout(Actor);
-                Actor.weapon = MenuItemType.WeaponFang; //bites
+                Actor.health = 10; //not meant to be killed, but they can be
 
                 Actor.walkSpeed = 0.15f;
                 Actor.dashSpeed = 0.15f;
@@ -1119,6 +1119,10 @@ namespace DungeonRun
                 //ai params
                 Actor.chaseRadius = 16 * 30; //massive search space
                 Actor.attackRadius = 18;
+
+                ResetActorLoadout(Actor);
+                //setup actor with useable item, so player can attack + dive
+                Actor.item = MenuItemType.WeaponFang;
             }
 
             #endregion
@@ -1234,12 +1238,18 @@ namespace DungeonRun
                                 }
                             }
                         }
+                        else
+                        {   //npcs can use weapons while in swimming state
+                            Functions_Item.UseItem(Actor.weapon, Actor);
+                        }
 
                         #endregion
 
                     }
                     else if (Actor.state == ActorState.Use)
                     {
+
+                        #region No Item Use or Use Item if Actor Type
 
                         if (Actor == Pool.hero)
                         {
@@ -1248,7 +1258,7 @@ namespace DungeonRun
                             {
                                 //link and the blob cannot use items in the water, others can
                                 Functions_Item.UseItem(Actor.item, Actor);
-                                WorldUI.currentWeapon.compSprite.scale = 2.0f;
+                                WorldUI.currentItem.compSprite.scale = 2.0f;
                             }
                         }
                         else
@@ -1257,6 +1267,9 @@ namespace DungeonRun
                             //this allows enemies ai to function properly
                             Functions_Item.UseItem(Actor.item, Actor);
                         }
+
+                        #endregion
+
                     }
                 }
                 else if(Actor.carrying)
@@ -1373,6 +1386,7 @@ namespace DungeonRun
 
             else
             {
+                //play the statelocked animation / count state
                 Actor.lockCounter++; //increment lock counter
                 if (Actor.lockCounter > Actor.lockTotal) //check against lock total
                 {
@@ -1381,6 +1395,9 @@ namespace DungeonRun
                     //check to see if the actor is dead
                     if (Actor.health <= 0) { SetDeathState(Actor); }
                 }
+
+
+                #region Statelocked modifiers
 
                 if (Actor.state == ActorState.Attack)
                 {   //when an actor attacks, they slow down for the duration
@@ -1575,7 +1592,9 @@ namespace DungeonRun
                     //we manually set the animation frames, bail from rest of method
                     return;
                 }
-                
+
+                #endregion
+
             }
 
             #endregion
