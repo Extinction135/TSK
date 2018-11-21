@@ -1,46 +1,179 @@
 
 
 
-magic notes pulled from projectile.spawn
 
 
-debrisRock: should be a particle
-projectilePot: hero will be picking up more than pots, obsolete soon
-shadowSm: will be obsolete soon with addition of shadow system
-*keep in mind that altering the ObjType enum values will affect the master GameObjAnimList
 
-planned:
-push wand: shoots a wave of light that pushes enemies/objs a distance
-boost magic: temporarily increases the damage with your sword to 2, at the cost of some magic
-	*4 beams of light quickly come together on your sword, as the hero holds it up, any nearby enemies are knocked back
-	*boost lasts 255 frames, which is the duration of the projectile that floats around the hero's feet while boost is active
 
-lttp:
-boomerang: travels from caster position, returns to caster position (tracking) with/out item, pushes actors it collides with
-hookshot: travels from caster position, collides with obj or actor or nothing
-	obj: either latches and pulls caster, or latches and pulls obj, or clinks and returns
-	actor: either latches and pulls actor (sm), or stuns and returns (med), or clinks and returns (large)
-	nothing: hookshot reaches max lifetime and clinks, then dissappears (no waiting about for it to return)
-bombos magic: randomly places 20 explosions around caster, but never ON caster, caster is stationary during cast
-cane of byrna: creates 4 balls of light around caster, which track with an offset, and kill anything they touch, but use magic
-cane of somaria: creates a block of light, which can be pushed / pulled, hold down switches, interact with belts, etc..
-ether magic: lightning strikes every enemy on screen, caster is stationary during
-hammer: used to smash down posts to progress into hidden / secret areas of the game (non-critical paths), tracks to caster
+
+ITEMS TODO:
+
+
+
+
+cane of byrna: creates 4 balls of light around caster, 
+which track with an offset, and kill anything they touch, but use magic
+
+cane of somaria: creates a block of light, which can be pushed, 
+hold down switches, interact with belts, etc..
+
+ether magic: lightning strikes every non-caster actor on screen
+
+hammer: used to smash down posts to progress into hidden / secret 
+areas of the game (non-critical paths), tracks to caster
+
 ice rod: ice magic in game, shoots a ball of ice that turns sm enemies into blocks of ice, 
 	*the blocks of ice are generic, not enemy specific, and have a vague shadow inside them
 	*ice blocks can be picked up and thrown, and will spawn normal loot when destroyed normally
 	*however, smashing an enemy in a block of ice will always spawn a large magic pot
-magic cape: turns hero invisible & flying while in use, with shadow only, uses magic constantly
-magic mirror: returns hero to the start of the current dungeon or overworld
-quake magic: screen shakes, all grounded enemies on screen take 4 damage, caster waits during cast
-shovel: used for digging outside in grass or dirt, low chance to spawn loot, tracks to caster like sword
+	
+fire rod: shoots fireballs
+	level 2 should be a golden version thats actually a flamethrower (continuous fireballs)
+	
+magic cape: turns hero invisible & flying while in use, 
+	with shadow only, uses magic constantly
 
-moar?:
+magic mirror: returns hero to the start of the current dungeon, etc...
+
+quake magic: screen shakes, all grounded enemies on screen take 4 damage, caster waits during cast
+
+
+
+
+
+
+The Axe
+
+I'm straight ripping Kratos' axe here. This is an obj
+much like the boomerang - thrown by Link. once it reaches
+max distance, it falls to the ground. this isn't far.
+pressing Y aggain then returns the axe to link's hand,
+at maximum magnitude, through anykind of object or enemy.
+
+- notes - 
+if this projectile is moving, then it has interaction checks
+with actors and roomObjects. if it is not moving, then the
+axe is laying on the ground and is ignored.
+
+*axe in hand, axe in air, and axe on ground sprites all added.
+
+the axe must become MAGICAL before it will return to link.
+so we have two axes: axe and magical axe. two different behaviors,
+but one item, essentially. the axe just dupes sword behavior,
+but when upgraded to magical status it becomes kratos' axe.
+*axe should collide and collect pickups for link upon returning,
+and throwing (while moving, basically). so, lining up the perfect
+group of mobs and pulling an axe thru them also rewards the 
+player with some of loot instantly. no elemental aspect to this
+weapon please - no fire or ice or poison affects. this is a 
+simple throw, wait, call item with specific destructive power
+that keeps it in check.
+
++ added updated entities sheet to the game.
+
+Design Parameters for Projectile Interaction with Actors
+
+* the axe should stick into enemies.
+* arrows should stick into enemies.
+* at the same time, the hookshot should
+pull whatever actor it is attached to (meaning
+some enemies could pull themselves across gaps,
+just like link does).
+
+we have to design how projectiles stick to actors.
+initial design is to put a projectile reference into
+actor class. once stuck to the actor, the projectile
+would live for 255 frames (life counter reset to 0, behavior
+suppressed, only decoration), and then be released(), or in
+the case of the axe, it would stick around until the caster
+returned it, resetting it's lifecounter to 0 every 100
+frames - living forever - unless the projectile pool is reset.
+which is a safe way to add this idea into the current systems.
+
+we should be modeling boomerang in actor class, along with
+the magical axe. this allows enemies to use these items
+using the same systems as the hero.
+
+How Does this Affect Hookshot Design?
+
+Hookshot Design: for each actor, there are projectile references.
+if something is 'stuck' into the actor - like an arrow or axe.
+hookshot can stick into an actor too, pulling that actor towards
+the caster while dealing them 1 damage. but also, if hookshot
+hits a blocking object, then hookshot drags the caster towards
+it's location for 4 seconds, after a pretty swift speed. after
+255 frames, the magnetic pull no longer happens. 
+
+then we need only to decorate the line between caster and
+hookshot tip. we need two sprites: hookshot tip and chain,
+which is animated in lttp, so we'll do that too. we'll use
+more sprites however, to make the chain seem more connected.
+and i think we should use actual links of chain, not the spike
+stuff, and the chains should connect visually, so they need to
+be center connected. the tip connects centered too. if done this way,
+we dont need an animation. we could spawn a random sparkle particle
+on a chain if we wanted to, to draw attention to it.
+
+important - we need to be updating how many chains the hookshot
+has each frame! we cant just use 4 or 8 and 'deal with it'. calculate
+the distance between the tip and caster each frame, then place
+chain particles along the line between caster and hookshot tip,
+in 16 pixel increments vertically or horizontally. we'll disable
+casting hookshot diagonally, and we'll extend the actor's stateLocked
+state to prevent them from moving until the hookshot completes it's 
+travel...ugh... too complicated.
+
+lets just draw a line between the hookshot tip and the caster,
+as a black rectangle. we need to add this code into the codebase
+anyway. then we can reuse it for the overworld, draw lines between
+neighbors. ok, designs ready.
+
+*the axe should draw a straight line from it's pickup point to caster,
+upon it's returning state.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 remote detonated mines - must equip two items: mines + detonator
 	mines are dropped with Y button
 	detonator blows up ALL dropped mines with X button
 	*this way the player can juggle / strategize more, with faster reaction time
 	* *plus, no switching between items to blow stuff up
+
+*instead of remote detonated mines, we should summon tentacles or something
+create an explosion upon spawn, so we still get the boom, but we also get
+animated roomObjs that have strategic effect.
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -298,105 +431,6 @@ make spectators much more brown and less obvious
 
 
 
-
-
-
-
-
-
-As a reward for releasing 0.77, will now implement The
-Magical Axe, and The Hookshot (at the same time).
-
-
-
-The Axe
-
-I'm straight ripping Kratos' axe here. This is an obj
-much like the boomerang - thrown by Link. once it reaches
-max distance, it falls to the ground. this isn't far.
-pressing Y aggain then returns the axe to link's hand,
-at maximum magnitude, through anykind of object or enemy.
-
-- notes - 
-if this projectile is moving, then it has interaction checks
-with actors and roomObjects. if it is not moving, then the
-axe is laying on the ground and is ignored.
-
-*axe in hand, axe in air, and axe on ground sprites all added.
-
-the axe must become MAGICAL before it will return to link.
-so we have two axes: axe and magical axe. two different behaviors,
-but one item, essentially. the axe just dupes sword behavior,
-but when upgraded to magical status it becomes kratos' axe.
-*axe should collide and collect pickups for link upon returning,
-and throwing (while moving, basically). so, lining up the perfect
-group of mobs and pulling an axe thru them also rewards the 
-player with some of loot instantly. no elemental aspect to this
-weapon please - no fire or ice or poison affects. this is a 
-simple throw, wait, call item with specific destructive power
-that keeps it in check.
-
-+ added updated entities sheet to the game.
-
-Design Parameters for Projectile Interaction with Actors
-
-* the axe should stick into enemies.
-* arrows should stick into enemies.
-* at the same time, the hookshot should
-pull whatever actor it is attached to (meaning
-some enemies could pull themselves across gaps,
-just like link does).
-
-we have to design how projectiles stick to actors.
-initial design is to put a projectile reference into
-actor class. once stuck to the actor, the projectile
-would live for 255 frames (life counter reset to 0, behavior
-suppressed, only decoration), and then be released(), or in
-the case of the axe, it would stick around until the caster
-returned it, resetting it's lifecounter to 0 every 100
-frames - living forever - unless the projectile pool is reset.
-which is a safe way to add this idea into the current systems.
-
-we should be modeling boomerang in actor class, along with
-the magical axe. this allows enemies to use these items
-using the same systems as the hero.
-
-How Does this Affect Hookshot Design?
-
-Hookshot Design: for each actor, there are projectile references.
-if something is 'stuck' into the actor - like an arrow or axe.
-hookshot can stick into an actor too, pulling that actor towards
-the caster while dealing them 1 damage. but also, if hookshot
-hits a blocking object, then hookshot drags the caster towards
-it's location for 4 seconds, after a pretty swift speed. after
-255 frames, the magnetic pull no longer happens. 
-
-then we need only to decorate the line between caster and
-hookshot tip. we need two sprites: hookshot tip and chain,
-which is animated in lttp, so we'll do that too. we'll use
-more sprites however, to make the chain seem more connected.
-and i think we should use actual links of chain, not the spike
-stuff, and the chains should connect visually, so they need to
-be center connected. the tip connects centered too. if done this way,
-we dont need an animation. we could spawn a random sparkle particle
-on a chain if we wanted to, to draw attention to it.
-
-important - we need to be updating how many chains the hookshot
-has each frame! we cant just use 4 or 8 and 'deal with it'. calculate
-the distance between the tip and caster each frame, then place
-chain particles along the line between caster and hookshot tip,
-in 16 pixel increments vertically or horizontally. we'll disable
-casting hookshot diagonally, and we'll extend the actor's stateLocked
-state to prevent them from moving until the hookshot completes it's 
-travel...ugh... too complicated.
-
-lets just draw a line between the hookshot tip and the caster,
-as a black rectangle. we need to add this code into the codebase
-anyway. then we can reuse it for the overworld, draw lines between
-neighbors. ok, designs ready.
-
-*the axe should draw a straight line from it's pickup point to caster,
-upon it's returning state.
 
 
 

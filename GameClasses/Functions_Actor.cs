@@ -1506,9 +1506,6 @@ namespace DungeonRun
                     if (Actor.health <= 0) { SetDeathState(Actor); }
                 }
 
-
-                #region Statelocked modifiers
-
                 if (Actor.state == ActorState.Attack)
                 {   //when an actor attacks, they slow down for the duration
                     Actor.compMove.friction = World.frictionAttack;
@@ -1540,68 +1537,82 @@ namespace DungeonRun
 
                     if (Actor == Pool.hero)
                     {
-                        //this means player can't hold down A to auto-grab - must time it right
-                        if(Input.Player1.A & Input.Player1.A_Prev == false)
+                        //only link and blob have proper animframes for climbing
+                        if (Pool.hero.type == ActorType.Hero || Pool.hero.type == ActorType.Blob)
                         {
-
-
-                            #region Resolve input direction to left or right
-
-                            if (Pool.hero.compInput.direction == Direction.Up
-                                || Pool.hero.compInput.direction == Direction.Down)
-                            { Pool.hero.compInput.direction = Direction.None; }
-
-                            else if (Pool.hero.compInput.direction == Direction.UpLeft
-                                || Pool.hero.compInput.direction == Direction.DownLeft)
-                            { Pool.hero.compInput.direction = Direction.Left; }
-
-                            else if (Pool.hero.compInput.direction == Direction.UpRight
-                                || Pool.hero.compInput.direction == Direction.DownRight)
-                            { Pool.hero.compInput.direction = Direction.Right; }
-
-                            #endregion
-
-
-                            //set hero.direction based on hero input *right now*
-                            Pool.hero.direction = Pool.hero.compInput.direction;
-                            //this direction will be used in check() below
-                            //to set where interaction point is placed
-                            //however, we dont want any up direction
-
-                            //check to see if hero can grab a foothold/ladder
-                            Functions_Hero.CheckInteractionRec();
-
-                            //if hero grabbed, he is now in climbing state
-                            if (Actor.state != ActorState.Climbing)
-                            {   //hero did not grab a foothold/ladder, continues fall south
-                                //reset actor direction down
-                                Actor.direction = Direction.Down;
-                            }
-                            else
+                            //this means player can't hold down A to auto-grab - must time it right
+                            if (Input.Player1.A & Input.Player1.A_Prev == false)
                             {
-                                //hero successfully grabbed, from a fall
-                                //that's pretty crispy, so we should celebrate a little
 
-                                //place a (!) above hero's head as recognition
-                                Functions_Particle.Spawn(
-                                    ObjType.Particle_ExclamationBubble,
-                                    Actor.compSprite.position.X,
-                                    Actor.compSprite.position.Y - 4,
-                                    Direction.Down);
-                                //^ nowhere else can hero 'spawn' a (!)
+                                #region Resolve input direction to left or right
 
-                                //play a special soundfx
-                                Assets.Play(Assets.sfxActorLand);
-                                //track successful wall jumps
-                                PlayerData.current.recorded_wallJumps++;
-                                //check wall jump achievements
-                                Functions_Hero.CheckAchievements(Achievements.WallJumps);
+                                if (Pool.hero.compInput.direction == Direction.Up
+                                    || Pool.hero.compInput.direction == Direction.Down)
+                                { Pool.hero.compInput.direction = Direction.None; }
+
+                                else if (Pool.hero.compInput.direction == Direction.UpLeft
+                                    || Pool.hero.compInput.direction == Direction.DownLeft)
+                                { Pool.hero.compInput.direction = Direction.Left; }
+
+                                else if (Pool.hero.compInput.direction == Direction.UpRight
+                                    || Pool.hero.compInput.direction == Direction.DownRight)
+                                { Pool.hero.compInput.direction = Direction.Right; }
+
+                                #endregion
+
+
+                                //set hero.direction based on hero input *right now*
+                                Pool.hero.direction = Pool.hero.compInput.direction;
+                                //this direction will be used in check() below
+                                //to set where interaction point is placed
+                                //however, we dont want any up direction
+
+                                //check to see if hero can grab a foothold/ladder
+                                Functions_Hero.CheckInteractionRec();
+
+
+                                #region Hero Missed the Grab
+
+                                //if hero grabbed, he is now in climbing state
+                                if (Actor.state != ActorState.Climbing)
+                                {   //hero did not grab a foothold/ladder, continues fall south
+                                    //reset actor direction down
+                                    Actor.direction = Direction.Down;
+                                }
+
+                                #endregion
+
+
+                                #region Hero Made the Grab!
+
+                                else
+                                {
+                                    //hero successfully grabbed, from a fall
+                                    //that's pretty crispy, so we should celebrate a little
+
+                                    //place a (!) above hero's head as recognition
+                                    Functions_Particle.Spawn(
+                                        ObjType.Particle_ExclamationBubble,
+                                        Actor.compSprite.position.X,
+                                        Actor.compSprite.position.Y - 4,
+                                        Direction.Down);
+                                    //^ nowhere else can hero 'spawn' a (!)
+
+                                    //play a special soundfx
+                                    Assets.Play(Assets.sfxActorLand);
+                                    //track successful wall jumps
+                                    PlayerData.current.recorded_wallJumps++;
+                                    //check wall jump achievements
+                                    Functions_Hero.CheckAchievements(Achievements.WallJumps);
+                                }
+
+                                #endregion
+
                             }
                         }
                     }
 
                     #endregion
-
 
                 }
                 else if(Actor.state == ActorState.Landed)
@@ -1616,95 +1627,100 @@ namespace DungeonRun
                 }
                 else if (Actor.state == ActorState.Climbing)
                 {
-                    //allow directional input
-                    if (Actor.compInput.direction != Direction.None)
-                    {   //set direction and moving animation
-                        Actor.direction = Actor.compInput.direction;
-                        Actor.compAnim.currentAnimation = AnimationFrames.Hero_Animations.climbing.down;
-                        Actor.compAnim.speed = 10; //normal
-                        Assets.Play(Assets.sfxMapWalking);
-                    }
-                    else
-                    {   //set idle animation
-                        Actor.compAnim.currentAnimation = AnimationFrames.Hero_Animations.climbing.down;
-                        Actor.compAnim.speed = 255; //extremely slow, feels like an idle
-                    }
-
-                    Actor.compMove.speed = Actor.swimSpeed; //move slowly
-
-
-                    #region Set Actor State to Falling, Climbing, or Idle
-
-                    Actor.lockCounter = 0; //lock into state
-
-                    //borrow lockTotal to model outcome states 
-                    //lockTotal = irrelevant, cuz lockcounter gets reset to 0 above
-                    //if you don't understand the two lines ^above^, dont touch
-                    //the code below...
-
-                    Actor.lockTotal = 0;
-                    //0 = falling
-                    //1 = climbing
-                    //2 = finished climbing
-                    
-                    for (i = 0; i < Pool.roomObjCount; i++)
-                    {   //find an active foothold obj
-                        if (Pool.roomObjPool[i].active)
-                        {
-                            //prove actor is nearby foothold to maintain grip
-                            if (Pool.roomObjPool[i].type == ObjType.Wor_MountainWall_Foothold ||
-                                Pool.roomObjPool[i].type == ObjType.Wor_MountainWall_Ladder)
-                            {
-                                //if foothold does not contain center point of actor, actor loses grip and falls
-                                if (Pool.roomObjPool[i].compCollision.rec.Contains(Actor.compSprite.position))
-                                {   //Actor.state = ActorState.Climbing;
-                                    Actor.lockTotal = 1;
-                                }
-                            }
-                            
-                            //actors touching top wall return to idle from climbing
-                            else if(Pool.roomObjPool[i].type == ObjType.Wor_MountainWall_Top)
-                            {
-                                if (Pool.roomObjPool[i].compCollision.rec.Contains(Actor.compSprite.position))
-                                {   //Actor.state = ActorState.Idle;
-                                    Actor.lockTotal = 2; 
-                                }
-                            }
-
-                        }
-                    }
-
-                    //based on state, set actor state
-                    if (Actor.lockTotal == 0)
-                    { Actor.state = ActorState.Falling; Actor.stateLocked = true; }
-                    else if(Actor.lockTotal == 1)
-                    { Actor.state = ActorState.Climbing; Actor.stateLocked = true; }
-                    else if (Actor.lockTotal == 2)
-                    { Actor.state = ActorState.Idle; Actor.stateLocked = false; }
-
-                    //leave Actor.lockTotal alone
-                    Actor.lockTotal = 100;
-
-                    #endregion
-
-
-                    //allow player to drop from climb using B button press
                     if (Actor == Pool.hero)
                     {
+
+                        #region Allow directional input
+
+                        if (Actor.compInput.direction != Direction.None)
+                        {   //set direction and moving animation
+                            Actor.direction = Actor.compInput.direction;
+                            Actor.compAnim.currentAnimation = AnimationFrames.Hero_Animations.climbing.down;
+                            Actor.compAnim.speed = 10; //normal
+                            Assets.Play(Assets.sfxMapWalking);
+                        }
+                        else
+                        {   //set idle animation
+                            Actor.compAnim.currentAnimation = AnimationFrames.Hero_Animations.climbing.down;
+                            Actor.compAnim.speed = 255; //extremely slow, feels like an idle
+                        }
+
+                        #endregion
+
+                        Actor.compMove.speed = Actor.swimSpeed; //move slowly while climbing
+
+
+                        #region Set Actor State to Falling, Climbing, or Idle
+
+                        Actor.lockCounter = 0; //lock into state
+
+                        //borrow lockTotal to model outcome states 
+                        //lockTotal = irrelevant, cuz lockcounter gets reset to 0 above
+                        //if you don't understand the two lines ^above^, dont touch
+                        //the code below...
+
+                        Actor.lockTotal = 0;
+                        //0 = falling
+                        //1 = climbing
+                        //2 = finished climbing
+                    
+                        for (i = 0; i < Pool.roomObjCount; i++)
+                        {   //find an active foothold obj
+                            if (Pool.roomObjPool[i].active)
+                            {
+                                //prove actor is nearby foothold to maintain grip
+                                if (Pool.roomObjPool[i].type == ObjType.Wor_MountainWall_Foothold ||
+                                    Pool.roomObjPool[i].type == ObjType.Wor_MountainWall_Ladder)
+                                {
+                                    //if foothold does not contain center point of actor, actor loses grip and falls
+                                    if (Pool.roomObjPool[i].compCollision.rec.Contains(Actor.compSprite.position))
+                                    {   //Actor.state = ActorState.Climbing;
+                                        Actor.lockTotal = 1;
+                                    }
+                                }
+                            
+                                //actors touching top wall return to idle from climbing
+                                else if(Pool.roomObjPool[i].type == ObjType.Wor_MountainWall_Top)
+                                {
+                                    if (Pool.roomObjPool[i].compCollision.rec.Contains(Actor.compSprite.position))
+                                    {   //Actor.state = ActorState.Idle;
+                                        Actor.lockTotal = 2; 
+                                    }
+                                }
+
+                            }
+                        }
+
+                        //based on state, set actor state
+                        if (Actor.lockTotal == 0)
+                        { Actor.state = ActorState.Falling; Actor.stateLocked = true; }
+                        else if(Actor.lockTotal == 1)
+                        { Actor.state = ActorState.Climbing; Actor.stateLocked = true; }
+                        else if (Actor.lockTotal == 2)
+                        { Actor.state = ActorState.Idle; Actor.stateLocked = false; }
+
+                        //leave Actor.lockTotal alone
+                        Actor.lockTotal = 100;
+
+                        #endregion
+
+
+                        #region Allow player to jump off the wall alittle bit using B button
+
                         if(Input.Player1.B & Input.Player1.B_Prev == false)
                         {
                             Actor.state = ActorState.Falling;
                             //push actor north to fake a jump
                             Functions_Movement.Push(Pool.hero.compMove, Direction.Up, 10.0f);
                         }
+
+                        #endregion
+                        
+                        
+                        //we manually set the animation frames, bail from rest of method
+                        return;
                     }
-                    
-                    //we manually set the animation frames, bail from rest of method
-                    return;
                 }
-
-                #endregion
-
             }
 
             #endregion

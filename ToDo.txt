@@ -55,34 +55,6 @@ Today:
 
 
 
-Enemies and Damage++
-
-fangs now cause level1 damage, via HandleCommon().
-this means all enemies can now destroy most objects
-that a sword could destroy, just using their mouths.
-
-but fangs dont cause damage to actor, so they need to stay
-active for longer than 1 frame... so now bigbat and bigeye
-are immune to bite damage, which the hero really shouldn't
-be dealing anyway. this allows these two fast moving
-actors to still bite while traveling quickly.
-
-upgraded unarmored spiders to be immune to bites as well.
-
-tentacles are now immune to bite damage as well, making
-them invincible to each others attacks, making their ganging
-up strategy that much more effective.
-
-Hitboxes++
-
-now we can set collision recs for all enemies. so do it.
-done. all enemies now have proper hitboxes and can spawn
-bite projectiles while moving and dashing.
-
-
-
-
-
 
 
 
@@ -90,39 +62,38 @@ bite projectiles while moving and dashing.
 
 
 Interaction Limiting
-we should not be able to climb unless we are blob or link.
-we should not be able to pickup anything unless we are blob or link.
-dragging? falling into pits? these all need to be tested on 
-enemy actor types.
+
+as hero, we can only begin a climb as link or blob.
+only hero can grab while falling, and only as link or
+blob. so both enttry points to climbing are closed to
+non-link or non-blob actor types.
+
+picking up, carrying, and throwing now limited to link 
+and blob. pushing or dragging objects now limited to 
+link and blob. updated pit interactions to pull all 
+actors in. this means some dungeon rooms containing
+blobs will easily kill all the blobs within them, due
+to the pits and the dumb bombs just charging at the
+hero. which, is fine for now...
 
 
 
 
-Explosion Surfing (Bomb Jumping)
 
-if an actor is hit, simply put them into a flying state.
-this will cause the actor to be able to fly across pits for a moment,
-but when the hit state ends, if they overlap the pit, they
-will be pulled in. but, this does allow a type of bomb jumping,
-or rather "explosion surfing". which sounds so much better.
 
-we could even put the actor into a 2nd type of hit state,
-a staggered state, which would hold the actor in the hit state for
-longer, allowing them to fly for longer, allowing them to cross
-single tile pits safely - and only an explosion would be able
-to set an actor into this 2nd staggered hit state.
 
-which, staggered seems like a poor name for this state.
-likely should be something like ExplosiveThrow, 
-so we know the actor is being thrown by an explosion.
 
-we can implement this now and ensure that bomb jumping is not
-only preserved, but supported officially in this game, and is
-known as explosion surfing, because you can also use fireballs
-to do these type of explosive throwing tricks.
 
-these explosive throwing tricks dont apply to flying actors,
-they should be able to float right over pits, no problem.
+
+
+
+
+
+
+
+
+
+
 
 
 

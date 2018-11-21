@@ -573,22 +573,23 @@ namespace DungeonRun
 
             else if (Obj.type == ObjType.Wor_MountainWall_Foothold
                 || Obj.type == ObjType.Wor_MountainWall_Ladder)
-            {   
-                //hero isnt in climbing state yet, but will be at end of this routine
-                //so this is the initial 'attach' to the wall from idle or falling
-                if (Pool.hero.state != ActorState.Climbing)
-                {   //help hero 'onto' the wall/foothold
-                    Functions_Movement.Teleport(Pool.hero.compMove,
-                        Pool.hero.compSprite.position.X, //keep X
-                        Obj.compSprite.position.Y + 6); //align on Y
-                    Functions_Component.Align(Pool.hero);
-                    //this was done to ensure heros' center sprite pos
-                    //overlaps with the foothold/ladder obj
-                    //which is required to keep actor in climbing state each frame
+            {   //only link and blob have anim frames for climbing
+                if(Pool.hero.type == ActorType.Hero || Pool.hero.type == ActorType.Blob)
+                {   //hero isnt in climbing state yet, but will be at end of this routine
+                    //so this is the initial 'attach' to the wall from idle or falling
+                    if (Pool.hero.state != ActorState.Climbing)
+                    {   //help hero 'onto' the wall/foothold
+                        Functions_Movement.Teleport(Pool.hero.compMove,
+                            Pool.hero.compSprite.position.X, //keep X
+                            Obj.compSprite.position.Y + 6); //align on Y
+                        Functions_Component.Align(Pool.hero);
+                        //this was done to ensure heros' center sprite pos
+                        //overlaps with the foothold/ladder obj
+                        //which is required to keep actor in climbing state each frame
+                    }
+                    Pool.hero.state = ActorState.Climbing;
+                    Pool.hero.stateLocked = true;
                 }
-
-                Pool.hero.state = ActorState.Climbing;
-                Pool.hero.stateLocked = true;
             }
 
             #endregion
@@ -613,43 +614,45 @@ namespace DungeonRun
 
             if (Pool.hero.swimming) { return; }
 
-            //Objects that can only be interacted with from Land
-
-            #region Carry-able Objects
-
-            if(Obj.group == ObjGroup.Enemy)
-            {   //deny link ability to pickup some enemies
-                if (Obj.type == ObjType.Wor_SeekerExploder) { return; }
-                Functions_Actor.Pickup(Obj, Pool.hero);
-            }
-
-            if (Obj.type == ObjType.Dungeon_Pot
-                || Obj.type == ObjType.Wor_Pot
-                || Obj.type == ObjType.Wor_Bush)
+            //Objects that can only be interacted with from Land, as link or blob
+            if(Pool.hero.type == ActorType.Hero || Pool.hero.type == ActorType.Blob)
             {
-                Functions_Actor.Pickup(Obj, Pool.hero);
-            }
 
-            #endregion
+                #region Carry-able Objects
 
+                if (Obj.group == ObjGroup.Enemy)
+                {   //deny link ability to pickup some enemies
+                    if (Obj.type == ObjType.Wor_SeekerExploder) { return; }
+                    Functions_Actor.Pickup(Obj, Pool.hero);
+                }
 
-            #region Push-able Objects
-
-            //if an obj is moveable, hero should be able to push it, right?
-            if(Obj.compMove.moveable & Obj.compMove.grounded)
-            {
-                //some objects cannot be pushed
                 if (Obj.type == ObjType.Dungeon_Pot
                     || Obj.type == ObjType.Wor_Pot
-                    || Obj.type == ObjType.Dungeon_ChestKey)
-                { return; }
-                //all other objects can be pushed
-                Functions_Actor.Grab(Obj, Pool.hero);
+                    || Obj.type == ObjType.Wor_Bush)
+                {
+                    Functions_Actor.Pickup(Obj, Pool.hero);
+                }
+
+                #endregion
+
+
+                #region Push-able Objects
+
+                //if an obj is moveable, hero should be able to push it, right?
+                if (Obj.compMove.moveable & Obj.compMove.grounded)
+                {
+                    //some objects cannot be pushed
+                    if (Obj.type == ObjType.Dungeon_Pot
+                        || Obj.type == ObjType.Wor_Pot
+                        || Obj.type == ObjType.Dungeon_ChestKey)
+                    { return; }
+                    //all other objects can be pushed
+                    Functions_Actor.Grab(Obj, Pool.hero);
+                }
+
+                #endregion
+
             }
-
-            #endregion
-
-
         }
 
 
