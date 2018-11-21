@@ -59,36 +59,6 @@ Today:
 
 
 
-Water Splashes++
-
-CreateSplash() should govern the creation of all water
-splashes, which are particles. this was being called from
-actor routines properly, but not from player input on hero.
-instead, just a single splash was being called directly,
-using the particle system, and this was being centered to
-the hero actor. which is fine, if the hero actor is link,
-or a comparable 16x16 actor, but not when link is transformed
-into a miniboss or boss. so now all codepaths that intersect
-splash responsibilities call CreateSplash(), which creates
-the proper number and position of splashes, based on the actor's
-type. this means:
-
-kraken now creates 6 splashes around him, lots of decoration.
-this is to signify that him going underwater is a big deal - and
-it is, because that tells the player he was hit PLUS he spawns
-an enemy tentacle when he comes back up - which is also decorated
-with a ton of splashes to signify this event as important.
-
-tentacle and octohead now have proper splash offsets relative
-to their sprite size.
-
-
-
-
-
-
-
-
 
 
 
@@ -98,6 +68,15 @@ tentacle's swim dash needs ypos +16 offset.
 boss kraken's swim waves are incorrect for swimming left/right,
 the swim waves need to be pushed south 16 pixels. for swimming
 north, they need to be pushed +16 pixel as well, maybe +32.
+
+
+modified actor.update() to call new method CreateSwimDashWave(),
+which will handle creation of swim dash waves, based on actor type.
+this is just like splashes. CSDW() uses a static offset, making
+its evaluation a bit easier on the eyes, sine we'll only be making
+one water kick particle, and it will always be centered left and 
+right on the actor, only with a Y offset. done and tested.
+
 
 
 

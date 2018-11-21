@@ -624,6 +624,10 @@ namespace DungeonRun
             Functions_Particle.Spawn(ObjType.Particle_Attention, Actor);
         }
 
+
+
+
+
         public static void CreateSplash(Actor Actor)
         {
 
@@ -645,11 +649,11 @@ namespace DungeonRun
                 Functions_Particle.Spawn(
                     ObjType.Particle_Splash,
                     Actor.compSprite.position.X - 8,
-                    Actor.compSprite.position.Y - 16);
+                    Actor.compSprite.position.Y - 2);
                 Functions_Particle.Spawn(
                     ObjType.Particle_Splash,
                     Actor.compSprite.position.X + 8,
-                    Actor.compSprite.position.Y - 16);
+                    Actor.compSprite.position.Y - 2);
                 //and side to side
                 Functions_Particle.Spawn(
                     ObjType.Particle_Splash,
@@ -672,7 +676,7 @@ namespace DungeonRun
                 Functions_Particle.Spawn(
                     ObjType.Particle_Splash,
                     Actor.compSprite.position.X,
-                    Actor.compSprite.position.Y + 10);
+                    Actor.compSprite.position.Y + 12);
             }
 
             #endregion
@@ -686,6 +690,41 @@ namespace DungeonRun
                     Actor.compSprite.position.Y + 2);
             }
         }
+
+        static byte dashWaveOffset = 0;
+        public static void CreateSwimDashWave(Actor Actor)
+        {   //place water kick fx behind actor
+            //this will always be at base of actor, so use offset
+
+
+            #region Tall Actors in Water
+
+            //taller actors get a larger wave offset
+            if (Actor.type == ActorType.Boss_OctoHead)
+            {
+                dashWaveOffset = 16;
+            }
+            else if(Actor.type == ActorType.Special_Tentacle)
+            {   
+                dashWaveOffset = 12;
+            }
+
+            #endregion
+
+
+            else
+            {   //these are 16x16 actors
+                dashWaveOffset = 2;
+            }
+
+            //create water kick particle with offset for actor
+            Functions_Particle.Spawn(
+                ObjType.Particle_WaterKick,
+                Actor.compSprite.position.X,
+                Actor.compSprite.position.Y + dashWaveOffset,
+                Functions_Direction.GetOppositeDirection(Actor.direction));
+        }
+
 
 
 
@@ -1220,12 +1259,7 @@ namespace DungeonRun
                                 Actor.compMove,
                                 Actor.compInput.direction, 2.0f);
                             Assets.Play(Assets.sfxWaterSwim);
-                            //place water kick fx behind actor
-                            Functions_Particle.Spawn(
-                                ObjType.Particle_WaterKick,
-                                Actor.compSprite.position.X,
-                                Actor.compSprite.position.Y,
-                                Functions_Direction.GetOppositeDirection(Actor.direction));
+                            CreateSwimDashWave(Actor);
                         }
                         else
                         {   //diagonal swim dash - half power push
