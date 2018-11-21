@@ -3092,7 +3092,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.ProjectileBow)
             {
-                Obj.compSprite.zOffset = 32;
+                Obj.compSprite.zOffset = 0;
                 Obj.group = ObjGroup.Projectile;
                 Obj.lifetime = 15; //in frames
                 Obj.compAnim.speed = 10; //in frames
@@ -3191,20 +3191,16 @@ namespace DungeonRun
             {
                 Obj.compSprite.zOffset = 16;
 
+                Obj.compCollision.offsetX = -4;
+                Obj.compCollision.offsetY = -4;
                 Obj.compCollision.rec.Width = 8;
                 Obj.compCollision.rec.Height = 8;
 
-                //set collision rec based on direction
-                if (Obj.direction == Direction.Up || Obj.direction == Direction.Down)
-                {Obj.compCollision.rec.Width = 16; }
-                else //left or right
-                { Obj.compCollision.rec.Height = 16; }
-
                 Obj.group = ObjGroup.Projectile;
-                Obj.lifetime = 2; //in frames
-                Obj.compAnim.speed = 2; //in frames
+                Obj.lifetime = 15; //in frames
+                Obj.compAnim.speed = 1; //in frames
                 Obj.compAnim.loop = false;
-                Obj.compMove.moveable = false;
+                Obj.compMove.moveable = true;
                 Obj.compMove.grounded = false; //obj is airborne
                 Obj.compSprite.texture = Assets.entitiesSheet; //null / doesn't matter cause..
                 Obj.compSprite.visible = false; //..this projectile isnt drawn
@@ -3215,7 +3211,7 @@ namespace DungeonRun
             {
                 Obj.compSprite.zOffset = 16;
 
-                Obj.compCollision.offsetX = -4; Obj.compCollision.offsetY = -4-4;
+                Obj.compCollision.offsetX = -4; Obj.compCollision.offsetY = -8;
                 Obj.compCollision.rec.Width = 8; Obj.compCollision.rec.Height = 8;
 
                 Obj.group = ObjGroup.Projectile;

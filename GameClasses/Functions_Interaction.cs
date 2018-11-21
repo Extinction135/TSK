@@ -169,9 +169,12 @@ namespace DungeonRun
 
             if (Obj.group == ObjGroup.Projectile)
             {
-                //check exit conditions
+
+                #region Exit conditions
+
                 //projectiles shouldn't interact with dead actor's corpses
                 if (Actor.state == ActorState.Dead) { return; }
+
                 //some projectiles dont interact with actors in any way at all
                 if (Obj.type == ObjType.ProjectileBomb
                     || Obj.type == ObjType.ProjectileGroundFire
@@ -182,7 +185,10 @@ namespace DungeonRun
                 else if(Obj.type == ObjType.ProjectileBoomerang & Actor == Pool.hero)
                 { return; }
 
-                //check specific projectile interactions
+                #endregion
+
+
+                //specific projectile interactions
 
                 //check for collision between net and actor
                 else if (Obj.type == ObjType.ProjectileNet)
@@ -201,14 +207,22 @@ namespace DungeonRun
                     { Functions_Particle.Spawn(ObjType.Particle_Sparkle, Obj); }
                 }
 
+                //kill these projectiles upon impact, next frame
                 else if(Obj.type == ObjType.ProjectileBush
                     || Obj.type == ObjType.ProjectilePot 
                     || Obj.type == ObjType.ProjectilePotSkull)
                 {
-                    Obj.lifeCounter = Obj.lifetime; //kill projectile next frame
+                    Obj.lifeCounter = Obj.lifetime;
                 }
 
-                //all actors take damage from these projectiles
+                //limit bite to only the first frame of life
+                else if(Obj.type == ObjType.ProjectileBite)
+                {   //prevents fast moving caster overlap, while still remaining drawable
+                    if (Obj.lifeCounter > 0) { return; }
+                }
+
+
+                //all actors take damage from projectiles that get here..
                 Functions_Battle.Damage(Actor, Obj); //sets actor into hit state
             }
 

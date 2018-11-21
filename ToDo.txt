@@ -56,63 +56,44 @@ Today:
 
 
 
+Projectile System++ and Enemies++
 
+upgraded projectile.caster from a moveComponent to an
+actual actor reference, which gives pro accesss to the
+actors/casters hitbox, ensuring some pros never overlap
+and their frame behavior is accurate.
 
+vastly upgraded projectile system to place pros based
+on caster hitbox, instead of position. this allows enemies
+to have larger or smaller hitboxes and still function in game,
+as in - not hit themselves with their own weapon or item,
+causing them to kill themselves in front of the hero. lol.
 
+improved bow behavior and sorting.
+improved sword, fang, net, shovel behavior.
+improved fireball, arrow behavior.
 
+bow now centers to caster's hitbox.
+fang now centers to caster's hitbox too, making enemy
+attacks more consistent and predictable.
 
+make hitboxes larger for black eye miniboss, test all weapons
+and items to make sure they track and spawn properly. done, working.
 
-Swim Dash++
+test big eye - he moves so fast this should break the system..
+yep - the issue now is that we need to completely stop all movement
+when an actor attacks, and this is a complete stop - magnitude becomes
+0, friction becomes max value. No movement in sky at all.
 
-tentacle's swim dash needs ypos +16 offset.
-boss kraken's swim waves are incorrect for swimming left/right,
-the swim waves need to be pushed south 16 pixels. for swimming
-north, they need to be pushed +16 pixel as well, maybe +32.
+updated bite projectile to only deal damage on the first frame
+it exists, but continune to live for 15 frames, so it can be
+drawn and debugged easily. this allows fast moving flying actors,
+like bigeye to properly use bite projectile, without hurting
+themselves, because bite will always be placed properly the
+first frame. after that, if the caster is moving fast enough,
+they may collide with the projectile and deal themselves damage.
 
-
-modified actor.update() to call new method CreateSwimDashWave(),
-which will handle creation of swim dash waves, based on actor type.
-this is just like splashes. CSDW() uses a static offset, making
-its evaluation a bit easier on the eyes, sine we'll only be making
-one water kick particle, and it will always be centered left and 
-right on the actor, only with a Y offset. done and tested.
-
-
-
-
-
-
-
-
-
-
-
-Kraken Magic
-
-kraken needs tentacle spawn magic. for kraken, this creates
-a tentacle actor. if hero uses this magic, it creates a tentacle
-roomObj, which simply attacks any actor within it's range. uses
-the same animation frames as tentacle actor tho.. lasts until room
-death, so player can build walls of angry tentacles.
-
-
-
-
-
-
-
-
-
-
-
-
-big eye boss can spawn fangs, but they hit him from certain
-directions. also, he cannot spawn seekers via item use, which
-he should be able to. there should be magic for this, and the
-seeker should seek out the first actor that isn't it's caster.
-this maintains it's behavior, while making it useful to the player
-as well. this is enemy magic/items, so we can add it to the
-enemy vendor as well.
+blackeye's hitbox should be 16x12. done.
 
 
 
@@ -122,11 +103,14 @@ enemy vendor as well.
 
 
 
-projectiles should spawn based on caster's hitbox center,
-then add half width or height, plus a pixel bumper, based on
-the projectile's direction. each frame, the projectile
-either tracks it's caster's hitbox, or performs a unique
-behavior.
+
+
+
+
+Hitboxes and Destruction++
+
+now we can set collision recs for all enemies. so do it.
+fangs should be able to destroy level 1 objects.
 
 
 
@@ -134,57 +118,49 @@ behavior.
 
 
 
--PLS DO THIS NOW, IT'S HOLDING THE PROJECTILE SPAWN SYSTEM HOSTAGE-
-Actor Refs
 
-a projectile's caster should be an actor reference.
-if a projectile's caster is null, then it should have no behavior.
-this is because some gameobjects cast projectiles,
-but in that case the projectile wouldn't have any behavior
-related to the caster.
 
-this simplifies the current system for handling projectiles,
-which uses the moveComponent. using this moveComp, projectile.update
-attempts to prevent projectiles from ovrelapping with their casters,
-but this is based on the compMove and not the hitBox, which is
-actually the target of importance. we need to have access to
-the entire actor object, not just it's compMove! we need to
-touch the actor's hitBox from projectile.update, and we can't currently.
-once we do this, we can check and align projectiles to the actor's
-hitBox, and then larger enemies can have larger hitboxes while also
-being able to cast projectiles...
-plus, projectiles could properly implement their behaviors - by
-tracking the actor's hitbox instead of their newPosition..
-
-Improve Projectile.Spawn()
-
-*miniboss cant shoot fireballs south - why?
-?= pro.spawn() assumes that the actor's collRec is 16x16 - it shouldn't.
-this means only 16x16 actors can safely shoot fireballs without damaging
-themselves, which is some valve level stupid. this method should take
-the actor as a parameter, and then we should base the offsets FOR ALL
-PROJECTILES off of the actor's collision rec width and height. this
-would allow larger actors, like bosses, to SHOOT FIREBALLS. geez.
 
 Special Attacks / Boss "USE"
 bigeye uses the shut + bloodshot frames for his special.
-bigeye: spawns A TON of exploding seekers while in his special.
-we simply can't do these specials as the hero/player.
+bigeye phase 3: 
+spawns A TON of exploding seekers while in his special,
+while moving to the center of the room and smoking profusely 
+and taunting every frame.
+
+
+
+Interaction Limiting
+we should not be able to climb unless we are blob or link.
+we should not be able to pickup anything unless we are blob or link.
+dragging? falling into pits? these all need to be tested on 
+enemy actor types.
 
 
 
 
-what about picking and throwing objects as different actor types?
-we should only be able to do this as blob or link. BUT, we should
-be able to normally interact with other objects, so we likely need
-to split this interaction rec check into two loops: one for interactions
-and one specifically for picking objects up. we should still be able
-to push objects as any enemy type. we should not be able to climb unless
-we are blob or link.
 
 
 
 
+Tentacle Magic
+
+the kraken summons tentacle actors upon being hit. this
+is not tentacle magic. instead, tentacle magic spawns a
+tentacle roomObj, which will attack any actor within it's
+attack radius, which is about 16 pixels.
+
+*this means we can create tentacle walls in rooms, also
+as part of puzzles - and make it specific to the swamp
+dungeon if we want to.
+*this means we can also create a tentacle magic medallion,
+which allows hero to create one of these roomobjs in the
+current room, in the facing direction. this allows for
+the creation of walls of angry tentacles. plus, we can
+put these tentacles in the water and they won't move
+around. 
+*tentacles should be destructible with explosions, but
+not destructible with level1 type damage.
 
 
 

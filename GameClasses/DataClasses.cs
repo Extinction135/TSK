@@ -124,6 +124,7 @@ namespace DungeonRun
                     InfiniteGold = true; //hero has infinite gold
                     InfiniteArrows = true; //hero has infinite arrows
                     InfiniteBombs = true; //hero has infinite bombs
+                    UnlockAll = true;
 
                     //handle editor cheats
                     EnableTopMenu = true; //necessary
@@ -1360,7 +1361,7 @@ namespace DungeonRun
 
     public class Projectile : GameObject
     {
-        public ComponentMovement caster; //actor/obj who created projectile
+        public Actor caster; //actor/obj who created projectile
         public Projectile()
         {   //default to an arrow
             type = ObjType.ProjectileArrow;
@@ -1672,39 +1673,7 @@ namespace DungeonRun
         public Boolean fade = true;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 
     public class Line
     {
@@ -1729,11 +1698,4 @@ namespace DungeonRun
         public Rectangle texRec = new Rectangle(0, 0, 16, 16);
         public Vector2 texOrigin = new Vector2(0, 0);
     }
-
-
-
-
-
-
-
 }

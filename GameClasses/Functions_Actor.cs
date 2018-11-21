@@ -891,7 +891,6 @@ namespace DungeonRun
                 Actor.compSprite.texture = Assets.EnemySheet;
                 Actor.animList = AnimationFrames.MiniBoss_BlackEye_Animations;
                 Actor.health = 15;
-                ResetActorLoadout(Actor);
 
                 //walk and dash speeds are set in Functions_Ai
                 //because they change based on this actor's health
@@ -910,7 +909,13 @@ namespace DungeonRun
 
                 ResetActorLoadout(Actor);
                 //setup actor with useable item, so player can shoot arrows
-                Actor.item = MenuItemType.ItemBow; 
+                Actor.item = MenuItemType.ItemBow;
+
+                //enemy with a bigger hitbox
+                Actor.compCollision.rec.Width = 16;
+                Actor.compCollision.rec.Height = 12;
+                Actor.compCollision.offsetX = -8;
+                Actor.compCollision.offsetY = -8;
             }
 
             #endregion

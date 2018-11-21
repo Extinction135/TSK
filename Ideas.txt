@@ -1,6 +1,57 @@
 
 
 
+magic notes pulled from projectile.spawn
+
+
+debrisRock: should be a particle
+projectilePot: hero will be picking up more than pots, obsolete soon
+shadowSm: will be obsolete soon with addition of shadow system
+*keep in mind that altering the ObjType enum values will affect the master GameObjAnimList
+
+planned:
+push wand: shoots a wave of light that pushes enemies/objs a distance
+boost magic: temporarily increases the damage with your sword to 2, at the cost of some magic
+	*4 beams of light quickly come together on your sword, as the hero holds it up, any nearby enemies are knocked back
+	*boost lasts 255 frames, which is the duration of the projectile that floats around the hero's feet while boost is active
+
+lttp:
+boomerang: travels from caster position, returns to caster position (tracking) with/out item, pushes actors it collides with
+hookshot: travels from caster position, collides with obj or actor or nothing
+	obj: either latches and pulls caster, or latches and pulls obj, or clinks and returns
+	actor: either latches and pulls actor (sm), or stuns and returns (med), or clinks and returns (large)
+	nothing: hookshot reaches max lifetime and clinks, then dissappears (no waiting about for it to return)
+bombos magic: randomly places 20 explosions around caster, but never ON caster, caster is stationary during cast
+cane of byrna: creates 4 balls of light around caster, which track with an offset, and kill anything they touch, but use magic
+cane of somaria: creates a block of light, which can be pushed / pulled, hold down switches, interact with belts, etc..
+ether magic: lightning strikes every enemy on screen, caster is stationary during
+hammer: used to smash down posts to progress into hidden / secret areas of the game (non-critical paths), tracks to caster
+ice rod: ice magic in game, shoots a ball of ice that turns sm enemies into blocks of ice, 
+	*the blocks of ice are generic, not enemy specific, and have a vague shadow inside them
+	*ice blocks can be picked up and thrown, and will spawn normal loot when destroyed normally
+	*however, smashing an enemy in a block of ice will always spawn a large magic pot
+magic cape: turns hero invisible & flying while in use, with shadow only, uses magic constantly
+magic mirror: returns hero to the start of the current dungeon or overworld
+quake magic: screen shakes, all grounded enemies on screen take 4 damage, caster waits during cast
+shovel: used for digging outside in grass or dirt, low chance to spawn loot, tracks to caster like sword
+
+moar?:
+remote detonated mines - must equip two items: mines + detonator
+	mines are dropped with Y button
+	detonator blows up ALL dropped mines with X button
+	*this way the player can juggle / strategize more, with faster reaction time
+	* *plus, no switching between items to blow stuff up
+
+
+
+
+
+
+
+
+
+
+
 DREAMS AND MINIGAMES
 load a level, then change the hero's type to whatever enemy
 type we want, and then if he leaves the field, we simply 'wake up'
