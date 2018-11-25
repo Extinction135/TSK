@@ -44,7 +44,7 @@ Shadow Dungeon, TSK Fight complete
 	implement bed + dream sequences - special leveldata + set hero's type + dialog prompt
 	(exiting dream field ends the dream)
 	(we may split bed into two objects again, to make this interaction more expected)
-
+	X setup roomObjs, projectiles, particles, pickups systems for future growth
 
 
 
@@ -58,33 +58,53 @@ Today:
 
 
 
-Debris++
 
-upgraded GameObject.BecomeDebris() to only place debris
-objects in unoccupied areas, preventing debris from overlapping
-any other object.
 
-upgraded debris to overlap: boat floors, conveyor belts, dirt tiles,
-coliseum outdoor floor, top pier objects, middle pier objects.
-but not bottom pier objects, cause it would look bad.
 
 Organization
 
-manicured Functions_GameObject, Functions_Projectile,
-Functions_Particle, Functions_Pickup.
+pickup, throw, and grab were moved into functions_hero, 
+because only the player actor can perform these actions.
+this was done in prep for re-implementing throw(), which
+doesn't work with the current projectile system.
 
-Bugs--
+Torches--
 
-fixed bugs with roofs not disappearing/reappearing.
-fixed bugs with explosions not calling power level 2 routines.
-this was due to the pro life counter being incremented past
-1 initially, which was where the game performed the blowUp() 
-call. fixed a few other projectiles using the life counter at
-1 too.
+torches should not spawn a groundfire upon being lit.
+this causes a variety of problems. instead we are now
+spawning a fire PARTICLE, which has no interaction with
+the world at all, other than as decoration.
+
+particle fire should last for much less. like 15 frames.
+set at 20, but increased the speed to 6 from 7, so the
+flame appears faster and goes away just as quick. this fire 
+particle is really only created by hero lighting the torch,
+so it doesn't need to last long at all. just enough to
+decorate the torch, cause if hero starts to push torch,
+then the flame particle overlaps hero and it looks buggy.
+so that visual bug has been fixed - it's been bugging be
+for quite a while!
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Prep for Throw
+
+rats, crabs, turtles can be picked up and carried.
 
 
 
@@ -98,6 +118,36 @@ the object's texture and animFrame. this 'dupes' the obj overhead, which
 then tracks like any other projectile. when thrown, this projectile simply
 travels in a straight line in hero's direction, from hero's center pos.
 this makes throwing reliable again, and much easier in code.
+
+
+
+
+
+
+
+
+take out the trash, it stinks man!
+
+
+
+
+
+
+
+Blood Spatter Analysis, Dex
+
+upgrade throwing() enemies to explode as blood spatter,
+and leave a blood mark on the ground as a roomObj.
+
+
+
+
+
+
+
+
+
+
 
 
 

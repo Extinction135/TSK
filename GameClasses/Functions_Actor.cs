@@ -18,6 +18,8 @@ namespace DungeonRun
         static int i;
         static int k;
 
+
+
         public static void ResetActor(Actor Actor)
         {   //reset actor to default living state
             Actor.stateLocked = false;
@@ -61,9 +63,228 @@ namespace DungeonRun
             Functions_Movement.Teleport(actor.compMove, X, Y);
         }
 
+        public static void ResetActorLoadout(Actor Actor)
+        {
+            Actor.weapon = MenuItemType.Unknown;
+            Actor.item = MenuItemType.Unknown;
+            Actor.armor = MenuItemType.Unknown;
+            Actor.equipment = MenuItemType.Unknown;
+        }
 
 
 
+
+
+
+        //animation management
+
+        public static void SetAnimationGroup(Actor Actor)
+        {
+            //assume default animation speed and looping
+            Actor.compAnim.speed = 10;
+            Actor.compAnim.loop = true;
+
+            //movement
+
+            #region Idle
+
+            if (Actor.state == ActorState.Idle)
+            {
+                if (Actor.swimming)
+                {
+                    if (Actor.underwater)
+                    { Actor.animGroup = Actor.animList.underwater_idle; }
+                    else { Actor.animGroup = Actor.animList.swim_idle; }
+                }
+                else if (Actor.carrying)
+                { Actor.animGroup = Actor.animList.idleCarry; }
+                else if (Actor.grabbing)
+                { Actor.animGroup = Actor.animList.grab; }
+                else { Actor.animGroup = Actor.animList.idle; }
+            }
+
+            #endregion
+
+
+            #region Move
+
+            else if (Actor.state == ActorState.Move)
+            {
+                if (Actor.swimming)
+                {
+                    if (Actor.underwater)
+                    { Actor.animGroup = Actor.animList.underwater_move; }
+                    else { Actor.animGroup = Actor.animList.swim_move; }
+                }
+                else if (Actor.carrying)
+                { Actor.animGroup = Actor.animList.moveCarry; }
+                else if (Actor.grabbing)
+                { Actor.animGroup = Actor.animList.push; }
+                else { Actor.animGroup = Actor.animList.move; }
+            }
+
+            #endregion
+
+
+            //actions
+
+            #region Dash
+
+            else if (Actor.state == ActorState.Dash)
+            {
+                if (Actor.swimming)
+                {
+                    if (Actor.underwater) { } //do nothing
+                    else { Actor.animGroup = Actor.animList.swim_dash; }
+                }
+                else { Actor.animGroup = Actor.animList.dash; }
+            }
+
+            #endregion
+
+
+            #region Interact
+
+            else if (Actor.state == ActorState.Interact)
+            {
+                if (Actor.swimming)
+                { }
+                else { Actor.animGroup = Actor.animList.interact; }
+            }
+
+            #endregion
+
+
+            #region Attack
+
+            else if (Actor.state == ActorState.Attack)
+            {
+                if (Actor.swimming)
+                {
+                    if (Actor.underwaterEnemy)
+                    { Actor.animGroup = Actor.animList.attack; }
+                }
+                else if (Actor.carrying)
+                { }
+                else { Actor.animGroup = Actor.animList.attack; }
+            }
+
+            #endregion
+
+
+            #region Use
+
+            else if (Actor.state == ActorState.Use)
+            {
+                if (Actor.swimming)
+                {
+                    if (Actor.underwaterEnemy)
+                    { Actor.animGroup = Actor.animList.attack; }
+                }
+                else if (Actor.carrying)
+                { }
+                else { Actor.animGroup = Actor.animList.attack; }
+            }
+
+            #endregion
+
+
+            #region Pickup and Throw
+
+            else if (Actor.state == ActorState.Pickup)
+            {
+                Actor.animGroup = Actor.animList.pickupThrow;
+            }
+            else if (Actor.state == ActorState.Throw)
+            {
+                Actor.animGroup = Actor.animList.pickupThrow;
+            }
+
+            #endregion
+
+
+            //consequences
+
+            #region Hit & Death
+
+            else if (Actor.state == ActorState.Hit)
+            {
+                if (Actor.swimming)
+                { Actor.animGroup = Actor.animList.swim_hit; }
+                else { Actor.animGroup = Actor.animList.hit; }
+            }
+            else if (Actor.state == ActorState.Dead)
+            {
+                Actor.compAnim.loop = false; //stop looping
+                if (Actor == Pool.hero)
+                {   //play the hero's death in water or on land
+                    if (Actor.swimming)
+                    { Actor.animGroup = Actor.animList.death_heroic_water; }
+                    else { Actor.animGroup = Actor.animList.death_heroic; }
+                    Actor.compAnim.speed = 6; //speed up hero's death 
+                }
+                else
+                {   //non-hero actors disappear upon death
+                    Actor.animGroup = Actor.animList.death_blank;
+                }
+            }
+
+            #endregion
+
+
+            #region Reward
+
+            else if (Actor.state == ActorState.Reward)
+            {
+                if (Actor.swimming)
+                { Actor.animGroup = Actor.animList.swim_reward; }
+                else { Actor.animGroup = Actor.animList.reward; }
+            }
+
+            #endregion
+
+
+            #region Falling & Landing
+
+            else if (Actor.state == ActorState.Falling)
+            {
+                Actor.animGroup = Actor.animList.falling;
+            }
+            else if (Actor.state == ActorState.Landed)
+            {
+                if (Actor.swimming)
+                {
+                    Actor.animGroup = Actor.animList.swim_idle;
+                    Actor.lockTotal = 30;
+                }
+                else
+                {
+                    Actor.animGroup = Actor.animList.landed;
+                    Actor.lockTotal = 60;
+                    Actor.compAnim.speed = 30; //slow down anim
+                    Actor.compAnim.loop = false;
+                }
+            }
+
+            #endregion
+
+        }
+
+        public static void SetAnimationDirection(Actor Actor)
+        {
+            //set cardinal directions
+            if (Actor.direction == Direction.Down) { Actor.compAnim.currentAnimation = Actor.animGroup.down; }
+            else if (Actor.direction == Direction.Up) { Actor.compAnim.currentAnimation = Actor.animGroup.up; }
+            else if (Actor.direction == Direction.Right) { Actor.compAnim.currentAnimation = Actor.animGroup.right; }
+            else if (Actor.direction == Direction.Left) { Actor.compAnim.currentAnimation = Actor.animGroup.left; }
+            //set diagonal directions
+            else if (Actor.direction == Direction.DownRight) { Actor.compAnim.currentAnimation = Actor.animGroup.right; }
+            else if (Actor.direction == Direction.DownLeft) { Actor.compAnim.currentAnimation = Actor.animGroup.left; }
+            else if (Actor.direction == Direction.UpRight) { Actor.compAnim.currentAnimation = Actor.animGroup.right; }
+            else if (Actor.direction == Direction.UpLeft) { Actor.compAnim.currentAnimation = Actor.animGroup.left; }
+        }
+
+        //actor state management
 
         public static void SetHitState(Actor Actor)
         {   //bail if actor is already dead (dont hit dead actors)
@@ -75,23 +296,17 @@ namespace DungeonRun
             Actor.lockTotal = 15;
             Assets.Play(Actor.sfx.hit);
 
-            //throw any held object
-            if (Actor.carrying) { Throw(Actor); }
-
             if (Actor == Pool.hero)
-            {   //hero should drop a gold piece
-                if (!Flags.InfiniteGold) 
-                {
-                    if (PlayerData.current.gold > 0) //if hero has any gold
-                    {   //drop a gold piece upon getting hit
-                        Functions_Pickup.Spawn(PickupType.Rupee, Actor);
-                        PlayerData.current.gold--;
-                    }
-                }
+            {
+                //hero throws whatever he's carrying
+                Functions_Hero.Throw();
+                //hero always spawns a gold piece upon hit
+                Functions_Pickup.Spawn(PickupType.Rupee, Actor);
+                //but we check flags and values to decrement supply
+                if (!Flags.InfiniteGold & PlayerData.current.gold > 0) 
+                { PlayerData.current.gold--; }
             }
         }
-
-
 
         public static void SetDeathState(Actor Actor)
         {
@@ -272,220 +487,22 @@ namespace DungeonRun
             Actor.lockCounter = 0;
             Actor.lockTotal = 0;
         }
-        
-        public static void ResetActorLoadout(Actor Actor)
-        {
-            Actor.weapon = MenuItemType.Unknown;
-            Actor.item = MenuItemType.Unknown;
-            Actor.armor = MenuItemType.Unknown;
-            Actor.equipment = MenuItemType.Unknown;
+
+        //actor interaction helpers
+
+        public static void Transform(Actor Actor, ActorType Type)
+        {   //transforms one actor into another
+            SetType(Actor, Type);
+
+            if (Actor == Pool.hero)
+            {   //store actor type
+                PlayerData.current.actorType = Actor.type;
+            }
+
+            Functions_Particle.Spawn(ParticleType.Attention, Actor);
         }
 
-        public static void SetAnimationGroup(Actor Actor)
-        {
-            //assume default animation speed and looping
-            Actor.compAnim.speed = 10;
-            Actor.compAnim.loop = true;
-
-            //movement
-
-            #region Idle
-
-            if (Actor.state == ActorState.Idle)
-            {
-                if(Actor.swimming)
-                {
-                    if (Actor.underwater)
-                    { Actor.animGroup = Actor.animList.underwater_idle; }
-                    else { Actor.animGroup = Actor.animList.swim_idle; }
-                }
-                else if (Actor.carrying)
-                { Actor.animGroup = Actor.animList.idleCarry; }
-                else if (Actor.grabbing)
-                { Actor.animGroup = Actor.animList.grab; }
-                else { Actor.animGroup = Actor.animList.idle; }
-            }
-
-            #endregion
-
-
-            #region Move
-
-            else if (Actor.state == ActorState.Move)
-            {
-                if (Actor.swimming)
-                {
-                    if (Actor.underwater)
-                    { Actor.animGroup = Actor.animList.underwater_move; }
-                    else { Actor.animGroup = Actor.animList.swim_move; }
-                }
-                else if (Actor.carrying)
-                { Actor.animGroup = Actor.animList.moveCarry; }
-                else if (Actor.grabbing)
-                { Actor.animGroup = Actor.animList.push; }
-                else { Actor.animGroup = Actor.animList.move; }
-            }
-
-            #endregion
-
-
-            //actions
-
-            #region Dash
-
-            else if (Actor.state == ActorState.Dash)
-            {
-                if (Actor.swimming)
-                {
-                    if (Actor.underwater) { } //do nothing
-                    else { Actor.animGroup = Actor.animList.swim_dash; }
-                }
-                else { Actor.animGroup = Actor.animList.dash; }
-            }
-
-            #endregion
-
-
-            #region Interact
-
-            else if (Actor.state == ActorState.Interact)
-            {
-                if (Actor.swimming)
-                { }
-                else { Actor.animGroup = Actor.animList.interact; }
-            }
-
-            #endregion
-
-
-            #region Attack
-
-            else if (Actor.state == ActorState.Attack)
-            {
-                if (Actor.swimming)
-                {
-                    if (Actor.underwaterEnemy)
-                    { Actor.animGroup = Actor.animList.attack; }
-                }
-                else if (Actor.carrying)
-                { }
-                else { Actor.animGroup = Actor.animList.attack; }
-            }
-
-            #endregion
-
-
-            #region Use
-
-            else if (Actor.state == ActorState.Use)
-            {
-                if (Actor.swimming)
-                {
-                    if (Actor.underwaterEnemy)
-                    { Actor.animGroup = Actor.animList.attack; }
-                }
-                else if (Actor.carrying)
-                { }
-                else { Actor.animGroup = Actor.animList.attack; }
-            }
-
-            #endregion
-
-
-            #region Pickup and Throw
-
-            else if (Actor.state == ActorState.Pickup)
-            {
-                Actor.animGroup = Actor.animList.pickupThrow; 
-            }
-            else if (Actor.state == ActorState.Throw)
-            {
-                Actor.animGroup = Actor.animList.pickupThrow; 
-            }
-
-            #endregion
-
-
-            //consequences
-
-            #region Hit & Death
-
-            else if (Actor.state == ActorState.Hit)
-            {
-                if (Actor.swimming)
-                { Actor.animGroup = Actor.animList.swim_hit; }
-                else { Actor.animGroup = Actor.animList.hit; }
-            }
-            else if (Actor.state == ActorState.Dead)
-            {
-                Actor.compAnim.loop = false; //stop looping
-                if(Actor == Pool.hero)
-                {   //play the hero's death in water or on land
-                    if (Actor.swimming)
-                    { Actor.animGroup = Actor.animList.death_heroic_water; }
-                    else { Actor.animGroup = Actor.animList.death_heroic; }
-                    Actor.compAnim.speed = 6; //speed up hero's death 
-                }
-                else
-                {   //non-hero actors disappear upon death
-                    Actor.animGroup = Actor.animList.death_blank;
-                }
-            }
-
-            #endregion
-
-
-            #region Reward
-
-            else if (Actor.state == ActorState.Reward)
-            {
-                if (Actor.swimming)
-                { Actor.animGroup = Actor.animList.swim_reward; }
-                else { Actor.animGroup = Actor.animList.reward; }
-            }
-
-            #endregion
-
-
-            #region Falling & Landing
-
-            else if (Actor.state == ActorState.Falling)
-            {
-                Actor.animGroup = Actor.animList.falling;
-            }
-            else if (Actor.state == ActorState.Landed)
-            {
-                if(Actor.swimming)
-                {
-                    Actor.animGroup = Actor.animList.swim_idle;
-                    Actor.lockTotal = 30;
-                }
-                else
-                {
-                    Actor.animGroup = Actor.animList.landed;
-                    Actor.lockTotal = 60;
-                    Actor.compAnim.speed = 30; //slow down anim
-                    Actor.compAnim.loop = false;
-                }
-            }
-
-            #endregion
-
-        }
-
-        public static void SetAnimationDirection(Actor Actor)
-        {
-            //set cardinal directions
-            if (Actor.direction == Direction.Down) { Actor.compAnim.currentAnimation = Actor.animGroup.down; }
-            else if (Actor.direction == Direction.Up) { Actor.compAnim.currentAnimation = Actor.animGroup.up; }
-            else if (Actor.direction == Direction.Right) { Actor.compAnim.currentAnimation = Actor.animGroup.right; }
-            else if (Actor.direction == Direction.Left) { Actor.compAnim.currentAnimation = Actor.animGroup.left; }
-            //set diagonal directions
-            else if (Actor.direction == Direction.DownRight) { Actor.compAnim.currentAnimation = Actor.animGroup.right; }
-            else if (Actor.direction == Direction.DownLeft) { Actor.compAnim.currentAnimation = Actor.animGroup.left; }
-            else if (Actor.direction == Direction.UpRight) { Actor.compAnim.currentAnimation = Actor.animGroup.right; }
-            else if (Actor.direction == Direction.UpLeft) { Actor.compAnim.currentAnimation = Actor.animGroup.left; }
-        }
+        //actor in water helpers
 
         public static void DisplayWetFeet(Actor Actor)
         {
@@ -512,149 +529,6 @@ namespace DungeonRun
                 }
             }
         }
-
-        public static void Pickup(GameObject Obj, Actor Act)
-        {
-            //decorate pickup
-            Functions_Particle.Spawn(
-                ParticleType.Attention,
-                Obj.compSprite.position.X,
-                Obj.compSprite.position.Y);
-
-            //handle pickup effects
-            if (Obj.type == ObjType.Wor_Bush)
-            {   //spawn a stump obj at bush location
-                Functions_GameObject.Spawn(
-                    ObjType.Wor_Bush_Stump,
-                    Obj.compSprite.position.X,
-                    Obj.compSprite.position.Y,
-                    Direction.Down);
-            }
-
-            //handle picking up obj
-            Act.carrying = true;
-            Act.heldObj = Obj;
-            //'hide' roomObject offscreen - temporary, necessary
-            Functions_Movement.Teleport(Obj.compMove, 4096, 4096);
-            //put actor into pickup state
-            Act.state = ActorState.Pickup;
-            Act.stateLocked = true;
-            Act.lockTotal = 10;
-            SetAnimationGroup(Act);
-            Act.heldObj.compSprite.zOffset = +16; //sort above actor
-            Act.heldObj.compCollision.blocking = false; //prevent act/obj overlaps
-            Assets.Play(Assets.sfxActorLand); //temp sfx
-        }
-
-
-
-
-
-
-
-
-        //static ObjType throwType;
-        public static void Throw(Actor Act)
-        {   //put actor into throw state
-            Act.carrying = false;
-            Act.state = ActorState.Throw;
-            Act.stateLocked = true;
-            Act.lockTotal = 10;
-            SetAnimationGroup(Act);
-
-
-            //check if we're throwing an enemy or object
-            if(Act.heldObj.type == ObjType.Wor_Enemy_Turtle
-                || Act.heldObj.type == ObjType.Wor_Enemy_Crab)
-            {
-                //resolve act.direction to cardinal
-                Act.direction = Functions_Direction.GetCardinalDirection_LeftRight(Act.direction);
-                //place enemy outside of hero's hitbox
-                if (Act.direction == Direction.Left)
-                {
-                    Functions_Movement.Teleport(Act.heldObj.compMove,
-                        Act.compSprite.position.X - 8,
-                        Act.compSprite.position.Y);
-                }
-                else if (Act.direction == Direction.Up)
-                {
-                    Functions_Movement.Teleport(Act.heldObj.compMove,
-                        Act.compSprite.position.X,
-                        Act.compSprite.position.Y - 8);
-                }
-                else if (Act.direction == Direction.Right)
-                {
-                    Functions_Movement.Teleport(Act.heldObj.compMove,
-                        Act.compSprite.position.X + 8,
-                        Act.compSprite.position.Y);
-                }
-                else if (Act.direction == Direction.Down)
-                {
-                    Functions_Movement.Teleport(Act.heldObj.compMove,
-                        Act.compSprite.position.X,
-                        Act.compSprite.position.Y + 8);
-                }
-                //strongly push enemy in actor's facing direction
-                Functions_Movement.Push(
-                    Act.heldObj.compMove,
-                    Act.direction, 8.0f);
-                //reset hitbox, sorting offsets, etc...
-                Functions_GameObject.SetType(Act.heldObj, Act.heldObj.type);
-            }
-            else
-            {   
-                
-                //throwing routines are broken and need reintegration into new projectile system
-                /*
-                //create a thrown version of heldObj
-                //assume we're throwing a bush
-                throwType = ObjType.ProjectileBush;
-                //check for pots
-                if (Act.heldObj.type == ObjType.Dungeon_Pot)
-                { throwType = ObjType.ProjectilePotSkull; }
-                else if (Act.heldObj.type == ObjType.Wor_Pot)
-                { throwType = ObjType.ProjectilePot; }
-                //spawn the thrown projectile obj
-                Functions_Projectile.Spawn(throwType, Act, Act.direction);
-                */
-
-
-
-                Functions_Pool.Release(Act.heldObj);
-            }
-            
-            Act.heldObj = null; //release reference to roomObj
-            Assets.Play(Assets.sfxActorFall); //play throw sfx
-            Functions_Particle.SpawnPushFX(Act.compMove, Act.direction);
-        }
-
-
-
-
-
-
-
-        public static void Grab(GameObject Obj, Actor Act)
-        {
-            Act.grabbing = true;
-            Act.grabbedObj = Obj;
-        }
-
-        public static void Transform(Actor Actor, ActorType Type)
-        {   //transforms one actor into another
-            SetType(Actor, Type);
-
-            if (Actor == Pool.hero)
-            {   //store actor type
-                PlayerData.current.actorType = Actor.type;
-            }
-
-            Functions_Particle.Spawn(ParticleType.Attention, Actor);
-        }
-
-
-
-
 
         public static void CreateSplash(Actor Actor)
         {
@@ -755,535 +629,11 @@ namespace DungeonRun
 
 
 
+        
 
 
 
-        public static void SetType(Actor Actor, ActorType Type)
-        {
-            ResetActor(Actor);
-            Actor.type = Type;
-
-            //default collision rec - if boss creates projectiles they have to use this
-            //this is because the spawn projectile method assumes this collision rec
-            //and doesn't account for any change in it's size
-            //so this will cause self-interaction upon projectile spawn, leading to actor hit/death
-
-            Actor.compCollision.rec.Width = 12;
-            Actor.compCollision.rec.Height = 8;
-            Actor.compCollision.offsetX = -6;
-            Actor.compCollision.offsetY = 0;
-
-
-
-
-
-
-
-
-
-            //Standard Actors
-
-            #region Hero
-
-            if (Type == ActorType.Hero)
-            {
-                Actor.enemy = false;
-                Actor.compSprite.texture = Assets.heroSheet;
-                Actor.animList = AnimationFrames.Hero_Animations; //actor is hero
-                //do not update/change the hero's weapon/item/armor/equipment
-                Actor.walkSpeed = 0.35f;
-                Actor.dashSpeed = 0.90f;
-                //set actor sound effects
-                Actor.sfxDash = Assets.sfxHeroDash;
-                Actor.sfx.hit = Assets.sfxHeroHit;
-                Actor.sfx.kill = Assets.sfxHeroKill;
-            }
-
-            #endregion
-
-
-            #region Blob
-
-            else if (Type == ActorType.Blob)
-            {
-                Actor.aiType = ActorAI.Basic;
-                Actor.enemy = true;
-                Actor.compSprite.texture = Assets.blobSheet;
-                Actor.animList = AnimationFrames.Hero_Animations; //actor is hero
-                Actor.health = 3; //base hero hp
-                ResetActorLoadout(Actor);
-                Actor.weapon = MenuItemType.WeaponSword;
-                Actor.walkSpeed = 0.05f;
-                Actor.dashSpeed = 0.30f;
-                //set actor sound effects
-                Actor.sfxDash = Assets.sfxBlobDash;
-                Actor.sfx.hit = Assets.sfxEnemyHit;
-                Actor.sfx.kill = Assets.sfxEnemyKill;
-            }
-
-            #endregion
-
-
-            #region Standard - AngryEye
-
-            else if (Type == ActorType.Standard_AngryEye)
-            {
-                Actor.aiType = ActorAI.Basic;
-                Actor.compMove.grounded = false; //is flying
-
-                Actor.enemy = true;
-                Actor.compSprite.texture = Assets.EnemySheet;
-                Actor.animList = AnimationFrames.Standard_AngryEye_Animations;
-                Actor.health = 1; //very easy
-                ResetActorLoadout(Actor);
-                Actor.weapon = MenuItemType.WeaponFang;
-                Actor.walkSpeed = 0.05f;
-                Actor.dashSpeed = 0.30f;
-
-                //this actor is a 2x1 enemy
-                Actor.compSprite.drawRec.Width = 16 * 1;
-                Actor.compSprite.drawRec.Height = 16 * 2;
-                //actor is floating in air
-                Actor.compSprite.zOffset = 16;
-
-                //set actor sound effects
-                Actor.sfxDash = null; //silent dash
-                Actor.sfx.hit = Assets.sfxEnemyHit;
-                Actor.sfx.kill = Assets.sfxEnemyKill;
-
-                //custom hitbox
-                Actor.compCollision.rec.Width = 12;
-                Actor.compCollision.rec.Height = 10;
-                Actor.compCollision.offsetX = -6;
-                Actor.compCollision.offsetY = -9;
-            }
-
-            #endregion
-
-
-            #region Standard - BeefyBat
-
-            else if (Type == ActorType.Standard_BeefyBat)
-            {
-                Actor.aiType = ActorAI.Standard_BeefyBat;
-                Actor.chaseDiagonally = false; //sprite requires it
-                Actor.compMove.grounded = false; //is flying
-
-                Actor.enemy = true;
-                Actor.compSprite.texture = Assets.EnemySheet;
-                Actor.animList = AnimationFrames.Standard_BeefyBat_Animations;
-
-                Actor.health = 2; //med
-                Actor.chaseRadius = 16 * 3; //decrease chase radius
-                
-                ResetActorLoadout(Actor);
-                Actor.weapon = MenuItemType.WeaponFang;
-                Actor.walkSpeed = 0.05f;
-                Actor.dashSpeed = 0.30f;
-                
-                //actor is flying, low
-                Actor.compSprite.zOffset = 16;
-
-                //set actor sound effects
-                Actor.sfxDash = null; //silent dash
-                Actor.sfx.hit = Assets.sfxEnemyHit;
-                Actor.sfx.kill = Assets.sfxEnemyKill;
-
-                //custom hitbox
-                Actor.compCollision.rec.Width = 12;
-                Actor.compCollision.rec.Height = 8;
-                Actor.compCollision.offsetX = -6;
-                Actor.compCollision.offsetY = -6;
-            }
-
-            #endregion
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            //Minibosses
-
-            #region Blackeye
-
-            else if (Type == ActorType.MiniBoss_BlackEye)
-            {
-                Actor.aiType = ActorAI.Miniboss_Blackeye;
-                Actor.compMove.grounded = false; //is flying
-
-                Actor.enemy = true;
-                Actor.compSprite.texture = Assets.EnemySheet;
-                Actor.animList = AnimationFrames.MiniBoss_BlackEye_Animations;
-                Actor.health = 15;
-
-                //walk and dash speeds are set in Functions_Ai
-                //because they change based on this actor's health
-
-                //this actor is a 2x2 miniboss
-                Actor.compSprite.drawRec.Width = 16 * 2;
-                Actor.compSprite.drawRec.Height = 16 * 2;
-
-                Actor.compCollision.offsetY = -4;
-                //actor is floating in air
-                Actor.compSprite.zOffset = 16;
-                //set actor sound effects
-                Actor.sfxDash = null; //silent dash
-                Actor.sfx.hit = Assets.sfxBossHit;
-                Actor.sfx.kill = Assets.sfxShatter; //sounds good
-
-                ResetActorLoadout(Actor);
-                //setup actor with useable item, so player can shoot arrows
-                Actor.item = MenuItemType.ItemBow;
-
-                //enemy with a bigger hitbox
-                Actor.compCollision.rec.Width = 18;
-                Actor.compCollision.rec.Height = 14;
-                Actor.compCollision.offsetX = -8;
-                Actor.compCollision.offsetY = -8;
-            }
-
-            #endregion
-
-
-            #region Spider - Armored
-
-            else if (Type == ActorType.MiniBoss_Spider_Armored)
-            {
-                Actor.aiType = ActorAI.Basic;
-
-                Actor.enemy = true;
-                Actor.compSprite.texture = Assets.EnemySheet;
-                Actor.animList = AnimationFrames.MiniBoss_SpiderArmored_Animations;
-                Actor.health = 1; //simply takes 1 damage, then becomes unarmored
-
-                ResetActorLoadout(Actor);
-                Actor.weapon = MenuItemType.WeaponFang;
-
-                //moves slowly
-                Actor.walkSpeed = 0.05f;
-                Actor.dashSpeed = 0.30f;
-
-                //this actor is a 3x1 miniboss
-                Actor.compSprite.drawRec.Width = 16 * 3;
-                Actor.compSprite.drawRec.Height = 16 * 1;
-                Actor.compCollision.offsetY = 0;
-                Actor.compSprite.zOffset = 0;
-
-                //set actor sound effects
-                Actor.sfxDash = Assets.sfxEnemyTaunt;
-                Actor.sfx.hit = Assets.sfxTapMetallic;
-                Actor.sfx.kill = Assets.sfxShatter;
-
-                Actor.compCollision.rec.Width = 16;
-                Actor.compCollision.rec.Height = 10;
-                Actor.compCollision.offsetX = -8;
-                Actor.compCollision.offsetY = -2;
-            }
-
-            #endregion
-
-
-            #region Spider - UN-armored
-
-            else if (Type == ActorType.MiniBoss_Spider_Unarmored)
-            {
-                Actor.aiType = ActorAI.Basic;
-                Actor.compCollision.blocking = true; //actor was 'dead'
-
-                Actor.enemy = true;
-                Actor.compSprite.texture = Assets.EnemySheet;
-                Actor.animList = AnimationFrames.MiniBoss_SpiderUnarmored_Animations;
-                Actor.health = 5; //actual miniboss
-
-                ResetActorLoadout(Actor);
-                Actor.weapon = MenuItemType.WeaponFang;
-
-                //moves extremely fast
-                Actor.walkSpeed = 0.75f;
-                Actor.dashSpeed = 1.5f;
-                Actor.compAnim.speed = 5;
-
-                //always 'see' hero
-                Actor.chaseRadius = 16 * 30;
-
-                //this actor is a 3x1 miniboss
-                Actor.compSprite.drawRec.Width = 16 * 3;
-                Actor.compSprite.drawRec.Height = 16 * 1;
-                Actor.compCollision.offsetY = 0;
-                Actor.compSprite.zOffset = 16;
-
-                //set actor sound effects
-                Actor.sfxDash = Assets.sfxEnemyTaunt;
-                Actor.sfx.hit = Assets.sfxBossHit;
-                Actor.sfx.kill = Assets.sfxBossHitDeath;
-
-                Actor.compCollision.rec.Width = 16;
-                Actor.compCollision.rec.Height = 10;
-                Actor.compCollision.offsetX = -8;
-                Actor.compCollision.offsetY = -2;
-            }
-
-
-            #endregion
-
-
-            #region OctoMouth
-
-            else if (Type == ActorType.MiniBoss_OctoMouth)
-            {
-                Actor.aiType = ActorAI.MiniBoss_OctoMouth;
-                Actor.compMove.grounded = true;
-                
-                Actor.enemy = true;
-                Actor.underwaterEnemy = true;
-                Actor.compSprite.texture = Assets.EnemySheet;
-                Actor.animList = AnimationFrames.MiniBoss_OctoMouth_Animations;
-                Actor.health = 10;
-
-                //walk and dash speeds are set in Functions_Ai
-                //because they change based on this actor's health
-
-                //this actor is a 2x2 miniboss
-                Actor.compSprite.drawRec.Width = 16 * 2;
-                Actor.compSprite.drawRec.Height = 16 * 2;
-
-                Actor.compCollision.offsetY = -3;
-                Actor.compSprite.zOffset = 2; //sort over water
-
-                //set actor sound effects
-                Actor.sfxDash = null; //silent dash
-                Actor.sfx.hit = Assets.sfxBossHit;
-                Actor.sfx.kill = Assets.sfxEnemyKill;
-
-                ResetActorLoadout(Actor);
-                //setup actor with useable item, so player can shoot fireballs
-                Actor.item = MenuItemType.MagicFireball;
-                //custom hitbox
-                Actor.compCollision.rec.Width = 16;
-                Actor.compCollision.rec.Height = 12;
-                Actor.compCollision.offsetX = -8;
-                Actor.compCollision.offsetY = -4;
-            }
-
-            #endregion
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            //Bosses
-
-            #region BigEye
-
-            else if (Type == ActorType.Boss_BigEye)
-            {
-                Actor.aiType = ActorAI.Boss_BigEye;
-                Actor.compMove.grounded = false; //is flying
-
-                Actor.enemy = true;
-                Actor.compSprite.texture = Assets.EnemySheet;
-                Actor.animList = AnimationFrames.Boss_BigEye_Animations;
-                Actor.health = 30;
-
-                //this boss creates seeker exploders based on it's hp
-                ResetActorLoadout(Actor);
-                Actor.weapon = MenuItemType.WeaponFang; //and can bite
-
-                //walk and dash speeds are set in Functions_Ai
-                //because they change based on this actor's health
-
-                //this actor is a 2x3 boss 
-                Actor.compSprite.drawRec.Width = 16 * 2;
-                Actor.compSprite.drawRec.Height = 16 * 3;
-                //actor is floating in air
-                Actor.compSprite.zOffset = 16;
-                //set actor sound effects
-                Actor.sfxDash = null; //silent dash
-                Actor.sfx.hit = Assets.sfxBossHit;
-                Actor.sfx.kill = Assets.sfxBossHitDeath;
-
-                //boss parameters
-                Actor.attackRadius = 20;
-                Actor.chaseRadius = 16 * 20;
-
-                //custom hitbox
-                Actor.compCollision.rec.Width = 24;
-                Actor.compCollision.rec.Height = 16;
-                Actor.compCollision.offsetX = -12;
-                Actor.compCollision.offsetY = -7;
-            }
-
-            #endregion
-
-
-            #region BigBat
-
-            else if (Type == ActorType.Boss_BigBat)
-            {
-                Actor.aiType = ActorAI.Boss_BigBat;
-                Actor.compMove.grounded = false; //is flying
-
-                Actor.enemy = true;
-                Actor.compSprite.texture = Assets.EnemySheet;
-                Actor.animList = AnimationFrames.Boss_BigBat_Animations;
-                Actor.health = 20;
-
-                //this boss spam casts bat projectiles as main attack
-                ResetActorLoadout(Actor);
-                Actor.item = MenuItemType.MagicBat;
-                Actor.weapon = MenuItemType.WeaponFang; //and can bite
-
-                //walk and dash speeds are set in Functions_Ai
-                //because they change based on this actor's health
-
-                //this actor is a 2x3 boss 
-                Actor.compSprite.drawRec.Width = 16 * 2;
-                Actor.compSprite.drawRec.Height = 16 * 3;
-
-                //actor is floating in air
-                Actor.compSprite.zOffset = 32;
-                //set actor sound effects
-                Actor.sfxDash = null; //silent dash
-                Actor.sfx.hit = Assets.sfxBossHit;
-                Actor.sfx.kill = Assets.sfxBossHitDeath;
-
-                //boss parameters
-                Actor.attackRadius = 20;
-                Actor.chaseRadius = 16 * 20;
-
-                //custom hitbox
-                Actor.compCollision.rec.Width = 24;
-                Actor.compCollision.rec.Height = 16;
-                Actor.compCollision.offsetX = -12;
-                Actor.compCollision.offsetY = -15;
-            }
-
-            #endregion
-
-
-            #region OctoHead
-
-            else if (Type == ActorType.Boss_OctoHead)
-            {
-                Actor.aiType = ActorAI.Boss_OctoHead;
-                Actor.compMove.grounded = true;
-
-                Actor.enemy = true;
-                Actor.underwaterEnemy = true;
-                Actor.compSprite.texture = Assets.EnemySheet;
-                Actor.animList = AnimationFrames.Boss_OctoHead_Animations;
-                Actor.health = 8; //each time head takes damage he spawns a tentacle actor
-                ResetActorLoadout(Actor);
-
-                //walk and dash speeds are set in Functions_Ai
-                //because they change based on this actor's health
-
-                //this actor is a 2x3 boss
-                Actor.compSprite.drawRec.Width = 16 * 2;
-                Actor.compSprite.drawRec.Height = 16 * 3;
-
-                Actor.compCollision.offsetY = 8;
-                Actor.compSprite.zOffset = 14;
-
-                //set actor sound effects
-                Actor.sfxDash = null; //silent dash
-                Actor.sfx.hit = Assets.sfxBossHit;
-                Actor.sfx.kill = Assets.sfxBossHitDeath;
-
-                //setup collision rec (since actor doesn't spawn projectiles)
-                Actor.compCollision.rec.Width = 16;
-                Actor.compCollision.rec.Height = 16;
-                Actor.compCollision.offsetX = -8;
-                Actor.compCollision.offsetY = 2;
-            }
-
-            #endregion
-
-
-
-
-
-
-
-
-
-
-
-
-            //Specials
-
-            #region Tentacle
-
-            else if (Type == ActorType.Special_Tentacle)
-            {
-                Actor.aiType = ActorAI.Special_Tentacle;
-                Actor.compMove.grounded = true;
-
-                Actor.enemy = true;
-                Actor.underwaterEnemy = true;
-                Actor.compSprite.texture = Assets.EnemySheet;
-                Actor.animList = AnimationFrames.Special_Tentacle_Animations;
-                Actor.health = 10; //not meant to be killed, but they can be
-
-                Actor.walkSpeed = 0.15f;
-                Actor.dashSpeed = 0.15f;
-
-                //this actor is a 2x3 special
-                Actor.compSprite.drawRec.Width = 16 * 2;
-                Actor.compSprite.drawRec.Height = 16 * 3;
-                Actor.compSprite.zOffset = 14;
-
-                //set actor sound effects
-                Actor.sfxDash = null; //silent dash
-                Actor.sfx.hit = Assets.sfxEnemyHit;
-                Actor.sfx.kill = Assets.sfxEnemyKill;
-
-                //ai params
-                Actor.chaseRadius = 16 * 30; //massive search space
-                Actor.attackRadius = 18;
-
-                ResetActorLoadout(Actor);
-                //setup actor with useable item, so player can attack + dive
-                Actor.item = MenuItemType.WeaponFang;
-
-                Actor.compCollision.rec.Width = 14;
-                Actor.compCollision.rec.Height = 10;
-                Actor.compCollision.offsetX = -7;
-                Actor.compCollision.offsetY = 6;
-            }
-
-            #endregion
-
-
-
-
-
-            SetAnimationGroup(Actor);
-            SetAnimationDirection(Actor);
-            Functions_Component.CenterOrigin(Actor.compSprite);
-        }
-
-
+        //a complicated mess of state and actor booleans, tread carefully
 
         public static void Update(Actor Actor)
         {
@@ -1420,10 +770,13 @@ namespace DungeonRun
 
                     if (Actor.state == ActorState.Interact)
                     {
-                        if(Actor.heldObj != null)
+                        if (Actor == Pool.hero)
                         {
-                            Functions_Movement.StopMovement(Actor.compMove);
-                            Throw(Actor);
+                            if (Actor.heldObj != null)
+                            {
+                                Functions_Movement.StopMovement(Actor.compMove);
+                                Functions_Hero.Throw();
+                            }
                         }
                     }
                     else if (Actor.state == ActorState.Dash)
@@ -1758,6 +1111,533 @@ namespace DungeonRun
             //set actor animation and direction
             SetAnimationGroup(Actor);
             SetAnimationDirection(Actor);
+        }
+
+        //maps type to object values and state
+
+        public static void SetType(Actor Actor, ActorType Type)
+        {
+            ResetActor(Actor);
+            Actor.type = Type;
+
+            //default collision rec - if boss creates projectiles they have to use this
+            //this is because the spawn projectile method assumes this collision rec
+            //and doesn't account for any change in it's size
+            //so this will cause self-interaction upon projectile spawn, leading to actor hit/death
+
+            Actor.compCollision.rec.Width = 12;
+            Actor.compCollision.rec.Height = 8;
+            Actor.compCollision.offsetX = -6;
+            Actor.compCollision.offsetY = 0;
+
+
+
+
+
+
+
+
+
+            //Standard Actors
+
+            #region Hero
+
+            if (Type == ActorType.Hero)
+            {
+                Actor.enemy = false;
+                Actor.compSprite.texture = Assets.heroSheet;
+                Actor.animList = AnimationFrames.Hero_Animations; //actor is hero
+                //do not update/change the hero's weapon/item/armor/equipment
+                Actor.walkSpeed = 0.35f;
+                Actor.dashSpeed = 0.90f;
+                //set actor sound effects
+                Actor.sfxDash = Assets.sfxHeroDash;
+                Actor.sfx.hit = Assets.sfxHeroHit;
+                Actor.sfx.kill = Assets.sfxHeroKill;
+            }
+
+            #endregion
+
+
+            #region Blob
+
+            else if (Type == ActorType.Blob)
+            {
+                Actor.aiType = ActorAI.Basic;
+                Actor.enemy = true;
+                Actor.compSprite.texture = Assets.blobSheet;
+                Actor.animList = AnimationFrames.Hero_Animations; //actor is hero
+                Actor.health = 3; //base hero hp
+                ResetActorLoadout(Actor);
+                Actor.weapon = MenuItemType.WeaponSword;
+                Actor.walkSpeed = 0.05f;
+                Actor.dashSpeed = 0.30f;
+                //set actor sound effects
+                Actor.sfxDash = Assets.sfxBlobDash;
+                Actor.sfx.hit = Assets.sfxEnemyHit;
+                Actor.sfx.kill = Assets.sfxEnemyKill;
+            }
+
+            #endregion
+
+
+            #region Standard - AngryEye
+
+            else if (Type == ActorType.Standard_AngryEye)
+            {
+                Actor.aiType = ActorAI.Basic;
+                Actor.compMove.grounded = false; //is flying
+
+                Actor.enemy = true;
+                Actor.compSprite.texture = Assets.EnemySheet;
+                Actor.animList = AnimationFrames.Standard_AngryEye_Animations;
+                Actor.health = 1; //very easy
+                ResetActorLoadout(Actor);
+                Actor.weapon = MenuItemType.WeaponFang;
+                Actor.walkSpeed = 0.05f;
+                Actor.dashSpeed = 0.30f;
+
+                //this actor is a 2x1 enemy
+                Actor.compSprite.drawRec.Width = 16 * 1;
+                Actor.compSprite.drawRec.Height = 16 * 2;
+                //actor is floating in air
+                Actor.compSprite.zOffset = 16;
+
+                //set actor sound effects
+                Actor.sfxDash = null; //silent dash
+                Actor.sfx.hit = Assets.sfxEnemyHit;
+                Actor.sfx.kill = Assets.sfxEnemyKill;
+
+                //custom hitbox
+                Actor.compCollision.rec.Width = 12;
+                Actor.compCollision.rec.Height = 10;
+                Actor.compCollision.offsetX = -6;
+                Actor.compCollision.offsetY = -9;
+            }
+
+            #endregion
+
+
+            #region Standard - BeefyBat
+
+            else if (Type == ActorType.Standard_BeefyBat)
+            {
+                Actor.aiType = ActorAI.Standard_BeefyBat;
+                Actor.chaseDiagonally = false; //sprite requires it
+                Actor.compMove.grounded = false; //is flying
+
+                Actor.enemy = true;
+                Actor.compSprite.texture = Assets.EnemySheet;
+                Actor.animList = AnimationFrames.Standard_BeefyBat_Animations;
+
+                Actor.health = 2; //med
+                Actor.chaseRadius = 16 * 3; //decrease chase radius
+
+                ResetActorLoadout(Actor);
+                Actor.weapon = MenuItemType.WeaponFang;
+                Actor.walkSpeed = 0.05f;
+                Actor.dashSpeed = 0.30f;
+
+                //actor is flying, low
+                Actor.compSprite.zOffset = 16;
+
+                //set actor sound effects
+                Actor.sfxDash = null; //silent dash
+                Actor.sfx.hit = Assets.sfxEnemyHit;
+                Actor.sfx.kill = Assets.sfxEnemyKill;
+
+                //custom hitbox
+                Actor.compCollision.rec.Width = 12;
+                Actor.compCollision.rec.Height = 8;
+                Actor.compCollision.offsetX = -6;
+                Actor.compCollision.offsetY = -6;
+            }
+
+            #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            //Minibosses
+
+            #region Blackeye
+
+            else if (Type == ActorType.MiniBoss_BlackEye)
+            {
+                Actor.aiType = ActorAI.Miniboss_Blackeye;
+                Actor.compMove.grounded = false; //is flying
+
+                Actor.enemy = true;
+                Actor.compSprite.texture = Assets.EnemySheet;
+                Actor.animList = AnimationFrames.MiniBoss_BlackEye_Animations;
+                Actor.health = 15;
+
+                //walk and dash speeds are set in Functions_Ai
+                //because they change based on this actor's health
+
+                //this actor is a 2x2 miniboss
+                Actor.compSprite.drawRec.Width = 16 * 2;
+                Actor.compSprite.drawRec.Height = 16 * 2;
+
+                Actor.compCollision.offsetY = -4;
+                //actor is floating in air
+                Actor.compSprite.zOffset = 16;
+                //set actor sound effects
+                Actor.sfxDash = null; //silent dash
+                Actor.sfx.hit = Assets.sfxBossHit;
+                Actor.sfx.kill = Assets.sfxShatter; //sounds good
+
+                ResetActorLoadout(Actor);
+                //setup actor with useable item, so player can shoot arrows
+                Actor.item = MenuItemType.ItemBow;
+
+                //enemy with a bigger hitbox
+                Actor.compCollision.rec.Width = 18;
+                Actor.compCollision.rec.Height = 14;
+                Actor.compCollision.offsetX = -8;
+                Actor.compCollision.offsetY = -8;
+            }
+
+            #endregion
+
+
+            #region Spider - Armored
+
+            else if (Type == ActorType.MiniBoss_Spider_Armored)
+            {
+                Actor.aiType = ActorAI.Basic;
+
+                Actor.enemy = true;
+                Actor.compSprite.texture = Assets.EnemySheet;
+                Actor.animList = AnimationFrames.MiniBoss_SpiderArmored_Animations;
+                Actor.health = 1; //simply takes 1 damage, then becomes unarmored
+
+                ResetActorLoadout(Actor);
+                Actor.weapon = MenuItemType.WeaponFang;
+
+                //moves slowly
+                Actor.walkSpeed = 0.05f;
+                Actor.dashSpeed = 0.30f;
+
+                //this actor is a 3x1 miniboss
+                Actor.compSprite.drawRec.Width = 16 * 3;
+                Actor.compSprite.drawRec.Height = 16 * 1;
+                Actor.compCollision.offsetY = 0;
+                Actor.compSprite.zOffset = 0;
+
+                //set actor sound effects
+                Actor.sfxDash = Assets.sfxEnemyTaunt;
+                Actor.sfx.hit = Assets.sfxTapMetallic;
+                Actor.sfx.kill = Assets.sfxShatter;
+
+                Actor.compCollision.rec.Width = 16;
+                Actor.compCollision.rec.Height = 10;
+                Actor.compCollision.offsetX = -8;
+                Actor.compCollision.offsetY = -2;
+            }
+
+            #endregion
+
+
+            #region Spider - UN-armored
+
+            else if (Type == ActorType.MiniBoss_Spider_Unarmored)
+            {
+                Actor.aiType = ActorAI.Basic;
+                Actor.compCollision.blocking = true; //actor was 'dead'
+
+                Actor.enemy = true;
+                Actor.compSprite.texture = Assets.EnemySheet;
+                Actor.animList = AnimationFrames.MiniBoss_SpiderUnarmored_Animations;
+                Actor.health = 5; //actual miniboss
+
+                ResetActorLoadout(Actor);
+                Actor.weapon = MenuItemType.WeaponFang;
+
+                //moves extremely fast
+                Actor.walkSpeed = 0.75f;
+                Actor.dashSpeed = 1.5f;
+                Actor.compAnim.speed = 5;
+
+                //always 'see' hero
+                Actor.chaseRadius = 16 * 30;
+
+                //this actor is a 3x1 miniboss
+                Actor.compSprite.drawRec.Width = 16 * 3;
+                Actor.compSprite.drawRec.Height = 16 * 1;
+                Actor.compCollision.offsetY = 0;
+                Actor.compSprite.zOffset = 16;
+
+                //set actor sound effects
+                Actor.sfxDash = Assets.sfxEnemyTaunt;
+                Actor.sfx.hit = Assets.sfxBossHit;
+                Actor.sfx.kill = Assets.sfxBossHitDeath;
+
+                Actor.compCollision.rec.Width = 16;
+                Actor.compCollision.rec.Height = 10;
+                Actor.compCollision.offsetX = -8;
+                Actor.compCollision.offsetY = -2;
+            }
+
+
+            #endregion
+
+
+            #region OctoMouth
+
+            else if (Type == ActorType.MiniBoss_OctoMouth)
+            {
+                Actor.aiType = ActorAI.MiniBoss_OctoMouth;
+                Actor.compMove.grounded = true;
+
+                Actor.enemy = true;
+                Actor.underwaterEnemy = true;
+                Actor.compSprite.texture = Assets.EnemySheet;
+                Actor.animList = AnimationFrames.MiniBoss_OctoMouth_Animations;
+                Actor.health = 10;
+
+                //walk and dash speeds are set in Functions_Ai
+                //because they change based on this actor's health
+
+                //this actor is a 2x2 miniboss
+                Actor.compSprite.drawRec.Width = 16 * 2;
+                Actor.compSprite.drawRec.Height = 16 * 2;
+
+                Actor.compCollision.offsetY = -3;
+                Actor.compSprite.zOffset = 2; //sort over water
+
+                //set actor sound effects
+                Actor.sfxDash = null; //silent dash
+                Actor.sfx.hit = Assets.sfxBossHit;
+                Actor.sfx.kill = Assets.sfxEnemyKill;
+
+                ResetActorLoadout(Actor);
+                //setup actor with useable item, so player can shoot fireballs
+                Actor.item = MenuItemType.MagicFireball;
+                //custom hitbox
+                Actor.compCollision.rec.Width = 16;
+                Actor.compCollision.rec.Height = 12;
+                Actor.compCollision.offsetX = -8;
+                Actor.compCollision.offsetY = -4;
+            }
+
+            #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            //Bosses
+
+            #region BigEye
+
+            else if (Type == ActorType.Boss_BigEye)
+            {
+                Actor.aiType = ActorAI.Boss_BigEye;
+                Actor.compMove.grounded = false; //is flying
+
+                Actor.enemy = true;
+                Actor.compSprite.texture = Assets.EnemySheet;
+                Actor.animList = AnimationFrames.Boss_BigEye_Animations;
+                Actor.health = 30;
+
+                //this boss creates seeker exploders based on it's hp
+                ResetActorLoadout(Actor);
+                Actor.weapon = MenuItemType.WeaponFang; //and can bite
+
+                //walk and dash speeds are set in Functions_Ai
+                //because they change based on this actor's health
+
+                //this actor is a 2x3 boss 
+                Actor.compSprite.drawRec.Width = 16 * 2;
+                Actor.compSprite.drawRec.Height = 16 * 3;
+                //actor is floating in air
+                Actor.compSprite.zOffset = 16;
+                //set actor sound effects
+                Actor.sfxDash = null; //silent dash
+                Actor.sfx.hit = Assets.sfxBossHit;
+                Actor.sfx.kill = Assets.sfxBossHitDeath;
+
+                //boss parameters
+                Actor.attackRadius = 20;
+                Actor.chaseRadius = 16 * 20;
+
+                //custom hitbox
+                Actor.compCollision.rec.Width = 24;
+                Actor.compCollision.rec.Height = 16;
+                Actor.compCollision.offsetX = -12;
+                Actor.compCollision.offsetY = -7;
+            }
+
+            #endregion
+
+
+            #region BigBat
+
+            else if (Type == ActorType.Boss_BigBat)
+            {
+                Actor.aiType = ActorAI.Boss_BigBat;
+                Actor.compMove.grounded = false; //is flying
+
+                Actor.enemy = true;
+                Actor.compSprite.texture = Assets.EnemySheet;
+                Actor.animList = AnimationFrames.Boss_BigBat_Animations;
+                Actor.health = 20;
+
+                //this boss spam casts bat projectiles as main attack
+                ResetActorLoadout(Actor);
+                Actor.item = MenuItemType.MagicBat;
+                Actor.weapon = MenuItemType.WeaponFang; //and can bite
+
+                //walk and dash speeds are set in Functions_Ai
+                //because they change based on this actor's health
+
+                //this actor is a 2x3 boss 
+                Actor.compSprite.drawRec.Width = 16 * 2;
+                Actor.compSprite.drawRec.Height = 16 * 3;
+
+                //actor is floating in air
+                Actor.compSprite.zOffset = 32;
+                //set actor sound effects
+                Actor.sfxDash = null; //silent dash
+                Actor.sfx.hit = Assets.sfxBossHit;
+                Actor.sfx.kill = Assets.sfxBossHitDeath;
+
+                //boss parameters
+                Actor.attackRadius = 20;
+                Actor.chaseRadius = 16 * 20;
+
+                //custom hitbox
+                Actor.compCollision.rec.Width = 24;
+                Actor.compCollision.rec.Height = 16;
+                Actor.compCollision.offsetX = -12;
+                Actor.compCollision.offsetY = -15;
+            }
+
+            #endregion
+
+
+            #region OctoHead
+
+            else if (Type == ActorType.Boss_OctoHead)
+            {
+                Actor.aiType = ActorAI.Boss_OctoHead;
+                Actor.compMove.grounded = true;
+
+                Actor.enemy = true;
+                Actor.underwaterEnemy = true;
+                Actor.compSprite.texture = Assets.EnemySheet;
+                Actor.animList = AnimationFrames.Boss_OctoHead_Animations;
+                Actor.health = 8; //each time head takes damage he spawns a tentacle actor
+                ResetActorLoadout(Actor);
+
+                //walk and dash speeds are set in Functions_Ai
+                //because they change based on this actor's health
+
+                //this actor is a 2x3 boss
+                Actor.compSprite.drawRec.Width = 16 * 2;
+                Actor.compSprite.drawRec.Height = 16 * 3;
+
+                Actor.compCollision.offsetY = 8;
+                Actor.compSprite.zOffset = 14;
+
+                //set actor sound effects
+                Actor.sfxDash = null; //silent dash
+                Actor.sfx.hit = Assets.sfxBossHit;
+                Actor.sfx.kill = Assets.sfxBossHitDeath;
+
+                //setup collision rec (since actor doesn't spawn projectiles)
+                Actor.compCollision.rec.Width = 16;
+                Actor.compCollision.rec.Height = 16;
+                Actor.compCollision.offsetX = -8;
+                Actor.compCollision.offsetY = 2;
+            }
+
+            #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+            //Specials
+
+            #region Tentacle
+
+            else if (Type == ActorType.Special_Tentacle)
+            {
+                Actor.aiType = ActorAI.Special_Tentacle;
+                Actor.compMove.grounded = true;
+
+                Actor.enemy = true;
+                Actor.underwaterEnemy = true;
+                Actor.compSprite.texture = Assets.EnemySheet;
+                Actor.animList = AnimationFrames.Special_Tentacle_Animations;
+                Actor.health = 10; //not meant to be killed, but they can be
+
+                Actor.walkSpeed = 0.15f;
+                Actor.dashSpeed = 0.15f;
+
+                //this actor is a 2x3 special
+                Actor.compSprite.drawRec.Width = 16 * 2;
+                Actor.compSprite.drawRec.Height = 16 * 3;
+                Actor.compSprite.zOffset = 14;
+
+                //set actor sound effects
+                Actor.sfxDash = null; //silent dash
+                Actor.sfx.hit = Assets.sfxEnemyHit;
+                Actor.sfx.kill = Assets.sfxEnemyKill;
+
+                //ai params
+                Actor.chaseRadius = 16 * 30; //massive search space
+                Actor.attackRadius = 18;
+
+                ResetActorLoadout(Actor);
+                //setup actor with useable item, so player can attack + dive
+                Actor.item = MenuItemType.WeaponFang;
+
+                Actor.compCollision.rec.Width = 14;
+                Actor.compCollision.rec.Height = 10;
+                Actor.compCollision.offsetX = -7;
+                Actor.compCollision.offsetY = 6;
+            }
+
+            #endregion
+
+
+
+
+
+            SetAnimationGroup(Actor);
+            SetAnimationDirection(Actor);
+            Functions_Component.CenterOrigin(Actor.compSprite);
         }
 
     }

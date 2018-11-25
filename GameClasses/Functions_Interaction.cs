@@ -966,9 +966,12 @@ namespace DungeonRun
                 #region Pits
 
                 else if (RoomObj.type == ObjType.Dungeon_Pit)
-                {   //toss whatever actor might be carrying
-                    if (Actor.carrying) { Functions_Actor.Throw(Actor); }
-                    //set actor's state
+                {
+                    if (Actor == Pool.hero) //hero throw()s any held object
+                    { if (Actor.carrying) { Functions_Hero.Throw(); } }
+
+
+                    //set ALL ACTORS state
                     //dead actors simply stay dead as they fall into a pit
                     //else actors are set into a hit state as they fall
                     if (Actor.state != ActorState.Dead) { Actor.state = ActorState.Hit; }
