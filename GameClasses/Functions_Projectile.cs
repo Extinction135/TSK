@@ -22,38 +22,7 @@ namespace DungeonRun
 
 
 
-
-        //dev methods / to remove
-
-        public static void Cast_Bolt(Actor Caster)
-        {
-            //create a series of bolts in the facing direction of caster
-
-            //resolve caster's direction to a cardinal one
-            Caster.direction = Functions_Direction.GetCardinalDirection_LeftRight(Caster.direction);
-            //setup offsets based on resolved caster's direction
-            if (Caster.direction == Direction.Up) { offset.X = 0; offset.Y = -16; }
-            else if (Caster.direction == Direction.Right) { offset.X = +16; offset.Y = 0; }
-            else if (Caster.direction == Direction.Down) { offset.X = 0; offset.Y = +16; }
-            else if (Caster.direction == Direction.Left) { offset.X = -16; offset.Y = 0; }
-
-            //using the offset, loop create explosions, multiplying offset
-            for (i = 1; i < 8; i++)
-            {
-                Spawn(ProjectileType.ProjectileLightningBolt,
-                    Caster.compSprite.position.X + offset.X * i,
-                    Caster.compSprite.position.Y + offset.Y * i,
-                    Caster.direction);
-            }
-        }
-
-
-
-
-
-
-
-
+        //resets the projectile to a default state
         public static void Reset(Projectile Pro)
         {   //reset projectile
             Pro.type = ProjectileType.ProjectileArrow; //reset the type
@@ -97,66 +66,6 @@ namespace DungeonRun
             Pro.sfx.hit = null;
             Pro.sfx.kill = null;
         }
-
-
-        public static void SetRotation(Projectile Pro)
-        {
-            //some pros rotate to appear in casters hand
-            if (
-                Pro.type == ProjectileType.ProjectileSword
-                || Pro.type == ProjectileType.ProjectileNet
-                || Pro.type == ProjectileType.ProjectileShovel
-                )
-            {   //some projectiles flip based on their direction
-                if (Pro.direction == Direction.Down || Pro.direction == Direction.Left)
-                { Pro.compSprite.flipHorizontally = true; }
-            }
-
-            //some pros only face Direction.Down
-            else if (
-                Pro.type == ProjectileType.ProjectileBomb
-                || Pro.type == ProjectileType.ProjectilePot
-                || Pro.type == ProjectileType.ProjectilePotSkull
-                || Pro.type == ProjectileType.ProjectileBush
-                || Pro.type == ProjectileType.ProjectileBoomerang
-                || Pro.type == ProjectileType.ProjectileBat
-                )
-            {   
-                Pro.direction = Direction.Down;
-                Pro.compSprite.rotation = Rotation.None;
-            }
-
-            //other pros rotate to form chains
-            else if (
-                Pro.type == ProjectileType.ProjectileLightningBolt
-                )
-            {   //align lightning bolts vertically or horizontally
-                if (Pro.direction == Direction.Left || Pro.direction == Direction.Right)
-                { Pro.compSprite.rotation = Rotation.Clockwise90; }
-                else { Pro.compSprite.rotation = Rotation.None; }
-            }
-
-            //other pros have no rotation, but do have direction
-            else if (
-                Pro.type == ProjectileType.ProjectileHammer
-                )
-            {
-                Pro.compSprite.rotation = Rotation.None;
-            }
-
-
-            //finally, set sprite's rotation based on direction & flipHorizontally boolean
-            Functions_Component.SetSpriteRotation(Pro.compSprite, Pro.direction);
-        }
-
-
-
-
-
-
-
-
-        
 
         //this method is used for projectiles that dont have casters, like groundfires
         public static void Spawn(ProjectileType Type, float X, float Y, Direction Dir)
@@ -215,9 +124,8 @@ namespace DungeonRun
             #endregion
 
 
-            HandleBehavior(pro);
+            Update(pro);
         }
- 
 
         //this method is used (more), and requires a caster for the projectile
         public static void Spawn(ProjectileType Type, Actor Caster, Direction Dir)
@@ -263,7 +171,7 @@ namespace DungeonRun
 
 
 
-            
+
             //default: teleport projectile to caster's HITBOX center
             Functions_Movement.Teleport(pro.compMove,
                 Caster.compCollision.rec.Center.X,
@@ -360,7 +268,7 @@ namespace DungeonRun
                         Caster.compCollision.rec.X - 16,
                         Caster.compCollision.rec.Center.Y);
                 }
-                
+
                 //diagonals
                 else if (Dir == Direction.UpRight)
                 {
@@ -488,7 +396,7 @@ namespace DungeonRun
 
 
 
-            
+
             //these projectiles track to their caster per frame, in HandleBehavior()
 
             #region Net
@@ -536,7 +444,7 @@ namespace DungeonRun
                     pro.compAnim.currentAnimation = AnimationFrames.Projectile_Hammer_Up;
                 }
                 else if (pro.direction == Direction.Right)
-                {   
+                {
                     pro.compAnim.currentAnimation = AnimationFrames.Projectile_Hammer_Right;
                 }
                 else if (pro.direction == Direction.Left)
@@ -587,9 +495,9 @@ namespace DungeonRun
             #endregion
 
 
-            
 
-            HandleBehavior(pro);
+
+            Update(pro);
             if (pushLines) { Functions_Particle.SpawnPushFX(Caster.compMove, Dir); }
         }
 
@@ -599,23 +507,15 @@ namespace DungeonRun
 
 
 
-
-
-
-
+        //per-frame logic
         public static void Update(Projectile Pro)
-        {   //projectiles have lifetimes
+        {   
             Pro.lifeCounter++;
-            HandleBehavior(Pro);
             if (Pro.lifeCounter >= Pro.lifetime) { Kill(Pro); }
-        }
 
 
-        //this method handles the projectile's behavior each frame
-        public static void HandleBehavior(Projectile Pro)
-        {
-            //the following paths handle the per frame events, or behaviors, of a projectile
-            //for example, tracking a sword to it's caster or whatevs..
+            //handles per frame events, or behaviors, of a projectile
+            //for example, tracking a sword to it's caster's hand
 
 
 
@@ -1041,11 +941,11 @@ namespace DungeonRun
             Functions_Component.Align(Pro.compMove, Pro.compSprite, Pro.compCollision);
         }
 
-        
+        //death events
         public static void Kill(Projectile Pro)
         {
-            //contains death events for projectiles
 
+            #region Arrow or Bat projectile
 
             if (Pro.type == ProjectileType.ProjectileArrow
                 || Pro.type == ProjectileType.ProjectileBat)
@@ -1056,6 +956,11 @@ namespace DungeonRun
                     Pro.compSprite.position.Y + 0);
             }
 
+            #endregion
+
+
+            #region Bomb
+
             else if (Pro.type == ProjectileType.ProjectileBomb)
             {
                 //create explosion projectile + ground fire
@@ -1063,6 +968,12 @@ namespace DungeonRun
                 //create groundfire
                 Spawn(ProjectileType.ProjectileGroundFire, Pro.compMove.position.X, Pro.compMove.position.Y, Direction.None);
             }
+
+            #endregion
+
+
+            #region Fireball
+
             else if (Pro.type == ProjectileType.ProjectileFireball)
             {   //create explosion
                 Spawn(ProjectileType.ProjectileExplosion, Pro.compMove.position.X, Pro.compMove.position.Y, Direction.None);
@@ -1070,6 +981,7 @@ namespace DungeonRun
                 Spawn(ProjectileType.ProjectileGroundFire, Pro.compMove.position.X, Pro.compMove.position.Y, Direction.None);
             }
 
+            #endregion
 
 
             #region Thrown Objs
@@ -1111,6 +1023,92 @@ namespace DungeonRun
 
 
 
+
+        //misc methods
+
+        public static void Cast_Bolt(Actor Caster)
+        {
+            //create a series of bolts in the facing direction of caster
+
+            //resolve caster's direction to a cardinal one
+            Caster.direction = Functions_Direction.GetCardinalDirection_LeftRight(Caster.direction);
+            //setup offsets based on resolved caster's direction
+            if (Caster.direction == Direction.Up) { offset.X = 0; offset.Y = -16; }
+            else if (Caster.direction == Direction.Right) { offset.X = +16; offset.Y = 0; }
+            else if (Caster.direction == Direction.Down) { offset.X = 0; offset.Y = +16; }
+            else if (Caster.direction == Direction.Left) { offset.X = -16; offset.Y = 0; }
+
+            //using the offset, loop create explosions, multiplying offset
+            for (i = 1; i < 8; i++)
+            {
+                Spawn(ProjectileType.ProjectileLightningBolt,
+                    Caster.compSprite.position.X + offset.X * i,
+                    Caster.compSprite.position.Y + offset.Y * i,
+                    Caster.direction);
+            }
+        }
+
+        public static void SetRotation(Projectile Pro)
+        {
+            //some pros rotate to appear in casters hand
+            if (
+                Pro.type == ProjectileType.ProjectileSword
+                || Pro.type == ProjectileType.ProjectileNet
+                || Pro.type == ProjectileType.ProjectileShovel
+                )
+            {   //some projectiles flip based on their direction
+                if (Pro.direction == Direction.Down || Pro.direction == Direction.Left)
+                { Pro.compSprite.flipHorizontally = true; }
+            }
+
+            //some pros only face Direction.Down
+            else if (
+                Pro.type == ProjectileType.ProjectileBomb
+                || Pro.type == ProjectileType.ProjectilePot
+                || Pro.type == ProjectileType.ProjectilePotSkull
+                || Pro.type == ProjectileType.ProjectileBush
+                || Pro.type == ProjectileType.ProjectileBoomerang
+                || Pro.type == ProjectileType.ProjectileBat
+                )
+            {   
+                Pro.direction = Direction.Down;
+                Pro.compSprite.rotation = Rotation.None;
+            }
+
+            //other pros rotate to form chains
+            else if (
+                Pro.type == ProjectileType.ProjectileLightningBolt
+                )
+            {   //align lightning bolts vertically or horizontally
+                if (Pro.direction == Direction.Left || Pro.direction == Direction.Right)
+                { Pro.compSprite.rotation = Rotation.Clockwise90; }
+                else { Pro.compSprite.rotation = Rotation.None; }
+            }
+
+            //other pros have no rotation, but do have direction
+            else if (
+                Pro.type == ProjectileType.ProjectileHammer
+                )
+            {
+                Pro.compSprite.rotation = Rotation.None;
+            }
+
+
+            //finally, set sprite's rotation based on direction & flipHorizontally boolean
+            Functions_Component.SetSpriteRotation(Pro.compSprite, Pro.direction);
+        }
+
+
+
+
+
+
+
+
+
+
+        
+        //maps type to object values/state
         public static void SetType(Projectile Pro, ProjectileType Type)
         {
             Pro.type = Type;

@@ -18,64 +18,8 @@ namespace DungeonRun
 
 
 
-        public static GameObject Spawn(ObjType Type, float X, float Y, Direction Direction)
-        {   //spawns obj at the X, Y location, with direction
-            GameObject obj = Functions_Pool.GetRoomObj();
-            obj.direction = Direction;
-            obj.compMove.direction = Direction;
-            Functions_Movement.Teleport(obj.compMove, X, Y);
-            SetType(obj, Type);
-            return obj;
-        }
-        
 
-
-        public static void Kill(GameObject Obj, Boolean spawnLoot, Boolean becomeDebris)
-        {   //pop an attention particle
-            Functions_Particle.Spawn(
-                ParticleType.Attention,
-                Obj.compSprite.position.X,
-                Obj.compSprite.position.Y);
-
-            //pop loot & soundfx
-            if (spawnLoot) { Functions_Loot.SpawnLoot(Obj.compSprite.position); }
-            if (Obj.sfx.kill != null) { Assets.Play(Obj.sfx.kill); }
-
-            if (becomeDebris) //should obj become debris or get released?
-            {   //if obj becomes debris, explode debris
-                Functions_Particle.Spawn_Explosion(
-                    ParticleType.Debris,
-                    Obj.compSprite.position.X,
-                    Obj.compSprite.position.Y, 
-                    true);
-                BecomeDebris(Obj);
-            }
-            else { Functions_Pool.Release(Obj); }
-        }
-
-        public static void AlignRoomObjs()
-        {   //align sprite + collision comps to move comp of all active objs
-            for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
-            {
-                if (Pool.roomObjPool[Pool.roomObjCounter].active)
-                {   //align the sprite and collision components to the move component
-                    Functions_Component.Align(
-                        Pool.roomObjPool[Pool.roomObjCounter].compMove,
-                        Pool.roomObjPool[Pool.roomObjCounter].compSprite,
-                        Pool.roomObjPool[Pool.roomObjCounter].compCollision);
-                    //set the current animation frame, check the animation counter
-                    Functions_Animation.Animate(Pool.roomObjPool[Pool.roomObjCounter].compAnim,
-                        Pool.roomObjPool[Pool.roomObjCounter].compSprite);
-                    //set the rotation for the obj's sprite
-                    SetRotation(Pool.roomObjPool[Pool.roomObjCounter]);
-                }
-            }
-        }
-
-
-
-
-
+        //resets the roomObject to a default state
         public static void Reset(GameObject Obj)
         {
             //reset the obj
@@ -125,10 +69,74 @@ namespace DungeonRun
             Obj.sfx.kill = null;
         }
 
+        //gets gameobject from roomObj pool of Type and places it at XY, facing Direction
+        public static GameObject Spawn(ObjType Type, float X, float Y, Direction Direction)
+        {   //spawns obj at the X, Y location, with direction
+            GameObject obj = Functions_Pool.GetRoomObj();
+            obj.direction = Direction;
+            obj.compMove.direction = Direction;
+            Functions_Movement.Teleport(obj.compMove, X, Y);
+            SetType(obj, Type);
+            return obj;
+        }
 
 
 
 
+
+        //per-frame logic
+        public static void Update(GameObject Obj)
+        {   //only roomObjs are passed into this method, some get AI (or behaviors)
+            //roomObjs don't have lifetimes, they last the life of the room
+            if (Obj.getsAI) { Functions_Ai.HandleObj(Obj); }
+        }
+
+        //death events
+        public static void Kill(GameObject Obj, Boolean spawnLoot, Boolean becomeDebris)
+        {   //pop an attention particle
+            Functions_Particle.Spawn(
+                ParticleType.Attention,
+                Obj.compSprite.position.X,
+                Obj.compSprite.position.Y);
+            //maybe pop loot & play soundfx
+            if (spawnLoot) { Functions_Loot.SpawnLoot(Obj.compSprite.position); }
+            if (Obj.sfx.kill != null) { Assets.Play(Obj.sfx.kill); }
+            //should obj become debris or get released?
+            if (becomeDebris) 
+            {   //if obj becomes debris, explode debris
+                Functions_Particle.Spawn_Explosion(
+                    ParticleType.Debris,
+                    Obj.compSprite.position.X,
+                    Obj.compSprite.position.Y, 
+                    true);
+                BecomeDebris(Obj);
+            }
+            else { Functions_Pool.Release(Obj); }
+        }
+
+
+
+
+        //misc methods
+
+        public static void AlignRoomObjs()
+        {   //align sprite + collision comps to move comp of all active objs
+            for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
+            {
+                if (Pool.roomObjPool[Pool.roomObjCounter].active)
+                {   //align the sprite and collision components to the move component
+                    Functions_Component.Align(
+                        Pool.roomObjPool[Pool.roomObjCounter].compMove,
+                        Pool.roomObjPool[Pool.roomObjCounter].compSprite,
+                        Pool.roomObjPool[Pool.roomObjCounter].compCollision);
+                    //set the current animation frame, check the animation counter
+                    Functions_Animation.Animate(Pool.roomObjPool[Pool.roomObjCounter].compAnim,
+                        Pool.roomObjPool[Pool.roomObjCounter].compSprite);
+                    //set the rotation for the obj's sprite
+                    SetRotation(Pool.roomObjPool[Pool.roomObjCounter]);
+                }
+            }
+        }
 
 
         public static void SetRotation(GameObject Obj)
@@ -151,45 +159,51 @@ namespace DungeonRun
             Functions_Component.SetSpriteRotation(Obj.compSprite, Obj.direction);
         }
 
-
-
         
-        public static void Update(GameObject Obj)
-        {   //only roomObjs are passed into this method, some get AI (or behaviors)
-            //roomObjs don't have lifetimes, they last the life of the room
-            if (Obj.getsAI) { Functions_Ai.HandleObj(Obj); }
-        }
-
         public static void BecomeDebris(GameObject Obj)
-        {
-            //become permanent debris w/ 16x16 collisions
+        {   //become permanent debris w/ 14x14 collisions
             SetType(Obj, ObjType.Wor_Debris);
-            Obj.compCollision.rec.Width = 16;
-            Obj.compCollision.rec.Height = 16;
-            Obj.compCollision.rec.X = (int)Obj.compSprite.position.X - 8;
-            Obj.compCollision.rec.Y = (int)Obj.compSprite.position.Y - 8;
+            Obj.compCollision.rec.Width = 14;
+            Obj.compCollision.rec.Height = 14;
+            Obj.compCollision.rec.X = (int)Obj.compSprite.position.X - 7;
+            Obj.compCollision.rec.Y = (int)Obj.compSprite.position.Y - 7;
 
-            //check to see if this debris can be placed here, if not - release
+            //check to see if debris can be placed here, if not - release
             for (i = 0; i < Pool.roomObjCount; i++)
             {
                 if (Pool.roomObjPool[i].active & Pool.roomObjPool[i] != Obj)
-                {
-                    //check for overlap / interaction
+                {   //check for overlap / interaction
                     if (Pool.roomObjPool[i].compCollision.rec.Intersects(Obj.compCollision.rec))
                     {
-                        //blocking objs take visual priority over debris
-                        if (Pool.roomObjPool[i].compCollision.blocking)
-                        { Functions_Pool.Release(Obj); }
+
+                        #region Debris is allowed to overlap these RoomObjects (various floor objs)
+
                         if (
-                            //there can only be one debris obj at a tile at a time
-                            Pool.roomObjPool[i].type == ObjType.Wor_Debris
-                            //these objs take visual priority over debris
-                            || Pool.roomObjPool[i].type == ObjType.Wor_Flowers
-                            || Pool.roomObjPool[i].type == ObjType.Wor_Grass_Tall
-                            || Pool.roomObjPool[i].type == ObjType.Wor_Bush_Stump
-                            || Pool.roomObjPool[i].type == ObjType.Wor_Tree_Stump
-                        )
-                        { Functions_Pool.Release(Obj); }
+                            //roofs collapse to debris over boat floors, which are used in houses
+                            Pool.roomObjPool[i].type == ObjType.Wor_Boat_Floor
+                            //debris can overlap conveyor belts as well, moving visual decoration
+                            || Pool.roomObjPool[i].type == ObjType.Dungeon_ConveyorBeltOff
+                            || Pool.roomObjPool[i].type == ObjType.Dungeon_ConveyorBeltOn
+                            //debris can overlap plain floor dirt tiles, but not transitions
+                            || Pool.roomObjPool[i].type == ObjType.Wor_Dirt
+                            //debris can overlap coliseum's floor as well
+                            || Pool.roomObjPool[i].type == ObjType.Wor_Colliseum_Outdoors_Floor
+                            //can overlap top and middle pier objs, but not bottom piers (looks bad)
+                            || Pool.roomObjPool[i].type == ObjType.Wor_Boat_Pier_TopLeft
+                            || Pool.roomObjPool[i].type == ObjType.Wor_Boat_Pier_TopMiddle
+                            || Pool.roomObjPool[i].type == ObjType.Wor_Boat_Pier_TopRight
+                            //middle piers
+                            || Pool.roomObjPool[i].type == ObjType.Wor_Boat_Pier_Left
+                            || Pool.roomObjPool[i].type == ObjType.Wor_Boat_Pier_Middle
+                            || Pool.roomObjPool[i].type == ObjType.Wor_Boat_Pier_Right
+                            ) 
+                        { }
+
+                        #endregion
+
+
+                        //if debris overlaps any other object, just release it
+                        else { Functions_Pool.Release(Obj); }
                     }
                 }
             }
@@ -198,35 +212,36 @@ namespace DungeonRun
 
 
 
-        
+
+
+
+        //maps type to object values/state
         public static void SetType(GameObject Obj, ObjType Type)
-        {   //Obj.direction should be set prior to this method running - important
+        {   //Obj.direction should be set prior to this method running
+            Obj.type = Type; //pass the type to obj
 
-            //set the type and texture first
-            Obj.type = Type;
+            //obj is either on common objs sheet, or dungeon sheet
+            //some obj enemies maybe on enemies sheet
 
-
-
-
-            //this obj is either on common objs sheet, or dungeon sheet
-            //certain obj enemies are on the enemies sheet too
-            //or is entity (pro, part, etc..)
-
-
-
+            #region Set Object Texture
 
             //these objs inherit their texture sheets from prev obj state
             if (Obj.type == ObjType.ExplodingObject) { }
             //default to the common objs sheet - obj def will overwrite this if needed
             else { Obj.compSprite.texture = Assets.CommonObjsSheet; }
+
+            #endregion
+
+
             
-            //below in type checks, objs/particles/projectiles/pickups 
-            //switch their textures to whatever sheet they need
 
 
 
 
 
+
+
+            //Unknown Object
 
             #region Unknown Obj
 
@@ -243,8 +258,13 @@ namespace DungeonRun
             #endregion
 
 
-            //Dungeon Objects
 
+
+
+
+
+
+            //Dungeon Specific Objs
 
             #region Exits
 
@@ -402,7 +422,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Boss Decal + Floor Blood
+            #region Boss Floor Decal
 
             else if (Type == ObjType.Dungeon_FloorDecal)
             {
@@ -411,42 +431,12 @@ namespace DungeonRun
                 Obj.compCollision.blocking = false;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_FloorDecal;
             }
-            else if(Type == ObjType.Dungeon_FloorBlood)
-            {
-                //Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is common dungeonObj
-                //collision rec is smaller so more debris is left when room is cleanedUp()
-                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
-                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
-                Obj.compSprite.zOffset = -32; //sort low, but over floor
-                Obj.compCollision.blocking = false;
-                Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_FloorBlood;
-            }
 
             #endregion
 
 
-            #region Pits
+            #region Pit Teeth
 
-            else if (Type == ObjType.Dungeon_Pit)
-            {
-                //Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is common dungeonObj
-                //this pit interacts with actor
-                Obj.compSprite.zOffset = -64; //sort under pit teeth
-                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
-                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
-                Obj.compCollision.blocking = false;
-                Obj.canBeSaved = true;
-                Obj.getsAI = true;
-                Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_Pit;
-            }
-            else if(Type == ObjType.Dungeon_PitBridge)
-            {
-                //Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is common dungeonObj
-                Obj.compCollision.blocking = false;
-                Obj.compSprite.zOffset = -64; //sort to floor
-                Obj.canBeSaved = true;
-                Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_PitBridge;
-            }
             else if (Type == ObjType.Dungeon_PitTeethTop)
             {
                 Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
@@ -456,7 +446,7 @@ namespace DungeonRun
                 Obj.canBeSaved = true;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_PitTeethTop;
             }
-            else if(Type == ObjType.Dungeon_PitTeethBottom)
+            else if (Type == ObjType.Dungeon_PitTeethBottom)
             {
                 Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compSprite.zOffset = -60; //sort above pits & pit bubbles
@@ -466,17 +456,6 @@ namespace DungeonRun
                 Obj.compCollision.blocking = false;
                 Obj.canBeSaved = true;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_PitTeethBottom;
-            }
-            else if (Type == ObjType.Dungeon_PitTrap)
-            {   //modeled as 'floor crack' sprite
-                //Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is common dungeonObj
-                //this becomes a pit upon collision with hero
-                Obj.compCollision.offsetX = -12; Obj.compCollision.offsetY = -12;
-                Obj.compCollision.rec.Width = 24; Obj.compCollision.rec.Height = 24;
-                Obj.compSprite.zOffset = -32; //sort to floor
-                Obj.compCollision.blocking = false;
-                Obj.canBeSaved = true;
-                Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_FloorCracked;
             }
 
             #endregion
@@ -511,7 +490,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Chest + Map
+            #region Filled and Empty CHESTS
 
             else if (Type == ObjType.Dungeon_Chest || 
                 Type == ObjType.Dungeon_ChestKey)
@@ -538,16 +517,7 @@ namespace DungeonRun
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_ChestOpened;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
             }
-            else if(Type == ObjType.Dungeon_Map)
-            {
-                //Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is common dungeonObj
-                Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_Map;
-                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
-                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
-                Obj.compSprite.zOffset = 0;
-                //hero simply touches map to collect it
-                Obj.compCollision.blocking = false; 
-            }
+            
 
             #endregion
 
@@ -587,47 +557,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Lever and Lever Objects
-
-            else if (Type == ObjType.Dungeon_LeverOn || Type == ObjType.Dungeon_LeverOff)
-            {
-                //Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is common dungeonObj
-                Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = 2;
-                Obj.compCollision.rec.Width = 12; Obj.compCollision.rec.Height = 5;
-                Obj.compSprite.zOffset = -3;
-                Obj.canBeSaved = true;
-                if (Type == ObjType.Dungeon_LeverOn)
-                { Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_LeverOn; }
-                else { Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_LeverOff; }
-            }
-            else if (Type == ObjType.Dungeon_SpikesFloorOn || Type == ObjType.Dungeon_SpikesFloorOff)
-            {
-                //Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is common dungeonObj
-                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
-                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
-                Obj.compSprite.zOffset = -32; //sort to floor
-                Obj.compCollision.blocking = false;
-                Obj.canBeSaved = true;
-                if (Type == ObjType.Dungeon_SpikesFloorOn)
-                { Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_FloorSpikesOn; }
-                else { Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_FloorSpikesOff; }
-            }
-            else if (Type == ObjType.Dungeon_ConveyorBeltOn || Type == ObjType.Dungeon_ConveyorBeltOff)
-            {
-                //Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is common dungeonObj
-                Obj.compSprite.zOffset = -31; //sort just above floor
-                Obj.compAnim.speed = 10; //in frames
-                Obj.compCollision.blocking = false;
-                Obj.canBeSaved = true;
-                if (Type == ObjType.Dungeon_ConveyorBeltOn)
-                { Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_ConveyorBeltOn; }
-                else { Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_ConveyorBeltOff; }
-            }
-
-            #endregion
-
-
-            #region Pot, Barrel, Bumper, Flamethrower, IceTile
+            #region Dungeon Pot (skull)
 
             else if (Type == ObjType.Dungeon_Pot)
             {
@@ -640,46 +570,6 @@ namespace DungeonRun
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_Pot;
                 Obj.sfx.hit = Assets.sfxEnemyHit;
                 Obj.sfx.kill = Assets.sfxShatter;
-            }
-            else if (Type == ObjType.Dungeon_Barrel)
-            {
-                //Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is common dungeonObj
-                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
-                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 13;
-                Obj.compSprite.zOffset = -7;
-                Obj.canBeSaved = true;
-                Obj.compMove.moveable = true;
-                Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_Barrel;
-                Obj.sfx.hit = Assets.sfxEnemyHit;
-            }
-            else if (Type == ObjType.Dungeon_Bumper)
-            {
-                //Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is common dungeonObj
-                Obj.compCollision.blocking = false;
-                Obj.canBeSaved = true;
-                Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_Bumper;
-            }
-            else if (Type == ObjType.Dungeon_Flamethrower)
-            {
-                //Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is common dungeonObj
-                Obj.compSprite.zOffset = -30; //sort slightly above floor
-                Obj.compCollision.offsetX = -4; Obj.compCollision.offsetY = -4;
-                Obj.compCollision.rec.Width = 8; Obj.compCollision.rec.Height = 8;
-                Obj.compCollision.blocking = false;
-                Obj.getsAI = true; //obj gets AI
-                Obj.canBeSaved = true;
-                Obj.compMove.moveable = true;
-                Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_Flamethrower;
-            }
-            else if (Type == ObjType.Dungeon_IceTile)
-            {
-                //Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is common dungeonObj
-                Obj.compCollision.offsetX = -6; Obj.compCollision.offsetY = -6;
-                Obj.compCollision.rec.Width = 12; Obj.compCollision.rec.Height = 12;
-                Obj.compSprite.zOffset = -30; //sort a little above floor
-                Obj.compCollision.blocking = false;
-                Obj.canBeSaved = true;
-                Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_IceTile;
             }
 
             #endregion
@@ -744,11 +634,26 @@ namespace DungeonRun
             #endregion
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            //Common Dungeon Objs
+
             #region Torches (lit and unlit)
 
             else if (Type == ObjType.Dungeon_TorchUnlit || Type == ObjType.Dungeon_TorchLit)
             {
-                //Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is common dungeonObj
                 Obj.compCollision.offsetX = -8; Obj.compCollision.offsetY = -4;
                 Obj.compCollision.rec.Width = 16; Obj.compCollision.rec.Height = 12;
                 Obj.compSprite.zOffset = -7;
@@ -774,7 +679,6 @@ namespace DungeonRun
 
             else if (Type == ObjType.Dungeon_Fairy)
             {
-                //Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is common dungeonObj
                 Obj.compSprite.zOffset = 8; //sort to air
                 Obj.lifetime = 0; //stay around forever
                 Obj.compAnim.speed = 6; //in frames
@@ -791,11 +695,152 @@ namespace DungeonRun
             #endregion
 
 
+            #region Dungeon Map
+
+            else if (Type == ObjType.Dungeon_Map)
+            {
+                Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_Map;
+                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
+                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
+                Obj.compSprite.zOffset = 0;
+                //hero simply touches map to collect it
+                Obj.compCollision.blocking = false;
+            }
+
+            #endregion
+
+
+            #region Lever, Floor Spikes, Converyor Belts
+
+            else if (Type == ObjType.Dungeon_LeverOn || Type == ObjType.Dungeon_LeverOff)
+            {
+                Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = 2;
+                Obj.compCollision.rec.Width = 12; Obj.compCollision.rec.Height = 5;
+                Obj.compSprite.zOffset = -3;
+                Obj.canBeSaved = true;
+                if (Type == ObjType.Dungeon_LeverOn)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_LeverOn; }
+                else { Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_LeverOff; }
+            }
+            else if (Type == ObjType.Dungeon_SpikesFloorOn || Type == ObjType.Dungeon_SpikesFloorOff)
+            {
+                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
+                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
+                Obj.compSprite.zOffset = -32; //sort to floor
+                Obj.compCollision.blocking = false;
+                Obj.canBeSaved = true;
+                if (Type == ObjType.Dungeon_SpikesFloorOn)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_FloorSpikesOn; }
+                else { Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_FloorSpikesOff; }
+            }
+            else if (Type == ObjType.Dungeon_ConveyorBeltOn || Type == ObjType.Dungeon_ConveyorBeltOff)
+            {
+                Obj.compSprite.zOffset = -31; //sort just above floor
+                Obj.compAnim.speed = 10; //in frames
+                Obj.compCollision.blocking = false;
+                Obj.canBeSaved = true;
+                if (Type == ObjType.Dungeon_ConveyorBeltOn)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_ConveyorBeltOn; }
+                else { Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_ConveyorBeltOff; }
+            }
+
+            #endregion
+
+
+            #region Barrel, Bumper, Flamethrower, IceTile
+
+            else if (Type == ObjType.Dungeon_Barrel)
+            {
+                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
+                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 13;
+                Obj.compSprite.zOffset = -7;
+                Obj.canBeSaved = true;
+                Obj.compMove.moveable = true;
+                Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_Barrel;
+                Obj.sfx.hit = Assets.sfxEnemyHit;
+            }
+            else if (Type == ObjType.Dungeon_Bumper)
+            {
+                Obj.compCollision.blocking = false;
+                Obj.canBeSaved = true;
+                Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_Bumper;
+            }
+            else if (Type == ObjType.Dungeon_Flamethrower)
+            {
+                Obj.compSprite.zOffset = -30; //sort slightly above floor
+                Obj.compCollision.offsetX = -4; Obj.compCollision.offsetY = -4;
+                Obj.compCollision.rec.Width = 8; Obj.compCollision.rec.Height = 8;
+                Obj.compCollision.blocking = false;
+                Obj.getsAI = true; //obj gets AI
+                Obj.canBeSaved = true;
+                Obj.compMove.moveable = true;
+                Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_Flamethrower;
+            }
+            else if (Type == ObjType.Dungeon_IceTile)
+            {
+                Obj.compCollision.offsetX = -6; Obj.compCollision.offsetY = -6;
+                Obj.compCollision.rec.Width = 12; Obj.compCollision.rec.Height = 12;
+                Obj.compSprite.zOffset = -30; //sort a little above floor
+                Obj.compCollision.blocking = false;
+                Obj.canBeSaved = true;
+                Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_IceTile;
+            }
+
+            #endregion
+
+
+            #region Floor Decorations (blood, debris)
+
+            else if (Type == ObjType.Dungeon_FloorBlood)
+            {
+                //collision rec is smaller so more debris is left when room is cleanedUp()
+                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
+                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
+                Obj.compSprite.zOffset = -32; //sort low, but over floor
+                Obj.compCollision.blocking = false;
+                Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_FloorBlood;
+            }
+
+            #endregion
+
+
+            #region Pit, Pit Bridge, Trap Pit
+
+            else if (Type == ObjType.Dungeon_Pit)
+            {   //this pit interacts with actor
+                Obj.compSprite.zOffset = -64; //sort under pit teeth
+                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
+                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
+                Obj.compCollision.blocking = false;
+                Obj.canBeSaved = true;
+                Obj.getsAI = true;
+                Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_Pit;
+            }
+            else if (Type == ObjType.Dungeon_PitBridge)
+            {
+                Obj.compCollision.blocking = false;
+                Obj.compSprite.zOffset = -64; //sort to floor
+                Obj.canBeSaved = true;
+                Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_PitBridge;
+            }
+            else if (Type == ObjType.Dungeon_PitTrap)
+            {   //this becomes a pit upon collision with hero
+                Obj.compCollision.offsetX = -12; Obj.compCollision.offsetY = -12;
+                Obj.compCollision.rec.Width = 24; Obj.compCollision.rec.Height = 24;
+                Obj.compSprite.zOffset = -32; //sort to floor
+                Obj.compCollision.blocking = false;
+                Obj.canBeSaved = true;
+                Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_FloorCracked;
+                //modeled as 'floor crack' sprite
+            }
+
+            #endregion
+
+
             #region Enemy Spawn Objects
 
             else if (Type == ObjType.Dungeon_SpawnMob)
             {
-                //Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is common dungeonObj
                 Obj.compSprite.zOffset = -32; //sort to floor
                 Obj.compCollision.blocking = false;
                 Obj.group = ObjGroup.EnemySpawn;
@@ -808,8 +853,16 @@ namespace DungeonRun
             #endregion
 
 
-            //World Objects
 
+
+
+
+
+
+
+
+
+            //World Objs
 
             #region Grass Objects
 
@@ -1605,8 +1658,11 @@ namespace DungeonRun
 
 
 
-            //Object Enemies
 
+
+
+
+            //Object Enemies
 
             #region Enemies
 
@@ -2191,6 +2247,10 @@ namespace DungeonRun
 
 
 
+
+
+
+
             //Swamp Objects
 
             #region Entrance Objs
@@ -2268,6 +2328,12 @@ namespace DungeonRun
             }
 
             #endregion
+
+
+
+
+
+
 
 
 
@@ -2638,6 +2704,11 @@ namespace DungeonRun
 
 
 
+
+
+
+            //Special Objects
+
             #region Very Special Objects
 
             else if (Type == ObjType.ExplodingObject)
@@ -2666,8 +2737,7 @@ namespace DungeonRun
             
 
 
-            //Pets
-
+            //Pet Objects
 
             #region Pets
 
@@ -2705,7 +2775,15 @@ namespace DungeonRun
             #endregion
 
 
-            //Dialog Hero Speaker
+
+
+
+
+
+
+            //Dialog Objects
+
+            #region Hero
 
             else if (Type == ObjType.Hero_Idle)
             {
@@ -2716,13 +2794,18 @@ namespace DungeonRun
                 else { Obj.compSprite.texture = Assets.heroSheet; }
             }
 
+            #endregion
 
 
 
 
 
-            #region Handle Obj Group properties
 
+
+
+
+
+            //Handle Group properties
             if (Obj.group == ObjGroup.Wall)
             {   //all wall objs have same sfx
                 Obj.sfx.hit = Assets.sfxTapMetallic;
@@ -2732,10 +2815,7 @@ namespace DungeonRun
             {   //all enemies exist on the enemy sheet
                 Obj.compSprite.texture = Assets.EnemySheet;
             }
-
-            #endregion
-
-
+            //finalize rotation, animation, and component alignment
             SetRotation(Obj);
             Obj.compSprite.currentFrame = Obj.compAnim.currentAnimation[0]; //goto 1st anim frame
             Functions_Component.Align(Obj.compMove, Obj.compSprite, Obj.compCollision);

@@ -58,21 +58,29 @@ Today:
 
 
 
+Debris++
 
+upgraded GameObject.BecomeDebris() to only place debris
+objects in unoccupied areas, preventing debris from overlapping
+any other object.
 
-Projectile System Upgrades
+upgraded debris to overlap: boat floors, conveyor belts, dirt tiles,
+coliseum outdoor floor, top pier objects, middle pier objects.
+but not bottom pier objects, cause it would look bad.
 
-hammers should be able to destroy open doors.
-explosions too.
+Organization
 
-the destruction of open house doors was being handled on it's
-own, which worked but didn't scale. now open doors are being
-handled via the Interaction.BlowUp() method, which is called by
-power level 2 projectiles, like explosions, hammers, lightning.
+manicured Functions_GameObject, Functions_Projectile,
+Functions_Particle, Functions_Pickup.
 
+Bugs--
 
-test
-
+fixed bugs with roofs not disappearing/reappearing.
+fixed bugs with explosions not calling power level 2 routines.
+this was due to the pro life counter being incremented past
+1 initially, which was where the game performed the blowUp() 
+call. fixed a few other projectiles using the life counter at
+1 too.
 
 
 
@@ -96,6 +104,12 @@ this makes throwing reliable again, and much easier in code.
 
 
 
+bugs:
+
+destroying a burned post with hammer caused a fire?
+destroying non-burned post with hammer caused a fire too.
+
+
 Destruction++
 functions_interaction has handleCommon and blowuP() methods,
 which need to be consolidated into one, using a power level byte
@@ -110,10 +124,7 @@ this seperatees the destruction of objs, from the burning of objs.
 
 
 
-Debris++
-if debris touches any object, it should remove itself.
-this prevents it from zdepth sort competing with other 
-objects, like the stairs sprite.
+
 
 
 
@@ -122,6 +133,9 @@ Fairy++
 do fairies work? no. they are not modeled as pickups.
 make fairy a pickup that lasts forever,
 modeled like other pickups.
+
+
+
 
 
 

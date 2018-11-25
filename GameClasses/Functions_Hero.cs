@@ -21,13 +21,23 @@ namespace DungeonRun
         public static Boolean boomerangInPlay = false; //only 1 boomerang on screen at once
         public static Boolean underRoof = false; //is hero under a roofObj?
 
+        
+
+
+
+
+        static Functions_Hero()
+        {
+            //interactionRec = new ComponentCollision();
+            interactionPoint = new Point(0, 0);
+            heroRec = new Rectangle(0, 0, 16, 16);
+        }
+
 
 
 
 
         
-        
-
         public static void SetFieldSpawnPos(GameObject Obj)
         {   //this assumes obj is a 2/3x4 dugneon entrance obj!
 
@@ -47,7 +57,7 @@ namespace DungeonRun
             LevelSet.spawnPos_Field.Y = Obj.compSprite.position.Y + 16 * 3 + 10;
             //^ start with obj.Y, add vertical south offset (place hero in front of obj)
         }
-
+        
         public static void ResetFieldSpawnPos()
         {
             //starting Xpos + half width
@@ -56,38 +66,6 @@ namespace DungeonRun
             LevelSet.spawnPos_Field.Y = Functions_Level.buildPosition.Y + 16 * 46 - 16 * 4;
         }
         
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        static Functions_Hero()
-        {
-            //interactionRec = new ComponentCollision();
-            interactionPoint = new Point(0, 0);
-            heroRec = new Rectangle(0, 0, 16, 16);
-        }
-
-
-
-
-
-
-
-
         public static void CheckRoomCollision()
         {
             //only process this method if the level screen is completely open
@@ -205,18 +183,13 @@ namespace DungeonRun
 
             }
         }
-
-
-
-
-
-
+        
         public static void ClearInteractionRec()
         {   //move the interaction point offscreen
             interactionPoint.X = -1000;
             interactionPoint.Y = -1000;
         }
-
+        
         public static void SetInteractionRec()
         {
             //center interaction point to hero's collision rec
@@ -249,7 +222,7 @@ namespace DungeonRun
                 interactionPoint.X += 8;
             }
         }
-
+        
         public static void PushGrabbedObj()
         {
             if (Pool.hero.state == ActorState.Move)
@@ -282,7 +255,7 @@ namespace DungeonRun
                 //if (Actor.grabbedObj != null) { }
             }
         }
-
+        
         static Boolean collision = false;
         public static Boolean CheckInteractionRec()
         {   
@@ -318,7 +291,7 @@ namespace DungeonRun
             ClearInteractionRec();
             return collision;
         }
-
+        
         public static void InteractRecWith(GameObject Obj)
         {   //this is the hero's interactionRec colliding with Obj
             //we know this is hero, and hero is in ActorState.Interact
@@ -654,10 +627,7 @@ namespace DungeonRun
 
             }
         }
-
-
-
-
+        
         static MenuItemType itemSwamp;
         public static void HandleDeath()
         {   //near the last frame of hero's death, create attention particles
@@ -694,12 +664,7 @@ namespace DungeonRun
                 }
             }
         }
-
-
-
-
-
-
+        
         public static void SpawnInCurrentRoom()
         {   
             //teleport hero to level's spawn position (field or dungeon)
@@ -733,7 +698,7 @@ namespace DungeonRun
             Functions_Movement.StopMovement(Pool.hero.compMove);
             ResetHero();
         }
-
+        
         public static void ResetHero()
         {
             Pool.hero.compSprite.scale = 1.0f; //rescale hero to 100%
@@ -743,6 +708,105 @@ namespace DungeonRun
             boomerangInPlay = false; //boomerang could of been lost in prev room
             SpawnPet();
         }
+
+        public static void SpawnPet()
+        {   //spawn the hero's dog
+            if (PlayerData.current.petType != MenuItemType.Unknown)
+            {
+                Functions_GameObject.SetType(Pool.herosPet, ObjType.Pet_Dog);
+                Pool.herosPet.compAnim.currentAnimation = AnimationFrames.Pet_Dog_Idle;
+
+                Pool.herosPet.compCollision.blocking = false; //pet doesn't block
+                Pool.herosPet.active = true; //pet is active
+                Functions_Movement.Teleport(
+                    Pool.herosPet.compMove,
+                    Pool.hero.compMove.position.X,
+                    Pool.hero.compMove.position.Y);
+                Functions_Component.Align(Pool.herosPet);
+            }
+        }
+
+        public static void UnlockAll()
+        {
+            //if the cheat is not enabled, bail from method
+            if (Flags.UnlockAll == false) { return; }
+
+            //this method unlocks all available items, weapons, equipment, armor
+            PlayerData.current.heartsTotal = 9;
+            Pool.hero.health = 9;
+            PlayerData.current.magicMax = 9;
+            PlayerData.current.magicCurrent = 9;
+            //max arrows and bombs
+            PlayerData.current.bombsCurrent = 99;
+            PlayerData.current.arrowsCurrent = 99;
+            //set bottle contents
+            PlayerData.current.bottleA = MenuItemType.BottleHealth;
+            PlayerData.current.bottleB = MenuItemType.BottleMagic;
+            PlayerData.current.bottleC = MenuItemType.BottleFairy;
+            //set items
+            PlayerData.current.itemBoomerang = true;
+            PlayerData.current.itemBow = true;
+            //set magic
+            PlayerData.current.magicFireball = true;
+            PlayerData.current.magicBombos = true;
+            PlayerData.current.magicBolt = true;
+            //set weapons
+            PlayerData.current.weaponNet = true;
+            PlayerData.current.weaponShovel = true;
+            PlayerData.current.weaponHammer = true;
+            //set armor
+            PlayerData.current.armorCape = true;
+            //set equipment
+            PlayerData.current.equipmentRing = true;
+
+            //we could set the pet here too, but we wont for now
+            //PlayerData.current.petType = MenuItemType.Unknown;
+            //PlayerData.current.petType = MenuItemType.PetStinkyDog;
+
+            //setup testing enemy weapon/item
+            PlayerData.current.enemyItem = MenuItemType.MagicBat;
+            PlayerData.current.enemyWeapon = MenuItemType.WeaponFang;
+        }
+
+        public static void ExitDungeon()
+        {
+            if (Screens.Level.displayState == DisplayState.Opened)
+            {
+                DungeonRecord.Clear(); //clear the dungeon record
+                Assets.Play(Assets.sfxDoorOpen);
+                //return hero to last field level
+                Functions_Level.CloseLevel(ExitAction.Field);
+            }
+        }
+
+        public static void CheckAchievements(Achievements Achievement)
+        {
+            if (Achievement == Achievements.WallJumps)
+            {   //check wall jumps
+                if (PlayerData.current.recorded_wallJumps == 10)
+                {
+                    Screens.Dialog.SetDialog(AssetsDialog.Achievement_WallJumps_10);
+                    ScreenManager.AddScreen(Screens.Dialog);
+                }
+                else if (PlayerData.current.recorded_wallJumps == 100)
+                {
+                    Screens.Dialog.SetDialog(AssetsDialog.Achievement_WallJumps_100);
+                    ScreenManager.AddScreen(Screens.Dialog);
+                }
+            }
+        }
+
+        public static void SetLoadout()
+        {   //set the hero's loadout based on playerdata.current
+            Pool.hero.item = PlayerData.current.currentItem;
+            Pool.hero.weapon = PlayerData.current.currentWeapon;
+            Pool.hero.armor = PlayerData.current.currentArmor;
+            Pool.hero.equipment = PlayerData.current.currentEquipment;
+            //called at the end of lsn's exit routines
+        }
+
+
+
 
 
 
@@ -795,122 +859,6 @@ namespace DungeonRun
             //sort normally
             else { Pool.hero.compSprite.zOffset = 0; }
         }
-
-
-        public static void SpawnPet()
-        {   //spawn the hero's dog
-            if (PlayerData.current.petType != MenuItemType.Unknown)
-            {   
-                Functions_GameObject.SetType(Pool.herosPet, ObjType.Pet_Dog);
-                Pool.herosPet.compAnim.currentAnimation = AnimationFrames.Pet_Dog_Idle;
-
-                Pool.herosPet.compCollision.blocking = false; //pet doesn't block
-                Pool.herosPet.active = true; //pet is active
-                Functions_Movement.Teleport(
-                    Pool.herosPet.compMove,
-                    Pool.hero.compMove.position.X,
-                    Pool.hero.compMove.position.Y);
-                Functions_Component.Align(Pool.herosPet);
-            }
-        }
-
-        public static void UnlockAll()
-        {   
-            //if the cheat is not enabled, bail from method
-            if (Flags.UnlockAll == false) { return; }
-
-            //this method unlocks all available items, weapons, equipment, armor
-            PlayerData.current.heartsTotal = 9;
-            Pool.hero.health = 9;
-            PlayerData.current.magicMax = 9;
-            PlayerData.current.magicCurrent = 9;
-            //max arrows and bombs
-            PlayerData.current.bombsCurrent = 99;
-            PlayerData.current.arrowsCurrent = 99;
-            //set bottle contents
-            PlayerData.current.bottleA = MenuItemType.BottleHealth;
-            PlayerData.current.bottleB = MenuItemType.BottleMagic;
-            PlayerData.current.bottleC = MenuItemType.BottleFairy;
-            //set items
-            PlayerData.current.itemBoomerang = true;
-            PlayerData.current.itemBow = true;
-            //set magic
-            PlayerData.current.magicFireball = true;
-            PlayerData.current.magicBombos = true;
-            PlayerData.current.magicBolt = true;
-            //set weapons
-            PlayerData.current.weaponNet = true;
-            PlayerData.current.weaponShovel = true;
-            PlayerData.current.weaponHammer = true;
-            //set armor
-            PlayerData.current.armorCape = true;
-            //set equipment
-            PlayerData.current.equipmentRing = true;
-
-            //we could set the pet here too, but we wont for now
-            //PlayerData.current.petType = MenuItemType.Unknown;
-            //PlayerData.current.petType = MenuItemType.PetStinkyDog;
-
-            //setup testing enemy weapon/item
-            PlayerData.current.enemyItem = MenuItemType.MagicBat;
-            PlayerData.current.enemyWeapon = MenuItemType.WeaponFang;
-        }
-
-
-
-        public static void ExitDungeon()
-        {
-            if (Screens.Level.displayState == DisplayState.Opened)
-            {
-                DungeonRecord.Clear(); //clear the dungeon record
-                Assets.Play(Assets.sfxDoorOpen);
-                //return hero to last field level
-                Functions_Level.CloseLevel(ExitAction.Field);
-            }
-        }
-
-
-
-        public static void CheckAchievements(Achievements Achievement)
-        {
-            if(Achievement == Achievements.WallJumps)
-            {   //check wall jumps
-                if (PlayerData.current.recorded_wallJumps == 10)
-                {
-                    Screens.Dialog.SetDialog(AssetsDialog.Achievement_WallJumps_10);
-                    ScreenManager.AddScreen(Screens.Dialog);
-                }
-                else if(PlayerData.current.recorded_wallJumps == 100)
-                {
-                    Screens.Dialog.SetDialog(AssetsDialog.Achievement_WallJumps_100);
-                    ScreenManager.AddScreen(Screens.Dialog);
-                }
-            }
-        }
-
-
-
-
-
-
-
-
-        public static void SetLoadout()
-        {   //set the hero's loadout based on playerdata.current
-            Pool.hero.item = PlayerData.current.currentItem;
-            Pool.hero.weapon = PlayerData.current.currentWeapon;
-            Pool.hero.armor = PlayerData.current.currentArmor;
-            Pool.hero.equipment = PlayerData.current.currentEquipment;
-            //called at the end of lsn's exit routines
-        }
-
-
-
-
-
-
-
-
 
     }
 }

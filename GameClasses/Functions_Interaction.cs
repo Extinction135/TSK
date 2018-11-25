@@ -222,7 +222,7 @@ namespace DungeonRun
 
                 else if (Pro.type == ProjectileType.ProjectileExplosion)
                 {
-                    if (Pro.lifeCounter == 1) //perform these interactions only once
+                    if (Pro.lifeCounter == 2) //perform these interactions only once
                     {
                         //explosions call power level 2 destruction routines
                         BlowUp(RoomObj, Pro);
@@ -248,7 +248,7 @@ namespace DungeonRun
                     || Pro.type == ProjectileType.ProjectileShovel)
                 {
                     //swords and shovels cause soundfx to blocking objects
-                    if (Pro.lifeCounter == 1) //these events happen only at start
+                    if (Pro.lifeCounter == 2) //these events happen only at start
                     {   //bail if pro is hitting open door, else sparkle + hit sfx
                         if (RoomObj.type == ObjType.Dungeon_DoorOpen) { return; }
                         //center sparkle to sword/shovel
@@ -418,7 +418,7 @@ namespace DungeonRun
 
                 else if (Pro.type == ProjectileType.ProjectileLightningBolt)
                 {
-                    if (Pro.lifeCounter == 1) //perform these interactions only once
+                    if (Pro.lifeCounter == 2) //perform these interactions only once
                     {   //bolts call power level 2 destruction routines
                         BlowUp(RoomObj, Pro);
                     }
@@ -446,7 +446,7 @@ namespace DungeonRun
 
                 else if (Pro.type == ProjectileType.ProjectileHammer)
                 {   //time this interaction to the hammer hitting the ground
-                    if (Pro.compAnim.index > 2)
+                    if (Pro.compAnim.index == 3)
                     {   //hammers call destruction level 2 routines
                         BlowUp(RoomObj, Pro);
                     }
@@ -477,9 +477,11 @@ namespace DungeonRun
 
                 #region Roofs - collapse from explosions + bolts
 
-                if (RoomObj.type == ObjType.Wor_Build_Roof_Bottom
-                || RoomObj.type == ObjType.Wor_Build_Roof_Top
-                || RoomObj.type == ObjType.Wor_Build_Roof_Chimney)
+                if (
+                    RoomObj.type == ObjType.Wor_Build_Roof_Bottom
+                    || RoomObj.type == ObjType.Wor_Build_Roof_Top
+                    || RoomObj.type == ObjType.Wor_Build_Roof_Chimney
+                    )
                 {
                     if (Pro.type == ProjectileType.ProjectileExplosion
                         || Pro.type == ProjectileType.ProjectileLightningBolt)
@@ -540,7 +542,6 @@ namespace DungeonRun
 
                 else if (RoomObj.type == ObjType.Dungeon_Fairy)
                 {
-
                     if (Pro.type == ProjectileType.ProjectileNet)
                     {
                         if (Pro.lifeCounter < Pro.lifetime) //net is still young
@@ -739,12 +740,12 @@ namespace DungeonRun
                 #region Roofs
 
                 else if (
-                    //RoomObj.type == ObjType.Wor_Build_Roof_Bottom
-                    RoomObj.type == ObjType.Wor_Build_Roof_Top
+                    RoomObj.type == ObjType.Wor_Build_Roof_Bottom
                     || RoomObj.type == ObjType.Wor_Build_Roof_Chimney
+                    //RoomObj.type == ObjType.Wor_Build_Roof_Top
+                    //^ no peeking into houses from rear
                     )
-                {   //if hero touches a roof, hide all the roofs
-                    //Functions_GameObject_World.HideRoofs();
+                {   //if hero touches a roof, set underRoofs true for this frame
                     Functions_Hero.underRoof = true;
                     return;
                 }

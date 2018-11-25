@@ -19,7 +19,7 @@ namespace DungeonRun
 
 
 
-
+        //resets the particle to a default state
         public static void Reset(Particle Part)
         {
             //reset the Part
@@ -54,12 +54,7 @@ namespace DungeonRun
             Part.compMove.grounded = true; //most objects exist on the ground
         }
 
-
-        
-
-
-
-        //spawns a particle of Type on Pro/Object/Actor
+        //spawns a particle of Type on Projectile
         public static void Spawn(ParticleType Type, Projectile Pro)
         {
             //set position reference to sprite position
@@ -83,6 +78,7 @@ namespace DungeonRun
             Spawn(Type, posRef.X, posRef.Y);
         }
 
+        //spawns a particle of Type on RoomObject
         public static void Spawn(ParticleType Type, GameObject Object)
         {
             //set position reference to sprite position
@@ -120,6 +116,7 @@ namespace DungeonRun
             Spawn(Type, posRef.X, posRef.Y);
         }
 
+        //spawns a particle of Type on Actor
         public static void Spawn(ParticleType Type, Actor Actor)
         {
             //spawned relative to actor, based on passed objType
@@ -148,6 +145,7 @@ namespace DungeonRun
             Spawn(Type, posRef.X, posRef.Y);
         }
 
+        //spawns a particle of Type at XY (other spawns() feed into this one)
         public static void Spawn(ParticleType Type, float X, float Y, Direction Dir = Direction.Down)
         {   //get a particle to spawn
             Particle part = Functions_Pool.GetParticle();
@@ -221,6 +219,8 @@ namespace DungeonRun
 
 
 
+        
+        //per-frame logic
         public static void Update(Particle Obj)
         {
             if (Obj.lifetime == 0) { } //some particles live forever
@@ -231,6 +231,7 @@ namespace DungeonRun
             }
         }
 
+        //death events
         public static void Kill(Particle Obj)
         {   //contains death events for particles
             Obj.lifeCounter = Obj.lifetime;
@@ -246,6 +247,10 @@ namespace DungeonRun
 
 
 
+
+
+
+        //misc methods
 
         public static void Spawn_Explosion(ParticleType Type, float X, float Y, Boolean circular = false)
         {  
@@ -291,10 +296,10 @@ namespace DungeonRun
 
 
 
-        
 
 
 
+        //maps type to object values/state
         public static void SetType(Particle Part, ParticleType Type)
         {
             Part.type = Type;

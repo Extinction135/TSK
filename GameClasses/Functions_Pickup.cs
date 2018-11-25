@@ -18,7 +18,7 @@ namespace DungeonRun
         static Direction direction;
 
 
-
+        //resets the pickup to a default state
         public static void Reset(Pickup Pick)
         {
             //reset pickup
@@ -54,7 +54,6 @@ namespace DungeonRun
             Pick.compCollision.offsetY = -8; //(most are)
         }
 
-
         //spawn relative to actor
         public static void Spawn(PickupType Type, Actor Actor)
         {
@@ -76,6 +75,7 @@ namespace DungeonRun
             Spawn(Type, posRef.X, posRef.Y);
         }
 
+        //spawn based on XY values
         public static void Spawn(PickupType Type, float X, float Y)
         {   //get a pickup to spawn
             Pickup obj = Functions_Pool.GetPickup();
@@ -96,13 +96,15 @@ namespace DungeonRun
 
 
 
-
+        
+        //per-frame logic
         public static void Update(Pickup Pickup)
         {   //pickups do have lifetimes
             Pickup.lifeCounter++;
             if (Pickup.lifeCounter >= Pickup.lifetime) { Kill(Pickup); }
         }
 
+        //death events
         public static void Kill(Pickup Pickup)
         {   //when an item pickup dies, display an attention particle
             Functions_Particle.Spawn(
@@ -118,6 +120,8 @@ namespace DungeonRun
 
 
 
+        
+        //misc methods
 
         public static void CheckOverlap(Projectile Pro)
         {   //check to see if PRO overlaps any PICKUP, handle effect on hero
@@ -132,10 +136,6 @@ namespace DungeonRun
                 }
             }
         }
-
-        
-
-
 
         public static void HandleEffect(Pickup Pickup)
         {
@@ -171,6 +171,11 @@ namespace DungeonRun
 
 
 
+
+
+
+
+        //maps type to object values/state
         public static void SetType(Pickup Pick, PickupType Type)
         {
             Pick.compSprite.drawRec.Width = 8; //non standard cellsize
@@ -199,10 +204,6 @@ namespace DungeonRun
             //set animframe to 0
             Pick.compSprite.currentFrame = Pick.compAnim.currentAnimation[0];
         }
-
-
-
-
 
     }
 }
