@@ -21,9 +21,6 @@ namespace DungeonRun
 
 
 
-
-
-
         //Check Against RoomObj List
 
         public static void CheckObj_Obj(GameObject Obj)
@@ -56,8 +53,6 @@ namespace DungeonRun
                 }
             }
         }
-
-
 
         //Check Against Projectiles List
 
@@ -468,8 +463,6 @@ namespace DungeonRun
 
             else
             {
-
-
                 //group  checks first
                 
                 if (RoomObj.group == ObjGroup.Wall_Climbable)
@@ -614,19 +607,21 @@ namespace DungeonRun
                 #endregion
 
 
-                #region Open Doors - collapse from explosions + bolts
+                #region Open House Doors
 
-                else if (RoomObj.type == ObjType.Wor_Build_Door_Open)
+                else if(RoomObj.type == ObjType.Wor_Build_Door_Open)
                 {
-                    if (Pro.type == ProjectileType.ProjectileExplosion
-                        || Pro.type == ProjectileType.ProjectileLightningBolt)
-                    {   //destroy obj
+                    if (
+                        Pro.type == ProjectileType.ProjectileExplosion ||
+                        Pro.type == ProjectileType.ProjectileLightningBolt ||
+                        Pro.type == ProjectileType.ProjectileHammer
+                        )
+                    {
                         Functions_GameObject.Kill(RoomObj, false, true);
                     }
                 }
 
                 #endregion
-
 
 
             }
@@ -1543,6 +1538,7 @@ namespace DungeonRun
 
         public static void BlowUp(GameObject Obj, Projectile Pro)
         {
+            //note: these are blocking objects ONLY
             //note: only explosion and lightning bolt projectiles call this method
             //they are the only power level 2 projectiles
             //and now also hammers
@@ -1594,7 +1590,6 @@ namespace DungeonRun
             {   //blow up tree, no leaf explosion
                 Functions_GameObject_World.BlowUpTree(Obj, false);
             }
-
             else if (
                 //posts + burned posts
                 Obj.type == ObjType.Wor_PostBurned_Corner_Left

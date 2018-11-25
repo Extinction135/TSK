@@ -57,64 +57,6 @@ Today:
 
 
 
-Particles++
-
-debris particles aren't displaying properly, this is due to
-their texture not being set properly. that has been fixed, tested.
-
-fixed a bug where push lines didn't face their proper direction
-upon spawn.
-
-
-
-
-
-
-
-
-
-
-
-make fairy a pickup that lasts forever,
-modeled like other pickups.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Particles++
-particles need to exist in their own routines,
-just like projectiles do. this is to simplify
-them, make them leaner, faster, and allow for more
-of them, while also reducing their frametimes.
-
-
-
-
-
-
 
 
 
@@ -122,6 +64,15 @@ Projectile System Upgrades
 
 hammers should be able to destroy open doors.
 explosions too.
+
+the destruction of open house doors was being handled on it's
+own, which worked but didn't scale. now open doors are being
+handled via the Interaction.BlowUp() method, which is called by
+power level 2 projectiles, like explosions, hammers, lightning.
+
+
+test
+
 
 
 
@@ -132,7 +83,6 @@ explosions too.
 
 
 Throwing Held Objects
-
 
 **we need to remarry the throwing routines to the new projectile
 system. the picked up obj becomes a carried projectile, that inherits
@@ -146,25 +96,15 @@ this makes throwing reliable again, and much easier in code.
 
 
 
-
-Projectile System ++++
-
-we also need to migrate these ideas to particles and pickups,
-as they don't need all the values roomObjs do. we *could* stuff
-particles and pickups into projectiles....
-
-this simplifies roomObjs, since this system will be growing as well.
-if we put pickups into projectiles, then we could make projectiles that
-spawn pickups - a wand that creates hearts or gold, etc...
-
-
-
-
-
 Destruction++
 functions_interaction has handleCommon and blowuP() methods,
 which need to be consolidated into one, using a power level byte
 which is part of projectile. this isn't part of pro yet tho!
+we can also model if a projectile is 'on fire' using a onFire boolean.
+then, we can light the proper objects on fire, if we need to.
+this seperatees the destruction of objs, from the burning of objs.
+
+
 
 
 
@@ -178,40 +118,28 @@ objects, like the stairs sprite.
 
 
 
+Fairy++
+do fairies work? no. they are not modeled as pickups.
+make fairy a pickup that lasts forever,
+modeled like other pickups.
 
 
 
 
 
 
-fire rod and ice rod
+
+Fire and Ice Rods
+
+fireballs shoot from firerod.
+iceballs shoot from icerod.
 
 generic ice block for all 16x16 enemies, larger enemies
 just take damage and get pushed.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ice explosion also creates icetiles underneath it.
+icetiles cannot overlap other icetiles, and other
+roomobjects, like mountain walls, etc...
 
 
 
@@ -222,6 +150,19 @@ POSTS
 we need to add posts to the game, so hammers can smack them
 down. also, these posts should be indestructible to everything
 but hammers, including explosions.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
