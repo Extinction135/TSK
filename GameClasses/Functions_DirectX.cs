@@ -119,7 +119,7 @@ namespace DungeonRun
             #region Get all the data from roomData folder
 
             string[] filePaths = Directory.GetFiles( //notes & planning
-                @"C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\RoomData\RoomData", "*.xml");
+                @"C:\Users\Gx000000\Desktop\REPOs\TheShadowKing\TSK\RoomData\RoomData", "*.xml");
 
             for (int i = 0; i < filePaths.Count(); i++)
             {

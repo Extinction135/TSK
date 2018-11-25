@@ -60,7 +60,7 @@ namespace DungeonRun
 
             //hand (move) 
             moveObj = new GameObject();
-            Functions_GameObject.ResetObject(moveObj);
+            Functions_GameObject.Reset(moveObj);
             moveObj.compSprite.texture = Assets.uiItemsSheet;
             Functions_Movement.Teleport(moveObj.compMove, 16 * 1, 16);
             Functions_Component.Align(moveObj);
@@ -69,7 +69,7 @@ namespace DungeonRun
 
             //rotateObj 
             rotateObj = new GameObject();
-            Functions_GameObject.ResetObject(rotateObj);
+            Functions_GameObject.Reset(rotateObj);
             rotateObj.compSprite.texture = Assets.uiItemsSheet;
             Functions_Movement.Teleport(rotateObj.compMove, 16 * 2, 16);
             Functions_Component.Align(rotateObj);
@@ -78,7 +78,7 @@ namespace DungeonRun
 
             //add icon
             addObj = new GameObject();
-            Functions_GameObject.ResetObject(addObj);
+            Functions_GameObject.Reset(addObj);
             addObj.compSprite.texture = Assets.uiItemsSheet;
             Functions_Movement.Teleport(addObj.compMove, 16 * 3, 16);
             Functions_Component.Align(addObj);
@@ -87,7 +87,7 @@ namespace DungeonRun
 
             //minus icon
             deleteObj = new GameObject();
-            Functions_GameObject.ResetObject(deleteObj);
+            Functions_GameObject.Reset(deleteObj);
             deleteObj.compSprite.texture = Assets.uiItemsSheet;
             Functions_Movement.Teleport(deleteObj.compMove, 16 * 4, 16);
             Functions_Component.Align(deleteObj);
@@ -249,11 +249,10 @@ namespace DungeonRun
                     #endregion
 
 
-                    //we can only add roomObjects or pickups to the room, no particles/projectiles
+                    //we can only add roomObjects to the room, no particles/projectiles
                     GameObject objRef;
-                    if (currentObjRef.group == ObjGroup.Pickup)
-                    { objRef = Functions_Pool.GetPickup(); }
-                    else { objRef = Functions_Pool.GetRoomObj(); }
+                    objRef = Functions_Pool.GetRoomObj();
+
 
                     //place currently selected obj in room, aligned to 16px grid
                     objRef.compMove.newPosition = Functions_Movement.AlignToGrid(worldPos.X, worldPos.Y);
@@ -542,7 +541,7 @@ namespace DungeonRun
 
         public void GetActiveObjInfo()
         {   //reset objRef, match currentObjRef to activeObj
-            Functions_GameObject.ResetObject(currentObjRef);
+            Functions_GameObject.Reset(currentObjRef);
             currentObjRef.direction = activeObj.direction; //store direction value
             currentObjRef.compSprite.rotationValue = activeObj.compSprite.rotationValue;
             Functions_GameObject.SetType(currentObjRef, activeObj.type);

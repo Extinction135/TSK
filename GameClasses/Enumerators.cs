@@ -325,11 +325,6 @@ namespace DungeonRun
         Ditch,
 
         Wall_Climbable, //for wall climbing objects
-
-
-        //entities
-        Pickup,
-        Particle 
     } 
 
     public enum ObjType
@@ -534,6 +529,8 @@ namespace DungeonRun
 
 
 
+
+
         #region Colliseum Objects
 
         Wor_Entrance_Colliseum,
@@ -676,6 +673,9 @@ namespace DungeonRun
         #endregion
 
 
+
+
+
         #region RoomObj Enemies
 
         Wor_Enemy_Turtle,
@@ -713,74 +713,6 @@ namespace DungeonRun
         #endregion
 
 
-
-
-
-
-
-
-
-
-
-        #region Pickups
-
-        //Pickups - collide with hero
-        Pickup_Rupee,
-        Pickup_Heart,
-        Pickup_Magic,
-        Pickup_Arrow,
-        Pickup_Bomb,
-
-        #endregion
-
-
-        #region Particles
-
-        //Particles - small
-        Particle_RisingSmoke, 
-        Particle_ImpactDust, 
-        Particle_Sparkle, 
-
-        //Particles - small, obj specific
-        Particle_PitBubble,
-        Particle_Leaf,
-        Particle_Debris,
-
-        //Particles - map
-        Particle_Map_Flag,
-        Particle_Map_Wave,
-        Particle_Map_Campfire,
-
-        //Particles - normal size
-        Particle_Attention,
-        Particle_Splash,
-        Particle_Blast,
-        Particle_Push,
-        Particle_Fire,
-        Particle_WaterKick,
-        Particle_ExclamationBubble,
-
-        //Particle_Debris, //doesn't exist right now
-        Particle_BottleEmpty,
-        Particle_BottleHealth,
-        Particle_BottleMagic,
-        Particle_BottleCombo,
-        Particle_BottleFairy,
-        Particle_BottleBlob,
-
-        //Particles - rewards
-        Particle_RewardKey,
-        Particle_RewardMap,
-
-        #endregion
-
-
-
-
-
-
-
-
         #region Pets
 
         Pet_None,
@@ -797,14 +729,11 @@ namespace DungeonRun
         #endregion
 
 
-
-
         //very special objects
         ExplodingObject, //creates explosion
     }
 
 
-    //projectiles, particles, pickups
     public enum ProjectileType
     {
 
@@ -854,10 +783,60 @@ namespace DungeonRun
         #endregion
 
 
-
-
-
     }
+
+    public enum PickupType
+    {
+        Rupee,
+        Heart,
+        Magic,
+        Arrow,
+        Bomb,
+    }
+
+    public enum ParticleType
+    {
+        //Particles - small
+        RisingSmoke,
+        ImpactDust,
+        Sparkle,
+
+        //Particles - small, obj specific
+        PitBubble,
+        Leaf,
+        Debris,
+
+        //Particles - map
+        Map_Flag,
+        Map_Wave,
+        Map_Campfire,
+
+        //Particles - normal size
+        Attention,
+        Splash,
+        Blast,
+        Push,
+        Fire,
+        WaterKick,
+        ExclamationBubble,
+
+        //Particle_Debris, //doesn't exist right now
+        BottleEmpty,
+        BottleHealth,
+        BottleMagic,
+        BottleCombo,
+        BottleFairy,
+        BottleBlob,
+
+        //Particles - rewards
+        RewardKey,
+        RewardMap,
+    }
+
+
+
+
+
 
 
     public enum MenuItemType

@@ -28,10 +28,12 @@ namespace DungeonRun
             return obj;
         }
         
+
+
         public static void Kill(GameObject Obj, Boolean spawnLoot, Boolean becomeDebris)
         {   //pop an attention particle
             Functions_Particle.Spawn(
-                ObjType.Particle_Attention,
+                ParticleType.Attention,
                 Obj.compSprite.position.X,
                 Obj.compSprite.position.Y);
 
@@ -42,7 +44,7 @@ namespace DungeonRun
             if (becomeDebris) //should obj become debris or get released?
             {   //if obj becomes debris, explode debris
                 Functions_Particle.Spawn_Explosion(
-                    ObjType.Particle_Debris,
+                    ParticleType.Debris,
                     Obj.compSprite.position.X,
                     Obj.compSprite.position.Y, 
                     true);
@@ -74,7 +76,7 @@ namespace DungeonRun
 
 
 
-        public static void ResetObject(GameObject Obj)
+        public static void Reset(GameObject Obj)
         {
             //reset the obj
             Obj.group = ObjGroup.Object; //assume object is a generic object
@@ -122,6 +124,12 @@ namespace DungeonRun
             Obj.sfx.hit = null;
             Obj.sfx.kill = null;
         }
+
+
+
+
+
+
 
         public static void SetRotation(GameObject Obj)
         {   
@@ -224,7 +232,7 @@ namespace DungeonRun
 
             if (Type == ObjType.Unknown)
             {   
-                ResetObject(Obj);
+                Reset(Obj);
                 Obj.type = ObjType.Unknown;
                 Obj.compCollision.blocking = false;
                 Obj.compSprite.texture = Assets.uiItemsSheet;
@@ -2655,294 +2663,7 @@ namespace DungeonRun
 
 
 
-
-
-
-
-
-
-            //Entities
-
-
-            #region Pickups
-
-            else if (
-                Type == ObjType.Pickup_Rupee || Type == ObjType.Pickup_Heart ||
-                Type == ObjType.Pickup_Magic || Type == ObjType.Pickup_Arrow ||
-                Type == ObjType.Pickup_Bomb)
-            {
-                Obj.compSprite.drawRec.Width = 8; //non standard cellsize
-                Obj.compCollision.offsetX = -8; Obj.compCollision.offsetY = -5;
-                Obj.compCollision.rec.Width = 8; Obj.compCollision.rec.Height = 10;
-                Obj.group = ObjGroup.Pickup;
-                Obj.lifetime = 255; //in frames
-                Obj.compAnim.speed = 6; //in frames
-                Obj.compMove.moveable = true;
-                Obj.compSprite.texture = Assets.entitiesSheet; //all use entity sheet
-                //set the animation frame
-                if (Type == ObjType.Pickup_Rupee) { Obj.compAnim.currentAnimation = AnimationFrames.Pickup_Rupee; }
-                else if (Type == ObjType.Pickup_Heart) { Obj.compAnim.currentAnimation = AnimationFrames.Pickup_Heart; }
-                else if (Type == ObjType.Pickup_Magic) { Obj.compAnim.currentAnimation = AnimationFrames.Pickup_Magic; }
-                else if (Type == ObjType.Pickup_Arrow) { Obj.compAnim.currentAnimation = AnimationFrames.Pickup_Arrow; }
-                else if (Type == ObjType.Pickup_Bomb) { Obj.compAnim.currentAnimation = AnimationFrames.Pickup_Bomb; }
-            }
-
-            #endregion
-
-
-
-
-
-
-
-
-            //Particles
-
-
-            #region Particles - Dungeon Specific
-
-            //these particle's sprites live on a dungeon sheet,
-            //whichever dungeon sheet is the current one
-
-            else if (Type == ObjType.Particle_PitBubble)
-            {
-                Obj.compSprite.drawRec.Width = 8; Obj.compSprite.drawRec.Height = 8; //nonstandard size
-                Obj.compSprite.zOffset = -63; //sort over pits, under pit teeth
-                Obj.group = ObjGroup.Particle;
-                Obj.lifetime = 10 * 4 * 6; //speed * anim frames * loops
-                Obj.compAnim.speed = 10; //in frames
-                Obj.compAnim.currentAnimation = AnimationFrames.Particle_PitBubble;
-                //not on the entities sheet, on dungeon sheet
-                Obj.compSprite.texture = Assets.Dungeon_CurrentSheet;
-            }
-
-            #endregion
-
-
-            #region Particles - Small
-
-            else if (Type == ObjType.Particle_RisingSmoke)
-            {
-                Obj.compSprite.drawRec.Width = 8; Obj.compSprite.drawRec.Height = 8; //nonstandard size
-                Obj.compSprite.zOffset = 64;
-                Obj.group = ObjGroup.Particle;
-                Obj.lifetime = 24; //in frames
-                Obj.compAnim.speed = 6; //in frames
-                Obj.compAnim.loop = false;
-                Obj.compAnim.currentAnimation = AnimationFrames.Particle_RisingSmoke;
-                Obj.compSprite.texture = Assets.entitiesSheet;
-                //randomly flip the smoke sprite horizontally for variation
-                if (Functions_Random.Int(0, 101) > 50)
-                { Obj.compSprite.flipHorizontally = true; }
-                else { Obj.compSprite.flipHorizontally = false; }
-            }
-            else if (Type == ObjType.Particle_ImpactDust)
-            {
-                Obj.compSprite.drawRec.Width = 8; Obj.compSprite.drawRec.Height = 8; //nonstandard size
-                Obj.compSprite.zOffset = 32;
-                Obj.group = ObjGroup.Particle;
-                Obj.lifetime = 24; //in frames
-                Obj.compAnim.speed = 5; //in frames
-                Obj.compAnim.loop = false;
-                Obj.compAnim.currentAnimation = AnimationFrames.Particle_ImpactDust;
-                Obj.compSprite.texture = Assets.entitiesSheet;
-            }
-            else if (Type == ObjType.Particle_Sparkle)
-            {
-                Obj.compSprite.drawRec.Width = 8; Obj.compSprite.drawRec.Height = 8; //nonstandard size
-                Obj.compSprite.zOffset = 16;
-                Obj.group = ObjGroup.Particle;
-                Obj.lifetime = 24; //in frames
-                Obj.compAnim.speed = 6; //in frames
-                Obj.compAnim.currentAnimation = AnimationFrames.Particle_Sparkle;
-                Obj.compSprite.texture = Assets.entitiesSheet;
-            }
-            else if (Type == ObjType.Particle_Push)
-            {
-                Obj.compSprite.drawRec.Width = 8; Obj.compSprite.drawRec.Height = 8; //nonstandard size
-                Obj.compSprite.zOffset = 32;
-                Obj.group = ObjGroup.Particle;
-                Obj.lifetime = 6*3; //in frames
-                Obj.compAnim.speed = 6; //in frames
-                Obj.compAnim.currentAnimation = AnimationFrames.Particle_Push;
-                Obj.compSprite.texture = Assets.entitiesSheet;
-
-                //set the sprites rotation based on direction
-                if (Obj.direction == Direction.Down)
-                { Obj.compSprite.rotation = Rotation.None; }
-                else if (Obj.direction == Direction.Left)
-                { Obj.compSprite.rotation = Rotation.Clockwise90; }
-                else if (Obj.direction == Direction.Up)
-                { Obj.compSprite.rotation = Rotation.Clockwise180; }
-                else if (Obj.direction == Direction.Right)
-                { Obj.compSprite.rotation = Rotation.Clockwise270; }
-                else //push particle can't be in diagonal state, hide it
-                { Obj.compSprite.visible = false; }
-            }
-            else if (Type == ObjType.Particle_Leaf || Type == ObjType.Particle_Debris)
-            {
-                Obj.compSprite.drawRec.Width = 8; Obj.compSprite.drawRec.Height = 8; //nonstandard size
-                Obj.compSprite.zOffset = 16;
-                Obj.group = ObjGroup.Particle;
-                Obj.compAnim.loop = false;
-                Obj.lifetime = 15; //in frames
-                Obj.compAnim.speed = 6; //in frames
-                //setup animation frame properly
-                if (Type == ObjType.Particle_Debris)
-                { Obj.compAnim.currentAnimation = AnimationFrames.Particle_Debris; }
-                else { Obj.compAnim.currentAnimation = AnimationFrames.Particle_Leaf; }
-            }
-
-
-
-
-            #endregion
-
-
-            #region Particles - Normal
-
-            else if (Type == ObjType.Particle_Attention)
-            {
-                Obj.compSprite.zOffset = 1024;
-                Obj.group = ObjGroup.Particle;
-                Obj.lifetime = 24; //in frames
-                Obj.compAnim.speed = 6; //in frames
-                Obj.compAnim.loop = false;
-                Obj.compAnim.currentAnimation = AnimationFrames.Particle_Attention;
-                Obj.compSprite.texture = Assets.entitiesSheet;
-            }
-            else if(Type == ObjType.Particle_ExclamationBubble)
-            {
-                Obj.compSprite.zOffset = 1024;
-                Obj.group = ObjGroup.Particle;
-                Obj.lifetime = 45; //in frames
-                Obj.compAnim.speed = 5; //in frames
-                Obj.compAnim.loop = false;
-                Obj.compAnim.currentAnimation = AnimationFrames.Particle_ExclamationBubble;
-                Obj.compSprite.texture = Assets.entitiesSheet;
-            }
-            else if (Type == ObjType.Particle_Splash)
-            {
-                Obj.compSprite.zOffset = 1024;
-                Obj.group = ObjGroup.Particle;
-                Obj.compAnim.speed = 7; //in frames
-                Obj.lifetime = 7 * 5; //speed * animFrames
-                Obj.compAnim.loop = false;
-                Obj.compAnim.currentAnimation = AnimationFrames.Particle_Splash;
-                Obj.compSprite.texture = Assets.entitiesSheet;
-            }
-            else if (Type == ObjType.Particle_Blast)
-            {
-                Obj.compSprite.zOffset = 64;
-                Obj.group = ObjGroup.Particle;
-                Obj.compAnim.speed = 6; //in frames
-                Obj.lifetime = 6*4; //very short
-                Obj.compAnim.loop = true;
-                Obj.compAnim.currentAnimation = AnimationFrames.Particle_Blast;
-                Obj.compSprite.texture = Assets.entitiesSheet;
-            }
-            else if (Type == ObjType.Particle_Fire)
-            {   //the non-interactive version of projectile ground fire
-                Obj.compSprite.zOffset = 32;
-                Obj.group = ObjGroup.Particle;
-                Obj.lifetime = 100; //in frames
-                Obj.compAnim.speed = 7; //in frames
-                Obj.compAnim.currentAnimation = AnimationFrames.Projectile_FireGround;
-                Obj.compSprite.texture = Assets.entitiesSheet;
-            }
-
-            else if (Type == ObjType.Particle_WaterKick)
-            {
-                Obj.compSprite.zOffset = 0;
-                Obj.group = ObjGroup.Particle;
-                Obj.compAnim.speed = 7; //in frames
-                Obj.lifetime = 7 * 4 + 5; //speed * animTotal + holdFrame
-                Obj.compMove.friction = World.frictionWater;
-                Obj.compAnim.currentAnimation = AnimationFrames.Particle_WaterKick;
-                Obj.compSprite.texture = Assets.entitiesSheet;
-                Obj.compAnim.loop = false;
-            }
-
-            //Particles - Rewards & Bottles
-            else if (
-                Type == ObjType.Particle_RewardKey ||
-                Type == ObjType.Particle_RewardMap ||
-
-                Type == ObjType.Particle_BottleEmpty ||
-                Type == ObjType.Particle_BottleHealth ||
-                Type == ObjType.Particle_BottleMagic ||
-                Type == ObjType.Particle_BottleCombo ||
-                Type == ObjType.Particle_BottleFairy ||
-                Type == ObjType.Particle_BottleBlob)
-            {
-                Obj.compSprite.zOffset = 32;
-                Obj.group = ObjGroup.Particle;
-                Obj.lifetime = 40; //in frames
-                Obj.compMove.moveable = false;
-                //default assume this obj isn't a dungeon key or map
-                Obj.compSprite.texture = Assets.uiItemsSheet;
-                //set anim frames
-                if (Type == ObjType.Particle_RewardKey)
-                {   //this obj is on the dungeon sheet
-                    Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_BossKey;
-                    Obj.compSprite.texture = Assets.Dungeon_CurrentSheet;
-                }
-                else if (Type == ObjType.Particle_RewardMap)
-                {   //this obj is on the dungeon sheet
-                    Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_Map;
-                    Obj.compSprite.texture = Assets.Dungeon_CurrentSheet;
-                }
-                else if (Type == ObjType.Particle_BottleEmpty)
-                { Obj.compAnim.currentAnimation = AnimationFrames.Bottle_Empty; }
-                else if (Type == ObjType.Particle_BottleHealth)
-                { Obj.compAnim.currentAnimation = AnimationFrames.Bottle_Health; }
-                else if (Type == ObjType.Particle_BottleMagic)
-                { Obj.compAnim.currentAnimation = AnimationFrames.Bottle_Magic; }
-                else if (Type == ObjType.Particle_BottleCombo)
-                { Obj.compAnim.currentAnimation = AnimationFrames.Bottle_Combo; }
-                else if (Type == ObjType.Particle_BottleFairy)
-                { Obj.compAnim.currentAnimation = AnimationFrames.Bottle_Fairy; }
-                else if (Type == ObjType.Particle_BottleBlob)
-                { Obj.compAnim.currentAnimation = AnimationFrames.Bottle_Blob; }
-            }
-
-            #endregion
-
-
-            #region Particles - Overworld / Map
-
-            //these particles only exist on the overworld map
-            else if (Type == ObjType.Particle_Map_Flag)
-            {
-                Obj.compSprite.drawRec.Width = 8; Obj.compSprite.drawRec.Height = 4; //nonstandard size
-                Obj.group = ObjGroup.Particle;
-                Obj.compAnim.speed = 10; //in frames
-                Obj.compAnim.currentAnimation = AnimationFrames.Particle_Map_Flag;
-                Obj.compSprite.texture = Assets.entitiesSheet;
-                Obj.lifetime = 0; //lives forever
-            }
-            else if (Type == ObjType.Particle_Map_Wave)
-            {
-                Obj.compSprite.drawRec.Width = 8; Obj.compSprite.drawRec.Height = 4; //nonstandard size
-                Obj.group = ObjGroup.Particle;
-                Obj.compAnim.speed = 15; //in frames
-                Obj.lifetime = (byte)(Obj.compAnim.speed * 4); //there are 4 frames of animation
-                Obj.compAnim.loop = false;
-                Obj.compAnim.currentAnimation = AnimationFrames.Particle_Map_Wave;
-                Obj.compSprite.texture = Assets.entitiesSheet;
-            }
-            else if (Type == ObjType.Particle_Map_Campfire)
-            {
-                Obj.compSprite.drawRec.Width = 8;
-                Obj.compSprite.drawRec.Height = 8; //nonstandard size
-                Obj.group = ObjGroup.Particle;
-                Obj.compAnim.speed = 6; //in frames
-                Obj.compAnim.currentAnimation = AnimationFrames.Particle_Map_Campfire;
-                Obj.compSprite.texture = Assets.entitiesSheet;
-                Obj.lifetime = 0; //lives forever
-            }
-
-            #endregion
+            
 
 
             //Pets
@@ -3002,12 +2723,7 @@ namespace DungeonRun
 
             #region Handle Obj Group properties
 
-            if (Obj.group == ObjGroup.Pickup ||
-                Obj.group == ObjGroup.Particle)
-            {   //entities never block
-                Obj.compCollision.blocking = false;
-            } 
-            else if (Obj.group == ObjGroup.Wall)
+            if (Obj.group == ObjGroup.Wall)
             {   //all wall objs have same sfx
                 Obj.sfx.hit = Assets.sfxTapMetallic;
                 Obj.sfx.kill = null; //cant kill wall

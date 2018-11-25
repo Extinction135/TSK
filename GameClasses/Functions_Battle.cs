@@ -193,7 +193,7 @@ namespace DungeonRun
                         Functions_Direction.GetOppositeCardinal(
                             Pro.compSprite.position,
                             Actor.compSprite.position), 4.0f);
-                    Functions_Particle.Spawn(ObjType.Particle_ImpactDust, Pro);
+                    Functions_Particle.Spawn(ParticleType.ImpactDust, Pro);
                     Assets.Play(Assets.sfxActorLand);
                     Pro.lifeCounter = 200;
                     return;

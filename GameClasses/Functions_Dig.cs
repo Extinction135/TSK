@@ -62,7 +62,7 @@ namespace DungeonRun
             else if (Ditch.compAnim.currentAnimation == AnimationFrames.Wor_Ditch_Empty_Vertical)
             { Ditch.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Filled_Vertical; }
 
-            Functions_Particle.Spawn(ObjType.Particle_Splash,
+            Functions_Particle.Spawn(ParticleType.Splash,
                 Ditch.compSprite.position.X,
                 Ditch.compSprite.position.Y);
         }
@@ -475,7 +475,7 @@ namespace DungeonRun
 
 
             //create some 'digging' debris
-            Functions_Particle.Spawn_Explosion(ObjType.Particle_Debris,
+            Functions_Particle.Spawn_Explosion(ParticleType.Debris,
                 objRef.compSprite.position.X, objRef.compSprite.position.Y, false);
         }
 

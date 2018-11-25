@@ -335,7 +335,7 @@ namespace DungeonRun
                 //Reward the hero with chest contents
                 if (Obj.type == ObjType.Dungeon_ChestKey)
                 {
-                    Functions_Particle.Spawn(ObjType.Particle_RewardKey, Pool.hero);
+                    Functions_Particle.Spawn(ParticleType.RewardKey, Pool.hero);
                     LevelSet.currentLevel.bigKey = true;
                     //setup dialog
                     Screens.Dialog.SetDialog(AssetsDialog.HeroGotKey);
@@ -346,7 +346,7 @@ namespace DungeonRun
                     Assets.Play(Assets.sfxChestOpen);
                     Functions_GameObject.SetType(Obj, ObjType.Dungeon_ChestEmpty);
                     Functions_Particle.Spawn( //show the chest was opened
-                        ObjType.Particle_Attention,
+                        ParticleType.Attention,
                         Obj.compSprite.position.X,
                         Obj.compSprite.position.Y);
                     Functions_Actor.SetRewardState(Pool.hero);
@@ -466,7 +466,7 @@ namespace DungeonRun
             {   //activate all lever objects (including lever), call attention to change
                 Functions_GameObject_Dungeon.ActivateLeverObjects();
                 Functions_Particle.Spawn(
-                        ObjType.Particle_Attention,
+                        ParticleType.Attention,
                         Obj.compSprite.position.X,
                         Obj.compSprite.position.Y);
             }
@@ -487,7 +487,7 @@ namespace DungeonRun
                     Functions_GameObject.SetType(Obj, ObjType.Dungeon_DoorOpen);
                     Assets.Play(Assets.sfxDoorOpen);
                     Functions_Particle.Spawn(
-                        ObjType.Particle_Attention,
+                        ParticleType.Attention,
                         Obj.compSprite.position.X,
                         Obj.compSprite.position.Y);
                 }
@@ -667,7 +667,7 @@ namespace DungeonRun
                 Pool.hero.compAnim.index++;
                 //spawn particle to grab the player's attention
                 Functions_Particle.Spawn(
-                        ObjType.Particle_Attention,
+                        ParticleType.Attention,
                         Pool.hero.compSprite.position.X,
                         Pool.hero.compSprite.position.Y);
 
@@ -725,7 +725,7 @@ namespace DungeonRun
                     LevelSet.spawnPos_Dungeon.X, LevelSet.spawnPos_Dungeon.Y);
 
                 //pop an attention particle to draw player's attention
-                Functions_Particle.Spawn(ObjType.Particle_Attention,
+                Functions_Particle.Spawn(ParticleType.Attention,
                     LevelSet.spawnPos_Dungeon.X, LevelSet.spawnPos_Dungeon.Y);
             }
 
@@ -770,7 +770,7 @@ namespace DungeonRun
                 {   
                     if (Pool.hero.compCollision.rec.Intersects(Pool.pickupPool[i].compCollision.rec))
                     {
-                        Functions_Interaction.Interact_ObjectActor(Pool.pickupPool[i], Pool.hero);
+                        Functions_Pickup.HandleEffect(Pool.pickupPool[i]);
                     }
                 }
             }

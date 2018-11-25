@@ -28,7 +28,7 @@ namespace DungeonRun
 
         public static void CutTallGrass(GameObject TallGrass)
         {   //pop an attention particle on grass pos
-            Functions_Particle.Spawn(ObjType.Particle_Attention,
+            Functions_Particle.Spawn(ParticleType.Attention,
                 TallGrass.compSprite.position.X,
                 TallGrass.compSprite.position.Y);
             //convert tallgrass to cut grass + sfx
@@ -50,7 +50,7 @@ namespace DungeonRun
             Functions_GameObject.SetType(Tree, ObjType.Wor_Tree_Burning);
 
             //place an initial fire at bottom of tree
-            Functions_Particle.Spawn(ObjType.Particle_Fire,
+            Functions_Particle.Spawn(ParticleType.Fire,
                 Tree.compSprite.position.X,
                 Tree.compSprite.position.Y + 16);
         }
@@ -86,19 +86,19 @@ namespace DungeonRun
             if (popLeaves)
             {   //pop the bushy top part
                 Functions_Particle.Spawn(
-                    ObjType.Particle_Attention,
+                    ParticleType.Attention,
                     Tree.compSprite.position.X,
                     Tree.compSprite.position.Y - 2);
                 //pop leaves in circular decorative pattern for tree top
                 Functions_Particle.Spawn_Explosion(
-                    ObjType.Particle_Leaf,
+                    ParticleType.Leaf,
                     Tree.compSprite.position.X + 2,
                     Tree.compSprite.position.Y - 4, true);
             }
             else
             {   //pop debris
                 Functions_Particle.Spawn_Explosion(
-                    ObjType.Particle_Debris,
+                    ParticleType.Debris,
                     Tree.compSprite.position.X + 2,
                     Tree.compSprite.position.Y + 4, true);
             }
@@ -122,14 +122,14 @@ namespace DungeonRun
         public static void DestroyBush(GameObject Bush)
         {   //pop leaf explosion
             Functions_Particle.Spawn_Explosion(
-                ObjType.Particle_Leaf,
+                ParticleType.Leaf,
                 Bush.compSprite.position.X,
                 Bush.compSprite.position.Y);
             //covert bush to stump, play sfx
             Functions_GameObject.SetType(Bush, ObjType.Wor_Bush_Stump);
             Assets.Play(Assets.sfxBushCut);
             //pop an attention particle
-            Functions_Particle.Spawn(ObjType.Particle_Attention,
+            Functions_Particle.Spawn(ParticleType.Attention,
                 Bush.compSprite.position.X, Bush.compSprite.position.Y);
             //rarely spawn loot
             Functions_Loot.SpawnLoot(Bush.compSprite.position, 20);
@@ -149,7 +149,7 @@ namespace DungeonRun
         public static void OpenBuildingDoor(GameObject Door)
         {   //pop attention particle
             Functions_Particle.Spawn(
-                ObjType.Particle_Attention,
+                ParticleType.Attention,
                 Door.compSprite.position.X,
                 Door.compSprite.position.Y);
             //switch to open door

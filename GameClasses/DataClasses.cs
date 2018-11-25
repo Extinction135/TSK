@@ -1116,6 +1116,10 @@ namespace DungeonRun
 
 
 
+
+
+
+
     #region The Pool
 
     public static class Pool
@@ -1145,23 +1149,17 @@ namespace DungeonRun
         public static int lineCounter = 0;
 
 
+
+
         //projectile pool
         public static int projectileCount = 300;
         public static List<Projectile> projectilePool = new List<Projectile>();
         public static int projectileIndex;
         public static int projectileCounter = 0;
 
-        //this should be it's own pool of particles, not gameObjs
-        public static int particleCount = 750;
-        public static List<GameObject> particlePool = new List<GameObject>();
-        public static int particleIndex;
-        public static int particleCounter = 0;
-
-        
-
-        //this should be moved into projectiles pool
+        //pickups are modeled as projectiles - we can consolidate this into proPool above later
         public static int pickupCount = 50;
-        public static List<GameObject> pickupPool = new List<GameObject>();
+        public static List<Pickup> pickupPool = new List<Pickup>();
         public static int pickupIndex;
         public static int pickupCounter = 0;
 
@@ -1170,6 +1168,13 @@ namespace DungeonRun
 
 
 
+
+
+        //particle pool
+        public static int particleCount = 750;
+        public static List<Particle> particlePool = new List<Particle>();
+        public static int particleIndex;
+        public static int particleCounter = 0;
 
 
 
@@ -1201,7 +1206,7 @@ namespace DungeonRun
 
             //particle pool
             for (particleCounter = 0; particleCounter < particleCount; particleCounter++)
-            { particlePool.Add(new GameObject()); }
+            { particlePool.Add(new Particle()); }
             particleIndex = 0;
 
             //projectile pool
@@ -1211,7 +1216,7 @@ namespace DungeonRun
 
             //pickup pool
             for (pickupCounter = 0; pickupCounter < pickupCount; pickupCounter++)
-            { pickupPool.Add(new GameObject()); }
+            { pickupPool.Add(new Pickup()); }
             pickupIndex = 0;
 
             //floor pool
@@ -1246,8 +1251,8 @@ namespace DungeonRun
     #endregion
 
 
+    #region Actors, GameObjects, Projectiles, Particles
 
-    #region Actors, GameObjects, Projectiles
 
     public class Actor
     {
@@ -1339,8 +1344,6 @@ namespace DungeonRun
         }
     }
 
-
-
     public class GameObject
     {
         public ComponentSprite compSprite;
@@ -1374,8 +1377,6 @@ namespace DungeonRun
         }
     }
 
-
-
     public class Projectile
     {
         public ComponentSprite compSprite;
@@ -1404,12 +1405,57 @@ namespace DungeonRun
         }
     }
 
+    public class Particle
+    {
+        public ComponentSprite compSprite;
+        public ComponentAnimation compAnim = new ComponentAnimation();
+        public ComponentMovement compMove = new ComponentMovement();
 
+        public Boolean active = true; //does object draw, update?
+        public ParticleType type = ParticleType.Attention;
+        public Direction direction = Direction.Down; //direction sprite is facing
 
+        public Byte lifetime = 30; //how many frames this object exists for, 0 = forever/ignore
+        public Byte lifeCounter = 0; //counts up to lifetime value
 
+        public Particle()
+        {   //initialize to default value - data is changed later
+            compSprite = new ComponentSprite(Assets.entitiesSheet,
+                new Vector2(50, 50), new Byte4(0, 0, 0, 0), new Point(16, 16));
+            Functions_Particle.SetType(this, type);
+        }
+    }
+
+    public class Pickup
+    {
+        public ComponentSprite compSprite;
+        public ComponentAnimation compAnim = new ComponentAnimation();
+        public ComponentCollision compCollision = new ComponentCollision();
+        public ComponentSoundFX sfx = new ComponentSoundFX();
+
+        public Boolean active = true; //does object draw, update?
+
+        public Actor caster = Pool.hero; //default caster to hero
+        public PickupType type = PickupType.Rupee;
+        public Direction direction = Direction.Down; //direction sprite is facing
+
+        public Byte lifetime = 30; //how many frames this object exists for, 0 = forever/ignore
+        public Byte lifeCounter = 0; //counts up to lifetime value
+
+        public Pickup()
+        {   //initialize to default value - data is changed later
+            compSprite = new ComponentSprite(Assets.entitiesSheet,
+                new Vector2(50, 50), new Byte4(0, 0, 0, 0), new Point(16, 16));
+            Functions_Pickup.SetType(this, type);
+        }
+    }
 
 
     #endregion
+
+
+
+
 
 
 

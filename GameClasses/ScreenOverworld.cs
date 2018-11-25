@@ -97,7 +97,7 @@ namespace DungeonRun
                             Pool.hero.direction = cardinal;
                             Assets.Play(Assets.sfxMapWalking);
                             //spawn a dash puff at the hero's feet
-                            Functions_Particle.Spawn(ObjType.Particle_RisingSmoke,
+                            Functions_Particle.Spawn(ParticleType.RisingSmoke,
                                 Pool.hero.compSprite.position.X,
                                 Pool.hero.compSprite.position.Y + 4);
                             //release all the lines being used
@@ -235,7 +235,7 @@ namespace DungeonRun
                         Pool.hero.direction = Direction.Down;
                         currentLocation = targetLocation;
                         //spawn attention particle at hero's feet
-                        Functions_Particle.Spawn(ObjType.Particle_Attention,
+                        Functions_Particle.Spawn(ParticleType.Attention,
                             Pool.hero.compSprite.position.X,
                             Pool.hero.compSprite.position.Y + 6);
                         //play arrival sound fx
@@ -258,7 +258,7 @@ namespace DungeonRun
                 if (Functions_Random.Int(0, 100) > 94) //5% chance to spawn wave
                 {   //randomly create a wave particle at a wave spawn location with random offset
                     wavePos = waveSpawnPositions[Functions_Random.Int(0, waveSpawnPositions.Count)];
-                    Functions_Particle.Spawn(ObjType.Particle_Map_Wave,
+                    Functions_Particle.Spawn(ParticleType.Map_Wave,
                         wavePos.X + Functions_Random.Int(-6, 6),
                         wavePos.Y + Functions_Random.Int(-6, 6));
                 }
@@ -272,7 +272,7 @@ namespace DungeonRun
                 {
                     if (Pool.particlePool[i].active)
                     {
-                        Functions_GameObject.Update(Pool.particlePool[i]);
+                        Functions_Particle.Update(Pool.particlePool[i]);
                         Functions_Animation.Animate(Pool.particlePool[i].compAnim, Pool.particlePool[i].compSprite);
                         Functions_Animation.ScaleSpriteDown(Pool.particlePool[i].compSprite);
                         //any particle that moves needs to have their position set, then aligned
@@ -1907,33 +1907,33 @@ namespace DungeonRun
             #region Skull island decorations
 
             //various decorative flags
-            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 920, 459); //left house in water
+            Functions_Particle.Spawn(ParticleType.Map_Flag, 920, 459); //left house in water
 
             //coliseum flags - left to right (15)
 
-            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 847, 410); //1
-            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 849, 415); //2
-            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 854, 418); //3
-            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 859, 421); //4
-            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 865, 423); //5
-            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 873, 425); //6
-            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 882, 426); //7 - door top left
-            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 893, 426); //8 - door top right
-            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 903, 425); //9
-            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 911, 423); //10
-            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 917, 421); //11
-            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 922, 419); //12
-            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 926, 416); //13
-            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 925, 410); //14
-            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 920, 406); //15
+            Functions_Particle.Spawn(ParticleType.Map_Flag, 847, 410); //1
+            Functions_Particle.Spawn(ParticleType.Map_Flag, 849, 415); //2
+            Functions_Particle.Spawn(ParticleType.Map_Flag, 854, 418); //3
+            Functions_Particle.Spawn(ParticleType.Map_Flag, 859, 421); //4
+            Functions_Particle.Spawn(ParticleType.Map_Flag, 865, 423); //5
+            Functions_Particle.Spawn(ParticleType.Map_Flag, 873, 425); //6
+            Functions_Particle.Spawn(ParticleType.Map_Flag, 882, 426); //7 - door top left
+            Functions_Particle.Spawn(ParticleType.Map_Flag, 893, 426); //8 - door top right
+            Functions_Particle.Spawn(ParticleType.Map_Flag, 903, 425); //9
+            Functions_Particle.Spawn(ParticleType.Map_Flag, 911, 423); //10
+            Functions_Particle.Spawn(ParticleType.Map_Flag, 917, 421); //11
+            Functions_Particle.Spawn(ParticleType.Map_Flag, 922, 419); //12
+            Functions_Particle.Spawn(ParticleType.Map_Flag, 926, 416); //13
+            Functions_Particle.Spawn(ParticleType.Map_Flag, 925, 410); //14
+            Functions_Particle.Spawn(ParticleType.Map_Flag, 920, 406); //15
 
 
 
 
 
             //skull king campfires
-            Functions_Particle.Spawn(ObjType.Particle_Map_Campfire, 1018, 490); //left
-            Functions_Particle.Spawn(ObjType.Particle_Map_Campfire, 1062, 482); //right
+            Functions_Particle.Spawn(ParticleType.Map_Campfire, 1018, 490); //left
+            Functions_Particle.Spawn(ParticleType.Map_Campfire, 1062, 482); //right
 
             //wave spawn locations
             waveSpawnPositions.Add(new Vector2(1090, 483)); //in front right skullking

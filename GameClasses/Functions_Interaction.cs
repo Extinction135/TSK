@@ -146,7 +146,7 @@ namespace DungeonRun
             {
                 if (Pro.lifeCounter == 1)
                 {
-                    Functions_Particle.Spawn(ObjType.Particle_Sparkle, Pro);
+                    Functions_Particle.Spawn(ParticleType.Sparkle, Pro);
                 }
             }
 
@@ -257,7 +257,7 @@ namespace DungeonRun
                     {   //bail if pro is hitting open door, else sparkle + hit sfx
                         if (RoomObj.type == ObjType.Dungeon_DoorOpen) { return; }
                         //center sparkle to sword/shovel
-                        Functions_Particle.Spawn(ObjType.Particle_Sparkle,
+                        Functions_Particle.Spawn(ParticleType.Sparkle,
                             Pro.compSprite.position.X + 4,
                             Pro.compSprite.position.Y + 4);
                         Assets.Play(RoomObj.sfx.hit);
@@ -276,7 +276,7 @@ namespace DungeonRun
                 else if (Pro.type == ProjectileType.ProjectileBite)
                 {
                     //center sparkle to bite
-                    Functions_Particle.Spawn(ObjType.Particle_Sparkle,
+                    Functions_Particle.Spawn(ParticleType.Sparkle,
                         Pro.compSprite.position.X + 4,
                         Pro.compSprite.position.Y + 4);
                     //play the hit objects hit soundfx
@@ -334,7 +334,7 @@ namespace DungeonRun
                     {   //set boomerang into return mode
                         Pro.lifeCounter = 200;
                         Functions_Particle.Spawn(
-                            ObjType.Particle_Attention,
+                            ParticleType.Attention,
                             Pro.compSprite.position.X + 4,
                             Pro.compSprite.position.Y + 4);
                     }
@@ -674,20 +674,9 @@ namespace DungeonRun
             {
                 //group checks
 
-                #region Pickups
-
-                if (RoomObj.group == ObjGroup.Pickup)
-                {
-                    Functions_Pickup.HandleEffect(RoomObj);
-                    return;
-                }
-
-                #endregion
-
-
                 #region Doors
 
-                else if (RoomObj.group == ObjGroup.Door)
+                if (RoomObj.group == ObjGroup.Door)
                 {   //handle hero interaction with exit door
                     if (RoomObj.type == ObjType.Dungeon_Exit)
                     {   //stop movement, prevents overlap with exit
@@ -730,7 +719,7 @@ namespace DungeonRun
                         Functions_Actor.SetRewardState(Pool.hero);
                         Functions_Actor.SetAnimationGroup(Pool.hero);
                         Functions_Actor.SetAnimationDirection(Pool.hero);
-                        Functions_Particle.Spawn(ObjType.Particle_RewardMap, Pool.hero);
+                        Functions_Particle.Spawn(ParticleType.RewardMap, Pool.hero);
                         Assets.Play(Assets.sfxReward); //play reward / boss defeat sfx
                         Screens.Dialog.SetDialog(AssetsDialog.HeroGotMap);
                         ScreenManager.AddScreen(Screens.Dialog);
@@ -896,7 +885,7 @@ namespace DungeonRun
                 else if (RoomObj.type == ObjType.Wor_MountainWall_Ladder_Trap)
                 {
                     //creates attention particle and removes itself
-                    Functions_Particle.Spawn(ObjType.Particle_Attention,
+                    Functions_Particle.Spawn(ParticleType.Attention,
                         RoomObj.compSprite.position.X, RoomObj.compSprite.position.Y, Direction.Down);
                     Functions_Pool.Release(RoomObj);
                     Assets.Play(Assets.sfxShatter);
@@ -1071,7 +1060,7 @@ namespace DungeonRun
 
                     if (Actor.createSplash == false)
                     {   //actor is transitioning into water this frame
-                        Functions_Particle.Spawn(ObjType.Particle_Splash,
+                        Functions_Particle.Spawn(ParticleType.Splash,
                             Actor.compSprite.position.X,
                             Actor.compSprite.position.Y);
                         //"1 splash only" - Marko Ramius
@@ -1133,10 +1122,10 @@ namespace DungeonRun
                 {   //if hero collides with a PitTrapReady, it starts to open
                     Functions_GameObject.SetType(RoomObj, ObjType.Dungeon_Pit);
                     Assets.Play(Assets.sfxShatter); //play collapse sound
-                    Functions_Particle.Spawn(ObjType.Particle_Attention,
+                    Functions_Particle.Spawn(ParticleType.Attention,
                         RoomObj.compSprite.position.X,
                         RoomObj.compSprite.position.Y);
-                    Functions_Particle.Spawn(ObjType.Particle_ImpactDust,
+                    Functions_Particle.Spawn(ParticleType.ImpactDust,
                         RoomObj.compSprite.position.X + 4,
                         RoomObj.compSprite.position.Y - 8);
                     //Functions_Particle.ScatterDebris(Obj.compSprite.position);
@@ -1355,7 +1344,7 @@ namespace DungeonRun
                         if (RoomObj.compCollision.rec.Contains(Object.compSprite.position))
                         {
                             //release the obj, create a splash particle centered to object
-                            Functions_Particle.Spawn(ObjType.Particle_Splash, Object);
+                            Functions_Particle.Spawn(ParticleType.Splash, Object);
                             Functions_Pool.Release(Object);
                         }
                         //otherwise the obj sinks as soon as it touches a water tile,
@@ -1414,7 +1403,7 @@ namespace DungeonRun
                     {   //play soundfx and directional cue on initial fall
                         Assets.Play(Assets.sfxActorFall);
                         Functions_Particle.Spawn(
-                            ObjType.Particle_Push,
+                            ParticleType.Push,
                             Object.compSprite.position.X + 4,
                             Object.compSprite.position.Y - 8,
                             Direction.Down);
@@ -1509,7 +1498,7 @@ namespace DungeonRun
                 || RoomObj.type == ObjType.Wor_Enemy_Crab
                 || RoomObj.type == ObjType.Wor_Enemy_Rat)
             {
-                Functions_Particle.Spawn(ObjType.Particle_Attention, RoomObj);
+                Functions_Particle.Spawn(ParticleType.Attention, RoomObj);
                 Functions_GameObject.Kill(RoomObj, true, false);
             }
             else if (RoomObj.type == ObjType.Wor_SeekerExploder)
@@ -1569,7 +1558,7 @@ namespace DungeonRun
             {   //'crack' normal walls
                 Functions_GameObject.SetType(Obj,
                     ObjType.Dungeon_WallStraightCracked);
-                Functions_Particle.Spawn(ObjType.Particle_Blast,
+                Functions_Particle.Spawn(ParticleType.Blast,
                     Obj.compSprite.position.X,
                     Obj.compSprite.position.Y);
                 Assets.Play(Assets.sfxShatter);

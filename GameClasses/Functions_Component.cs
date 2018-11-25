@@ -19,6 +19,14 @@ namespace DungeonRun
         public static void Align(Actor Actor) { Align(Actor.compMove, Actor.compSprite, Actor.compCollision); }
         public static void Align(GameObject Obj) { Align(Obj.compMove, Obj.compSprite, Obj.compCollision); }
         public static void Align(Projectile Pro) { Align(Pro.compMove, Pro.compSprite, Pro.compCollision); }
+        public static void Align(Particle Part)
+        {
+            //particles dont have hitboxes
+            Part.compSprite.position.X = (int)Part.compMove.newPosition.X;
+            Part.compSprite.position.Y = (int)Part.compMove.newPosition.Y;
+            SetZdepth(Part.compSprite);
+        }
+
 
         public static void Align(ComponentMovement Move, ComponentSprite Sprite, ComponentCollision Coll)
         {   //aligns the collision component and sprite component to the move component's newPosition
@@ -36,6 +44,9 @@ namespace DungeonRun
             Display.bkg.X = (int)Display.amount.position.X - 1;
             Display.bkg.Y = (int)Display.amount.position.Y + 4;
         }
+
+
+
 
         public static void UpdateAmount(ComponentAmountDisplay Display, int Value)
         {   //clip Value to 99

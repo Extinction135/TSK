@@ -132,33 +132,33 @@ namespace DungeonRun
             else if (Type == MenuItemType.BottleHealth)
             {   //use health potion
                 Pool.hero.health = PlayerData.current.heartsTotal;
-                Functions_Particle.Spawn(ObjType.Particle_BottleHealth, Pool.hero);
+                Functions_Particle.Spawn(ParticleType.BottleHealth, Pool.hero);
                 Functions_Bottle.EmptyBottle(Type);
             }
             else if (Type == MenuItemType.BottleMagic)
             {   //use magic potion
                 PlayerData.current.magicCurrent = PlayerData.current.magicMax;
-                Functions_Particle.Spawn(ObjType.Particle_BottleMagic, Pool.hero);
+                Functions_Particle.Spawn(ParticleType.BottleMagic, Pool.hero);
                 Functions_Bottle.EmptyBottle(Type);
             }
             else if (Type == MenuItemType.BottleCombo)
             {   //use combo potion
                 Pool.hero.health = PlayerData.current.heartsTotal;
                 PlayerData.current.magicCurrent = PlayerData.current.magicMax;
-                Functions_Particle.Spawn(ObjType.Particle_BottleCombo, Pool.hero);
+                Functions_Particle.Spawn(ParticleType.BottleCombo, Pool.hero);
                 Functions_Bottle.EmptyBottle(Type);
             }
             else if (Type == MenuItemType.BottleFairy)
             {   //use fairy in a bottle
                 Pool.hero.health = PlayerData.current.heartsTotal;
-                Functions_Particle.Spawn(ObjType.Particle_BottleFairy, Pool.hero);
+                Functions_Particle.Spawn(ParticleType.BottleFairy, Pool.hero);
                 Functions_Bottle.EmptyBottle(Type);
             }
             else if (Type == MenuItemType.BottleBlob)
             {
                 Functions_Bottle.EmptyBottle(Type);
                 //display the bottled blob over hero's head
-                Functions_Particle.Spawn(ObjType.Particle_BottleBlob, Pool.hero);
+                Functions_Particle.Spawn(ParticleType.BottleBlob, Pool.hero);
 
                 //use blob in a bottle (transform hero into blob and vice versa)
                 if (Pool.hero.type == ActorType.Hero)

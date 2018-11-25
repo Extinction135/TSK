@@ -186,7 +186,7 @@ namespace DungeonRun
 
                     //smoke (each frame) as a sign of nearing defeat
                     Functions_Particle.Spawn(
-                        ObjType.Particle_ImpactDust,
+                        ParticleType.ImpactDust,
                         Actor.compSprite.position.X + 6 + Functions_Random.Int(-8, 8),
                         Actor.compSprite.position.Y - 10 + Functions_Random.Int(-5, 5)
                     );
@@ -289,7 +289,7 @@ namespace DungeonRun
                     {   
                         //smoke (each frame) as a sign of nearing defeat
                         Functions_Particle.Spawn(
-                            ObjType.Particle_ImpactDust,
+                            ParticleType.ImpactDust,
                             Actor.compSprite.position.X + 6 + Functions_Random.Int(-8, 8),
                             Actor.compSprite.position.Y - 10 + Functions_Random.Int(-5, 5)
                         );
@@ -354,7 +354,7 @@ namespace DungeonRun
 
                     //smoke (each frame) as a sign of nearing defeat/rage
                     Functions_Particle.Spawn(
-                        ObjType.Particle_ImpactDust,
+                        ParticleType.ImpactDust,
                         Actor.compSprite.position.X + 6 + Functions_Random.Int(-8, 8),
                         Actor.compSprite.position.Y - 10 + Functions_Random.Int(-5, 5)
                     );
@@ -453,7 +453,7 @@ namespace DungeonRun
 
                     //smoke (each frame) as a sign of nearing defeat
                     Functions_Particle.Spawn(
-                        ObjType.Particle_ImpactDust,
+                        ParticleType.ImpactDust,
                         Actor.compSprite.position.X + 6 + Functions_Random.Int(-8, 8),
                         Actor.compSprite.position.Y - 10 + Functions_Random.Int(-5, 5)
                     );
@@ -573,7 +573,7 @@ namespace DungeonRun
                 if (Actor.health < 5)
                 {   //smoke (each frame) as a sign of nearing defeat
                     Functions_Particle.Spawn(
-                        ObjType.Particle_ImpactDust,
+                        ParticleType.ImpactDust,
                         Actor.compSprite.position.X + 6 + Functions_Random.Int(-8, 8),
                         Actor.compSprite.position.Y - 0 + Functions_Random.Int(-5, 5)
                     );
@@ -877,7 +877,7 @@ namespace DungeonRun
             else if (Obj.type == ObjType.Dungeon_Pit)
             {
                 if (Functions_Random.Int(0, 2000) > 1997) //occasionally bubbles
-                { Functions_Particle.Spawn(ObjType.Particle_PitBubble, Obj); }
+                { Functions_Particle.Spawn(ParticleType.PitBubble, Obj); }
             }
 
             #endregion
@@ -918,7 +918,7 @@ namespace DungeonRun
                         if (Obj.type == ObjType.Dungeon_SwitchDown) { return; }
                         Functions_GameObject.SetType(Obj, ObjType.Dungeon_SwitchDown);
                         Functions_Particle.Spawn(
-                            ObjType.Particle_Attention,
+                            ParticleType.Attention,
                             Obj.compSprite.position.X,
                             Obj.compSprite.position.Y);
                         Assets.Play(Assets.sfxSwitch);
@@ -931,7 +931,7 @@ namespace DungeonRun
                         if (Obj.type == ObjType.Dungeon_Switch) { return; }
                         Functions_GameObject.SetType(Obj, ObjType.Dungeon_Switch);
                         Functions_Particle.Spawn(
-                            ObjType.Particle_Attention,
+                            ParticleType.Attention,
                             Obj.compSprite.position.X,
                             Obj.compSprite.position.Y);
                         Assets.Play(Assets.sfxSwitch);
@@ -956,7 +956,7 @@ namespace DungeonRun
                     if (!LevelSet.currentLevel.currentRoom.rec.Contains(Obj.compSprite.position))
                     {
                         Functions_Particle.Spawn(
-                            ObjType.Particle_Attention,
+                            ParticleType.Attention,
                             Obj.compSprite.position.X + 0,
                             Obj.compSprite.position.Y + 0);
                         Functions_Pool.Release(Obj);
@@ -1027,7 +1027,7 @@ namespace DungeonRun
                             if (Pool.roomObjPool[i].compCollision.rec.Intersects(Obj.compCollision.rec))
                             {   //regrow into bush, with a pop
                                 Functions_Particle.Spawn(
-                                    ObjType.Particle_Attention,
+                                    ParticleType.Attention,
                                     Obj.compSprite.position.X,
                                     Obj.compSprite.position.Y);
                                 Functions_GameObject.SetType(Obj, ObjType.Wor_Bush);
@@ -1058,13 +1058,13 @@ namespace DungeonRun
                     {
                         if (Functions_Random.Int(0, 100) > 93)
                         {   //often spawn fires on the bushy top
-                            Functions_Particle.Spawn(ObjType.Particle_Fire,
+                            Functions_Particle.Spawn(ParticleType.Fire,
                                 Obj.compSprite.position.X + Functions_Random.Int(-6, 6),
                                 Obj.compSprite.position.Y + Functions_Random.Int(-8, 4));
                         }
                         if (Functions_Random.Int(0, 100) > 93)
                         {   //less often spawn fires along the tree trunk
-                            Functions_Particle.Spawn(ObjType.Particle_Fire,
+                            Functions_Particle.Spawn(ParticleType.Fire,
                                 Obj.compSprite.position.X + 0,
                                 Obj.compSprite.position.Y + Functions_Random.Int(4, 16));
                         }
@@ -1076,16 +1076,16 @@ namespace DungeonRun
                     Assets.Play(Assets.sfxActorLand); //decent popping sound
                     //pop the bushy top part
                     Functions_Particle.Spawn(
-                        ObjType.Particle_Attention,
+                        ParticleType.Attention,
                         Obj.compSprite.position.X,
                         Obj.compSprite.position.Y - 2);
                     //pop leaves in circular decorative pattern for tree top
                     Functions_Particle.Spawn_Explosion(
-                        ObjType.Particle_Leaf,
+                        ParticleType.Leaf,
                         Obj.compSprite.position.X + 2,
                         Obj.compSprite.position.Y - 4, true);
                     //switch to burned tree
-                    Functions_GameObject.ResetObject(Obj);
+                    Functions_GameObject.Reset(Obj);
                     Functions_GameObject.SetType(Obj, ObjType.Wor_Tree_Burnt);
                 }
             }
@@ -1124,11 +1124,11 @@ namespace DungeonRun
 
                     //pop attention and debris
                     Functions_Particle.Spawn(
-                        ObjType.Particle_Attention, 
+                        ParticleType.Attention, 
                         Obj.compSprite.position.X,
                         Obj.compSprite.position.Y);
                     Functions_Particle.Spawn_Explosion(
-                        ObjType.Particle_Debris,
+                        ParticleType.Debris,
                         Obj.compSprite.position.X, 
                         Obj.compSprite.position.Y, false);
                     
@@ -1149,7 +1149,7 @@ namespace DungeonRun
                     if (Functions_Random.Int(0, 100) > 90)
                     {   //often spawn rising smoke particles from obj
                         Functions_Particle.Spawn(
-                            ObjType.Particle_RisingSmoke,
+                            ParticleType.RisingSmoke,
                             Obj.compSprite.position.X + 4 + Functions_Random.Int(-3, 3),
                             Obj.compSprite.position.Y - 2 + Functions_Random.Int(-5, 3));
                     }
@@ -1177,33 +1177,33 @@ namespace DungeonRun
                     {
                         //#1
                         Functions_Particle.Spawn(
-                        ObjType.Particle_ExclamationBubble,
-                        Obj.compSprite.position.X - 3,
-                        Obj.compSprite.position.Y - 16);
+                            ParticleType.ExclamationBubble,
+                            Obj.compSprite.position.X - 3,
+                            Obj.compSprite.position.Y - 16);
                     }
                     else if(Obj.interactiveFrame < 50)
                     {
                         //#2
                         Functions_Particle.Spawn(
-                        ObjType.Particle_ExclamationBubble,
-                        Obj.compSprite.position.X - 3 + 16 * 1,
-                        Obj.compSprite.position.Y - 16);
+                            ParticleType.ExclamationBubble,
+                            Obj.compSprite.position.X - 3 + 16 * 1,
+                            Obj.compSprite.position.Y - 16);
                     }
                     else if (Obj.interactiveFrame < 75)
                     {
                         //#3
                         Functions_Particle.Spawn(
-                        ObjType.Particle_ExclamationBubble,
-                        Obj.compSprite.position.X - 3 + 16 * 2,
-                        Obj.compSprite.position.Y - 16);
+                            ParticleType.ExclamationBubble,
+                            Obj.compSprite.position.X - 3 + 16 * 2,
+                            Obj.compSprite.position.Y - 16);
                     }
                     else 
                     {
                         //#4
                         Functions_Particle.Spawn(
-                        ObjType.Particle_ExclamationBubble,
-                        Obj.compSprite.position.X - 3 + 16 * 3,
-                        Obj.compSprite.position.Y - 16);
+                            ParticleType.ExclamationBubble,
+                            Obj.compSprite.position.X - 3 + 16 * 3,
+                            Obj.compSprite.position.Y - 16);
                     }
                 }
             }
@@ -1514,7 +1514,7 @@ namespace DungeonRun
                 {   //reset timer
                     Obj.lifeCounter = 0;
                     Functions_Particle.Spawn(
-                        ObjType.Particle_ExclamationBubble,
+                        ParticleType.ExclamationBubble,
                         Obj.compSprite.position.X - 3,
                         Obj.compSprite.position.Y - 16);
                 }

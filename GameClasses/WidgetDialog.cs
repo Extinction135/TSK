@@ -74,7 +74,7 @@ namespace DungeonRun
         public void DisplayDialog(ObjType SpeakerType, String Title, String Dialog)
         {   
             //reset the speaker to the passed speakerType value
-            Functions_GameObject.ResetObject(speaker);
+            Functions_GameObject.Reset(speaker);
             speaker.direction = Direction.Down;
             Functions_GameObject.SetType(speaker, SpeakerType);
             Functions_Animation.Animate(speaker.compAnim, speaker.compSprite);

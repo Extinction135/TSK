@@ -61,6 +61,10 @@ namespace DungeonRun
             Functions_Movement.Teleport(actor.compMove, X, Y);
         }
 
+
+
+
+
         public static void SetHitState(Actor Actor)
         {   //bail if actor is already dead (dont hit dead actors)
             if (Actor.state == ActorState.Dead) { return; }
@@ -80,12 +84,14 @@ namespace DungeonRun
                 {
                     if (PlayerData.current.gold > 0) //if hero has any gold
                     {   //drop a gold piece upon getting hit
-                        Functions_Pickup.Spawn(ObjType.Pickup_Rupee, Actor);
+                        Functions_Pickup.Spawn(PickupType.Rupee, Actor);
                         PlayerData.current.gold--;
                     }
                 }
             }
         }
+
+
 
         public static void SetDeathState(Actor Actor)
         {
@@ -117,7 +123,7 @@ namespace DungeonRun
                 || Actor.type == ActorType.Boss_BigBat
                 || Actor.type == ActorType.Boss_OctoHead)
             {   //decorate this death as special / explosive
-                Functions_Particle.Spawn_Explosion(ObjType.Particle_Debris,
+                Functions_Particle.Spawn_Explosion(ParticleType.Debris,
                     Actor.compSprite.position.X, Actor.compSprite.position.Y, true);
 
 
@@ -174,7 +180,7 @@ namespace DungeonRun
 
             else if(Actor.type == ActorType.MiniBoss_BlackEye)
             {   //decorate this death as special / explosive
-                Functions_Particle.Spawn_Explosion(ObjType.Particle_Debris,
+                Functions_Particle.Spawn_Explosion(ParticleType.Debris,
                     Actor.compSprite.position.X, Actor.compSprite.position.Y, true);
                 Actor.compAnim.speed = 15; //slow down death animation to taste
                 //this actor becomes debris on floor, sort to floor.
@@ -189,7 +195,7 @@ namespace DungeonRun
             else if (Actor.type == ActorType.MiniBoss_Spider_Armored)
             {   
                 //decorate this death as special / explosive
-                Functions_Particle.Spawn_Explosion(ObjType.Particle_Debris,
+                Functions_Particle.Spawn_Explosion(ParticleType.Debris,
                     Actor.compSprite.position.X, Actor.compSprite.position.Y, true);
                 //armored spider becomes unarmored version
                 SetType(Actor, ActorType.MiniBoss_Spider_Unarmored);
@@ -200,7 +206,7 @@ namespace DungeonRun
             else if (Actor.type == ActorType.MiniBoss_Spider_Unarmored)
             {   
                 //decorate this death as special / explosive
-                Functions_Particle.Spawn_Explosion(ObjType.Particle_Debris,
+                Functions_Particle.Spawn_Explosion(ParticleType.Debris,
                     Actor.compSprite.position.X, Actor.compSprite.position.Y, true);
                 Actor.compAnim.speed = 10; //slow down death animation to taste
                 //this actor becomes debris on floor, sort to floor.
@@ -215,7 +221,7 @@ namespace DungeonRun
             else if (Actor.type == ActorType.MiniBoss_OctoMouth)
             {
                 //decorate this death as special / explosive
-                Functions_Particle.Spawn_Explosion(ObjType.Particle_Debris,
+                Functions_Particle.Spawn_Explosion(ParticleType.Debris,
                     Actor.compSprite.position.X, Actor.compSprite.position.Y, true);
                 //Actor.compAnim.speed = 10; //slow down death animation to taste
                 //this actor becomes debris in water, sort to floor.
@@ -232,7 +238,7 @@ namespace DungeonRun
 
             else
             {   //this is all other actor types: blob, angry eye, etc..
-                Functions_Particle.Spawn(ObjType.Particle_Blast, Actor);
+                Functions_Particle.Spawn(ParticleType.Blast, Actor);
                 Functions_Loot.SpawnLoot(Actor.compSprite.position); //loot!
                 Functions_Pool.Release(Actor);
             }
@@ -511,7 +517,7 @@ namespace DungeonRun
         {
             //decorate pickup
             Functions_Particle.Spawn(
-                ObjType.Particle_Attention,
+                ParticleType.Attention,
                 Obj.compSprite.position.X,
                 Obj.compSprite.position.Y);
 
@@ -547,7 +553,7 @@ namespace DungeonRun
 
 
 
-        static ObjType throwType;
+        //static ObjType throwType;
         public static void Throw(Actor Act)
         {   //put actor into throw state
             Act.carrying = false;
@@ -643,7 +649,7 @@ namespace DungeonRun
                 PlayerData.current.actorType = Actor.type;
             }
 
-            Functions_Particle.Spawn(ObjType.Particle_Attention, Actor);
+            Functions_Particle.Spawn(ParticleType.Attention, Actor);
         }
 
 
@@ -660,43 +666,43 @@ namespace DungeonRun
             {   //dis burlyboy requires more than one splash to look good
                 //front
                 Functions_Particle.Spawn(
-                    ObjType.Particle_Splash,
+                    ParticleType.Splash,
                     Actor.compSprite.position.X - 8,
                     Actor.compSprite.position.Y + 20);
                 Functions_Particle.Spawn(
-                    ObjType.Particle_Splash,
+                    ParticleType.Splash,
                     Actor.compSprite.position.X + 8,
                     Actor.compSprite.position.Y + 20);
                 //back
                 Functions_Particle.Spawn(
-                    ObjType.Particle_Splash,
+                    ParticleType.Splash,
                     Actor.compSprite.position.X - 8,
                     Actor.compSprite.position.Y - 2);
                 Functions_Particle.Spawn(
-                    ObjType.Particle_Splash,
+                    ParticleType.Splash,
                     Actor.compSprite.position.X + 8,
                     Actor.compSprite.position.Y - 2);
                 //and side to side
                 Functions_Particle.Spawn(
-                    ObjType.Particle_Splash,
+                    ParticleType.Splash,
                     Actor.compSprite.position.X - 16,
                     Actor.compSprite.position.Y + 10);
                 Functions_Particle.Spawn(
-                    ObjType.Particle_Splash,
+                    ParticleType.Splash,
                     Actor.compSprite.position.X + 16,
                     Actor.compSprite.position.Y + 10);
             }
             else if(Actor.type == ActorType.MiniBoss_OctoMouth)
             {
                 Functions_Particle.Spawn(
-                    ObjType.Particle_Splash,
+                    ParticleType.Splash,
                     Actor.compSprite.position.X,
                     Actor.compSprite.position.Y + 2);
             }
             else if (Actor.type == ActorType.Special_Tentacle)
             {   //taller actor, offset splash towards bottom
                 Functions_Particle.Spawn(
-                    ObjType.Particle_Splash,
+                    ParticleType.Splash,
                     Actor.compSprite.position.X,
                     Actor.compSprite.position.Y + 12);
             }
@@ -707,7 +713,7 @@ namespace DungeonRun
             else
             {   //all other actors are small enough to use just one splash
                 Functions_Particle.Spawn(
-                    ObjType.Particle_Splash,
+                    ParticleType.Splash,
                     Actor.compSprite.position.X,
                     Actor.compSprite.position.Y + 2);
             }
@@ -741,7 +747,7 @@ namespace DungeonRun
 
             //create water kick particle with offset for actor
             Functions_Particle.Spawn(
-                ObjType.Particle_WaterKick,
+                ParticleType.WaterKick,
                 Actor.compSprite.position.X,
                 Actor.compSprite.position.Y + dashWaveOffset,
                 Functions_Direction.GetOppositeDirection(Actor.direction));
@@ -1426,7 +1432,7 @@ namespace DungeonRun
                         Actor.lockTotal = 10;
                         Actor.stateLocked = true;
                         Actor.compMove.speed = Actor.dashSpeed;
-                        Functions_Particle.Spawn(ObjType.Particle_RisingSmoke, Actor);
+                        Functions_Particle.Spawn(ParticleType.RisingSmoke, Actor);
                         Assets.Play(Actor.sfxDash);
                     }
                     else if (Actor.state == ActorState.Attack)
@@ -1482,7 +1488,7 @@ namespace DungeonRun
                         Actor.lockTotal = 10;
                         Actor.stateLocked = true;
                         Actor.compMove.speed = Actor.dashSpeed;
-                        Functions_Particle.Spawn(ObjType.Particle_RisingSmoke, Actor);
+                        Functions_Particle.Spawn(ParticleType.RisingSmoke, Actor);
                         Assets.Play(Actor.sfxDash);
                     }
                     else if (Actor.state == ActorState.Attack)
@@ -1614,7 +1620,7 @@ namespace DungeonRun
 
                                     //place a (!) above hero's head as recognition
                                     Functions_Particle.Spawn(
-                                        ObjType.Particle_ExclamationBubble,
+                                        ParticleType.ExclamationBubble,
                                         Actor.compSprite.position.X,
                                         Actor.compSprite.position.Y - 4,
                                         Direction.Down);
@@ -1642,7 +1648,7 @@ namespace DungeonRun
                     //actor inherit's counter + total from falling state above
                     if (Actor.lockCounter == 1) //on first frame of landing..
                     {   //pop attention and play landing sfx
-                        Functions_Particle.Spawn(ObjType.Particle_Attention, Actor);
+                        Functions_Particle.Spawn(ParticleType.Attention, Actor);
                         Assets.Play(Assets.sfxActorLand);
                         Functions_Movement.StopMovement(Actor.compMove);
                     }
@@ -1668,6 +1674,7 @@ namespace DungeonRun
                         }
 
                         #endregion
+
 
                         Actor.compMove.speed = Actor.swimSpeed; //move slowly while climbing
 

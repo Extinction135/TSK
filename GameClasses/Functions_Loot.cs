@@ -47,24 +47,24 @@ namespace DungeonRun
                 //uncommon
                 else if (lootType < 100) //10%
                 {
-                    Functions_Pickup.Spawn(ObjType.Pickup_Bomb, Pos.X + offsetX, Pos.Y);
+                    Functions_Pickup.Spawn(PickupType.Bomb, Pos.X + offsetX, Pos.Y);
                 }
                 else if (lootType < 200) //10%
                 {
-                    Functions_Pickup.Spawn(ObjType.Pickup_Arrow, Pos.X + offsetX, Pos.Y);
+                    Functions_Pickup.Spawn(PickupType.Arrow, Pos.X + offsetX, Pos.Y);
                 }
                 else if(lootType < 300) //10%
                 {
-                    Functions_Pickup.Spawn(ObjType.Pickup_Magic, Pos.X + offsetX, Pos.Y);
+                    Functions_Pickup.Spawn(PickupType.Magic, Pos.X + offsetX, Pos.Y);
                 }
                 //common
                 else if(lootType < 650)
                 {
-                    Functions_Pickup.Spawn(ObjType.Pickup_Heart, Pos.X + offsetX, Pos.Y);
+                    Functions_Pickup.Spawn(PickupType.Heart, Pos.X + offsetX, Pos.Y);
                 }
                 else
                 {
-                    Functions_Pickup.Spawn(ObjType.Pickup_Rupee, Pos.X + offsetX, Pos.Y);
+                    Functions_Pickup.Spawn(PickupType.Rupee, Pos.X + offsetX, Pos.Y);
                 }
                 
             }

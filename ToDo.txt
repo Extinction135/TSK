@@ -55,54 +55,18 @@ Today:
 
 
 
+Systems++
 
+migrated pickups into their own class.
+migrated particles into their own class.
 
-
-
-**we are moving projectiles out of gameobj and into their own systems**
-pool.update() starts the kick
-we check pro intractions with objs
-
-
-pool is setup.
-interation functions are ready, but need work.
-
-
-
-
-
-
-
-Projectile System++
-
-the pros are intermingled with gameobjs, and gameobjs dont
-really rotate or do direction changes much, but pros do.
-this is complicating pro logic, because they have to fit into
-the roomObj rotation routines, then they go to their own per frame
-routines, plus their spawn routines, plus their obj.type routines. 
-that's alot of un-needed computations.
-
-so... projectiles need to be seperated from gameobjects.
-they are fundamentally different, and shouldn't be passed
-thru gameobject systems at all. it's a confusing mess,
-and they need their own system, so let's make that happen.
-
-created projectile types enum to contain all pro values.
-removed objGroup type Projectile. removed projectile inheriting
-from gameobject, to keep it leaner and faster and allow for more.
-
-no errors, we now need to test the new projectile systems,
-in totality. test failures:
-
-hammer rotations are wrong, up, LR are wrong.
-other than that, projectiles spawn/cast fine, update
-and die fine. this was a big commit.
-
-additional notes-
-back roofs no longer trigger roof hiding, preventing hero from peeking.
-wall statues shoot arrows again.
-we can't throw anykind of held object, because the throwing routines
-were affected by projectile seperation from gameobject.
+pickups use their own methods for management.
+projectiles use theiw own methods as well.
+this seperates pickups, projectiles, and particles
+from gameobjects completely. some bugs will
+exist from this migration, but this makes the
+systems clearer and simplerer and allows for
+expansion in the future.
 
 
 
@@ -112,18 +76,125 @@ were affected by projectile seperation from gameobject.
 
 
 
-test that exploding objects still work:
-this is exploding barrel, what else?
+
+
+
+when we create debris particles, they likely aren't on right texture.
+
+
+
+
+
+
+
+
+
+
+debris explosion didn't display properly. should of showed
+small debris, showed arrows instead?
+
+touching pickups slows link down a bunch, assuming we aren't
+removing them.
+
+
+
+
+
+
+notes-
+fixed xml to cs folder address bug.
+
+
+
+
+
+
+we are migrating pickups and particles at the same time.
+pickups to projectiles, vs hero.
+particles to their own class/routines.
+
+
+
+
+test that we can still collide with pickups.
+
+test that particles are created and die properly.
+
+
+
+
+
+
+corrections:
+
+push lines are not being rotated properly, assuming
+particle rotations are not being accounted for.
+
+
+
+
+
+
+
+
+make fairy a pickup that lasts forever,
+modeled like other pickups.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Particles++
+particles need to exist in their own routines,
+just like projectiles do. this is to simplify
+them, make them leaner, faster, and allow for more
+of them, while also reducing their frametimes.
+
+
+
+
+
 
 
 
 
 Projectile System Upgrades
 
+hammers should be able to destroy open doors.
+explosions too.
 
 
-Cleanup
-**exploding objects are still roomObjs, not projectiles**
+
+
+
+
+
+
+
+Throwing Held Objects
+
 
 **we need to remarry the throwing routines to the new projectile
 system. the picked up obj becomes a carried projectile, that inherits
@@ -158,6 +229,13 @@ which need to be consolidated into one, using a power level byte
 which is part of projectile. this isn't part of pro yet tho!
 
 
+
+
+
+Debris++
+if debris touches any object, it should remove itself.
+this prevents it from zdepth sort competing with other 
+objects, like the stairs sprite.
 
 
 

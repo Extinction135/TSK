@@ -37,7 +37,7 @@ namespace DungeonRun
             Functions_Actor.SetRewardState(Pool.hero);
             Pool.hero.item = MenuItemType.Unknown;
             Assets.Play(Assets.sfxBeatDungeon);
-            Functions_Particle.Spawn(ObjType.Particle_Attention, Pool.hero);
+            Functions_Particle.Spawn(ParticleType.Attention, Pool.hero);
 
             //hero used current hero.item, which was a bottle, play soundfx
             //find the first menuItemType of used bottle in bottle inventory
@@ -69,7 +69,7 @@ namespace DungeonRun
                 {   //player has bottled fairy
                     //remove fairy from room
                     Functions_Particle.Spawn(
-                        ObjType.Particle_Attention,
+                        ParticleType.Attention,
                         Obj.compSprite.position.X,
                         Obj.compSprite.position.Y);
                     Functions_Pool.Release(Obj);
@@ -103,7 +103,7 @@ namespace DungeonRun
                 {   //player has bottled actor
                     //remove actor from room
                     Functions_Particle.Spawn(
-                        ObjType.Particle_Attention,
+                        ParticleType.Attention,
                         Actor.compSprite.position.X,
                         Actor.compSprite.position.Y);
                     Functions_Pool.Release(Actor);

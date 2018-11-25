@@ -41,15 +41,7 @@ namespace DungeonRun
             {
                 Draw(Obj.compSprite);
                 if (Flags.DrawCollisions)
-                {
-                    //ignore certain groups for drawing collisions
-                    if (Obj.group == ObjGroup.Particle) { }
-                    else
-                    {
-                        Draw(Obj.compCollision);
-                    }
-
-                }
+                { Draw(Obj.compCollision); }
             }
         }
 
@@ -108,6 +100,22 @@ namespace DungeonRun
             {
                 Draw(Pro.compSprite);
                 if (Flags.DrawCollisions) { Draw(Pro.compCollision); }
+            }
+        }
+
+        public static void Draw(Particle Part)
+        {
+            if (Part.active)
+            {
+                Draw(Part.compSprite);
+            }
+        }
+
+        public static void Draw(Pickup Pick)
+        {
+            if (Pick.active)
+            {
+                Draw(Pick.compSprite);
             }
         }
 

@@ -41,7 +41,7 @@ namespace DungeonRun
             {   //found an inactive obj to return
                 if (Pool.roomObjPool[Pool.roomObjCounter].active == false)
                 {   //reset obj to default state, hide offscreen, return it
-                    Functions_GameObject.ResetObject(Pool.roomObjPool[Pool.roomObjCounter]);
+                    Functions_GameObject.Reset(Pool.roomObjPool[Pool.roomObjCounter]);
                     Pool.roomObjPool[Pool.roomObjCounter].compMove.newPosition.X = -1000;
                     return Pool.roomObjPool[Pool.roomObjCounter];
                 }
@@ -49,7 +49,7 @@ namespace DungeonRun
             return Pool.roomObjPool[Pool.roomObjCount - 1]; //ran out of roomObjs
         }
 
-        public static GameObject GetParticle()
+        public static Particle GetParticle()
         {   
             for (Pool.particleCounter = 0; Pool.particleCounter < Pool.particleCount; Pool.particleCounter++)
             {
@@ -58,7 +58,7 @@ namespace DungeonRun
                 if (Pool.particlePool[Pool.particleIndex].active == false)
                 {   //found an inactive to return
                     //reset to default state, hide offscreen, return it
-                    Functions_GameObject.ResetObject(Pool.particlePool[Pool.particleIndex]);
+                    Functions_Particle.Reset(Pool.particlePool[Pool.particleIndex]);
                     Pool.particlePool[Pool.particleIndex].compMove.newPosition.X = -1000;
                     Pool.particlePool[Pool.particleIndex].compSprite.scale = 1.0f;
                     return Pool.particlePool[Pool.particleIndex];
@@ -89,7 +89,7 @@ namespace DungeonRun
             return Pool.projectilePool[0]; //ran out
         }
 
-        public static GameObject GetPickup()
+        public static Pickup GetPickup()
         {
             for (Pool.pickupCounter = 0; Pool.pickupCounter < Pool.pickupCount; Pool.pickupCounter++)
             {
@@ -98,8 +98,7 @@ namespace DungeonRun
                 if (Pool.pickupPool[Pool.pickupIndex].active == false)
                 {   //found an inactive to return
                     //reset to default state, hide offscreen, return it
-                    Functions_GameObject.ResetObject(Pool.pickupPool[Pool.pickupIndex]);
-                    Pool.pickupPool[Pool.pickupIndex].compMove.newPosition.X = -1000;
+                    Functions_Pickup.Reset(Pool.pickupPool[Pool.pickupIndex]);
                     Pool.pickupPool[Pool.pickupIndex].compSprite.scale = 1.0f;
                     return Pool.pickupPool[Pool.pickupIndex];
                 }
@@ -115,6 +114,11 @@ namespace DungeonRun
             Pool.floorPool[Pool.floorIndex].visible = true;
             return Pool.floorPool[Pool.floorIndex];
         }
+
+
+
+
+
 
 
 
@@ -214,6 +218,20 @@ namespace DungeonRun
             Pro.lifetime = 0;
         }
 
+        public static void Release(Particle Par)
+        {
+            Par.active = false;
+            Par.lifetime = 0;
+        }
+
+        public static void Release(Pickup Pick)
+        {
+            Pick.active = false;
+            Pick.lifetime = 0;
+        }
+
+
+
 
 
 
@@ -278,11 +296,6 @@ namespace DungeonRun
                         Functions_Interaction.CheckObj_Actor(Pool.actorPool[i]);
                         Functions_Interaction.CheckProjectile_Actor(Pool.actorPool[i]);
                     }
-                    
-
-
-
-
 
                     Functions_Actor.Update(Pool.actorPool[i]);
                     Functions_Animation.Animate(Pool.actorPool[i].compAnim, Pool.actorPool[i].compSprite);
@@ -365,9 +378,6 @@ namespace DungeonRun
                     Functions_Pickup.Update(Pool.pickupPool[i]);
                     Functions_Animation.Animate(Pool.pickupPool[i].compAnim, Pool.pickupPool[i].compSprite);
                     Functions_Animation.ScaleSpriteDown(Pool.pickupPool[i].compSprite);
-                    //interaction check pickups
-                    //Functions_Interaction.CheckInteractions(Pool.pickupPool[i]);//old
-                    Functions_Interaction.CheckObj_Obj(Pool.pickupPool[i]);
                 }
             }
 
@@ -404,13 +414,6 @@ namespace DungeonRun
             {
                 if (Pool.projectilePool[i].active)
                 { Functions_Movement.ProjectMovement(Pool.projectilePool[i].compMove); }
-            }
-
-            //pickups
-            for (i = 0; i < Pool.pickupCount; i++)
-            {
-                if (Pool.pickupPool[i].active)
-                { Functions_Movement.ProjectMovement(Pool.pickupPool[i].compMove); }
             }
 
             #endregion
@@ -544,17 +547,6 @@ namespace DungeonRun
                     Pool.projectilePool[i].compMove.position.X = Pool.projectilePool[i].compMove.newPosition.X;
                     Pool.projectilePool[i].compMove.position.Y = Pool.projectilePool[i].compMove.newPosition.Y;
                     Functions_Component.Align(Pool.projectilePool[i]);
-                }
-            }
-
-            //pickups
-            for (i = 0; i < Pool.pickupCount; i++)
-            {
-                if (Pool.pickupPool[i].active)
-                {   //set position to the new position (projected pos)
-                    Pool.pickupPool[i].compMove.position.X = Pool.pickupPool[i].compMove.newPosition.X;
-                    Pool.pickupPool[i].compMove.position.Y = Pool.pickupPool[i].compMove.newPosition.Y;
-                    Functions_Component.Align(Pool.pickupPool[i]);
                 }
             }
 

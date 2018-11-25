@@ -569,7 +569,7 @@ namespace DungeonRun
                 Assets.Play(Assets.sfxExplosion);
                 //place smoke puff above explosion
                 Functions_Particle.Spawn(
-                    ObjType.Particle_ImpactDust,
+                    ParticleType.ImpactDust,
                     pro.compSprite.position.X + 4,
                     pro.compSprite.position.Y - 8);
             }
@@ -764,13 +764,13 @@ namespace DungeonRun
                 {   //create random impact fx (right is special case)
                     if (Pro.direction == Direction.Right)
                     {
-                        Functions_Particle.Spawn(ObjType.Particle_ImpactDust,
+                        Functions_Particle.Spawn(ParticleType.ImpactDust,
                                 Pro.compSprite.position.X + 8 + Functions_Random.Int(-4, 4),
                                 Pro.compSprite.position.Y + 8 + Functions_Random.Int(-4, 4));
                     }
                     else
                     {
-                        Functions_Particle.Spawn(ObjType.Particle_ImpactDust,
+                        Functions_Particle.Spawn(ParticleType.ImpactDust,
                                 Pro.compSprite.position.X + 2 + Functions_Random.Int(-4, 4),
                                 Pro.compSprite.position.Y + 8 + Functions_Random.Int(-4, 4));
                     }
@@ -851,7 +851,7 @@ namespace DungeonRun
                 //Debug.WriteLine("processing fireball behavior");
                 if (Functions_Random.Int(0, 101) > 50)
                 {   //often place randomly offset rising smoke
-                    Functions_Particle.Spawn(ObjType.Particle_RisingSmoke,
+                    Functions_Particle.Spawn(ParticleType.RisingSmoke,
                         Pro.compSprite.position.X + 5 + Functions_Random.Int(-4, 4),
                         Pro.compSprite.position.Y + 1 + Functions_Random.Int(-8, 2));
                 }
@@ -1007,7 +1007,7 @@ namespace DungeonRun
             {
                 if (Functions_Random.Int(0, 101) > 86)
                 {   //often place randomly offset rising smoke
-                    Functions_Particle.Spawn(ObjType.Particle_RisingSmoke,
+                    Functions_Particle.Spawn(ParticleType.RisingSmoke,
                         Pro.compSprite.position.X + 5 + Functions_Random.Int(-4, 4),
                         Pro.compSprite.position.Y + 1 + Functions_Random.Int(-8, 2));
                 }
@@ -1051,7 +1051,7 @@ namespace DungeonRun
                 || Pro.type == ProjectileType.ProjectileBat)
             {
                 Functions_Particle.Spawn(
-                    ObjType.Particle_Attention,
+                    ParticleType.Attention,
                     Pro.compSprite.position.X + 0,
                     Pro.compSprite.position.Y + 0);
             }
@@ -1079,7 +1079,7 @@ namespace DungeonRun
                 Functions_Loot.SpawnLoot(Pro.compSprite.position);
                 //pop leaves
                 Functions_Particle.Spawn_Explosion(
-                    ObjType.Particle_Leaf,
+                    ParticleType.Leaf,
                     Pro.compSprite.position.X,
                     Pro.compSprite.position.Y,
                     true);
@@ -1090,7 +1090,7 @@ namespace DungeonRun
                 Functions_Loot.SpawnLoot(Pro.compSprite.position);
                 //pop debris
                 Functions_Particle.Spawn_Explosion(
-                    ObjType.Particle_Debris,
+                    ParticleType.Debris,
                     Pro.compSprite.position.X,
                     Pro.compSprite.position.Y,
                     true);
@@ -1388,6 +1388,7 @@ namespace DungeonRun
 
 
 
+
             #region Projectiles - World
 
             else if (Type == ProjectileType.ProjectileExplosion)
@@ -1507,7 +1508,7 @@ namespace DungeonRun
 
 
 
-
+    
             //projectiles never block
             Pro.compCollision.blocking = false;
             //set rotations, animation, align all components

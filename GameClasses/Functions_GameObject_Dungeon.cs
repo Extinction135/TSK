@@ -51,7 +51,7 @@ namespace DungeonRun
             Bumper.compSprite.scale = 1.5f;
             Assets.Play(Assets.sfxBounce);
             Functions_Particle.Spawn(
-                ObjType.Particle_Attention,
+                ParticleType.Attention,
                 Bumper.compSprite.position.X,
                 Bumper.compSprite.position.Y);
             //bounce opposite direction
@@ -70,7 +70,7 @@ namespace DungeonRun
         {   //spikeBlock must be moving
             if (Math.Abs(SpikeBlock.compMove.magnitude.X) > 0 || Math.Abs(SpikeBlock.compMove.magnitude.Y) > 0)
             {   //spawn a hit particle along spikeBlock's colliding edge
-                Functions_Particle.Spawn(ObjType.Particle_Sparkle, SpikeBlock);
+                Functions_Particle.Spawn(ParticleType.Sparkle, SpikeBlock);
                 Assets.Play(Assets.sfxTapMetallic); //play the 'clink' sound effect                                  
                 //flip the block's direction to the opposite direction
                 SpikeBlock.compMove.direction = Functions_Direction.GetOppositeDirection(SpikeBlock.compMove.direction);
@@ -107,13 +107,13 @@ namespace DungeonRun
         public static void CollapseDungeonDoor(GameObject Door, ComponentCollision CompColl)
         {   //blow up door, change to doorOpen
             Functions_Particle.Spawn(
-                ObjType.Particle_Attention,
+                ParticleType.Attention,
                 Door.compSprite.position.X,
                 Door.compSprite.position.Y);
             Assets.Play(Assets.sfxShatter);
             Functions_GameObject.SetType(Door, ObjType.Dungeon_DoorOpen);
             //hide the sprite switch with a blast particle
-            Functions_Particle.Spawn(ObjType.Particle_Blast,
+            Functions_Particle.Spawn(ParticleType.Blast,
                 Door.compSprite.position.X, 
                 Door.compSprite.position.Y);
             //update the dungeon.doors list, change colliding door to bombed
@@ -198,7 +198,7 @@ namespace DungeonRun
         {
             Assets.Play(Assets.sfxSwitch);
             Functions_Particle.Spawn(
-                ObjType.Particle_Attention,
+                ParticleType.Attention,
                 SwitchBtn.compSprite.position.X,
                 SwitchBtn.compSprite.position.Y);
             for (i = 0; i < Pool.roomObjCount; i++)
@@ -214,7 +214,7 @@ namespace DungeonRun
                         || Pool.roomObjPool[i].type == ObjType.Dungeon_SwitchBlockUp)
                     {
                         Functions_Particle.Spawn(
-                            ObjType.Particle_Attention,
+                            ParticleType.Attention,
                             Pool.roomObjPool[i].compSprite.position.X,
                             Pool.roomObjPool[i].compSprite.position.Y);
                     }
@@ -238,7 +238,7 @@ namespace DungeonRun
         {   //light the unlit torch
             Functions_GameObject.SetType(LitTorch, ObjType.Dungeon_TorchUnlit);
             Functions_Particle.Spawn(
-                ObjType.Particle_Attention,
+                ParticleType.Attention,
                 LitTorch.compSprite.position.X + 0,
                 LitTorch.compSprite.position.Y - 7);
             Assets.Play(Assets.sfxActorLand);
@@ -271,7 +271,7 @@ namespace DungeonRun
                     {   //display an attention particle where the conversion happened
                         Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_DoorOpen);
                         Functions_Particle.Spawn(
-                            ObjType.Particle_Attention,
+                            ParticleType.Attention,
                             Pool.roomObjPool[i].compSprite.position.X,
                             Pool.roomObjPool[i].compSprite.position.Y);
                     }
@@ -289,7 +289,7 @@ namespace DungeonRun
                     {   //display an attention particle where the conversion happened
                         Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_DoorTrap);
                         Functions_Particle.Spawn(
-                            ObjType.Particle_Attention,
+                            ParticleType.Attention,
                             Pool.roomObjPool[i].compSprite.position.X,
                             Pool.roomObjPool[i].compSprite.position.Y);
                     }
@@ -300,7 +300,7 @@ namespace DungeonRun
         public static void PlayPitFx(GameObject Pit)
         {   //place splash 'centered' to pit
             Functions_Particle.Spawn(
-                ObjType.Particle_Splash,
+                ParticleType.Splash,
                 Pit.compSprite.position.X,
                 Pit.compSprite.position.Y - 4);
         }
@@ -323,7 +323,7 @@ namespace DungeonRun
             if (Fairy != null) //kill fairy
             {
                 Functions_Particle.Spawn(
-                    ObjType.Particle_Attention,
+                    ParticleType.Attention,
                     Fairy.compSprite.position.X,
                     Fairy.compSprite.position.Y);
                 Functions_Pool.Release(Fairy);
