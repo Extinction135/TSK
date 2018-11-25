@@ -460,7 +460,17 @@ namespace DungeonRun
 
             #endregion
 
-            
+
+            #region Hammer
+
+            else if (Type == ObjType.ProjectileHammer)
+            {
+                Assets.Play(Assets.sfxActorLand); //generic use sound
+            }
+
+            #endregion
+
+
             #region Bite Projectile
 
             else if (Type == ObjType.ProjectileBite)
@@ -558,12 +568,13 @@ namespace DungeonRun
             #endregion
 
 
-            #region Sword, Net, Shovel
+            #region Sword, Net, Shovel, Hammer
 
             //sword, net, shovel all track to the HERO'S HAND, based on direction
             else if (Pro.type == ObjType.ProjectileSword
                 || Pro.type == ObjType.ProjectileNet
                 || Pro.type == ObjType.ProjectileShovel
+                || Pro.type == ObjType.ProjectileHammer
                 )
             {   
                 if (Pro.direction == Direction.Down)

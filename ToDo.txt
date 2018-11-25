@@ -60,30 +60,28 @@ Today:
 
 
 
+HammerTime
 
-Interaction Limiting
+one hammer pro, 4 anim frames based on direction.
+as is, in the sprite sheet - remove outlines later.
 
-as hero, we can only begin a climb as link or blob.
-only hero can grab while falling, and only as link or
-blob. so both enttry points to climbing are closed to
-non-link or non-blob actor types.
+ui item hammer added to game, added to vendor and ui
+screens, savedata, inventory.. now onto the hammer pro.
+hammer added to unlock all. tested and working.
 
-picking up, carrying, and throwing now limited to link 
-and blob. pushing or dragging objects now limited to 
-link and blob. updated pit interactions to pull all 
-actors in. this means some dungeon rooms containing
-blobs will easily kill all the blobs within them, due
-to the pits and the dumb bombs just charging at the
-hero. which, is fine for now...
+Hammer Projectile
 
+hammers get to be a level2 power projectile, meaning they
+can destroy everything that can be destroyed, just like an
+explosion. hammers are like small explosions in the game rn.
 
+hammer pros added into armored spiders damage routines.
+allows hammers to breaks armored spiders shell.
+hammers now call des level 2 routines via obj.BlowUp().
 
-
-
-
-
-
-
+I kinda rushed this commit cause I'm tired and also
+I've been waiting a few months to just push a commit
+titled 'hammertime'..
 
 
 
@@ -94,10 +92,65 @@ hero. which, is fine for now...
 
 
 
+Hammers++
+
+hammers are in the game, but they need impact dust, better
+east west sprites.
+
+POSTS
+
+we need to add posts to the game, so hammers can smack them
+down. also, these posts should be indestructible to everything
+but hammers, including explosions.
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+fire rod and ice rod
+
+generic ice block for all 16x16 enemies, larger enemies
+just take damage and get pushed.
+
+
+
+
+fire boomerang
+
+
+comet magic
+
+bombos should make non-hero actors explode via explosions
+simultaneously, along with bomb circle around link.
+
+quake shakes the screen and deals level 2 damage to everything
+in the level. so it's very powerful. BUT flying objects and actors
+are completely immune to it. this also means we need to write a
+camera shake routine like we did in th.
+
+
+
+we need a blank generic magic medallion to model random enemy
+magic, so we dont waste alot of space in the main sheet on these.
+easy - and then we can have a specific slot in the UI for enemy
+magic under misc.
 
 
 

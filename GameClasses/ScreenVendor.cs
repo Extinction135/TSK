@@ -410,6 +410,17 @@ namespace DungeonRun
                     }
                     else { DialogAlreadyPurchased(); }
                 }
+                else if (Item.type == MenuItemType.WeaponHammer)
+                {
+                    if (!PlayerData.current.weaponHammer)
+                    {
+                        PlayerData.current.weaponHammer = true;
+                        CompleteSale(Item);
+                    }
+                    else { DialogAlreadyPurchased(); }
+                }
+
+
                 else if (Item.type == MenuItemType.WeaponFang)
                 {
                     //set into player's enemyWeapon slot

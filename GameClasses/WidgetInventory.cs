@@ -185,7 +185,9 @@ namespace DungeonRun
             //23 - shovel
             if (PlayerData.current.weaponShovel)
             { Functions_MenuItem.SetType(MenuItemType.WeaponShovel, menuItems[23]); }
-            //24 - 
+            //24 - hammer
+            if (PlayerData.current.weaponHammer)
+            { Functions_MenuItem.SetType(MenuItemType.WeaponHammer, menuItems[24]); }
             //25 - 
             //26 -
             //Enemy Weapon - 27

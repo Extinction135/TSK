@@ -909,6 +909,49 @@ namespace DungeonRun
 
                     #endregion
 
+
+
+                    #region Hammer
+
+                    else if (Object.type == ObjType.ProjectileHammer)
+                    {
+                        //time this interaction to the hammer hitting the ground
+                        if (Object.compAnim.index == 4)
+                        {
+
+                            Debug.WriteLine("pound");
+
+                            //hammers call destruction level 2 routines
+                            Functions_GameObject.BlowUp(RoomObj, Object);
+
+                            //and they create debris impact upon every hit, lots of fx here pls
+                            Functions_Particle.Spawn(ObjType.Particle_Attention,
+                                    Object.compSprite.position.X + 4,
+                                    Object.compSprite.position.Y + 4);
+
+                            //and play pound fx
+                            //Assets.Play(Assets.sfxShatter); //shatter is good temp
+                            
+                        }
+
+
+
+                        
+
+
+                        
+
+
+
+                    }
+
+
+
+                    #endregion
+
+
+
+
                 }
 
                 //an interaction is an overlap not handled by collision system

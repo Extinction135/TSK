@@ -261,6 +261,17 @@ namespace DungeonRun
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Weapon_Shovel;
                 MenuItem.price = 50;
             }
+            else if (Type == MenuItemType.WeaponHammer)
+            {
+                MenuItem.name = "Hammer";
+                MenuItem.description = "sturdy and \npowerful.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Weapon_Hammer;
+                MenuItem.price = 50;
+            }
+
+
+
+
             else if (Type == MenuItemType.WeaponFang)
             {
                 MenuItem.name = "Creature's Fang";

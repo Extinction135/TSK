@@ -41,6 +41,15 @@ quake magic: screen shakes, all grounded enemies on screen take 4 damage, caster
 
 
 
+explosive seeds - plant them in the ground using X. detonate them using Y.
+simply creates an explosion.
+
+
+
+
+
+
+
 
 The Axe
 
@@ -149,21 +158,6 @@ upon it's returning state.
 
 
 
-
-
-
-
-
-
-remote detonated mines - must equip two items: mines + detonator
-	mines are dropped with Y button
-	detonator blows up ALL dropped mines with X button
-	*this way the player can juggle / strategize more, with faster reaction time
-	* *plus, no switching between items to blow stuff up
-
-*instead of remote detonated mines, we should summon tentacles or something
-create an explosion upon spawn, so we still get the boom, but we also get
-animated roomObjs that have strategic effect.
 
 
 

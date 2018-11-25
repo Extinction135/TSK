@@ -209,6 +209,7 @@ namespace DungeonRun
                         currentlySelected.type == MenuItemType.WeaponSword
                         || currentlySelected.type == MenuItemType.WeaponNet
                         || currentlySelected.type == MenuItemType.WeaponShovel
+                        || currentlySelected.type == MenuItemType.WeaponHammer
                         || currentlySelected.type == MenuItemType.WeaponFang
                         ) 
                     {

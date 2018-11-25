@@ -165,6 +165,7 @@ namespace DungeonRun
             {
                 Functions_MenuItem.SetType(MenuItemType.WeaponNet, menuItems[0]);
                 Functions_MenuItem.SetType(MenuItemType.WeaponShovel, menuItems[1]);
+                Functions_MenuItem.SetType(MenuItemType.WeaponHammer, menuItems[1]);
             }
             else if (VendorType == ObjType.Vendor_NPC_Armor)
             {

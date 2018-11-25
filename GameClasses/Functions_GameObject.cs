@@ -129,6 +129,7 @@ namespace DungeonRun
         {
             //note: only explosion and lightning bolt projectiles call this method
             //they are the only power level 2 projectiles
+            //and now also hammers
 
 
             #region Dungeon Objs - special cases
@@ -146,10 +147,13 @@ namespace DungeonRun
                     Obj.compSprite.position.Y);
                 Assets.Play(Assets.sfxShatter);
             }
+
+            /*
             else if (Obj.type == ObjType.Dungeon_TorchUnlit)
             {   //light torches on fire
                 Functions_GameObject_Dungeon.LightTorch(Obj);
             }
+            */
 
             #endregion
             
@@ -346,9 +350,12 @@ namespace DungeonRun
             //but there isn't enough complexity to warrant that split, yet
             
             //handle object/projectile specific cases
-            if (Obj.type == ObjType.ProjectileSword 
+            if (
+                Obj.type == ObjType.ProjectileSword 
                 || Obj.type == ObjType.ProjectileNet
-                || Obj.type == ObjType.ProjectileShovel)
+                || Obj.type == ObjType.ProjectileShovel
+                || Obj.type == ObjType.ProjectileHammer
+                )
             {   //some projectiles flip based on their direction
                 if (Obj.direction == Direction.Down || Obj.direction == Direction.Left)
                 { Obj.compSprite.flipHorizontally = true; }
@@ -3013,8 +3020,11 @@ namespace DungeonRun
 
             #region Projectiles - Weapons
 
-            else if (Type == ObjType.ProjectileSword
-                || Type == ObjType.ProjectileShovel)
+            else if (
+                Type == ObjType.ProjectileSword
+                || Type == ObjType.ProjectileShovel
+                || Type == ObjType.ProjectileHammer
+                )
             {
                 Obj.compSprite.zOffset = 16;
                 //set collision rec based on direction
@@ -3038,18 +3048,21 @@ namespace DungeonRun
                     Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;
                     Obj.compCollision.rec.Width = 11; Obj.compCollision.rec.Height = 10;
                 }
+
                 Obj.group = ObjGroup.Projectile;
                 Obj.lifetime = 18; //in frames
                 Obj.compAnim.speed = 2; //in frames
                 Obj.compAnim.loop = false;
                 Obj.compMove.moveable = true;
-                Obj.compMove.grounded = false; //obj is airborne
+                Obj.compMove.grounded = false; //is flying, cant fall into pit
                 Obj.compSprite.texture = Assets.entitiesSheet;
 
                 //set the animFrames based on type
                 if (Type == ObjType.ProjectileSword)
                 { Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Sword; }
-                else { Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Shovel; }
+                else if(Type == ObjType.ProjectileShovel)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Shovel; }
+                else { Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Hammer; }
             }
             else if (Type == ObjType.ProjectileArrow)
             {

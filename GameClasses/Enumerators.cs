@@ -742,6 +742,10 @@ namespace DungeonRun
         ProjectileNet,
         ProjectileBow,
         ProjectileShovel,
+        ProjectileHammer,
+
+
+
 
         //Projectiles - object
         ProjectileExplosion,
@@ -906,8 +910,10 @@ namespace DungeonRun
         MagicBat,
 
         WeaponSword,
-        WeaponNet, 
+        WeaponNet,
         WeaponShovel,
+        WeaponHammer,
+
         WeaponFang,
 
         ArmorCloth,

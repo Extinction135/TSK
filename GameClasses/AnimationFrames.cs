@@ -568,6 +568,13 @@ namespace DungeonRun
             new Byte4(0, 9, 0, 0), new Byte4(1, 9, 0, 0),
             new Byte4(2, 9, 0, 0), new Byte4(3, 9, 0, 0)
         };
+        public static List<Byte4> Projectile_Hammer = new List<Byte4>
+        {
+            new Byte4(0, 10, 0, 0), new Byte4(1, 10, 0, 0),
+            new Byte4(2, 10, 0, 0), new Byte4(3, 10, 0, 0)
+        };
+
+
 
         public static List<Byte4> Projectile_Boomerang = new List<Byte4>
         {
@@ -804,6 +811,8 @@ namespace DungeonRun
         public static List<Byte4> Ui_MenuItem_Weapon_Net = new List<Byte4> { new Byte4(3, 7, 0, 0) };
         public static List<Byte4> Ui_MenuItem_Weapon_Shovel = new List<Byte4> { new Byte4(3, 8, 0, 0) };
         public static List<Byte4> Ui_MenuItem_Weapon_Fang = new List<Byte4> { new Byte4(3, 9, 0, 0) };
+        public static List<Byte4> Ui_MenuItem_Weapon_Hammer = new List<Byte4> { new Byte4(3, 10, 0, 0) };
+        
 
         public static List<Byte4> Ui_MenuItem_Armor_Cloth = new List<Byte4> { new Byte4(4, 5, 0, 0) };
         public static List<Byte4> Ui_MenuItem_Armor_Cape = new List<Byte4> { new Byte4(4, 6, 0, 0) };

@@ -815,15 +815,9 @@ namespace DungeonRun
         public static void UnlockAll()
         {   
             //if the cheat is not enabled, bail from method
-            if (Flags.UnlockAll == false)
-            {   //reset player's data to fresh instance
-                PlayerData.current = new SaveData();
-                return;
-            }
+            if (Flags.UnlockAll == false) { return; }
 
             //this method unlocks all available items, weapons, equipment, armor
-
-            //max hearts and magic
             PlayerData.current.heartsTotal = 9;
             Pool.hero.health = 9;
             PlayerData.current.magicMax = 9;
@@ -845,6 +839,7 @@ namespace DungeonRun
             //set weapons
             PlayerData.current.weaponNet = true;
             PlayerData.current.weaponShovel = true;
+            PlayerData.current.weaponHammer = true;
             //set armor
             PlayerData.current.armorCape = true;
             //set equipment

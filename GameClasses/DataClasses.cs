@@ -124,7 +124,6 @@ namespace DungeonRun
                     InfiniteGold = true; //hero has infinite gold
                     InfiniteArrows = true; //hero has infinite arrows
                     InfiniteBombs = true; //hero has infinite bombs
-                    UnlockAll = true;
 
                     //handle editor cheats
                     EnableTopMenu = true; //necessary
@@ -253,6 +252,7 @@ namespace DungeonRun
         //public Boolean weaponSword = false; //not used rn
         public Boolean weaponNet = false;
         public Boolean weaponShovel = false;
+        public Boolean weaponHammer = false;
 
         //Armor
         public MenuItemType currentArmor = MenuItemType.ArmorCloth;

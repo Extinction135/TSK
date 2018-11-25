@@ -36,10 +36,11 @@ namespace DungeonRun
 
             //1. setup projectiles & objects (set damage, force, direction)
 
-            #region Projectiles
+            //Projectiles
 
 
-            //power level 0 projectiles
+            #region Power level 0 projectiles
+
             if (Obj.type == ObjType.ProjectileBomb)
             {   //bombs don't push or hurt actors
                 return;
@@ -59,8 +60,11 @@ namespace DungeonRun
                 damage = 0; force = 6.0f; direction = Obj.direction;
             }
 
+            #endregion
 
-            //power level 1 projectiles
+
+            #region Power level 1 projectiles
+
             else if(Obj.type == ObjType.ProjectileArrow)
             {   //arrows deal 1 damage, push 4, and die
                 damage = 1; force = 4.0f; direction = Obj.compMove.direction;
@@ -74,6 +78,7 @@ namespace DungeonRun
             {   //matches swords damage, less push
                 damage = 1; force = 3.0f; direction = Obj.direction;
             }
+
             else if (Obj.type == ObjType.ProjectileBush
                 || Obj.type == ObjType.ProjectilePot
                 || Obj.type == ObjType.ProjectilePotSkull)
@@ -91,8 +96,11 @@ namespace DungeonRun
                 Obj.lifeCounter = Obj.lifetime;
             }
 
+            #endregion
 
-            //power level 2 projectiles
+
+            #region Power level 2 projectiles
+
             else if (Obj.type == ObjType.ProjectileExplosion)
             {   //explosions deal 2 damage, push 10
                 damage = 2; force = 10.0f;
@@ -106,7 +114,18 @@ namespace DungeonRun
                 direction = Functions_Direction.GetOppositeDirection(Actor.direction);
             }
 
+            //hammers might be op, i dunno yet
+            else if (Obj.type == ObjType.ProjectileHammer)
+            {   //match explosions attributes
+                damage = 2; force = 10.0f;
+                //push actor in their opposite direction
+                direction = Functions_Direction.GetOppositeDirection(Actor.direction);
+            }
+
             #endregion
+
+
+            //objs
 
 
             #region Objects
@@ -160,6 +179,7 @@ namespace DungeonRun
                         Obj.type == ObjType.ProjectileExplosion
                         || Obj.type == ObjType.ProjectileLightningBolt
                         || Obj.type == ObjType.ProjectileShovel
+                        || Obj.type == ObjType.ProjectileHammer
                         )
                     { }
                     else
