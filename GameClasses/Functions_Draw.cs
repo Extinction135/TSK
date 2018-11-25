@@ -102,6 +102,16 @@ namespace DungeonRun
             }
         }
 
+        public static void Draw(Projectile Pro)
+        {
+            if (Pro.active)
+            {
+                Draw(Pro.compSprite);
+                if (Flags.DrawCollisions) { Draw(Pro.compCollision); }
+            }
+        }
+
+
 
 
 

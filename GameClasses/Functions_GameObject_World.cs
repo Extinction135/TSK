@@ -108,7 +108,7 @@ namespace DungeonRun
         {
             //posts spawn groundfires upon explosion
             Functions_Projectile.Spawn(
-                ObjType.ProjectileGroundFire,
+                ProjectileType.ProjectileGroundFire,
                 Post.compSprite.position.X,
                 Post.compSprite.position.Y - 3,
                 Direction.None);

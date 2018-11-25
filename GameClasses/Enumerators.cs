@@ -326,9 +326,9 @@ namespace DungeonRun
 
         Wall_Climbable, //for wall climbing objects
 
+
         //entities
         Pickup,
-        Projectile,
         Particle 
     } 
 
@@ -534,8 +534,6 @@ namespace DungeonRun
 
 
 
-
-
         #region Colliseum Objects
 
         Wor_Entrance_Colliseum,
@@ -689,7 +687,6 @@ namespace DungeonRun
         #endregion
 
 
-
         #region Vendors & NPCs
 
         //Vendor NPCs
@@ -716,6 +713,15 @@ namespace DungeonRun
         #endregion
 
 
+
+
+
+
+
+
+
+
+
         #region Pickups
 
         //Pickups - collide with hero
@@ -724,50 +730,6 @@ namespace DungeonRun
         Pickup_Magic,
         Pickup_Arrow,
         Pickup_Bomb,
-
-        #endregion
-
-
-        #region Projectiles
-
-        //Projectiles - items
-        ProjectileBomb,
-        ProjectileFireball,
-        ProjectileLightningBolt,
-        ProjectileBoomerang,
-
-        //Projectiles - weapons
-        ProjectileSword,
-        ProjectileArrow,
-        ProjectileNet,
-        ProjectileBow,
-        ProjectileShovel,
-        ProjectileHammer,
-
-
-
-
-        //Projectiles - object
-        ProjectileExplosion,
-        ProjectileGroundFire,
-
-        //Projectiles - thrown objs
-        ProjectileBush,
-        ProjectilePot,
-        ProjectilePotSkull,
-
-        //Projectiles - casted magic
-        ProjectileBombos,
-
-        //Projectiles - enemy related
-        ProjectileBite,
-        ProjectileBat,
-
-
-        
-
-
-
 
         #endregion
 
@@ -813,6 +775,12 @@ namespace DungeonRun
         #endregion
 
 
+
+
+
+
+
+
         #region Pets
 
         Pet_None,
@@ -833,8 +801,64 @@ namespace DungeonRun
 
         //very special objects
         ExplodingObject, //creates explosion
+    }
+
+
+    //projectiles, particles, pickups
+    public enum ProjectileType
+    {
+
+        #region Items
+
+        //Projectiles - items
+        ProjectileBomb,
+        ProjectileFireball,
+        ProjectileLightningBolt,
+        ProjectileBoomerang,
+
+
+        #endregion
+
+
+        #region Weapons
+
+        //Projectiles - weapons
+        ProjectileSword,
+        ProjectileArrow,
+        ProjectileNet,
+        ProjectileBow,
+        ProjectileShovel,
+        ProjectileHammer,
+
+        //Projectiles - object
+        ProjectileExplosion,
+        ProjectileGroundFire,
+
+        //Projectiles - thrown objs
+        ProjectileBush,
+        ProjectilePot,
+        ProjectilePotSkull,
+
+        //Projectiles - casted magic
+        ProjectileBombos,
+
+        #endregion
+
+
+        #region Enemy Related
+
+        //Projectiles - enemy related
+        ProjectileBite,
+        ProjectileBat,
+
+        #endregion
+
+
+
+
 
     }
+
 
     public enum MenuItemType
     {

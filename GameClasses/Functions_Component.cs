@@ -18,6 +18,7 @@ namespace DungeonRun
 
         public static void Align(Actor Actor) { Align(Actor.compMove, Actor.compSprite, Actor.compCollision); }
         public static void Align(GameObject Obj) { Align(Obj.compMove, Obj.compSprite, Obj.compCollision); }
+        public static void Align(Projectile Pro) { Align(Pro.compMove, Pro.compSprite, Pro.compCollision); }
 
         public static void Align(ComponentMovement Move, ComponentSprite Sprite, ComponentCollision Coll)
         {   //aligns the collision component and sprite component to the move component's newPosition

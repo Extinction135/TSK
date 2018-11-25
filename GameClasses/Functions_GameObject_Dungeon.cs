@@ -100,7 +100,11 @@ namespace DungeonRun
             }
         }
 
-        public static void CollapseDungeonDoor(GameObject Door, GameObject Projectile)
+
+
+
+
+        public static void CollapseDungeonDoor(GameObject Door, ComponentCollision CompColl)
         {   //blow up door, change to doorOpen
             Functions_Particle.Spawn(
                 ObjType.Particle_Attention,
@@ -117,11 +121,15 @@ namespace DungeonRun
             {   //if this explosion collides with any dungeon.door that is of type.bombable
                 if (LevelSet.currentLevel.doors[i].type == DoorType.Bombable)
                 {   //change this door type to type.bombed
-                    if (Projectile.compCollision.rec.Intersects(LevelSet.currentLevel.doors[i].rec))
+                    if (CompColl.rec.Intersects(LevelSet.currentLevel.doors[i].rec))
                     { LevelSet.currentLevel.doors[i].type = DoorType.Open; }
                 }
             }
         }
+
+
+
+
 
         public static void ConveyorBeltPush(ComponentMovement compMove, GameObject belt)
         {   //based on belt's direction, push moveComp by amount
@@ -218,7 +226,7 @@ namespace DungeonRun
         {   //light the unlit torch
             Functions_GameObject.SetType(UnlitTorch, ObjType.Dungeon_TorchLit);
             Functions_Projectile.Spawn(
-                ObjType.ProjectileGroundFire,
+                ProjectileType.ProjectileGroundFire,
                 UnlitTorch.compSprite.position.X + 0,
                 UnlitTorch.compSprite.position.Y - 7,
                 Direction.None);

@@ -27,232 +27,7 @@ namespace DungeonRun
             SetType(obj, Type);
             return obj;
         }
-
-
-
-
-        //power level 1 obj destruction
-
-        public static void HandleCommon(GameObject RoomObj, Direction HitDirection)
-        {
-            //roomObj is blocking, interacted with arrow, explosion, sword/shovel, thrown bush/pot, etc..
-            //hitDirection is used to push some objects in the direction they were hit
-
-
-            #region World Objects
-
-            if (RoomObj.type == ObjType.Wor_Pot)
-            {
-                RoomObj.compMove.direction = HitDirection;
-                Kill(RoomObj, true, true);
-            }
-            else if(RoomObj.type == ObjType.Wor_Bush)
-            {
-                RoomObj.compMove.direction = HitDirection; 
-                Functions_GameObject_World.DestroyBush(RoomObj);
-            }
-            else if (RoomObj.type == ObjType.Wor_Build_Door_Shut)
-            {
-                Functions_GameObject_World.OpenBuildingDoor(RoomObj);
-            }
-
-            //burned posts
-            else if(
-                RoomObj.type == ObjType.Wor_PostBurned_Corner_Left ||
-                RoomObj.type == ObjType.Wor_PostBurned_Corner_Right ||
-                RoomObj.type == ObjType.Wor_PostBurned_Horizontal ||
-                RoomObj.type == ObjType.Wor_PostBurned_Vertical_Left ||
-                RoomObj.type == ObjType.Wor_PostBurned_Vertical_Right
-                )
-            {
-                Kill(RoomObj, true, true);
-            }
-            //boat barrels 
-            else if(RoomObj.type == ObjType.Wor_Boat_Barrel)
-            {
-                Kill(RoomObj, true, true);
-            }
-
-            #endregion
-
-
-            #region World Enemies
-
-            else if (RoomObj.type == ObjType.Wor_Enemy_Turtle
-                || RoomObj.type == ObjType.Wor_Enemy_Crab
-                || RoomObj.type == ObjType.Wor_Enemy_Rat)
-            {
-                Functions_Particle.Spawn(ObjType.Particle_Attention, RoomObj);
-                Kill(RoomObj, true, false);
-            }
-            else if(RoomObj.type == ObjType.Wor_SeekerExploder)
-            {   //inherit inertia from hit
-                RoomObj.compMove.direction = HitDirection;
-                //become an explosion
-                SetType(RoomObj, ObjType.ExplodingObject);
-                Functions_Movement.Push(RoomObj.compMove, RoomObj.compMove.direction, 6.0f);
-            }
-
-            #endregion
-
-
-            #region Dungeon Objects
-
-            else if (RoomObj.type == ObjType.Dungeon_Pot)
-            {
-                RoomObj.compMove.direction = HitDirection;
-                Kill(RoomObj, true, true);
-            }
-            else if (RoomObj.type == ObjType.Dungeon_Barrel)
-            {
-                RoomObj.compMove.direction = HitDirection;
-                Functions_GameObject_Dungeon.HitBarrel(RoomObj);
-            }
-            else if (RoomObj.type == ObjType.Dungeon_SwitchBlockBtn)
-            {
-                Functions_GameObject_Dungeon.FlipSwitchBlocks(RoomObj);
-            }
-            else if (RoomObj.type == ObjType.Dungeon_LeverOff
-                || RoomObj.type == ObjType.Dungeon_LeverOn)
-            {
-                Functions_GameObject_Dungeon.ActivateLeverObjects();
-            }
-
-            #endregion
-
-        }
         
-
-        //power level 2 obj destruction
-
-        public static void BlowUp(GameObject Obj, GameObject Pro)
-        {
-            //note: only explosion and lightning bolt projectiles call this method
-            //they are the only power level 2 projectiles
-            //and now also hammers
-
-
-            #region Dungeon Objs - special cases
-
-            if (Obj.type == ObjType.Dungeon_DoorBombable)
-            {   //collapse doors
-                Functions_GameObject_Dungeon.CollapseDungeonDoor(Obj, Pro);
-            }
-            else if (Obj.type == ObjType.Dungeon_WallStraight)
-            {   //'crack' normal walls
-                Functions_GameObject.SetType(Obj,
-                    ObjType.Dungeon_WallStraightCracked);
-                Functions_Particle.Spawn(ObjType.Particle_Blast,
-                    Obj.compSprite.position.X,
-                    Obj.compSprite.position.Y);
-                Assets.Play(Assets.sfxShatter);
-            }
-
-            /*
-            else if (Obj.type == ObjType.Dungeon_TorchUnlit)
-            {   //light torches on fire
-                Functions_GameObject_Dungeon.LightTorch(Obj);
-            }
-            */
-
-            #endregion
-            
-
-            #region World Objs - special cases
-
-            else if (Obj.type == ObjType.Wor_Bush)
-            {   //destroy the bush
-                Functions_GameObject_World.DestroyBush(Obj);
-                //set a ground fire ON the stump sprite
-                Functions_Projectile.Spawn(
-                    ObjType.ProjectileGroundFire,
-                    Obj.compSprite.position.X,
-                    Obj.compSprite.position.Y - 4,
-                    Direction.None);
-            }
-            else if (Obj.type == ObjType.Wor_Tree || Obj.type == ObjType.Wor_Tree_Burning)
-            {   //blow up tree, showing leaf explosion
-                Functions_GameObject_World.BlowUpTree(Obj, true);
-            }
-            else if (Obj.type == ObjType.Wor_Tree_Burnt)
-            {   //blow up tree, no leaf explosion
-                Functions_GameObject_World.BlowUpTree(Obj, false);
-            }
-
-            else if (
-                //posts + burned posts
-                Obj.type == ObjType.Wor_PostBurned_Corner_Left
-                || Obj.type == ObjType.Wor_PostBurned_Corner_Right
-                || Obj.type == ObjType.Wor_PostBurned_Horizontal
-                || Obj.type == ObjType.Wor_PostBurned_Vertical_Left
-                || Obj.type == ObjType.Wor_PostBurned_Vertical_Right
-                || Obj.type == ObjType.Wor_Post_Corner_Left
-                || Obj.type == ObjType.Wor_Post_Corner_Right
-                || Obj.type == ObjType.Wor_Post_Horizontal
-                || Obj.type == ObjType.Wor_Post_Vertical_Left
-                || Obj.type == ObjType.Wor_Post_Vertical_Right
-                )
-            {
-                Functions_GameObject_World.BlowUpPost(Obj);
-            }
-
-
-
-            #endregion
-
-
-            #region Objs - General cases
-
-            else if (
-
-                //dungeon objs
-
-                //limited set for now
-                Obj.type == ObjType.Dungeon_Statue
-                || Obj.type == ObjType.Dungeon_Signpost
-
-                //world objs
-
-                //building objs
-                || Obj.type == ObjType.Wor_Build_Wall_FrontA
-                || Obj.type == ObjType.Wor_Build_Wall_FrontB
-                || Obj.type == ObjType.Wor_Build_Wall_Back
-                || Obj.type == ObjType.Wor_Build_Wall_Side_Left
-                || Obj.type == ObjType.Wor_Build_Wall_Side_Right
-                || Obj.type == ObjType.Wor_Build_Door_Shut
-                || Obj.type == ObjType.Wor_Build_Door_Open
-                //building interior objs
-                || Obj.type == ObjType.Wor_Bookcase
-                || Obj.type == ObjType.Wor_Shelf
-                || Obj.type == ObjType.Wor_Stove
-                || Obj.type == ObjType.Wor_Sink
-                || Obj.type == ObjType.Wor_TableSingle
-                || Obj.type == ObjType.Wor_TableDoubleLeft
-                || Obj.type == ObjType.Wor_TableDoubleRight
-                || Obj.type == ObjType.Wor_Chair
-                || Obj.type == ObjType.Wor_Bed
-                )
-            {
-                Kill(Obj, true, true);
-            }
-
-            #endregion
-
-
-            else
-            {   //trigger common obj interactions too
-                HandleCommon(Obj, //get direction towards roomObj from pro/explosion
-                    Functions_Direction.GetOppositeCardinal(
-                        Obj.compSprite.position,
-                        Pro.compSprite.position)
-                );
-            }
-        }
-
-
-
-
-
         public static void Kill(GameObject Obj, Boolean spawnLoot, Boolean becomeDebris)
         {   //pop an attention particle
             Functions_Particle.Spawn(
@@ -294,6 +69,10 @@ namespace DungeonRun
                 }
             }
         }
+
+
+
+
 
         public static void ResetObject(GameObject Obj)
         {
@@ -346,36 +125,14 @@ namespace DungeonRun
 
         public static void SetRotation(GameObject Obj)
         {   
-            //we could split this out into pro/pick/part SetRotations()
-            //but there isn't enough complexity to warrant that split, yet
-            
-            //handle object/projectile specific cases
             if (
-                Obj.type == ObjType.ProjectileSword 
-                || Obj.type == ObjType.ProjectileNet
-                || Obj.type == ObjType.ProjectileShovel
-                )
-            {   //some projectiles flip based on their direction
-                if (Obj.direction == Direction.Down || Obj.direction == Direction.Left)
-                { Obj.compSprite.flipHorizontally = true; }
-            }
-            else if (
-                //roomObjs
                 Obj.type == ObjType.Dungeon_PitTrap
                 || Obj.type == ObjType.Dungeon_PitTeethBottom
                 || Obj.type == ObjType.Dungeon_PitTeethTop
-                //pros
-                || Obj.type == ObjType.ProjectileBomb
-                || Obj.type == ObjType.ProjectilePot
-                || Obj.type == ObjType.ProjectilePotSkull
-                || Obj.type == ObjType.ProjectileBush
-                || Obj.type == ObjType.ProjectileBoomerang
-                || Obj.type == ObjType.ProjectileBat
                 )
             {   //some objects only face Direction.Down
                 Obj.direction = Direction.Down;
             }
-
             else if(Obj.type == ObjType.Dungeon_FloorBlood
                 || Obj.type == ObjType.Dungeon_PitTrap)
             {   //some objects are randomly flipped horizontally
@@ -384,20 +141,11 @@ namespace DungeonRun
 
             //set sprite's rotation based on direction & flipHorizontally boolean
             Functions_Component.SetSpriteRotation(Obj.compSprite, Obj.direction);
-
-            //some objects override the sprite rotation set above
-            if (Obj.type == ObjType.ProjectileLightningBolt)
-            {   //align lightning bolts vertically or horizontally
-                if (Obj.direction == Direction.Left || Obj.direction == Direction.Right)
-                { Obj.compSprite.rotation = Rotation.Clockwise90; }
-                else { Obj.compSprite.rotation = Rotation.None; }
-            }
-            else if(Obj.type == ObjType.ProjectileHammer)
-            {
-                Obj.compSprite.rotation = Rotation.None;
-            }
         }
 
+
+
+        
         public static void Update(GameObject Obj)
         {   //only roomObjs are passed into this method, some get AI (or behaviors)
             //roomObjs don't have lifetimes, they last the life of the room
@@ -2908,6 +2656,11 @@ namespace DungeonRun
 
 
 
+
+
+
+
+
             //Entities
 
 
@@ -2937,404 +2690,10 @@ namespace DungeonRun
             #endregion
 
 
-            //Projectiles
 
 
-            #region Projectiles - Items
 
-            else if (Type == ObjType.ProjectileBomb)
-            {
-                Obj.compSprite.zOffset = -4; //sort to floor
-                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
-                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
-                Obj.group = ObjGroup.Projectile;
-                Obj.lifetime = 100; //in frames
-                Obj.compAnim.speed = 7; //in frames
-                Obj.compMove.moveable = true;
-                Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Bomb;
-                Obj.compSprite.texture = Assets.entitiesSheet;
-            }
-            else if (Type == ObjType.ProjectileBoomerang)
-            {
-                Obj.compSprite.zOffset = 0;
-                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
-                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
-                Obj.group = ObjGroup.Projectile;
 
-                Obj.interactiveFrame = 20; //frame boomerang returns to hero
-                Obj.lifetime = 255;  //must be greater than 0, but is kept at 200
-
-                Obj.compMove.friction = 0.96f; //some air friction
-                Obj.compAnim.speed = 3; //very fast, in frames
-                Obj.compMove.moveable = true;
-                Obj.compMove.grounded = false; //obj is airborne
-                Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Boomerang;
-                Obj.compSprite.texture = Assets.entitiesSheet;
-            }
-
-            #endregion
-
-
-            #region Projectiles - Magic
-
-            else if (Type == ObjType.ProjectileFireball)
-            {
-                Obj.compSprite.zOffset = 16;
-                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
-                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
-                Obj.group = ObjGroup.Projectile;
-                Obj.lifetime = 50; //in frames
-                Obj.compMove.friction = World.frictionIce;
-                Obj.compAnim.speed = 5; //in frames
-                Obj.compMove.moveable = true;
-                Obj.compMove.grounded = false; //obj is airborne
-                Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Fireball;
-                Obj.compSprite.texture = Assets.entitiesSheet;
-            }
-
-            else if (Type == ObjType.ProjectileLightningBolt)
-            {
-                Obj.compSprite.zOffset = 16;
-                Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -7;
-                Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 14;
-                Obj.group = ObjGroup.Projectile;
-                Obj.lifetime = 25; //in frames
-                Obj.compMove.friction = World.frictionIce;
-                Obj.compAnim.speed = 1; //in frames
-                Obj.compMove.grounded = false; //obj is airborne
-                Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Bolt;
-                Obj.compSprite.texture = Assets.entitiesSheet;
-            }
-
-            else if (Type == ObjType.ProjectileBombos)
-            {
-                Obj.compSprite.zOffset = 32;
-                Obj.compCollision.offsetX = -1; Obj.compCollision.offsetY = -1;
-                Obj.compCollision.rec.Width = 3; Obj.compCollision.rec.Height = 3;
-                Obj.group = ObjGroup.Projectile;
-                Obj.lifetime = 255; //in frames
-                Obj.compMove.grounded = false; //obj is airborne
-                Obj.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Magic_Bombos;
-                Obj.compSprite.texture = Assets.uiItemsSheet; //reuse bombos ui sprite
-            }
-
-            #endregion
-
-
-
-
-            //Projectiles - Weapons
-
-            #region Sword
-
-            else if (Type == ObjType.ProjectileSword)
-            {
-                Obj.compSprite.zOffset = 16;
-                //set collision rec based on direction
-                if (Obj.direction == Direction.Up)
-                {
-                    Obj.compCollision.offsetX = -4; Obj.compCollision.offsetY = -4;
-                    Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 15;
-                }
-                else if (Obj.direction == Direction.Down)
-                {
-                    Obj.compCollision.offsetX = -4; Obj.compCollision.offsetY = -5;
-                    Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
-                }
-                else if (Obj.direction == Direction.Left)
-                {
-                    Obj.compCollision.offsetX = -4; Obj.compCollision.offsetY = -3;
-                    Obj.compCollision.rec.Width = 11; Obj.compCollision.rec.Height = 10;
-                }
-                else //right
-                {
-                    Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;
-                    Obj.compCollision.rec.Width = 11; Obj.compCollision.rec.Height = 10;
-                }
-
-                Obj.group = ObjGroup.Projectile;
-                Obj.lifetime = 18; //in frames
-                Obj.compAnim.speed = 2; //in frames
-                Obj.compAnim.loop = false;
-                Obj.compMove.moveable = true;
-                Obj.compMove.grounded = false; //is flying, cant fall into pit
-                Obj.compSprite.texture = Assets.entitiesSheet;
-                Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Sword;
-            }
-
-            #endregion
-
-
-            #region Shovel
-
-            else if (Type == ObjType.ProjectileShovel)
-            {
-                Obj.compSprite.zOffset = 16;
-                //set collision rec based on direction
-                if (Obj.direction == Direction.Up)
-                {
-                    Obj.compCollision.offsetX = -1; Obj.compCollision.offsetY = -4;
-                    Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 15;
-                }
-                else if (Obj.direction == Direction.Down)
-                {
-                    Obj.compCollision.offsetX = -1; Obj.compCollision.offsetY = -4;
-                    Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
-                }
-                else if (Obj.direction == Direction.Left)
-                {
-                    Obj.compCollision.offsetX = -4; Obj.compCollision.offsetY = -1;
-                    Obj.compCollision.rec.Width = 11; Obj.compCollision.rec.Height = 10;
-                }
-                else //right
-                {
-                    Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -1;
-                    Obj.compCollision.rec.Width = 11; Obj.compCollision.rec.Height = 10;
-                }
-
-                Obj.group = ObjGroup.Projectile;
-                Obj.lifetime = 18; //in frames
-                Obj.compAnim.speed = 2; //in frames
-                Obj.compAnim.loop = false;
-                Obj.compMove.moveable = true;
-                Obj.compMove.grounded = false; //is flying, cant fall into pit
-                Obj.compSprite.texture = Assets.entitiesSheet;
-                Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Shovel;
-            }
-
-            #endregion
-
-
-            #region Hammer
-
-            else if(Type == ObjType.ProjectileHammer)
-            {
-                Obj.compSprite.zOffset = 6;
-                Obj.compCollision.rec.Width = 10;
-                Obj.compCollision.rec.Height = 10;
-
-                //set collision rec offsets based on direction
-                if (Obj.direction == Direction.Up)
-                {
-                    Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -4;
-                }
-                else if (Obj.direction == Direction.Down)
-                {
-                    Obj.compCollision.offsetX = -8; Obj.compCollision.offsetY = -5;
-                }
-                else if (Obj.direction == Direction.Left)
-                {
-                    Obj.compCollision.offsetX = -4-3; Obj.compCollision.offsetY = -3;
-                }
-                else //right
-                {
-                    Obj.compCollision.offsetX = -7+3; Obj.compCollision.offsetY = -3;
-                }
-
-                Obj.group = ObjGroup.Projectile;
-                Obj.lifetime = 16; //in frames
-                Obj.compAnim.speed = 2; //in frames
-                Obj.compAnim.loop = false;
-                Obj.compMove.moveable = true;
-                Obj.compMove.grounded = false; //is flying, cant fall into pit
-                Obj.compSprite.texture = Assets.entitiesSheet;
-                Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Hammer_Down; 
-            }
-
-            #endregion
-
-
-            #region Arrow and Bow
-
-            else if (Type == ObjType.ProjectileArrow)
-            {
-                Obj.compSprite.zOffset = 16;
-                //set collision rec based on direction
-                if (Obj.direction == Direction.Up || Obj.direction == Direction.Down)
-                {
-                    Obj.compCollision.offsetX = -2; Obj.compCollision.offsetY = -6;
-                    Obj.compCollision.rec.Width = 4; Obj.compCollision.rec.Height = 12;
-                }
-                else //left or right
-                {
-                    Obj.compCollision.offsetX = -6; Obj.compCollision.offsetY = -2;
-                    Obj.compCollision.rec.Width = 12; Obj.compCollision.rec.Height = 4;
-                }
-                Obj.group = ObjGroup.Projectile;
-                Obj.lifetime = 200; //in frames
-                Obj.compAnim.speed = 5; //in frames
-                Obj.compMove.friction = 1.0f; //no air friction
-                Obj.compMove.moveable = true;
-                Obj.compMove.grounded = false; //obj is airborne
-                Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Arrow;
-                Obj.compSprite.texture = Assets.entitiesSheet;
-                Obj.sfx.kill = Assets.sfxArrowHit;
-                Obj.sfx.hit = Assets.sfxArrowHit;
-            }
-            else if (Type == ObjType.ProjectileBow)
-            {
-                Obj.compSprite.zOffset = 0;
-                Obj.group = ObjGroup.Projectile;
-                Obj.lifetime = 15; //in frames
-                Obj.compAnim.speed = 10; //in frames
-                Obj.compAnim.loop = false;
-                Obj.compMove.grounded = false; //obj is airborne
-                Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Bow;
-                Obj.compSprite.texture = Assets.entitiesSheet;
-                Obj.sfx.hit = null; Obj.sfx.kill = null;
-            }
-
-
-            #endregion
-
-
-            #region Net
-
-            else if (Type == ObjType.ProjectileNet)
-            {
-                Obj.compSprite.zOffset = 16;
-                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
-                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
-                Obj.group = ObjGroup.Projectile;
-                Obj.lifetime = 18; //in frames
-                Obj.compAnim.speed = 2; //in frames
-                Obj.compAnim.loop = false;
-                Obj.compMove.moveable = true;
-                Obj.compMove.grounded = false; //obj is airborne
-                Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Net;
-                Obj.compSprite.texture = Assets.entitiesSheet;
-                Obj.sfx.hit = null; Obj.sfx.kill = null;
-            }
-
-            #endregion
-
-
-
-
-
-
-
-            #region Projectiles - World
-
-            else if (Type == ObjType.ProjectileExplosion)
-            {
-                Obj.compSprite.zOffset = 16;
-                Obj.compCollision.offsetX = -12; Obj.compCollision.offsetY = -13;
-                Obj.compCollision.rec.Width = 24; Obj.compCollision.rec.Height = 26;
-                Obj.group = ObjGroup.Projectile;
-                Obj.lifetime = 24; //in frames
-                Obj.compAnim.speed = 5; //in frames
-                Obj.compAnim.loop = false;
-                Obj.compMove.grounded = false; //obj is airborne
-                Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Explosion;
-                Obj.compSprite.texture = Assets.entitiesSheet;
-                Obj.sfx.kill = Assets.sfxExplosion;
-                Obj.sfx.hit = Assets.sfxExplosion;
-            }
-            else if (Type == ObjType.ProjectileGroundFire)
-            {
-                Obj.compSprite.zOffset = 6;
-                Obj.group = ObjGroup.Projectile;
-                Obj.lifetime = 100; //in frames
-                Obj.compAnim.speed = 7; //in frames
-                Obj.compAnim.currentAnimation = AnimationFrames.Projectile_FireGround;
-                Obj.compSprite.texture = Assets.entitiesSheet;
-                //this controls how quick fire spreads:
-                Obj.interactiveFrame = 60; //early in life = quick spread
-                Obj.interactiveFrame += Functions_Random.Int(-15, 15); 
-                //add a random -/+ offset to stagger the spread
-            }
-
-            #endregion
-
-
-            #region Projectiles - Thrown
-
-            else if (Type == ObjType.ProjectileBush
-                || Type == ObjType.ProjectilePot
-                || Type == ObjType.ProjectilePotSkull)
-            {
-                //bushes and pots exist on commonObjs sheet,
-                //but skull pot exists on the dungeon sheet
-                if (Type == ObjType.ProjectilePotSkull)
-                { Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; }
-
-                //thrown projectile attributes
-                Obj.group = ObjGroup.Projectile;
-                Obj.compSprite.zOffset = 32;
-                Obj.lifetime = 20; //in frames
-                Obj.compMove.grounded = false; //obj is airborne
-                Obj.compMove.friction = 0.984f; //some air friction
-                //refine this hitBox later
-                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
-                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
-
-                //set animFrame based on type
-                if (Type == ObjType.ProjectileBush)
-                {
-                    Obj.compAnim.currentAnimation = AnimationFrames.World_Bush;
-                    Obj.sfx.kill = Assets.sfxBushCut;
-                    Obj.sfx.hit = Assets.sfxEnemyHit;
-                }
-                else if (Type == ObjType.ProjectilePot)
-                {
-                    Obj.compAnim.currentAnimation = AnimationFrames.Wor_Pot;
-                    Obj.sfx.hit = Assets.sfxEnemyHit;
-                    Obj.sfx.kill = Assets.sfxShatter;
-                }
-                else
-                {   //skull pot is default
-                    Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_Pot;
-                    Obj.sfx.hit = Assets.sfxEnemyHit;
-                    Obj.sfx.kill = Assets.sfxShatter;
-                }
-            }
-
-            #endregion
-
-
-            #region Projectiles - Enemy Related
-
-            else if (Type == ObjType.ProjectileBite)
-            {
-                Obj.compSprite.zOffset = 16;
-
-                Obj.compCollision.offsetX = -4;
-                Obj.compCollision.offsetY = -4;
-                Obj.compCollision.rec.Width = 8;
-                Obj.compCollision.rec.Height = 8;
-
-                Obj.group = ObjGroup.Projectile;
-                Obj.lifetime = 15; //in frames
-                Obj.compAnim.speed = 1; //in frames
-                Obj.compAnim.loop = false;
-                Obj.compMove.moveable = true;
-                Obj.compMove.grounded = false; //obj is airborne
-                Obj.compSprite.texture = Assets.entitiesSheet; //null / doesn't matter cause..
-                Obj.compSprite.visible = false; //..this projectile isnt drawn
-                Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Sword; //null too
-            }
-
-            else if (Type == ObjType.ProjectileBat)
-            {
-                Obj.compSprite.zOffset = 16;
-
-                Obj.compCollision.offsetX = -4; Obj.compCollision.offsetY = -8;
-                Obj.compCollision.rec.Width = 8; Obj.compCollision.rec.Height = 8;
-
-                Obj.group = ObjGroup.Projectile;
-                Obj.lifetime = 200; //in frames
-                Obj.compAnim.speed = 10; //in frames
-                Obj.compMove.friction = 1.0f; //no air friction
-                Obj.compMove.moveable = true;
-                Obj.compMove.grounded = false; //obj is airborne
-                Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Bat;
-                Obj.compSprite.texture = Assets.EnemySheet;
-                Obj.sfx.kill = Assets.sfxRatSqueak;
-                Obj.sfx.hit = null;
-            }
-
-            #endregion
 
 
             //Particles
@@ -3644,8 +3003,7 @@ namespace DungeonRun
             #region Handle Obj Group properties
 
             if (Obj.group == ObjGroup.Pickup ||
-                Obj.group == ObjGroup.Particle || 
-                Obj.group == ObjGroup.Projectile)
+                Obj.group == ObjGroup.Particle)
             {   //entities never block
                 Obj.compCollision.blocking = false;
             } 

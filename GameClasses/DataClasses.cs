@@ -438,124 +438,6 @@ namespace DungeonRun
 
     
 
-    public static class Pool
-    {
-        //actor pool handles all actors in the room including hero
-        public static int actorCount = 30;           //total count of actors in pool
-        public static List<Actor> actorPool = new List<Actor>();//the actual list of actors
-        public static int actorIndex;           //used to iterate thru the pool
-        public static int actorCounter = 0;
-
-        //obj pool handles room objects, from dungeon & main sheet
-        public static int roomObjCount = 3000;
-        public static List<GameObject> roomObjPool = new List<GameObject>();
-        public static int roomObjIndex;
-        public static int roomObjCounter = 0;
-
-        //particle pool - main sheet only
-        public static int particleCount = 750;
-        public static List<GameObject> particlePool = new List<GameObject>();
-        public static int particleIndex;
-        public static int particleCounter = 0;
-
-        //projectile pool - main sheet only
-        public static int projectileCount = 300;
-        public static List<Projectile> projectilePool = new List<Projectile>();
-        public static int projectileIndex;
-        public static int projectileCounter = 0;
-
-        //pickup pool - main sheet only
-        public static int pickupCount = 50;
-        public static List<GameObject> pickupPool = new List<GameObject>();
-        public static int pickupIndex;
-        public static int pickupCounter = 0;
-
-        //floor pool - dungeon sheet only
-        public static int floorCount = 500;
-        public static List<ComponentSprite> floorPool = new List<ComponentSprite>();
-        public static int floorIndex;
-        public static int floorCounter = 0;
-
-        //lines
-        public static int lineCount = 25;
-        public static List<Line> linePool = new List<Line>();
-        public static int lineCounter = 0;
-
-
-
-
-
-        public static int activeActor = 1; //tracks the current actor being handled by AI
-        public static Actor hero; //points to actorPool[0]
-        public static GameObject herosPet; //points to roomObj[1]
-
-        public static int collisionsCount = 0; //tracks collisions per frame
-        public static int interactionsCount = 0; //tracks interactions per frame
-
-        public static void Initialize()
-        {
-            //actor pool
-            for (actorCounter = 0; actorCounter < actorCount; actorCounter++)
-            {
-                actorPool.Add(new Actor());
-                Functions_Actor.SetType(actorPool[actorCounter], ActorType.Hero);
-                Functions_Movement.Teleport(actorPool[actorCounter].compMove, -100, -100);
-                actorPool[actorCounter].active = false;
-            }
-            actorIndex = 1;
-
-            //room obj pool
-            for (roomObjCounter = 0; roomObjCounter < roomObjCount; roomObjCounter++)
-            { roomObjPool.Add(new GameObject()); }
-            roomObjIndex = 1;
-
-            //particle pool
-            for (particleCounter = 0; particleCounter < particleCount; particleCounter++)
-            { particlePool.Add(new GameObject()); }
-            particleIndex = 0;
-
-            //projectile pool
-            for (projectileCounter = 0; projectileCounter < projectileCount; projectileCounter++)
-            { projectilePool.Add(new Projectile()); }
-            projectileIndex = 0;
-
-            //pickup pool
-            for (pickupCounter = 0; pickupCounter < pickupCount; pickupCounter++)
-            { pickupPool.Add(new GameObject()); }
-            pickupIndex = 0;
-
-            //floor pool
-            for (floorCounter = 0; floorCounter < floorCount; floorCounter++)
-            {
-                floorPool.Add(new ComponentSprite(Assets.Dungeon_DefaultSheet,
-                    new Vector2(0, 0), 
-                    new Byte4(15, 0, 0, 0), 
-                    new Point(16, 16)));
-            }
-            floorIndex = 0;
-
-            //line pool
-            for(lineCounter = 0; lineCounter < lineCount; lineCounter++)
-            {
-                linePool.Add(new Line()); //recycled later
-            }
-
-
-
-            //reset all pools
-            Functions_Pool.Reset();
-            //create easy to remember reference for hero & pet
-            hero = actorPool[0];
-            herosPet = roomObjPool[0];
-            Functions_Actor.SetType(hero, ActorType.Hero);
-            Functions_GameObject.SetType(herosPet, ObjType.Pet_Dog);
-        }
-
-    }
-
-
-
-
     //used to contain the global inputs for player1, 2
     public static class Input
     {
@@ -1234,6 +1116,137 @@ namespace DungeonRun
 
 
 
+    #region The Pool
+
+    public static class Pool
+    {
+        //actor pool handles all actors in the room including hero
+        public static int actorCount = 30;           //total count of actors in pool
+        public static List<Actor> actorPool = new List<Actor>();//the actual list of actors
+        public static int actorIndex;           //used to iterate thru the pool
+        public static int actorCounter = 0;
+
+        //obj pool handles room objects, from dungeon & main sheet
+        public static int roomObjCount = 3000;
+        public static List<GameObject> roomObjPool = new List<GameObject>();
+        public static int roomObjIndex;
+        public static int roomObjCounter = 0;
+
+
+        //floor pool - dungeon sheet only
+        public static int floorCount = 500;
+        public static List<ComponentSprite> floorPool = new List<ComponentSprite>();
+        public static int floorIndex;
+        public static int floorCounter = 0;
+
+        //lines (for overworld map mostly)
+        public static int lineCount = 25;
+        public static List<Line> linePool = new List<Line>();
+        public static int lineCounter = 0;
+
+
+        //projectile pool
+        public static int projectileCount = 300;
+        public static List<Projectile> projectilePool = new List<Projectile>();
+        public static int projectileIndex;
+        public static int projectileCounter = 0;
+
+        //this should be it's own pool of particles, not gameObjs
+        public static int particleCount = 750;
+        public static List<GameObject> particlePool = new List<GameObject>();
+        public static int particleIndex;
+        public static int particleCounter = 0;
+
+        
+
+        //this should be moved into projectiles pool
+        public static int pickupCount = 50;
+        public static List<GameObject> pickupPool = new List<GameObject>();
+        public static int pickupIndex;
+        public static int pickupCounter = 0;
+
+
+
+
+
+
+
+
+
+
+
+        public static int activeActor = 1; //tracks the current actor being handled by AI
+        public static Actor hero; //points to actorPool[0]
+        public static GameObject herosPet; //points to roomObj[1]
+
+        public static int collisionsCount = 0; //tracks collisions per frame
+        public static int interactionsCount = 0; //tracks interactions per frame
+
+        public static void Initialize()
+        {
+            //actor pool
+            for (actorCounter = 0; actorCounter < actorCount; actorCounter++)
+            {
+                actorPool.Add(new Actor());
+                Functions_Actor.SetType(actorPool[actorCounter], ActorType.Hero);
+                Functions_Movement.Teleport(actorPool[actorCounter].compMove, -100, -100);
+                actorPool[actorCounter].active = false;
+            }
+            actorIndex = 1;
+
+            //room obj pool
+            for (roomObjCounter = 0; roomObjCounter < roomObjCount; roomObjCounter++)
+            { roomObjPool.Add(new GameObject()); }
+            roomObjIndex = 1;
+
+            //particle pool
+            for (particleCounter = 0; particleCounter < particleCount; particleCounter++)
+            { particlePool.Add(new GameObject()); }
+            particleIndex = 0;
+
+            //projectile pool
+            for (projectileCounter = 0; projectileCounter < projectileCount; projectileCounter++)
+            { projectilePool.Add(new Projectile()); }
+            projectileIndex = 0;
+
+            //pickup pool
+            for (pickupCounter = 0; pickupCounter < pickupCount; pickupCounter++)
+            { pickupPool.Add(new GameObject()); }
+            pickupIndex = 0;
+
+            //floor pool
+            for (floorCounter = 0; floorCounter < floorCount; floorCounter++)
+            {
+                floorPool.Add(new ComponentSprite(Assets.Dungeon_DefaultSheet,
+                    new Vector2(0, 0),
+                    new Byte4(15, 0, 0, 0),
+                    new Point(16, 16)));
+            }
+            floorIndex = 0;
+
+            //line pool
+            for (lineCounter = 0; lineCounter < lineCount; lineCounter++)
+            {
+                linePool.Add(new Line()); //recycled later
+            }
+
+
+
+            //reset all pools
+            Functions_Pool.Reset();
+            //create easy to remember reference for hero & pet
+            hero = actorPool[0];
+            herosPet = roomObjPool[0];
+            Functions_Actor.SetType(hero, ActorType.Hero);
+            Functions_GameObject.SetType(herosPet, ObjType.Pet_Dog);
+        }
+
+    }
+
+    #endregion
+
+
+
     #region Actors, GameObjects, Projectiles
 
     public class Actor
@@ -1326,6 +1339,8 @@ namespace DungeonRun
         }
     }
 
+
+
     public class GameObject
     {
         public ComponentSprite compSprite;
@@ -1359,17 +1374,48 @@ namespace DungeonRun
         }
     }
 
-    public class Projectile : GameObject
+
+
+    public class Projectile
     {
-        public Actor caster; //actor/obj who created projectile
+        public ComponentSprite compSprite;
+        public ComponentAnimation compAnim = new ComponentAnimation();
+        public ComponentMovement compMove = new ComponentMovement();
+        public ComponentCollision compCollision = new ComponentCollision();
+        public ComponentSoundFX sfx = new ComponentSoundFX();
+
+        public Boolean active = true; //does object draw, update?
+
+        public Actor caster = Pool.hero; //default caster to hero
+        public ProjectileType type = ProjectileType.ProjectileArrow;
+        public Direction direction = Direction.Down; //direction sprite is facing
+
+        public Byte lifetime = 30; //how many frames this object exists for, 0 = forever/ignore
+        public Byte lifeCounter = 0; //counts up to lifetime value
+
+        public int interactiveFrame = 0;
+        //0 = always interactive, >0 = just that one # frame of interaction
+
         public Projectile()
-        {   //default to an arrow
-            type = ObjType.ProjectileArrow;
+        {   //initialize to default value - data is changed later
+            compSprite = new ComponentSprite(Assets.entitiesSheet,
+                new Vector2(50, 50), new Byte4(0, 0, 0, 0), new Point(16, 16));
+            Functions_Projectile.SetType(this, type);
         }
     }
 
 
+
+
+
+
     #endregion
+
+
+
+
+
+
 
 
 

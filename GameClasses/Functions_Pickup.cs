@@ -78,19 +78,21 @@ namespace DungeonRun
 
 
 
-        public static void CheckOverlap(GameObject Obj)
+        public static void CheckOverlap(Projectile Pro)
         {   //check to see if OBJ overlaps any OBJ on the pickups list, return pickup OBJ
             for (int i = 0; i < Pool.pickupCount; i++)
             {
                 if(Pool.pickupPool[i].active)
                 {
-                    if (Obj.compCollision.rec.Intersects(Pool.pickupPool[i].compCollision.rec))
+                    if (Pro.compCollision.rec.Intersects(Pool.pickupPool[i].compCollision.rec))
                     {   //this function assumes that the overlapping gameObj collects the pickup
                         HandleEffect(Pool.pickupPool[i]);
                     }
                 }
             }
         }
+
+
 
         public static void HandleEffect(GameObject Pickup)
         {

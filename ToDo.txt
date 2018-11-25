@@ -59,33 +59,13 @@ Today:
 
 
 
+**we are moving projectiles out of gameobj and into their own systems**
+pool.update() starts the kick
+we check pro intractions with objs
 
 
-
-
-
-
-
-
-
-
-
-Hammers++
-
-vastly improved hammer sprites and projectile.
-sync'd uwp to dx projects.
-
-Shovel++
-
-improved shovels hitbox. it now represents the shavel sprite
-much better, and is seperate from the sword, which it was sharing
-a hitbox routine with.
-
-
-
-
-
-
+pool is setup.
+interation functions are ready, but need work.
 
 
 
@@ -95,10 +75,92 @@ a hitbox routine with.
 
 Projectile System++
 
-projectiles need to be seperated from gameobjects.
+the pros are intermingled with gameobjs, and gameobjs dont
+really rotate or do direction changes much, but pros do.
+this is complicating pro logic, because they have to fit into
+the roomObj rotation routines, then they go to their own per frame
+routines, plus their spawn routines, plus their obj.type routines. 
+that's alot of un-needed computations.
+
+so... projectiles need to be seperated from gameobjects.
 they are fundamentally different, and shouldn't be passed
 thru gameobject systems at all. it's a confusing mess,
 and they need their own system, so let's make that happen.
+
+created projectile types enum to contain all pro values.
+removed objGroup type Projectile. removed projectile inheriting
+from gameobject, to keep it leaner and faster and allow for more.
+
+no errors, we now need to test the new projectile systems,
+in totality. test failures:
+
+hammer rotations are wrong, up, LR are wrong.
+other than that, projectiles spawn/cast fine, update
+and die fine. this was a big commit.
+
+additional notes-
+back roofs no longer trigger roof hiding, preventing hero from peeking.
+wall statues shoot arrows again.
+we can't throw anykind of held object, because the throwing routines
+were affected by projectile seperation from gameobject.
+
+
+
+
+
+
+
+
+
+test that exploding objects still work:
+this is exploding barrel, what else?
+
+
+
+
+Projectile System Upgrades
+
+
+
+Cleanup
+**exploding objects are still roomObjs, not projectiles**
+
+**we need to remarry the throwing routines to the new projectile
+system. the picked up obj becomes a carried projectile, that inherits
+the object's texture and animFrame. this 'dupes' the obj overhead, which
+then tracks like any other projectile. when thrown, this projectile simply
+travels in a straight line in hero's direction, from hero's center pos.
+this makes throwing reliable again, and much easier in code.
+
+
+
+
+
+
+
+Projectile System ++++
+
+we also need to migrate these ideas to particles and pickups,
+as they don't need all the values roomObjs do. we *could* stuff
+particles and pickups into projectiles....
+
+this simplifies roomObjs, since this system will be growing as well.
+if we put pickups into projectiles, then we could make projectiles that
+spawn pickups - a wand that creates hearts or gold, etc...
+
+
+
+
+
+Destruction++
+functions_interaction has handleCommon and blowuP() methods,
+which need to be consolidated into one, using a power level byte
+which is part of projectile. this isn't part of pro yet tho!
+
+
+
+
+
 
 
 

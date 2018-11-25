@@ -148,7 +148,7 @@ namespace DungeonRun
                             if (Pool.hero.carrying) //destroy anything hero is carrying
                             {
                                 Pool.hero.carrying = false;
-                                Functions_GameObject.HandleCommon(Pool.hero.heldObj, Direction.None);
+                                Functions_Interaction.HandleCommon(Pool.hero.heldObj, Direction.None);
                                 Functions_Pool.Release(Pool.hero.heldObj);
                             }
 
@@ -769,7 +769,9 @@ namespace DungeonRun
                 if (Pool.pickupPool[i].active)
                 {   
                     if (Pool.hero.compCollision.rec.Intersects(Pool.pickupPool[i].compCollision.rec))
-                    { Functions_Interaction.InteractActor(Pool.hero, Pool.pickupPool[i]); }
+                    {
+                        Functions_Interaction.Interact_ObjectActor(Pool.pickupPool[i], Pool.hero);
+                    }
                 }
             }
 

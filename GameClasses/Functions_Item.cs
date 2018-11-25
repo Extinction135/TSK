@@ -24,30 +24,27 @@ namespace DungeonRun
 
             if (Type == MenuItemType.WeaponSword)
             {
-                Functions_Projectile.Spawn(ObjType.ProjectileSword, Actor, Actor.direction);
+                Functions_Projectile.Spawn(ProjectileType.ProjectileSword, Actor, Actor.direction);
                 Functions_Actor.SetItemUseState(Actor);
             }
             else if (Type == MenuItemType.WeaponNet)
             {
-                Functions_Projectile.Spawn(ObjType.ProjectileNet, Actor, Actor.direction);
+                Functions_Projectile.Spawn(ProjectileType.ProjectileNet, Actor, Actor.direction);
                 Functions_Actor.SetItemUseState(Actor);
             }
             else if (Type == MenuItemType.WeaponShovel)
             {
-                Functions_Projectile.Spawn(ObjType.ProjectileShovel, Actor, Actor.direction);
+                Functions_Projectile.Spawn(ProjectileType.ProjectileShovel, Actor, Actor.direction);
                 Functions_Actor.SetItemUseState(Actor);
             }
-
             else if (Type == MenuItemType.WeaponHammer)
             {
-                Functions_Projectile.Spawn(ObjType.ProjectileHammer, Actor, Actor.direction);
+                Functions_Projectile.Spawn(ProjectileType.ProjectileHammer, Actor, Actor.direction);
                 Functions_Actor.SetItemUseState(Actor);
             }
-
-
             else if (Type == MenuItemType.WeaponFang)
             {
-                Functions_Projectile.Spawn(ObjType.ProjectileBite, Actor, Actor.direction);
+                Functions_Projectile.Spawn(ProjectileType.ProjectileBite, Actor, Actor.direction);
                 Functions_Actor.SetItemUseState(Actor);
             }
 
@@ -61,14 +58,14 @@ namespace DungeonRun
                 if (Actor == Pool.hero & !CheckBombs()) //check if hero has enough
                 { Assets.Play(Assets.sfxError); Actor.lockTotal = 0; return; }
                 //actor spawns a bomb
-                Functions_Projectile.Spawn(ObjType.ProjectileBomb, Actor, Actor.direction);
+                Functions_Projectile.Spawn(ProjectileType.ProjectileBomb, Actor, Actor.direction);
                 Functions_Actor.SetItemUseState(Actor);
             }
             else if (Type == MenuItemType.ItemBoomerang)
             {
                 if (Functions_Hero.boomerangInPlay == false)
                 {   //throw a boomerang, if there is no boomerang in play
-                    Functions_Projectile.Spawn(ObjType.ProjectileBoomerang, Actor, Actor.direction);
+                    Functions_Projectile.Spawn(ProjectileType.ProjectileBoomerang, Actor, Actor.direction);
                     Functions_Actor.SetItemUseState(Actor);
                     Assets.Play(Assets.sfxArrowShoot);
                 }
@@ -78,9 +75,9 @@ namespace DungeonRun
                 if (Actor == Pool.hero & !CheckArrows()) //check if hero has enough
                 { Assets.Play(Assets.sfxError); Actor.lockTotal = 0; return; }
                 //actor shoots an arrow
-                Functions_Projectile.Spawn(ObjType.ProjectileArrow, Actor, Actor.direction);
+                Functions_Projectile.Spawn(ProjectileType.ProjectileArrow, Actor, Actor.direction);
                 //actor displays a bow
-                Functions_Projectile.Spawn(ObjType.ProjectileBow, Actor, Actor.direction);
+                Functions_Projectile.Spawn(ProjectileType.ProjectileBow, Actor, Actor.direction);
                 Functions_Actor.SetItemUseState(Actor);
             }
 
@@ -94,7 +91,7 @@ namespace DungeonRun
                 if (Actor == Pool.hero & !CheckMagic(1)) //check if hero has enough
                 { Assets.Play(Assets.sfxError); Actor.lockTotal = 0; return; }
                 //actor shoots a fireball
-                Functions_Projectile.Spawn(ObjType.ProjectileFireball, Actor, Actor.direction);
+                Functions_Projectile.Spawn(ProjectileType.ProjectileFireball, Actor, Actor.direction);
                 Functions_Actor.SetItemUseState(Actor);
             }
             else if (Type == MenuItemType.MagicBombos)
@@ -102,7 +99,7 @@ namespace DungeonRun
                 if (Actor == Pool.hero & !CheckMagic(5)) //check if hero has enough
                 { Assets.Play(Assets.sfxError); Actor.lockTotal = 0; return; }
                 //cast bombos
-                Functions_Projectile.Spawn(ObjType.ProjectileBombos, Actor, Actor.direction);
+                Functions_Projectile.Spawn(ProjectileType.ProjectileBombos, Actor, Actor.direction);
                 Functions_Actor.SetRewardState(Pool.hero);
             }
             else if (Type == MenuItemType.MagicBolt)
@@ -116,7 +113,7 @@ namespace DungeonRun
             else if (Type == MenuItemType.MagicBat)
             {
                 //create bat projectile, shorten casting time to allow for spamming
-                Functions_Projectile.Spawn(ObjType.ProjectileBat, Actor, Actor.direction);
+                Functions_Projectile.Spawn(ProjectileType.ProjectileBat, Actor, Actor.direction);
                 Functions_Actor.SetItemUseState(Actor);
                 Actor.lockTotal = 4;
             }

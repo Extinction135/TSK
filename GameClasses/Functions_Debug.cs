@@ -90,6 +90,23 @@ namespace DungeonRun
             Inspect(Obj.compSprite);
         }
 
+        public static void Inspect(Projectile Pro)
+        {
+            output = "\n\n\n---- Pro (type:" + Pro.type + ") ----\n";
+            output += "\tdirection:" + Pro.direction;
+            output += "\tactive:" + Pro.active;
+            output += "\tlifetime:" + Pro.lifetime;
+            output += "\tlifeCounter:" + Pro.lifeCounter;
+            Debug.WriteLine(output);
+
+            //dump component info
+            Inspect(Pro.compCollision);
+            Inspect(Pro.compMove);
+            Inspect(Pro.compAnim);
+            Inspect(Pro.compSprite);
+        }
+
+
         public static void Inspect(ComponentCollision Coll)
         {
             output = "Component Collision\n";

@@ -14,7 +14,7 @@ namespace DungeonRun
 {
     public static class Functions_Actor
     {
-        static ObjType throwType;
+        
         static int i;
         static int k;
 
@@ -540,6 +540,14 @@ namespace DungeonRun
             Assets.Play(Assets.sfxActorLand); //temp sfx
         }
 
+
+
+
+
+
+
+
+        static ObjType throwType;
         public static void Throw(Actor Act)
         {   //put actor into throw state
             Act.carrying = false;
@@ -583,12 +591,16 @@ namespace DungeonRun
                 //strongly push enemy in actor's facing direction
                 Functions_Movement.Push(
                     Act.heldObj.compMove,
-                    Act.direction, 10.0f);
+                    Act.direction, 8.0f);
                 //reset hitbox, sorting offsets, etc...
                 Functions_GameObject.SetType(Act.heldObj, Act.heldObj.type);
             }
             else
-            {   //create a thrown version of heldObj
+            {   
+                
+                //throwing routines are broken and need reintegration into new projectile system
+                /*
+                //create a thrown version of heldObj
                 //assume we're throwing a bush
                 throwType = ObjType.ProjectileBush;
                 //check for pots
@@ -598,6 +610,10 @@ namespace DungeonRun
                 { throwType = ObjType.ProjectilePot; }
                 //spawn the thrown projectile obj
                 Functions_Projectile.Spawn(throwType, Act, Act.direction);
+                */
+
+
+
                 Functions_Pool.Release(Act.heldObj);
             }
             
@@ -605,6 +621,12 @@ namespace DungeonRun
             Assets.Play(Assets.sfxActorFall); //play throw sfx
             Functions_Particle.SpawnPushFX(Act.compMove, Act.direction);
         }
+
+
+
+
+
+
 
         public static void Grab(GameObject Obj, Actor Act)
         {

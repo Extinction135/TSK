@@ -249,11 +249,9 @@ namespace DungeonRun
                     #endregion
 
 
+                    //we can only add roomObjects or pickups to the room, no particles/projectiles
                     GameObject objRef;
-                    //get an object from the entity pool or roomObj pool
-                    if (currentObjRef.group == ObjGroup.Projectile)
-                    { objRef = Functions_Pool.GetProjectile(); }
-                    else if (currentObjRef.group == ObjGroup.Pickup)
+                    if (currentObjRef.group == ObjGroup.Pickup)
                     { objRef = Functions_Pool.GetPickup(); }
                     else { objRef = Functions_Pool.GetRoomObj(); }
 

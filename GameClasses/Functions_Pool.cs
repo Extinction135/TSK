@@ -75,8 +75,10 @@ namespace DungeonRun
                 if (Pool.projectileIndex >= Pool.projectileCount) { Pool.projectileIndex = 0; }
                 if (Pool.projectilePool[Pool.projectileIndex].active == false)
                 {   //found an inactive to return
+                    
                     //reset to default state, hide offscreen, return it
-                    Functions_GameObject.ResetObject(Pool.projectilePool[Pool.projectileIndex]);
+                    Functions_Projectile.Reset(Pool.projectilePool[Pool.projectileIndex]);
+
                     Pool.projectilePool[Pool.projectileIndex].compMove.newPosition.X = -1000;
                     Pool.projectilePool[Pool.projectileIndex].compSprite.scale = 1.0f;
                     //clear caster ref
@@ -206,6 +208,15 @@ namespace DungeonRun
             Obj.lifetime = 0;
         }
 
+        public static void Release(Projectile Pro)
+        {
+            Pro.active = false;
+            Pro.lifetime = 0;
+        }
+
+
+
+
 
 
         public static void Update()
@@ -258,8 +269,20 @@ namespace DungeonRun
                     if (Pool.actorPool[i].state == ActorState.Falling)
                     { Pool.actorPool[i].state = ActorState.Landed; }
 
-                    //then finally handle any interactions the actor has
-                    Functions_Interaction.CheckInteractions(Pool.actorPool[i], true, true);
+
+                    if (Pool.actorPool[i] == Pool.hero & Flags.Clipping) { return; }
+                    else
+                    {
+                        //then finally handle any interactions the actor has
+                        //Functions_Interaction.CheckInteractions(Pool.actorPool[i], true, true);
+                        Functions_Interaction.CheckObj_Actor(Pool.actorPool[i]);
+                        Functions_Interaction.CheckProjectile_Actor(Pool.actorPool[i]);
+                    }
+                    
+
+
+
+
 
                     Functions_Actor.Update(Pool.actorPool[i]);
                     Functions_Animation.Animate(Pool.actorPool[i].compAnim, Pool.actorPool[i].compSprite);
@@ -294,7 +317,10 @@ namespace DungeonRun
                         || Pool.roomObjPool[i].type == ObjType.Dungeon_ConveyorBeltOn
                         || Pool.roomObjPool[i].type == ObjType.Dungeon_Fairy
                         || Pool.roomObjPool[i].type == ObjType.Pet_Dog)
-                    { Functions_Interaction.CheckInteractions(Pool.roomObjPool[i]); }
+                    {
+                        //Functions_Interaction.CheckInteractions(Pool.roomObjPool[i]); //old
+                        Functions_Interaction.CheckObj_Obj(Pool.roomObjPool[i]);
+                    }
 
                     //update, animate, scale
                     Functions_GameObject.Update(Pool.roomObjPool[i]);
@@ -324,8 +350,10 @@ namespace DungeonRun
                     //then animate scale
                     Functions_Animation.Animate(Pool.projectilePool[i].compAnim, Pool.projectilePool[i].compSprite);
                     Functions_Animation.ScaleSpriteDown(Pool.projectilePool[i].compSprite);
+
                     //interaction check projectiles (this may kill them, so we do it last)
-                    Functions_Interaction.CheckInteractions(Pool.projectilePool[i]);
+                    //Functions_Interaction.CheckInteractions(Pool.projectilePool[i]); //old
+                    Functions_Interaction.CheckProjectile_Obj(Pool.projectilePool[i]);
                 }
             }
 
@@ -338,7 +366,8 @@ namespace DungeonRun
                     Functions_Animation.Animate(Pool.pickupPool[i].compAnim, Pool.pickupPool[i].compSprite);
                     Functions_Animation.ScaleSpriteDown(Pool.pickupPool[i].compSprite);
                     //interaction check pickups
-                    Functions_Interaction.CheckInteractions(Pool.pickupPool[i]);
+                    //Functions_Interaction.CheckInteractions(Pool.pickupPool[i]);//old
+                    Functions_Interaction.CheckObj_Obj(Pool.pickupPool[i]);
                 }
             }
 

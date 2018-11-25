@@ -19,6 +19,32 @@ namespace DungeonRun
 
 
 
+
+
+        //spawns a particle of Type on Pro or Object
+        public static void Spawn(ObjType Type, Projectile Pro)
+        {
+            //set position reference to sprite position
+            posRef.X = Pro.compSprite.position.X;
+            posRef.Y = Pro.compSprite.position.Y;
+
+
+            #region Sword & Net
+
+            if (Pro.type == ProjectileType.ProjectileSword || Pro.type == ProjectileType.ProjectileNet)
+            {
+                if (Pro.direction == Direction.Up) { posRef.X += 8; posRef.Y -= 0; }
+                else if (Pro.direction == Direction.Right) { posRef.X += 8; posRef.Y += 8; }
+                else if (Pro.direction == Direction.Down) { posRef.X += 8; posRef.Y += 8; }
+                else if (Pro.direction == Direction.Left) { posRef.X += 2; posRef.Y += 8; }
+            }
+
+            #endregion
+
+
+            Spawn(Type, posRef.X, posRef.Y);
+        }
+
         public static void Spawn(ObjType Type, GameObject Object)
         {
             //set position reference to sprite position
@@ -26,22 +52,9 @@ namespace DungeonRun
             posRef.Y = Object.compSprite.position.Y;
 
 
-            #region Sword & Net
-
-            if (Object.type == ObjType.ProjectileSword || Object.type == ObjType.ProjectileNet)
-            {   
-                if (Object.direction == Direction.Up) { posRef.X += 8; posRef.Y -= 0; }
-                else if (Object.direction == Direction.Right) { posRef.X += 8; posRef.Y += 8; }
-                else if (Object.direction == Direction.Down) { posRef.X += 8; posRef.Y += 8; }
-                else if (Object.direction == Direction.Left) { posRef.X += 2; posRef.Y += 8; }
-            }
-
-            #endregion
-
-
             #region Pit
 
-            else if (Object.type == ObjType.Dungeon_Pit)
+            if (Object.type == ObjType.Dungeon_Pit)
             {   //randomly offset where the bubble particle is placed
                 posRef.X += 4; posRef.Y += 4; //because bubble is 8x8 size
                 posRef.X += Functions_Random.Int(-3, 4);
@@ -68,6 +81,13 @@ namespace DungeonRun
 
             Spawn(Type, posRef.X, posRef.Y);
         }
+
+
+
+
+
+
+
 
         public static void Spawn(ObjType Type, Actor Actor)
         {
@@ -158,6 +178,10 @@ namespace DungeonRun
 
             //Debug.WriteLine("particle made: " + Type + " - location: " + X + ", " + Y);
         }
+
+
+
+
 
         public static void Update(GameObject Obj)
         {
