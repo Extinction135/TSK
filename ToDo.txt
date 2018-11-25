@@ -55,80 +55,18 @@ Today:
 
 
 
-Systems++
 
-migrated pickups into their own class.
-migrated particles into their own class.
 
-pickups use their own methods for management.
-projectiles use theiw own methods as well.
-this seperates pickups, projectiles, and particles
-from gameobjects completely. some bugs will
-exist from this migration, but this makes the
-systems clearer and simplerer and allows for
-expansion in the future.
+Particles++
+
+debris particles aren't displaying properly, this is due to
+their texture not being set properly. that has been fixed, tested.
+
+fixed a bug where push lines didn't face their proper direction
+upon spawn.
 
 
 
-
-
-
-
-
-
-
-
-
-when we create debris particles, they likely aren't on right texture.
-
-
-
-
-
-
-
-
-
-
-debris explosion didn't display properly. should of showed
-small debris, showed arrows instead?
-
-touching pickups slows link down a bunch, assuming we aren't
-removing them.
-
-
-
-
-
-
-notes-
-fixed xml to cs folder address bug.
-
-
-
-
-
-
-we are migrating pickups and particles at the same time.
-pickups to projectiles, vs hero.
-particles to their own class/routines.
-
-
-
-
-test that we can still collide with pickups.
-
-test that particles are created and die properly.
-
-
-
-
-
-
-corrections:
-
-push lines are not being rotated properly, assuming
-particle rotations are not being accounted for.
 
 
 
