@@ -466,6 +466,23 @@ namespace DungeonRun
             else if (Type == ObjType.ProjectileHammer)
             {
                 Assets.Play(Assets.sfxActorLand); //generic use sound
+                //set anim frame based on direction
+                if (pro.direction == Direction.Down)
+                {
+                    pro.compAnim.currentAnimation = AnimationFrames.Projectile_Hammer_Down;
+                }
+                else if (pro.direction == Direction.Up)
+                {
+                    pro.compAnim.currentAnimation = AnimationFrames.Projectile_Hammer_Up;
+                }
+                else if (pro.direction == Direction.Right)
+                {   
+                    pro.compAnim.currentAnimation = AnimationFrames.Projectile_Hammer_Right;
+                }
+                else if (pro.direction == Direction.Left)
+                {
+                    pro.compAnim.currentAnimation = AnimationFrames.Projectile_Hammer_Left;
+                }
             }
 
             #endregion
@@ -568,13 +585,12 @@ namespace DungeonRun
             #endregion
 
 
-            #region Sword, Net, Shovel, Hammer
+            #region Sword, Net, Shovel
 
             //sword, net, shovel all track to the HERO'S HAND, based on direction
             else if (Pro.type == ObjType.ProjectileSword
                 || Pro.type == ObjType.ProjectileNet
                 || Pro.type == ObjType.ProjectileShovel
-                || Pro.type == ObjType.ProjectileHammer
                 )
             {   
                 if (Pro.direction == Direction.Down)
@@ -639,6 +655,60 @@ namespace DungeonRun
             }
 
             #endregion
+
+
+            #region Hammer
+
+            //we need to set hammer's animFrames here, based on direction
+            else if(Pro.type == ObjType.ProjectileHammer)
+            {
+                if (Pro.direction == Direction.Down)
+                {   //place inhand below casters hb
+                    Functions_Movement.Teleport(Pro.compMove,
+                        Pro.caster.compCollision.rec.X + 12,
+                        Pro.caster.compCollision.rec.Y + Pro.caster.compCollision.rec.Height + 7);
+                }
+                else if (Pro.direction == Direction.Up)
+                {   //place inhand above casters hb
+                    Functions_Movement.Teleport(Pro.compMove,
+                        Pro.caster.compCollision.rec.X + 12,
+                        Pro.caster.compCollision.rec.Y - 13);
+                }
+                else if (Pro.direction == Direction.Right)
+                {   //place inhand right side of casters hb
+                    Functions_Movement.Teleport(Pro.compMove,
+                        Pro.caster.compCollision.rec.X + Pro.caster.compCollision.rec.Width + 6,
+                        Pro.caster.compCollision.rec.Y + 1);
+                    
+                }
+                else if (Pro.direction == Direction.Left)
+                {   //place inhand left side of casters hb
+                    Functions_Movement.Teleport(Pro.compMove,
+                        Pro.caster.compCollision.rec.X - 6,
+                        Pro.caster.compCollision.rec.Y + 1);
+                    
+                }
+
+
+                if(Pro.compAnim.index == 3)
+                {   //create random impact fx (right is special case)
+                    if (Pro.direction == Direction.Right)
+                    {
+                        Functions_Particle.Spawn(ObjType.Particle_ImpactDust,
+                                Pro.compSprite.position.X + 8 + Functions_Random.Int(-4, 4),
+                                Pro.compSprite.position.Y + 8 + Functions_Random.Int(-4, 4));
+                    }
+                    else
+                    {
+                        Functions_Particle.Spawn(ObjType.Particle_ImpactDust,
+                                Pro.compSprite.position.X + 2 + Functions_Random.Int(-4, 4),
+                                Pro.compSprite.position.Y + 8 + Functions_Random.Int(-4, 4));
+                    }
+                }
+            }
+
+            #endregion
+
 
 
 

@@ -568,11 +568,20 @@ namespace DungeonRun
             new Byte4(0, 9, 0, 0), new Byte4(1, 9, 0, 0),
             new Byte4(2, 9, 0, 0), new Byte4(3, 9, 0, 0)
         };
-        public static List<Byte4> Projectile_Hammer = new List<Byte4>
-        {
-            new Byte4(0, 10, 0, 0), new Byte4(1, 10, 0, 0),
-            new Byte4(2, 10, 0, 0), new Byte4(3, 10, 0, 0)
-        };
+
+        //a bit more complicated for the hammer
+        public static List<Byte4> Projectile_Hammer_Down = new List<Byte4>
+        { new Byte4(0, 10, 0, 0), new Byte4(1, 10, 0, 0), new Byte4(2, 10, 0, 0) };
+
+        public static List<Byte4> Projectile_Hammer_Up = new List<Byte4>
+        { new Byte4(0, 12, 0, 0), new Byte4(1, 12, 0, 0), new Byte4(2, 12, 0, 0) };
+
+        public static List<Byte4> Projectile_Hammer_Right = new List<Byte4>
+        { new Byte4(0, 11, 0, 0), new Byte4(1, 11, 0, 0), new Byte4(2, 11, 0, 0) };
+
+        public static List<Byte4> Projectile_Hammer_Left = new List<Byte4>
+        { new Byte4(0, 11, 1, 0), new Byte4(1, 11, 1, 0), new Byte4(2, 11, 1, 0) };
+
 
 
 

@@ -354,7 +354,6 @@ namespace DungeonRun
                 Obj.type == ObjType.ProjectileSword 
                 || Obj.type == ObjType.ProjectileNet
                 || Obj.type == ObjType.ProjectileShovel
-                || Obj.type == ObjType.ProjectileHammer
                 )
             {   //some projectiles flip based on their direction
                 if (Obj.direction == Direction.Down || Obj.direction == Direction.Left)
@@ -392,6 +391,10 @@ namespace DungeonRun
                 if (Obj.direction == Direction.Left || Obj.direction == Direction.Right)
                 { Obj.compSprite.rotation = Rotation.Clockwise90; }
                 else { Obj.compSprite.rotation = Rotation.None; }
+            }
+            else if(Obj.type == ObjType.ProjectileHammer)
+            {
+                Obj.compSprite.rotation = Rotation.None;
             }
         }
 
@@ -3018,13 +3021,13 @@ namespace DungeonRun
             #endregion
 
 
-            #region Projectiles - Weapons
 
-            else if (
-                Type == ObjType.ProjectileSword
-                || Type == ObjType.ProjectileShovel
-                || Type == ObjType.ProjectileHammer
-                )
+
+            //Projectiles - Weapons
+
+            #region Sword
+
+            else if (Type == ObjType.ProjectileSword)
             {
                 Obj.compSprite.zOffset = 16;
                 //set collision rec based on direction
@@ -3056,14 +3059,93 @@ namespace DungeonRun
                 Obj.compMove.moveable = true;
                 Obj.compMove.grounded = false; //is flying, cant fall into pit
                 Obj.compSprite.texture = Assets.entitiesSheet;
-
-                //set the animFrames based on type
-                if (Type == ObjType.ProjectileSword)
-                { Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Sword; }
-                else if(Type == ObjType.ProjectileShovel)
-                { Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Shovel; }
-                else { Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Hammer; }
+                Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Sword;
             }
+
+            #endregion
+
+
+            #region Shovel
+
+            else if (Type == ObjType.ProjectileShovel)
+            {
+                Obj.compSprite.zOffset = 16;
+                //set collision rec based on direction
+                if (Obj.direction == Direction.Up)
+                {
+                    Obj.compCollision.offsetX = -1; Obj.compCollision.offsetY = -4;
+                    Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 15;
+                }
+                else if (Obj.direction == Direction.Down)
+                {
+                    Obj.compCollision.offsetX = -1; Obj.compCollision.offsetY = -4;
+                    Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
+                }
+                else if (Obj.direction == Direction.Left)
+                {
+                    Obj.compCollision.offsetX = -4; Obj.compCollision.offsetY = -1;
+                    Obj.compCollision.rec.Width = 11; Obj.compCollision.rec.Height = 10;
+                }
+                else //right
+                {
+                    Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -1;
+                    Obj.compCollision.rec.Width = 11; Obj.compCollision.rec.Height = 10;
+                }
+
+                Obj.group = ObjGroup.Projectile;
+                Obj.lifetime = 18; //in frames
+                Obj.compAnim.speed = 2; //in frames
+                Obj.compAnim.loop = false;
+                Obj.compMove.moveable = true;
+                Obj.compMove.grounded = false; //is flying, cant fall into pit
+                Obj.compSprite.texture = Assets.entitiesSheet;
+                Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Shovel;
+            }
+
+            #endregion
+
+
+            #region Hammer
+
+            else if(Type == ObjType.ProjectileHammer)
+            {
+                Obj.compSprite.zOffset = 6;
+                Obj.compCollision.rec.Width = 10;
+                Obj.compCollision.rec.Height = 10;
+
+                //set collision rec offsets based on direction
+                if (Obj.direction == Direction.Up)
+                {
+                    Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -4;
+                }
+                else if (Obj.direction == Direction.Down)
+                {
+                    Obj.compCollision.offsetX = -8; Obj.compCollision.offsetY = -5;
+                }
+                else if (Obj.direction == Direction.Left)
+                {
+                    Obj.compCollision.offsetX = -4-3; Obj.compCollision.offsetY = -3;
+                }
+                else //right
+                {
+                    Obj.compCollision.offsetX = -7+3; Obj.compCollision.offsetY = -3;
+                }
+
+                Obj.group = ObjGroup.Projectile;
+                Obj.lifetime = 16; //in frames
+                Obj.compAnim.speed = 2; //in frames
+                Obj.compAnim.loop = false;
+                Obj.compMove.moveable = true;
+                Obj.compMove.grounded = false; //is flying, cant fall into pit
+                Obj.compSprite.texture = Assets.entitiesSheet;
+                Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Hammer_Down; 
+            }
+
+            #endregion
+
+
+            #region Arrow and Bow
+
             else if (Type == ObjType.ProjectileArrow)
             {
                 Obj.compSprite.zOffset = 16;
@@ -3089,6 +3171,25 @@ namespace DungeonRun
                 Obj.sfx.kill = Assets.sfxArrowHit;
                 Obj.sfx.hit = Assets.sfxArrowHit;
             }
+            else if (Type == ObjType.ProjectileBow)
+            {
+                Obj.compSprite.zOffset = 0;
+                Obj.group = ObjGroup.Projectile;
+                Obj.lifetime = 15; //in frames
+                Obj.compAnim.speed = 10; //in frames
+                Obj.compAnim.loop = false;
+                Obj.compMove.grounded = false; //obj is airborne
+                Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Bow;
+                Obj.compSprite.texture = Assets.entitiesSheet;
+                Obj.sfx.hit = null; Obj.sfx.kill = null;
+            }
+
+
+            #endregion
+
+
+            #region Net
+
             else if (Type == ObjType.ProjectileNet)
             {
                 Obj.compSprite.zOffset = 16;
@@ -3104,20 +3205,13 @@ namespace DungeonRun
                 Obj.compSprite.texture = Assets.entitiesSheet;
                 Obj.sfx.hit = null; Obj.sfx.kill = null;
             }
-            else if (Type == ObjType.ProjectileBow)
-            {
-                Obj.compSprite.zOffset = 0;
-                Obj.group = ObjGroup.Projectile;
-                Obj.lifetime = 15; //in frames
-                Obj.compAnim.speed = 10; //in frames
-                Obj.compAnim.loop = false;
-                Obj.compMove.grounded = false; //obj is airborne
-                Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Bow;
-                Obj.compSprite.texture = Assets.entitiesSheet;
-                Obj.sfx.hit = null; Obj.sfx.kill = null;
-            }
 
             #endregion
+
+
+
+
+
 
 
             #region Projectiles - World
