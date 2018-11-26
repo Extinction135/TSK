@@ -21,7 +21,19 @@ namespace DungeonRun
         public static Boolean boomerangInPlay = false; //only 1 boomerang on screen at once
         public static Boolean underRoof = false; //is hero under a roofObj?
 
-        
+        //fields used in pickup / carry / throw
+        public static Boolean carrying = false; //is actor carrying an obj?
+        public static GameObject heldObj = null; //obj actor might be carrying
+
+        //fields used in grab / push / pull
+        public static Boolean grabbing = false;
+        public static GameObject grabbedObj = null;
+
+
+
+
+
+
 
 
 
@@ -123,11 +135,11 @@ namespace DungeonRun
                         if (heroRec.Intersects(LevelSet.currentLevel.rooms[i].rec))
                         {
 
-                            if (Pool.hero.carrying) //destroy anything hero is carrying
+                            if (carrying) //destroy anything hero is carrying
                             {
-                                Pool.hero.carrying = false;
-                                Functions_Interaction.HandleCommon(Pool.hero.heldObj, Direction.None);
-                                Functions_Pool.Release(Pool.hero.heldObj);
+                                carrying = false;
+                                Functions_Interaction.HandleCommon(heldObj, Direction.None);
+                                Functions_Pool.Release(heldObj);
                             }
 
 
@@ -231,11 +243,11 @@ namespace DungeonRun
                 SetInteractionRec();
 
                 //else, hero has moved too far away to push/pull obj
-                if (Pool.hero.grabbedObj.compCollision.rec.Contains(interactionPoint))
+                if (grabbedObj.compCollision.rec.Contains(interactionPoint))
                 {
                     //push grabbed obj in hero's move direction
                     Functions_Movement.Push(
-                        Pool.hero.grabbedObj.compMove,
+                        grabbedObj.compMove,
                         Pool.hero.compMove.direction,
                         0.08f);
                     //spam play drag sfx here
@@ -243,8 +255,8 @@ namespace DungeonRun
                 }
                 else
                 {   //release the grabbed object
-                    Pool.hero.grabbing = false;
-                    Pool.hero.grabbedObj = null;
+                    grabbing = false;
+                    grabbedObj = null;
                 }
 
                 ClearInteractionRec();
@@ -371,7 +383,7 @@ namespace DungeonRun
             Pool.hero.compSprite.scale = 1.0f; //rescale hero to 100%
             Pool.hero.stateLocked = false;
             Pool.hero.state = ActorState.Idle;
-            Pool.hero.carrying = false; //hero can't enter a room carrying room obj
+            carrying = false; //hero can't enter a room carrying room obj
             boomerangInPlay = false; //boomerang could of been lost in prev room
             SpawnPet();
         }
@@ -501,8 +513,8 @@ namespace DungeonRun
             }
 
             //handle picking up obj
-            Pool.hero.carrying = true;
-            Pool.hero.heldObj = Obj;
+            carrying = true;
+            heldObj = Obj;
             //'hide' roomObject offscreen - temporary, necessary
             Functions_Movement.Teleport(Obj.compMove, 4096, 4096);
             //put actor into pickup state
@@ -510,59 +522,74 @@ namespace DungeonRun
             Pool.hero.stateLocked = true;
             Pool.hero.lockTotal = 10;
             Functions_Actor.SetAnimationGroup(Pool.hero);
-            Pool.hero.heldObj.compSprite.zOffset = +16; //sort above actor
-            Pool.hero.heldObj.compCollision.blocking = false; //prevent act/obj overlaps
+            heldObj.compSprite.zOffset = +16; //sort above actor
+            heldObj.compCollision.blocking = false; //prevent act/obj overlaps
             Assets.Play(Assets.sfxActorLand); //temp sfx
         }
 
         //static ObjType throwType;
         public static void Throw()
         {   //put hero into throw state
-            Pool.hero.carrying = false;
+            carrying = false;
             Pool.hero.state = ActorState.Throw;
             Pool.hero.stateLocked = true;
             Pool.hero.lockTotal = 10;
             Functions_Actor.SetAnimationGroup(Pool.hero);
 
+            //resolve hero.direction to cardinal - no diagonal throwing
+            Pool.hero.direction =
+                Functions_Direction.GetCardinalDirection_LeftRight(Pool.hero.direction);
+
+
+
+
+
+
+            //Pool.hero.heldObj = ref to roomObj? 
+
+            //this needs to be written based on hero's hitBox + offset + direction
+
+            //place projectile outside of hero's hitbox
+            if (Pool.hero.direction == Direction.Left)
+            {
+                Functions_Movement.Teleport(heldObj.compMove,
+                    Pool.hero.compSprite.position.X - 8,
+                    Pool.hero.compSprite.position.Y);
+            }
+            else if (Pool.hero.direction == Direction.Up)
+            {
+                Functions_Movement.Teleport(heldObj.compMove,
+                    Pool.hero.compSprite.position.X,
+                    Pool.hero.compSprite.position.Y - 8);
+            }
+            else if (Pool.hero.direction == Direction.Right)
+            {
+                Functions_Movement.Teleport(heldObj.compMove,
+                    Pool.hero.compSprite.position.X + 8,
+                    Pool.hero.compSprite.position.Y);
+            }
+            else if (Pool.hero.direction == Direction.Down)
+            {
+                Functions_Movement.Teleport(heldObj.compMove,
+                    Pool.hero.compSprite.position.X,
+                    Pool.hero.compSprite.position.Y + 8);
+            }
+
+
+
 
             //check if we're throwing an enemy or object
-            if (Pool.hero.heldObj.type == ObjType.Wor_Enemy_Turtle
-                || Pool.hero.heldObj.type == ObjType.Wor_Enemy_Crab)
+            if (heldObj.type == ObjType.Wor_Enemy_Turtle
+                || heldObj.type == ObjType.Wor_Enemy_Crab)
             {
-                //resolve act.direction to cardinal
-                Pool.hero.direction = 
-                    Functions_Direction.GetCardinalDirection_LeftRight(Pool.hero.direction);
-                //place enemy outside of hero's hitbox
-                if (Pool.hero.direction == Direction.Left)
-                {
-                    Functions_Movement.Teleport(Pool.hero.heldObj.compMove,
-                        Pool.hero.compSprite.position.X - 8,
-                        Pool.hero.compSprite.position.Y);
-                }
-                else if (Pool.hero.direction == Direction.Up)
-                {
-                    Functions_Movement.Teleport(Pool.hero.heldObj.compMove,
-                        Pool.hero.compSprite.position.X,
-                        Pool.hero.compSprite.position.Y - 8);
-                }
-                else if (Pool.hero.direction == Direction.Right)
-                {
-                    Functions_Movement.Teleport(Pool.hero.heldObj.compMove,
-                        Pool.hero.compSprite.position.X + 8,
-                        Pool.hero.compSprite.position.Y);
-                }
-                else if (Pool.hero.direction == Direction.Down)
-                {
-                    Functions_Movement.Teleport(Pool.hero.heldObj.compMove,
-                        Pool.hero.compSprite.position.X,
-                        Pool.hero.compSprite.position.Y + 8);
-                }
+                
+                
                 //strongly push enemy in actor's facing direction
                 Functions_Movement.Push(
-                    Pool.hero.heldObj.compMove,
+                    heldObj.compMove,
                     Pool.hero.direction, 8.0f);
                 //reset hitbox, sorting offsets, etc...
-                Functions_GameObject.SetType(Pool.hero.heldObj, Pool.hero.heldObj.type);
+                Functions_GameObject.SetType(heldObj, heldObj.type);
             }
             else
             {
@@ -583,10 +610,10 @@ namespace DungeonRun
 
 
 
-                Functions_Pool.Release(Pool.hero.heldObj);
+                Functions_Pool.Release(heldObj);
             }
 
-            Pool.hero.heldObj = null; //release reference to roomObj
+            heldObj = null; //release reference to roomObj
             Assets.Play(Assets.sfxActorFall); //play throw sfx
             Functions_Particle.SpawnPushFX(Pool.hero.compMove, Pool.hero.direction);
         }
@@ -594,8 +621,8 @@ namespace DungeonRun
 
         public static void Grab(GameObject Obj)
         {
-            Pool.hero.grabbing = true;
-            Pool.hero.grabbedObj = Obj;
+            grabbing = true;
+            grabbedObj = Obj;
         }
 
 

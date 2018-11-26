@@ -1187,6 +1187,7 @@ namespace DungeonRun
         public static int collisionsCount = 0; //tracks collisions per frame
         public static int interactionsCount = 0; //tracks interactions per frame
 
+
         public static void Initialize()
         {
             //actor pool
@@ -1242,6 +1243,7 @@ namespace DungeonRun
             //create easy to remember reference for hero & pet
             hero = actorPool[0];
             herosPet = roomObjPool[0];
+            //setup hero and pet
             Functions_Actor.SetType(hero, ActorType.Hero);
             Functions_GameObject.SetType(herosPet, ObjType.Pet_Dog);
         }
@@ -1300,21 +1302,12 @@ namespace DungeonRun
 
         //actor specific sfx
         public SoundEffectInstance sfxDash;
-
         public int chaseRadius;
         public int attackRadius;
 
         //actor fx sprites
         public ComponentSprite feetFX;
         public ComponentAnimation feetAnim;
-
-        //fields used in pickup / carry / throw
-        public Boolean carrying = false; //is actor carrying an obj?
-        public GameObject heldObj = null; //obj actor might be carrying
-
-        //fields used in grab / push / pull
-        public Boolean grabbing = false;
-        public GameObject grabbedObj = null;
 
         //fields used in swimming
         public Boolean swimming = false; //is actor in water?
@@ -1328,19 +1321,31 @@ namespace DungeonRun
 
         public Actor()
         {
+            //setup sprite component
             compSprite = new ComponentSprite(Assets.heroSheet, 
                 new Vector2(0, 0), new Byte4(0, 0, 0, 0), new Point(16, 16));
-            Functions_Actor.SetType(this, ActorType.Hero); //defaults to hero actor
-            Functions_Movement.Teleport(compMove, 
-                compSprite.position.X, compSprite.position.Y);
+
             //setup actor fx sprites
             feetAnim = new ComponentAnimation();
             feetAnim.currentAnimation = AnimationFrames.ActorFX_GrassyFeet;
             feetFX = new ComponentSprite(
                 Assets.CommonObjsSheet,
                 new Vector2(100, 100),
-                feetAnim.currentAnimation[0], 
+                feetAnim.currentAnimation[0],
                 new Point(16, 8));
+
+            //reset actor to running state
+            Functions_Actor.ResetActor(this);
+
+            //setup initial values
+            animGroup = animList.idle;
+            compAnim.currentAnimation = animGroup.down;
+            direction = Direction.Down;
+            state = ActorState.Idle;
+
+            Functions_Actor.SetType(this, ActorType.Hero);
+            Functions_Movement.Teleport(compMove, 
+                compSprite.position.X, compSprite.position.Y);
         }
     }
 

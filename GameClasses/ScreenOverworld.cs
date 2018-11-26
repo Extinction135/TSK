@@ -319,7 +319,6 @@ namespace DungeonRun
             Functions_Draw.Draw(map);
             for (i = 0; i < locations.Count; i++) { Functions_Draw.Draw(locations[i].compSprite); }
             Functions_Pool.Draw();
-            Functions_Draw.Draw(Pool.hero.compSprite);
 
             ScreenManager.spriteBatch.End();
 

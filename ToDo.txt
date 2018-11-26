@@ -58,53 +58,71 @@ Today:
 
 
 
-
-
-
-Organization
-
-pickup, throw, and grab were moved into functions_hero, 
-because only the player actor can perform these actions.
-this was done in prep for re-implementing throw(), which
-doesn't work with the current projectile system.
-
-Torches--
-
-torches should not spawn a groundfire upon being lit.
-this causes a variety of problems. instead we are now
-spawning a fire PARTICLE, which has no interaction with
-the world at all, other than as decoration.
-
-particle fire should last for much less. like 15 frames.
-set at 20, but increased the speed to 6 from 7, so the
-flame appears faster and goes away just as quick. this fire 
-particle is really only created by hero lighting the torch,
-so it doesn't need to last long at all. just enough to
-decorate the torch, cause if hero starts to push torch,
-then the flame particle overlaps hero and it looks buggy.
-so that visual bug has been fixed - it's been bugging be
-for quite a while!
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Prep for Throw
 
-rats, crabs, turtles can be picked up and carried.
+rats, crabs, turtles can be picked up and carried. so, all
+carry-able roomObjs tested up until Throw() is called.
+
+Reorg++
+
+need to move carrying, heldObj ref, grabbing, and grabbedObj
+ref from actor class and into hero functions, only hero can
+perform these tasks and uses this data.
+moved drawing of held object into draw functions.
+
+we can still pickup, carry, and push objs... yay!
+
+
+
+
+
+
+
+
+
+widgets++
+
+we need to update the animgroups and animDirs for all actors
+on the widgets, otherwise they dont display properly.
+
+//set actor animation and direction
+SetAnimationGroup(Actor);
+SetAnimationDirection(Actor);
+
+
+
+
+
+
+
+
+
+
+
+bugs:
+bite pros dont hurt hero?
+
+
+
+
+take out the trash, it stinks man!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+the drawHeldObj() method is very inefficient.
+the design of how we pickup & carry objects, is very inefficient.
+
 
 
 
@@ -126,7 +144,8 @@ this makes throwing reliable again, and much easier in code.
 
 
 
-take out the trash, it stinks man!
+
+
 
 
 

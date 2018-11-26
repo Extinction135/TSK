@@ -52,7 +52,6 @@ namespace DungeonRun
                 Draw(Actor.compSprite);
                 if (Flags.DrawCollisions)
                 { Draw(Actor.compCollision); }
-
                 //draw actor feet fx
                 if (Actor.feetFX.visible & Actor.swimming == false)
                 {   //cant see actors feet if in water
@@ -62,35 +61,6 @@ namespace DungeonRun
                     Functions_Component.SetZdepth(Actor.feetFX);
                     Draw(Actor.feetFX);
                 }
-
-                //place and draw any heldObj
-                if (Actor.carrying)
-                {
-                    if (Actor.heldObj != null)
-                    {   //force this object to stay active
-                        Actor.heldObj.active = true;
-
-                        //where we place this heldObj depends on actor's state
-                        if (Actor.swimming)
-                        {
-                            if (Actor.underwater) //place heldObj in water
-                            { Actor.heldObj.compMove.newPosition.Y = Actor.compSprite.position.Y - 1; }
-                            else //place heldObj just over hero's head in water
-                            { Actor.heldObj.compMove.newPosition.Y = Actor.compSprite.position.Y - 7; }
-                        }
-                        else//align on land, over actor's head
-                        { Actor.heldObj.compMove.newPosition.Y = Actor.compSprite.position.Y - 9; }
-
-                        //always align heldObj horizontally to actor
-                        Actor.heldObj.compMove.newPosition.X = Actor.compSprite.position.X;
-                        Functions_Component.Align(Actor.heldObj);
-                        Draw(Actor.heldObj.compSprite);
-                        //draw held obj's collisions too
-                        if (Flags.DrawCollisions) { Draw(Actor.heldObj.compCollision); }
-                    }
-                }
-
-                //here we'll draw actor shadow too
             }
         }
 
@@ -269,6 +239,37 @@ namespace DungeonRun
 
 
 
+
+        public static void DrawHeldObj()
+        {
+            //this draws the hero's heldObj, if there is one
+            //this draws after all actors have been drawn
+            if (Functions_Hero.carrying)
+            {
+                if (Functions_Hero.heldObj != null)
+                {   //force this object to stay active
+                    Functions_Hero.heldObj.active = true;
+
+                    //where we place this heldObj depends on hero's state
+                    if (Pool.hero.swimming)
+                    {
+                        if (Pool.hero.underwater) //place heldObj in water
+                        { Functions_Hero.heldObj.compMove.newPosition.Y = Pool.hero.compSprite.position.Y - 1; }
+                        else //place heldObj just over hero's head in water
+                        { Functions_Hero.heldObj.compMove.newPosition.Y = Pool.hero.compSprite.position.Y - 7; }
+                    }
+                    else//align on land, over actor's head
+                    { Functions_Hero.heldObj.compMove.newPosition.Y = Pool.hero.compSprite.position.Y - 9; }
+
+                    //always align heldObj horizontally to actor
+                    Functions_Hero.heldObj.compMove.newPosition.X = Pool.hero.compSprite.position.X;
+                    Functions_Component.Align(Functions_Hero.heldObj);
+                    Draw(Functions_Hero.heldObj.compSprite);
+                    //draw held obj's collisions too
+                    if (Flags.DrawCollisions) { Draw(Functions_Hero.heldObj.compCollision); }
+                }
+            }
+        }
 
 
 

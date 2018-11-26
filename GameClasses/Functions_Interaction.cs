@@ -966,9 +966,9 @@ namespace DungeonRun
                 #region Pits
 
                 else if (RoomObj.type == ObjType.Dungeon_Pit)
-                {
-                    if (Actor == Pool.hero) //hero throw()s any held object
-                    { if (Actor.carrying) { Functions_Hero.Throw(); } }
+                {   //hero throw()s any held object
+                    if (Actor == Pool.hero & Functions_Hero.carrying) 
+                    { Functions_Hero.Throw(); }
 
 
                     //set ALL ACTORS state

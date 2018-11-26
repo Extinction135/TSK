@@ -21,7 +21,8 @@ namespace DungeonRun
 
 
         public static void ResetActor(Actor Actor)
-        {   //reset actor to default living state
+        {   //reset actor to default living hero state
+            Actor.type = ActorType.Hero;
             Actor.stateLocked = false;
             Actor.active = true;
             Actor.lockCounter = 0;
@@ -96,11 +97,19 @@ namespace DungeonRun
                     { Actor.animGroup = Actor.animList.underwater_idle; }
                     else { Actor.animGroup = Actor.animList.swim_idle; }
                 }
-                else if (Actor.carrying)
-                { Actor.animGroup = Actor.animList.idleCarry; }
-                else if (Actor.grabbing)
-                { Actor.animGroup = Actor.animList.grab; }
-                else { Actor.animGroup = Actor.animList.idle; }
+                else
+                {
+                    Actor.animGroup = Actor.animList.idle;
+                }
+
+                //hero only actions
+                if(Actor == Pool.hero & !Pool.hero.swimming)
+                {   //add on carrying/grabbing anims to hero
+                    if (Functions_Hero.carrying)
+                    { Pool.hero.animGroup = Pool.hero.animList.idleCarry; }
+                    else if (Functions_Hero.grabbing)
+                    { Pool.hero.animGroup = Pool.hero.animList.grab; }
+                }
             }
 
             #endregion
@@ -116,11 +125,19 @@ namespace DungeonRun
                     { Actor.animGroup = Actor.animList.underwater_move; }
                     else { Actor.animGroup = Actor.animList.swim_move; }
                 }
-                else if (Actor.carrying)
-                { Actor.animGroup = Actor.animList.moveCarry; }
-                else if (Actor.grabbing)
-                { Actor.animGroup = Actor.animList.push; }
-                else { Actor.animGroup = Actor.animList.move; }
+                else
+                {
+                    Pool.hero.animGroup = Pool.hero.animList.move;
+                }
+
+                //hero only, not swimming actions
+                if (Actor == Pool.hero & !Pool.hero.swimming)
+                {
+                    if (Functions_Hero.carrying)
+                    { Pool.hero.animGroup = Pool.hero.animList.moveCarry; }
+                    else if (Functions_Hero.grabbing)
+                    { Pool.hero.animGroup = Pool.hero.animList.push; }
+                }
             }
 
             #endregion
@@ -164,9 +181,11 @@ namespace DungeonRun
                     if (Actor.underwaterEnemy)
                     { Actor.animGroup = Actor.animList.attack; }
                 }
-                else if (Actor.carrying)
-                { }
                 else { Actor.animGroup = Actor.animList.attack; }
+
+                //hero only actions
+                if (Actor == Pool.hero)
+                { if (Functions_Hero.carrying) { } } //hide attack while carrying
             }
 
             #endregion
@@ -181,9 +200,11 @@ namespace DungeonRun
                     if (Actor.underwaterEnemy)
                     { Actor.animGroup = Actor.animList.attack; }
                 }
-                else if (Actor.carrying)
-                { }
                 else { Actor.animGroup = Actor.animList.attack; }
+
+                //hero only actions
+                if (Actor == Pool.hero)
+                { if (Functions_Hero.carrying) { } } //hide use while carrying
             }
 
             #endregion
@@ -192,11 +213,11 @@ namespace DungeonRun
             #region Pickup and Throw
 
             else if (Actor.state == ActorState.Pickup)
-            {
+            {   //only hero can be set into pickup state
                 Actor.animGroup = Actor.animList.pickupThrow;
             }
             else if (Actor.state == ActorState.Throw)
-            {
+            {   //only hero can be set into throw state
                 Actor.animGroup = Actor.animList.pickupThrow;
             }
 
@@ -283,6 +304,12 @@ namespace DungeonRun
             else if (Actor.direction == Direction.UpRight) { Actor.compAnim.currentAnimation = Actor.animGroup.right; }
             else if (Actor.direction == Direction.UpLeft) { Actor.compAnim.currentAnimation = Actor.animGroup.left; }
         }
+
+
+
+
+
+
 
         //actor state management
 
@@ -650,21 +677,29 @@ namespace DungeonRun
                 Actor.lockCounter = 0; //reset lock counter in case actor statelocks
                 Actor.lockTotal = 0; //reset lock total
                 Actor.compMove.speed = Actor.walkSpeed; //default to walk speed
-                
 
+
+                #region Map Interact/Dash/Attack/Use
+
+                //Swimming Interact/Dash/Attack/Use Mapping, in water
                 if (Actor.swimming)
-                {   //SWIM STATES
+                {   
                     Actor.compMove.speed = Actor.swimSpeed;
+
+                    #region Swim Interact
+
                     if (Actor.state == ActorState.Interact)
-                    {   //swim interact
-                        if (Actor == Pool.hero) //only hero can interact with room objs
-                        { Functions_Hero.CheckInteractionRec(); }
+                    {   //only hero has swim interactions
+                        if (Actor == Pool.hero) { Functions_Hero.CheckInteractionRec(); }
                     }
+
+                    #endregion
+
+
+                    #region Swim Dash
+
                     else if (Actor.state == ActorState.Dash)
                     {
-
-                        #region  Swim dash
-                        
                         Actor.lockTotal = 15;
                         Actor.stateLocked = true;
 
@@ -686,14 +721,15 @@ namespace DungeonRun
                                 Actor.compInput.direction, 1.0f);
                             Assets.Play(Assets.sfxWaterSwim);
                         }
-
-                        #endregion
-
                     }
+
+                    #endregion
+
+
+                    #region Swim Attack (Hero Dive)
+
                     else if (Actor.state == ActorState.Attack)
                     {
-
-                        #region Swim Dive or Attack
 
                         if(Actor == Pool.hero)
                         {   
@@ -726,19 +762,20 @@ namespace DungeonRun
                                 }
                             }
                         }
+
                         else
                         {   //npcs can use weapons while in swimming state
                             Functions_Item.UseItem(Actor.weapon, Actor);
                         }
-
-                        #endregion
-
                     }
+
+                    #endregion
+
+
+                    #region Swim Use
+
                     else if (Actor.state == ActorState.Use)
                     {
-
-                        #region No Item Use or Use Item if Actor Type
-
                         if (Actor == Pool.hero)
                         {
                             //the hero can use items in the water, but only as certain actors
@@ -755,119 +792,138 @@ namespace DungeonRun
                             //this allows enemies ai to function properly
                             Functions_Item.UseItem(Actor.item, Actor);
                         }
-
-                        #endregion
-
                     }
+
+                    #endregion
+
                 }
-                else if(Actor.carrying)
-                {   //this is on land
+                //Non-Swimming Interact/Dash/Attack/Use Mapping, on land
+                else
+                {   
 
-                    #region Carrying state
-
-                    //cant attack or use
-                    //interact throws held obj
+                    #region Interact
 
                     if (Actor.state == ActorState.Interact)
-                    {
+                    {   //A button press
                         if (Actor == Pool.hero)
-                        {
-                            if (Actor.heldObj != null)
+                        {   //if hero is carrying, throw held obj
+                            if (Functions_Hero.carrying)
                             {
-                                Functions_Movement.StopMovement(Actor.compMove);
+                                Functions_Movement.StopMovement(Pool.hero.compMove);
                                 Functions_Hero.Throw();
                             }
+                            else
+                            {
+                                Functions_Hero.CheckInteractionRec();
+                            }
                         }
+
+                        //non-hero actors have no A button/interact input mapping
                     }
+
+                    #endregion
+
+
+                    #region Dash
+
                     else if (Actor.state == ActorState.Dash)
-                    {
-                        //nothing
+                    {   //B button 
                         Actor.lockTotal = 10;
                         Actor.stateLocked = true;
                         Actor.compMove.speed = Actor.dashSpeed;
                         Functions_Particle.Spawn(ParticleType.RisingSmoke, Actor);
                         Assets.Play(Actor.sfxDash);
                     }
+
+                    #endregion
+
+
+                    #region Attack
+
                     else if (Actor.state == ActorState.Attack)
-                    {
-                        //nothing
+                    {   //X button
+                        if (Actor == Pool.hero)
+                        {
+                            if (Functions_Hero.carrying)
+                            {
+                                //do nothing
+                            }
+                            else
+                            {
+                                //scale up worldUI weapon 
+                                WorldUI.currentWeapon.compSprite.scale = 2.0f;
+                                //hero has special skills based on equipped weapons
+                                if (Pool.hero.weapon == MenuItemType.WeaponShovel) { Functions_Dig.Dig(); }
+                                //hero uses weapon
+                                Functions_Item.UseItem(Actor.weapon, Actor);
+                            }
+                        }
+                        else
+                        {   //nonhero's always use weapon
+                            Functions_Item.UseItem(Actor.weapon, Actor);
+                        }
+
                     }
+
+                    #endregion
+
+
+                    #region Use
+
                     else if (Actor.state == ActorState.Use)
-                    {
-                        //nothing
+                    {   //Y button
+                        if (Actor == Pool.hero)
+                        {
+                            if (Functions_Hero.carrying)
+                            {
+                                //do nothing
+                            }
+                            else
+                            {
+                                //scale up the worldUI item
+                                WorldUI.currentItem.compSprite.scale = 2.0f;
+                                //hero uses item
+                                Functions_Item.UseItem(Actor.item, Actor);
+                            }
+                        }
+                        else
+                        {   //nonhero's always use item
+                            Functions_Item.UseItem(Actor.item, Actor);
+                        }
                     }
 
                     #endregion
 
                 }
-                else if(Actor.grabbing)
-                {   //this is on land
 
-                    #region Grabbing State
+                #endregion
 
-                    if (Actor == Pool.hero)
-                    {
-                        //make sure A button is down and hero is in grab state
+
+                #region Append Hero PUSHING RoomObjs
+
+                //hero in non-swimming state, handling push/grab obj
+                if(Actor == Pool.hero & Functions_Hero.grabbing)
+                {
+                    //bail if grabbing from a swim state
+                    if (Actor.swimming) { return; }
+                    else
+                    {   //make sure A button is down
                         if (Input.Player1.A)
-                        {
-                            //alter hero's friction - slow
+                        {   //alter hero's friction - slow
                             Actor.compMove.friction = World.frictionUse;
                             //push obj hero has grabbed
                             Functions_Hero.PushGrabbedObj();
                         }
                         else
                         {   //release the grabbed object
-                            Actor.grabbing = false;
-                            Actor.grabbedObj = null;
+                            Functions_Hero.grabbing = false;
+                            Functions_Hero.grabbedObj = null;
                         }
                     }
-
-                    #endregion
-
                 }
-                else
-                {   //this is on land
 
-                    #region Non-carrying state
+                #endregion
 
-                    //all actors other than hero are processed as follows
-                    if (Actor.state == ActorState.Interact)
-                    {
-                        if (Actor == Pool.hero) //only hero can interact with room objs
-                        { Functions_Hero.CheckInteractionRec(); }
-                    }
-                    else if (Actor.state == ActorState.Dash)
-                    {
-                        Actor.lockTotal = 10;
-                        Actor.stateLocked = true;
-                        Actor.compMove.speed = Actor.dashSpeed;
-                        Functions_Particle.Spawn(ParticleType.RisingSmoke, Actor);
-                        Assets.Play(Actor.sfxDash);
-                    }
-                    else if (Actor.state == ActorState.Attack)
-                    {
-                        if (Actor == Pool.hero)
-                        {   //scale up worldUI weapon 
-                            WorldUI.currentWeapon.compSprite.scale = 2.0f;
-                            //hero has special skills based on equipped weapons
-                            if (Pool.hero.weapon == MenuItemType.WeaponShovel) { Functions_Dig.Dig(); }
-                        }
-                        Functions_Item.UseItem(Actor.weapon, Actor);
-                    }
-                    else if (Actor.state == ActorState.Use)
-                    {
-                        if(Actor == Pool.hero)
-                        {   //scale up the worldUI item
-                            WorldUI.currentItem.compSprite.scale = 2.0f;
-                            //hero has special skills based on equipped items
-                            //if (Pool.hero.weapon == MenuItemType.WeaponShovel) { Functions_Hero.Dig(); }
-                        }
-                        Functions_Item.UseItem(Actor.item, Actor);
-                    }
-
-                    #endregion
-
-                }
             }
 
             #endregion
@@ -1119,21 +1175,7 @@ namespace DungeonRun
         {
             ResetActor(Actor);
             Actor.type = Type;
-
-            //default collision rec - if boss creates projectiles they have to use this
-            //this is because the spawn projectile method assumes this collision rec
-            //and doesn't account for any change in it's size
-            //so this will cause self-interaction upon projectile spawn, leading to actor hit/death
-
-            Actor.compCollision.rec.Width = 12;
-            Actor.compCollision.rec.Height = 8;
-            Actor.compCollision.offsetX = -6;
-            Actor.compCollision.offsetY = 0;
-
-
-
-
-
+            
 
 
 
@@ -1635,8 +1677,6 @@ namespace DungeonRun
 
 
 
-            SetAnimationGroup(Actor);
-            SetAnimationDirection(Actor);
             Functions_Component.CenterOrigin(Actor.compSprite);
         }
 
