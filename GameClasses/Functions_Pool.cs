@@ -288,11 +288,10 @@ namespace DungeonRun
                     { Pool.actorPool[i].state = ActorState.Landed; }
 
 
-                    if (Pool.actorPool[i] == Pool.hero & Flags.Clipping) { return; }
+                    if (Pool.actorPool[i] == Pool.hero & Flags.Clipping) { } //do nothing
                     else
                     {
                         //then finally handle any interactions the actor has
-                        //Functions_Interaction.CheckInteractions(Pool.actorPool[i], true, true);
                         Functions_Interaction.CheckObj_Actor(Pool.actorPool[i]);
                         Functions_Interaction.CheckProjectile_Actor(Pool.actorPool[i]);
                     }

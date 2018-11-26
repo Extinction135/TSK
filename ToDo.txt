@@ -64,33 +64,29 @@ Today:
 
 
 
-
-
-Bugs--
-
-swimming state is not being set for hero.
-how about for any actors? probably no.
-climbing isn't needed, cause the walls dont push hero.
-so they need to do that. maybe just hero is excluded from
-these branches...
-
-yep - a single 'else' after the check to see if the actor
-was the hero removed the hero from all obj interaction routines
-that were not hero specific. 4 letters. removed. tested, working.
-
-
-
-
-
-
-
 Bugs--
 
 enabling clipping freezes movement of hero. all input. except
 start button. plus, all animation freezes too. in the entire game.
-it's really weird.
+it's really weird. bug found: this was part of functions_pool.Update().
+when doing interactions for the actor pool, we check to see if the actor
+is the hero, and if the clipping boolean is enabled. in the scope we
+then return, FROM THE ENTIRE POOL.UPDATE() method. whoops. instead of
+returning, we should simply do nothing, because the else branch evaluates
+roomObjs and projectiles against the actor, which we just want to prevent.
+so - silly logical error by me that arose from migrating to the new 
+projectile systems. my bad. tested and working again.
 
 
+
+
+
+
+
+
+
+should not be able to dig lilly pads out with shovel.
+in fact, only grass can be removed by shovel.
 
 
 
