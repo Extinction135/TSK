@@ -232,9 +232,6 @@ namespace DungeonRun
                         null, null, null, Camera2D.view);
 
             Functions_Pool.Draw();
-            //draw hero's heldObj very last
-            Functions_Draw.DrawHeldObj();
-
 
             if (Flags.DrawCollisions)
             {

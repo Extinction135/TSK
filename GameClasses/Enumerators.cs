@@ -213,12 +213,23 @@ namespace DungeonRun
     }
 
 
-    
-    
+
+
+
+    public enum DoorType { Open, Boss, Bombable }
+
+    public enum PuzzleType
+    {   //in order of importance to the codebase
+        None,       //no room puzzle
+        Switch,     //an obj must be placed onto switch
+        Torches,    //all torches must be lit
+    }
 
 
 
 
+
+    #region Music
 
     public enum Music
     {
@@ -236,18 +247,17 @@ namespace DungeonRun
         None
     }
 
-    
-
-    public enum DoorType { Open, Boss, Bombable }
-
-    public enum PuzzleType
-    {   //in order of importance to the codebase
-        None,       //no room puzzle
-        Switch,     //an obj must be placed onto switch
-        Torches,    //all torches must be lit
-    }
+    #endregion
 
 
+
+
+
+
+
+
+
+    #region ActorType
 
     public enum ActorType
     {
@@ -274,6 +284,11 @@ namespace DungeonRun
         Special_Tentacle,
     }
 
+    #endregion
+
+
+    #region Actor AI
+
     public enum ActorAI
     {
         Random,
@@ -292,8 +307,10 @@ namespace DungeonRun
         Special_Tentacle
     }
 
+    #endregion
 
 
+    #region Actor State
 
     public enum ActorState
     {
@@ -306,9 +323,15 @@ namespace DungeonRun
         Climbing, 
     }
 
-    
+    #endregion
 
 
+
+
+
+
+
+    #region ObjGroup
 
     public enum ObjGroup
     {   //roomObjs
@@ -325,7 +348,12 @@ namespace DungeonRun
         Ditch,
 
         Wall_Climbable, //for wall climbing objects
-    } 
+    }
+
+    #endregion
+
+
+    #region ObjType
 
     public enum ObjType
     {
@@ -733,6 +761,16 @@ namespace DungeonRun
         ExplodingObject, //creates explosion
     }
 
+    #endregion
+
+
+
+
+
+
+
+
+    #region ProjectileType 
 
     public enum ProjectileType
     {
@@ -763,11 +801,6 @@ namespace DungeonRun
         ProjectileExplosion,
         ProjectileGroundFire,
 
-        //Projectiles - thrown objs
-        ProjectileBush,
-        ProjectilePot,
-        ProjectilePotSkull,
-
         //Projectiles - casted magic
         ProjectileBombos,
 
@@ -783,7 +816,15 @@ namespace DungeonRun
         #endregion
 
 
+        //Carried and Thrown Projectiles
+        CarriedObject,
+        ThrownObject,
     }
+
+    #endregion
+
+
+    #region Pickup + Particle Types
 
     public enum PickupType
     {
@@ -832,6 +873,11 @@ namespace DungeonRun
         RewardKey,
         RewardMap,
     }
+
+    #endregion
+
+
+
 
 
 
@@ -948,7 +994,6 @@ namespace DungeonRun
         #endregion
 
         
-
     }
 
 }

@@ -120,8 +120,15 @@ namespace DungeonRun
             //check for boomerang interaction with hero
             else if (Pro.type == ProjectileType.ProjectileBoomerang & Actor == Pool.hero)
             { return; }
+            //check for hero's carried object projectile
+            else if (Pro.type == ProjectileType.CarriedObject)
+            { return; }
+            //ignore thrown projectile obj and hero interactions (allow overlap)
+            else if (Pro.type == ProjectileType.ThrownObject & Actor == Pool.hero)
+            { return; }
 
             #endregion
+
 
 
             //specific projectile interactions
@@ -136,19 +143,8 @@ namespace DungeonRun
                 Functions_Pool.Release(Pro); //release the net
             }
 
-            //if sword projectile is brand new, spawn hit particle
-            else if (Pro.type == ProjectileType.ProjectileSword)
-            {
-                if (Pro.lifeCounter == 1)
-                {
-                    Functions_Particle.Spawn(ParticleType.Sparkle, Pro);
-                }
-            }
-
-            //kill these projectiles upon impact, next frame
-            else if (Pro.type == ProjectileType.ProjectileBush
-                || Pro.type == ProjectileType.ProjectilePot
-                || Pro.type == ProjectileType.ProjectilePotSkull)
+            //kill thrown projectiles upon impact, next frame
+            else if (Pro.type == ProjectileType.ThrownObject)
             {
                 Pro.lifeCounter = Pro.lifetime;
             }
@@ -156,7 +152,7 @@ namespace DungeonRun
             //limit bite to only the first frame of life
             else if (Pro.type == ProjectileType.ProjectileBite)
             {   //prevents fast moving caster overlap, while still remaining drawable
-                if (Pro.lifeCounter > 1) { return; }
+                if (Pro.lifeCounter > 2) { return; }
             }
 
 
@@ -166,6 +162,12 @@ namespace DungeonRun
 
         public static void Interact_ProjectileRoomObj(Projectile Pro, GameObject RoomObj)
         {
+            //ignored carried objects for all interactions
+            if (Pro.type == ProjectileType.CarriedObject) { return; }
+
+
+
+
             //pro vs obj
             Pool.interactionsCount++; //count interaction
 
@@ -427,13 +429,10 @@ namespace DungeonRun
                 #endregion
 
 
-                #region Thrown Objects (Bush, Pot)
+                #region Thrown Objects
 
-                else if (Pro.type == ProjectileType.ProjectileBush
-                    || Pro.type == ProjectileType.ProjectilePot
-                    || Pro.type == ProjectileType.ProjectilePotSkull)
-                {
-                    //handle common interactions caused by thrown objs
+                else if (Pro.type == ProjectileType.ThrownObject)
+                {   //handle common interactions caused by thrown objs
                     HandleCommon(RoomObj, Pro.compMove.direction);
                     //thrown objs die upon blocking collision
                     Functions_Projectile.Kill(Pro);
@@ -505,6 +504,8 @@ namespace DungeonRun
                     if (Pro.type == ProjectileType.ProjectileFireball
                         || Pro.type == ProjectileType.ProjectileArrow)
                     { Functions_Pool.Release(Pro); }
+                    else if(Pro.type == ProjectileType.ThrownObject)
+                    { Functions_Projectile.Kill(Pro); }
                 }
 
                 #endregion
@@ -608,7 +609,7 @@ namespace DungeonRun
                 #endregion
 
 
-                #region Open House Doors
+                #region Destroy Open House Doors
 
                 else if(RoomObj.type == ObjType.Wor_Build_Door_Open)
                 {

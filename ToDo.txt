@@ -56,73 +56,39 @@ Today:
 
 
 
-
-
-
-
-EditorMenu++
-
-while in editor menu, f1 button should iterate forward thru
-widget sets, just like the button press does. this allows us
-to move through the widgets faster, while keeping the cursor
-over where we know the object will be, instead of clicking and
-moving back and forth - this is very slow. faster workflow, 
-faster iterations, better code, better game. done.
-
-also, editor menu screen was upgraded to allow for dungeon
-textures to be displayed, based on the widget display set.
-so, now we can see what a specific dungeon's unique objs
-look like in the editor, and in game (if we're in room editor).
-
-
-
-
-
-
-
-
-
-
-
-
-
-bugs:
-bite pros dont hurt hero?
-
-
-
-
-take out the trash, it stinks man!
-
-
-
-
-
-
-
-
-
-
-
-
-
+Throwing Objects++
 
 the drawHeldObj() method is very inefficient.
 the design of how we pickup & carry objects, is very inefficient.
 
+what is the design? we model the picked up roomobj as a gameobj
+reference to the roomObj. this is fine, if we wanted to put the
+object down, as we did previously using B, but now we dash using
+B and we also only throw the object and THIS IS IMPORTANT - the
+thrown obj always explodes after becoming a power level 1 generic 
+projectile. in order to fulfill this design spec, we should be
+modeling the heldObj as a projectile.
+
+we are doing this using two refs in fun_hero.
+carriedObj tracks to hero once it dupes the texture and animFrames
+of the roomObj hero picks up. thrownObj inherits the carriedObjs
+texture and animFrames, and handles traveling through the air
+colliding and interacting with things. this makes logic simple,
+plus it allows hero to pickup and carry an obj, while the thrown
+projectile obj is still in play.
+
+tested, all carry-able objects are also throw-able.
+this includes the living roomObjs: crabs, rats, turtles.
+modified pickup() to release the roomObj it dupes.
+all thrown objs collide and interact as expected.
+
+Bugs--
+fixed a bug where bite wasn't dealing damage to actors
 
 
 
 
 
-Throwing Held Objects
-
-**we need to remarry the throwing routines to the new projectile
-system. the picked up obj becomes a carried projectile, that inherits
-the object's texture and animFrame. this 'dupes' the obj overhead, which
-then tracks like any other projectile. when thrown, this projectile simply
-travels in a straight line in hero's direction, from hero's center pos.
-this makes throwing reliable again, and much easier in code.
 
 
 
@@ -130,10 +96,10 @@ this makes throwing reliable again, and much easier in code.
 
 
 
+Prefix Removal
 
-
-
-
+*we need to drop 'projectile' prefix from projectilType enum values.
+it's very redundant.
 
 
 

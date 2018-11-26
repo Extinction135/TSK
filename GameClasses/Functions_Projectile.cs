@@ -307,6 +307,11 @@ namespace DungeonRun
             #endregion
 
 
+
+            
+
+            /*
+
             #region Thrown Objects (Bush, Pot, Skull Pot, Small Enemies)
 
             else if (Type == ProjectileType.ProjectileBush
@@ -345,6 +350,10 @@ namespace DungeonRun
             }
 
             #endregion
+
+            */
+
+
 
 
 
@@ -680,6 +689,53 @@ namespace DungeonRun
             #endregion
 
 
+            #region Carried Object Projectile (hero specific)
+
+            else if (Pro.type == ProjectileType.CarriedObject)
+            {
+                //center carried projectile above hero's head, based on hero state
+                Pro.lifeCounter = 10; //lives forever, until thrown()
+                Pro.active = true;
+
+                if (Pool.hero.swimming)
+                {
+                    if (Pool.hero.underwater)
+                    {   //place heldObj above head, underwater
+                        Functions_Movement.Teleport(
+                        Pro.compMove,
+                        Pool.hero.compCollision.rec.Center.X,
+                        Pool.hero.compCollision.rec.Center.Y - 1);
+                    }
+                    else
+                    {   //place heldObj above head, swimming
+                        Functions_Movement.Teleport(
+                        Pro.compMove,
+                        Pool.hero.compCollision.rec.Center.X,
+                        Pool.hero.compCollision.rec.Center.Y - 7);
+                    }
+                    
+                }
+                else
+                {   //place herlObj above head, on land
+                    Functions_Movement.Teleport(
+                        Pro.compMove,
+                        Pool.hero.compCollision.rec.Center.X,
+                        Pool.hero.compCollision.rec.Center.Y - 9);
+                }
+            }
+
+            #endregion
+
+
+
+            
+
+
+
+
+
+
+
 
 
 
@@ -986,26 +1042,27 @@ namespace DungeonRun
 
             #region Thrown Objs
 
-            else if (Pro.type == ProjectileType.ProjectileBush)
+            else if(Pro.type == ProjectileType.ThrownObject)
             {
                 Functions_Loot.SpawnLoot(Pro.compSprite.position);
-                //pop leaves
-                Functions_Particle.Spawn_Explosion(
-                    ParticleType.Leaf,
-                    Pro.compSprite.position.X,
-                    Pro.compSprite.position.Y,
-                    true);
-            }
-            else if (Pro.type == ProjectileType.ProjectilePotSkull
-                || Pro.type == ProjectileType.ProjectilePot)
-            {
-                Functions_Loot.SpawnLoot(Pro.compSprite.position);
-                //pop debris
-                Functions_Particle.Spawn_Explosion(
+                if(Pro.compAnim.currentAnimation == AnimationFrames.World_Bush)
+                {   //pop leaf explosion for bushes
+                    Functions_Particle.Spawn_Explosion(
+                        ParticleType.Leaf,
+                        Pro.compSprite.position.X,
+                        Pro.compSprite.position.Y,
+                        true);
+                    Assets.Play(Assets.sfxBushCut);
+                }
+                else
+                {   //pop rock debris for all other thrown objs
+                    Functions_Particle.Spawn_Explosion(
                     ParticleType.Debris,
                     Pro.compSprite.position.X,
                     Pro.compSprite.position.Y,
                     true);
+                    Assets.Play(Assets.sfxShatter);
+                }
             }
 
             #endregion
@@ -1064,9 +1121,6 @@ namespace DungeonRun
             //some pros only face Direction.Down
             else if (
                 Pro.type == ProjectileType.ProjectileBomb
-                || Pro.type == ProjectileType.ProjectilePot
-                || Pro.type == ProjectileType.ProjectilePotSkull
-                || Pro.type == ProjectileType.ProjectileBush
                 || Pro.type == ProjectileType.ProjectileBoomerang
                 || Pro.type == ProjectileType.ProjectileBat
                 )
@@ -1387,7 +1441,7 @@ namespace DungeonRun
 
 
 
-            #region Projectiles - World
+            #region Explosions and Ground Fires
 
             else if (Type == ProjectileType.ProjectileExplosion)
             {
@@ -1419,51 +1473,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Projectiles - Thrown
-
-            else if (Type == ProjectileType.ProjectileBush
-                || Type == ProjectileType.ProjectilePot
-                || Type == ProjectileType.ProjectilePotSkull)
-            {
-                //bushes and pots exist on commonObjs sheet,
-                //but skull pot exists on the dungeon sheet
-                if (Type == ProjectileType.ProjectilePotSkull)
-                { Pro.compSprite.texture = Assets.Dungeon_CurrentSheet; }
-
-                //thrown projectile attributes
-                Pro.compSprite.zOffset = 32;
-                Pro.lifetime = 20; //in frames
-                Pro.compMove.grounded = false; //obj is airborne
-                Pro.compMove.friction = 0.984f; //some air friction
-                //refine this hitBox later
-                Pro.compCollision.offsetX = -5; Pro.compCollision.offsetY = -5;
-                Pro.compCollision.rec.Width = 10; Pro.compCollision.rec.Height = 10;
-
-                //set animFrame based on type
-                if (Type == ProjectileType.ProjectileBush)
-                {
-                    Pro.compAnim.currentAnimation = AnimationFrames.World_Bush;
-                    Pro.sfx.kill = Assets.sfxBushCut;
-                    Pro.sfx.hit = Assets.sfxEnemyHit;
-                }
-                else if (Type == ProjectileType.ProjectilePot)
-                {
-                    Pro.compAnim.currentAnimation = AnimationFrames.Wor_Pot;
-                    Pro.sfx.hit = Assets.sfxEnemyHit;
-                    Pro.sfx.kill = Assets.sfxShatter;
-                }
-                else
-                {   //skull pot is default
-                    Pro.compAnim.currentAnimation = AnimationFrames.Dungeon_Pot;
-                    Pro.sfx.hit = Assets.sfxEnemyHit;
-                    Pro.sfx.kill = Assets.sfxShatter;
-                }
-            }
-
-            #endregion
-
-
-            #region Projectiles - Enemy Related
+            #region Fang/Bite and Bat
 
             else if (Type == ProjectileType.ProjectileBite)
             {

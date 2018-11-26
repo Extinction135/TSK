@@ -1253,8 +1253,7 @@ namespace DungeonRun
     #endregion
 
 
-    #region Actors, GameObjects, Projectiles, Particles
-
+    #region Actor, GameObject, Projectile, Particle, Pickup
 
     public class Actor
     {
@@ -1280,10 +1279,7 @@ namespace DungeonRun
         public float walkSpeed;
         public float swimSpeed = 0.10f; //unchanged
 
-
-
-
-        //the components that actor requires to function
+        //components actor requires to function
         public ComponentSprite compSprite;
         public ComponentAnimation compAnim = new ComponentAnimation();
         public ComponentMovement compMove = new ComponentMovement();

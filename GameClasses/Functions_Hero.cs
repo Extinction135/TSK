@@ -21,15 +21,18 @@ namespace DungeonRun
         public static Boolean boomerangInPlay = false; //only 1 boomerang on screen at once
         public static Boolean underRoof = false; //is hero under a roofObj?
 
-        //fields used in pickup / carry / throw
-        public static Boolean carrying = false; //is actor carrying an obj?
-        public static GameObject heldObj = null; //obj actor might be carrying
-
         //fields used in grab / push / pull
         public static Boolean grabbing = false;
         public static GameObject grabbedObj = null;
 
 
+
+
+        //fields used in pickup / carry / throw
+        public static Boolean carrying = false; //is hero holding pro above head?
+        //allows for parallel picking & throwing due to seperation of projectiles
+        public static Projectile carriedObj = null; //copy of obj picked up
+        public static Projectile thrownObj = null; //copy of carried obj thrown
 
 
 
@@ -134,16 +137,13 @@ namespace DungeonRun
                     {   //if heroRec collides with room rec, set it as currentRoom, build room
                         if (heroRec.Intersects(LevelSet.currentLevel.rooms[i].rec))
                         {
-
-                            if (carrying) //destroy anything hero is carrying
-                            {
+                            if (carrying)
+                            {   //silently destroy anything hero is carrying
                                 carrying = false;
-                                Functions_Interaction.HandleCommon(heldObj, Direction.None);
-                                Functions_Pool.Release(heldObj);
+                                Functions_Pool.Release(carriedObj);
                             }
 
-
-                            //transitions between rooms, build
+                            //transition between rooms, build room, set new room as visited
                             LevelSet.currentLevel.currentRoom = LevelSet.currentLevel.rooms[i];
                             Functions_Room.BuildRoom(LevelSet.currentLevel.rooms[i]);
                             LevelSet.currentLevel.rooms[i].visited = true;
@@ -512,112 +512,122 @@ namespace DungeonRun
                     Direction.Down);
             }
 
-            //handle picking up obj
+            //handle picking up roomObj as projectile dupe/fake
             carrying = true;
-            heldObj = Obj;
-            //'hide' roomObject offscreen - temporary, necessary
-            Functions_Movement.Teleport(Obj.compMove, 4096, 4096);
+
+            //dupe roomObj values as projectile - inherit texture, animFrame
+            carriedObj = Functions_Pool.GetProjectile();
+            carriedObj.compSprite.texture = Obj.compSprite.texture;
+            carriedObj.compAnim.currentAnimation = Obj.compAnim.currentAnimation;
+            //set anim to first frame
+            carriedObj.compSprite.currentFrame = carriedObj.compAnim.currentAnimation[0];
+
+            //setup rest of values as carriedObj
+            carriedObj.type = ProjectileType.CarriedObject; //unqiue projectile
+            carriedObj.compSprite.zOffset = 32; //sort over hero's head
+            carriedObj.lifetime = 255; //in frames
+            carriedObj.lifeCounter = 0; //new pro
+            carriedObj.compAnim.index = 0; //reset to 1st frame
+            carriedObj.caster = Pool.hero; //set caster to hero
+            carriedObj.compCollision.blocking = false;
+            carriedObj.direction = Direction.Down;
+
+            //release roomObj (make inactive)
+            Obj.active = false;
+
             //put actor into pickup state
             Pool.hero.state = ActorState.Pickup;
             Pool.hero.stateLocked = true;
             Pool.hero.lockTotal = 10;
             Functions_Actor.SetAnimationGroup(Pool.hero);
-            heldObj.compSprite.zOffset = +16; //sort above actor
-            heldObj.compCollision.blocking = false; //prevent act/obj overlaps
             Assets.Play(Assets.sfxActorLand); //temp sfx
         }
 
-        //static ObjType throwType;
         public static void Throw()
-        {   //put hero into throw state
-            carrying = false;
-            Pool.hero.state = ActorState.Throw;
-            Pool.hero.stateLocked = true;
-            Pool.hero.lockTotal = 10;
-            Functions_Actor.SetAnimationGroup(Pool.hero);
-
-            //resolve hero.direction to cardinal - no diagonal throwing
-            Pool.hero.direction =
-                Functions_Direction.GetCardinalDirection_LeftRight(Pool.hero.direction);
-
-
-
-
-
-
-            //Pool.hero.heldObj = ref to roomObj? 
-
-            //this needs to be written based on hero's hitBox + offset + direction
-
-            //place projectile outside of hero's hitbox
-            if (Pool.hero.direction == Direction.Left)
+        {
+            if (carrying)
             {
-                Functions_Movement.Teleport(heldObj.compMove,
-                    Pool.hero.compSprite.position.X - 8,
-                    Pool.hero.compSprite.position.Y);
+                //put hero into throw state
+                carrying = false;
+                Pool.hero.state = ActorState.Throw;
+                Pool.hero.stateLocked = true;
+                Pool.hero.lockTotal = 10;
+                Functions_Actor.SetAnimationGroup(Pool.hero);
+
+                //resolve hero.direction to cardinal - no diagonal throwing
+                Pool.hero.direction =
+                    Functions_Direction.GetCardinalDirection_LeftRight(Pool.hero.direction);
+
+
+                #region Setup hero's thrown projectile object
+
+                thrownObj = Functions_Pool.GetProjectile();
+                thrownObj.caster = Pool.hero;
+                //inherit carriedPro's textures and animFrames
+                thrownObj.compSprite.texture = carriedObj.compSprite.texture;
+                thrownObj.compAnim.currentAnimation = carriedObj.compAnim.currentAnimation;
+                //set anim to first frame
+                thrownObj.compSprite.currentFrame = carriedObj.compAnim.currentAnimation[0];
+                Functions_Pool.Release(carriedObj); //we are done with carried obj
+
+                //complete thrown projectile setup
+                thrownObj.compSprite.zOffset = 32; //sort over hero's head
+                thrownObj.direction = Direction.Down;
+                thrownObj.compSprite.rotation = Rotation.None;
+                thrownObj.lifetime = 20; //in frames
+                thrownObj.lifeCounter = 0; //new pro
+
+                thrownObj.compMove.direction = Pool.hero.direction;
+                thrownObj.compMove.grounded = false; //obj is airborne
+                thrownObj.compMove.friction = 0.984f; //some air friction
+
+                thrownObj.compCollision.offsetX = -6; thrownObj.compCollision.offsetY = -8;
+                thrownObj.compCollision.rec.Width = 12; thrownObj.compCollision.rec.Height = 12;
+
+                #endregion
+
+
+                #region Place thrown projectile outside of hero's hitbox
+
+                //this is tailored exactly to hero's hitbox
+                if (Pool.hero.direction == Direction.Down)
+                {   //too far and we throw thru thin horizontal hitboxes
+                    Functions_Movement.Teleport(thrownObj.compMove,
+                        Pool.hero.compCollision.rec.Center.X,
+                        Pool.hero.compCollision.rec.Y + Pool.hero.compCollision.rec.Height + 8);
+                }
+                else if (Pool.hero.direction == Direction.Up)
+                {   //too far and we throw thru thin horizontal hitboxes
+                    Functions_Movement.Teleport(thrownObj.compMove,
+                        Pool.hero.compCollision.rec.Center.X,
+                        Pool.hero.compCollision.rec.Y - 10);
+                }
+                else if (Pool.hero.direction == Direction.Right)
+                {   //too far and we throw thru thin vertical hitboxes
+                    Functions_Movement.Teleport(thrownObj.compMove,
+                        Pool.hero.compCollision.rec.X + Pool.hero.compCollision.rec.Width + 7,
+                        Pool.hero.compCollision.rec.Center.Y - 4);
+                }
+                else if (Pool.hero.direction == Direction.Left)
+                {   //too far and we throw thru thin vertical hitboxes
+                    Functions_Movement.Teleport(thrownObj.compMove,
+                        Pool.hero.compCollision.rec.X - 7,
+                        Pool.hero.compCollision.rec.Center.Y - 4);
+                }
+
+                #endregion
+
+
+                //push thrown obj projectile
+                Functions_Component.Align(thrownObj); //align components
+                Functions_Movement.Push(thrownObj.compMove, Pool.hero.direction, 5.0f);
+                thrownObj.compMove.moving = true; //moves
+
+                //never check thrownPro vs hero.hitBox - no collisions to worry about
+                Assets.Play(Assets.sfxActorFall); //play throw sfx
+                Functions_Particle.SpawnPushFX(Pool.hero.compMove, Pool.hero.direction);
             }
-            else if (Pool.hero.direction == Direction.Up)
-            {
-                Functions_Movement.Teleport(heldObj.compMove,
-                    Pool.hero.compSprite.position.X,
-                    Pool.hero.compSprite.position.Y - 8);
-            }
-            else if (Pool.hero.direction == Direction.Right)
-            {
-                Functions_Movement.Teleport(heldObj.compMove,
-                    Pool.hero.compSprite.position.X + 8,
-                    Pool.hero.compSprite.position.Y);
-            }
-            else if (Pool.hero.direction == Direction.Down)
-            {
-                Functions_Movement.Teleport(heldObj.compMove,
-                    Pool.hero.compSprite.position.X,
-                    Pool.hero.compSprite.position.Y + 8);
-            }
-
-
-
-
-            //check if we're throwing an enemy or object
-            if (heldObj.type == ObjType.Wor_Enemy_Turtle
-                || heldObj.type == ObjType.Wor_Enemy_Crab)
-            {
-                
-                
-                //strongly push enemy in actor's facing direction
-                Functions_Movement.Push(
-                    heldObj.compMove,
-                    Pool.hero.direction, 8.0f);
-                //reset hitbox, sorting offsets, etc...
-                Functions_GameObject.SetType(heldObj, heldObj.type);
-            }
-            else
-            {
-
-                //throwing routines are broken and need reintegration into new projectile system
-                /*
-                //create a thrown version of heldObj
-                //assume we're throwing a bush
-                throwType = ObjType.ProjectileBush;
-                //check for pots
-                if (Act.heldObj.type == ObjType.Dungeon_Pot)
-                { throwType = ObjType.ProjectilePotSkull; }
-                else if (Act.heldObj.type == ObjType.Wor_Pot)
-                { throwType = ObjType.ProjectilePot; }
-                //spawn the thrown projectile obj
-                Functions_Projectile.Spawn(throwType, Act, Act.direction);
-                */
-
-
-
-                Functions_Pool.Release(heldObj);
-            }
-
-            heldObj = null; //release reference to roomObj
-            Assets.Play(Assets.sfxActorFall); //play throw sfx
-            Functions_Particle.SpawnPushFX(Pool.hero.compMove, Pool.hero.direction);
         }
-
 
         public static void Grab(GameObject Obj)
         {
@@ -1022,6 +1032,7 @@ namespace DungeonRun
             //sort normally
             else { Pool.hero.compSprite.zOffset = 0; }
         }
+
 
     }
 }

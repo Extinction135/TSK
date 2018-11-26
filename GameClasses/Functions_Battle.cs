@@ -75,12 +75,11 @@ namespace DungeonRun
                 damage = 1; force = 3.0f; direction = Pro.direction;
             }
 
-            else if (Pro.type == ProjectileType.ProjectileBush
-                || Pro.type == ProjectileType.ProjectilePot
-                || Pro.type == ProjectileType.ProjectilePotSkull)
+            else if (Pro.type == ProjectileType.ThrownObject)
             {   //thrown objs deal 1 damage, push 4
                 damage = 1; force = 4.0f; direction = Pro.compMove.direction;
             }
+
             else if (Pro.type == ProjectileType.ProjectileBite)
             {   //bite deals 1 damage, push 5
                 damage = 1; force = 5.0f; direction = Pro.direction;
