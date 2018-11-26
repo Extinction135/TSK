@@ -1011,7 +1011,7 @@ namespace DungeonRun
                         ParticleType.BloodRed, //make this blood pls
                         Pro.compSprite.position.X+4,
                         Pro.compSprite.position.Y+4,
-                        true);
+                        false);
                     Assets.Play(Assets.sfxEnemyKill);
                     //and we could leave a pool of blood or bones on the ground
                 }

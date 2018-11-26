@@ -59,30 +59,70 @@ Today:
 
 
 
+Polish
+
+test destroying objects, throwing objects. done.
+
+test killing living objs: should pop blood. done.
+working, but i think a random explosion of blood 
+would be better. it is. done.
+
+also, when we normally kill an obj enemy, we should
+pop blood explosion the same way thrown projectile
+does. done. 
+
+test killing bosses: should pop blood or slime. k.
 
 
 
 
 
-Posts
 
-post corner hitboxes should be as 'tall' as the post
-horizontal walls. this allows hero to slide along them
-in the expected manner. however, in order to keep vertical
-walls touching, we need to extend the vertical wall's (that
-arent corners) hitboxes to close the gap corners now leave.
-done, tested, working much better.
+
+
+we want to leave behind skeletons when living objs
+and actors die.
 
 
 
 
 
 
+Floor Particles++
+
+we have floor blood in code, but this points to a floor stain.
+we are adding floor blood, which is red, next to it.
+this means we have two floor objs: stains and blood.
+stains are added procedurally to rooms.
+blood is created when an enemy is killed/dies (except in pit/water/etc..)
 
 
-test destroying objects, throwing objects.
-test killing living actors: should pop blood.
-test killing bosses: should pop blood or slime.
+
+
+Floor Bones/Skeletons 1 & 2
+
+we have skeleton debris objects that we can place procedurally
+in a room upon build(), and we can also randomly create one when
+an enemy dies, over the dead enemies blood spatter obj.
+
+these roomObjs flip horizontally upon being placed, after randomly
+choosing between the two of them.
+
+
+
+Blood Spatter Analysis, Dex
+
+upgrade throwing() enemies to 
+leave a blood mark on the ground as a roomObj.
+this happens in functions_projectile.kill().
+we already have the ground blood sprite
+
+^this should also work for actors. not over pits tho.
+
+
+
+
+
 
 
 
@@ -123,39 +163,6 @@ projectile is a pro vs obj test, and likely still works.
 
 
 
-
-
-
-Floor Particles++
-
-we have floor blood in code, but this points to a floor stain.
-we are adding floor blood, which is red, next to it.
-this means we have two floor objs: stains and blood.
-stains are added procedurally to rooms.
-blood is created when an enemy is killed/dies (except in pit/water/etc..)
-
-
-
-
-Floor Bones/Skeletons 1 & 2
-
-we have skeleton debris objects that we can place procedurally
-in a room upon build(), and we can also randomly create one when
-an enemy dies, over the dead enemies blood spatter obj.
-
-these roomObjs flip horizontally upon being placed, after randomly
-choosing between the two of them.
-
-
-
-Blood Spatter Analysis, Dex
-
-upgrade throwing() enemies to 
-leave a blood mark on the ground as a roomObj.
-this happens in functions_projectile.kill().
-we already have the ground blood sprite
-
-^this should also work for actors. not over pits tho.
 
 
 

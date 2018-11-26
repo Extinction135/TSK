@@ -93,24 +93,45 @@ namespace DungeonRun
 
         //death events
         public static void Kill(GameObject Obj, Boolean spawnLoot, Boolean becomeDebris)
-        {   //pop an attention particle
+        {   
+            //pop an attention particle
             Functions_Particle.Spawn(
                 ParticleType.Attention,
                 Obj.compSprite.position.X,
                 Obj.compSprite.position.Y);
+            
             //maybe pop loot & play soundfx
             if (spawnLoot) { Functions_Loot.SpawnLoot(Obj.compSprite.position); }
             if (Obj.sfx.kill != null) { Assets.Play(Obj.sfx.kill); }
-            
+
+            //based on obj type, we spawn death debris
+            if (
+                Obj.type == ObjType.Wor_Enemy_Rat
+                || Obj.type == ObjType.Wor_Enemy_Crab
+                || Obj.type == ObjType.Wor_Enemy_Turtle
+                )
+            {
+                Functions_Particle.Spawn_Explosion(
+                    ParticleType.BloodRed,
+                    Obj.compSprite.position.X,
+                    Obj.compSprite.position.Y,
+                    false); //random directions
+
+                //here we can create a skeleton roomObj at obj.compSprite center
+                //this causes these objects to leave behind skeletons, blood
+            }
+
             //should obj become debris or get released?
             if (becomeDebris) 
-            {   //if obj becomes debris, explode debris
+            {   
+                //spawn debris explosion, become debris ground obj
                 Functions_Particle.Spawn_Explosion(
                     ParticleType.DebrisBrown,
                     Obj.compSprite.position.X,
-                    Obj.compSprite.position.Y, 
-                    true);
+                    Obj.compSprite.position.Y,
+                    true); //circular explosion
                 BecomeDebris(Obj);
+                
             }
             else { Functions_Pool.Release(Obj); }
         }
@@ -139,7 +160,6 @@ namespace DungeonRun
             }
         }
 
-
         public static void SetRotation(GameObject Obj)
         {   
             if (
@@ -160,7 +180,6 @@ namespace DungeonRun
             Functions_Component.SetSpriteRotation(Obj.compSprite, Obj.direction);
         }
 
-        
         public static void BecomeDebris(GameObject Obj)
         {   //become permanent debris w/ 14x14 collisions
             SetType(Obj, ObjType.Wor_Debris);
