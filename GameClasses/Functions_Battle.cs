@@ -37,21 +37,21 @@ namespace DungeonRun
 
             #region Power level 0 projectiles
 
-            if (Pro.type == ProjectileType.ProjectileBomb)
+            if (Pro.type == ProjectileType.Bomb)
             {   //bombs don't push or hurt actors
                 return;
             }
-            else if (Pro.type == ProjectileType.ProjectileFireball)
+            else if (Pro.type == ProjectileType.Fireball)
             {   //fireballs die creating explosions
                 Pro.lifeCounter = Pro.lifetime;
                 return;
             }
-            else if (Pro.type == ProjectileType.ProjectileBoomerang)
+            else if (Pro.type == ProjectileType.Boomerang)
             {   //boomerangs deal 0 damage, push 10, flip to return state
                 damage = 0; force = 10.0f; direction = Pro.compMove.direction;
                 Pro.lifeCounter = 200; //return to caster
             }
-            else if (Pro.type == ProjectileType.ProjectileNet)
+            else if (Pro.type == ProjectileType.Net)
             {   //net deals 0 damage, push 6
                 damage = 0; force = 6.0f; direction = Pro.direction;
             }
@@ -61,16 +61,16 @@ namespace DungeonRun
 
             #region Power level 1 projectiles
 
-            else if (Pro.type == ProjectileType.ProjectileArrow)
+            else if (Pro.type == ProjectileType.Arrow)
             {   //arrows deal 1 damage, push 4, and die
                 damage = 1; force = 4.0f; direction = Pro.compMove.direction;
                 Pro.lifeCounter = Pro.lifetime;
             }
-            else if (Pro.type == ProjectileType.ProjectileSword)
+            else if (Pro.type == ProjectileType.Sword)
             {   //swords deal 1 damage, push 6
                 damage = 1; force = 6.0f; direction = Pro.direction;
             }
-            else if (Pro.type == ProjectileType.ProjectileShovel)
+            else if (Pro.type == ProjectileType.Shovel)
             {   //matches swords damage, less push
                 damage = 1; force = 3.0f; direction = Pro.direction;
             }
@@ -80,11 +80,11 @@ namespace DungeonRun
                 damage = 1; force = 4.0f; direction = Pro.compMove.direction;
             }
 
-            else if (Pro.type == ProjectileType.ProjectileBite)
+            else if (Pro.type == ProjectileType.Bite)
             {   //bite deals 1 damage, push 5
                 damage = 1; force = 5.0f; direction = Pro.direction;
             }
-            else if (Pro.type == ProjectileType.ProjectileBat)
+            else if (Pro.type == ProjectileType.Bat)
             {
                 //bats deal 1 damage, push 4, and die
                 damage = 1; force = 4.0f; direction = Pro.compMove.direction;
@@ -96,13 +96,13 @@ namespace DungeonRun
 
             #region Power level 2 projectiles
 
-            else if (Pro.type == ProjectileType.ProjectileExplosion)
+            else if (Pro.type == ProjectileType.Explosion)
             {   //explosions deal 2 damage, push 10
                 damage = 2; force = 10.0f;
                 //push actor in their opposite direction
                 direction = Functions_Direction.GetOppositeDirection(Actor.direction);
             }
-            else if (Pro.type == ProjectileType.ProjectileLightningBolt)
+            else if (Pro.type == ProjectileType.LightningBolt)
             {   //match explosions attributes
                 damage = 2; force = 10.0f;
                 //push actor in their opposite direction
@@ -110,7 +110,7 @@ namespace DungeonRun
             }
 
             //hammers might be op, i dunno yet
-            else if (Pro.type == ProjectileType.ProjectileHammer)
+            else if (Pro.type == ProjectileType.Hammer)
             {   //match explosions attributes
                 damage = 2; force = 10.0f;
                 //push actor in their opposite direction
@@ -131,7 +131,7 @@ namespace DungeonRun
 
             if (Actor.type == ActorType.Standard_BeefyBat)
             {   //prevent friendly fire between enemies attacking in groups
-                if (Pro.type == ProjectileType.ProjectileBite) { return; } //bail
+                if (Pro.type == ProjectileType.Bite) { return; } //bail
             }
             else if (Actor.type == ActorType.Standard_AngryEye)
             {
@@ -147,10 +147,10 @@ namespace DungeonRun
             else if (Actor.type == ActorType.MiniBoss_Spider_Armored)
             {   //these projectiles ACTUALLY damage armored spider
                 if (
-                    Pro.type == ProjectileType.ProjectileExplosion
-                    || Pro.type == ProjectileType.ProjectileLightningBolt
-                    || Pro.type == ProjectileType.ProjectileShovel
-                    || Pro.type == ProjectileType.ProjectileHammer
+                    Pro.type == ProjectileType.Explosion
+                    || Pro.type == ProjectileType.LightningBolt
+                    || Pro.type == ProjectileType.Shovel
+                    || Pro.type == ProjectileType.Hammer
                     )
                 { }
                 else
@@ -161,7 +161,7 @@ namespace DungeonRun
             }
             else if (Actor.type == ActorType.MiniBoss_Spider_Unarmored)
             {   //immune to bite projectiles
-                if (Pro.type == ProjectileType.ProjectileBite) { return; }
+                if (Pro.type == ProjectileType.Bite) { return; }
             }   //fast moving, can overlap it's own bite pro
 
             #endregion
@@ -171,21 +171,21 @@ namespace DungeonRun
 
             else if (Actor.type == ActorType.Boss_BigEye)
             {   //immune to bite projectiles
-                if (Pro.type == ProjectileType.ProjectileBite) { return; }
+                if (Pro.type == ProjectileType.Bite) { return; }
             }   //he moves fast and can overlap his bite pro, self-harming
 
             else if (Actor.type == ActorType.Boss_BigBat)
             {   //bat projectiles cant deal damage to the bat boss
                 //(he spawns them, and it would be cheap)
-                if (Pro.type == ProjectileType.ProjectileBat)
+                if (Pro.type == ProjectileType.Bat)
                 { Pro.lifeCounter = 0; return; } //keep bat alive, bail
                 //immune to bite projectiles
-                if (Pro.type == ProjectileType.ProjectileBite) { return; }
+                if (Pro.type == ProjectileType.Bite) { return; }
             }   //same reason as big eye
 
             else if (Actor.type == ActorType.Boss_OctoHead)
             {   //prevent boomerang from spawning tentacle accidentally
-                if (Pro.type == ProjectileType.ProjectileBoomerang)
+                if (Pro.type == ProjectileType.Boomerang)
                 {   //stop all boomerang movement, bounce off object
                     Functions_Movement.StopMovement(Pro.compMove);
                     Functions_Movement.Push(Pro.compMove,
@@ -206,7 +206,7 @@ namespace DungeonRun
 
             else if (Actor.type == ActorType.Special_Tentacle)
             {   //prevent friendly fire between enemies attacking in groups
-                if (Pro.type == ProjectileType.ProjectileBite) { return; } //bail
+                if (Pro.type == ProjectileType.Bite) { return; } //bail
             }
 
             #endregion

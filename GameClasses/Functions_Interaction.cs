@@ -112,13 +112,13 @@ namespace DungeonRun
             if (Actor.state == ActorState.Dead) { return; }
 
             //some projectiles dont interact with actors in any way at all
-            if (Pro.type == ProjectileType.ProjectileBomb
-                || Pro.type == ProjectileType.ProjectileGroundFire
-                || Pro.type == ProjectileType.ProjectileBow
+            if (Pro.type == ProjectileType.Bomb
+                || Pro.type == ProjectileType.GroundFire
+                || Pro.type == ProjectileType.Bow
                 )
             { return; }
             //check for boomerang interaction with hero
-            else if (Pro.type == ProjectileType.ProjectileBoomerang & Actor == Pool.hero)
+            else if (Pro.type == ProjectileType.Boomerang & Actor == Pool.hero)
             { return; }
             //check for hero's carried object projectile
             else if (Pro.type == ProjectileType.CarriedObject)
@@ -134,7 +134,7 @@ namespace DungeonRun
             //specific projectile interactions
 
             //check for collision between net and actor
-            else if (Pro.type == ProjectileType.ProjectileNet)
+            else if (Pro.type == ProjectileType.Net)
             {   //make sure actor isn't in hit/dead state
                 if (Actor.state == ActorState.Dead || Actor.state == ActorState.Hit) { return; }
                 Pro.lifeCounter = Pro.lifetime; //kill projectile
@@ -150,7 +150,7 @@ namespace DungeonRun
             }
 
             //limit bite to only the first frame of life
-            else if (Pro.type == ProjectileType.ProjectileBite)
+            else if (Pro.type == ProjectileType.Bite)
             {   //prevents fast moving caster overlap, while still remaining drawable
                 if (Pro.lifeCounter > 2) { return; }
             }
@@ -199,8 +199,8 @@ namespace DungeonRun
 
                 #region Arrow / Bat
 
-                if (Pro.type == ProjectileType.ProjectileArrow
-                    || Pro.type == ProjectileType.ProjectileBat)
+                if (Pro.type == ProjectileType.Arrow
+                    || Pro.type == ProjectileType.Bat)
                 {   //arrows trigger common obj interactions
                     HandleCommon(RoomObj, Pro.compMove.direction);
                     //arrows die upon blocking collision
@@ -212,7 +212,7 @@ namespace DungeonRun
 
                 #region Bomb
 
-                else if (Pro.type == ProjectileType.ProjectileBomb)
+                else if (Pro.type == ProjectileType.Bomb)
                 {   //stop bombs from moving thru blocking objects
                     Functions_Movement.StopMovement(Pro.compMove);
                 }
@@ -222,7 +222,7 @@ namespace DungeonRun
 
                 #region Explosions
 
-                else if (Pro.type == ProjectileType.ProjectileExplosion)
+                else if (Pro.type == ProjectileType.Explosion)
                 {
                     if (Pro.lifeCounter == 2) //perform these interactions only once
                     {
@@ -236,7 +236,7 @@ namespace DungeonRun
 
                 #region Fireball
 
-                else if (Pro.type == ProjectileType.ProjectileFireball)
+                else if (Pro.type == ProjectileType.Fireball)
                 {   //fireball becomes explosion upon death
                     Functions_Projectile.Kill(Pro);
                 }
@@ -246,8 +246,8 @@ namespace DungeonRun
 
                 #region Sword & Shovel
 
-                else if (Pro.type == ProjectileType.ProjectileSword
-                    || Pro.type == ProjectileType.ProjectileShovel)
+                else if (Pro.type == ProjectileType.Sword
+                    || Pro.type == ProjectileType.Shovel)
                 {
                     //swords and shovels cause soundfx to blocking objects
                     if (Pro.lifeCounter == 2) //these events happen only at start
@@ -270,7 +270,7 @@ namespace DungeonRun
 
                 #region Fang / Bite / Invs Enemy Attack Projectile
 
-                else if (Pro.type == ProjectileType.ProjectileBite)
+                else if (Pro.type == ProjectileType.Bite)
                 {
                     //center sparkle to bite
                     Functions_Particle.Spawn(ParticleType.Sparkle,
@@ -289,7 +289,7 @@ namespace DungeonRun
 
                 #region Boomerang
 
-                else if (Pro.type == ProjectileType.ProjectileBoomerang)
+                else if (Pro.type == ProjectileType.Boomerang)
                 {
 
                     //kill roomObj enemies, just like a sword would
@@ -362,7 +362,7 @@ namespace DungeonRun
 
                 #region GroundFires
 
-                else if (Pro.type == ProjectileType.ProjectileGroundFire)
+                else if (Pro.type == ProjectileType.GroundFire)
                 {   //blocking objs only here, btw
 
                     //groundfires can burn trees
@@ -374,7 +374,7 @@ namespace DungeonRun
                     else if (RoomObj.type == ObjType.Wor_Bush)
                     {   //spread the fire 
                         Functions_Projectile.Spawn(
-                            ProjectileType.ProjectileGroundFire,
+                            ProjectileType.GroundFire,
                             RoomObj.compSprite.position.X,
                             RoomObj.compSprite.position.Y - 3,
                             Direction.None);
@@ -397,7 +397,7 @@ namespace DungeonRun
                     {
                         //spread the fire 
                         Functions_Projectile.Spawn(
-                            ProjectileType.ProjectileGroundFire,
+                            ProjectileType.GroundFire,
                             RoomObj.compSprite.position.X,
                             RoomObj.compSprite.position.Y - 3,
                             Direction.None);
@@ -418,7 +418,7 @@ namespace DungeonRun
 
                 #region Lightning Bolt
 
-                else if (Pro.type == ProjectileType.ProjectileLightningBolt)
+                else if (Pro.type == ProjectileType.LightningBolt)
                 {
                     if (Pro.lifeCounter == 2) //perform these interactions only once
                     {   //bolts call power level 2 destruction routines
@@ -443,7 +443,7 @@ namespace DungeonRun
 
                 #region Hammer
 
-                else if (Pro.type == ProjectileType.ProjectileHammer)
+                else if (Pro.type == ProjectileType.Hammer)
                 {   //time this interaction to the hammer hitting the ground
                     if (Pro.compAnim.index == 3)
                     {   //hammers call destruction level 2 routines
@@ -482,8 +482,8 @@ namespace DungeonRun
                     || RoomObj.type == ObjType.Wor_Build_Roof_Chimney
                     )
                 {
-                    if (Pro.type == ProjectileType.ProjectileExplosion
-                        || Pro.type == ProjectileType.ProjectileLightningBolt)
+                    if (Pro.type == ProjectileType.Explosion
+                        || Pro.type == ProjectileType.LightningBolt)
                     {   //begin cascading roof collapse
                         Functions_GameObject_World.CollapseRoof(RoomObj);
                     }
@@ -501,8 +501,8 @@ namespace DungeonRun
                     //actually, we should be pushing the object the same way we push an actor
 
                     //kill specific projectiles / objects
-                    if (Pro.type == ProjectileType.ProjectileFireball
-                        || Pro.type == ProjectileType.ProjectileArrow)
+                    if (Pro.type == ProjectileType.Fireball
+                        || Pro.type == ProjectileType.Arrow)
                     { Functions_Pool.Release(Pro); }
                     else if(Pro.type == ProjectileType.ThrownObject)
                     { Functions_Projectile.Kill(Pro); }
@@ -518,9 +518,9 @@ namespace DungeonRun
                     if (RoomObj.compSprite.scale != 1.0f) { return; }
 
                     //specific projectiles cannot be bounced off bumper
-                    if (Pro.type == ProjectileType.ProjectileExplosion
-                        || Pro.type == ProjectileType.ProjectileNet
-                        || Pro.type == ProjectileType.ProjectileSword
+                    if (Pro.type == ProjectileType.Explosion
+                        || Pro.type == ProjectileType.Net
+                        || Pro.type == ProjectileType.Sword
                         )
                     { return; }
 
@@ -543,7 +543,7 @@ namespace DungeonRun
 
                 else if (RoomObj.type == ObjType.Dungeon_Fairy)
                 {
-                    if (Pro.type == ProjectileType.ProjectileNet)
+                    if (Pro.type == ProjectileType.Net)
                     {
                         if (Pro.lifeCounter < Pro.lifetime) //net is still young
                         {
@@ -563,7 +563,7 @@ namespace DungeonRun
                     }
 
                     //collect fairys with boomerang, hookshot, axe, etc...
-                    else if(Pro.type == ProjectileType.ProjectileBoomerang)
+                    else if(Pro.type == ProjectileType.Boomerang)
                     {
                         //pickup fairy
                         Debug.WriteLine("boomerang hit fairy");
@@ -577,28 +577,28 @@ namespace DungeonRun
 
                 else if (RoomObj.type == ObjType.Wor_Grass_Tall)
                 {
-                    if (Pro.type == ProjectileType.ProjectileExplosion)
+                    if (Pro.type == ProjectileType.Explosion)
                     {   //pass the obj's direction into the grass (fake inertia)
                         RoomObj.compMove.direction = Pro.direction;
                         Functions_GameObject_World.CutTallGrass(RoomObj);
                         //add some ground fire 
                         Functions_Projectile.Spawn(
-                            ProjectileType.ProjectileGroundFire,
+                            ProjectileType.GroundFire,
                             RoomObj.compSprite.position.X,
                             RoomObj.compSprite.position.Y - 3,
                             Direction.None);
                     }
-                    else if (Pro.type == ProjectileType.ProjectileSword)
+                    else if (Pro.type == ProjectileType.Sword)
                     {   //pass the obj's direction into the grass (fake inertia)
                         RoomObj.compMove.direction = Pro.direction;
                         Functions_GameObject_World.CutTallGrass(RoomObj);
                     }
-                    else if (Pro.type == ProjectileType.ProjectileGroundFire)
+                    else if (Pro.type == ProjectileType.GroundFire)
                     {   //'burn' the grass
                         Functions_GameObject_World.CutTallGrass(RoomObj);
                         //spread the fire 
                         Functions_Projectile.Spawn(
-                            ProjectileType.ProjectileGroundFire,
+                            ProjectileType.GroundFire,
                             RoomObj.compSprite.position.X,
                             RoomObj.compSprite.position.Y - 3,
                             Direction.None);
@@ -614,9 +614,9 @@ namespace DungeonRun
                 else if(RoomObj.type == ObjType.Wor_Build_Door_Open)
                 {
                     if (
-                        Pro.type == ProjectileType.ProjectileExplosion ||
-                        Pro.type == ProjectileType.ProjectileLightningBolt ||
-                        Pro.type == ProjectileType.ProjectileHammer
+                        Pro.type == ProjectileType.Explosion ||
+                        Pro.type == ProjectileType.LightningBolt ||
+                        Pro.type == ProjectileType.Hammer
                         )
                     {
                         Functions_GameObject.Kill(RoomObj, false, true);
@@ -1582,7 +1582,7 @@ namespace DungeonRun
                 Functions_GameObject_World.DestroyBush(Obj);
                 //set a ground fire ON the stump sprite
                 Functions_Projectile.Spawn(
-                    ProjectileType.ProjectileGroundFire,
+                    ProjectileType.GroundFire,
                     Obj.compSprite.position.X,
                     Obj.compSprite.position.Y - 4,
                     Direction.None);

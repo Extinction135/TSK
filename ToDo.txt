@@ -56,34 +56,6 @@ Today:
 
 
 
-Throwing Objects++
-
-the drawHeldObj() method is very inefficient.
-the design of how we pickup & carry objects, is very inefficient.
-
-what is the design? we model the picked up roomobj as a gameobj
-reference to the roomObj. this is fine, if we wanted to put the
-object down, as we did previously using B, but now we dash using
-B and we also only throw the object and THIS IS IMPORTANT - the
-thrown obj always explodes after becoming a power level 1 generic 
-projectile. in order to fulfill this design spec, we should be
-modeling the heldObj as a projectile.
-
-we are doing this using two refs in fun_hero.
-carriedObj tracks to hero once it dupes the texture and animFrames
-of the roomObj hero picks up. thrownObj inherits the carriedObjs
-texture and animFrames, and handles traveling through the air
-colliding and interacting with things. this makes logic simple,
-plus it allows hero to pickup and carry an obj, while the thrown
-projectile obj is still in play.
-
-tested, all carry-able objects are also throw-able.
-this includes the living roomObjs: crabs, rats, turtles.
-modified pickup() to release the roomObj it dupes.
-all thrown objs collide and interact as expected.
-
-Bugs--
-fixed a bug where bite wasn't dealing damage to actors
 
 
 
@@ -98,8 +70,27 @@ fixed a bug where bite wasn't dealing damage to actors
 
 Prefix Removal
 
-*we need to drop 'projectile' prefix from projectilType enum values.
-it's very redundant.
+we need to drop 'projectile' prefix from projectilType enum values.
+it's very redundant. done.
+
+Throwing Enemies++
+
+now when enemies are thrown, they create impact dust. this is different
+from roomobjects and bushes, which create debris and leafs respectively.
+this is just to remind myself that this can be different and should be
+bloody later on.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -108,20 +99,16 @@ it's very redundant.
 
 Blood Spatter Analysis, Dex
 
+for now, living objects that are thrown create impact dust
+upon explosion/death. this is PG, and instead, lets make it gory.
+
 upgrade throwing() enemies to explode as blood spatter,
 and leave a blood mark on the ground as a roomObj.
+this happens in functions_projectile.kill()
 
-
-
-
-
-
-
-
-
-
-
-
+if we pickup a rat, we *must* set it's current animation to the
+down animation for the rat - because we only check this animation value
+to determine if the rat should explode into blood spatter.
 
 
 
@@ -144,17 +131,21 @@ this seperatees the destruction of objs, from the burning of objs.
 
 
 
-
-
-
-
-
-
-
 Fairy++
 do fairies work? no. they are not modeled as pickups.
 make fairy a pickup that lasts forever,
 modeled like other pickups.
+
+
+
+
+
+
+
+
+
+
+
 
 
 

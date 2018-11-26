@@ -522,6 +522,12 @@ namespace DungeonRun
             //set anim to first frame
             carriedObj.compSprite.currentFrame = carriedObj.compAnim.currentAnimation[0];
 
+
+            //translate rat into the down animation for ease of use in code
+            if (Obj.type == ObjType.Wor_Enemy_Rat)
+            { carriedObj.compAnim.currentAnimation = AnimationFrames.Wor_Enemy_Rat_Down; }
+
+
             //setup rest of values as carriedObj
             carriedObj.type = ProjectileType.CarriedObject; //unqiue projectile
             carriedObj.compSprite.zOffset = 32; //sort over hero's head
@@ -562,6 +568,7 @@ namespace DungeonRun
                 #region Setup hero's thrown projectile object
 
                 thrownObj = Functions_Pool.GetProjectile();
+                thrownObj.type = ProjectileType.ThrownObject;
                 thrownObj.caster = Pool.hero;
                 //inherit carriedPro's textures and animFrames
                 thrownObj.compSprite.texture = carriedObj.compSprite.texture;

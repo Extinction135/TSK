@@ -438,14 +438,14 @@ namespace DungeonRun
                     //limit special attack
                     if(Functions_Random.Int(0, 100) > 50)
                     {   //Super Special Attack : spam spawn bats in all directions
-                        Functions_Projectile.Spawn(ProjectileType.ProjectileBat, Actor, Direction.Down);
-                        Functions_Projectile.Spawn(ProjectileType.ProjectileBat, Actor, Direction.DownRight);
-                        Functions_Projectile.Spawn(ProjectileType.ProjectileBat, Actor, Direction.Right);
-                        Functions_Projectile.Spawn(ProjectileType.ProjectileBat, Actor, Direction.UpRight);
-                        Functions_Projectile.Spawn(ProjectileType.ProjectileBat, Actor, Direction.Up);
-                        Functions_Projectile.Spawn(ProjectileType.ProjectileBat, Actor, Direction.UpLeft);
-                        Functions_Projectile.Spawn(ProjectileType.ProjectileBat, Actor, Direction.Left);
-                        Functions_Projectile.Spawn(ProjectileType.ProjectileBat, Actor, Direction.DownLeft);
+                        Functions_Projectile.Spawn(ProjectileType.Bat, Actor, Direction.Down);
+                        Functions_Projectile.Spawn(ProjectileType.Bat, Actor, Direction.DownRight);
+                        Functions_Projectile.Spawn(ProjectileType.Bat, Actor, Direction.Right);
+                        Functions_Projectile.Spawn(ProjectileType.Bat, Actor, Direction.UpRight);
+                        Functions_Projectile.Spawn(ProjectileType.Bat, Actor, Direction.Up);
+                        Functions_Projectile.Spawn(ProjectileType.Bat, Actor, Direction.UpLeft);
+                        Functions_Projectile.Spawn(ProjectileType.Bat, Actor, Direction.Left);
+                        Functions_Projectile.Spawn(ProjectileType.Bat, Actor, Direction.DownLeft);
                     }
 
                     //always taunt the player
@@ -478,21 +478,21 @@ namespace DungeonRun
                 if (Actor.compInput.use)
                 {
                     //spawn 2 bats in the direction boss is moving
-                    Functions_Projectile.Spawn(ProjectileType.ProjectileBat, Actor, 
+                    Functions_Projectile.Spawn(ProjectileType.Bat, Actor, 
                         Actor.compInput.direction);
-                    Functions_Projectile.Spawn(ProjectileType.ProjectileBat, Actor,
+                    Functions_Projectile.Spawn(ProjectileType.Bat, Actor,
                         Actor.compInput.direction);
 
                     //spawn 2 bats towards hero, diagonally
-                    Functions_Projectile.Spawn(ProjectileType.ProjectileBat, Actor,
+                    Functions_Projectile.Spawn(ProjectileType.Bat, Actor,
                         Functions_Direction.GetDiagonalToHero(Actor.compSprite.position));
-                    Functions_Projectile.Spawn(ProjectileType.ProjectileBat, Actor,
+                    Functions_Projectile.Spawn(ProjectileType.Bat, Actor,
                         Functions_Direction.GetDiagonalToHero(Actor.compSprite.position));
 
                     //spawn 2 bats towards center of room
-                    Functions_Projectile.Spawn(ProjectileType.ProjectileBat, Actor,
+                    Functions_Projectile.Spawn(ProjectileType.Bat, Actor,
                         Functions_Direction.GetDiagonalToCenterOfRoom(Actor.compSprite.position));
-                    Functions_Projectile.Spawn(ProjectileType.ProjectileBat, Actor,
+                    Functions_Projectile.Spawn(ProjectileType.Bat, Actor,
                         Functions_Direction.GetDiagonalToCenterOfRoom(Actor.compSprite.position));
                 }
 
@@ -825,7 +825,7 @@ namespace DungeonRun
                     if (yDistance < 15 & xDistance < 15) //is seeker close enough to explode?
                     {   //instantly explode
                         Functions_Projectile.Spawn(
-                            ProjectileType.ProjectileExplosion,
+                            ProjectileType.Explosion,
                             Obj.compSprite.position.X,
                             Obj.compSprite.position.Y,
                             Direction.None);
@@ -854,7 +854,7 @@ namespace DungeonRun
                 if (Functions_Random.Int(0, 500) > 497) //aggressively shoots
                 {   //shoot fireball towards hero along a cardinal direction
                     Functions_Projectile.Spawn(
-                        ProjectileType.ProjectileFireball, 
+                        ProjectileType.Fireball, 
                         Obj.compMove.position.X,
                         Obj.compMove.position.Y,
                         Functions_Direction.GetCardinalDirectionToHero(Obj.compSprite.position));
@@ -867,7 +867,7 @@ namespace DungeonRun
                 if (Functions_Random.Int(0, 2000) > 1998) //rarely shoots
                 {
                     Functions_Projectile.Spawn(
-                        ProjectileType.ProjectileArrow, 
+                        ProjectileType.Arrow, 
                         Obj.compMove.position.X,
                         Obj.compMove.position.Y, 
                         Obj.direction);
@@ -1456,7 +1456,7 @@ namespace DungeonRun
                 if(Obj.lifeCounter > Obj.lifetime)
                 {
                     Functions_Projectile.Spawn(
-                        ProjectileType.ProjectileExplosion,
+                        ProjectileType.Explosion,
                         Obj.compSprite.position.X,
                         Obj.compSprite.position.Y,
                         Direction.None);

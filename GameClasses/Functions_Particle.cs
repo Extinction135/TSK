@@ -64,7 +64,7 @@ namespace DungeonRun
 
             #region Sword & Net
 
-            if (Pro.type == ProjectileType.ProjectileSword || Pro.type == ProjectileType.ProjectileNet)
+            if (Pro.type == ProjectileType.Sword || Pro.type == ProjectileType.Net)
             {
                 if (Pro.direction == Direction.Up) { posRef.X += 8; posRef.Y -= 0; }
                 else if (Pro.direction == Direction.Right) { posRef.X += 8; posRef.Y += 8; }

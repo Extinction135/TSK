@@ -778,11 +778,10 @@ namespace DungeonRun
         #region Items
 
         //Projectiles - items
-        ProjectileBomb,
-        ProjectileFireball,
-        ProjectileLightningBolt,
-        ProjectileBoomerang,
-
+        Bomb,
+        Fireball,
+        LightningBolt,
+        Boomerang,
 
         #endregion
 
@@ -790,19 +789,19 @@ namespace DungeonRun
         #region Weapons
 
         //Projectiles - weapons
-        ProjectileSword,
-        ProjectileArrow,
-        ProjectileNet,
-        ProjectileBow,
-        ProjectileShovel,
-        ProjectileHammer,
+        Sword,
+        Arrow,
+        Net,
+        Bow,
+        Shovel,
+        Hammer,
 
         //Projectiles - object
-        ProjectileExplosion,
-        ProjectileGroundFire,
+        Explosion,
+        GroundFire,
 
         //Projectiles - casted magic
-        ProjectileBombos,
+        Bombos,
 
         #endregion
 
@@ -810,8 +809,8 @@ namespace DungeonRun
         #region Enemy Related
 
         //Projectiles - enemy related
-        ProjectileBite,
-        ProjectileBat,
+        Bite,
+        Bat,
 
         #endregion
 

@@ -1389,7 +1389,7 @@ namespace DungeonRun
         public Boolean active = true; //does object draw, update?
 
         public Actor caster = Pool.hero; //default caster to hero
-        public ProjectileType type = ProjectileType.ProjectileArrow;
+        public ProjectileType type = ProjectileType.Arrow;
         public Direction direction = Direction.Down; //direction sprite is facing
 
         public Byte lifetime = 30; //how many frames this object exists for, 0 = forever/ignore

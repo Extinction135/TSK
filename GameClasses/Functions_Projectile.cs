@@ -25,7 +25,7 @@ namespace DungeonRun
         //resets the projectile to a default state
         public static void Reset(Projectile Pro)
         {   //reset projectile
-            Pro.type = ProjectileType.ProjectileArrow; //reset the type
+            Pro.type = ProjectileType.Arrow; //reset the type
             Pro.direction = Direction.Down;
             Pro.active = true; //assume this object should draw / animate
             Pro.lifetime = 0; //assume obj exists forever (not projectile)
@@ -91,7 +91,7 @@ namespace DungeonRun
             #region Lightning Bolt
 
             //a bolt is spawned by other bolts, hence no caster
-            if (Type == ProjectileType.ProjectileLightningBolt)
+            if (Type == ProjectileType.LightningBolt)
             {   //push bolt a little bit, play sfx
                 Functions_Movement.Push(pro.compMove, Dir, 2.0f);
                 Assets.Play(Assets.sfxShock);
@@ -103,7 +103,7 @@ namespace DungeonRun
             #region Projectile Bomb
 
             //what room obj or event spawns a bomb?
-            else if (Type == ProjectileType.ProjectileBomb)
+            else if (Type == ProjectileType.Bomb)
             {
                 Assets.Play(Assets.sfxBombDrop);
             }
@@ -114,7 +114,7 @@ namespace DungeonRun
             #region Fireball
 
             //flamethrowers spawn fireballs, etc..
-            else if (Type == ProjectileType.ProjectileFireball)
+            else if (Type == ProjectileType.Fireball)
             {
                 Functions_Movement.Push(pro.compMove, Dir, 4.0f);
                 Assets.Play(Assets.sfxFireballCast);
@@ -135,7 +135,7 @@ namespace DungeonRun
 
             #region Boomerang Spawn - only one on screen at a time
 
-            if (Type == ProjectileType.ProjectileBoomerang)
+            if (Type == ProjectileType.Boomerang)
             {   //only 1 boomerang allowed in play at once
                 if (Functions_Hero.boomerangInPlay) { return; }
                 else { Functions_Hero.boomerangInPlay = true; }
@@ -153,9 +153,9 @@ namespace DungeonRun
             #region Spawn Projectile Diagonally or Only Cardinal?
 
             //determine the direction the projectile should inherit
-            if (Type == ProjectileType.ProjectileBomb
-                || Type == ProjectileType.ProjectileBoomerang
-                || Type == ProjectileType.ProjectileBat)
+            if (Type == ProjectileType.Bomb
+                || Type == ProjectileType.Boomerang
+                || Type == ProjectileType.Bat)
             { } //do nothing, we want to be able to throw these projectiles diagonally
             else
             {
@@ -193,7 +193,7 @@ namespace DungeonRun
 
             //fireball may need a specific offset different from arrows, because they are larger
 
-            if (Type == ProjectileType.ProjectileArrow || Type == ProjectileType.ProjectileFireball)
+            if (Type == ProjectileType.Arrow || Type == ProjectileType.Fireball)
             {   //move projectile outside of caster's hitbox based on direction
                 if (Dir == Direction.Down)
                 {   //place centered below casters hb
@@ -224,7 +224,7 @@ namespace DungeonRun
                 pro.compMove.moving = true; //moves
                 pushLines = true;
 
-                if (Type == ProjectileType.ProjectileArrow)
+                if (Type == ProjectileType.Arrow)
                 {
                     Functions_Movement.Push(pro.compMove, Dir, 6.0f);
                     Assets.Play(Assets.sfxArrowShoot);
@@ -241,7 +241,7 @@ namespace DungeonRun
 
             #region Bat projectile
 
-            else if (Type == ProjectileType.ProjectileBat)
+            else if (Type == ProjectileType.Bat)
             {
                 //move projectile outside of caster's hitbox based on direction
                 if (Dir == Direction.Down)
@@ -310,51 +310,6 @@ namespace DungeonRun
 
             
 
-            /*
-
-            #region Thrown Objects (Bush, Pot, Skull Pot, Small Enemies)
-
-            else if (Type == ProjectileType.ProjectileBush
-                || Type == ProjectileType.ProjectilePotSkull
-                || Type == ProjectileType.ProjectilePot)
-            {
-                //move projectile outside of caster's hitbox based on direction
-                if (Dir == Direction.Down)
-                {   //place centered below casters hb
-                    Functions_Movement.Teleport(pro.compMove,
-                        Caster.compCollision.rec.Center.X,
-                        Caster.compCollision.rec.Y + Caster.compCollision.rec.Height + 16);
-                }
-                else if (Dir == Direction.Up)
-                {   //place centered above casters hb
-                    Functions_Movement.Teleport(pro.compMove,
-                        Caster.compCollision.rec.Center.X,
-                        Caster.compCollision.rec.Y - 14);
-                }
-                else if (Dir == Direction.Right)
-                {   //place centered right side of casters hb
-                    Functions_Movement.Teleport(pro.compMove,
-                        Caster.compCollision.rec.X + Caster.compCollision.rec.Width + 16,
-                        Caster.compCollision.rec.Center.Y);
-                }
-                else if (Dir == Direction.Left)
-                {   //place centered left side of casters hb
-                    Functions_Movement.Teleport(pro.compMove,
-                        Caster.compCollision.rec.X - 16,
-                        Caster.compCollision.rec.Center.Y);
-                }
-
-                Functions_Component.Align(pro); //align the pros comps
-                Functions_Movement.Push(pro.compMove, Dir, 5.0f);
-                //pushLines = true; //this is handled in Throw()
-            }
-
-            #endregion
-
-            */
-
-
-
 
 
 
@@ -362,7 +317,7 @@ namespace DungeonRun
 
             #region Boomerang
 
-            else if (Type == ProjectileType.ProjectileBoomerang)
+            else if (Type == ProjectileType.Boomerang)
             {
                 Functions_Hero.boomerangInPlay = true;
 
@@ -385,7 +340,7 @@ namespace DungeonRun
 
             #region Bombs
 
-            else if (Type == ProjectileType.ProjectileBomb)
+            else if (Type == ProjectileType.Bomb)
             {
                 Assets.Play(Assets.sfxBombDrop);
 
@@ -410,7 +365,7 @@ namespace DungeonRun
 
             #region Net
 
-            else if (Type == ProjectileType.ProjectileNet)
+            else if (Type == ProjectileType.Net)
             {
                 Assets.Play(Assets.sfxNet);
             }
@@ -420,7 +375,7 @@ namespace DungeonRun
 
             #region Sword
 
-            else if (Type == ProjectileType.ProjectileSword)
+            else if (Type == ProjectileType.Sword)
             {
                 Assets.Play(Assets.sfxSwordSwipe);
             }
@@ -430,7 +385,7 @@ namespace DungeonRun
 
             #region Shovel
 
-            else if (Type == ProjectileType.ProjectileShovel)
+            else if (Type == ProjectileType.Shovel)
             {
                 Assets.Play(Assets.sfxActorLand); //generic use sound
             }
@@ -440,7 +395,7 @@ namespace DungeonRun
 
             #region Hammer
 
-            else if (Type == ProjectileType.ProjectileHammer)
+            else if (Type == ProjectileType.Hammer)
             {
                 Assets.Play(Assets.sfxActorLand); //generic use sound
                 //set anim frame based on direction
@@ -467,7 +422,7 @@ namespace DungeonRun
 
             #region Bite Projectile
 
-            else if (Type == ProjectileType.ProjectileBite)
+            else if (Type == ProjectileType.Bite)
             {
                 Assets.Play(Assets.sfxEnemyTaunt);
                 pushLines = true;
@@ -481,7 +436,7 @@ namespace DungeonRun
 
             #region Explosions
 
-            else if (Type == ProjectileType.ProjectileExplosion)
+            else if (Type == ProjectileType.Explosion)
             {
                 Assets.Play(Assets.sfxExplosion);
                 //place smoke puff above explosion
@@ -496,7 +451,7 @@ namespace DungeonRun
 
             #region Bombos
 
-            else if (Type == ProjectileType.ProjectileBombos)
+            else if (Type == ProjectileType.Bombos)
             {   //play casting soundfx
                 Assets.Play(Assets.sfxCastBombos);
             }
@@ -533,7 +488,7 @@ namespace DungeonRun
             #region Bite/Fang
 
             //fang/bite simply tracks outside of the casters hitbox, centered
-            if (Pro.type == ProjectileType.ProjectileBite)
+            if (Pro.type == ProjectileType.Bite)
             {
                 if (Pro.direction == Direction.Down)
                 {   //place centered below casters hb
@@ -567,9 +522,9 @@ namespace DungeonRun
             #region Sword, Net, Shovel
 
             //sword, net, shovel all track to the HERO'S HAND, based on direction
-            else if (Pro.type == ProjectileType.ProjectileSword
-                || Pro.type == ProjectileType.ProjectileNet
-                || Pro.type == ProjectileType.ProjectileShovel
+            else if (Pro.type == ProjectileType.Sword
+                || Pro.type == ProjectileType.Net
+                || Pro.type == ProjectileType.Shovel
                 )
             {
                 if (Pro.direction == Direction.Down)
@@ -603,7 +558,7 @@ namespace DungeonRun
 
             #region Bow 
 
-            else if (Pro.type == ProjectileType.ProjectileBow)
+            else if (Pro.type == ProjectileType.Bow)
             {
                 //bows appear to be in links/blobs hands (other actors dont matter)
                 //move projectile outside of caster's hitbox based on direction
@@ -639,7 +594,7 @@ namespace DungeonRun
             #region Hammer
 
             //we need to set hammer's animFrames here, based on direction
-            else if (Pro.type == ProjectileType.ProjectileHammer)
+            else if (Pro.type == ProjectileType.Hammer)
             {
                 if (Pro.direction == Direction.Down)
                 {   //place inhand below casters hb
@@ -744,7 +699,7 @@ namespace DungeonRun
 
             #region Boomerang
 
-            else if (Pro.type == ProjectileType.ProjectileBoomerang)
+            else if (Pro.type == ProjectileType.Boomerang)
             {   //boomerang travels in thrown direction until this age, then returns to hero
 
 
@@ -802,7 +757,7 @@ namespace DungeonRun
 
             #region Fireballs
 
-            else if (Pro.type == ProjectileType.ProjectileFireball)
+            else if (Pro.type == ProjectileType.Fireball)
             {
                 //Debug.WriteLine("processing fireball behavior");
                 if (Functions_Random.Int(0, 101) > 50)
@@ -854,7 +809,7 @@ namespace DungeonRun
                                     Functions_GameObject_World.CutTallGrass(Pool.roomObjPool[i]);
                                     //spread the fire 
                                     Functions_Projectile.Spawn(
-                                        ProjectileType.ProjectileGroundFire,
+                                        ProjectileType.GroundFire,
                                         Pool.roomObjPool[i].compSprite.position.X,
                                         Pool.roomObjPool[i].compSprite.position.Y - 3,
                                         Direction.None);
@@ -863,7 +818,7 @@ namespace DungeonRun
                                 else if (Pool.roomObjPool[i].type == ObjType.Wor_Bush)
                                 {   //spread the fire 
                                     Functions_Projectile.Spawn(
-                                        ProjectileType.ProjectileGroundFire,
+                                        ProjectileType.GroundFire,
                                         Pool.roomObjPool[i].compSprite.position.X,
                                         Pool.roomObjPool[i].compSprite.position.Y - 3,
                                         Direction.None);
@@ -891,7 +846,7 @@ namespace DungeonRun
                                 {
                                     //spread the fire 
                                     Functions_Projectile.Spawn(
-                                        ProjectileType.ProjectileGroundFire,
+                                        ProjectileType.GroundFire,
                                         Pool.roomObjPool[i].compSprite.position.X,
                                         Pool.roomObjPool[i].compSprite.position.Y - 3,
                                         Direction.None);
@@ -927,7 +882,7 @@ namespace DungeonRun
 
             #region Bombos 
 
-            else if (Pro.type == ProjectileType.ProjectileBombos)
+            else if (Pro.type == ProjectileType.Bombos)
             {   //casted magic tracks over caster's head
                 Functions_Movement.Teleport(Pro.compMove,
                         Pro.caster.compCollision.rec.X + 8,
@@ -935,7 +890,7 @@ namespace DungeonRun
 
                 if (Functions_Random.Int(0, 100) > 40)
                 {   //create a bomb each frame, for a wide area around caster
-                    Spawn(ProjectileType.ProjectileBomb,
+                    Spawn(ProjectileType.Bomb,
                         Camera2D.currentPosition.X + Functions_Random.Int(-16 * 22, 16 * 22),
                         Camera2D.currentPosition.Y + Functions_Random.Int(-16 * 12, 16 * 12),
                         Direction.None);
@@ -959,7 +914,7 @@ namespace DungeonRun
 
             #region Ground Fire
 
-            else if (Pro.type == ProjectileType.ProjectileGroundFire)
+            else if (Pro.type == ProjectileType.GroundFire)
             {
                 if (Functions_Random.Int(0, 101) > 86)
                 {   //often place randomly offset rising smoke
@@ -1003,8 +958,8 @@ namespace DungeonRun
 
             #region Arrow or Bat projectile
 
-            if (Pro.type == ProjectileType.ProjectileArrow
-                || Pro.type == ProjectileType.ProjectileBat)
+            if (Pro.type == ProjectileType.Arrow
+                || Pro.type == ProjectileType.Bat)
             {
                 Functions_Particle.Spawn(
                     ParticleType.Attention,
@@ -1017,12 +972,12 @@ namespace DungeonRun
 
             #region Bomb
 
-            else if (Pro.type == ProjectileType.ProjectileBomb)
+            else if (Pro.type == ProjectileType.Bomb)
             {
                 //create explosion projectile + ground fire
-                Spawn(ProjectileType.ProjectileExplosion, Pro.compMove.position.X, Pro.compMove.position.Y, Direction.None);
+                Spawn(ProjectileType.Explosion, Pro.compMove.position.X, Pro.compMove.position.Y, Direction.None);
                 //create groundfire
-                Spawn(ProjectileType.ProjectileGroundFire, Pro.compMove.position.X, Pro.compMove.position.Y, Direction.None);
+                Spawn(ProjectileType.GroundFire, Pro.compMove.position.X, Pro.compMove.position.Y, Direction.None);
             }
 
             #endregion
@@ -1030,11 +985,11 @@ namespace DungeonRun
 
             #region Fireball
 
-            else if (Pro.type == ProjectileType.ProjectileFireball)
+            else if (Pro.type == ProjectileType.Fireball)
             {   //create explosion
-                Spawn(ProjectileType.ProjectileExplosion, Pro.compMove.position.X, Pro.compMove.position.Y, Direction.None);
+                Spawn(ProjectileType.Explosion, Pro.compMove.position.X, Pro.compMove.position.Y, Direction.None);
                 //create groundfire
-                Spawn(ProjectileType.ProjectileGroundFire, Pro.compMove.position.X, Pro.compMove.position.Y, Direction.None);
+                Spawn(ProjectileType.GroundFire, Pro.compMove.position.X, Pro.compMove.position.Y, Direction.None);
             }
 
             #endregion
@@ -1045,7 +1000,13 @@ namespace DungeonRun
             else if(Pro.type == ProjectileType.ThrownObject)
             {
                 Functions_Loot.SpawnLoot(Pro.compSprite.position);
-                if(Pro.compAnim.currentAnimation == AnimationFrames.World_Bush)
+
+
+                #region Explode as Bush
+
+                if(
+                    Pro.compAnim.currentAnimation == AnimationFrames.World_Bush
+                    )
                 {   //pop leaf explosion for bushes
                     Functions_Particle.Spawn_Explosion(
                         ParticleType.Leaf,
@@ -1054,15 +1015,44 @@ namespace DungeonRun
                         true);
                     Assets.Play(Assets.sfxBushCut);
                 }
+
+                #endregion
+
+
+                #region Explode as Thrown Enemy
+
+                else if(
+                    Pro.compAnim.currentAnimation == AnimationFrames.Wor_Enemy_Crab
+                    || Pro.compAnim.currentAnimation == AnimationFrames.Wor_Enemy_Turtle
+                    || Pro.compAnim.currentAnimation == AnimationFrames.Wor_Enemy_Rat_Down
+                    )
+                {   //instead of dust, we could have blood spatter
+                    Functions_Particle.Spawn_Explosion(
+                        ParticleType.Debris, //make this blood pls
+                        Pro.compSprite.position.X,
+                        Pro.compSprite.position.Y,
+                        true);
+                    Assets.Play(Assets.sfxEnemyKill);
+                    //and we could leave a pool of blood or bones on the ground
+                }
+
+                #endregion
+
+
+                #region Explode as Anything Else (pot, skull, etc..)
+
                 else
                 {   //pop rock debris for all other thrown objs
                     Functions_Particle.Spawn_Explosion(
-                    ParticleType.Debris,
-                    Pro.compSprite.position.X,
-                    Pro.compSprite.position.Y,
-                    true);
+                        ParticleType.Debris,
+                        Pro.compSprite.position.X,
+                        Pro.compSprite.position.Y,
+                        true);
                     Assets.Play(Assets.sfxShatter);
                 }
+
+                #endregion
+
             }
 
             #endregion
@@ -1098,7 +1088,7 @@ namespace DungeonRun
             //using the offset, loop create explosions, multiplying offset
             for (i = 1; i < 8; i++)
             {
-                Spawn(ProjectileType.ProjectileLightningBolt,
+                Spawn(ProjectileType.LightningBolt,
                     Caster.compSprite.position.X + offset.X * i,
                     Caster.compSprite.position.Y + offset.Y * i,
                     Caster.direction);
@@ -1109,9 +1099,9 @@ namespace DungeonRun
         {
             //some pros rotate to appear in casters hand
             if (
-                Pro.type == ProjectileType.ProjectileSword
-                || Pro.type == ProjectileType.ProjectileNet
-                || Pro.type == ProjectileType.ProjectileShovel
+                Pro.type == ProjectileType.Sword
+                || Pro.type == ProjectileType.Net
+                || Pro.type == ProjectileType.Shovel
                 )
             {   //some projectiles flip based on their direction
                 if (Pro.direction == Direction.Down || Pro.direction == Direction.Left)
@@ -1120,9 +1110,9 @@ namespace DungeonRun
 
             //some pros only face Direction.Down
             else if (
-                Pro.type == ProjectileType.ProjectileBomb
-                || Pro.type == ProjectileType.ProjectileBoomerang
-                || Pro.type == ProjectileType.ProjectileBat
+                Pro.type == ProjectileType.Bomb
+                || Pro.type == ProjectileType.Boomerang
+                || Pro.type == ProjectileType.Bat
                 )
             {   
                 Pro.direction = Direction.Down;
@@ -1131,7 +1121,7 @@ namespace DungeonRun
 
             //other pros rotate to form chains
             else if (
-                Pro.type == ProjectileType.ProjectileLightningBolt
+                Pro.type == ProjectileType.LightningBolt
                 )
             {   //align lightning bolts vertically or horizontally
                 if (Pro.direction == Direction.Left || Pro.direction == Direction.Right)
@@ -1141,7 +1131,7 @@ namespace DungeonRun
 
             //other pros have no rotation, but do have direction
             else if (
-                Pro.type == ProjectileType.ProjectileHammer
+                Pro.type == ProjectileType.Hammer
                 )
             {
                 Pro.compSprite.rotation = Rotation.None;
@@ -1179,7 +1169,7 @@ namespace DungeonRun
 
             #region Projectiles - Items
 
-            if (Type == ProjectileType.ProjectileBomb)
+            if (Type == ProjectileType.Bomb)
             {
                 Pro.compSprite.zOffset = -4; //sort to floor
                 Pro.compCollision.offsetX = -5; Pro.compCollision.offsetY = -5;
@@ -1190,7 +1180,7 @@ namespace DungeonRun
                 Pro.compAnim.currentAnimation = AnimationFrames.Projectile_Bomb;
                 Pro.compSprite.texture = Assets.entitiesSheet;
             }
-            else if (Type == ProjectileType.ProjectileBoomerang)
+            else if (Type == ProjectileType.Boomerang)
             {
                 Pro.compSprite.zOffset = 0;
                 Pro.compCollision.offsetX = -5; Pro.compCollision.offsetY = -5;
@@ -1212,7 +1202,7 @@ namespace DungeonRun
 
             #region Projectiles - Magic
 
-            else if (Type == ProjectileType.ProjectileFireball)
+            else if (Type == ProjectileType.Fireball)
             {
                 Pro.compSprite.zOffset = 16;
                 Pro.compCollision.offsetX = -5; Pro.compCollision.offsetY = -5;
@@ -1226,7 +1216,7 @@ namespace DungeonRun
                 Pro.compSprite.texture = Assets.entitiesSheet;
             }
 
-            else if (Type == ProjectileType.ProjectileLightningBolt)
+            else if (Type == ProjectileType.LightningBolt)
             {
                 Pro.compSprite.zOffset = 16;
                 Pro.compCollision.offsetX = -7; Pro.compCollision.offsetY = -7;
@@ -1239,7 +1229,7 @@ namespace DungeonRun
                 Pro.compSprite.texture = Assets.entitiesSheet;
             }
 
-            else if (Type == ProjectileType.ProjectileBombos)
+            else if (Type == ProjectileType.Bombos)
             {
                 Pro.compSprite.zOffset = 32;
                 Pro.compCollision.offsetX = -1; Pro.compCollision.offsetY = -1;
@@ -1259,7 +1249,7 @@ namespace DungeonRun
 
             #region Sword
 
-            else if (Type == ProjectileType.ProjectileSword)
+            else if (Type == ProjectileType.Sword)
             {
                 Pro.compSprite.zOffset = 16;
                 //set collision rec based on direction
@@ -1298,7 +1288,7 @@ namespace DungeonRun
 
             #region Shovel
 
-            else if (Type == ProjectileType.ProjectileShovel)
+            else if (Type == ProjectileType.Shovel)
             {
                 Pro.compSprite.zOffset = 16;
                 //set collision rec based on direction
@@ -1337,7 +1327,7 @@ namespace DungeonRun
 
             #region Hammer
 
-            else if (Type == ProjectileType.ProjectileHammer)
+            else if (Type == ProjectileType.Hammer)
             {
                 Pro.compSprite.zOffset = 6;
                 Pro.compCollision.rec.Width = 10;
@@ -1375,7 +1365,7 @@ namespace DungeonRun
 
             #region Arrow and Bow
 
-            else if (Type == ProjectileType.ProjectileArrow)
+            else if (Type == ProjectileType.Arrow)
             {
                 Pro.compSprite.zOffset = 16;
                 //set collision rec based on direction
@@ -1399,7 +1389,7 @@ namespace DungeonRun
                 Pro.sfx.kill = Assets.sfxArrowHit;
                 Pro.sfx.hit = Assets.sfxArrowHit;
             }
-            else if (Type == ProjectileType.ProjectileBow)
+            else if (Type == ProjectileType.Bow)
             {
                 Pro.compSprite.zOffset = 0;
                 Pro.lifetime = 15; //in frames
@@ -1417,7 +1407,7 @@ namespace DungeonRun
 
             #region Net
 
-            else if (Type == ProjectileType.ProjectileNet)
+            else if (Type == ProjectileType.Net)
             {
                 Pro.compSprite.zOffset = 16;
                 Pro.compCollision.offsetX = -5; Pro.compCollision.offsetY = -5;
@@ -1443,7 +1433,7 @@ namespace DungeonRun
 
             #region Explosions and Ground Fires
 
-            else if (Type == ProjectileType.ProjectileExplosion)
+            else if (Type == ProjectileType.Explosion)
             {
                 Pro.compSprite.zOffset = 16;
                 Pro.compCollision.offsetX = -12; Pro.compCollision.offsetY = -13;
@@ -1457,7 +1447,7 @@ namespace DungeonRun
                 Pro.sfx.kill = Assets.sfxExplosion;
                 Pro.sfx.hit = Assets.sfxExplosion;
             }
-            else if (Type == ProjectileType.ProjectileGroundFire)
+            else if (Type == ProjectileType.GroundFire)
             {
                 Pro.compSprite.zOffset = 6;
                 Pro.lifetime = 100; //in frames
@@ -1475,7 +1465,7 @@ namespace DungeonRun
 
             #region Fang/Bite and Bat
 
-            else if (Type == ProjectileType.ProjectileBite)
+            else if (Type == ProjectileType.Bite)
             {
                 Pro.compSprite.zOffset = 16;
 
@@ -1494,7 +1484,7 @@ namespace DungeonRun
                 Pro.compAnim.currentAnimation = AnimationFrames.Projectile_Sword; //null too
             }
 
-            else if (Type == ProjectileType.ProjectileBat)
+            else if (Type == ProjectileType.Bat)
             {
                 Pro.compSprite.zOffset = 16;
 
