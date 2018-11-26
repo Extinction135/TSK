@@ -255,13 +255,15 @@ namespace DungeonRun
         }
 
 
+
+
+        static GameObject objRef;
         public static void Dig()
         {
             //set hero's interaction rec
             Functions_Hero.SetInteractionRec();
 
             //place obj aligned to 16x16 grid
-            GameObject objRef;
             objRef = Functions_Pool.GetRoomObj();
             //setup move position based on interaction point, aligned to 16px grid
             objRef.compMove.newPosition = Functions_Movement.AlignToGrid(
@@ -278,19 +280,24 @@ namespace DungeonRun
             objRef.compMove.direction = Direction.Down;
             Functions_GameObject.SetType(objRef, ObjType.Wor_Ditch_META);
 
-            //for purposes of the following checks, objRef.active is set to false
+            //objRef.active is set to false to speed up roomObj loop below
             objRef.active = false;
-            //we'll use .visible to act as a temp flag to cue release()
-            objRef.compSprite.visible = true;
+            //and we'll use .visible to act as a temp flag to cue release()
+            objRef.compSprite.visible = true; //assume we can place ditch using true
 
 
             #region Check to see if ditch can be dug at this location
 
             for (d = 0; d < Pool.roomObjCount; d++)
-            {
-                if (Pool.roomObjPool[d].active & //check overlap for active roomObjs
+            {   //check overlap for only active roomObjs
+                if (Pool.roomObjPool[d].active & //removes objRef from self-checking
                     Pool.roomObjPool[d].compCollision.rec.Intersects(objRef.compCollision.rec))
                 {
+
+
+
+                    #region Blocking, Walls, and Doors
+
                     //if ditch touches any of these objs, release ditch & bail
                     if (Pool.roomObjPool[d].compCollision.blocking)
                     {
@@ -304,6 +311,49 @@ namespace DungeonRun
                     {
                         objRef.compSprite.visible = false;
                     }
+
+                    #endregion
+
+
+
+                    //type check
+                    else if //allow dig to remove these objects
+                        (   
+                        //grass decorations
+                        Pool.roomObjPool[d].type != ObjType.Wor_Grass_2
+                        & Pool.roomObjPool[d].type != ObjType.Wor_Grass_Cut
+                        & Pool.roomObjPool[d].type != ObjType.Wor_Grass_Tall
+                        & Pool.roomObjPool[d].type != ObjType.Wor_Flowers
+                        //bush objects
+                        & Pool.roomObjPool[d].type != ObjType.Wor_Bush_Stump
+                        //coastline/water transition tiles
+                        & Pool.roomObjPool[d].type != ObjType.Wor_Coastline_Corner_Exterior
+                        & Pool.roomObjPool[d].type != ObjType.Wor_Coastline_Corner_Interior
+                        & Pool.roomObjPool[d].type != ObjType.Wor_Coastline_Straight
+                        //dirt tiles
+                        & Pool.roomObjPool[d].type != ObjType.Wor_Dirt
+                        & Pool.roomObjPool[d].type != ObjType.Wor_DirtToGrass_Corner_Exterior
+                        & Pool.roomObjPool[d].type != ObjType.Wor_DirtToGrass_Corner_Interior
+                        & Pool.roomObjPool[d].type != ObjType.Wor_DirtToGrass_Straight
+                        //floor debris
+                        & Pool.roomObjPool[d].type != ObjType.Wor_Debris
+                        & Pool.roomObjPool[d].type != ObjType.Dungeon_FloorBlood
+                        & Pool.roomObjPool[d].type != ObjType.Dungeon_FloorDecal
+                        & Pool.roomObjPool[d].type != ObjType.Wor_Colliseum_Outdoors_Floor
+                        //we do not allow boat floors to be dug out - they are also house floors
+                        //this means NO DIGGING INSIDE, OR AT SEA, MISTER!
+                        //& Pool.roomObjPool[d].type != ObjType.Wor_Boat_Floor
+                        )
+                    {
+                        objRef.compSprite.visible = false;
+                    }
+
+
+
+
+
+                    /*
+                     
                     //type checks
                     else if (
 
@@ -367,15 +417,30 @@ namespace DungeonRun
                     {
                         objRef.compSprite.visible = false;
                     }
+
+                    */
+
+
+
+
+
+
+
+
+
+
                 }
             }
 
             #endregion
 
 
-            //if we released the obj, bail from method
-            if (objRef.compSprite.visible == false) { return; }
-            else { objRef.compSprite.visible = true; } //done with flag
+            //if we cant place ditch, release objRef, bail from method
+            if (objRef.compSprite.visible == false) //done with flag
+            {
+                Functions_Pool.Release(objRef);
+                return;
+            }
 
 
             #region Good to dig, remove any overlapping objects, spawn loot

@@ -61,42 +61,15 @@ Today:
 
 
 
+Dig Routines
+
+the new dig system only allows specific objects to be removed
+upon a dig using the shovel. these are: grass objects, stumps,
+coastlines, dirt tiles, debris, floor blood, floor boss decals,
+and the colisuem's outdoor floor, which seems appropriate.
+tested, working as expected.
 
 
-
-Bugs--
-
-enabling clipping freezes movement of hero. all input. except
-start button. plus, all animation freezes too. in the entire game.
-it's really weird. bug found: this was part of functions_pool.Update().
-when doing interactions for the actor pool, we check to see if the actor
-is the hero, and if the clipping boolean is enabled. in the scope we
-then return, FROM THE ENTIRE POOL.UPDATE() method. whoops. instead of
-returning, we should simply do nothing, because the else branch evaluates
-roomObjs and projectiles against the actor, which we just want to prevent.
-so - silly logical error by me that arose from migrating to the new 
-projectile systems. my bad. tested and working again.
-
-
-
-
-
-
-
-
-
-should not be able to dig lilly pads out with shovel.
-in fact, only grass can be removed by shovel.
-
-
-
-
-
-
-
-
-
-test. again.
 
 
 
@@ -115,6 +88,11 @@ instead, this allows link to dash behind them in the expected
 manner, and arrows and carefully be shot between posts too.
 
 
+
+
+
+objs underwater should sort lower. link can overlap them
+just a bit when swimming in water.
 
 
 
@@ -182,6 +160,16 @@ we already have the ground blood sprite
 
 
 
+Tall Coastlines
+there is a problem with the tall coastline objs - we should be
+able to dig over them, but doing so will remove the entire obj,
+leaving a 16x16 ditch, instad of a 16x32 ditch to match the coastline
+objs size. the green bkg will show, instead of water, breaking 
+immersion. they are immune to digs for now. the solution is to 
+break them up into two 16x16 objects, replace them in level,
+then allow digging on the top object that transitions to land..
+this trans should be based on the dirtcolor, not green, because
+water doesn't transition directly to grass on islands. 
 
 
 
