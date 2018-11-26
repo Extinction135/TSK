@@ -26,12 +26,15 @@ namespace DungeonRun
         {
             Functions_MenuWindow.Update(window);
             if (window.interior.displayState == DisplayState.Opened)
-            {
-                //animate all the enemies
+            {   //animate all displayed enemies
                 for (i = 0; i < actors.Count; i++)
                 {
                     if (actors[i] != null)
-                    { Functions_Animation.Animate(actors[i].compAnim, actors[i].compSprite); }
+                    {
+                        Functions_Actor.SetAnimationGroup(actors[i]);
+                        Functions_Actor.SetAnimationDirection(actors[i]);
+                        Functions_Animation.Animate(actors[i].compAnim, actors[i].compSprite);
+                    }
                 }
             }
         }

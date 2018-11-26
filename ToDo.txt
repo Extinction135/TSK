@@ -58,19 +58,6 @@ Today:
 
 
 
-Prep for Throw
-
-rats, crabs, turtles can be picked up and carried. so, all
-carry-able roomObjs tested up until Throw() is called.
-
-Reorg++
-
-need to move carrying, heldObj ref, grabbing, and grabbedObj
-ref from actor class and into hero functions, only hero can
-perform these tasks and uses this data.
-moved drawing of held object into draw functions.
-
-we can still pickup, carry, and push objs... yay!
 
 
 
@@ -80,17 +67,31 @@ we can still pickup, carry, and push objs... yay!
 
 
 
-widgets++
+Actor Widget++
 
 we need to update the animgroups and animDirs for all actors
-on the widgets, otherwise they dont display properly.
-
-//set actor animation and direction
-SetAnimationGroup(Actor);
-SetAnimationDirection(Actor);
-
+on the widgets, otherwise they dont display properly. okies.
+this was done by modifying widgetActor base class to call 
+setAnimGroup() and setAnimDir() for all the actors on it's
+internal actor list. tested.
 
 
+
+
+
+
+
+
+
+
+EditorMenu++
+
+while in editor menu, plus button should iterate forward thru
+widget sets, just like the button press does. this allows us
+to move through the widgets faster, while keeping the cursor
+over where we know the object will be, instead of clicking and
+moving back and forth - this is very slow. faster workflow, 
+faster iterations, better code, better game.
 
 
 
