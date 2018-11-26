@@ -518,7 +518,7 @@ namespace DungeonRun
                     //{ Functions_Interaction.ScatterRockDebris(Pool.floorPool[i].position, false); }
                     if (Functions_Random.Int(0, 100) > 80)
                     {
-                        Functions_GameObject.Spawn(ObjType.Dungeon_FloorBlood,
+                        Functions_GameObject.Spawn(ObjType.Dungeon_FloorStain,
                             Pool.floorPool[i].position.X + Functions_Random.Int(-4, 4),
                             Pool.floorPool[i].position.Y + Functions_Random.Int(-4, 4),
                             Direction.Down);

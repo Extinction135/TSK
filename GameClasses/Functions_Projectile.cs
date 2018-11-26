@@ -1006,15 +1006,9 @@ namespace DungeonRun
                     || Pro.compAnim.currentAnimation == AnimationFrames.Wor_Enemy_Turtle
                     || Pro.compAnim.currentAnimation == AnimationFrames.Wor_Enemy_Rat_Down
                     )
-                {   //instead of dust, we could have blood spatter
-                    Functions_Particle.Spawn_Explosion(
-                        ParticleType.BloodRed, //make this blood pls
-                        Pro.compSprite.position.X+4,
-                        Pro.compSprite.position.Y+4,
-                        false);
-                    Assets.Play(Assets.sfxEnemyKill);
-                    //and we could leave a pool of blood or bones on the ground
-                }
+                {   //create floor blood, blood explosion, maybe skeleton
+                    Functions_GameObject_Dungeon.KillEnemy(Pro.compSprite);
+                }   //we release pro at end of method
 
                 #endregion
 

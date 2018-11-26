@@ -124,7 +124,7 @@ namespace DungeonRun
                                     //keep walls if these objs overlap them
                                     if (objA.type == ObjType.Dungeon_PitTrap) { removeObjB = false; }
                                 }
-                                else if (objB.type == ObjType.Dungeon_FloorBlood)
+                                else if (objB.type == ObjType.Dungeon_FloorStain)
                                 {
                                     removeObjB = true;
                                     //allow overlap with these objects

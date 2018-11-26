@@ -384,8 +384,15 @@ namespace DungeonRun
         Dungeon_WallStatue,
         Dungeon_WallTorch,
 
-        Dungeon_FloorDecal,
-        Dungeon_FloorBlood, 
+        Dungeon_FloorDecal, //floor icon for boss
+
+        Dungeon_FloorStain, //procedurally added
+        Dungeon_FloorBlood, //created by just-dead actors/objs
+        Dungeon_FloorSkeleton, //^ randomly becomes skeleton anim 1 or 2
+
+
+
+
 
         Dungeon_Map, //unlocks dungeon map
 

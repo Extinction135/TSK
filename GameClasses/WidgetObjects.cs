@@ -169,8 +169,8 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[27], ObjType.Dungeon_ConveyorBeltOff);
 
             //row 8
-            Functions_GameObject.SetType(objList[28], ObjType.Dungeon_PitTrap);
-            Functions_GameObject.SetType(objList[29], ObjType.Dungeon_FloorBlood);
+            Functions_GameObject.SetType(objList[28], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[29], ObjType.Unknown);
             Functions_GameObject.SetType(objList[30], ObjType.Dungeon_Signpost);
             Functions_GameObject.SetType(objList[31], ObjType.Dungeon_LeverOff);
 
@@ -187,10 +187,10 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[39], ObjType.Unknown);
 
             //row 11
-            Functions_GameObject.SetType(objList[40], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[41], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[42], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[43], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[40], ObjType.Dungeon_FloorStain);
+            Functions_GameObject.SetType(objList[41], ObjType.Dungeon_FloorBlood);
+            Functions_GameObject.SetType(objList[42], ObjType.Dungeon_FloorSkeleton);
+            Functions_GameObject.SetType(objList[43], ObjType.Dungeon_PitTrap);
 
             //row 12
             Functions_GameObject.SetType(objList[44], ObjType.Dungeon_SpawnMob);

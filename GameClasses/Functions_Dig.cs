@@ -338,7 +338,9 @@ namespace DungeonRun
                         //floor debris
                         & Pool.roomObjPool[d].type != ObjType.Wor_Debris
                         & Pool.roomObjPool[d].type != ObjType.Dungeon_FloorBlood
-                        & Pool.roomObjPool[d].type != ObjType.Dungeon_FloorDecal
+                        & Pool.roomObjPool[d].type != ObjType.Dungeon_FloorStain
+                        & Pool.roomObjPool[d].type != ObjType.Dungeon_FloorSkeleton
+                        //& Pool.roomObjPool[d].type != ObjType.Dungeon_FloorDecal //nope
                         & Pool.roomObjPool[d].type != ObjType.Wor_Colliseum_Outdoors_Floor
                         //we do not allow boat floors to be dug out - they are also house floors
                         //this means NO DIGGING INSIDE, OR AT SEA, MISTER!

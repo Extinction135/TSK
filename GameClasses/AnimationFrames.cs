@@ -71,8 +71,14 @@ namespace DungeonRun
         public static List<Byte4> Dungeon_BossKey = new List<Byte4> { new Byte4(27, 6, 0, 0) };
         public static List<Byte4> Dungeon_Map = new List<Byte4> { new Byte4(26, 6, 0, 0) };
         public static List<Byte4> Dungeon_IceTile = new List<Byte4> { new Byte4(26, 5, 0, 0) };
-        
-        public static List<Byte4> Dungeon_FloorBlood = new List<Byte4> { new Byte4(27, 5, 0, 0) };
+
+        //floor decorations
+        public static List<Byte4> Dungeon_FloorStain = new List<Byte4> { new Byte4(27, 5, 0, 0) };
+        public static List<Byte4> Dungeon_FloorBlood = new List<Byte4> { new Byte4(28, 5, 0, 0) };
+        public static List<Byte4> Dungeon_FloorSkeleton1 = new List<Byte4> { new Byte4(28, 6, 0, 0) };
+        public static List<Byte4> Dungeon_FloorSkeleton2 = new List<Byte4> { new Byte4(28, 7, 0, 0) };
+
+
         public static List<Byte4> Dungeon_Barrel = new List<Byte4> { new Byte4(24, 5, 0, 0) };
         public static List<Byte4> Dungeon_BarrelExploding = new List<Byte4>
         { new Byte4(24, 5, 0, 0), new Byte4(25, 5, 0, 0) };

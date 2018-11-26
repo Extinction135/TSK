@@ -762,7 +762,9 @@ wind and it coming towards them - allowing them to dodge.
 
 
 
-
+ZOO
+we need to have a zoo where a bunch of world enemies are being held
+behind posts. this is already in testing room data.
 
 
 

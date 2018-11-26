@@ -59,19 +59,38 @@ Today:
 
 
 
-Polish
 
-test destroying objects, throwing objects. done.
 
-test killing living objs: should pop blood. done.
-working, but i think a random explosion of blood 
-would be better. it is. done.
 
-also, when we normally kill an obj enemy, we should
-pop blood explosion the same way thrown projectile
-does. done. 
 
-test killing bosses: should pop blood or slime. k.
+Gore++
+
+changed floor blood to floor stain.
+added floor blood, skeletons 1 and 2.
+these are floor decorations, created upon actor
+and obj deaths.  these are in widgets now too.
+
+test killing living roomObjs.. done. looks great.
+
+
+
+
+
+
+
+
+
+
+
+
+Killing Actor Enemies
+
+should actors leave behind blood/skeletons too?
+this is simple call to fun_obj_dung.killEnemy(compSprite),
+which creates all the necessary decorations for standard enemy
+death....
+
+
 
 
 
@@ -83,6 +102,10 @@ test killing bosses: should pop blood or slime. k.
 we want to leave behind skeletons when living objs
 and actors die.
 
+
+
+
+a rats rotation should always be none.
 
 
 
@@ -118,6 +141,9 @@ this happens in functions_projectile.kill().
 we already have the ground blood sprite
 
 ^this should also work for actors. not over pits tho.
+
+
+
 
 
 

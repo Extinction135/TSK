@@ -370,5 +370,41 @@ namespace DungeonRun
 
 
 
+
+        public static void KillEnemy(ComponentSprite compSprite)
+        {
+            //used to kill small room enemies in uniform way
+            Functions_Particle.Spawn_Explosion(
+                ParticleType.BloodRed,
+                compSprite.position.X + 4,
+                compSprite.position.Y + 4,
+                false); //create blood spatter
+            Assets.Play(Assets.sfxEnemyKill);
+            //always leave behind floor blood
+            Functions_GameObject.Spawn(
+                ObjType.Dungeon_FloorBlood,
+                compSprite.position.X,
+                compSprite.position.Y,
+                Direction.Down);
+            //sometimes leave behind a skeleton too
+            if (Functions_Random.Int(0, 101) > 50)
+            {
+                Functions_GameObject.Spawn(
+                ObjType.Dungeon_FloorSkeleton,
+                compSprite.position.X,
+                compSprite.position.Y,
+                Direction.Down);
+            }
+        }
+
+
+
+
+
+
+
+
+
+
     }
 }
