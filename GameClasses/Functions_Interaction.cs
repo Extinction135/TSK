@@ -766,7 +766,7 @@ namespace DungeonRun
 
             #region Doors
 
-            else if (RoomObj.group == ObjGroup.Door)
+            if (RoomObj.group == ObjGroup.Door)
             {
                 if (RoomObj.type == ObjType.Dungeon_DoorTrap)
                 {   //trap doors push ALL actors

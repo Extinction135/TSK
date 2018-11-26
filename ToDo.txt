@@ -62,59 +62,45 @@ Today:
 
 
 
-Particles++
-
-modified functions_particle.setType() to fix a few
-texture issues causing some particles to display incorrectly.
-
-Particles++
-
-added sprites for blood / lava, and slime 8x8 particles.
-next, we upgrade and test the particle.spawn_explosion()
-method to handle all 4 types of debris.
-
-Bosses++
-
-when bosses die, they now spawn a blood explosion, meant to
-signify that their death was significant or special.
-also, they are living things, so they wouldn't become leafs,
-or debris, or slime (maybe some would become slime) - which
-are the only other options rn. bigeye and octohead (kraken)
-create slime explosions upon death now, cause they are green.
-
-Minibosses++
-
-blackeyes create rock debris upon death. armored spiders create
-rock debris when their armor breaks, but they create blood spatter
-when they are killed in their non-armored form. octomouth - the
-plant in the water that shoots fireballs - miniboss creates slime
-particles when he dies, signifying this death as significant but
-also different.
-
-Particle System++
-
-updated various parts of code the refernce the changed particle
-enum values for leads, debris, blood, and slime. testing revealed
-major bugs....
 
 
 
 
+Bugs--
 
-
-
-
-
-
-
-Major Bugs:
 swimming state is not being set for hero.
 how about for any actors? probably no.
 climbing isn't needed, cause the walls dont push hero.
 so they need to do that. maybe just hero is excluded from
 these branches...
 
+yep - a single 'else' after the check to see if the actor
+was the hero removed the hero from all obj interaction routines
+that were not hero specific. 4 letters. removed. tested, working.
 
+
+
+
+
+
+
+Bugs--
+
+enabling clipping freezes movement of hero. all input. except
+start button. plus, all animation freezes too. in the entire game.
+it's really weird.
+
+
+
+
+
+
+
+
+
+
+
+test. again.
 
 
 
