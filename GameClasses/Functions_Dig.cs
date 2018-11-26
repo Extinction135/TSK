@@ -475,7 +475,7 @@ namespace DungeonRun
 
 
             //create some 'digging' debris
-            Functions_Particle.Spawn_Explosion(ParticleType.Debris,
+            Functions_Particle.Spawn_Explosion(ParticleType.DebrisBrown,
                 objRef.compSprite.position.X, objRef.compSprite.position.Y, false);
         }
 

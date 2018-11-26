@@ -359,14 +359,33 @@ namespace DungeonRun
             }
             
 
-            #region Bosses
+
+
+
+
+            //Bosses
 
             else if (Actor.type == ActorType.Boss_BigEye
                 || Actor.type == ActorType.Boss_BigBat
                 || Actor.type == ActorType.Boss_OctoHead)
-            {   //decorate this death as special / explosive
-                Functions_Particle.Spawn_Explosion(ParticleType.Debris,
-                    Actor.compSprite.position.X, Actor.compSprite.position.Y, true);
+            {
+
+                #region Decorate Death Event
+
+                //octohead, bigeye pops slime instead of blood
+
+                if (Actor.type == ActorType.Boss_BigEye || Actor.type == ActorType.Boss_OctoHead)
+                {   //decorate this death as slimey
+                    Functions_Particle.Spawn_Explosion(ParticleType.SlimeGreen,
+                        Actor.compSprite.position.X, Actor.compSprite.position.Y, true);
+                }
+                else
+                {   //decorate this death as bloody
+                    Functions_Particle.Spawn_Explosion(ParticleType.BloodRed,
+                        Actor.compSprite.position.X, Actor.compSprite.position.Y, true);
+                }
+
+                #endregion
 
 
                 #region Cleanup any boss mobs leftover
@@ -412,17 +431,19 @@ namespace DungeonRun
 
                 #endregion
 
-
             }
 
-            #endregion
+
+
+
+
 
 
             #region Minibosses
 
             else if(Actor.type == ActorType.MiniBoss_BlackEye)
             {   //decorate this death as special / explosive
-                Functions_Particle.Spawn_Explosion(ParticleType.Debris,
+                Functions_Particle.Spawn_Explosion(ParticleType.DebrisBrown,
                     Actor.compSprite.position.X, Actor.compSprite.position.Y, true);
                 Actor.compAnim.speed = 15; //slow down death animation to taste
                 //this actor becomes debris on floor, sort to floor.
@@ -433,22 +454,20 @@ namespace DungeonRun
                     Actor.compSprite.position.X, 
                     Actor.compSprite.position.Y);
             }
-
             else if (Actor.type == ActorType.MiniBoss_Spider_Armored)
             {   
                 //decorate this death as special / explosive
-                Functions_Particle.Spawn_Explosion(ParticleType.Debris,
+                Functions_Particle.Spawn_Explosion(ParticleType.DebrisBrown,
                     Actor.compSprite.position.X, Actor.compSprite.position.Y, true);
                 //armored spider becomes unarmored version
                 SetType(Actor, ActorType.MiniBoss_Spider_Unarmored);
                 //audibly alert player battle isn't over
                 Assets.Play(Assets.sfxBossHit);
             }
-
             else if (Actor.type == ActorType.MiniBoss_Spider_Unarmored)
             {   
                 //decorate this death as special / explosive
-                Functions_Particle.Spawn_Explosion(ParticleType.Debris,
+                Functions_Particle.Spawn_Explosion(ParticleType.BloodRed,
                     Actor.compSprite.position.X, Actor.compSprite.position.Y, true);
                 Actor.compAnim.speed = 10; //slow down death animation to taste
                 //this actor becomes debris on floor, sort to floor.
@@ -459,11 +478,10 @@ namespace DungeonRun
                     Actor.compSprite.position.X,
                     Actor.compSprite.position.Y);
             }
-
             else if (Actor.type == ActorType.MiniBoss_OctoMouth)
             {
                 //decorate this death as special / explosive
-                Functions_Particle.Spawn_Explosion(ParticleType.Debris,
+                Functions_Particle.Spawn_Explosion(ParticleType.SlimeGreen,
                     Actor.compSprite.position.X, Actor.compSprite.position.Y, true);
                 //Actor.compAnim.speed = 10; //slow down death animation to taste
                 //this actor becomes debris in water, sort to floor.
@@ -476,6 +494,13 @@ namespace DungeonRun
             }
 
             #endregion
+
+
+
+
+
+
+
 
 
             else

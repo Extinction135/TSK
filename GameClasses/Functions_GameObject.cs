@@ -101,11 +101,12 @@ namespace DungeonRun
             //maybe pop loot & play soundfx
             if (spawnLoot) { Functions_Loot.SpawnLoot(Obj.compSprite.position); }
             if (Obj.sfx.kill != null) { Assets.Play(Obj.sfx.kill); }
+            
             //should obj become debris or get released?
             if (becomeDebris) 
             {   //if obj becomes debris, explode debris
                 Functions_Particle.Spawn_Explosion(
-                    ParticleType.Debris,
+                    ParticleType.DebrisBrown,
                     Obj.compSprite.position.X,
                     Obj.compSprite.position.Y, 
                     true);

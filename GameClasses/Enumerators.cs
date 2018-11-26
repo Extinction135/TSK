@@ -843,8 +843,11 @@ namespace DungeonRun
 
         //Particles - small, obj specific
         PitBubble,
-        Leaf,
-        Debris,
+        //explosion specific
+        LeafGreen,
+        DebrisBrown,
+        BloodRed,
+        SlimeGreen,
 
         //Particles - map
         Map_Flag,

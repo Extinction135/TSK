@@ -654,16 +654,24 @@ namespace DungeonRun
 
 
 
-        public static List<Byte4> Particle_Leaf = new List<Byte4>
-        {
-            new Byte4(0, 22, 0, 0), new Byte4(1, 22, 0, 0)
-        };
-        public static List<Byte4> Particle_Debris = new List<Byte4>
-        {
-            new Byte4(0, 23, 0, 0), new Byte4(1, 23, 0, 0)
-        };
 
-
+        //8x8 explosive debris particles
+        public static List<Byte4> Particle_LeafGreen = new List<Byte4>
+        {
+            new Byte4(0, 22, 0, 0), new Byte4(0, 22, 1, 0)
+        };
+        public static List<Byte4> Particle_DebrisBrown = new List<Byte4>
+        {
+            new Byte4(0, 23, 0, 0), new Byte4(0, 23, 1, 0)
+        };
+        public static List<Byte4> Particle_BloodRed = new List<Byte4>
+        {
+            new Byte4(1, 23, 0, 0), new Byte4(1, 23, 1, 0)
+        };
+        public static List<Byte4> Particle_SlimeGreen = new List<Byte4>
+        {
+            new Byte4(1, 22, 0, 0), new Byte4(1, 22, 1, 0)
+        };
 
 
 

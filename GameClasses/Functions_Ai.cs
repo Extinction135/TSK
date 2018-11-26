@@ -1081,7 +1081,7 @@ namespace DungeonRun
                         Obj.compSprite.position.Y - 2);
                     //pop leaves in circular decorative pattern for tree top
                     Functions_Particle.Spawn_Explosion(
-                        ParticleType.Leaf,
+                        ParticleType.LeafGreen,
                         Obj.compSprite.position.X + 2,
                         Obj.compSprite.position.Y - 4, true);
                     //switch to burned tree
@@ -1128,7 +1128,7 @@ namespace DungeonRun
                         Obj.compSprite.position.X,
                         Obj.compSprite.position.Y);
                     Functions_Particle.Spawn_Explosion(
-                        ParticleType.Debris,
+                        ParticleType.DebrisBrown,
                         Obj.compSprite.position.X, 
                         Obj.compSprite.position.Y, false);
                     

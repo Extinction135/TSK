@@ -1009,7 +1009,7 @@ namespace DungeonRun
                     )
                 {   //pop leaf explosion for bushes
                     Functions_Particle.Spawn_Explosion(
-                        ParticleType.Leaf,
+                        ParticleType.LeafGreen,
                         Pro.compSprite.position.X,
                         Pro.compSprite.position.Y,
                         true);
@@ -1028,7 +1028,7 @@ namespace DungeonRun
                     )
                 {   //instead of dust, we could have blood spatter
                     Functions_Particle.Spawn_Explosion(
-                        ParticleType.Debris, //make this blood pls
+                        ParticleType.BloodRed, //make this blood pls
                         Pro.compSprite.position.X,
                         Pro.compSprite.position.Y,
                         true);
@@ -1044,7 +1044,7 @@ namespace DungeonRun
                 else
                 {   //pop rock debris for all other thrown objs
                     Functions_Particle.Spawn_Explosion(
-                        ParticleType.Debris,
+                        ParticleType.DebrisBrown,
                         Pro.compSprite.position.X,
                         Pro.compSprite.position.Y,
                         true);

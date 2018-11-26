@@ -91,14 +91,14 @@ namespace DungeonRun
                     Tree.compSprite.position.Y - 2);
                 //pop leaves in circular decorative pattern for tree top
                 Functions_Particle.Spawn_Explosion(
-                    ParticleType.Leaf,
+                    ParticleType.LeafGreen,
                     Tree.compSprite.position.X + 2,
                     Tree.compSprite.position.Y - 4, true);
             }
             else
             {   //pop debris
                 Functions_Particle.Spawn_Explosion(
-                    ParticleType.Debris,
+                    ParticleType.DebrisBrown,
                     Tree.compSprite.position.X + 2,
                     Tree.compSprite.position.Y + 4, true);
             }
@@ -122,7 +122,7 @@ namespace DungeonRun
         public static void DestroyBush(GameObject Bush)
         {   //pop leaf explosion
             Functions_Particle.Spawn_Explosion(
-                ParticleType.Leaf,
+                ParticleType.LeafGreen,
                 Bush.compSprite.position.X,
                 Bush.compSprite.position.Y);
             //covert bush to stump, play sfx

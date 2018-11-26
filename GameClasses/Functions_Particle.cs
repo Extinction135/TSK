@@ -196,17 +196,16 @@ namespace DungeonRun
                 else if (Dir == Direction.Right)
                 { part.compSprite.rotation = Rotation.Clockwise270; }
             }
-            else if (Type == ParticleType.Leaf)
-            {   
-                Functions_Movement.Push(part.compMove, part.direction, 4.0f);
-            }
-            else if (Type == ParticleType.Debris)
-            {   
-                Functions_Movement.Push(part.compMove, part.direction, 4.0f);
-            }
-            else if(Type == ParticleType.WaterKick)
-            {   
+            else if (Type == ParticleType.WaterKick)
+            {
                 Functions_Movement.Push(part.compMove, part.compMove.direction, 1.0f);
+            }
+
+            //these are individual pieces of an explosion that is circular or random
+            else if (Type == ParticleType.LeafGreen || Type == ParticleType.DebrisBrown
+                || Type == ParticleType.BloodRed || Type == ParticleType.SlimeGreen)
+            {   
+                Functions_Movement.Push(part.compMove, part.direction, 4.0f);
             }
 
             #endregion
@@ -303,7 +302,6 @@ namespace DungeonRun
         public static void SetType(Particle Part, ParticleType Type)
         {
             Part.type = Type;
-            Part.compSprite.texture = Assets.entitiesSheet;
 
 
 
@@ -338,6 +336,7 @@ namespace DungeonRun
                 Part.compAnim.speed = 6; //in frames
                 Part.compAnim.loop = false;
                 Part.compAnim.currentAnimation = AnimationFrames.Particle_RisingSmoke;
+                Part.compSprite.texture = Assets.entitiesSheet;
                 //randomly flip the smoke sprite horizontally for variation
                 if (Functions_Random.Int(0, 101) > 50)
                 { Part.compSprite.flipHorizontally = true; }
@@ -351,6 +350,7 @@ namespace DungeonRun
                 Part.compAnim.speed = 5; //in frames
                 Part.compAnim.loop = false;
                 Part.compAnim.currentAnimation = AnimationFrames.Particle_ImpactDust;
+                Part.compSprite.texture = Assets.entitiesSheet;
             }
             else if (Type == ParticleType.Sparkle)
             {
@@ -359,6 +359,7 @@ namespace DungeonRun
                 Part.lifetime = 24; //in frames
                 Part.compAnim.speed = 6; //in frames
                 Part.compAnim.currentAnimation = AnimationFrames.Particle_Sparkle;
+                Part.compSprite.texture = Assets.entitiesSheet;
             }
             else if (Type == ParticleType.Push)
             {
@@ -367,6 +368,7 @@ namespace DungeonRun
                 Part.lifetime = 6 * 3; //in frames
                 Part.compAnim.speed = 6; //in frames
                 Part.compAnim.currentAnimation = AnimationFrames.Particle_Push;
+                Part.compSprite.texture = Assets.entitiesSheet;
 
                 //set the sprites rotation based on direction
                 if (Part.direction == Direction.Down)
@@ -384,9 +386,12 @@ namespace DungeonRun
             #endregion
 
 
-            #region World Debris - 8x8
+            #region Explosive Debris - 8x8
 
-            else if (Type == ParticleType.Leaf || Type == ParticleType.Debris)
+            else if (
+                Type == ParticleType.LeafGreen || Type == ParticleType.DebrisBrown
+                || Type == ParticleType.BloodRed || Type == ParticleType.SlimeGreen
+                )
             {
                 Part.compSprite.drawRec.Width = 8; Part.compSprite.drawRec.Height = 8; //nonstandard size
                 Part.compSprite.zOffset = 16;
@@ -394,9 +399,13 @@ namespace DungeonRun
                 Part.lifetime = 15; //in frames
                 Part.compAnim.speed = 6; //in frames
                 //setup animation frame properly
-                if (Type == ParticleType.Debris)
-                { Part.compAnim.currentAnimation = AnimationFrames.Particle_Debris; }
-                else { Part.compAnim.currentAnimation = AnimationFrames.Particle_Leaf; }
+                if (Type == ParticleType.LeafGreen)
+                { Part.compAnim.currentAnimation = AnimationFrames.Particle_LeafGreen; }
+                else if (Type == ParticleType.DebrisBrown)
+                { Part.compAnim.currentAnimation = AnimationFrames.Particle_DebrisBrown; }
+                else if (Type == ParticleType.BloodRed)
+                { Part.compAnim.currentAnimation = AnimationFrames.Particle_BloodRed; }
+                else { Part.compAnim.currentAnimation = AnimationFrames.Particle_SlimeGreen; }
 
                 //these debris sprites are on the common sheet
                 Part.compSprite.texture = Assets.CommonObjsSheet;
@@ -484,12 +493,12 @@ namespace DungeonRun
                 if (Type == ParticleType.RewardKey)
                 {   //this obj is on the dungeon sheet
                     Part.compAnim.currentAnimation = AnimationFrames.Dungeon_BossKey;
-                    Part.compSprite.texture = Assets.Dungeon_CurrentSheet;
+                    Part.compSprite.texture = Assets.CommonObjsSheet;
                 }
                 else if (Type == ParticleType.RewardMap)
                 {   //this obj is on the dungeon sheet
                     Part.compAnim.currentAnimation = AnimationFrames.Dungeon_Map;
-                    Part.compSprite.texture = Assets.Dungeon_CurrentSheet;
+                    Part.compSprite.texture = Assets.CommonObjsSheet;
                 }
                 else if (Type == ParticleType.BottleEmpty)
                 { Part.compAnim.currentAnimation = AnimationFrames.Bottle_Empty; }

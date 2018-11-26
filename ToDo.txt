@@ -45,7 +45,9 @@ Shadow Dungeon, TSK Fight complete
 	(exiting dream field ends the dream)
 	(we may split bed into two objects again, to make this interaction more expected)
 	X setup roomObjs, projectiles, particles, pickups systems for future growth
-
+	improved pet systems (stable, more pet variety, multiple pets)
+	
+	
 
 
 
@@ -60,6 +62,40 @@ Today:
 
 
 
+Particles++
+
+modified functions_particle.setType() to fix a few
+texture issues causing some particles to display incorrectly.
+
+Particles++
+
+added sprites for blood / lava, and slime 8x8 particles.
+next, we upgrade and test the particle.spawn_explosion()
+method to handle all 4 types of debris.
+
+Bosses++
+
+when bosses die, they now spawn a blood explosion, meant to
+signify that their death was significant or special.
+also, they are living things, so they wouldn't become leafs,
+or debris, or slime (maybe some would become slime) - which
+are the only other options rn. bigeye and octohead (kraken)
+create slime explosions upon death now, cause they are green.
+
+Minibosses++
+
+blackeyes create rock debris upon death. armored spiders create
+rock debris when their armor breaks, but they create blood spatter
+when they are killed in their non-armored form. octomouth - the
+plant in the water that shoots fireballs - miniboss creates slime
+particles when he dies, signifying this death as significant but
+also different.
+
+Particle System++
+
+updated various parts of code the refernce the changed particle
+enum values for leads, debris, blood, and slime. testing revealed
+major bugs....
 
 
 
@@ -68,22 +104,45 @@ Today:
 
 
 
-Prefix Removal
 
-we need to drop 'projectile' prefix from projectilType enum values.
-it's very redundant. done.
 
-Throwing Enemies++
 
-now when enemies are thrown, they create impact dust. this is different
-from roomobjects and bushes, which create debris and leafs respectively.
-this is just to remind myself that this can be different and should be
-bloody later on.
+Major Bugs:
+swimming state is not being set for hero.
+how about for any actors? probably no.
+climbing isn't needed, cause the walls dont push hero.
+so they need to do that. maybe just hero is excluded from
+these branches...
 
 
 
 
 
+test destroying objects, throwing objects.
+test killing living actors: should pop blood.
+test killing bosses: should pop blood or slime.
+
+
+
+
+
+Posts
+Post corners should not have hitboxes as tall as they are.
+same with vertical post walls - we can just use base hitboxes
+instead, this allows link to dash behind them in the expected
+manner, and arrows and carefully be shot between posts too.
+
+
+
+
+
+
+
+Polish++
+
+thrown obj's explosions center should be +2,+2
+carried obj's offset should be above hero's head more (-y axis)
+check carrying objs in water, pls - polish offset
 
 
 
@@ -92,6 +151,25 @@ bloody later on.
 
 
 
+Floor Particles++
+
+we have floor blood in code, but this points to a floor stain.
+we are adding floor blood, which is red, next to it.
+this means we have two floor objs: stains and blood.
+stains are added procedurally to rooms.
+blood is created when an enemy is killed/dies (except in pit/water/etc..)
+
+
+
+
+Floor Bones/Skeletons 1 & 2
+
+we have skeleton debris objects that we can place procedurally
+in a room upon build(), and we can also randomly create one when
+an enemy dies, over the dead enemies blood spatter obj.
+
+these roomObjs flip horizontally upon being placed, after randomly
+choosing between the two of them.
 
 
 
@@ -99,16 +177,30 @@ bloody later on.
 
 Blood Spatter Analysis, Dex
 
-for now, living objects that are thrown create impact dust
-upon explosion/death. this is PG, and instead, lets make it gory.
+upgrade throwing() enemies to 
+leave a blood mark on the ground as a roomObj.
+this happens in functions_projectile.kill().
+we already have the ground blood sprite
 
-upgrade throwing() enemies to explode as blood spatter,
-and leave a blood mark on the ground as a roomObj.
-this happens in functions_projectile.kill()
+^this should also work for actors. not over pits tho.
 
-if we pickup a rat, we *must* set it's current animation to the
-down animation for the rat - because we only check this animation value
-to determine if the rat should explode into blood spatter.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -260,6 +352,63 @@ level 1 is 1 tentacle
 level 2 is 5 tentacles
 level 3 creates a wall 10 tiles long
 level 4 creates a box around link
+
+
+
+
+
+
+
+
+
+Dog Vendor Context++
+
+Little Girl (pet vendor)
+father's dialog:
+'i know she misses her mom, but saving all these puppies'
+'isn't going to brink her back.. interested in a dog, mister?'
+-we just need to add an older father figure near the pet vendor
+to complete this mini-story. we can even make the father a
+vendor for a side-quest to find and save the mother. upon
+completion, the father could reward player something, switch
+to a different type of vendor, and the mom could have sidequests
+about revenge on those that kidnapped her. this questline could
+lead to the discovery of an entire kidnapping ring, with a hidden
+dungeon, with it's own small layout + tons of custom enemies, 
+minis, bosses, and stuff. all that from a dog vendor idea.
+also, we need more dogs, of different colors.
+
+Dogs++
+
+doggo should spawn with hero whenever he changes rooms in a dungeon.
+this makes the dog more consistently around, considering that he can
+and often does fall into pits. upon a fall into a pit, we could just
+magically teleport the dog to hero's location. that would work too.
+-dog should be gameobj in functions_hero class?
+-this is handled specially outside of roomObj systems
+-doggo is not really roomObj, not really projectile, more like actor
+-make doggo an actor instance in fun_hero class that we handle specially
+-this means doggo isn't part of actorPool and is never recycled
+-we entirely handle doggo in fun_hero class or fun_pet class
+-fun_pet class makes more sense, and maybe we have a petPool that we use?
+-petPool could model multiple pets! which can easily be implemented
+-we would just need to have different pets and diff pet vendors
+-then player could build a 'pack' of pets to travel with
+-how many pets? lets go with 8 pets.
+-also, pressing interact while idle should 'whistle'
+-this should call all your pets to your location (enlarge all pets search radius)
+*we acn just do a palette swap on doggos for many flavors to test systems
+
+
+Pets++
+
+doggos should stop, face, and bark at bombable doors in dungeon rooms.
+this makes them useful when exploring dungeons.
+link and doggos should not collide, so link can always walk thru them.
+doggos collide with all other actors, and roomObjs tho. never pros.
+so they act as a moving shield against enemies getting close, if player
+has 3 or more pets, but they still won't block projectiles or affect
+player movement.
 
 
 
