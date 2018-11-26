@@ -648,35 +648,15 @@ namespace DungeonRun
 
             else if (Pro.type == ProjectileType.CarriedObject)
             {
-                //center carried projectile above hero's head, based on hero state
-                Pro.lifeCounter = 10; //lives forever, until thrown()
-                Pro.active = true;
+                //the carried obj is only used by hero, so it lives in func_hero class
+                //it's aligned to hero's head just prior to drawing it, so it doesn't
+                //lag behind and always draws ontop of hero.. it's behavior here is
+                //simply to keep it alive forever - over hero's head - until player
+                //throws() it or is forced to drop it by their actions (like pit fall)
 
-                if (Pool.hero.swimming)
-                {
-                    if (Pool.hero.underwater)
-                    {   //place heldObj above head, underwater
-                        Functions_Movement.Teleport(
-                        Pro.compMove,
-                        Pool.hero.compCollision.rec.Center.X,
-                        Pool.hero.compCollision.rec.Center.Y - 1);
-                    }
-                    else
-                    {   //place heldObj above head, swimming
-                        Functions_Movement.Teleport(
-                        Pro.compMove,
-                        Pool.hero.compCollision.rec.Center.X,
-                        Pool.hero.compCollision.rec.Center.Y - 7);
-                    }
-                    
-                }
-                else
-                {   //place herlObj above head, on land
-                    Functions_Movement.Teleport(
-                        Pro.compMove,
-                        Pool.hero.compCollision.rec.Center.X,
-                        Pool.hero.compCollision.rec.Center.Y - 9);
-                }
+                Pro.lifeCounter = 10; 
+                Pro.active = true;
+                //just lives forever, until thrown()
             }
 
             #endregion
@@ -1010,8 +990,8 @@ namespace DungeonRun
                 {   //pop leaf explosion for bushes
                     Functions_Particle.Spawn_Explosion(
                         ParticleType.LeafGreen,
-                        Pro.compSprite.position.X,
-                        Pro.compSprite.position.Y,
+                        Pro.compSprite.position.X +4,
+                        Pro.compSprite.position.Y +4,
                         true);
                     Assets.Play(Assets.sfxBushCut);
                 }
@@ -1029,8 +1009,8 @@ namespace DungeonRun
                 {   //instead of dust, we could have blood spatter
                     Functions_Particle.Spawn_Explosion(
                         ParticleType.BloodRed, //make this blood pls
-                        Pro.compSprite.position.X,
-                        Pro.compSprite.position.Y,
+                        Pro.compSprite.position.X+4,
+                        Pro.compSprite.position.Y+4,
                         true);
                     Assets.Play(Assets.sfxEnemyKill);
                     //and we could leave a pool of blood or bones on the ground
@@ -1045,8 +1025,8 @@ namespace DungeonRun
                 {   //pop rock debris for all other thrown objs
                     Functions_Particle.Spawn_Explosion(
                         ParticleType.DebrisBrown,
-                        Pro.compSprite.position.X,
-                        Pro.compSprite.position.Y,
+                        Pro.compSprite.position.X+4,
+                        Pro.compSprite.position.Y+4,
                         true);
                     Assets.Play(Assets.sfxShatter);
                 }
@@ -1142,7 +1122,7 @@ namespace DungeonRun
             Functions_Component.SetSpriteRotation(Pro.compSprite, Pro.direction);
         }
 
-
+        
 
 
 

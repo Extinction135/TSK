@@ -1623,7 +1623,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Blocking Water Objects (water rocks)
+            #region Water Objects (water rocks & underwater obj)
 
             else if (Type == ObjType.Wor_Water_RockSm ||
                 Type == ObjType.Wor_Water_RockMed)
@@ -1646,7 +1646,7 @@ namespace DungeonRun
             {
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Water_RockUnderwater;
                 Obj.canBeSaved = true;
-                Obj.compSprite.zOffset = -7; //sort under hero
+                Obj.compSprite.zOffset = -12; //sort under hero
                 Obj.compCollision.blocking = false; //just decoration
             }
 

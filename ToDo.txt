@@ -61,13 +61,35 @@ Today:
 
 
 
-Dig Routines
+Polish
 
-the new dig system only allows specific objects to be removed
-upon a dig using the shovel. these are: grass objects, stumps,
-coastlines, dirt tiles, debris, floor blood, floor boss decals,
-and the colisuem's outdoor floor, which seems appropriate.
-tested, working as expected.
+objs underwater should sort lower. link can overlap them
+just a bit when swimming in water. done.
+
+thrown obj's explosions center should be +4,+4. done.
+carried obj's offset should be above hero's head more (-y axis)
+check carrying objs in water, pls - polish offset. done.
+
+improved carried obj routines to lock to hero's head,
+preventing the lag introduced with the new carrying system.
+
+
+
+
+
+
+
+
+
+
+Posts
+
+Post corners should not have hitboxes as tall as they are.
+same with vertical post walls - we can just use base hitboxes
+instead, this allows link to dash behind them in the expected
+manner, and arrows and carefully be shot between posts too.
+
+
 
 
 
@@ -78,31 +100,6 @@ test killing living actors: should pop blood.
 test killing bosses: should pop blood or slime.
 
 
-
-
-
-Posts
-Post corners should not have hitboxes as tall as they are.
-same with vertical post walls - we can just use base hitboxes
-instead, this allows link to dash behind them in the expected
-manner, and arrows and carefully be shot between posts too.
-
-
-
-
-
-objs underwater should sort lower. link can overlap them
-just a bit when swimming in water.
-
-
-
-
-
-Polish++
-
-thrown obj's explosions center should be +2,+2
-carried obj's offset should be above hero's head more (-y axis)
-check carrying objs in water, pls - polish offset
 
 
 
@@ -160,16 +157,6 @@ we already have the ground blood sprite
 
 
 
-Tall Coastlines
-there is a problem with the tall coastline objs - we should be
-able to dig over them, but doing so will remove the entire obj,
-leaving a 16x16 ditch, instad of a 16x32 ditch to match the coastline
-objs size. the green bkg will show, instead of water, breaking 
-immersion. they are immune to digs for now. the solution is to 
-break them up into two 16x16 objects, replace them in level,
-then allow digging on the top object that transitions to land..
-this trans should be based on the dirtcolor, not green, because
-water doesn't transition directly to grass on islands. 
 
 
 
@@ -194,10 +181,9 @@ this seperatees the destruction of objs, from the burning of objs.
 
 
 Fairy++
-do fairies work? no. they are not modeled as pickups.
-make fairy a pickup that lasts forever,
-modeled like other pickups.
-
+do fairies work? maybe. this is a roomObj vs actor
+interaction, cause fairy is non-blocking. also, the net
+projectile is a pro vs obj test, and likely still works.
 
 
 
@@ -562,7 +548,17 @@ force the player to choose which door they want to unlock.
 
 
 
-
+Tall Coastlines
+there is a problem with the tall coastline objs - we should be
+able to dig over them, but doing so will remove the entire obj,
+leaving a 16x16 ditch, instad of a 16x32 ditch to match the coastline
+objs size. the green bkg will show, instead of water, breaking 
+immersion. they are immune to digs for now. the solution is to 
+break them up into two 16x16 objects, replace them in level,
+then allow digging on the top object that transitions to land..
+this trans should be based on the dirtcolor, not green, because
+water doesn't transition directly to grass on islands. 
+-for now tall coastlines are immune to dig-
 
 
 

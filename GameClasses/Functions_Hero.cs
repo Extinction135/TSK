@@ -1038,8 +1038,79 @@ namespace DungeonRun
             { Pool.hero.compSprite.zOffset = -30; } //sort under vines
             //sort normally
             else { Pool.hero.compSprite.zOffset = 0; }
+
+            if (carrying)
+            {
+                //hide the carried obj projectile from initial drawing
+                carriedObj.compSprite.visible = false;
+                //we will draw it later, after hero sprite, locked on link's head
+            }
+
+
+
+            //we could handle future pet related interactions/collisions here
         }
 
+
+
+
+
+
+
+        public static void Draw()
+        {
+
+
+            #region Align and Draw Carried Object Projectile
+
+            if(carrying)
+            {   //align carried obj to hero's head after hero has been drawn
+                //this is based on post-collision hitbox pos, and ensures carried obj
+                //doesnt lag behind hero, despite speed and magnitude changes
+
+                if (Pool.hero.swimming)
+                {
+                    if (Pool.hero.underwater)
+                    {   //place heldObj above head, underwater
+                        Functions_Movement.Teleport(
+                            carriedObj.compMove,
+                            Pool.hero.compCollision.rec.Center.X,
+                            Pool.hero.compCollision.rec.Center.Y - 5);
+                    }
+                    else
+                    {   //place heldObj above head, swimming
+                        Functions_Movement.Teleport(
+                            carriedObj.compMove,
+                            Pool.hero.compCollision.rec.Center.X,
+                            Pool.hero.compCollision.rec.Center.Y - 8);
+                    }
+
+                }
+                else
+                {   //place heldObj above head, on land
+                    Functions_Movement.Teleport(
+                        carriedObj.compMove,
+                        Pool.hero.compCollision.rec.Center.X,
+                        Pool.hero.compCollision.rec.Center.Y - 13);
+                }
+
+                //align pro components
+                Functions_Component.Align(
+                    carriedObj.compMove, 
+                    carriedObj.compSprite, 
+                    carriedObj.compCollision);
+
+                //enable draw, then draw carried obj
+                carriedObj.compSprite.visible = true;
+                Functions_Draw.Draw(carriedObj);
+            }
+
+            #endregion
+
+
+            //we could handle future pet related drawing here too
+
+        }
 
     }
 }
