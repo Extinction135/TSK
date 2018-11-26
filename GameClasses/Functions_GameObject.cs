@@ -1433,14 +1433,23 @@ namespace DungeonRun
                 Obj.canBeSaved = true;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
                 Obj.compSprite.zOffset = 0;
-                //hitbox 
+                //old hitbox 
+                //Obj.compCollision.rec.Width = 8; Obj.compCollision.offsetX = 0;
+                //Obj.compCollision.rec.Height = 16; Obj.compCollision.offsetY = -8;
+                //new hitbox
                 Obj.compCollision.rec.Width = 8; Obj.compCollision.offsetX = 0;
-                Obj.compCollision.rec.Height = 16; Obj.compCollision.offsetY = -8;
+                Obj.compCollision.rec.Height = 8; Obj.compCollision.offsetY = 0;
+
                 //animframes
                 if (Type == ObjType.Wor_Post_Vertical_Left)
-                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Post_Vertical_Left; }
+                {
+                    Obj.compAnim.currentAnimation = AnimationFrames.Wor_Post_Vertical_Left;
+                    Obj.compCollision.rec.Height = 16; //fills gap
+                }
                 else if (Type == ObjType.Wor_Post_Corner_Left)
-                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Post_Corner_Left; }
+                {
+                    Obj.compAnim.currentAnimation = AnimationFrames.Wor_Post_Corner_Left;
+                }
                 else if (Type == ObjType.Wor_PostBurned_Vertical_Left)
                 {   //burned posts have different hitboxes
                     Obj.compAnim.currentAnimation = AnimationFrames.Wor_PostBurned_Corner_Left;
@@ -1461,14 +1470,24 @@ namespace DungeonRun
                 Obj.canBeSaved = true;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
                 Obj.compSprite.zOffset = 0;
-                //hitbox 
+                //old hitbox 
+                //Obj.compCollision.rec.Width = 8; Obj.compCollision.offsetX = -8;
+                //Obj.compCollision.rec.Height = 16; Obj.compCollision.offsetY = -8;
+                //new hitbox
                 Obj.compCollision.rec.Width = 8; Obj.compCollision.offsetX = -8;
-                Obj.compCollision.rec.Height = 16; Obj.compCollision.offsetY = -8;
+                Obj.compCollision.rec.Height = 8; Obj.compCollision.offsetY = 0;
+
+
                 //animframes
                 if (Type == ObjType.Wor_Post_Vertical_Right)
-                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Post_Vertical_Right; }
+                {
+                    Obj.compAnim.currentAnimation = AnimationFrames.Wor_Post_Vertical_Right;
+                    Obj.compCollision.rec.Height = 16; //fills gap
+                }
                 else if(Type == ObjType.Wor_Post_Corner_Right)
-                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Post_Corner_Right; }
+                {
+                    Obj.compAnim.currentAnimation = AnimationFrames.Wor_Post_Corner_Right;
+                }
                 else if (Type == ObjType.Wor_PostBurned_Vertical_Right)
                 {   //burned posts have different hitboxes
                     Obj.compAnim.currentAnimation = AnimationFrames.Wor_PostBurned_Vertical_Right;
