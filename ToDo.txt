@@ -60,38 +60,24 @@ Today:
 
 
 
-
-
-
-
-
-
-
-Actor Widget++
-
-we need to update the animgroups and animDirs for all actors
-on the widgets, otherwise they dont display properly. okies.
-this was done by modifying widgetActor base class to call 
-setAnimGroup() and setAnimDir() for all the actors on it's
-internal actor list. tested.
-
-
-
-
-
-
-
-
-
-
 EditorMenu++
 
-while in editor menu, plus button should iterate forward thru
+while in editor menu, f1 button should iterate forward thru
 widget sets, just like the button press does. this allows us
 to move through the widgets faster, while keeping the cursor
 over where we know the object will be, instead of clicking and
 moving back and forth - this is very slow. faster workflow, 
-faster iterations, better code, better game.
+faster iterations, better code, better game. done.
+
+also, editor menu screen was upgraded to allow for dungeon
+textures to be displayed, based on the widget display set.
+so, now we can see what a specific dungeon's unique objs
+look like in the editor, and in game (if we're in room editor).
+
+
+
+
+
 
 
 

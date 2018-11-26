@@ -120,90 +120,12 @@ namespace DungeonRun
             #endregion
 
 
-            #region Handle Level Button (currentSheet) Presses
-
+            //mouse button click input
             if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
             {
-
-
-                #region Button - Widget Display Set 
-
+                //Button - Iterate Widget Display Set 
                 if (widgetDisplaySet_Btn.rec.Contains(Input.cursorPos))
-                {
-
-
-                    #region Iterate thru widget objs + widget enemy objs
-
-                    if(Widgets.WO_Town.visible == true)
-                    {   //TOWN
-                        ResetWidgets(); //goto forest
-                        widgetDisplaySet_Btn.compText.text = "forest";
-                        Widgets.WO_Forest.visible = true;
-                        Widgets.WE_Forest.visible = true;
-                    }
-                    else if (Widgets.WO_Forest.visible == true)
-                    {   //FOREST
-                        ResetWidgets(); //goto mountain
-                        widgetDisplaySet_Btn.compText.text = "mountain";
-                        Widgets.WO_Mountain.visible = true;
-                        Widgets.WE_Mountain.visible = true;
-                    }
-                    else if(Widgets.WO_Mountain.visible == true)
-                    {   //MOUNTAIN
-                        ResetWidgets(); //goto swamp
-                        widgetDisplaySet_Btn.compText.text = "swamp";
-                        Widgets.WO_Swamp.visible = true;
-                        Widgets.WE_Swamp.visible = true;
-                    }
-                    else if(Widgets.WO_Swamp.visible == true)
-                    {   //SWAMP
-                        ResetWidgets(); //goto coliseum
-                        widgetDisplaySet_Btn.compText.text = "coliseum";
-                        Widgets.WO_Colliseum.visible = true;
-                        //Widgets.WE_Colliseum.visible = true; //not yet
-                    }
-                    else if (Widgets.WO_Colliseum.visible == true)
-                    {   //COLISEUM
-                        ResetWidgets(); //goto boat
-                        widgetDisplaySet_Btn.compText.text = "boat";
-                        Widgets.WO_Boat_Front.visible = true;
-                        Widgets.WO_Boat_Back.visible = true;
-                    }
-                    else if (Widgets.WO_Boat_Front.visible == true)
-                    {   //BOAT
-                        ResetWidgets(); //goto Town
-                        widgetDisplaySet_Btn.compText.text = "town";
-                        Widgets.WO_Town.visible = true;
-                        Widgets.WE_Town.visible = true;
-                    }
-
-                    #endregion
-
-
-
-                    //disgusting hack: as we iterate thru widgets, show
-                    //similar dungeon textures (should be in own button)
-
-                    //get current dungeon texture, update floors and roomObjs
-                    Functions_Texture.UpdateDungeonTexture();
-                    Functions_Texture.SetFloorTextures();
-                    for(int i = 0; i < Pool.roomObjCount; i++)
-                    { Functions_GameObject.SetType(Pool.roomObjPool[i], Pool.roomObjPool[i].type); }
-
-                    //in the future, we will need to update the dungeon widget objects texture
-                    Functions_Texture.SetWOTexture(Widgets.WO_Dungeon);
-                    //^ like that, but based on a button or value to track dungeon type
-                    //works, because current dungeon tex was set in UpdateDunTex() above
-
-
-
-                    
-                    //hide obj tools selection box offscreen
-                    //because it's likely positioned over something different now
-                    Widgets.ObjectTools.selectionBoxObj.position.X = 2048;
-                }
-
-                #endregion
+                { IterateWidgetSet(); }
 
 
                 #region Button - Ignore Water Tiles
@@ -290,14 +212,11 @@ namespace DungeonRun
 
                 #endregion
 
-
-
-
-
-
             }
 
-            #endregion
+            //keyboard input - shortcut to iterate thru level sheets
+            if(Functions_Input.IsNewKeyPress(Keys.F1))
+            { IterateWidgetSet(); }
 
 
             //pass tool input
@@ -400,6 +319,95 @@ namespace DungeonRun
             //set dev widget to always be visible
             Widgets.WO_DEV.visible = true;
         }
+
+
+
+        public void IterateWidgetSet()
+        {
+
+
+            #region Iterate thru widget objs + widget enemy objs
+
+            if (Widgets.WO_Town.visible)
+            {   //TOWN
+                ResetWidgets(); //goto forest
+                widgetDisplaySet_Btn.compText.text = "forest";
+                Widgets.WO_Forest.visible = true;
+                Widgets.WE_Forest.visible = true;
+            }
+            else if (Widgets.WO_Forest.visible)
+            {   //FOREST
+                ResetWidgets(); //goto mountain
+                widgetDisplaySet_Btn.compText.text = "mountain";
+                Widgets.WO_Mountain.visible = true;
+                Widgets.WE_Mountain.visible = true;
+            }
+            else if (Widgets.WO_Mountain.visible)
+            {   //MOUNTAIN
+                ResetWidgets(); //goto swamp
+                widgetDisplaySet_Btn.compText.text = "swamp";
+                Widgets.WO_Swamp.visible = true;
+                Widgets.WE_Swamp.visible = true;
+            }
+            else if (Widgets.WO_Swamp.visible)
+            {   //SWAMP
+                ResetWidgets(); //goto coliseum
+                widgetDisplaySet_Btn.compText.text = "coliseum";
+                Widgets.WO_Colliseum.visible = true;
+                //Widgets.WE_Colliseum.visible = true; //not yet
+            }
+            else if (Widgets.WO_Colliseum.visible)
+            {   //COLISEUM
+                ResetWidgets(); //goto boat
+                widgetDisplaySet_Btn.compText.text = "boat";
+                Widgets.WO_Boat_Front.visible = true;
+                Widgets.WO_Boat_Back.visible = true;
+            }
+            else if (Widgets.WO_Boat_Front.visible)
+            {   //BOAT
+                ResetWidgets(); //goto Town
+                widgetDisplaySet_Btn.compText.text = "town";
+                Widgets.WO_Town.visible = true;
+                Widgets.WE_Town.visible = true;
+            }
+
+            #endregion
+
+
+
+            #region Iterate Dungeon Textures too
+
+            //disgusting hack: as we iterate thru widgets,
+            //iterate thru dungeon textures (should be in own button)
+            
+            //set the dungeon ID based on the visible widget object
+            if (Widgets.WO_Forest.visible)
+            { LevelSet.dungeon.ID = LevelID.Forest_Dungeon; }
+            else if (Widgets.WO_Mountain.visible)
+            { LevelSet.dungeon.ID = LevelID.Mountain_Dungeon; }
+            else if (Widgets.WO_Swamp.visible)
+            { LevelSet.dungeon.ID = LevelID.Swamp_Dungeon; }
+            else //set to non-dungeon id so default texture is displayed
+            { LevelSet.dungeon.ID = LevelID.SkullIsland_ShadowKing; }
+            
+            //actually update the dungeon texture and floors and objs
+            Functions_Texture.UpdateDungeonTexture();
+            Functions_Texture.SetFloorTextures();
+            for (int i = 0; i < Pool.roomObjCount; i++)
+            { Functions_GameObject.SetType(Pool.roomObjPool[i], Pool.roomObjPool[i].type); }
+
+            //in the future, we will need to update the dungeon widget objects texture
+            Functions_Texture.SetWOTexture(Widgets.WO_Dungeon);
+
+            //hide obj tools selection box offscreen
+            //because it's likely positioned over something different now
+            Widgets.ObjectTools.selectionBoxObj.position.X = 2048;
+
+            #endregion
+
+
+        }
+
 
 
     }

@@ -192,7 +192,6 @@ namespace DungeonRun
             #endregion
 
 
-
             #region F6 - Increment Hero Type
 
             else if (Functions_Input.IsNewKeyPress(Keys.F6))
