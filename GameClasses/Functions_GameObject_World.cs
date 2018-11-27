@@ -16,17 +16,31 @@ namespace DungeonRun
     {
         static int i;
 
+        
 
-        //these functions refer to objects that are normally not part of a dungeon
-
-
-
+            
 
 
 
-        //cuts
+        //objects transforming from physical violence
 
-        public static void CutTallGrass(GameObject TallGrass)
+        public static void DestroyBush(GameObject Bush)
+        {   //pop leaf explosion
+            Functions_Particle.Spawn_Explosion(
+                ParticleType.LeafGreen,
+                Bush.compSprite.position.X,
+                Bush.compSprite.position.Y);
+            //covert bush to stump, play sfx
+            Functions_GameObject.SetType(Bush, ObjType.Wor_Bush_Stump);
+            Assets.Play(Assets.sfxBushCut);
+            //pop an attention particle
+            Functions_Particle.Spawn(ParticleType.Attention,
+                Bush.compSprite.position.X, Bush.compSprite.position.Y);
+            //rarely spawn loot
+            Functions_Loot.SpawnLoot(Bush.compSprite.position, 20);
+        }
+
+        public static void DestroyGrass(GameObject TallGrass)
         {   //pop an attention particle on grass pos
             Functions_Particle.Spawn(ParticleType.Attention,
                 TallGrass.compSprite.position.X,
@@ -43,7 +57,10 @@ namespace DungeonRun
 
 
 
-        //objects transforming from burning/fire effects
+
+
+
+        //objects transforming from burning/fire
 
         public static void BurnTree(GameObject Tree)
         {   //switch to burned tree
@@ -56,8 +73,7 @@ namespace DungeonRun
         }
 
         public static void BurnPost(GameObject Post)
-        {
-            //switch to burned post
+        {   //switch to burned post
             if (Post.type == ObjType.Wor_Post_Vertical_Right)
             { Functions_GameObject.SetType(Post, ObjType.Wor_PostBurned_Vertical_Right); }
             else if (Post.type == ObjType.Wor_Post_Corner_Right)
@@ -68,7 +84,46 @@ namespace DungeonRun
             { Functions_GameObject.SetType(Post, ObjType.Wor_PostBurned_Corner_Left); }
             else if (Post.type == ObjType.Wor_Post_Vertical_Left)
             { Functions_GameObject.SetType(Post, ObjType.Wor_PostBurned_Vertical_Left); }
+
+            //spread the fire 
+            Functions_Projectile.Spawn(
+                ProjectileType.GroundFire,
+                Post.compSprite.position.X,
+                Post.compSprite.position.Y - 3,
+                Direction.None);
+            Assets.Play(Assets.sfxLightFire);
         }
+
+        public static void BurnBush(GameObject Bush)
+        {   //spread the fire 
+            Functions_Projectile.Spawn(
+                ProjectileType.GroundFire,
+                Bush.compSprite.position.X,
+                Bush.compSprite.position.Y - 3,
+                Direction.None);
+            Assets.Play(Assets.sfxLightFire);
+            //destroy bush as normal
+            DestroyBush(Bush);
+        }
+
+        public static void BurnGrass(GameObject Grass)
+        {   
+            //spread the fire 
+            Functions_Projectile.Spawn(
+                ProjectileType.GroundFire,
+                Grass.compSprite.position.X,
+                Grass.compSprite.position.Y - 3,
+                Direction.None);
+            //destroy grass as normal
+            DestroyGrass(Grass);
+        }
+
+
+
+
+
+
+
 
 
 
@@ -117,23 +172,7 @@ namespace DungeonRun
 
 
 
-        //unique object transformations
-
-        public static void DestroyBush(GameObject Bush)
-        {   //pop leaf explosion
-            Functions_Particle.Spawn_Explosion(
-                ParticleType.LeafGreen,
-                Bush.compSprite.position.X,
-                Bush.compSprite.position.Y);
-            //covert bush to stump, play sfx
-            Functions_GameObject.SetType(Bush, ObjType.Wor_Bush_Stump);
-            Assets.Play(Assets.sfxBushCut);
-            //pop an attention particle
-            Functions_Particle.Spawn(ParticleType.Attention,
-                Bush.compSprite.position.X, Bush.compSprite.position.Y);
-            //rarely spawn loot
-            Functions_Loot.SpawnLoot(Bush.compSprite.position, 20);
-        }
+        
 
 
 

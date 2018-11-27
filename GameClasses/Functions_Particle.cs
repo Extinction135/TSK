@@ -454,7 +454,7 @@ namespace DungeonRun
             }
             else if (Type == ParticleType.Fire)
             {   //very short and fast, non-interactive ground fire
-                Part.compSprite.zOffset = 32;
+                Part.compSprite.zOffset = 64;
                 Part.lifetime = 20; //in frames
                 Part.compAnim.speed = 6; //in frames
                 Part.compAnim.currentAnimation = AnimationFrames.Projectile_FireGround;

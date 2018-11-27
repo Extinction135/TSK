@@ -1486,6 +1486,7 @@ namespace DungeonRun
 
             #region Posts - unburned, burned
 
+
             else if (
                 Type == ObjType.Wor_Post_Vertical_Left || Type == ObjType.Wor_Post_Corner_Left ||
                 Type == ObjType.Wor_PostBurned_Vertical_Left || Type == ObjType.Wor_PostBurned_Corner_Left
@@ -1494,10 +1495,6 @@ namespace DungeonRun
                 Obj.canBeSaved = true;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
                 Obj.compSprite.zOffset = 0;
-                //old hitbox 
-                //Obj.compCollision.rec.Width = 8; Obj.compCollision.offsetX = 0;
-                //Obj.compCollision.rec.Height = 16; Obj.compCollision.offsetY = -8;
-                //new hitbox
                 Obj.compCollision.rec.Width = 8; Obj.compCollision.offsetX = 0;
                 Obj.compCollision.rec.Height = 8; Obj.compCollision.offsetY = 0;
 
@@ -1531,13 +1528,8 @@ namespace DungeonRun
                 Obj.canBeSaved = true;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
                 Obj.compSprite.zOffset = 0;
-                //old hitbox 
-                //Obj.compCollision.rec.Width = 8; Obj.compCollision.offsetX = -8;
-                //Obj.compCollision.rec.Height = 16; Obj.compCollision.offsetY = -8;
-                //new hitbox
                 Obj.compCollision.rec.Width = 8; Obj.compCollision.offsetX = -8;
                 Obj.compCollision.rec.Height = 8; Obj.compCollision.offsetY = 0;
-
 
                 //animframes
                 if (Type == ObjType.Wor_Post_Vertical_Right)
@@ -1566,6 +1558,7 @@ namespace DungeonRun
                 Obj.canBeSaved = true;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
                 Obj.compSprite.zOffset = 0;
+
                 //hitbox - same for burned and non burned
                 Obj.compCollision.rec.Width = 16; Obj.compCollision.offsetX = -8;
                 Obj.compCollision.rec.Height = 8; Obj.compCollision.offsetY = 0;

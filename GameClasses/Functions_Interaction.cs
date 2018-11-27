@@ -369,15 +369,13 @@ namespace DungeonRun
                     }
                     //groundfires can spread across bushes
                     else if (RoomObj.type == ObjType.Wor_Bush)
-                    {   //spread the fire 
-                        Functions_Projectile.Spawn(
-                            ProjectileType.GroundFire,
-                            RoomObj.compSprite.position.X,
-                            RoomObj.compSprite.position.Y - 3,
-                            Direction.None);
-                        //destroy the bush
-                        Functions_GameObject_World.DestroyBush(RoomObj);
-                        Assets.Play(Assets.sfxLightFire);
+                    {
+                        if (Pro.compCollision.rec.Contains(
+                                RoomObj.compSprite.position.X,
+                                RoomObj.compSprite.position.Y))
+                        {   //check against sprite center pos
+                            Functions_GameObject_World.BurnBush(RoomObj);
+                        }   //this prevents immediate fire spread across verticals
                     }
                     //groundfires light explosive barrels on fire
                     else if (RoomObj.type == ObjType.Dungeon_Barrel)
@@ -385,28 +383,37 @@ namespace DungeonRun
                         RoomObj.compMove.direction = Direction.None;
                         Functions_GameObject_Dungeon.HitBarrel(RoomObj);
                     }
-                    //groundfires burn wooden posts
-                    else if (RoomObj.type == ObjType.Wor_Post_Corner_Left ||
-                        RoomObj.type == ObjType.Wor_Post_Corner_Right ||
-                        RoomObj.type == ObjType.Wor_Post_Horizontal ||
-                        RoomObj.type == ObjType.Wor_Post_Vertical_Left ||
-                        RoomObj.type == ObjType.Wor_Post_Vertical_Right)
-                    {
-                        //spread the fire 
-                        Functions_Projectile.Spawn(
-                            ProjectileType.GroundFire,
-                            RoomObj.compSprite.position.X,
-                            RoomObj.compSprite.position.Y - 3,
-                            Direction.None);
-                        //burn the post
-                        Functions_GameObject_World.BurnPost(RoomObj);
-                        Assets.Play(Assets.sfxLightFire);
-                    }
                     //groundfires light unlit torches on fire (of course!)
                     else if (RoomObj.type == ObjType.Dungeon_TorchUnlit)
                     {
                         Functions_GameObject.SetType(RoomObj, ObjType.Dungeon_TorchLit);
                         Assets.Play(Assets.sfxLightFire);
+                    }
+                    
+                    //groundfires burn wooden posts
+                    else if (
+                        RoomObj.type == ObjType.Wor_Post_Corner_Left ||
+                        RoomObj.type == ObjType.Wor_Post_Corner_Right ||
+                        RoomObj.type == ObjType.Wor_Post_Horizontal ||
+                        RoomObj.type == ObjType.Wor_Post_Vertical_Left ||
+                        RoomObj.type == ObjType.Wor_Post_Vertical_Right
+                        )
+                    {
+                        //handle vertical posts differently, due to hitbox
+                        if(RoomObj.type == ObjType.Wor_Post_Vertical_Left ||
+                            RoomObj.type == ObjType.Wor_Post_Vertical_Right)
+                        {
+                            if (Pro.compCollision.rec.Contains(
+                                RoomObj.compSprite.position.X,
+                                RoomObj.compSprite.position.Y))
+                            {   //check against sprite center pos
+                                Functions_GameObject_World.BurnPost(RoomObj);
+                            }   //this prevents immediate fire spread across verticals
+                        }
+                        else
+                        {   //other posts burn without additional overlap check
+                            Functions_GameObject_World.BurnPost(RoomObj);
+                        }
                     }
                 }
 
@@ -578,36 +585,27 @@ namespace DungeonRun
                 #endregion
 
 
-                #region Tall Grass - gets cuts, burns, can be exploded
+                #region Tall Grass
 
                 else if (RoomObj.type == ObjType.Wor_Grass_Tall)
                 {
-                    if (Pro.type == ProjectileType.Explosion)
-                    {   //pass the obj's direction into the grass (fake inertia)
-                        RoomObj.compMove.direction = Pro.direction;
-                        Functions_GameObject_World.CutTallGrass(RoomObj);
-                        //add some ground fire 
-                        Functions_Projectile.Spawn(
-                            ProjectileType.GroundFire,
-                            RoomObj.compSprite.position.X,
-                            RoomObj.compSprite.position.Y - 3,
-                            Direction.None);
+                    if ( //basic destruction
+                        Pro.type == ProjectileType.Sword
+                        )
+                    {
+                        Functions_GameObject_World.DestroyGrass(RoomObj);
                     }
-                    else if (Pro.type == ProjectileType.Sword)
-                    {   //pass the obj's direction into the grass (fake inertia)
-                        RoomObj.compMove.direction = Pro.direction;
-                        Functions_GameObject_World.CutTallGrass(RoomObj);
-                    }
-                    else if (Pro.type == ProjectileType.GroundFire)
-                    {   //'burn' the grass
-                        Functions_GameObject_World.CutTallGrass(RoomObj);
-                        //spread the fire 
-                        Functions_Projectile.Spawn(
-                            ProjectileType.GroundFire,
-                            RoomObj.compSprite.position.X,
-                            RoomObj.compSprite.position.Y - 3,
-                            Direction.None);
-                        //Assets.Play(Assets.sfxLightFire);
+                    else if ( //advanced destruction
+                        Pro.type == ProjectileType.Explosion
+                        || Pro.type == ProjectileType.GroundFire
+                        )
+                    {
+                        if (Pro.compCollision.rec.Contains(
+                                RoomObj.compSprite.position.X,
+                                RoomObj.compSprite.position.Y))
+                        {   //check against sprite center pos
+                            Functions_GameObject_World.BurnGrass(RoomObj);
+                        }   //this prevents immediate fire spread across verticals
                     }
                 }
 

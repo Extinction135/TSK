@@ -785,33 +785,19 @@ namespace DungeonRun
                                 //fireballs can cascade spread across tall grass
                                 else if (Pool.roomObjPool[i].type == ObjType.Wor_Grass_Tall)
                                 {   //'burn' the grass
-                                    Functions_GameObject_World.CutTallGrass(Pool.roomObjPool[i]);
-                                    //spread the fire 
-                                    Functions_Projectile.Spawn(
-                                        ProjectileType.GroundFire,
-                                        Pool.roomObjPool[i].compSprite.position.X,
-                                        Pool.roomObjPool[i].compSprite.position.Y - 3,
-                                        Direction.None);
+                                    Functions_GameObject_World.BurnGrass(Pool.roomObjPool[i]);
                                 }
                                 //fireballs can cascade spread across bushes
                                 else if (Pool.roomObjPool[i].type == ObjType.Wor_Bush)
-                                {   //spread the fire 
-                                    Functions_Projectile.Spawn(
-                                        ProjectileType.GroundFire,
-                                        Pool.roomObjPool[i].compSprite.position.X,
-                                        Pool.roomObjPool[i].compSprite.position.Y - 3,
-                                        Direction.None);
-                                    //destroy the bush
-                                    Functions_GameObject_World.DestroyBush(Pool.roomObjPool[i]);
-                                    Assets.Play(Assets.sfxLightFire);
+                                {
+                                    Functions_GameObject_World.BurnBush(Pool.roomObjPool[i]);
                                 }
 
                                 //not across trees tho - those take longer to burn
 
                                 //fireballs can cascade spread across barrels too
                                 else if (Pool.roomObjPool[i].type == ObjType.Dungeon_Barrel)
-                                {
-                                    //inherit the direction of the fireball
+                                {   //inherit the direction of the fireball
                                     Pool.roomObjPool[i].compMove.direction = Pro.compMove.direction;
                                     Functions_GameObject_Dungeon.HitBarrel(Pool.roomObjPool[i]);
                                 }
@@ -823,15 +809,7 @@ namespace DungeonRun
                                     Pool.roomObjPool[i].type == ObjType.Wor_Post_Vertical_Left ||
                                     Pool.roomObjPool[i].type == ObjType.Wor_Post_Vertical_Right)
                                 {
-                                    //spread the fire 
-                                    Functions_Projectile.Spawn(
-                                        ProjectileType.GroundFire,
-                                        Pool.roomObjPool[i].compSprite.position.X,
-                                        Pool.roomObjPool[i].compSprite.position.Y - 3,
-                                        Direction.None);
-                                    //burn the post
                                     Functions_GameObject_World.BurnPost(Pool.roomObjPool[i]);
-                                    Assets.Play(Assets.sfxLightFire);
                                 }
 
                                 #endregion
@@ -901,6 +879,7 @@ namespace DungeonRun
                         Pro.compSprite.position.X + 5 + Functions_Random.Int(-4, 4),
                         Pro.compSprite.position.Y + 1 + Functions_Random.Int(-8, 2));
                 }
+
                 //expand groundfires hitbox to cause interactions with room objs
                 if (Pro.lifeCounter == Pro.interactiveFrame)
                 {   //spread horizontally on interaction frame
@@ -913,7 +892,7 @@ namespace DungeonRun
                     //xtra south for south bushes/objs with lower hitboxes (further away)
                     Pro.compCollision.offsetY = -17; Pro.compCollision.rec.Height = 38;
                 }
-                else
+                else if (Pro.lifeCounter == Pro.interactiveFrame + 2)
                 {   //set collision rec back to normal on 3rd frame
                     Pro.compCollision.offsetX = -4; Pro.compCollision.offsetY = -4;
                     Pro.compCollision.rec.Width = 8; Pro.compCollision.rec.Height = 8;
@@ -937,13 +916,26 @@ namespace DungeonRun
 
             #region Arrow or Bat projectile
 
-            if (Pro.type == ProjectileType.Arrow
-                || Pro.type == ProjectileType.Bat)
+            if (Pro.type == ProjectileType.Arrow)
             {
                 Functions_Particle.Spawn(
                     ParticleType.Attention,
                     Pro.compSprite.position.X + 0,
                     Pro.compSprite.position.Y + 0);
+            }
+
+            #endregion
+
+
+            #region Bat
+
+            else if (Pro.type == ProjectileType.Bat)
+            {
+                Functions_Particle.Spawn(
+                    ParticleType.Attention,
+                    Pro.compSprite.position.X + 0,
+                    Pro.compSprite.position.Y + 0);
+                Assets.Play(Assets.sfxRatSqueak);
             }
 
             #endregion

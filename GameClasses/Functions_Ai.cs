@@ -709,6 +709,7 @@ namespace DungeonRun
                             Pool.roomObjPool[i].group == ObjGroup.Ditch &
                             Pool.roomObjPool[i].getsAI == false) //unfilled
                         {
+
                             //expand horizontally
                             Obj.compCollision.rec.Width = 22;
                             Obj.compCollision.rec.X -= 4;
@@ -744,7 +745,6 @@ namespace DungeonRun
 
             else if (Obj.group == ObjGroup.Enemy)
             {
-
                 //if an enemy has gone beyond the bounds of a roomRec, release without loot
                 if (!LevelSet.currentLevel.currentRoom.rec.Contains(Obj.compSprite.position))
                 {
@@ -1159,6 +1159,12 @@ namespace DungeonRun
             }
 
             #endregion
+
+
+
+            
+
+
 
 
 

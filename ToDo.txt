@@ -60,41 +60,36 @@ Today:
 
 
 
-Audio++
 
-improve hammer sounds: hammer smash, plus post down sfx.
+Bugs--
 
-added lttp's hammer and hammer post soundfx to Dx.
-added lttp's hammer and hammer post soundfx to UWP.
+vertical posts now instantly spread fire. to fix this, we 
+need to check the posts comp sprite center position against
+the fire's expanded hitbox, using Contains(). this is a XY point,
+not the posts hitbox! this seperates the hitbox from the fire
+spreading routine. this is done now, in interaction routines
+between blocking object, posts to ground fire. we additionally
+check the vertical posts using the sprite pos. tested and working.
 
-when hammer is created, play hammer sfx. done.
-set post up's kill sfx to hammer post sfx. done.
+fun_obj_world.burnPost() was upgraded to handle all aspects of
+burning and converting posts to the burned counter parts.
 
-updated town to have some hammer posts, for testing.
-compiled xml to cs, for testing. bug: output directory
-has changed since last compile, now refs TSK instead of
-DungeonRun folder. fixed. posts, hammers, and all sfx
-related to them tested, and working great.
+Polish
 
+projectile bats should play a little pop when they die. done.
 
+Destruction Prep
 
-
-
-
-
+seperated burning and destruction of bushes, grass, post, and
+trees into their own methods in obj_world functions. this is
+just a temp fix to get things working, prior to the destruction
+systems redesign coming up..
 
 
 
-Explosion Polish
 
-explosion sound has too much leadtime.
-trim the beginning, and if it still sounds slow,
-then we need to call explosion soundfx in pro.birth,
-or even before it, or cut directly into an explosion sound
-already happening, or have a list of explosion instances we
-loop over, so we can have multiple explosions happening at once.
-because explosions are so common, we may use a list.
 
+grass, bushes, spread fire instantly north
 
 
 
@@ -110,17 +105,22 @@ Polish
 burning trees should not spawn as many fires as they do.
 these should also be fire particles - not pros.
 
-projectile bats should play a little pop when they die.
 
 
 
-Bugs--
 
-vertical posts now instantly spread fire. to fix this, we 
-need to check the posts comp sprite center position against
-the fire's expanded hitbox, using Contains(). this is a XY point,
-not the posts hitbox! this seperates the hitbox from the fire
-spreading routine.
+we need a pool.aiCount, to track how much work AI() is doing.
+this is just like an interaction counter, displayed on screen
+in debug info below interactions.
+
+we should be using a string builder for debug display, for all
+the display info.
+
+
+
+
+
+
 
 
 
