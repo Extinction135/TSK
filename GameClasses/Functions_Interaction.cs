@@ -33,6 +33,7 @@ namespace DungeonRun
                     {   //perform self-check to prevent self overlap interaction
                         if (Obj != Pool.roomObjPool[i])
                         {
+                            Pool.interactionsCount++;
                             Interact_ObjectObject(Pool.roomObjPool[i], Obj);
                         }
                     }
@@ -48,6 +49,7 @@ namespace DungeonRun
                 {
                     if (Actor.compCollision.rec.Intersects(Pool.roomObjPool[i].compCollision.rec))
                     {
+                        Pool.interactionsCount++;
                         Interact_ObjectActor(Pool.roomObjPool[i], Actor);
                     }
                 }
@@ -64,6 +66,7 @@ namespace DungeonRun
                 {
                     if (Pro.compCollision.rec.Intersects(Pool.roomObjPool[i].compCollision.rec))
                     {   //interaction between pro and obj
+                        Pool.interactionsCount++;
                         Interact_ProjectileRoomObj(Pro, Pool.roomObjPool[i]);
                     }
                 }
@@ -78,6 +81,7 @@ namespace DungeonRun
                 {
                     if (Actor.compCollision.rec.Intersects(Pool.projectilePool[i].compCollision.rec))
                     {   //interaction between pro and actor
+                        Pool.interactionsCount++;
                         Interact_ProjectileActor(Pool.projectilePool[i], Actor);
                     }
                 }
@@ -101,9 +105,6 @@ namespace DungeonRun
 
         public static void Interact_ProjectileActor(Projectile Pro, Actor Actor)
         {
-            //pro vs actor
-            Pool.interactionsCount++; //count interaction
-
 
 
             #region Exit conditions
@@ -166,11 +167,7 @@ namespace DungeonRun
             if (Pro.type == ProjectileType.CarriedObject) { return; }
 
 
-
-
-            //pro vs obj
-            Pool.interactionsCount++; //count interaction
-
+            
             //this is a hack to make non-blocking objs block for easy blocking/destruction
 
             #region Setup Special RoomObjs prior to Interaction
@@ -661,8 +658,6 @@ namespace DungeonRun
 
         public static void Interact_ObjectActor(GameObject RoomObj, Actor Actor)
         {
-            //obj vs actor
-            Pool.interactionsCount++; //count interaction
 
 
             #region Hero Specific RoomObj Interactions
@@ -1153,13 +1148,8 @@ namespace DungeonRun
 
         public static void Interact_ObjectObject(GameObject RoomObj, GameObject Object)
         {
-            //obj vs obj
-            Pool.interactionsCount++; //count interaction
-
-
-            
-
             //special case OBJECTS (pets and conveyor belts)
+
 
             #region Pet / Animals
 
@@ -1187,54 +1177,56 @@ namespace DungeonRun
             #endregion
 
 
-
-
-            //special case ROOMOBJECTS
-
             #region Dungeon Walls (self cleaning)
 
-            if (
+            else if (
                 Object.type == ObjType.Dungeon_WallStraight
                 || Object.type == ObjType.Dungeon_WallStraightCracked
                 )
+            {   //we use life counter to handle roomObj state/lifetime
+                if (Object.lifeCounter == 1) //just spawned, do cleanup
+                {   //if a wall overlaps a copy of itself, remove wall
+                    if (RoomObj.type == Object.type)
+                    { Functions_Pool.Release(RoomObj); }
+                    //walls cannot overlap these objects
+                    if (
+                        //exits
+                        RoomObj.type == ObjType.Dungeon_Exit
+                        || RoomObj.type == ObjType.Dungeon_ExitPillarLeft
+                        || RoomObj.type == ObjType.Dungeon_ExitPillarRight
+                        //other wall objs
+                        || RoomObj.type == ObjType.Dungeon_WallPillar
+                        || RoomObj.type == ObjType.Dungeon_WallStatue
+                        || RoomObj.type == ObjType.Dungeon_WallTorch
+                        || RoomObj.type == ObjType.Dungeon_WallExteriorCorner
+                        || RoomObj.type == ObjType.Dungeon_WallInteriorCorner
+                        )
+                    { Functions_Pool.Release(Object); }
+                    Object.lifeCounter = 0; //bail from branch
+                }
+            }
+
+            #endregion
+
+            #region Dungeon Exits
+
+            else if (
+                Object.type == ObjType.Dungeon_Exit
+                || Object.type == ObjType.Dungeon_ExitPillarLeft
+                || Object.type == ObjType.Dungeon_ExitPillarRight
+                )
             {
+                if (Object.lifeCounter == 1) //just spawned
+                {   //objs that touch exits are removed, except other exits
+                    if (
+                        RoomObj.type == ObjType.Dungeon_Exit
+                        || RoomObj.type == ObjType.Dungeon_ExitPillarLeft
+                        || RoomObj.type == ObjType.Dungeon_ExitPillarRight
+                        )
+                    { } //do nothing, else release
+                    else { Functions_Pool.Release(RoomObj); }
 
-
-
-                #region Clean Yo'Self
-
-                //if a wall overlaps a copy of itself, remove wall
-                if (RoomObj.type == Object.type)
-                { Functions_Pool.Release(RoomObj); }
-
-                //walls cannot overlap these objects
-                if (
-                    //exits
-                    Object.type == ObjType.Dungeon_Exit
-                    || Object.type == ObjType.Dungeon_ExitPillarLeft
-                    || Object.type == ObjType.Dungeon_ExitPillarRight
-                    //other wall objs
-                    || Object.type == ObjType.Dungeon_WallPillar
-                    || Object.type == ObjType.Dungeon_WallStatue
-                    || Object.type == ObjType.Dungeon_WallTorch
-                    || Object.type == ObjType.Dungeon_WallExteriorCorner
-                    || Object.type == ObjType.Dungeon_WallInteriorCorner
-                    )
-                { Functions_Pool.Release(RoomObj); }
-
-                #endregion
-
-
-
-
-                //we use life counter to handle roomObj state/lifetime
-                if (RoomObj.lifeCounter == 1) //just spawned, do cleanup
-                {
-
-                    
-
-
-                    RoomObj.lifeCounter = 0; //bail from branch
+                    Object.lifeCounter = 0;
                 }
             }
 

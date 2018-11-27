@@ -67,7 +67,8 @@ namespace DungeonRun
 
 
         //dungeon objs on common objs sheet
-        public static List<Byte4> Dungeon_Fairy = new List<Byte4> { new Byte4(24, 6, 0, 0), new Byte4(25, 6, 0, 0) };
+        public static List<Byte4> Dungeon_Fairy = new List<Byte4>
+        { new Byte4(24, 6, 0, 0), new Byte4(25, 6, 0, 0) };
         public static List<Byte4> Dungeon_BossKey = new List<Byte4> { new Byte4(27, 6, 0, 0) };
         public static List<Byte4> Dungeon_Map = new List<Byte4> { new Byte4(26, 6, 0, 0) };
         public static List<Byte4> Dungeon_IceTile = new List<Byte4> { new Byte4(26, 5, 0, 0) };
@@ -95,10 +96,13 @@ namespace DungeonRun
         public static List<Byte4> Dungeon_LeverOn = new List<Byte4> { new Byte4(20, 7, 0, 0) };
         public static List<Byte4> Dungeon_LeverOff = new List<Byte4> { new Byte4(20, 7, 1, 0) };
 
-        public static List<Byte4> Dungeon_FloorSpikesOn = new List<Byte4> { new Byte4(21, 7, 0, 0), new Byte4(22, 7, 0, 0) };
-        public static List<Byte4> Dungeon_FloorSpikesOff = new List<Byte4> { new Byte4(22, 7, 0, 0) };
+        public static List<Byte4> Dungeon_FloorSpikesOn = new List<Byte4>
+        { new Byte4(21, 7, 0, 0), new Byte4(22, 7, 0, 0) };
+        public static List<Byte4> Dungeon_FloorSpikesOff = new List<Byte4>
+        { new Byte4(22, 7, 0, 0) };
 
-        public static List<Byte4> Dungeon_ConveyorBeltOn = new List<Byte4> { new Byte4(23, 7, 0, 0), new Byte4(24, 7, 0, 0) };
+        public static List<Byte4> Dungeon_ConveyorBeltOn = new List<Byte4>
+        { new Byte4(23, 7, 0, 0), new Byte4(24, 7, 0, 0) };
         public static List<Byte4> Dungeon_ConveyorBeltOff = new List<Byte4> { new Byte4(24, 7, 0, 0) };
 
         public static List<Byte4> Dungeon_SpawnMob = new List<Byte4> { new Byte4(25, 7, 0, 0) };
@@ -652,10 +656,10 @@ namespace DungeonRun
 
         public static List<Byte4> Particle_PitBubble = new List<Byte4>
         {   //these frames are 8x8
-            new Byte4(10*2, 7*2, 0, 0),
-            new Byte4(10*2+1, 7*2, 0, 0),
-            new Byte4(10*2, 7*2+1, 0, 0),
-            new Byte4(10*2+1, 7*2+1, 0, 0)
+            new Byte4(4, 14, 0, 0),
+            new Byte4(5, 14, 0, 0),
+            new Byte4(4, 15, 0, 0),
+            new Byte4(5, 15, 0, 0)
         };
 
 

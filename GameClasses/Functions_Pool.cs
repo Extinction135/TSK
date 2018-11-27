@@ -334,6 +334,10 @@ namespace DungeonRun
                         //these objs self-clean through interaction checks
                         || Pool.roomObjPool[i].type == ObjType.Dungeon_WallStraight
                         || Pool.roomObjPool[i].type == ObjType.Dungeon_WallStraightCracked
+                        //exits remove anything they touch
+                        || Pool.roomObjPool[i].type == ObjType.Dungeon_Exit
+                        || Pool.roomObjPool[i].type == ObjType.Dungeon_ExitPillarLeft
+                        || Pool.roomObjPool[i].type == ObjType.Dungeon_ExitPillarRight
                         )
                     {
                         Functions_Interaction.CheckObj_Obj(Pool.roomObjPool[i]);

@@ -303,6 +303,8 @@ namespace DungeonRun
                 { Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_ExitPillarLeft; }
                 else { Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_ExitPillarRight; }
                 Obj.sfx.hit = Assets.sfxTapMetallic;
+                //these objs clean themselves up in interactions, set this state
+                Obj.lifeCounter = 1; //clean yo'self
             }
             else if (Type == ObjType.Dungeon_Exit)
             {
@@ -317,6 +319,8 @@ namespace DungeonRun
                 Obj.compCollision.blocking = false;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_Exit;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
+                //these objs clean themselves up in interactions, set this state
+                Obj.lifeCounter = 1; //clean yo'self
             }
             else if (Type == ObjType.Dungeon_ExitLight)
             {

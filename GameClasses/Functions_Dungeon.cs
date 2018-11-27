@@ -24,6 +24,14 @@ namespace DungeonRun
 
 
 
+
+
+
+
+
+
+        //Dungeon Room Building Methods
+
         public static void BuildEmptyRoom(Room Room)
         {
             Functions_Pool.Reset(); //reset the pools + counter
@@ -127,10 +135,7 @@ namespace DungeonRun
 
                 }
             }
-
-            Functions_GameObject.AlignRoomObjs();
         }
-
 
         public static void BuildRoomFrom(RoomXmlData RoomXmlData)
         {
@@ -148,6 +153,7 @@ namespace DungeonRun
             SetupPuzzle(LevelSet.dungeon.currentRoom);
             Assets.Play(Assets.sfxDoorOpen); //play door sfx
         }
+
 
 
         public static void SetFloors(Room Room)
@@ -172,7 +178,6 @@ namespace DungeonRun
                 { Pool.floorPool[i].currentFrame = AnimationFrames.Dungeon_FloorBoss[0]; }
             }
         }
-
 
         public static void SetDoors(Room Room)
         {
@@ -230,9 +235,6 @@ namespace DungeonRun
             }
         }
 
-
-
-
         public static int g;
         public static void ShutDoors(Room Room)
         {   //convert ANY kind of door to a 1 way trap door in room
@@ -249,10 +251,6 @@ namespace DungeonRun
                 }
             }
         }
-        
-
-
-
 
         public static void AddDevDoors(Room Room)
         {
@@ -272,6 +270,8 @@ namespace DungeonRun
             if (Room.roomID != RoomID.DEV_Exit) //exit rooms have exit objs on south wall, no door
             { LevelSet.currentLevel.doors.Add(new Door(new Point(posX + middleX, posY + height))); } //bottom
         }
+
+
 
         public static void ProcedurallyFinish(Room Room)
         {   //Pass the room to the appropriate method for completion
@@ -391,8 +391,6 @@ namespace DungeonRun
             Functions_GameObject.AlignRoomObjs();
         }
 
-
-
         static int torchCount;
         public static void SetupPuzzle(Room Room)
         {
@@ -438,8 +436,6 @@ namespace DungeonRun
             }   //torches > switches
         }
 
-
-
         public static void PlaceExit(Room Room)
         {
             //create exit pillars
@@ -469,10 +465,6 @@ namespace DungeonRun
             LevelSet.spawnPos_Dungeon.X = (Room.size.X / 2) * 16 + Room.rec.X + 8;
             LevelSet.spawnPos_Dungeon.Y = Room.rec.Y + (Room.size.Y - 1) * 16;
         }
-
-
-        
-
 
         public static void ScatterDebris(Room Room)
         {
@@ -505,7 +497,6 @@ namespace DungeonRun
             }
         }
 
-
         public static void Check_BossDoor()
         {
             //can be ANY room, dungeon recipes can attach boss to any room
@@ -531,21 +522,12 @@ namespace DungeonRun
             }
         }
 
-
-
-
-
-
-
-        //room specific procedural objects 
-
         public static void FinishSecretRoom(Room Room)
         {
             //what goes in a secret room? not chests
             //perhaps a secret vendor? or vendors?
         }
 
-        //setup KEY chest
         public static void FinishKeyRoom(Room Room)
         {
             for (i = 0; i < Pool.roomObjCount; i++)
@@ -567,6 +549,11 @@ namespace DungeonRun
 
 
 
+
+
+
+
+        //While Game is running Methods
 
         public static void SpawnBoss(Room Room)
         {   //spawn boss in center of room
@@ -637,8 +624,15 @@ namespace DungeonRun
 
 
 
-        
 
+
+
+
+
+
+
+        
+        //Dungeon Generation Recipes
 
         public static void BuildDungeon_Forest()
         {
@@ -735,9 +729,7 @@ namespace DungeonRun
 
 
 
-
-
-        //fields used in dungeon generation
+        //Dungeon Generation Functions and Data
         static int lastRoom;
         static int b;
         static int hubIndex = 0; //0 = hub doesn't exist
@@ -1009,7 +1001,20 @@ namespace DungeonRun
 
 
 
-        //blob dungeons are created differently
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //MiniDungeon Example
         /*
         //example of a mini-dungeon
         else if (Level.ID == LevelID.MiniBossDungeon)
