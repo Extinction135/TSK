@@ -61,6 +61,12 @@ player movement.
 
 
 
+Fast MODE
+for lower cpu systems, a setting that:
+-turns off gore (reducing obj creation)
+
+
+
 
 
 Dream Sequences

@@ -651,7 +651,12 @@ namespace DungeonRun
                 MenuItem.description = "red = blocking. \nblue = room.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_CheatOff;
             }
-
+            else if (Type == MenuItemType.Options_Gore)
+            {
+                MenuItem.name = "Gore Settings";
+                MenuItem.description = "Enables blood, \nguts, skeletons.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_CheatOff;
+            }
 
             #endregion
 

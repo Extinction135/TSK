@@ -374,28 +374,30 @@ namespace DungeonRun
 
 
         public static void DecorateEnemyDeath(ComponentSprite compSprite)
-        {
-            //used to kill small room enemies in uniform way
+        {   //used to kill small room enemies in uniform way
             Functions_Particle.Spawn_Explosion(
                 ParticleType.BloodRed,
                 compSprite.position.X + 4,
                 compSprite.position.Y + 4,
                 false); //create blood spatter
-            Assets.Play(Assets.sfxEnemyKill);
-            //always leave behind floor blood
-            Functions_GameObject.Spawn(
+            Assets.Play(Assets.sfxEnemyKill); //call sfx
+
+            //check to see what kind of additional decorations should drop
+            if (Flags.Gore)
+            {
+                Functions_GameObject.Spawn(
                 ObjType.Dungeon_FloorBlood,
                 compSprite.position.X,
                 compSprite.position.Y,
-                Direction.Down);
-            //sometimes leave behind a skeleton too
-            if (Functions_Random.Int(0, 101) > 70)
-            {
-                Functions_GameObject.Spawn(
-                ObjType.Dungeon_FloorSkeleton,
-                compSprite.position.X,
-                compSprite.position.Y,
-                Direction.Down);
+                Direction.Down); //drop flood blood
+                if (Functions_Random.Int(0, 101) > 70)
+                {   //sometimes drop a skeleton too
+                    Functions_GameObject.Spawn(
+                    ObjType.Dungeon_FloorSkeleton,
+                    compSprite.position.X,
+                    compSprite.position.Y,
+                    Direction.Down);
+                }
             }
         }
 

@@ -899,7 +899,7 @@ namespace DungeonRun
         Unknown,
 
 
-        #region Option relate menuItems
+        #region Options relate menuItems
 
         OptionsNewGame,
         OptionsLoadGame,
@@ -917,6 +917,7 @@ namespace DungeonRun
         Options_PlayMusic,
         Options_DrawDebug,
         Options_DrawHitBoxes,
+        Options_Gore,
 
         #endregion
 

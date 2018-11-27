@@ -22,31 +22,30 @@ namespace DungeonRun
         public static float Version = 0.78f; //the version of the game
         public static BootRoutine bootRoutine = BootRoutine.Editor_Level; //boot to game or editor?
 
-        //dev flags
+        //dev/editor flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
         public static Boolean EnableDebugInfo = false; //rightside debug info
-        public static Boolean DrawUItime = false; //draw build times next to world ui?
-        public static Boolean DrawCollisions = false; //draw/hide collision rec components
-        public static Boolean DrawInput = false; //draw the input display
-        public static Boolean DrawWatermark = true; //top right link (for capturing purposes)
-        public static Boolean Paused = false; //controlled by topMenu 'play/pause' button
         public static Boolean SpawnMobs = true; //toggles the spawning of lesser enemies (not bosses)
-        public static Boolean ProcessAI = true; //apply AI input to enemies / actors
         public static Boolean ShowEnemySpawns = false; //create & draw enemySpawn gameObjects?
         public static Boolean PrintOutput = true; //print output to the debugger
         public static Boolean IgnoreWaterTiles = false; //enable/disable pickup/selection/deletion of waterTiles
         public static Boolean IgnoreBoatTiles = false; //enable/disable pickup/selection/deletion of boatTiles
+        public static Boolean Paused = false; //controlled by topMenu 'play/pause' button
+
+        //level control flags
+        public static Boolean ProcessAI = true; //apply AI input to enemies / actors
 
         //option flags
+        public static Boolean DrawInput = false; //draw the input display
+        public static Boolean DrawUItime = false; //draw build times next to world ui?
+        public static Boolean DrawCollisions = false; //draw/hide collision rec components
         public static Boolean PlayMusic = false; //turns music on/off
         public static Boolean PlaySoundFX = true; //turns soundfx on/off
         public static Boolean CameraTracksHero = false; //camera tracks hero or centers to dungeon room
         public static Boolean IgnoreRoofTiles = false; //enable/disable pickup/selection of roofTiles
         public static Boolean HardMode = false; //forces dun.room puzzle setup
-
-
-
-
+        public static Boolean DrawWatermark = true; //top right link (for capturing purposes)
+        public static Boolean Gore = true; //blood, guts, skeletons upon enemy death
 
         //cheat flags
         public static Boolean Invincibility = true; //does hero ignore damage?

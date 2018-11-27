@@ -58,52 +58,23 @@ Today:
 
 
 
-
-
-
-
-
-
-
-
-Killing Actor Enemies
-
-should actors leave behind blood/skeletons too?
-this is simple call to fun_obj_dung.killEnemy(compSprite),
-which creates all necessary decorations for enemy death... 
-
-this method has now become: fun_obj.DecorateEnemyDeath(compSprite),  
-which more accurately describes what it does, as it does not 
-actually kill any enemy, nor could it - as it accepts a compSprite
-as it's only parameter. lol.
-
-test killing actors. test killing objs. got it.
-working, feels like the skeleton objs should drop more
-rarely. they're covering up the blood stains, and those should
-be the dominant consequence of killing an enemy - blood.
-
-mod'd DecorateEnemyDeath() to drop skeletons 20% of the time 
-(down from 50%). tested on zoo using bombos, the results were ok,
-maybe 30% tho. done. better.
-
-
-
-
-
-
-
-
-
-
-
-
-
 Gore Options
 
 Add gore menuItem, add gore to options menu.
 this simply creates blood and skeletons if enabled,
 and controls fun_obj_dung.killEnemy(compSprite), where
 the gore is actually created.
+
+added gore menuItem to options menu, along with Flags.Gore
+to game. updated DecorateEnemyDeath() to only create floor
+blood and skeletons if Flags.Gore is true, which it is by
+default. turning off gore simply prevents enemies from
+making blood and skeleton objs upon death, which reduces
+the total roomObj count, making the main loops interactions
+and collisions faster - so it's a way to speed up the game
+a little bit too. that will be part of a future option or
+setting for low cpu power systems that tsk may run on.
+
 
 
 

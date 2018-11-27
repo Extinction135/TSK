@@ -96,6 +96,9 @@ namespace DungeonRun
             labels[7].text = "hit\nboxs";
             Functions_MenuItem.SetType(MenuItemType.Options_DrawHitBoxes, menuItems[7]);
 
+            labels[8].text = "gore\n....";
+            Functions_MenuItem.SetType(MenuItemType.Options_Gore, menuItems[8]);
+
             #endregion
 
 
@@ -196,6 +199,14 @@ namespace DungeonRun
                     if (Flags.DrawCollisions) { Flags.DrawCollisions = false; }
                     else { Flags.DrawCollisions = true; }
                 }
+                else if (currentlySelected.type == MenuItemType.Options_Gore)
+                {
+                    if (Flags.Gore) { Flags.Gore = false; }
+                    else { Flags.Gore = true; }
+                }
+
+                //dont forget to update SetCheatMenuItems() (below) with new options!
+
 
                 #endregion
 
@@ -364,6 +375,9 @@ namespace DungeonRun
 
             if (Flags.DrawCollisions)
             { menuItems[7].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
+
+            if (Flags.Gore)
+            { menuItems[8].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
 
             //expand this to include additional options
         }
