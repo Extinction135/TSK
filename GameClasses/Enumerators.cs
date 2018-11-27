@@ -559,6 +559,10 @@ namespace DungeonRun
         Wor_Water_RockMed,
         Wor_Water_RockUnderwater,
 
+
+        Wor_Post_Hammer_Up,
+        Wor_Post_Hammer_Down,
+
         #endregion
 
 

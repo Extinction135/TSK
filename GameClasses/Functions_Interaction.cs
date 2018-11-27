@@ -443,8 +443,16 @@ namespace DungeonRun
                 else if (Pro.type == ProjectileType.Hammer)
                 {   //time this interaction to the hammer hitting the ground
                     if (Pro.compAnim.index == 3)
-                    {   //hammers call destruction level 2 routines
-                        BlowUp(RoomObj, Pro);
+                    {   //hammers are only pro that alters hammer up posts
+                        if (RoomObj.type == ObjType.Wor_Post_Hammer_Up)
+                        {
+                            Assets.Play(RoomObj.sfx.kill);
+                            Functions_GameObject.SetType(RoomObj, ObjType.Wor_Post_Hammer_Down);
+                        }
+                        else
+                        {   //power level 2 routines on all other objs
+                            BlowUp(RoomObj, Pro);
+                        }
                     }
                 }
 

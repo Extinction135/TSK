@@ -58,25 +58,20 @@ Today:
 
 
 
-
-Hammers++
-
-Hammer pros don't look correct, fix this, again. done.
-changed hammer impact fx to blast particle, to visually
-communicate how powerful the hammer's strike is: it's 
-literally as strong as an explosion.
-
-
-
-
-
-
-
 POSTS
 
 we need to add posts to the game, so hammers can smack them
 down. also, these posts should be indestructible to everything
-but hammers, including explosions.
+but hammers, including explosions. done.
+
+added hammer interactions with hammer posts. done.
+
+match post up shadows with post down shadows. the transition
+looks bad and can be improved. done. improved audio to use 
+shatter fx for kill sfx, and metallic tap for hit fx, preserving
+sword/shovel/other pro hit sfx with new post.
+
+sync'd UWP to Dx projects.
 
 
 
@@ -90,6 +85,11 @@ but hammers, including explosions.
 
 
 
+
+
+Audio++
+
+improve hammer sounds: hammer smash, plus post down sfx.
 
 
 
@@ -121,13 +121,6 @@ need to check the posts comp sprite center position against
 the fire's expanded hitbox, using Contains(). this is a XY point,
 not the posts hitbox! this seperates the hitbox from the fire
 spreading routine.
-
-
-
-
-
-
-
 
 
 
@@ -191,18 +184,14 @@ this is done in it's ineteraction routine! and they are roomObjs...
 
 
 
+
+
+
+USE THE MAGIC, HARRY
+
 now we can fix magic medallions to be more like lttp.
 then we can implement comet magic.
 check phone notes before proceeding.
-
-
-
-
-
-
-
-
-
 
 
 
@@ -218,6 +207,8 @@ are completely immune to it. this also means we need to write a
 camera shake routine like we did in th.
 
 
+
+Enemy MAgic
 
 we need a blank generic magic medallion to model random enemy
 magic, so we dont waste alot of space in the main sheet on these.

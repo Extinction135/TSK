@@ -1484,7 +1484,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Posts
+            #region Posts - unburned, burned
 
             else if (
                 Type == ObjType.Wor_Post_Vertical_Left || Type == ObjType.Wor_Post_Corner_Left ||
@@ -1733,7 +1733,36 @@ namespace DungeonRun
             #endregion
 
 
+            #region Posts - hammer only
 
+            else if (
+                Type == ObjType.Wor_Post_Hammer_Up 
+                || Type == ObjType.Wor_Post_Hammer_Down
+                )
+            {
+                Obj.canBeSaved = true;
+
+                Obj.sfx.hit = Assets.sfxTapMetallic; //tells player cant be destroyed
+                Obj.sfx.kill = Assets.sfxShatter; //should be post hit sfx
+
+                Obj.compCollision.rec.Width = 8; Obj.compCollision.offsetX = -4;
+                Obj.compCollision.rec.Height = 8; Obj.compCollision.offsetY = 0;
+
+                //animframes
+                if (Type == ObjType.Wor_Post_Hammer_Up)
+                {   //resetObj() sets blocking to true, so up posts block
+                    Obj.compAnim.currentAnimation = AnimationFrames.Wor_Post_Hammer_Up;
+                    Obj.compSprite.zOffset = 0;
+                }
+                else
+                {   //make down posts passable
+                    Obj.compAnim.currentAnimation = AnimationFrames.Wor_Post_Hammer_Down;
+                    Obj.compCollision.blocking = false;
+                    Obj.compSprite.zOffset = -32; //same offset as blood
+                }
+            }
+
+            #endregion
 
 
 

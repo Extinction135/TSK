@@ -219,7 +219,6 @@ namespace DungeonRun
         public static List<Byte4> Wor_Build_Roof_Bottom = new List<Byte4> { new Byte4(16, 9, 0, 0) };
         public static List<Byte4> Wor_Build_Roof_Chimney = new List<Byte4> { new Byte4(17, 8, 0, 0) };
 
-
         //posts
         public static List<Byte4> Wor_Post_Vertical_Left = new List<Byte4> { new Byte4(9, 10, 0, 0) };
         public static List<Byte4> Wor_Post_Corner_Left = new List<Byte4> { new Byte4(9, 11, 0, 0) };
@@ -233,6 +232,10 @@ namespace DungeonRun
         public static List<Byte4> Wor_PostBurned_Corner_Right = new List<Byte4> { new Byte4(18, 11, 1, 0) };
         public static List<Byte4> Wor_PostBurned_Horizontal = new List<Byte4> { new Byte4(19, 11, 0, 0) };
 
+        //hammer posts
+        public static List<Byte4> Wor_Post_Hammer_Up = new List<Byte4> { new Byte4(19, 10, 0, 0) };
+        public static List<Byte4> Wor_Post_Hammer_Down = new List<Byte4> { new Byte4(19, 9, 0, 0) };
+
         //signpost
         public static List<Byte4> Signpost = new List<Byte4> { new Byte4(10, 10, 0, 0) };
 
@@ -244,7 +247,6 @@ namespace DungeonRun
         public static List<Byte4> Wor_DirtToGrass_Corner_Interior = new List<Byte4> { new Byte4(6, 8, 0, 0) };
         public static List<Byte4> Wor_DirtToGrass_Corner_Exterior = new List<Byte4> { new Byte4(6, 9, 0, 0) };
 
-
         //med + big trees
         public static List<Byte4> Wor_Tree_Med = new List<Byte4> { new Byte4(7, 8, 0, 0) };
         public static List<Byte4> Wor_Tree_Med_Stump = new List<Byte4> { new Byte4(6, 8, 0, 0) };
@@ -253,12 +255,12 @@ namespace DungeonRun
         //big shadow
         public static List<Byte4> Wor_Shadow_Big = new List<Byte4> { new Byte4(0, 0, 0, 0) }; //3x4 obj
 
-
         //water rocks
         public static List<Byte4> Wor_Water_RockSm = new List<Byte4> { new Byte4(10, 8, 0, 0) };
         public static List<Byte4> Wor_Water_RockMed = new List<Byte4> { new Byte4(10, 9, 0, 0) };
         public static List<Byte4> Wor_Water_RockUnderwater = new List<Byte4>
         { new Byte4(9, 9, 0, 0), new Byte4(9, 9, 1, 0) };
+
 
         #endregion
 
