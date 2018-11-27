@@ -162,18 +162,8 @@ namespace DungeonRun
             {   //some objects only face Direction.Down
                 Obj.direction = Direction.Down;
             }
-            else if(
-                Obj.type == ObjType.Dungeon_FloorBlood
-                || Obj.type == ObjType.Dungeon_FloorStain
-                || Obj.type == ObjType.Dungeon_FloorSkeleton
-                //
-                || Obj.type == ObjType.Dungeon_PitTrap
-                )
-            {   //some objects are randomly flipped horizontally
-                Obj.compSprite.flipHorizontally = true;
-            }
 
-            //enemies only face down
+            //most enemies only face down
             else if(
                 Obj.type == ObjType.Wor_Enemy_Rat
                 || Obj.type == ObjType.Wor_Enemy_Crab
@@ -838,13 +828,13 @@ namespace DungeonRun
                 { Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_FloorBlood; }
                 else if (Type == ObjType.Dungeon_FloorSkeleton)
                 {   //randomly choose skeleton anim frame to draw
+                    Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_FloorSkeleton1;
                     if (Functions_Random.Int(0, 101) > 50)
                     { Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_FloorSkeleton2; }
-                    else { Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_FloorSkeleton1; }
                     Obj.compSprite.zOffset = -30; //sort over blood
                 }
 
-                //randomly horizontally flip the skeleton for more variation
+                //randomly horizontally flip for more variation
                 if (Functions_Random.Int(0, 101) > 50)
                 { Obj.compSprite.flipHorizontally = true; }
             }
@@ -879,7 +869,9 @@ namespace DungeonRun
                 Obj.compCollision.blocking = false;
                 Obj.canBeSaved = true;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_FloorCracked;
-                //modeled as 'floor crack' sprite
+                //randomly horizontally flip for more variation
+                if (Functions_Random.Int(0, 101) > 50)
+                { Obj.compSprite.flipHorizontally = true; }
             }
 
             #endregion

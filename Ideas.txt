@@ -760,6 +760,29 @@ wind and it coming towards them - allowing them to dodge.
 
 
 
+Floor Cracks
+we should have floor crack objects that dont become pits, just to mess
+with the player and break their expectations.
+
+
+
+
+
+
+Burning Trees
+
+burning trees should continue to burn for their entire life,
+until the become a dead/burnt tree. these trees should rarely
+smoke, as if they have recently been burned, for 255 frames after
+are converted. so, if burned tree has a lifecoutner greater than 0,
+it's just been burned and should smoke until it hits 255, at which
+point the life counter should become 0, making the roomObj permanent.
+we are modeling state this way. if the burnt tree gets lit on fire
+again, then we push the lifeCounter to 1, and begin the smoking
+process again.
+
+
+
 
 
 ZOO
@@ -769,7 +792,9 @@ behind posts. this is already in testing room data.
 
 
 
-
+Fire++++
+There should be objects that just burn, and never stop burning.
+we can use these as decoration in evil or horrific levels
 
 
 

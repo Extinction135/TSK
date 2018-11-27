@@ -57,23 +57,50 @@ Today:
 
 
 
+Floor Objs++
+
+skeletons are not flipping < fixed.
+pit traps now flip randomly upon creation too.
 
 
 
 
 
 
-Gore++
 
-changed floor blood to floor stain.
-added floor blood, skeletons 1 and 2.
-these are floor decorations, created upon actor
-and obj deaths.  these are in widgets now too.
+Self-Aware Floor Objects
 
-test killing living roomObjs.. done. looks great.
+skeletons should not overlap. floor stains should not
+overlap, along with blood. all of these objs should not
+overlap a blocking object, or certain non-blocking objects,
+like water and whatnot. simply put, floor objects can only
+be placed in very specific situations.
 
+and how they are handled as they are placed is scattered
+and disparate, due to the evolution of the systems. stains
+are placed in room build, and have a terrible cleanup() method
+that they use to determine if they should be removed, using
+a two list comparison that SUUUUUUUUCCCCCCKKKKS. skeletons,
+blood, andn debris doesn't check at all and just spawns into
+position without regard for how it might appear on screen.
+usually this is fine, because the enemy that died wasn't
+overlapping a blocking object - but systems need to exist to 
+handle this 'cleanup' and placement more appropriately.
 
+How Do We Improve This?
 
+we can do a more efficient check to clean up roomObjs
+simply by using the roomObj vs roomObj interaction checks
+that already exist. if two objs overlap that shouldn't overlap,
+then one of them gets removed, and this can be done randomly,
+or with preference. either way, this negates the need for
+the horrendously ugly CleanUp() method to even exist, as we 
+will be 'cleaning' the room/field every frame via interaction
+checks. this *actively* keeps objs in order, and speeds up the
+dungeon generation/room building routines.
+
+*i recall calling cleanup twice in dungeon/room building, which
+should not be done at all.
 
 
 
@@ -95,52 +122,12 @@ death....
 
 
 
+Gore Options
 
-
-
-
-we want to leave behind skeletons when living objs
-and actors die.
-
-
-
-
-a rats rotation should always be none.
-
-
-
-
-
-Floor Particles++
-
-we have floor blood in code, but this points to a floor stain.
-we are adding floor blood, which is red, next to it.
-this means we have two floor objs: stains and blood.
-stains are added procedurally to rooms.
-blood is created when an enemy is killed/dies (except in pit/water/etc..)
-
-
-
-
-Floor Bones/Skeletons 1 & 2
-
-we have skeleton debris objects that we can place procedurally
-in a room upon build(), and we can also randomly create one when
-an enemy dies, over the dead enemies blood spatter obj.
-
-these roomObjs flip horizontally upon being placed, after randomly
-choosing between the two of them.
-
-
-
-Blood Spatter Analysis, Dex
-
-upgrade throwing() enemies to 
-leave a blood mark on the ground as a roomObj.
-this happens in functions_projectile.kill().
-we already have the ground blood sprite
-
-^this should also work for actors. not over pits tho.
+Add gore menuItem, add gore to options menu.
+this simply creates blood and skeletons if enabled,
+and controls fun_obj_dung.killEnemy(compSprite), where
+the gore is actually created.
 
 
 
@@ -150,33 +137,8 @@ we already have the ground blood sprite
 
 
 
+Fairy? Test
 
-
-
-
-
-
-
-
-bugs:
-
-destroying a burned post with hammer caused a fire?
-destroying non-burned post with hammer caused a fire too.
-
-
-Destruction++
-functions_interaction has handleCommon and blowuP() methods,
-which need to be consolidated into one, using a power level byte
-which is part of projectile. this isn't part of pro yet tho!
-we can also model if a projectile is 'on fire' using a onFire boolean.
-then, we can light the proper objects on fire, if we need to.
-this seperatees the destruction of objs, from the burning of objs.
-
-
-
-
-
-Fairy++
 do fairies work? maybe. this is a roomObj vs actor
 interaction, cause fairy is non-blocking. also, the net
 projectile is a pro vs obj test, and likely still works.
@@ -186,12 +148,85 @@ projectile is a pro vs obj test, and likely still works.
 
 
 
+Hammers++
+
+Hammer pros don't look correct, fix this, again.
+
+
+
+POSTS
+
+we need to add posts to the game, so hammers can smack them
+down. also, these posts should be indestructible to everything
+but hammers, including explosions.
 
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Polish
+
+burning trees should not spawn as many fires as they do.
+these should also be fire particles - not pros.
+
+
+
+
+
+Bugs--
+
+vertical posts now instantly spread fire. to fix this, we 
+need to check the posts comp sprite center position against
+the fire's expanded hitbox, using Contains(). this is a XY point,
+not the posts hitbox! this seperates the hitbox from the fire
+spreading routine.
+
+
+
+
+
+
+
+
+
+
+
+Destruction Systems Redesign
+destroying a burned post with hammer caused a fire?
+destroying non-burned post with hammer caused a fire too.
+we need to seperate burning fromd destruction (conceptually).
+
+
+Destruction++
+functions_interaction has handleCommon and blowuP() methods,
+which need to be consolidated into one, using a power level byte
+which is part of projectile. this isn't part of pro yet tho!
+we can also model if a projectile is 'on fire' using a onFire boolean.
+then, we can light the proper objects on fire, if we need to.
+this seperatees the destruction of objs, from the burning of objs.
 
 
 
@@ -215,17 +250,22 @@ roomobjects, like mountain walls, etc...
 
 
 
-POSTS
-
-we need to add posts to the game, so hammers can smack them
-down. also, these posts should be indestructible to everything
-but hammers, including explosions.
 
 
 
 
 
 
+
+
+
+
+
+
+
+now we can fix magic medallions to be more like lttp.
+then we can implement comet magic.
+check phone notes before proceeding.
 
 
 
