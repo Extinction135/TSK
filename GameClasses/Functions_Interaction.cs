@@ -1159,7 +1159,7 @@ namespace DungeonRun
 
             
 
-            //special case objects(pets and conveyor belts)
+            //special case OBJECTS (pets and conveyor belts)
 
             #region Pet / Animals
 
@@ -1187,18 +1187,71 @@ namespace DungeonRun
             #endregion
 
 
-            
+
+
+            //special case ROOMOBJECTS
+
+            #region Dungeon Walls (self cleaning)
+
+            if (
+                Object.type == ObjType.Dungeon_WallStraight
+                || Object.type == ObjType.Dungeon_WallStraightCracked
+                )
+            {
 
 
 
-            //type checks
+                #region Clean Yo'Self
+
+                //if a wall overlaps a copy of itself, remove wall
+                if (RoomObj.type == Object.type)
+                { Functions_Pool.Release(RoomObj); }
+
+                //walls cannot overlap these objects
+                if (
+                    //exits
+                    Object.type == ObjType.Dungeon_Exit
+                    || Object.type == ObjType.Dungeon_ExitPillarLeft
+                    || Object.type == ObjType.Dungeon_ExitPillarRight
+                    //other wall objs
+                    || Object.type == ObjType.Dungeon_WallPillar
+                    || Object.type == ObjType.Dungeon_WallStatue
+                    || Object.type == ObjType.Dungeon_WallTorch
+                    || Object.type == ObjType.Dungeon_WallExteriorCorner
+                    || Object.type == ObjType.Dungeon_WallInteriorCorner
+                    )
+                { Functions_Pool.Release(RoomObj); }
+
+                #endregion
 
 
-            #region Blocking RoomObj Type Checks
+
+
+                //we use life counter to handle roomObj state/lifetime
+                if (RoomObj.lifeCounter == 1) //just spawned, do cleanup
+                {
+
+                    
+
+
+                    RoomObj.lifeCounter = 0; //bail from branch
+                }
+            }
+
+            #endregion
+
+
+
+
+
+
+
+
+
+            //Blocking ROOMOBJECT.Type Checks
 
             if (RoomObj.compCollision.blocking)
             {
-                //blocking roomObj.type checks
 
                 #region ExplodingObject
 
@@ -1232,97 +1285,21 @@ namespace DungeonRun
 
                 #endregion
 
-
             }
 
-            #endregion
 
 
-            #region Non-blocking RoomObj Type Checks
 
+
+
+
+            //Non-blocking ROOMOBJECT.Type Checks
             else
             {
-                //non-blocking roomObj.type checks
-
-                #region FloorSpikes
-
-                if (RoomObj.type == ObjType.Dungeon_SpikesFloorOn)
-                {
-                    if (Object.compMove.grounded)
-                    {
-                        if (Object.type == ObjType.Dungeon_Statue)
-                        {   //destroy boss statues and pop loot
-                            Functions_GameObject.Kill(Object, true, true);
-                        }
-                        else
-                        {   //push obj in opposite direction and destroy it
-                            HandleCommon(Object,
-                                Functions_Direction.GetOppositeCardinal(
-                                    Object.compMove.position,
-                                    RoomObj.compMove.position)
-                                );
-                        }
-                    }
-                }
-
-                #endregion
-
-
-                #region Trap Door
-
-                else if (RoomObj.type == ObjType.Dungeon_DoorTrap)
-                {   //prevent obj from passing thru door
-                    Functions_Movement.RevertPosition(Object.compMove);
-
-                    //actually, we should be pushing the object the same way we push an actor
-                }
-
-                #endregion
-
-
-                #region Bumper
-
-                else if (RoomObj.type == ObjType.Dungeon_Bumper)
-                {   //limit bumper to bouncing only if it's returned to 100% scale
-                    if (RoomObj.compSprite.scale != 1.0f) { return; }
-
-                    //one of the two objects must be moving,
-                    //in order to trigger a bounce interaction
-                    if (!RoomObj.compMove.moving & !Object.compMove.moving)
-                    { return; }
-                    //all other objects are bounced
-                    Functions_GameObject_Dungeon.BounceOffBumper(Object.compMove, RoomObj);
-                }
-
-                #endregion
-
-
-                #region Pits
-
-                else if (RoomObj.type == ObjType.Dungeon_Pit)
-                {   //drag any object into the pit
-                    Functions_GameObject_Dungeon.DragIntoPit(Object, RoomObj);
-                }
-
-                #endregion
-
-
-                #region IceTiles
-
-                else if (RoomObj.type == ObjType.Dungeon_IceTile)
-                {   //only objects on the ground can slide on ice
-                    if (Object.compMove.grounded)
-                    {
-                        Functions_GameObject_Dungeon.SlideOnIce(Object.compMove);
-                    }
-                }
-
-                #endregion
-
-
+                
                 #region Water (objects that 'fall' into water - draggable objs)
 
-                else if (RoomObj.type == ObjType.Wor_Water)
+                if (RoomObj.type == ObjType.Wor_Water)
                 {
                     //object groups not removed by water
                     if (Object.group == ObjGroup.Wall || Object.group == ObjGroup.Door
@@ -1352,30 +1329,6 @@ namespace DungeonRun
                     }
 
                     //bushes and stumps are grounded, not pushable, and dont eval() here
-                }
-
-                #endregion
-
-
-                #region Debris - debris removal
-
-                //if debris roomObj overlaps other objs, remove it
-                else if (RoomObj.type == ObjType.Wor_Debris)
-                {
-                    if (Object.compCollision.blocking)
-                    {   //any blocking obj takes priority over debris
-                        Functions_Pool.Release(RoomObj);
-                    }
-                    //these objs take priority over debris
-                    if (Object.type == ObjType.Wor_Debris //there can be only one
-                        || Object.type == ObjType.Wor_Flowers
-                        || Object.type == ObjType.Wor_Grass_Tall
-                        || Object.type == ObjType.Wor_Bush_Stump
-                        || Object.type == ObjType.Wor_Tree_Stump
-                        )
-                    {
-                        Functions_Pool.Release(RoomObj);
-                    }
                 }
 
                 #endregion
@@ -1422,11 +1375,151 @@ namespace DungeonRun
                 #endregion
 
 
+                #region Trap Door
+
+                else if (RoomObj.type == ObjType.Dungeon_DoorTrap)
+                {   //prevent obj from passing thru door
+                    Functions_Movement.RevertPosition(Object.compMove);
+
+                    //actually, we should be pushing the object the same way we push an actor
+                }
+
+                #endregion
+
+
+                #region Bumper
+
+                else if (RoomObj.type == ObjType.Dungeon_Bumper)
+                {   //limit bumper to bouncing only if it's returned to 100% scale
+                    if (RoomObj.compSprite.scale != 1.0f) { return; }
+
+                    //one of the two objects must be moving,
+                    //in order to trigger a bounce interaction
+                    if (!RoomObj.compMove.moving & !Object.compMove.moving)
+                    { return; }
+                    //all other objects are bounced
+                    Functions_GameObject_Dungeon.BounceOffBumper(Object.compMove, RoomObj);
+                }
+
+                #endregion
+
+
+
+
+
+
+
+
+                //floor objects
+
+                #region FloorSpikes
+
+                if (RoomObj.type == ObjType.Dungeon_SpikesFloorOn)
+                {
+                    if (Object.compMove.grounded)
+                    {
+                        if (Object.type == ObjType.Dungeon_Statue)
+                        {   //destroy boss statues and pop loot
+                            Functions_GameObject.Kill(Object, true, true);
+                        }
+                        else
+                        {   //push obj in opposite direction and destroy it
+                            HandleCommon(Object,
+                                Functions_Direction.GetOppositeCardinal(
+                                    Object.compMove.position,
+                                    RoomObj.compMove.position)
+                                );
+                        }
+                    }
+                }
+
+                #endregion
+
+
+                #region Pits
+
+                else if (RoomObj.type == ObjType.Dungeon_Pit)
+                {   //drag any object into the pit
+                    Functions_GameObject_Dungeon.DragIntoPit(Object, RoomObj);
+                }
+
+                #endregion
+
+
+                #region IceTiles
+
+                else if (RoomObj.type == ObjType.Dungeon_IceTile)
+                {   //only objects on the ground can slide on ice
+                    if (Object.compMove.grounded)
+                    {
+                        Functions_GameObject_Dungeon.SlideOnIce(Object.compMove);
+                    }
+                }
+
+                #endregion
+
+
+                #region Floor Decorations (self-cleaning) - debris, stains blood, skeletons
+
+                //if a floor decoration overlaps an obj, prolly remove it
+                else if (
+                    RoomObj.type == ObjType.Wor_Debris
+                    || RoomObj.type == ObjType.Dungeon_FloorStain
+                    || RoomObj.type == ObjType.Dungeon_FloorBlood
+                    || RoomObj.type == ObjType.Dungeon_FloorSkeleton
+                    )
+                {   //we use life counter to handle roomObj state/lifetime
+                    if(RoomObj.lifeCounter == 1) //just spawned, do cleanup
+                    {
+
+                        #region Clean Yo'Self
+
+                        //if decor overlaps a copy of itself, remove decor
+                        if (RoomObj.type == Object.type)
+                        { Functions_Pool.Release(RoomObj); }
+
+                        //these objs remove decor too
+                        if (
+                            //world objs that cant be overlapped
+                            Object.type == ObjType.Wor_Flowers
+                            || Object.type == ObjType.Wor_Grass_Tall
+                            || Object.type == ObjType.Wor_Bush_Stump
+                            || Object.type == ObjType.Wor_Tree_Stump
+
+
+                            //dungeon objs that cant be overlapped
+                            || Object.type == ObjType.Dungeon_Pit
+                            || Object.type == ObjType.Dungeon_PitBridge
+                            || Object.type == ObjType.Dungeon_PitTrap
+
+                            //unique objs that cant be overlapped
+                            || Object.type == ObjType.Wor_Boat_Stairs_Cover
+                            )
+                        {
+                            Functions_Pool.Release(RoomObj);
+                        }
+
+                        //some decor cant overlap other decor, like debris cant overlap skeletons for example
+
+                        //we sprinkle stains in new dungeon rooms, and they could overlap roomObjs
+                        if (RoomObj.type == ObjType.Dungeon_FloorStain & Object.compCollision.blocking)
+                        { Functions_Pool.Release(RoomObj); }
+
+
+
+                        #endregion
+
+
+                        RoomObj.lifeCounter = 0; //bail from branch
+                    }
+                }
+
+                #endregion
+
+
+
+                
             }
-
-            #endregion
-
-
         }
 
 

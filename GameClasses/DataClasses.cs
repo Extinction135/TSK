@@ -20,7 +20,7 @@ namespace DungeonRun
         public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.78f; //the version of the game
-        public static BootRoutine bootRoutine = BootRoutine.Editor_Level; //boot to game or editor?
+        public static BootRoutine bootRoutine = BootRoutine.Editor_Room; //boot to game or editor?
 
         //dev/editor flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
@@ -1357,7 +1357,6 @@ namespace DungeonRun
         public Direction direction = Direction.Down; //direction obj/sprite is facing
 
         public Boolean active = true; //does object draw, update?
-        
         public Boolean canBeSaved = false; //can this obj be saved to RoomXMLData?
         public Byte lifetime; //how many frames this object exists for, 0 = forever/ignore
         public Byte lifeCounter; //counts up to lifetime value

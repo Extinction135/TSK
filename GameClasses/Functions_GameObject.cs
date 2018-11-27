@@ -29,9 +29,9 @@ namespace DungeonRun
             Obj.active = true; //assume this object should draw / animate
             Obj.getsAI = false; //most objects do not get any AI input
             Obj.canBeSaved = false; //most objects cannot be saved as XML data
-            Obj.lifetime = 0; //assume obj exists forever (not projectile)
-            Obj.lifeCounter = 0; //reset counter
-            Obj.interactiveFrame = 0;
+            Obj.lifetime = 0; //how long the obj 'lives' before transitioning to a perm state
+            Obj.lifeCounter = 0; //counts 'life', models state too
+            Obj.interactiveFrame = 0; //used for limiting interactions, instead of per frame
 
             //reset the sprite component
             Obj.compSprite.drawRec.Width = 16 * 1; //assume cell size is 16x16 (most are)
@@ -88,7 +88,10 @@ namespace DungeonRun
         public static void Update(GameObject Obj)
         {   //only roomObjs are passed into this method, some get AI (or behaviors)
             //roomObjs don't have lifetimes, they last the life of the room
-            if (Obj.getsAI) { Functions_Ai.HandleObj(Obj); }
+            if (Obj.getsAI)
+            {
+                Functions_Ai.HandleObj(Obj);
+            }
         }
 
         //death events
@@ -385,14 +388,15 @@ namespace DungeonRun
 
             #region Walls
 
-            //wall soundfx is set in a group check at end of method
-
+            //basic straight walls clean themselves once up post-birth 
             else if (Type == ObjType.Dungeon_WallStraight)
             {
                 Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compSprite.zOffset = -32; //sort very low (behind hero)
                 Obj.group = ObjGroup.Wall;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_WallStraight;
+                //these objs clean themselves up in interactions, set this state
+                Obj.lifeCounter = 1; //clean yo'self
             }
             else if (Type == ObjType.Dungeon_WallStraightCracked)
             {
@@ -400,7 +404,11 @@ namespace DungeonRun
                 Obj.compSprite.zOffset = -32; //sort very low (behind hero)
                 Obj.group = ObjGroup.Wall;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_WallStraightCracked;
+                //these objs clean themselves up in interactions, set this state
+                Obj.lifeCounter = 1; //clean yo'self
             }
+
+            //these can overlap straight walls, causing straight walls to self-remove (clean)
             else if (Type == ObjType.Dungeon_WallInteriorCorner)
             {
                 Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
@@ -819,13 +827,19 @@ namespace DungeonRun
                 //also allows for more blood, skeletons, etc.. upon deaths
                 Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
-                Obj.compSprite.zOffset = -32; //sort low, but over floor
                 Obj.compCollision.blocking = false;
 
-                if (Type == ObjType.Dungeon_FloorStain)
-                { Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_FloorStain; }
-                else if (Type == ObjType.Dungeon_FloorBlood)
-                { Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_FloorBlood; }
+                //default is floor stain
+                Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_FloorStain;
+                Obj.compSprite.zOffset = -32; //sort over floors
+                //if (Type == ObjType.Dungeon_FloorStain)
+                //{ Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_FloorStain; }
+
+                if (Type == ObjType.Dungeon_FloorBlood)
+                {
+                    Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_FloorBlood;
+                    Obj.compSprite.zOffset = -31; //sort over stains
+                }
                 else if (Type == ObjType.Dungeon_FloorSkeleton)
                 {   //randomly choose skeleton anim frame to draw
                     Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_FloorSkeleton1;
@@ -837,6 +851,9 @@ namespace DungeonRun
                 //randomly horizontally flip for more variation
                 if (Functions_Random.Int(0, 101) > 50)
                 { Obj.compSprite.flipHorizontally = true; }
+
+                //these objs clean themselves up in interactions, set this state
+                Obj.lifeCounter = 1; //clean yo'self
             }
 
             #endregion
@@ -1026,7 +1043,8 @@ namespace DungeonRun
                 Obj.compCollision.offsetY = -8;
 
                 Obj.canBeSaved = true;
-                Obj.compSprite.zOffset = -24;
+                //sort over blood, same level as skeletons
+                Obj.compSprite.zOffset = -30;
                 Obj.compCollision.blocking = false;
                 Obj.compMove.moveable = true;
                 //randomly choose animFrame
@@ -2605,11 +2623,12 @@ namespace DungeonRun
             #endregion
 
 
-            #region Other Boat Objects
+            #region Floor, Barrel, Engine, Stairs Into Ship, Stairs Cover
 
             else if (Type == ObjType.Wor_Boat_Floor)
             {
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Floor;
+                //-33 is minimum layer setting for a floor object
                 Obj.compSprite.zOffset = -40; //sort above water
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = false;
@@ -2655,7 +2674,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Boat Captain Brandy
+            #region Captain Brandy
 
             else if (Type == ObjType.Wor_Boat_Captain_Brandy)
             {

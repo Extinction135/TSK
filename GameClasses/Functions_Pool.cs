@@ -322,18 +322,23 @@ namespace DungeonRun
                     //reset water booleans for objects
                     Pool.roomObjPool[i].inWater = false;
                     Pool.roomObjPool[i].underWater = false;
-
-                    //any moving roomObj gets interaction checks
-                    //and specific roomObjs ALWAYS get interaction checks
-                    if (Pool.roomObjPool[i].compMove.moving
+                    
+                    if (
+                        //if roomObj is moving, check interactions - BIG optimization
+                        Pool.roomObjPool[i].compMove.moving
+                        //these roomObjs always get interaction checks cause they dont move
                         || Pool.roomObjPool[i].type == ObjType.Dungeon_ConveyorBeltOn
                         || Pool.roomObjPool[i].type == ObjType.Dungeon_Fairy
-                        || Pool.roomObjPool[i].type == ObjType.Pet_Dog)
+                        || Pool.roomObjPool[i].type == ObjType.Pet_Dog
+
+                        //these objs self-clean through interaction checks
+                        || Pool.roomObjPool[i].type == ObjType.Dungeon_WallStraight
+                        || Pool.roomObjPool[i].type == ObjType.Dungeon_WallStraightCracked
+                        )
                     {
-                        //Functions_Interaction.CheckInteractions(Pool.roomObjPool[i]); //old
                         Functions_Interaction.CheckObj_Obj(Pool.roomObjPool[i]);
                     }
-
+                    
                     //update, animate, scale
                     Functions_GameObject.Update(Pool.roomObjPool[i]);
                     Functions_Animation.Animate(Pool.roomObjPool[i].compAnim, Pool.roomObjPool[i].compSprite);
@@ -364,7 +369,6 @@ namespace DungeonRun
                     Functions_Animation.ScaleSpriteDown(Pool.projectilePool[i].compSprite);
 
                     //interaction check projectiles (this may kill them, so we do it last)
-                    //Functions_Interaction.CheckInteractions(Pool.projectilePool[i]); //old
                     Functions_Interaction.CheckProjectile_Obj(Pool.projectilePool[i]);
                 }
             }

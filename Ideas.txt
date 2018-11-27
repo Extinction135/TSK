@@ -2,6 +2,16 @@
 
 
 
+AI++
+we could likely limit ai on many objects to their interactive frames,
+or to a single interaction check upon creation, like we do with floor
+decorations (debris, blood, skeletons, stains).
+
+
+
+
+
+
 
 
 
@@ -782,10 +792,6 @@ when link climbs up the waterfall, splashes happen.
 
 
 
-Hammer and Posts
-we still need to implement the hammer and posts.
-
-
 
 
 Bees and Beehive
@@ -856,9 +862,7 @@ wind and it coming towards them - allowing them to dodge.
 
 
 
-Floor Cracks
-we should have floor crack objects that dont become pits, just to mess
-with the player and break their expectations.
+
 
 
 
@@ -2490,11 +2494,6 @@ Circling stars collides with hero again.
 this is a check: if hero.type != hero, become enemy, else become hero.
 
 
-
-for the ice dungeon, procedurally add ice tiles to each room
-if ice tile overlaps with a pit / bridge / floor spikes / cracked floor, remove it
-this can be done in the cleanup of room
-and we'll probably need to expand the max size of roomObjs
 
 
 

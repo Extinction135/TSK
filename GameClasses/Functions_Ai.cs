@@ -22,7 +22,6 @@ namespace DungeonRun
         static Boolean overlap;
 
 
-
         public static void SetActorInput()
         {
             Pool.activeActor++; //increment the active actor
@@ -683,6 +682,9 @@ namespace DungeonRun
 
 
 
+
+
+        
         public static void HandleObj(GameObject Obj)
         {   //keep in mind this method is called every frame
 
@@ -865,13 +867,13 @@ namespace DungeonRun
             else if (Obj.type == ObjType.Dungeon_WallStatue)
             {
                 if (Functions_Random.Int(0, 2000) > 1998) //rarely shoots
-                {
+                {   //lol, this is wrong and spawns arrow ontop of statue
                     Functions_Projectile.Spawn(
                         ProjectileType.Arrow, 
                         Obj.compMove.position.X,
                         Obj.compMove.position.Y, 
                         Obj.direction);
-                }
+                }   //this should have an offset applied based on it's' direction
             }
 
             else if (Obj.type == ObjType.Dungeon_Pit)

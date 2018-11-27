@@ -29,7 +29,6 @@ namespace DungeonRun
             Functions_Pool.Reset(); //reset the pools + counter
             pos = Room.rec.Location; //shorten room's position reference
 
-
             //build floors, top bottom left and right walls
             for (i = 0; i < Room.size.X; i++)
             {
@@ -129,10 +128,7 @@ namespace DungeonRun
                 }
             }
 
-
-            //update all roomObjs, then remove overlapping objs
             Functions_GameObject.AlignRoomObjs();
-            Functions_Room.Cleanup(Room); //remove overlapping objs
         }
 
 
@@ -345,19 +341,16 @@ namespace DungeonRun
 
             else if (Room.roomID == RoomID.Column)
             {
-                AddWallStatues(Room);
                 AddCrackedWalls(Room);
                 ScatterDebris(Room);
             }
             else if (Room.roomID == RoomID.Row)
             {
-                AddWallStatues(Room);
                 AddCrackedWalls(Room);
                 ScatterDebris(Room);
             }
             else if (Room.roomID == RoomID.Square)
             {
-                AddWallStatues(Room);
                 AddCrackedWalls(Room);
                 ScatterDebris(Room);
             }
@@ -395,10 +388,7 @@ namespace DungeonRun
 
             //check to see if boss door exist in room, decorate
             Check_BossDoor();
-
-            //align + remove overlapping objs
             Functions_GameObject.AlignRoomObjs();
-            Functions_Room.Cleanup(Room);
         }
 
 
@@ -480,33 +470,9 @@ namespace DungeonRun
             LevelSet.spawnPos_Dungeon.Y = Room.rec.Y + (Room.size.Y - 1) * 16;
         }
 
-        public static void AddWallStatues(Room Room)
-        {   //add wall statues along 1/3rd and 2/3rds of all walls
-            int RoomThirdX = Room.rec.X + (Room.size.X / 3) * 16 + 8;
-            int RoomTwoThirdsX = 16 + RoomThirdX + (Room.size.X / 3) * 16;
-            int RoomThirdY = Room.rec.Y + (Room.size.Y / 3) * 16 + 8;
-            int RoomTwoThirdsY = 16 + RoomThirdY + (Room.size.Y / 3) * 16;
-            //we could also check against room centers
-            //if (obj.compSprite.position.X == Room.collision.rec.X + room.center.X)
-            for (i = 0; i < Pool.roomObjCount; i++)
-            {
-                if (Pool.roomObjPool[i].active)
-                {
-                    if (Pool.roomObjPool[i].type == ObjType.Dungeon_WallStraight)
-                    {
-                        if (Pool.roomObjPool[i].compSprite.position.X == RoomThirdX ||
-                            Pool.roomObjPool[i].compSprite.position.X == RoomTwoThirdsX)
-                        { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_WallStatue); }
 
-                        else if (Pool.roomObjPool[i].compSprite.position.Y == RoomThirdY ||
-                            Pool.roomObjPool[i].compSprite.position.Y == RoomTwoThirdsY)
-                        { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_WallStatue); }
+        
 
-                        //the wall statue inherits the proper direction from the original wall obj
-                    }
-                }
-            }
-        }
 
         public static void ScatterDebris(Room Room)
         {
@@ -1065,6 +1031,54 @@ namespace DungeonRun
             Functions_Music.PlayMusic(Music.LightWorld);
         }
         */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //old methods - for reference
+
+        /*
+        public static void AddWallStatues(Room Room)
+        {   //add wall statues along 1/3rd and 2/3rds of all walls
+            int RoomThirdX = Room.rec.X + (Room.size.X / 3) * 16 + 8;
+            int RoomTwoThirdsX = 16 + RoomThirdX + (Room.size.X / 3) * 16;
+            int RoomThirdY = Room.rec.Y + (Room.size.Y / 3) * 16 + 8;
+            int RoomTwoThirdsY = 16 + RoomThirdY + (Room.size.Y / 3) * 16;
+            //we could also check against room centers
+            //if (obj.compSprite.position.X == Room.collision.rec.X + room.center.X)
+            for (i = 0; i < Pool.roomObjCount; i++)
+            {
+                if (Pool.roomObjPool[i].active)
+                {
+                    if (Pool.roomObjPool[i].type == ObjType.Dungeon_WallStraight)
+                    {
+                        if (Pool.roomObjPool[i].compSprite.position.X == RoomThirdX ||
+                            Pool.roomObjPool[i].compSprite.position.X == RoomTwoThirdsX)
+                        { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_WallStatue); }
+
+                        else if (Pool.roomObjPool[i].compSprite.position.Y == RoomThirdY ||
+                            Pool.roomObjPool[i].compSprite.position.Y == RoomTwoThirdsY)
+                        { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_WallStatue); }
+
+                        //the wall statue inherits the proper direction from the original wall obj
+                    }
+                }
+            }
+        }
+        */
+
+
 
 
 

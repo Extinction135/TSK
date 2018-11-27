@@ -76,8 +76,7 @@ namespace DungeonRun
             //field rooms fill the screen - maintain 16:9 ratio
             else
             {
-                //Room.size.X = 40; Room.size.Y = 23; //640x360 / 16
-                Room.size.X = 40*2; Room.size.Y = 23*2; //double size
+                Room.size.X = 40*2; Room.size.Y = 23*2; //double sized
             } 
 
             //set collision rec size
@@ -92,59 +91,6 @@ namespace DungeonRun
             Room.center.X = X + (Room.size.X / 2) * 16;
             Room.center.Y = Y + (Room.size.Y / 2) * 16;
         }
-
-        
-        //removes overlapping objs from room
-        static GameObject objA; //object we want to keep
-        static GameObject objB; //object we want to remove
-        static Boolean removeObjB;
-
-        public static void Cleanup(Room Room)
-        {   //skip the hero's pet (roomObj[0])
-            for (i = 1; i < Pool.roomObjCount; i++)
-            {
-                objA = Pool.roomObjPool[i];
-                if (objA.active)
-                {   //loop thru roomObjs checking A against B 
-                    for (j = 1; j < Pool.roomObjCount; j++) //skip hero's pet here too
-                    {
-                        objB = Pool.roomObjPool[j];
-                        if (objB.active)
-                        {   //make sure we aren't checking an object against itself
-                            if (objA != objB)
-                            {
-                                removeObjB = false;
-
-                                //these are roomObjects we remove, if they overlap ANY other roomObject
-                                if (objB.group == ObjGroup.Wall)
-                                {
-                                    removeObjB = true;
-                                    //keep these walls
-                                    if (objB.type == ObjType.Dungeon_WallPillar) { removeObjB = false; }
-                                    //keep walls if these objs overlap them
-                                    if (objA.type == ObjType.Dungeon_PitTrap) { removeObjB = false; }
-                                }
-                                else if (objB.type == ObjType.Dungeon_FloorStain)
-                                {
-                                    removeObjB = true;
-                                    //allow overlap with these objects
-                                    if (objA.type == ObjType.Dungeon_ConveyorBeltOn) { removeObjB = false; }
-                                    else if (objA.type == ObjType.Dungeon_ConveyorBeltOff) { removeObjB = false; }
-                                }
-
-                                if (removeObjB)
-                                {   //check that objA and objB actually overlap
-                                    if (objA.compCollision.rec.Intersects(objB.compCollision.rec))
-                                    { Functions_Pool.Release(objB); }
-                                }
-                            }
-                        }
-                    }
-
-                }
-            }
-        }
-        
 
         public static void BuildRoom(Room Room, RoomXmlData RoomXmlData = null)
         {
@@ -397,10 +343,10 @@ namespace DungeonRun
             { Debug.WriteLine("room " + Room.roomID + " built in " + time.Ticks + " ticks"); }
         }
 
-
         public static void BuildRoomXmlData(RoomXmlData RoomXmlData = null)
         {
             //note that RoomXmlData is an optional parameter
+
 
             #region Create room objs & enemies
 

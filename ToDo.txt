@@ -58,35 +58,6 @@ Today:
 
 
 
-Gore Options
-
-Add gore menuItem, add gore to options menu.
-this simply creates blood and skeletons if enabled,
-and controls fun_obj_dung.killEnemy(compSprite), where
-the gore is actually created.
-
-added gore menuItem to options menu, along with Flags.Gore
-to game. updated DecorateEnemyDeath() to only create floor
-blood and skeletons if Flags.Gore is true, which it is by
-default. turning off gore simply prevents enemies from
-making blood and skeleton objs upon death, which reduces
-the total roomObj count, making the main loops interactions
-and collisions faster - so it's a way to speed up the game
-a little bit too. that will be part of a future option or
-setting for low cpu power systems that tsk may run on.
-
-
-
-
-
-
-
-
-
-
-
-
-
 Self-Aware Floor Objects
 
 skeletons should not overlap. floor stains should not
@@ -121,12 +92,92 @@ dungeon generation/room building routines.
 *i recall calling cleanup twice in dungeon/room building, which
 should not be done at all.
 
+-upon inspection, the debris object already basically does this.
+however, it needs to be improved, and all floor objs with this
+nature need to also have this functionality. done.
+
+-improved floor decor interaction cleanup to only happen once,
+after its been created, instead of each frame, which would needlessly
+use system resources.
+
+Removing Functions_Room.Cleanup(Room)
+
+this method used to remove overlapping roomObjects prior to
+displaying the room to the player. now, roomObjs that can't
+overlap remove themselves via an interaction check, since we're
+already incurring the pool looping cost each frame in that branch.
+this means cleanup() isn't needed anymore. BUT, it also does a
+little more than remove stains.. which now this commit reads like
+an infomercial - anyway, it also keeps wall pillars (which decorate
+boss doors) and tries to remove any wall that overlaps any
+other object, which i assume was a scaleable way of removing walls
+that overlapped wall statues and pillars and the like, while keeping
+pillars in the wall group. strange, twisted logic there. moving on,
+it's much easier to simply reason 'if a wall overlaps a pillar, remove
+the wall'. this can be done via interaction checks entirely.
+
+Wall Interactions
+
+-if a wall overlaps a pillar, remove the wall.
+-if a wall overlaps a walltorch, remove the wall.
+-if a wall overlaps a wall statue, remove the wall.
+-if a wall overlaps an exit obj, remove wall.
+-if wall overlaps corner wall, remove wall.
+wall corners take priority over non-corners, because we overlap 
+during build room routines to allow for fast and simple branches.
+
+*removed wall statues from being placed by dungeon routines,
+to prevent state where torch can overlap statue. plus, statues
+dont work properly rn, and they were annoying.
 
 
 
-Speed++
-slow finish / build becuase we call cleanRoom() twice, which is dumb af
-in dungeon / room routines.
+
+
+
+
+
+
+
+
+
+Bugs--
+
+
+pit bubbles are not displaying properly - they should be red bubbles
+
+also, wall still overlap wall torches.
+and the exit isn't built properly in the exit room, so hero can't leave.
+
+
+
+
+what about decor overlapping conveyor belts?
+decor can overlap conveyor belts, i think.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Floor Cracks
+we should have floor crack objects that dont become pits, just to mess
+with the player and break their expectations.
 
 
 
@@ -256,7 +307,10 @@ icetiles cannot overlap other icetiles, and other
 roomobjects, like mountain walls, etc...
 
 
-
+IceTiles
+*if ice tile overlaps with a pit / bridge / floor spikes / cracked floor, remove it
+we can't have ice tiles breaking interactions and not making sense.
+this is done in it's ineteraction routine! and they are roomObjs...
 
 
 
