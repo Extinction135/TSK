@@ -559,9 +559,10 @@ namespace DungeonRun
         Wor_Water_RockMed,
         Wor_Water_RockUnderwater,
 
-
+        //posts that only hammers can destroy
         Wor_Post_Hammer_Up,
         Wor_Post_Hammer_Down,
+
 
         #endregion
 

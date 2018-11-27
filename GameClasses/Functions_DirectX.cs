@@ -21,7 +21,7 @@ namespace DungeonRun
         //static string localFolder = Environment.CurrentDirectory; //same address
         static string filename;
 
-        
+        static string repoDir = @"C:\Users\Gx000000\Desktop\REPOs\TheShadowKing\TSK";
 
 
 
@@ -30,6 +30,9 @@ namespace DungeonRun
         public static void writeXMLtoCS(List<RoomXmlData> Levels, IslandID islandID)
         {
             Debug.WriteLine("writing " + islandID + " XML to CS... wait...");
+
+
+            #region Build C# output string to write
 
             string csOutput = "";
             csOutput += "using System.Collections.Generic;\n";
@@ -86,7 +89,10 @@ namespace DungeonRun
             csOutput += "\t}\n";
             csOutput += "}";
 
-            string islandAddress = @"C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\GameClasses\" + islandID + @".cs";
+            #endregion
+
+
+            string islandAddress = repoDir + @"\GameClasses\" + islandID + @".cs";
             File.WriteAllText(islandAddress, csOutput);
         }
 
@@ -110,16 +116,10 @@ namespace DungeonRun
 
             //this will become roomdata per island/dungeon/theme later on
             List<RoomXmlData> roomData = new List<RoomXmlData>();
-            
-
-
-
+            string[] filePaths = Directory.GetFiles(repoDir + @"\RoomData\RoomData", "*.xml");
 
 
             #region Get all the data from roomData folder
-
-            string[] filePaths = Directory.GetFiles( //notes & planning
-                @"C:\Users\Gx000000\Desktop\REPOs\TheShadowKing\TSK\RoomData\RoomData", "*.xml");
 
             for (int i = 0; i < filePaths.Count(); i++)
             {

@@ -180,6 +180,8 @@ namespace DungeonRun
         public static SoundEffectInstance sfxCastBombos;
 
         public static SoundEffectInstance sfxGoldSpam;
+        public static SoundEffectInstance sfxHammer;
+        public static SoundEffectInstance sfxHammerPost;
 
         #endregion
 
@@ -430,7 +432,10 @@ namespace DungeonRun
             //
             SoundEffect goldSpamSrc = content.Load<SoundEffect>(@"SoundGoldSpam");
             sfxGoldSpam = goldSpamSrc.CreateInstance();
-
+            SoundEffect hammerSrc = content.Load<SoundEffect>(@"SoundHammer");
+            sfxHammer = hammerSrc.CreateInstance();
+            SoundEffect hammerPostSrc = content.Load<SoundEffect>(@"SoundHammerPost");
+            sfxHammerPost = hammerPostSrc.CreateInstance();
 
             #endregion
 

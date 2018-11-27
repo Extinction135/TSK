@@ -58,42 +58,42 @@ Today:
 
 
 
-POSTS
-
-we need to add posts to the game, so hammers can smack them
-down. also, these posts should be indestructible to everything
-but hammers, including explosions. done.
-
-added hammer interactions with hammer posts. done.
-
-match post up shadows with post down shadows. the transition
-looks bad and can be improved. done. improved audio to use 
-shatter fx for kill sfx, and metallic tap for hit fx, preserving
-sword/shovel/other pro hit sfx with new post.
-
-sync'd UWP to Dx projects.
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 Audio++
 
 improve hammer sounds: hammer smash, plus post down sfx.
 
+added lttp's hammer and hammer post soundfx to Dx.
+added lttp's hammer and hammer post soundfx to UWP.
+
+when hammer is created, play hammer sfx. done.
+set post up's kill sfx to hammer post sfx. done.
+
+updated town to have some hammer posts, for testing.
+compiled xml to cs, for testing. bug: output directory
+has changed since last compile, now refs TSK instead of
+DungeonRun folder. fixed. posts, hammers, and all sfx
+related to them tested, and working great.
 
 
 
+
+
+
+
+
+
+
+Explosion Polish
+
+explosion sound has too much leadtime.
+trim the beginning, and if it still sounds slow,
+then we need to call explosion soundfx in pro.birth,
+or even before it, or cut directly into an explosion sound
+already happening, or have a list of explosion instances we
+loop over, so we can have multiple explosions happening at once.
+because explosions are so common, we may use a list.
 
 
 
@@ -110,7 +110,7 @@ Polish
 burning trees should not spawn as many fires as they do.
 these should also be fire particles - not pros.
 
-
+projectile bats should play a little pop when they die.
 
 
 

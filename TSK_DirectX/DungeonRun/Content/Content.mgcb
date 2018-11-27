@@ -629,3 +629,15 @@
 /processorParam:TextureFormat=Color
 /build:LineTexture.png
 
+#begin SoundHammer.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundHammer.wav
+
+#begin SoundHammerPost.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundHammerPost.wav
+

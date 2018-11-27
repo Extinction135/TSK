@@ -1733,7 +1733,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Posts - hammer only
+            #region Posts - Hammer only
 
             else if (
                 Type == ObjType.Wor_Post_Hammer_Up 
@@ -1743,7 +1743,7 @@ namespace DungeonRun
                 Obj.canBeSaved = true;
 
                 Obj.sfx.hit = Assets.sfxTapMetallic; //tells player cant be destroyed
-                Obj.sfx.kill = Assets.sfxShatter; //should be post hit sfx
+                Obj.sfx.kill = Assets.sfxHammerPost; //dat' lttp flavor
 
                 Obj.compCollision.rec.Width = 8; Obj.compCollision.offsetX = -4;
                 Obj.compCollision.rec.Height = 8; Obj.compCollision.offsetY = 0;

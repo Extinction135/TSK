@@ -397,7 +397,7 @@ namespace DungeonRun
 
             else if (Type == ProjectileType.Hammer)
             {
-                Assets.Play(Assets.sfxActorLand); //generic use sound
+                Assets.Play(Assets.sfxHammer);
 
                 //hammer down animFrame has already been set by SetType()
                 //set other directional animFrames

@@ -3345,19 +3345,19 @@
       <posY>232</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Wor_Boat_Barrel</type>
+      <type>Wor_Post_Hammer_Up</type>
       <direction>Down</direction>
-      <posX>472</posX>
+      <posX>408</posX>
       <posY>584</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Wor_Boat_Barrel</type>
+      <type>Wor_Post_Hammer_Up</type>
       <direction>Down</direction>
-      <posX>456</posX>
+      <posX>424</posX>
       <posY>584</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Wor_Boat_Barrel</type>
+      <type>Wor_Post_Hammer_Up</type>
       <direction>Down</direction>
       <posX>440</posX>
       <posY>584</posY>
@@ -3411,40 +3411,40 @@
       <posY>568</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Wor_Boat_Barrel</type>
+      <type>Wor_Post_Hammer_Up</type>
       <direction>Down</direction>
-      <posX>424</posX>
+      <posX>456</posX>
       <posY>584</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Wor_Boat_Barrel</type>
+      <type>Wor_Post_Hammer_Up</type>
       <direction>Down</direction>
-      <posX>408</posX>
+      <posX>472</posX>
       <posY>584</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Wor_Boat_Barrel</type>
+      <type>Wor_Post_Hammer_Up</type>
       <direction>Down</direction>
       <posX>392</posX>
-      <posY>568</posY>
+      <posY>520</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Wor_Boat_Barrel</type>
-      <direction>Down</direction>
-      <posX>392</posX>
-      <posY>552</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Boat_Barrel</type>
+      <type>Wor_Post_Hammer_Up</type>
       <direction>Down</direction>
       <posX>392</posX>
       <posY>536</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Wor_Boat_Barrel</type>
+      <type>Wor_Post_Hammer_Up</type>
       <direction>Down</direction>
       <posX>392</posX>
-      <posY>520</posY>
+      <posY>552</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Post_Hammer_Up</type>
+      <direction>Down</direction>
+      <posX>392</posX>
+      <posY>568</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Tree</type>
@@ -9187,6 +9187,90 @@
       <direction>Down</direction>
       <posX>744</posX>
       <posY>184</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Post_Hammer_Up</type>
+      <direction>Down</direction>
+      <posX>744</posX>
+      <posY>616</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Post_Hammer_Up</type>
+      <direction>Down</direction>
+      <posX>856</posX>
+      <posY>616</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Post_Hammer_Up</type>
+      <direction>Down</direction>
+      <posX>936</posX>
+      <posY>552</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Post_Hammer_Up</type>
+      <direction>Down</direction>
+      <posX>936</posX>
+      <posY>568</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Post_Hammer_Up</type>
+      <direction>Down</direction>
+      <posX>936</posX>
+      <posY>584</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Post_Hammer_Up</type>
+      <direction>Down</direction>
+      <posX>936</posX>
+      <posY>600</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Post_Hammer_Up</type>
+      <direction>Down</direction>
+      <posX>936</posX>
+      <posY>616</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Post_Hammer_Up</type>
+      <direction>Down</direction>
+      <posX>920</posX>
+      <posY>616</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Post_Hammer_Up</type>
+      <direction>Down</direction>
+      <posX>600</posX>
+      <posY>376</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Post_Hammer_Up</type>
+      <direction>Down</direction>
+      <posX>600</posX>
+      <posY>360</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Post_Hammer_Up</type>
+      <direction>Down</direction>
+      <posX>696</posX>
+      <posY>328</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Post_Hammer_Up</type>
+      <direction>Down</direction>
+      <posX>696</posX>
+      <posY>392</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Post_Hammer_Up</type>
+      <direction>Down</direction>
+      <posX>696</posX>
+      <posY>376</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Post_Hammer_Up</type>
+      <direction>Down</direction>
+      <posX>552</posX>
+      <posY>584</posY>
     </ObjXmlData>
   </objs>
 </RoomXmlData>
