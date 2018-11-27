@@ -181,7 +181,7 @@ namespace DungeonRun
             //assume this projectile doesn't move
             pro.compMove.moving = false;
             //finalize it: setType, rotation & align
-            SetType(pro, Type);
+            SetType(pro, Type); //may later pro.direction!
 
 
 
@@ -398,23 +398,17 @@ namespace DungeonRun
             else if (Type == ProjectileType.Hammer)
             {
                 Assets.Play(Assets.sfxActorLand); //generic use sound
-                //set anim frame based on direction
-                if (pro.direction == Direction.Down)
-                {
-                    pro.compAnim.currentAnimation = AnimationFrames.Projectile_Hammer_Down;
-                }
-                else if (pro.direction == Direction.Up)
-                {
-                    pro.compAnim.currentAnimation = AnimationFrames.Projectile_Hammer_Up;
-                }
-                else if (pro.direction == Direction.Right)
-                {
-                    pro.compAnim.currentAnimation = AnimationFrames.Projectile_Hammer_Right;
-                }
-                else if (pro.direction == Direction.Left)
-                {
-                    pro.compAnim.currentAnimation = AnimationFrames.Projectile_Hammer_Left;
-                }
+
+                //hammer down animFrame has already been set by SetType()
+                //set other directional animFrames
+                if (Dir == Direction.Up)
+                { pro.compAnim.currentAnimation = AnimationFrames.Projectile_Hammer_Up; }
+
+                else if (Dir == Direction.Right)
+                { pro.compAnim.currentAnimation = AnimationFrames.Projectile_Hammer_Right; }
+
+                else if (Dir == Direction.Left)
+                { pro.compAnim.currentAnimation = AnimationFrames.Projectile_Hammer_Left; }
             }
 
             #endregion
@@ -490,25 +484,25 @@ namespace DungeonRun
             //fang/bite simply tracks outside of the casters hitbox, centered
             if (Pro.type == ProjectileType.Bite)
             {
-                if (Pro.direction == Direction.Down)
+                if (Pro.compMove.direction == Direction.Down)
                 {   //place centered below casters hb
                     Functions_Movement.Teleport(Pro.compMove,
                         Pro.caster.compCollision.rec.Center.X,
                         Pro.caster.compCollision.rec.Y + Pro.caster.compCollision.rec.Height + 6);
                 }
-                else if (Pro.direction == Direction.Up)
+                else if (Pro.compMove.direction == Direction.Up)
                 {   //place centered above casters hb
                     Functions_Movement.Teleport(Pro.compMove,
                         Pro.caster.compCollision.rec.Center.X,
                         Pro.caster.compCollision.rec.Y - 8);
                 }
-                else if (Pro.direction == Direction.Right)
+                else if (Pro.compMove.direction == Direction.Right)
                 {   //place centered right side of casters hb
                     Functions_Movement.Teleport(Pro.compMove,
                         Pro.caster.compCollision.rec.X + Pro.caster.compCollision.rec.Width + 8,
                         Pro.caster.compCollision.rec.Center.Y);
                 }
-                else if (Pro.direction == Direction.Left)
+                else if (Pro.compMove.direction == Direction.Left)
                 {   //place centered left side of casters hb
                     Functions_Movement.Teleport(Pro.compMove,
                         Pro.caster.compCollision.rec.X - 8,
@@ -527,25 +521,25 @@ namespace DungeonRun
                 || Pro.type == ProjectileType.Shovel
                 )
             {
-                if (Pro.direction == Direction.Down)
+                if (Pro.compMove.direction == Direction.Down)
                 {   //place inhand below casters hb
                     Functions_Movement.Teleport(Pro.compMove,
                         Pro.caster.compCollision.rec.X - 1 + 8 - 2,
                         Pro.caster.compCollision.rec.Y + Pro.caster.compCollision.rec.Height + 8);
                 }
-                else if (Pro.direction == Direction.Up)
+                else if (Pro.compMove.direction == Direction.Up)
                 {   //place inhand above casters hb
                     Functions_Movement.Teleport(Pro.compMove,
                         Pro.caster.compCollision.rec.X + 1 + 8 - 2,
                         Pro.caster.compCollision.rec.Y - 14);
                 }
-                else if (Pro.direction == Direction.Right)
+                else if (Pro.compMove.direction == Direction.Right)
                 {   //place inhand right side of casters hb
                     Functions_Movement.Teleport(Pro.compMove,
                         Pro.caster.compCollision.rec.X + Pro.caster.compCollision.rec.Width + 9,
                         Pro.caster.compCollision.rec.Y + 0);
                 }
-                else if (Pro.direction == Direction.Left)
+                else if (Pro.compMove.direction == Direction.Left)
                 {   //place inhand left side of casters hb
                     Functions_Movement.Teleport(Pro.compMove,
                         Pro.caster.compCollision.rec.X - 9,
@@ -562,25 +556,25 @@ namespace DungeonRun
             {
                 //bows appear to be in links/blobs hands (other actors dont matter)
                 //move projectile outside of caster's hitbox based on direction
-                if (Pro.direction == Direction.Down)
+                if (Pro.compMove.direction == Direction.Down)
                 {   //place centered below casters hb
                     Functions_Movement.Teleport(Pro.compMove,
                         Pro.caster.compCollision.rec.Center.X,
                         Pro.caster.compCollision.rec.Y + Pro.caster.compCollision.rec.Height + 1);
                 }
-                else if (Pro.direction == Direction.Up)
+                else if (Pro.compMove.direction == Direction.Up)
                 {   //place centered above casters hb
                     Functions_Movement.Teleport(Pro.compMove,
                         Pro.caster.compCollision.rec.Center.X,
                         Pro.caster.compCollision.rec.Y - 7);
                 }
-                else if (Pro.direction == Direction.Right)
+                else if (Pro.compMove.direction == Direction.Right)
                 {   //place centered right side of casters hb
                     Functions_Movement.Teleport(Pro.compMove,
                         Pro.caster.compCollision.rec.X + Pro.caster.compCollision.rec.Width + 1,
                         Pro.caster.compCollision.rec.Center.Y);
                 }
-                else if (Pro.direction == Direction.Left)
+                else if (Pro.compMove.direction == Direction.Left)
                 {   //place centered left side of casters hb
                     Functions_Movement.Teleport(Pro.compMove,
                         Pro.caster.compCollision.rec.X - 1,
@@ -593,29 +587,28 @@ namespace DungeonRun
 
             #region Hammer
 
-            //we need to set hammer's animFrames here, based on direction
             else if (Pro.type == ProjectileType.Hammer)
-            {
-                if (Pro.direction == Direction.Down)
+            {   //track hammer to the hand of the caster
+                if (Pro.compMove.direction == Direction.Down)
                 {   //place inhand below casters hb
                     Functions_Movement.Teleport(Pro.compMove,
                         Pro.caster.compCollision.rec.X + 12,
                         Pro.caster.compCollision.rec.Y + Pro.caster.compCollision.rec.Height + 7);
                 }
-                else if (Pro.direction == Direction.Up)
+                else if (Pro.compMove.direction == Direction.Up)
                 {   //place inhand above casters hb
                     Functions_Movement.Teleport(Pro.compMove,
                         Pro.caster.compCollision.rec.X + 12,
                         Pro.caster.compCollision.rec.Y - 13);
                 }
-                else if (Pro.direction == Direction.Right)
+                else if (Pro.compMove.direction == Direction.Right)
                 {   //place inhand right side of casters hb
                     Functions_Movement.Teleport(Pro.compMove,
                         Pro.caster.compCollision.rec.X + Pro.caster.compCollision.rec.Width + 6,
                         Pro.caster.compCollision.rec.Y + 1);
 
                 }
-                else if (Pro.direction == Direction.Left)
+                else if (Pro.compMove.direction == Direction.Left)
                 {   //place inhand left side of casters hb
                     Functions_Movement.Teleport(Pro.compMove,
                         Pro.caster.compCollision.rec.X - 6,
@@ -624,19 +617,25 @@ namespace DungeonRun
                 }
 
 
-                if (Pro.compAnim.index == 3)
-                {   //create random impact fx (right is special case)
-                    if (Pro.direction == Direction.Right)
+                if (Pro.lifeCounter == 12)
+                {   //create random impact fx post hammer down frame
+                    if (Pro.compMove.direction == Direction.Right)
                     {
-                        Functions_Particle.Spawn(ParticleType.ImpactDust,
-                                Pro.compSprite.position.X + 8 + Functions_Random.Int(-4, 4),
-                                Pro.compSprite.position.Y + 8 + Functions_Random.Int(-4, 4));
+                        Functions_Particle.Spawn(ParticleType.Blast,
+                                Pro.compSprite.position.X + 4,
+                                Pro.compSprite.position.Y + 3);
+                    }
+                    else if (Pro.compMove.direction == Direction.Left)
+                    {
+                        Functions_Particle.Spawn(ParticleType.Blast,
+                                Pro.compSprite.position.X - 2,
+                                Pro.compSprite.position.Y + 3);
                     }
                     else
-                    {
-                        Functions_Particle.Spawn(ParticleType.ImpactDust,
-                                Pro.compSprite.position.X + 2 + Functions_Random.Int(-4, 4),
-                                Pro.compSprite.position.Y + 8 + Functions_Random.Int(-4, 4));
+                    {   //up/down
+                        Functions_Particle.Spawn(ParticleType.Blast,
+                                Pro.compSprite.position.X - 2,
+                                Pro.compSprite.position.Y + 0);
                     }
                 }
             }
@@ -1082,11 +1081,12 @@ namespace DungeonRun
                 { Pro.compSprite.flipHorizontally = true; }
             }
 
-            //some pros only face Direction.Down
+            //some pros only face Direction.Down, with no rotation
             else if (
                 Pro.type == ProjectileType.Bomb
                 || Pro.type == ProjectileType.Boomerang
                 || Pro.type == ProjectileType.Bat
+                || Pro.type == ProjectileType.Hammer
                 )
             {   
                 Pro.direction = Direction.Down;
@@ -1102,15 +1102,6 @@ namespace DungeonRun
                 { Pro.compSprite.rotation = Rotation.Clockwise90; }
                 else { Pro.compSprite.rotation = Rotation.None; }
             }
-
-            //other pros have no rotation, but do have direction
-            else if (
-                Pro.type == ProjectileType.Hammer
-                )
-            {
-                Pro.compSprite.rotation = Rotation.None;
-            }
-
 
             //finally, set sprite's rotation based on direction & flipHorizontally boolean
             Functions_Component.SetSpriteRotation(Pro.compSprite, Pro.direction);
@@ -1325,7 +1316,7 @@ namespace DungeonRun
                     Pro.compCollision.offsetX = -7 + 3; Pro.compCollision.offsetY = -3;
                 }
                 
-                Pro.lifetime = 16; //in frames
+                Pro.lifetime = 17; //in frames
                 Pro.compAnim.speed = 2; //in frames
                 Pro.compAnim.loop = false;
                 Pro.compMove.moveable = true;

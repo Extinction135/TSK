@@ -57,76 +57,18 @@ Today:
 
 
 
-ReOrg
-
-we need to move various room methods out of dungeon functions and into
-room functions, because they belong there. dugneon functions should only
-contain methods related to building dungeons. the spawn boss and miniboss
-methods should exist in actor functions. this vastly simplified dungeon
-functions class, making it solely responsible for dungeon generation.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Test
-
-what about decor overlapping conveyor belts?
-decor can overlap conveyor belts, i think.
-
-
-
-
-
-Floor Cracks
-we should have floor crack objects that dont become pits, just to mess
-with the player and break their expectations.
-
-these can be added when we scatter stain objs in room.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Fairy? Test
-
-do fairies work? maybe. this is a roomObj vs actor
-interaction, cause fairy is non-blocking. also, the net
-projectile is a pro vs obj test, and likely still works.
-
-
-
-
 
 
 Hammers++
 
-Hammer pros don't look correct, fix this, again.
+Hammer pros don't look correct, fix this, again. done.
+changed hammer impact fx to blast particle, to visually
+communicate how powerful the hammer's strike is: it's 
+literally as strong as an explosion.
+
+
+
+
 
 
 
@@ -263,7 +205,6 @@ check phone notes before proceeding.
 
 
 
-fire boomerang
 
 
 comet magic
@@ -288,6 +229,25 @@ magic under misc.
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+Fairy? Test
+
+do fairies work? maybe. this is a roomObj vs actor
+interaction, cause fairy is non-blocking. also, the net
+projectile is a pro vs obj test, and likely still works.
+
+
 Special Attacks / Boss "USE"
 bigeye uses the shut + bloodshot frames for his special.
 bigeye phase 3: 
@@ -298,6 +258,7 @@ and taunting every frame.
 
 
 
+fire boomerang
 
 
 
