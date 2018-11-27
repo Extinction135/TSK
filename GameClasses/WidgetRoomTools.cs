@@ -307,10 +307,10 @@ namespace DungeonRun
 
                 LevelSet.currentLevel.rooms.Add(room);
                 LevelSet.currentLevel.currentRoom = room;
-                Functions_Dungeon.AddDevDoors(room);
+                Functions_Room.AddDevDoors(room);
 
                 //build walled empty room with floors, add xml objs, etc...
-                Functions_Dungeon.BuildRoomFrom(RoomXmlData);
+                Functions_Room.BuildRoomFrom(RoomXmlData);
 
                 //set spawnPos outside TopLeft of new dev room
                 LevelSet.spawnPos_Dungeon.X = LevelSet.currentLevel.currentRoom.rec.X - 32;

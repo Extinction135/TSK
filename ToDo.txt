@@ -57,80 +57,13 @@ Today:
 
 
 
-
-
-
-
-
-Bugs--
-
-fixed pit bubble to actually have proper animFrames.
-fixed walls to self-clean properly from interaction functions.
-
-WallTorches++
-
-wall torches cannot overlap exit objs. done.
-
-Rethink++
-
-it's easier to code 'exit objs remove anything they touch'
-than it is to model many objs to exits. done. now exits
-remove any roomObjs that touch them upon exits first frame
-of interaction. Dungeons nowo have working exits, wall torches,
-and should exit to fields properly again. tested, working.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Exit++
-
-place pillars on sides of exit.
-
-
-
-
-
-
-
-
-
-
-
-
-Bugs--
-
-
-pit bubbles are not displaying properly - they should be red bubbles.
-whaaaa?
-
-
-
-also, walls still overlap wall torches.
-
-and the exit isn't built properly in the exit room, so hero can't leave.
-
-
-
-
-
-
-
+ReOrg
 
 we need to move various room methods out of dungeon functions and into
 room functions, because they belong there. dugneon functions should only
 contain methods related to building dungeons. the spawn boss and miniboss
-methods should exist in actor functions.
+methods should exist in actor functions. this vastly simplified dungeon
+functions class, making it solely responsible for dungeon generation.
 
 
 
