@@ -371,7 +371,9 @@ namespace DungeonRun
 
 
 
-        public static void KillEnemy(ComponentSprite compSprite)
+
+
+        public static void DecorateEnemyDeath(ComponentSprite compSprite)
         {
             //used to kill small room enemies in uniform way
             Functions_Particle.Spawn_Explosion(
@@ -387,7 +389,7 @@ namespace DungeonRun
                 compSprite.position.Y,
                 Direction.Down);
             //sometimes leave behind a skeleton too
-            if (Functions_Random.Int(0, 101) > 50)
+            if (Functions_Random.Int(0, 101) > 70)
             {
                 Functions_GameObject.Spawn(
                 ObjType.Dungeon_FloorSkeleton,

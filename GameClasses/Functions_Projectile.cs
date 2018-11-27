@@ -1007,7 +1007,7 @@ namespace DungeonRun
                     || Pro.compAnim.currentAnimation == AnimationFrames.Wor_Enemy_Rat_Down
                     )
                 {   //create floor blood, blood explosion, maybe skeleton
-                    Functions_GameObject_Dungeon.KillEnemy(Pro.compSprite);
+                    Functions_GameObject_Dungeon.DecorateEnemyDeath(Pro.compSprite);
                 }   //we release pro at end of method
 
                 #endregion

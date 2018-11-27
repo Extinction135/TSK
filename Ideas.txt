@@ -6,6 +6,96 @@
 
 
 
+
+Dog Vendor Context++
+
+Little Girl (pet vendor)
+father's dialog:
+'i know she misses her mom, but saving all these puppies'
+'isn't going to brink her back.. interested in a dog, mister?'
+-we just need to add an older father figure near the pet vendor
+to complete this mini-story. we can even make the father a
+vendor for a side-quest to find and save the mother. upon
+completion, the father could reward player something, switch
+to a different type of vendor, and the mom could have sidequests
+about revenge on those that kidnapped her. this questline could
+lead to the discovery of an entire kidnapping ring, with a hidden
+dungeon, with it's own small layout + tons of custom enemies, 
+minis, bosses, and stuff. all that from a dog vendor idea.
+also, we need more dogs, of different colors.
+
+Dogs++
+
+doggo should spawn with hero whenever he changes rooms in a dungeon.
+this makes the dog more consistently around, considering that he can
+and often does fall into pits. upon a fall into a pit, we could just
+magically teleport the dog to hero's location. that would work too.
+-dog should be gameobj in functions_hero class?
+-this is handled specially outside of roomObj systems
+-doggo is not really roomObj, not really projectile, more like actor
+-make doggo an actor instance in fun_hero class that we handle specially
+-this means doggo isn't part of actorPool and is never recycled
+-we entirely handle doggo in fun_hero class or fun_pet class
+-fun_pet class makes more sense, and maybe we have a petPool that we use?
+-petPool could model multiple pets! which can easily be implemented
+-we would just need to have different pets and diff pet vendors
+-then player could build a 'pack' of pets to travel with
+-how many pets? lets go with 8 pets.
+-also, pressing interact while idle should 'whistle'
+-this should call all your pets to your location (enlarge all pets search radius)
+*we acn just do a palette swap on doggos for many flavors to test systems
+
+
+Pets++
+
+doggos should stop, face, and bark at bombable doors in dungeon rooms.
+this makes them useful when exploring dungeons.
+link and doggos should not collide, so link can always walk thru them.
+doggos collide with all other actors, and roomObjs tho. never pros.
+so they act as a moving shield against enemies getting close, if player
+has 3 or more pets, but they still won't block projectiles or affect
+player movement.
+
+
+
+
+
+
+
+
+Dream Sequences
+
+'i dreamed i was a tentacle, lost at sea...'
+hero type = tentacle, empty sea level, with decorations.
+dying or exiting level ends the dream. super easy.
+
+'i dreamed i was part of a spider hockey league...'
+spider, level is ice tiles, with bumpers, and 'puck'.
+this obj inherits hit direction, but doesn't take
+damage at all, so it never gets destroyed. spiders
+have bite items which will hit the puck.
+
+starting one of these dreams is an interaction with
+a bed, popping a dialog asking if they want to sleep
+in this bed. A button starts the dream sequence by exiting
+the level to a dream setup screen, where text displays
+slowly on screen, centered, against complete black.
+
+once the text finishes, we wait for any button input.
+then we fade in the level like normal.
+
+
+
+
+
+
+
+
+
+
+
+
+
 ITEMS TODO:
 
 

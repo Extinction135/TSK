@@ -111,7 +111,7 @@ namespace DungeonRun
                 || Obj.type == ObjType.Wor_Enemy_Turtle
                 )
             {   //create floor blood, blood explosion, maybe skeleton
-                Functions_GameObject_Dungeon.KillEnemy(Obj.compSprite);
+                Functions_GameObject_Dungeon.DecorateEnemyDeath(Obj.compSprite);
                 becomeDebris = false; //release enemy from pool
             }
 
