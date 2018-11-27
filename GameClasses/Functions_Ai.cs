@@ -1056,16 +1056,23 @@ namespace DungeonRun
                 if (Obj.lifeCounter < Obj.lifetime)
                 {
                     Obj.lifeCounter++;
-                    if (Obj.lifeCounter < 75) //place fires only at beginning
+                    if (Obj.lifeCounter < 30*5) //how many frames of burning?
                     {
-                        if (Functions_Random.Int(0, 100) > 93)
-                        {   //often spawn fires on the bushy top
+                        if (Functions_Random.Int(0, 101) > 50)
+                        {   //spawn smoke often
+                            Functions_Particle.Spawn(ParticleType.RisingSmoke,
+                                Obj.compSprite.position.X + 4 + Functions_Random.Int(-9, 9),
+                                Obj.compSprite.position.Y + Functions_Random.Int(-10, 8));
+                        }
+                        if (Functions_Random.Int(0, 101) > 85)
+                        {   //spawn fires on top of tree
                             Functions_Particle.Spawn(ParticleType.Fire,
                                 Obj.compSprite.position.X + Functions_Random.Int(-6, 6),
-                                Obj.compSprite.position.Y + Functions_Random.Int(-8, 4));
+                                Obj.compSprite.position.Y + Functions_Random.Int(-9, 5));
+                            
                         }
-                        if (Functions_Random.Int(0, 100) > 93)
-                        {   //less often spawn fires along the tree trunk
+                        if (Functions_Random.Int(0, 101) > 90)
+                        {   //spawn fires along tree trunk
                             Functions_Particle.Spawn(ParticleType.Fire,
                                 Obj.compSprite.position.X + 0,
                                 Obj.compSprite.position.Y + Functions_Random.Int(4, 16));
@@ -1089,6 +1096,15 @@ namespace DungeonRun
                     //switch to burned tree
                     Functions_GameObject.Reset(Obj);
                     Functions_GameObject.SetType(Obj, ObjType.Wor_Tree_Burnt);
+                }
+            }
+            else if(Obj.type == ObjType.Wor_Tree_Burnt)
+            {
+                if (Functions_Random.Int(0, 201) > 199)
+                {   //rarely smoke, centered to top of burned tree
+                    Functions_Particle.Spawn(ParticleType.RisingSmoke,
+                        Obj.compSprite.position.X + 4 + Functions_Random.Int(-3, 3),
+                        Obj.compSprite.position.Y + 2);
                 }
             }
 

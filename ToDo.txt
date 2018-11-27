@@ -59,37 +59,23 @@ Today:
 
 
 
+Burning Trees++
 
+the sort on the fire particles was fine, over the burning tree.
+they just dont last as long. go back to 32, and make the tree
+burning routines create more fire particles and smoke particles.
 
-Bugs--
+then we can upgrade the burnt trees to smoke randomly, to keep
+the effect going. done.
 
-vertical posts now instantly spread fire. to fix this, we 
-need to check the posts comp sprite center position against
-the fire's expanded hitbox, using Contains(). this is a XY point,
-not the posts hitbox! this seperates the hitbox from the fire
-spreading routine. this is done now, in interaction routines
-between blocking object, posts to ground fire. we additionally
-check the vertical posts using the sprite pos. tested and working.
+burning trees now spawn smoke above them while burning.
+polished how burning trees burn, and how burnt trees
+smoke so it all seems to feel more alive and responsive.
 
-fun_obj_world.burnPost() was upgraded to handle all aspects of
-burning and converting posts to the burned counter parts.
-
-Polish
-
-projectile bats should play a little pop when they die. done.
-
-Destruction Prep
-
-seperated burning and destruction of bushes, grass, post, and
-trees into their own methods in obj_world functions. this is
-just a temp fix to get things working, prior to the destruction
-systems redesign coming up..
-
-
-
-
-
-grass, bushes, spread fire instantly north
+recorded video of randomly placing burning trees.
+recorded video of burning down a forest from the center (stress test).
+created burning forest test level, that will likely become
+a game level, because it's so awesome.
 
 
 
@@ -98,12 +84,22 @@ grass, bushes, spread fire instantly north
 
 
 
+Post Destruction 
+
+how do we destroy a post? this should not create a groundfire.
+explosions create ground fires upon death.
+posts burning create ground fires.
 
 
-Polish
 
-burning trees should not spawn as many fires as they do.
-these should also be fire particles - not pros.
+
+
+
+Fires + Mob Enemies
+
+ground fire pros should damage roomObj enemies, killing them.
+this means we can burn down the zoo, via grass fire.
+which is pure evil.
 
 
 

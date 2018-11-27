@@ -966,7 +966,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Foilage
+            #region Bush and Bush Stump
 
             else if (Type == ObjType.Wor_Bush)
             {
@@ -992,6 +992,12 @@ namespace DungeonRun
                 //how quickly stumps check for nearby filled ditches
                 Obj.interactiveFrame = 254; //last possible frame
             }
+
+            #endregion
+
+
+            #region Trees
+
             else if (Type == ObjType.Wor_Tree
                 || Type == ObjType.Wor_Tree_Burning
                 || Type == ObjType.Wor_Tree_Burnt)
@@ -1015,7 +1021,10 @@ namespace DungeonRun
                     Obj.getsAI = true; //will spawn fire on tree
                 }
                 else //burning tree becomes burnt version eventually
-                { Obj.compAnim.currentAnimation = AnimationFrames.World_TreeBurnt; }
+                {
+                    Obj.compAnim.currentAnimation = AnimationFrames.World_TreeBurnt;
+                    Obj.getsAI = true; //randomly smokes
+                }
             }
             else if (Type == ObjType.Wor_Tree_Stump)
             {
@@ -1030,6 +1039,8 @@ namespace DungeonRun
             }
 
             #endregion
+
+
 
 
             #region Debris
@@ -1625,7 +1636,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Medium and Big Trees
+            #region Trees - BIG and BIGGER
 
 
             else if (Type == ObjType.Wor_Tree_Med)
