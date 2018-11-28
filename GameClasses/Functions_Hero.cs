@@ -892,7 +892,7 @@ namespace DungeonRun
 
             else if (Obj.type == ObjType.Wor_Build_Door_Shut)
             {
-                Functions_GameObject_World.OpenBuildingDoor(Obj);
+                Functions_GameObject_World.OpenHouseDoor(Obj);
             }
 
             #endregion

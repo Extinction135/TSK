@@ -35,7 +35,7 @@ Shadow Dungeon, TSK Fight complete
 0.77 playthru: https://youtu.be/_b7qclGTffE
 0.78 goals:
 	more items (axe, hookshot, hammer, magic mirror)
-	more interaction (throwing objs, actors/objs in water, decorations)
+	more interaction (throwing objs, actors/objs in water, floor decorations)
 	better dungeon traversal (X solved puzzles, marked map)
 	better coliseum - uniq objs + enemies
 	better overworld - more skulls, waves, cluds, vfx @skullIsland
@@ -47,11 +47,6 @@ Shadow Dungeon, TSK Fight complete
 	X setup roomObjs, projectiles, particles, pickups systems for future growth
 	improved pet systems (stable, more pet variety, multiple pets)
 	
-	
-
-
-
-
 
 Today:
 
@@ -59,23 +54,6 @@ Today:
 
 
 
-Burning Trees++
-
-the sort on the fire particles was fine, over the burning tree.
-they just dont last as long. go back to 32, and make the tree
-burning routines create more fire particles and smoke particles.
-
-then we can upgrade the burnt trees to smoke randomly, to keep
-the effect going. done.
-
-burning trees now spawn smoke above them while burning.
-polished how burning trees burn, and how burnt trees
-smoke so it all seems to feel more alive and responsive.
-
-recorded video of randomly placing burning trees.
-recorded video of burning down a forest from the center (stress test).
-created burning forest test level, that will likely become
-a game level, because it's so awesome.
 
 
 
@@ -83,61 +61,55 @@ a game level, because it's so awesome.
 
 
 
-
-Post Destruction 
-
-how do we destroy a post? this should not create a groundfire.
-explosions create ground fires upon death.
-posts burning create ground fires.
-
-
-
-
-
-
-Fires + Mob Enemies
-
-ground fire pros should damage roomObj enemies, killing them.
-this means we can burn down the zoo, via grass fire.
-which is pure evil.
-
-
-
-
-
-we need a pool.aiCount, to track how much work AI() is doing.
-this is just like an interaction counter, displayed on screen
-in debug info below interactions.
-
-we should be using a string builder for debug display, for all
-the display info.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Destruction Systems Redesign
-destroying a burned post with hammer caused a fire?
-destroying non-burned post with hammer caused a fire too.
-we need to seperate burning fromd destruction (conceptually).
 
 
 Destruction++
-functions_interaction has handleCommon and blowuP() methods,
-which need to be consolidated into one, using a power level byte
-which is part of projectile. this isn't part of pro yet tho!
-we can also model if a projectile is 'on fire' using a onFire boolean.
-then, we can light the proper objects on fire, if we need to.
-this seperatees the destruction of objs, from the burning of objs.
+
+rewrote how destruction is handled into various power levels,
+defined in obj_world class. this took handleCommon() and blowUp()
+and turned them into variouse methods that handle how objects are
+transformed upon interaction collision. this actually simplified
+many systems, and deduplicated some code. now, to pick out the bugs
+and get it all working right again.
+
+Notes
+
+-fireballs can now cascade spread across trees.
+-ground fires should now kill mob enemies.
+
+
+
+
+
+
+
+
+
+
+
+
+TEST+++
+
+we are testing destroying objects with projectiles and other objs.
+boomerang
+sword, shovel, arrow, bite, thrown,
+hammer, spikeblock, floorspikes
+explosions, bolts
+
+bolts should not create explosions.
+fix lightning magic now. only explosions create
+power level 2 destruction events.
+
+fires should kill mob enemies too.
+
+
+
+
+
+
+
+
+
 
 
 
@@ -171,6 +143,20 @@ this is done in it's ineteraction routine! and they are roomObjs...
 
 
 
+
+
+
+
+
+
+Ai counter
+
+we need a pool.aiCount, to track how much work AI() is doing.
+this is just like an interaction counter, displayed on screen
+in debug info below interactions.
+
+we should be using a string builder for debug display, for all
+the display info.
 
 
 

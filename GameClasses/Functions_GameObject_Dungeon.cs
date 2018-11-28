@@ -104,24 +104,14 @@ namespace DungeonRun
 
 
 
-        public static void CollapseDungeonDoor(GameObject Door, ComponentCollision CompColl)
-        {   //blow up door, change to doorOpen
-            Functions_Particle.Spawn(
-                ParticleType.Attention,
-                Door.compSprite.position.X,
-                Door.compSprite.position.Y);
-            Assets.Play(Assets.sfxShatter);
-            Functions_GameObject.SetType(Door, ObjType.Dungeon_DoorOpen);
-            //hide the sprite switch with a blast particle
-            Functions_Particle.Spawn(ParticleType.Blast,
-                Door.compSprite.position.X, 
-                Door.compSprite.position.Y);
-            //update the dungeon.doors list, change colliding door to bombed
+        public static void SetDungeonDoor(GameObject Door)
+        {   //update the dungeon.doors list, change colliding door to bombed
             for (int i = 0; i < LevelSet.currentLevel.doors.Count; i++)
             {   //if this explosion collides with any dungeon.door that is of type.bombable
                 if (LevelSet.currentLevel.doors[i].type == DoorType.Bombable)
                 {   //change this door type to type.bombed
-                    if (CompColl.rec.Intersects(LevelSet.currentLevel.doors[i].rec))
+                    if (LevelSet.currentLevel.doors[i].rec.Contains(
+                        Door.compSprite.position.X, Door.compSprite.position.Y))
                     { LevelSet.currentLevel.doors[i].type = DoorType.Open; }
                 }
             }

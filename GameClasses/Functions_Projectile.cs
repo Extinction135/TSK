@@ -769,51 +769,12 @@ namespace DungeonRun
                         {
                             if (Pro.compCollision.rec.Contains(Pool.roomObjPool[i].compCollision.rec))
                             {
-
-                                #region Fireballs Passing By a RoomObject Effects
-
-                                //first, this allow for cascade spreading, where a single fireball
+                                //this allow for cascade spreading, where a single fireball
                                 //touches several of these objects in sequence as it travels
                                 //this creates a cascade effect, handled here - keep this in mind
-
-                                //fireballs can cascade spread across unlit torches
-                                if (Pool.roomObjPool[i].type == ObjType.Dungeon_TorchUnlit)
-                                {
-                                    Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_TorchLit);
-                                    Assets.Play(Assets.sfxLightFire);
-                                }
-                                //fireballs can cascade spread across tall grass
-                                else if (Pool.roomObjPool[i].type == ObjType.Wor_Grass_Tall)
-                                {   //'burn' the grass
-                                    Functions_GameObject_World.BurnGrass(Pool.roomObjPool[i]);
-                                }
-                                //fireballs can cascade spread across bushes
-                                else if (Pool.roomObjPool[i].type == ObjType.Wor_Bush)
-                                {
-                                    Functions_GameObject_World.BurnBush(Pool.roomObjPool[i]);
-                                }
-
-                                //not across trees tho - those take longer to burn
-
-                                //fireballs can cascade spread across barrels too
-                                else if (Pool.roomObjPool[i].type == ObjType.Dungeon_Barrel)
-                                {   //inherit the direction of the fireball
-                                    Pool.roomObjPool[i].compMove.direction = Pro.compMove.direction;
-                                    Functions_GameObject_Dungeon.HitBarrel(Pool.roomObjPool[i]);
-                                }
-
-                                //fireballs burn wooden posts
-                                else if (Pool.roomObjPool[i].type == ObjType.Wor_Post_Corner_Left ||
-                                    Pool.roomObjPool[i].type == ObjType.Wor_Post_Corner_Right ||
-                                    Pool.roomObjPool[i].type == ObjType.Wor_Post_Horizontal ||
-                                    Pool.roomObjPool[i].type == ObjType.Wor_Post_Vertical_Left ||
-                                    Pool.roomObjPool[i].type == ObjType.Wor_Post_Vertical_Right)
-                                {
-                                    Functions_GameObject_World.BurnPost(Pool.roomObjPool[i]);
-                                }
-
-                                #endregion
-
+                                Pool.roomObjPool[i].compMove.direction = Pro.compMove.direction;
+                                Functions_GameObject_World.Burn(Pool.roomObjPool[i]); //burn
+                                Functions_GameObject_World.Bounce(Pool.roomObjPool[i]); //weak damage while in air
                             }
                         }
                     }

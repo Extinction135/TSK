@@ -16,185 +16,480 @@ namespace DungeonRun
     {
         static int i;
 
+
+
+
+
         
 
-            
-
-
-
-        //objects transforming from physical violence
-
-        public static void DestroyBush(GameObject Bush)
-        {   //pop leaf explosion
-            Functions_Particle.Spawn_Explosion(
-                ParticleType.LeafGreen,
-                Bush.compSprite.position.X,
-                Bush.compSprite.position.Y);
-            //covert bush to stump, play sfx
-            Functions_GameObject.SetType(Bush, ObjType.Wor_Bush_Stump);
-            Assets.Play(Assets.sfxBushCut);
-            //pop an attention particle
-            Functions_Particle.Spawn(ParticleType.Attention,
-                Bush.compSprite.position.X, Bush.compSprite.position.Y);
-            //rarely spawn loot
-            Functions_Loot.SpawnLoot(Bush.compSprite.position, 20);
-        }
-
-        public static void DestroyGrass(GameObject TallGrass)
-        {   //pop an attention particle on grass pos
-            Functions_Particle.Spawn(ParticleType.Attention,
-                TallGrass.compSprite.position.X,
-                TallGrass.compSprite.position.Y);
-            //convert tallgrass to cut grass + sfx
-            Functions_GameObject.SetType(TallGrass, ObjType.Wor_Grass_Cut);
-            Assets.Play(Assets.sfxBushCut);
-            //rarely spawn loot
-            if (Functions_Random.Int(0, 101) > 90) //cut that grass boi
-            { Functions_Loot.SpawnLoot(TallGrass.compSprite.position); }
-        }
 
 
 
 
+        //level 0.5 caused by: boomerang
+        public static void Bounce(GameObject Obj)
+        {   //Obj.compMove.direction needs to be set by collider
 
 
+            #region Bush
 
-
-        //objects transforming from burning/fire
-
-        public static void BurnTree(GameObject Tree)
-        {   //switch to burned tree
-            Functions_GameObject.SetType(Tree, ObjType.Wor_Tree_Burning);
-
-            //place an initial fire at bottom of tree
-            Functions_Particle.Spawn(ParticleType.Fire,
-                Tree.compSprite.position.X,
-                Tree.compSprite.position.Y + 16);
-        }
-
-        public static void BurnPost(GameObject Post)
-        {   //switch to burned post
-            if (Post.type == ObjType.Wor_Post_Vertical_Right)
-            { Functions_GameObject.SetType(Post, ObjType.Wor_PostBurned_Vertical_Right); }
-            else if (Post.type == ObjType.Wor_Post_Corner_Right)
-            { Functions_GameObject.SetType(Post, ObjType.Wor_PostBurned_Corner_Right); }
-            else if (Post.type == ObjType.Wor_Post_Horizontal)
-            { Functions_GameObject.SetType(Post, ObjType.Wor_PostBurned_Horizontal); }
-            else if (Post.type == ObjType.Wor_Post_Corner_Left)
-            { Functions_GameObject.SetType(Post, ObjType.Wor_PostBurned_Corner_Left); }
-            else if (Post.type == ObjType.Wor_Post_Vertical_Left)
-            { Functions_GameObject.SetType(Post, ObjType.Wor_PostBurned_Vertical_Left); }
-
-            //spread the fire 
-            Functions_Projectile.Spawn(
-                ProjectileType.GroundFire,
-                Post.compSprite.position.X,
-                Post.compSprite.position.Y - 3,
-                Direction.None);
-            Assets.Play(Assets.sfxLightFire);
-        }
-
-        public static void BurnBush(GameObject Bush)
-        {   //spread the fire 
-            Functions_Projectile.Spawn(
-                ProjectileType.GroundFire,
-                Bush.compSprite.position.X,
-                Bush.compSprite.position.Y - 3,
-                Direction.None);
-            Assets.Play(Assets.sfxLightFire);
-            //destroy bush as normal
-            DestroyBush(Bush);
-        }
-
-        public static void BurnGrass(GameObject Grass)
-        {   
-            //spread the fire 
-            Functions_Projectile.Spawn(
-                ProjectileType.GroundFire,
-                Grass.compSprite.position.X,
-                Grass.compSprite.position.Y - 3,
-                Direction.None);
-            //destroy grass as normal
-            DestroyGrass(Grass);
-        }
-
-
-
-
-
-
-
-
-
-
-        //objects transforming from explosions
-
-        public static void BlowUpTree(GameObject Tree, Boolean popLeaves)
-        {
-            Assets.Play(Assets.sfxShatter);
-            //switch to tree stump
-            Functions_GameObject.SetType(Tree, ObjType.Wor_Tree_Stump);
-            //rarely spawn loot
-            if (Functions_Random.Int(0, 101) > 80)
-            { Functions_Loot.SpawnLoot(Tree.compSprite.position); }
-
-            if (popLeaves)
-            {   //pop the bushy top part
-                Functions_Particle.Spawn(
-                    ParticleType.Attention,
-                    Tree.compSprite.position.X,
-                    Tree.compSprite.position.Y - 2);
-                //pop leaves in circular decorative pattern for tree top
+            if (Obj.type == ObjType.Wor_Bush)
+            {
+                //pop leaf explosion
                 Functions_Particle.Spawn_Explosion(
                     ParticleType.LeafGreen,
-                    Tree.compSprite.position.X + 2,
-                    Tree.compSprite.position.Y - 4, true);
+                    Obj.compSprite.position.X,
+                    Obj.compSprite.position.Y);
+                //covert bush to stump, play sfx
+                Functions_GameObject.SetType(Obj, ObjType.Wor_Bush_Stump);
+                Assets.Play(Assets.sfxBushCut);
+                //pop an attention particle
+                Functions_Particle.Spawn(ParticleType.Attention,
+                    Obj.compSprite.position.X, Obj.compSprite.position.Y);
+                //rarely spawn loot
+                Functions_Loot.SpawnLoot(Obj.compSprite.position, 20);
             }
+
+            #endregion
+
+
+            #region House Doors
+
+            else if (Obj.type == ObjType.Wor_Build_Door_Shut)
+            {   
+                OpenHouseDoor(Obj);
+            }
+
+            #endregion
+
+
+            #region Levers
+
+            else if (Obj.type == ObjType.Dungeon_LeverOff
+                || Obj.type == ObjType.Dungeon_LeverOn)
+            {
+                Functions_GameObject_Dungeon.ActivateLeverObjects();
+            }
+
+            #endregion
+
+
+            #region Explosive Dungeon Barrels
+
+            else if (Obj.type == ObjType.Dungeon_Barrel)
+            {   //Obj.compMove.direction should be set by colliding pro prior
+                Functions_GameObject_Dungeon.HitBarrel(Obj);
+            }
+
+            #endregion
+
+
+            #region Switch Block Globe/Buttons
+
+            else if (Obj.type == ObjType.Dungeon_SwitchBlockBtn)
+            {   //Obj.compMove.direction should be set by colliding pro prior
+                Functions_GameObject_Dungeon.FlipSwitchBlocks(Obj);
+            }
+
+            #endregion
+
+
+            #region Seeker Exploders
+
+            else if (Obj.type == ObjType.Wor_SeekerExploder)
+            {   //Obj.compMove.direction should be set by colliding pro prior
+                Functions_GameObject.SetType(Obj, ObjType.ExplodingObject); //explode
+                Functions_Movement.Push(Obj.compMove, Obj.compMove.direction, 6.0f);
+                Assets.Play(Assets.sfxActorLand);
+            }
+
+            #endregion
+
+
+            #region Bump World Enemies
+
+            else if (
+                Obj.type == ObjType.Wor_Enemy_Turtle
+                || Obj.type == ObjType.Wor_Enemy_Crab
+                || Obj.type == ObjType.Wor_Enemy_Rat
+                )
+            {   //Obj.compMove.direction should be set by colliding pro prior
+                Functions_Particle.Spawn(ParticleType.Attention, Obj);
+                Functions_GameObject.Kill(Obj, true, false);
+                Assets.Play(Assets.sfxActorLand);
+            }
+
+            #endregion
+
+
             else
-            {   //pop debris
-                Functions_Particle.Spawn_Explosion(
-                    ParticleType.DebrisBrown,
-                    Tree.compSprite.position.X + 2,
-                    Tree.compSprite.position.Y + 4, true);
+            {   //audible note something hit obj
+                //Assets.Play(Assets.sfxActorLand);
             }
         }
 
-        public static void BlowUpPost(GameObject Post)
+        //level 1 caused by: sword, shovel, arrow, bat, bite/fang, thrown objs
+        public static void Cut(GameObject Obj)
+        {   //Obj.compMove.direction needs to be set by collider
+
+            #region Grass
+
+            if (Obj.type == ObjType.Wor_Grass_Tall)
+            {
+                //pop an attention particle on grass pos
+                Functions_Particle.Spawn(ParticleType.Attention,
+                    Obj.compSprite.position.X,
+                    Obj.compSprite.position.Y);
+                //convert tallgrass to cut grass + sfx
+                Functions_GameObject.SetType(Obj, ObjType.Wor_Grass_Cut);
+                Assets.Play(Assets.sfxBushCut);
+                //rarely spawn loot
+                if (Functions_Random.Int(0, 101) > 90) //cut that grass boi
+                { Functions_Loot.SpawnLoot(Obj.compSprite.position); }
+            }
+
+            #endregion
+
+
+            #region Pots, Dungeon pot (skull), Boat Barrels
+
+            else if (
+                Obj.type == ObjType.Wor_Pot
+                || Obj.type == ObjType.Dungeon_Pot
+                || Obj.type == ObjType.Wor_Boat_Barrel
+                )
+            {
+                //pop leaf explosion
+                Functions_Particle.Spawn_Explosion(
+                    ParticleType.LeafGreen,
+                    Obj.compSprite.position.X,
+                    Obj.compSprite.position.Y);
+                //covert bush to stump, play sfx
+                Functions_GameObject.SetType(Obj, ObjType.Wor_Bush_Stump);
+                Assets.Play(Assets.sfxBushCut);
+                //pop an attention particle
+                Functions_Particle.Spawn(ParticleType.Attention,
+                    Obj.compSprite.position.X, Obj.compSprite.position.Y);
+                //rarely spawn loot
+                Functions_Loot.SpawnLoot(Obj.compSprite.position, 20);
+            }
+
+            #endregion
+
+
+            #region Burned Posts
+
+            else if (
+                Obj.type == ObjType.Wor_PostBurned_Corner_Left
+                || Obj.type == ObjType.Wor_PostBurned_Corner_Right
+                || Obj.type == ObjType.Wor_PostBurned_Horizontal
+                || Obj.type == ObjType.Wor_PostBurned_Vertical_Left
+                || Obj.type == ObjType.Wor_PostBurned_Vertical_Right
+                )
+            { Functions_GameObject.Kill(Obj, true, true); }
+
+            #endregion
+
+            
+            Bounce(Obj); //call all lower levels of destruction on obj
+        }
+
+        //level 2 caused by: hammer, spikeblock, floorspikes
+        public static void Destroy(GameObject Obj)
+        {   //Obj.compMove.direction needs to be set by collider
+
+
+            #region Posts
+
+            if (
+                Obj.type == ObjType.Wor_Post_Corner_Left
+                || Obj.type == ObjType.Wor_Post_Corner_Right
+                || Obj.type == ObjType.Wor_Post_Horizontal
+                || Obj.type == ObjType.Wor_Post_Vertical_Left
+                || Obj.type == ObjType.Wor_Post_Vertical_Right
+                )
+            { Functions_GameObject.Kill(Obj, true, true); }
+
+            #endregion
+
+
+            #region Collapse Bombable Dungeon Doors
+
+            else if (Obj.type == ObjType.Dungeon_DoorBombable)
+            {   //blow up door, change to doorOpen
+                Functions_Particle.Spawn(
+                    ParticleType.Attention,
+                    Obj.compSprite.position.X,
+                    Obj.compSprite.position.Y);
+                Assets.Play(Assets.sfxShatter);
+                Functions_GameObject.SetType(Obj, ObjType.Dungeon_DoorOpen);
+                //hide the sprite switch with a blast particle
+                Functions_Particle.Spawn(ParticleType.Blast,
+                    Obj.compSprite.position.X,
+                    Obj.compSprite.position.Y);
+                //update the dungeon data that we collapsed this door
+                Functions_GameObject_Dungeon.SetDungeonDoor(Obj);
+            }
+
+            #endregion
+
+
+            #region Crack Normal Dungeon Walls
+
+            else if (Obj.type == ObjType.Dungeon_WallStraight)
+            {   //'crack' normal walls
+                Functions_GameObject.SetType(Obj,
+                    ObjType.Dungeon_WallStraightCracked);
+                Functions_Particle.Spawn(ParticleType.Blast,
+                    Obj.compSprite.position.X,
+                    Obj.compSprite.position.Y);
+                Assets.Play(Assets.sfxShatter);
+            }
+
+            #endregion
+
+
+
+
+
+            else if (
+
+                //dungeon objs
+
+                //limited set for now
+                Obj.type == ObjType.Dungeon_Statue
+                || Obj.type == ObjType.Dungeon_Signpost
+
+                //world objs
+
+                //building objs
+                || Obj.type == ObjType.Wor_Build_Wall_FrontA
+                || Obj.type == ObjType.Wor_Build_Wall_FrontB
+                || Obj.type == ObjType.Wor_Build_Wall_Back
+                || Obj.type == ObjType.Wor_Build_Wall_Side_Left
+                || Obj.type == ObjType.Wor_Build_Wall_Side_Right
+                || Obj.type == ObjType.Wor_Build_Door_Shut
+                || Obj.type == ObjType.Wor_Build_Door_Open
+                //building interior objs
+                || Obj.type == ObjType.Wor_Bookcase
+                || Obj.type == ObjType.Wor_Shelf
+                || Obj.type == ObjType.Wor_Stove
+                || Obj.type == ObjType.Wor_Sink
+                || Obj.type == ObjType.Wor_TableSingle
+                || Obj.type == ObjType.Wor_TableDoubleLeft
+                || Obj.type == ObjType.Wor_TableDoubleRight
+                || Obj.type == ObjType.Wor_Chair
+                || Obj.type == ObjType.Wor_Bed
+                )
+            {
+                Functions_GameObject.Kill(Obj, true, true);
+            }
+
+
+
+
+
+
+
+
+
+            else
+            {   //call all lower levels of destruction on obj
+                Cut(Obj);
+            }
+        }
+
+        //level 3 caused by: explosions, bolts
+        public static void Explode(GameObject Obj)
         {
-            //posts spawn groundfires upon explosion
-            Functions_Projectile.Spawn(
-                ProjectileType.GroundFire,
-                Post.compSprite.position.X,
-                Post.compSprite.position.Y - 3,
-                Direction.None);
-            Functions_GameObject.Kill(Post, true, true);
+            
+            #region Bush
+
+            if (Obj.type == ObjType.Wor_Bush) { Burn(Obj); }
+
+            #endregion
+
+
+            #region Trees - unburnt and burnt
+
+            else if (Obj.type == ObjType.Wor_Tree
+                || Obj.type == ObjType.Wor_Tree_Burnt)
+            {
+                Assets.Play(Assets.sfxShatter);
+                //switch to tree stump
+                Functions_GameObject.SetType(Obj, ObjType.Wor_Tree_Stump);
+                //rarely spawn loot
+                if (Functions_Random.Int(0, 101) > 80)
+                { Functions_Loot.SpawnLoot(Obj.compSprite.position); }
+                //pop the bushy/not bushy top part
+                Functions_Particle.Spawn(
+                    ParticleType.Attention,
+                    Obj.compSprite.position.X,
+                    Obj.compSprite.position.Y - 2);
+
+                if (Obj.type == ObjType.Wor_Tree)
+                {   //pop leaves in circular pattern toward top
+                    Functions_Particle.Spawn_Explosion(
+                        ParticleType.LeafGreen,
+                        Obj.compSprite.position.X + 2,
+                        Obj.compSprite.position.Y - 4, true);
+                }
+                else
+                {   //pop debris in random dir from trunk
+                    Functions_Particle.Spawn_Explosion(
+                        ParticleType.LeafGreen,
+                        Obj.compSprite.position.X + 2,
+                        Obj.compSprite.position.Y + 0, false);
+                }
+                //spawn groundfire upon explosion
+                Functions_Projectile.Spawn(
+                    ProjectileType.GroundFire,
+                    Obj.compSprite.position.X,
+                    Obj.compSprite.position.Y - 3,
+                    Direction.None);
+            }
+
+            #endregion
+
+
+            #region Posts
+
+            else if (//burned and unburned
+                Obj.type == ObjType.Wor_Post_Vertical_Right
+                || Obj.type == ObjType.Wor_Post_Corner_Right
+                || Obj.type == ObjType.Wor_Post_Horizontal
+                || Obj.type == ObjType.Wor_Post_Corner_Left
+                || Obj.type == ObjType.Wor_Post_Vertical_Left
+
+                || Obj.type == ObjType.Wor_PostBurned_Corner_Left
+                || Obj.type == ObjType.Wor_PostBurned_Corner_Right
+                || Obj.type == ObjType.Wor_PostBurned_Horizontal
+                || Obj.type == ObjType.Wor_PostBurned_Vertical_Left
+                || Obj.type == ObjType.Wor_PostBurned_Vertical_Right
+                )
+            {   //spawn groundfires upon explosion
+                Functions_Projectile.Spawn(
+                    ProjectileType.GroundFire,
+                    Obj.compSprite.position.X,
+                    Obj.compSprite.position.Y - 3,
+                    Direction.None);
+                Destroy(Obj);
+            }
+
+            #endregion
+
+            
+            else
+            {   //call all lower levels of destruction on obj
+                Destroy(Obj);
+            }
         }
 
 
 
-        
 
 
 
 
 
+        //BURNING STATUS caused by: ground fire, fireball
+        public static void Burn(GameObject Obj)
+        {
+
+            #region Grass
+
+            if (Obj.type == ObjType.Wor_Grass_Tall)
+            {   //spread the fire 
+                Functions_Projectile.Spawn(
+                    ProjectileType.GroundFire,
+                    Obj.compSprite.position.X,
+                    Obj.compSprite.position.Y - 3,
+                    Direction.None);
+                Destroy(Obj); //destroy grass as normal
+            }
+
+            #endregion
 
 
+            #region Bush
+
+            else if (Obj.type == ObjType.Wor_Bush)
+            {   //spread the fire 
+                Functions_Projectile.Spawn(
+                    ProjectileType.GroundFire,
+                    Obj.compSprite.position.X,
+                    Obj.compSprite.position.Y - 3,
+                    Direction.None);
+                Assets.Play(Assets.sfxLightFire);
+                Destroy(Obj); //destroy bush as normal
+            }
+
+            #endregion
 
 
+            #region Posts
 
-        //world doors (not dungeon doors)
+            else if (
+                Obj.type == ObjType.Wor_Post_Vertical_Right
+                || Obj.type == ObjType.Wor_Post_Corner_Right
+                || Obj.type == ObjType.Wor_Post_Horizontal
+                || Obj.type == ObjType.Wor_Post_Corner_Left
+                || Obj.type == ObjType.Wor_Post_Vertical_Left
+                )
+            {   //switch to burned post
+                if (Obj.type == ObjType.Wor_Post_Vertical_Right)
+                { Functions_GameObject.SetType(Obj, ObjType.Wor_PostBurned_Vertical_Right); }
+                else if (Obj.type == ObjType.Wor_Post_Corner_Right)
+                { Functions_GameObject.SetType(Obj, ObjType.Wor_PostBurned_Corner_Right); }
+                else if (Obj.type == ObjType.Wor_Post_Horizontal)
+                { Functions_GameObject.SetType(Obj, ObjType.Wor_PostBurned_Horizontal); }
+                else if (Obj.type == ObjType.Wor_Post_Corner_Left)
+                { Functions_GameObject.SetType(Obj, ObjType.Wor_PostBurned_Corner_Left); }
+                else if (Obj.type == ObjType.Wor_Post_Vertical_Left)
+                { Functions_GameObject.SetType(Obj, ObjType.Wor_PostBurned_Vertical_Left); }
 
-        public static void OpenBuildingDoor(GameObject Door)
-        {   //pop attention particle
-            Functions_Particle.Spawn(
-                ParticleType.Attention,
-                Door.compSprite.position.X,
-                Door.compSprite.position.Y);
-            //switch to open door
-            Functions_GameObject.SetType(Door, ObjType.Wor_Build_Door_Open);
-            //play an unlocking sound effect
-            Assets.Play(Assets.sfxDoorOpen); //could be better
+                //spread the fire 
+                Functions_Projectile.Spawn(
+                    ProjectileType.GroundFire,
+                    Obj.compSprite.position.X,
+                    Obj.compSprite.position.Y - 3,
+                    Direction.None);
+                Assets.Play(Assets.sfxLightFire);
+            }
+
+            #endregion
+
+
+            #region Tree
+
+            else if (Obj.type == ObjType.Wor_Tree)
+            {   //switch to burned tree
+                Functions_GameObject.SetType(Obj, ObjType.Wor_Tree_Burning);
+                //place an initial fire at bottom of tree
+                Functions_Particle.Spawn(ParticleType.Fire,
+                    Obj.compSprite.position.X,
+                    Obj.compSprite.position.Y + 16);
+            }
+
+            #endregion
+
+
+            #region Floor Torch
+
+            else if (Obj.type == ObjType.Dungeon_TorchUnlit)
+            {
+                Functions_GameObject_Dungeon.LightTorch(Obj);
+            }
+
+            #endregion
+
+
+        }
+
+        //FROZEN STATUS caused by: iceball
+        public static void Freeze(GameObject Obj)
+        {
+
         }
 
 
@@ -202,7 +497,11 @@ namespace DungeonRun
 
 
 
-        //roofs
+
+
+
+
+        //house roof methods
 
         public static void HideRoofs()
         {   //for over active roomObjs, hide any roof obj found
@@ -255,12 +554,11 @@ namespace DungeonRun
             Functions_GameObject.SetType(Roof, ObjType.Wor_Build_Roof_Collapsing);
         }
 
+        
 
 
 
-
-
-        //signs
+        //hero interaction rec methods
 
         public static void ReadSign(GameObject Sign)
         {
@@ -365,8 +663,21 @@ namespace DungeonRun
             }
         }
 
+        public static void OpenHouseDoor(GameObject Obj)
+        {
+            //pop attention particle
+            Functions_Particle.Spawn(
+                ParticleType.Attention,
+                Obj.compSprite.position.X,
+                Obj.compSprite.position.Y);
+            //switch to open door
+            Functions_GameObject.SetType(Obj, ObjType.Wor_Build_Door_Open);
+            //play an unlocking sound effect
+            Assets.Play(Assets.sfxDoorOpen); //could be better
+        }
 
-       
+
+
 
 
     }

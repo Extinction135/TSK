@@ -198,8 +198,11 @@ namespace DungeonRun
 
                 if (Pro.type == ProjectileType.Arrow
                     || Pro.type == ProjectileType.Bat)
-                {   //arrows trigger common obj interactions
-                    HandleCommon(RoomObj, Pro.compMove.direction);
+                {
+                    //arrows push
+                    RoomObj.compMove.direction = Pro.compMove.direction;
+                    //power level 1
+                    Functions_GameObject_World.Cut(RoomObj);
                     //arrows die upon blocking collision
                     Functions_Projectile.Kill(Pro);
                 }
@@ -222,9 +225,9 @@ namespace DungeonRun
                 else if (Pro.type == ProjectileType.Explosion)
                 {
                     if (Pro.lifeCounter == 2) //perform these interactions only once
-                    {
-                        //explosions call power level 2 destruction routines
-                        BlowUp(RoomObj, Pro);
+                    {   //explosions call power level 2 destruction routines
+                        RoomObj.compMove.direction = Pro.compMove.direction;
+                        Functions_GameObject_World.Explode(RoomObj);
                     }
                 }
 
@@ -234,7 +237,7 @@ namespace DungeonRun
                 #region Fireball
 
                 else if (Pro.type == ProjectileType.Fireball)
-                {   //fireball becomes explosion upon death
+                {   //fireball becomes explosion upon collision/death
                     Functions_Projectile.Kill(Pro);
                 }
 
@@ -256,9 +259,9 @@ namespace DungeonRun
                             Pro.compSprite.position.Y + 4);
                         Assets.Play(RoomObj.sfx.hit);
                     }
-                    else if (Pro.lifeCounter == 4)
-                    {   //these interactions happen mid-swing
-                        HandleCommon(RoomObj, Pro.compMove.direction);
+                    else if (Pro.lifeCounter == 4) //mid-swing
+                    {   
+                        Functions_GameObject_World.Cut(RoomObj); //power level 1
                     }
                 }
 
@@ -269,14 +272,8 @@ namespace DungeonRun
 
                 else if (Pro.type == ProjectileType.Bite)
                 {
-                    //center sparkle to bite
-                    Functions_Particle.Spawn(ParticleType.Sparkle,
-                        Pro.compSprite.position.X + 4,
-                        Pro.compSprite.position.Y + 4);
-                    //play the hit objects hit soundfx
-                    Assets.Play(RoomObj.sfx.hit);
-                    //possibly destroy hit object
-                    HandleCommon(RoomObj, Pro.compMove.direction);
+                    //power level 1
+                    Functions_GameObject_World.Cut(RoomObj);
                     //end projectile's life
                     Pro.lifeCounter = Pro.lifetime;
                 }
@@ -288,40 +285,17 @@ namespace DungeonRun
 
                 else if (Pro.type == ProjectileType.Boomerang)
                 {
-
-                    //kill roomObj enemies, just like a sword would
-                    if (RoomObj.group == ObjGroup.Enemy)
-                    {
-                        HandleCommon(RoomObj, Pro.compMove.direction);
-                    }
-
-
-                    #region Activate a limited set of RoomObjs
-
-                    //activate levers
-                    if (RoomObj.type == ObjType.Dungeon_LeverOff
-                        || RoomObj.type == ObjType.Dungeon_LeverOn)
-                    { Functions_GameObject_Dungeon.ActivateLeverObjects(); }
-                    //activate explosive barrels
-                    else if (RoomObj.type == ObjType.Dungeon_Barrel)
-                    {
-                        RoomObj.compMove.direction = Pro.compMove.direction;
-                        Functions_GameObject_Dungeon.HitBarrel(RoomObj);
-                    }
-                    //activate switch block buttons
-                    else if (RoomObj.type == ObjType.Dungeon_SwitchBlockBtn)
-                    {
-                        Functions_GameObject_Dungeon.FlipSwitchBlocks(RoomObj);
-                    }
-                    //destroy bushes
-                    else if (RoomObj.type == ObjType.Wor_Bush)
-                    {
-                        HandleCommon(RoomObj, Pro.compMove.direction);
-                    }
-
-                    #endregion
-
-
+                    //cue specific sfx
+                    if (RoomObj.group == ObjGroup.Wall)
+                    { Assets.Play(Assets.sfxTapMetallic); }
+                    else if (RoomObj.group == ObjGroup.Door)
+                    { Assets.Play(Assets.sfxTapHollow); }
+                    else if (RoomObj.type == ObjType.Dungeon_DoorBombable)
+                    { Assets.Play(Assets.sfxTapHollow); }
+                    
+                    //bounce off all else
+                    Functions_GameObject_World.Bounce(RoomObj);
+                    
                     //if this is the initial hit, set the boomerang
                     //into a return state, pop an attention particle
                     if (Pro.lifeCounter < Pro.interactiveFrame)
@@ -339,86 +313,63 @@ namespace DungeonRun
                         Functions_Direction.GetOppositeCardinal(
                             Pro.compSprite.position,
                             RoomObj.compSprite.position), 4.0f);
-
-                    //determine what type of soundfx to play
-                    if (RoomObj.group == ObjGroup.Wall)
-                    { Assets.Play(Assets.sfxTapMetallic); }
-                    else if (RoomObj.type == ObjType.Dungeon_DoorBombable)
-                    { Assets.Play(Assets.sfxTapHollow); }
-                    else if (RoomObj.type == ObjType.Dungeon_DoorOpen)
-                    { } //literally nothing
-                    else if (RoomObj.group == ObjGroup.Door)
-                    { Assets.Play(Assets.sfxTapMetallic); }
-                    else //play default boomerang hit sfx
-                    { Assets.Play(Assets.sfxActorLand); }
-
                 }
 
                 #endregion
-
+                
 
                 #region GroundFires
 
                 else if (Pro.type == ProjectileType.GroundFire)
                 {   //blocking objs only here, btw
+                    
+                    
 
-                    //groundfires can burn trees
-                    if (RoomObj.type == ObjType.Wor_Tree)
-                    {
-                        Functions_GameObject_World.BurnTree(RoomObj);
-                    }
-                    //groundfires can spread across bushes
-                    else if (RoomObj.type == ObjType.Wor_Bush)
+
+
+                    //ground fires spread to some objects
+                    if (
+                        //burn bushes
+                        RoomObj.type == ObjType.Wor_Bush
+
+                        //burn posts
+                        || RoomObj.type == ObjType.Wor_Post_Corner_Left 
+                        || RoomObj.type == ObjType.Wor_Post_Corner_Right 
+                        || RoomObj.type == ObjType.Wor_Post_Horizontal 
+                        || RoomObj.type == ObjType.Wor_Post_Vertical_Left 
+                        || RoomObj.type == ObjType.Wor_Post_Vertical_Right
+
+                        //burn trees
+                        || RoomObj.type == ObjType.Wor_Tree
+
+                        //light torches
+                        || RoomObj.type == ObjType.Dungeon_TorchUnlit
+                        )
                     {
                         if (Pro.compCollision.rec.Contains(
                                 RoomObj.compSprite.position.X,
                                 RoomObj.compSprite.position.Y))
                         {   //check against sprite center pos
-                            Functions_GameObject_World.BurnBush(RoomObj);
+                            Functions_GameObject_World.Burn(RoomObj);
                         }   //this prevents immediate fire spread across verticals
                     }
-                    //groundfires light explosive barrels on fire
+
+                    //groundfires light explosive barrels too
                     else if (RoomObj.type == ObjType.Dungeon_Barrel)
                     {   //dont push the barrel in any direction
                         RoomObj.compMove.direction = Direction.None;
                         Functions_GameObject_Dungeon.HitBarrel(RoomObj);
                     }
-                    //groundfires light unlit torches on fire (of course!)
-                    else if (RoomObj.type == ObjType.Dungeon_TorchUnlit)
-                    {
-                        Functions_GameObject.SetType(RoomObj, ObjType.Dungeon_TorchLit);
-                        Assets.Play(Assets.sfxLightFire);
-                    }
-                    
-                    //groundfires burn wooden posts
-                    else if (
-                        RoomObj.type == ObjType.Wor_Post_Corner_Left ||
-                        RoomObj.type == ObjType.Wor_Post_Corner_Right ||
-                        RoomObj.type == ObjType.Wor_Post_Horizontal ||
-                        RoomObj.type == ObjType.Wor_Post_Vertical_Left ||
-                        RoomObj.type == ObjType.Wor_Post_Vertical_Right
-                        )
-                    {
-                        //handle vertical posts differently, due to hitbox
-                        if(RoomObj.type == ObjType.Wor_Post_Vertical_Left ||
-                            RoomObj.type == ObjType.Wor_Post_Vertical_Right)
-                        {
-                            if (Pro.compCollision.rec.Contains(
-                                RoomObj.compSprite.position.X,
-                                RoomObj.compSprite.position.Y))
-                            {   //check against sprite center pos
-                                Functions_GameObject_World.BurnPost(RoomObj);
-                            }   //this prevents immediate fire spread across verticals
-                        }
-                        else
-                        {   //other posts burn without additional overlap check
-                            Functions_GameObject_World.BurnPost(RoomObj);
-                        }
+
+                    else
+                    {   //all other objs/enemies get a simple bounce
+                        RoomObj.compMove.direction = Direction.None;
+                        Functions_GameObject_World.Bounce(RoomObj);
                     }
                 }
 
                 #endregion
-
+                
 
                 #region Lightning Bolt
 
@@ -426,7 +377,8 @@ namespace DungeonRun
                 {
                     if (Pro.lifeCounter == 2) //perform these interactions only once
                     {   //bolts call power level 2 destruction routines
-                        BlowUp(RoomObj, Pro);
+                        RoomObj.compMove.direction = Pro.compMove.direction;
+                        Functions_GameObject_World.Explode(RoomObj);
                     }
                 }
 
@@ -436,8 +388,9 @@ namespace DungeonRun
                 #region Thrown Objects
 
                 else if (Pro.type == ProjectileType.ThrownObject)
-                {   //handle common interactions caused by thrown objs
-                    HandleCommon(RoomObj, Pro.compMove.direction);
+                {   
+                    RoomObj.compMove.direction = Pro.compMove.direction;
+                    Functions_GameObject_World.Cut(RoomObj);
                     //thrown objs die upon blocking collision
                     Functions_Projectile.Kill(Pro);
                 }
@@ -457,8 +410,8 @@ namespace DungeonRun
                             Functions_GameObject.SetType(RoomObj, ObjType.Wor_Post_Hammer_Down);
                         }
                         else
-                        {   //power level 2 routines on all other objs
-                            BlowUp(RoomObj, Pro);
+                        {   //tries to destroy any other obj
+                            Functions_GameObject_World.Destroy(RoomObj);
                         }
                     }
                 }
@@ -486,7 +439,7 @@ namespace DungeonRun
 
                 //type check next
 
-                #region Roofs - collapse from explosions + bolts
+                #region Roofs - collapse from explosions
 
                 if (
                     RoomObj.type == ObjType.Wor_Build_Roof_Bottom
@@ -494,8 +447,7 @@ namespace DungeonRun
                     || RoomObj.type == ObjType.Wor_Build_Roof_Chimney
                     )
                 {
-                    if (Pro.type == ProjectileType.Explosion
-                        || Pro.type == ProjectileType.LightningBolt)
+                    if (Pro.type == ProjectileType.Explosion)
                     {   //begin cascading roof collapse
                         Functions_GameObject_World.CollapseRoof(RoomObj);
                     }
@@ -589,22 +541,17 @@ namespace DungeonRun
 
                 else if (RoomObj.type == ObjType.Wor_Grass_Tall)
                 {
-                    if ( //basic destruction
-                        Pro.type == ProjectileType.Sword
-                        )
-                    {
-                        Functions_GameObject_World.DestroyGrass(RoomObj);
+                    if (Pro.type == ProjectileType.Sword)
+                    {   //cutting
+                        Functions_GameObject_World.Destroy(RoomObj);
                     }
-                    else if ( //advanced destruction
-                        Pro.type == ProjectileType.Explosion
-                        || Pro.type == ProjectileType.GroundFire
-                        )
-                    {
+                    else if (Pro.type == ProjectileType.GroundFire)
+                    {   //burning
                         if (Pro.compCollision.rec.Contains(
                                 RoomObj.compSprite.position.X,
                                 RoomObj.compSprite.position.Y))
                         {   //check against sprite center pos
-                            Functions_GameObject_World.BurnGrass(RoomObj);
+                            Functions_GameObject_World.Burn(RoomObj);
                         }   //this prevents immediate fire spread across verticals
                     }
                 }
@@ -618,12 +565,9 @@ namespace DungeonRun
                 {
                     if (
                         Pro.type == ProjectileType.Explosion ||
-                        Pro.type == ProjectileType.LightningBolt ||
                         Pro.type == ProjectileType.Hammer
                         )
-                    {
-                        Functions_GameObject.Kill(RoomObj, false, true);
-                    }
+                    { Functions_GameObject.Kill(RoomObj, false, true); }
                 }
 
                 #endregion
@@ -1214,6 +1158,7 @@ namespace DungeonRun
 
             #endregion
 
+
             #region Dungeon Exits
 
             else if (
@@ -1266,7 +1211,7 @@ namespace DungeonRun
                 else if (Object.type == ObjType.Wor_SeekerExploder)
                 {
                     Object.lifeCounter = Object.lifetime; //explode this frame
-                    HandleCommon(Object, Direction.None);
+                    Functions_GameObject_World.Bounce(Object);
                 }
 
                 #endregion
@@ -1278,7 +1223,8 @@ namespace DungeonRun
                 {   //bounce spike blocks off blocking roomObjs
                     Functions_GameObject_Dungeon.BounceSpikeBlock(Object); //rev direction
                     //spikeblocks trigger common obj interactions
-                    HandleCommon(RoomObj, Object.compMove.direction);
+                    RoomObj.compMove.direction = Object.compMove.direction;
+                    Functions_GameObject_World.Destroy(RoomObj); //destroys most things
                 }
 
                 #endregion
@@ -1416,18 +1362,11 @@ namespace DungeonRun
                 {
                     if (Object.compMove.grounded)
                     {
-                        if (Object.type == ObjType.Dungeon_Statue)
-                        {   //destroy boss statues and pop loot
-                            Functions_GameObject.Kill(Object, true, true);
-                        }
-                        else
-                        {   //push obj in opposite direction and destroy it
-                            HandleCommon(Object,
-                                Functions_Direction.GetOppositeCardinal(
+                        Object.compMove.direction =
+                            Functions_Direction.GetOppositeCardinal(
                                     Object.compMove.position,
-                                    RoomObj.compMove.position)
-                                );
-                        }
+                                    RoomObj.compMove.position);
+                        Functions_GameObject_World.Destroy(Object);
                     }
                 }
 
@@ -1519,249 +1458,6 @@ namespace DungeonRun
                 
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //these methods need to be consolidated into one method, and a power level needs
-        //to exist inside of projectile, so we can check pro.powerLevel, and destroy the
-        //roomObj properly
-        
-        //power level 1 obj destruction
-
-        public static void HandleCommon(GameObject RoomObj, Direction HitDirection)
-        {
-            //roomObj is blocking, interacted with arrow, explosion, sword/shovel, thrown bush/pot, etc..
-            //hitDirection is used to push some objects in the direction they were hit
-
-
-            #region World Objects
-
-            if (RoomObj.type == ObjType.Wor_Pot)
-            {
-                RoomObj.compMove.direction = HitDirection;
-                Functions_GameObject.Kill(RoomObj, true, true);
-            }
-            else if (RoomObj.type == ObjType.Wor_Bush)
-            {
-                RoomObj.compMove.direction = HitDirection;
-                Functions_GameObject_World.DestroyBush(RoomObj);
-            }
-            else if (RoomObj.type == ObjType.Wor_Build_Door_Shut)
-            {
-                Functions_GameObject_World.OpenBuildingDoor(RoomObj);
-            }
-
-            //burned posts
-            else if (
-                RoomObj.type == ObjType.Wor_PostBurned_Corner_Left ||
-                RoomObj.type == ObjType.Wor_PostBurned_Corner_Right ||
-                RoomObj.type == ObjType.Wor_PostBurned_Horizontal ||
-                RoomObj.type == ObjType.Wor_PostBurned_Vertical_Left ||
-                RoomObj.type == ObjType.Wor_PostBurned_Vertical_Right
-                )
-            {
-                Functions_GameObject.Kill(RoomObj, true, true);
-            }
-            //boat barrels 
-            else if (RoomObj.type == ObjType.Wor_Boat_Barrel)
-            {
-                Functions_GameObject.Kill(RoomObj, true, true);
-            }
-
-            #endregion
-
-
-            #region World Enemies
-
-            else if (RoomObj.type == ObjType.Wor_Enemy_Turtle
-                || RoomObj.type == ObjType.Wor_Enemy_Crab
-                || RoomObj.type == ObjType.Wor_Enemy_Rat)
-            {
-                Functions_Particle.Spawn(ParticleType.Attention, RoomObj);
-                Functions_GameObject.Kill(RoomObj, true, false);
-            }
-            else if (RoomObj.type == ObjType.Wor_SeekerExploder)
-            {   //inherit inertia from hit
-                RoomObj.compMove.direction = HitDirection;
-                //become an explosion
-                Functions_GameObject.SetType(RoomObj, ObjType.ExplodingObject);
-                Functions_Movement.Push(RoomObj.compMove, RoomObj.compMove.direction, 6.0f);
-            }
-
-            #endregion
-
-
-            #region Dungeon Objects
-
-            else if (RoomObj.type == ObjType.Dungeon_Pot)
-            {
-                RoomObj.compMove.direction = HitDirection;
-                Functions_GameObject.Kill(RoomObj, true, true);
-            }
-            else if (RoomObj.type == ObjType.Dungeon_Barrel)
-            {
-                RoomObj.compMove.direction = HitDirection;
-                Functions_GameObject_Dungeon.HitBarrel(RoomObj);
-            }
-            else if (RoomObj.type == ObjType.Dungeon_SwitchBlockBtn)
-            {
-                Functions_GameObject_Dungeon.FlipSwitchBlocks(RoomObj);
-            }
-            else if (RoomObj.type == ObjType.Dungeon_LeverOff
-                || RoomObj.type == ObjType.Dungeon_LeverOn)
-            {
-                Functions_GameObject_Dungeon.ActivateLeverObjects();
-            }
-
-            #endregion
-
-        }
-
-
-        //power level 2 obj destruction
-
-        public static void BlowUp(GameObject Obj, Projectile Pro)
-        {
-            //note: these are blocking objects ONLY
-            //note: only explosion and lightning bolt projectiles call this method
-            //they are the only power level 2 projectiles
-            //and now also hammers
-
-
-            #region Dungeon Objs - special cases
-
-            if (Obj.type == ObjType.Dungeon_DoorBombable)
-            {   //collapse doors
-                Functions_GameObject_Dungeon.CollapseDungeonDoor(Obj, Pro.compCollision);
-            }
-            else if (Obj.type == ObjType.Dungeon_WallStraight)
-            {   //'crack' normal walls
-                Functions_GameObject.SetType(Obj,
-                    ObjType.Dungeon_WallStraightCracked);
-                Functions_Particle.Spawn(ParticleType.Blast,
-                    Obj.compSprite.position.X,
-                    Obj.compSprite.position.Y);
-                Assets.Play(Assets.sfxShatter);
-            }
-
-            /*
-            else if (Obj.type == ObjType.Dungeon_TorchUnlit)
-            {   //light torches on fire
-                Functions_GameObject_Dungeon.LightTorch(Obj);
-            }
-            */
-
-            #endregion
-
-
-            #region World Objs - special cases
-
-            else if (Obj.type == ObjType.Wor_Bush)
-            {   //destroy the bush
-                Functions_GameObject_World.DestroyBush(Obj);
-                //set a ground fire ON the stump sprite
-                Functions_Projectile.Spawn(
-                    ProjectileType.GroundFire,
-                    Obj.compSprite.position.X,
-                    Obj.compSprite.position.Y - 4,
-                    Direction.None);
-            }
-            else if (Obj.type == ObjType.Wor_Tree || Obj.type == ObjType.Wor_Tree_Burning)
-            {   //blow up tree, showing leaf explosion
-                Functions_GameObject_World.BlowUpTree(Obj, true);
-            }
-            else if (Obj.type == ObjType.Wor_Tree_Burnt)
-            {   //blow up tree, no leaf explosion
-                Functions_GameObject_World.BlowUpTree(Obj, false);
-            }
-            else if (
-                //posts + burned posts
-                Obj.type == ObjType.Wor_PostBurned_Corner_Left
-                || Obj.type == ObjType.Wor_PostBurned_Corner_Right
-                || Obj.type == ObjType.Wor_PostBurned_Horizontal
-                || Obj.type == ObjType.Wor_PostBurned_Vertical_Left
-                || Obj.type == ObjType.Wor_PostBurned_Vertical_Right
-                || Obj.type == ObjType.Wor_Post_Corner_Left
-                || Obj.type == ObjType.Wor_Post_Corner_Right
-                || Obj.type == ObjType.Wor_Post_Horizontal
-                || Obj.type == ObjType.Wor_Post_Vertical_Left
-                || Obj.type == ObjType.Wor_Post_Vertical_Right
-                )
-            {
-                Functions_GameObject_World.BlowUpPost(Obj);
-            }
-
-
-
-            #endregion
-
-
-            #region Objs - General cases
-
-            else if (
-
-                //dungeon objs
-
-                //limited set for now
-                Obj.type == ObjType.Dungeon_Statue
-                || Obj.type == ObjType.Dungeon_Signpost
-
-                //world objs
-
-                //building objs
-                || Obj.type == ObjType.Wor_Build_Wall_FrontA
-                || Obj.type == ObjType.Wor_Build_Wall_FrontB
-                || Obj.type == ObjType.Wor_Build_Wall_Back
-                || Obj.type == ObjType.Wor_Build_Wall_Side_Left
-                || Obj.type == ObjType.Wor_Build_Wall_Side_Right
-                || Obj.type == ObjType.Wor_Build_Door_Shut
-                || Obj.type == ObjType.Wor_Build_Door_Open
-                //building interior objs
-                || Obj.type == ObjType.Wor_Bookcase
-                || Obj.type == ObjType.Wor_Shelf
-                || Obj.type == ObjType.Wor_Stove
-                || Obj.type == ObjType.Wor_Sink
-                || Obj.type == ObjType.Wor_TableSingle
-                || Obj.type == ObjType.Wor_TableDoubleLeft
-                || Obj.type == ObjType.Wor_TableDoubleRight
-                || Obj.type == ObjType.Wor_Chair
-                || Obj.type == ObjType.Wor_Bed
-                )
-            {
-                Functions_GameObject.Kill(Obj, true, true);
-            }
-
-            #endregion
-
-
-            else
-            {   //trigger common obj interactions too
-                HandleCommon(Obj, //get direction towards roomObj from pro/explosion
-                    Functions_Direction.GetOppositeCardinal(
-                        Obj.compSprite.position,
-                        Pro.compSprite.position)
-                );
-            }
-        }
-
-
-
-        
-
-
-
 
 
 
