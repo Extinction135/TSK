@@ -58,24 +58,13 @@ Today:
 
 
 
+Fire Rod
 
+swapping fireball magic with fire rod, because it's all
+about lttp. added fire rod ui item, tested and working.
 
-
-
-
-Destruction++
-
-rewrote how destruction is handled into various power levels,
-defined in obj_world class. this took handleCommon() and blowUp()
-and turned them into variouse methods that handle how objects are
-transformed upon interaction collision. this actually simplified
-many systems, and deduplicated some code. now, to pick out the bugs
-and get it all working right again.
-
-Notes
-
--fireballs can now cascade spread across trees.
--ground fires should now kill mob enemies.
+projectile for rod in hand added to game. tested,
+working great. sleep now.
 
 
 
@@ -88,31 +77,13 @@ Notes
 
 
 
-TEST+++
 
-we are testing destroying objects with projectiles and other objs.
-boomerang
-sword, shovel, arrow, bite, thrown,
-hammer, spikeblock, floorspikes
-explosions, bolts
 
 bolts should not create explosions.
 fix lightning magic now. only explosions create
 power level 2 destruction events.
 
 fires should kill mob enemies too.
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

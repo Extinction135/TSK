@@ -152,6 +152,13 @@ namespace DungeonRun
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Item_Bow;
                 MenuItem.price = 50;
             }
+            else if (Type == MenuItemType.ItemFireRod)
+            {
+                MenuItem.name = "FireRod";
+                MenuItem.description = "shoots a fireball. \ncosts 1 magic.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Item_Firerod;
+                MenuItem.price = 99;
+            }
 
             #endregion
 
@@ -206,13 +213,6 @@ namespace DungeonRun
 
             #region Magic medallion menuItems
 
-            else if (Type == MenuItemType.MagicFireball)
-            {
-                MenuItem.name = "Fireball Magic";
-                MenuItem.description = "shoots a fireball. \ncosts 1 magic.";
-                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Magic_Fireball;
-                MenuItem.price = 99;
-            }
             else if (Type == MenuItemType.MagicBombos)
             {
                 MenuItem.name = "Bombos Magic";

@@ -182,6 +182,7 @@ namespace DungeonRun
                         currentlySelected.type == MenuItemType.ItemBomb
                         || currentlySelected.type == MenuItemType.ItemBoomerang
                         || currentlySelected.type == MenuItemType.ItemBow
+                        || currentlySelected.type == MenuItemType.ItemFireRod
                         //bottles
                         || currentlySelected.type == MenuItemType.BottleEmpty
                         || currentlySelected.type == MenuItemType.BottleBlob
@@ -190,7 +191,6 @@ namespace DungeonRun
                         || currentlySelected.type == MenuItemType.BottleHealth
                         || currentlySelected.type == MenuItemType.BottleMagic
                         //magics
-                        || currentlySelected.type == MenuItemType.MagicFireball
                         || currentlySelected.type == MenuItemType.MagicBombos
                         || currentlySelected.type == MenuItemType.MagicBolt
                         || currentlySelected.type == MenuItemType.MagicBat

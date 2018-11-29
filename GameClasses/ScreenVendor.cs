@@ -371,11 +371,11 @@ namespace DungeonRun
 
                 #region Magic Medallions
 
-                else if (Item.type == MenuItemType.MagicFireball)
+                else if (Item.type == MenuItemType.ItemFireRod)
                 {
-                    if (!PlayerData.current.magicFireball)
+                    if (!PlayerData.current.itemFirerod)
                     {
-                        PlayerData.current.magicFireball = true;
+                        PlayerData.current.itemFirerod = true;
                         CompleteSale(Item);
                     }
                     else { DialogAlreadyPurchased(); }

@@ -149,25 +149,26 @@ namespace DungeonRun
             Functions_MenuItem.SetType(PlayerData.current.bottleB, menuItems[5]);
             Functions_MenuItem.SetType(PlayerData.current.bottleC, menuItems[6]);
 
-            //7 - hookshot
+            //7 - firerod
+            if (PlayerData.current.itemFirerod)
+            { Functions_MenuItem.SetType(MenuItemType.ItemFireRod, menuItems[7]); }
             //8 - ?
             //9 - ?
             //10 - ?
 
             //Set the magic medallion items - 11, 12, 13
-            if (PlayerData.current.magicFireball)
-            { Functions_MenuItem.SetType(MenuItemType.MagicFireball, menuItems[11]); }
+
             if (PlayerData.current.magicBombos)
             { Functions_MenuItem.SetType(MenuItemType.MagicBombos, menuItems[12]); }
             if (PlayerData.current.magicBolt)
             { Functions_MenuItem.SetType(MenuItemType.MagicBolt, menuItems[13]); }
 
-            //14 - mirror shield
-            //15 - cape
-            //16 - firerod
-            //17 - icerod
-            //18 - cane1
-            //19 - cane2
+            //14 - 
+            //15 - 
+            //16 - 
+            //17 - 
+            //18 - 
+            //19 - 
 
             //Enemy Item - 20
             Functions_MenuItem.SetType(PlayerData.current.enemyItem, menuItems[20]);

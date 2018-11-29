@@ -422,17 +422,20 @@ namespace DungeonRun
             PlayerData.current.bottleA = MenuItemType.BottleHealth;
             PlayerData.current.bottleB = MenuItemType.BottleMagic;
             PlayerData.current.bottleC = MenuItemType.BottleFairy;
+            
             //set items
             PlayerData.current.itemBoomerang = true;
             PlayerData.current.itemBow = true;
+            PlayerData.current.itemFirerod = true;
             //set magic
-            PlayerData.current.magicFireball = true;
             PlayerData.current.magicBombos = true;
             PlayerData.current.magicBolt = true;
+            
             //set weapons
             PlayerData.current.weaponNet = true;
             PlayerData.current.weaponShovel = true;
             PlayerData.current.weaponHammer = true;
+            
             //set armor
             PlayerData.current.armorCape = true;
             //set equipment

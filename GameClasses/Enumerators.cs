@@ -795,6 +795,8 @@ namespace DungeonRun
         LightningBolt,
         Boomerang,
 
+        Firerod,
+
         #endregion
 
 
@@ -960,6 +962,7 @@ namespace DungeonRun
         ItemBoomerang,
         ItemBomb,
         ItemBow,
+        ItemFireRod,
 
         BottleEmpty,
         BottleHealth,
@@ -968,7 +971,7 @@ namespace DungeonRun
         BottleFairy,
         BottleBlob,
         
-        MagicFireball,
+        //MagicFireball,
         MagicBombos,
         MagicBolt,
         MagicBat,

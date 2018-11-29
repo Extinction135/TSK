@@ -148,6 +148,7 @@ namespace DungeonRun
                 //row 2
                 Functions_MenuItem.SetType(MenuItemType.ItemBow, menuItems[5]);
                 Functions_MenuItem.SetType(MenuItemType.ItemArrowPack, menuItems[6]);
+                Functions_MenuItem.SetType(MenuItemType.ItemFireRod, menuItems[7]);
             }
             else if (VendorType == ObjType.Vendor_NPC_Potions)
             {
@@ -157,7 +158,6 @@ namespace DungeonRun
             }
             else if (VendorType == ObjType.Vendor_NPC_Magic)
             {
-                Functions_MenuItem.SetType(MenuItemType.MagicFireball, menuItems[0]);
                 Functions_MenuItem.SetType(MenuItemType.MagicBombos, menuItems[1]);
                 Functions_MenuItem.SetType(MenuItemType.MagicBolt, menuItems[2]);
             }

@@ -236,8 +236,8 @@ namespace DungeonRun
 
         public Boolean itemBoomerang = true;
         public Boolean itemBow = false;
+        public Boolean itemFirerod = false;
 
-        public Boolean magicFireball = false;
         public Boolean magicBombos = false;
         public Boolean magicBolt = false;
 

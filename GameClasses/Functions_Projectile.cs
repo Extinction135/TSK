@@ -222,19 +222,21 @@ namespace DungeonRun
 
                 Functions_Component.Align(pro); //align components
                 pro.compMove.moving = true; //moves
-                pushLines = true;
+                
 
                 if (Type == ProjectileType.Arrow)
                 {
                     Functions_Movement.Push(pro.compMove, Dir, 6.0f);
                     Assets.Play(Assets.sfxArrowShoot);
+                    pushLines = true;
                 }
                 else
-                {
+                {   //no push lines for fireball cast - it comes from a rod
                     Functions_Movement.Push(pro.compMove, Dir, 4.0f);
                     Assets.Play(Assets.sfxFireballCast);
                 }
             }
+
 
             #endregion
 
@@ -414,6 +416,16 @@ namespace DungeonRun
             #endregion
 
 
+            #region Firerod
+
+            else if (Type == ProjectileType.Firerod)
+            {
+                Assets.Play(Assets.sfxActorLand); //generic use sound
+            }
+
+            #endregion
+
+
             #region Bite Projectile
 
             else if (Type == ProjectileType.Bite)
@@ -513,12 +525,13 @@ namespace DungeonRun
             #endregion
 
 
-            #region Sword, Net, Shovel
+            #region Sword, Net, Shovel, Firerod
 
             //sword, net, shovel all track to the HERO'S HAND, based on direction
             else if (Pro.type == ProjectileType.Sword
                 || Pro.type == ProjectileType.Net
                 || Pro.type == ProjectileType.Shovel
+                || Pro.type == ProjectileType.Firerod
                 )
             {
                 if (Pro.compMove.direction == Direction.Down)
@@ -1028,6 +1041,7 @@ namespace DungeonRun
                 Pro.type == ProjectileType.Sword
                 || Pro.type == ProjectileType.Net
                 || Pro.type == ProjectileType.Shovel
+                || Pro.type == ProjectileType.Firerod
                 )
             {   //some projectiles flip based on their direction
                 if (Pro.direction == Direction.Down || Pro.direction == Direction.Left)
@@ -1338,6 +1352,45 @@ namespace DungeonRun
                 Pro.compAnim.currentAnimation = AnimationFrames.Projectile_Net;
                 Pro.compSprite.texture = Assets.entitiesSheet;
                 Pro.sfx.hit = null; Pro.sfx.kill = null;
+            }
+
+            #endregion
+
+
+            #region Firerod
+
+            else if (Type == ProjectileType.Firerod)
+            {
+                Pro.compSprite.zOffset = 16;
+                //set collision rec based on direction
+                if (Pro.direction == Direction.Up)
+                {
+                    Pro.compCollision.offsetX = -4; Pro.compCollision.offsetY = -4;
+                    Pro.compCollision.rec.Width = 10; Pro.compCollision.rec.Height = 15;
+                }
+                else if (Pro.direction == Direction.Down)
+                {
+                    Pro.compCollision.offsetX = -4; Pro.compCollision.offsetY = -5;
+                    Pro.compCollision.rec.Width = 10; Pro.compCollision.rec.Height = 10;
+                }
+                else if (Pro.direction == Direction.Left)
+                {
+                    Pro.compCollision.offsetX = -4; Pro.compCollision.offsetY = -3;
+                    Pro.compCollision.rec.Width = 11; Pro.compCollision.rec.Height = 10;
+                }
+                else //right
+                {
+                    Pro.compCollision.offsetX = -7; Pro.compCollision.offsetY = -3;
+                    Pro.compCollision.rec.Width = 11; Pro.compCollision.rec.Height = 10;
+                }
+
+                Pro.lifetime = 18; //in frames
+                Pro.compAnim.speed = 3; //in frames
+                Pro.compAnim.loop = false;
+                Pro.compMove.moveable = true;
+                Pro.compMove.grounded = false; //is flying, cant fall into pit
+                Pro.compSprite.texture = Assets.entitiesSheet;
+                Pro.compAnim.currentAnimation = AnimationFrames.Projectile_FireRod;
             }
 
             #endregion

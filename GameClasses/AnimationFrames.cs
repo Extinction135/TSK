@@ -581,6 +581,12 @@ namespace DungeonRun
             new Byte4(2, 9, 0, 0), new Byte4(3, 9, 0, 0)
         };
 
+        public static List<Byte4> Projectile_FireRod = new List<Byte4>
+        {
+            new Byte4(0, 13, 0, 0), new Byte4(1, 13, 0, 0),
+            new Byte4(2, 13, 0, 0), new Byte4(3, 13, 0, 0)
+        };
+
         //a bit more complicated for the hammer
         public static List<Byte4> Projectile_Hammer_Down = new List<Byte4>
         { new Byte4(0, 10, 0, 0), new Byte4(1, 10, 0, 0), new Byte4(2, 10, 0, 0) };
@@ -822,6 +828,7 @@ namespace DungeonRun
         public static List<Byte4> Ui_MenuItem_ItemArrowPack = new List<Byte4> { new Byte4(0, 8, 0, 0) };
         public static List<Byte4> Ui_MenuItem_ItemBoomerang = new List<Byte4> { new Byte4(0, 9, 0, 0) };
         public static List<Byte4> Ui_MenuItem_Item_Bow = new List<Byte4> { new Byte4(3, 6, 0, 0) };
+        public static List<Byte4> Ui_MenuItem_Item_Firerod = new List<Byte4> { new Byte4(0, 10, 0, 0) };
 
         public static List<Byte4> Ui_MenuItem_Bottle_Empty = new List<Byte4> { new Byte4(1, 5, 0, 0) };
         public static List<Byte4> Ui_MenuItem_Bottle_Health = new List<Byte4> { new Byte4(1, 6, 0, 0) };
@@ -830,7 +837,7 @@ namespace DungeonRun
         public static List<Byte4> Ui_MenuItem_Bottle_Fairy = new List<Byte4> { new Byte4(1, 9, 0, 0) };
         public static List<Byte4> Ui_MenuItem_Bottle_Blob = new List<Byte4> { new Byte4(1, 10, 0, 0) };
 
-        public static List<Byte4> Ui_MenuItem_Magic_Fireball = new List<Byte4> { new Byte4(2, 5, 0, 0) };
+        //public static List<Byte4> Ui_MenuItem_Magic_Fireball = new List<Byte4> { new Byte4(2, 5, 0, 0) };
         public static List<Byte4> Ui_MenuItem_Magic_Bombos = new List<Byte4> { new Byte4(2, 6, 0, 0) };
         public static List<Byte4> Ui_MenuItem_Magic_Bolt = new List<Byte4> { new Byte4(2, 7, 0, 0) };
         public static List<Byte4> Ui_MenuItem_Magic_Bat = new List<Byte4> { new Byte4(2, 8, 0, 0) };

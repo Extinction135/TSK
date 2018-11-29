@@ -80,20 +80,23 @@ namespace DungeonRun
                 Functions_Projectile.Spawn(ProjectileType.Bow, Actor, Actor.direction);
                 Functions_Actor.SetItemUseState(Actor);
             }
+            else if (Type == MenuItemType.ItemFireRod)
+            {
+                if (Actor == Pool.hero & !CheckMagic(1)) //check if hero has enough
+                { Assets.Play(Assets.sfxError); Actor.lockTotal = 0; return; }
+                //actor shoots a fireball
+                Functions_Projectile.Spawn(ProjectileType.Fireball, Actor, Actor.direction);
+                //actor displays a rod
+                Functions_Projectile.Spawn(ProjectileType.Firerod, Actor, Actor.direction);
+                Functions_Actor.SetItemUseState(Actor);
+            }
 
             #endregion
 
 
             #region Magic
 
-            else if (Type == MenuItemType.MagicFireball)
-            {
-                if (Actor == Pool.hero & !CheckMagic(1)) //check if hero has enough
-                { Assets.Play(Assets.sfxError); Actor.lockTotal = 0; return; }
-                //actor shoots a fireball
-                Functions_Projectile.Spawn(ProjectileType.Fireball, Actor, Actor.direction);
-                Functions_Actor.SetItemUseState(Actor);
-            }
+
             else if (Type == MenuItemType.MagicBombos)
             {
                 if (Actor == Pool.hero & !CheckMagic(5)) //check if hero has enough
