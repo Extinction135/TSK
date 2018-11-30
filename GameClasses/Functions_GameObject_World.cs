@@ -31,6 +31,38 @@ namespace DungeonRun
         {   //Obj.compMove.direction needs to be set by collider
 
 
+
+            //Kill RoomObj Enemies
+            if (Obj.group == ObjGroup.Enemy)
+            {
+
+                #region Seeker Exploders
+
+                if (Obj.type == ObjType.Wor_SeekerExploder)
+                {   //Obj.compMove.direction should be set by colliding pro prior
+                    Functions_GameObject.SetType(Obj, ObjType.ExplodingObject); //explode
+                    Functions_Movement.Push(Obj.compMove, Obj.compMove.direction, 6.0f);
+                    Assets.Play(Assets.sfxActorLand);
+                }
+
+                #endregion
+
+
+                //All Other RoomObj Enemies
+                else
+                {   //Obj.compMove.direction should be set by colliding pro prior
+                    Functions_Particle.Spawn(ParticleType.Attention, Obj);
+                    Functions_GameObject.Kill(Obj, true, false);
+                    Assets.Play(Assets.sfxActorLand);
+                }
+            }
+
+
+
+
+
+
+
             #region Bush
 
             if (Obj.type == ObjType.Wor_Bush)
@@ -89,34 +121,6 @@ namespace DungeonRun
             else if (Obj.type == ObjType.Dungeon_SwitchBlockBtn)
             {   //Obj.compMove.direction should be set by colliding pro prior
                 Functions_GameObject_Dungeon.FlipSwitchBlocks(Obj);
-            }
-
-            #endregion
-
-
-            #region Seeker Exploders
-
-            else if (Obj.type == ObjType.Wor_SeekerExploder)
-            {   //Obj.compMove.direction should be set by colliding pro prior
-                Functions_GameObject.SetType(Obj, ObjType.ExplodingObject); //explode
-                Functions_Movement.Push(Obj.compMove, Obj.compMove.direction, 6.0f);
-                Assets.Play(Assets.sfxActorLand);
-            }
-
-            #endregion
-
-
-            #region Bump World Enemies
-
-            else if (
-                Obj.type == ObjType.Wor_Enemy_Turtle
-                || Obj.type == ObjType.Wor_Enemy_Crab
-                || Obj.type == ObjType.Wor_Enemy_Rat
-                )
-            {   //Obj.compMove.direction should be set by colliding pro prior
-                Functions_Particle.Spawn(ParticleType.Attention, Obj);
-                Functions_GameObject.Kill(Obj, true, false);
-                Assets.Play(Assets.sfxActorLand);
             }
 
             #endregion

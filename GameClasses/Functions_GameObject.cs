@@ -106,18 +106,17 @@ namespace DungeonRun
             //maybe pop loot & play soundfx
             if (spawnLoot) { Functions_Loot.SpawnLoot(Obj.compSprite.position); }
             if (Obj.sfx.kill != null) { Assets.Play(Obj.sfx.kill); }
+            //remove exploder seekers from further processing
+            if (Obj.type == ObjType.Wor_SeekerExploder) { return; }
+
+
 
             //based on obj type, we spawn death debris
-            if (
-                Obj.type == ObjType.Wor_Enemy_Rat
-                || Obj.type == ObjType.Wor_Enemy_Crab
-                || Obj.type == ObjType.Wor_Enemy_Turtle
-                )
+            if (Obj.group == ObjGroup.Enemy)
             {   //create floor blood, blood explosion, maybe skeleton
                 Functions_GameObject_Dungeon.DecorateEnemyDeath(Obj.compSprite);
                 becomeDebris = false; //release enemy from pool
             }
-
             //should obj become debris or get released?
             if (becomeDebris) 
             {   //spawn debris explosion, become debris ground obj
@@ -166,13 +165,8 @@ namespace DungeonRun
                 Obj.direction = Direction.Down;
             }
 
-            //most enemies only face down
-            else if(
-                Obj.type == ObjType.Wor_Enemy_Rat
-                || Obj.type == ObjType.Wor_Enemy_Crab
-                || Obj.type == ObjType.Wor_Enemy_Turtle
-                || Obj.type == ObjType.Wor_SeekerExploder
-                )
+            //room enemies only face down
+            else if(Obj.group == ObjGroup.Enemy)
             {
                 Obj.compSprite.rotation = Rotation.None;
                 Obj.direction = Direction.Down;

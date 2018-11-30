@@ -53,21 +53,10 @@ Today:
 
 
 
+Refactor++
 
-
-
-
-
-
-Pots++
-
-dungeon pots (skulls) explode into leaves? upon hit.
-upon throw() they're fine, cause they're thrownObjs.
-actually, world pots, dungeon pots, and boat barrels
-were all using bush routines, simply because i didn't
-update the copy+paste from bushes yet... oops.
-
-
+we can smplify some enemy roomObj checks by doing
+obj.group == enemy instead of their types... done.
 
 
 
@@ -88,9 +77,6 @@ many frames, cascading.
 
 
 
-
-we can smplify alot of enemy roomObj checks by simply doing
-obj.enemy instead of their types...
 
 
 
