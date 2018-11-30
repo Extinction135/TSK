@@ -309,7 +309,6 @@ namespace DungeonRun
         {
             Pool.hero.health = PlayerData.current.heartsTotal; //effect
             Assets.Play(Assets.sfxHeartPickup); //sfx
-
             if (Fairy != null) //kill fairy
             {
                 Functions_Particle.Spawn(

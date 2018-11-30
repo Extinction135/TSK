@@ -326,11 +326,11 @@ namespace DungeonRun
                     if (
                         //if roomObj is moving, check interactions - BIG optimization
                         Pool.roomObjPool[i].compMove.moving
-                        //these roomObjs always get interaction checks cause they dont move
+                        //nonblocking objs that dont move, but interact
                         || Pool.roomObjPool[i].type == ObjType.Dungeon_ConveyorBeltOn
+                        //these roomObjs always get interaction checked
                         || Pool.roomObjPool[i].type == ObjType.Dungeon_Fairy
                         || Pool.roomObjPool[i].type == ObjType.Pet_Dog
-
                         //these objs self-clean through interaction checks
                         || Pool.roomObjPool[i].type == ObjType.Dungeon_WallStraight
                         || Pool.roomObjPool[i].type == ObjType.Dungeon_WallStraightCracked
@@ -489,28 +489,13 @@ namespace DungeonRun
                         }
                     }
                     else
-                    {   //roomObj isn't blocking, but we may still want to perform
-                        //collision checks on it, based on it's type.
-                        if (
-                            Pool.roomObjPool[i].type == ObjType.Dungeon_Fairy
-                            //this causes the dog to be able to pass thru most objs
-                            //|| Pool.roomObjPool[i].type == ObjType.Pet_Dog
-                            )
-                        {   //check against roomObjs, enemies, and hero
-                            Functions_Collision.CheckCollisions(
-                                Pool.roomObjPool[i].compMove,
-                                Pool.roomObjPool[i].compCollision,
-                                true, true, true);
-                        }
-                        else
-                        {   //roomObj isn't blocking, but may be moving
-                            //in this case, we dont check collisions,
-                            //but we still need to update the obj.move.position
-                            if (Pool.roomObjPool[i].compMove.moving)
-                            {   //set the position equal to the newPosition, which was set using ProjectMovement()
-                                Pool.roomObjPool[i].compMove.position.X = Pool.roomObjPool[i].compMove.newPosition.X;
-                                Pool.roomObjPool[i].compMove.position.Y = Pool.roomObjPool[i].compMove.newPosition.Y;
-                            }
+                    {   //roomObj isn't blocking, but may be moving
+                        //in this case, we dont check collisions,
+                        //but we still need to update the obj.move.position
+                        if (Pool.roomObjPool[i].compMove.moving)
+                        {   //set the position equal to the newPosition, which was set using ProjectMovement()
+                            Pool.roomObjPool[i].compMove.position.X = Pool.roomObjPool[i].compMove.newPosition.X;
+                            Pool.roomObjPool[i].compMove.position.Y = Pool.roomObjPool[i].compMove.newPosition.Y;
                         }
                     }
                 }

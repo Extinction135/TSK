@@ -621,9 +621,8 @@ namespace DungeonRun
 
                     //collect fairys with boomerang, hookshot, axe, etc...
                     else if(Pro.type == ProjectileType.Boomerang)
-                    {
-                        //pickup fairy
-                        Debug.WriteLine("boomerang hit fairy");
+                    {   //pickup fairy
+                        Functions_GameObject_Dungeon.UseFairy(RoomObj);
                     }
                 }
 

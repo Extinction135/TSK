@@ -91,8 +91,6 @@ namespace DungeonRun
             //can't bottle this, pop cant bottle dialog
             Screens.Dialog.SetDialog(AssetsDialog.BottleCant);
             ScreenManager.AddScreen(Screens.Dialog);
-
-
         }
 
         public static void Bottle(Actor Actor)

@@ -8,6 +8,63 @@ or to a single interaction check upon creation, like we do with floor
 decorations (debris, blood, skeletons, stains).
 
 
+Exploit : Trap Door Pit Teleport
+
+the fix is simply to remove trap doors from the
+routine that sets the last 'touched' door / active door.
+in fact, only open doors should be set as the last / active door.
+the other exploit is to touch a trap door or closed door to
+set your respawn point, which is not what i want.
+
+
+
+
+
+
+implement bed + dream sequences - special leveldata + set hero's type + dialog prompt
+(exiting dream field ends the dream)
+(we may split bed into two objects again, to make this interaction more expected)
+
+
+Room keys - these only work for the room and only unlock 1 door, and
+these rooms turn all their doors into locked doors upon close, similar to puzzled rooms
+link doesn't put them into inventory - he literally picks them up and walks over
+to a locked door and collides with it. link should also be able to throw keys into
+locked doors, which means we need to throw objects directly in line from link,
+which simplifies how objs are thrown ALOT, and makes their throws more predictable.
+
+this is kinda like super mario world style key gameplay.
+if obj.type == key & obj.hitBox.intersects lockedDoor.hitBox,
+convert lockedDoor to openDoor, release() key.
+- or - we put the key as a menuItem in inventory,
+and clear that inventory item when link enters a new room (pre-build).
+
+Keys!!!
+**we could have 'keys' in the game, which would be temporary for the room only
+the doors would shut and convert to locked versions, or only some of them would.
+inside the room is a chest that contains a key. hero picks up the key, unlocks 
+a door, key is used, continues on. the room resets, works the same later on.
+the key would be displayed in the inventory screen as a brittle rusty key.
+and when it's used, the key breaks. the flavor text says that the key will
+likely break after one use.
+
+we could lock one door randomly, or we could lock ALL THE DOORS, and then 
+force the player to choose which door they want to unlock.
+
+
+
+
+
+Boomers, man
+
+fire boomerang++
+ice boomerang++
+normal boomerang++
+explosive boomrang++
+upon touch, simply create pros...
+
+
+
 
 
 

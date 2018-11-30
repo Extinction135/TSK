@@ -34,16 +34,13 @@ Shadow Dungeon, TSK Fight complete
 
 0.77 playthru: https://youtu.be/_b7qclGTffE
 0.78 goals:
-	more items (axe, hookshot, hammer, magic mirror)
-	more interaction (throwing objs, actors/objs in water, floor decorations)
+	more items (axe, hookshot, beans, hammer X, magic mirror X, ice/fire rods X)
+	more interaction (throwing objs X , actors/objs in water, floor decorations)
 	better dungeon traversal (X solved puzzles, marked map)
 	better coliseum - uniq objs + enemies
 	better overworld - more skulls, waves, cluds, vfx @skullIsland
 	X smaller ram - dungeon sheets get smaller
 	X fix projectile spawn system + enlarge boss hitboxes
-	implement bed + dream sequences - special leveldata + set hero's type + dialog prompt
-	(exiting dream field ends the dream)
-	(we may split bed into two objects again, to make this interaction more expected)
 	X setup roomObjs, projectiles, particles, pickups systems for future growth
 	improved pet systems (stable, more pet variety, multiple pets)
 	
@@ -54,27 +51,25 @@ Today:
 
 
 
-Magic Mirror
-
-this is 3rd item below boomerang in items loadout.
-implemented and working, returns hero to exit room,
-if in dungeon. this uses fast warp soundfx from lttp.
-hero returns to map when called from field, so thats
-working too. this helps the player out of situations
-where they might get stuck.
-
-mirror playtesting - dont crack exit walls, otherwise
-player can spam the mirror and watch them randomly flip.
-which looks bad. so, just don't crack the walls. done.
 
 
 
+Fairys++
 
+fairys get stuck on objs, and they shouldn't. they
+are flying. they dont interact with anything, and are
+mercy killed if they go outside of level. fairys are free.
+this was done by cimplifying the roomObjs collision check
+routine in pool.update(). now we just update moving roomObjs
+positions, if they are non-blocking. if they are blocking,
+we pass them to the collision system to be handled. a big
+optimization is that we only pass the moving and blocking
+roomObjs to the collision check, not all the blocking roomObjs.
+this causes the stationary blocking objs to not eval against
+stationary blocking objs, because if they aren't moving, then
+how would they overlap? this saves alot of collision ticks.
 
-
-
-
-
+boomerangs now collect fairies. fairies working. yisss.
 
 
 
@@ -82,17 +77,24 @@ which looks bad. so, just don't crack the walls. done.
 
 
 
-Bag of Seeds
-
-this simply allows link to place a bush stump, for now.
-digging ditches + water tiles + bush stumps = farming.
-this is 3rd item, right of icerod.
 
 
 
 
+ground fires should not trigger switches. they do so across
+many frames, cascading.
 
 
+
+dungeon pots (skulls) explode into leaves? upon hit.
+upon throw() they're fine, cause they're thrownObjs.
+
+
+
+
+
+we can smplify alot of enemy roomObj checks by simply doing
+obj.enemy instead of their types...
 
 
 
@@ -123,13 +125,6 @@ outwards from them, showing aoe effects.
 
 
 
-dungeon pots (skulls) explode into leaves? upon hit.
-upon throw() they're fine, cause they're thrownObjs.
-
-
-
-fairys get stuck on objs, and they shouldn't. they
-are flying.
 
 
 
@@ -197,30 +192,6 @@ this is done in it's ineteraction routine! and they are roomObjs...
 
 
 
-
-
-
-ground fires should not trigger switches. they do so across
-many frames, cascading.
-
-
-
-
-fires should kill mob enemies too.
-
-
-
-
-
-USE THE MAGIC, HARRY
-
-now we can fix magic medallions to be more like lttp.
-then we can implement comet magic.
-check phone notes before proceeding.
-
-
-
-
 comet magic
 
 bombos should make non-hero actors explode via explosions
@@ -264,57 +235,6 @@ interaction, cause fairy is non-blocking. also, the net
 projectile is a pro vs obj test, and likely still works.
 
 
-Special Attacks / Boss "USE"
-bigeye uses the shut + bloodshot frames for his special.
-bigeye phase 3: 
-spawns A TON of exploding seekers while in his special,
-while moving to the center of the room and smoking profusely 
-and taunting every frame.
-
-
-
-
-fire boomerang
-
-
-
-
-
-
-
-
-Tentacle Magic / Tentacle Walls
-
-the kraken summons tentacle actors upon being hit. this
-is not tentacle magic. instead, tentacle magic spawns a
-tentacle roomObj, which will attack any actor within it's
-attack radius, which is about 16 pixels.
-
-*this means we can create tentacle walls in rooms, also
-as part of puzzles - and make it specific to the swamp
-dungeon if we want to.
-*this means we can also create a tentacle magic medallion,
-which allows hero to create one of these roomobjs in the
-current room, in the facing direction. this allows for
-the creation of walls of angry tentacles. plus, we can
-put these tentacles in the water and they won't move
-around. 
-*tentacles should be destructible with explosions, but
-not destructible with level1 type damage.
-
-level 1 is 1 tentacle
-level 2 is 5 tentacles
-level 3 creates a wall 10 tiles long
-level 4 creates a box around link
-
-
-
-
-
-
-
-
-
 
 
 
@@ -322,13 +242,12 @@ level 4 creates a box around link
 
 
 Default Dungeon
+
 the default dungeon sheet is the one we use for all
 overworld / field level dungeon objects. this means
 this 'dungeon' has a green grassy floor.
 
-visual bugs: 
-bottom spike lip of pit competes with middle pit black obj.
-also, the pit teeth default to brown, which is part of the default
+the pit teeth default to brown, which is part of the default
 sheet. this default sheet should be thought of as the 'world' 
 dungeon sheet - these pits will appear on the overworld against the
 expected green bkg color. so the default pit teeth need to be green,
@@ -354,6 +273,7 @@ a window is a 3x4 obj, with baked in bkg.
 so this saves us a lot of roomObjs.
 
 
+
 Coliseum++++
 we also need to have the large skulls be a 2nd object
 that can sit on the ground, indestructible. this way
@@ -365,17 +285,9 @@ well.
 
 
 
-Roofs++
-remove rear roofs from the overlap check - now hero
-can't peek into houses by walking behind them - he has
-to be underneath the main part or the chimney.
-
-
-
 
 
 Grass++
-
 cut grass should grow into tall grass if near coastlines,
 or filled ditches. 
 
@@ -399,27 +311,6 @@ and can be used to further decorate piers.
 
 
 
-
-
-
-
-Overworld++
-we need more skulls around the shadowking's island and sea. keep
-the shadow skull area sparse, cause it's going to be animated,
-and it will never 'collapse'
-
-
-
-
-Exploit : Trap Door Pit Teleport
-
-the fix is simply to remove trap doors from the
-routine that sets the last 'touched' door / active door.
-in fact, only open doors should be set as the last / active door.
-the other exploit is to touch a trap door or closed door to
-set your respawn point, which is not what i want.
-
-
 Implement Cane of Somara (or whatever)
 this is the cane that creates blocks that are pushable.
 this makes it MUCH easier to get thru dungeons, as many
@@ -431,30 +322,7 @@ a blocking roomObject, the block ...
 
 
 
-Room keys - these only work for the room and only unlock 1 door, and
-these rooms turn all their doors into locked doors upon close, similar to puzzled rooms
-link doesn't put them into inventory - he literally picks them up and walks over
-to a locked door and collides with it. link should also be able to throw keys into
-locked doors, which means we need to throw objects directly in line from link,
-which simplifies how objs are thrown ALOT, and makes their throws more predictable.
 
-this is kinda like super mario world style key gameplay.
-if obj.type == key & obj.hitBox.intersects lockedDoor.hitBox,
-convert lockedDoor to openDoor, release() key.
-- or - we put the key as a menuItem in inventory,
-and clear that inventory item when link enters a new room (pre-build).
-
-Keys!!!
-**we could have 'keys' in the game, which would be temporary for the room only
-the doors would shut and convert to locked versions, or only some of them would.
-inside the room is a chest that contains a key. hero picks up the key, unlocks 
-a door, key is used, continues on. the room resets, works the same later on.
-the key would be displayed in the inventory screen as a brittle rusty key.
-and when it's used, the key breaks. the flavor text says that the key will
-likely break after one use.
-
-we could lock one door randomly, or we could lock ALL THE DOORS, and then 
-force the player to choose which door they want to unlock.
 
 
 
@@ -470,6 +338,73 @@ then allow digging on the top object that transitions to land..
 this trans should be based on the dirtcolor, not green, because
 water doesn't transition directly to grass on islands. 
 -for now tall coastlines are immune to dig-
+
+
+
+
+
+
+Bag of Seeds
+
+this simply allows link to place a bush stump, for now.
+digging ditches + water tiles + bush stumps = farming.
+this is next to magic mirror.
+
+this forms the foundation of farming in the game.
+
+when we click on the bag of beans, we should get a smaller
+UI popup that lets us choose what type of seed we want.
+for now, we only have bush seeds. these seeds grow bushes,
+when planted next to a water source (coastline, water, filled ditch).
+once the bush "grows", if its cut, it will leave a stump and
+that sequence handles itself.
+
+The Friendly Plant Seymor
+
+-special seed, when planted, spawns a large plant that bites
+any enemies near it, dealing them damage, while ignoring link.
+this makes it a strategic weapon. these seeds should be limited,
+unlike the infinite number of bush seeds link has.
+this plant essentially dupes the tentacle actor's functionality.
+-after taking a certain amount of damage, the plant dies, so it
+cant block and attack in an invincible way. this means it's an actor.
+when this plant grows, it spawns the actor and removes itself.
+
+Vine To The Sky
+
+-special seed obtained from fisherman. when planted at cloud
+location will spawn a big vine into the sky that link can interact
+with. for now this is just a dialog asking if player wants to climb vine,
+and if so, then we load the 1st cloud level. later on, link should
+be able to actually climb the vine, just like a mountain wall, but the
+whole vine is a climbable foothold object. once link collides with a
+light obj in the 'clouds', we load the cloud level, or we load the overworld
+with link on a cloud location - which allows for much faster traversal
+up the clouds later! awesome.
+
+*requires two cloud levels, so we have to touch level data and XML>CS pipeline
+
+
+
+
+
+
+
+
+
+
+BURN HOUSES
+
+as in, have burned versions of each house obj that randomly
+smoke and rarely collapse (like roofs randomly collapsing).
+
+
+
+
+
+
+
+
 
 
 

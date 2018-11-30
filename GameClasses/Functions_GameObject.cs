@@ -710,7 +710,7 @@ namespace DungeonRun
 
             else if (Type == ObjType.Dungeon_Fairy)
             {
-                Obj.compSprite.zOffset = 8; //sort to air
+                Obj.compSprite.zOffset = 32; //sort to air
                 Obj.lifetime = 0; //stay around forever
                 Obj.compAnim.speed = 6; //in frames
                 Obj.compMove.moveable = true;
