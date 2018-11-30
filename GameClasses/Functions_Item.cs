@@ -102,10 +102,39 @@ namespace DungeonRun
                 Functions_Actor.SetItemUseState(Actor);
             }
 
+
             #endregion
 
 
             #region HERO only Magic
+
+
+            else if (Type == MenuItemType.ItemMagicMirror)
+            {
+                if (Actor == Pool.hero)
+                {
+                    if (LevelSet.currentLevel.isField)
+                    {   //take hero to overworld map
+                        Functions_Level.CloseLevel(ExitAction.Overworld);
+                    }
+                    else
+                    {   //take hero to exit room
+                        LevelSet.currentLevel.currentRoom = LevelSet.currentLevel.rooms[0];
+                        Functions_Room.BuildRoom(LevelSet.currentLevel.rooms[0]);
+                        Functions_Hero.SpawnInCurrentRoom();
+                        //teleport camera to center of room
+                        Camera2D.targetPosition.X = LevelSet.currentLevel.currentRoom.center.X;
+                        Camera2D.targetPosition.Y = LevelSet.currentLevel.currentRoom.center.Y;
+                        Camera2D.currentPosition = Camera2D.targetPosition;
+                        Functions_Camera2D.SetView();
+                        //level screen will then decide where the camera should be per frame
+                    }
+                    //play warp fx
+                    Assets.Play(Assets.sfxWarp);
+                }
+            }
+
+
 
             else if (Type == MenuItemType.MagicBombos)
             {   //only hero can cast this magic

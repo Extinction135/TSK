@@ -153,6 +153,9 @@ namespace DungeonRun
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Item_Bow;
                 MenuItem.price = 50;
             }
+
+
+
             else if (Type == MenuItemType.ItemFirerod)
             {
                 MenuItem.name = "Firerod";
@@ -167,6 +170,19 @@ namespace DungeonRun
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Item_Icerod;
                 MenuItem.price = 99;
             }
+
+
+
+
+            else if (Type == MenuItemType.ItemMagicMirror)
+            {
+                MenuItem.name = "Magic Mirror";
+                MenuItem.description = "returns hero to \ndungeon exit or map.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Item_MagicMirror;
+                MenuItem.price = 99;
+            }
+
+
 
             #endregion
 

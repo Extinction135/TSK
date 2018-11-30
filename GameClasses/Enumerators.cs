@@ -961,6 +961,7 @@ namespace DungeonRun
         ItemBow,
         ItemFirerod,
         ItemIcerod,
+        ItemMagicMirror,
 
         BottleEmpty,
         BottleHealth,

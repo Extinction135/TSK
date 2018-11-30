@@ -166,8 +166,10 @@ namespace DungeonRun
             //13
 
 
-            //14 - bag of seeds
-            //15 - 
+            //14 - magic mirror
+            if (PlayerData.current.itemMagicMirror)
+            { Functions_MenuItem.SetType(MenuItemType.ItemMagicMirror, menuItems[14]); }
+            //15 - magic seed bag
             //16 - 
             //17 - 
             //18 - 

@@ -54,12 +54,18 @@ Today:
 
 
 
+Magic Mirror
 
-Inventory++
+this is 3rd item below boomerang in items loadout.
+implemented and working, returns hero to exit room,
+if in dungeon. this uses fast warp soundfx from lttp.
+hero returns to map when called from field, so thats
+working too. this helps the player out of situations
+where they might get stuck.
 
-ring should be on bottom row. shawl should be one row up.
-done. prep for inventoy item additions.
-
+mirror playtesting - dont crack exit walls, otherwise
+player can spam the mirror and watch them randomly flip.
+which looks bad. so, just don't crack the walls. done.
 
 
 
@@ -86,9 +92,7 @@ this is 3rd item, right of icerod.
 
 
 
-Magic Mirror
 
-this is 3rd item below boomerang in items loadout.
 
 
 
@@ -392,21 +396,7 @@ and can be used to further decorate piers.
 
 
 
-Magic Mirror
-use it in a dungeon to return to the exit (starting room). 
-exiting dungeon takes us to field.
-it can only be used in dungeons, and it's partially broken.
-it's use in the shadow dungeon is different, as it transfers
-link from the darkworld to the lightworld version, and does
-not take link back to the starting (exit) room.
 
-the history of why the magic mirror is broken can be explained.
-
-- plays warp sound fx
-should call Level.BuildLevel(Level.ID),
-which will cause the level to fade in from black,
-and place hero at the entrance the dungeon again.
-*this should only work in a dungeon. 
 
 
 

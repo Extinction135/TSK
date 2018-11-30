@@ -184,6 +184,7 @@ namespace DungeonRun
                         || currentlySelected.type == MenuItemType.ItemBow
                         || currentlySelected.type == MenuItemType.ItemFirerod
                         || currentlySelected.type == MenuItemType.ItemIcerod
+                        || currentlySelected.type == MenuItemType.ItemMagicMirror
                         //bottles
                         || currentlySelected.type == MenuItemType.BottleEmpty
                         || currentlySelected.type == MenuItemType.BottleBlob

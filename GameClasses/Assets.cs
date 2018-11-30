@@ -183,6 +183,7 @@ namespace DungeonRun
         public static SoundEffectInstance sfxHammer;
         public static SoundEffectInstance sfxHammerPost;
         public static SoundEffectInstance sfxIcerod;
+        public static SoundEffectInstance sfxWarp;
 
         #endregion
 
@@ -439,6 +440,11 @@ namespace DungeonRun
             sfxHammerPost = hammerPostSrc.CreateInstance();
             SoundEffect icerodSrc = content.Load<SoundEffect>(@"SoundIcerod");
             sfxIcerod = icerodSrc.CreateInstance();
+            SoundEffect warpSrc = content.Load<SoundEffect>(@"SoundWarp");
+            sfxWarp = warpSrc.CreateInstance();
+            //
+
+
 
             //
 

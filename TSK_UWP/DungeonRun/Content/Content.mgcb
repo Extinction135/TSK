@@ -647,3 +647,9 @@
 /processorParam:Quality=Best
 /build:SoundIcerod.wav
 
+#begin SoundWarp.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundWarp.wav
+

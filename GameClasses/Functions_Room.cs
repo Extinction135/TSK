@@ -659,7 +659,6 @@ namespace DungeonRun
             if (Room.roomID == RoomID.Exit)
             {
                 PlaceExit(Room);
-                AddCrackedWalls(Room);
             }
             else if (Room.roomID == RoomID.Secret)
             {
