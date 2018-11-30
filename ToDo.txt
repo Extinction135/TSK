@@ -54,20 +54,11 @@ Today:
 
 
 
-Simplified Reward Hero State
 
-bottles are now implemented using a single particle type
-value, which is set based on what bottle hero has in his
-item slot at the time. this means i dont have to create
-bottle particles for each type of bottle, and instead the
-meta-bottle reward just assume the values of what's being 
-displayed in the world ui item slot. 
+Inventory++
 
-Bombos++++
-
-improve bombos - this should be explosions around link,
-causing an area of effect type of spell. and this should 
-be called using pro.castBombos(). done.
+ring should be on bottom row. shawl should be one row up.
+done. prep for inventoy item additions.
 
 
 
@@ -84,21 +75,57 @@ be called using pro.castBombos(). done.
 
 
 
-Quake
 
-how is this different than ether, in-game? ether kills
-all, quake destroys everything that isn't flying. this
-causes des level 2 to all objects and enemies who have
-compMove.grounded set to false, except hero.
+Bag of Seeds
 
-this simply shakes the camera for it's effect.
+this simply allows link to place a bush stump, for now.
+digging ditches + water tiles + bush stumps = farming.
+this is 3rd item, right of icerod.
 
 
 
 
 
+Magic Mirror
+
+this is 3rd item below boomerang in items loadout.
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+Bombos++
+
+we can improve bombos, if we simply change the explosion
+placements around link. more or less, but it doesn't need
+to be in a square pattern. plus, it would be nice to
+see these explosions happen sequentially around hero, so
+use a counter to meter out which explosions are placed where.
+we can even have some kind of custom explosion particle over
+hero when he casts this, showing the player that bombos is pushing
+outwards from them, showing aoe effects.
+
+
+
+
+
+
+dungeon pots (skulls) explode into leaves? upon hit.
+upon throw() they're fine, cause they're thrownObjs.
+
+
+
+fairys get stuck on objs, and they shouldn't. they
+are flying.
 
 
 
@@ -169,64 +196,13 @@ this is done in it's ineteraction routine! and they are roomObjs...
 
 
 
-
-
-
 ground fires should not trigger switches. they do so across
 many frames, cascading.
 
 
 
 
-
-
-
-FIX MAGIC PLS
-
-
-
-
-
-
-
-
-bolts should not create explosions.
-fix lightning magic now. only explosions create
-power level 2 destruction events.
-
 fires should kill mob enemies too.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Ai counter
-
-we need a pool.aiCount, to track how much work AI() is doing.
-this is just like an interaction counter, displayed on screen
-in debug info below interactions.
-
-we should be using a string builder for debug display, for all
-the display info.
-
-
-
-
-
-
-
 
 
 

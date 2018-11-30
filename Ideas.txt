@@ -12,7 +12,29 @@ decorations (debris, blood, skeletons, stains).
 
 
 
+Ai counter
 
+we need a pool.aiCount, to track how much work AI() is doing.
+this is just like an interaction counter, displayed on screen
+in debug info below interactions.
+
+we should be using a string builder for debug display, for all
+the display info.
+
+
+
+
+
+
+
+Quake Magic
+
+how is this different than ether, in-game? ether kills
+all, quake destroys everything that isn't flying. this
+causes des level 2 to all objects and enemies who have
+compMove.grounded set to false, except hero.
+
+this simply shakes the camera for it's effect.
 
 
 

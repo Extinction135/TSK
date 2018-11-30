@@ -159,20 +159,20 @@ namespace DungeonRun
             //10 - ?
 
             //Set the magic medallion items - 11, 12, 13
-
             if (PlayerData.current.magicBombos)
             { Functions_MenuItem.SetType(MenuItemType.MagicBombos, menuItems[12]); }
             if (PlayerData.current.magicEther)
             { Functions_MenuItem.SetType(MenuItemType.MagicEther, menuItems[13]); }
+            //13
 
-            //14 - 
+
+            //14 - bag of seeds
             //15 - 
             //16 - 
             //17 - 
             //18 - 
             //19 - 
-
-            //Enemy Item - 20
+            //20 - only one slot for enemy items
             Functions_MenuItem.SetType(PlayerData.current.enemyItem, menuItems[20]);
 
             #endregion
@@ -192,29 +192,35 @@ namespace DungeonRun
             if (PlayerData.current.weaponHammer)
             { Functions_MenuItem.SetType(MenuItemType.WeaponHammer, menuItems[24]); }
             //25 - 
+
             //26 -
-            //Enemy Weapon - 27
+
+            //Enemy Weapon - 27 - only one slot for enemy weapons
             Functions_MenuItem.SetType(PlayerData.current.enemyWeapon, menuItems[27]);
 
             #endregion
 
 
-            #region Equipment - 28 thru 35 (maybe 42?)
+            #region Equipment - 28 thru 35
 
+            //armor/wearables row
+
+            //28 standard cloth
             Functions_MenuItem.SetType(MenuItemType.ArmorCloth, menuItems[28]);
-            //29 - ring
-            if (PlayerData.current.equipmentRing)
-            { Functions_MenuItem.SetType(MenuItemType.EquipmentRing, menuItems[29]); }
-            //30 - pearl
-            //31 - necklace
-            //32 - power glove
-            //33 - pin
-            //34 - pendant
-
-            //35 - tattered shawl
+            //29 magical cape
             if (PlayerData.current.armorCape)
-            { Functions_MenuItem.SetType(MenuItemType.ArmorCape, menuItems[35]); }
-            //36 - ?
+            { Functions_MenuItem.SetType(MenuItemType.ArmorCape, menuItems[29]); }
+            //30 - ?
+            //31 - ?
+            //32 - ?
+            //33 - ?
+            //34 - ?
+
+
+            //bottom row - items
+            if (PlayerData.current.equipmentRing)
+            { Functions_MenuItem.SetType(MenuItemType.EquipmentRing, menuItems[35]); }
+            //36 ?
             //37 - ?
             //38 - ?
             //39 - ?
