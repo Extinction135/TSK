@@ -54,23 +54,18 @@ Today:
 
 
 
-Fairys++
 
-fairys get stuck on objs, and they shouldn't. they
-are flying. they dont interact with anything, and are
-mercy killed if they go outside of level. fairys are free.
-this was done by cimplifying the roomObjs collision check
-routine in pool.update(). now we just update moving roomObjs
-positions, if they are non-blocking. if they are blocking,
-we pass them to the collision system to be handled. a big
-optimization is that we only pass the moving and blocking
-roomObjs to the collision check, not all the blocking roomObjs.
-this causes the stationary blocking objs to not eval against
-stationary blocking objs, because if they aren't moving, then
-how would they overlap? this saves alot of collision ticks.
 
-boomerangs now collect fairies. fairies working. yisss.
 
+
+
+Pots++
+
+dungeon pots (skulls) explode into leaves? upon hit.
+upon throw() they're fine, cause they're thrownObjs.
+actually, world pots, dungeon pots, and boat barrels
+were all using bush routines, simply because i didn't
+update the copy+paste from bushes yet... oops.
 
 
 
@@ -86,8 +81,9 @@ many frames, cascading.
 
 
 
-dungeon pots (skulls) explode into leaves? upon hit.
-upon throw() they're fine, cause they're thrownObjs.
+
+
+
 
 
 

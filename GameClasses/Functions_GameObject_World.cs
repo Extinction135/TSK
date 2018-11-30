@@ -132,6 +132,7 @@ namespace DungeonRun
         public static void Cut(GameObject Obj)
         {   //Obj.compMove.direction needs to be set by collider
 
+
             #region Grass
 
             if (Obj.type == ObjType.Wor_Grass_Tall)
@@ -158,20 +159,16 @@ namespace DungeonRun
                 || Obj.type == ObjType.Dungeon_Pot
                 || Obj.type == ObjType.Wor_Boat_Barrel
                 )
-            {
-                //pop leaf explosion
+            {   //pop debris explosion
                 Functions_Particle.Spawn_Explosion(
-                    ParticleType.LeafGreen,
+                    ParticleType.DebrisBrown,
                     Obj.compSprite.position.X,
                     Obj.compSprite.position.Y);
-                //covert bush to stump, play sfx
-                Functions_GameObject.SetType(Obj, ObjType.Wor_Bush_Stump);
-                Assets.Play(Assets.sfxBushCut);
                 //pop an attention particle
                 Functions_Particle.Spawn(ParticleType.Attention,
                     Obj.compSprite.position.X, Obj.compSprite.position.Y);
-                //rarely spawn loot
-                Functions_Loot.SpawnLoot(Obj.compSprite.position, 20);
+                Functions_GameObject.Kill(Obj, true, true); //become loot & debris
+                Assets.Play(Assets.sfxShatter);
             }
 
             #endregion

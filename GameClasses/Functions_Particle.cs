@@ -16,7 +16,6 @@ namespace DungeonRun
     {
         static Vector2 posRef = new Vector2();
         static Vector2 pushOffset = new Vector2();
-        //static Vector2 offset = new Vector2();
 
 
 
