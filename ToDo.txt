@@ -54,47 +54,20 @@ Today:
 
 
 
+Simplified Reward Hero State
 
-Hammers++
+bottles are now implemented using a single particle type
+value, which is set based on what bottle hero has in his
+item slot at the time. this means i dont have to create
+bottle particles for each type of bottle, and instead the
+meta-bottle reward just assume the values of what's being 
+displayed in the world ui item slot. 
 
-hammers now do 1 damage, and push with a force of 8.
-this reduces their damage dealing capabilities - they
-should not be as powerful as explosions.
-
-Lightning Bolts--
-
-remove lightning bolt pros from game. these are actually
-lightning particles, and they are used in ethers new magic
-routines. also rename lightning magic to ether magic, pls.
-
-
-Ether++
-
-magicBolt needs to become MagicEther, so we're clear exactly
-what that magic is, going forward.
-
-ether and bombos are now gated to only the player casting them.
-ether's new implementation working great - lightning bolts rain
-down on every enemy in the room, causing explosions on them.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Bombos
+Bombos++++
 
 improve bombos - this should be explosions around link,
 causing an area of effect type of spell. and this should 
-be called using pro.castBombos().
+be called using pro.castBombos(). done.
 
 
 
@@ -102,6 +75,23 @@ be called using pro.castBombos().
 
 
 
+
+
+
+
+
+
+
+
+
+Quake
+
+how is this different than ether, in-game? ether kills
+all, quake destroys everything that isn't flying. this
+causes des level 2 to all objects and enemies who have
+compMove.grounded set to false, except hero.
+
+this simply shakes the camera for it's effect.
 
 
 

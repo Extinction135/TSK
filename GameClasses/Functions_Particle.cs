@@ -121,28 +121,13 @@ namespace DungeonRun
         //spawns a particle of Type on Actor
         public static void Spawn(ParticleType Type, Actor Actor)
         {
-            //spawned relative to actor, based on passed objType
-            //set position reference to Actor's sprite position
             posRef.X = Actor.compSprite.position.X;
             posRef.Y = Actor.compSprite.position.Y;
-            //get the actor's facing direction as cardinal direction
-            //direction = Functions_Direction.GetCardinalDirection(Actor.direction);
 
             if (Type == ParticleType.RisingSmoke)
             {   //center horizontally, place near actor's feet
                 posRef.X += 4; posRef.Y += 8;
             }
-            else if ( //place reward/bottle/cast particles above actor's head
-                Type == ParticleType.RewardKey ||
-                Type == ParticleType.RewardMap ||
-
-                Type == ParticleType.BottleEmpty ||
-                Type == ParticleType.BottleHealth ||
-                Type == ParticleType.BottleMagic ||
-                Type == ParticleType.BottleCombo ||
-                Type == ParticleType.BottleFairy ||
-                Type == ParticleType.BottleBlob)
-            { posRef.Y -= 14; }
 
             Spawn(Type, posRef.X, posRef.Y);
         }
@@ -172,7 +157,7 @@ namespace DungeonRun
   
             #region Handle Particle Birth Events
 
-            //handle soundfx for specific particles
+            //sfx for reward particles
             if (Type == ParticleType.RewardMap)
             {
                 Assets.Play(Assets.sfxReward);
@@ -181,6 +166,8 @@ namespace DungeonRun
             {
                 Assets.Play(Assets.sfxKeyPickup);
             }
+
+            //misc
             else if (Type == ParticleType.Splash)
             {
                 Assets.Play(Assets.sfxSplash);
@@ -474,46 +461,60 @@ namespace DungeonRun
                 Part.compAnim.loop = false;
             }
 
-            //Particles - Rewards & Bottles
+            //Particles - Rewards & Bottles & Magics
             else if (
-                Type == ParticleType.RewardKey ||
-                Type == ParticleType.RewardMap ||
-
-                Type == ParticleType.BottleEmpty ||
-                Type == ParticleType.BottleHealth ||
-                Type == ParticleType.BottleMagic ||
-                Type == ParticleType.BottleCombo ||
-                Type == ParticleType.BottleFairy ||
-                Type == ParticleType.BottleBlob)
+                Type == ParticleType.RewardKey
+                || Type == ParticleType.RewardMap
+                || Type == ParticleType.RewardBottle
+                //magics
+                || Type == ParticleType.RewardMagicBombos
+                || Type == ParticleType.RewardMagicEther
+                )
             {
                 Part.compSprite.zOffset = 32;
-                Part.lifetime = 40; //in frames
+                Part.lifetime = 30; //in frames
                 Part.compMove.moveable = false;
-                //default assume this obj isn't a dungeon key or map
-                Part.compSprite.texture = Assets.uiItemsSheet;
-                //set anim frames
+                //common rewards
                 if (Type == ParticleType.RewardKey)
-                {   //this obj is on the dungeon sheet
+                {  
                     Part.compAnim.currentAnimation = AnimationFrames.Dungeon_BossKey;
                     Part.compSprite.texture = Assets.CommonObjsSheet;
                 }
                 else if (Type == ParticleType.RewardMap)
-                {   //this obj is on the dungeon sheet
+                {   
                     Part.compAnim.currentAnimation = AnimationFrames.Dungeon_Map;
                     Part.compSprite.texture = Assets.CommonObjsSheet;
                 }
-                else if (Type == ParticleType.BottleEmpty)
-                { Part.compAnim.currentAnimation = AnimationFrames.Bottle_Empty; }
-                else if (Type == ParticleType.BottleHealth)
-                { Part.compAnim.currentAnimation = AnimationFrames.Bottle_Health; }
-                else if (Type == ParticleType.BottleMagic)
-                { Part.compAnim.currentAnimation = AnimationFrames.Bottle_Magic; }
-                else if (Type == ParticleType.BottleCombo)
-                { Part.compAnim.currentAnimation = AnimationFrames.Bottle_Combo; }
-                else if (Type == ParticleType.BottleFairy)
-                { Part.compAnim.currentAnimation = AnimationFrames.Bottle_Fairy; }
-                else if (Type == ParticleType.BottleBlob)
-                { Part.compAnim.currentAnimation = AnimationFrames.Bottle_Blob; }
+                else if (Type == ParticleType.RewardBottle)
+                {   //assume just an empty bottle
+                    Part.compAnim.currentAnimation = AnimationFrames.Bottle_Empty;
+                    //this is only for hero, and is based on what hero's item is
+                    if (Pool.hero.item == MenuItemType.BottleBlob)
+                    { Part.compAnim.currentAnimation = AnimationFrames.Bottle_Blob; }
+                    else if (Pool.hero.item == MenuItemType.BottleCombo)
+                    { Part.compAnim.currentAnimation = AnimationFrames.Bottle_Combo; }
+                    else if (Pool.hero.item == MenuItemType.BottleEmpty)
+                    { Part.compAnim.currentAnimation = AnimationFrames.Bottle_Empty; }
+                    else if (Pool.hero.item == MenuItemType.BottleFairy)
+                    { Part.compAnim.currentAnimation = AnimationFrames.Bottle_Fairy; }
+                    else if (Pool.hero.item == MenuItemType.BottleHealth)
+                    { Part.compAnim.currentAnimation = AnimationFrames.Bottle_Health; }
+                    else if (Pool.hero.item == MenuItemType.BottleMagic)
+                    { Part.compAnim.currentAnimation = AnimationFrames.Bottle_Magic; }
+                    //bottles all exist on the ui sheet
+                    Part.compSprite.texture = Assets.uiItemsSheet;
+                }
+                //magics
+                else if (Type == ParticleType.RewardMagicBombos)
+                {   
+                    Part.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Magic_Bombos;
+                    Part.compSprite.texture = Assets.uiItemsSheet;
+                }
+                else if (Type == ParticleType.RewardMagicEther)
+                {
+                    Part.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Magic_Ether;
+                    Part.compSprite.texture = Assets.uiItemsSheet;
+                }
             }
 
             #endregion

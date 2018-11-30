@@ -101,8 +101,7 @@ namespace DungeonRun
         public static void Draw(ComponentSprite Sprite)
         {
             if (Sprite.visible)
-            {
-                //set draw rec
+            {   //set draw rec
                 Sprite.drawRec.X = (int)(Sprite.drawRec.Width * Sprite.currentFrame.X);
                 Sprite.drawRec.Y = (int)(Sprite.drawRec.Height * Sprite.currentFrame.Y);
                 //update rotationValue based on rotation enum

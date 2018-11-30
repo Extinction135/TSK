@@ -858,7 +858,7 @@ namespace DungeonRun
 
         //public static List<Byte4> Ui_MenuItem_Magic_Fireball = new List<Byte4> { new Byte4(2, 5, 0, 0) };
         public static List<Byte4> Ui_MenuItem_Magic_Bombos = new List<Byte4> { new Byte4(2, 6, 0, 0) };
-        public static List<Byte4> Ui_MenuItem_Magic_Bolt = new List<Byte4> { new Byte4(2, 7, 0, 0) };
+        public static List<Byte4> Ui_MenuItem_Magic_Ether = new List<Byte4> { new Byte4(2, 7, 0, 0) };
         public static List<Byte4> Ui_MenuItem_Magic_Bat = new List<Byte4> { new Byte4(2, 8, 0, 0) };
 
 

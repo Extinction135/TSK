@@ -468,15 +468,7 @@ namespace DungeonRun
 
             #endregion
 
-
-            #region Bombos
-
-            else if (Type == ProjectileType.Bombos)
-            {   //play casting soundfx
-                Assets.Play(Assets.sfxCastBombos);
-            }
-
-            #endregion
+            
 
 
 
@@ -850,35 +842,7 @@ namespace DungeonRun
 
 
 
-
-
-
-            //magic
-
-            #region Bombos 
-
-            else if (Pro.type == ProjectileType.Bombos)
-            {   //casted magic tracks over caster's head
-                Functions_Movement.Teleport(Pro.compMove,
-                        Pro.caster.compCollision.rec.X + 8,
-                        Pro.caster.compCollision.rec.Y - 12);
-
-                if (Functions_Random.Int(0, 100) > 40)
-                {   //create a bomb each frame, for a wide area around caster
-                    Spawn(ProjectileType.Bomb,
-                        Camera2D.currentPosition.X + Functions_Random.Int(-16 * 22, 16 * 22),
-                        Camera2D.currentPosition.Y + Functions_Random.Int(-16 * 12, 16 * 12),
-                        Direction.None);
-                }
-                //when bombos reaches a certain age, play multiple explosions sfx
-                //this plays right around the time bombs should start exploding
-                //and again when the first sfx ends, keeping bombs sounds going on
-                //this helps to increase the overall awesomeness of bombos
-                if (Pro.lifeCounter == 60 || Pro.lifeCounter == 160)
-                { Assets.Play(Assets.sfxExplosionsMultiple); }
-            }
-
-            #endregion
+            
 
 
 
@@ -1056,14 +1020,14 @@ namespace DungeonRun
 
 
 
-        //special magic casting methods
+        //special hero-only magic casting methods
 
         static int castCounter = 0;
         static int totalCount = 0;
         static int counterB = 0;
         public static List<Vector2> castPositions;
 
-        public static void Cast_Ether() //only hero can cast ether
+        public static void Cast_Ether()
         {
             //for each active enemy actor and roomObj
             //create a lightning bolt particle - up from their position
@@ -1112,7 +1076,66 @@ namespace DungeonRun
         }
 
 
+        static int bombosSpread = 22;
+        public static void Cast_Bombos()
+        {
+            //create explosions around hero
+            //-this could look alot better, if we used 5 point or 7 point circle
+            //instead of square 3x3 setup
 
+            #region Cardinals
+
+            //up
+            Spawn(ProjectileType.Explosion,
+                Pool.hero.compMove.position.X,
+                Pool.hero.compMove.position.Y - bombosSpread,
+                Direction.Down);
+            //down
+            Spawn(ProjectileType.Explosion,
+                Pool.hero.compMove.position.X,
+                Pool.hero.compMove.position.Y + bombosSpread,
+                Direction.Down);
+            //left
+            Spawn(ProjectileType.Explosion,
+                Pool.hero.compMove.position.X - bombosSpread,
+                Pool.hero.compMove.position.Y,
+                Direction.Down);
+            //down
+            Spawn(ProjectileType.Explosion,
+                Pool.hero.compMove.position.X + bombosSpread,
+                Pool.hero.compMove.position.Y,
+                Direction.Down);
+
+            #endregion
+
+
+            #region Diagonals
+
+            //up R/L
+            Spawn(ProjectileType.Explosion,
+                Pool.hero.compMove.position.X - bombosSpread,
+                Pool.hero.compMove.position.Y - bombosSpread,
+                Direction.Down);
+            Spawn(ProjectileType.Explosion,
+                Pool.hero.compMove.position.X + bombosSpread,
+                Pool.hero.compMove.position.Y - bombosSpread,
+                Direction.Down);
+
+            //down R/L
+            Spawn(ProjectileType.Explosion,
+                Pool.hero.compMove.position.X - bombosSpread,
+                Pool.hero.compMove.position.Y + bombosSpread,
+                Direction.Down);
+            Spawn(ProjectileType.Explosion,
+                Pool.hero.compMove.position.X + bombosSpread,
+                Pool.hero.compMove.position.Y + bombosSpread,
+                Direction.Down);
+
+            #endregion
+
+
+            Assets.Play(Assets.sfxExplosionsMultiple); //play sfx
+        }
 
 
 
@@ -1289,20 +1312,6 @@ namespace DungeonRun
                 Pro.compMove.grounded = false; //obj is airborne
                 Pro.compAnim.currentAnimation = AnimationFrames.Projectile_Iceball;
                 Pro.compSprite.texture = Assets.entitiesSheet;
-            }
-            
-
-
-
-            else if (Type == ProjectileType.Bombos)
-            {
-                Pro.compSprite.zOffset = 32;
-                Pro.compCollision.offsetX = -1; Pro.compCollision.offsetY = -1;
-                Pro.compCollision.rec.Width = 3; Pro.compCollision.rec.Height = 3;
-                Pro.lifetime = 255; //in frames
-                Pro.compMove.grounded = false; //obj is airborne
-                Pro.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Magic_Bombos;
-                Pro.compSprite.texture = Assets.uiItemsSheet; //reuse bombos ui sprite
             }
 
             #endregion

@@ -517,14 +517,7 @@ namespace DungeonRun
             Actor.compCollision.blocking = false; //make dead actor's corpse passable
         }
 
-        public static void SetRewardState(Actor Actor)
-        {
-            Actor.state = ActorState.Reward;
-            Actor.stateLocked = true;
-            Actor.lockCounter = 0;
-            Actor.lockTotal = 30; //med pause
-            Functions_Movement.StopMovement(Actor.compMove);
-        }
+        
 
         public static void SetItemUseState(Actor Actor)
         {   //set actor into a short paused state

@@ -812,12 +812,9 @@ namespace DungeonRun
         Shovel,
         Hammer,
 
-        //Projectiles - object
+        //Projectiles - objects
         Explosion,
         GroundFire,
-
-        //Projectiles - casted magic
-        Bombos,
 
         #endregion
 
@@ -878,23 +875,16 @@ namespace DungeonRun
         Fire,
         WaterKick,
         ExclamationBubble,
-
-        //irregular sized
         LightningBolt,
-
-        //BOTTLE PARTICLES
-        BottleEmpty,
-        BottleHealth,
-        BottleMagic,
-        BottleCombo,
-        BottleFairy,
-        BottleBlob,
+        
 
         //Particles - rewards
         RewardKey,
         RewardMap,
+        RewardBottle,
 
-
+        RewardMagicBombos,
+        RewardMagicEther,
     }
 
     #endregion

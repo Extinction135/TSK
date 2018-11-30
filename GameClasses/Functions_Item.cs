@@ -119,8 +119,8 @@ namespace DungeonRun
                     }
                     else
                     {   //casted successfully
-                        Functions_Projectile.Spawn(ProjectileType.Bombos, Actor, Actor.direction);
-                        Functions_Actor.SetRewardState(Pool.hero);
+                        Functions_Projectile.Cast_Bombos();
+                        Functions_Hero.SetRewardState(ParticleType.RewardMagicBombos);
                     }
                 }
             }
@@ -137,7 +137,7 @@ namespace DungeonRun
                     else
                     {   //casted successfully
                         Functions_Projectile.Cast_Ether();
-                        Functions_Actor.SetItemUseState(Actor);
+                        Functions_Hero.SetRewardState(ParticleType.RewardMagicEther);
                     }
                 }
             }
@@ -171,33 +171,33 @@ namespace DungeonRun
             else if (Type == MenuItemType.BottleHealth)
             {   //use health potion
                 Pool.hero.health = PlayerData.current.heartsTotal;
-                Functions_Particle.Spawn(ParticleType.BottleHealth, Pool.hero);
+                Functions_Hero.SetRewardState(ParticleType.RewardBottle);
                 Functions_Bottle.EmptyBottle(Type);
             }
             else if (Type == MenuItemType.BottleMagic)
             {   //use magic potion
                 PlayerData.current.magicCurrent = PlayerData.current.magicMax;
-                Functions_Particle.Spawn(ParticleType.BottleMagic, Pool.hero);
+                Functions_Hero.SetRewardState(ParticleType.RewardBottle);
                 Functions_Bottle.EmptyBottle(Type);
             }
             else if (Type == MenuItemType.BottleCombo)
             {   //use combo potion
                 Pool.hero.health = PlayerData.current.heartsTotal;
                 PlayerData.current.magicCurrent = PlayerData.current.magicMax;
-                Functions_Particle.Spawn(ParticleType.BottleCombo, Pool.hero);
+                Functions_Hero.SetRewardState(ParticleType.RewardBottle);
                 Functions_Bottle.EmptyBottle(Type);
             }
             else if (Type == MenuItemType.BottleFairy)
             {   //use fairy in a bottle
                 Pool.hero.health = PlayerData.current.heartsTotal;
-                Functions_Particle.Spawn(ParticleType.BottleFairy, Pool.hero);
+                Functions_Hero.SetRewardState(ParticleType.RewardBottle);
                 Functions_Bottle.EmptyBottle(Type);
             }
             else if (Type == MenuItemType.BottleBlob)
             {
                 Functions_Bottle.EmptyBottle(Type);
                 //display the bottled blob over hero's head
-                Functions_Particle.Spawn(ParticleType.BottleBlob, Pool.hero);
+                Functions_Hero.SetRewardState(ParticleType.RewardBottle);
 
                 //use blob in a bottle (transform hero into blob and vice versa)
                 if (Pool.hero.type == ActorType.Hero)

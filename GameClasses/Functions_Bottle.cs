@@ -34,7 +34,7 @@ namespace DungeonRun
 
         public static void EmptyBottle(MenuItemType Type)
         {   //set hero into reward state, clear item, play bottle sfx
-            Functions_Actor.SetRewardState(Pool.hero);
+            Functions_Hero.SetRewardState(ParticleType.RewardBottle);
             Pool.hero.item = MenuItemType.Unknown;
             Assets.Play(Assets.sfxBeatDungeon);
             Functions_Particle.Spawn(ParticleType.Attention, Pool.hero);

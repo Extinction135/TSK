@@ -35,17 +35,16 @@ namespace DungeonRun
         public static Projectile thrownObj = null; //copy of carried obj thrown
 
 
-
-
+        
 
 
 
 
         static Functions_Hero()
         {
-            //interactionRec = new ComponentCollision();
             interactionPoint = new Point(0, 0);
             heroRec = new Rectangle(0, 0, 16, 16);
+
         }
 
 
@@ -307,7 +306,7 @@ namespace DungeonRun
 
 
 
-        static MenuItemType itemSwamp;
+        static MenuItemType itemSwap;
         public static void HandleDeath()
         {   //near the last frame of hero's death, create attention particles
             if (Pool.hero.compAnim.index == Pool.hero.compAnim.currentAnimation.Count - 2)
@@ -321,11 +320,11 @@ namespace DungeonRun
                         Pool.hero.compSprite.position.Y);
 
                 //store the hero's currently equipped item
-                itemSwamp = Pool.hero.item;
+                itemSwap = Pool.hero.item;
                 //check to see if hero can save himself from death
                 if (Functions_Bottle.HeroDeathCheck())
                 {   //restore hero's last item (since we item swapped to self-rez)
-                    Pool.hero.item = itemSwamp;
+                    Pool.hero.item = itemSwap;
                 } 
                 else
                 {   //false, hero cannot self-rez and dies
@@ -488,7 +487,23 @@ namespace DungeonRun
             //called at the end of lsn's exit routines
         }
 
+        
 
+
+        public static void SetRewardState(ParticleType rewardType)
+        {
+            Pool.hero.state = ActorState.Reward;
+            Pool.hero.stateLocked = true;
+            Pool.hero.lockCounter = 0;
+            Pool.hero.lockTotal = 30; //med pause
+            Functions_Movement.StopMovement(Pool.hero.compMove);
+            //spawn reward particle over hero's head
+            Functions_Particle.Spawn(
+                rewardType,
+                Pool.hero.compSprite.position.X,
+                Pool.hero.compSprite.position.Y - 14,
+                Direction.Down);
+        }
 
 
 
@@ -668,21 +683,12 @@ namespace DungeonRun
                 //Reward the hero with chest contents
                 if (Obj.type == ObjType.Dungeon_ChestKey)
                 {
-                    Functions_Particle.Spawn(ParticleType.RewardKey, Pool.hero);
+                    SetRewardState(ParticleType.RewardKey);
+                   //alter player data
                     LevelSet.currentLevel.bigKey = true;
                     //setup dialog
                     Screens.Dialog.SetDialog(AssetsDialog.HeroGotKey);
                     ScreenManager.AddScreen(Screens.Dialog);
-                }
-                if (Obj.type != ObjType.Dungeon_ChestEmpty)
-                {   //if the chest is not empty, play the reward animation
-                    Assets.Play(Assets.sfxChestOpen);
-                    Functions_GameObject.SetType(Obj, ObjType.Dungeon_ChestEmpty);
-                    Functions_Particle.Spawn( //show the chest was opened
-                        ParticleType.Attention,
-                        Obj.compSprite.position.X,
-                        Obj.compSprite.position.Y);
-                    Functions_Actor.SetRewardState(Pool.hero);
                 }
             }
 
@@ -1001,10 +1007,6 @@ namespace DungeonRun
             //match hero's rec to hero's sprite
             heroRec.X = (int)Pool.hero.compSprite.position.X - 8;
             heroRec.Y = (int)Pool.hero.compSprite.position.Y - 8;
-            //match hero's shadow to hero's sprite
-            //heroShadow.position.X = Pool.hero.compSprite.position.X;
-            //heroShadow.position.Y = Pool.hero.compSprite.position.Y + 5;
-            //Functions_Component.SetZdepth(heroShadow);
 
             //check the heroRec's collisions with Level rooms
             CheckRoomCollision();
@@ -1026,6 +1028,8 @@ namespace DungeonRun
             #endregion
 
 
+            #region Hero vs Roofs
+
             //if the hero is under a roof, then hide all roofs
             if (underRoof)
             { Functions_GameObject_World.HideRoofs(); }
@@ -1037,22 +1041,44 @@ namespace DungeonRun
             //else game should display all roofs
             else { Functions_GameObject_World.ShowRoofs(); }
 
+            #endregion
+
+
+            #region Hero sorting in water/land
+
             //set hero's zoffset based on state
             if (Pool.hero.underwater)
             { Pool.hero.compSprite.zOffset = -30; } //sort under vines
             //sort normally
             else { Pool.hero.compSprite.zOffset = 0; }
 
+            #endregion
+
+
+            #region Hero carrying obj
+
             if (carrying)
-            {
-                //hide the carried obj projectile from initial drawing
+            {   //hide the carried obj projectile from initial drawing
                 carriedObj.compSprite.visible = false;
                 //we will draw it later, after hero sprite, locked on link's head
             }
 
+            #endregion
 
 
-            //we could handle future pet related interactions/collisions here
+
+            //resets
+
+            #region Hide Reward Sprite if Hero is not-statelocked
+
+            if(Pool.hero.stateLocked == false)
+            {   //if hero has unlocked, then hide reward sprite
+                //rewardSprite.visible = false;
+            }
+
+            #endregion
+
+
         }
 
 
@@ -1110,6 +1136,8 @@ namespace DungeonRun
             }
 
             #endregion
+
+            
 
 
             //we could handle future pet related drawing here too

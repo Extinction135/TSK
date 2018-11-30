@@ -232,7 +232,7 @@ namespace DungeonRun
             {
                 MenuItem.name = "Ether Magic";
                 MenuItem.description = "lightning bolts\nfrom the sky, 5 magic.";
-                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Magic_Bolt;
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Magic_Ether;
                 MenuItem.price = 99;
             }
             else if (Type == MenuItemType.MagicBat)

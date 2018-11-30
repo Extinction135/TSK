@@ -758,8 +758,9 @@ namespace DungeonRun
                     if (LevelSet.currentLevel.map == false) //make sure hero doesn't already have map
                     {
                         Functions_Pool.Release(RoomObj); //hero collects map obj
+                        RoomObj.compSprite.visible = false; //hide map obj
                         LevelSet.currentLevel.map = true; //flip map true
-                        Functions_Actor.SetRewardState(Pool.hero);
+                        Functions_Hero.SetRewardState(ParticleType.RewardMap);
                         Functions_Actor.SetAnimationGroup(Pool.hero);
                         Functions_Actor.SetAnimationDirection(Pool.hero);
                         Functions_Particle.Spawn(ParticleType.RewardMap, Pool.hero);
