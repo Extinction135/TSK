@@ -105,25 +105,48 @@ namespace DungeonRun
             #endregion
 
 
-            #region Magic
-
+            #region HERO only Magic
 
             else if (Type == MenuItemType.MagicBombos)
-            {
-                if (Actor == Pool.hero & !CheckMagic(5)) //check if hero has enough
-                { Assets.Play(Assets.sfxError); Actor.lockTotal = 0; return; }
-                //cast bombos
-                Functions_Projectile.Spawn(ProjectileType.Bombos, Actor, Actor.direction);
-                Functions_Actor.SetRewardState(Pool.hero);
+            {   //only hero can cast this magic
+                if (Actor == Pool.hero)
+                {
+                    if (!CheckMagic(5))
+                    {   //failed to cast
+                        Assets.Play(Assets.sfxError);
+                        Actor.lockTotal = 0;
+                        return;
+                    }
+                    else
+                    {   //casted successfully
+                        Functions_Projectile.Spawn(ProjectileType.Bombos, Actor, Actor.direction);
+                        Functions_Actor.SetRewardState(Pool.hero);
+                    }
+                }
             }
-            else if (Type == MenuItemType.MagicBolt)
-            {
-                if (Actor == Pool.hero & !CheckMagic(2)) //check if hero has enough
-                { Assets.Play(Assets.sfxError); Actor.lockTotal = 0; return; }
-                //cast bolt
-                Functions_Projectile.Cast_Bolt(Pool.hero);
-                Functions_Actor.SetItemUseState(Actor);
+            else if (Type == MenuItemType.MagicEther)
+            {   //only hero can cast this magic
+                if(Actor == Pool.hero)
+                {
+                    if (!CheckMagic(5))
+                    {   //failed to cast
+                        Assets.Play(Assets.sfxError);
+                        Actor.lockTotal = 0;
+                        return;
+                    }
+                    else
+                    {   //casted successfully
+                        Functions_Projectile.Cast_Ether();
+                        Functions_Actor.SetItemUseState(Actor);
+                    }
+                }
             }
+
+            #endregion
+
+
+            #region Enemy/Actor Magic
+
             else if (Type == MenuItemType.MagicBat)
             {
                 //create bat projectile, shorten casting time to allow for spamming
@@ -133,6 +156,8 @@ namespace DungeonRun
             }
 
             #endregion
+
+
 
 
             #region Bottles

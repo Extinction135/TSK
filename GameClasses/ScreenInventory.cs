@@ -193,7 +193,7 @@ namespace DungeonRun
                         || currentlySelected.type == MenuItemType.BottleMagic
                         //magics
                         || currentlySelected.type == MenuItemType.MagicBombos
-                        || currentlySelected.type == MenuItemType.MagicBolt
+                        || currentlySelected.type == MenuItemType.MagicEther
                         || currentlySelected.type == MenuItemType.MagicBat
                         )
                     {

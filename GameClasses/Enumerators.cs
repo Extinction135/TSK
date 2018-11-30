@@ -791,7 +791,6 @@ namespace DungeonRun
 
         //Projectiles - items
         Bomb,
-        LightningBolt,
         Boomerang,
 
         Firerod,
@@ -853,25 +852,25 @@ namespace DungeonRun
 
     public enum ParticleType
     {
-        //Particles - small
+        //8x8 - small generic
         RisingSmoke,
         ImpactDust,
         Sparkle,
 
-        //Particles - small, obj specific
+        //8x8 small, obj specific
         PitBubble,
-        //explosion specific
+        //8x8 explosion specific
         LeafGreen,
         DebrisBrown,
         BloodRed,
         SlimeGreen,
 
-        //Particles - map
+        //8x8 map
         Map_Flag,
         Map_Wave,
         Map_Campfire,
 
-        //Particles - normal size
+        //16x16 size
         Attention,
         Splash,
         Blast,
@@ -880,7 +879,10 @@ namespace DungeonRun
         WaterKick,
         ExclamationBubble,
 
-        //Particle_Debris, //doesn't exist right now
+        //irregular sized
+        LightningBolt,
+
+        //BOTTLE PARTICLES
         BottleEmpty,
         BottleHealth,
         BottleMagic,
@@ -891,6 +893,8 @@ namespace DungeonRun
         //Particles - rewards
         RewardKey,
         RewardMap,
+
+
     }
 
     #endregion
@@ -977,7 +981,7 @@ namespace DungeonRun
         
         //MagicFireball,
         MagicBombos,
-        MagicBolt,
+        MagicEther,
         MagicBat,
 
         WeaponSword,

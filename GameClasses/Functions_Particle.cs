@@ -16,6 +16,8 @@ namespace DungeonRun
     {
         static Vector2 posRef = new Vector2();
         static Vector2 pushOffset = new Vector2();
+        //static Vector2 offset = new Vector2();
+
 
 
 
@@ -515,6 +517,27 @@ namespace DungeonRun
             }
 
             #endregion
+
+
+            #region Irregular sized
+
+            else if (Type == ParticleType.LightningBolt)
+            {
+                Part.compSprite.zOffset = 1024;
+                Part.lifetime = 30; //in frames
+                Part.compAnim.speed = 1; //in frames
+                Part.compAnim.loop = true;
+                Part.compAnim.currentAnimation = AnimationFrames.Particle_LightningBolt;
+                Part.compSprite.texture = Assets.entitiesSheet;
+            }
+
+            #endregion
+
+
+
+
+
+
 
 
             #region Overworld / Map - misc

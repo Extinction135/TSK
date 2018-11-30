@@ -240,7 +240,7 @@ namespace DungeonRun
         public Boolean itemIcerod = false;
 
         public Boolean magicBombos = false;
-        public Boolean magicBolt = false;
+        public Boolean magicEther = false;
 
         //bottles - hero just always has 3 bottles
         public MenuItemType bottleA = MenuItemType.BottleEmpty;

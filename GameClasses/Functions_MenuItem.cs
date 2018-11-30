@@ -228,10 +228,10 @@ namespace DungeonRun
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Magic_Bombos;
                 MenuItem.price = 99;
             }
-            else if (Type == MenuItemType.MagicBolt)
+            else if (Type == MenuItemType.MagicEther)
             {
-                MenuItem.name = "Lightning Magic";
-                MenuItem.description = "fires a lightning \nbolt, for 2 magic.";
+                MenuItem.name = "Ether Magic";
+                MenuItem.description = "lightning bolts\nfrom the sky, 5 magic.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Magic_Bolt;
                 MenuItem.price = 99;
             }

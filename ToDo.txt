@@ -55,70 +55,54 @@ Today:
 
 
 
+Hammers++
 
+hammers now do 1 damage, and push with a force of 8.
+this reduces their damage dealing capabilities - they
+should not be as powerful as explosions.
 
-
-
-
-
-
-
-
-
-
-
-Projectiles++++++++
-
-pros need to be able to track:
-their actor caster
-any hit actor
-any hit roomObj
-
-this allows projectiles to:
-pull their caster (hookshot)
-pull their hit actor (hookshot)
-stick into and track hit actor/roomObj (arrow)
-track 'onto' the obj/act as a status projectile (ice)
-
-Arrows++
-
-the easiest way to test this is via arrows, which
-should stick into actors and objs they initially hit.
-we can do a null check here for actor then obj, so
-arrows prefer actors over objs. done.
-
-this means arrows stick into all blocking objects 
-and actors, and will move with those
-
--boomerang now sparkles while it's flying. why not?
-
-testing arrows tracking into actors and objs. yep.
-can the hero get hit and tracked by arrows? lets
-find out now.. bugs.
-
-Damage Routines++
-
-added iceball into damage routines.
-rewrote damage routines to allow for hitActor and
-hitObject tracking, since damage() was kill()ing
-some projectiles in it's branches.
-
-
-
-
-
-
-
-
-
-
-
-
-Ether++
+Lightning Bolts--
 
 remove lightning bolt pros from game. these are actually
 lightning particles, and they are used in ethers new magic
 routines. also rename lightning magic to ether magic, pls.
+
+
+Ether++
+
+magicBolt needs to become MagicEther, so we're clear exactly
+what that magic is, going forward.
+
+ether and bombos are now gated to only the player casting them.
+ether's new implementation working great - lightning bolts rain
+down on every enemy in the room, causing explosions on them.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Bombos
+
+improve bombos - this should be explosions around link,
+causing an area of effect type of spell. and this should 
+be called using pro.castBombos().
+
+
+
+
+
+
+
+
 
 
 

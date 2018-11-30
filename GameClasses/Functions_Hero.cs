@@ -430,7 +430,7 @@ namespace DungeonRun
             PlayerData.current.itemIcerod = true;
             //set magic
             PlayerData.current.magicBombos = true;
-            PlayerData.current.magicBolt = true;
+            PlayerData.current.magicEther = true;
             
             //set weapons
             PlayerData.current.weaponNet = true;

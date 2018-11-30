@@ -476,20 +476,6 @@ namespace DungeonRun
                 }
 
                 #endregion
-                
-
-                #region Lightning Bolt
-
-                else if (Pro.type == ProjectileType.LightningBolt)
-                {
-                    if (Pro.lifeCounter == 2) //perform these interactions only once
-                    {   //bolts call power level 2 destruction routines
-                        RoomObj.compMove.direction = Pro.compMove.direction;
-                        Functions_GameObject_World.Explode(RoomObj);
-                    }
-                }
-
-                #endregion
 
 
                 #region Thrown Objects

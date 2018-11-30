@@ -14,7 +14,6 @@ namespace DungeonRun
 {
     public static class Functions_Projectile
     {
-        static Vector2 offset = new Vector2();
         static Projectile pro;
         static Boolean pushLines;
         static int i;
@@ -90,26 +89,16 @@ namespace DungeonRun
             //put projectile into play
             Functions_Movement.Teleport(pro.compMove, X, Y);
             pro.compMove.moving = true;
-            Functions_Projectile.SetType(pro, Type);
+            SetType(pro, Type);
             Functions_Component.Align(pro);
 
 
-            #region Lightning Bolt
-
-            //a bolt is spawned by other bolts, hence no caster
-            if (Type == ProjectileType.LightningBolt)
-            {   //push bolt a little bit, play sfx
-                Functions_Movement.Push(pro.compMove, Dir, 2.0f);
-                Assets.Play(Assets.sfxShock);
-            }
-
-            #endregion
 
 
             #region Projectile Bomb
 
             //what room obj or event spawns a bomb?
-            else if (Type == ProjectileType.Bomb)
+            if (Type == ProjectileType.Bomb)
             {
                 Assets.Play(Assets.sfxBombDrop);
             }
@@ -1067,8 +1056,72 @@ namespace DungeonRun
 
 
 
-        //misc methods
+        //special magic casting methods
 
+        static int castCounter = 0;
+        static int totalCount = 0;
+        static int counterB = 0;
+        public static List<Vector2> castPositions;
+
+        public static void Cast_Ether() //only hero can cast ether
+        {
+            //for each active enemy actor and roomObj
+            //create a lightning bolt particle - up from their position
+            //do this many times, so we have bolts going up from all enemies
+            //then create explosions at enemy locations
+
+            castPositions = new List<Vector2>();
+
+            //collect enemy actor positions
+            for(i = 0; i < Pool.actorCount; i++)
+            {
+                if (Pool.actorPool[i].active)
+                {
+                    if(Pool.actorPool[i].enemy)
+                    { castPositions.Add(Pool.actorPool[i].compSprite.position); }
+                }
+            }
+            //collect enemy object positions
+            for (i = 0; i < Pool.roomObjCount; i++)
+            {
+                if (Pool.roomObjPool[i].active)
+                {
+                    if (Pool.roomObjPool[i].group == ObjGroup.Enemy)
+                    { castPositions.Add(Pool.roomObjPool[i].compSprite.position); }
+                }
+            }
+
+            //loop all collected positions, creating explosions and bolts
+            totalCount = castPositions.Count;
+            //spawn bolts + explosions at all positions
+            for (castCounter = 0; castCounter < totalCount; castCounter++)
+            {   //explosions to damage actors/objs
+                Spawn(ProjectileType.Explosion,
+                    castPositions[castCounter].X,
+                    castPositions[castCounter].Y,
+                    Direction.None);
+                for (counterB = 1; counterB < 5; counterB++)
+                {   //place bolts centered, going up from position, for decor
+                    Functions_Particle.Spawn(ParticleType.LightningBolt,
+                        castPositions[castCounter].X,
+                        (castPositions[castCounter].Y + 4) - (16 * counterB),
+                        Direction.Down);
+                }
+            }
+            Assets.Play(Assets.sfxShock); //play sfx
+        }
+
+
+
+
+
+
+
+
+
+
+
+        /*
         public static void Cast_Bolt(Actor Caster)
         {
             //create a series of bolts in the facing direction of caster
@@ -1090,6 +1143,11 @@ namespace DungeonRun
                     Caster.direction);
             }
         }
+        */
+
+
+
+
 
         public static void SetRotation(Projectile Pro)
         {
@@ -1118,7 +1176,10 @@ namespace DungeonRun
                 Pro.compSprite.rotation = Rotation.None;
             }
 
-            //other pros rotate to form chains
+
+
+            /*
+            //other pros rotate to form chains (HOOKOSHOT!!!)
             else if (
                 Pro.type == ProjectileType.LightningBolt
                 )
@@ -1127,6 +1188,8 @@ namespace DungeonRun
                 { Pro.compSprite.rotation = Rotation.Clockwise90; }
                 else { Pro.compSprite.rotation = Rotation.None; }
             }
+            */
+
 
             //finally, set sprite's rotation based on direction & flipHorizontally boolean
             Functions_Component.SetSpriteRotation(Pro.compSprite, Pro.direction);
@@ -1227,19 +1290,9 @@ namespace DungeonRun
                 Pro.compAnim.currentAnimation = AnimationFrames.Projectile_Iceball;
                 Pro.compSprite.texture = Assets.entitiesSheet;
             }
+            
 
-            else if (Type == ProjectileType.LightningBolt)
-            {
-                Pro.compSprite.zOffset = 16;
-                Pro.compCollision.offsetX = -7; Pro.compCollision.offsetY = -7;
-                Pro.compCollision.rec.Width = 14; Pro.compCollision.rec.Height = 14;
-                Pro.lifetime = 25; //in frames
-                Pro.compMove.friction = World.frictionIce;
-                Pro.compAnim.speed = 1; //in frames
-                Pro.compMove.grounded = false; //obj is airborne
-                Pro.compAnim.currentAnimation = AnimationFrames.Projectile_Bolt;
-                Pro.compSprite.texture = Assets.entitiesSheet;
-            }
+
 
             else if (Type == ProjectileType.Bombos)
             {

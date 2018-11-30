@@ -632,9 +632,6 @@ namespace DungeonRun
         public static List<Byte4> Projectile_Fireball = new List<Byte4> { new Byte4(5, 8, 0, 0) };
         public static List<Byte4> Projectile_Iceball = new List<Byte4> { new Byte4(5, 7, 0, 0) };
 
-        public static List<Byte4> Projectile_Bolt = new List<Byte4>
-        { new Byte4(6, 8, 0, 0),new Byte4(6, 8, 1, 0) };
-
         public static List<Byte4> Projectile_FireGround = new List<Byte4>
         {
             new Byte4(5, 2, 0, 0), new Byte4(6, 2, 0, 0),
@@ -756,6 +753,12 @@ namespace DungeonRun
         {
             new Byte4(0, 1, 0, 0), new Byte4(0, 1, 1, 0)
         };
+
+
+        //irregular shaped particles
+        public static List<Byte4> Particle_LightningBolt = new List<Byte4>
+        { new Byte4(6, 8, 0, 0),new Byte4(6, 8, 1, 0) };
+
 
         #endregion
 

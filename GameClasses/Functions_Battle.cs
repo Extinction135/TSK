@@ -83,6 +83,12 @@ namespace DungeonRun
                 damage = 1; force = 4.0f;
                 direction = Pro.compMove.direction;
             }
+            else if (Pro.type == ProjectileType.Hammer)
+            {   //strongest standard weapon
+                damage = 1; force = 8.0f;
+                //push actor in their opposite direction
+                direction = Functions_Direction.GetOppositeDirection(Actor.direction);
+            }
 
             #endregion
 
@@ -91,20 +97,6 @@ namespace DungeonRun
 
             else if (Pro.type == ProjectileType.Explosion)
             {   //explosions deal 2 damage, push 10
-                damage = 2; force = 10.0f;
-                //push actor in their opposite direction
-                direction = Functions_Direction.GetOppositeDirection(Actor.direction);
-            }
-            else if (Pro.type == ProjectileType.LightningBolt)
-            {   //match explosions attributes
-                damage = 2; force = 10.0f;
-                //push actor in their opposite direction
-                direction = Functions_Direction.GetOppositeDirection(Actor.direction);
-            }
-
-            //hammers might be op, i dunno yet
-            else if (Pro.type == ProjectileType.Hammer)
-            {   //match explosions attributes
                 damage = 2; force = 10.0f;
                 //push actor in their opposite direction
                 direction = Functions_Direction.GetOppositeDirection(Actor.direction);
@@ -145,7 +137,6 @@ namespace DungeonRun
             {   //these projectiles ACTUALLY damage armored spider
                 if (
                     Pro.type == ProjectileType.Explosion
-                    || Pro.type == ProjectileType.LightningBolt
                     || Pro.type == ProjectileType.Shovel
                     || Pro.type == ProjectileType.Hammer
                     )

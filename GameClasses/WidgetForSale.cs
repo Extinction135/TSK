@@ -160,7 +160,7 @@ namespace DungeonRun
             else if (VendorType == ObjType.Vendor_NPC_Magic)
             {
                 Functions_MenuItem.SetType(MenuItemType.MagicBombos, menuItems[1]);
-                Functions_MenuItem.SetType(MenuItemType.MagicBolt, menuItems[2]);
+                Functions_MenuItem.SetType(MenuItemType.MagicEther, menuItems[2]);
             }
             else if (VendorType == ObjType.Vendor_NPC_Weapons)
             {
