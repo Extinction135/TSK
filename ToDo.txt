@@ -56,17 +56,67 @@ Today:
 
 
 
-Iceball++
+Bugs--
 
-the basic iceball has been added. this is a cheap pallete
-swap on the fireball, to get the system setup for polishing
-and completion.
+fixed map and key menu item sprites.. they are on 
+the common objs sheet, not entities sheet. done.
+
+
+
+
+
+
 
 
 
 
 
 Ice Consequences
+
+we have a 16x16 frozen set of 2 sprites.
+we can use these to model two frozen objs, each
+with their own set of shimmer animations (sprites).
+randomly, these objs choose to play their shimmer
+frames. these objs are projectiles.
+
+
+Projectiles from many Ideas
+
+pros need to be able to track:
+their actor caster
+any hit actor
+any hit roomObj
+
+this allows projectiles to:
+pull their caster (hookshot)
+pull their hit actor (hookshot)
+stick into and track hit actor/roomObj (arrow)
+track 'onto' the obj/act as a status projectile (ice)
+
+
+
+what is a frozen obj? 
+this shouldn't last forever. the ice needs to 'crack'.
+maybe this is where we use the 2nd frame to make it look
+like an egg is cracking, but it's ice. a little particles
+and this simply kills the frozen projectile.
+
+we can do the same with enemies, just hold them.
+for 255 frames. then 'crack' and gone. the enemy goes
+back to it's working state. while frozen, the obj is 'stuck'
+and cannot move. once the ice breaks, the obj returns to normal,
+and if it wants to move it does. obvs, most objs cant be frozen,
+via iceBlock projectile, like conveyorbelts. or switches, etc..
+but alot of objects can, and all small enemies can, and standard
+actors can as well. we can freeze groups of exploder seekers,
+then kill them, causing explosions from the iceblocks, which should
+destroy the iceblocks. 
+
+
+
+
+
+
 
 
 generic ice block for all 16x16 enemies, larger enemies
@@ -92,6 +142,12 @@ this is done in it's ineteraction routine! and they are roomObjs...
 
 
 
+
+
+
+
+ground fires should not trigger switches. they do so across
+many frames, cascading.
 
 
 

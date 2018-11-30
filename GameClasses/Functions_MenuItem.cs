@@ -438,14 +438,14 @@ namespace DungeonRun
                 MenuItem.name = "Dungeon Map";
                 MenuItem.description = "This map displays\nthe dungeon's rooms.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Dungeon_Map;
-                MenuItem.compSprite.texture = Assets.Dungeon_CurrentSheet;
+                MenuItem.compSprite.texture = Assets.CommonObjsSheet;
             }
             else if (Type == MenuItemType.InventoryKey)
             {
                 MenuItem.name = "Dungeon Key";
                 MenuItem.description = "This key unlocks\nthe boss door.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Dungeon_BossKey;
-                MenuItem.compSprite.texture = Assets.Dungeon_CurrentSheet;
+                MenuItem.compSprite.texture = Assets.CommonObjsSheet;
             }
             
 
