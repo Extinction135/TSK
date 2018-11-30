@@ -35,18 +35,9 @@ namespace DungeonRun
             //Projectiles
 
 
-            #region Power level 0 projectiles
+            #region Damage level 0
 
-            if (Pro.type == ProjectileType.Bomb)
-            {   //bombs don't push or hurt actors
-                return;
-            }
-            else if (Pro.type == ProjectileType.Fireball)
-            {   //fireballs die creating explosions
-                Pro.lifeCounter = Pro.lifetime;
-                return;
-            }
-            else if (Pro.type == ProjectileType.Boomerang)
+            if (Pro.type == ProjectileType.Boomerang)
             {   //boomerangs deal 0 damage, push 10, flip to return state
                 damage = 0; force = 10.0f; direction = Pro.compMove.direction;
                 Pro.lifeCounter = 200; //return to caster
@@ -59,12 +50,12 @@ namespace DungeonRun
             #endregion
 
 
-            #region Power level 1 projectiles
+            #region Damage level 1
 
             else if (Pro.type == ProjectileType.Arrow)
-            {   //arrows deal 1 damage, push 4, and die
-                damage = 1; force = 4.0f; direction = Pro.compMove.direction;
-                Pro.lifeCounter = Pro.lifetime;
+            {   //arrows deal 1 damage, push 4
+                damage = 1; force = 4.0f;
+                direction = Pro.compMove.direction;
             }
             else if (Pro.type == ProjectileType.Sword)
             {   //swords deal 1 damage, push 6
@@ -74,27 +65,29 @@ namespace DungeonRun
             {   //matches swords damage, less push
                 damage = 1; force = 3.0f; direction = Pro.direction;
             }
-
             else if (Pro.type == ProjectileType.ThrownObject)
             {   //thrown objs deal 1 damage, push 4
                 damage = 1; force = 4.0f; direction = Pro.compMove.direction;
             }
-
             else if (Pro.type == ProjectileType.Bite)
             {   //bite deals 1 damage, push 5
                 damage = 1; force = 5.0f; direction = Pro.direction;
             }
             else if (Pro.type == ProjectileType.Bat)
-            {
-                //bats deal 1 damage, push 4, and die
-                damage = 1; force = 4.0f; direction = Pro.compMove.direction;
-                Pro.lifeCounter = Pro.lifetime;
+            {   //bats deal 1 damage, push 4
+                damage = 1; force = 4.0f;
+                direction = Pro.compMove.direction;
+            }
+            else if (Pro.type == ProjectileType.Iceball)
+            {   //ice deals 1 damage, push 4
+                damage = 1; force = 4.0f;
+                direction = Pro.compMove.direction;
             }
 
             #endregion
 
 
-            #region Power level 2 projectiles
+            #region Damage level 2
 
             else if (Pro.type == ProjectileType.Explosion)
             {   //explosions deal 2 damage, push 10
@@ -121,6 +114,10 @@ namespace DungeonRun
 
 
 
+
+
+
+
             //2. ENEMY INVINCIBILITY - check actor v pro/obj status effects 
 
             //this could also include blob type
@@ -135,7 +132,7 @@ namespace DungeonRun
             }
             else if (Actor.type == ActorType.Standard_AngryEye)
             {
-                //
+                //?
             }
 
             #endregion
@@ -221,9 +218,6 @@ namespace DungeonRun
         }
 
 
-
-
-
         public static void Damage(Actor Actor, GameObject Obj)
         {
             //bail from method if actor is underwater
@@ -269,14 +263,6 @@ namespace DungeonRun
         }
 
 
-
-
-
-
-
-
-
-
         public static void Damage(Actor Actor, byte Damage, float Force, Direction Direction)
         {   //only damage/hit/push actors not in the hit state
             if (Actor.state != ActorState.Hit)
@@ -303,6 +289,7 @@ namespace DungeonRun
 
             }
         }
+
 
     }
 }

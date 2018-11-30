@@ -106,14 +106,13 @@ namespace DungeonRun
         public static void Interact_ProjectileActor(Projectile Pro, Actor Actor)
         {
 
-
             #region Exit conditions
 
             //projectiles shouldn't interact with dead actor's corpses
             if (Actor.state == ActorState.Dead) { return; }
 
             //some projectiles dont interact with actors in any way at all
-            if (Pro.type == ProjectileType.Bomb
+            else if (Pro.type == ProjectileType.Bomb
                 || Pro.type == ProjectileType.GroundFire
                 || Pro.type == ProjectileType.Bow
                 )
@@ -132,33 +131,109 @@ namespace DungeonRun
 
 
 
-            //specific projectile interactions
+            //Handle Initial Hit State - pro can't have hitObj/actor
+            if(Pro.hitObj == null & Pro.hitActor == null)
+            {   //projectile hits actor, setting hitActor reference
+                Pro.hitActor = Actor;
 
-            //check for collision between net and actor
-            else if (Pro.type == ProjectileType.Net)
-            {   //make sure actor isn't in hit/dead state
-                if (Actor.state == ActorState.Dead || Actor.state == ActorState.Hit) { return; }
-                Pro.lifeCounter = Pro.lifetime; //kill projectile
-                Pro.compCollision.rec.X = -1000; //hide hitBox (prevents multiple actor collisions)
-                Functions_Bottle.Bottle(Actor); //try to bottle the actor
-                Functions_Pool.Release(Pro); //release the net
+                //set initial hit offset
+                Pro.hitOffsetX = Pro.compMove.position.X - Actor.compMove.position.X;
+                Pro.hitOffsetY = Pro.compMove.position.Y - Actor.compMove.position.Y;
+
+                
+
+                //Handle projectile hit behaviors
+
+
+                #region Arrow
+
+                if (Pro.type == ProjectileType.Arrow)
+                {   //improve arrow placement on moving actors (move closer to center)
+                    if (Pro.compMove.direction == Direction.Up)
+                    {
+                        Pro.hitOffsetX = Pro.hitOffsetX / 2;
+                        Pro.hitOffsetY = 6;
+                    } 
+                    else if (Pro.compMove.direction == Direction.Down)
+                    {
+                        Pro.hitOffsetX = Pro.hitOffsetX / 2;
+                        Pro.hitOffsetY = -6;
+                    }
+                    else if (Pro.compMove.direction == Direction.Left)
+                    {
+                        Pro.hitOffsetX = 6;
+                        Pro.hitOffsetY = Pro.hitOffsetY / 2;
+                    }
+                    else if (Pro.compMove.direction == Direction.Right)
+                    {
+                        Pro.hitOffsetX = -6;
+                        Pro.hitOffsetY = Pro.hitOffsetY / 2;
+                    }
+                    Functions_Projectile.SetArrowHitState(Pro);
+                }
+
+                #endregion
+
+
+                #region Fireball
+
+                if (Pro.type == ProjectileType.Fireball)
+                {
+                    Functions_Projectile.Kill(Pro);
+                }
+
+                #endregion
+
+
+                #region Iceball
+
+                if (Pro.type == ProjectileType.Iceball)
+                {
+                    Functions_Projectile.Kill(Pro);
+                }
+
+                #endregion
+
+
+                #region Net
+
+                else if (Pro.type == ProjectileType.Net)
+                {   //make sure actor isn't in hit/dead state
+                    if (Actor.state == ActorState.Dead || Actor.state == ActorState.Hit) { return; }
+                    Pro.lifeCounter = Pro.lifetime; //kill projectile
+                    Pro.compCollision.rec.X = -1000; //hide hitBox (prevents multiple actor collisions)
+                    Functions_Bottle.Bottle(Actor); //try to bottle the actor
+                    Functions_Pool.Release(Pro); //release the net
+                }
+
+                #endregion
+
+
+                #region Hero's ThrownObject
+
+                //kill thrown projectiles upon impact, next frame
+                else if (Pro.type == ProjectileType.ThrownObject)
+                {
+                    Pro.lifeCounter = Pro.lifetime;
+                }
+
+                #endregion
+
+
+                #region Bite
+
+                //limit bite to only the first frame of life
+                else if (Pro.type == ProjectileType.Bite)
+                {   //prevents fast moving caster overlap, while still hitbox drawable
+                    if (Pro.lifeCounter > 2) { return; }
+                }
+
+                #endregion
+
+
+                //actors take damage from projectiles that get here..
+                Functions_Battle.Damage(Actor, Pro); //sets actor into hit state
             }
-
-            //kill thrown projectiles upon impact, next frame
-            else if (Pro.type == ProjectileType.ThrownObject)
-            {
-                Pro.lifeCounter = Pro.lifetime;
-            }
-
-            //limit bite to only the first frame of life
-            else if (Pro.type == ProjectileType.Bite)
-            {   //prevents fast moving caster overlap, while still remaining drawable
-                if (Pro.lifeCounter > 2) { return; }
-            }
-
-
-            //all actors take damage from projectiles that get here..
-            Functions_Battle.Damage(Actor, Pro); //sets actor into hit state
         }
 
         public static void Interact_ProjectileRoomObj(Projectile Pro, GameObject RoomObj)
@@ -194,16 +269,48 @@ namespace DungeonRun
             if (RoomObj.compCollision.blocking)
             {
 
-                #region Arrow / Bat
+                #region Arrow
 
-                if (Pro.type == ProjectileType.Arrow
-                    || Pro.type == ProjectileType.Bat)
-                {
-                    //arrows push
+                if (Pro.type == ProjectileType.Arrow)
+                {   
+                    if(Pro.hitObj == null & Pro.hitActor == null) //set initial hitObj
+                    {   //arrows push hit obj
+                        RoomObj.compMove.direction = Pro.compMove.direction;
+                        //call power level 1 destruction routines
+                        Functions_GameObject_World.Cut(RoomObj);
+                        //stop arrows movement
+                        Functions_Movement.StopMovement(Pro.compMove);
+                        //stick into hitObj for remainder of life
+                        Pro.hitObj = RoomObj;
+                        //set the initial hitoffset - move arrow closer to obj's center
+                        Pro.hitOffsetX = Pro.compMove.position.X - RoomObj.compMove.position.X;
+                        Pro.hitOffsetY = Pro.compMove.position.Y - RoomObj.compMove.position.Y;
+                        //Debug.WriteLine("XY offset: " + Pro.hitOffsetX + ", " + Pro.hitOffsetY);
+                        Functions_Projectile.SetArrowHitState(Pro);
+
+                        /*
+                        //set the initial hitoffset - only track horizontally for visual ++
+                        Pro.hitOffsetX = Pro.compMove.position.X - RoomObj.compMove.position.X;
+                        //make offset smaller - pull arrow towards actors center
+                        Pro.hitOffsetX = Pro.hitOffsetX / 2;
+                        //Pro.hitOffsetY = Pro.compMove.position.Y - Actor.compMove.position.Y;
+                        Pro.hitOffsetY = 0; //no vert offset
+                        */
+                    }
+                    //else ignore interaction after initial hit
+                }
+
+                #endregion
+
+
+                #region Bat
+
+                if (Pro.type == ProjectileType.Bat)
+                {   //bats push hit obj
                     RoomObj.compMove.direction = Pro.compMove.direction;
-                    //power level 1
+                    //call power level 1 destruction routines
                     Functions_GameObject_World.Cut(RoomObj);
-                    //arrows die upon blocking collision
+                    //bats die upon collision
                     Functions_Projectile.Kill(Pro);
                 }
 
@@ -599,6 +706,14 @@ namespace DungeonRun
             #endregion
 
         }
+
+
+
+
+
+
+
+
 
 
 
@@ -1458,6 +1573,12 @@ namespace DungeonRun
                 
             }
         }
+
+
+
+
+
+
 
 
 

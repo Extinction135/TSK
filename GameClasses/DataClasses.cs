@@ -1253,7 +1253,7 @@ namespace DungeonRun
     #endregion
 
 
-    #region Actor, GameObject, Projectile, Particle, Pickup
+    #region Actor, GameObject, Particle, Pickup
 
     public class Actor
     {
@@ -1377,33 +1377,7 @@ namespace DungeonRun
         }
     }
 
-    public class Projectile
-    {
-        public ComponentSprite compSprite;
-        public ComponentAnimation compAnim = new ComponentAnimation();
-        public ComponentMovement compMove = new ComponentMovement();
-        public ComponentCollision compCollision = new ComponentCollision();
-        public ComponentSoundFX sfx = new ComponentSoundFX();
-
-        public Boolean active = true; //does object draw, update?
-
-        public Actor caster = Pool.hero; //default caster to hero
-        public ProjectileType type = ProjectileType.Arrow;
-        public Direction direction = Direction.Down; //direction sprite is facing
-
-        public Byte lifetime = 30; //how many frames this object exists for, 0 = forever/ignore
-        public Byte lifeCounter = 0; //counts up to lifetime value
-
-        public int interactiveFrame = 0;
-        //0 = always interactive, >0 = just that one # frame of interaction
-
-        public Projectile()
-        {   //initialize to default value - data is changed later
-            compSprite = new ComponentSprite(Assets.entitiesSheet,
-                new Vector2(50, 50), new Byte4(0, 0, 0, 0), new Point(16, 16));
-            Functions_Projectile.SetType(this, type);
-        }
-    }
+    
 
     public class Particle
     {
@@ -1454,8 +1428,44 @@ namespace DungeonRun
     #endregion
 
 
+    #region Projectile
+
+    public class Projectile
+    {
+        public ComponentSprite compSprite;
+        public ComponentAnimation compAnim = new ComponentAnimation();
+        public ComponentMovement compMove = new ComponentMovement();
+        public ComponentCollision compCollision = new ComponentCollision();
+        public ComponentSoundFX sfx = new ComponentSoundFX();
+
+        public Boolean active = true; //does object draw, update?
+
+        public Actor caster = Pool.hero; //default caster to hero
+
+        public Actor hitActor = null; //null means no hit
+        public GameObject hitObj = null; //null means no hit
+        public float hitOffsetX = 0; //hit obj/act's newPost - pro.spritePos
+        public float hitOffsetY = 0; //used to track pro onto obj/actor
 
 
+        public ProjectileType type = ProjectileType.Arrow;
+        public Direction direction = Direction.Down; //direction sprite is facing
+
+        public Byte lifetime = 30; //how many frames this object exists for, 0 = forever/ignore
+        public Byte lifeCounter = 0; //counts up to lifetime value
+        public int interactiveFrame = 0;
+        //0 = always interactive, >0 = just that one # frame of interaction
+
+        public Projectile()
+        {   //initialize to default value - data is changed later
+            compSprite = new ComponentSprite(Assets.entitiesSheet,
+                new Vector2(50, 50), new Byte4(0, 0, 0, 0), new Point(16, 16));
+            Functions_Projectile.SetType(this, type);
+        }
+    }
+
+
+    #endregion
 
 
 

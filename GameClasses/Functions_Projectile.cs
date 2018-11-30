@@ -30,6 +30,12 @@ namespace DungeonRun
             Pro.active = true; //assume this object should draw / animate
             Pro.lifetime = 0; //assume obj exists forever (not projectile)
             Pro.lifeCounter = 0; //reset counter
+            
+            //clear hit actor/obj references + offsets
+            Pro.hitActor = null;
+            Pro.hitObj = null;
+            Pro.hitOffsetX = 0;
+            Pro.hitOffsetY = 0;
 
             //reset the sprite component
             Pro.compSprite.drawRec.Width = 16 * 1; //assume cell size is 16x16 (most are)
@@ -695,12 +701,34 @@ namespace DungeonRun
 
 
 
-            
 
 
 
+            //projectiles that track to hit actors/objects
 
+            #region Arrow
 
+            if(Pro.type == ProjectileType.Arrow)
+            {   //3 branches: one for no hit obj/act, hit act, hit obj
+                if (Pro.hitActor != null)
+                {   //track to hitActor with proper offset
+                    Functions_Movement.Teleport(Pro.compMove,
+                        Pro.hitActor.compMove.position.X + Pro.hitOffsetX,
+                        Pro.hitActor.compMove.position.Y + Pro.hitOffsetY);
+                    //if hitactor dies/goes invis, kill arrow
+                    if (Pro.hitActor.compSprite.visible == false)
+                    { Kill(Pro); }
+                }
+                else if (Pro.hitObj != null)
+                {   //track to hitObj with proper offset
+                    Functions_Movement.Teleport(Pro.compMove,
+                        Pro.hitObj.compMove.position.X + Pro.hitOffsetX,
+                        Pro.hitObj.compMove.position.Y + Pro.hitOffsetY);
+                }
+                //else { } //nothing, continue flying through air
+            }
+
+            #endregion
 
 
 
@@ -759,6 +787,13 @@ namespace DungeonRun
                 Functions_Pickup.CheckOverlap(Pro);
                 //play the spinning sound fx each frame
                 Assets.Play(Assets.sfxBoomerangFlying);
+
+                if (Functions_Random.Int(0, 101) > 75)
+                {   //often place randomly offset sparkles
+                    Functions_Particle.Spawn(ParticleType.Sparkle,
+                        Pro.compSprite.position.X + Functions_Random.Int(-2, 2),
+                        Pro.compSprite.position.Y + Functions_Random.Int(-2, 2));
+                }
 
                 #endregion
 
@@ -829,7 +864,7 @@ namespace DungeonRun
 
 
 
-            //magic - unique behaviors
+            //magic
 
             #region Bombos 
 
@@ -861,7 +896,7 @@ namespace DungeonRun
 
 
 
-            //misc
+            //world projectiles
 
             #region Ground Fire
 
@@ -900,6 +935,10 @@ namespace DungeonRun
 
 
 
+
+
+
+
             //align all the components
             Functions_Component.Align(Pro.compMove, Pro.compSprite, Pro.compCollision);
         }
@@ -908,14 +947,12 @@ namespace DungeonRun
         public static void Kill(Projectile Pro)
         {
 
-            #region Arrow or Bat projectile
+
+            #region Arrow
 
             if (Pro.type == ProjectileType.Arrow)
             {
-                Functions_Particle.Spawn(
-                    ParticleType.Attention,
-                    Pro.compSprite.position.X + 0,
-                    Pro.compSprite.position.Y + 0);
+                //nothing, just disappear
             }
 
             #endregion
@@ -1095,8 +1132,18 @@ namespace DungeonRun
             Functions_Component.SetSpriteRotation(Pro.compSprite, Pro.direction);
         }
 
-        
-
+        public static void SetArrowHitState(Projectile Arrow)
+        {   //limit arrow life, swamp to hit sprite, change zdepth offset
+            Arrow.lifeCounter = 0; //reset lifecounter
+            Arrow.lifetime = 60*3; //3 seconds
+            Arrow.compAnim.currentAnimation = AnimationFrames.Projectile_ArrowHit;
+            Arrow.compSprite.zOffset = 64; //sort over most things
+            //pop an attention particle to signify state change to player
+            Functions_Particle.Spawn(
+                ParticleType.Attention,
+                Arrow.compSprite.position.X + 0,
+                Arrow.compSprite.position.Y + 0);
+        }
 
 
 
@@ -1331,7 +1378,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Arrow and Bow
+            #region Arrow
 
             else if (Type == ProjectileType.Arrow)
             {
@@ -1357,6 +1404,12 @@ namespace DungeonRun
                 Pro.sfx.kill = Assets.sfxArrowHit;
                 Pro.sfx.hit = Assets.sfxArrowHit;
             }
+
+            #endregion
+
+
+            #region Bow
+
             else if (Type == ProjectileType.Bow)
             {
                 Pro.compSprite.zOffset = 0;
@@ -1368,7 +1421,6 @@ namespace DungeonRun
                 Pro.compSprite.texture = Assets.entitiesSheet;
                 Pro.sfx.hit = null; Pro.sfx.kill = null;
             }
-
 
             #endregion
 

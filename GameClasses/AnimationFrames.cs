@@ -619,7 +619,13 @@ namespace DungeonRun
 
         public static List<Byte4> Projectile_Bow = new List<Byte4> { new Byte4(6, 7, 0, 0) };
         public static List<Byte4> Projectile_Arrow = new List<Byte4> { new Byte4(7, 7, 0, 0) };
-        public static List<Byte4> Projectile_Bomb = new List<Byte4> { new Byte4(8, 7, 0, 0), new Byte4(9, 7, 0, 0) };
+        public static List<Byte4> Projectile_ArrowHit = new List<Byte4> { new Byte4(7, 8, 0, 0) };
+
+
+        public static List<Byte4> Projectile_Bomb = new List<Byte4>
+        { new Byte4(8, 7, 0, 0), new Byte4(9, 7, 0, 0) };
+
+
         public static List<Byte4> Projectile_Explosion = new List<Byte4>
         { new Byte4(10, 7, 0, 0), new Byte4(11, 7, 0, 0), new Byte4(12, 7, 0, 0), };
 
