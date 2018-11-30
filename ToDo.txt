@@ -54,23 +54,51 @@ Today:
 
 
 
+Icerod++
 
-
-
-
-Fire Rod
-
-swapping fireball magic with fire rod, because it's all
-about lttp. added fire rod ui item, tested and working.
-
-projectile for rod in hand added to game. tested,
-working great. sleep now.
+Icerod added to game. tested.
+now we get to decide how ice is implemented.
 
 
 
 
 
 
+
+
+
+
+generic ice block for all 16x16 enemies, larger enemies
+just take damage and get pushed.
+
+
+ice explosion also creates icetiles underneath it.
+icetiles cannot overlap other icetiles, and other
+roomobjects, like mountain walls, etc...
+
+
+IceTiles
+*if ice tile overlaps with a pit / bridge / floor spikes / cracked floor, remove it
+we can't have ice tiles breaking interactions and not making sense.
+this is done in it's ineteraction routine! and they are roomObjs...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+FIX MAGIC PLS
 
 
 
@@ -89,25 +117,6 @@ fires should kill mob enemies too.
 
 
 
-
-
-Fire and Ice Rods
-
-fireballs shoot from firerod.
-iceballs shoot from icerod.
-
-generic ice block for all 16x16 enemies, larger enemies
-just take damage and get pushed.
-
-ice explosion also creates icetiles underneath it.
-icetiles cannot overlap other icetiles, and other
-roomobjects, like mountain walls, etc...
-
-
-IceTiles
-*if ice tile overlaps with a pit / bridge / floor spikes / cracked floor, remove it
-we can't have ice tiles breaking interactions and not making sense.
-this is done in it's ineteraction routine! and they are roomObjs...
 
 
 

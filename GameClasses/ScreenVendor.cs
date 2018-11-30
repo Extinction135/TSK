@@ -344,6 +344,28 @@ namespace DungeonRun
                     else { DialogNeedsBow(); }
                 }
 
+
+
+                else if (Item.type == MenuItemType.ItemFirerod)
+                {
+                    if (!PlayerData.current.itemFirerod)
+                    {
+                        PlayerData.current.itemFirerod = true;
+                        CompleteSale(Item);
+                    }
+                    else { DialogAlreadyPurchased(); }
+                }
+                else if (Item.type == MenuItemType.ItemIcerod)
+                {
+                    if (!PlayerData.current.itemIcerod)
+                    {
+                        PlayerData.current.itemIcerod = true;
+                        CompleteSale(Item);
+                    }
+                    else { DialogAlreadyPurchased(); }
+                }
+
+
                 #endregion
 
 
@@ -371,15 +393,7 @@ namespace DungeonRun
 
                 #region Magic Medallions
 
-                else if (Item.type == MenuItemType.ItemFireRod)
-                {
-                    if (!PlayerData.current.itemFirerod)
-                    {
-                        PlayerData.current.itemFirerod = true;
-                        CompleteSale(Item);
-                    }
-                    else { DialogAlreadyPurchased(); }
-                }
+                
                 else if(Item.type == MenuItemType.MagicBat)
                 {
                     //set into player's enemyItem slot

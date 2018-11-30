@@ -151,8 +151,10 @@ namespace DungeonRun
 
             //7 - firerod
             if (PlayerData.current.itemFirerod)
-            { Functions_MenuItem.SetType(MenuItemType.ItemFireRod, menuItems[7]); }
-            //8 - ?
+            { Functions_MenuItem.SetType(MenuItemType.ItemFirerod, menuItems[7]); }
+            //8 - icerod
+            if (PlayerData.current.itemIcerod)
+            { Functions_MenuItem.SetType(MenuItemType.ItemIcerod, menuItems[8]); }
             //9 - ?
             //10 - ?
 

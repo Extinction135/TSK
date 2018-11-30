@@ -138,6 +138,7 @@ namespace DungeonRun
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_ItemArrowPack;
                 MenuItem.price = 20;
             }
+
             else if (Type == MenuItemType.ItemBoomerang)
             {
                 MenuItem.name = "Magic Boomerang";
@@ -152,11 +153,18 @@ namespace DungeonRun
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Item_Bow;
                 MenuItem.price = 50;
             }
-            else if (Type == MenuItemType.ItemFireRod)
+            else if (Type == MenuItemType.ItemFirerod)
             {
-                MenuItem.name = "FireRod";
+                MenuItem.name = "Firerod";
                 MenuItem.description = "shoots a fireball. \ncosts 1 magic.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Item_Firerod;
+                MenuItem.price = 99;
+            }
+            else if (Type == MenuItemType.ItemIcerod)
+            {
+                MenuItem.name = "Icerod";
+                MenuItem.description = "shoots an iceball. \ncosts 1 magic.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Item_Icerod;
                 MenuItem.price = 99;
             }
 

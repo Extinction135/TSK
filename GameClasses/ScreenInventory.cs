@@ -182,7 +182,8 @@ namespace DungeonRun
                         currentlySelected.type == MenuItemType.ItemBomb
                         || currentlySelected.type == MenuItemType.ItemBoomerang
                         || currentlySelected.type == MenuItemType.ItemBow
-                        || currentlySelected.type == MenuItemType.ItemFireRod
+                        || currentlySelected.type == MenuItemType.ItemFirerod
+                        || currentlySelected.type == MenuItemType.ItemIcerod
                         //bottles
                         || currentlySelected.type == MenuItemType.BottleEmpty
                         || currentlySelected.type == MenuItemType.BottleBlob

@@ -148,7 +148,8 @@ namespace DungeonRun
                 //row 2
                 Functions_MenuItem.SetType(MenuItemType.ItemBow, menuItems[5]);
                 Functions_MenuItem.SetType(MenuItemType.ItemArrowPack, menuItems[6]);
-                Functions_MenuItem.SetType(MenuItemType.ItemFireRod, menuItems[7]);
+                Functions_MenuItem.SetType(MenuItemType.ItemFirerod, menuItems[7]);
+                Functions_MenuItem.SetType(MenuItemType.ItemIcerod, menuItems[8]);
             }
             else if (VendorType == ObjType.Vendor_NPC_Potions)
             {

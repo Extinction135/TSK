@@ -427,6 +427,7 @@ namespace DungeonRun
             PlayerData.current.itemBoomerang = true;
             PlayerData.current.itemBow = true;
             PlayerData.current.itemFirerod = true;
+            PlayerData.current.itemIcerod = true;
             //set magic
             PlayerData.current.magicBombos = true;
             PlayerData.current.magicBolt = true;

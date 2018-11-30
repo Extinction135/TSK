@@ -1492,7 +1492,7 @@ namespace DungeonRun
 
                 ResetActorLoadout(Actor);
                 //setup actor with useable item, so player can shoot fireballs
-                Actor.item = MenuItemType.ItemFireRod;
+                Actor.item = MenuItemType.ItemFirerod;
                 //custom hitbox
                 Actor.compCollision.rec.Width = 16;
                 Actor.compCollision.rec.Height = 12;
