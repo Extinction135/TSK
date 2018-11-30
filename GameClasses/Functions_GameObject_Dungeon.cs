@@ -363,14 +363,14 @@ namespace DungeonRun
 
 
         public static void DecorateEnemyDeath(ComponentSprite compSprite)
-        {   //used to kill small room enemies in uniform way
+        {   //used to kill enemies in uniform way
             Functions_Particle.Spawn_Explosion(
                 ParticleType.BloodRed,
                 compSprite.position.X + 4,
                 compSprite.position.Y + 4,
                 false); //create blood spatter
             Assets.Play(Assets.sfxEnemyKill); //call sfx
-
+            Functions_Loot.SpawnLoot(compSprite.position); //spawn loot
             //check to see what kind of additional decorations should drop
             if (Flags.Gore)
             {

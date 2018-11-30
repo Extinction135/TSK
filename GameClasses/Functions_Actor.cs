@@ -506,7 +506,6 @@ namespace DungeonRun
             else//this is all other actor types: blob, angry eye, etc..
             {   //decorate actor's death with blast, loot, blood, skeleton
                 Functions_Particle.Spawn(ParticleType.Blast, Actor);
-                Functions_Loot.SpawnLoot(Actor.compSprite.position);
                 Functions_GameObject_Dungeon.DecorateEnemyDeath(Actor.compSprite);
                 Functions_Pool.Release(Actor);
             }

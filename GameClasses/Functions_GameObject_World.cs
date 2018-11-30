@@ -22,6 +22,16 @@ namespace DungeonRun
 
         
 
+        
+
+
+
+
+
+
+
+
+
 
 
 
@@ -29,38 +39,6 @@ namespace DungeonRun
         //level 0.5 caused by: boomerang
         public static void Bounce(GameObject Obj)
         {   //Obj.compMove.direction needs to be set by collider
-
-
-
-            //Kill RoomObj Enemies
-            if (Obj.group == ObjGroup.Enemy)
-            {
-
-                #region Seeker Exploders
-
-                if (Obj.type == ObjType.Wor_SeekerExploder)
-                {   //Obj.compMove.direction should be set by colliding pro prior
-                    Functions_GameObject.SetType(Obj, ObjType.ExplodingObject); //explode
-                    Functions_Movement.Push(Obj.compMove, Obj.compMove.direction, 6.0f);
-                    Assets.Play(Assets.sfxActorLand);
-                }
-
-                #endregion
-
-
-                //All Other RoomObj Enemies
-                else
-                {   //Obj.compMove.direction should be set by colliding pro prior
-                    Functions_Particle.Spawn(ParticleType.Attention, Obj);
-                    Functions_GameObject.Kill(Obj, true, false);
-                    Assets.Play(Assets.sfxActorLand);
-                }
-            }
-
-
-
-
-
 
 
             #region Bush
@@ -195,6 +173,32 @@ namespace DungeonRun
             Bounce(Obj); //call all lower levels of destruction on obj
         }
 
+        //level 1 caused by: sword, shovel, arrow, bat, bite, 
+        public static void CutRoomEnemy(GameObject Enemy)
+        {
+
+            #region Seeker Exploders
+
+            if (Enemy.type == ObjType.Wor_SeekerExploder)
+            {   //Obj.compMove.direction should be set by colliding pro prior
+                Functions_GameObject.SetType(Enemy, ObjType.ExplodingObject); //explode
+                Enemy.group = ObjGroup.Object; //remove from enemy death checks
+                Functions_Movement.Push(Enemy.compMove, Enemy.compMove.direction, 6.0f);
+                Assets.Play(Assets.sfxActorLand);
+            }
+
+            #endregion
+
+
+            //All Other RoomObj Enemies
+            else
+            {   //Obj.compMove.direction should be set by colliding pro prior
+                Functions_Particle.Spawn(ParticleType.Attention, Enemy);
+                Functions_GameObject.Kill(Enemy, true, false);
+                Assets.Play(Assets.sfxActorLand);
+            }
+        }
+
         //level 2 caused by: hammer, spikeblock, floorspikes
         public static void Destroy(GameObject Obj)
         {   //Obj.compMove.direction needs to be set by collider
@@ -250,8 +254,7 @@ namespace DungeonRun
             #endregion
 
 
-
-
+            #region Destroy Various Dungeon/World Objects
 
             else if (
 
@@ -286,12 +289,7 @@ namespace DungeonRun
                 Functions_GameObject.Kill(Obj, true, true);
             }
 
-
-
-
-
-
-
+            #endregion
 
 
             else
@@ -483,7 +481,6 @@ namespace DungeonRun
             }
 
             #endregion
-
 
         }
 

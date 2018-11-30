@@ -96,27 +96,27 @@ namespace DungeonRun
 
         //death events
         public static void Kill(GameObject Obj, Boolean spawnLoot, Boolean becomeDebris)
-        {   
-            //pop an attention particle
+        {   //pop an attention particle
             Functions_Particle.Spawn(
                 ParticleType.Attention,
                 Obj.compSprite.position.X,
                 Obj.compSprite.position.Y);
-            
-            //maybe pop loot & play soundfx
-            if (spawnLoot) { Functions_Loot.SpawnLoot(Obj.compSprite.position); }
             if (Obj.sfx.kill != null) { Assets.Play(Obj.sfx.kill); }
-            //remove exploder seekers from further processing
-            if (Obj.type == ObjType.Wor_SeekerExploder) { return; }
-
-
 
             //based on obj type, we spawn death debris
             if (Obj.group == ObjGroup.Enemy)
-            {   //create floor blood, blood explosion, maybe skeleton
-                Functions_GameObject_Dungeon.DecorateEnemyDeath(Obj.compSprite);
-                becomeDebris = false; //release enemy from pool
+            {   //ignore seekers for gore decorations
+                if(Obj.type != ObjType.Wor_SeekerExploder)
+                {   //create floor blood, blood explosion, maybe skeleton
+                    Functions_GameObject_Dungeon.DecorateEnemyDeath(Obj.compSprite);
+                }
+                Functions_Pool.Release(Obj);
+                return;
             }
+
+            //decorate enemy death handles enemy loot spawns
+            if (spawnLoot) { Functions_Loot.SpawnLoot(Obj.compSprite.position); }
+
             //should obj become debris or get released?
             if (becomeDebris) 
             {   //spawn debris explosion, become debris ground obj

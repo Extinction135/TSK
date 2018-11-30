@@ -50,24 +50,31 @@ Today:
 
 
 
-
-
-
-Refactor++
-
-we can smplify some enemy roomObj checks by doing
-obj.group == enemy instead of their types... done.
-
-
-
-
-
-
-
+Groundfires++
 
 ground fires should not trigger switches. they do so across
 many frames, cascading.
 
+ground fires have very limited damage/destruction.
+this is handled specially in ground fire interactions.
+
+room enemies are not getting killed by Bounce() anymore.
+instead, if a projectile can kill the roomEnemy, it has to
+implement that in it's interaction routines with that roomObj.
+this is done via fun_obj_world.KillRoomEnemy(Obj), not Bounce().
+
+fixes a bug where swords weren't hitting seeker exploders.
+
+fixed a bug with seekers where they would explode prematurely
+and not hit hero if he was standing still.
+
+RoomEnemies++
+
+swords should push room enemies away from hero.
+this isn't happening? 
+
+ice balls now create explosions upon death.
+otherwise, iceballs act just like arrows, for now.
 
 
 
@@ -79,6 +86,22 @@ many frames, cascading.
 
 
 
+Iceballs++
+
+ice ball pros, when they track to their actor or object,
+should completely stop that target's movement, each frame.
+they should last for 240 frames, keeping their actor or
+object in this frozen stopped state. then they should explode,
+via the shimmer animation, releasing the taregt from their
+lock. while on conveyorbelts, objs/actors should still move,
+so ice balls make their target flying, but stop all their
+movement. dont alter the target's friction tho - because we
+would have to reset that friction afterwards.
+
+we need blue sparkles, instead of yellow sparkles, for
+the iceball.
+
+we need a different LTTP style iceball.
 
 
 

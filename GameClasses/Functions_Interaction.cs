@@ -276,8 +276,10 @@ namespace DungeonRun
                     if(Pro.hitObj == null & Pro.hitActor == null) //set initial hitObj
                     {   //arrows push hit obj
                         RoomObj.compMove.direction = Pro.compMove.direction;
-                        //call power level 1 destruction routines
-                        Functions_GameObject_World.Cut(RoomObj);
+                        //cut enemies and roomObjs
+                        if (RoomObj.group == ObjGroup.Enemy)
+                        { Functions_GameObject_World.CutRoomEnemy(RoomObj); }
+                        else { Functions_GameObject_World.Cut(RoomObj); }
                         //stop arrows movement
                         Functions_Movement.StopMovement(Pro.compMove);
                         //stick into hitObj for remainder of life
@@ -308,8 +310,10 @@ namespace DungeonRun
                 if (Pro.type == ProjectileType.Bat)
                 {   //bats push hit obj
                     RoomObj.compMove.direction = Pro.compMove.direction;
-                    //call power level 1 destruction routines
-                    Functions_GameObject_World.Cut(RoomObj);
+                    //cut enemies and roomObjs
+                    if (RoomObj.group == ObjGroup.Enemy)
+                    { Functions_GameObject_World.CutRoomEnemy(RoomObj); }
+                    else { Functions_GameObject_World.Cut(RoomObj); }
                     //bats die upon collision
                     Functions_Projectile.Kill(Pro);
                 }
@@ -334,7 +338,11 @@ namespace DungeonRun
                     if (Pro.lifeCounter == 2) //perform these interactions only once
                     {   //explosions call power level 2 destruction routines
                         RoomObj.compMove.direction = Pro.compMove.direction;
-                        Functions_GameObject_World.Explode(RoomObj);
+
+                        if (RoomObj.group == ObjGroup.Enemy)
+                        { Functions_GameObject_World.CutRoomEnemy(RoomObj); }
+                        else //blow up the roomObj
+                        { Functions_GameObject_World.Explode(RoomObj); }
                     }
                 }
 
@@ -351,12 +359,42 @@ namespace DungeonRun
                 #endregion
 
 
-                #region Sword & Shovel
+                #region Iceball
+
+                else if (Pro.type == ProjectileType.Iceball)
+                {   
+                    //we're using arrow here to model iceball tracking
+                    if (Pro.hitObj == null & Pro.hitActor == null) //set initial hitObj
+                    {   //arrows push hit obj
+                        RoomObj.compMove.direction = Pro.compMove.direction;
+                        //cut enemies and roomObjs
+                        if (RoomObj.group == ObjGroup.Enemy)
+                        { Functions_GameObject_World.CutRoomEnemy(RoomObj); }
+                        else { Functions_GameObject_World.Cut(RoomObj); }
+                        //stop arrows movement
+                        Functions_Movement.StopMovement(Pro.compMove);
+                        //stick into hitObj for remainder of life
+                        Pro.hitObj = RoomObj;
+                        //set initial hitoffset
+                        Pro.hitOffsetX = Pro.compMove.position.X - RoomObj.compMove.position.X;
+                        Pro.hitOffsetY = Pro.compMove.position.Y - RoomObj.compMove.position.Y;
+                        //Debug.WriteLine("XY offset: " + Pro.hitOffsetX + ", " + Pro.hitOffsetY);
+                        //Functions_Projectile.SetArrowHitState(Pro);
+
+                        //lets watch the iceball track around
+                        Pro.lifetime = 250;
+                        Pro.lifeCounter = 0;
+                    }
+                }
+
+                #endregion
+
+
+                #region Sword & Shovel & Bite
 
                 else if (Pro.type == ProjectileType.Sword
                     || Pro.type == ProjectileType.Shovel)
-                {
-                    //swords and shovels cause soundfx to blocking objects
+                {   //swords and shovels cause soundfx to blocking objects
                     if (Pro.lifeCounter == 2) //these events happen only at start
                     {   //bail if pro is hitting open door, else sparkle + hit sfx
                         if (RoomObj.type == ObjType.Dungeon_DoorOpen) { return; }
@@ -367,8 +405,10 @@ namespace DungeonRun
                         Assets.Play(RoomObj.sfx.hit);
                     }
                     else if (Pro.lifeCounter == 4) //mid-swing
-                    {   
-                        Functions_GameObject_World.Cut(RoomObj); //power level 1
+                    {   //cut enemies and roomObjs
+                        if (RoomObj.group == ObjGroup.Enemy)
+                        { Functions_GameObject_World.CutRoomEnemy(RoomObj); }
+                        else { Functions_GameObject_World.Cut(RoomObj); }
                     }
                 }
 
@@ -378,9 +418,10 @@ namespace DungeonRun
                 #region Fang / Bite / Invs Enemy Attack Projectile
 
                 else if (Pro.type == ProjectileType.Bite)
-                {
-                    //power level 1
-                    Functions_GameObject_World.Cut(RoomObj);
+                {   //cut enemies and roomObjs
+                    if (RoomObj.group == ObjGroup.Enemy)
+                    { Functions_GameObject_World.CutRoomEnemy(RoomObj); }
+                    else { Functions_GameObject_World.Cut(RoomObj); }
                     //end projectile's life
                     Pro.lifeCounter = Pro.lifetime;
                 }
@@ -399,10 +440,12 @@ namespace DungeonRun
                     { Assets.Play(Assets.sfxTapHollow); }
                     else if (RoomObj.type == ObjType.Dungeon_DoorBombable)
                     { Assets.Play(Assets.sfxTapHollow); }
-                    
-                    //bounce off all else
-                    Functions_GameObject_World.Bounce(RoomObj);
-                    
+
+                    //kill room enemies or bounce off objs
+                    if (RoomObj.group == ObjGroup.Enemy)
+                    { Functions_GameObject_World.CutRoomEnemy(RoomObj); }
+                    else { Functions_GameObject_World.Bounce(RoomObj); }
+
                     //if this is the initial hit, set the boomerang
                     //into a return state, pop an attention particle
                     if (Pro.lifeCounter < Pro.interactiveFrame)
@@ -429,26 +472,24 @@ namespace DungeonRun
 
                 else if (Pro.type == ProjectileType.GroundFire)
                 {   //blocking objs only here, btw
-                    
-                    
+
+                    //ground fires damage and kill roomEnemies
+                    if (RoomObj.group == ObjGroup.Enemy)
+                    { Functions_GameObject_World.CutRoomEnemy(RoomObj); }
 
 
-
-                    //ground fires spread to some objects
-                    if (
+                    //ground fires spread to some room objs
+                    else if (
                         //burn bushes
                         RoomObj.type == ObjType.Wor_Bush
-
                         //burn posts
                         || RoomObj.type == ObjType.Wor_Post_Corner_Left 
                         || RoomObj.type == ObjType.Wor_Post_Corner_Right 
                         || RoomObj.type == ObjType.Wor_Post_Horizontal 
                         || RoomObj.type == ObjType.Wor_Post_Vertical_Left 
                         || RoomObj.type == ObjType.Wor_Post_Vertical_Right
-
                         //burn trees
                         || RoomObj.type == ObjType.Wor_Tree
-
                         //light torches
                         || RoomObj.type == ObjType.Dungeon_TorchUnlit
                         )
@@ -467,12 +508,6 @@ namespace DungeonRun
                         RoomObj.compMove.direction = Direction.None;
                         Functions_GameObject_Dungeon.HitBarrel(RoomObj);
                     }
-
-                    else
-                    {   //all other objs/enemies get a simple bounce
-                        RoomObj.compMove.direction = Direction.None;
-                        Functions_GameObject_World.Bounce(RoomObj);
-                    }
                 }
 
                 #endregion
@@ -483,7 +518,10 @@ namespace DungeonRun
                 else if (Pro.type == ProjectileType.ThrownObject)
                 {   
                     RoomObj.compMove.direction = Pro.compMove.direction;
-                    Functions_GameObject_World.Cut(RoomObj);
+                    //cut enemies and roomObjs
+                    if (RoomObj.group == ObjGroup.Enemy)
+                    { Functions_GameObject_World.CutRoomEnemy(RoomObj); }
+                    else { Functions_GameObject_World.Cut(RoomObj); }
                     //thrown objs die upon blocking collision
                     Functions_Projectile.Kill(Pro);
                 }
@@ -503,8 +541,11 @@ namespace DungeonRun
                             Functions_GameObject.SetType(RoomObj, ObjType.Wor_Post_Hammer_Down);
                         }
                         else
-                        {   //tries to destroy any other obj
-                            Functions_GameObject_World.Destroy(RoomObj);
+                        {   
+                            if (RoomObj.group == ObjGroup.Enemy)
+                            { Functions_GameObject_World.CutRoomEnemy(RoomObj); }
+                            else //destroy roomObj
+                            { Functions_GameObject_World.Destroy(RoomObj); }
                         }
                     }
                 }

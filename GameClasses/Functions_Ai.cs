@@ -824,7 +824,7 @@ namespace DungeonRun
                         Obj.compAnim.currentAnimation = AnimationFrames.Wor_SeekerExploder_Idle;
                     }
 
-                    if (yDistance < 15 & xDistance < 15) //is seeker close enough to explode?
+                    if (yDistance < 13 & xDistance < 13) //is seeker close enough to explode?
                     {   //instantly explode
                         Functions_Projectile.Spawn(
                             ProjectileType.Explosion,

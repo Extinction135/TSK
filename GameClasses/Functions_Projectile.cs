@@ -841,8 +841,32 @@ namespace DungeonRun
             #endregion
 
 
+            #region Iceballs
 
-            
+            else if (Pro.type == ProjectileType.Iceball)
+            {   //Debug.WriteLine("processing iceball behavior");
+                //ball is flying, lots of sparkles
+                if (Pro.hitObj == null & Pro.hitActor == null)
+                {
+                    if (Functions_Random.Int(0, 101) > 50)
+                    {
+                        Functions_Particle.Spawn(ParticleType.Sparkle,
+                            Pro.compSprite.position.X + 4 + Functions_Random.Int(-4, 4),
+                            Pro.compSprite.position.Y + 4 + Functions_Random.Int(-4, 4));
+                    }
+                }
+                else
+                {   //not flying, not so many sparkles
+                    if (Functions_Random.Int(0, 101) > 90)
+                    {
+                        Functions_Particle.Spawn(ParticleType.Sparkle,
+                            Pro.compSprite.position.X + 4 + Functions_Random.Int(-4, 4),
+                            Pro.compSprite.position.Y + 4 + Functions_Random.Int(-4, 4));
+                    }
+                }
+            }
+
+            #endregion
 
 
 
@@ -950,9 +974,20 @@ namespace DungeonRun
             #endregion
 
 
+            #region Iceball
+
+            else if (Pro.type == ProjectileType.Iceball)
+            {   //create explosion - temp!
+                //Spawn(ProjectileType.Explosion, Pro.compMove.position.X, Pro.compMove.position.Y, Direction.None);
+                //create ice block projectile, even without hitTarget (doesn't trap tho)
+            }
+
+            #endregion
+
+
             #region Thrown Objs
 
-            else if(Pro.type == ProjectileType.ThrownObject)
+            else if (Pro.type == ProjectileType.ThrownObject)
             {
                 Functions_Loot.SpawnLoot(Pro.compSprite.position);
 
