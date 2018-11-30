@@ -791,11 +791,14 @@ namespace DungeonRun
 
         //Projectiles - items
         Bomb,
-        Fireball,
         LightningBolt,
         Boomerang,
 
         Firerod,
+        Fireball,
+
+        Icerod,
+        Iceball,
 
         #endregion
 

@@ -54,18 +54,19 @@ Today:
 
 
 
-Icerod++
-
-Icerod added to game. tested.
-now we get to decide how ice is implemented.
 
 
+Iceball++
 
-
-
+the basic iceball has been added. this is a cheap pallete
+swap on the fireball, to get the system setup for polishing
+and completion.
 
 
 
+
+
+Ice Consequences
 
 
 generic ice block for all 16x16 enemies, larger enemies

@@ -189,11 +189,15 @@ namespace DungeonRun
             //these pros must be placed outside of their caster's hitbox initially
             //we just apply an initial force, and the obj's speed moves it until death
 
-            #region Arrows and Fireballs
+            #region Arrow, Fireball, Iceball
 
             //fireball may need a specific offset different from arrows, because they are larger
 
-            if (Type == ProjectileType.Arrow || Type == ProjectileType.Fireball)
+            if (
+                Type == ProjectileType.Arrow || 
+                Type == ProjectileType.Fireball || 
+                Type == ProjectileType.Iceball
+                )
             {   //move projectile outside of caster's hitbox based on direction
                 if (Dir == Direction.Down)
                 {   //place centered below casters hb
@@ -230,10 +234,15 @@ namespace DungeonRun
                     Assets.Play(Assets.sfxArrowShoot);
                     pushLines = true;
                 }
-                else
+                else if(Type == ProjectileType.Fireball)
                 {   //no push lines for fireball cast - it comes from a rod
                     Functions_Movement.Push(pro.compMove, Dir, 4.0f);
                     Assets.Play(Assets.sfxFireballCast);
+                }
+                else if (Type == ProjectileType.Iceball)
+                {   //no push lines for iceball cast - it comes from a rod
+                    Functions_Movement.Push(pro.compMove, Dir, 4.0f);
+                    Assets.Play(Assets.sfxIcerod);
                 }
             }
 
@@ -426,6 +435,16 @@ namespace DungeonRun
             #endregion
 
 
+            #region Icerod
+
+            else if (Type == ProjectileType.Icerod)
+            {
+                Assets.Play(Assets.sfxActorLand); //generic use sound
+            }
+
+            #endregion
+
+
             #region Bite Projectile
 
             else if (Type == ProjectileType.Bite)
@@ -525,13 +544,14 @@ namespace DungeonRun
             #endregion
 
 
-            #region Sword, Net, Shovel, Firerod
+            #region Sword, Net, Shovel, Fire/Ice Rods
 
             //sword, net, shovel all track to the HERO'S HAND, based on direction
             else if (Pro.type == ProjectileType.Sword
                 || Pro.type == ProjectileType.Net
                 || Pro.type == ProjectileType.Shovel
                 || Pro.type == ProjectileType.Firerod
+                || Pro.type == ProjectileType.Icerod
                 )
             {
                 if (Pro.compMove.direction == Direction.Down)
@@ -1042,6 +1062,7 @@ namespace DungeonRun
                 || Pro.type == ProjectileType.Net
                 || Pro.type == ProjectileType.Shovel
                 || Pro.type == ProjectileType.Firerod
+                || Pro.type == ProjectileType.Icerod
                 )
             {   //some projectiles flip based on their direction
                 if (Pro.direction == Direction.Down || Pro.direction == Direction.Left)
@@ -1098,8 +1119,7 @@ namespace DungeonRun
             
             //Projectiles
 
-
-            #region Projectiles - Items
+            #region Bomb, Boomerang
 
             if (Type == ProjectileType.Bomb)
             {
@@ -1132,7 +1152,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Projectiles - Magic
+            #region Fireball / Iceball
 
             else if (Type == ProjectileType.Fireball)
             {
@@ -1145,6 +1165,19 @@ namespace DungeonRun
                 Pro.compMove.moveable = true;
                 Pro.compMove.grounded = false; //obj is airborne
                 Pro.compAnim.currentAnimation = AnimationFrames.Projectile_Fireball;
+                Pro.compSprite.texture = Assets.entitiesSheet;
+            }
+            else if (Type == ProjectileType.Iceball)
+            {
+                Pro.compSprite.zOffset = 16;
+                Pro.compCollision.offsetX = -5; Pro.compCollision.offsetY = -5;
+                Pro.compCollision.rec.Width = 10; Pro.compCollision.rec.Height = 10;
+                Pro.lifetime = 50; //in frames
+                Pro.compMove.friction = World.frictionIce;
+                Pro.compAnim.speed = 5; //in frames
+                Pro.compMove.moveable = true;
+                Pro.compMove.grounded = false; //obj is airborne
+                Pro.compAnim.currentAnimation = AnimationFrames.Projectile_Iceball;
                 Pro.compSprite.texture = Assets.entitiesSheet;
             }
 
@@ -1173,6 +1206,9 @@ namespace DungeonRun
             }
 
             #endregion
+
+
+
 
 
 
@@ -1357,9 +1393,9 @@ namespace DungeonRun
             #endregion
 
 
-            #region Firerod
+            #region Fire/Ice Rods
 
-            else if (Type == ProjectileType.Firerod)
+            else if (Type == ProjectileType.Firerod || Type == ProjectileType.Icerod)
             {
                 Pro.compSprite.zOffset = 16;
                 //set collision rec based on direction
@@ -1390,16 +1426,13 @@ namespace DungeonRun
                 Pro.compMove.moveable = true;
                 Pro.compMove.grounded = false; //is flying, cant fall into pit
                 Pro.compSprite.texture = Assets.entitiesSheet;
-                Pro.compAnim.currentAnimation = AnimationFrames.Projectile_FireRod;
+                if (Type == ProjectileType.Firerod)
+                { Pro.compAnim.currentAnimation = AnimationFrames.Projectile_FireRod; }
+                else { Pro.compAnim.currentAnimation = AnimationFrames.Projectile_IceRod; }
+                
             }
 
             #endregion
-
-
-
-
-
-
 
 
             #region Explosions and Ground Fires
@@ -1474,6 +1507,11 @@ namespace DungeonRun
             }
 
             #endregion
+
+
+
+
+
 
 
 
