@@ -115,6 +115,8 @@ namespace DungeonRun
             else if (Pro.type == ProjectileType.Bomb
                 || Pro.type == ProjectileType.GroundFire
                 || Pro.type == ProjectileType.Bow
+                || Pro.type == ProjectileType.Iceblock
+                || Pro.type == ProjectileType.IceblockCracking
                 )
             { return; }
             //check for boomerang interaction with hero
@@ -138,6 +140,7 @@ namespace DungeonRun
                 //set initial hit offset
                 Pro.hitOffsetX = Pro.compMove.position.X - Actor.compMove.position.X;
                 Pro.hitOffsetY = Pro.compMove.position.Y - Actor.compMove.position.Y;
+
 
                 #region Arrow
 
@@ -169,7 +172,7 @@ namespace DungeonRun
                 #endregion
 
 
-                #region Iceballs + Iceblocks
+                #region Iceballs
 
                 else if (Pro.type == ProjectileType.Iceball)
                 {   //iceball pro has to become iceblock, via setType()
@@ -255,9 +258,18 @@ namespace DungeonRun
         {
             //ignored carried objects for all interactions
             if (Pro.type == ProjectileType.CarriedObject) { return; }
+            else if (Pro.type == ProjectileType.Iceblock) { return; }
+            else if (Pro.type == ProjectileType.IceblockCracking) { return; }
 
 
-            
+
+
+
+
+
+
+
+
             //this is a hack to make non-blocking objs block for easy blocking/destruction
 
             #region Setup Special RoomObjs prior to Interaction
@@ -374,7 +386,7 @@ namespace DungeonRun
                 #endregion
 
 
-                #region Iceballs + Iceblocks
+                #region Iceballs
 
                 else if (Pro.type == ProjectileType.Iceball)
                 {   //iceball pro has to become iceblock, via setType()

@@ -52,42 +52,20 @@ Today:
 
 
 
-
-
-Ice + Fire Rods ++
-
-migrated ui rods to lttp style, for taste.
-
-IceBlocks++ Iceballs++
-
-blocks need to be semi transparent so we can see whats
-under the ice block. they need default shimmer frames. done.
-
-change the iceball to be lttp's sparkle ball thing. done.
-
-blue sparkles for traveling ice ball. done.
-blast particle doesn't suit the ice block.
-just use an attention particle instead.
-
-ice blocks aren't resetting their lifecoutner when they switch
-to cracking state. remedied by resetting lifecounter to 0 in
-pro.setType(). 
-
-
-
-
-
-
-
-
-
-
-
-
-Bugs
+Bugs--
 
 ice blocks slow hero if he touches them, while they exist.
 they should be ignoring actors, if they have a target.
+this has been fixed, and a branch in the obj interaction
+routines was fixed as well.
+
+
+
+
+
+
+
+
 
 
 
