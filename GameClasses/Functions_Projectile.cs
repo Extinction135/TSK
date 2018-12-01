@@ -1038,7 +1038,6 @@ namespace DungeonRun
             else if (Pro.type == ProjectileType.Iceball)
             {   //create ice block projectile
                 Spawn(ProjectileType.Iceblock, Pro.compMove.position.X, Pro.compMove.position.Y, Direction.None);
-                Cast_FreezeGround(Pro.compSprite.position);
             }
 
             #endregion
@@ -1052,8 +1051,9 @@ namespace DungeonRun
                 return; //prevent release() + sfx
             }
             else if (Pro.type == ProjectileType.IceblockCracking)
-            {   //highilight cracks end with attention particle
+            {   //casts freeze ground upon cracking, with attention particle
                 Functions_Particle.Spawn(ParticleType.Attention, Pro.compMove.position.X, Pro.compMove.position.Y);
+                Cast_FreezeGround(Pro.compSprite.position);
             }
 
             #endregion

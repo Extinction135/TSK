@@ -137,19 +137,19 @@ namespace DungeonRun
 
         public static void AlignRoomObjs()
         {   //align sprite + collision comps to move comp of all active objs
-            for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
+            for (i = 0; i < Pool.roomObjCount; i++)
             {
-                if (Pool.roomObjPool[Pool.roomObjCounter].active)
+                if (Pool.roomObjPool[i].active)
                 {   //align the sprite and collision components to the move component
                     Functions_Component.Align(
-                        Pool.roomObjPool[Pool.roomObjCounter].compMove,
-                        Pool.roomObjPool[Pool.roomObjCounter].compSprite,
-                        Pool.roomObjPool[Pool.roomObjCounter].compCollision);
+                        Pool.roomObjPool[i].compMove,
+                        Pool.roomObjPool[i].compSprite,
+                        Pool.roomObjPool[i].compCollision);
                     //set the current animation frame, check the animation counter
-                    Functions_Animation.Animate(Pool.roomObjPool[Pool.roomObjCounter].compAnim,
-                        Pool.roomObjPool[Pool.roomObjCounter].compSprite);
+                    Functions_Animation.Animate(Pool.roomObjPool[i].compAnim,
+                        Pool.roomObjPool[i].compSprite);
                     //set the rotation for the obj's sprite
-                    SetRotation(Pool.roomObjPool[Pool.roomObjCounter]);
+                    SetRotation(Pool.roomObjPool[i]);
                 }
             }
         }
@@ -183,46 +183,7 @@ namespace DungeonRun
             Obj.compCollision.rec.Height = 14;
             Obj.compCollision.rec.X = (int)Obj.compSprite.position.X - 7;
             Obj.compCollision.rec.Y = (int)Obj.compSprite.position.Y - 7;
-
-            //check to see if debris can be placed here, if not - release
-            for (i = 0; i < Pool.roomObjCount; i++)
-            {
-                if (Pool.roomObjPool[i].active & Pool.roomObjPool[i] != Obj)
-                {   //check for overlap / interaction
-                    if (Pool.roomObjPool[i].compCollision.rec.Intersects(Obj.compCollision.rec))
-                    {
-
-                        #region Debris is allowed to overlap these RoomObjects (various floor objs)
-
-                        if (
-                            //roofs collapse to debris over boat floors, which are used in houses
-                            Pool.roomObjPool[i].type == ObjType.Wor_Boat_Floor
-                            //debris can overlap conveyor belts as well, moving visual decoration
-                            || Pool.roomObjPool[i].type == ObjType.Dungeon_ConveyorBeltOff
-                            || Pool.roomObjPool[i].type == ObjType.Dungeon_ConveyorBeltOn
-                            //debris can overlap plain floor dirt tiles, but not transitions
-                            || Pool.roomObjPool[i].type == ObjType.Wor_Dirt
-                            //debris can overlap coliseum's floor as well
-                            || Pool.roomObjPool[i].type == ObjType.Wor_Colliseum_Outdoors_Floor
-                            //can overlap top and middle pier objs, but not bottom piers (looks bad)
-                            || Pool.roomObjPool[i].type == ObjType.Wor_Boat_Pier_TopLeft
-                            || Pool.roomObjPool[i].type == ObjType.Wor_Boat_Pier_TopMiddle
-                            || Pool.roomObjPool[i].type == ObjType.Wor_Boat_Pier_TopRight
-                            //middle piers
-                            || Pool.roomObjPool[i].type == ObjType.Wor_Boat_Pier_Left
-                            || Pool.roomObjPool[i].type == ObjType.Wor_Boat_Pier_Middle
-                            || Pool.roomObjPool[i].type == ObjType.Wor_Boat_Pier_Right
-                            ) 
-                        { }
-
-                        #endregion
-
-
-                        //if debris overlaps any other object, just release it
-                        else { Functions_Pool.Release(Obj); }
-                    }
-                }
-            }
+            Obj.lifeCounter = 1; //selfclean
         }
 
 
@@ -805,7 +766,6 @@ namespace DungeonRun
             #endregion
 
 
-
             #region Ice Tiles
 
             else if (Type == ObjType.Dungeon_IceTile)
@@ -816,6 +776,7 @@ namespace DungeonRun
                 Obj.compCollision.blocking = false;
                 Obj.canBeSaved = true;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_IceTile;
+                Obj.lifeCounter = 1; //clean yo'self
             }
 
             #endregion
@@ -1071,6 +1032,8 @@ namespace DungeonRun
                 if (Functions_Random.Int(0, 100) < 50)
                 { Obj.compSprite.flipHorizontally = true; }
                 else { Obj.compSprite.flipHorizontally = false; }
+
+                Obj.lifeCounter = 1; //clean yo'self
             }
 
             #endregion

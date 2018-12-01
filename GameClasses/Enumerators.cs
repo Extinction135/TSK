@@ -390,10 +390,6 @@ namespace DungeonRun
         Dungeon_FloorBlood, //created by just-dead actors/objs
         Dungeon_FloorSkeleton, //^ randomly becomes skeleton anim 1 or 2
 
-
-
-
-
         Dungeon_Map, //unlocks dungeon map
 
         //HAND PLACED

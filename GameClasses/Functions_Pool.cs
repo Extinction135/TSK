@@ -328,18 +328,24 @@ namespace DungeonRun
                         Pool.roomObjPool[i].compMove.moving
                         //nonblocking objs that dont move, but interact
                         || Pool.roomObjPool[i].type == ObjType.Dungeon_ConveyorBeltOn
+                        || Pool.roomObjPool[i].type == ObjType.Dungeon_IceTile
                         //these roomObjs always get interaction checked
                         || Pool.roomObjPool[i].type == ObjType.Dungeon_Fairy
                         || Pool.roomObjPool[i].type == ObjType.Pet_Dog
                         //these objs self-clean through interaction checks
                         || Pool.roomObjPool[i].type == ObjType.Dungeon_WallStraight
                         || Pool.roomObjPool[i].type == ObjType.Dungeon_WallStraightCracked
+                        || Pool.roomObjPool[i].type == ObjType.Wor_Debris
+                        || Pool.roomObjPool[i].type == ObjType.Dungeon_FloorBlood
+                        || Pool.roomObjPool[i].type == ObjType.Dungeon_FloorSkeleton
+                        || Pool.roomObjPool[i].type == ObjType.Dungeon_FloorStain
                         //exits remove anything they touch
                         || Pool.roomObjPool[i].type == ObjType.Dungeon_Exit
                         || Pool.roomObjPool[i].type == ObjType.Dungeon_ExitPillarLeft
                         || Pool.roomObjPool[i].type == ObjType.Dungeon_ExitPillarRight
                         )
                     {
+                        //Debug.WriteLine("pool update roomobj type: " + Pool.roomObjPool[i].type);
                         Functions_Interaction.CheckObj_Obj(Pool.roomObjPool[i]);
                     }
                     

@@ -345,6 +345,9 @@ namespace DungeonRun
                         //we do not allow boat floors to be dug out - they are also house floors
                         //this means NO DIGGING INSIDE, OR AT SEA, MISTER!
                         //& Pool.roomObjPool[d].type != ObjType.Wor_Boat_Floor
+
+                        //can dig icetiles out tho
+                        & Pool.roomObjPool[d].type != ObjType.Dungeon_IceTile
                         )
                     {
                         objRef.compSprite.visible = false;
