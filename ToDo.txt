@@ -54,37 +54,14 @@ Today:
 
 
 
+Ice Tiles++
 
-
-
-
-
-
-IceTiles++
-
-icetiles will remove themselves upon placement,
-so we dont have to worry about it at first.
-
-*if ice tile overlaps with a pit / bridge / floor spikes / cracked floor, remove it
-we can't have ice tiles breaking interactions and not making sense.
-this is done in it's ineteraction routine! and they are roomObjs...
-
-plus, these icetiles 'self-clean' in a manner similar to
-debris and blood objects, so we can copy those routines, 
-likely place them into a seperate function, then share that
-function between those objects, containing the 'self cleaning'
-method, and making it reuseable.
-
-SelfCleaning++
-
-*made world debris actually use self-cleaning routine.
-test that icetiles overlap proper objs.
-test that skeletons, blood, debris overlap properly too.
-
-fixd an unoted bug with self-cleaning objects not being
-passed into interaction routines, and instead a semi-
-implementation was found in obj.BecomeDebris(), which was
-masking the real problem(s).
+fixed a bug with ice tiles where they weren't completly
+cleaning themselves, leading to a state where there were
+many roomObjs being created, spending the pool budget
+unwisely. that is fixed now, and ice tiles are very
+conservative in their cleaning, only allowing themselves
+to exist in the proper circumstances. spam tested.
 
 
 
@@ -94,23 +71,7 @@ masking the real problem(s).
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Freeze Ground Magic
 
 we have projectile.cast_freezeGround, which should be a
 magic spell in it's own right, but is also a by-product
@@ -121,9 +82,17 @@ we can add this enemy magic to enemy magic vendor,
 spawn him, and then test this magic, keeping it seperate
 from the main game for now.
 
+now would be a good time to model all these as a
+generic magic medallion sprite... or we can make 
+them special....
 
 
 
+
+
+ice tiles should be allowed to overlap posts.
+this is because hero can still slide along posts.
+and posts dont really cover much of the ground.
 
 
 
@@ -164,42 +133,11 @@ rip this from lttps sprites.
 
 
 
-
-
 Lava
 
 pits should be red, and thus we have LAVA. wow. that
 was easy. lava still doesn't deal any damage, just resets
 position in room. this is just updating the dungeon sheets.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

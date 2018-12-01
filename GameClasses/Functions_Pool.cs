@@ -332,13 +332,6 @@ namespace DungeonRun
                         //these roomObjs always get interaction checked
                         || Pool.roomObjPool[i].type == ObjType.Dungeon_Fairy
                         || Pool.roomObjPool[i].type == ObjType.Pet_Dog
-                        //these objs self-clean through interaction checks
-                        || Pool.roomObjPool[i].type == ObjType.Dungeon_WallStraight
-                        || Pool.roomObjPool[i].type == ObjType.Dungeon_WallStraightCracked
-                        || Pool.roomObjPool[i].type == ObjType.Wor_Debris
-                        || Pool.roomObjPool[i].type == ObjType.Dungeon_FloorBlood
-                        || Pool.roomObjPool[i].type == ObjType.Dungeon_FloorSkeleton
-                        || Pool.roomObjPool[i].type == ObjType.Dungeon_FloorStain
                         //exits remove anything they touch
                         || Pool.roomObjPool[i].type == ObjType.Dungeon_Exit
                         || Pool.roomObjPool[i].type == ObjType.Dungeon_ExitPillarLeft
@@ -349,6 +342,14 @@ namespace DungeonRun
                         Functions_Interaction.CheckObj_Obj(Pool.roomObjPool[i]);
                     }
                     
+                    //process this roomObj, if it's past frame 0
+                    if(Pool.roomObjPool[i].lifeCounter > 0)
+                    {   //this is done for floor objs + wall objs that self-clean
+                        Functions_Interaction.CheckObj_Obj(Pool.roomObjPool[i]);
+                        Pool.roomObjPool[i].lifeCounter = 0; //bail from branch
+                    }
+
+
                     //update, animate, scale
                     Functions_GameObject.Update(Pool.roomObjPool[i]);
                     Functions_Animation.Animate(Pool.roomObjPool[i].compAnim, Pool.roomObjPool[i].compSprite);

@@ -1313,7 +1313,7 @@ namespace DungeonRun
                 || Object.type == ObjType.Dungeon_ExitPillarRight
                 )
             {
-                if (Object.lifeCounter == 1) //just spawned
+                if (Object.lifeCounter > 0) //just spawned
                 {   //objs that touch exits are removed, except other exits
                     if (
                         RoomObj.type == ObjType.Dungeon_Exit
@@ -1346,7 +1346,7 @@ namespace DungeonRun
                 || Object.type == ObjType.Dungeon_WallStraightCracked
                 )
             {   //we use life counter to handle roomObj state/lifetime
-                if (Object.lifeCounter == 1) //just spawned, do cleanup
+                if (Object.lifeCounter > 0) //just spawned, do cleanup
                 {   //if a wall overlaps a copy of itself, remove wall
                     if (RoomObj.type == Object.type)
                     { Functions_Pool.Release(RoomObj); }
@@ -1378,14 +1378,12 @@ namespace DungeonRun
                 if (Object.lifeCounter > 0) //just spawned, do cleanup
                 {
                     //Clean Yo'Self
-                    //if decor overlaps a copy of itself, remove icetile
-                    if (RoomObj.type == Object.type)
+                    //remove icetile if roomObj blocks birth
+                    if (RoomObj.compCollision.blocking)
                     { Functions_Pool.Release(Object); }
-                    //remove icetile if obj blocks birth
-                    else if (RoomObj.compCollision.blocking)
-                    { Functions_Pool.Release(Object); }
+
                     //these non-blocking objs stop icetile birth too
-                    if (
+                    else if (
                         //world objs that cant be overlapped
                         RoomObj.type == ObjType.Wor_Water
                         || RoomObj.type == ObjType.Wor_Boat_Coastline
@@ -1405,11 +1403,12 @@ namespace DungeonRun
                         || RoomObj.type == ObjType.Wor_Boat_Pier_BottomLeft
                         || RoomObj.type == ObjType.Wor_Boat_Pier_BottomMiddle
                         || RoomObj.type == ObjType.Wor_Boat_Pier_BottomRight
+                        //dont overlap other icetiles, pls
+                        || RoomObj.type == ObjType.Dungeon_IceTile
                         )
                     {
                         Functions_Pool.Release(Object);
                     }
-                    Object.lifeCounter = 0; //bail from branch
                 }
                 else if (RoomObj.compMove.grounded)
                 {   //only objects on the ground can slide on ice
@@ -1466,8 +1465,6 @@ namespace DungeonRun
                     //some decor cant overlap other decor, like debris cant overlap skeletons for example
                     if (Object.type == ObjType.Wor_Debris & RoomObj.type == ObjType.Dungeon_FloorSkeleton)
                     { Functions_Pool.Release(Object); }
-
-                    Object.lifeCounter = 0; //bail from branch
                 }
             }
 
