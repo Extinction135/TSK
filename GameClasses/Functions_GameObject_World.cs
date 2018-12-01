@@ -483,16 +483,7 @@ namespace DungeonRun
             #endregion
 
         }
-
-        //FROZEN STATUS caused by: iceball
-        public static void Freeze(GameObject Obj)
-        {
-
-        }
-
-
-
-
+        
 
 
 

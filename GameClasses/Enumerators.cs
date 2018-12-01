@@ -429,7 +429,6 @@ namespace DungeonRun
         Dungeon_Barrel,
         Dungeon_Bumper,
         Dungeon_Flamethrower,
-        Dungeon_IceTile,
 
         Dungeon_Switch, //the up switch, becomes down
         Dungeon_SwitchDown, //down requires obj or actor on it
@@ -482,7 +481,6 @@ namespace DungeonRun
 
         //debris
         Wor_Debris,
-
 
         //objects
         Wor_Pot,
@@ -563,8 +561,17 @@ namespace DungeonRun
         Wor_Post_Hammer_Up,
         Wor_Post_Hammer_Down,
 
+        #endregion
+
+
+
+
+        #region Magic Objects
+
+        Dungeon_IceTile,
 
         #endregion
+
 
 
 

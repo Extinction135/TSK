@@ -51,14 +51,12 @@ Today:
 
 
 
+Freeze Ground Magic
 
-Bugs--
-
-ice blocks slow hero if he touches them, while they exist.
-they should be ignoring actors, if they have a target.
-this has been fixed, and a branch in the obj interaction
-routines was fixed as well.
-
+when iceball dies, create a blast of ice tiles at its location.
+we are now calling Cast_FreezeGround() when an iceball dies.
+this creates a 9x9 drop of ice tiles, nearest iceballs death pos.
+tested and working.
 
 
 
@@ -67,23 +65,34 @@ routines was fixed as well.
 
 
 
+IceTiles++
+
+ice explosion also creates icetiles underneath it.
+icetiles cannot overlap other icetiles, and other
+roomobjects, like mountain walls, etc...
+
+instead, icetiles will remove themselves upon placement,
+so we dont have to worry about it at first.
+
+*if ice tile overlaps with a pit / bridge / floor spikes / cracked floor, remove it
+we can't have ice tiles breaking interactions and not making sense.
+this is done in it's ineteraction routine! and they are roomObjs...
+
+plus, these icetiles 'self-clean' in a manner similar to
+debris and blood objects, so we can copy those routines, 
+likely place them into a seperate function, then share that
+function between those objects, containing the 'self cleaning'
+method, and making it reuseable.
 
 
 
 
 
 
-
-
-
-implement the hammer + ice bonus damage, plus the big magic
-refill loot spawn. this is a special call in functions_loot,
-specially made for hammers destroying iceblocks with actor or
-object refs! with this check, we always spawn a big magic container.
-which means, we need a big magic container.. lol..
-
-rip this from lttps sprites.
-
+we have projectile.cast_freezeGround, which should be a
+magic spell in it's own right, but is also a by-product
+of an iceball's death. make a magic to create icetiles
+around hero - special one.
 
 
 
@@ -99,9 +108,6 @@ magnitude to nothing.
 
 
 
-
-
-
 larger enemies just take damage and get pushed. right?
 if they can't be frozen, then they take damage, so we
 need to have more checks in the actor interactions with 
@@ -110,15 +116,45 @@ iceball to handle mini+boss hits.
 
 
 
-ice explosion also creates icetiles underneath it.
-icetiles cannot overlap other icetiles, and other
-roomobjects, like mountain walls, etc...
 
 
-IceTiles
-*if ice tile overlaps with a pit / bridge / floor spikes / cracked floor, remove it
-we can't have ice tiles breaking interactions and not making sense.
-this is done in it's ineteraction routine! and they are roomObjs...
+
+Big Magic Container + Frozen Smashing Damage Bonus
+
+implement the hammer + ice bonus damage, plus the big magic
+refill loot spawn. this is a special call in functions_loot,
+specially made for hammers destroying iceblocks with actor or
+object refs! with this check, we always spawn a big magic container.
+which means, we need a big magic container.. lol..
+
+rip this from lttps sprites.
+
+
+
+
+
+
+
+Lava
+
+pits should be red, and thus we have LAVA. wow. that
+was easy. lava still doesn't deal any damage, just resets
+position in room. this is just updating the dungeon sheets.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

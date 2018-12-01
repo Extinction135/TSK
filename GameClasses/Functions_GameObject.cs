@@ -772,7 +772,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Barrel, Bumper, Flamethrower, IceTile
+            #region Barrel, Bumper, Flamethrower
 
             else if (Type == ObjType.Dungeon_Barrel)
             {
@@ -801,6 +801,13 @@ namespace DungeonRun
                 Obj.compMove.moveable = true;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_Flamethrower;
             }
+
+            #endregion
+
+
+
+            #region Ice Tiles
+
             else if (Type == ObjType.Dungeon_IceTile)
             {
                 Obj.compCollision.offsetX = -6; Obj.compCollision.offsetY = -6;

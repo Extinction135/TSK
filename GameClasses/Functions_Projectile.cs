@@ -1038,6 +1038,7 @@ namespace DungeonRun
             else if (Pro.type == ProjectileType.Iceball)
             {   //create ice block projectile
                 Spawn(ProjectileType.Iceblock, Pro.compMove.position.X, Pro.compMove.position.Y, Direction.None);
+                Cast_FreezeGround(Pro.compSprite.position);
             }
 
             #endregion
@@ -1248,6 +1249,54 @@ namespace DungeonRun
 
             Assets.Play(Assets.sfxExplosionsMultiple); //play sfx
         }
+
+
+
+        
+
+
+        static int iceCounter = 0;
+        static GameObject iceTile;
+        static Vector2 icePosRef = new Vector2();
+        public static void Cast_FreezeGround(Vector2 pos)
+        {   //align pos to grid
+            pos = Functions_Movement.AlignToGrid((int)pos.X, (int)pos.Y);
+            //place icetiles at pos, and NSEW + DIAG
+            for (iceCounter = 0; iceCounter < 9; iceCounter++)
+            {   //top
+                if (iceCounter == 0) //top left
+                { icePosRef.X = pos.X - 16; icePosRef.Y = pos.Y - 16; }
+                else if (iceCounter == 1) //top mid
+                { icePosRef.X = pos.X + 0; icePosRef.Y = pos.Y - 16; }
+                else if (iceCounter == 2) //top rite
+                { icePosRef.X = pos.X + 16; icePosRef.Y = pos.Y - 16; }
+                //mid
+                else if (iceCounter == 3) //left
+                { icePosRef.X = pos.X - 16; icePosRef.Y = pos.Y + 0; }
+                else if (iceCounter == 4) //mid
+                { icePosRef.X = pos.X + 0; icePosRef.Y = pos.Y + 0; }
+                else if (iceCounter == 5) //rite
+                { icePosRef.X = pos.X + 16; icePosRef.Y = pos.Y + 0; }
+                //bottom
+                else if (iceCounter == 6) //bot left
+                { icePosRef.X = pos.X - 16; icePosRef.Y = pos.Y + 16; }
+                else if (iceCounter == 7) //bot mid
+                { icePosRef.X = pos.X + 0; icePosRef.Y = pos.Y + 16; }
+                else if (iceCounter == 8) //bot rite
+                { icePosRef.X = pos.X + 16; icePosRef.Y = pos.Y + 16; }
+
+                //place ice tile at offset
+                iceTile = Functions_Pool.GetRoomObj();
+                Functions_GameObject.SetType(iceTile, ObjType.Dungeon_IceTile);
+                Functions_Movement.Teleport(iceTile.compMove, icePosRef.X, icePosRef.Y);
+                Functions_Component.Align(iceTile);
+                //note ice tile birth with attention particle
+                Functions_Particle.Spawn(ParticleType.Attention,
+                    icePosRef.X, icePosRef.Y);
+            }
+        }
+
+
 
 
 
