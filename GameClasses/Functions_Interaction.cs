@@ -131,19 +131,13 @@ namespace DungeonRun
 
 
 
-            //Handle Initial Hit State - pro can't have hitObj/actor
+            //Handle targeting projectile actor hits
             if(Pro.hitObj == null & Pro.hitActor == null)
             {   //projectile hits actor, setting hitActor reference
                 Pro.hitActor = Actor;
-
                 //set initial hit offset
                 Pro.hitOffsetX = Pro.compMove.position.X - Actor.compMove.position.X;
                 Pro.hitOffsetY = Pro.compMove.position.Y - Actor.compMove.position.Y;
-
-                
-
-                //Handle projectile hit behaviors
-
 
                 #region Arrow
 
@@ -175,65 +169,86 @@ namespace DungeonRun
                 #endregion
 
 
-                #region Fireball
+                #region Iceballs + Iceblocks
 
-                if (Pro.type == ProjectileType.Fireball)
-                {
-                    Functions_Projectile.Kill(Pro);
+                else if (Pro.type == ProjectileType.Iceball)
+                {   //iceball pro has to become iceblock, via setType()
+                    if (Pro.hitObj == null & Pro.hitActor == null) //set initial hitObj
+                    {   //stop movement
+                        Functions_Movement.StopMovement(Pro.compMove);
+                        //stick with hitObj for remainder of life
+                        Pro.hitActor = Actor;
+                        //become iceblock, with obj ref
+                        Functions_Projectile.SetType(Pro, ProjectileType.Iceblock);
+                        //prevent any iceball damage
+                        return;
+                    }
                 }
+                //there are no interaction routines for iceblocks vs. actors
+                //because this is handled in projectile's update routine, via Pro.hitActor
 
                 #endregion
 
-
-                #region Iceball
-
-                if (Pro.type == ProjectileType.Iceball)
-                {
-                    Functions_Projectile.Kill(Pro);
-                }
-
-                #endregion
-
-
-                #region Net
-
-                else if (Pro.type == ProjectileType.Net)
-                {   //make sure actor isn't in hit/dead state
-                    if (Actor.state == ActorState.Dead || Actor.state == ActorState.Hit) { return; }
-                    Pro.lifeCounter = Pro.lifetime; //kill projectile
-                    Pro.compCollision.rec.X = -1000; //hide hitBox (prevents multiple actor collisions)
-                    Functions_Bottle.Bottle(Actor); //try to bottle the actor
-                    Functions_Pool.Release(Pro); //release the net
-                }
-
-                #endregion
-
-
-                #region Hero's ThrownObject
-
-                //kill thrown projectiles upon impact, next frame
-                else if (Pro.type == ProjectileType.ThrownObject)
-                {
-                    Pro.lifeCounter = Pro.lifetime;
-                }
-
-                #endregion
-
-
-                #region Bite
-
-                //limit bite to only the first frame of life
-                else if (Pro.type == ProjectileType.Bite)
-                {   //prevents fast moving caster overlap, while still hitbox drawable
-                    if (Pro.lifeCounter > 2) { return; }
-                }
-
-                #endregion
-
-
-                //actors take damage from projectiles that get here..
-                Functions_Battle.Damage(Actor, Pro); //sets actor into hit state
             }
+
+
+
+            //Handle non-targeting projectile actor hits
+
+            #region Fireball
+
+            if (Pro.type == ProjectileType.Fireball)
+            {
+                Functions_Projectile.Kill(Pro);
+            }
+
+            #endregion
+
+
+            #region Net
+
+            else if (Pro.type == ProjectileType.Net)
+            {   //make sure actor isn't in hit/dead state
+                if (Actor.state == ActorState.Dead || Actor.state == ActorState.Hit) { return; }
+                Pro.lifeCounter = Pro.lifetime; //kill projectile
+                Pro.compCollision.rec.X = -1000; //hide hitBox (prevents multiple actor collisions)
+                Functions_Bottle.Bottle(Actor); //try to bottle the actor
+                Functions_Pool.Release(Pro); //release the net
+            }
+
+            #endregion
+
+
+            #region Hero's ThrownObject
+
+            //kill thrown projectiles upon impact, next frame
+            else if (Pro.type == ProjectileType.ThrownObject)
+            {
+                Pro.lifeCounter = Pro.lifetime;
+            }
+
+            #endregion
+
+
+            #region Bite
+
+            //limit bite to only the first frame of life
+            else if (Pro.type == ProjectileType.Bite)
+            {   //prevents fast moving caster overlap, while still hitbox drawable
+                if (Pro.lifeCounter > 2) { return; }
+            }
+
+            #endregion
+            
+
+            
+
+
+
+
+
+            //actors take damage from projectiles that get here..
+            Functions_Battle.Damage(Actor, Pro); //sets actor into hit state
         }
 
         public static void Interact_ProjectileRoomObj(Projectile Pro, GameObject RoomObj)
@@ -359,33 +374,21 @@ namespace DungeonRun
                 #endregion
 
 
-                #region Iceball
+                #region Iceballs + Iceblocks
 
                 else if (Pro.type == ProjectileType.Iceball)
-                {   
-                    //we're using arrow here to model iceball tracking
+                {   //iceball pro has to become iceblock, via setType()
                     if (Pro.hitObj == null & Pro.hitActor == null) //set initial hitObj
-                    {   //arrows push hit obj
-                        RoomObj.compMove.direction = Pro.compMove.direction;
-                        //cut enemies and roomObjs
-                        if (RoomObj.group == ObjGroup.Enemy)
-                        { Functions_GameObject_World.CutRoomEnemy(RoomObj); }
-                        else { Functions_GameObject_World.Cut(RoomObj); }
-                        //stop arrows movement
+                    {   //stop movement
                         Functions_Movement.StopMovement(Pro.compMove);
-                        //stick into hitObj for remainder of life
+                        //stick with hitObj for remainder of life
                         Pro.hitObj = RoomObj;
-                        //set initial hitoffset
-                        Pro.hitOffsetX = Pro.compMove.position.X - RoomObj.compMove.position.X;
-                        Pro.hitOffsetY = Pro.compMove.position.Y - RoomObj.compMove.position.Y;
-                        //Debug.WriteLine("XY offset: " + Pro.hitOffsetX + ", " + Pro.hitOffsetY);
-                        //Functions_Projectile.SetArrowHitState(Pro);
-
-                        //lets watch the iceball track around
-                        Pro.lifetime = 250;
-                        Pro.lifeCounter = 0;
+                        //become iceblock, with obj ref
+                        Functions_Projectile.SetType(Pro, ProjectileType.Iceblock);
                     }
                 }
+                //there are no interaction routines for iceblocks vs. objects
+                //because this is handled in projectile's update routine, via Pro.hitObj
 
                 #endregion
 
@@ -562,9 +565,8 @@ namespace DungeonRun
             else
             {
                 //group  checks first
-                
                 if (RoomObj.group == ObjGroup.Wall_Climbable)
-                {   //kill projectiles for now
+                {   //kill all projectiles for now
                     Functions_Projectile.Kill(Pro);
                 }
 

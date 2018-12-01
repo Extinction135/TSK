@@ -786,9 +786,7 @@ namespace DungeonRun
 
     public enum ProjectileType
     {
-
-        #region Items
-
+        
         //Projectiles - items
         Bomb,
         Boomerang,
@@ -798,11 +796,8 @@ namespace DungeonRun
 
         Icerod,
         Iceball,
-
-        #endregion
-
-
-        #region Weapons
+        Iceblock,
+        IceblockCracking,
 
         //Projectiles - weapons
         Sword,
@@ -812,21 +807,16 @@ namespace DungeonRun
         Shovel,
         Hammer,
 
+
         //Projectiles - objects
         Explosion,
         GroundFire,
-
-        #endregion
-
-
-        #region Enemy Related
-
+        
+        
         //Projectiles - enemy related
         Bite,
         Bat,
-
-        #endregion
-
+        
 
         //Carried and Thrown Projectiles
         CarriedObject,

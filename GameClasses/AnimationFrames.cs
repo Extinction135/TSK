@@ -641,6 +641,10 @@ namespace DungeonRun
         public static List<Byte4> Projectile_Bat = new List<Byte4>
         { new Byte4(31, 4, 0, 0), new Byte4(31, 5, 0, 0) };
 
+        public static List<Byte4> Projectile_Iceblock = new List<Byte4> { new Byte4(5, 6, 0, 0) };
+        public static List<Byte4> Projectile_IceblockCracking = new List<Byte4>
+        { new Byte4(5, 6, 0, 0), new Byte4(6, 6, 0, 0) };
+
         #endregion
 
 

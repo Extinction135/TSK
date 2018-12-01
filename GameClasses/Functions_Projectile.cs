@@ -184,6 +184,7 @@ namespace DungeonRun
             //these pros must be placed outside of their caster's hitbox initially
             //we just apply an initial force, and the obj's speed moves it until death
 
+
             #region Arrow, Fireball, Iceball
 
             //fireball may need a specific offset different from arrows, because they are larger
@@ -222,7 +223,6 @@ namespace DungeonRun
                 Functions_Component.Align(pro); //align components
                 pro.compMove.moving = true; //moves
                 
-
                 if (Type == ProjectileType.Arrow)
                 {
                     Functions_Movement.Push(pro.compMove, Dir, 6.0f);
@@ -313,9 +313,14 @@ namespace DungeonRun
             #endregion
 
 
+            #region Iceblock Cracking
 
-            
+            else if (Type == ProjectileType.IceblockCracking)
+            {   //play initial crack sfx
+                Assets.Play(Assets.sfxShatter);
+            }
 
+            #endregion
 
 
 
@@ -424,7 +429,7 @@ namespace DungeonRun
 
             else if (Type == ProjectileType.Firerod)
             {
-                Assets.Play(Assets.sfxActorLand); //generic use sound
+                //Assets.Play(Assets.sfxActorLand); //generic use sound
             }
 
             #endregion
@@ -434,7 +439,7 @@ namespace DungeonRun
 
             else if (Type == ProjectileType.Icerod)
             {
-                Assets.Play(Assets.sfxActorLand); //generic use sound
+                //Assets.Play(Assets.sfxActorLand); //generic use sound
             }
 
             #endregion
@@ -449,6 +454,14 @@ namespace DungeonRun
             }
 
             #endregion
+
+
+
+
+            //these pros track to their hit obj/actor per frame
+
+
+
 
 
 
@@ -689,7 +702,7 @@ namespace DungeonRun
 
             #region Arrow
 
-            if(Pro.type == ProjectileType.Arrow)
+            if (Pro.type == ProjectileType.Arrow)
             {   //3 branches: one for no hit obj/act, hit act, hit obj
                 if (Pro.hitActor != null)
                 {   //track to hitActor with proper offset
@@ -841,32 +854,78 @@ namespace DungeonRun
             #endregion
 
 
+
+
+
             #region Iceballs
 
             else if (Pro.type == ProjectileType.Iceball)
             {   //Debug.WriteLine("processing iceball behavior");
-                //ball is flying, lots of sparkles
-                if (Pro.hitObj == null & Pro.hitActor == null)
+                //ball is flying, sparkle
+                if (Functions_Random.Int(0, 101) > 75)
                 {
-                    if (Functions_Random.Int(0, 101) > 50)
-                    {
-                        Functions_Particle.Spawn(ParticleType.Sparkle,
-                            Pro.compSprite.position.X + 4 + Functions_Random.Int(-4, 4),
-                            Pro.compSprite.position.Y + 4 + Functions_Random.Int(-4, 4));
-                    }
-                }
-                else
-                {   //not flying, not so many sparkles
-                    if (Functions_Random.Int(0, 101) > 90)
-                    {
-                        Functions_Particle.Spawn(ParticleType.Sparkle,
-                            Pro.compSprite.position.X + 4 + Functions_Random.Int(-4, 4),
-                            Pro.compSprite.position.Y + 4 + Functions_Random.Int(-4, 4));
-                    }
+                    Functions_Particle.Spawn(ParticleType.Sparkle,
+                        Pro.compSprite.position.X + 4 + Functions_Random.Int(-4, 4),
+                        Pro.compSprite.position.Y + 4 + Functions_Random.Int(-4, 4));
                 }
             }
 
             #endregion
+
+
+            #region Iceblocks
+
+            else if(Pro.type == ProjectileType.Iceblock)
+            {   //slow actor / objects friction, so it cant move
+                if (Pro.hitActor != null)
+                {   //slow actor
+                    Pro.hitActor.compMove.friction = World.friction_Max; //max friction
+                    //center track to hit actor
+                    Functions_Movement.Teleport(Pro.compMove,
+                        Pro.hitActor.compMove.position.X + 0,
+                        Pro.hitActor.compMove.position.Y + 0);
+                    //if hitactor dies/goes invis, kill crack block
+                    if (Pro.hitActor.compSprite.visible == false) { Kill(Pro); }
+                }
+                else if (Pro.hitObj != null)
+                {   //slow obj
+                    Pro.hitObj.compMove.friction = World.friction_Max; //max friction
+                    //center track to hit obj
+                    Functions_Movement.Teleport(Pro.compMove,
+                        Pro.hitObj.compMove.position.X + 0,
+                        Pro.hitObj.compMove.position.Y + 0);
+                    //if hitactor dies/goes invis, kill crack block
+                    if (Pro.hitObj.compSprite.visible == false) { Kill(Pro); }
+                }
+                else
+                {
+                    //if iceblock has no target to slow, turn into cracking
+                    if (Pro.type == ProjectileType.Iceblock) { Kill(Pro); }
+                }
+            }
+            else if(Pro.type == ProjectileType.IceblockCracking)
+            {   //slow actor / objects friction, so it cant move
+                if (Pro.hitActor != null)
+                {   //slow actor
+                    Pro.hitActor.compMove.friction = World.friction_Max; //max friction
+                    //center track to hit actor
+                    Functions_Movement.Teleport(Pro.compMove,
+                        Pro.hitActor.compMove.position.X + 0,
+                        Pro.hitActor.compMove.position.Y + 0);
+                }
+                else if (Pro.hitObj != null)
+                {   //slow obj
+                    Pro.hitObj.compMove.friction = World.friction_Max; //max friction
+                    //center track to hit obj
+                    Functions_Movement.Teleport(Pro.compMove,
+                        Pro.hitObj.compMove.position.X + 0,
+                        Pro.hitObj.compMove.position.Y + 0);
+                }
+            }
+
+            #endregion
+
+
 
 
 
@@ -977,9 +1036,23 @@ namespace DungeonRun
             #region Iceball
 
             else if (Pro.type == ProjectileType.Iceball)
-            {   //create explosion - temp!
-                //Spawn(ProjectileType.Explosion, Pro.compMove.position.X, Pro.compMove.position.Y, Direction.None);
-                //create ice block projectile, even without hitTarget (doesn't trap tho)
+            {   //create ice block projectile
+                Spawn(ProjectileType.Iceblock, Pro.compMove.position.X, Pro.compMove.position.Y, Direction.None);
+            }
+
+            #endregion
+
+
+            #region Iceblock
+
+            else if (Pro.type == ProjectileType.Iceblock)
+            {   //become cracking ice block
+                SetType(Pro, ProjectileType.IceblockCracking); //maintain hit actor/obj refs while cracking
+                return; //prevent release() + sfx
+            }
+            else if (Pro.type == ProjectileType.IceblockCracking)
+            {   //highilight cracks end with blast particle
+                Functions_Particle.Spawn(ParticleType.Blast, Pro.compMove.position.X, Pro.compMove.position.Y);
             }
 
             #endregion
@@ -1040,6 +1113,9 @@ namespace DungeonRun
             }
 
             #endregion
+
+
+
 
 
             //all objects are released upon death
@@ -1229,6 +1305,9 @@ namespace DungeonRun
                 || Pro.type == ProjectileType.Boomerang
                 || Pro.type == ProjectileType.Bat
                 || Pro.type == ProjectileType.Hammer
+                //ice blocks too
+                || Pro.type == ProjectileType.Iceblock
+                || Pro.type == ProjectileType.IceblockCracking
                 )
             {   
                 Pro.direction = Direction.Down;
@@ -1321,7 +1400,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Fireball / Iceball
+            #region Fireball
 
             else if (Type == ProjectileType.Fireball)
             {
@@ -1336,9 +1415,18 @@ namespace DungeonRun
                 Pro.compAnim.currentAnimation = AnimationFrames.Projectile_Fireball;
                 Pro.compSprite.texture = Assets.entitiesSheet;
             }
+
+            #endregion
+
+
+
+
+
+            #region Iceball
+
             else if (Type == ProjectileType.Iceball)
             {
-                Pro.compSprite.zOffset = 16;
+                Pro.compSprite.zOffset = 64;
                 Pro.compCollision.offsetX = -5; Pro.compCollision.offsetY = -5;
                 Pro.compCollision.rec.Width = 10; Pro.compCollision.rec.Height = 10;
                 Pro.lifetime = 50; //in frames
@@ -1351,6 +1439,38 @@ namespace DungeonRun
             }
 
             #endregion
+
+
+            #region Iceblock + Cracking State
+
+            else if (Type == ProjectileType.Iceblock)
+            {
+                Pro.compSprite.zOffset = 8;
+                Pro.compCollision.offsetX = -5; Pro.compCollision.offsetY = -5;
+                Pro.compCollision.rec.Width = 10; Pro.compCollision.rec.Height = 10;
+                Pro.lifetime = 250; //in frames
+                Pro.compAnim.speed = 5; //in frames
+                Pro.compMove.moveable = false;
+                Pro.compMove.grounded = false; //obj is airborne
+                Pro.compAnim.currentAnimation = AnimationFrames.Projectile_Iceblock;
+                Pro.compMove.friction = World.friction_Max; //very heavy
+            }
+            else if (Type == ProjectileType.IceblockCracking)
+            {
+                Pro.compSprite.zOffset = 32;
+                Pro.compCollision.offsetX = -5; Pro.compCollision.offsetY = -5;
+                Pro.compCollision.rec.Width = 10; Pro.compCollision.rec.Height = 10;
+                Pro.lifetime = 30; //in frames
+                Pro.compAnim.speed = 5; //in frames
+                Pro.compMove.moveable = false;
+                Pro.compMove.grounded = false; //obj is airborne
+                Pro.compAnim.currentAnimation = AnimationFrames.Projectile_IceblockCracking;
+                Pro.compMove.friction = World.friction_Max; //very heavy
+            }
+
+            #endregion
+
+
 
 
 

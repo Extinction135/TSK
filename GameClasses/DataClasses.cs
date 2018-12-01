@@ -371,6 +371,8 @@ namespace DungeonRun
 
     public static class World
     {
+        public static float friction_Max = 0.01f; //actor in attacking state
+
         public static float frictionAttack = 0.1f; //actor in attacking state
         public static float frictionUse = 0.5f; //actor in use state
 

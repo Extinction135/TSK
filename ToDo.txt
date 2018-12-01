@@ -50,31 +50,27 @@ Today:
 
 
 
-Groundfires++
 
-ground fires should not trigger switches. they do so across
-many frames, cascading.
 
-ground fires have very limited damage/destruction.
-this is handled specially in ground fire interactions.
 
-room enemies are not getting killed by Bounce() anymore.
-instead, if a projectile can kill the roomEnemy, it has to
-implement that in it's interaction routines with that roomObj.
-this is done via fun_obj_world.KillRoomEnemy(Obj), not Bounce().
 
-fixes a bug where swords weren't hitting seeker exploders.
 
-fixed a bug with seekers where they would explode prematurely
-and not hit hero if he was standing still.
 
-RoomEnemies++
+IceBlocks++
 
-swords should push room enemies away from hero.
-this isn't happening? 
+this is a projectile that has an actor or object target.
+these track to their target, and stop their movement completely.
 
-ice balls now create explosions upon death.
-otherwise, iceballs act just like arrows, for now.
+when they crack, they become cracking objs, which last a moment,
+then crack into pieces. this is just to keep the interactions 
+simple, seperate, and easy to understand.
+
+iceblock and cracking objs defined in settype.
+make blocks friction 0.01 too. done.
+ice block interaction vs objs + actors completed.
+ice balls should not damage actors/objs.
+instead they merely slow them down to max friction.
+everything works. i'm slightly impressed.
 
 
 
@@ -84,24 +80,65 @@ otherwise, iceballs act just like arrows, for now.
 
 
 
+IceBlocks++ Iceballs++
+
+blocks need to be semi transparent so we can see whats
+under the ice block. they need default shimmer frames.
+
+change the iceball to be lttp's sparkle ball thing.
+
+implement the hammer + ice bonus damage, plus the big magic
+refill loot spawn. this is a special call in functions_loot,
+specially made for hammers destroying iceblocks with actor or
+object refs! with this check, we always spawn a big magic container.
+which means, we need a big magic container.. lol..
+
+rip this from lttps sprites.
 
 
-Iceballs++
+blue sparkles for traveling ice ball.
+blast particle doesn't suit the ice block.
+just use an attention particle instead.
 
-ice ball pros, when they track to their actor or object,
-should completely stop that target's movement, each frame.
-they should last for 240 frames, keeping their actor or
-object in this frozen stopped state. then they should explode,
-via the shimmer animation, releasing the taregt from their
-lock. while on conveyorbelts, objs/actors should still move,
-so ice balls make their target flying, but stop all their
-movement. dont alter the target's friction tho - because we
-would have to reset that friction afterwards.
 
-we need blue sparkles, instead of yellow sparkles, for
-the iceball.
 
-we need a different LTTP style iceball.
+
+
+
+
+while on conveyorbelts, objs/actors shouldn't move due to
+their friction being set to a ridic value, reducing their
+magnitude to nothing.
+
+
+
+
+
+
+larger enemies just take damage and get pushed. right?
+if they can't be frozen, then they take damage, so we
+need to have more checks in the actor interactions with 
+iceball to handle mini+boss hits.
+
+
+
+
+ice explosion also creates icetiles underneath it.
+icetiles cannot overlap other icetiles, and other
+roomobjects, like mountain walls, etc...
+
+
+IceTiles
+*if ice tile overlaps with a pit / bridge / floor spikes / cracked floor, remove it
+we can't have ice tiles breaking interactions and not making sense.
+this is done in it's ineteraction routine! and they are roomObjs...
+
+
+
+
+
+
+
 
 
 
@@ -130,65 +167,18 @@ outwards from them, showing aoe effects.
 
 
 
+Lightning Bolts++
+
+lightning bolts should have an initial ground blast,
+because they are hitting the ground, not the air.
+we can also have a tapered lightning bolt at the top that
+fades out, limiting the bolt to 5 + 1 particles,
+plus 1 explosion projectile, per enemy, for a total of
+7 * actor/obj enemy count.
 
 
 
 
-
-
-
-
-
-Ice Consequences
-
-we have a 16x16 frozen set of 2 sprites.
-we can use these to model two frozen objs, each
-with their own set of shimmer animations (sprites).
-randomly, these objs choose to play their shimmer
-frames. these objs are projectiles.
-
-
-
-
-
-
-what is a frozen obj? 
-this shouldn't last forever. the ice needs to 'crack'.
-maybe this is where we use the 2nd frame to make it look
-like an egg is cracking, but it's ice. a little particles
-and this simply kills the frozen projectile.
-
-we can do the same with enemies, just hold them.
-for 255 frames. then 'crack' and gone. the enemy goes
-back to it's working state. while frozen, the obj is 'stuck'
-and cannot move. once the ice breaks, the obj returns to normal,
-and if it wants to move it does. obvs, most objs cant be frozen,
-via iceBlock projectile, like conveyorbelts. or switches, etc..
-but alot of objects can, and all small enemies can, and standard
-actors can as well. we can freeze groups of exploder seekers,
-then kill them, causing explosions from the iceblocks, which should
-destroy the iceblocks. 
-
-
-
-
-
-
-
-
-generic ice block for all 16x16 enemies, larger enemies
-just take damage and get pushed.
-
-
-ice explosion also creates icetiles underneath it.
-icetiles cannot overlap other icetiles, and other
-roomobjects, like mountain walls, etc...
-
-
-IceTiles
-*if ice tile overlaps with a pit / bridge / floor spikes / cracked floor, remove it
-we can't have ice tiles breaking interactions and not making sense.
-this is done in it's ineteraction routine! and they are roomObjs...
 
 
 
