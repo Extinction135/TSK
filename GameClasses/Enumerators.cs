@@ -842,7 +842,10 @@ namespace DungeonRun
         //8x8 - small generic
         RisingSmoke,
         ImpactDust,
+
         Sparkle,
+        SparkleBlue,
+
 
         //8x8 small, obj specific
         PitBubble,

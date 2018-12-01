@@ -54,38 +54,49 @@ Today:
 
 
 
+Ice + Fire Rods ++
 
-
-IceBlocks++
-
-this is a projectile that has an actor or object target.
-these track to their target, and stop their movement completely.
-
-when they crack, they become cracking objs, which last a moment,
-then crack into pieces. this is just to keep the interactions 
-simple, seperate, and easy to understand.
-
-iceblock and cracking objs defined in settype.
-make blocks friction 0.01 too. done.
-ice block interaction vs objs + actors completed.
-ice balls should not damage actors/objs.
-instead they merely slow them down to max friction.
-everything works. i'm slightly impressed.
-
-
-
-
-
-
-
-
+migrated ui rods to lttp style, for taste.
 
 IceBlocks++ Iceballs++
 
 blocks need to be semi transparent so we can see whats
-under the ice block. they need default shimmer frames.
+under the ice block. they need default shimmer frames. done.
 
-change the iceball to be lttp's sparkle ball thing.
+change the iceball to be lttp's sparkle ball thing. done.
+
+blue sparkles for traveling ice ball. done.
+blast particle doesn't suit the ice block.
+just use an attention particle instead.
+
+ice blocks aren't resetting their lifecoutner when they switch
+to cracking state. remedied by resetting lifecounter to 0 in
+pro.setType(). 
+
+
+
+
+
+
+
+
+
+
+
+
+Bugs
+
+ice blocks slow hero if he touches them, while they exist.
+they should be ignoring actors, if they have a target.
+
+
+
+
+
+
+
+
+
 
 implement the hammer + ice bonus damage, plus the big magic
 refill loot spawn. this is a special call in functions_loot,
@@ -96,9 +107,7 @@ which means, we need a big magic container.. lol..
 rip this from lttps sprites.
 
 
-blue sparkles for traveling ice ball.
-blast particle doesn't suit the ice block.
-just use an attention particle instead.
+
 
 
 

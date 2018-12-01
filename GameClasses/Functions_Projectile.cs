@@ -864,7 +864,7 @@ namespace DungeonRun
                 //ball is flying, sparkle
                 if (Functions_Random.Int(0, 101) > 75)
                 {
-                    Functions_Particle.Spawn(ParticleType.Sparkle,
+                    Functions_Particle.Spawn(ParticleType.SparkleBlue,
                         Pro.compSprite.position.X + 4 + Functions_Random.Int(-4, 4),
                         Pro.compSprite.position.Y + 4 + Functions_Random.Int(-4, 4));
                 }
@@ -1051,8 +1051,8 @@ namespace DungeonRun
                 return; //prevent release() + sfx
             }
             else if (Pro.type == ProjectileType.IceblockCracking)
-            {   //highilight cracks end with blast particle
-                Functions_Particle.Spawn(ParticleType.Blast, Pro.compMove.position.X, Pro.compMove.position.Y);
+            {   //highilight cracks end with attention particle
+                Functions_Particle.Spawn(ParticleType.Attention, Pro.compMove.position.X, Pro.compMove.position.Y);
             }
 
             #endregion
@@ -1429,9 +1429,10 @@ namespace DungeonRun
                 Pro.compSprite.zOffset = 64;
                 Pro.compCollision.offsetX = -5; Pro.compCollision.offsetY = -5;
                 Pro.compCollision.rec.Width = 10; Pro.compCollision.rec.Height = 10;
+                Pro.lifeCounter = 0;
                 Pro.lifetime = 50; //in frames
                 Pro.compMove.friction = World.frictionIce;
-                Pro.compAnim.speed = 5; //in frames
+                Pro.compAnim.speed = 2; //in frames
                 Pro.compMove.moveable = true;
                 Pro.compMove.grounded = false; //obj is airborne
                 Pro.compAnim.currentAnimation = AnimationFrames.Projectile_Iceball;
@@ -1448,6 +1449,7 @@ namespace DungeonRun
                 Pro.compSprite.zOffset = 8;
                 Pro.compCollision.offsetX = -5; Pro.compCollision.offsetY = -5;
                 Pro.compCollision.rec.Width = 10; Pro.compCollision.rec.Height = 10;
+                Pro.lifeCounter = 0;
                 Pro.lifetime = 250; //in frames
                 Pro.compAnim.speed = 5; //in frames
                 Pro.compMove.moveable = false;
@@ -1460,8 +1462,9 @@ namespace DungeonRun
                 Pro.compSprite.zOffset = 32;
                 Pro.compCollision.offsetX = -5; Pro.compCollision.offsetY = -5;
                 Pro.compCollision.rec.Width = 10; Pro.compCollision.rec.Height = 10;
-                Pro.lifetime = 30; //in frames
-                Pro.compAnim.speed = 5; //in frames
+                Pro.lifeCounter = 0;
+                Pro.lifetime = 45; //in frames
+                Pro.compAnim.speed = 4; //in frames
                 Pro.compMove.moveable = false;
                 Pro.compMove.grounded = false; //obj is airborne
                 Pro.compAnim.currentAnimation = AnimationFrames.Projectile_IceblockCracking;

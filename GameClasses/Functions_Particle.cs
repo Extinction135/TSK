@@ -340,6 +340,7 @@ namespace DungeonRun
                 Part.compAnim.currentAnimation = AnimationFrames.Particle_ImpactDust;
                 Part.compSprite.texture = Assets.entitiesSheet;
             }
+
             else if (Type == ParticleType.Sparkle)
             {
                 Part.compSprite.drawRec.Width = 8; Part.compSprite.drawRec.Height = 8; //nonstandard size
@@ -349,6 +350,16 @@ namespace DungeonRun
                 Part.compAnim.currentAnimation = AnimationFrames.Particle_Sparkle;
                 Part.compSprite.texture = Assets.entitiesSheet;
             }
+            else if (Type == ParticleType.SparkleBlue)
+            {
+                Part.compSprite.drawRec.Width = 8; Part.compSprite.drawRec.Height = 8; //nonstandard size
+                Part.compSprite.zOffset = 16;
+                Part.lifetime = 24; //in frames
+                Part.compAnim.speed = 6; //in frames
+                Part.compAnim.currentAnimation = AnimationFrames.Particle_SparkleBlue;
+                Part.compSprite.texture = Assets.entitiesSheet;
+            }
+
             else if (Type == ParticleType.Push)
             {
                 Part.compSprite.drawRec.Width = 8; Part.compSprite.drawRec.Height = 8; //nonstandard size
