@@ -393,24 +393,6 @@ namespace DungeonRun
                 #endregion
 
 
-                #region Explosions
-
-                else if (Pro.type == ProjectileType.Explosion)
-                {
-                    if (Pro.lifeCounter == 2) //perform these interactions only once
-                    {   //explosions call power level 2 destruction routines
-                        RoomObj.compMove.direction = Pro.compMove.direction;
-                        //blow up enemy
-                        if (RoomObj.group == ObjGroup.Enemy)
-                        { Functions_GameObject_World.CutRoomEnemy(RoomObj); }
-                        else //blow up the roomObj
-                        { Functions_GameObject_World.Explode(RoomObj); }
-                    }
-                }
-
-                #endregion
-
-
                 #region Fireball
 
                 else if (Pro.type == ProjectileType.Fireball)
@@ -423,7 +405,7 @@ namespace DungeonRun
                 #endregion
 
 
-                #region Iceballs
+                #region Iceball
 
                 else if (Pro.type == ProjectileType.Iceball)
                 {   //iceball pro has to become iceblock, via setType()
@@ -442,7 +424,7 @@ namespace DungeonRun
                 #endregion
 
 
-                #region Sword & Shovel & Bite
+                #region Sword & Shovel
 
                 else if (Pro.type == ProjectileType.Sword
                     || Pro.type == ProjectileType.Shovel)
@@ -457,7 +439,10 @@ namespace DungeonRun
                         Assets.Play(RoomObj.sfx.hit);
                     }
                     else if (Pro.lifeCounter == 4) //mid-swing
-                    {   //cut enemies and roomObjs
+                    {
+                        //set hit direction
+                        RoomObj.compMove.direction = Pro.compMove.direction;
+                        //cut enemies and roomObjs
                         if (RoomObj.group == ObjGroup.Enemy)
                         { Functions_GameObject_World.CutRoomEnemy(RoomObj); }
                         else { Functions_GameObject_World.Cut(RoomObj); }
@@ -470,7 +455,10 @@ namespace DungeonRun
                 #region Fang / Bite / Invs Enemy Attack Projectile
 
                 else if (Pro.type == ProjectileType.Bite)
-                {   //cut enemies and roomObjs
+                {
+                    //set hit direction
+                    RoomObj.compMove.direction = Pro.compMove.direction;
+                    //cut enemies and roomObjs
                     if (RoomObj.group == ObjGroup.Enemy)
                     { Functions_GameObject_World.CutRoomEnemy(RoomObj); }
                     else { Functions_GameObject_World.Cut(RoomObj); }
@@ -485,6 +473,9 @@ namespace DungeonRun
 
                 else if (Pro.type == ProjectileType.Boomerang)
                 {
+                    //set hit direction
+                    RoomObj.compMove.direction = Pro.compMove.direction;
+
                     //cue specific sfx
                     if (RoomObj.group == ObjGroup.Wall)
                     { Assets.Play(Assets.sfxTapMetallic); }
@@ -520,50 +511,6 @@ namespace DungeonRun
                 #endregion
                 
 
-                #region GroundFires
-
-                else if (Pro.type == ProjectileType.GroundFire)
-                {   //blocking objs only here, btw
-
-                    //ground fires damage and kill roomEnemies
-                    if (RoomObj.group == ObjGroup.Enemy)
-                    { Functions_GameObject_World.CutRoomEnemy(RoomObj); }
-
-                    //ground fires spread to some room objs
-                    else if (
-                        //burn bushes
-                        RoomObj.type == ObjType.Wor_Bush
-                        //burn posts
-                        || RoomObj.type == ObjType.Wor_Post_Corner_Left 
-                        || RoomObj.type == ObjType.Wor_Post_Corner_Right 
-                        || RoomObj.type == ObjType.Wor_Post_Horizontal 
-                        || RoomObj.type == ObjType.Wor_Post_Vertical_Left 
-                        || RoomObj.type == ObjType.Wor_Post_Vertical_Right
-                        //burn trees
-                        || RoomObj.type == ObjType.Wor_Tree
-                        //light torches
-                        || RoomObj.type == ObjType.Dungeon_TorchUnlit
-                        )
-                    {
-                        if (Pro.compCollision.rec.Contains(
-                                RoomObj.compSprite.position.X,
-                                RoomObj.compSprite.position.Y))
-                        {   //check against sprite center pos
-                            Functions_GameObject_World.Burn(RoomObj);
-                        }   //this prevents immediate fire spread across verticals
-                    }
-
-                    //groundfires light explosive barrels too
-                    else if (RoomObj.type == ObjType.Dungeon_Barrel)
-                    {   //dont push the barrel in any direction
-                        RoomObj.compMove.direction = Direction.None;
-                        Functions_GameObject_Dungeon.HitBarrel(RoomObj);
-                    }
-                }
-
-                #endregion
-
-
                 #region Thrown Objects
 
                 else if (Pro.type == ProjectileType.ThrownObject)
@@ -592,7 +539,8 @@ namespace DungeonRun
                             Functions_GameObject.SetType(RoomObj, ObjType.Wor_Post_Hammer_Down);
                         }
                         else
-                        {   
+                        {   //inherit hammer's direction for impact
+                            RoomObj.compMove.direction = Pro.compMove.direction;
                             if (RoomObj.group == ObjGroup.Enemy)
                             { Functions_GameObject_World.CutRoomEnemy(RoomObj); }
                             else //destroy roomObj
@@ -603,6 +551,89 @@ namespace DungeonRun
 
                 #endregion
 
+
+
+
+
+
+                #region GroundFires
+
+                else if (Pro.type == ProjectileType.GroundFire)
+                {   //blocking objs only here, btw
+
+                    //set objs push direction away from fire center
+                    RoomObj.compMove.direction =
+                        Functions_Direction.GetOppositeDiagonal(
+                            RoomObj.compSprite.position, //to
+                            Pro.compSprite.position); //from
+
+                    //ground fires damage and kill roomEnemies
+                    if (RoomObj.group == ObjGroup.Enemy)
+                    { Functions_GameObject_World.CutRoomEnemy(RoomObj); }
+
+                    //ground fires spread to some room objs
+                    else if (
+                        //burn bushes
+                        RoomObj.type == ObjType.Wor_Bush
+                        //burn posts
+                        || RoomObj.type == ObjType.Wor_Post_Corner_Left
+                        || RoomObj.type == ObjType.Wor_Post_Corner_Right
+                        || RoomObj.type == ObjType.Wor_Post_Horizontal
+                        || RoomObj.type == ObjType.Wor_Post_Vertical_Left
+                        || RoomObj.type == ObjType.Wor_Post_Vertical_Right
+                        //burn trees
+                        || RoomObj.type == ObjType.Wor_Tree
+                        //light torches
+                        || RoomObj.type == ObjType.Dungeon_TorchUnlit
+                        )
+                    {
+                        if (Pro.compCollision.rec.Contains(
+                                RoomObj.compSprite.position.X,
+                                RoomObj.compSprite.position.Y))
+                        {   //check against sprite center pos
+                            Functions_GameObject_World.Burn(RoomObj);
+                        }   //this prevents immediate fire spread across verticals
+                    }
+
+                    //groundfires light explosive barrels too
+                    else if (RoomObj.type == ObjType.Dungeon_Barrel)
+                    {   //dont push the barrel in any direction
+                        RoomObj.compMove.direction = Direction.None;
+                        Functions_GameObject_Dungeon.HitBarrel(RoomObj);
+                    }
+                }
+
+                #endregion
+
+
+
+
+
+
+                #region Explosions
+
+                else if (Pro.type == ProjectileType.Explosion)
+                {
+                    if (Pro.lifeCounter == 2) //perform these interactions only once
+                    {   //explosions call power level 2 destruction routines
+
+                        //set explosion direction based on pro position
+                        RoomObj.compMove.direction =
+                            Functions_Direction.GetOppositeDiagonal(
+                                RoomObj.compSprite.position, //to
+                                Pro.compSprite.position); //from
+
+                        //blow up enemy
+                        if (RoomObj.group == ObjGroup.Enemy)
+                        { Functions_GameObject_World.CutRoomEnemy(RoomObj); }
+                        else //blow up the roomObj
+                        { Functions_GameObject_World.Explode(RoomObj); }
+                    }
+                }
+
+                #endregion
+
+
             }
 
             #endregion
@@ -612,7 +643,7 @@ namespace DungeonRun
 
             else
             {
-                //group  checks first
+                //group checks first
                 if (RoomObj.group == ObjGroup.Wall_Climbable)
                 {   //kill all projectiles for now
                     Functions_Projectile.Kill(Pro);
@@ -623,7 +654,7 @@ namespace DungeonRun
 
                 //type check next
 
-                #region Roofs - collapse from explosions
+                #region Roofs - collapse from explosions, hammers, etc..
 
                 if (
                     RoomObj.type == ObjType.Wor_Build_Roof_Bottom
@@ -631,7 +662,11 @@ namespace DungeonRun
                     || RoomObj.type == ObjType.Wor_Build_Roof_Chimney
                     )
                 {
-                    if (Pro.type == ProjectileType.Explosion)
+                    if (
+                        Pro.type == ProjectileType.Explosion
+                        || Pro.type == ProjectileType.Hammer
+                        || Pro.type == ProjectileType.Fireball
+                        )
                     {   //begin cascading roof collapse
                         Functions_GameObject_World.CollapseRoof(RoomObj);
                     }
@@ -747,8 +782,9 @@ namespace DungeonRun
                 else if(RoomObj.type == ObjType.Wor_Build_Door_Open)
                 {
                     if (
-                        Pro.type == ProjectileType.Explosion ||
-                        Pro.type == ProjectileType.Hammer
+                        Pro.type == ProjectileType.Explosion 
+                        || Pro.type == ProjectileType.Hammer
+                        || Pro.type == ProjectileType.Fireball
                         )
                     { Functions_GameObject.Kill(RoomObj, false, true); }
                 }

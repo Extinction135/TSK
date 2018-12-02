@@ -63,41 +63,25 @@ Release 0.78
 
 
 
+Barrels++
 
-Polish
+explosions now push objects based on the explosions
+center, instead of it's direction, since explosions
+didn't reall have directions.
 
-fireballs need to push actors. fireballs now
-do 0 damage to actors they hit, then turn into
-an explosion, which deals 2 damage to any actor
-it overlaps. fireballs also push, but that is
-overwritten by the subsequent explosion, which
-maxs the actors magnitude with a 10f push.
+hammers aren't pushing barrels properly.
 
-explosions should push actors from center out.
+sword shovel and bite now properly push objs upon hit.
+boomerang now sets hit obj direction as well.
 
-projectiles now have different push values, so
-bat projectiles push less than hammer projectiles,
-while they both deal 1 damage to actors.
+Roofs++
 
-Fireballs++
-
-fireballs should trigger barrels, barrels should
-inherit the fireballs compmove direction. done.
+hammers now collapse roof objs, if they overlap.
+fireballs do as well. fireballs now remove building
+doors that are open.
 
 
 
-
-
-
-
-
-
-
-
-hammer projectiles should have their compmove
-direction set when they are created, based on the
-direction they face. objs they hit need this to
-be pushed properly. test barrels.
 
 
 
