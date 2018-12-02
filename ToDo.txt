@@ -59,44 +59,19 @@ Release 0.78
 
 
 
+Polish
+
+actually flipped self-clean boolean in obj.SetType() for
+ice tiles, debris, gore decor. test ice tiles cleaning.
+
+completely forgot to write the overlap check in Selfclean().
+whoops. fixed. self-cleaning working again.
+
+ice should not overlap ditches. done.
+floor gore decor no longer overlaps ditches (selfclean++).
 
 
 
-
-Barrels++
-
-explosions now push objects based on the explosions
-center, instead of it's direction, since explosions
-didn't reall have directions.
-
-hammers aren't pushing barrels properly.
-
-sword shovel and bite now properly push objs upon hit.
-boomerang now sets hit obj direction as well.
-
-Roofs++
-
-hammers now collapse roof objs, if they overlap.
-fireballs do as well. fireballs now remove building
-doors that are open.
-
-
-
-
-
-
-
-
-
-
-
-IceTiles++
-
-icetiles can only exist inside room recs.
-ice tiles can't overlap walls, doors, exits..
-ice tiles are being sloppy and still placing themselves
-over each other... somehow.. do a final type
-check to remove them.
 
 
 
@@ -107,9 +82,6 @@ check to remove them.
 
 
 remove save/loading for 0.79.
-
-
-
 
 
 
