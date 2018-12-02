@@ -782,7 +782,7 @@ namespace DungeonRun
                 //play the spinning sound fx each frame
                 Assets.Play(Assets.sfxBoomerangFlying);
 
-                if (Functions_Random.Int(0, 101) > 75)
+                if (Functions_Random.Int(0, 101) > 95)
                 {   //often place randomly offset sparkles
                     Functions_Particle.Spawn(ParticleType.Sparkle,
                         Pro.compSprite.position.X + Functions_Random.Int(-2, 2),

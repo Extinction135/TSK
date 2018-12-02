@@ -20,6 +20,7 @@ namespace DungeonRun
         
 
 
+        //feed to primary damage routine
 
         public static void Damage(Actor Actor, Projectile Pro)
         {
@@ -253,6 +254,11 @@ namespace DungeonRun
             Damage(Actor, damage, force, direction);
         }
 
+
+
+
+
+        //primary damage routine
 
         public static void Damage(Actor Actor, byte Damage, float Force, Direction Direction)
         {   //only damage/hit/push actors not in the hit state

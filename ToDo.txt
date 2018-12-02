@@ -35,7 +35,7 @@ Shadow Dungeon, TSK Fight complete
 0.77 playthru: https://youtu.be/_b7qclGTffE
 0.78 goals:
 	more items (axe, hookshot, beans, hammer X, magic mirror X, ice/fire rods X)
-	more interaction (throwing objs X , actors/objs in water, floor decorations)
+	more interaction (throwing objs X , actors/objs in water, floor decorations X)
 	better dungeon traversal (X solved puzzles, marked map)
 	better coliseum - uniq objs + enemies
 	better overworld - more skulls, waves, cluds, vfx @skullIsland
@@ -52,16 +52,78 @@ Today:
 
 
 
+Release 0.78
 
 
-Ice Tiles++
 
-fixed a bug with ice tiles where they weren't completly
-cleaning themselves, leading to a state where there were
-many roomObjs being created, spending the pool budget
-unwisely. that is fixed now, and ice tiles are very
-conservative in their cleaning, only allowing themselves
-to exist in the proper circumstances. spam tested.
+
+
+Release Prep 0.78 
+
+Bugs--
+
+arrow hit hero multiple times on overlap. fxd.
+less sparkles on the boomerang. fxd.
+ice tiles need to sort over debris. fxd.
+better regioning on Destroy().
+
+explosions set torches on fire. fxd. this was
+caused by Explode() not calling Burn(), which
+would occur from an explosion. so the system
+was setup to handle it, i just didn't connect
+the functions properly.
+
+Fix Self-Cleaning Systems breaking RoomObj systems
+
+explosive barrels dont actually cause explosions upon death.
+this is the special exploding object not processing properly
+because pool.update is globally affecting lifecounter for all
+roomObjs to do self-cleaning. this should happen differently,
+not using the lifecounter, and instead using a self-cleaned boolean,
+that flips true upon routine clean call, and flipped to false
+in obj.setType() when we set the objs that self-clean.
+then we handle the cleaning from pool.update where we currently
+have this abomination of code.
+
+this is now done in obj.selfClean, and uses the obj.selfCleans 
+boolean. this happens for objs that are created during the course
+of gameplay, by the player, to ensure they dont overlap other
+objects and stack-up, poorly spending the roomObj pool's budget.
+
+to simplify this and scale it, we added the ObjGroup value 'exit',
+to model exit objs exclusively, which remove walls and doors that
+touch them - so hero can always exit the dungeon. note - this removal
+check happens PER FRAME and likely shouldn't.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+remove save/loading for 0.79.
+
+
+
 
 
 

@@ -5,6 +5,26 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Level / Puzzle Design Guidelines
 
 employ fincher's technique: ask a question, then let the viewer

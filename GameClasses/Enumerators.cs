@@ -334,7 +334,9 @@ namespace DungeonRun
     #region ObjGroup
 
     public enum ObjGroup
-    {   //roomObjs
+    {   
+        //roomObjs
+        Exit,
         Wall,
         Door,
         Chest,
@@ -560,6 +562,9 @@ namespace DungeonRun
         #endregion
 
 
+        //very special objects
+        ExplodingObject, //creates explosion
+
 
 
         #region Magic Objects
@@ -765,15 +770,15 @@ namespace DungeonRun
         #endregion
 
 
+
+
+
         #region Misc (Dialog)
 
         Hero_Idle,
 
         #endregion
 
-
-        //very special objects
-        ExplodingObject, //creates explosion
     }
 
     #endregion

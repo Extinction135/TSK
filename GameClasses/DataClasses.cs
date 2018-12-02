@@ -17,7 +17,7 @@ namespace DungeonRun
     public static class Flags
     {   
         // **********************************************************************************************************
-        public static Boolean Release = false; //puts game in release mode, overwrites other flags
+        public static Boolean Release = true; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.78f; //the version of the game
         public static BootRoutine bootRoutine = BootRoutine.Editor_Level; //boot to game or editor?
@@ -1367,6 +1367,12 @@ namespace DungeonRun
 
         public Boolean underWater = false; //is obj underwater
         public Boolean inWater = false; //is obj partially submerged in water? ex: swimming
+
+
+        public Boolean selfCleans = false; //some objs remove themselves upon overlap
+
+
+
 
         public GameObject()
         {   //initialize to default value - data is changed later

@@ -296,7 +296,7 @@ namespace DungeonRun
 
 
 
-                    #region Blocking, Walls, and Doors
+                    #region Blocking, Exits, Walls, and Doors
 
                     //if ditch touches any of these objs, release ditch & bail
                     if (Pool.roomObjPool[d].compCollision.blocking)
@@ -304,7 +304,9 @@ namespace DungeonRun
                         objRef.compSprite.visible = false;
                     }
                     //group checks
-                    else if (Pool.roomObjPool[d].group == ObjGroup.Wall
+                    else if (
+                        Pool.roomObjPool[d].group == ObjGroup.Exit
+                        || Pool.roomObjPool[d].group == ObjGroup.Wall
                         || Pool.roomObjPool[d].group == ObjGroup.Door
                         || Pool.roomObjPool[d].group == ObjGroup.Wall_Climbable
                         )

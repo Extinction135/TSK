@@ -254,15 +254,23 @@ namespace DungeonRun
             #endregion
 
 
-            #region Destroy Various Dungeon/World Objects
 
+
+
+            //turn some objs into loot + debris
             else if (
 
-                //dungeon objs
+
+            #region Dungeon Objs - (Statue, Signpost, etc)
 
                 //limited set for now
                 Obj.type == ObjType.Dungeon_Statue
                 || Obj.type == ObjType.Dungeon_Signpost
+
+            #endregion
+
+
+            #region Building Walls & Doors
 
                 //world objs
 
@@ -274,7 +282,12 @@ namespace DungeonRun
                 || Obj.type == ObjType.Wor_Build_Wall_Side_Right
                 || Obj.type == ObjType.Wor_Build_Door_Shut
                 || Obj.type == ObjType.Wor_Build_Door_Open
-                //building interior objs
+
+            #endregion
+
+
+            #region Building interior objs
+
                 || Obj.type == ObjType.Wor_Bookcase
                 || Obj.type == ObjType.Wor_Shelf
                 || Obj.type == ObjType.Wor_Stove
@@ -284,12 +297,16 @@ namespace DungeonRun
                 || Obj.type == ObjType.Wor_TableDoubleRight
                 || Obj.type == ObjType.Wor_Chair
                 || Obj.type == ObjType.Wor_Bed
-                )
-            {
-                Functions_GameObject.Kill(Obj, true, true);
-            }
 
             #endregion
+
+
+                )
+            { Functions_GameObject.Kill(Obj, true, true); }
+
+
+
+
 
 
             else
@@ -301,17 +318,11 @@ namespace DungeonRun
         //level 3 caused by: explosions, bolts
         public static void Explode(GameObject Obj)
         {
-            
-            #region Bush
-
-            if (Obj.type == ObjType.Wor_Bush) { Burn(Obj); }
-
-            #endregion
 
 
             #region Trees - unburnt and burnt
 
-            else if (Obj.type == ObjType.Wor_Tree
+            if (Obj.type == ObjType.Wor_Tree
                 || Obj.type == ObjType.Wor_Tree_Burnt)
             {
                 Assets.Play(Assets.sfxShatter);
@@ -382,6 +393,8 @@ namespace DungeonRun
             {   //call all lower levels of destruction on obj
                 Destroy(Obj);
             }
+
+            Burn(Obj); //all objs are then burned
         }
 
 

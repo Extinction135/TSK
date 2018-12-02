@@ -189,6 +189,136 @@ namespace DungeonRun
 
 
 
+        static int g;
+        public static void Selfclean(GameObject Obj)
+        {
+            Obj.selfCleans = false; //this is only run once
+
+            //loop over room objs, removing obj based on types
+            for (g = 0; g < Pool.roomObjCount; g++)
+            {   //ensure roomObj is active and not self-comparing
+                if(Pool.roomObjPool[g].active & Pool.roomObjPool[g] != Obj)
+                {
+
+
+                    #region Dungeon Wall
+
+                    if (
+                    Obj.type == ObjType.Dungeon_WallStraight
+                    || Obj.type == ObjType.Dungeon_WallStraightCracked
+                    )
+                    {
+                        //if a wall overlaps a copy of itself, remove wall
+                        if (Pool.roomObjPool[g].type == Obj.type)
+                        { Functions_Pool.Release(Obj); }
+                        //walls cannot overlap these objects
+                        if (
+                            //exits
+                            Pool.roomObjPool[g].type == ObjType.Dungeon_Exit
+                            || Pool.roomObjPool[g].type == ObjType.Dungeon_ExitPillarLeft
+                            || Pool.roomObjPool[g].type == ObjType.Dungeon_ExitPillarRight
+                            //other wall objs
+                            || Pool.roomObjPool[g].type == ObjType.Dungeon_WallPillar
+                            || Pool.roomObjPool[g].type == ObjType.Dungeon_WallStatue
+                            || Pool.roomObjPool[g].type == ObjType.Dungeon_WallTorch
+                            || Pool.roomObjPool[g].type == ObjType.Dungeon_WallExteriorCorner
+                            || Pool.roomObjPool[g].type == ObjType.Dungeon_WallInteriorCorner
+                            )
+                        { Functions_Pool.Release(Obj); }
+                    }
+
+                    #endregion
+
+
+                    #region Floor Decorations - debris, stain, blood, skeletons
+
+                    //if a floor decoration overlaps an obj, prolly remove it
+                    else if (
+                        Obj.type == ObjType.Wor_Debris
+                        || Obj.type == ObjType.Dungeon_FloorStain
+                        || Obj.type == ObjType.Dungeon_FloorBlood
+                        || Obj.type == ObjType.Dungeon_FloorSkeleton
+                        )
+                    {   //if decor overlaps a copy of itself, remove decor
+                        if (Obj.type == Pool.roomObjPool[g].type)
+                        { Functions_Pool.Release(Obj); }
+                        //decor cannot overlap blocking objects, obvs
+                        else if (Pool.roomObjPool[g].compCollision.blocking)
+                        { Functions_Pool.Release(Obj); }
+
+                        //these non-blocking objs remove decor too
+                        else if (
+                            //world objs that cant be overlapped
+                            Pool.roomObjPool[g].type == ObjType.Wor_Flowers
+                            || Pool.roomObjPool[g].type == ObjType.Wor_Grass_Tall
+                            || Pool.roomObjPool[g].type == ObjType.Wor_Bush_Stump
+                            || Pool.roomObjPool[g].type == ObjType.Wor_Tree_Stump
+
+                            //dungeon objs that cant be overlapped
+                            || Pool.roomObjPool[g].type == ObjType.Dungeon_Pit
+                            || Pool.roomObjPool[g].type == ObjType.Dungeon_PitBridge
+                            || Pool.roomObjPool[g].type == ObjType.Dungeon_PitTrap
+
+                            //unique objs that cant be overlapped
+                            || Pool.roomObjPool[g].type == ObjType.Wor_Boat_Stairs_Cover
+                            //bottom piers, cause it looks look bad
+                            || Pool.roomObjPool[g].type == ObjType.Wor_Boat_Pier_BottomLeft
+                            || Pool.roomObjPool[g].type == ObjType.Wor_Boat_Pier_BottomMiddle
+                            || Pool.roomObjPool[g].type == ObjType.Wor_Boat_Pier_BottomRight
+                            )
+                        { Functions_Pool.Release(Obj); }
+
+                        //some decor cant overlap other decor, like debris cant overlap skeletons for example
+                        if (Obj.type == ObjType.Wor_Debris & Pool.roomObjPool[g].type == ObjType.Dungeon_FloorSkeleton)
+                        { Functions_Pool.Release(Obj); }
+                    }
+
+                    #endregion
+
+
+                    #region IceTiles
+
+                    else if (Obj.type == ObjType.Dungeon_IceTile)
+                    {
+                        //remove icetile if roomObj blocks birth
+                        if (Pool.roomObjPool[g].compCollision.blocking)
+                        { Functions_Pool.Release(Obj); }
+
+                        //these non-blocking objs stop icetile birth too
+                        else if (
+                            //world objs that cant be overlapped
+                            Pool.roomObjPool[g].type == ObjType.Wor_Water
+                            || Pool.roomObjPool[g].type == ObjType.Wor_Boat_Coastline
+                            || Pool.roomObjPool[g].type == ObjType.Wor_Coastline_Corner_Exterior
+                            || Pool.roomObjPool[g].type == ObjType.Wor_Coastline_Corner_Interior
+                            || Pool.roomObjPool[g].type == ObjType.Wor_Coastline_Straight
+                            //dungeon objs that cant be overlapped
+                            || Pool.roomObjPool[g].type == ObjType.Dungeon_Pit
+                            || Pool.roomObjPool[g].type == ObjType.Dungeon_PitBridge
+                            || Pool.roomObjPool[g].type == ObjType.Dungeon_PitTrap
+                            || Pool.roomObjPool[g].type == ObjType.Dungeon_SpikesFloorOff
+                            || Pool.roomObjPool[g].type == ObjType.Dungeon_SpikesFloorOn
+                            || Pool.roomObjPool[g].type == ObjType.Dungeon_PitTrap
+                            //unique objs that cant be overlapped
+                            || Pool.roomObjPool[g].type == ObjType.Wor_Boat_Stairs_Cover
+                            || Pool.roomObjPool[g].type == ObjType.Wor_Boat_Bridge_Bottom
+                            || Pool.roomObjPool[g].type == ObjType.Wor_Boat_Pier_BottomLeft
+                            || Pool.roomObjPool[g].type == ObjType.Wor_Boat_Pier_BottomMiddle
+                            || Pool.roomObjPool[g].type == ObjType.Wor_Boat_Pier_BottomRight
+                            //dont overlap other icetiles, pls
+                            || Pool.roomObjPool[g].type == ObjType.Dungeon_IceTile
+                            )
+                        { Functions_Pool.Release(Obj); }
+                    }
+
+                    #endregion
+
+
+                }
+            }
+        }
+
+
 
 
 
@@ -251,7 +381,7 @@ namespace DungeonRun
                 Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compSprite.drawRec.Height = 16 * 3; //nonstandard size
                 Obj.compSprite.zOffset = -32; //sort to floor
-                Obj.group = ObjGroup.Door;
+                Obj.group = ObjGroup.Exit;
                 Obj.compCollision.rec.Height = 32 - 5;
                 Obj.compCollision.offsetY = 14;
                 if (Type == ObjType.Dungeon_ExitPillarLeft)
@@ -266,7 +396,7 @@ namespace DungeonRun
                 Obj.compSprite.texture = Assets.Dungeon_CurrentSheet; //is dungeonObj
                 Obj.compSprite.drawRec.Height = 16 * 3; //nonstandard size
                 Obj.compSprite.zOffset = -32; //sort to floor
-                Obj.group = ObjGroup.Door;
+                Obj.group = ObjGroup.Exit;
 
                 Obj.compCollision.rec.Height = 8;
                 Obj.compCollision.offsetY = 32;
@@ -772,7 +902,7 @@ namespace DungeonRun
             {
                 Obj.compCollision.offsetX = -6; Obj.compCollision.offsetY = -6;
                 Obj.compCollision.rec.Width = 12; Obj.compCollision.rec.Height = 12;
-                Obj.compSprite.zOffset = -30; //sort a little above floor
+                Obj.compSprite.zOffset = -28; //sort over most floor decor
                 Obj.compCollision.blocking = false;
                 Obj.canBeSaved = true;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_IceTile;
@@ -1001,8 +1131,6 @@ namespace DungeonRun
             }
 
             #endregion
-
-
 
 
             #region Debris
@@ -2802,6 +2930,7 @@ namespace DungeonRun
                 Obj.getsAI = true;
                 Obj.lifetime = 30; //in frames
                 Obj.lifeCounter = 0; //reset
+                Obj.group = ObjGroup.Object;
             }
 
             #endregion

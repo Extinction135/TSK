@@ -322,7 +322,14 @@ namespace DungeonRun
                     //reset water booleans for objects
                     Pool.roomObjPool[i].inWater = false;
                     Pool.roomObjPool[i].underWater = false;
-                    
+
+                    //handle roomObjs that remove themselves upon overlap
+                    if (Pool.roomObjPool[i].selfCleans)
+                    {   //clean yo self, then exit cleaning branch
+                        Functions_GameObject.Selfclean(Pool.roomObjPool[i]);
+                    }
+
+                    //check interactions for certain roomObjs
                     if (
                         //if roomObj is moving, check interactions - BIG optimization
                         Pool.roomObjPool[i].compMove.moving
@@ -337,18 +344,9 @@ namespace DungeonRun
                         || Pool.roomObjPool[i].type == ObjType.Dungeon_ExitPillarLeft
                         || Pool.roomObjPool[i].type == ObjType.Dungeon_ExitPillarRight
                         )
-                    {
-                        //Debug.WriteLine("pool update roomobj type: " + Pool.roomObjPool[i].type);
+                    {   //Debug.WriteLine("pool update roomobj type: " + Pool.roomObjPool[i].type);
                         Functions_Interaction.CheckObj_Obj(Pool.roomObjPool[i]);
                     }
-                    
-                    //process this roomObj, if it's past frame 0
-                    if(Pool.roomObjPool[i].lifeCounter > 0)
-                    {   //this is done for floor objs + wall objs that self-clean
-                        Functions_Interaction.CheckObj_Obj(Pool.roomObjPool[i]);
-                        Pool.roomObjPool[i].lifeCounter = 0; //bail from branch
-                    }
-
 
                     //update, animate, scale
                     Functions_GameObject.Update(Pool.roomObjPool[i]);
