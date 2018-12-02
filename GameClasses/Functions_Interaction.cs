@@ -416,6 +416,8 @@ namespace DungeonRun
                 else if (Pro.type == ProjectileType.Fireball)
                 {   //fireball becomes explosion upon collision/death
                     Functions_Projectile.Kill(Pro);
+                    //fireballs push hit objs, but death explosion will push the objs max
+                    Functions_Movement.Push(RoomObj.compMove, Pro.compMove.direction, 4.0f);
                 }
 
                 #endregion

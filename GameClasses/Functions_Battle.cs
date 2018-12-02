@@ -53,37 +53,52 @@ namespace DungeonRun
 
             #region Damage level 1
 
-            else if (Pro.type == ProjectileType.Arrow)
-            {   //arrows deal 1 damage, push 4
-                damage = 1; force = 4.0f;
+            //stronger pushing objects last
+
+            //pros with less mass/pushing power
+            else if (Pro.type == ProjectileType.Bat)
+            {   //bats deal 1 damage
+                damage = 1; force = 2.0f;
                 direction = Pro.compMove.direction;
             }
+            else if (Pro.type == ProjectileType.Arrow)
+            {   //arrows deal 1 damage
+                damage = 1; force = 3.0f;
+                direction = Pro.compMove.direction;
+            }
+
+
+            //pros with similar mass/pushing power
             else if (Pro.type == ProjectileType.Sword)
-            {   //swords deal 1 damage, push 6
-                damage = 1; force = 6.0f; direction = Pro.direction;
+            {   //swords deal 1 damage
+                damage = 1; force = 4.0f; direction = Pro.direction;
             }
             else if (Pro.type == ProjectileType.Shovel)
-            {   //matches swords damage, less push
-                damage = 1; force = 3.0f; direction = Pro.direction;
-            }
-            else if (Pro.type == ProjectileType.ThrownObject)
-            {   //thrown objs deal 1 damage, push 4
-                damage = 1; force = 4.0f; direction = Pro.compMove.direction;
+            {   //matches swords damage
+                damage = 1; force = 4.0f; direction = Pro.direction;
             }
             else if (Pro.type == ProjectileType.Bite)
-            {   //bite deals 1 damage, push 5
-                damage = 1; force = 5.0f; direction = Pro.direction;
+            {   //bite deals 1 damage
+                damage = 1; force = 4.0f; direction = Pro.direction;
             }
-            else if (Pro.type == ProjectileType.Bat)
-            {   //bats deal 1 damage, push 4
-                damage = 1; force = 4.0f;
+
+            //slightly more powerful pushing pros
+            else if (Pro.type == ProjectileType.ThrownObject)
+            {   //thrown objs deal 1 damage
+                damage = 1; force = 5.0f; direction = Pro.compMove.direction;
+            }
+            else if (Pro.type == ProjectileType.Fireball)
+            {   //fireballs deals 0 damage
+                damage = 0; force = 5.0f;
                 direction = Pro.compMove.direction;
             }
             else if (Pro.type == ProjectileType.Iceball)
             {   //ice deals 1 damage, push 4
-                damage = 1; force = 4.0f;
+                damage = 1; force = 5.0f;
                 direction = Pro.compMove.direction;
             }
+
+            //pros with the most mass/pushing power
             else if (Pro.type == ProjectileType.Hammer)
             {   //strongest standard weapon
                 damage = 1; force = 8.0f;
@@ -101,6 +116,10 @@ namespace DungeonRun
                 damage = 2; force = 10.0f;
                 //push actor in their opposite direction
                 direction = Functions_Direction.GetOppositeDirection(Actor.direction);
+                //push actor diagonally away from explosion
+                direction = Functions_Direction.GetOppositeDiagonal(
+                    Actor.compSprite.position, //to
+                    Pro.compSprite.position); //from
             }
 
             #endregion

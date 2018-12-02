@@ -58,42 +58,31 @@ Release 0.78
 
 
 
-Release Prep 0.78 
 
-Bugs--
 
-arrow hit hero multiple times on overlap. fxd.
-less sparkles on the boomerang. fxd.
-ice tiles need to sort over debris. fxd.
-better regioning on Destroy().
 
-explosions set torches on fire. fxd. this was
-caused by Explode() not calling Burn(), which
-would occur from an explosion. so the system
-was setup to handle it, i just didn't connect
-the functions properly.
 
-Fix Self-Cleaning Systems breaking RoomObj systems
 
-explosive barrels dont actually cause explosions upon death.
-this is the special exploding object not processing properly
-because pool.update is globally affecting lifecounter for all
-roomObjs to do self-cleaning. this should happen differently,
-not using the lifecounter, and instead using a self-cleaned boolean,
-that flips true upon routine clean call, and flipped to false
-in obj.setType() when we set the objs that self-clean.
-then we handle the cleaning from pool.update where we currently
-have this abomination of code.
 
-this is now done in obj.selfClean, and uses the obj.selfCleans 
-boolean. this happens for objs that are created during the course
-of gameplay, by the player, to ensure they dont overlap other
-objects and stack-up, poorly spending the roomObj pool's budget.
+Polish
 
-to simplify this and scale it, we added the ObjGroup value 'exit',
-to model exit objs exclusively, which remove walls and doors that
-touch them - so hero can always exit the dungeon. note - this removal
-check happens PER FRAME and likely shouldn't.
+fireballs need to push actors. fireballs now
+do 0 damage to actors they hit, then turn into
+an explosion, which deals 2 damage to any actor
+it overlaps. fireballs also push, but that is
+overwritten by the subsequent explosion, which
+maxs the actors magnitude with a 10f push.
+
+explosions should push actors from center out.
+
+projectiles now have different push values, so
+bat projectiles push less than hammer projectiles,
+while they both deal 1 damage to actors.
+
+Fireballs++
+
+fireballs should trigger barrels, barrels should
+inherit the fireballs compmove direction. done.
 
 
 
@@ -105,12 +94,25 @@ check happens PER FRAME and likely shouldn't.
 
 
 
+hammer projectiles should have their compmove
+direction set when they are created, based on the
+direction they face. objs they hit need this to
+be pushed properly. test barrels.
 
 
 
 
 
 
+
+
+IceTiles++
+
+icetiles can only exist inside room recs.
+ice tiles can't overlap walls, doors, exits..
+ice tiles are being sloppy and still placing themselves
+over each other... somehow.. do a final type
+check to remove them.
 
 
 
