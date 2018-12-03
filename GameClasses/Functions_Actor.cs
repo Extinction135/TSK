@@ -325,6 +325,14 @@ namespace DungeonRun
 
             if (Actor == Pool.hero)
             {
+                //if hero takes damage in a dungeon, track it
+                if (LevelSet.dungeon.ID == LevelID.Forest_Dungeon)
+                { PlayerData.ForestRecord.totalDamage++; }
+                else if (LevelSet.dungeon.ID == LevelID.Mountain_Dungeon)
+                { PlayerData.MountainRecord.totalDamage++; }
+                else if (LevelSet.dungeon.ID == LevelID.Swamp_Dungeon)
+                { PlayerData.SwampRecord.totalDamage++; }
+
                 //hero throws whatever he's carrying
                 Functions_Hero.Throw();
                 //hero always spawns a gold piece upon hit
@@ -342,7 +350,17 @@ namespace DungeonRun
             //link is only actor with correct death animation for gameover
             
             //and switching hero back also makes it easy to track enemy deaths
-            else { DungeonRecord.enemyCount++; }
+            else
+            {   //track enemy deaths per dungeon
+                if(LevelSet.dungeon.ID == LevelID.Forest_Dungeon)
+                { PlayerData.ForestRecord.enemyCount++; }
+                else if (LevelSet.dungeon.ID == LevelID.Mountain_Dungeon)
+                { PlayerData.MountainRecord.enemyCount++; }
+                else if (LevelSet.dungeon.ID == LevelID.Swamp_Dungeon)
+                { PlayerData.SwampRecord.enemyCount++; }
+
+                PlayerData.enemiesKilled++;
+            }
 
             //lock actor into dead state
             Actor.state = ActorState.Dead;
@@ -410,21 +428,21 @@ namespace DungeonRun
                 if (Actor.type == ActorType.Boss_BigEye &
                     LevelSet.currentLevel.currentRoom.roomID == RoomID.ForestIsland_BossRoom)
                 {
-                    DungeonRecord.beatDungeon = true;
+                    PlayerData.ForestRecord.timer.Stop();
                     PlayerData.story_forestDungeon = true;
                     Functions_Level.CloseLevel(ExitAction.Summary);
                 }
                 else if(Actor.type == ActorType.Boss_BigBat &
                     LevelSet.currentLevel.currentRoom.roomID == RoomID.DeathMountain_BossRoom)
                 {
-                    DungeonRecord.beatDungeon = true;
+                    PlayerData.MountainRecord.timer.Stop();
                     PlayerData.story_mountainDungeon = true;
                     Functions_Level.CloseLevel(ExitAction.Summary);
                 }
                 else if(Actor.type == ActorType.Boss_OctoHead &
                     LevelSet.currentLevel.currentRoom.roomID == RoomID.SwampIsland_BossRoom)
                 {
-                    DungeonRecord.beatDungeon = true;
+                    PlayerData.SwampRecord.timer.Stop();
                     PlayerData.story_swampDungeon = true;
                     Functions_Level.CloseLevel(ExitAction.Summary);
                 }

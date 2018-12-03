@@ -212,6 +212,11 @@ namespace DungeonRun
         #endregion
 
 
+        public static DungeonRecord ForestRecord = new DungeonRecord();
+        public static DungeonRecord MountainRecord = new DungeonRecord();
+        public static DungeonRecord SwampRecord = new DungeonRecord();
+
+
         public static void Reset()
         {
             dateTime = DateTime.Now;
@@ -219,6 +224,10 @@ namespace DungeonRun
             hours = 0;
             mins = 0;
             secs = 0;
+            //clear dungeon records
+            ForestRecord.Clear();
+            MountainRecord.Clear();
+            SwampRecord.Clear();
 
             //default starting location
             lastLocation = LevelID.SkullIsland_ShadowKing;
@@ -369,6 +378,23 @@ namespace DungeonRun
 
 
     }
+
+
+    public class DungeonRecord
+    {
+        public int dungeonID = 0;
+        public Stopwatch timer = new Stopwatch();
+        public int enemyCount = 0;
+        public int totalDamage = 0;
+        public void Clear()
+        {
+            dungeonID = 0;
+            enemyCount = 0;
+            totalDamage = 0;
+            timer.Reset();
+        }
+    }
+
 
 
     #region Color Scheme
@@ -558,23 +584,7 @@ namespace DungeonRun
         public static Vector3 translateBody;
     }
 
-    public static class DungeonRecord
-    {
-        public static int dungeonID = 0;
-        public static Boolean beatDungeon = false;
-        public static Stopwatch timer = new Stopwatch();
-        public static int enemyCount = 0;
-        public static int totalDamage = 0;
-
-        public static void Clear()
-        {
-            dungeonID = 0;
-            beatDungeon = false;
-            enemyCount = 0;
-            totalDamage = 0;
-            timer.Reset();
-        }
-    }
+    
 
     
 

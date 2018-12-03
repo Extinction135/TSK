@@ -71,33 +71,23 @@ namespace DungeonRun
             Functions_Music.PlayMusic(Music.Title); //play title music
             //fill hero's health up to max - prevents drum track from playing
             Pool.hero.health = PlayerData.heartsTotal;
-
-
-            #region Update title
-
-            if (DungeonRecord.beatDungeon) //won
-            { title.currentFrame.Y = 2; }
-            else
-            { title.currentFrame.Y = 1; } //loss
-
-            #endregion
+            
 
 
             #region Calculate skill ratings + ratings change
 
-            int enemiesKilledNew = PlayerData.enemiesKilled + DungeonRecord.enemyCount;
-            int damageNew = PlayerData.damageTaken + DungeonRecord.totalDamage;
+            //int damageNew = PlayerData.damageTaken + DungeonRecord.totalDamage;
 
             double newSR = 0.0; //prevent divide by 0
-            if (enemiesKilledNew <= 0) { enemiesKilledNew = 1; }
-            if (damageNew <= 0) { damageNew = 1; }
+            //if (enemiesKilledNew <= 0) { enemiesKilledNew = 1; }
+            //if (damageNew <= 0) { damageNew = 1; }
 
             double oldSR = 0.0; // prevent divide by 0
             if (PlayerData.enemiesKilled <= 0) { PlayerData.enemiesKilled = 1; }
             if (PlayerData.damageTaken <= 0) { PlayerData.damageTaken = 1; }
             
             //calculate SR and ratings change to 2 digits
-            newSR = enemiesKilledNew / damageNew;
+            //newSR = enemiesKilledNew / damageNew;
             oldSR = PlayerData.enemiesKilled / PlayerData.damageTaken;
             ratingChange = (float)Math.Round(newSR - oldSR, 2);
 
@@ -107,14 +97,14 @@ namespace DungeonRun
             #region Append & Save Player's Summary Data
 
             //append damage and kills
-            PlayerData.damageTaken += DungeonRecord.totalDamage;
-            PlayerData.enemiesKilled += DungeonRecord.enemyCount;
+            //PlayerData.damageTaken += DungeonRecord.totalDamage;
+            //PlayerData.enemiesKilled += DungeonRecord.enemyCount;
             //convert stopwatch dungeon timer to timespan
-            TimeSpan toAdd = DungeonRecord.timer.Elapsed;
+            //TimeSpan toAdd = DungeonRecord.timer.Elapsed;
             //append hours, mins, seconds from timespan to saveData
-            PlayerData.hours += toAdd.Hours;
-            PlayerData.mins += toAdd.Minutes;
-            PlayerData.secs += toAdd.Seconds;
+            //PlayerData.hours += toAdd.Hours;
+            //PlayerData.mins += toAdd.Minutes;
+            //PlayerData.secs += toAdd.Seconds;
             //cleanup saveData
             while (PlayerData.mins >= 60)
             { PlayerData.hours++; PlayerData.mins -= 60; }
@@ -153,7 +143,6 @@ namespace DungeonRun
                     )
                 {
                     displayState = DisplayState.Closing; //only happens once
-                    DungeonRecord.timer.Reset();
                     //play the summary exit sound effect immediately
                     Assets.Play(Assets.sfxExitSummary);
                     continueText.alpha = 1.0f;
@@ -203,19 +192,23 @@ namespace DungeonRun
                 continueText.alpha += 0.01f;
 
                 if(!countingComplete)
-                {   //animate summary data up to it's proper amount
+                {   
+                    /*
+                    //animate summary data up to it's proper amount
                     if (enemyCount < DungeonRecord.enemyCount)
                     { enemyCount++; Assets.Play(Assets.sfxTextLetter); }
                     else if(totalDamage < DungeonRecord.totalDamage)
                     { totalDamage++; Assets.Play(Assets.sfxTextLetter); }
                     else  //we've counted everything, exit count routine
                     { Assets.Play(Assets.sfxTextDone); countingComplete = true; }
+                    */
+                    Assets.Play(Assets.sfxTextDone); countingComplete = true;
                 }
 
                 //set the summary data text component
-                summaryData.text = "" + DungeonRecord.timer.Elapsed.ToString(@"hh\:mm\:ss");
-                summaryData.text += "\n" + enemyCount; 
-                summaryData.text += "\n" + totalDamage;
+                //summaryData.text = "" + DungeonRecord.timer.Elapsed.ToString(@"hh\:mm\:ss");
+                //summaryData.text += "\n" + enemyCount; 
+                //summaryData.text += "\n" + totalDamage;
 
                 //handle displaying the +, if ratingChange is positive
                 if (ratingChange >= 0.0f)

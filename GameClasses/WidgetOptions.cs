@@ -70,7 +70,7 @@ namespace DungeonRun
 
             #region Set menuItem data
 
-            labels[0].text = "save\ngame";
+            labels[0].text = "";
             Functions_MenuItem.SetType(MenuItemType.Unknown, menuItems[0]);
 
             labels[1].text = "cheat\nmenu";
@@ -88,7 +88,7 @@ namespace DungeonRun
             labels[5].text = "optns\nmenu";
             Functions_MenuItem.SetType(MenuItemType.OptionsOptionsMenu, menuItems[5]);
 
-            labels[6].text = "load\ngame";
+            labels[6].text = "";
             Functions_MenuItem.SetType(MenuItemType.Unknown, menuItems[6]);
 
             labels[7].text = "quit\ngame";
