@@ -42,6 +42,11 @@ namespace DungeonRun
                 Functions_Projectile.Spawn(ProjectileType.Hammer, Actor, Actor.direction);
                 Functions_Actor.SetItemUseState(Actor);
             }
+            else if (Type == MenuItemType.WeaponWand)
+            {   //this should be a wand projectile, when we have one
+                Functions_Projectile.Spawn(ProjectileType.Shovel, Actor, Actor.direction);
+                Functions_Actor.SetItemUseState(Actor);
+            }
             else if (Type == MenuItemType.WeaponFang)
             {
                 Functions_Projectile.Spawn(ProjectileType.Bite, Actor, Actor.direction);

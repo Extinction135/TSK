@@ -193,8 +193,9 @@ namespace DungeonRun
             //24 - hammer
             if (PlayerData.weaponHammer)
             { Functions_MenuItem.SetType(MenuItemType.WeaponHammer, menuItems[24]); }
-            //25 - 
-
+            //25 - wand
+            if (PlayerData.weaponHammer)
+            { Functions_MenuItem.SetType(MenuItemType.WeaponWand, menuItems[25]); }
             //26 -
 
             //Enemy Weapon - 27 - only one slot for enemy weapons

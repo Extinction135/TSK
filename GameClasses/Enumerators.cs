@@ -983,6 +983,7 @@ namespace DungeonRun
         WeaponNet,
         WeaponShovel,
         WeaponHammer,
+        WeaponWand,
 
         WeaponFang,
 

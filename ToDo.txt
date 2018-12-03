@@ -52,7 +52,7 @@ Shadow Dungeon, TSK Fight complete
 	(items: hookshot, axe, beans)
 	(interactions: WIND, acts/objs in water)
 	(dungeon: marked map PLS, working puzzles, per dungeon roomdata)
-	(smaller ram: title image is complete, can be own sheet, no big text)
+	(X smaller ram: title image is complete, can be own sheet, no big text)
 	(pets: stable, more pet variety, multiple pets (actor mini pool in fun_hero)
 	better coliseum - uniq objs + enemies
 	better overworld - more skulls, waves, cluds, vfx @skullIsland
@@ -66,23 +66,41 @@ Today:
 
 
 
-Inventory++
-
-added audio and video UI items to the options widget,
-to fill space for now. input should be the first ui 
-item in options widget. added in and looking better.
-
-
-
-
-
-
-
 
 Wand
 
 this is just a projectile that tracks to link's hand,
 much like sword, but deals no damage and pushes at 4.0f.
+
+added want ui item and wand weapon boolean to playerdata.
+added wand to weapons vendor. fixed a bug where weapons
+vendor didn't sell hammer. with this commit, the wand ui
+item and data is present in the game. now, the tracking
+wand projectile to complete the use state.
+
+
+
+
+
+
+
+
+Wand Pro in Hero's Hand
+
+create wand, based on rod projectile sprites. is a brown
+color, no red or blue.
+
+
+
+
+
+
+
+
+
+
+
+Spells!!
 
 SpellBook
 
@@ -91,6 +109,26 @@ type enum value (new), and booleans for spells the player
 has learned. we flip a boolean in playerdata, and the spell
 book displays this spell as selectable. selecting the spell
 assigns that spell to the playerdata.currentSpell reference.
+
+this looks similar to the DUNGEON MAP, and uses the SCROLL
+sprite objects, just like it does. so, start by copy pasting
+that screen in and changing it's name to spellbook, then modifying
+the class to just display the scroll.
+
+
+Spell Selection
+
+how do we display MANY spells? via a bullet point, next to
+some text labels. this bullet point is a ui item sprite,
+set in a 16x16 sprite, but used differently than regular
+menuitems. these 'menu items' are much closer together,
+so we can fit more text into a smaller area. we do this
+so we can display many spells on the spell book, while
+still using the menuItem systems that exist. 
+
+selecting a spell changes playerdata.currentSpell to the
+proper spell type enum value.
+
 
 Casting Spells
 
@@ -115,6 +153,11 @@ spell we are going to migrate.
 
 then we need to make a spell that creates ground fires in the
 facing direction of th caster. easy.
+
+
+
+
+
 
 
 

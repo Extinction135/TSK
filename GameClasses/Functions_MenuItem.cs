@@ -292,7 +292,13 @@ namespace DungeonRun
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Weapon_Hammer;
                 MenuItem.price = 50;
             }
-
+            else if (Type == MenuItemType.WeaponWand)
+            {
+                MenuItem.name = "Wand";
+                MenuItem.description = "thin and \nbrittle.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Weapon_Wand;
+                MenuItem.price = 99;
+            }
 
 
 

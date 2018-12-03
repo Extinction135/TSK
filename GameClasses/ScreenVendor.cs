@@ -433,6 +433,15 @@ namespace DungeonRun
                     }
                     else { DialogAlreadyPurchased(); }
                 }
+                else if (Item.type == MenuItemType.WeaponWand)
+                {
+                    if (!PlayerData.weaponHammer)
+                    {
+                        PlayerData.weaponHammer = true;
+                        CompleteSale(Item);
+                    }
+                    else { DialogAlreadyPurchased(); }
+                }
 
 
                 else if (Item.type == MenuItemType.WeaponFang)

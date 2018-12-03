@@ -190,7 +190,7 @@ namespace DungeonRun
         public static Boolean weaponNet = true;
         public static Boolean weaponShovel = true;
         public static Boolean weaponHammer = true;
-
+        public static Boolean weaponWand = true;
         //Armor
         public static MenuItemType currentArmor = MenuItemType.ArmorCloth;
         //public Boolean armorCloth = true; //not used rn
@@ -273,6 +273,7 @@ namespace DungeonRun
             weaponNet = false;
             weaponShovel = false;
             weaponHammer = false;
+            weaponWand = false;
 
             //Armor
             currentArmor = MenuItemType.ArmorCloth;
@@ -345,6 +346,7 @@ namespace DungeonRun
             weaponNet = true;
             weaponShovel = true;
             weaponHammer = true;
+            weaponWand = true;
 
             //armorCloth = true;
             armorCape = true;
