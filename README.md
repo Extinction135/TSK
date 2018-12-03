@@ -1,4 +1,4 @@
-# Legend Of Zelda: The Shadow King - v0.77 - 2018.11.07
+# Legend Of Zelda: The Shadow King - v0.78 - 2018.12.02
 + My secret 2D Zelda game.. Keep this between us, ok?   
   
 ![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/077release.gif)  
@@ -10,8 +10,8 @@
 
 ## Playing the Game - Windows 10
 + You can install the DirectX version or the UWP version on Windows 10:
-+ 0.77 DX: https://www.dropbox.com/s/sppi2wilhef1qso/TSK_077_Dx.zip?dl=0  
-+ 0.77 UWP: https://www.dropbox.com/s/9r0xcyfhilc99mo/TSK_077_UWP.zip?dl=0  
++ 0.78 DX: https://www.dropbox.com/s/z7x6s44cox33nbd/TSK_078_Dx.zip?dl=0  
++ 0.78 UWP: https://www.dropbox.com/s/k0fd4bo8vgrgn2a/TSK_078_UWP.zip?dl=0  
 
 
 ## Playing the Game - Xbox1

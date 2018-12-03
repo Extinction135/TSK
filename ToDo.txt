@@ -54,6 +54,57 @@ Today:
 
 Release 0.78
 
+published zip for DirectX.
+update UWP content.
+published zip for UWP.
+
+post to dropbox.
+update readme with links.
+update readme with new version release.
+
+items added:
+hammer, magic mirror, fire and ice rods,
+along with fire and ice world interactions.
+enemy death was upgraded, dropping skeletons
+and blood, with an option to turn that off
+from the menu aptly titled 'gore'.
+fixed a fundamental flaw with the projectile
+system, sepereated projectiles, room objects,
+particles, and pickups from each other. 
+making these systems much easier to understand
+and reason about, allowing me to scale them
+up quickly and easily, which is whats coming
+up next. but the most important part of
+this release is that it's the last release
+with the ability to save and load player data.
+after this release, there is no saving or loading.
+
+and this was a big decision that took alot of
+thinking about before i was ready to commit to
+it - but i think it will be a very good decision
+LONG TERM, simply because it reinforces the idea
+that each action and choice the player makes is
+important in the game world. this can only be 
+accomplished by allowing these actions and choices
+to have consequences. moving forward, when the
+player dies - they get a game over screen with
+all their save data displayed, then the game wipes
+the world and resets all the players data. When
+a level is entered, the level instance data is
+used - which the player can change however they
+want to. so if they burn down a house, it stays
+burned down for their entire playthrough, and we
+dont have to handle saving/loading large amounts
+of data to maintain this level data state. no
+saving allows for more freedom for the player to
+have opportunities to make choices that matter
+and actually affect gameplay. like, whoops, your
+stray fireball hit the weapons vendor and he
+burned to death, becoming a pair of skeleton and 
+blood floor decoration objects - and now you can
+no longer purchase the weapons he sells. those
+kind of consequences. and maybe we track how many
+NPCs the player kills, etc.. easy... hmm...
 
 
 
@@ -64,31 +115,31 @@ Release 0.78
 
 
 
+0.79 goals:
+	remove save/load/player data instances
+	default player data to true, full (endgame setup)
+	only in release mode is player data reset, only from title screen
+	update title screen
+	backend Dx class has to stay for Dx
+	uwp and all other ports use the empty backend class
+	simply empty the uwp class and rename the file in repo
+	
+	+ option for loading level data 'fresh' each time for sandboxing
+	
+	(items: hookshot, axe, beans)
+	(interactions: acts/objs in water)
+	(dungeon: marked map PLS, working puzzles, per dungeon roomdata)
+	(smaller ram: title image is complete, can be own sheet, no big text)
+	(pets: stable, more pet variety, multiple pets (actor mini pool in fun_hero)
+	(magic: all magic comes from wand, assigned via spellbook)
 
 
-
-
-
-
-
-Icetiles++
-
-ice tiles should be allowed to overlap posts.
-this is because hero can still slide along posts.
-and posts dont really cover much of the ground.
-done.
-
-
-
-while on conveyorbelts, objs/actors shouldn't move due to
-their friction being set to a ridic value, reducing their
-magnitude to nothing.
-
-
-
-
-
-
+	
+	
+	
+	
+	
+	
 remove save/loading for 0.79.
 
 

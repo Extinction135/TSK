@@ -25,6 +25,17 @@ them special.... wand magic dummy
 
 
 
+Push++
+
+should be able to push multiple objs at once, that are
+draggable/pushable. this is an obj v obj interaction, hero
+sets the obj.moving true - so this obj is sent to obj v obj
+interactions, where the colliding obj can accept the hitting
+obj's compmove direction and magnitude (or simply push).
+this allow for many objs to be pushed into one another,
+then pushed together, creating very interesting stackable
+puzzles where many objs must be pushed at once.
+
 
 
 
