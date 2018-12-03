@@ -33,41 +33,35 @@ Shadow Dungeon, TSK Fight complete
 
 
 0.77 playthru: https://youtu.be/_b7qclGTffE
-0.78 goals:
-	more items (axe, hookshot, beans, hammer X, magic mirror X, ice/fire rods X)
-	more interaction (throwing objs X , actors/objs in water, floor decorations X)
-	better dungeon traversal (X solved puzzles, marked map)
+0.79 goals:
+	- removed savedata and load/saving X
+	
+	WAND + SPELLBOOK + SPELL SCREEN
+	WIND - crucial because levels have wind intensity + direction values now!
+	
+	+ option for loading level data 'fresh' each time for sandboxing
+	
+	(items: hookshot, axe, beans)
+	(interactions: WIND, acts/objs in water)
+	(dungeon: marked map PLS, working puzzles, per dungeon roomdata)
+	(smaller ram: title image is complete, can be own sheet, no big text)
+	(pets: stable, more pet variety, multiple pets (actor mini pool in fun_hero)
 	better coliseum - uniq objs + enemies
 	better overworld - more skulls, waves, cluds, vfx @skullIsland
-	X smaller ram - dungeon sheets get smaller
-	X fix projectile spawn system + enlarge boss hitboxes
-	X setup roomObjs, projectiles, particles, pickups systems for future growth
-	improved pet systems (stable, more pet variety, multiple pets)
+	working summary screen, displaying all dungeons record data
 	
-
 Today:
 
 
 
 
 
+Boss Death and Overworld Map
 
-0.79 goals:
-	- removed savedata and load/saving X
-	+ option for loading level data 'fresh' each time for sandboxing
-	WIND - crucial because levels have wind intensity + direction values now!
-	(items: hookshot, axe, beans, wand)
-	(magic: WIND, all magic comes from wand, assigned via spellbook)
-	(interactions: WIND, acts/objs in water)
-	(dungeon: marked map PLS, working puzzles, per dungeon roomdata)
-	(smaller ram: title image is complete, can be own sheet, no big text)
-	(pets: stable, more pet variety, multiple pets (actor mini pool in fun_hero)
-	
-
-
-	
-	
-	
+when a boss dies, we call the summary screen.
+we cant do this anymore. instead, we need to call
+the overworld screen. done. now upon boss death,
+the dungeon completion soundfx plays.
 
 
 
@@ -82,24 +76,11 @@ Today:
 
 
 
-Inventory ++
-
-we dont need to display save/load menuitem text 
-in options widget anymore, so remove them. done.
-
-Dungeon Record--
-
-we no longer need beatDungeon in dungeon record.
-we flip the story booleans true upon boss death
-in specific dungeon room.
 
 
-Dungeon Record++
 
-we now have dungeon records for each dungeon,
-forest, mountain, swamp. these are 3 instances
-of dungeon record that are part of playerdata
-global instance.
+
+Wand, and Magic Spells
 
 
 
@@ -108,24 +89,6 @@ global instance.
 
 
 
-
-
-
-
-Summary Screen is not properly displaying player data,
-or info about any dungeon record playthrough.
-
-dungeon records should be reset upon dungeon build.
-
-
-
-
-
-
-Display Playtime (in inventory?) keep this offscreen.
-
-need to add timespan to playerdata to track playtime,
-so we ca display it under repo name on right.
 
 
 
@@ -343,7 +306,22 @@ smoke and rarely collapse (like roofs randomly collapsing).
 
 
 
+Summary Screen++
+
+Summary Screen is not properly displaying player data,
+or info about any dungeon record playthrough.
+
+dungeon records should be reset upon dungeon build.
+we should be adding the dungeon data properly upon
+completion too.
 
 
+
+
+
+Display Playtime (in inventory?) keep this offscreen.
+
+need to add timespan to playerdata to track playtime,
+so we ca display it under repo name on right.
 
 

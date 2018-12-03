@@ -430,21 +430,24 @@ namespace DungeonRun
                 {
                     PlayerData.ForestRecord.timer.Stop();
                     PlayerData.story_forestDungeon = true;
-                    Functions_Level.CloseLevel(ExitAction.Summary);
+                    Functions_Level.CloseLevel(ExitAction.Overworld);
+                    Assets.Play(Assets.sfxBeatDungeon);
                 }
                 else if(Actor.type == ActorType.Boss_BigBat &
                     LevelSet.currentLevel.currentRoom.roomID == RoomID.DeathMountain_BossRoom)
                 {
                     PlayerData.MountainRecord.timer.Stop();
                     PlayerData.story_mountainDungeon = true;
-                    Functions_Level.CloseLevel(ExitAction.Summary);
+                    Functions_Level.CloseLevel(ExitAction.Overworld);
+                    Assets.Play(Assets.sfxBeatDungeon);
                 }
                 else if(Actor.type == ActorType.Boss_OctoHead &
                     LevelSet.currentLevel.currentRoom.roomID == RoomID.SwampIsland_BossRoom)
                 {
                     PlayerData.SwampRecord.timer.Stop();
                     PlayerData.story_swampDungeon = true;
-                    Functions_Level.CloseLevel(ExitAction.Summary);
+                    Functions_Level.CloseLevel(ExitAction.Overworld);
+                    Assets.Play(Assets.sfxBeatDungeon);
                 }
 
                 #endregion
