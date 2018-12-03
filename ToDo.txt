@@ -61,12 +61,6 @@ Release 0.78
 
 
 
-Lava++
-
-pits should be red, and thus we have LAVA. wow. that
-was easy. lava still doesn't deal any damage, just resets
-position in room. this is just updating the dungeon sheets.
-done.
 
 
 
@@ -76,10 +70,13 @@ done.
 
 
 
+
+Icetiles++
 
 ice tiles should be allowed to overlap posts.
 this is because hero can still slide along posts.
 and posts dont really cover much of the ground.
+done.
 
 
 

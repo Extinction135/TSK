@@ -285,9 +285,27 @@ namespace DungeonRun
 
                         else if (Obj.type == ObjType.Dungeon_IceTile)
                         {
-                            //remove icetile if roomObj blocks birth
+                            //remove icetile if blocking roomObj overlaps
                             if (Pool.roomObjPool[g].compCollision.blocking)
-                            { Functions_Pool.Release(Obj); }
+                            {   //but allow some blocking objs, like posts
+                                if (
+                                    //burned posts
+                                    Pool.roomObjPool[g].type == ObjType.Wor_PostBurned_Corner_Left
+                                    || Pool.roomObjPool[g].type == ObjType.Wor_PostBurned_Corner_Right
+                                    || Pool.roomObjPool[g].type == ObjType.Wor_PostBurned_Horizontal
+                                    || Pool.roomObjPool[g].type == ObjType.Wor_PostBurned_Vertical_Left
+                                    || Pool.roomObjPool[g].type == ObjType.Wor_PostBurned_Vertical_Right
+                                    //normal posts
+                                    || Pool.roomObjPool[g].type == ObjType.Wor_Post_Corner_Left
+                                    || Pool.roomObjPool[g].type == ObjType.Wor_Post_Corner_Right
+                                    || Pool.roomObjPool[g].type == ObjType.Wor_Post_Hammer_Down
+                                    || Pool.roomObjPool[g].type == ObjType.Wor_Post_Vertical_Left
+                                    || Pool.roomObjPool[g].type == ObjType.Wor_Post_Vertical_Right
+                                    )
+                                { } //nothing, allow icetiles to overlap these objs
+                                else //all other blocking objs kill ice tiles
+                                { Functions_Pool.Release(Obj); }
+                            }
 
                             //cannot be placed over ditches
                             else if (Pool.roomObjPool[g].group == ObjGroup.Ditch)
