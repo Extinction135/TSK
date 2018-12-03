@@ -420,17 +420,8 @@ namespace DungeonRun
             }
         }
 
-        public static void SetLoadout()
-        {   //set the hero's loadout based on playerdata.current
-            Pool.hero.item = PlayerData.currentItem;
-            Pool.hero.weapon = PlayerData.currentWeapon;
-            Pool.hero.armor = PlayerData.currentArmor;
-            Pool.hero.equipment = PlayerData.currentEquipment;
-            //called at the end of lsn's exit routines
-        }
 
         
-
 
         public static void SetRewardState(ParticleType rewardType)
         {

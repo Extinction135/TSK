@@ -106,12 +106,17 @@ namespace DungeonRun
         }
 
         public void UpdateLoadout()
-        {
-            //set the loadout display based on hero's loadout
-            SetLoadoutItem(item, Pool.hero.item);
-            SetLoadoutItem(weapon, Pool.hero.weapon);
-            SetLoadoutItem(armor, Pool.hero.armor);
-            SetLoadoutItem(equipment, Pool.hero.equipment);
+        {   
+            //set the loadout display based playerdata
+            SetLoadoutItem(item, PlayerData.currentItem);
+            SetLoadoutItem(weapon, PlayerData.currentWeapon);
+            SetLoadoutItem(armor, PlayerData.currentArmor);
+            SetLoadoutItem(equipment, PlayerData.currentEquipment);
+            //set the hero's loadout based on playerdata.current
+            Pool.hero.item = PlayerData.currentItem;
+            Pool.hero.weapon = PlayerData.currentWeapon;
+            Pool.hero.armor = PlayerData.currentArmor;
+            Pool.hero.equipment = PlayerData.currentEquipment;
 
             //set the gold menuItem
             Functions_MenuItem.SetType(MenuItemType.InventoryGold, menuItems[4]);

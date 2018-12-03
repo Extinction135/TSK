@@ -53,7 +53,7 @@ Today:
 
 
 0.79 goals:
-	- removed savedata and load/saving.
+	- removed savedata and load/saving X
 	+ option for loading level data 'fresh' each time for sandboxing
 	WIND - crucial because levels have wind intensity + direction values now!
 	(items: hookshot, axe, beans, wand)
@@ -68,86 +68,28 @@ Today:
 	
 	
 	
-	
-	
-	
-The Path Forward
-
-removed multiple instances of savedata and made it
-global. we're no longer going to be saving or loading 
-data. this is being done for many, many reasons, but
-a big bonus is that this game design change makes porting
-THAT MUCH EASIER because there is now NO BACKEND that
-needs to load and save XML data. no need for file
-permissions, no need to wait for UWP to async load/save
-data, etc.. this means TSK uses NO EXTERNAL LIBS.
-it's self contained. that engine? wrote it. ui. made
-it. that map? got it. oh those interactions? all me.
-if you can run the xna/monogame base project on that
-platform - you can run TSK on it. the end.
-
-Removing PlayerData instances
-
-removed loadsavenew class from Dx project. (get UWP****)
-cleaned up UWP backend class to empty methods.
-gutted project's playerdata instances, now referencing
-global singular instance. uwp project updated to match
-Dx project structure.
-
-removed a variety of lsn screen dalogs sets.
-modified quit dialog to become are you sure dialog,
-alerting player that all their progress will be lost
-upon exiting the game. this returns to the title
-screen. a title screen return means that the player
-data should be reset. this should happen in title's
-open() method.
-
-Title++
-
-title now calls playerdata.reset(), which does what
-one would expect it to do.
-
-Cheats++
-
-split hero.unlockAll() into unlock all items(),
-fill bottle(), and set enemy items() in playerData
-class. now theres a bit more control, which we can 
-add as additional cheat inputs on cheat screen.
-tested and working, game is running using single
-player data instance.
-
-Title++
-
-We cannot start the game, because the title screens
-new button does nothing... this has been fixed, now
-the new game button should work - test this! working.
-
-game is now 'one run and done'. easily restarted tho.
-
-Death + Summary Screen
-
-upon death, should pop summary screen. done.
-summary screen leads to title, title's open() calls
-reset() on player data, clearing out any progress.
-done. need to test this branch!
-
-title is working and tested.
-
-
-
-
-
-
-
-
-
-
 Default Loadout
 
 default load out should be:
 sword, boomerang, cloth. that's it. reset sets
 this right, so this is loadout widget not getting
-updated? 
+updated? aha! the updateLoadout() method for
+the loadout widget was referencing the hero's loadout
+from pool, which wasn't necessarily sync'd to playerdata.
+playerdata being the global instance, much more important
+that the local hero item, weapon, etc... that each actor
+uses to model their equiped item, weapon, etc... 
+
+widgetloadout.UpdateLoadout(); needs to be called when
+the overworld screen is opened(), and we need to make sure
+upon hero death with a fairy bottle that hero's loadout isnt
+being reset or lost. if hero actually dies, then summary
+screen pops and the loadout doesnt matter at all.
+we call the update loadout() to sync playerdata to hero data,
+setting the hero's actual item, weapon, armor, equipment.
+
+default loadout working. improved exit dialog.
+tested entering game, exiting game from inventory menu.
 
 
 
@@ -160,6 +102,10 @@ updated?
 
 
 
+
+
+upon title reload, the widget/window is already
+open. it should reset itself.
 
 
 

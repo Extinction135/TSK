@@ -39,6 +39,8 @@ namespace DungeonRun
             //open the screen
             Assets.Play(Assets.sfxMapOpen);
             displayState = DisplayState.Opening;
+            //sync playerdata.item to hero.item, etc..
+            Widgets.Loadout.UpdateLoadout(); 
         }
 
         public override void HandleInput(GameTime GameTime)

@@ -125,7 +125,7 @@ namespace DungeonRun
         public static List<Dialog> AreYouSure = new List<Dialog>
         {   //goes to overworld screen upon close
             new Dialog(ObjType.Hero_Idle, "Hey!",
-                "If you quit, all your progress will be lost..\nAre You Sure?",
+                "If you quit, all your progress will be lost..\nAre You Sure?    A) Yes    B) No",
                 Assets.sfxChestOpen, true, true)
         };
 

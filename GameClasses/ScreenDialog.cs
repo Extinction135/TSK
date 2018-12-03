@@ -78,23 +78,34 @@ namespace DungeonRun
 
                 #region Dialogs with A/B Choices + Diff Outcomes
 
-                if (
-                    dialogs == AssetsDialog.Enter_ForestDungeon
+                if (//game exit dialogs
+                    dialogs == AssetsDialog.AreYouSure
+                    //dungeon entrnce dialogs
+                    || dialogs == AssetsDialog.Enter_ForestDungeon
                     || dialogs == AssetsDialog.Enter_MountainDungeon
                     || dialogs == AssetsDialog.Enter_SwampDungeon
-
+                    //coliseum entrance dialogs
                     || dialogs == AssetsDialog.Enter_Colliseum
                     )
                 {
 
                     //process dialog forward 
                     if (Input.Player1.A & Input.Player1.A_Prev == false)
-                    {
+                    {   //exiting to title from inventory + dialog screens
+                        if (dialogs == AssetsDialog.AreYouSure)
+                        {
+                            exitAction = ExitAction.Title; //goto title
+                            Assets.Play(Assets.sfxQuit); //play quit sfx
+                            foreground.fade = true; //fade foreground in
+                            //ExitDialog(); //this plays window close sfx, so bypass
+                            displayState = DisplayState.Closing;
+                            Functions_MenuWindow.Close(Widgets.Dialog.window);
+                        }
 
 
                         #region Dungeon Entrance Dialogs
 
-                        if (dialogs == AssetsDialog.Enter_ForestDungeon)
+                        else if (dialogs == AssetsDialog.Enter_ForestDungeon)
                         {
                             LevelSet.dungeon.ID = LevelID.Forest_Dungeon;
                             ExitDialog(); Assets.Play(Assets.sfxEnterDungeon);
@@ -115,6 +126,8 @@ namespace DungeonRun
                         #endregion
 
 
+                        #region Coliseum Entrances
+
                         //enter colliseum from exterior colliseum field level
                         else if (dialogs == AssetsDialog.Enter_Colliseum)
                         {
@@ -122,16 +135,8 @@ namespace DungeonRun
                             ExitDialog(); Assets.Play(Assets.sfxEnterDungeon);
                         }
 
-                        //exiting to title from inventory + dialog screens
-                        else if (dialogs == AssetsDialog.AreYouSure)
-                        {
-                            exitAction = ExitAction.Title; //goto title
-                            Assets.Play(Assets.sfxQuit); //play quit sfx
-                            foreground.fade = true; //fade foreground in
-                            //ExitDialog(); //this plays window close sfx, so bypass
-                            displayState = DisplayState.Closing;
-                            Functions_MenuWindow.Close(Widgets.Dialog.window);
-                        }
+                        #endregion
+
                     }
 
 
