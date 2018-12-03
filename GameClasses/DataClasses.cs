@@ -207,7 +207,7 @@ namespace DungeonRun
 
         //wand, current spell, and spell booleans
         public static Boolean weaponWand = true;
-        public static SpellType currentSpell = SpellType.Lightning_Ether;
+        public static SpellType currentSpell = SpellType.Summon_Bat_Explosion;
         public static Boolean spell_summon_bat_small = true;
 
 

@@ -903,6 +903,9 @@ namespace DungeonRun
         Lightning_Ether,
 
         Explosive_Bombos,
+
+        Summon_Bat_Projectile,
+        Summon_Bat_Explosion,
     }
 
     #endregion

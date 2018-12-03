@@ -64,45 +64,62 @@ Today:
 
 
 
-Spells - part 1
-
-added spell type enum, and values to playerdata.
-updated unlock all and reset() methods for playerdata.
-
-moved cast spells into functions_magicSpells class.
-linked to Dx project. linked to UWP project.
-
-created new spells setup, using cast() to call
-internal methods based on a passed spell type param.
-moved ether and bombos into new spells system.
-
-tested and working.
 
 
 
+Spells - part 2
 
+bat magic is now a spell. this means we dont need the bat
+magic medallion sprite or ui item anymore. instead, we doing
+this via fn_magic.cast(), where a bat casted like this is assumed
+to be from the hero.
 
+big bat boss uses bat explosion spell as special now.
+added cast() branch to call bat explosion, meaning player
+can now call bat explosion, if his current spell is set
+correctly.
 
+made hammer and wand item use take longer, so they are more
+of an investment time wise. this is because they are more
+powerful - and now the sword feels faster and lighter.
 
-
-
-
-
-we can add spell type enums. X
-we can add current spell type to playerdata. X
-we can set spell type in boot. X
-we can move spells into spell class. X
-
-we can check for wand weapon.
-we can migrate to casting concepts.
-we can write casting magics, starting with bat.
-we can remove bat magic from game & ui.
+and instead i decided that the wand should only last 10
+frames of hold time, so it can be spammed properly. this
+makes the wand feel insanely powerful, and player can
+now spam the bat explosion special attack just like the
+bat boss can, using the same spell routine. this also
+includes ether, bombos, single bat, and a none spell,
+which simply does nothing. this spam-ability makes the
+wand very satisfying to use.
 
 
 
 
 
-//Functions_MagicSpells.Cast_Ether();
+
+
+
+
+
+
+
+
+
+fireballs, iceballs, etc.. via spells...
+we can even route fire and ice rods to cast() instead
+of calling projectiles directly, so fn_magic acts as
+an entry point for any actors casting magic.
+
+
+
+
+we just need to be able to set playerdata.currentSpell
+via the spell book and magic is setup and working.
+we already have ether and bombos as spells.
+now we just need them as entries in a spell book.
+
+
+
 //Functions_Projectile.Spawn(ProjectileType.Iceball, Actor, Actor.direction);
 
 

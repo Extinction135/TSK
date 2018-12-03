@@ -529,8 +529,6 @@ namespace DungeonRun
             Actor.compCollision.blocking = false; //make dead actor's corpse passable
         }
 
-        
-
         public static void SetItemUseState(Actor Actor)
         {   //set actor into a short paused state
             Actor.stateLocked = true;

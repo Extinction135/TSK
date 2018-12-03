@@ -22,11 +22,27 @@ namespace DungeonRun
 
 
 
-        public static void Cast(SpellType Spell)
+        public static void Cast(SpellType Spell, Actor Caster)
         {
             //based on Spell value, we call Cast() methods below
 
-            if(Spell == SpellType.Lightning_Ether)
+            if(Spell == SpellType.None)
+            {   //simply tell the player no spell was cast
+                //Assets.Play(Assets.sfxError); //silently fail
+            }
+
+
+            else if(Spell == SpellType.Summon_Bat_Projectile)
+            {   //shoot bat from caster's direction
+                Functions_Projectile.Spawn(ProjectileType.Bat, Caster, Caster.direction);
+            }
+            else if(Spell == SpellType.Summon_Bat_Explosion)
+            {
+                Cast_Bat_Explosion(Caster);
+            }
+
+
+            else if(Spell == SpellType.Lightning_Ether)
             {
                 Cast_Ether();
             }
@@ -99,7 +115,7 @@ namespace DungeonRun
 
 
         static int bombosSpread = 22;
-        public static void Cast_Bombos()
+        static void Cast_Bombos()
         {
             //create explosions around hero
             //-this could look alot better, if we used 5 point or 7 point circle
@@ -209,6 +225,19 @@ namespace DungeonRun
         }
 
 
+        
+
+        public static void Cast_Bat_Explosion(Actor Caster)
+        {   //spawn bats all around, and away from caster
+            Functions_Projectile.Spawn(ProjectileType.Bat, Caster, Direction.Down);
+            Functions_Projectile.Spawn(ProjectileType.Bat, Caster, Direction.DownRight);
+            Functions_Projectile.Spawn(ProjectileType.Bat, Caster, Direction.Right);
+            Functions_Projectile.Spawn(ProjectileType.Bat, Caster, Direction.UpRight);
+            Functions_Projectile.Spawn(ProjectileType.Bat, Caster, Direction.Up);
+            Functions_Projectile.Spawn(ProjectileType.Bat, Caster, Direction.UpLeft);
+            Functions_Projectile.Spawn(ProjectileType.Bat, Caster, Direction.Left);
+            Functions_Projectile.Spawn(ProjectileType.Bat, Caster, Direction.DownLeft);
+        }
 
 
 

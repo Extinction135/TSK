@@ -437,14 +437,7 @@ namespace DungeonRun
                     //limit special attack
                     if(Functions_Random.Int(0, 100) > 50)
                     {   //Super Special Attack : spam spawn bats in all directions
-                        Functions_Projectile.Spawn(ProjectileType.Bat, Actor, Direction.Down);
-                        Functions_Projectile.Spawn(ProjectileType.Bat, Actor, Direction.DownRight);
-                        Functions_Projectile.Spawn(ProjectileType.Bat, Actor, Direction.Right);
-                        Functions_Projectile.Spawn(ProjectileType.Bat, Actor, Direction.UpRight);
-                        Functions_Projectile.Spawn(ProjectileType.Bat, Actor, Direction.Up);
-                        Functions_Projectile.Spawn(ProjectileType.Bat, Actor, Direction.UpLeft);
-                        Functions_Projectile.Spawn(ProjectileType.Bat, Actor, Direction.Left);
-                        Functions_Projectile.Spawn(ProjectileType.Bat, Actor, Direction.DownLeft);
+                        Functions_MagicSpells.Cast_Bat_Explosion(Actor);
                     }
 
                     //always taunt the player

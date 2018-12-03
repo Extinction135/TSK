@@ -41,6 +41,8 @@ namespace DungeonRun
             {
                 Functions_Projectile.Spawn(ProjectileType.Hammer, Actor, Actor.direction);
                 Functions_Actor.SetItemUseState(Actor);
+                //hold hero in use state for longer
+                Pool.hero.lockTotal = 25;
             }
             else if (Type == MenuItemType.WeaponFang)
             {
@@ -54,7 +56,9 @@ namespace DungeonRun
                     Functions_Projectile.Spawn(ProjectileType.Wand, Actor, Actor.direction);
                     Functions_Actor.SetItemUseState(Actor);
                     //cast hero's current spell
-                    Functions_MagicSpells.Cast(PlayerData.currentSpell);
+                    Functions_MagicSpells.Cast(PlayerData.currentSpell, Pool.hero);
+                    //hold hero in use state for very short time
+                    Pool.hero.lockTotal = 10;
                 }
             }
             
@@ -115,8 +119,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region HERO only Magic
-
+            #region HERO only Items and Magic Medallions
 
             else if (Type == MenuItemType.ItemMagicMirror)
             {
@@ -143,13 +146,11 @@ namespace DungeonRun
                 }
             }
 
-
-
             else if (Type == MenuItemType.MagicBombos)
             {   //only hero can cast this magic
                 if (Actor == Pool.hero)
                 {
-                    if (!CheckMagic(5))
+                    if (!CheckMagic(2))
                     {   //failed to cast
                         Assets.Play(Assets.sfxError);
                         Actor.lockTotal = 0;
@@ -157,7 +158,7 @@ namespace DungeonRun
                     }
                     else
                     {   //casted successfully
-                        Functions_MagicSpells.Cast(SpellType.Explosive_Bombos);
+                        Functions_MagicSpells.Cast(SpellType.Explosive_Bombos, Pool.hero);
                         Functions_Hero.SetRewardState(ParticleType.RewardMagicBombos);
                     }
                 }
@@ -174,7 +175,7 @@ namespace DungeonRun
                     }
                     else
                     {   //casted successfully
-                        Functions_MagicSpells.Cast(SpellType.Lightning_Ether);
+                        Functions_MagicSpells.Cast(SpellType.Lightning_Ether, Pool.hero);
                         Functions_Hero.SetRewardState(ParticleType.RewardMagicEther);
                     }
                 }

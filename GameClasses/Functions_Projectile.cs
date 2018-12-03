@@ -1442,7 +1442,7 @@ namespace DungeonRun
                     Pro.compCollision.offsetX = -7 + 3; Pro.compCollision.offsetY = -3;
                 }
                 
-                Pro.lifetime = 17; //in frames
+                Pro.lifetime = 25; //match hero's lock for this item
                 Pro.compAnim.speed = 2; //in frames
                 Pro.compAnim.loop = false;
                 Pro.compMove.moveable = true;
@@ -1664,7 +1664,7 @@ namespace DungeonRun
                     Pro.compCollision.rec.Width = 11; Pro.compCollision.rec.Height = 10;
                 }
 
-                Pro.lifetime = 18; //in frames
+                Pro.lifetime = 12; //match hero's lock for this item
                 Pro.compAnim.speed = 2; //in frames
                 Pro.compAnim.loop = false;
                 Pro.compMove.moveable = true;
