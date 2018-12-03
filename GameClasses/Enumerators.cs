@@ -814,7 +814,7 @@ namespace DungeonRun
         Bow,
         Shovel,
         Hammer,
-
+        Wand,
 
         //Projectiles - objects
         Explosion,

@@ -552,6 +552,27 @@ namespace DungeonRun
                 #endregion
 
 
+                #region Wand
+
+                else if (Pro.type == ProjectileType.Wand)
+                {   
+                    if (Pro.lifeCounter == 2) //these events happen only at start
+                    {   //spawn a sparkle on wand tip at start
+                        Functions_Particle.Spawn(ParticleType.Sparkle,
+                            Pro.compSprite.position.X + 4,
+                            Pro.compSprite.position.Y + 4);
+                    }
+                    else if (Pro.lifeCounter == 4) //mid-swing
+                    {   //set hit direction
+                        RoomObj.compMove.direction = Pro.compMove.direction;
+                        //wands can bounce roomObjs
+                        Functions_GameObject_World.Bounce(RoomObj);
+                    }
+                }
+
+                #endregion
+
+
 
 
 

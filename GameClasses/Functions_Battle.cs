@@ -43,10 +43,15 @@ namespace DungeonRun
                 damage = 0; force = 10.0f; direction = Pro.compMove.direction;
                 Pro.lifeCounter = 200; //return to caster
             }
+            else if (Pro.type == ProjectileType.Wand)
+            {   //wands are useless on their own
+                damage = 0; force = 4.0f; direction = Pro.direction;
+            }
             else if (Pro.type == ProjectileType.Net)
             {   //net deals 0 damage, push 6
                 damage = 0; force = 6.0f; direction = Pro.direction;
             }
+            
 
             #endregion
 

@@ -593,6 +593,12 @@ namespace DungeonRun
             new Byte4(2, 14, 0, 0), new Byte4(3, 14, 0, 0)
         };
 
+        public static List<Byte4> Projectile_Wand = new List<Byte4>
+        {
+            new Byte4(0, 15, 0, 0), new Byte4(1, 15, 0, 0),
+            new Byte4(2, 15, 0, 0), new Byte4(3, 15, 0, 0)
+        };
+
         //a bit more complicated for the hammer
         public static List<Byte4> Projectile_Hammer_Down = new List<Byte4>
         { new Byte4(0, 10, 0, 0), new Byte4(1, 10, 0, 0), new Byte4(2, 10, 0, 0) };

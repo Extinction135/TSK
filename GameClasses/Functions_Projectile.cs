@@ -456,7 +456,14 @@ namespace DungeonRun
             #endregion
 
 
+            #region Wand
 
+            else if (Type == ProjectileType.Wand)
+            {
+                Assets.Play(Assets.sfxArrowShoot); //this could be magically better
+            }
+
+            #endregion
 
             //these pros track to their hit obj/actor per frame
 
@@ -544,7 +551,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Sword, Net, Shovel, Fire/Ice Rods
+            #region Sword, Net, Shovel, Fire/Ice Rods, Wand
 
             //sword, net, shovel all track to the HERO'S HAND, based on direction
             else if (Pro.type == ProjectileType.Sword
@@ -552,6 +559,7 @@ namespace DungeonRun
                 || Pro.type == ProjectileType.Shovel
                 || Pro.type == ProjectileType.Firerod
                 || Pro.type == ProjectileType.Icerod
+                || Pro.type == ProjectileType.Wand
                 )
             {
                 if (Pro.compMove.direction == Direction.Down)
@@ -1342,6 +1350,7 @@ namespace DungeonRun
                 || Pro.type == ProjectileType.Shovel
                 || Pro.type == ProjectileType.Firerod
                 || Pro.type == ProjectileType.Icerod
+                || Pro.type == ProjectileType.Wand
                 )
             {   //some projectiles flip based on their direction
                 if (Pro.direction == Direction.Down || Pro.direction == Direction.Left)
@@ -1831,13 +1840,49 @@ namespace DungeonRun
             #endregion
 
 
+            #region Wand
+
+            else if (Type == ProjectileType.Wand)
+            {
+                Pro.compSprite.zOffset = 16;
+                //set collision rec based on direction
+                if (Pro.direction == Direction.Up)
+                {
+                    Pro.compCollision.offsetX = -1; Pro.compCollision.offsetY = -4;
+                    Pro.compCollision.rec.Width = 10; Pro.compCollision.rec.Height = 15;
+                }
+                else if (Pro.direction == Direction.Down)
+                {
+                    Pro.compCollision.offsetX = -1; Pro.compCollision.offsetY = -4;
+                    Pro.compCollision.rec.Width = 10; Pro.compCollision.rec.Height = 10;
+                }
+                else if (Pro.direction == Direction.Left)
+                {
+                    Pro.compCollision.offsetX = -4; Pro.compCollision.offsetY = -1;
+                    Pro.compCollision.rec.Width = 11; Pro.compCollision.rec.Height = 10;
+                }
+                else //right
+                {
+                    Pro.compCollision.offsetX = -7; Pro.compCollision.offsetY = -1;
+                    Pro.compCollision.rec.Width = 11; Pro.compCollision.rec.Height = 10;
+                }
+
+                Pro.lifetime = 18; //in frames
+                Pro.compAnim.speed = 2; //in frames
+                Pro.compAnim.loop = false;
+                Pro.compMove.moveable = true;
+                Pro.compMove.grounded = false; //is flying, cant fall into pit
+                Pro.compSprite.texture = Assets.entitiesSheet;
+                Pro.compAnim.currentAnimation = AnimationFrames.Projectile_Wand;
+            }
+
+            #endregion
 
 
 
 
 
 
-    
             //projectiles never block
             Pro.compCollision.blocking = false;
             //set rotations, animation, align all components

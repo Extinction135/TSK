@@ -67,16 +67,6 @@ Today:
 
 
 
-Wand
-
-this is just a projectile that tracks to link's hand,
-much like sword, but deals no damage and pushes at 4.0f.
-
-added want ui item and wand weapon boolean to playerdata.
-added wand to weapons vendor. fixed a bug where weapons
-vendor didn't sell hammer. with this commit, the wand ui
-item and data is present in the game. now, the tracking
-wand projectile to complete the use state.
 
 
 
@@ -89,6 +79,33 @@ Wand Pro in Hero's Hand
 
 create wand, based on rod projectile sprites. is a brown
 color, no red or blue.
+
+
+wand projectiles can Bounce() roomObjs, push other actors
+for 4.0f (net pushes for 6.0f), but deals NO DAMAGE on its
+own. it only exists as a requirement for casting magic.
+this means we can create a different type of playthrough,
+where the player is a magic caster, vs not using the wand.
+
+
+wand useage is routed to create wand projectiles now.
+tested and working.
+
+
+
+
+
+
+
+
+we can add spell type enums.
+we can check for wand weapon.
+we can add current spell type to playerdata.
+we can set spell type in boot.
+we can move spells into spell class.
+we can migrate to casting concepts.
+we can write casting magics, starting with bat.
+we can remove bat magic from game & ui.
 
 
 

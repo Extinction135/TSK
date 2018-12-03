@@ -22,6 +22,20 @@ them special.... wand magic dummy
 
 
 
+Magical Playthrough++
+
+this means we can create a different type of playthrough,
+where the player is a magic caster, vs not using the wand.
+-
+this is what sandbox option can become.
+
+
+
+
+
+
+
+
 
 
 

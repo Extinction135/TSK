@@ -295,7 +295,7 @@ namespace DungeonRun
             else if (Type == MenuItemType.WeaponWand)
             {
                 MenuItem.name = "Wand";
-                MenuItem.description = "thin and \nbrittle.";
+                MenuItem.description = "thin and brittle.\nno apparent use.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Weapon_Wand;
                 MenuItem.price = 99;
             }
