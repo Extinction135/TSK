@@ -70,17 +70,19 @@ namespace DungeonRun
 
             #region Set menuItem data
 
-            labels[0].text = "";
-            Functions_MenuItem.SetType(MenuItemType.Unknown, menuItems[0]);
+            labels[0].text = "input\nctrls";
+            Functions_MenuItem.SetType(MenuItemType.OptionsInputCtrls, menuItems[0]);
 
-            labels[1].text = "cheat\nmenu";
-            Functions_MenuItem.SetType(MenuItemType.OptionsCheatMenu, menuItems[1]);
+            labels[1].text = "audio\nctrls";
+            Functions_MenuItem.SetType(MenuItemType.OptionsAudioCtrls, menuItems[1]);
 
-            labels[2].text = "";
-            Functions_MenuItem.SetType(MenuItemType.Unknown, menuItems[2]);
+
+            labels[2].text = "video\nctrls";
+            Functions_MenuItem.SetType(MenuItemType.OptionsVideoCtrls, menuItems[2]);
 
             labels[3].text = "";
             Functions_MenuItem.SetType(MenuItemType.Unknown, menuItems[3]);
+
 
             labels[4].text = "";
             Functions_MenuItem.SetType(MenuItemType.Unknown, menuItems[4]);
@@ -88,8 +90,9 @@ namespace DungeonRun
             labels[5].text = "optns\nmenu";
             Functions_MenuItem.SetType(MenuItemType.OptionsOptionsMenu, menuItems[5]);
 
-            labels[6].text = "";
-            Functions_MenuItem.SetType(MenuItemType.Unknown, menuItems[6]);
+
+            labels[6].text = "cheat\nmenu";
+            Functions_MenuItem.SetType(MenuItemType.OptionsCheatMenu, menuItems[6]);
 
             labels[7].text = "quit\ngame";
             Functions_MenuItem.SetType(MenuItemType.OptionsQuitGame, menuItems[7]);

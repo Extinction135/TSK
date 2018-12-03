@@ -494,7 +494,7 @@ namespace DungeonRun
             }
 
 
-            /*
+            
             else if (Type == MenuItemType.OptionsAudioCtrls)
             {
                 MenuItem.name = "Audio Controls";
@@ -513,21 +513,12 @@ namespace DungeonRun
                 MenuItem.description = "Changes the size \nof the game window.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Monitor;
             }
-            else if (Type == MenuItemType.OptionsGameCtrls)
-            {
-                MenuItem.name = "Game Controls";
-                MenuItem.description = "Changes game \ncontrols + settings.";
-                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Joystick;
-            }
-            */
-
             else if (Type == MenuItemType.OptionsOptionsMenu)
             {
                 MenuItem.name = "Options Menu";
-                MenuItem.description = "setup various \ngame options.";
-                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Controller;
+                MenuItem.description = "setup game\noptions.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Joystick;
             }
-
             else if (Type == MenuItemType.OptionsCheatMenu)
             {
                 MenuItem.name = "Cheat Menu";

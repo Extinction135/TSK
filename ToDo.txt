@@ -39,8 +39,16 @@ Shadow Dungeon, TSK Fight complete
 	WAND + SPELLBOOK + SPELL SCREEN
 	WIND - crucial because levels have wind intensity + direction values now!
 	
-	+ option for loading level data 'fresh' each time for sandboxing
+	WIND magic
+	FIRE magic
+	FREEZE magic
+	EXPLODE magic
+	WATER magic
+	EARTH magic
+	SUMMON magic
+	ENEMY magic
 	
+	+ option for loading level data 'fresh' each time for sandboxing
 	(items: hookshot, axe, beans)
 	(interactions: WIND, acts/objs in water)
 	(dungeon: marked map PLS, working puzzles, per dungeon roomdata)
@@ -58,16 +66,11 @@ Today:
 
 
 
-Title++
+Inventory++
 
-updated big text sheet to be size smaller, only contains
-title sprite now. this means slightly less ram useage.
-
-GameTime
-
-this is displayed via debugging routine right now, as we
-have updated it to ref the playerdata timer, that was just
-added. this is instead of a dungeon timer.
+added audio and video UI items to the options widget,
+to fill space for now. input should be the first ui 
+item in options widget. added in and looking better.
 
 
 
@@ -76,6 +79,63 @@ added. this is instead of a dungeon timer.
 
 
 
+Wand
+
+this is just a projectile that tracks to link's hand,
+much like sword, but deals no damage and pushes at 4.0f.
+
+SpellBook
+
+playerdata has a value for current spell, which is a spell
+type enum value (new), and booleans for spells the player
+has learned. we flip a boolean in playerdata, and the spell
+book displays this spell as selectable. selecting the spell
+assigns that spell to the playerdata.currentSpell reference.
+
+Casting Spells
+
+player must have wand weapon equipped (X) to cast spells.
+this is a simple playerdata.currentWeapon == wand check.
+then we can cast() whatever spell the player has assigned
+to playerData.currentSpell. Cast() simply routes the enum
+values to their proper methods, inside the functions_castMagic
+class.
+
+Cast Magic Class/Functions
+
+the foundation for this is already in projectiles, as freeze
+ground. these methods use projectiles and roomobjects to create
+a certain effect on screen. they sit on top of the existing
+spawn() routines for projectiles, roomObjs, and particles.
+
+Spells - round 1
+
+bat magic should become an enemy magic spell. this is the first
+spell we are going to migrate.
+
+then we need to make a spell that creates ground fires in the
+facing direction of th caster. easy.
+
+
+
+
+
+
+WIND! objects
+
+wind projectiles push actors and roomObjs (and other projectiles?)
+hold up! wind projectiles should be in their own pool, so we can
+check them against the main projectile pool, allowing wind to push
+projectiles, making wind the only defense against projectiles - useful!
+
+levels have wind direction, wind intensity, wind birth.
+this is fed into routines that randomly spawn wind pros on screen
+in level direction, with level intensity(magnitude), at level birth rate.
+
+Spells - round 2
+
+spell to cast gust of wind (max magnitude).
+spell to cast gusts of wind away from the caster all directions.
 
 
 
@@ -83,7 +143,14 @@ added. this is instead of a dungeon timer.
 
 
 
-Wand, and Magic Spells
+
+
+
+
+
+
+
+
 
 
 
@@ -145,15 +212,6 @@ quake shakes the screen and deals level 2 damage to everything
 in the level. so it's very powerful. BUT flying objects and actors
 are completely immune to it. this also means we need to write a
 camera shake routine like we did in th.
-
-
-
-Enemy MAgic
-
-we need a blank generic magic medallion to model random enemy
-magic, so we dont waste alot of space in the main sheet on these.
-easy - and then we can have a specific slot in the UI for enemy
-magic under misc.
 
 
 

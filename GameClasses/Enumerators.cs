@@ -909,8 +909,13 @@ namespace DungeonRun
         OptionsNewGame,
         OptionsSandBox,
         OptionsQuitGame,
-        OptionsOptionsMenu,
+
         OptionsCheatMenu,
+        OptionsOptionsMenu,
+
+        OptionsAudioCtrls,
+        OptionsInputCtrls,
+        OptionsVideoCtrls,
 
         Options_DrawInput,
         Options_TrackCamera,
