@@ -285,7 +285,7 @@ namespace DungeonRun
         {   //if infinite gold is enabled, allow
             if (Flags.InfiniteGold) { return true; }
             //if hero has enough gold to buy, allow
-            if (PlayerData.current.gold >= cost) { return true; }
+            if (PlayerData.gold >= cost) { return true; }
             return false; //else disallow
         }
 
@@ -300,22 +300,22 @@ namespace DungeonRun
 
                 if (Item.type == MenuItemType.ItemHeart)
                 {   //check that hero is not at max hearts value (9)
-                    if (PlayerData.current.heartsTotal < 9)
+                    if (PlayerData.heartsTotal < 9)
                     {   //increment saveData's total hearts
-                        PlayerData.current.heartsTotal++;
+                        PlayerData.heartsTotal++;
                         Functions_WorldUI.Update(); //show the newly purchased heart
-                        Pool.hero.health = PlayerData.current.heartsTotal; //refill hearts
+                        Pool.hero.health = PlayerData.heartsTotal; //refill hearts
                         CompleteSale(Item);
                     }
                     else { DialogMaxHearts(); }
                 }
                 else if (Item.type == MenuItemType.ItemBomb || Item.type == MenuItemType.ItemBomb3Pack)
                 {   //check to see if hero is full on bombs
-                    if (PlayerData.current.bombsCurrent < PlayerData.current.bombsMax)
+                    if (PlayerData.bombsCurrent < PlayerData.bombsMax)
                     {   //check to see how many bombs hero is purchasing
                         if (Item.type == MenuItemType.ItemBomb)
-                        { PlayerData.current.bombsCurrent++; }
-                        else { PlayerData.current.bombsCurrent += 3; }
+                        { PlayerData.bombsCurrent++; }
+                        else { PlayerData.bombsCurrent += 3; }
                         CompleteSale(Item);
                     }
                     else { DialogCarryingMaxAmount(); }
@@ -323,20 +323,20 @@ namespace DungeonRun
                 //bow and arrows
                 else if (Item.type == MenuItemType.ItemBow)
                 {
-                    if (!PlayerData.current.itemBow)
+                    if (!PlayerData.itemBow)
                     {
-                        PlayerData.current.itemBow = true;
+                        PlayerData.itemBow = true;
                         CompleteSale(Item);
                     }
                     else { DialogAlreadyPurchased(); }
                 }
                 else if (Item.type == MenuItemType.ItemArrowPack)
                 {   //check to see if hero has a bow weapon
-                    if (PlayerData.current.itemBow)
+                    if (PlayerData.itemBow)
                     {   //check to see if hero is full on arrows
-                        if (PlayerData.current.arrowsCurrent < PlayerData.current.arrowsMax)
+                        if (PlayerData.arrowsCurrent < PlayerData.arrowsMax)
                         {   //increment the arrows, complete the sale
-                            PlayerData.current.arrowsCurrent += 20;
+                            PlayerData.arrowsCurrent += 20;
                             CompleteSale(Item);
                         }
                         else { DialogCarryingMaxAmount(); }
@@ -348,18 +348,18 @@ namespace DungeonRun
 
                 else if (Item.type == MenuItemType.ItemFirerod)
                 {
-                    if (!PlayerData.current.itemFirerod)
+                    if (!PlayerData.itemFirerod)
                     {
-                        PlayerData.current.itemFirerod = true;
+                        PlayerData.itemFirerod = true;
                         CompleteSale(Item);
                     }
                     else { DialogAlreadyPurchased(); }
                 }
                 else if (Item.type == MenuItemType.ItemIcerod)
                 {
-                    if (!PlayerData.current.itemIcerod)
+                    if (!PlayerData.itemIcerod)
                     {
-                        PlayerData.current.itemIcerod = true;
+                        PlayerData.itemIcerod = true;
                         CompleteSale(Item);
                     }
                     else { DialogAlreadyPurchased(); }
@@ -397,7 +397,7 @@ namespace DungeonRun
                 else if(Item.type == MenuItemType.MagicBat)
                 {
                     //set into player's enemyItem slot
-                    PlayerData.current.enemyItem = MenuItemType.MagicBat;
+                    PlayerData.enemyItem = MenuItemType.MagicBat;
                     CompleteSale(Item);
                 }
 
@@ -408,27 +408,27 @@ namespace DungeonRun
 
                 else if (Item.type == MenuItemType.WeaponNet)
                 {
-                    if (!PlayerData.current.weaponNet)
+                    if (!PlayerData.weaponNet)
                     {
-                        PlayerData.current.weaponNet = true;
+                        PlayerData.weaponNet = true;
                         CompleteSale(Item);
                     }
                     else { DialogAlreadyPurchased(); }
                 }
                 else if (Item.type == MenuItemType.WeaponShovel)
                 {
-                    if (!PlayerData.current.weaponShovel)
+                    if (!PlayerData.weaponShovel)
                     {
-                        PlayerData.current.weaponShovel = true;
+                        PlayerData.weaponShovel = true;
                         CompleteSale(Item);
                     }
                     else { DialogAlreadyPurchased(); }
                 }
                 else if (Item.type == MenuItemType.WeaponHammer)
                 {
-                    if (!PlayerData.current.weaponHammer)
+                    if (!PlayerData.weaponHammer)
                     {
-                        PlayerData.current.weaponHammer = true;
+                        PlayerData.weaponHammer = true;
                         CompleteSale(Item);
                     }
                     else { DialogAlreadyPurchased(); }
@@ -438,7 +438,7 @@ namespace DungeonRun
                 else if (Item.type == MenuItemType.WeaponFang)
                 {
                     //set into player's enemyWeapon slot
-                    PlayerData.current.enemyWeapon = MenuItemType.WeaponFang;
+                    PlayerData.enemyWeapon = MenuItemType.WeaponFang;
                     CompleteSale(Item);
                 }
 
@@ -449,9 +449,9 @@ namespace DungeonRun
 
                 else if (Item.type == MenuItemType.ArmorCape)
                 {
-                    if (!PlayerData.current.armorCape)
+                    if (!PlayerData.armorCape)
                     {
-                        PlayerData.current.armorCape = true;
+                        PlayerData.armorCape = true;
                         CompleteSale(Item);
                     }
                     else { DialogAlreadyPurchased(); }
@@ -464,9 +464,9 @@ namespace DungeonRun
 
                 else if (Item.type == MenuItemType.EquipmentRing)
                 {
-                    if (!PlayerData.current.equipmentRing)
+                    if (!PlayerData.equipmentRing)
                     {
-                        PlayerData.current.equipmentRing = true;
+                        PlayerData.equipmentRing = true;
                         CompleteSale(Item);
                     }
                     else { DialogAlreadyPurchased(); }
@@ -532,7 +532,7 @@ namespace DungeonRun
 
         public void CompleteSale(MenuItem Item)
         {   //if infinite gold is disabled, deduct item cost
-            if (!Flags.InfiniteGold) { PlayerData.current.gold -= Item.price; }
+            if (!Flags.InfiniteGold) { PlayerData.gold -= Item.price; }
             //update various widgets affected by this purchase
             Widgets.ForSale.SetItemsForSale(vendorRef);
             Widgets.Info.Display(currentlySelected);
@@ -543,7 +543,7 @@ namespace DungeonRun
 
         public void CompleteAdoption(MenuItem Item)
         {   //set pet type, spawn it, update the loadout
-            PlayerData.current.petType = Item.type;
+            PlayerData.petType = Item.type;
             Functions_Hero.SpawnPet();
             Widgets.Loadout.UpdateLoadout();
             //display adoption dialog text

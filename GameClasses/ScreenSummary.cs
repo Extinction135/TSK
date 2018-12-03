@@ -70,7 +70,7 @@ namespace DungeonRun
             background.alpha = 1.0f;
             Functions_Music.PlayMusic(Music.Title); //play title music
             //fill hero's health up to max - prevents drum track from playing
-            Pool.hero.health = PlayerData.current.heartsTotal;
+            Pool.hero.health = PlayerData.heartsTotal;
 
 
             #region Update title
@@ -85,20 +85,20 @@ namespace DungeonRun
 
             #region Calculate skill ratings + ratings change
 
-            int enemiesKilledNew = PlayerData.current.enemiesKilled + DungeonRecord.enemyCount;
-            int damageNew = PlayerData.current.damageTaken + DungeonRecord.totalDamage;
+            int enemiesKilledNew = PlayerData.enemiesKilled + DungeonRecord.enemyCount;
+            int damageNew = PlayerData.damageTaken + DungeonRecord.totalDamage;
 
             double newSR = 0.0; //prevent divide by 0
             if (enemiesKilledNew <= 0) { enemiesKilledNew = 1; }
             if (damageNew <= 0) { damageNew = 1; }
 
             double oldSR = 0.0; // prevent divide by 0
-            if (PlayerData.current.enemiesKilled <= 0) { PlayerData.current.enemiesKilled = 1; }
-            if (PlayerData.current.damageTaken <= 0) { PlayerData.current.damageTaken = 1; }
+            if (PlayerData.enemiesKilled <= 0) { PlayerData.enemiesKilled = 1; }
+            if (PlayerData.damageTaken <= 0) { PlayerData.damageTaken = 1; }
             
             //calculate SR and ratings change to 2 digits
             newSR = enemiesKilledNew / damageNew;
-            oldSR = PlayerData.current.enemiesKilled / PlayerData.current.damageTaken;
+            oldSR = PlayerData.enemiesKilled / PlayerData.damageTaken;
             ratingChange = (float)Math.Round(newSR - oldSR, 2);
 
             #endregion
@@ -107,19 +107,19 @@ namespace DungeonRun
             #region Append & Save Player's Summary Data
 
             //append damage and kills
-            PlayerData.current.damageTaken += DungeonRecord.totalDamage;
-            PlayerData.current.enemiesKilled += DungeonRecord.enemyCount;
+            PlayerData.damageTaken += DungeonRecord.totalDamage;
+            PlayerData.enemiesKilled += DungeonRecord.enemyCount;
             //convert stopwatch dungeon timer to timespan
             TimeSpan toAdd = DungeonRecord.timer.Elapsed;
             //append hours, mins, seconds from timespan to saveData
-            PlayerData.current.hours += toAdd.Hours;
-            PlayerData.current.mins += toAdd.Minutes;
-            PlayerData.current.secs += toAdd.Seconds;
+            PlayerData.hours += toAdd.Hours;
+            PlayerData.mins += toAdd.Minutes;
+            PlayerData.secs += toAdd.Seconds;
             //cleanup saveData
-            while (PlayerData.current.mins >= 60)
-            { PlayerData.current.hours++; PlayerData.current.mins -= 60; }
-            while (PlayerData.current.secs >= 60)
-            { PlayerData.current.mins++; PlayerData.current.secs -= 60; }
+            while (PlayerData.mins >= 60)
+            { PlayerData.hours++; PlayerData.mins -= 60; }
+            while (PlayerData.secs >= 60)
+            { PlayerData.mins++; PlayerData.secs -= 60; }
 
             //these two values combined allow us to track how many times each dungeon & boss has been defeated, or killed hero
             //DungeonRecord.dungeonID
@@ -229,8 +229,8 @@ namespace DungeonRun
             #region Handle Exit State
 
             else if (displayState == DisplayState.Closed)
-            {   //exit all screens, return to proper overworld map
-                Functions_Overworld.OpenMap();
+            {   //exit all screens, goto title (resets playerdata)
+                ScreenManager.ExitAndLoad(Screens.Title);
             }
 
             #endregion

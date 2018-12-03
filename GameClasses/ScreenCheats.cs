@@ -218,10 +218,16 @@ namespace DungeonRun
                 else if (currentlySelected.type == MenuItemType.CheatsUnlockAll)
                 {
                     if (Flags.UnlockAll) { Flags.UnlockAll = false; }
-                    else { Flags.UnlockAll = true; }
-                    Functions_Hero.UnlockAll();
-                    Widgets.Inventory.SetInventoryMenuItems(); //modifies inv items
-                    Widgets.Loadout.UpdateLoadout(); //(reset) modifies loadout widget
+                    else
+                    {   Flags.UnlockAll = true;
+                        //hit all the methods for unlocking
+                        PlayerData.UnlockAllItems();
+                        PlayerData.FillBottles();
+                        PlayerData.SetEnemyItems();
+                        //update the inventory and loadout widgets
+                        Widgets.Inventory.SetInventoryMenuItems(); //modifies inv items
+                        Widgets.Loadout.UpdateLoadout(); //(reset) modifies loadout widget
+                    }
                 }
                 else if (currentlySelected.type == MenuItemType.CheatsClipping)
                 {

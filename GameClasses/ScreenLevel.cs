@@ -144,8 +144,8 @@ namespace DungeonRun
 
                     else if (exitAction == ExitAction.Overworld)
                     {
-                        //exit level, loading proper overworld map
-                        Functions_Overworld.OpenMap();
+                        //exit level, loading shadowking overworld map
+                        ScreenManager.ExitAndLoad(Screens.Overworld_ShadowKing);
                     }
                     else if (exitAction == ExitAction.Title)
                     {

@@ -17,9 +17,9 @@ namespace DungeonRun
 
         public static Boolean HeroDeathCheck()
         {   //see if hero can save himself from death using ANY bottles contents
-            if (PlayerData.current.bottleA == MenuItemType.BottleFairy
-                || PlayerData.current.bottleB == MenuItemType.BottleFairy
-                || PlayerData.current.bottleC == MenuItemType.BottleFairy)
+            if (PlayerData.bottleA == MenuItemType.BottleFairy
+                || PlayerData.bottleB == MenuItemType.BottleFairy
+                || PlayerData.bottleC == MenuItemType.BottleFairy)
             {
                 Functions_Item.UseItem(MenuItemType.BottleFairy, Pool.hero);
                 return true;
@@ -42,22 +42,22 @@ namespace DungeonRun
             //hero used current hero.item, which was a bottle, play soundfx
             //find the first menuItemType of used bottle in bottle inventory
             //set that inventory bottle to empty
-            if (PlayerData.current.bottleA == Type)
-            { PlayerData.current.bottleA = MenuItemType.BottleEmpty; }
-            else if (PlayerData.current.bottleB == Type)
-            { PlayerData.current.bottleB = MenuItemType.BottleEmpty; }
-            else if (PlayerData.current.bottleC == Type)
-            { PlayerData.current.bottleC = MenuItemType.BottleEmpty; }
+            if (PlayerData.bottleA == Type)
+            { PlayerData.bottleA = MenuItemType.BottleEmpty; }
+            else if (PlayerData.bottleB == Type)
+            { PlayerData.bottleB = MenuItemType.BottleEmpty; }
+            else if (PlayerData.bottleC == Type)
+            { PlayerData.bottleC = MenuItemType.BottleEmpty; }
         }
 
         public static Boolean FillBottle(MenuItemType Type)
         {   //fill bottle A B or C with passed Type value
-            if (PlayerData.current.bottleA == MenuItemType.BottleEmpty)
-            { PlayerData.current.bottleA = Type; return true; }
-            else if (PlayerData.current.bottleB == MenuItemType.BottleEmpty)
-            { PlayerData.current.bottleB = Type; return true; }
-            else if (PlayerData.current.bottleC == MenuItemType.BottleEmpty)
-            { PlayerData.current.bottleC = Type; return true; }
+            if (PlayerData.bottleA == MenuItemType.BottleEmpty)
+            { PlayerData.bottleA = Type; return true; }
+            else if (PlayerData.bottleB == MenuItemType.BottleEmpty)
+            { PlayerData.bottleB = Type; return true; }
+            else if (PlayerData.bottleC == MenuItemType.BottleEmpty)
+            { PlayerData.bottleC = Type; return true; }
             else { return false; }
         }
 

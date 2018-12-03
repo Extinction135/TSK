@@ -25,10 +25,10 @@ namespace DungeonRun
             #region Update & Limit Hero's Hearts
 
             //clip max/total Hearts to 9
-            if (PlayerData.current.heartsTotal > 9)
-            { PlayerData.current.heartsTotal = 9; }
+            if (PlayerData.heartsTotal > 9)
+            { PlayerData.heartsTotal = 9; }
             //assign maxHearts
-            WorldUI.maxHearts = PlayerData.current.heartsTotal;
+            WorldUI.maxHearts = PlayerData.heartsTotal;
             //clip hero.health to maxHearts value
             if (Pool.hero.health > WorldUI.maxHearts)
             { Pool.hero.health = WorldUI.maxHearts; }
@@ -62,21 +62,21 @@ namespace DungeonRun
             #region Update & Limit Hero's Magic
 
             //limit the magicTotal amount to 9
-            if (PlayerData.current.magicMax > 9) { PlayerData.current.magicMax = 9; }
+            if (PlayerData.magicMax > 9) { PlayerData.magicMax = 9; }
 
             //limit the current magic amount to the max magic amount
-            if (PlayerData.current.magicCurrent > PlayerData.current.magicMax)
-            { PlayerData.current.magicCurrent = PlayerData.current.magicMax; }
+            if (PlayerData.magicCurrent > PlayerData.magicMax)
+            { PlayerData.magicCurrent = PlayerData.magicMax; }
 
             //loop thru the magic meter sprites, setting their frame
             for (i = 0; i < 9; i++)
             {   //reset sprite to locked
                 WorldUI.meterPieces[i + 1].currentFrame.X = 5*2+1;
                 //set available bars
-                if (i < PlayerData.current.magicMax)
+                if (i < PlayerData.magicMax)
                 { WorldUI.meterPieces[i + 1].currentFrame.X = 5*2; }
                 //set filled bars
-                if (i < PlayerData.current.magicCurrent)
+                if (i < PlayerData.magicCurrent)
                 { WorldUI.meterPieces[i + 1].currentFrame.X = 4*2+1; }
             }
 
@@ -85,13 +85,13 @@ namespace DungeonRun
 
             #region Limit Hero's arrows, bombs, & gold
 
-            if (PlayerData.current.arrowsCurrent > PlayerData.current.arrowsMax)
-            { PlayerData.current.arrowsCurrent = PlayerData.current.arrowsMax; }
+            if (PlayerData.arrowsCurrent > PlayerData.arrowsMax)
+            { PlayerData.arrowsCurrent = PlayerData.arrowsMax; }
 
-            if (PlayerData.current.bombsCurrent > PlayerData.current.bombsMax)
-            { PlayerData.current.bombsCurrent = PlayerData.current.bombsMax; }
+            if (PlayerData.bombsCurrent > PlayerData.bombsMax)
+            { PlayerData.bombsCurrent = PlayerData.bombsMax; }
 
-            if (PlayerData.current.gold > 99) { PlayerData.current.gold = 99; }
+            if (PlayerData.gold > 99) { PlayerData.gold = 99; }
 
             #endregion
 
@@ -114,12 +114,12 @@ namespace DungeonRun
             WorldUI.itemAmount.visible = false; //assume false
             if (WorldUI.heroItem == MenuItemType.ItemBow)
             {   //check to see if we should display arrow's remaining ammo
-                Functions_Component.UpdateAmount(WorldUI.itemAmount, PlayerData.current.arrowsCurrent);
+                Functions_Component.UpdateAmount(WorldUI.itemAmount, PlayerData.arrowsCurrent);
                 WorldUI.itemAmount.visible = true;
             }
             if (WorldUI.heroItem == MenuItemType.ItemBomb)
             {   //check to see if we should display bombs's remaining ammo
-                Functions_Component.UpdateAmount(WorldUI.itemAmount, PlayerData.current.bombsCurrent);
+                Functions_Component.UpdateAmount(WorldUI.itemAmount, PlayerData.bombsCurrent);
                 WorldUI.itemAmount.visible = true;
             }
 

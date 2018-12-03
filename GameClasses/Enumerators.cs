@@ -55,7 +55,7 @@ namespace DungeonRun
         //hero either dies/beats dungeon or exits
         Summary, //died/beat boss, show summary
 
-        GameLoaded, //from lsn screen, after a game has been made/loaded
+        GameCreated, //from title screen
         Overworld, //goto overworld screen
 
         Field, //build a field level
@@ -907,10 +907,7 @@ namespace DungeonRun
         #region Options relate menuItems
 
         OptionsNewGame,
-        OptionsLoadGame,
         OptionsQuitGame,
-
-        OptionsSaveGame,
         OptionsOptionsMenu,
         OptionsCheatMenu,
 

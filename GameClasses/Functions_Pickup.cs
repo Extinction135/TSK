@@ -146,22 +146,22 @@ namespace DungeonRun
             }
             else if (Pickup.type == PickupType.Rupee)
             {
-                PlayerData.current.gold++;
+                PlayerData.gold++;
                 Assets.Play(Assets.sfxGoldPickup);
             }
             else if (Pickup.type == PickupType.Magic)
             {
-                PlayerData.current.magicCurrent++;
+                PlayerData.magicCurrent++;
                 Assets.Play(Assets.sfxHeartPickup);
             }
             else if (Pickup.type == PickupType.Arrow)
             {
-                PlayerData.current.arrowsCurrent++;
+                PlayerData.arrowsCurrent++;
                 Assets.Play(Assets.sfxHeartPickup);
             }
             else if (Pickup.type == PickupType.Bomb)
             {
-                PlayerData.current.bombsCurrent++;
+                PlayerData.bombsCurrent++;
                 Assets.Play(Assets.sfxHeartPickup);
             }
 

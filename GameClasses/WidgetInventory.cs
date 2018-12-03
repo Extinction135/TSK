@@ -130,14 +130,14 @@ namespace DungeonRun
             //1 = bombs
             Functions_MenuItem.SetType(MenuItemType.ItemBomb, menuItems[1]);
             Functions_Component.Align(bombsDisplay, menuItems[1].compSprite);
-            Functions_Component.UpdateAmount(bombsDisplay, PlayerData.current.bombsCurrent);
+            Functions_Component.UpdateAmount(bombsDisplay, PlayerData.bombsCurrent);
 
             //2 - arrows
-            if (PlayerData.current.itemBow)
+            if (PlayerData.itemBow)
             {   //if hero has arrows, display the number of arrows + draw display amount
                 Functions_MenuItem.SetType(MenuItemType.ItemBow, menuItems[2]);
                 Functions_Component.Align(arrowsDisplay, menuItems[2].compSprite);
-                Functions_Component.UpdateAmount(arrowsDisplay, PlayerData.current.arrowsCurrent);
+                Functions_Component.UpdateAmount(arrowsDisplay, PlayerData.arrowsCurrent);
                 arrowsDisplay.visible = true; //hero has a bow, show arrow count
             }
 
@@ -145,29 +145,29 @@ namespace DungeonRun
 
             //Bottles - 4, 5, 6
             //set the hero's inventory bottles to the contents of the saveData bottles
-            Functions_MenuItem.SetType(PlayerData.current.bottleA, menuItems[4]);
-            Functions_MenuItem.SetType(PlayerData.current.bottleB, menuItems[5]);
-            Functions_MenuItem.SetType(PlayerData.current.bottleC, menuItems[6]);
+            Functions_MenuItem.SetType(PlayerData.bottleA, menuItems[4]);
+            Functions_MenuItem.SetType(PlayerData.bottleB, menuItems[5]);
+            Functions_MenuItem.SetType(PlayerData.bottleC, menuItems[6]);
 
             //7 - firerod
-            if (PlayerData.current.itemFirerod)
+            if (PlayerData.itemFirerod)
             { Functions_MenuItem.SetType(MenuItemType.ItemFirerod, menuItems[7]); }
             //8 - icerod
-            if (PlayerData.current.itemIcerod)
+            if (PlayerData.itemIcerod)
             { Functions_MenuItem.SetType(MenuItemType.ItemIcerod, menuItems[8]); }
             //9 - ?
             //10 - ?
 
             //Set the magic medallion items - 11, 12, 13
-            if (PlayerData.current.magicBombos)
+            if (PlayerData.magicBombos)
             { Functions_MenuItem.SetType(MenuItemType.MagicBombos, menuItems[12]); }
-            if (PlayerData.current.magicEther)
+            if (PlayerData.magicEther)
             { Functions_MenuItem.SetType(MenuItemType.MagicEther, menuItems[13]); }
             //13
 
 
             //14 - magic mirror
-            if (PlayerData.current.itemMagicMirror)
+            if (PlayerData.itemMagicMirror)
             { Functions_MenuItem.SetType(MenuItemType.ItemMagicMirror, menuItems[14]); }
             //15 - magic seed bag
             //16 - 
@@ -175,7 +175,7 @@ namespace DungeonRun
             //18 - 
             //19 - 
             //20 - only one slot for enemy items
-            Functions_MenuItem.SetType(PlayerData.current.enemyItem, menuItems[20]);
+            Functions_MenuItem.SetType(PlayerData.enemyItem, menuItems[20]);
 
             #endregion
 
@@ -185,20 +185,20 @@ namespace DungeonRun
             //21 - sword
             Functions_MenuItem.SetType(MenuItemType.WeaponSword, menuItems[21]);
             //22 - net
-            if (PlayerData.current.weaponNet)
+            if (PlayerData.weaponNet)
             { Functions_MenuItem.SetType(MenuItemType.WeaponNet, menuItems[22]); }
             //23 - shovel
-            if (PlayerData.current.weaponShovel)
+            if (PlayerData.weaponShovel)
             { Functions_MenuItem.SetType(MenuItemType.WeaponShovel, menuItems[23]); }
             //24 - hammer
-            if (PlayerData.current.weaponHammer)
+            if (PlayerData.weaponHammer)
             { Functions_MenuItem.SetType(MenuItemType.WeaponHammer, menuItems[24]); }
             //25 - 
 
             //26 -
 
             //Enemy Weapon - 27 - only one slot for enemy weapons
-            Functions_MenuItem.SetType(PlayerData.current.enemyWeapon, menuItems[27]);
+            Functions_MenuItem.SetType(PlayerData.enemyWeapon, menuItems[27]);
 
             #endregion
 
@@ -210,7 +210,7 @@ namespace DungeonRun
             //28 standard cloth
             Functions_MenuItem.SetType(MenuItemType.ArmorCloth, menuItems[28]);
             //29 magical cape
-            if (PlayerData.current.armorCape)
+            if (PlayerData.armorCape)
             { Functions_MenuItem.SetType(MenuItemType.ArmorCape, menuItems[29]); }
             //30 - ?
             //31 - ?
@@ -220,7 +220,7 @@ namespace DungeonRun
 
 
             //bottom row - items
-            if (PlayerData.current.equipmentRing)
+            if (PlayerData.equipmentRing)
             { Functions_MenuItem.SetType(MenuItemType.EquipmentRing, menuItems[35]); }
             //36 ?
             //37 - ?

@@ -41,7 +41,6 @@ namespace DungeonRun
         public static ScreenInventory Inventory = new ScreenInventory();
         public static ScreenVendor Vendor = new ScreenVendor();
 
-        public static ScreenLoadSaveNew LoadSaveNew = new ScreenLoadSaveNew();
         public static ScreenOptions Options = new ScreenOptions();
         public static ScreenSummary Summary = new ScreenSummary();
         public static ScreenTitle Title = new ScreenTitle();

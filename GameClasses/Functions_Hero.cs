@@ -325,21 +325,9 @@ namespace DungeonRun
                 if (Functions_Bottle.HeroDeathCheck())
                 {   //restore hero's last item (since we item swapped to self-rez)
                     Pool.hero.item = itemSwap;
-                } 
-                else
-                {   //false, hero cannot self-rez and dies
-                    if(LevelSet.currentLevel == LevelSet.dungeon)
-                    {
-                        //hero died in a dungeon, so we pop summary screen
-                        DungeonRecord.beatDungeon = false;
-                        Functions_Level.CloseLevel(ExitAction.Summary);
-                    }
-                    else
-                    {
-                        //hero died in a field, so we return to overworld
-                        Functions_Level.CloseLevel(ExitAction.Overworld);
-                    }
                 }
+                else//false, hero cannot self-rez and dies
+                { Functions_Level.CloseLevel(ExitAction.Summary); }
             }
         }
         
@@ -389,7 +377,7 @@ namespace DungeonRun
 
         public static void SpawnPet()
         {   //spawn the hero's dog
-            if (PlayerData.current.petType != MenuItemType.Unknown)
+            if (PlayerData.petType != MenuItemType.Unknown)
             {
                 Functions_GameObject.SetType(Pool.herosPet, ObjType.Pet_Dog);
                 Pool.herosPet.compAnim.currentAnimation = AnimationFrames.Pet_Dog_Idle;
@@ -402,52 +390,6 @@ namespace DungeonRun
                     Pool.hero.compMove.position.Y);
                 Functions_Component.Align(Pool.herosPet);
             }
-        }
-
-        public static void UnlockAll()
-        {
-            //if the cheat is not enabled, bail from method
-            if (Flags.UnlockAll == false) { return; }
-
-            //this method unlocks all available items, weapons, equipment, armor
-            PlayerData.current.heartsTotal = 9;
-            Pool.hero.health = 9;
-            PlayerData.current.magicMax = 9;
-            PlayerData.current.magicCurrent = 9;
-            //max arrows and bombs
-            PlayerData.current.bombsCurrent = 99;
-            PlayerData.current.arrowsCurrent = 99;
-            //set bottle contents
-            PlayerData.current.bottleA = MenuItemType.BottleHealth;
-            PlayerData.current.bottleB = MenuItemType.BottleMagic;
-            PlayerData.current.bottleC = MenuItemType.BottleFairy;
-            
-            //set items
-            PlayerData.current.itemBoomerang = true;
-            PlayerData.current.itemBow = true;
-            PlayerData.current.itemFirerod = true;
-            PlayerData.current.itemIcerod = true;
-            //set magic
-            PlayerData.current.magicBombos = true;
-            PlayerData.current.magicEther = true;
-            
-            //set weapons
-            PlayerData.current.weaponNet = true;
-            PlayerData.current.weaponShovel = true;
-            PlayerData.current.weaponHammer = true;
-            
-            //set armor
-            PlayerData.current.armorCape = true;
-            //set equipment
-            PlayerData.current.equipmentRing = true;
-
-            //we could set the pet here too, but we wont for now
-            //PlayerData.current.petType = MenuItemType.Unknown;
-            //PlayerData.current.petType = MenuItemType.PetStinkyDog;
-
-            //setup testing enemy weapon/item
-            PlayerData.current.enemyItem = MenuItemType.MagicBat;
-            PlayerData.current.enemyWeapon = MenuItemType.WeaponFang;
         }
 
         public static void ExitDungeon()
@@ -465,12 +407,12 @@ namespace DungeonRun
         {
             if (Achievement == Achievements.WallJumps)
             {   //check wall jumps
-                if (PlayerData.current.recorded_wallJumps == 10)
+                if (PlayerData.recorded_wallJumps == 10)
                 {
                     Screens.Dialog.SetDialog(AssetsDialog.Achievement_WallJumps_10);
                     ScreenManager.AddScreen(Screens.Dialog);
                 }
-                else if (PlayerData.current.recorded_wallJumps == 100)
+                else if (PlayerData.recorded_wallJumps == 100)
                 {
                     Screens.Dialog.SetDialog(AssetsDialog.Achievement_WallJumps_100);
                     ScreenManager.AddScreen(Screens.Dialog);
@@ -480,10 +422,10 @@ namespace DungeonRun
 
         public static void SetLoadout()
         {   //set the hero's loadout based on playerdata.current
-            Pool.hero.item = PlayerData.current.currentItem;
-            Pool.hero.weapon = PlayerData.current.currentWeapon;
-            Pool.hero.armor = PlayerData.current.currentArmor;
-            Pool.hero.equipment = PlayerData.current.currentEquipment;
+            Pool.hero.item = PlayerData.currentItem;
+            Pool.hero.weapon = PlayerData.currentWeapon;
+            Pool.hero.armor = PlayerData.currentArmor;
+            Pool.hero.equipment = PlayerData.currentEquipment;
             //called at the end of lsn's exit routines
         }
 
@@ -730,7 +672,7 @@ namespace DungeonRun
                 {   //convert farmer to end state
                     Functions_GameObject.SetType(Obj, ObjType.NPC_Farmer_EndDialog);
                     //reward player
-                    PlayerData.current.bombsCurrent += 10;
+                    PlayerData.bombsCurrent += 10;
                     //play reward sfx
                     Assets.Play(Assets.sfxReward);
                     //display reward dialog

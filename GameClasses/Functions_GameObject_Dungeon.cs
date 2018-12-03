@@ -307,7 +307,7 @@ namespace DungeonRun
         
         public static void UseFairy(GameObject Fairy)
         {
-            Pool.hero.health = PlayerData.current.heartsTotal; //effect
+            Pool.hero.health = PlayerData.heartsTotal; //effect
             Assets.Play(Assets.sfxHeartPickup); //sfx
             if (Fairy != null) //kill fairy
             {

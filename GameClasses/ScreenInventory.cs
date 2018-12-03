@@ -128,9 +128,6 @@ namespace DungeonRun
                 { currentlySelected.compSprite.scale = 2.0f; }
                 Assets.Play(Assets.sfxMenuItem);
 
-                //store the ID of the selected menuItem (index of inventory widget.menuItems)
-                PlayerData.current.lastItemSelected = currentlySelected.id;
-
 
                 #region Handle Opening the Dungeon Map
 
@@ -145,9 +142,8 @@ namespace DungeonRun
                 #region Handle the Options MenuItems
 
                 else if (currentlySelected.type == MenuItemType.OptionsQuitGame)
-                {
-                    //pop savePls dialog
-                    Screens.Dialog.SetDialog(AssetsDialog.GameSavePls);
+                {   //pop are you sure? dialog
+                    Screens.Dialog.SetDialog(AssetsDialog.AreYouSure);
                     ScreenManager.AddScreen(Screens.Dialog);
                 }
                 else if (currentlySelected.type == MenuItemType.OptionsCheatMenu)
@@ -157,16 +153,6 @@ namespace DungeonRun
                 else if (currentlySelected.type == MenuItemType.OptionsOptionsMenu)
                 {
                     ScreenManager.AddScreen(Screens.Options);
-                }
-                else if (currentlySelected.type == MenuItemType.OptionsSaveGame)
-                {
-                    Screens.LoadSaveNew.SetState(LoadSaveNewState.Save);
-                    ScreenManager.AddScreen(Screens.LoadSaveNew);
-                }
-                else if (currentlySelected.type == MenuItemType.OptionsLoadGame)
-                {
-                    Screens.LoadSaveNew.SetState(LoadSaveNewState.Load);
-                    ScreenManager.AddScreen(Screens.LoadSaveNew);
                 }
 
                 #endregion
@@ -198,7 +184,7 @@ namespace DungeonRun
                         || currentlySelected.type == MenuItemType.MagicBat
                         )
                     {
-                        PlayerData.current.currentItem = currentlySelected.type;
+                        PlayerData.currentItem = currentlySelected.type;
                         Pool.hero.item = currentlySelected.type;
                     }
 
@@ -215,7 +201,7 @@ namespace DungeonRun
                         || currentlySelected.type == MenuItemType.WeaponFang
                         ) 
                     {
-                        PlayerData.current.currentWeapon = currentlySelected.type;
+                        PlayerData.currentWeapon = currentlySelected.type;
                         Pool.hero.weapon = currentlySelected.type;
                     }
 
@@ -229,7 +215,7 @@ namespace DungeonRun
                         || currentlySelected.type == MenuItemType.ArmorCape
                         )
                     {
-                        PlayerData.current.currentArmor = currentlySelected.type;
+                        PlayerData.currentArmor = currentlySelected.type;
                         Pool.hero.armor = currentlySelected.type;
                     }
 
@@ -243,7 +229,7 @@ namespace DungeonRun
                         //|| currentlySelected.type == MenuItemType.ArmorCape
                         )
                     {
-                        PlayerData.current.currentEquipment = currentlySelected.type;
+                        PlayerData.currentEquipment = currentlySelected.type;
                         Pool.hero.equipment = currentlySelected.type;
                     }
 

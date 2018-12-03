@@ -330,8 +330,8 @@ namespace DungeonRun
                 //hero always spawns a gold piece upon hit
                 Functions_Pickup.Spawn(PickupType.Rupee, Actor);
                 //but we check flags and values to decrement supply
-                if (!Flags.InfiniteGold & PlayerData.current.gold > 0) 
-                { PlayerData.current.gold--; }
+                if (!Flags.InfiniteGold & PlayerData.gold > 0) 
+                { PlayerData.gold--; }
             }
         }
 
@@ -411,21 +411,21 @@ namespace DungeonRun
                     LevelSet.currentLevel.currentRoom.roomID == RoomID.ForestIsland_BossRoom)
                 {
                     DungeonRecord.beatDungeon = true;
-                    PlayerData.current.story_forestDungeon = true;
+                    PlayerData.story_forestDungeon = true;
                     Functions_Level.CloseLevel(ExitAction.Summary);
                 }
                 else if(Actor.type == ActorType.Boss_BigBat &
                     LevelSet.currentLevel.currentRoom.roomID == RoomID.DeathMountain_BossRoom)
                 {
                     DungeonRecord.beatDungeon = true;
-                    PlayerData.current.story_mountainDungeon = true;
+                    PlayerData.story_mountainDungeon = true;
                     Functions_Level.CloseLevel(ExitAction.Summary);
                 }
                 else if(Actor.type == ActorType.Boss_OctoHead &
                     LevelSet.currentLevel.currentRoom.roomID == RoomID.SwampIsland_BossRoom)
                 {
                     DungeonRecord.beatDungeon = true;
-                    PlayerData.current.story_swampDungeon = true;
+                    PlayerData.story_swampDungeon = true;
                     Functions_Level.CloseLevel(ExitAction.Summary);
                 }
 
@@ -541,7 +541,7 @@ namespace DungeonRun
 
             if (Actor == Pool.hero)
             {   //store actor type
-                PlayerData.current.actorType = Actor.type;
+                PlayerData.actorType = Actor.type;
             }
 
             Functions_Particle.Spawn(ParticleType.Attention, Actor);
@@ -1056,7 +1056,7 @@ namespace DungeonRun
                                     //play a special soundfx
                                     Assets.Play(Assets.sfxActorLand);
                                     //track successful wall jumps
-                                    PlayerData.current.recorded_wallJumps++;
+                                    PlayerData.recorded_wallJumps++;
                                     //check wall jump achievements
                                     Functions_Hero.CheckAchievements(Achievements.WallJumps);
                                 }

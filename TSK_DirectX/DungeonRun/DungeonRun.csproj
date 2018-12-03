@@ -15,7 +15,7 @@
     <MonoGamePlatform>Windows</MonoGamePlatform>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\Gx000000\Desktop\078\</PublishUrl>
+    <PublishUrl>C:\Users\Gx000000\Desktop\079\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -27,7 +27,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>0.7.8.0</ApplicationVersion>
+    <ApplicationVersion>0.7.9.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -260,9 +260,6 @@
     </Compile>
     <Compile Include="..\..\GameClasses\ScreenLevelMap.cs">
       <Link>Classes\ScreenLevelMap.cs</Link>
-    </Compile>
-    <Compile Include="..\..\GameClasses\ScreenLoadSaveNew.cs">
-      <Link>Classes\ScreenLoadSaveNew.cs</Link>
     </Compile>
     <Compile Include="..\..\GameClasses\ScreenManager.cs">
       <Link>Classes\ScreenManager.cs</Link>

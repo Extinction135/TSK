@@ -199,26 +199,26 @@ namespace DungeonRun
             }
             else if (Type == MenuItemType.BottleHealth)
             {   //use health potion
-                Pool.hero.health = PlayerData.current.heartsTotal;
+                Pool.hero.health = PlayerData.heartsTotal;
                 Functions_Hero.SetRewardState(ParticleType.RewardBottle);
                 Functions_Bottle.EmptyBottle(Type);
             }
             else if (Type == MenuItemType.BottleMagic)
             {   //use magic potion
-                PlayerData.current.magicCurrent = PlayerData.current.magicMax;
+                PlayerData.magicCurrent = PlayerData.magicMax;
                 Functions_Hero.SetRewardState(ParticleType.RewardBottle);
                 Functions_Bottle.EmptyBottle(Type);
             }
             else if (Type == MenuItemType.BottleCombo)
             {   //use combo potion
-                Pool.hero.health = PlayerData.current.heartsTotal;
-                PlayerData.current.magicCurrent = PlayerData.current.magicMax;
+                Pool.hero.health = PlayerData.heartsTotal;
+                PlayerData.magicCurrent = PlayerData.magicMax;
                 Functions_Hero.SetRewardState(ParticleType.RewardBottle);
                 Functions_Bottle.EmptyBottle(Type);
             }
             else if (Type == MenuItemType.BottleFairy)
             {   //use fairy in a bottle
-                Pool.hero.health = PlayerData.current.heartsTotal;
+                Pool.hero.health = PlayerData.heartsTotal;
                 Functions_Hero.SetRewardState(ParticleType.RewardBottle);
                 Functions_Bottle.EmptyBottle(Type);
             }
@@ -243,9 +243,9 @@ namespace DungeonRun
         {   //if infinite magic is enabled, allow
             if (Flags.InfiniteMagic) { return true; }
             //if hero has enough magic to cast, allow
-            if (PlayerData.current.magicCurrent >= castingCost)
+            if (PlayerData.magicCurrent >= castingCost)
             {
-                PlayerData.current.magicCurrent -= (byte)castingCost;
+                PlayerData.magicCurrent -= (byte)castingCost;
                 return true;
             }
             return false; //else disallow
@@ -255,8 +255,8 @@ namespace DungeonRun
         {   //if infinite arrows is enabled, allow
             if (Flags.InfiniteArrows) { return true; }
             //if hero has enough arrows to shoot, allow
-            if (PlayerData.current.arrowsCurrent > 0)
-            { PlayerData.current.arrowsCurrent--; return true; }
+            if (PlayerData.arrowsCurrent > 0)
+            { PlayerData.arrowsCurrent--; return true; }
             return false;
         }
 
@@ -264,8 +264,8 @@ namespace DungeonRun
         {   //if infinite arrows is enabled, allow
             if (Flags.InfiniteBombs) { return true; }
             //if hero has enough arrows to shoot, allow
-            if (PlayerData.current.bombsCurrent > 0)
-            { PlayerData.current.bombsCurrent--; return true; }
+            if (PlayerData.bombsCurrent > 0)
+            { PlayerData.bombsCurrent--; return true; }
             return false;
         }
 

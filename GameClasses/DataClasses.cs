@@ -19,7 +19,7 @@ namespace DungeonRun
         // **********************************************************************************************************
         public static Boolean Release = true; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
-        public static float Version = 0.78f; //the version of the game
+        public static float Version = 0.79f; //the version of the game
         public static BootRoutine bootRoutine = BootRoutine.Editor_Level; //boot to game or editor?
 
         //dev/editor flags
@@ -131,94 +131,233 @@ namespace DungeonRun
 
 
 
-    public class SaveData
-    {   //data that will be saved/loaded from game session to session
-        public DateTime dateTime = DateTime.Now;
-        public int hours = 0;
-        public int mins = 0;
-        public int secs = 0;
-
-        public LevelID lastLocation = LevelID.SkullIsland_Colliseum;
+    public static class PlayerData
+    {
+        //holds all data related to player - was saved to xml (prior to v0.79)
 
 
-        public ActorType actorType = ActorType.Hero;
-        public int gold = 99;
-        public byte heartsTotal = 3; //sets max health
+        #region PlayerData Definitions
 
-        public byte magicCurrent = 3;
-        public byte magicMax = 9;
+        public static DateTime dateTime = DateTime.Now;
+        public static int hours = 0;
+        public static int mins = 0;
+        public static int secs = 0;
 
-        public byte bombsCurrent = 3;
-        public byte bombsMax = 99;
-
-        public byte arrowsCurrent = 10; //testing
-        public byte arrowsMax = 99;
+        public static LevelID lastLocation = LevelID.SkullIsland_Colliseum;
 
 
+        public static ActorType actorType = ActorType.Hero;
+        public static int gold = 99;
+        public static byte heartsTotal = 9;
 
-        //fun random tracking data
-        public int enemiesKilled = 0;
-        public int damageTaken = 0;
-        public int recorded_wallJumps = 0;
+        public static byte magicCurrent = 9;
+        public static byte magicMax = 9;
 
+        public static byte bombsCurrent = 99;
+        public static byte bombsMax = 99;
+
+        public static byte arrowsCurrent = 99;
+        public static byte arrowsMax = 99;
+
+        //achievements
+        public static int enemiesKilled = 0;
+        public static int damageTaken = 0;
+        public static int recorded_wallJumps = 0;
 
         //player's pet
-        public MenuItemType petType = MenuItemType.Unknown;
-
-
-
+        public static MenuItemType petType = MenuItemType.Unknown;
 
         //the hero's last selected / current item
-        public MenuItemType currentItem = MenuItemType.ItemBoomerang;
-        public int lastItemSelected = 0; //index of Widgets.Inventory.menuItems[?]
+        public static MenuItemType currentItem = MenuItemType.ItemBoomerang;
+        public static Boolean itemBoomerang = true;
+        public static Boolean itemBow = true;
+        public static Boolean itemFirerod = true;
+        public static Boolean itemIcerod = true;
+        public static Boolean itemMagicMirror = true;
 
-        public Boolean itemBoomerang = true;
-        public Boolean itemBow = false;
-        public Boolean itemFirerod = false;
-        public Boolean itemIcerod = false;
-        public Boolean itemMagicMirror = true;
-
-
-        public Boolean magicBombos = false;
-        public Boolean magicEther = false;
+        public static Boolean magicBombos = true;
+        public static Boolean magicEther = true;
 
         //bottles - hero just always has 3 bottles
-        public MenuItemType bottleA = MenuItemType.BottleEmpty;
-        public MenuItemType bottleB = MenuItemType.BottleEmpty;
-        public MenuItemType bottleC = MenuItemType.BottleEmpty;
+        public static MenuItemType bottleA = MenuItemType.BottleEmpty;
+        public static MenuItemType bottleB = MenuItemType.BottleEmpty;
+        public static MenuItemType bottleC = MenuItemType.BottleEmpty;
 
         //Weapon
-        public MenuItemType currentWeapon = MenuItemType.WeaponSword;
-        //public Boolean weaponSword = false; //not used rn
-        public Boolean weaponNet = false;
-        public Boolean weaponShovel = false;
-        public Boolean weaponHammer = false;
+        public static MenuItemType currentWeapon = MenuItemType.WeaponSword;
+        //public Boolean weaponSword = true; //not used rn
+        public static Boolean weaponNet = true;
+        public static Boolean weaponShovel = true;
+        public static Boolean weaponHammer = true;
 
         //Armor
-        public MenuItemType currentArmor = MenuItemType.ArmorCloth;
-        //public Boolean armorCloth = false; //not used rn
-        public Boolean armorCape = false; //cosmetic only rn, no effect
+        public static MenuItemType currentArmor = MenuItemType.ArmorCloth;
+        //public Boolean armorCloth = true; //not used rn
+        public static Boolean armorCape = true; //cosmetic only rn, no effect
 
         //Equipment
-        public MenuItemType currentEquipment = MenuItemType.Unknown;
-        public Boolean equipmentRing = true;
-        public Boolean equipmentPearl = false;
-        public Boolean equipmentNecklace = false;
-        public Boolean equipmentGlove = false;
-        public Boolean equipmentPin = false;
+        public static MenuItemType currentEquipment = MenuItemType.Unknown;
+        public static Boolean equipmentRing = true;
+        public static Boolean equipmentPearl = false;
+        public static Boolean equipmentNecklace = false;
+        public static Boolean equipmentGlove = false;
+        public static Boolean equipmentPin = false;
 
         //setup default enemy items
-        public MenuItemType enemyItem = MenuItemType.Unknown;
-        public MenuItemType enemyWeapon = MenuItemType.Unknown;
+        public static MenuItemType enemyItem = MenuItemType.MagicBat;
+        public static MenuItemType enemyWeapon = MenuItemType.WeaponFang;
 
         //story booleans
-        public Boolean story_forestDungeon = false;
-        public Boolean story_mountainDungeon = false;
-        public Boolean story_swampDungeon = false;
+        public static Boolean story_forestDungeon = true;
+        public static Boolean story_mountainDungeon = true;
+        public static Boolean story_swampDungeon = true;
+
+        #endregion
+
+
+        public static void Reset()
+        {
+            dateTime = DateTime.Now;
+            //need a timespan to track playtime
+            hours = 0;
+            mins = 0;
+            secs = 0;
+
+            //default starting location
+            lastLocation = LevelID.SkullIsland_ShadowKing;
+            //link default playthrough
+            actorType = ActorType.Hero;
+
+            gold = 0;
+            heartsTotal = 3;
+            magicCurrent = 3;
+            magicMax = 3;
+            bombsCurrent = 3;
+            bombsMax = 20;
+            arrowsCurrent = 3;
+            arrowsMax = 40;
+
+            //player's pet
+            petType = MenuItemType.Unknown;
+
+            //the hero's last selected / current item
+            currentItem = MenuItemType.ItemBoomerang;
+
+            itemBoomerang = true;
+            itemBow = false;
+            itemFirerod = false;
+            itemIcerod = false;
+            itemMagicMirror = true;
+
+            magicBombos = false;
+            magicEther = false;
+
+            //bottles
+            bottleA = MenuItemType.BottleEmpty;
+            bottleB = MenuItemType.BottleEmpty;
+            bottleC = MenuItemType.BottleEmpty;
+
+            //Weapon
+            currentWeapon = MenuItemType.WeaponSword;
+            //public Boolean weaponSword = false; //not used rn
+            weaponNet = false;
+            weaponShovel = false;
+            weaponHammer = false;
+
+            //Armor
+            currentArmor = MenuItemType.ArmorCloth;
+            //armorCloth = false;
+            armorCape = false;
+
+            //Equipment
+            currentEquipment = MenuItemType.Unknown;
+            equipmentRing = false;
+            equipmentPearl = false;
+            equipmentNecklace = false;
+            equipmentGlove = false;
+            equipmentPin = false;
+
+            //setup default enemy items
+            enemyItem = MenuItemType.Unknown;
+            enemyWeapon = MenuItemType.Unknown;
+
+            //story booleans
+            story_forestDungeon = false;
+            story_mountainDungeon = false;
+            story_swampDungeon = false;
+
+            //achievements
+            enemiesKilled = 0;
+            damageTaken = 0;
+            recorded_wallJumps = 0;
+        }
+
+
+        public static void UnlockAllItems()
+        {
+            gold = 99;
+            heartsTotal = 9;
+            magicCurrent = 9;
+            magicMax = 9;
+            bombsCurrent = 99;
+            bombsMax = 99;
+            arrowsCurrent = 99;
+            arrowsMax = 99;
+
+            itemBoomerang = true;
+            itemBow = true;
+            itemFirerod = true;
+            itemIcerod = true;
+            itemMagicMirror = true;
+
+            magicBombos = true;
+            magicEther = true;
+
+            //bottles
+            bottleA = MenuItemType.BottleEmpty;
+            bottleB = MenuItemType.BottleEmpty;
+            bottleC = MenuItemType.BottleEmpty;
+
+            weaponNet = true;
+            weaponShovel = true;
+            weaponHammer = true;
+
+            //armorCloth = true;
+            armorCape = true;
+
+            equipmentRing = true;
+            //equipmentPearl = true;
+            //equipmentNecklace = true;
+            //equipmentGlove = true;
+            //equipmentPin = true;
+
+            //setup default enemy items
+            enemyItem = MenuItemType.Unknown;
+            enemyWeapon = MenuItemType.Unknown;
+
+            //story booleans
+            story_forestDungeon = true;
+            story_mountainDungeon = true;
+            story_swampDungeon = true;
+        }
+
+
+        public static void FillBottles()
+        {   //set bottle contents to whatevs for dev
+            bottleA = MenuItemType.BottleHealth;
+            bottleB = MenuItemType.BottleMagic;
+            bottleC = MenuItemType.BottleFairy;
+        }
+
+
+        public static void SetEnemyItems()
+        {   //set enemy weapon/items to whatevs for dev
+            enemyItem = MenuItemType.MagicBat;
+            enemyWeapon = MenuItemType.WeaponFang;
+        }
+
 
     }
-
-
 
 
     #region Color Scheme
@@ -236,12 +375,7 @@ namespace DungeonRun
         public static Color bkg_dungeon_forest = new Color(25, 53, 25, 255); //darkest green
         public static Color bkg_dungeon_mountain = new Color(44, 38, 25, 255); //darkest brown
         public static Color bkg_dungeon_swamp = new Color(88, 127, 62, 255); //slime green
-        
-
-
-
-
-
+       
         //covers the screen, fading in/out (usually black)
         public static Color overlay = new Color(0, 0, 0, 255);
 
@@ -271,6 +405,10 @@ namespace DungeonRun
     }
 
     #endregion
+
+
+
+
 
 
 
@@ -407,14 +545,6 @@ namespace DungeonRun
         public static Matrix matZoom;
         public static Vector3 translateCenter;
         public static Vector3 translateBody;
-    }
-
-    public static class PlayerData
-    {   //current points to game1/game2/game3, or loads autoSave data
-        public static SaveData current = new SaveData();
-        public static SaveData game1 = new SaveData();
-        public static SaveData game2 = new SaveData();
-        public static SaveData game3 = new SaveData();
     }
 
     public static class DungeonRecord

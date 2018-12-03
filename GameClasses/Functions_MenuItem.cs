@@ -480,23 +480,11 @@ namespace DungeonRun
                 MenuItem.description = "Starts a new\ngame.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_ArrowRight;
             }
-            else if (Type == MenuItemType.OptionsLoadGame)
-            {
-                MenuItem.name = "Load Game";
-                MenuItem.description = "Loads a saved game.";
-                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_ArrowUp;
-            }
             else if (Type == MenuItemType.OptionsQuitGame)
             {
                 MenuItem.name = "Quit Game";
                 MenuItem.description = "Quit the current game.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Cross;
-            }
-            else if (Type == MenuItemType.OptionsSaveGame)
-            {
-                MenuItem.name = "Save Game";
-                MenuItem.description = "Saves the \ncurrent game.";
-                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_ArrowToDisk;
             }
 
 

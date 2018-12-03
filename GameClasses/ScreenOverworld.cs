@@ -12,26 +12,6 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-
-
-    public static class Functions_Overworld
-    {
-        public static void OpenMap()
-        {
-            //based on the last level that hero was on, load proper overworld
-            if(Flags.PrintOutput)
-            {
-                Debug.WriteLine(
-                    "Functions_Overworld.OpenMap(): current level id: " + 
-                    LevelSet.currentLevel.ID);
-            }
-
-            //all levels point to shadowking overworld
-            ScreenManager.ExitAndLoad(Screens.Overworld_ShadowKing);
-        }
-    }
-
-
     //there can be multiple overworld screens, this is the base class they inherit from
     public class ScreenOverworld : Screen
     {
@@ -126,7 +106,7 @@ namespace DungeonRun
                             LevelSet.field.ID = currentLocation.ID;
                             LevelSet.currentLevel = LevelSet.field;
                             //save currentLocation into player data
-                            PlayerData.current.lastLocation = currentLocation.ID;
+                            PlayerData.lastLocation = currentLocation.ID;
 
                             //animate link into reward state
                             Pool.hero.state = ActorState.Reward;

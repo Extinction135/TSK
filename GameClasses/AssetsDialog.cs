@@ -113,20 +113,7 @@ namespace DungeonRun
 
 
 
-        #region Utility dialogs
-
-        public static List<Dialog> GameSaved = new List<Dialog>
-        {   //returns to inventory screen upon close
-            new Dialog(ObjType.Hero_Idle, "Success!",
-                "I saved the current game.",
-                Assets.sfxGoldPickup, true, false)
-        };
-        public static List<Dialog> GameLoaded = new List<Dialog>
-        {   //returns to previous screen (inventory or title) upon close
-            new Dialog(ObjType.Hero_Idle, "Ready!",
-                "I loaded the selected game file.",
-                Assets.sfxChestOpen, true, true)
-        };
+        #region Game Option / Utility dialogs
 
         public static List<Dialog> GameCreated = new List<Dialog>
         {   //goes to overworld screen upon close
@@ -135,31 +122,12 @@ namespace DungeonRun
                 Assets.sfxChestOpen, true, true)
         };
 
-        public static List<Dialog> GameNotFound = new List<Dialog>
+        public static List<Dialog> AreYouSure = new List<Dialog>
         {   //goes to overworld screen upon close
-            new Dialog(ObjType.Hero_Idle, "Uh Oh!",
-                "the selected game file was not found. I have saved your current game to the\n" +
-                "selected game slot instead.",
-                Assets.sfxError, true, true)
+            new Dialog(ObjType.Hero_Idle, "Hey!",
+                "If you quit, all your progress will be lost..\nAre You Sure?",
+                Assets.sfxChestOpen, true, true)
         };
-
-        public static List<Dialog> GameLoadFailed = new List<Dialog>
-        {   //goes to overworld screen upon close
-            new Dialog(ObjType.Hero_Idle, "Oh No!",
-                "Oh no! I'm terribly sorry, but there was a problem loading this game file...\n" +
-                "The data is corrupted... I've overwritten the file with your current game.",
-                Assets.sfxError, true, false)
-        };
-
-
-        public static List<Dialog> GameSavePls = new List<Dialog>
-        {   //goes to overworld screen upon close
-            new Dialog(ObjType.Hero_Idle, "Don't forget..",
-                "Before you go, make sure to save your game..\n" +
-                "A) saved it, lemme go!    B) thanks, I forgot to save..",
-                Assets.sfxChestOpen, false, false)
-        };
-
 
         #endregion
 

@@ -56,7 +56,7 @@ namespace DungeonRun
 
             UpdateLoadout();
             //display the player's gold, place gold display with gold menuItem
-            goldTracker = PlayerData.current.gold;
+            goldTracker = PlayerData.gold;
             Functions_Component.UpdateAmount(goldDisplay, goldTracker);
             Functions_Component.Align(goldDisplay, menuItems[4].compSprite);
         }
@@ -73,10 +73,10 @@ namespace DungeonRun
             Functions_Animation.Animate(menuItems[4].compAnim, menuItems[4].compSprite);
             Functions_Animation.ScaleSpriteDown(menuItems[4].compSprite);
 
-            if (goldTracker != PlayerData.current.gold)
+            if (goldTracker != PlayerData.gold)
             {   //count the gold amount up or down
-                if (goldTracker < PlayerData.current.gold) { goldTracker++; }
-                else if (goldTracker > PlayerData.current.gold) { goldTracker--; }
+                if (goldTracker < PlayerData.gold) { goldTracker++; }
+                else if (goldTracker > PlayerData.gold) { goldTracker--; }
                 Functions_Component.UpdateAmount(goldDisplay, goldTracker);
                 //randomly play the gold sound effect
                 if (Functions_Random.Int(0, 100) > 60) { Assets.Play(Assets.sfxGoldPickup); }
@@ -117,7 +117,7 @@ namespace DungeonRun
             Functions_MenuItem.SetType(MenuItemType.InventoryGold, menuItems[4]);
             
             //set pet menuItem - unknown, chicken, dog
-            Functions_MenuItem.SetType(PlayerData.current.petType, menuItems[5]);
+            Functions_MenuItem.SetType(PlayerData.petType, menuItems[5]);
 
             //set dungeon map menuItem
             if (LevelSet.currentLevel.map) //if player found the map, display it

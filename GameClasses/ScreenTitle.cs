@@ -59,7 +59,7 @@ namespace DungeonRun
             menuItems = new List<MenuItem>();
             //set the menuItem data
             Functions_MenuItem.SetType(MenuItemType.OptionsNewGame, newGame);
-            Functions_MenuItem.SetType(MenuItemType.OptionsLoadGame, loadGame);
+            Functions_MenuItem.SetType(MenuItemType.OptionsNewGame, loadGame);
             Functions_MenuItem.SetType(MenuItemType.OptionsQuitGame, quitGame);
 
             //add the menuItems to the menuItems list
@@ -113,7 +113,6 @@ namespace DungeonRun
             overlay.alpha = 6.0f;
             overlay.fadeInSpeed = 0.03f; //slower closing fade
             title.alpha = 0.0f;
-
             //set the currently selected menuItem to the first inventory menuItem
             currentlySelected = menuItems[0];
             previouslySelected = menuItems[0];
@@ -122,17 +121,8 @@ namespace DungeonRun
             //play the title music
             Functions_Music.PlayMusic(Music.Title);
 
-            //silently load autosave file (saving enabled)
-            Functions_Backend.LoadGame(GameFile.Game1, false);
-            Functions_Backend.LoadGame(GameFile.Game2, false);
-            Functions_Backend.LoadGame(GameFile.Game3, false);
-            Functions_Backend.LoadGame(GameFile.AutoSave, false);
-
-            //we'll need player data to fake it (saving disabled)
-            //PlayerData.current = new SaveData();
-            //PlayerData.game1 = new SaveData();
-            //PlayerData.game2 = new SaveData();
-            //PlayerData.game3 = new SaveData();
+            //reset the player data to fresh
+            PlayerData.Reset();
         }
 
         public override void HandleInput(GameTime GameTime)
@@ -148,14 +138,9 @@ namespace DungeonRun
                     currentlySelected.compSprite.scale = 2.0f;
 
                     if (currentlySelected.type == MenuItemType.OptionsNewGame)
-                    {
-                        Screens.LoadSaveNew.SetState(LoadSaveNewState.New);
-                        ScreenManager.AddScreen(Screens.LoadSaveNew);
-                    }
-                    else if (currentlySelected.type == MenuItemType.OptionsLoadGame)
-                    {
-                        Screens.LoadSaveNew.SetState(LoadSaveNewState.Load);
-                        ScreenManager.AddScreen(Screens.LoadSaveNew);
+                    {   //create a new game
+                        Screens.Dialog.SetDialog(AssetsDialog.GameCreated);
+                        ScreenManager.AddScreen(Screens.Dialog);
                     }
                     else if (currentlySelected.type == MenuItemType.OptionsQuitGame)
                     {

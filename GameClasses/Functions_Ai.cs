@@ -1310,14 +1310,14 @@ namespace DungeonRun
                     //standard
                     if (Functions_Colliseum.currentChallenge == Challenges.Blobs)
                     {   //reward hero with gold
-                        PlayerData.current.gold += 25;
+                        PlayerData.gold += 25;
                     }
 
                     //minis
                     else if(Functions_Colliseum.currentChallenge == Challenges.Mini_Blackeyes
                         || Functions_Colliseum.currentChallenge == Challenges.Mini_Spiders)
                     {   //reward hero with gold
-                        PlayerData.current.gold += 99;
+                        PlayerData.gold += 99;
                     }
 
                     //bosses
@@ -1325,7 +1325,7 @@ namespace DungeonRun
                         || Functions_Colliseum.currentChallenge == Challenges.Bosses_BigBat
                         || Functions_Colliseum.currentChallenge == Challenges.Bosses_Kraken)
                     {   //reward hero with gold
-                        PlayerData.current.gold += 99;
+                        PlayerData.gold += 99;
                     }
 
                     #endregion

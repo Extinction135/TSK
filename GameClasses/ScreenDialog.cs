@@ -57,20 +57,14 @@ namespace DungeonRun
             //reset exit action to just exit this dialog screen
             exitAction = ExitAction.ExitScreen;
 
-            //set exit action based on dialog type
-            if (
-                dialogs == AssetsDialog.GameLoaded 
-                || dialogs == AssetsDialog.GameCreated
-                || dialogs == AssetsDialog.GameNotFound
-                || dialogs == AssetsDialog.GameLoadFailed
-                )
-            { exitAction = ExitAction.GameLoaded; }
+            if (dialogs == AssetsDialog.GameCreated)
+            { exitAction = ExitAction.GameCreated; }
 
-            else if(
+            else if (
                 dialogs == AssetsDialog.Enter_ForestDungeon
-                    || dialogs == AssetsDialog.Enter_MountainDungeon
-                    || dialogs == AssetsDialog.Enter_SwampDungeon
-                    )
+                || dialogs == AssetsDialog.Enter_MountainDungeon
+                || dialogs == AssetsDialog.Enter_SwampDungeon
+                )
             { exitAction = ExitAction.Dungeon; }
 
             else if(dialogs == AssetsDialog.Enter_Colliseum)
@@ -90,8 +84,6 @@ namespace DungeonRun
                     || dialogs == AssetsDialog.Enter_SwampDungeon
 
                     || dialogs == AssetsDialog.Enter_Colliseum
-
-                    || dialogs == AssetsDialog.GameSavePls
                     )
                 {
 
@@ -130,13 +122,13 @@ namespace DungeonRun
                             ExitDialog(); Assets.Play(Assets.sfxEnterDungeon);
                         }
 
-                        //exiting to title from inventory/dialog screens
-                        else if (dialogs == AssetsDialog.GameSavePls)
+                        //exiting to title from inventory + dialog screens
+                        else if (dialogs == AssetsDialog.AreYouSure)
                         {
                             exitAction = ExitAction.Title; //goto title
                             Assets.Play(Assets.sfxQuit); //play quit sfx
                             foreground.fade = true; //fade foreground in
-                            //ExitDialog(); //this plays sfx, so we dupe it below
+                            //ExitDialog(); //this plays window close sfx, so bypass
                             displayState = DisplayState.Closing;
                             Functions_MenuWindow.Close(Widgets.Dialog.window);
                         }
@@ -226,9 +218,9 @@ namespace DungeonRun
             else if (displayState == DisplayState.Closed)
             {   
                 //from lsn screen to overworld
-                if(exitAction == ExitAction.GameLoaded)
-                {   //exit all screens, load proper overworld map
-                    Functions_Overworld.OpenMap();
+                if(exitAction == ExitAction.GameCreated)
+                {   //exit all screens, start new game
+                    ScreenManager.ExitAndLoad(Screens.Overworld_ShadowKing);
                 }
                 //from inventory screen to title
                 else if(exitAction == ExitAction.Title)
