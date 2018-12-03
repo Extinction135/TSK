@@ -480,10 +480,16 @@ namespace DungeonRun
                 MenuItem.description = "Starts a new\ngame.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_ArrowRight;
             }
+            else if (Type == MenuItemType.OptionsSandBox)
+            {
+                MenuItem.name = "Sandbox";
+                MenuItem.description = "New game with\ncheats enabled.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_ArrowRight;
+            }
             else if (Type == MenuItemType.OptionsQuitGame)
             {
                 MenuItem.name = "Quit Game";
-                MenuItem.description = "Quit the current game.";
+                MenuItem.description = "Quits the \ncurrent game.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Cross;
             }
 

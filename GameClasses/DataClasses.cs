@@ -70,37 +70,7 @@ namespace DungeonRun
             if (Release)
             {
                 bootRoutine = BootRoutine.Game;
-                //set flags for release mode
-                EnableTopMenu = false;
-                EnableDebugInfo = false;
-                DrawUItime = false;
-                DrawCollisions = false;
-                DrawInput = false;
-                DrawWatermark = true;
-
-                Paused = false;
-                PlayMusic = true;
-                PlaySoundFX = true;
-                SpawnMobs = true;
-                ProcessAI = true;
-                CameraTracksHero = false;
-                ShowEnemySpawns = false;
-                PrintOutput = false;
-
-                HardMode = false;
-
-                //cheats
-                Invincibility = false;
-                InfiniteMagic = false;
-                InfiniteGold = false;
-                InfiniteArrows = false;
-                InfiniteBombs = false;
-                MapCheat = false;
-                KeyCheat = false;
-                UnlockAll = false;
-                Clipping = false;
-                FuzzyInput = false;
-                InfiniteFairies = false;
+                Reset();
             }
 
             #endregion
@@ -108,19 +78,46 @@ namespace DungeonRun
             else
             {
                 if (bootRoutine != BootRoutine.Game)
-                {
-                    //set dev mode cheats
+                {   //setup editor modes
                     Invincibility = true; //hero cannot die in editor
-                    InfiniteMagic = true; //hero has infinite magic
-                    InfiniteGold = true; //hero has infinite gold
-                    InfiniteArrows = true; //hero has infinite arrows
-                    InfiniteBombs = true; //hero has infinite bombs
-
-                    //handle editor cheats
                     EnableTopMenu = true; //necessary
                     ShowEnemySpawns = true; //necessary for editing
                 }
             }
+        }
+
+        public static void Reset()
+        {   //resets flag booleans to release mode
+            EnableTopMenu = false;
+            EnableDebugInfo = false;
+            DrawUItime = false;
+            DrawCollisions = false;
+            DrawInput = false;
+            DrawWatermark = true;
+
+            Paused = false;
+            PlayMusic = true;
+            PlaySoundFX = true;
+            SpawnMobs = true;
+            ProcessAI = true;
+            CameraTracksHero = false;
+            ShowEnemySpawns = false;
+            PrintOutput = false;
+            HardMode = false;
+
+            //cheats are off
+            Invincibility = false;
+            InfiniteMagic = false;
+            InfiniteGold = false;
+            InfiniteArrows = false;
+            InfiniteBombs = false;
+            MapCheat = false;
+            KeyCheat = false;
+            UnlockAll = false;
+            Clipping = false;
+            FuzzyInput = false;
+            InfiniteFairies = false;
+            AutoSolvePuzzle = false;
         }
 
     }
@@ -290,6 +287,20 @@ namespace DungeonRun
             enemiesKilled = 0;
             damageTaken = 0;
             recorded_wallJumps = 0;
+        }
+
+
+        public static void SetSandboxMode()
+        {   //hero cannot die, inf powers
+            Flags.Invincibility = true;
+            Flags.InfiniteMagic = true;
+            Flags.InfiniteGold = true;
+            Flags.InfiniteArrows = true;
+            Flags.InfiniteBombs = true;
+            //all items too
+            UnlockAllItems();
+            FillBottles();
+            SetEnemyItems();
         }
 
 

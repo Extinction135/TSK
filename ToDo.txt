@@ -68,45 +68,35 @@ Today:
 	
 	
 	
-Default Loadout
-
-default load out should be:
-sword, boomerang, cloth. that's it. reset sets
-this right, so this is loadout widget not getting
-updated? aha! the updateLoadout() method for
-the loadout widget was referencing the hero's loadout
-from pool, which wasn't necessarily sync'd to playerdata.
-playerdata being the global instance, much more important
-that the local hero item, weapon, etc... that each actor
-uses to model their equiped item, weapon, etc... 
-
-widgetloadout.UpdateLoadout(); needs to be called when
-the overworld screen is opened(), and we need to make sure
-upon hero death with a fairy bottle that hero's loadout isnt
-being reset or lost. if hero actually dies, then summary
-screen pops and the loadout doesnt matter at all.
-we call the update loadout() to sync playerdata to hero data,
-setting the hero's actual item, weapon, armor, equipment.
-
-default loadout working. improved exit dialog.
-tested entering game, exiting game from inventory menu.
 
 
 
 
-
-
-
-
-
-
-
-
-
+Title++
 
 upon title reload, the widget/window is already
-open. it should reset itself.
+open. it should reset itself. done. 
 
+added a sandbox enum value and menuitem to title,
+which boots the game in sandbox mode with cheats
+enabled and all items unlocked, for playtesting.
+
+this required some more methods to be made for
+flags and player data to be reset properly.
+
+
+
+
+
+
+
+
+
+
+inventory ++
+
+we dont need to display save/load menuitem text 
+in options widget anymore, so remove them.
 
 
 

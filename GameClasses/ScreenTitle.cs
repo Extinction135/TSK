@@ -59,7 +59,7 @@ namespace DungeonRun
             menuItems = new List<MenuItem>();
             //set the menuItem data
             Functions_MenuItem.SetType(MenuItemType.OptionsNewGame, newGame);
-            Functions_MenuItem.SetType(MenuItemType.OptionsNewGame, loadGame);
+            Functions_MenuItem.SetType(MenuItemType.OptionsSandBox, loadGame);
             Functions_MenuItem.SetType(MenuItemType.OptionsQuitGame, quitGame);
 
             //add the menuItems to the menuItems list
@@ -91,7 +91,7 @@ namespace DungeonRun
             labels.Add(new ComponentText(Assets.font, "new\ngame",
                 newGame.compSprite.position + new Vector2(11, -12),
                 ColorScheme.textDark));
-            labels.Add(new ComponentText(Assets.font, "load\ngame",
+            labels.Add(new ComponentText(Assets.font, "sand\nbox",
                 loadGame.compSprite.position + new Vector2(11, -12),
                 ColorScheme.textDark));
             labels.Add(new ComponentText(Assets.font, "quit\ngame",
@@ -113,22 +113,29 @@ namespace DungeonRun
             overlay.alpha = 6.0f;
             overlay.fadeInSpeed = 0.03f; //slower closing fade
             title.alpha = 0.0f;
+
+
+            //reset window instance
+            Functions_MenuWindow.ResetAndMove(window,
+                16 * 15 + 8, 16 * 12 + 8, //XY position
+                new Point(16 * 9 + 8, 16 * 4), "Main Menu");
+            window.interior.displayState = DisplayState.Opening;
+            displayState = DisplayState.Opening;
+
             //set the currently selected menuItem to the first inventory menuItem
             currentlySelected = menuItems[0];
             previouslySelected = menuItems[0];
-            //open the screen
-            displayState = DisplayState.Opening;
             //play the title music
             Functions_Music.PlayMusic(Music.Title);
-
-            //reset the player data to fresh
+            //reset cheats + player data
+            Flags.Reset();
             PlayerData.Reset();
         }
 
         public override void HandleInput(GameTime GameTime)
         {
-            if (displayState == DisplayState.Opened)
-            {   //only allow input if the screen has opened completely
+            if (window.interior.displayState == DisplayState.Opened)
+            {   //only allow input if the window has opened completely
 
                 
                 #region Handle MenuItem Selection via A button press
@@ -139,6 +146,12 @@ namespace DungeonRun
 
                     if (currentlySelected.type == MenuItemType.OptionsNewGame)
                     {   //create a new game
+                        Screens.Dialog.SetDialog(AssetsDialog.GameCreated);
+                        ScreenManager.AddScreen(Screens.Dialog);
+                    }
+                    else if (currentlySelected.type == MenuItemType.OptionsSandBox)
+                    {   //create a new game, with cheats on
+                        PlayerData.SetSandboxMode();
                         Screens.Dialog.SetDialog(AssetsDialog.GameCreated);
                         ScreenManager.AddScreen(Screens.Dialog);
                     }
@@ -188,8 +201,14 @@ namespace DungeonRun
             }
         }
 
+
+
+
+
+
         public override void Update(GameTime GameTime)
         {
+
 
             #region Handle Screen State
 
@@ -206,6 +225,9 @@ namespace DungeonRun
             else if (displayState == DisplayState.Opened)
             {   //open the window
                 Functions_MenuWindow.Update(window);
+                //fade title in after bkg fade in
+                if (title.alpha < 1.0f) { title.alpha += 0.03f; }
+                else { title.alpha = 1.0f; }
             }
             else if (displayState == DisplayState.Closing)
             {   //fade overlay in
@@ -220,7 +242,7 @@ namespace DungeonRun
             #endregion
 
 
-            if (displayState != DisplayState.Opening)
+            if (window.interior.displayState == DisplayState.Opened)
             {   //pulse the selectionBox alpha
                 if (selectionBox.alpha >= 1.0f) { selectionBox.alpha = 0.1f; }
                 else { selectionBox.alpha += 0.025f; }
@@ -231,15 +253,6 @@ namespace DungeonRun
                 else { selectionBox.scale = 1.0f; }
                 //scale currently selected menuItem back down to 1.0
                 Functions_Animation.ScaleSpriteDown(currentlySelected.compSprite);
-
-                //flicker title
-                //if (title.alpha >= 1.0f) { title.alpha = 0.85f; }
-                //else if (title.alpha < 0.85f) { title.alpha += 0.03f; }
-                //title.alpha += 0.005f;
-
-                //fade title to 100%
-                if (title.alpha < 1.0f) { title.alpha += 0.03f; }
-                else { title.alpha = 1.0f; }
             }
         }
 

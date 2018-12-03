@@ -907,6 +907,7 @@ namespace DungeonRun
         #region Options relate menuItems
 
         OptionsNewGame,
+        OptionsSandBox,
         OptionsQuitGame,
         OptionsOptionsMenu,
         OptionsCheatMenu,
