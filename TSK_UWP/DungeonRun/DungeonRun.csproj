@@ -193,6 +193,9 @@
     <Compile Include="..\..\GameClasses\Functions_Loot.cs">
       <Link>Classes\Functions_Loot.cs</Link>
     </Compile>
+    <Compile Include="..\..\GameClasses\Functions_MagicSpells.cs">
+      <Link>Classes\Functions_MagicSpells.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\Functions_MenuItem.cs">
       <Link>Classes\Functions_MenuItem.cs</Link>
     </Compile>

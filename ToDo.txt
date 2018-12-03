@@ -64,31 +64,18 @@ Today:
 
 
 
+Spells - part 1
 
+added spell type enum, and values to playerdata.
+updated unlock all and reset() methods for playerdata.
 
+moved cast spells into functions_magicSpells class.
+linked to Dx project. linked to UWP project.
 
+created new spells setup, using cast() to call
+internal methods based on a passed spell type param.
+moved ether and bombos into new spells system.
 
-
-
-
-
-
-
-
-Wand Pro in Hero's Hand
-
-create wand, based on rod projectile sprites. is a brown
-color, no red or blue.
-
-
-wand projectiles can Bounce() roomObjs, push other actors
-for 4.0f (net pushes for 6.0f), but deals NO DAMAGE on its
-own. it only exists as a requirement for casting magic.
-this means we can create a different type of playthrough,
-where the player is a magic caster, vs not using the wand.
-
-
-wand useage is routed to create wand projectiles now.
 tested and working.
 
 
@@ -98,11 +85,15 @@ tested and working.
 
 
 
-we can add spell type enums.
+
+
+
+we can add spell type enums. X
+we can add current spell type to playerdata. X
+we can set spell type in boot. X
+we can move spells into spell class. X
+
 we can check for wand weapon.
-we can add current spell type to playerdata.
-we can set spell type in boot.
-we can move spells into spell class.
 we can migrate to casting concepts.
 we can write casting magics, starting with bat.
 we can remove bat magic from game & ui.
@@ -111,6 +102,8 @@ we can remove bat magic from game & ui.
 
 
 
+//Functions_MagicSpells.Cast_Ether();
+//Functions_Projectile.Spawn(ProjectileType.Iceball, Actor, Actor.direction);
 
 
 

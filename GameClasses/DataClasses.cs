@@ -190,13 +190,14 @@ namespace DungeonRun
         public static Boolean weaponNet = true;
         public static Boolean weaponShovel = true;
         public static Boolean weaponHammer = true;
-        public static Boolean weaponWand = true;
+        
+
         //Armor
         public static MenuItemType currentArmor = MenuItemType.ArmorCloth;
         //public Boolean armorCloth = true; //not used rn
         public static Boolean armorCape = true; //cosmetic only rn, no effect
 
-        //Equipment
+        //equipment
         public static MenuItemType currentEquipment = MenuItemType.Unknown;
         public static Boolean equipmentRing = true;
         public static Boolean equipmentPearl = false;
@@ -204,7 +205,15 @@ namespace DungeonRun
         public static Boolean equipmentGlove = false;
         public static Boolean equipmentPin = false;
 
-        //setup default enemy items
+        //wand, current spell, and spell booleans
+        public static Boolean weaponWand = true;
+        public static SpellType currentSpell = SpellType.Lightning_Ether;
+        public static Boolean spell_summon_bat_small = true;
+
+
+
+
+        //enemy items
         public static MenuItemType enemyItem = MenuItemType.MagicBat;
         public static MenuItemType enemyWeapon = MenuItemType.WeaponFang;
 
@@ -273,7 +282,7 @@ namespace DungeonRun
             weaponNet = false;
             weaponShovel = false;
             weaponHammer = false;
-            weaponWand = false;
+            
 
             //Armor
             currentArmor = MenuItemType.ArmorCloth;
@@ -287,6 +296,11 @@ namespace DungeonRun
             equipmentNecklace = false;
             equipmentGlove = false;
             equipmentPin = false;
+
+            //wand & magic spells
+            weaponWand = false;
+            currentSpell = SpellType.None;
+            spell_summon_bat_small = false;
 
             //setup default enemy items
             enemyItem = MenuItemType.Unknown;
@@ -346,7 +360,6 @@ namespace DungeonRun
             weaponNet = true;
             weaponShovel = true;
             weaponHammer = true;
-            weaponWand = true;
 
             //armorCloth = true;
             armorCape = true;
@@ -356,6 +369,11 @@ namespace DungeonRun
             //equipmentNecklace = true;
             //equipmentGlove = true;
             //equipmentPin = true;
+
+            //wand & magic spells
+            weaponWand = true;
+            currentSpell = SpellType.Lightning_Ether;
+            spell_summon_bat_small = true;
 
             //setup default enemy items
             enemyItem = MenuItemType.Unknown;

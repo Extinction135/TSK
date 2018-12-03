@@ -170,7 +170,7 @@ namespace DungeonRun
 
 
 
-        
+
 
         //these OVERWORLD rooms are non-procedural (handmade)
 
@@ -320,7 +320,7 @@ namespace DungeonRun
         Pickup, Throw, //actions
 
         Falling, Landed,
-        Climbing, 
+        Climbing,
     }
 
     #endregion
@@ -334,7 +334,7 @@ namespace DungeonRun
     #region ObjGroup
 
     public enum ObjGroup
-    {   
+    {
         //roomObjs
         Exit,
         Wall,
@@ -368,19 +368,19 @@ namespace DungeonRun
         //PROCEDURALLY PLACED
         Dungeon_ExitPillarLeft,
         Dungeon_ExitPillarRight,
-        Dungeon_Exit, 
-        Dungeon_ExitLight, 
+        Dungeon_Exit,
+        Dungeon_ExitLight,
 
         Dungeon_DoorOpen,
-        Dungeon_DoorBombable, 
+        Dungeon_DoorBombable,
         Dungeon_DoorBoss,
         Dungeon_DoorTrap,
-        Dungeon_DoorShut, 
-        Dungeon_DoorFake, 
+        Dungeon_DoorShut,
+        Dungeon_DoorFake,
 
         Dungeon_WallStraight,
-        Dungeon_WallStraightCracked, 
-        Dungeon_WallInteriorCorner, 
+        Dungeon_WallStraightCracked,
+        Dungeon_WallInteriorCorner,
         Dungeon_WallExteriorCorner,
         Dungeon_WallPillar,
         Dungeon_WallStatue,
@@ -395,13 +395,13 @@ namespace DungeonRun
         Dungeon_Map, //unlocks dungeon map
 
         //HAND PLACED
-        Dungeon_Pit, 
+        Dungeon_Pit,
         Dungeon_PitBridge,
         Dungeon_PitTeethTop,
         Dungeon_PitTeethBottom,
-        Dungeon_PitTrap, 
+        Dungeon_PitTrap,
 
-        Dungeon_Statue, 
+        Dungeon_Statue,
         Dungeon_SkullPillar,
 
         Dungeon_Chest, //placeable in editor, becomes key chest
@@ -450,8 +450,8 @@ namespace DungeonRun
         #region World Objects
 
         //interior building objects
-        Wor_Bookcase, 
-        Wor_Shelf, 
+        Wor_Bookcase,
+        Wor_Shelf,
         Wor_TableSingle,
         Wor_TableDoubleLeft,
         Wor_TableDoubleRight,
@@ -748,7 +748,7 @@ namespace DungeonRun
         Vendor_NPC_Equipment,
 
         Vendor_NPC_Pets,
-        
+
         NPC_Story,
 
         NPC_Farmer,
@@ -794,7 +794,7 @@ namespace DungeonRun
 
     public enum ProjectileType
     {
-        
+
         //Projectiles - items
         Bomb,
         Boomerang,
@@ -819,12 +819,12 @@ namespace DungeonRun
         //Projectiles - objects
         Explosion,
         GroundFire,
-        
-        
+
+
         //Projectiles - enemy related
         Bite,
         Bat,
-        
+
 
         //Carried and Thrown Projectiles
         CarriedObject,
@@ -877,7 +877,7 @@ namespace DungeonRun
         WaterKick,
         ExclamationBubble,
         LightningBolt,
-        
+
 
         //Particles - rewards
         RewardKey,
@@ -891,6 +891,21 @@ namespace DungeonRun
     #endregion
 
 
+
+
+
+    #region Magic Spells
+
+    public enum SpellType
+    {
+        None,
+        
+        Lightning_Ether,
+
+        Explosive_Bombos,
+    }
+
+    #endregion
 
 
 

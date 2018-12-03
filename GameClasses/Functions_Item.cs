@@ -42,17 +42,22 @@ namespace DungeonRun
                 Functions_Projectile.Spawn(ProjectileType.Hammer, Actor, Actor.direction);
                 Functions_Actor.SetItemUseState(Actor);
             }
-            else if (Type == MenuItemType.WeaponWand)
-            {   //this should be a wand projectile, when we have one
-                Functions_Projectile.Spawn(ProjectileType.Wand, Actor, Actor.direction);
-                Functions_Actor.SetItemUseState(Actor);
-            }
             else if (Type == MenuItemType.WeaponFang)
             {
                 Functions_Projectile.Spawn(ProjectileType.Bite, Actor, Actor.direction);
                 Functions_Actor.SetItemUseState(Actor);
             }
-
+            else if (Type == MenuItemType.WeaponWand)
+            {   //only hero, with wand as weapon, can cast spells
+                if (Actor == Pool.hero & Pool.hero.weapon == MenuItemType.WeaponWand)
+                {   //display wand in hand projectile
+                    Functions_Projectile.Spawn(ProjectileType.Wand, Actor, Actor.direction);
+                    Functions_Actor.SetItemUseState(Actor);
+                    //cast hero's current spell
+                    Functions_MagicSpells.Cast(PlayerData.currentSpell);
+                }
+            }
+            
             #endregion
 
 
@@ -107,7 +112,6 @@ namespace DungeonRun
                 Functions_Actor.SetItemUseState(Actor);
             }
 
-
             #endregion
 
 
@@ -153,7 +157,7 @@ namespace DungeonRun
                     }
                     else
                     {   //casted successfully
-                        Functions_Projectile.Cast_Bombos();
+                        Functions_MagicSpells.Cast(SpellType.Explosive_Bombos);
                         Functions_Hero.SetRewardState(ParticleType.RewardMagicBombos);
                     }
                 }
@@ -170,7 +174,7 @@ namespace DungeonRun
                     }
                     else
                     {   //casted successfully
-                        Functions_Projectile.Cast_Ether();
+                        Functions_MagicSpells.Cast(SpellType.Lightning_Ether);
                         Functions_Hero.SetRewardState(ParticleType.RewardMagicEther);
                     }
                 }
