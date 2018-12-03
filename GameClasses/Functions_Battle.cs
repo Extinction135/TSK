@@ -293,7 +293,17 @@ namespace DungeonRun
                 if (Damage > Actor.health) { Actor.health = 0; }
                 else { Actor.health -= Damage; }
                 //if projectile damaged hero, track the damage dealt
-                if (Actor == Pool.hero) { DungeonRecord.totalDamage += Damage; }
+                if (Actor == Pool.hero)
+                {   //if hero takes damage in a dungeon, track it
+                    if (LevelSet.dungeon.ID == LevelID.Forest_Dungeon)
+                    { PlayerData.ForestRecord.totalDamage += Damage; }
+                    else if (LevelSet.dungeon.ID == LevelID.Mountain_Dungeon)
+                    { PlayerData.MountainRecord.totalDamage += Damage; }
+                    else if (LevelSet.dungeon.ID == LevelID.Swamp_Dungeon)
+                    { PlayerData.SwampRecord.totalDamage += Damage; }
+                    //track global damage done as well
+                    PlayerData.damageTaken += Damage;
+                }
 
                 //put underwater enemies into their underwater state (so player can't spam attack them)
                 if (Actor.underwaterEnemy)

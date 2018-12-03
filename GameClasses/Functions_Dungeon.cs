@@ -28,6 +28,9 @@ namespace DungeonRun
             BuildDungeon_ImproveExit();
             BuildDungeon_Expand(1); //small, secrets++
             BuildDungeon_Finalize();
+
+            PlayerData.ForestRecord.Clear();
+            PlayerData.ForestRecord.timer.Restart(); //start timer
         }
 
         public static void BuildDungeon_Mountain()
@@ -42,6 +45,9 @@ namespace DungeonRun
             BuildDungeon_ImproveExit();
             BuildDungeon_Expand(2); //med size/secrets
             BuildDungeon_Finalize();
+
+            PlayerData.MountainRecord.Clear();
+            PlayerData.MountainRecord.timer.Restart(); //start timer
         }
 
         public static void BuildDungeon_Swamp()
@@ -63,7 +69,10 @@ namespace DungeonRun
             Functions_Level.AddSecretRooms();
             //ok stop
             BuildDungeon_Finalize();
-            
+
+            PlayerData.SwampRecord.Clear();
+            PlayerData.SwampRecord.timer.Restart(); //start timer
+
 
 
             /*
@@ -374,10 +383,7 @@ namespace DungeonRun
             #endregion
 
 
-            //reset the dungeon screen's dungeon record, passing dungeonID
-            DungeonRecord.Clear();
-            DungeonRecord.dungeonID = 0; //ID = 0 for now
-            DungeonRecord.timer.Restart(); //restart timer
+            
         }
 
 

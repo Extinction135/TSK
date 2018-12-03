@@ -395,8 +395,14 @@ namespace DungeonRun
         public static void ExitDungeon()
         {
             if (Screens.Level.displayState == DisplayState.Opened)
-            {
-                DungeonRecord.Clear(); //clear the dungeon record
+            {   //clear any dungeon data upon exit
+                if (LevelSet.dungeon.ID == LevelID.Forest_Dungeon)
+                { PlayerData.ForestRecord.Clear(); }
+                else if (LevelSet.dungeon.ID == LevelID.Mountain_Dungeon)
+                { PlayerData.MountainRecord.Clear(); }
+                else if (LevelSet.dungeon.ID == LevelID.Swamp_Dungeon)
+                { PlayerData.SwampRecord.Clear(); }
+
                 Assets.Play(Assets.sfxDoorOpen);
                 //return hero to last field level
                 Functions_Level.CloseLevel(ExitAction.Field);

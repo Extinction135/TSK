@@ -148,12 +148,14 @@ namespace DungeonRun
                     {   //create a new game
                         Screens.Dialog.SetDialog(AssetsDialog.GameCreated);
                         ScreenManager.AddScreen(Screens.Dialog);
+                        PlayerData.timer.Restart(); //start timing game
                     }
                     else if (currentlySelected.type == MenuItemType.OptionsSandBox)
                     {   //create a new game, with cheats on
                         PlayerData.SetSandboxMode();
                         Screens.Dialog.SetDialog(AssetsDialog.GameCreated);
                         ScreenManager.AddScreen(Screens.Dialog);
+                        PlayerData.timer.Restart(); //start timing game
                     }
                     else if (currentlySelected.type == MenuItemType.OptionsQuitGame)
                     {

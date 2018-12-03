@@ -325,14 +325,6 @@ namespace DungeonRun
 
             if (Actor == Pool.hero)
             {
-                //if hero takes damage in a dungeon, track it
-                if (LevelSet.dungeon.ID == LevelID.Forest_Dungeon)
-                { PlayerData.ForestRecord.totalDamage++; }
-                else if (LevelSet.dungeon.ID == LevelID.Mountain_Dungeon)
-                { PlayerData.MountainRecord.totalDamage++; }
-                else if (LevelSet.dungeon.ID == LevelID.Swamp_Dungeon)
-                { PlayerData.SwampRecord.totalDamage++; }
-
                 //hero throws whatever he's carrying
                 Functions_Hero.Throw();
                 //hero always spawns a gold piece upon hit

@@ -56,15 +56,18 @@ Today:
 
 
 
-Boss Death and Overworld Map
-
-when a boss dies, we call the summary screen.
-we cant do this anymore. instead, we need to call
-the overworld screen. done. now upon boss death,
-the dungeon completion soundfx plays.
 
 
+Title++
 
+updated big text sheet to be size smaller, only contains
+title sprite now. this means slightly less ram useage.
+
+GameTime
+
+this is displayed via debugging routine right now, as we
+have updated it to ref the playerdata timer, that was just
+added. this is instead of a dungeon timer.
 
 
 

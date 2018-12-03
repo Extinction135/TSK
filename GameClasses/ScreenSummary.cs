@@ -21,9 +21,6 @@ namespace DungeonRun
         ComponentText continueText;
         float textFadeSpeed = 0.05f;
         Boolean countingComplete = false;
-
-        int enemyCount = 0;
-        int totalDamage = 0;
         float ratingChange = 0.0f;
 
 
@@ -123,8 +120,6 @@ namespace DungeonRun
             continueText.alpha = 0.0f;
             summaryText.alpha = 0.0f;
             summaryData.alpha = 0.0f;
-            enemyCount = 0;
-            totalDamage = 0;
             ratingChange = 0.0f;
 
             displayState = DisplayState.Opening;

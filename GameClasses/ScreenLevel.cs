@@ -137,8 +137,8 @@ namespace DungeonRun
 
                     //handle exit action
                     if (exitAction == ExitAction.Summary)
-                    {
-                        DungeonRecord.timer.Stop();
+                    {   //set the 'end time' for this playthrough
+                        PlayerData.endTime = DateTime.Now;
                         ScreenManager.ExitAndLoad(Screens.Summary);
                     }
 
@@ -323,9 +323,9 @@ namespace DungeonRun
 
                 TopDebugMenu.DebugDisplay_BuildTimes.textComp.text = "LVL: " + Functions_Level.time.Ticks;
                 TopDebugMenu.DebugDisplay_BuildTimes.textComp.text += "\nRM: " + Functions_Room.time.Ticks;
-                TopDebugMenu.DebugDisplay_BuildTimes.textComp.text += "\nT: " + DungeonRecord.timer.Elapsed.ToString(@"hh\:mm\:ss");
-                TopDebugMenu.DebugDisplay_BuildTimes.textComp.text += "\nENMY: " + DungeonRecord.enemyCount;
-                TopDebugMenu.DebugDisplay_BuildTimes.textComp.text += "\nDMG: " + DungeonRecord.totalDamage;
+                TopDebugMenu.DebugDisplay_BuildTimes.textComp.text += "\nT: " + PlayerData.timer.Elapsed.ToString(@"hh\:mm\:ss");
+                TopDebugMenu.DebugDisplay_BuildTimes.textComp.text += "\nENMY: " + PlayerData.enemiesKilled;
+                TopDebugMenu.DebugDisplay_BuildTimes.textComp.text += "\nDMG: " + PlayerData.damageTaken;
 
                 TopDebugMenu.DebugDisplay_Collisions.textComp.text = "COL: " + Pool.collisionsCount;
                 TopDebugMenu.DebugDisplay_Collisions.textComp.text += "\nINT: " + Pool.interactionsCount;

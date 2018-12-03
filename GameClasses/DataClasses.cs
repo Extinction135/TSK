@@ -127,6 +127,8 @@ namespace DungeonRun
 
 
 
+    #region PLAYER DATA
+
 
     public static class PlayerData
     {
@@ -135,7 +137,9 @@ namespace DungeonRun
 
         #region PlayerData Definitions
 
-        public static DateTime dateTime = DateTime.Now;
+        public static Stopwatch timer = new Stopwatch();
+        public static DateTime dateTime = DateTime.Now; //game start time
+        public static DateTime endTime = DateTime.Now; //game over time
         public static int hours = 0;
         public static int mins = 0;
         public static int secs = 0;
@@ -380,6 +384,9 @@ namespace DungeonRun
     }
 
 
+    #endregion
+
+
     public class DungeonRecord
     {
         public int dungeonID = 0;
@@ -394,7 +401,6 @@ namespace DungeonRun
             timer.Reset();
         }
     }
-
 
 
     #region Color Scheme
