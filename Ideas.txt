@@ -2,6 +2,34 @@
 
 
 
+
+Freeze Ground Magic
+
+we have projectile.cast_freezeGround, which should be a
+magic spell in it's own right, but is also a by-product
+of an iceball's death. make a magic to create icetiles
+around hero - special one. this is an enemy magic.
+
+we can add this enemy magic to enemy magic vendor,
+spawn him, and then test this magic, keeping it seperate
+from the main game for now.
+
+now would be a good time to model all these as a
+generic magic medallion sprite... or we can make 
+them special.... wand magic dummy
+
+
+
+
+
+
+
+
+
+
+
+
+
 AI++
 we could likely limit ai on many objects to their interactive frames,
 or to a single interaction check upon creation, like we do with floor

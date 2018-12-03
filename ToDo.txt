@@ -59,22 +59,33 @@ Release 0.78
 
 
 
-Polish
 
-actually flipped self-clean boolean in obj.SetType() for
-ice tiles, debris, gore decor. test ice tiles cleaning.
 
-completely forgot to write the overlap check in Selfclean().
-whoops. fixed. self-cleaning working again.
+Lava++
 
-ice should not overlap ditches. done.
-floor gore decor no longer overlaps ditches (selfclean++).
+pits should be red, and thus we have LAVA. wow. that
+was easy. lava still doesn't deal any damage, just resets
+position in room. this is just updating the dungeon sheets.
+done.
 
 
 
 
 
 
+
+
+
+
+ice tiles should be allowed to overlap posts.
+this is because hero can still slide along posts.
+and posts dont really cover much of the ground.
+
+
+
+while on conveyorbelts, objs/actors shouldn't move due to
+their friction being set to a ridic value, reducing their
+magnitude to nothing.
 
 
 
@@ -91,28 +102,6 @@ remove save/loading for 0.79.
 
 
 
-Freeze Ground Magic
-
-we have projectile.cast_freezeGround, which should be a
-magic spell in it's own right, but is also a by-product
-of an iceball's death. make a magic to create icetiles
-around hero - special one. this is an enemy magic.
-
-we can add this enemy magic to enemy magic vendor,
-spawn him, and then test this magic, keeping it seperate
-from the main game for now.
-
-now would be a good time to model all these as a
-generic magic medallion sprite... or we can make 
-them special....
-
-
-
-
-
-ice tiles should be allowed to overlap posts.
-this is because hero can still slide along posts.
-and posts dont really cover much of the ground.
 
 
 
@@ -122,16 +111,6 @@ and posts dont really cover much of the ground.
 
 
 
-while on conveyorbelts, objs/actors shouldn't move due to
-their friction being set to a ridic value, reducing their
-magnitude to nothing.
-
-
-
-larger enemies just take damage and get pushed. right?
-if they can't be frozen, then they take damage, so we
-need to have more checks in the actor interactions with 
-iceball to handle mini+boss hits.
 
 
 
@@ -153,16 +132,6 @@ rip this from lttps sprites.
 
 
 
-Lava
-
-pits should be red, and thus we have LAVA. wow. that
-was easy. lava still doesn't deal any damage, just resets
-position in room. this is just updating the dungeon sheets.
-
-
-
-
-
 Bombos++
 
 we can improve bombos, if we simply change the explosion
@@ -177,8 +146,6 @@ outwards from them, showing aoe effects.
 
 
 
-
-
 Lightning Bolts++
 
 lightning bolts should have an initial ground blast,
@@ -187,13 +154,6 @@ we can also have a tapered lightning bolt at the top that
 fades out, limiting the bolt to 5 + 1 particles,
 plus 1 explosion projectile, per enemy, for a total of
 7 * actor/obj enemy count.
-
-
-
-
-
-
-
 
 
 
@@ -224,30 +184,6 @@ magic under misc.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-Fairy? Test
-
-do fairies work? maybe. this is a roomObj vs actor
-interaction, cause fairy is non-blocking. also, the net
-projectile is a pro vs obj test, and likely still works.
-
-
-
-
-
-
-
-
 Default Dungeon
 
 the default dungeon sheet is the one we use for all
@@ -259,8 +195,6 @@ sheet. this default sheet should be thought of as the 'world'
 dungeon sheet - these pits will appear on the overworld against the
 expected green bkg color. so the default pit teeth need to be green,
 leading into brown as they go down into the ground. 
-
-
 
 
 
@@ -292,8 +226,6 @@ well.
 
 
 
-
-
 Grass++
 cut grass should grow into tall grass if near coastlines,
 or filled ditches. 
@@ -316,18 +248,12 @@ and can be used to further decorate piers.
 
 
 
-
-
 Implement Cane of Somara (or whatever)
 this is the cane that creates blocks that are pushable.
 this makes it MUCH easier to get thru dungeons, as many
 rooms rely on floor switches, which link can simply
 create a block over. if a block is created ontop of
 a blocking roomObject, the block ...
-
-
-
-
 
 
 
@@ -390,12 +316,6 @@ with link on a cloud location - which allows for much faster traversal
 up the clouds later! awesome.
 
 *requires two cloud levels, so we have to touch level data and XML>CS pipeline
-
-
-
-
-
-
 
 
 
