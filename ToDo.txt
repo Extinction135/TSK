@@ -34,19 +34,20 @@ Shadow Dungeon, TSK Fight complete
 
 0.77 playthru: https://youtu.be/_b7qclGTffE
 0.79 goals:
-	- removed savedata and load/saving X
+	X removed savedata and load/saving
+	X wand & spellbook
 	
-	X WAND X + SPELLBOOK + SPELL SCREEN
-	WIND - crucial because levels have wind intensity + direction values now!
+	split pool into more efficient lists
 	
+	wind pros - on their own pool list, interact with ints, acts, pros
+	level data ++ - wind direction, intensity, frequency
 	WIND magic
-	FIRE magic
-	FREEZE magic
-	EXPLODE magic
-	WATER magic
-	EARTH magic
+	ICE magic
+	EXPLODE/BURN magic
+	ELEC magic
 	SUMMON magic
-	ENEMY magic
+	
+	EARTH magic - quake
 	
 	+ option for loading level data 'fresh' each time for sandboxing
 	(items: hookshot, axe, beans)
@@ -64,18 +65,13 @@ Today:
 
 
 
-Magic++
 
-improved chain explosions to be faster.
-upgraded explosions to leave behind ground fires, making
-them essesntially explosive and fire spells in one.
-so because of that, fire and explosions have been merged
-into explosive spells, and summons has come in for the
-6th category instead of fire. upgraded Cast() to resolve
-casters direction to cardinal, handling a case where caster
-could be in a diagonal state, and the cast() wouldn't
-complete due to only cardinal directions calling proper
-routines.
+
+Bat Army Summons
+
+test summoning army of bats. working. can't see
+the animation of the bat on the spells screen tho.
+fixed. working great now.
 
 
 
@@ -86,78 +82,13 @@ routines.
 
 
 
+Spells++
 
-
-
-SPELLS
-
-circular explosions around caster
-
-
-
-
-
-
-
-
-
-
-
-
-Wind spells
-*wind projectiles exist in their own pool, because they interact with
-roomObjs, actors, AND projectiles - allowing wind to push EVERYTHING.
-this allows wind to COUNTER projectiles. which make wind spells the most
-powerful, but also limited because they dont do direct damage. so it 
-takes intelligence and skill to use them.
-gust: wind pro in casters direction.
-repel: wind pros from casters center out, constantly across frames.
-fly: pushes caster in facing direction each frame, in flying state.
-mass move: pushes all objs, actors, and pros in room in given direction.
-control wind: sets the level's wind direction, intensity, and frequency.
-tornado: spawns a tornado roomObj. (fire, ice, explosive, electrical tornados too)...
-****wind should work in water as well*****
-
-
-
-Explosive/Fire spells
-
-Fire Walk - creates groundfires wherever the caster walks
-Circle of Fire - creates groundfire around the caster in circle, across frames, continuously.
-Fire Rain - red rain falls, creating ground fires where ever they touch (environmental fx).
-
-
-
-Ice Spells
-ice ball - acts as it does currently
 freeze ground - at casters position
-hail - large snowball objs fall, causing level 1 destruction,
-creating icetiles where ball hitbox overlaps, mostly single ice tiles.
-this is diff pattern than iceballs.
-snowstorm - freezes all objects in level (frozen state), distrubuted
-across frames, randomly freezing objs and placing icetiles
-ice block wall - create wall of destructible ice blocks (only blocking, with ice
-tiles underneath and around them).
-ice block freeze all - freezes all actors with iceblocks that can be
-frozen (non minibosses and bosses).
+
 Ice Walk - everywhere hero walks, ice tiles spawn, across frames.
 
-
-Electricity spells
-ether - bolts from the sky (should have small clouds over them) (should
-happen across frames too)
-thunderstorm - clouds appear randomly, spawning bolts down
-*levels should spawn clouds too - can 'rain' regrowing objects,
-plus this adds depth. they can rain lightning, fire, ice, etc..
-think of them as magic or projectile factories that interfere with
-the player...
-
-
-
-new ether
-this just sequentially does the bolts, not all at once, and also
-randomly spawns bolts around the caster (but not touching).
-THERE SHOULD BE CLOUDS!
+Fire Walk - creates groundfires wherever the caster walks
 
 
 
@@ -168,33 +99,54 @@ THERE SHOULD BE CLOUDS!
 
 
 
+Systems Redesign Time!!!
+
+this is a HUGE speed gain and system simplification, while also
+adding WIND! which is an entire element of magic too.
+
+ 
+Pool:
+new
+	indestructible objs - only block, never move, never interact
+	interactive objs - objs that interact, move, maybe block
+	wind - pushes: actors, pros, ints, pickups
+already done
+	projectiles - objs that damage and interact with ints and acts
+	pickups - interact with hero + pros (sprite + anim)
+	actors - enemies + hero
+	particles - decorate events in game
+
+
+	
+indestructible objs are their own class, with comps.
+with own setType() method in own class.
+they are on their own sheet too.
+they dont have move components, because they dont move.
+they are removed from interaction checks, because they only block.
+
+destructible objs exist in own class, with comps.
+with own setType() method, much more like gameObj.setType().
+they are on their own sheet too.
+they interact and check collisions. any obj that can move
+goes on this list.
+
+wind objs are just projectiles, but they exist in their
+own pool - which is done to reduce the number of interaction
+checks wind does and simplify it's implementation. wind
+interacts (pushes) everything, based on the wind projectiles
+speed or magnitude value. this is acts, pros, ints.
+
+wind should interact with everything last, prior to movement,
+to give wind the final say over movement and magnitude.
 
 
 
-
-
-
-
-
-
-
-Quake Magic
-
-how is this different than ether, in-game? ether kills
-all, quake destroys everything that isn't flying. this
-causes des level 2 to all objects and enemies who have
-compMove.grounded set to false, except hero.
-
-this simply shakes the camera for it's effect.
-
-
-
-
-
-
-
-
-
+	
+	
+	
+	
+	
+	
 
 
 WIND! objects
@@ -213,6 +165,118 @@ Spells - round 2
 spell to cast gust of wind (max magnitude).
 spell to cast gusts of wind away from the caster all directions.
 
+
+
+Wind spells
+
+*wind projectiles exist in their own pool, because they interact with
+roomObjs, actors, AND projectiles - allowing wind to push EVERYTHING.
+this allows wind to COUNTER projectiles. which make wind spells the most
+powerful, but also limited because they dont do direct damage. so it 
+takes intelligence and skill to use them.
+gust: wind pro in casters direction.
+repel: wind pros from casters center out, constantly across frames.
+fly: pushes caster in facing direction each frame, in flying state.
+mass move: pushes all objs, actors, and pros in room in given direction.
+control wind: sets the level's wind direction, intensity, and frequency.
+tornado: spawns a tornado roomObj. (fire, ice, explosive, electrical tornados too)...
+****wind should work in water as well*****
+
+
+
+
+
+
+
+
+
+
+
+
+
+Explosive/Fire spells
+Circle of Fire - creates groundfire around the caster in circle, across frames, continuously.
+Fire Rain - red rain falls, creating ground fires where ever they touch (environmental fx).
+
+
+Ice Spells
+
+hail - large snowball objs fall, causing level 1 destruction,
+creating icetiles where ball hitbox overlaps, mostly single ice tiles.
+this is diff pattern than iceballs.
+snowstorm - freezes all objects in level (frozen state), distrubuted
+across frames, randomly freezing objs and placing icetiles
+ice block wall - create wall of destructible ice blocks (only blocking, with ice
+tiles underneath and around them).
+ice block freeze all - freezes all actors with iceblocks that can be
+frozen (non minibosses and bosses).
+
+
+
+Electricity spells
+ether - bolts from the sky (should have small clouds over them) (should
+happen across frames too)
+thunderstorm - clouds appear randomly, spawning bolts down
+*levels should spawn clouds too - can 'rain' regrowing objects,
+plus this adds depth. they can rain lightning, fire, ice, etc..
+think of them as magic or projectile factories that interfere with
+the player...
+
+new ether
+this just sequentially does the bolts, not all at once, and also
+randomly spawns bolts around the caster (but not touching).
+THERE SHOULD BE CLOUDS!
+
+
+
+
+
+
+
+Quake Magic Medallion
+
+how is this different than ether, in-game? ether kills
+all, quake destroys everything that isn't flying. this
+causes des level 2 to all objects and enemies who have
+compMove.grounded set to false, except hero.
+this simply shakes the camera for it's effect.
+
+Summon spells
+
+skeletons - actors that cannot be killed (self-rez from extended hit state).
+summons 1, 4, or 16 or them.
+bat summons are already done, more or less.
+
+Comet Medallion
+
+meteor/comet (single big / many small) falls from sky, smashing into ground,
+leaving crater objects and explosions. this is the 4th medallion, meteor.
+
+SpellBook++
+
+need a widget / window that displays in the spell
+screen that matches options widgets dimensions.
+should simply contain text that explains what magic
+is and how it's used. for example, WIND counters.
+
+
+
+
+
+
+
+
+
+
+
+BURN HOUSES
+
+as in, have burned versions of each house obj that randomly
+smoke and rarely collapse (like roofs randomly collapsing).
+this should apply to a certain set of objects only.
+consider making these objects in their own pool, because they
+handle interactions and can be blocking / non-blocking.
+indestructible objs ONLY BLOCK, and NEVER INTERACT.
 
 
 
@@ -234,13 +298,16 @@ link to move the fire toronado out to sea and off the level. once this is done, 
 fire tornado magic is unlocked - or something else. i dunno.
 
 
+
+
+
+
+LEVEL WIND
+
 Mountain Dungeon Climb
 wind pushes the player while they are trying to climb the mountain to the dungeon
 entrance. the wind is an obj, with animated action lines, so the player can 'see' the
 wind and it coming towards them - allowing them to dodge.
-
-
-
 
 wind should occasionally blow thru overworld levels
 this is a global push() on all objs and actors.
@@ -268,6 +335,15 @@ of gathering clouds.
 
 
 
+Grass++
+cut grass should grow into tall grass if near coastlines,
+or filled ditches.
+
+
+
+
+
+
 
 
 
@@ -285,28 +361,11 @@ rip this from lttps sprites.
 
 
 
-Bombos++
-
-we can improve bombos, if we simply change the explosion
-placements around link. more or less, but it doesn't need
-to be in a square pattern. plus, it would be nice to
-see these explosions happen sequentially around hero, so
-use a counter to meter out which explosions are placed where.
-we can even have some kind of custom explosion particle over
-hero when he casts this, showing the player that bombos is pushing
-outwards from them, showing aoe effects.
 
 
 
 
-Lightning Bolts++
 
-lightning bolts should have an initial ground blast,
-because they are hitting the ground, not the air.
-we can also have a tapered lightning bolt at the top that
-fades out, limiting the bolt to 5 + 1 particles,
-plus 1 explosion projectile, per enemy, for a total of
-7 * actor/obj enemy count.
 
 
 
@@ -370,9 +429,7 @@ well.
 
 
 
-Grass++
-cut grass should grow into tall grass if near coastlines,
-or filled ditches. 
+ 
 
 
 
@@ -464,11 +521,6 @@ up the clouds later! awesome.
 
 
 
-BURN HOUSES
-
-as in, have burned versions of each house obj that randomly
-smoke and rarely collapse (like roofs randomly collapsing).
-
 
 
 
@@ -505,45 +557,4 @@ so we ca display it under repo name on right.
 
 
 
-Summon spells
-skeletons - actors that cannot be killed (self-rez from extended hit state).
-summons 1, 4, or 16 or them.
-bat summons are already done, more or less.
-
-
-MISC spells
-
-meteor/comet (single big / many small) falls from sky, smashing into ground,
-leaving crater objects and explosions.
-
-blackhole - pulls everything into it (via wind), releases any actor or roomObj
-it touches, killing hero too, then animates closed. explodes. leaves behind
-a white dwarf object, large globe that floats and slowly pulls objs towards
-it. does no damage, just blocks.
-
-
-
-SpellBook++
-
-need a widget / window that displays in the spell
-screen that matches options widgets dimensions.
-should simply contain text that explains what magic
-is and how it's used. for example, WIND counters.
-
-
-Rituals
-
-a way to summon enemies to train or fight. different than
-magic, because rituals would create actors (with spawn particle fx).
-
-
-
-
-
-Bombos+++
-
-bombos should spread from the middle out, center of screen.
-the dual spread effect: which is just two counters - one incrementing, 
-one decrementing. this increases the usefulness of bombos while
-keeping it's extremely destructive nature to levels.
 

@@ -74,47 +74,50 @@ namespace DungeonRun
 
             //setup available spells
 
-            #region  Explosive Spells - has left neighbors to last column
+            #region  Wind Spells - has left neighbors to last column
 
-            labels[0].text = "single\nexplode";
-            Functions_MenuItem.SetType(MenuItemType.Explosive_Single, menuItems[0]);
+            labels[0].text = "gust\nwind";
+            //Functions_MenuItem.SetType(MenuItemType.Explosive_Single, menuItems[0]);
             menuItems[0].neighborLeft = menuItems[4]; //connect left
 
-            labels[5].text = "chain\nexplods";
-            Functions_MenuItem.SetType(MenuItemType.Explosive_Line, menuItems[5]);
+            labels[5].text = "shield\nwind";
+            //Functions_MenuItem.SetType(MenuItemType.Explosive_Line, menuItems[5]);
             menuItems[5].neighborLeft = menuItems[9]; //connect left
 
-            //labels[10].text = "bombos\nspell";
+            //labels[10].text = "";
             //Functions_MenuItem.SetType(MenuItemType.Spells_Explosive_Bombos, menuItems[10]);
             menuItems[10].neighborLeft = menuItems[14]; //connect left
 
-            //labels[15].text = "bombos\nspell";
+            //labels[15].text = "";
             //Functions_MenuItem.SetType(MenuItemType.Spells_Explosive_Bombos, menuItems[15]);
             menuItems[15].neighborLeft = menuItems[19]; //connect left
 
-            //labels[20].text = "bombos\nspell";
+            //labels[20].text = "";
             //Functions_MenuItem.SetType(MenuItemType.Spells_Explosive_Bombos, menuItems[20]);
             menuItems[20].neighborLeft = menuItems[24]; //connect left
 
-            //labels[25].text = "bombos\nspell";
+            //labels[25].text = "";
             //Functions_MenuItem.SetType(MenuItemType.Spells_Explosive_Bombos, menuItems[25]);
             menuItems[25].neighborLeft = menuItems[29]; //connect left
 
-            //labels[30].text = "bombos\nspell";
+            //labels[30].text = "";
             //Functions_MenuItem.SetType(MenuItemType.Spells_Explosive_Bombos, menuItems[30]);
             menuItems[30].neighborLeft = menuItems[34]; //connect left
 
-            //labels[35].text = "bombos\nspell";
+            //labels[35].text = "";
             //Functions_MenuItem.SetType(MenuItemType.Spells_Explosive_Bombos, menuItems[35]);
             menuItems[35].neighborLeft = menuItems[39]; //connect left
 
             #endregion
 
 
-            #region Summon Spells
+            #region Explode Spells
 
-            labels[1].text = "summon\nspells";
-            //Functions_MenuItem.SetType(MenuItemType.Options_TrackCamera, menuItems[1]);
+            labels[1].text = "single\nexplode";
+            Functions_MenuItem.SetType(MenuItemType.Explosive_Single, menuItems[1]);
+
+            labels[6].text = "chain\nexplode";
+            Functions_MenuItem.SetType(MenuItemType.Explosive_Line, menuItems[6]);
 
             #endregion
 
@@ -127,18 +130,18 @@ namespace DungeonRun
             #endregion
 
 
-            #region Wind Spells
+            #region Electrical Spells
 
-            labels[3].text = "wind\nspells";
-            //Functions_MenuItem.SetType(MenuItemType.Options_HardMode, menuItems[3]);
+            labels[3].text = "ether\nspell";
+            Functions_MenuItem.SetType(MenuItemType.Spells_Lightning_Ether, menuItems[3]);
 
             #endregion
 
 
-            #region Electric Spells - has right neighbors to explosive column
+            #region Summon Spells - has right neighbors to explosive column
 
-            labels[4].text = "ether\nspell";
-            Functions_MenuItem.SetType(MenuItemType.Spells_Lightning_Ether, menuItems[4]);
+            labels[4].text = "call\nbats";
+            Functions_MenuItem.SetType(MenuItemType.Spells_Summon_Bat_Explosion, menuItems[4]);
             menuItems[4].neighborRight = menuItems[0]; //connect right
 
             //labels[9].text = "ether\nspell";
@@ -238,15 +241,23 @@ namespace DungeonRun
 
                 #region Set Hero's Current Spell (map MenuItemType to SpellType)
 
+                //wind spells
+
                 //explosive spells
                 if (currentlySelected.type == MenuItemType.Explosive_Single)
                 { PlayerData.currentSpell = SpellType.Explosive_Single; }
                 else if (currentlySelected.type == MenuItemType.Explosive_Line)
                 { PlayerData.currentSpell = SpellType.Explosive_Line; }
 
+                //ice spells
+
                 //electric spells
                 else if (currentlySelected.type == MenuItemType.Spells_Lightning_Ether)
                 { PlayerData.currentSpell = SpellType.Lightning_Ether; }
+
+                //summons spells
+                else if (currentlySelected.type == MenuItemType.Spells_Summon_Bat_Explosion)
+                { PlayerData.currentSpell = SpellType.Summon_Bat_Explosion; }
 
                 #endregion
 

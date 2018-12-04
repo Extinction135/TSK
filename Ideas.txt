@@ -2,7 +2,11 @@
 
 
 
-
+Spell
+blackhole - pulls everything into it (via wind), releases any actor or roomObj
+it touches, killing hero too, then animates closed. explodes. leaves behind
+a white dwarf object, large globe that floats and slowly pulls objs towards
+it. does no damage, just blocks.
 
 
 Magical Playthrough++

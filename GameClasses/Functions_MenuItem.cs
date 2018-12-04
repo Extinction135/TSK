@@ -670,6 +670,14 @@ namespace DungeonRun
 
             //SpellBook Screen menuItems
 
+
+            #region Wind Spells
+
+
+
+            #endregion
+
+
             #region Explosive spells
 
             else if (Type == MenuItemType.Explosive_Single)
@@ -694,6 +702,13 @@ namespace DungeonRun
             #endregion
 
 
+            #region Ice Spells
+
+
+
+            #endregion
+
+
             #region Electrical spells
 
             else if (Type == MenuItemType.Spells_Lightning_Ether)
@@ -707,8 +722,21 @@ namespace DungeonRun
             }
 
             #endregion
-            
 
+
+            #region Summon Spells
+
+            else if (Type == MenuItemType.Spells_Summon_Bat_Explosion)
+            {
+                MenuItem.name = "Summon Bats";
+                MenuItem.description = "Summons an army of \nbats around caster.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Projectile_Bat;
+                MenuItem.compSprite.texture = Assets.EnemySheet;
+                MenuItem.compAnim.loop = true;
+                MenuItem.compAnim.speed = 10;
+            }
+
+            #endregion
 
 
 

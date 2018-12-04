@@ -902,11 +902,14 @@ namespace DungeonRun
     {
         None,
 
+        //wind
+
         //explosive
         Explosive_Single,
         Explosive_Line,
         Explosive_Bombos,
 
+        //ice
 
         //electrical
         Lightning_Ether,
@@ -976,13 +979,24 @@ namespace DungeonRun
 
         #region Spells
 
+        //wind
+
+
         //explosive
         Explosive_Single,
         Explosive_Line,
 
 
+        //ice
+
+
         //electrical
         Spells_Lightning_Ether,
+
+
+        //summons
+        Spells_Summon_Bat_Explosion,
+
 
         #endregion
 
