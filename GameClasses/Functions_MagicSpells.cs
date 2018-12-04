@@ -122,6 +122,7 @@ namespace DungeonRun
 
 
 
+            //wind spells
 
 
 
@@ -226,6 +227,17 @@ namespace DungeonRun
 
 
 
+            //ice spells
+
+            #region Freeze Ground
+
+            else if (Spell == SpellType.Ice_FreezeGround)
+            {   //cast and play sfx
+                Cast_FreezeGround(Caster.compSprite.position);
+                Assets.Play(Assets.sfxIcerod);
+            }
+
+            #endregion
 
 
 
@@ -382,6 +394,8 @@ namespace DungeonRun
                     icePosRef.X, icePosRef.Y);
             }
         }
+
+
 
 
         

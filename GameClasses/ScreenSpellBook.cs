@@ -124,8 +124,8 @@ namespace DungeonRun
 
             #region Ice Spells
 
-            labels[2].text = "ice\nspells";
-            //Functions_MenuItem.SetType(MenuItemType.Options_Watermark, menuItems[2]);
+            labels[2].text = "freeze\nground";
+            Functions_MenuItem.SetType(MenuItemType.Spells_Ice_FreezeGround, menuItems[2]);
 
             #endregion
 
@@ -250,6 +250,8 @@ namespace DungeonRun
                 { PlayerData.currentSpell = SpellType.Explosive_Line; }
 
                 //ice spells
+                else if (currentlySelected.type == MenuItemType.Spells_Ice_FreezeGround)
+                { PlayerData.currentSpell = SpellType.Ice_FreezeGround; }
 
                 //electric spells
                 else if (currentlySelected.type == MenuItemType.Spells_Lightning_Ether)

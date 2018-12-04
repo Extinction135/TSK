@@ -66,16 +66,10 @@ Today:
 
 
 
+Freeze Ground Spell
 
-Bat Army Summons
-
-test summoning army of bats. working. can't see
-the animation of the bat on the spells screen tho.
-fixed. working great now.
-
-
-
-
+freeze ground spell added to game.
+tested and working. this is crazy.
 
 
 
@@ -83,8 +77,6 @@ fixed. working great now.
 
 
 Spells++
-
-freeze ground - at casters position
 
 Ice Walk - everywhere hero walks, ice tiles spawn, across frames.
 

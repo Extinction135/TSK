@@ -910,6 +910,7 @@ namespace DungeonRun
         Explosive_Bombos,
 
         //ice
+        Ice_FreezeGround,
 
         //electrical
         Lightning_Ether,
@@ -988,6 +989,7 @@ namespace DungeonRun
 
 
         //ice
+        Spells_Ice_FreezeGround,
 
 
         //electrical
