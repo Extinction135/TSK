@@ -98,6 +98,13 @@ namespace DungeonRun
         public override void Update()
         {
             Functions_MenuWindow.Update(window);
+            if (window.interior.displayState == DisplayState.Opened)
+            {
+                for (i = 0; i < 10; i++)
+                {
+                    Functions_Animation.ScaleSpriteDown(menuItems[i].compSprite);
+                }
+            }
         }
 
         public override void Draw()

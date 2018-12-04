@@ -49,6 +49,13 @@ namespace DungeonRun
                 Functions_Projectile.Spawn(ProjectileType.Bite, Actor, Actor.direction);
                 Functions_Actor.SetItemUseState(Actor);
             }
+
+            #endregion
+
+
+
+            #region Wand and Spellbook
+
             else if (Type == MenuItemType.WeaponWand)
             {   //only hero, with wand as weapon, can cast spells
                 if (Actor == Pool.hero & Pool.hero.weapon == MenuItemType.WeaponWand)
@@ -61,8 +68,17 @@ namespace DungeonRun
                     Pool.hero.lockTotal = 10;
                 }
             }
-            
+            else if (Type == MenuItemType.ItemSpellbook)
+            {   //only hero, can set hero's current spell
+                if (Actor == Pool.hero)
+                {   //display spell book screen
+                    ScreenManager.AddScreen(Screens.SpellBook);
+                }
+            }
+
             #endregion
+
+
 
 
             #region Items

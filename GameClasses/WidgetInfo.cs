@@ -51,13 +51,14 @@ namespace DungeonRun
             infoItem.compSprite.position.Y = Y + 16 * 2;
             //align the goldAmount display to the infoItem
             Functions_Component.Align(goldDisplay, infoItem.compSprite);
+            infoItem.compAnim.loop = true;
         }
 
         public override void Update()
         {
             Functions_MenuWindow.Update(window);
             Functions_Animation.Animate(infoItem.compAnim, infoItem.compSprite);
-            Functions_Animation.ScaleSpriteDown(infoItem.compSprite); //does this need to be scaled?
+            Functions_Animation.ScaleSpriteDown(infoItem.compSprite);
         }
 
         public override void Draw()
@@ -76,6 +77,7 @@ namespace DungeonRun
         public void Display(MenuItem MenuItem)
         {   //match the infoItem to the passed MenuItem
             infoItem.compAnim.currentAnimation = MenuItem.compAnim.currentAnimation;
+            infoItem.compAnim.speed = MenuItem.compAnim.speed;
             infoItem.compSprite.texture = MenuItem.compSprite.texture;
 
             infoItem.compSprite.drawRec.Width = MenuItem.compSprite.drawRec.Width;

@@ -66,36 +66,6 @@ Today:
 
 
 
-Spell Book
-
-this is the book from lttp. clicking on it opens a screen
-just like the options/cheat screen, but has menuItem selections
-for SPELLS. the menu items are visually arranged by element:
-explosive, fire, ice, wind, electricity.
-these are the vertical seperations on the screen, as we need
-to draw and display the info widget here too. this allows for
-8 spells of each element, using the current UI systems.
-
-summon magic will be handled differently, via RITUALS.
-we have visual menu item sprites for MOST of these elements:
-explosion animation, ground fire, iceball, wind (need), and 
-electricity (which we can use a lightning bolt for).
-
-this sets up the spell book screen to modify the playerData.currentSpell
-value, and allows for spell growth.
-
-cleaned up options screen.
-spellbook screen exists.
-bombos spell menu item exists.
-awesome book sprite added, based on lttps.
-inventory setup to handle new spellbook.
-enemy fang replaced with wand weapon in inventory.
-
-removed bat summon magic ui item.
-added ether to test against bombos.
-spell ui items are now animated.
-tested switching between spells, working.
-tested casting spells via wand, working.
 
 
 
@@ -104,22 +74,68 @@ tested casting spells via wand, working.
 
 
 
+
+Spellbook++
 
 when we close the spellbook, the inventory screen
 should update the info widget to get the currently
 selected items info - otherwise it displays the last
-selected spell.
+selected spell. done.
 
-when we select a spell, the spellbook should close.
+all inventory widgets should scale their menunItems
+down in their Update(). always scale the menuItems down.
+done. but we get double scaledown on selected item
+on inventory screen. fixed.
 
-if we equip the spell book to the item slot, the spell
-book screen should open upon use.
+no popup on spells screen, add that to move routine.
+done. spells now scale up upon selection via A.
 
 the spellbook should be equipped to the item slot,
-when the wand is equipped to the weapon slot.
+when the wand is equipped to the weapon slot. done.
 this allows for fast changing of spells, while
 still letting player overwrite their current item 
 after equipping the wand.
+
+if we equip the spell book to the item slot, the spell
+book screen should open upon use. done.
+
+*if we open the spellbook from the inventory screen,
+we are selecting the spellbook item. don't reset the
+inv's item to boomerang, just update the info widget.
+
+spells screen hasn't reset and isn't updating the
+info widget, so it's not opening to display anything.
+BUT, we are drawing it.. so that's cool. fixed.
+
+updated info widget to also match the speed of the
+displayed menuitem sprite component.
+
+
+
+
+
+
+
+
+
+
+
+
+
+need a widget / window that displays in the spell
+screen that matches options widgets dimensions.
+should simply contain text that explains what magic
+is and how it's used.
+
+
+
+spells in spell book should 'wrap' to each other,
+the 1st spell's left neighboro should be the right
+most spells left neighbor, and so on, so spell selection
+is fast andn requires less input (we'll be doing this
+alot later on).
+
+
 
 
 

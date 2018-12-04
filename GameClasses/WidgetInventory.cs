@@ -16,6 +16,7 @@ namespace DungeonRun
     {
         public List<ComponentText> labels; //weapons, armor, equipment texts
         public List<MenuItem> menuItems;
+        public int itemCount = 7 * 6;
         public ComponentAmountDisplay bombsDisplay;
         public ComponentAmountDisplay arrowsDisplay;
 
@@ -39,7 +40,7 @@ namespace DungeonRun
                 new Vector2(0, 0), ColorScheme.textDark));
             //create menuitems
             menuItems = new List<MenuItem>();
-            for (i = 0; i < (7 * 6); i++)
+            for (i = 0; i < itemCount; i++)
             {
                 MenuItem mi = new MenuItem();
                 mi.id = i; //set id
@@ -86,6 +87,8 @@ namespace DungeonRun
         public override void Update()
         {
             Functions_MenuWindow.Update(window);
+            for (i = 0; i < itemCount; i++) //scale all the menuItems down each frame
+            { Functions_Animation.ScaleSpriteDown(menuItems[i].compSprite); }
         }
 
         public override void Draw()

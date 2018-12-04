@@ -15,7 +15,7 @@ namespace DungeonRun
     public class WidgetQuestItems : Widget
     {
         public List<MenuItem> menuItems;
-
+        //nothing for now
 
         public WidgetQuestItems()
         {

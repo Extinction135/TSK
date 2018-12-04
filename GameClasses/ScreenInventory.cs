@@ -40,6 +40,7 @@ namespace DungeonRun
                 new Point(16, 16));
         }
 
+
         public override void Open()
         {
             background.alpha = 0.0f;
@@ -119,6 +120,7 @@ namespace DungeonRun
             Assets.Play(Assets.sfxWindowOpen);
         }
 
+
         public override void HandleInput(GameTime GameTime)
         {   //select a menuItem with new A button press
             if (Input.Player1.A & Input.Player1.A_Prev == false)
@@ -172,9 +174,19 @@ namespace DungeonRun
                 {   //Handle Items, weapons, armor, and equipment
 
 
+                    if(currentlySelected.type == MenuItemType.WeaponWand)
+                    {   //set wand as weapon
+                        PlayerData.currentWeapon = MenuItemType.WeaponWand;
+                        Pool.hero.weapon = MenuItemType.WeaponWand;
+                        //spellbook as item
+                        PlayerData.currentItem = MenuItemType.ItemSpellbook;
+                        Pool.hero.item = MenuItemType.ItemSpellbook;
+                    }
+
+
                     #region Items
 
-                    if ( //items
+                    else if ( //items
                         currentlySelected.type == MenuItemType.ItemBomb
                         || currentlySelected.type == MenuItemType.ItemBoomerang
                         || currentlySelected.type == MenuItemType.ItemBow
@@ -207,7 +219,6 @@ namespace DungeonRun
                         || currentlySelected.type == MenuItemType.WeaponNet
                         || currentlySelected.type == MenuItemType.WeaponShovel
                         || currentlySelected.type == MenuItemType.WeaponHammer
-                        || currentlySelected.type == MenuItemType.WeaponWand
                         || currentlySelected.type == MenuItemType.WeaponFang
                         ) 
                     {
@@ -306,6 +317,7 @@ namespace DungeonRun
 
         }
 
+
         public override void Update(GameTime GameTime)
         {
 
@@ -360,14 +372,13 @@ namespace DungeonRun
             #endregion
 
 
-            //animate the currently selected menuItem - this scales it back down to 1.0
-            if (currentlySelected.type != MenuItemType.InventoryGold) //inventory gold animates already
-            {
+            
+            if (currentlySelected.type != MenuItemType.InventoryGold)
+            {   //this prevents inventory gold from getting animated twice per frame
                 Functions_Animation.Animate(currentlySelected.compAnim, currentlySelected.compSprite);
-                Functions_Animation.ScaleSpriteDown(currentlySelected.compSprite);
             }
-            //this prevents inventory gold from getting animated twice per frame
         }
+
 
         public override void Draw(GameTime GameTime)
         {

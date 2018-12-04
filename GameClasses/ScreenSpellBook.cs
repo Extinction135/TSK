@@ -153,10 +153,12 @@ namespace DungeonRun
             //set the currently selected menuItem to the first inventory menuItem
             currentlySelected = menuItems[0];
             previouslySelected = menuItems[0];
-            Widgets.Info.Display(currentlySelected);
 
             //play the opening soundFX
             Assets.Play(Assets.sfxWindowOpen);
+            //setup info widget
+            Widgets.Info.Reset(16 * 26 + 0, 16 * 4);
+            Widgets.Info.Display(currentlySelected);
         }
 
         public override void HandleInput(GameTime GameTime)
@@ -168,6 +170,11 @@ namespace DungeonRun
             //Handle A Button Input
             if(Input.Player1.A & Input.Player1.A_Prev == false)
             {
+                //scale up any known menuItem and play the selection sound
+                if (currentlySelected.type != MenuItemType.Unknown)
+                { currentlySelected.compSprite.scale = 2.0f; }
+                Assets.Play(Assets.sfxMenuItem);
+
 
                 #region Set Hero's Current Spell
 
@@ -187,7 +194,6 @@ namespace DungeonRun
 
 
                 //we will always have a menuItem selected
-                Assets.Play(Assets.sfxMenuItem);
                 UpdateMenuItems();
 
                 if (Flags.PrintOutput)
@@ -252,6 +258,7 @@ namespace DungeonRun
 
             //update the window, and set screen's display state relative
             Functions_MenuWindow.Update(window);
+            Widgets.Info.Update();
 
 
             #region Handle Display State
@@ -267,11 +274,6 @@ namespace DungeonRun
                 }
                 selectionBox.scale = 2.0f;
             }
-
-
-
-
-
             else if (displayState == DisplayState.Opened)
             {   //main screen opened state
                 for (i = 0; i < menuItems.Count; i++)
@@ -286,13 +288,6 @@ namespace DungeonRun
                     { menuItems[i].compSprite.currentFrame = menuItems[i].compAnim.currentAnimation[0]; }
                 }
             }
-
-
-
-
-
-
-
             else if (displayState == DisplayState.Closing)
             {   //fade background out
                 background.fadeState = FadeState.FadeOut;
@@ -301,7 +296,10 @@ namespace DungeonRun
                 { displayState = DisplayState.Closed; }
             }
             else if (displayState == DisplayState.Closed)
-            {   //overlay has faded in 100%
+            {   //overlay has faded in 100%, ok to remove screen
+                //spellbook is inv's selected obj, update info widget to show it
+                Widgets.Info.Display(Screens.Inventory.currentlySelected);
+                //remove the screen
                 ScreenManager.RemoveScreen(this);
             }
 

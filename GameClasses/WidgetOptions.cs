@@ -115,6 +115,8 @@ namespace DungeonRun
         public override void Update()
         {
             Functions_MenuWindow.Update(window);
+            for (i = 0; i < 8; i++) //scale all menuItems down
+            { Functions_Animation.ScaleSpriteDown(menuItems[i].compSprite); }
         }
 
         public override void Draw()
