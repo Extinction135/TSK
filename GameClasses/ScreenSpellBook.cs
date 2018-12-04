@@ -63,55 +63,115 @@ namespace DungeonRun
 
             #endregion
 
+            
 
-            #region Set MenuItems & Labels
-
-            //position and set the neighbors
+            //position and set the menuitems + their neighbors
             Functions_MenuItem.PlaceMenuItems(menuItems,
                 window.interior.rec.X + 8 + 5,
                 window.interior.rec.Y + 16 + 8 + 5,
                 (byte)rows, 16 * 3 + 8, 24);
 
 
+            //setup available spells
 
-            //Explosive Spells
+            #region  Explosive Spells - has left neighbors to last column
+
             labels[0].text = "bombos\nspell";
             Functions_MenuItem.SetType(MenuItemType.Spells_Explosive_Bombos, menuItems[0]);
-            labels[5].text = "bombos\nspell";
-            Functions_MenuItem.SetType(MenuItemType.Spells_Explosive_Bombos, menuItems[5]);
+            menuItems[0].neighborLeft = menuItems[4]; //connect left
+
+            //labels[5].text = "bombos\nspell";
+            //Functions_MenuItem.SetType(MenuItemType.Spells_Explosive_Bombos, menuItems[5]);
+            menuItems[5].neighborLeft = menuItems[9]; //connect left
+
+            //labels[10].text = "bombos\nspell";
+            //Functions_MenuItem.SetType(MenuItemType.Spells_Explosive_Bombos, menuItems[10]);
+            menuItems[10].neighborLeft = menuItems[14]; //connect left
+
+            //labels[15].text = "bombos\nspell";
+            //Functions_MenuItem.SetType(MenuItemType.Spells_Explosive_Bombos, menuItems[15]);
+            menuItems[15].neighborLeft = menuItems[19]; //connect left
+
+            //labels[20].text = "bombos\nspell";
+            //Functions_MenuItem.SetType(MenuItemType.Spells_Explosive_Bombos, menuItems[20]);
+            menuItems[20].neighborLeft = menuItems[24]; //connect left
+
+            //labels[25].text = "bombos\nspell";
+            //Functions_MenuItem.SetType(MenuItemType.Spells_Explosive_Bombos, menuItems[25]);
+            menuItems[25].neighborLeft = menuItems[29]; //connect left
+
+            //labels[30].text = "bombos\nspell";
+            //Functions_MenuItem.SetType(MenuItemType.Spells_Explosive_Bombos, menuItems[30]);
+            menuItems[30].neighborLeft = menuItems[34]; //connect left
+
+            //labels[35].text = "bombos\nspell";
+            //Functions_MenuItem.SetType(MenuItemType.Spells_Explosive_Bombos, menuItems[35]);
+            menuItems[35].neighborLeft = menuItems[39]; //connect left
+
+            #endregion
 
 
+            #region Fire Spells
 
-            //Fire Spells
             labels[1].text = "fire\nspells";
             //Functions_MenuItem.SetType(MenuItemType.Options_TrackCamera, menuItems[1]);
 
+            #endregion
 
 
-            //Ice Spells
+            #region Ice Spells
+
             labels[2].text = "ice\nspells";
             //Functions_MenuItem.SetType(MenuItemType.Options_Watermark, menuItems[2]);
 
+            #endregion
 
 
-            //Wind Spells
+            #region Wind Spells
+
             labels[3].text = "wind\nspells";
             //Functions_MenuItem.SetType(MenuItemType.Options_HardMode, menuItems[3]);
 
+            #endregion
 
 
-            //Electric Spells
+            #region Electric Spells - has right neighbors to explosive column
+
             labels[4].text = "ether\nspell";
             Functions_MenuItem.SetType(MenuItemType.Spells_Lightning_Ether, menuItems[4]);
-            labels[9].text = "ether\nspell";
-            Functions_MenuItem.SetType(MenuItemType.Spells_Lightning_Ether, menuItems[9]);
+            menuItems[4].neighborRight = menuItems[0]; //connect right
 
+            //labels[9].text = "ether\nspell";
+            //Functions_MenuItem.SetType(MenuItemType.Spells_Lightning_Ether, menuItems[9]);
+            menuItems[9].neighborRight = menuItems[5]; //connect right
 
+            //labels[14].text = "ether\nspell";
+            //Functions_MenuItem.SetType(MenuItemType.Spells_Lightning_Ether, menuItems[14]);
+            menuItems[14].neighborRight = menuItems[10]; //connect right
 
+            //labels[19].text = "ether\nspell";
+            //Functions_MenuItem.SetType(MenuItemType.Spells_Lightning_Ether, menuItems[19]);
+            menuItems[19].neighborRight = menuItems[15]; //connect right
 
+            //labels[24].text = "ether\nspell";
+            //Functions_MenuItem.SetType(MenuItemType.Spells_Lightning_Ether, menuItems[24]);
+            menuItems[24].neighborRight = menuItems[20]; //connect right
 
+            //labels[29].text = "ether\nspell";
+            //Functions_MenuItem.SetType(MenuItemType.Spells_Lightning_Ether, menuItems[29]);
+            menuItems[29].neighborRight = menuItems[25]; //connect right
+
+            //labels[34].text = "ether\nspell";
+            //Functions_MenuItem.SetType(MenuItemType.Spells_Lightning_Ether, menuItems[34]);
+            menuItems[34].neighborRight = menuItems[30]; //connect right
+
+            //labels[39].text = "ether\nspell";
+            //Functions_MenuItem.SetType(MenuItemType.Spells_Lightning_Ether, menuItems[39]);
+            menuItems[39].neighborRight = menuItems[35]; //connect right
 
             #endregion
+
+
 
 
             #region Finish Up, prep for screen opening

@@ -64,76 +64,39 @@ Today:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-Spellbook++
-
-when we close the spellbook, the inventory screen
-should update the info widget to get the currently
-selected items info - otherwise it displays the last
-selected spell. done.
-
-all inventory widgets should scale their menunItems
-down in their Update(). always scale the menuItems down.
-done. but we get double scaledown on selected item
-on inventory screen. fixed.
-
-no popup on spells screen, add that to move routine.
-done. spells now scale up upon selection via A.
-
-the spellbook should be equipped to the item slot,
-when the wand is equipped to the weapon slot. done.
-this allows for fast changing of spells, while
-still letting player overwrite their current item 
-after equipping the wand.
-
-if we equip the spell book to the item slot, the spell
-book screen should open upon use. done.
-
-*if we open the spellbook from the inventory screen,
-we are selecting the spellbook item. don't reset the
-inv's item to boomerang, just update the info widget.
-
-spells screen hasn't reset and isn't updating the
-info widget, so it's not opening to display anything.
-BUT, we are drawing it.. so that's cool. fixed.
-
-updated info widget to also match the speed of the
-displayed menuitem sprite component.
-
-
-
-
-
-
-
-
-
-
-
-
-
-need a widget / window that displays in the spell
-screen that matches options widgets dimensions.
-should simply contain text that explains what magic
-is and how it's used.
-
-
+SpellBook++
 
 spells in spell book should 'wrap' to each other,
 the 1st spell's left neighboro should be the right
 most spells left neighbor, and so on, so spell selection
 is fast andn requires less input (we'll be doing this
-alot later on).
+alot later on). done.
+
+
+
+
+
+
+
+
+
+magic systems++
+
+functions_magic should have an update() method, that is called
+from levelscreen.update(). this will allow magic to be called 
+sequentially over frames. we just have to make sure to stop
+any magic that was casted or being casted across frames when we
+exit the level screen (on a close screen routine).
+
+new bombos (keep old as ref)
+bombos should start at the center of the caster and explode outwards
+in a circular fashion, until most of the screen is covered. each
+circle of explosions should happen sequentially frame by frame.
+this is a fast effect that is also very powerful.
+
+new ether
+this just sequentially does the bolts, not all at once, and also
+randomly spawns bolts around the caster (but not touching).
 
 
 
@@ -145,78 +108,6 @@ alot later on).
 
 
 
-
-
-
-
-
-Rituals
-
-a way to summon enemies to train or fight. different than
-magic, because rituals would create actors (with spawn particle fx).
-
-
-
-
-
-
-
-
-
-
-
-
-
-SPELLS+++++++
-
-playerdata.currentSpell controls what the wand casts.
-working and tested!
-
-
-
-fireballs, iceballs, etc.. via spells...
-we can even route fire and ice rods to cast() instead
-of calling projectiles directly, so fn_magic acts as
-an entry point for any actors casting magic.
-//Functions_Projectile.Spawn(ProjectileType.Iceball, Actor, Actor.direction);
-
-
-
-we just need to be able to set playerdata.currentSpell
-via the spell book and magic is setup and working.
-we already have ether and bombos as spells.
-now we just need them as entries in a spell book.
-
-
-
-
-
-SpellBook
-
-playerdata has a value for current spell, which is a spell
-type enum value (new), and booleans for spells the player
-has learned. we flip a boolean in playerdata, and the spell
-book displays this spell as selectable. selecting the spell
-assigns that spell to the playerdata.currentSpell reference.
-
-this looks similar to the DUNGEON MAP, and uses the SCROLL
-sprite objects, just like it does. so, start by copy pasting
-that screen in and changing it's name to spellbook, then modifying
-the class to just display the scroll.
-
-
-Spell Selection
-
-how do we display MANY spells? via a bullet point, next to
-some text labels. this bullet point is a ui item sprite,
-set in a 16x16 sprite, but used differently than regular
-menuitems. these 'menu items' are much closer together,
-so we can fit more text into a smaller area. we do this
-so we can display many spells on the spell book, while
-still using the menuItem systems that exist. 
-
-selecting a spell changes playerdata.currentSpell to the
-proper spell type enum value.
 
 
 
@@ -615,5 +506,26 @@ Display Playtime (in inventory?) keep this offscreen.
 
 need to add timespan to playerdata to track playtime,
 so we ca display it under repo name on right.
+
+
+
+
+
+
+
+
+
+SpellBook++
+
+need a widget / window that displays in the spell
+screen that matches options widgets dimensions.
+should simply contain text that explains what magic
+is and how it's used. for example, WIND counters.
+
+
+Rituals
+
+a way to summon enemies to train or fight. different than
+magic, because rituals would create actors (with spawn particle fx).
 
 
