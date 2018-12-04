@@ -276,11 +276,19 @@ namespace DungeonRun
             }
 
             #endregion
-            
+
+
+            #region Explosions (limit to initial blast)
+
+            else if (Pro.type == ProjectileType.Explosion)
+            {   //prevents lingering explosions, while still hitbox drawable
+                if (Pro.lifeCounter > 3) { return; }
+            }
+
+            #endregion
+
 
             
-
-
 
 
 

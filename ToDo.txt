@@ -36,7 +36,7 @@ Shadow Dungeon, TSK Fight complete
 0.79 goals:
 	- removed savedata and load/saving X
 	
-	WAND X + SPELLBOOK + SPELL SCREEN
+	X WAND X + SPELLBOOK + SPELL SCREEN
 	WIND - crucial because levels have wind intensity + direction values now!
 	
 	WIND magic
@@ -66,26 +66,21 @@ Today:
 
 
 
-Magic Systems++
 
-functions_magic should have an update() method, that is called
-from levelscreen.update(). this will allow magic to be called 
-sequentially over frames. we just have to make sure to stop
-any magic that was casted or being casted across frames when we
-exit the level screen (on a close screen routine). done.
+Explosion Spell
 
-we update magic systems, then the main pool updates. so,
-any projectile magic creates will be collision and interaction
-checked THAT FRAME. 
+added single explosion spell, replacing castable bombos
+spell in spellbook. bombos is only castable via medallion now.
+which is how it should be, as it is super powerful.
 
-Bombos++
-
-bombos is the first spell to use (and test) the new magic systems.
-now, explosions spawn left to right across the screen, projecting 
-down to world space, checking to see if they overlap the hero, and
-then spawning explosions at these positions. this is done across
-frames, in a controllable and timeable manner. tested and working,
-i destroyed the town and it was insanely fun to watch.
+if actor overlaps an explosion, it deals actor damage.
+but this overlap should only happen on the explosions
+2nd frame of existence, just like with roomObjs. I bet it
+doesn't, because hero can overlap explosions that have
+expired.. correct. explosions now only process interactions
+against actors if they are less then 3 frames old. this
+has the effect of explosions being more precise and not
+lingering around after their animation has completed.
 
 
 
@@ -95,35 +90,49 @@ i destroyed the town and it was insanely fun to watch.
 
 
 
+SPELLS
 
-new bombos (keep old as ref)
-bombos should start at the center of the caster and explode outwards
-in a circular fashion, until most of the screen is covered. each
-circle of explosions should happen sequentially frame by frame.
-this is a fast effect that is also very powerful.
+explosion spells
 
-new ether
-this just sequentially does the bolts, not all at once, and also
-randomly spawns bolts around the caster (but not touching).
-
-
-
-
-
-
-
-
-
-
-
-
-
-Explosion spells
-explosion - creates explosion in casters direction with safe offset
 line of explosions - a line, with offsets in casters direction
-bombos - explosions around caster
+circular explosions around caster
 all actors explode (across frames)
-all roomObjs explode (across frames)
+random explosions (across frames)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -176,6 +185,11 @@ think of them as magic or projectile factories that interfere with
 the player...
 
 
+
+new ether
+this just sequentially does the bolts, not all at once, and also
+randomly spawns bolts around the caster (but not touching).
+THERE SHOULD BE CLOUDS!
 
 
 
@@ -554,4 +568,14 @@ Rituals
 a way to summon enemies to train or fight. different than
 magic, because rituals would create actors (with spawn particle fx).
 
+
+
+
+
+Bombos+++
+
+bombos should spread from the middle out, center of screen.
+the dual spread effect: which is just two counters - one incrementing, 
+one decrementing. this increases the usefulness of bombos while
+keeping it's extremely destructive nature to levels.
 

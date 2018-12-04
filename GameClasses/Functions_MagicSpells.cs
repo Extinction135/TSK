@@ -23,14 +23,12 @@ namespace DungeonRun
         static Point Total_ScreenSize = new Point(640 / 16, 360 / 16); //x total, y total
 
 
-
         //bombos fields
-        static Boolean Casting_Bombos = false;
-        static int Bombos_lifetime = 180; //in frames, overwritten by Cast()
-        static int Bombos_counter = 0;
-        static Point Bombos_ActiveCounter = new Point(0, 6); //counter, total
-
-        static Point Bombos_spawnPos = new Point();
+        static Boolean Casting_Bombos = false; //master flag
+        static Point Bombos_ActiveCounter = new Point(0, 6); //counter, total (processes bombos routine)
+        static int Bombos_lifetime = 40; //entire screen of destruction
+        static int Bombos_counter = 0; //counts up to lifetime
+        static Point Bombos_spawnPos = new Point(); //used to place explosions on screen
         static int Bombos_ExpCounter = 0; //explosion counter
 
 
@@ -58,17 +56,17 @@ namespace DungeonRun
                     //check overlaps with hero (prevent spawns), then spawn exps.
                     //this works for both fields and dungeons and isn't too complicated
                     //plus it limits explosions produced by bombos to be onscreen
-                    for (Bombos_ExpCounter = 0; Bombos_ExpCounter < Total_ScreenSize.Y+1; Bombos_ExpCounter++)
+                    for (Bombos_ExpCounter = 0; Bombos_ExpCounter < Total_ScreenSize.Y + 1; Bombos_ExpCounter++)
                     {   //sequentially cover screen
                         Bombos_spawnPos.X = Bombos_counter * 16; //row id
                         Bombos_spawnPos.Y = Bombos_ExpCounter * 16; //column id
                         //project from screen to world
                         Bombos_spawnPos = Functions_Camera2D.ConvertScreenToWorld(Bombos_spawnPos.X, Bombos_spawnPos.Y);
                         //prevent explosions spawn ontop of hero (per frame)
-                        if ( 
-                            (Math.Abs(Pool.hero.compSprite.position.X - Bombos_spawnPos.X) < 20)
+                        if (
+                            (Math.Abs(Pool.hero.compSprite.position.X - Bombos_spawnPos.X) < 28)
                             & //per axis control over explosion checking pls
-                            (Math.Abs(Pool.hero.compSprite.position.Y - Bombos_spawnPos.Y) < 20)
+                            (Math.Abs(Pool.hero.compSprite.position.Y - Bombos_spawnPos.Y) < 28)
                         )
                         { } //do nothing
                         else
@@ -81,6 +79,7 @@ namespace DungeonRun
                     Bombos_counter++;
                     if (Bombos_counter >= Bombos_lifetime) { Casting_Bombos = false; }
                 }
+
             }
 
             #endregion
@@ -93,7 +92,7 @@ namespace DungeonRun
 
         public static void StopAll()
         {
-            Casting_Bombos = false; Bombos_counter = Bombos_lifetime; 
+            Casting_Bombos = false;
         }
 
 
@@ -119,6 +118,97 @@ namespace DungeonRun
             }
 
 
+
+
+
+
+
+            //explosive spells
+
+            #region Single Explosion
+
+            else if(Spell == SpellType.Explosive_Single)
+            {   //as close as possible on the offsets
+                if(Caster.direction == Direction.Up)
+                {
+                    Functions_Projectile.Spawn(ProjectileType.Explosion,
+                        Caster.compCollision.rec.Center.X,
+                        Caster.compCollision.rec.Center.Y - 26,
+                        Direction.Down);
+                }
+                else if (Caster.direction == Direction.Down)
+                {
+                    Functions_Projectile.Spawn(ProjectileType.Explosion,
+                        Caster.compCollision.rec.Center.X,
+                        Caster.compCollision.rec.Center.Y + 23,
+                        Direction.Down);
+                }
+                else if (Caster.direction == Direction.Right)
+                {
+                    Functions_Projectile.Spawn(ProjectileType.Explosion,
+                        Caster.compCollision.rec.Center.X + 25,
+                        Caster.compCollision.rec.Center.Y,
+                        Direction.Down);
+                }
+                else if (Caster.direction == Direction.Left)
+                {
+                    Functions_Projectile.Spawn(ProjectileType.Explosion,
+                        Caster.compCollision.rec.Center.X - 25,
+                        Caster.compCollision.rec.Center.Y,
+                        Direction.Down);
+                }
+            }
+
+            #endregion
+
+
+            #region Bombos
+
+            else if (Spell == SpellType.Explosive_Bombos)
+            {   //reset counters, flip flag
+                Bombos_counter = 0;
+                //Bombos_spread = 0;
+                Bombos_ActiveCounter.X = 0; //start process this frame
+                Casting_Bombos = true; //flip flag
+                Assets.Play(Assets.sfxExplosionsMultiple); //play sfx
+            }
+
+            #endregion
+
+
+
+
+
+
+
+
+
+
+            //electrical spells
+
+            #region Ether
+
+            else if (Spell == SpellType.Lightning_Ether)
+            {
+                Cast_Ether();
+            }
+
+            #endregion
+
+
+
+
+
+
+
+
+
+
+
+            //summon spells
+
+            #region Summons
+
             else if(Spell == SpellType.Summon_Bat_Projectile)
             {   //shoot bat from caster's direction
                 Functions_Projectile.Spawn(ProjectileType.Bat, Caster, Caster.direction);
@@ -128,18 +218,8 @@ namespace DungeonRun
                 Cast_Bat_Explosion(Caster);
             }
 
+            #endregion
 
-            else if(Spell == SpellType.Lightning_Ether)
-            {
-                Cast_Ether();
-            }
-            else if(Spell == SpellType.Explosive_Bombos)
-            {   //set how long bombos lasts, based on room width
-                Bombos_counter = 0; //start on left of room
-                Bombos_ActiveCounter.X = 0; //start process this frame
-                Casting_Bombos = true; //flip flag
-                Assets.Play(Assets.sfxExplosionsMultiple); //play sfx
-            }
         }
 
 
@@ -274,10 +354,7 @@ namespace DungeonRun
 
 
 
-
-
-
-
+        
 
 
 

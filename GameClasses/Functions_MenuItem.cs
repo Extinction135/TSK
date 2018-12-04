@@ -668,17 +668,25 @@ namespace DungeonRun
 
 
 
-            #region SpellBook Screen menuItems
+            //SpellBook Screen menuItems
 
-            else if (Type == MenuItemType.Spells_Explosive_Bombos)
+            #region Explosive spells
+
+            else if (Type == MenuItemType.Explosive_Single)
             {
-                MenuItem.name = "Bombos";
-                MenuItem.description = "Explosions around \nthe caster.";
+                MenuItem.name = "Explode";
+                MenuItem.description = "Places an explosion \nin front of the caster.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Projectile_Explosion;
                 MenuItem.compSprite.texture = Assets.entitiesSheet;
                 MenuItem.compAnim.loop = true;
                 MenuItem.compAnim.speed = 10;
             }
+
+            #endregion
+
+
+            #region Electrical spells
+
             else if (Type == MenuItemType.Spells_Lightning_Ether)
             {
                 MenuItem.name = "Ether";
@@ -690,6 +698,7 @@ namespace DungeonRun
             }
 
             #endregion
+            
 
 
 

@@ -899,11 +899,18 @@ namespace DungeonRun
     public enum SpellType
     {
         None,
-        
-        Lightning_Ether,
 
+        //explosive
+        Explosive_Single,
         Explosive_Bombos,
 
+
+        
+        //electrical
+        Lightning_Ether,
+
+        
+        //summons
         Summon_Bat_Projectile,
         Summon_Bat_Explosion,
     }
@@ -967,7 +974,7 @@ namespace DungeonRun
 
         #region Spells
 
-        Spells_Explosive_Bombos,
+        Explosive_Single,
 
         Spells_Lightning_Ether,
 

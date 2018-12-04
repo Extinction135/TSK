@@ -76,8 +76,8 @@ namespace DungeonRun
 
             #region  Explosive Spells - has left neighbors to last column
 
-            labels[0].text = "bombos\nspell";
-            Functions_MenuItem.SetType(MenuItemType.Spells_Explosive_Bombos, menuItems[0]);
+            labels[0].text = "expl\node";
+            Functions_MenuItem.SetType(MenuItemType.Explosive_Single, menuItems[0]);
             menuItems[0].neighborLeft = menuItems[4]; //connect left
 
             //labels[5].text = "bombos\nspell";
@@ -239,9 +239,9 @@ namespace DungeonRun
                 #region Set Hero's Current Spell
 
                 //explosive spells
-                if (currentlySelected.type == MenuItemType.Spells_Explosive_Bombos)
+                if (currentlySelected.type == MenuItemType.Explosive_Single)
                 {
-                    PlayerData.currentSpell = SpellType.Explosive_Bombos;
+                    PlayerData.currentSpell = SpellType.Explosive_Single;
                 }
 
                 //electric spells
