@@ -908,7 +908,6 @@ namespace DungeonRun
         Explosive_Bombos,
 
 
-        
         //electrical
         Lightning_Ether,
 

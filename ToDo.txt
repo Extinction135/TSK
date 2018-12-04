@@ -64,30 +64,18 @@ Today:
 
 
 
+Magic++
 
-
-
-
-Chain Explosions
-
-this is a chain of explosions coming from caster's pos,
-sequentially across frames. this is easy to do as a projectile.
-
-Explosion Emitter Projectile
-
-a projectile that simply creates explosions as it travels 
-around, for a life time. once dead, the explosions are no
-longer emitted, and thus the effect ends. 
-
-explosive emitter added to game. tested, working.
-this is really fun.
-
-
-
-
-
-
-
+improved chain explosions to be faster.
+upgraded explosions to leave behind ground fires, making
+them essesntially explosive and fire spells in one.
+so because of that, fire and explosions have been merged
+into explosive spells, and summons has come in for the
+6th category instead of fire. upgraded Cast() to resolve
+casters direction to cardinal, handling a case where caster
+could be in a diagonal state, and the cast() wouldn't
+complete due to only cardinal directions calling proper
+routines.
 
 
 
@@ -103,38 +91,7 @@ this is really fun.
 
 SPELLS
 
-explosion spells
-
-
 circular explosions around caster
-all actors explode (across frames)
-random explosions (across frames)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -163,8 +120,8 @@ tornado: spawns a tornado roomObj. (fire, ice, explosive, electrical tornados to
 
 
 
-Fire spells
-Fire -creates groundfire in the direction of the caster.
+Explosive/Fire spells
+
 Fire Walk - creates groundfires wherever the caster walks
 Circle of Fire - creates groundfire around the caster in circle, across frames, continuously.
 Fire Rain - red rain falls, creating ground fires where ever they touch (environmental fx).

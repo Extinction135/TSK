@@ -110,9 +110,11 @@ namespace DungeonRun
 
         public static void Cast(SpellType Spell, Actor Caster)
         {
-            //based on Spell value, we call Cast() methods below
+            //resolve caster direction to NSEW cardinal - no casting diagonally
+            Caster.direction = Functions_Direction.GetCardinalDirection_LeftRight(Caster.direction);
 
-            if(Spell == SpellType.None)
+            //based on Spell value, we call Cast() methods below
+            if (Spell == SpellType.None)
             {   //simply tell the player no spell was cast
                 //Assets.Play(Assets.sfxError); //silently fail
             }

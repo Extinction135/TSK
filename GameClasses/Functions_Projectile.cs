@@ -124,7 +124,7 @@ namespace DungeonRun
 
             else if(Type == ProjectileType.Emitter_Explosion)
             {
-                Functions_Movement.Push(pro.compMove, Dir, 3.0f);
+                Functions_Movement.Push(pro.compMove, Dir, 6.0f);
             }
 
             #endregion
@@ -746,6 +746,57 @@ namespace DungeonRun
             #endregion
 
 
+            #region Iceblocks
+
+            else if (Pro.type == ProjectileType.Iceblock)
+            {   //slow actor / objects friction, so it cant move
+                if (Pro.hitActor != null)
+                {   //slow actor
+                    Pro.hitActor.compMove.friction = World.friction_Max; //max friction
+                    //center track to hit actor
+                    Functions_Movement.Teleport(Pro.compMove,
+                        Pro.hitActor.compMove.position.X + 0,
+                        Pro.hitActor.compMove.position.Y + 0);
+                    //if hitactor dies/goes invis, kill crack block
+                    if (Pro.hitActor.compSprite.visible == false) { Kill(Pro); }
+                }
+                else if (Pro.hitObj != null)
+                {   //slow obj
+                    Pro.hitObj.compMove.friction = World.friction_Max; //max friction
+                    //center track to hit obj
+                    Functions_Movement.Teleport(Pro.compMove,
+                        Pro.hitObj.compMove.position.X + 0,
+                        Pro.hitObj.compMove.position.Y + 0);
+                    //if hitactor dies/goes invis, kill crack block
+                    if (Pro.hitObj.compSprite.visible == false) { Kill(Pro); }
+                }
+                else
+                {
+                    //if iceblock has no target to slow, turn into cracking
+                    if (Pro.type == ProjectileType.Iceblock) { Kill(Pro); }
+                }
+            }
+            else if (Pro.type == ProjectileType.IceblockCracking)
+            {   //slow actor / objects friction, so it cant move
+                if (Pro.hitActor != null)
+                {   //slow actor
+                    Pro.hitActor.compMove.friction = World.friction_Max; //max friction
+                    //center track to hit actor
+                    Functions_Movement.Teleport(Pro.compMove,
+                        Pro.hitActor.compMove.position.X + 0,
+                        Pro.hitActor.compMove.position.Y + 0);
+                }
+                else if (Pro.hitObj != null)
+                {   //slow obj
+                    Pro.hitObj.compMove.friction = World.friction_Max; //max friction
+                    //center track to hit obj
+                    Functions_Movement.Teleport(Pro.compMove,
+                        Pro.hitObj.compMove.position.X + 0,
+                        Pro.hitObj.compMove.position.Y + 0);
+                }
+            }
+
+            #endregion
 
 
 
@@ -875,9 +926,6 @@ namespace DungeonRun
             #endregion
 
 
-
-
-
             #region Iceballs
 
             else if (Pro.type == ProjectileType.Iceball)
@@ -894,68 +942,18 @@ namespace DungeonRun
             #endregion
 
 
-            #region Iceblocks
-
-            else if(Pro.type == ProjectileType.Iceblock)
-            {   //slow actor / objects friction, so it cant move
-                if (Pro.hitActor != null)
-                {   //slow actor
-                    Pro.hitActor.compMove.friction = World.friction_Max; //max friction
-                    //center track to hit actor
-                    Functions_Movement.Teleport(Pro.compMove,
-                        Pro.hitActor.compMove.position.X + 0,
-                        Pro.hitActor.compMove.position.Y + 0);
-                    //if hitactor dies/goes invis, kill crack block
-                    if (Pro.hitActor.compSprite.visible == false) { Kill(Pro); }
-                }
-                else if (Pro.hitObj != null)
-                {   //slow obj
-                    Pro.hitObj.compMove.friction = World.friction_Max; //max friction
-                    //center track to hit obj
-                    Functions_Movement.Teleport(Pro.compMove,
-                        Pro.hitObj.compMove.position.X + 0,
-                        Pro.hitObj.compMove.position.Y + 0);
-                    //if hitactor dies/goes invis, kill crack block
-                    if (Pro.hitObj.compSprite.visible == false) { Kill(Pro); }
-                }
-                else
-                {
-                    //if iceblock has no target to slow, turn into cracking
-                    if (Pro.type == ProjectileType.Iceblock) { Kill(Pro); }
-                }
-            }
-            else if(Pro.type == ProjectileType.IceblockCracking)
-            {   //slow actor / objects friction, so it cant move
-                if (Pro.hitActor != null)
-                {   //slow actor
-                    Pro.hitActor.compMove.friction = World.friction_Max; //max friction
-                    //center track to hit actor
-                    Functions_Movement.Teleport(Pro.compMove,
-                        Pro.hitActor.compMove.position.X + 0,
-                        Pro.hitActor.compMove.position.Y + 0);
-                }
-                else if (Pro.hitObj != null)
-                {   //slow obj
-                    Pro.hitObj.compMove.friction = World.friction_Max; //max friction
-                    //center track to hit obj
-                    Functions_Movement.Teleport(Pro.compMove,
-                        Pro.hitObj.compMove.position.X + 0,
-                        Pro.hitObj.compMove.position.Y + 0);
-                }
-            }
-
-            #endregion
 
 
 
 
+            //emitters
 
             #region Emitters
 
             else if (Pro.type == ProjectileType.Emitter_Explosion)
             {   
                 Pro.interactiveFrame++; //hijack this to limit emitted pros
-                if (Pro.interactiveFrame >= 5)
+                if (Pro.interactiveFrame >= 3)
                 {   Pro.interactiveFrame = 0; //reset counter
                     //spawn explosion from emitter
                     Spawn(ProjectileType.Explosion,
@@ -966,6 +964,8 @@ namespace DungeonRun
             }
 
             #endregion
+
+
 
 
 
@@ -1006,6 +1006,20 @@ namespace DungeonRun
             #endregion
 
 
+            #region Explosion
+
+            else if (Pro.type == ProjectileType.Explosion)
+            {   //create groundfire prior to death (before actual death, for taste)
+                if(Pro.lifeCounter == Pro.lifetime - 6)
+                {
+                    Spawn(ProjectileType.GroundFire, 
+                        Pro.compMove.position.X, 
+                        Pro.compMove.position.Y, 
+                        Direction.None);
+                }
+            }
+
+            #endregion
 
 
 
@@ -1063,10 +1077,8 @@ namespace DungeonRun
             #region Fireball
 
             else if (Pro.type == ProjectileType.Fireball)
-            {   //create explosion
+            {   //create explosion (and groundfire)
                 Spawn(ProjectileType.Explosion, Pro.compMove.position.X, Pro.compMove.position.Y, Direction.None);
-                //create groundfire
-                Spawn(ProjectileType.GroundFire, Pro.compMove.position.X, Pro.compMove.position.Y, Direction.None);
             }
 
             #endregion
@@ -1153,7 +1165,6 @@ namespace DungeonRun
             }
 
             #endregion
-
 
 
 
@@ -1710,16 +1721,19 @@ namespace DungeonRun
 
 
 
-            //Projectiles - Emitter
+            #region Emitters
 
-            else if(Type == ProjectileType.Emitter_Explosion)
+            else if (Type == ProjectileType.Emitter_Explosion)
             {   //emitters have no visual sprite
-                Pro.lifetime = 45; //in frames
+                Pro.lifetime = 30; //in frames
                 Pro.compMove.friction = 1.0f; //no air friction
                 Pro.compMove.moveable = true;
                 Pro.compMove.grounded = false; //obj is airborne
                 Pro.compSprite.visible = false; //dont draw
             }
+
+            #endregion
+
 
 
 

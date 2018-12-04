@@ -111,9 +111,9 @@ namespace DungeonRun
             #endregion
 
 
-            #region Fire Spells
+            #region Summon Spells
 
-            labels[1].text = "fire\nspells";
+            labels[1].text = "summon\nspells";
             //Functions_MenuItem.SetType(MenuItemType.Options_TrackCamera, menuItems[1]);
 
             #endregion
