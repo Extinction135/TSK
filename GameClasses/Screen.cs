@@ -44,6 +44,8 @@ namespace DungeonRun
         public static ScreenOptions Options = new ScreenOptions();
         public static ScreenSummary Summary = new ScreenSummary();
         public static ScreenTitle Title = new ScreenTitle();
+
+        public static ScreenSpellBook SpellBook = new ScreenSpellBook();
     }
 
 

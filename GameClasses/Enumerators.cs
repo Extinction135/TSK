@@ -965,6 +965,16 @@ namespace DungeonRun
         #endregion
 
 
+        #region Spells
+
+        Spells_Explosive_Bombos,
+
+        Spells_Lightning_Ether,
+
+        #endregion
+
+
+
         //loadout menuItems
         InventoryGold,
         InventoryMap,
@@ -984,6 +994,7 @@ namespace DungeonRun
         ItemFirerod,
         ItemIcerod,
         ItemMagicMirror,
+        ItemSpellbook,
 
         BottleEmpty,
         BottleHealth,
@@ -992,10 +1003,8 @@ namespace DungeonRun
         BottleFairy,
         BottleBlob,
         
-        //MagicFireball,
         MagicBombos,
         MagicEther,
-        MagicBat,
 
         WeaponSword,
         WeaponNet,

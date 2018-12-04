@@ -36,7 +36,7 @@ Shadow Dungeon, TSK Fight complete
 0.79 goals:
 	- removed savedata and load/saving X
 	
-	WAND + SPELLBOOK + SPELL SCREEN
+	WAND X + SPELLBOOK + SPELL SCREEN
 	WIND - crucial because levels have wind intensity + direction values now!
 	
 	WIND magic
@@ -66,42 +66,95 @@ Today:
 
 
 
+Spell Book
 
-Spells - part 2
+this is the book from lttp. clicking on it opens a screen
+just like the options/cheat screen, but has menuItem selections
+for SPELLS. the menu items are visually arranged by element:
+explosive, fire, ice, wind, electricity.
+these are the vertical seperations on the screen, as we need
+to draw and display the info widget here too. this allows for
+8 spells of each element, using the current UI systems.
 
-bat magic is now a spell. this means we dont need the bat
-magic medallion sprite or ui item anymore. instead, we doing
-this via fn_magic.cast(), where a bat casted like this is assumed
-to be from the hero.
+summon magic will be handled differently, via RITUALS.
+we have visual menu item sprites for MOST of these elements:
+explosion animation, ground fire, iceball, wind (need), and 
+electricity (which we can use a lightning bolt for).
 
-big bat boss uses bat explosion spell as special now.
-added cast() branch to call bat explosion, meaning player
-can now call bat explosion, if his current spell is set
-correctly.
+this sets up the spell book screen to modify the playerData.currentSpell
+value, and allows for spell growth.
 
-made hammer and wand item use take longer, so they are more
-of an investment time wise. this is because they are more
-powerful - and now the sword feels faster and lighter.
+cleaned up options screen.
+spellbook screen exists.
+bombos spell menu item exists.
+awesome book sprite added, based on lttps.
+inventory setup to handle new spellbook.
+enemy fang replaced with wand weapon in inventory.
 
-and instead i decided that the wand should only last 10
-frames of hold time, so it can be spammed properly. this
-makes the wand feel insanely powerful, and player can
-now spam the bat explosion special attack just like the
-bat boss can, using the same spell routine. this also
-includes ether, bombos, single bat, and a none spell,
-which simply does nothing. this spam-ability makes the
-wand very satisfying to use.
-
-
-
-
-
-
-
+removed bat summon magic ui item.
+added ether to test against bombos.
+spell ui items are now animated.
+tested switching between spells, working.
+tested casting spells via wand, working.
 
 
 
 
+
+
+
+
+
+when we close the spellbook, the inventory screen
+should update the info widget to get the currently
+selected items info - otherwise it displays the last
+selected spell.
+
+when we select a spell, the spellbook should close.
+
+if we equip the spell book to the item slot, the spell
+book screen should open upon use.
+
+the spellbook should be equipped to the item slot,
+when the wand is equipped to the weapon slot.
+this allows for fast changing of spells, while
+still letting player overwrite their current item 
+after equipping the wand.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Rituals
+
+a way to summon enemies to train or fight. different than
+magic, because rituals would create actors (with spawn particle fx).
+
+
+
+
+
+
+
+
+
+
+
+
+
+SPELLS+++++++
+
+playerdata.currentSpell controls what the wand casts.
+working and tested!
 
 
 
@@ -109,7 +162,7 @@ fireballs, iceballs, etc.. via spells...
 we can even route fire and ice rods to cast() instead
 of calling projectiles directly, so fn_magic acts as
 an entry point for any actors casting magic.
-
+//Functions_Projectile.Spawn(ProjectileType.Iceball, Actor, Actor.direction);
 
 
 
@@ -120,14 +173,7 @@ now we just need them as entries in a spell book.
 
 
 
-//Functions_Projectile.Spawn(ProjectileType.Iceball, Actor, Actor.direction);
 
-
-
-
-
-
-Spells!!
 
 SpellBook
 
@@ -157,29 +203,95 @@ selecting a spell changes playerdata.currentSpell to the
 proper spell type enum value.
 
 
-Casting Spells
 
-player must have wand weapon equipped (X) to cast spells.
-this is a simple playerdata.currentWeapon == wand check.
-then we can cast() whatever spell the player has assigned
-to playerData.currentSpell. Cast() simply routes the enum
-values to their proper methods, inside the functions_castMagic
-class.
 
-Cast Magic Class/Functions
 
-the foundation for this is already in projectiles, as freeze
-ground. these methods use projectiles and roomobjects to create
-a certain effect on screen. they sit on top of the existing
-spawn() routines for projectiles, roomObjs, and particles.
 
-Spells - round 1
+Wind spells
+*wind projectiles exist in their own pool, because they interact with
+roomObjs, actors, AND projectiles - allowing wind to push EVERYTHING.
+this allows wind to COUNTER projectiles. which make wind spells the most
+powerful, but also limited because they dont do direct damage. so it 
+takes intelligence and skill to use them.
+gust: wind pro in casters direction.
+repel: wind pros from casters center out, constantly across frames.
+fly: pushes caster in facing direction each frame, in flying state.
+mass move: pushes all objs, actors, and pros in room in given direction.
+control wind: sets the level's wind direction, intensity, and frequency.
+tornado: spawns a tornado roomObj. (fire, ice, explosive, electrical tornados too)...
+****wind should work in water as well*****
 
-bat magic should become an enemy magic spell. this is the first
-spell we are going to migrate.
 
-then we need to make a spell that creates ground fires in the
-facing direction of th caster. easy.
+
+
+
+Fire spells
+Fire -creates groundfire in the direction of the caster.
+Fire Walk - creates groundfires wherever the caster walks
+Circle of Fire - creates groundfire around the caster in circle, across frames, continuously.
+Fire Rain - red rain falls, creating ground fires where ever they touch (environmental fx).
+
+Ice Spells
+ice ball - acts as it does currently
+freeze ground - at casters position
+hail - large snowball objs fall, causing level 1 destruction,
+creating icetiles where ball hitbox overlaps, mostly single ice tiles.
+this is diff pattern than iceballs.
+snowstorm - freezes all objects in level (frozen state), distrubuted
+across frames, randomly freezing objs and placing icetiles
+ice block wall - create wall of destructible ice blocks (only blocking, with ice
+tiles underneath and around them).
+ice block freeze all - freezes all actors with iceblocks that can be
+frozen (non minibosses and bosses).
+Ice Walk - everywhere hero walks, ice tiles spawn, across frames.
+
+Explosion spells
+explosion - creates explosion in casters direction with safe offset
+line of explosions - a line, with offsets in casters direction
+bombos - explosions around caster
+all actors explode (across frames)
+all roomObjs explode (across frames)
+
+Electricity spells
+ether - bolts from the sky (should have small clouds over them) (should
+happen across frames too)
+thunderstorm - clouds appear randomly, spawning bolts down
+*levels should spawn clouds too - can 'rain' regrowing objects,
+plus this adds depth. they can rain lightning, fire, ice, etc..
+think of them as magic or projectile factories that interfere with
+the player...
+
+Summon spells
+skeletons - actors that cannot be killed (self-rez from extended hit state).
+summons 1, 4, or 16 or them.
+bat summons are already done, more or less.
+
+
+MISC spells
+
+meteor/comet (single big / many small) falls from sky, smashing into ground,
+leaving crater objects and explosions.
+
+blackhole - pulls everything into it (via wind), releases any actor or roomObj
+it touches, killing hero too, then animates closed. explodes. leaves behind
+a white dwarf object, large globe that floats and slowly pulls objs towards
+it. does no damage, just blocks.
+
+
+
+
+
+
+
+
+Quake Magic
+
+how is this different than ether, in-game? ether kills
+all, quake destroys everything that isn't flying. this
+causes des level 2 to all objects and enemies who have
+compMove.grounded set to false, except hero.
+
+this simply shakes the camera for it's effect.
 
 
 
@@ -216,6 +328,39 @@ spell to cast gusts of wind away from the caster all directions.
 
 
 
+
+
+Fire Tornado
+should be able to cast a fire tornado. this is obtained from fire tornado island,
+by solving the puzzle and defeating the fire tornado destroying the land. this is done
+by changing the wind direction to force the tornado over water, which extingushes the
+fire and settles the tornado down. this unlocks the fire tornado magic somehow.
+*weathervane - hitting the weathervane changes the direction of the wind. this allows
+link to move the fire toronado out to sea and off the level. once this is done, the 
+fire tornado magic is unlocked - or something else. i dunno.
+
+
+Mountain Dungeon Climb
+wind pushes the player while they are trying to climb the mountain to the dungeon
+entrance. the wind is an obj, with animated action lines, so the player can 'see' the
+wind and it coming towards them - allowing them to dodge.
+
+
+
+
+wind should occasionally blow thru overworld levels
+this is a global push() on all objs and actors.
+link would be pushed a bit.
+leaves would fly out from trees, etc..
+it's a very environmental thing, but adds life.
+
+The Kusanagi Sword
+this sword creates gusts of wind, which push objects
+actors and projectiles (specifically ground fires).
+this sword is used in a challenge where link must
+push fire across a field to kill a rival warlod, via
+the kusanagi legend in japan. alsoknown as the sword 
+of gathering clouds.
 
 
 

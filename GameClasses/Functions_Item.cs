@@ -184,17 +184,6 @@ namespace DungeonRun
             #endregion
 
 
-            #region Enemy/Actor Magic
-
-            else if (Type == MenuItemType.MagicBat)
-            {
-                //create bat projectile, shorten casting time to allow for spamming
-                Functions_Projectile.Spawn(ProjectileType.Bat, Actor, Actor.direction);
-                Functions_Actor.SetItemUseState(Actor);
-                Actor.lockTotal = 4;
-            }
-
-            #endregion
 
 
 

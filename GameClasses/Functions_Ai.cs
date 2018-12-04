@@ -399,7 +399,10 @@ namespace DungeonRun
 
                     //rarely use bat magic
                     if (Functions_Random.Int(0, 100) > 85)
-                    { Actor.compInput.use = true; }
+                    {
+                        Actor.compInput.use = true; //for anim purposes only, has no item
+                        Functions_Projectile.Spawn(ProjectileType.Bat, Actor, Actor.compMove.direction);
+                    }
                 }
 
                 #endregion

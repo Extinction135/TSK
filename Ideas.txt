@@ -3,23 +3,6 @@
 
 
 
-Freeze Ground Magic
-
-we have projectile.cast_freezeGround, which should be a
-magic spell in it's own right, but is also a by-product
-of an iceball's death. make a magic to create icetiles
-around hero - special one. this is an enemy magic.
-
-we can add this enemy magic to enemy magic vendor,
-spawn him, and then test this magic, keeping it seperate
-from the main game for now.
-
-now would be a good time to model all these as a
-generic magic medallion sprite... or we can make 
-them special.... wand magic dummy
-
-
-
 
 
 Magical Playthrough++
@@ -31,7 +14,14 @@ this is what sandbox option can become.
 
 
 
-
+Magic Gatekeeping
+we could gate magic spells behind a power level. player
+would then have to be of that power level to cast those spells.
+OR we just reward the player these spells for defeating enemies
+in coliseums around the world, since each coliseum has a theme
+that could be used as an elemental type. lava, for example, could
+reward fire spells. that coliseum in the water? caused by a 
+comet that EXPLODED the island, and rewards explosive spells...
 
 
 
@@ -49,6 +39,10 @@ obj's compmove direction and magnitude (or simply push).
 this allow for many objs to be pushed into one another,
 then pushed together, creating very interesting stackable
 puzzles where many objs must be pushed at once.
+
+
+
+
 
 
 
@@ -136,15 +130,6 @@ the display info.
 
 
 
-
-Quake Magic
-
-how is this different than ether, in-game? ether kills
-all, quake destroys everything that isn't flying. this
-causes des level 2 to all objects and enemies who have
-compMove.grounded set to false, except hero.
-
-this simply shakes the camera for it's effect.
 
 
 
@@ -255,32 +240,9 @@ which track with an offset, and kill anything they touch, but use magic
 cane of somaria: creates a block of light, which can be pushed, 
 hold down switches, interact with belts, etc..
 
-ether magic: lightning strikes every non-caster actor on screen
-
-hammer: used to smash down posts to progress into hidden / secret 
-areas of the game (non-critical paths), tracks to caster
-
-ice rod: ice magic in game, shoots a ball of ice that turns sm enemies into blocks of ice, 
-	*the blocks of ice are generic, not enemy specific, and have a vague shadow inside them
-	*ice blocks can be picked up and thrown, and will spawn normal loot when destroyed normally
-	*however, smashing an enemy in a block of ice will always spawn a large magic pot
-	
-fire rod: shoots fireballs
-	level 2 should be a golden version thats actually a flamethrower (continuous fireballs)
-	
 magic cape: turns hero invisible & flying while in use, 
 	with shadow only, uses magic constantly
 
-magic mirror: returns hero to the start of the current dungeon, etc...
-
-quake magic: screen shakes, all grounded enemies on screen take 4 damage, caster waits during cast
-
-
-
-
-
-explosive seeds - plant them in the ground using X. detonate them using Y.
-simply creates an explosion.
 
 
 
@@ -490,14 +452,6 @@ yay!
 
 
 
-Creatures Fang++
-creatures fang should destroy objects - it doesn't.
-this means some enemies can't destroy objects at all.
-
-
-
-
-
 
 Big Chests
 
@@ -689,9 +643,7 @@ beaten - ala SMB.
 
 
 
-
-
-0.78 - SLIME, Swamp Dungeon
+SLIME, Swamp Dungeon
 
 -because we're close to finishing the swamp dungeon,
 we can use it as a prototype endgame dungeon (hard difficulty).
@@ -965,53 +917,6 @@ bushes, so the level always has something to 'burn' when the next eruption happe
 we can also put non-growing objs there like a house, which is quickly destroyed, and
 could serve as a time target to get to quickly.
 
-
-
-
-Ice
-Ice is magic related and doesn't have it's own biome or island simply because
-I don't like playing zelda on ice. instead a magic spell will create an area of
-ice that lasts for a period of time that is slippery. various enemies will be able to
-create ice areas and maybe even freeze link. ice can also be built into rooms that are
-cold themed, and have persistent ice tiles on the floor.
-
-
-Fire Tornado
-should be able to cast a fire tornado. this is obtained from fire tornado island,
-by solving the puzzle and defeating the fire tornado destroying the land. this is done
-by changing the wind direction to force the tornado over water, which extingushes the
-fire and settles the tornado down. this unlocks the fire tornado magic somehow.
-*weathervane - hitting the weathervane changes the direction of the wind. this allows
-link to move the fire toronado out to sea and off the level. once this is done, the 
-fire tornado magic is unlocked - or something else. i dunno.
-
-
-Mountain Dungeon Climb
-wind pushes the player while they are trying to climb the mountain to the dungeon
-entrance. the wind is an obj, with animated action lines, so the player can 'see' the
-wind and it coming towards them - allowing them to dodge.
-
-
-
-
-
-
-
-
-
-
-
-Burning Trees
-
-burning trees should continue to burn for their entire life,
-until the become a dead/burnt tree. these trees should rarely
-smoke, as if they have recently been burned, for 255 frames after
-are converted. so, if burned tree has a lifecoutner greater than 0,
-it's just been burned and should smoke until it hits 255, at which
-point the life counter should become 0, making the roomObj permanent.
-we are modeling state this way. if the burnt tree gets lit on fire
-again, then we push the lifeCounter to 1, and begin the smoking
-process again.
 
 
 
@@ -1350,18 +1255,6 @@ or in this case - not flooded.
 
 
 
-
-
-
-Editor++
-it would be nice to show the currently selected objects
-important parameters, like moveable, grounded, etc..
-we could put this info next to the object in the objTools
-widget, if we extend the widget.
-
-
-
-
 LEGENDARY BEASTS 
 these are endgame top-tier optional bosses that serve as challenges for the
 seasoned and accomplished player. they are unforgiving. and their "lairs" are 
@@ -1374,16 +1267,6 @@ mobs, so this will be pushing the game's obj pools to their limits.
 
 
 
-
-explosions should push roomObjects that they touch.
-that are moveable. that dont get destroyed?
-are explosions pushing objects?
-
-
-rats and crabs should "bite", but turtles dont.
-all types can be picked up and carried, but rats
-and crabs will eventually bite link, causing link
-to throw the creature and take 1 damage.
 
 
 
@@ -1440,10 +1323,6 @@ remove roofs button in top menu
 
 
 
-FireTornado
-I don't know how, but lets make a tornado that creates
-groundfires where-ever it travels. that seems fun.
-
 
 
 
@@ -1451,19 +1330,6 @@ Spikeblocks++
 spikeblocks = swim under. indestructible. immobile.
 we need immobile spikeblocks!
 we can add these into dungeon rooms as well.
-
-
-
-
-
-
-TITLE SCREEN + TEST AI
-
-title screen is the menu with input over a level screen
-played by an AI. this AI doesn't have to be good. it just
-has to move around and attack and explore stuff - and it can't
-die. after a period of time, randomly load a different level
-or dungeon. should start inside a dungeon.
 
 
 
@@ -1585,19 +1451,6 @@ that maybe they don't need to attack the blobs.
 
 
 
-
-HammerTime (sry, had2)
-create and implement hammer weapon.
-this is used to flatten some objects, & break armor.
-it's a decent weapon too.
-breaking armor should be noted in the flavor text.
-armor can be broken using shovel or hammer.
-
-
-
-
-
-
 underwater objects / enemies
 we have an underwater object sprite (should be on leevl sheet)
 when an enemy falls into the water, they should become underwater
@@ -1653,20 +1506,6 @@ beefy bat can bite multiple times and has 2 hp.
 
 
 
-add *king's tournament challenge*
-- this is ladder fight of bosses
-- we have tons of bosses to put here, from master/forest/dev
-
-
-
-
-
-additional achievements to add:
-cutting bushes achievement.
-burning grass / objects achievement.
-
-
-
 
 *build level with spike blocks over water.
 have to dive underwater to avoid them...
@@ -1674,14 +1513,6 @@ have to dive underwater to avoid them...
 
 
 
-
-
-Stats Book
-this is located in the options section.
-displays player's various stats via the stats screen.
-rating (k/d), dungeon completions/failures,
-miniboss kills, boss kills, total enemy kills..
-deaths, colliseum rating, etc...
 
 
 
@@ -1708,22 +1539,6 @@ storyline.
 
 
 
-**we have nothing for the 'entrance' obj for the
-town sheet. this could be the big weather vane
-with the duck from kakariko village, but that's
-just decorative 'throwback' and isn't really useful..
-
-
-
-
-
-
-Sky Islands
-grow a beanstalk from a special seed.
-this beanstalk takes link to the sky island hub,
-a level in the sky with it's own npcs and side quests.
-
-
 
 Hand from the Wall
 a hand should come out of the stone wall and grab
@@ -1735,36 +1550,6 @@ somewhere else (level) or just damage push him.
 
 
 
-
-
-
-MapScreen++
-add lttp's map title to dungeon map screen, outside of
-the scroll sprite. rename map window title to nothing.
-
-
-
-
-
-
-
-Wind 
-in the future, when Wind is
-implemented, we'll likely consolidate roomObj pushing
-to a single method, and check the push against a weight
-integer to determine if the push should occur.
-link would have a weight greater than the obj always,
-so he could always push push-able objects. BUT wind
-would have a weight of 0 or 1, very light, and would
-only physically move objects lighter than it (not building
-walls for example). however, later on - we could implement
-storm magic that creates tornados or strong gusts of
-wind, and we'd only need to increase the weight of the
-wind to insure it pushed everything on screen, including
-the hero. this weight vs weight check is very useful -
-it can also determine how quickly the hero pushes an
-object making it seem like larger or heavier objects
-take longer to push. /rantOver.
 
 
 
@@ -1812,55 +1597,6 @@ as they are, as fast as they are.
 
 
 
-The Matrix
-we have a telephone object/sprite
-we could have hero interact with it
-answer a phonecall, a dialog tells hero
-that someone is looking for him.
-this someone wants to meet.
-'follow the white rabbit' is the phrase referenced.
-which means we need a white rabbit to lead hero to
-the someone that he is to meet.. this is possibly the
-3rd world in the game.. the 'machine world'..
-where link could fight awesome mech enemies,
-in some vain attempt to save the living from the
-machines.. sure, why not? ridic dlc ++
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-we can handle plot/level changes like this:
-we have a boolean that represents this levels state.
-false loads xml data A. true loads xml data B.
-the differece between A and B represents something
-that happened in the story, or something the player did.
--perhaps the player killed an NPC.
--perhaps the player irrigated a farmers crops (B would have filled ditches, A wouldn't).
--theres alot we can do here.
-
-
-
-
-*consider that actors may need interaction points*
-*needed if actors want to pickup or dig, and it would be nice to see that
-with more advanced enemies later on*
-migrate hero's interaction rec and interaction rec functions into actor class.
-
-
 
 
 
@@ -1891,26 +1627,6 @@ Old Tunic
 what does this do? it should have a purpose.
 
 
-
-
-Should be able to light link on fire.
-dashing has a chance to put fire out.
-water puts fire out immediately.
-
-
-
-
-
-Notes widget - local to editor menu
-
-
-Floors++
-we could make floors roomObjects, since we have enough
-space in the roomObj pool now. this means we could have
-custom floor designs in each room, because we'll be able
-to save them. we can also remove floors, and the idea of
-floors, from the pool + game, further simplifying the 
-codebase.
 
 
 
@@ -2116,14 +1832,6 @@ dark world graveyards or death-related levels.
 
 
 
-wind should occasionally blow thru overworld levels
-this is a global push() on all objs and actors.
-link would be pushed a bit.
-leaves would fly out from trees, etc..
-it's a very environmental thing, but adds life.
-
-
-
 
 fix how kick sountrack volume is handled
 the hero's health sets the volume of the kick soundtrack
@@ -2142,18 +1850,6 @@ same with hit sound, death sound, use sound.
 
 
 
-
-
-
-
-
-The Kusanagi Sword
-this sword creates gusts of wind, which push objects
-actors and projectiles (specifically ground fires).
-this sword is used in a challenge where link must
-push fire across a field to kill a rival warlod, via
-the kusanagi legend in japan. alsoknown as the sword 
-of gathering clouds.
 
 
 
@@ -2217,15 +1913,6 @@ a dark, holy place devoid of enemies or npcs, except
 one - the eternal warrior. he rests before the entrance
 to the trials. he explains the trials, and grants entry.
 
-
-
-
-we can model height of objects with feet byte.
-then we can check feet byte to see if projectile can fly over it.
-smaller projectiles, like arrows, can fly over anything small. fireballs
-need more space, etc... switches become 0 feet tall. levers 4 feet.
-we move the interaction of objects into a realm that is familiar: height.
-walls are 10 feet. then it makes sense.
 
 
 

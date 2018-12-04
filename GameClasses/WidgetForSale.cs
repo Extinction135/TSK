@@ -206,7 +206,6 @@ namespace DungeonRun
             else if (VendorType == ObjType.Vendor_NPC_EnemyItems)
             {
                 Functions_MenuItem.SetType(MenuItemType.WeaponFang, menuItems[0]);
-                Functions_MenuItem.SetType(MenuItemType.MagicBat, menuItems[1]);
             }
 
             #endregion

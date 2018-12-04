@@ -141,7 +141,7 @@ namespace DungeonRun
                 arrowsDisplay.visible = true; //hero has a bow, show arrow count
             }
 
-            //3 - magic mirror
+            //3 - ?
 
             //Bottles - 4, 5, 6
             //set the hero's inventory bottles to the contents of the saveData bottles
@@ -169,13 +169,14 @@ namespace DungeonRun
             //14 - magic mirror
             if (PlayerData.itemMagicMirror)
             { Functions_MenuItem.SetType(MenuItemType.ItemMagicMirror, menuItems[14]); }
-            //15 - magic seed bag
-            //16 - 
+            //15 - ?
+            //16 - magic seed bag
             //17 - 
             //18 - 
             //19 - 
-            //20 - only one slot for enemy items
-            Functions_MenuItem.SetType(PlayerData.enemyItem, menuItems[20]);
+            //20 - reserved for spellbook
+            if (PlayerData.itemSpellbook)
+            { Functions_MenuItem.SetType(MenuItemType.ItemSpellbook, menuItems[20]); }
 
             #endregion
 
@@ -193,13 +194,15 @@ namespace DungeonRun
             //24 - hammer
             if (PlayerData.weaponHammer)
             { Functions_MenuItem.SetType(MenuItemType.WeaponHammer, menuItems[24]); }
-            //25 - wand
-            if (PlayerData.weaponHammer)
-            { Functions_MenuItem.SetType(MenuItemType.WeaponWand, menuItems[25]); }
+            //25 - 
             //26 -
 
-            //Enemy Weapon - 27 - only one slot for enemy weapons
-            Functions_MenuItem.SetType(PlayerData.enemyWeapon, menuItems[27]);
+            
+            //27 - WAND
+            if (PlayerData.weaponWand)
+            { Functions_MenuItem.SetType(MenuItemType.WeaponWand, menuItems[27]); }
+            //testing enemy bite/fang weapon
+            //Functions_MenuItem.SetType(PlayerData.enemyWeapon, menuItems[27]);
 
             #endregion
 

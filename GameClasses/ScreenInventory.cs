@@ -129,17 +129,27 @@ namespace DungeonRun
                 Assets.Play(Assets.sfxMenuItem);
 
 
-                #region Handle Opening the Dungeon Map
+                #region Handle Opening Dungeon Map
 
                 if (currentlySelected.type == MenuItemType.InventoryMap)
-                {   //create a new map screen
+                {   //display map screen
                     ScreenManager.AddScreen(Screens.LevelMap);
                 }
 
                 #endregion
 
 
-                #region Handle the Options MenuItems
+                #region Handle Opening SpellBook
+
+                else if (currentlySelected.type == MenuItemType.ItemSpellbook)
+                {   //display spell book screen
+                    ScreenManager.AddScreen(Screens.SpellBook);
+                }
+
+                #endregion
+
+
+                #region Handle Opening Options/Cheat Screens
 
                 else if (currentlySelected.type == MenuItemType.OptionsQuitGame)
                 {   //pop are you sure? dialog
@@ -164,7 +174,7 @@ namespace DungeonRun
 
                     #region Items
 
-                    if( //items
+                    if ( //items
                         currentlySelected.type == MenuItemType.ItemBomb
                         || currentlySelected.type == MenuItemType.ItemBoomerang
                         || currentlySelected.type == MenuItemType.ItemBow
@@ -181,7 +191,6 @@ namespace DungeonRun
                         //magics
                         || currentlySelected.type == MenuItemType.MagicBombos
                         || currentlySelected.type == MenuItemType.MagicEther
-                        || currentlySelected.type == MenuItemType.MagicBat
                         )
                     {
                         PlayerData.currentItem = currentlySelected.type;

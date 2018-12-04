@@ -108,6 +108,8 @@ namespace DungeonRun
             MenuItem.price = 0; //defaults to 0
 
 
+
+
             #region Item menuItems
 
             if (Type == MenuItemType.ItemHeart)
@@ -153,9 +155,6 @@ namespace DungeonRun
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Item_Bow;
                 MenuItem.price = 50;
             }
-
-
-
             else if (Type == MenuItemType.ItemFirerod)
             {
                 MenuItem.name = "Firerod";
@@ -170,10 +169,6 @@ namespace DungeonRun
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Item_Icerod;
                 MenuItem.price = 99;
             }
-
-
-
-
             else if (Type == MenuItemType.ItemMagicMirror)
             {
                 MenuItem.name = "Magic Mirror";
@@ -182,7 +177,13 @@ namespace DungeonRun
                 MenuItem.price = 99;
             }
 
-
+            else if (Type == MenuItemType.ItemSpellbook)
+            {
+                MenuItem.name = "Spell Book";
+                MenuItem.description = "contains all spells \nlearned so far.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Item_SpellBook;
+                MenuItem.price = 99;
+            }
 
             #endregion
 
@@ -251,13 +252,6 @@ namespace DungeonRun
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Magic_Ether;
                 MenuItem.price = 99;
             }
-            else if (Type == MenuItemType.MagicBat)
-            {
-                MenuItem.name = "Bat Magic";
-                MenuItem.description = "shoots bats, cause \nwhy not? no cost.";
-                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Magic_Bat;
-                MenuItem.price = 0;
-            }
 
             #endregion
 
@@ -295,13 +289,10 @@ namespace DungeonRun
             else if (Type == MenuItemType.WeaponWand)
             {
                 MenuItem.name = "Wand";
-                MenuItem.description = "thin and brittle.\nno apparent use.";
+                MenuItem.description = "thin and brittle.\nCasts spells.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Weapon_Wand;
                 MenuItem.price = 99;
             }
-
-
-
             else if (Type == MenuItemType.WeaponFang)
             {
                 MenuItem.name = "Creature's Fang";
@@ -535,7 +526,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Cheat menuItems
+            #region Cheat Screen menuItems
 
             else if (Type == MenuItemType.CheatsInfiniteArrows)
             {
@@ -616,7 +607,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Option menuItems
+            #region Option Screen menuItems
 
             else if (Type == MenuItemType.Options_DrawInput)
             {
@@ -674,6 +665,35 @@ namespace DungeonRun
             }
 
             #endregion
+
+
+
+            #region SpellBook Screen menuItems
+
+            else if (Type == MenuItemType.Spells_Explosive_Bombos)
+            {
+                MenuItem.name = "Bombos";
+                MenuItem.description = "Explosions around \nthe caster.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Projectile_Explosion;
+                MenuItem.compSprite.texture = Assets.entitiesSheet;
+                MenuItem.compAnim.loop = true;
+                MenuItem.compAnim.speed = 10;
+            }
+            else if (Type == MenuItemType.Spells_Lightning_Ether)
+            {
+                MenuItem.name = "Ether";
+                MenuItem.description = "Bolts strike all \nenemies.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Particle_LightningBolt;
+                MenuItem.compSprite.texture = Assets.entitiesSheet;
+                MenuItem.compAnim.loop = true;
+                MenuItem.compAnim.speed = 3;
+            }
+
+            #endregion
+
+
+
+
 
 
             else

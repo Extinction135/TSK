@@ -298,6 +298,9 @@
     <Compile Include="..\..\GameClasses\ScreenOverworld.cs">
       <Link>Classes\ScreenOverworld.cs</Link>
     </Compile>
+    <Compile Include="..\..\GameClasses\ScreenSpellBook.cs">
+      <Link>Classes\ScreenSpellBook.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\ScreenSummary.cs">
       <Link>Classes\ScreenSummary.cs</Link>
     </Compile>

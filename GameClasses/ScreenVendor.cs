@@ -390,18 +390,8 @@ namespace DungeonRun
 
                 #endregion
 
-
-                #region Magic Medallions
-
                 
-                else if(Item.type == MenuItemType.MagicBat)
-                {
-                    //set into player's enemyItem slot
-                    PlayerData.enemyItem = MenuItemType.MagicBat;
-                    CompleteSale(Item);
-                }
 
-                #endregion
 
 
                 #region Weapons

@@ -14,7 +14,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public class ScreenOptions : Screen
+    public class ScreenSpellBook : Screen
     {
         int i;
         MenuWindow window;
@@ -32,9 +32,10 @@ namespace DungeonRun
 
      
 
-        public ScreenOptions()
+        public ScreenSpellBook()
         {
-            this.name = "Options Screen";
+            this.name = "SpellBook Screen";
+
 
             #region Create Window, Labels, MenuItems
 
@@ -71,33 +72,44 @@ namespace DungeonRun
                 window.interior.rec.Y + 16 + 8 + 5,
                 (byte)rows, 16 * 3 + 8, 24);
 
-            //this is how to set the menuItems, once they're ready for options screen
-            labels[0].text = "draw\ninput";
-            Functions_MenuItem.SetType(MenuItemType.Options_DrawInput, menuItems[0]);
 
-            labels[1].text = "trak\ncam";
-            Functions_MenuItem.SetType(MenuItemType.Options_TrackCamera, menuItems[1]);
 
-            labels[2].text = "watr\nmark";
-            Functions_MenuItem.SetType(MenuItemType.Options_Watermark, menuItems[2]);
+            //Explosive Spells
+            labels[0].text = "bombos\nspell";
+            Functions_MenuItem.SetType(MenuItemType.Spells_Explosive_Bombos, menuItems[0]);
+            labels[5].text = "bombos\nspell";
+            Functions_MenuItem.SetType(MenuItemType.Spells_Explosive_Bombos, menuItems[5]);
 
-            labels[3].text = "hard\nmode";
-            Functions_MenuItem.SetType(MenuItemType.Options_HardMode, menuItems[3]);
 
-            labels[4].text = "draw\ntime";
-            Functions_MenuItem.SetType(MenuItemType.Options_DrawBuildTimes, menuItems[4]);
 
-            labels[5].text = "play\nmusc";
-            Functions_MenuItem.SetType(MenuItemType.Options_PlayMusic, menuItems[5]);
+            //Fire Spells
+            labels[1].text = "fire\nspells";
+            //Functions_MenuItem.SetType(MenuItemType.Options_TrackCamera, menuItems[1]);
 
-            labels[6].text = "draw\ndbug";
-            Functions_MenuItem.SetType(MenuItemType.Options_DrawDebug, menuItems[6]);
 
-            labels[7].text = "hit\nboxs";
-            Functions_MenuItem.SetType(MenuItemType.Options_DrawHitBoxes, menuItems[7]);
 
-            labels[8].text = "gore\n....";
-            Functions_MenuItem.SetType(MenuItemType.Options_Gore, menuItems[8]);
+            //Ice Spells
+            labels[2].text = "ice\nspells";
+            //Functions_MenuItem.SetType(MenuItemType.Options_Watermark, menuItems[2]);
+
+
+
+            //Wind Spells
+            labels[3].text = "wind\nspells";
+            //Functions_MenuItem.SetType(MenuItemType.Options_HardMode, menuItems[3]);
+
+
+
+            //Electric Spells
+            labels[4].text = "ether\nspell";
+            Functions_MenuItem.SetType(MenuItemType.Spells_Lightning_Ether, menuItems[4]);
+            labels[9].text = "ether\nspell";
+            Functions_MenuItem.SetType(MenuItemType.Spells_Lightning_Ether, menuItems[9]);
+
+
+
+
+
 
             #endregion
 
@@ -111,7 +123,7 @@ namespace DungeonRun
                 labels[i].position.Y = menuItems[i].compSprite.position.Y - 12;
             }
 
-            //set menuItem sprites based on their relative booleans
+            //set the cheat menuItem sprites based on their relative booleans
             UpdateMenuItems();
 
             //create the selectionBox
@@ -129,7 +141,7 @@ namespace DungeonRun
             Functions_MenuWindow.ResetAndMove(window,
                 16 * 8 - 8, 16 * 4,
                 new Point(16 * 18, 16 * 14 + 8), 
-                "Options");
+                "Known Spells");
 
             //setup the screen
             background.alpha = 0.0f;
@@ -157,56 +169,19 @@ namespace DungeonRun
             if(Input.Player1.A & Input.Player1.A_Prev == false)
             {
 
-                #region Handle Effects
+                #region Set Hero's Current Spell
 
-                if (currentlySelected.type == MenuItemType.Options_DrawInput)
+                //explosive spells
+                if (currentlySelected.type == MenuItemType.Spells_Explosive_Bombos)
                 {
-                    if (Flags.DrawInput) { Flags.DrawInput = false; }
-                    else { Flags.DrawInput = true; }
-                }
-                else if (currentlySelected.type == MenuItemType.Options_TrackCamera)
-                {
-                    if (Flags.CameraTracksHero) { Flags.CameraTracksHero = false; }
-                    else { Flags.CameraTracksHero = true; }
-                }
-                else if (currentlySelected.type == MenuItemType.Options_Watermark)
-                {
-                    if (Flags.DrawWatermark) { Flags.DrawWatermark = false; }
-                    else { Flags.DrawWatermark = true; }
-                }
-                else if (currentlySelected.type == MenuItemType.Options_HardMode)
-                {
-                    if (Flags.HardMode) { Flags.HardMode = false; }
-                    else { Flags.HardMode = true; }
-                }
-                else if (currentlySelected.type == MenuItemType.Options_DrawBuildTimes)
-                {
-                    if (Flags.DrawUItime) { Flags.DrawUItime = false; }
-                    else { Flags.DrawUItime = true; }
-                }
-                else if (currentlySelected.type == MenuItemType.Options_PlayMusic)
-                {
-                    if (Flags.PlayMusic) { Flags.PlayMusic = false; }
-                    else { Flags.PlayMusic = true; }
-                }
-                else if (currentlySelected.type == MenuItemType.Options_DrawDebug)
-                {
-                    if (Flags.EnableDebugInfo) { Flags.EnableDebugInfo = false; }
-                    else { Flags.EnableDebugInfo = true; }
-                }
-                else if (currentlySelected.type == MenuItemType.Options_DrawHitBoxes)
-                {
-                    if (Flags.DrawCollisions) { Flags.DrawCollisions = false; }
-                    else { Flags.DrawCollisions = true; }
-                }
-                else if (currentlySelected.type == MenuItemType.Options_Gore)
-                {
-                    if (Flags.Gore) { Flags.Gore = false; }
-                    else { Flags.Gore = true; }
+                    PlayerData.currentSpell = SpellType.Explosive_Bombos;
                 }
 
-                //dont forget to modify UpdateMenuItems() (below) with new options!
-
+                //electric spells
+                else if (currentlySelected.type == MenuItemType.Spells_Lightning_Ether)
+                {
+                    PlayerData.currentSpell = SpellType.Lightning_Ether;
+                }
 
                 #endregion
 
@@ -292,6 +267,32 @@ namespace DungeonRun
                 }
                 selectionBox.scale = 2.0f;
             }
+
+
+
+
+
+            else if (displayState == DisplayState.Opened)
+            {   //main screen opened state
+                for (i = 0; i < menuItems.Count; i++)
+                {   //scale all menuitems down each frame
+                    Functions_Animation.ScaleSpriteDown(menuItems[i].compSprite);
+
+                    if(currentlySelected == menuItems[i])
+                    {   //animate the currently selected spell
+                        Functions_Animation.Animate(currentlySelected.compAnim, currentlySelected.compSprite);
+                    }
+                    else //reset all other spells to 1st anim frame
+                    { menuItems[i].compSprite.currentFrame = menuItems[i].compAnim.currentAnimation[0]; }
+                }
+            }
+
+
+
+
+
+
+
             else if (displayState == DisplayState.Closing)
             {   //fade background out
                 background.fadeState = FadeState.FadeOut;
@@ -346,40 +347,10 @@ namespace DungeonRun
 
 
 
-        void UpdateMenuItems() //this sets the X next to the option
-        {   //reset all menuItems to unknown state
+        void UpdateMenuItems()
+        {   //literally animate the menuitems please
             for (i = 0; i < menuItems.Count; i++)
-            { menuItems[i].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOff[0]; }
-
-            //set menuItem based on boolean
-            if (Flags.DrawInput)
-            { menuItems[0].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
-
-            if (Flags.CameraTracksHero)
-            { menuItems[1].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
-
-            if (Flags.DrawWatermark)
-            { menuItems[2].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
-
-            if (Flags.HardMode)
-            { menuItems[3].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
-
-            if (Flags.DrawUItime)
-            { menuItems[4].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
-
-            if (Flags.PlayMusic)
-            { menuItems[5].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
-
-            if (Flags.EnableDebugInfo)
-            { menuItems[6].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
-
-            if (Flags.DrawCollisions)
-            { menuItems[7].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
-
-            if (Flags.Gore)
-            { menuItems[8].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
-
-            //expand this to include additional options
+            { Functions_Animation.ScaleSpriteDown(menuItems[i].compSprite); }
         }
 
     }

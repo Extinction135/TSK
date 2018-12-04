@@ -1578,7 +1578,7 @@ namespace DungeonRun
 
                 //this boss spam casts bat projectiles as main attack
                 ResetActorLoadout(Actor);
-                Actor.item = MenuItemType.MagicBat;
+                Actor.item = MenuItemType.Unknown;
                 Actor.weapon = MenuItemType.WeaponFang; //and can bite
 
                 //walk and dash speeds are set in Functions_Ai

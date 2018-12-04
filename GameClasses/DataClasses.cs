@@ -175,6 +175,7 @@ namespace DungeonRun
         public static Boolean itemFirerod = true;
         public static Boolean itemIcerod = true;
         public static Boolean itemMagicMirror = true;
+        public static Boolean itemSpellbook = true;
 
         public static Boolean magicBombos = true;
         public static Boolean magicEther = true;
@@ -214,7 +215,7 @@ namespace DungeonRun
 
 
         //enemy items
-        public static MenuItemType enemyItem = MenuItemType.MagicBat;
+        public static MenuItemType enemyItem = MenuItemType.Unknown;
         public static MenuItemType enemyWeapon = MenuItemType.WeaponFang;
 
         //story booleans
@@ -396,7 +397,7 @@ namespace DungeonRun
 
         public static void SetEnemyItems()
         {   //set enemy weapon/items to whatevs for dev
-            enemyItem = MenuItemType.MagicBat;
+            enemyItem = MenuItemType.Unknown;
             enemyWeapon = MenuItemType.WeaponFang;
         }
 
