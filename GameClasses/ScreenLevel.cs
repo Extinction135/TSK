@@ -134,6 +134,8 @@ namespace DungeonRun
 
                 else if (displayState == DisplayState.Closed)
                 {
+                    //prevent magic from continuing between levels
+                    Functions_MagicSpells.StopAll();
 
                     //handle exit action
                     if (exitAction == ExitAction.Summary)
@@ -141,7 +143,6 @@ namespace DungeonRun
                         PlayerData.endTime = DateTime.Now;
                         ScreenManager.ExitAndLoad(Screens.Summary);
                     }
-
                     else if (exitAction == ExitAction.Overworld)
                     {
                         //exit level, loading shadowking overworld map
@@ -151,13 +152,11 @@ namespace DungeonRun
                     {
                         ScreenManager.ExitAndLoad(Screens.Title);
                     }
-
                     else if (exitAction == ExitAction.Field)
                     {   //point to field level
                         LevelSet.currentLevel = LevelSet.field;
                         ScreenManager.ExitAndLoad(Screens.Level);
                     }
-
                     else if (exitAction == ExitAction.Dungeon)
                     {   //point to dungeon level
                         LevelSet.currentLevel = LevelSet.dungeon;
@@ -206,6 +205,7 @@ namespace DungeonRun
                         }
                     }
                     Functions_Camera2D.Update();
+                    Functions_MagicSpells.Update();
                     Functions_Pool.Update();
                     Functions_WorldUI.Update();
                 }

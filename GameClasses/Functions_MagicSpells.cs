@@ -18,6 +18,93 @@ namespace DungeonRun
         static int i;
 
 
+        
+        //used to iterate over the screen
+        static Point Total_ScreenSize = new Point(640 / 16, 360 / 16); //x total, y total
+
+
+
+        //bombos fields
+        static Boolean Casting_Bombos = false;
+        static int Bombos_lifetime = 180; //in frames, overwritten by Cast()
+        static int Bombos_counter = 0;
+        static Point Bombos_ActiveCounter = new Point(0, 6); //counter, total
+
+        static Point Bombos_spawnPos = new Point();
+        static int Bombos_ExpCounter = 0; //explosion counter
+
+
+
+        
+
+
+
+
+        public static void Update()
+        {
+            //allows magic system to cast across frames
+
+
+
+            #region Bombos
+
+            if(Casting_Bombos) //incremently place explosions left to right across room
+            {
+                Bombos_ActiveCounter.X++; //increment active counter
+                if (Bombos_ActiveCounter.X >= Bombos_ActiveCounter.Y)
+                {   //reset counter, process bombos
+                    Bombos_ActiveCounter.X = 0;
+                    //place explosions vertically in screen space, project to world space,
+                    //check overlaps with hero (prevent spawns), then spawn exps.
+                    //this works for both fields and dungeons and isn't too complicated
+                    //plus it limits explosions produced by bombos to be onscreen
+                    for (Bombos_ExpCounter = 0; Bombos_ExpCounter < Total_ScreenSize.Y+1; Bombos_ExpCounter++)
+                    {   //sequentially cover screen
+                        Bombos_spawnPos.X = Bombos_counter * 16; //row id
+                        Bombos_spawnPos.Y = Bombos_ExpCounter * 16; //column id
+                        //project from screen to world
+                        Bombos_spawnPos = Functions_Camera2D.ConvertScreenToWorld(Bombos_spawnPos.X, Bombos_spawnPos.Y);
+                        //prevent explosions spawn ontop of hero (per frame)
+                        if ( 
+                            (Math.Abs(Pool.hero.compSprite.position.X - Bombos_spawnPos.X) < 20)
+                            & //per axis control over explosion checking pls
+                            (Math.Abs(Pool.hero.compSprite.position.Y - Bombos_spawnPos.Y) < 20)
+                        )
+                        { } //do nothing
+                        else
+                        {   //it's ok to spawn explosion at this position
+                            Functions_Projectile.Spawn(ProjectileType.Explosion,
+                                Bombos_spawnPos.X, Bombos_spawnPos.Y, Direction.Down);
+                        }
+                    }
+                    //increment counter, flipping control bool when complete
+                    Bombos_counter++;
+                    if (Bombos_counter >= Bombos_lifetime) { Casting_Bombos = false; }
+                }
+            }
+
+            #endregion
+
+
+
+
+
+        }
+
+        public static void StopAll()
+        {
+            Casting_Bombos = false; Bombos_counter = Bombos_lifetime; 
+        }
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -47,8 +134,11 @@ namespace DungeonRun
                 Cast_Ether();
             }
             else if(Spell == SpellType.Explosive_Bombos)
-            {
-                Cast_Bombos();
+            {   //set how long bombos lasts, based on room width
+                Bombos_counter = 0; //start on left of room
+                Bombos_ActiveCounter.X = 0; //start process this frame
+                Casting_Bombos = true; //flip flag
+                Assets.Play(Assets.sfxExplosionsMultiple); //play sfx
             }
         }
 
@@ -112,69 +202,11 @@ namespace DungeonRun
             Assets.Play(Assets.sfxShock); //play sfx
         }
 
+        
 
 
-        static int bombosSpread = 22;
-        static void Cast_Bombos()
-        {
-            //create explosions around hero
-            //-this could look alot better, if we used 5 point or 7 point circle
-            //instead of square 3x3 setup
 
 
-            #region Cardinals
-
-            //up
-            Functions_Projectile.Spawn(ProjectileType.Explosion,
-                Pool.hero.compMove.position.X,
-                Pool.hero.compMove.position.Y - bombosSpread,
-                Direction.Down);
-            //down
-            Functions_Projectile.Spawn(ProjectileType.Explosion,
-                Pool.hero.compMove.position.X,
-                Pool.hero.compMove.position.Y + bombosSpread,
-                Direction.Down);
-            //left
-            Functions_Projectile.Spawn(ProjectileType.Explosion,
-                Pool.hero.compMove.position.X - bombosSpread,
-                Pool.hero.compMove.position.Y,
-                Direction.Down);
-            //down
-            Functions_Projectile.Spawn(ProjectileType.Explosion,
-                Pool.hero.compMove.position.X + bombosSpread,
-                Pool.hero.compMove.position.Y,
-                Direction.Down);
-
-            #endregion
-
-
-            #region Diagonals
-
-            //up R/L
-            Functions_Projectile.Spawn(ProjectileType.Explosion,
-                Pool.hero.compMove.position.X - bombosSpread,
-                Pool.hero.compMove.position.Y - bombosSpread,
-                Direction.Down);
-            Functions_Projectile.Spawn(ProjectileType.Explosion,
-                Pool.hero.compMove.position.X + bombosSpread,
-                Pool.hero.compMove.position.Y - bombosSpread,
-                Direction.Down);
-
-            //down R/L
-            Functions_Projectile.Spawn(ProjectileType.Explosion,
-                Pool.hero.compMove.position.X - bombosSpread,
-                Pool.hero.compMove.position.Y + bombosSpread,
-                Direction.Down);
-            Functions_Projectile.Spawn(ProjectileType.Explosion,
-                Pool.hero.compMove.position.X + bombosSpread,
-                Pool.hero.compMove.position.Y + bombosSpread,
-                Direction.Down);
-
-            #endregion
-
-
-            Assets.Play(Assets.sfxExplosionsMultiple); //play sfx
-        }
 
 
 
@@ -241,6 +273,85 @@ namespace DungeonRun
 
 
 
-        
+
+
+
+
+
+
+
+
+
+
+
+        /*
+        static int bombosSpread = 22;
+        static void Cast_Bombos()
+        {
+            //create explosions around hero
+            //-this could look alot better, if we used 5 point or 7 point circle
+            //instead of square 3x3 setup
+
+
+            #region Cardinals
+
+            //up
+            Functions_Projectile.Spawn(ProjectileType.Explosion,
+                Pool.hero.compMove.position.X,
+                Pool.hero.compMove.position.Y - bombosSpread,
+                Direction.Down);
+            //down
+            Functions_Projectile.Spawn(ProjectileType.Explosion,
+                Pool.hero.compMove.position.X,
+                Pool.hero.compMove.position.Y + bombosSpread,
+                Direction.Down);
+            //left
+            Functions_Projectile.Spawn(ProjectileType.Explosion,
+                Pool.hero.compMove.position.X - bombosSpread,
+                Pool.hero.compMove.position.Y,
+                Direction.Down);
+            //down
+            Functions_Projectile.Spawn(ProjectileType.Explosion,
+                Pool.hero.compMove.position.X + bombosSpread,
+                Pool.hero.compMove.position.Y,
+                Direction.Down);
+
+            #endregion
+
+
+            #region Diagonals
+
+            //up R/L
+            Functions_Projectile.Spawn(ProjectileType.Explosion,
+                Pool.hero.compMove.position.X - bombosSpread,
+                Pool.hero.compMove.position.Y - bombosSpread,
+                Direction.Down);
+            Functions_Projectile.Spawn(ProjectileType.Explosion,
+                Pool.hero.compMove.position.X + bombosSpread,
+                Pool.hero.compMove.position.Y - bombosSpread,
+                Direction.Down);
+
+            //down R/L
+            Functions_Projectile.Spawn(ProjectileType.Explosion,
+                Pool.hero.compMove.position.X - bombosSpread,
+                Pool.hero.compMove.position.Y + bombosSpread,
+                Direction.Down);
+            Functions_Projectile.Spawn(ProjectileType.Explosion,
+                Pool.hero.compMove.position.X + bombosSpread,
+                Pool.hero.compMove.position.Y + bombosSpread,
+                Direction.Down);
+
+            #endregion
+
+
+            
+            Assets.Play(Assets.sfxExplosion); //play sfx
+        }
+        */
+
+
+
+
+
     }
 }

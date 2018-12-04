@@ -64,29 +64,37 @@ Today:
 
 
 
-SpellBook++
-
-spells in spell book should 'wrap' to each other,
-the 1st spell's left neighboro should be the right
-most spells left neighbor, and so on, so spell selection
-is fast andn requires less input (we'll be doing this
-alot later on). done.
 
 
-
-
-
-
-
-
-
-magic systems++
+Magic Systems++
 
 functions_magic should have an update() method, that is called
 from levelscreen.update(). this will allow magic to be called 
 sequentially over frames. we just have to make sure to stop
 any magic that was casted or being casted across frames when we
-exit the level screen (on a close screen routine).
+exit the level screen (on a close screen routine). done.
+
+we update magic systems, then the main pool updates. so,
+any projectile magic creates will be collision and interaction
+checked THAT FRAME. 
+
+Bombos++
+
+bombos is the first spell to use (and test) the new magic systems.
+now, explosions spawn left to right across the screen, projecting 
+down to world space, checking to see if they overlap the hero, and
+then spawning explosions at these positions. this is done across
+frames, in a controllable and timeable manner. tested and working,
+i destroyed the town and it was insanely fun to watch.
+
+
+
+
+
+
+
+
+
 
 new bombos (keep old as ref)
 bombos should start at the center of the caster and explode outwards
@@ -110,7 +118,12 @@ randomly spawns bolts around the caster (but not touching).
 
 
 
-
+Explosion spells
+explosion - creates explosion in casters direction with safe offset
+line of explosions - a line, with offsets in casters direction
+bombos - explosions around caster
+all actors explode (across frames)
+all roomObjs explode (across frames)
 
 
 
@@ -130,13 +143,13 @@ tornado: spawns a tornado roomObj. (fire, ice, explosive, electrical tornados to
 
 
 
-
-
 Fire spells
 Fire -creates groundfire in the direction of the caster.
 Fire Walk - creates groundfires wherever the caster walks
 Circle of Fire - creates groundfire around the caster in circle, across frames, continuously.
 Fire Rain - red rain falls, creating ground fires where ever they touch (environmental fx).
+
+
 
 Ice Spells
 ice ball - acts as it does currently
@@ -152,12 +165,6 @@ ice block freeze all - freezes all actors with iceblocks that can be
 frozen (non minibosses and bosses).
 Ice Walk - everywhere hero walks, ice tiles spawn, across frames.
 
-Explosion spells
-explosion - creates explosion in casters direction with safe offset
-line of explosions - a line, with offsets in casters direction
-bombos - explosions around caster
-all actors explode (across frames)
-all roomObjs explode (across frames)
 
 Electricity spells
 ether - bolts from the sky (should have small clouds over them) (should
@@ -168,21 +175,19 @@ plus this adds depth. they can rain lightning, fire, ice, etc..
 think of them as magic or projectile factories that interfere with
 the player...
 
-Summon spells
-skeletons - actors that cannot be killed (self-rez from extended hit state).
-summons 1, 4, or 16 or them.
-bat summons are already done, more or less.
 
 
-MISC spells
 
-meteor/comet (single big / many small) falls from sky, smashing into ground,
-leaving crater objects and explosions.
 
-blackhole - pulls everything into it (via wind), releases any actor or roomObj
-it touches, killing hero too, then animates closed. explodes. leaves behind
-a white dwarf object, large globe that floats and slowly pulls objs towards
-it. does no damage, just blocks.
+
+
+
+
+
+
+
+
+
 
 
 
@@ -512,6 +517,27 @@ so we ca display it under repo name on right.
 
 
 
+
+
+
+
+
+
+Summon spells
+skeletons - actors that cannot be killed (self-rez from extended hit state).
+summons 1, 4, or 16 or them.
+bat summons are already done, more or less.
+
+
+MISC spells
+
+meteor/comet (single big / many small) falls from sky, smashing into ground,
+leaving crater objects and explosions.
+
+blackhole - pulls everything into it (via wind), releases any actor or roomObj
+it touches, killing hero too, then animates closed. explodes. leaves behind
+a white dwarf object, large globe that floats and slowly pulls objs towards
+it. does no damage, just blocks.
 
 
 
