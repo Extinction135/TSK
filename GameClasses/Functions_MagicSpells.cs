@@ -131,31 +131,76 @@ namespace DungeonRun
             {   //as close as possible on the offsets
                 if(Caster.direction == Direction.Up)
                 {
-                    Functions_Projectile.Spawn(ProjectileType.Explosion,
+                    Functions_Projectile.Spawn(
+                        ProjectileType.Explosion,
                         Caster.compCollision.rec.Center.X,
-                        Caster.compCollision.rec.Center.Y - 26,
-                        Direction.Down);
+                        Caster.compCollision.rec.Center.Y - 20,
+                        Direction.Up);
                 }
                 else if (Caster.direction == Direction.Down)
                 {
-                    Functions_Projectile.Spawn(ProjectileType.Explosion,
+                    Functions_Projectile.Spawn(
+                        ProjectileType.Explosion,
                         Caster.compCollision.rec.Center.X,
-                        Caster.compCollision.rec.Center.Y + 23,
+                        Caster.compCollision.rec.Center.Y + 20,
                         Direction.Down);
                 }
                 else if (Caster.direction == Direction.Right)
                 {
-                    Functions_Projectile.Spawn(ProjectileType.Explosion,
-                        Caster.compCollision.rec.Center.X + 25,
+                    Functions_Projectile.Spawn(
+                        ProjectileType.Explosion,
+                        Caster.compCollision.rec.Center.X + 20,
                         Caster.compCollision.rec.Center.Y,
-                        Direction.Down);
+                        Direction.Right);
                 }
                 else if (Caster.direction == Direction.Left)
                 {
-                    Functions_Projectile.Spawn(ProjectileType.Explosion,
-                        Caster.compCollision.rec.Center.X - 25,
+                    Functions_Projectile.Spawn(
+                        ProjectileType.Explosion,
+                        Caster.compCollision.rec.Center.X - 20,
                         Caster.compCollision.rec.Center.Y,
+                        Direction.Left);
+                }
+            }
+
+            #endregion
+
+
+            #region Chain Explosions
+
+            else if (Spell == SpellType.Explosive_Line)
+            {
+                if (Caster.direction == Direction.Up)
+                {
+                    Functions_Projectile.Spawn(
+                        ProjectileType.Emitter_Explosion,
+                        Caster.compCollision.rec.Center.X,
+                        Caster.compCollision.rec.Center.Y - 20,
+                        Direction.Up);
+                }
+                else if (Caster.direction == Direction.Down)
+                {
+                    Functions_Projectile.Spawn(
+                        ProjectileType.Emitter_Explosion,
+                        Caster.compCollision.rec.Center.X,
+                        Caster.compCollision.rec.Center.Y + 20,
                         Direction.Down);
+                }
+                else if (Caster.direction == Direction.Right)
+                {
+                    Functions_Projectile.Spawn(
+                        ProjectileType.Emitter_Explosion,
+                        Caster.compCollision.rec.Center.X + 20,
+                        Caster.compCollision.rec.Center.Y,
+                        Direction.Right);
+                }
+                else if (Caster.direction == Direction.Left)
+                {
+                    Functions_Projectile.Spawn(
+                        ProjectileType.Emitter_Explosion,
+                        Caster.compCollision.rec.Center.X - 20,
+                        Caster.compCollision.rec.Center.Y,
+                        Direction.Left);
                 }
             }
 

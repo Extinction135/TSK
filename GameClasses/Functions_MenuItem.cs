@@ -681,6 +681,15 @@ namespace DungeonRun
                 MenuItem.compAnim.loop = true;
                 MenuItem.compAnim.speed = 10;
             }
+            else if (Type == MenuItemType.Explosive_Line)
+            {
+                MenuItem.name = "Chain Explosions";
+                MenuItem.description = "Places explosions \nin front of the caster.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Projectile_Explosion;
+                MenuItem.compSprite.texture = Assets.entitiesSheet;
+                MenuItem.compAnim.loop = true;
+                MenuItem.compAnim.speed = 10;
+            }
 
             #endregion
 

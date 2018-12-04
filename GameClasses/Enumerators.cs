@@ -819,7 +819,9 @@ namespace DungeonRun
         //Projectiles - objects
         Explosion,
         GroundFire,
-
+        
+        //Emitters - create projectiles/particles per frame
+        Emitter_Explosion,
 
         //Projectiles - enemy related
         Bite,
@@ -902,6 +904,7 @@ namespace DungeonRun
 
         //explosive
         Explosive_Single,
+        Explosive_Line,
         Explosive_Bombos,
 
 
@@ -974,8 +977,12 @@ namespace DungeonRun
 
         #region Spells
 
+        //explosive
         Explosive_Single,
+        Explosive_Line,
 
+
+        //electrical
         Spells_Lightning_Ether,
 
         #endregion

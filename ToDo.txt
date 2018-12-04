@@ -67,20 +67,31 @@ Today:
 
 
 
-Explosion Spell
 
-added single explosion spell, replacing castable bombos
-spell in spellbook. bombos is only castable via medallion now.
-which is how it should be, as it is super powerful.
+Chain Explosions
 
-if actor overlaps an explosion, it deals actor damage.
-but this overlap should only happen on the explosions
-2nd frame of existence, just like with roomObjs. I bet it
-doesn't, because hero can overlap explosions that have
-expired.. correct. explosions now only process interactions
-against actors if they are less then 3 frames old. this
-has the effect of explosions being more precise and not
-lingering around after their animation has completed.
+this is a chain of explosions coming from caster's pos,
+sequentially across frames. this is easy to do as a projectile.
+
+Explosion Emitter Projectile
+
+a projectile that simply creates explosions as it travels 
+around, for a life time. once dead, the explosions are no
+longer emitted, and thus the effect ends. 
+
+explosive emitter added to game. tested, working.
+this is really fun.
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -94,7 +105,7 @@ SPELLS
 
 explosion spells
 
-line of explosions - a line, with offsets in casters direction
+
 circular explosions around caster
 all actors explode (across frames)
 random explosions (across frames)

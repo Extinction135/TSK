@@ -27,7 +27,7 @@ namespace DungeonRun
             Pro.type = ProjectileType.Arrow; //reset the type
             Pro.direction = Direction.Down;
             Pro.active = true; //assume this object should draw / animate
-            Pro.lifetime = 0; //assume obj exists forever (not projectile)
+            Pro.lifetime = 60; //assume obj exists forever
             Pro.lifeCounter = 0; //reset counter
             
             //clear hit actor/obj references + offsets
@@ -51,6 +51,7 @@ namespace DungeonRun
             Pro.compAnim.loop = true; //assume obj's animation loops
             Pro.compAnim.index = 0; //reset the current animation index/frame
             Pro.compAnim.timer = 0; //reset the elapsed frames
+            Pro.compAnim.currentAnimation = AnimationFrames.Projectile_Arrow;
 
             //reset the collision component
             Pro.compCollision.blocking = true; //assume the object is blocking (most are)
@@ -117,6 +118,18 @@ namespace DungeonRun
             }
 
             #endregion
+
+
+            #region Emitters
+
+            else if(Type == ProjectileType.Emitter_Explosion)
+            {
+                Functions_Movement.Push(pro.compMove, Dir, 3.0f);
+            }
+
+            #endregion
+
+
 
 
             Update(pro);
@@ -937,6 +950,24 @@ namespace DungeonRun
 
 
 
+            #region Emitters
+
+            else if (Pro.type == ProjectileType.Emitter_Explosion)
+            {   
+                Pro.interactiveFrame++; //hijack this to limit emitted pros
+                if (Pro.interactiveFrame >= 5)
+                {   Pro.interactiveFrame = 0; //reset counter
+                    //spawn explosion from emitter
+                    Spawn(ProjectileType.Explosion,
+                        Pro.compSprite.position.X, 
+                        Pro.compSprite.position.Y, 
+                        Direction.Down);
+                }
+            }
+
+            #endregion
+
+
 
 
 
@@ -1674,6 +1705,25 @@ namespace DungeonRun
             }
 
             #endregion
+
+
+
+
+
+            //Projectiles - Emitter
+
+            else if(Type == ProjectileType.Emitter_Explosion)
+            {   //emitters have no visual sprite
+                Pro.lifetime = 45; //in frames
+                Pro.compMove.friction = 1.0f; //no air friction
+                Pro.compMove.moveable = true;
+                Pro.compMove.grounded = false; //obj is airborne
+                Pro.compSprite.visible = false; //dont draw
+            }
+
+
+
+
 
 
 
