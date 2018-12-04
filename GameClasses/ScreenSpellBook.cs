@@ -111,13 +111,16 @@ namespace DungeonRun
             #endregion
 
 
-            #region Explode Spells
+            #region Explode/Fire Spells
 
-            labels[1].text = "single\nexplode";
-            Functions_MenuItem.SetType(MenuItemType.Explosive_Single, menuItems[1]);
+            labels[1].text = "fire\nwalk";
+            Functions_MenuItem.SetType(MenuItemType.Fire_Walk, menuItems[1]);
 
-            labels[6].text = "chain\nexplode";
-            Functions_MenuItem.SetType(MenuItemType.Explosive_Line, menuItems[6]);
+            labels[6].text = "single\nexplode";
+            Functions_MenuItem.SetType(MenuItemType.Explosive_Single, menuItems[6]);
+
+            labels[11].text = "chain\nexplode";
+            Functions_MenuItem.SetType(MenuItemType.Explosive_Line, menuItems[11]);
 
             #endregion
 
@@ -243,19 +246,25 @@ namespace DungeonRun
 
                 //wind spells
 
-                //explosive spells
-                if (currentlySelected.type == MenuItemType.Explosive_Single)
+
+                //explosive/fire spells
+                if (currentlySelected.type == MenuItemType.Fire_Walk)
+                { PlayerData.currentSpell = SpellType.Fire_Walk; }
+                else if(currentlySelected.type == MenuItemType.Explosive_Single)
                 { PlayerData.currentSpell = SpellType.Explosive_Single; }
                 else if (currentlySelected.type == MenuItemType.Explosive_Line)
                 { PlayerData.currentSpell = SpellType.Explosive_Line; }
+
 
                 //ice spells
                 else if (currentlySelected.type == MenuItemType.Spells_Ice_FreezeGround)
                 { PlayerData.currentSpell = SpellType.Ice_FreezeGround; }
 
+
                 //electric spells
                 else if (currentlySelected.type == MenuItemType.Spells_Lightning_Ether)
                 { PlayerData.currentSpell = SpellType.Lightning_Ether; }
+
 
                 //summons spells
                 else if (currentlySelected.type == MenuItemType.Spells_Summon_Bat_Explosion)

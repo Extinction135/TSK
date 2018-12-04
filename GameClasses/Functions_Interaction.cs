@@ -123,6 +123,9 @@ namespace DungeonRun
                 || Pro.type == ProjectileType.Bow
                 || Pro.type == ProjectileType.Iceblock
                 || Pro.type == ProjectileType.IceblockCracking
+                //all emitters
+                || Pro.type == ProjectileType.Emitter_Explosion
+                || Pro.type == ProjectileType.Emitter_GroundFire
                 )
             { return; }
             //check for boomerang interaction with hero
@@ -235,6 +238,16 @@ namespace DungeonRun
             #region Fireball
 
             if (Pro.type == ProjectileType.Fireball)
+            {
+                Functions_Projectile.Kill(Pro);
+            }
+
+            #endregion
+
+
+            #region Bat
+
+            if (Pro.type == ProjectileType.Bat)
             {
                 Functions_Projectile.Kill(Pro);
             }

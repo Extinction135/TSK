@@ -120,7 +120,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Emitters
+            #region Explosion Emitter
 
             else if(Type == ProjectileType.Emitter_Explosion)
             {
@@ -478,6 +478,12 @@ namespace DungeonRun
 
             #endregion
 
+
+            
+
+
+
+
             //these pros track to their hit obj/actor per frame
 
 
@@ -714,6 +720,8 @@ namespace DungeonRun
 
             #endregion
 
+            
+
 
 
 
@@ -798,6 +806,8 @@ namespace DungeonRun
 
             #endregion
 
+
+            
 
 
 
@@ -959,6 +969,23 @@ namespace DungeonRun
                     Spawn(ProjectileType.Explosion,
                         Pro.compSprite.position.X, 
                         Pro.compSprite.position.Y, 
+                        Direction.Down);
+                }
+            }
+            else if (Pro.type == ProjectileType.Emitter_GroundFire)
+            {
+                //track emitter to caster each frame of life
+                Functions_Movement.Teleport(Pro.compMove,
+                    Pro.caster.compSprite.position.X + 0,
+                    Pro.caster.compSprite.position.Y + 0);
+
+                Pro.interactiveFrame++; //hijack this to limit emitted pros
+                if (Pro.interactiveFrame >= 5)
+                {   Pro.interactiveFrame = 0; //reset counter
+                    //spawn fire from emitter
+                    Spawn(ProjectileType.GroundFire,
+                        Pro.compSprite.position.X,
+                        Pro.compSprite.position.Y,
                         Direction.Down);
                 }
             }
@@ -1728,6 +1755,12 @@ namespace DungeonRun
                 Pro.lifetime = 30; //in frames
                 Pro.compMove.friction = 1.0f; //no air friction
                 Pro.compMove.moveable = true;
+                Pro.compMove.grounded = false; //obj is airborne
+                Pro.compSprite.visible = false; //dont draw
+            }
+            else if(Type == ProjectileType.Emitter_GroundFire)
+            {   //emitters have no visual sprite
+                Pro.lifetime = 254; //max life
                 Pro.compMove.grounded = false; //obj is airborne
                 Pro.compSprite.visible = false; //dont draw
             }

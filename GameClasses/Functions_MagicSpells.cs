@@ -128,9 +128,20 @@ namespace DungeonRun
 
             //explosive spells
 
+            #region Firewalk
+
+            else if(Spell == SpellType.Fire_Walk)
+            {
+                Assets.Play(Assets.sfxLightFire);
+                Functions_Projectile.Spawn(ProjectileType.Emitter_GroundFire, Caster, Direction.Down);
+            }
+
+            #endregion
+
+
             #region Single Explosion
 
-            else if(Spell == SpellType.Explosive_Single)
+            else if (Spell == SpellType.Explosive_Single)
             {   //as close as possible on the offsets
                 if(Caster.direction == Direction.Up)
                 {

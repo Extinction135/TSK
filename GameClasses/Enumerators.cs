@@ -822,6 +822,7 @@ namespace DungeonRun
         
         //Emitters - create projectiles/particles per frame
         Emitter_Explosion,
+        Emitter_GroundFire,
 
         //Projectiles - enemy related
         Bite,
@@ -904,7 +905,8 @@ namespace DungeonRun
 
         //wind
 
-        //explosive
+        //explosive/fire
+        Fire_Walk,
         Explosive_Single,
         Explosive_Line,
         Explosive_Bombos,
@@ -915,7 +917,6 @@ namespace DungeonRun
         //electrical
         Lightning_Ether,
 
-        
         //summons
         Summon_Bat_Projectile,
         Summon_Bat_Explosion,
@@ -984,6 +985,7 @@ namespace DungeonRun
 
 
         //explosive
+        Fire_Walk,
         Explosive_Single,
         Explosive_Line,
 

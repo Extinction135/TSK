@@ -680,6 +680,15 @@ namespace DungeonRun
 
             #region Explosive spells
 
+            else if (Type == MenuItemType.Fire_Walk)
+            {
+                MenuItem.name = "Fire Walk";
+                MenuItem.description = "Fires created where \ncaster walks.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Projectile_FireGround;
+                MenuItem.compSprite.texture = Assets.entitiesSheet;
+                MenuItem.compAnim.loop = true;
+                MenuItem.compAnim.speed = 8;
+            }
             else if (Type == MenuItemType.Explosive_Single)
             {
                 MenuItem.name = "Explode";

@@ -66,21 +66,32 @@ Today:
 
 
 
-Freeze Ground Spell
-
-freeze ground spell added to game.
-tested and working. this is crazy.
-
-
-
-
-
 
 Spells++
 
 Ice Walk - everywhere hero walks, ice tiles spawn, across frames.
 
-Fire Walk - creates groundfires wherever the caster walks
+
+
+
+
+
+
+FireWalk With Me
+
+implemented fire walk magic, which creates fire wherever the
+caster walks. this is an emitter that constantly creates ground
+fires, and tracks to it's caster for 254 frames, then dies.
+pretty simple. spell added to book and game.
+
+Bats++
+
+bat are now killed when they collide with actors. this
+prevents them from passing thru hero and damaging multiple
+times.
+
+
+
 
 
 
