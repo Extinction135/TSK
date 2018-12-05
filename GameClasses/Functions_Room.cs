@@ -597,13 +597,11 @@ namespace DungeonRun
                                 //set the door decorations (bombed/bombable doors dont get decorations)
                                 if (Pool.roomObjPool[i].type == ObjType.Dungeon_DoorBoss)
                                 {
-                                    Functions_GameObject_Dungeon.DecorateDoor(
-                                        Pool.roomObjPool[i], ObjType.Dungeon_WallPillar);
+                                    DecorateDoor(Pool.roomObjPool[i], ObjType.Dungeon_WallPillar);
                                 }
                                 else if (Pool.roomObjPool[i].type == ObjType.Dungeon_DoorOpen)
                                 {
-                                    Functions_GameObject_Dungeon.DecorateDoor(
-                                        Pool.roomObjPool[i], ObjType.Dungeon_WallTorch);
+                                    DecorateDoor(Pool.roomObjPool[i], ObjType.Dungeon_WallTorch);
                                 }
 
                                 //finally, override door types based on specific room.type
@@ -649,6 +647,9 @@ namespace DungeonRun
 
 
 
+
+
+        //misc
 
         public static void ProcedurallyFinish(Room Room)
         {   //Pass the room to the appropriate method for completion
@@ -975,9 +976,32 @@ namespace DungeonRun
         }
 
 
+        static Vector2 posA = new Vector2();
+        static Vector2 posB = new Vector2();
+        public static void DecorateDoor(GameObject Door, ObjType Type)
+        {   //decorates a door on left/right or top/bottom
+            if (Door.direction == Direction.Up || Door.direction == Direction.Down)
+            {   //build left/right decorations if Door.direction is Up or Down
+                posA.X = Door.compSprite.position.X - 16;
+                posA.Y = Door.compSprite.position.Y;
+                posB.X = Door.compSprite.position.X + 16;
+                posB.Y = Door.compSprite.position.Y;
+            }
+            else
+            {   //build top/bottom decorations if Door.direction is Left or Right
+                posA.X = Door.compSprite.position.X;
+                posA.Y = Door.compSprite.position.Y - 16;
+                posB.X = Door.compSprite.position.X;
+                posB.Y = Door.compSprite.position.Y + 16;
+            }
+            //build wall decorationA torch/pillar/decoration
+            Functions_GameObject.Spawn(Type, posA.X, posA.Y, Door.direction);
+            //build wall decorationB torch/pillar/decoration
+            Functions_GameObject.Spawn(Type, posB.X, posB.Y, Door.direction);
+        }
 
 
-
+        
 
         //Methods called during Room Interactions
 
@@ -997,6 +1021,74 @@ namespace DungeonRun
                 }
             }
         }
+
+        public static void CheckForPuzzles(Boolean solved)
+        {   //check to see if hero has solved room
+            if (LevelSet.currentLevel.currentRoom.puzzleType == PuzzleType.Torches)
+            {   //if the current room's puzzle type is Torches, check to see how many have been lit
+                if (CountTorches())
+                {   //enough torches have been lit to unlock this room / solve puzzle
+
+                    //right now, this can be spammed, if hero lights/unlights torch to get 4
+                    //we need to track if room has been 'solved' - store this in dungeon room list
+                    Assets.Play(Assets.sfxReward); //should be secret sfx!!!
+                    OpenTrapDoors(); //open all the trap doors
+                }
+            }
+        }
+
+        public static Boolean CountTorches()
+        {   //count to see if there are more than 3 lit torches in the current room
+            int torchCount = 0;
+            for (i = 0; i < Pool.roomObjCount; i++)
+            {
+                if (Pool.roomObjPool[i].active)
+                {   //if there is an active switch in the room
+                    if (Pool.roomObjPool[i].type == ObjType.Dungeon_TorchLit)
+                    { torchCount++; } //count all the lit torches
+                }
+            }
+            //check for exactly 4 lit torches
+            if (torchCount == 4) { return true; } else { return false; }
+        }
+
+        public static void OpenTrapDoors()
+        {
+            for (i = 0; i < Pool.roomObjCount; i++)
+            {   //loop thru all active roomObjects
+                if (Pool.roomObjPool[i].active)
+                {   //convert trap doors to open doors
+                    if (Pool.roomObjPool[i].type == ObjType.Dungeon_DoorTrap)
+                    {   //display an attention particle where the conversion happened
+                        Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_DoorOpen);
+                        Functions_Particle.Spawn(
+                            ParticleType.Attention,
+                            Pool.roomObjPool[i].compSprite.position.X,
+                            Pool.roomObjPool[i].compSprite.position.Y);
+                    }
+                }
+            }
+        }
+
+        public static void CloseTrapDoors()
+        {
+            for (i = 0; i < Pool.roomObjCount; i++)
+            {   //loop thru all active roomObjects
+                if (Pool.roomObjPool[i].active)
+                {   //convert open doors to trap doors
+                    if (Pool.roomObjPool[i].type == ObjType.Dungeon_DoorOpen)
+                    {   //display an attention particle where the conversion happened
+                        Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_DoorTrap);
+                        Functions_Particle.Spawn(
+                            ParticleType.Attention,
+                            Pool.roomObjPool[i].compSprite.position.X,
+                            Pool.roomObjPool[i].compSprite.position.Y);
+                    }
+                }
+            }
+        }
+
+
 
 
 

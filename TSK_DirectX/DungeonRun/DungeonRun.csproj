@@ -153,11 +153,17 @@
     <Compile Include="..\..\GameClasses\Functions_Hero.cs">
       <Link>Classes\Functions_Hero.cs</Link>
     </Compile>
+    <Compile Include="..\..\GameClasses\Functions_IndestructibleObjs.cs">
+      <Link>Classes\Functions_IndestructibleObjs.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\Functions_Input.cs">
       <Link>Classes\Functions_Input.cs</Link>
     </Compile>
     <Compile Include="..\..\GameClasses\Functions_Interaction.cs">
       <Link>Classes\Functions_Interaction.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\Functions_InteractiveObjs.cs">
+      <Link>Classes\Functions_InteractiveObjs.cs</Link>
     </Compile>
     <Compile Include="..\..\GameClasses\Functions_Item.cs">
       <Link>Classes\Functions_Item.cs</Link>

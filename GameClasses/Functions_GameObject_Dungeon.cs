@@ -15,8 +15,6 @@ namespace DungeonRun
     public static class Functions_GameObject_Dungeon
     {
         static int i;
-        static Vector2 posA = new Vector2();
-        static Vector2 posB = new Vector2();
 
 
 
@@ -126,20 +124,7 @@ namespace DungeonRun
             Functions_Movement.Push(compMove, belt.direction, 0.15f);
         }
         
-        public static Boolean CountTorches()
-        {   //count to see if there are more than 3 lit torches in the current room
-            int torchCount = 0;
-            for (i = 0; i < Pool.roomObjCount; i++)
-            {
-                if (Pool.roomObjPool[i].active)
-                {   //if there is an active switch in the room
-                    if (Pool.roomObjPool[i].type == ObjType.Dungeon_TorchLit)
-                    { torchCount++; } //count all the lit torches
-                }
-            }
-            //check for exactly 4 lit torches
-            if (torchCount == 4) { return true; } else { return false; }
-        }
+        
 
 
         public static void HitBarrel(GameObject Barrel)
@@ -154,6 +139,7 @@ namespace DungeonRun
             //play sfx
             Assets.Play(Assets.sfxEnemyHit);
         }
+
 
 
         public static void DragIntoPit(GameObject Object, GameObject Pit)
@@ -221,7 +207,7 @@ namespace DungeonRun
                 UnlitTorch.compSprite.position.Y - 7,
                 Direction.None);
             Assets.Play(Assets.sfxLightFire);
-            CheckForPuzzles(false); //may of solved room
+            Functions_Room.CheckForPuzzles(false); //may of solved room
         }
 
         public static void UnlightTorch(GameObject LitTorch)
@@ -232,60 +218,16 @@ namespace DungeonRun
                 LitTorch.compSprite.position.X + 0,
                 LitTorch.compSprite.position.Y - 7);
             Assets.Play(Assets.sfxActorLand);
-            CheckForPuzzles(false); //may of solved room
+            Functions_Room.CheckForPuzzles(false); //may of solved room
         }
 
-        public static void CheckForPuzzles(Boolean solved)
-        {
-            //check to see if hero has solved room
-            if (LevelSet.currentLevel.currentRoom.puzzleType == PuzzleType.Torches)
-            {   //if the current room's puzzle type is Torches, check to see how many have been lit
-                if (CountTorches())
-                {   //enough torches have been lit to unlock this room / solve puzzle
 
-                    //right now, this can be spammed, if hero lights/unlights torch to get 4
-                    //we need to track if room has been 'solved' - store this in dungeon room list
-                    Assets.Play(Assets.sfxReward); //should be secret sfx!!!
-                    OpenTrapDoors(); //open all the trap doors
-                }
-            }
-        }
 
-        public static void OpenTrapDoors()
-        {
-            for (i = 0; i < Pool.roomObjCount; i++)
-            {   //loop thru all active roomObjects
-                if (Pool.roomObjPool[i].active)
-                {   //convert trap doors to open doors
-                    if (Pool.roomObjPool[i].type == ObjType.Dungeon_DoorTrap)
-                    {   //display an attention particle where the conversion happened
-                        Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_DoorOpen);
-                        Functions_Particle.Spawn(
-                            ParticleType.Attention,
-                            Pool.roomObjPool[i].compSprite.position.X,
-                            Pool.roomObjPool[i].compSprite.position.Y);
-                    }
-                }
-            }
-        }
+        
 
-        public static void CloseTrapDoors()
-        {
-            for (i = 0; i < Pool.roomObjCount; i++)
-            {   //loop thru all active roomObjects
-                if (Pool.roomObjPool[i].active)
-                {   //convert open doors to trap doors
-                    if (Pool.roomObjPool[i].type == ObjType.Dungeon_DoorOpen)
-                    {   //display an attention particle where the conversion happened
-                        Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_DoorTrap);
-                        Functions_Particle.Spawn(
-                            ParticleType.Attention,
-                            Pool.roomObjPool[i].compSprite.position.X,
-                            Pool.roomObjPool[i].compSprite.position.Y);
-                    }
-                }
-            }
-        }
+
+
+
         
         public static void PlayPitFx(GameObject Pit)
         {   //place splash 'centered' to pit
@@ -319,28 +261,6 @@ namespace DungeonRun
             }
         }
 
-        public static void DecorateDoor(GameObject Door, ObjType Type)
-        {   //decorates a door on left/right or top/bottom
-            if (Door.direction == Direction.Up || Door.direction == Direction.Down)
-            {   //build left/right decorations if Door.direction is Up or Down
-                posA.X = Door.compSprite.position.X - 16;
-                posA.Y = Door.compSprite.position.Y;
-                posB.X = Door.compSprite.position.X + 16;
-                posB.Y = Door.compSprite.position.Y;
-            }
-            else
-            {   //build top/bottom decorations if Door.direction is Left or Right
-                posA.X = Door.compSprite.position.X;
-                posA.Y = Door.compSprite.position.Y - 16;
-                posB.X = Door.compSprite.position.X;
-                posB.Y = Door.compSprite.position.Y + 16;
-            }
-            //build wall decorationA torch/pillar/decoration
-            Functions_GameObject.Spawn(Type, posA.X, posA.Y, Door.direction);
-            //build wall decorationB torch/pillar/decoration
-            Functions_GameObject.Spawn(Type, posB.X, posB.Y, Door.direction);
-        }
-
         public static void DropMap(float X, float Y)
         {   //a map drop only comes from a miniboss death in a hub room
             if (
@@ -356,11 +276,6 @@ namespace DungeonRun
                 }
             }
         }
-
-
-
-
-
 
         public static void DecorateEnemyDeath(ComponentSprite compSprite)
         {   //used to kill enemies in uniform way

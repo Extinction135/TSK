@@ -860,111 +860,112 @@ namespace DungeonRun
         #region World Objects
 
         //med & big trees
-        Wor_Tree_Med,
-        Wor_Tree_Med_Stump,
-        Wor_Tree_Big,
+        Tree_Med,
+        Tree_Med_Stump,
+        Tree_Big,
 
         //big shadow cover
-        Wor_Shadow_Big,
+        Shadow_Big,
 
         //blocking water objects
-        Wor_Water_RockSm,
-        Wor_Water_RockMed,
+        Water_RockSm,
+        Water_RockMed,
+        Water_BigPlant,
+        Water_Bulb,
+        Water_SmPlant,
 
         #endregion
 
 
-        #region Colliseum Objects
+        #region Coliseum Objects
 
-        Wor_Entrance_Colliseum,
+        //shadow coliseum
+        Coliseum_Shadow_Entrance,
 
-        Wor_Colliseum_Pillar_Top,
-        Wor_Colliseum_Pillar_Middle,
-        Wor_Colliseum_Pillar_Bottom,
+        Coliseum_Shadow_Pillar_Top,
+        Coliseum_Shadow_Pillar_Middle,
+        Coliseum_Shadow_Pillar_Bottom,
 
-        Wor_Colliseum_Stairs_Handrail_Top,
-        Wor_Colliseum_Stairs_Handrail_Middle,
-        Wor_Colliseum_Stairs_Handrail_Bottom,
+        Coliseum_Shadow_Stairs_Handrail_Top,
+        Coliseum_Shadow_Stairs_Handrail_Middle,
+        Coliseum_Shadow_Stairs_Handrail_Bottom,
 
-        Wor_Colliseum_Bricks_Left,
-        Wor_Colliseum_Bricks_Middle1,
-        Wor_Colliseum_Bricks_Middle2,
-        Wor_Colliseum_Bricks_Right,
+        Coliseum_Shadow_Bricks_Left,
+        Coliseum_Shadow_Bricks_Middle1,
+        Coliseum_Shadow_Bricks_Middle2,
+        Coliseum_Shadow_Bricks_Right,
 
-        Wor_Colliseum_Spectator,
+        Coliseum_Shadow_Spectator,
 
         #endregion
 
 
         #region Forest Objects
 
-        Wor_Entrance_ForestDungeon, //big shadow between teeth in water
+        ForestDungeon_Entrance, //big shadow between teeth in water
 
         //objects that build the skull teeth
-        Wor_SkullToothInWater_Left,
-        Wor_SkullToothInWater_Right,
+        ForestDungeon_SkullToothInWater_Left,
+        ForestDungeon_SkullToothInWater_Right,
 
-        Wor_SkullToothInWater_Arch_Left,
-        Wor_SkullToothInWater_Arch_Right,
-        Wor_SkullToothInWater_Arch_Extension,
+        ForestDungeon_SkullToothInWater_Arch_Left,
+        ForestDungeon_SkullToothInWater_Arch_Right,
+        ForestDungeon_SkullToothInWater_Arch_Extension,
 
-        Wor_SkullToothInWater_Center,
+        ForestDungeon_SkullToothInWater_Center,
 
-        Wor_SkullToothInWater_EndCap_Left,
-        Wor_SkullToothInWater_EndCap_Right,
+        ForestDungeon_SkullToothInWater_EndCap_Left,
+        ForestDungeon_SkullToothInWater_EndCap_Right,
 
         #endregion
 
 
         #region Mountain Objects
+        
+        MountainDungeon_Entrance, //batcave
 
-        Wor_Entrance_MountainDungeon,
+        MountainWall_Alcove_Left,
+        MountainWall_Alcove_Right,
 
-        Wor_MountainWall_Alcove_Left,
-        Wor_MountainWall_Alcove_Right,
-
-        Wor_MountainWall_Cave_Bare,
-        Wor_MountainWall_Cave_Covered,
+        MountainWall_Cave_Bare,
+        MountainWall_Cave_Covered,
 
         #endregion
 
 
         #region Swamp Objects
 
-        Wor_Entrance_SwampDungeon,
-        Wor_Swamp_BigPlant,
-        Wor_Swamp_Bulb,
-        Wor_Swamp_SmPlant,
+        SwampDungeon_Entrance,
 
         #endregion
 
 
         #region Boat Objects
 
-        Wor_Boat_Front,
-        Wor_Boat_Front_Left,
-        Wor_Boat_Front_Right,
+        Boat_Front,
+        Boat_Front_Left,
+        Boat_Front_Right,
 
-        Wor_Boat_Front_ConnectorLeft,
-        Wor_Boat_Front_ConnectorRight,
+        Boat_Front_ConnectorLeft,
+        Boat_Front_ConnectorRight,
 
-        Wor_Boat_Bannister_Left,
-        Wor_Boat_Bannister_Right,
+        Boat_Bannister_Left,
+        Boat_Bannister_Right,
 
-        Wor_Boat_Stairs_Top_Left,
-        Wor_Boat_Stairs_Top_Right,
+        Boat_Stairs_Top_Left,
+        Boat_Stairs_Top_Right,
 
-        Wor_Boat_Stairs_Bottom_Left,
-        Wor_Boat_Stairs_Bottom_Right,
+        Boat_Stairs_Bottom_Left,
+        Boat_Stairs_Bottom_Right,
 
-        Wor_Boat_Back_Left,
-        Wor_Boat_Back_Left_Connector,
-        Wor_Boat_Back_Center,
-        Wor_Boat_Back_Right_Connector,
-        Wor_Boat_Back_Right,
+        Boat_Back_Left,
+        Boat_Back_Left_Connector,
+        Boat_Back_Center,
+        Boat_Back_Right_Connector,
+        Boat_Back_Right,
 
-        Wor_Boat_Engine,
-        Wor_Boat_Captain_Brandy,
+        Boat_Engine,
+        Boat_Captain_Brandy,
         
         #endregion
 
@@ -1004,15 +1005,6 @@ namespace DungeonRun
         Dungeon_Map, //unlocks dungeon map
         Dungeon_Statue,
         Dungeon_FloorDecal, //floor icon for boss
-        Dungeon_FloorStain, //procedurally added
-        Dungeon_FloorBlood, //created by just-dead actors/objs
-        Dungeon_FloorSkeleton, //^ randomly becomes skeleton anim 1 or 2
-
-        Dungeon_Pit,
-        Dungeon_PitBridge,
-        Dungeon_PitTeethTop,
-        Dungeon_PitTeethBottom,
-        Dungeon_PitTrap,
 
         Dungeon_BlockLight,
         Dungeon_BlockSpike,
@@ -1034,6 +1026,26 @@ namespace DungeonRun
 
         #region World Objects
 
+        //common floor objs
+        Debris,
+        FloorStain, //procedurally added
+        FloorBlood, //created by just-dead actors/objs
+        FloorSkeleton, //^ randomly becomes skeleton anim 1 or 2
+
+        //common environment objs
+        Grass_Tall,
+        Grass_Cut,
+        Grass_2,
+        Flowers,
+        Bush,
+        Bush_Stump,
+        Tree,
+        Tree_Stump,
+        Tree_Burning,
+        Tree_Burnt,
+        
+        //common objs
+        Pot,
         TorchUnlit,
         TorchLit,
         Fairy,
@@ -1044,52 +1056,54 @@ namespace DungeonRun
         ConveyorBeltOff,
         LeverOn,
         LeverOff,
-        Chest, //placeable in editor, becomes key chest
+        Chest, //
         ChestKey, //not placeable, procedurally set
         ChestEmpty, //just empty
         Signpost,
 
 
-        //interior building objects
+        //lava pits
+        Lava_Pit,
+        Lava_PitBridge,
+        Lava_PitTeethTop,
+        Lava_PitTeethBottom,
+        Lava_PitTrap,
+
+        //interior
         House_Bookcase,
         House_Shelf,
         House_TableSingle,
         House_TableDoubleLeft,
         House_TableDoubleRight,
-
         House_Stove,
         House_Sink,
         House_Chair,
-
         House_Bed,
-
-        //grass objects
-        Grass_Tall,
-        Grass_Cut,
-        Grass_2,
-        Flowers,
-
-        //foilage
-        Bush,
-        Bush_Stump,
-
-        Tree,
-        Tree_Stump,
-        Tree_Burning,
-        Tree_Burnt,
-
-        //debris
-        Debris,
-
-        //objects
-        Pot,
+        //exterior objs
+        House_Wall_FrontA,
+        House_Wall_FrontB,
+        House_Wall_Back,
+        House_Wall_Side_Left,
+        House_Wall_Side_Right,
+        House_Door_Shut,
+        House_Door_Open,
+        //roofs
+        House_Roof_Top,
+        House_Roof_Bottom,
+        House_Roof_Chimney,
+        House_Roof_Collapsing, //meta obj for collapsing roofs
 
         //water objs
-        Water2x2,
+        Water_2x2,
+        Water_RockUnderwater,
+        Water_LillyPad,
+        Water_Vine,
+        //coastlines
         Coastline_Straight,
         Coastline_Corner_Exterior,
         Coastline_Corner_Interior,
-
+        Coastline_1x2_Animated,
+        
         //ditch objs
         Ditch_META, //becomes one of the ditch objs below upon placement
 
@@ -1108,22 +1122,6 @@ namespace DungeonRun
         Ditch_Empty_Endcap_Horizontal,
         Ditch_Empty_Endcap_North,
 
-        //building objs
-        House_Wall_FrontA,
-        House_Wall_FrontB,
-        House_Wall_Back,
-        House_Wall_Side_Left,
-        House_Wall_Side_Right,
-
-        House_Door_Shut,
-        House_Door_Open,
-
-        //roofs
-        House_Roof_Top,
-        House_Roof_Bottom,
-        House_Roof_Chimney,
-        House_Roof_Collapsing, //meta obj for collapsing roofs
-
         //posts
         Post_VerticalRight,
         Post_CornerRight,
@@ -1137,31 +1135,29 @@ namespace DungeonRun
         PostBurned_CornerLeft,
         PostBurned_VerticalLeft,
 
-        //dirt + transition objs
-        Dirt,
-        DirtToGrass_Straight,
-        DirtToGrass_Corner_Exterior,
-        DirtToGrass_Corner_Interior,
-
-        Water_RockUnderwater,
-
         //posts that only hammers can destroy
         Post_HammerPost_Up,
         Post_HammerPost_Down,
 
+        //dirt + transition objs
+        Dirt_Main,
+        Dirt_ToGrass_Straight,
+        Dirt_ToGrass_Corner_Exterior,
+        Dirt_ToGrass_Corner_Interior,
 
         #endregion
 
 
         #region Colliseum Objects
 
-        Wor_Colliseum_Stairs_Left,
-        Wor_Colliseum_Stairs_Middle,
-        Wor_Colliseum_Stairs_Right,
-        Wor_Colliseum_Outdoors_Floor,
-        Wor_Colliseum_Gate_Center,
-        Wor_Colliseum_Gate_Pillar_Left,
-        Wor_Colliseum_Gate_Pillar_Right,
+        //shadow coliseum
+        Coliseum_Shadow_Stairs_Left,
+        Coliseum_Shadow_Stairs_Middle,
+        Coliseum_Shadow_Stairs_Right,
+        Coliseum_Shadow_Outdoors_Floor,
+        Coliseum_Shadow_Gate_Center,
+        Coliseum_Shadow_Gate_Pillar_Left,
+        Coliseum_Shadow_Gate_Pillar_Right,
 
         #endregion
 
@@ -1175,50 +1171,47 @@ namespace DungeonRun
 
         #region Mountain Objects
 
-        Wor_MountainWall_Top,
-        Wor_MountainWall_Mid,
-        Wor_MountainWall_Bottom,
+        MountainWall_Top,
+        MountainWall_Mid,
+        MountainWall_Bottom,
 
-        Wor_MountainWall_Foothold,
-        Wor_MountainWall_Ladder,
-        Wor_MountainWall_Ladder_Trap,
+        MountainWall_Foothold,
+        MountainWall_Ladder,
+        MountainWall_Ladder_Trap,
 
         #endregion
 
 
         #region Swamp Objects
 
-        Wor_Swamp_LillyPad,
-        Wor_Swamp_Vine,
+        //none
 
         #endregion
 
 
         #region Boat Objects
         
-        Wor_Boat_Stairs_Left,
-        Wor_Boat_Stairs_Right,
-        Wor_Boat_Floor,
+        Boat_Stairs_Left,
+        Boat_Stairs_Right,
+        Boat_Floor,
 
-        Wor_Boat_Barrel,
-        Wor_Boat_Stairs_Cover,
+        Boat_Barrel,
+        Boat_Stairs_Cover,
 
-        Wor_Boat_Bridge_Top,
-        Wor_Boat_Bridge_Bottom, //destructible?
+        Boat_Bridge_Top,
+        Boat_Bridge_Bottom, //destructible?
 
-        Wor_Boat_Pier_TopLeft,
-        Wor_Boat_Pier_TopMiddle,
-        Wor_Boat_Pier_TopRight,
+        Boat_Pier_TopLeft,
+        Boat_Pier_TopMiddle,
+        Boat_Pier_TopRight,
 
-        Wor_Boat_Pier_Left,
-        Wor_Boat_Pier_Middle,
-        Wor_Boat_Pier_Right,
+        Boat_Pier_Left,
+        Boat_Pier_Middle,
+        Boat_Pier_Right,
 
-        Wor_Boat_Pier_BottomLeft,
-        Wor_Boat_Pier_BottomMiddle,
-        Wor_Boat_Pier_BottomRight,
-
-        Wor_Boat_Coastline,
+        Boat_Pier_BottomLeft,
+        Boat_Pier_BottomMiddle,
+        Boat_Pier_BottomRight,
 
         #endregion
 
@@ -1230,11 +1223,11 @@ namespace DungeonRun
 
         #region Obj Enemies
 
-        Wor_Enemy_Turtle,
-        Wor_Enemy_Crab,
-        Wor_Enemy_Rat,
+        Enemy_Turtle,
+        Enemy_Crab,
+        Enemy_Rat,
 
-        Wor_SeekerExploder, //seeks hero
+        Enemy_SeekerExploder, //seeks hero
 
         #endregion
 
@@ -1242,16 +1235,16 @@ namespace DungeonRun
         #region Vendors & NPCs
 
         //Vendor NPCs
-        Vendor_NPC_Items,
-        Vendor_NPC_EnemyItems,
+        Vendor_Items,
+        Vendor_EnemyItems,
 
-        Vendor_NPC_Potions,
-        Vendor_NPC_Magic,
-        Vendor_NPC_Weapons,
-        Vendor_NPC_Armor,
-        Vendor_NPC_Equipment,
+        Vendor_Potions,
+        Vendor_Magic,
+        Vendor_Weapons,
+        Vendor_Armor,
+        Vendor_Equipment,
 
-        Vendor_NPC_Pets,
+        Vendor_Pets,
 
         NPC_Story,
 
@@ -1285,7 +1278,7 @@ namespace DungeonRun
         #region Dialog Objs
 
         //consider just using a sprite + animation component to
-        Hero_Idle, //model this better in dialog, just copy sprite+anim
+        DialogObj_Hero_Idle, //model this better in dialog, just copy sprite+anim
 
         #endregion
 

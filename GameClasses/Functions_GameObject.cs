@@ -132,9 +132,10 @@ namespace DungeonRun
 
 
 
+        
 
-        //misc methods
 
+        //this seems like a pool method??????
         public static void AlignRoomObjs()
         {   //align sprite + collision comps to move comp of all active objs
             for (i = 0; i < Pool.roomObjCount; i++)
@@ -153,6 +154,8 @@ namespace DungeonRun
                 }
             }
         }
+
+
 
         public static void SetRotation(GameObject Obj)
         {   

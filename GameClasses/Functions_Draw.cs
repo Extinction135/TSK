@@ -35,6 +35,12 @@ namespace DungeonRun
             }
         }
 
+
+
+
+
+
+
         public static void Draw(GameObject Obj)
         {
             if (Obj.active)
@@ -44,6 +50,34 @@ namespace DungeonRun
                 { Draw(Obj.compCollision); }
             }
         }
+
+        public static void Draw(IndestructibleObject Obj)
+        {
+            if (Obj.active)
+            {
+                Draw(Obj.compSprite);
+                if (Flags.DrawCollisions)
+                { Draw(Obj.compCollision); }
+            }
+        }
+
+        public static void Draw(InteractiveObject Obj)
+        {
+            if (Obj.active)
+            {
+                Draw(Obj.compSprite);
+                if (Flags.DrawCollisions)
+                { Draw(Obj.compCollision); }
+            }
+        }
+
+
+
+
+
+
+
+
 
         public static void Draw(Actor Actor)
         {

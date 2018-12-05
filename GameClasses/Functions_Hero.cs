@@ -25,17 +25,12 @@ namespace DungeonRun
         public static Boolean grabbing = false;
         public static GameObject grabbedObj = null;
 
-
-
-
         //fields used in pickup / carry / throw
         public static Boolean carrying = false; //is hero holding pro above head?
         //allows for parallel picking & throwing due to seperation of projectiles
         public static Projectile carriedObj = null; //copy of obj picked up
         public static Projectile thrownObj = null; //copy of carried obj thrown
 
-
-        
 
 
 
@@ -47,11 +42,147 @@ namespace DungeonRun
 
         }
 
+        public static void Update()
+        {
+            //match hero's rec to hero's sprite
+            heroRec.X = (int)Pool.hero.compSprite.position.X - 8;
+            heroRec.Y = (int)Pool.hero.compSprite.position.Y - 8;
+
+            //check the heroRec's collisions with Level rooms
+            CheckRoomCollision();
+
+
+            #region Handle hero vs pickup interactions
+
+            for (i = 0; i < Pool.pickupCount; i++)
+            {
+                if (Pool.pickupPool[i].active)
+                {
+                    if (Pool.hero.compCollision.rec.Intersects(Pool.pickupPool[i].compCollision.rec))
+                    {
+                        Functions_Pickup.HandleEffect(Pool.pickupPool[i]);
+                    }
+                }
+            }
+
+            #endregion
+
+
+            #region Hero vs Roofs
+
+            //if the hero is under a roof, then hide all roofs
+            if (underRoof)
+            { Functions_GameObject_World.HideRoofs(); }
+
+            //editor connection here - this can become a menu option
+            else if (Flags.IgnoreRoofTiles)
+            { Functions_GameObject_World.HideRoofs(); }
+
+            //else game should display all roofs
+            else { Functions_GameObject_World.ShowRoofs(); }
+
+            #endregion
+
+
+            #region Hero sorting in water/land
+
+            //set hero's zoffset based on state
+            if (Pool.hero.underwater)
+            { Pool.hero.compSprite.zOffset = -30; } //sort under vines
+            //sort normally
+            else { Pool.hero.compSprite.zOffset = 0; }
+
+            #endregion
+
+
+            #region Hero carrying obj
+
+            if (carrying)
+            {   //hide the carried obj projectile from initial drawing
+                carriedObj.compSprite.visible = false;
+                //we will draw it later, after hero sprite, locked on link's head
+            }
+
+            #endregion
+
+
+
+            //resets
+
+            #region Hide Reward Sprite if Hero is not-statelocked
+
+            if (Pool.hero.stateLocked == false)
+            {   //if hero has unlocked, then hide reward sprite
+                //rewardSprite.visible = false;
+            }
+
+            #endregion
+
+
+        }
+
+        public static void Draw()
+        {
+
+            #region Align and Draw Carried Object Projectile
+
+            if (carrying)
+            {   //align carried obj to hero's head after hero has been drawn
+                //this is based on post-collision hitbox pos, and ensures carried obj
+                //doesnt lag behind hero, despite speed and magnitude changes
+
+                if (Pool.hero.swimming)
+                {
+                    if (Pool.hero.underwater)
+                    {   //place heldObj above head, underwater
+                        Functions_Movement.Teleport(
+                            carriedObj.compMove,
+                            Pool.hero.compCollision.rec.Center.X,
+                            Pool.hero.compCollision.rec.Center.Y - 5);
+                    }
+                    else
+                    {   //place heldObj above head, swimming
+                        Functions_Movement.Teleport(
+                            carriedObj.compMove,
+                            Pool.hero.compCollision.rec.Center.X,
+                            Pool.hero.compCollision.rec.Center.Y - 8);
+                    }
+
+                }
+                else
+                {   //place heldObj above head, on land
+                    Functions_Movement.Teleport(
+                        carriedObj.compMove,
+                        Pool.hero.compCollision.rec.Center.X,
+                        Pool.hero.compCollision.rec.Center.Y - 13);
+                }
+
+                //align pro components
+                Functions_Component.Align(
+                    carriedObj.compMove,
+                    carriedObj.compSprite,
+                    carriedObj.compCollision);
+
+                //enable draw, then draw carried obj
+                carriedObj.compSprite.visible = true;
+                Functions_Draw.Draw(carriedObj);
+            }
+
+            #endregion
+
+
+            //we could handle future pet related drawing here too
+        }
 
 
 
 
-        
+
+
+
+
+        //misc hero related methods
+
         public static void SetFieldSpawnPos(GameObject Obj)
         {   //this assumes obj is a 2/3x4 dugneon entrance obj!
 
@@ -302,9 +433,6 @@ namespace DungeonRun
             ClearInteractionRec();
             return collision;
         }
-        
-
-
 
         static MenuItemType itemSwap;
         public static void HandleDeath()
@@ -426,9 +554,6 @@ namespace DungeonRun
             }
         }
 
-
-        
-
         public static void SetRewardState(ParticleType rewardType)
         {
             Pool.hero.state = ActorState.Reward;
@@ -443,14 +568,6 @@ namespace DungeonRun
                 Pool.hero.compSprite.position.Y - 14,
                 Direction.Down);
         }
-
-
-
-
-
-
-
-        //roomObj interaction
 
         public static void Pickup(GameObject Obj)
         {
@@ -600,10 +717,88 @@ namespace DungeonRun
             grabbedObj = Obj;
         }
 
+        public static void ReadSign(GameObject Sign)
+        {
+            //based on current roomid, signs point to diff dialogs
+            //everything is based on currentRoom's ID, never levelID
 
+            //field signposts
+            if (LevelSet.currentLevel.currentRoom.roomID == RoomID.SkullIsland_Town)
+            {
+                Screens.Dialog.SetDialog(AssetsDialog.Signpost_ShadowTown);
+                ScreenManager.AddScreen(Screens.Dialog);
+            }
+            else if (LevelSet.currentLevel.currentRoom.roomID == RoomID.SkullIsland_Colliseum)
+            {
+                Screens.Dialog.SetDialog(AssetsDialog.Signpost_ShadowColliseum);
+                ScreenManager.AddScreen(Screens.Dialog);
+            }
 
+            else if (LevelSet.currentLevel.currentRoom.roomID == RoomID.ForestIsland_MainEntrance)
+            {
+                Screens.Dialog.SetDialog(AssetsDialog.Signpost_ForestEntrance);
+                ScreenManager.AddScreen(Screens.Dialog);
+            }
+            else if (LevelSet.currentLevel.currentRoom.roomID == RoomID.DeathMountain_MainEntrance)
+            {
+                Screens.Dialog.SetDialog(AssetsDialog.Signpost_MountainEntrance);
+                ScreenManager.AddScreen(Screens.Dialog);
+            }
 
+            //this is a temp hack for 0.77 release and will change in future commits
+            else if (LevelSet.currentLevel.currentRoom.roomID == RoomID.SkullIsland_ShadowKing)
+            {
+                Screens.Dialog.SetDialog(AssetsDialog.Signpost_SwampEntrance);
+                ScreenManager.AddScreen(Screens.Dialog);
+            }
 
+            //dungeon signposts
+            else if (LevelSet.currentLevel.currentRoom.roomID == RoomID.Exit)
+            {
+                Screens.Dialog.SetDialog(AssetsDialog.Signpost_ExitRoom);
+                ScreenManager.AddScreen(Screens.Dialog);
+            }
+
+            //hack for 0.77 - secret vendor exists in column room, find him, set signpost dialog
+            else if (LevelSet.currentLevel.currentRoom.roomID == RoomID.Column)
+            {
+                //default dialog
+                Screens.Dialog.SetDialog(AssetsDialog.Signpost_Standard);
+
+                //loop over all roomObjs to find secret vendor obj
+                for (i = 0; i < Pool.roomObjCount; i++)
+                {
+                    if (Pool.roomObjPool[i].active)
+                    {
+                        if (Pool.roomObjPool[i].type == ObjType.Vendor_NPC_EnemyItems)
+                        {   //set the secret vendor dialog
+                            Screens.Dialog.SetDialog(AssetsDialog.Signpost_SecretVendor);
+                        }
+                    }
+                }
+
+                //either add default dialog or secret vendor dialog
+                ScreenManager.AddScreen(Screens.Dialog);
+            }
+
+            //editor dialogs
+            else if (LevelSet.currentLevel.currentRoom.roomID == RoomID.DEV_Field)
+            {
+                Screens.Dialog.SetDialog(AssetsDialog.Signpost_CantRead);
+                ScreenManager.AddScreen(Screens.Dialog);
+            }
+            else if (LevelSet.currentLevel.currentRoom.roomID == RoomID.DEV_Exit)
+            {
+                Screens.Dialog.SetDialog(AssetsDialog.Signpost_CantRead);
+                ScreenManager.AddScreen(Screens.Dialog);
+            }
+
+            else
+            {   //bare minimum, we pop a blank standard dialog
+                Screens.Dialog.SetDialog(AssetsDialog.Signpost_Standard);
+                ScreenManager.AddScreen(Screens.Dialog);
+            }
+        }
 
         //hero's special interact() method based on interaction point
         public static void InteractRecWith(GameObject Obj)
@@ -796,9 +991,7 @@ namespace DungeonRun
                         "Size: " + LevelSet.currentLevel.rooms.Count + " rooms.\n" +
                         "Head North 3 Rooms to find the map. Good luck!";
                 }
-
-                //read signpost from global dialogs
-                Functions_GameObject_World.ReadSign(Obj);
+                ReadSign(Obj); //read signpost from global dialogs
             }
 
             #endregion
@@ -931,156 +1124,6 @@ namespace DungeonRun
                 #endregion
 
             }
-        }
-
-
-
-
-
-
-
-
-
-        public static void Update()
-        {
-            //match hero's rec to hero's sprite
-            heroRec.X = (int)Pool.hero.compSprite.position.X - 8;
-            heroRec.Y = (int)Pool.hero.compSprite.position.Y - 8;
-
-            //check the heroRec's collisions with Level rooms
-            CheckRoomCollision();
-
-
-            #region Handle hero vs pickup interactions
-
-            for (i = 0; i < Pool.pickupCount; i++)
-            {
-                if (Pool.pickupPool[i].active)
-                {   
-                    if (Pool.hero.compCollision.rec.Intersects(Pool.pickupPool[i].compCollision.rec))
-                    {
-                        Functions_Pickup.HandleEffect(Pool.pickupPool[i]);
-                    }
-                }
-            }
-
-            #endregion
-
-
-            #region Hero vs Roofs
-
-            //if the hero is under a roof, then hide all roofs
-            if (underRoof)
-            { Functions_GameObject_World.HideRoofs(); }
-
-            //editor connection here - this can become a menu option
-            else if(Flags.IgnoreRoofTiles)
-            { Functions_GameObject_World.HideRoofs(); }
-
-            //else game should display all roofs
-            else { Functions_GameObject_World.ShowRoofs(); }
-
-            #endregion
-
-
-            #region Hero sorting in water/land
-
-            //set hero's zoffset based on state
-            if (Pool.hero.underwater)
-            { Pool.hero.compSprite.zOffset = -30; } //sort under vines
-            //sort normally
-            else { Pool.hero.compSprite.zOffset = 0; }
-
-            #endregion
-
-
-            #region Hero carrying obj
-
-            if (carrying)
-            {   //hide the carried obj projectile from initial drawing
-                carriedObj.compSprite.visible = false;
-                //we will draw it later, after hero sprite, locked on link's head
-            }
-
-            #endregion
-
-
-
-            //resets
-
-            #region Hide Reward Sprite if Hero is not-statelocked
-
-            if(Pool.hero.stateLocked == false)
-            {   //if hero has unlocked, then hide reward sprite
-                //rewardSprite.visible = false;
-            }
-
-            #endregion
-
-
-        }
-
-
-
-
-
-
-
-        public static void Draw()
-        {
-
-
-            #region Align and Draw Carried Object Projectile
-
-            if(carrying)
-            {   //align carried obj to hero's head after hero has been drawn
-                //this is based on post-collision hitbox pos, and ensures carried obj
-                //doesnt lag behind hero, despite speed and magnitude changes
-
-                if (Pool.hero.swimming)
-                {
-                    if (Pool.hero.underwater)
-                    {   //place heldObj above head, underwater
-                        Functions_Movement.Teleport(
-                            carriedObj.compMove,
-                            Pool.hero.compCollision.rec.Center.X,
-                            Pool.hero.compCollision.rec.Center.Y - 5);
-                    }
-                    else
-                    {   //place heldObj above head, swimming
-                        Functions_Movement.Teleport(
-                            carriedObj.compMove,
-                            Pool.hero.compCollision.rec.Center.X,
-                            Pool.hero.compCollision.rec.Center.Y - 8);
-                    }
-
-                }
-                else
-                {   //place heldObj above head, on land
-                    Functions_Movement.Teleport(
-                        carriedObj.compMove,
-                        Pool.hero.compCollision.rec.Center.X,
-                        Pool.hero.compCollision.rec.Center.Y - 13);
-                }
-
-                //align pro components
-                Functions_Component.Align(
-                    carriedObj.compMove, 
-                    carriedObj.compSprite, 
-                    carriedObj.compCollision);
-
-                //enable draw, then draw carried obj
-                carriedObj.compSprite.visible = true;
-                Functions_Draw.Draw(carriedObj);
-            }
-
-            #endregion
-
-            
-
-
-            //we could handle future pet related drawing here too
-
         }
 
     }

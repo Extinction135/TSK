@@ -20,7 +20,7 @@ namespace DungeonRun
         public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.79f; //the version of the game
-        public static BootRoutine bootRoutine = BootRoutine.Editor_Level; //boot to game or editor?
+        public static BootRoutine bootRoutine = BootRoutine.Editor_Room; //boot to game or editor?
 
         //dev/editor flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
@@ -1634,6 +1634,73 @@ namespace DungeonRun
 
 
 
+
+
+    #region Indestructible RoomObject
+
+    public class IndestructibleObject
+    {
+        public ComponentSprite compSprite;
+        public ComponentAnimation compAnim = new ComponentAnimation();
+        public ComponentCollision compCollision = new ComponentCollision();
+        //public ComponentSoundFX sfx = new ComponentSoundFX(); //always metallic tap hit sfx
+
+        public IndestructibleGroup group = IndestructibleGroup.Object;
+        public IndestructibleType type = IndestructibleType.Dungeon_BlockDark;
+        public Direction direction = Direction.Down; //direction obj/sprite is facing
+
+        public Boolean active = true; //does object draw, update?
+        public Boolean canBeSaved = false; //can this obj be saved to RoomXMLData?
+
+        public Boolean interacts = false; //obj has update behavior?
+        public int interactiveFrame = 0; //on this frame obj interacts
+
+        public IndestructibleObject()
+        {   //initialize to default value - data is changed later
+            compSprite = new ComponentSprite(Assets.CommonObjsSheet,
+                new Vector2(50, 50), new Byte4(0, 0, 0, 0), new Point(16, 16));
+            Functions_IndestructibleObjs.SetType(this, type);
+        }
+    }
+
+    #endregion
+
+
+    #region Interactive RoomObject
+
+    public class InteractiveObject
+    {
+        public InteractiveType type = InteractiveType.Barrel;
+        public InteractiveGroup group = InteractiveGroup.Object;
+        public Direction direction = Direction.Down; //direction obj/sprite is facing
+
+        public ComponentSprite compSprite;
+        public ComponentAnimation compAnim = new ComponentAnimation();
+        public ComponentMovement compMove = new ComponentMovement();
+        public ComponentCollision compCollision = new ComponentCollision();
+        public ComponentSoundFX sfx = new ComponentSoundFX();
+        
+        public Boolean active = true; //does object draw, update?
+        public Boolean canBeSaved = false; //can this obj be saved to RoomXMLData?
+
+        public Byte counter; //generic counter
+        public Byte countTotal; //generic total
+        public Boolean interacts = false; //obj has behavior in intObj.Update()
+        public int interactiveFrame = 0; //the frame interact behavior is called on
+
+        public Boolean underWater = false; //is obj underwater
+        public Boolean inWater = false; //is obj partially submerged in water? ex: swimming
+        public Boolean selfCleans = false; //some objs remove themselves upon overlap
+
+        public InteractiveObject()
+        {   //initialize to default value - data is changed later
+            compSprite = new ComponentSprite(Assets.CommonObjsSheet,
+                new Vector2(50, 50), new Byte4(0, 0, 0, 0), new Point(16, 16));
+            Functions_InteractiveObjs.SetType(this, type);
+        }
+    }
+
+    #endregion
 
 
 

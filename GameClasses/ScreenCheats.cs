@@ -248,7 +248,7 @@ namespace DungeonRun
                         Flags.AutoSolvePuzzle = true;
                         //opens current room's doors (solves puzzle) rn
                         LevelSet.currentLevel.currentRoom.puzzleType = PuzzleType.None;
-                        Functions_GameObject_Dungeon.OpenTrapDoors();
+                        Functions_Room.OpenTrapDoors();
                         Assets.Play(Assets.sfxSwitch);
                     }
                 }

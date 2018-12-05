@@ -515,6 +515,17 @@ namespace DungeonRun
             Functions_Pool.Release(Obj);
         }
 
+        public static void OpenHouseDoor(GameObject Obj)
+        {   //pop attention particle
+            Functions_Particle.Spawn(
+                ParticleType.Attention,
+                Obj.compSprite.position.X,
+                Obj.compSprite.position.Y);
+            //switch to open door
+            Functions_GameObject.SetType(Obj, ObjType.Wor_Build_Door_Open);
+            //play an unlocking sound effect
+            Assets.Play(Assets.sfxDoorOpen); //could be better
+        }
 
 
 
@@ -576,127 +587,7 @@ namespace DungeonRun
         }
 
         
-
-
-
-        //hero interaction rec methods
-
-        public static void ReadSign(GameObject Sign)
-        {
-            //based on current roomid, signs point to diff dialogs
-            //everything is based on currentRoom's ID, never levelID
-
-
-            //field signposts
-            if(LevelSet.currentLevel.currentRoom.roomID == RoomID.SkullIsland_Town)
-            {
-                Screens.Dialog.SetDialog(AssetsDialog.Signpost_ShadowTown);
-                ScreenManager.AddScreen(Screens.Dialog);
-            }
-            else if (LevelSet.currentLevel.currentRoom.roomID == RoomID.SkullIsland_Colliseum)
-            {
-                Screens.Dialog.SetDialog(AssetsDialog.Signpost_ShadowColliseum);
-                ScreenManager.AddScreen(Screens.Dialog);
-            }
-
-            else if (LevelSet.currentLevel.currentRoom.roomID == RoomID.ForestIsland_MainEntrance)
-            {
-                Screens.Dialog.SetDialog(AssetsDialog.Signpost_ForestEntrance);
-                ScreenManager.AddScreen(Screens.Dialog);
-            }
-            else if (LevelSet.currentLevel.currentRoom.roomID == RoomID.DeathMountain_MainEntrance)
-            {
-                Screens.Dialog.SetDialog(AssetsDialog.Signpost_MountainEntrance);
-                ScreenManager.AddScreen(Screens.Dialog);
-            }
-
-
-
-            //this is a temp hack for 0.77 release and will change in future commits
-            else if (LevelSet.currentLevel.currentRoom.roomID == RoomID.SkullIsland_ShadowKing)
-            {
-                Screens.Dialog.SetDialog(AssetsDialog.Signpost_SwampEntrance);
-                ScreenManager.AddScreen(Screens.Dialog);
-            }
-
-
-
-
-
-
-
-            //dungeon signposts
-            else if (LevelSet.currentLevel.currentRoom.roomID == RoomID.Exit)
-            {
-                Screens.Dialog.SetDialog(AssetsDialog.Signpost_ExitRoom);
-                ScreenManager.AddScreen(Screens.Dialog);
-            }
-
-
-            //hack for 0.77 - secret vendor exists in column room, find him, set signpost dialog
-            else if (LevelSet.currentLevel.currentRoom.roomID == RoomID.Column)
-            {
-                //default dialog
-                Screens.Dialog.SetDialog(AssetsDialog.Signpost_Standard);
-
-                //loop over all roomObjs to find secret vendor obj
-                for (i = 0; i < Pool.roomObjCount; i++)
-                {
-                    if(Pool.roomObjPool[i].active)
-                    {
-                        if(Pool.roomObjPool[i].type == ObjType.Vendor_NPC_EnemyItems)
-                        {   //set the secret vendor dialog
-                            Screens.Dialog.SetDialog(AssetsDialog.Signpost_SecretVendor);
-                        }
-                    }
-                }
-
-                //either add default dialog or secret vendor dialog
-                ScreenManager.AddScreen(Screens.Dialog);
-            }
-
-
-
-
-
-
-
-
-
-            //editor dialogs
-            else if(LevelSet.currentLevel.currentRoom.roomID == RoomID.DEV_Field)
-            {
-                Screens.Dialog.SetDialog(AssetsDialog.Signpost_CantRead);
-                ScreenManager.AddScreen(Screens.Dialog);
-            }
-            else if(LevelSet.currentLevel.currentRoom.roomID == RoomID.DEV_Exit)
-            {
-                Screens.Dialog.SetDialog(AssetsDialog.Signpost_CantRead);
-                ScreenManager.AddScreen(Screens.Dialog);
-            }
-
-
-
-            else
-            {   //bare minimum, we pop a blank standard dialog
-                Screens.Dialog.SetDialog(AssetsDialog.Signpost_Standard);
-                ScreenManager.AddScreen(Screens.Dialog);
-            }
-        }
-
-        public static void OpenHouseDoor(GameObject Obj)
-        {
-            //pop attention particle
-            Functions_Particle.Spawn(
-                ParticleType.Attention,
-                Obj.compSprite.position.X,
-                Obj.compSprite.position.Y);
-            //switch to open door
-            Functions_GameObject.SetType(Obj, ObjType.Wor_Build_Door_Open);
-            //play an unlocking sound effect
-            Assets.Play(Assets.sfxDoorOpen); //could be better
-        }
-
+        
 
 
 

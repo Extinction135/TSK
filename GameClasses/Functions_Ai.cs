@@ -911,7 +911,7 @@ namespace DungeonRun
                     //if any actors/objs overlap switch, openTrap doors
                     if (overlap)
                     {
-                        Functions_GameObject_Dungeon.OpenTrapDoors();
+                        Functions_Room.OpenTrapDoors();
                         //bail if we already did this
                         if (Obj.type == ObjType.Dungeon_SwitchDown) { return; }
                         Functions_GameObject.SetType(Obj, ObjType.Dungeon_SwitchDown);
@@ -924,7 +924,7 @@ namespace DungeonRun
                     //else close all open doors to trap doors
                     else
                     {
-                        Functions_GameObject_Dungeon.CloseTrapDoors();
+                        Functions_Room.CloseTrapDoors();
                         //bail if we already did this
                         if (Obj.type == ObjType.Dungeon_Switch) { return; }
                         Functions_GameObject.SetType(Obj, ObjType.Dungeon_Switch);

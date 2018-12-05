@@ -66,33 +66,45 @@ Today:
 
 
 
+Prep for GameObject Split - The Great Deletion
 
-Prep for GameObjs Split
+recorded videos of all level data, all room data.
+these videos will be used to rebuild some levels and rooms.
 
-added indestructible and interactive objs types and groups,
-along with copying values from gameObj into these two enums.
-
-removed game display data class, because it's no longer being
-used in the game at all.
-
-
-
-
-
-
-
-
-
-this means we lose all level data and room data, unless we
-migrate that data by hand. so maybe take screenshots of each 
-room in the dungeons so you can remake them later on.
+added classes for indestructible and interactive objects.
 
 this is also a good time to rename objects, as they will
 be in different classes completely. dungeon objs for actual
 dungeon objs, and drop the world prefix for objects that
 aren't dungeon objs.
 
+deleted all room data in all room xml files.
+deleted all room data in all room data asset files.
+this should thin the errors as much as possible prior
+to the gameObj defs and pool being removed.
 
+this is an over 50% reduction in codebase size, from 31k
+to just under 15k. that means the game's systems take up
+about 15,000 lines of code alone, without any room data.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+now let the migration begin!
 
 step 1: seperate gameobjs into interactive and indestructible
 	this renders all room data corrupt
@@ -127,7 +139,7 @@ step 4: setup interactions
 	hero interaction rec vs ints
 	hero interaction rec vs inds (entrances mostly)
 	
-	
+step 5: fix editor and xml savedata, then cs pipeline	
 	
 	
 	
