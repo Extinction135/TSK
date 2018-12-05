@@ -823,6 +823,7 @@ namespace DungeonRun
         //Emitters - create projectiles/particles per frame
         Emitter_Explosion,
         Emitter_GroundFire,
+        Emitter_IceTile,
 
         //Projectiles - enemy related
         Bite,
@@ -912,6 +913,7 @@ namespace DungeonRun
         Explosive_Bombos,
 
         //ice
+        Ice_FreezeWalk,
         Ice_FreezeGround,
 
         //electrical
@@ -991,6 +993,7 @@ namespace DungeonRun
 
 
         //ice
+        Spells_Ice_FreezeWalk,
         Spells_Ice_FreezeGround,
 
 

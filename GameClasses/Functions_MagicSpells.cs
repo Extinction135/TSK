@@ -240,6 +240,17 @@ namespace DungeonRun
 
             //ice spells
 
+            #region Ice Walk
+
+            else if (Spell == SpellType.Ice_FreezeWalk)
+            {
+                Assets.Play(Assets.sfxIcerod);
+                Functions_Projectile.Spawn(ProjectileType.Emitter_IceTile, Caster, Direction.Down);
+            }
+
+            #endregion
+
+
             #region Freeze Ground
 
             else if (Spell == SpellType.Ice_FreezeGround)

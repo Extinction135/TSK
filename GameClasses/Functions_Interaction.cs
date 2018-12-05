@@ -126,6 +126,7 @@ namespace DungeonRun
                 //all emitters
                 || Pro.type == ProjectileType.Emitter_Explosion
                 || Pro.type == ProjectileType.Emitter_GroundFire
+                || Pro.type == ProjectileType.Emitter_IceTile
                 )
             { return; }
             //check for boomerang interaction with hero

@@ -17,6 +17,7 @@ namespace DungeonRun
         static Projectile pro;
         static Boolean pushLines;
         static int i;
+        static GameObject objSpawnRef; //used to spawn roomObjects
 
 
 
@@ -337,6 +338,9 @@ namespace DungeonRun
 
 
 
+
+
+
             //projectiles that have no collision effect upon caster
 
             #region Boomerang
@@ -381,6 +385,8 @@ namespace DungeonRun
             }
 
             #endregion
+
+
 
 
 
@@ -988,6 +994,35 @@ namespace DungeonRun
                         Pro.compSprite.position.Y,
                         Direction.Down);
                 }
+            }
+            else if (Pro.type == ProjectileType.Emitter_IceTile)
+            {
+
+                //track emitter to caster each frame of life
+                Functions_Movement.Teleport(Pro.compMove,
+                    Pro.caster.compSprite.position.X + 0,
+                    Pro.caster.compSprite.position.Y + 0);
+
+                Pro.interactiveFrame++; //hijack this to limit emitted pros
+                if (Pro.interactiveFrame >= 5)
+                {
+                    Pro.interactiveFrame = 0; //reset counter
+                    //spawn ice tile
+                    objSpawnRef = Functions_Pool.GetRoomObj();
+                    Functions_GameObject.SetType(objSpawnRef, ObjType.Dungeon_IceTile);
+                    //align to game world grid
+                    objSpawnRef.compMove.newPosition = 
+                        Functions_Movement.AlignToGrid(
+                            (int)Pro.caster.compSprite.position.X,
+                            (int)Pro.caster.compSprite.position.Y);
+                    objSpawnRef.compMove.position = objSpawnRef.compMove.newPosition;
+                    Functions_Component.Align(objSpawnRef);
+                    //note ice tile birth with attention particle
+                    Functions_Particle.Spawn(ParticleType.Attention,
+                        objSpawnRef.compSprite.position.X,
+                        objSpawnRef.compSprite.position.Y);
+                }
+
             }
 
             #endregion
@@ -1759,6 +1794,12 @@ namespace DungeonRun
                 Pro.compSprite.visible = false; //dont draw
             }
             else if(Type == ProjectileType.Emitter_GroundFire)
+            {   //emitters have no visual sprite
+                Pro.lifetime = 254; //max life
+                Pro.compMove.grounded = false; //obj is airborne
+                Pro.compSprite.visible = false; //dont draw
+            }
+            else if (Type == ProjectileType.Emitter_IceTile)
             {   //emitters have no visual sprite
                 Pro.lifetime = 254; //max life
                 Pro.compMove.grounded = false; //obj is airborne

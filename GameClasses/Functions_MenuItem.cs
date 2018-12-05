@@ -712,7 +712,16 @@ namespace DungeonRun
 
 
             #region Ice Spells
-            
+
+            else if (Type == MenuItemType.Spells_Ice_FreezeWalk)
+            {
+                MenuItem.name = "Ice Walk";
+                MenuItem.description = "Ice is created where \ncaster walks.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Projectile_Iceball;
+                MenuItem.compSprite.texture = Assets.entitiesSheet;
+                MenuItem.compAnim.loop = true;
+                MenuItem.compAnim.speed = 10;
+            }
             else if (Type == MenuItemType.Spells_Ice_FreezeGround)
             {
                 MenuItem.name = "Freeze Ground";

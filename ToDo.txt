@@ -65,35 +65,22 @@ Today:
 
 
 
+Ice Walk Spell
 
-
-Spells++
-
-Ice Walk - everywhere hero walks, ice tiles spawn, across frames.
-
-
-
-
-
-
-
-FireWalk With Me
-
-implemented fire walk magic, which creates fire wherever the
-caster walks. this is an emitter that constantly creates ground
-fires, and tracks to it's caster for 254 frames, then dies.
-pretty simple. spell added to book and game.
-
-Bats++
-
-bat are now killed when they collide with actors. this
-prevents them from passing thru hero and damaging multiple
-times.
+just like fire walk, but creates ice tiles everywhere caster
+walks. these ice tiles align to 16x16 grid and self-clean too,
+so they don't overlap or bunch up poorly. this is done via an
+iceTile emitter, just like the ground fire emitter.
 
 
 
 
 
+
+
+ground fires should 'melt' icetiles.
+this is a simple projectile vs roomObj interaction.
+ice tiles create rising smoke upon being melted.
 
 
 
