@@ -835,6 +835,24 @@ namespace DungeonRun
                 #endregion
 
 
+                #region Ice Tiles
+
+                else if(RoomObj.type == ObjType.Dungeon_IceTile)
+                {
+                    if (
+                        Pro.type == ProjectileType.Fireball
+                        || Pro.type == ProjectileType.GroundFire
+                        )
+                    {   //melt icetiles
+                        Functions_GameObject_World.MeltIceTile(RoomObj);
+                    }
+                }
+
+                #endregion
+
+
+
+
             }
 
             #endregion

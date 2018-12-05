@@ -996,9 +996,7 @@ namespace DungeonRun
                 }
             }
             else if (Pro.type == ProjectileType.Emitter_IceTile)
-            {
-
-                //track emitter to caster each frame of life
+            {   //track emitter to caster each frame of life
                 Functions_Movement.Teleport(Pro.compMove,
                     Pro.caster.compSprite.position.X + 0,
                     Pro.caster.compSprite.position.Y + 0);
@@ -1022,7 +1020,6 @@ namespace DungeonRun
                         objSpawnRef.compSprite.position.X,
                         objSpawnRef.compSprite.position.Y);
                 }
-
             }
 
             #endregion
@@ -1228,8 +1225,7 @@ namespace DungeonRun
 
             #endregion
 
-
-
+            
 
             //all objects are released upon death
             if (Pro.sfx.kill != null) { Assets.Play(Pro.sfx.kill); }

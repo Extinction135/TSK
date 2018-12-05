@@ -500,6 +500,25 @@ namespace DungeonRun
 
 
 
+        //special methods
+
+        public static void MeltIceTile(GameObject Obj)
+        {   //create rising smoke to fake evaporation
+            Functions_Particle.Spawn(ParticleType.RisingSmoke,
+                Obj.compSprite.position.X, 
+                Obj.compSprite.position.Y - 4, 
+                Direction.Down);
+            Functions_Particle.Spawn(ParticleType.Attention,
+                Obj.compSprite.position.X,
+                Obj.compSprite.position.Y,
+                Direction.Down);
+            Functions_Pool.Release(Obj);
+        }
+
+
+
+
+
 
 
 

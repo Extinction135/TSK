@@ -65,22 +65,33 @@ Today:
 
 
 
-Ice Walk Spell
-
-just like fire walk, but creates ice tiles everywhere caster
-walks. these ice tiles align to 16x16 grid and self-clean too,
-so they don't overlap or bunch up poorly. this is done via an
-iceTile emitter, just like the ground fire emitter.
 
 
 
 
+Fire Melts Ice (Systems++)
 
-
-
-ground fires should 'melt' icetiles.
+ground fires + fireballs should 'melt' icetiles.
 this is a simple projectile vs roomObj interaction.
 ice tiles create rising smoke upon being melted.
+this is handled via func_obj_world.MeltIceTile().
+tested and working well.
+
+
+
+
+
+
+
+
+Ice Tile Melting++
+
+fire melting ice is good, but it needs polish.
+when we melt ice, we should create a wet spot particle,
+which lasts for 200 or so frames, and helps to ease 
+the ice tiles transition out of the world, since it
+just dissappears right now.
+
 
 
 
