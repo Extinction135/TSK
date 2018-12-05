@@ -70,7 +70,7 @@ namespace DungeonRun
     {
         //contains pit spawning routines for light and dark colliseums
         static int i;
-        public static GameObject objRef;
+        public static InteractiveObject objRef;
         public static Actor actorRef;
         public static List<ActorType> currentChallenge;
 
@@ -85,12 +85,12 @@ namespace DungeonRun
             currentChallenge = Challenge;
 
             //remove all vendors (and any other decoration)
-            for (i = 0; i < Pool.roomObjCount; i++)
+            for (i = 0; i < Pool.intObjCount; i++)
             {
-                if(Pool.roomObjPool[i].active)
+                if(Pool.intObjPool[i].active)
                 {   //remove all vendors
-                    if (Pool.roomObjPool[i].group == ObjGroup.Vendor)
-                    { Functions_Pool.Release(Pool.roomObjPool[i]); }
+                    if (Pool.intObjPool[i].group == InteractiveGroup.Vendor)
+                    { Functions_Pool.Release(Pool.intObjPool[i]); }
                     //remove any additional decorations here, by checking type
                 }
             }
@@ -121,7 +121,7 @@ namespace DungeonRun
             //creating an unwinnable and unfair gamestate
             for (i = 0; i < 10; i++)
             {
-                objRef = Functions_Pool.GetRoomObj();
+                objRef = Functions_Pool.GetIntObj();
                 //block off the colliseum entrance
                 Functions_Movement.Teleport(
                     objRef.compMove,
@@ -138,7 +138,7 @@ namespace DungeonRun
                     - 16 - 8); //apply final offset
 
                 objRef.direction = Direction.Down;
-                Functions_GameObject.SetType(objRef, ObjType.Wor_Colliseum_Pillar_Top);
+                Functions_InteractiveObjs.SetType(objRef, InteractiveType.Barrel);
             }
 
             //respawn hero inside of pit - this line is actually not needed,
@@ -146,7 +146,7 @@ namespace DungeonRun
             Functions_Hero.SpawnInCurrentRoom();
 
             //create the judge obj
-            objRef = Functions_Pool.GetRoomObj();
+            objRef = Functions_Pool.GetIntObj();
 
             //place judge along backwall
             Functions_Movement.Teleport(
@@ -156,7 +156,7 @@ namespace DungeonRun
                 + 8, //align to gameworld grid
                 LevelSet.currentLevel.currentRoom.rec.Y + 16 * 14 - 8 - 4); //against back wall
             objRef.direction = Direction.Down;
-            Functions_GameObject.SetType(objRef, ObjType.Judge_Colliseum);
+            Functions_InteractiveObjs.SetType(objRef, InteractiveType.Judge_Colliseum);
 
             //change the crowd's atmosphere to be more aggressive
             Functions_Music.PlayMusic(Music.CrowdFighting);

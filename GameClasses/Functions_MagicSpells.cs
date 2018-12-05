@@ -334,12 +334,12 @@ namespace DungeonRun
                 }
             }
             //collect enemy object positions
-            for (i = 0; i < Pool.roomObjCount; i++)
+            for (i = 0; i < Pool.intObjCount; i++)
             {
-                if (Pool.roomObjPool[i].active)
+                if (Pool.intObjPool[i].active)
                 {
-                    if (Pool.roomObjPool[i].group == ObjGroup.Enemy)
-                    { castPositions.Add(Pool.roomObjPool[i].compSprite.position); }
+                    if (Pool.intObjPool[i].group == InteractiveGroup.Enemy)
+                    { castPositions.Add(Pool.intObjPool[i].compSprite.position); }
                 }
             }
 
@@ -377,7 +377,7 @@ namespace DungeonRun
 
         //any actor cast spells
         static int iceCounter = 0;
-        static GameObject iceTile;
+        static InteractiveObject iceTile;
         static Vector2 icePosRef = new Vector2();
         public static void Cast_FreezeGround(Vector2 pos)
         {   //align pos to grid
@@ -407,8 +407,8 @@ namespace DungeonRun
                 { icePosRef.X = pos.X + 16; icePosRef.Y = pos.Y + 16; }
 
                 //place ice tile at offset
-                iceTile = Functions_Pool.GetRoomObj();
-                Functions_GameObject.SetType(iceTile, ObjType.Dungeon_IceTile);
+                iceTile = Functions_Pool.GetIntObj();
+                Functions_InteractiveObjs.SetType(iceTile, InteractiveType.IceTile);
                 Functions_Movement.Teleport(iceTile.compMove, icePosRef.X, icePosRef.Y);
                 Functions_Component.Align(iceTile);
                 //note ice tile birth with attention particle

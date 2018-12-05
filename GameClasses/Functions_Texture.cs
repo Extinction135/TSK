@@ -46,7 +46,7 @@ namespace DungeonRun
         {   //12 rows, with 4 objs per row
             for (i = 0; i < 12 * 4; i++)
             {
-                Functions_GameObject.SetType(WO.objList[i], WO.objList[i].type);
+                Functions_InteractiveObjs.SetType(WO.objList[i], WO.objList[i].type);
                 //make hitboxes easy to select, because this is a gameobj acting as a ui menu item
                 WO.objList[i].compCollision.rec.Width = 16;
                 WO.objList[i].compCollision.rec.Height = 16;

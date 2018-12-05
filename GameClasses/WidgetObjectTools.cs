@@ -22,24 +22,24 @@ namespace DungeonRun
         Boolean objMode = true; //start widget in object mode (rather than actor mode)
         public ActorType selectedActor;
 
-        public GameObject moveObj;
-        public GameObject rotateObj;
-        public GameObject addObj;
-        public GameObject deleteObj;
+        public InteractiveObject moveObj;
+        public InteractiveObject rotateObj;
+        public InteractiveObject addObj;
+        public InteractiveObject deleteObj;
 
         //move these into Input class or Functions_Input
         public Point worldPos; //used to translate screen to world position
         public Point screenPos; //used to translate world to screen position
 
-        public GameObject currentObjRef;
+        public InteractiveObject currentObjRef;
         public ComponentText currentObjDirectionText;
 
         public ComponentSprite selectionBoxObj; //highlites the currently selected obj
         public ComponentSprite selectionBoxTool; //highlites the currently selected tool
 
-        public GameObject activeObj; //points to Obj on objList OR on roomObj/entity list
-        public GameObject grabbedObj; //obj/entity that is picked up/dragged/dropped in room
-        public GameObject activeTool; //points to a ToolObj on the obj list
+        public InteractiveObject activeObj; //points to Obj on objList OR on roomObj/entity list
+        public InteractiveObject grabbedObj; //obj/entity that is picked up/dragged/dropped in room
+        public InteractiveObject activeTool; //points to a ToolObj on the obj list
 
         Boolean ignoreObj = false; //helper for modeling editor ignore state
 
@@ -59,8 +59,8 @@ namespace DungeonRun
             #region Add Toolbar objs
 
             //hand (move) 
-            moveObj = new GameObject();
-            Functions_GameObject.Reset(moveObj);
+            moveObj = new InteractiveObject();
+            Functions_InteractiveObjs.Reset(moveObj);
             moveObj.compSprite.texture = Assets.uiItemsSheet;
             Functions_Movement.Teleport(moveObj.compMove, 16 * 1, 16);
             Functions_Component.Align(moveObj);
@@ -68,8 +68,8 @@ namespace DungeonRun
             Functions_Animation.Animate(moveObj.compAnim, moveObj.compSprite);
 
             //rotateObj 
-            rotateObj = new GameObject();
-            Functions_GameObject.Reset(rotateObj);
+            rotateObj = new InteractiveObject();
+            Functions_InteractiveObjs.Reset(rotateObj);
             rotateObj.compSprite.texture = Assets.uiItemsSheet;
             Functions_Movement.Teleport(rotateObj.compMove, 16 * 2, 16);
             Functions_Component.Align(rotateObj);
@@ -77,8 +77,8 @@ namespace DungeonRun
             Functions_Animation.Animate(rotateObj.compAnim, rotateObj.compSprite);
 
             //add icon
-            addObj = new GameObject();
-            Functions_GameObject.Reset(addObj);
+            addObj = new InteractiveObject();
+            Functions_InteractiveObjs.Reset(addObj);
             addObj.compSprite.texture = Assets.uiItemsSheet;
             Functions_Movement.Teleport(addObj.compMove, 16 * 3, 16);
             Functions_Component.Align(addObj);
@@ -86,8 +86,8 @@ namespace DungeonRun
             Functions_Animation.Animate(addObj.compAnim, addObj.compSprite);
 
             //minus icon
-            deleteObj = new GameObject();
-            Functions_GameObject.Reset(deleteObj);
+            deleteObj = new InteractiveObject();
+            Functions_InteractiveObjs.Reset(deleteObj);
             deleteObj.compSprite.texture = Assets.uiItemsSheet;
             Functions_Movement.Teleport(deleteObj.compMove, 16 * 4, 16);
             Functions_Component.Align(deleteObj);
@@ -98,7 +98,7 @@ namespace DungeonRun
 
 
             //create current obj components
-            currentObjRef = new GameObject();
+            currentObjRef = new InteractiveObject();
             currentObjDirectionText = new ComponentText(
                 Assets.font, "",
                 new Vector2(0, 0),
@@ -205,13 +205,14 @@ namespace DungeonRun
 
                     #region Check to see if we can add this type of Obj to this type of Room
 
-                    if (currentObjRef.type == ObjType.Dungeon_Chest)
+                    /*
+                    if (currentObjRef.type == InteractiveType.Dungeon_Chest)
                     {
                         //we convert the 'safe' chest into a key or hub chest here
                         if (LevelSet.currentLevel.currentRoom.roomID == RoomID.Key ||
                             LevelSet.currentLevel.currentRoom.roomID == RoomID.DEV_Key)
                         {   //convert to key chest
-                            currentObjRef.type = ObjType.Dungeon_ChestKey;
+                            currentObjRef.type = InteractiveType.Dungeon_ChestKey;
 
                         }
                         else
@@ -222,9 +223,9 @@ namespace DungeonRun
                         }
 
                         //we cannot have more than one chest in a room
-                        for (j = 0; j < Pool.roomObjCount; j++)
+                        for (j = 0; j < Pool.intObjCount; j++)
                         {   //check all roomObjs for an active chest
-                            if (Pool.roomObjPool[j].active & Pool.roomObjPool[j].group == ObjGroup.Chest)
+                            if (Pool.intObjPool[j].active & Pool.intObjPool[j].group == InteractiveGroup.Chest)
                             {
                                 Screens.Dialog.SetDialog(AssetsDialog.CantAddChests);
                                 ScreenManager.AddScreen(Screens.Dialog);
@@ -232,12 +233,15 @@ namespace DungeonRun
                             }
                         }
                     }
+                    */
 
-                    else if (currentObjRef.type == ObjType.Dungeon_Switch)
+
+
+                    if (currentObjRef.type == InteractiveType.Dungeon_Switch)
                     {   //we cannot have more than one switch in a room
-                        for (j = 0; j < Pool.roomObjCount; j++)
+                        for (j = 0; j < Pool.intObjCount; j++)
                         {   //check all roomObjs for an active chest
-                            if (Pool.roomObjPool[j].active && Pool.roomObjPool[j].type == ObjType.Dungeon_Switch)
+                            if (Pool.intObjPool[j].active && Pool.intObjPool[j].type == InteractiveType.Dungeon_Switch)
                             {
                                 Screens.Dialog.SetDialog(AssetsDialog.CantAddMoreSwitches);
                                 ScreenManager.AddScreen(Screens.Dialog);
@@ -250,8 +254,8 @@ namespace DungeonRun
 
 
                     //we can only add roomObjects to the room, no particles/projectiles
-                    GameObject objRef;
-                    objRef = Functions_Pool.GetRoomObj();
+                    InteractiveObject objRef;
+                    objRef = Functions_Pool.GetIntObj();
 
 
                     //place currently selected obj in room, aligned to 16px grid
@@ -261,16 +265,19 @@ namespace DungeonRun
                     //set obj direction + type from stored values
                     objRef.direction = currentObjRef.direction;
                     objRef.compMove.direction = currentObjRef.direction;
-                    Functions_GameObject.SetType(objRef, currentObjRef.type);
+                    Functions_InteractiveObjs.SetType(objRef, currentObjRef.type);
                     //set animation frame
                     Functions_Animation.Animate(objRef.compAnim, objRef.compSprite);
 
 
                     #region Convert chest objs to empty chests after placement
 
-                    if (currentObjRef.group == ObjGroup.Chest)
+                    if (
+                        currentObjRef.type == InteractiveType.Chest
+                        || currentObjRef.type == InteractiveType.ChestKey
+                        )
                     {
-                        Functions_GameObject.SetType(currentObjRef, ObjType.Dungeon_ChestEmpty);
+                        Functions_InteractiveObjs.SetType(currentObjRef, InteractiveType.ChestEmpty);
                         //set the tool to be empty chest
                         activeObj = Widgets.WO_Dungeon.objList[19];
                     }
@@ -350,11 +357,11 @@ namespace DungeonRun
                     
                     
                     //delete roomObjs
-                    for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
+                    for (Pool.intObjCounter = 0; Pool.intObjCounter < Pool.intObjCount; Pool.intObjCounter++)
                     {
-                        if (Pool.roomObjPool[Pool.roomObjCounter].active)
+                        if (Pool.intObjPool[Pool.intObjCounter].active)
                         {
-                            if (Pool.roomObjPool[Pool.roomObjCounter].compCollision.rec.Contains(worldPos))
+                            if (Pool.intObjPool[Pool.intObjCounter].compCollision.rec.Contains(worldPos))
                             {
 
                                 ignoreObj = false;
@@ -363,16 +370,16 @@ namespace DungeonRun
                                 #region Editor Based Selection Cases
 
                                 //check for specific conditions, like ignoring water tiles
-                                if (Flags.IgnoreWaterTiles & Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Water)
+                                if (Flags.IgnoreWaterTiles & Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Water_2x2)
                                 { ignoreObj = true; } //ignore this object
 
                                 //ignoring roof tiles for deletion
                                 if (Flags.IgnoreRoofTiles)
                                 {
                                     if(
-                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Build_Roof_Bottom ||
-                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Build_Roof_Chimney ||
-                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Build_Roof_Top
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.House_Roof_Bottom ||
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.House_Roof_Chimney ||
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.House_Roof_Top
                                         )
                                     { ignoreObj = true; } //ignore this object
                                 }
@@ -382,35 +389,41 @@ namespace DungeonRun
                                 {
                                     if (
                                         //all the boat objs, in groups of 5 - should we model this as an obj.group value?
-                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Back_Center ||
-                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Back_Left ||
-                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Back_Left_Connector ||
-                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Back_Right ||
-                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Back_Right_Connector ||
 
-                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Bannister_Left ||
-                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Bannister_Right ||
-                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Bridge_Bottom ||
-                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Bridge_Top ||
-                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Engine ||
+                                        //these are all indestructible objects
+                                        /*
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Back_Center ||
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Back_Left ||
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Back_Left_Connector ||
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Back_Right ||
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Back_Right_Connector ||
 
-                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Front ||
-                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Front_ConnectorLeft ||
-                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Front_ConnectorRight ||
-                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Front_Left ||
-                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Front_Right ||
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Bannister_Left ||
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Bannister_Right ||
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Bridge_Bottom ||
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Bridge_Top ||
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Engine ||
 
-                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Stairs_Bottom_Left ||
-                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Stairs_Bottom_Right ||
-                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Stairs_Cover ||
-                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Stairs_Left ||
-                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Stairs_Right ||
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Front ||
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Front_ConnectorLeft ||
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Front_ConnectorRight ||
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Front_Left ||
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Front_Right ||
 
-                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Stairs_Top_Left ||
-                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Stairs_Top_Right ||
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Stairs_Bottom_Left ||
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Stairs_Bottom_Right ||
+
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Stairs_Cover ||
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Stairs_Left ||
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Stairs_Right ||
+                                        */
+
+
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Boat_Stairs_Left ||
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Boat_Stairs_Right ||
 
                                         //this one is special, because we use this obj as interior house floor
-                                        Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Floor
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Boat_Floor
                                         //ignore boat button also ignores floors = easy to move furniture around
                                         )
                                     { ignoreObj = true; } //ignore this object
@@ -430,7 +443,7 @@ namespace DungeonRun
                                 if (ignoreObj == false)
                                 {
                                     //if we aren't ignoring the object, then release it
-                                    Functions_Pool.Release(Pool.roomObjPool[Pool.roomObjCounter]);
+                                    Functions_Pool.Release(Pool.intObjPool[Pool.intObjCounter]);
                                 }
                             }
                         }
@@ -524,7 +537,7 @@ namespace DungeonRun
 
 
 
-        public void SetActiveTool(GameObject Tool)
+        public void SetActiveTool(InteractiveObject Tool)
         {
             activeTool = Tool;
             selectionBoxTool.scale = 2.0f;
@@ -541,10 +554,10 @@ namespace DungeonRun
 
         public void GetActiveObjInfo()
         {   //reset objRef, match currentObjRef to activeObj
-            Functions_GameObject.Reset(currentObjRef);
+            Functions_InteractiveObjs.Reset(currentObjRef);
             currentObjRef.direction = activeObj.direction; //store direction value
             currentObjRef.compSprite.rotationValue = activeObj.compSprite.rotationValue;
-            Functions_GameObject.SetType(currentObjRef, activeObj.type);
+            Functions_InteractiveObjs.SetType(currentObjRef, activeObj.type);
             //update the currentObj text displays
             window.title.text = "" + currentObjRef.type;
             currentObjDirectionText.text = "dir: " + currentObjRef.direction;
@@ -558,11 +571,11 @@ namespace DungeonRun
         
         public Boolean GrabRoomObject()
         {   //grab roomObjs
-            for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
+            for (Pool.intObjCounter = 0; Pool.intObjCounter < Pool.intObjCount; Pool.intObjCounter++)
             {   //loop thru roomObj pool, checking collisions with cursor's worldPos
-                if (Pool.roomObjPool[Pool.roomObjCounter].active)
+                if (Pool.intObjPool[Pool.intObjCounter].active)
                 {   //check collisions between worldPos and obj, grab any colliding obj
-                    if (Pool.roomObjPool[Pool.roomObjCounter].compCollision.rec.Contains(worldPos))
+                    if (Pool.intObjPool[Pool.intObjCounter].compCollision.rec.Contains(worldPos))
                     {
                         ignoreObj = false;
 
@@ -573,8 +586,8 @@ namespace DungeonRun
                         if (Flags.IgnoreWaterTiles)
                         {
                             if(
-                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Water ||
-                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Coastline
+                                Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Water_2x2 ||
+                                Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Coastline_1x2_Animated
                                 )
                             { ignoreObj = true; } //ignore this object
                         }
@@ -583,9 +596,9 @@ namespace DungeonRun
                         if (Flags.IgnoreRoofTiles)
                         {
                             if (
-                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Build_Roof_Bottom ||
-                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Build_Roof_Chimney ||
-                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Build_Roof_Top
+                                Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.House_Roof_Bottom ||
+                                Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.House_Roof_Chimney ||
+                                Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.House_Roof_Top
                                 )
                             { ignoreObj = true; } //ignore this object
                         }
@@ -594,36 +607,41 @@ namespace DungeonRun
                         if (Flags.IgnoreBoatTiles)
                         {
                             if (
+
+                                /*
                                 //all the boat objs, in groups of 5 - should we model this as an obj.group value?
-                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Back_Center ||
-                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Back_Left ||
-                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Back_Left_Connector ||
-                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Back_Right ||
-                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Back_Right_Connector ||
+                                Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Back_Center ||
+                                Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Back_Left ||
+                                Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Back_Left_Connector ||
+                                Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Back_Right ||
+                                Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Back_Right_Connector ||
 
-                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Bannister_Left ||
-                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Bannister_Right ||
-                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Bridge_Bottom ||
-                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Bridge_Top ||
-                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Engine ||
+                                Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Bannister_Left ||
+                                Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Bannister_Right ||
+                                Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Bridge_Bottom ||
+                                Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Bridge_Top ||
+                                Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Engine ||
                                 
-                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Front ||
-                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Front_ConnectorLeft ||
-                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Front_ConnectorRight ||
-                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Front_Left ||
-                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Front_Right ||
+                                Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Front ||
+                                Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Front_ConnectorLeft ||
+                                Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Front_ConnectorRight ||
+                                Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Front_Left ||
+                                Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Front_Right ||
 
-                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Stairs_Bottom_Left ||
-                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Stairs_Bottom_Right ||
-                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Stairs_Cover ||
-                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Stairs_Left ||
-                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Stairs_Right ||
+                                Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Stairs_Bottom_Left ||
+                                Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Stairs_Bottom_Right ||
+                                Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Stairs_Top_Left ||
+                                Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Stairs_Top_Right ||
+                                */
 
-                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Stairs_Top_Left ||
-                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Stairs_Top_Right ||
+                                Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Boat_Stairs_Cover ||
+                                Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Boat_Stairs_Left ||
+                                Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Boat_Stairs_Right ||
+
+                                
 
                                 //this one is special, because we use this obj as interior house floor
-                                Pool.roomObjPool[Pool.roomObjCounter].type == ObjType.Wor_Boat_Floor
+                                Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Boat_Floor
                                 //ignore boat button also ignores floors = easy to move furniture around
                                 )
                             { ignoreObj = true; } //ignore this object
@@ -635,7 +653,7 @@ namespace DungeonRun
                         //editor can ignore certain object types to make editing easier
                         if (ignoreObj == false)
                         {
-                            SelectObject(Pool.roomObjPool[Pool.roomObjCounter]);
+                            SelectObject(Pool.intObjPool[Pool.intObjCounter]);
                             return true;
                         }
                         else { } //continue onto the next object
@@ -647,7 +665,7 @@ namespace DungeonRun
 
 
 
-        public void SelectObject(GameObject Obj)
+        public void SelectObject(InteractiveObject Obj)
         {
             grabbedObj = Obj;
             activeObj = Obj;
@@ -664,7 +682,7 @@ namespace DungeonRun
         public void RotateActiveObj()
         {   
             //set activeObj's obj.direction based on type
-            if (activeObj.type == ObjType.Dungeon_PitBridge)
+            if (activeObj.type == InteractiveType.Lava_PitBridge)
             {   //flip between horizontal and vertical directions
                 if (activeObj.direction == Direction.Up || activeObj.direction == Direction.Down)
                 { activeObj.direction = Direction.Left; }
@@ -673,9 +691,9 @@ namespace DungeonRun
 
 
             //these are objects that we allow rotation upon
-            else if (activeObj.type == ObjType.Dungeon_ConveyorBeltOn
-                || activeObj.type == ObjType.Dungeon_ConveyorBeltOff
-                || activeObj.type == ObjType.Dungeon_BlockSpike)
+            else if (activeObj.type == InteractiveType.ConveyorBeltOn
+                || activeObj.type == InteractiveType.ConveyorBeltOff
+                || activeObj.type == InteractiveType.Dungeon_BlockSpike)
             {   //flip thru cardinal directions
                 activeObj.direction = Functions_Direction.GetCardinalDirection_LeftRight(activeObj.direction);
                 if (activeObj.direction == Direction.Up) { activeObj.direction = Direction.Left; }
@@ -684,7 +702,7 @@ namespace DungeonRun
                 else { activeObj.direction = Direction.Up; }
 
                 //set object's move component direction based on type
-                if (activeObj.type == ObjType.Dungeon_BlockSpike)
+                if (activeObj.type == InteractiveType.Dungeon_BlockSpike)
                 { activeObj.compMove.direction = activeObj.direction; }
             }
 
@@ -701,11 +719,11 @@ namespace DungeonRun
 
 
             //set the rotation of the sprite based on obj.direction                                             
-            Functions_GameObject.SetRotation(activeObj);
+            Functions_InteractiveObjs.SetRotation(activeObj);
             GetActiveObjInfo();
         }
 
-        public void CheckObjList(List<GameObject> objList)
+        public void CheckObjList(List<InteractiveObject> objList)
         {   //does any obj on the widget's objList contain the mouse position?
             for (int i = 0; i < objList.Count; i++)
             {   //if there is a collision, set the active object to the object clicked on

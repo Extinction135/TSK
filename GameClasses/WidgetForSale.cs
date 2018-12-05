@@ -138,14 +138,14 @@ namespace DungeonRun
             Functions_Component.UpdateAmount(Amount, Item.price);
         }
 
-        public void SetItemsForSale(ObjType VendorType)
+        public void SetItemsForSale(InteractiveType VendorType)
         {   //reset all the menuItems to unknown
             ResetItemsForSale();
 
 
             #region Set MenuItems based on VendorType
 
-            if (VendorType == ObjType.Vendor_NPC_Items)
+            if (VendorType == InteractiveType.Vendor_Items)
             {
                 Functions_MenuItem.SetType(MenuItemType.ItemHeart, menuItems[0]);
                 //skip menuItems[1]
@@ -158,29 +158,29 @@ namespace DungeonRun
                 Functions_MenuItem.SetType(MenuItemType.ItemFirerod, menuItems[7]);
                 Functions_MenuItem.SetType(MenuItemType.ItemIcerod, menuItems[8]);
             }
-            else if (VendorType == ObjType.Vendor_NPC_Potions)
+            else if (VendorType == InteractiveType.Vendor_Potions)
             {
                 Functions_MenuItem.SetType(MenuItemType.BottleHealth, menuItems[0]);
                 Functions_MenuItem.SetType(MenuItemType.BottleMagic, menuItems[1]);
                 Functions_MenuItem.SetType(MenuItemType.BottleCombo, menuItems[2]);
             }
-            else if (VendorType == ObjType.Vendor_NPC_Magic)
+            else if (VendorType == InteractiveType.Vendor_Magic)
             {
                 Functions_MenuItem.SetType(MenuItemType.MagicBombos, menuItems[1]);
                 Functions_MenuItem.SetType(MenuItemType.MagicEther, menuItems[2]);
             }
-            else if (VendorType == ObjType.Vendor_NPC_Weapons)
+            else if (VendorType == InteractiveType.Vendor_Weapons)
             {
                 Functions_MenuItem.SetType(MenuItemType.WeaponNet, menuItems[0]);
                 Functions_MenuItem.SetType(MenuItemType.WeaponShovel, menuItems[1]);
                 Functions_MenuItem.SetType(MenuItemType.WeaponHammer, menuItems[2]);
                 Functions_MenuItem.SetType(MenuItemType.WeaponWand, menuItems[3]);
             }
-            else if (VendorType == ObjType.Vendor_NPC_Armor)
+            else if (VendorType == InteractiveType.Vendor_Armor)
             {
                 Functions_MenuItem.SetType(MenuItemType.ArmorCape, menuItems[0]);
             }
-            else if (VendorType == ObjType.Vendor_NPC_Equipment)
+            else if (VendorType == InteractiveType.Vendor_Equipment)
             {
                 Functions_MenuItem.SetType(MenuItemType.EquipmentRing, menuItems[0]);
                 //MenuItemFunctions.SetType(MenuItemType.EquipmentPearl, menuItems[1]);
@@ -188,7 +188,7 @@ namespace DungeonRun
                 //MenuItemFunctions.SetType(MenuItemType.EquipmentGlove, menuItems[3]);
                 //MenuItemFunctions.SetType(MenuItemType.EquipmentPin, menuItems[4]);
             }
-            else if (VendorType == ObjType.Vendor_NPC_Pets)
+            else if (VendorType == InteractiveType.Vendor_Pets)
             {
                 Functions_MenuItem.SetType(MenuItemType.PetDog_Gray, menuItems[0]);
                 Functions_MenuItem.SetType(MenuItemType.PetDog_Gray, menuItems[1]);
@@ -196,7 +196,7 @@ namespace DungeonRun
             }
 
 
-            else if (VendorType == ObjType.Vendor_Colliseum_Mob)
+            else if (VendorType == InteractiveType.Vendor_Colliseum_Mob)
             {
                 Functions_MenuItem.SetType(MenuItemType.Challenge_Blobs, menuItems[0]);
                 Functions_MenuItem.SetType(MenuItemType.Challenge_Mini_BlackEyes, menuItems[1]);
@@ -210,7 +210,7 @@ namespace DungeonRun
                 //9
             }
 
-            else if (VendorType == ObjType.Vendor_NPC_EnemyItems)
+            else if (VendorType == InteractiveType.Vendor_EnemyItems)
             {
                 Functions_MenuItem.SetType(MenuItemType.WeaponFang, menuItems[0]);
             }

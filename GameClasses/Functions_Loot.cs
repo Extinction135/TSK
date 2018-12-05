@@ -16,6 +16,7 @@ namespace DungeonRun
     {
         static int dropRate;
         static int lootType;
+        static InteractiveObject fairyRef;
 
         public static void SpawnLoot(Vector2 Pos, int lootChance = 40)
         {
@@ -40,9 +41,9 @@ namespace DungeonRun
                 //rare
                 if (lootType < 5) //0.5% chance
                 {   //spawn a fairy roomObj, which is 16x16
-                    GameObject Fairy = Functions_Pool.GetRoomObj();
-                    Functions_GameObject.SetType(Fairy, ObjType.Dungeon_Fairy);
-                    Functions_Movement.Teleport(Fairy.compMove, Pos.X, Pos.Y);
+                    fairyRef = Functions_Pool.GetIntObj();
+                    Functions_InteractiveObjs.SetType(fairyRef, InteractiveType.Fairy);
+                    Functions_Movement.Teleport(fairyRef.compMove, Pos.X, Pos.Y);
                 }
                 //uncommon
                 else if (lootType < 100) //10%

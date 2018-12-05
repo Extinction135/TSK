@@ -16,7 +16,7 @@ namespace DungeonRun
     {
         public List<Dialog> dialogs;
         public int dialogIndex = 0;
-        public ObjType speakerType;
+        public InteractiveType speakerType;
         public String dialogString;
 
         ScreenRec background = new ScreenRec();

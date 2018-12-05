@@ -17,7 +17,7 @@ namespace DungeonRun
         static Projectile pro;
         static Boolean pushLines;
         static int i;
-        static GameObject objSpawnRef; //used to spawn roomObjects
+        static InteractiveObject objSpawnRef; //used to spawn roomObjects
 
 
 
@@ -913,18 +913,18 @@ namespace DungeonRun
                     Pro.compCollision.rec.Y = (int)Pro.compMove.position.Y + Pro.compCollision.offsetY;
 
                     //loop roomObjs, checking for specific roomObjs
-                    for (i = 0; i < Pool.roomObjCount; i++)
+                    for (i = 0; i < Pool.intObjCount; i++)
                     {   //check for active objects, then overlap
-                        if (Pool.roomObjPool[i].active)
+                        if (Pool.intObjPool[i].active)
                         {
-                            if (Pro.compCollision.rec.Contains(Pool.roomObjPool[i].compCollision.rec))
+                            if (Pro.compCollision.rec.Contains(Pool.intObjPool[i].compCollision.rec))
                             {
                                 //this allow for cascade spreading, where a single fireball
                                 //touches several of these objects in sequence as it travels
                                 //this creates a cascade effect, handled here - keep this in mind
-                                Pool.roomObjPool[i].compMove.direction = Pro.compMove.direction;
-                                Functions_GameObject_World.Burn(Pool.roomObjPool[i]); //burn
-                                Functions_GameObject_World.Bounce(Pool.roomObjPool[i]); //weak damage while in air
+                                Pool.intObjPool[i].compMove.direction = Pro.compMove.direction;
+                                Functions_InteractiveObjs.Burn(Pool.intObjPool[i]); //burn
+                                Functions_InteractiveObjs.Bounce(Pool.intObjPool[i]); //weak damage while in air
                             }
                         }
                     }
@@ -1006,8 +1006,8 @@ namespace DungeonRun
                 {
                     Pro.interactiveFrame = 0; //reset counter
                     //spawn ice tile
-                    objSpawnRef = Functions_Pool.GetRoomObj();
-                    Functions_GameObject.SetType(objSpawnRef, ObjType.Dungeon_IceTile);
+                    objSpawnRef = Functions_Pool.GetIntObj();
+                    Functions_InteractiveObjs.SetType(objSpawnRef, InteractiveType.IceTile);
                     //align to game world grid
                     objSpawnRef.compMove.newPosition = 
                         Functions_Movement.AlignToGrid(
@@ -1200,8 +1200,8 @@ namespace DungeonRun
                     || Pro.compAnim.currentAnimation == AnimationFrames.Wor_Enemy_Turtle
                     || Pro.compAnim.currentAnimation == AnimationFrames.Wor_Enemy_Rat_Down
                     )
-                {   //create floor blood, blood explosion, maybe skeleton
-                    Functions_GameObject_Dungeon.DecorateEnemyDeath(Pro.compSprite);
+                {   //create floor blood, blood explosion, but world enemies dont drop skeletons
+                    Functions_InteractiveObjs.DecorateEnemyDeath(Pro.compSprite, false);
                 }   //we release pro at end of method
 
                 #endregion

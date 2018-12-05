@@ -234,7 +234,7 @@ namespace DungeonRun
         }
 
 
-        public static void Damage(Actor Actor, GameObject Obj)
+        public static void Damage(Actor Actor, InteractiveObject Obj)
         {
             //bail from method if actor is underwater
             if (Actor.underwater) { return; }
@@ -254,13 +254,13 @@ namespace DungeonRun
             #region Objects
 
             //dungeon objs are always power level 1 or 0 
-            if(Obj.type == ObjType.Dungeon_SpikesFloorOn)
+            if(Obj.type == InteractiveType.Dungeon_SpikesFloorOn)
             {   //med push actors away from spikes
                 damage = 1; force = 7.5f;
                 direction = Functions_Direction.GetOppositeCardinal(
                     Actor.compSprite.position, Obj.compSprite.position);
             }
-            else if (Obj.type == ObjType.Dungeon_BlockSpike)
+            else if (Obj.type == InteractiveType.Dungeon_BlockSpike)
             {   //med push actor away from spikes
                 damage = 1; force = 7.5f;
                 direction = Functions_Direction.GetOppositeDiagonal(

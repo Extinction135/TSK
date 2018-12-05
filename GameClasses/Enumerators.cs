@@ -333,492 +333,7 @@ namespace DungeonRun
 
 
 
-
-
-
-
-
-    //this is getting split into ints and inds
-
-
-    #region ObjGroup
-
-    public enum ObjGroup
-    {
-        //roomObjs
-        Exit,
-        Wall,
-        Door,
-        Chest,
-        Object,
-
-        Vendor,
-        NPC,
-
-        Enemy,
-        EnemySpawn,
-        Ditch,
-
-        Wall_Climbable, //for wall climbing objects
-    }
-
-    #endregion
-
-
-    #region ObjType
-
-    public enum ObjType
-    {
-
-        Unknown, //unknown ? box, non-entity
-
-
-        #region Dungeon Objects
-
-        //PROCEDURALLY PLACED
-        Dungeon_ExitPillarLeft,
-        Dungeon_ExitPillarRight,
-        Dungeon_Exit,
-        Dungeon_ExitLight,
-
-        Dungeon_DoorOpen,
-        Dungeon_DoorBombable,
-        Dungeon_DoorBoss,
-        Dungeon_DoorTrap,
-        Dungeon_DoorShut,
-        Dungeon_DoorFake,
-
-        Dungeon_WallStraight,
-        Dungeon_WallStraightCracked,
-        Dungeon_WallInteriorCorner,
-        Dungeon_WallExteriorCorner,
-        Dungeon_WallPillar,
-        Dungeon_WallStatue,
-        Dungeon_WallTorch,
-
-        Dungeon_FloorDecal, //floor icon for boss
-
-        Dungeon_FloorStain, //procedurally added
-        Dungeon_FloorBlood, //created by just-dead actors/objs
-        Dungeon_FloorSkeleton, //^ randomly becomes skeleton anim 1 or 2
-
-        Dungeon_Map, //unlocks dungeon map
-
-        //HAND PLACED
-        Dungeon_Pit,
-        Dungeon_PitBridge,
-        Dungeon_PitTeethTop,
-        Dungeon_PitTeethBottom,
-        Dungeon_PitTrap,
-
-        Dungeon_Statue,
-        Dungeon_SkullPillar,
-
-        Dungeon_Chest, //placeable in editor, becomes key chest
-        Dungeon_ChestKey, //not placeable, procedurally set
-        Dungeon_ChestEmpty, //just empty
-
-        Dungeon_Signpost,
-
-        Dungeon_BlockDark,
-        Dungeon_BlockLight,
-        Dungeon_BlockSpike,
-
-        //lever + lever activated objects
-        Dungeon_LeverOn,
-        Dungeon_LeverOff,
-        Dungeon_SpikesFloorOn,
-        Dungeon_SpikesFloorOff,
-        Dungeon_ConveyorBeltOn,
-        Dungeon_ConveyorBeltOff,
-
-        //Room Objects
-        Dungeon_Pot,
-        Dungeon_Barrel,
-        Dungeon_Bumper,
-        Dungeon_Flamethrower,
-
-        Dungeon_Switch, //the up switch, becomes down
-        Dungeon_SwitchDown, //down requires obj or actor on it
-        Dungeon_SwitchDownPerm, //special, bypasses switch puzzle
-
-        Dungeon_SwitchBlockBtn,
-        Dungeon_SwitchBlockDown,
-        Dungeon_SwitchBlockUp,
-        Dungeon_TorchUnlit,
-        Dungeon_TorchLit,
-
-        //'Living' RoomObjs
-        Dungeon_Fairy,
-
-        //Actor Spawn Objects (hand-placed)
-        Dungeon_SpawnMob, //spawn a standard enemy, based on dungeon type
-
-        #endregion
-
-
-        #region World Objects
-
-        //interior building objects
-        Wor_Bookcase,
-        Wor_Shelf,
-        Wor_TableSingle,
-        Wor_TableDoubleLeft,
-        Wor_TableDoubleRight,
-
-        Wor_Stove,
-        Wor_Sink,
-        Wor_Chair,
-
-        Wor_Bed,
-
-        //grass objects
-        Wor_Grass_Tall,
-        Wor_Grass_Cut,
-        Wor_Grass_2,
-        Wor_Flowers,
-
-        //foilage
-        Wor_Bush,
-        Wor_Bush_Stump,
-
-        Wor_Tree,
-        Wor_Tree_Stump,
-        Wor_Tree_Burning,
-        Wor_Tree_Burnt,
-
-        //debris
-        Wor_Debris,
-
-        //objects
-        Wor_Pot,
-
-        //water objs
-        Wor_Water,
-        Wor_Coastline_Straight,
-        Wor_Coastline_Corner_Exterior,
-        Wor_Coastline_Corner_Interior,
-
-        //ditch objs
-        Wor_Ditch_META, //becomes one of the ditch objs below upon placement
-
-        Wor_Ditch_Empty_Single,
-        Wor_Ditch_Empty_4UP,
-        Wor_Ditch_Empty_Vertical,
-        Wor_Ditch_Empty_Horizontal,
-
-        Wor_Ditch_Empty_Corner_North,
-        Wor_Ditch_Empty_Corner_South,
-        Wor_Ditch_Empty_3UP_North,
-        Wor_Ditch_Empty_3UP_South,
-
-        Wor_Ditch_Empty_3UP_Horizontal,
-        Wor_Ditch_Empty_Endcap_South,
-        Wor_Ditch_Empty_Endcap_Horizontal,
-        Wor_Ditch_Empty_Endcap_North,
-
-        //building objs
-        Wor_Build_Wall_FrontA,
-        Wor_Build_Wall_FrontB,
-        Wor_Build_Wall_Back,
-        Wor_Build_Wall_Side_Left,
-        Wor_Build_Wall_Side_Right,
-
-        Wor_Build_Door_Shut,
-        Wor_Build_Door_Open,
-
-        //roofs
-        Wor_Build_Roof_Top,
-        Wor_Build_Roof_Bottom,
-        Wor_Build_Roof_Chimney,
-        Wor_Build_Roof_Collapsing, //meta obj for collapsing roofs
-
-        //posts
-        Wor_Post_Vertical_Right,
-        Wor_Post_Corner_Right,
-        Wor_Post_Horizontal,
-        Wor_Post_Corner_Left,
-        Wor_Post_Vertical_Left,
-
-        Wor_PostBurned_Vertical_Right,
-        Wor_PostBurned_Corner_Right,
-        Wor_PostBurned_Horizontal,
-        Wor_PostBurned_Corner_Left,
-        Wor_PostBurned_Vertical_Left,
-
-        //dirt + transition objs
-        Wor_Dirt,
-        Wor_DirtToGrass_Straight,
-        Wor_DirtToGrass_Corner_Exterior,
-        Wor_DirtToGrass_Corner_Interior,
-
-        //med & big trees
-        Wor_Tree_Med,
-        Wor_Tree_Med_Stump,
-        Wor_Tree_Big,
-
-        //big shadow cover
-        Wor_Shadow_Big,
-
-        //blocking water objects
-        Wor_Water_RockSm,
-        Wor_Water_RockMed,
-        Wor_Water_RockUnderwater,
-
-        //posts that only hammers can destroy
-        Wor_Post_Hammer_Up,
-        Wor_Post_Hammer_Down,
-
-        #endregion
-
-
-        //very special objects
-        ExplodingObject, //creates explosion
-
-
-
-        #region Magic Objects
-
-        Dungeon_IceTile,
-
-        #endregion
-
-
-
-
-
-
-
-        #region Colliseum Objects
-
-        Wor_Entrance_Colliseum,
-
-        //colliseum objects
-        Wor_Colliseum_Gate_Center,
-        Wor_Colliseum_Gate_Pillar_Left,
-        Wor_Colliseum_Gate_Pillar_Right,
-
-        Wor_Colliseum_Pillar_Top,
-        Wor_Colliseum_Pillar_Middle,
-        Wor_Colliseum_Pillar_Bottom,
-
-        Wor_Colliseum_Stairs_Handrail_Top,
-        Wor_Colliseum_Stairs_Handrail_Middle,
-        Wor_Colliseum_Stairs_Handrail_Bottom,
-
-        Wor_Colliseum_Stairs_Left,
-        Wor_Colliseum_Stairs_Middle,
-        Wor_Colliseum_Stairs_Right,
-
-        Wor_Colliseum_Bricks_Left,
-        Wor_Colliseum_Bricks_Middle1,
-        Wor_Colliseum_Bricks_Middle2,
-        Wor_Colliseum_Bricks_Right,
-
-        Wor_Colliseum_Outdoors_Floor,
-        Wor_Colliseum_Spectator,
-
-        #endregion
-
-
-        #region Forest Objects
-
-        Wor_Entrance_ForestDungeon, //big shadow between teeth in water
-
-        //objects that build the skull teeth
-        Wor_SkullToothInWater_Left,
-        Wor_SkullToothInWater_Right,
-
-        Wor_SkullToothInWater_Arch_Left,
-        Wor_SkullToothInWater_Arch_Right,
-        Wor_SkullToothInWater_Arch_Extension,
-
-        Wor_SkullToothInWater_Center,
-
-        Wor_SkullToothInWater_EndCap_Left,
-        Wor_SkullToothInWater_EndCap_Right,
-
-
-        #endregion
-
-
-        #region Mountain Objects
-
-        Wor_Entrance_MountainDungeon,
-
-        Wor_MountainWall_Top,
-        Wor_MountainWall_Mid,
-        Wor_MountainWall_Bottom,
-
-        Wor_MountainWall_Foothold,
-        Wor_MountainWall_Ladder,
-        Wor_MountainWall_Ladder_Trap,
-
-        Wor_MountainWall_Alcove_Left,
-        Wor_MountainWall_Alcove_Right,
-
-        Wor_MountainWall_Cave_Bare,
-        Wor_MountainWall_Cave_Covered,
-
-
-        #endregion
-
-
-        #region Swamp Objects
-
-        Wor_Entrance_SwampDungeon,
-        Wor_Swamp_LillyPad,
-        Wor_Swamp_BigPlant,
-
-        Wor_Swamp_Vine,
-        Wor_Swamp_Bulb,
-        Wor_Swamp_SmPlant,
-
-        #endregion
-
-
-        #region Boat Objects
-
-        Wor_Boat_Front,
-        Wor_Boat_Front_Left,
-        Wor_Boat_Front_Right,
-
-        Wor_Boat_Front_ConnectorLeft,
-        Wor_Boat_Front_ConnectorRight,
-
-        Wor_Boat_Bannister_Left,
-        Wor_Boat_Bannister_Right,
-
-        Wor_Boat_Stairs_Top_Left,
-        Wor_Boat_Stairs_Top_Right,
-
-        Wor_Boat_Stairs_Left,
-        Wor_Boat_Stairs_Right,
-
-        Wor_Boat_Stairs_Bottom_Left,
-        Wor_Boat_Stairs_Bottom_Right,
-
-        Wor_Boat_Back_Left,
-        Wor_Boat_Back_Left_Connector,
-        Wor_Boat_Back_Center,
-        Wor_Boat_Back_Right_Connector,
-        Wor_Boat_Back_Right,
-
-        Wor_Boat_Floor,
-        Wor_Boat_Engine,
-        Wor_Boat_Barrel,
-        Wor_Boat_Stairs_Cover,
-
-        Wor_Boat_Captain_Brandy,
-
-        Wor_Boat_Bridge_Top,
-        Wor_Boat_Bridge_Bottom,
-
-        Wor_Boat_Pier_TopLeft,
-        Wor_Boat_Pier_TopMiddle,
-        Wor_Boat_Pier_TopRight,
-
-        Wor_Boat_Pier_Left,
-        Wor_Boat_Pier_Middle,
-        Wor_Boat_Pier_Right,
-
-        Wor_Boat_Pier_BottomLeft,
-        Wor_Boat_Pier_BottomMiddle,
-        Wor_Boat_Pier_BottomRight,
-
-        Wor_Boat_Coastline,
-
-        #endregion
-
-
-
-
-
-        #region RoomObj Enemies
-
-        Wor_Enemy_Turtle,
-        Wor_Enemy_Crab,
-        Wor_Enemy_Rat,
-
-        Wor_SeekerExploder, //seeks hero
-
-        #endregion
-
-
-        #region Vendors & NPCs
-
-        //Vendor NPCs
-        Vendor_NPC_Items,
-        Vendor_NPC_EnemyItems,
-
-        Vendor_NPC_Potions,
-        Vendor_NPC_Magic,
-        Vendor_NPC_Weapons,
-        Vendor_NPC_Armor,
-        Vendor_NPC_Equipment,
-
-        Vendor_NPC_Pets,
-
-        NPC_Story,
-
-        NPC_Farmer,
-        NPC_Farmer_Reward,
-        NPC_Farmer_EndDialog,
-
-        Vendor_Colliseum_Mob,
-        Judge_Colliseum,
-
-        #endregion
-
-
-        #region Pets
-
-        Pet_None,
-        Pet_Dog,
-        Pet_Chicken,
-
-        #endregion
-
-
-
-
-
-        #region Misc (Dialog)
-
-        Hero_Idle,
-
-        #endregion
-
-    }
-
-    #endregion
-
-
-
-
-
-
-
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -826,11 +341,7 @@ namespace DungeonRun
     public enum IndestructibleGroup
     {
         Object,
-
         Exit,
-        Wall,
-        Door,
-        EnemySpawn,
     }
 
     public enum IndestructibleType
@@ -845,12 +356,6 @@ namespace DungeonRun
         Dungeon_Exit,
         Dungeon_ExitLight,
 
-        Dungeon_DoorFake, //is just wall
-        Dungeon_WallInteriorCorner,
-        Dungeon_WallExteriorCorner,
-        Dungeon_WallPillar,
-        Dungeon_WallStatue,
-        Dungeon_WallTorch,
         Dungeon_SkullPillar,
         Dungeon_BlockDark,
 
@@ -965,7 +470,6 @@ namespace DungeonRun
         Boat_Back_Right,
 
         Boat_Engine,
-        Boat_Captain_Brandy,
         
         #endregion
 
@@ -974,13 +478,19 @@ namespace DungeonRun
 
 
 
+
+
     public enum InteractiveGroup
     {
         Object,
 
+        Wall_Dungeon,
+        Door_Dungeon,
+
         Vendor,
         NPC,
         Enemy,
+        EnemySpawn,
         Ditch,
         Wall_Climbable,
     }
@@ -994,6 +504,12 @@ namespace DungeonRun
 
         Dungeon_WallStraight,
         Dungeon_WallStraightCracked,
+        Dungeon_WallInteriorCorner,
+        Dungeon_WallExteriorCorner,
+        Dungeon_WallPillar,
+        Dungeon_WallStatue,
+        Dungeon_WallTorch,
+        Dungeon_DoorFake, //is just wall
 
         Dungeon_DoorOpen,
         Dungeon_DoorBombable,
@@ -1020,6 +536,7 @@ namespace DungeonRun
         Dungeon_SwitchBlockUp,
 
         Dungeon_SpawnMob, //spawn a standard enemy, based on dungeon type
+        
 
         #endregion
 
@@ -1061,13 +578,89 @@ namespace DungeonRun
         ChestEmpty, //just empty
         Signpost,
 
+        //dirt + transition objs
+        Dirt_Main,
+        Dirt_ToGrass_Straight,
+        Dirt_ToGrass_Corner_Exterior,
+        Dirt_ToGrass_Corner_Interior,
 
-        //lava pits
+        IceTile,
+
+        #endregion
+
+
+        #region Lava Pits
+
         Lava_Pit,
         Lava_PitBridge,
         Lava_PitTeethTop,
         Lava_PitTeethBottom,
         Lava_PitTrap,
+
+        #endregion
+
+
+        #region Ditch Objects
+
+        Ditch_META, //becomes one of the ditch objs below upon placement
+
+        Ditch_Empty_Single,
+        Ditch_Empty_4UP,
+        Ditch_Empty_Vertical,
+        Ditch_Empty_Horizontal,
+
+        Ditch_Empty_Corner_North,
+        Ditch_Empty_Corner_South,
+        Ditch_Empty_3UP_North,
+        Ditch_Empty_3UP_South,
+
+        Ditch_Empty_3UP_Horizontal,
+        Ditch_Empty_Endcap_South,
+        Ditch_Empty_Endcap_Horizontal,
+        Ditch_Empty_Endcap_North,
+
+        #endregion
+
+
+        #region Posts
+
+        Post_VerticalRight,
+        Post_CornerRight,
+        Post_Horizontal,
+        Post_CornerLeft,
+        Post_VerticalLeft,
+
+        PostBurned_VerticalRight,
+        PostBurned_CornerRight,
+        PostBurned_Horizontal,
+        PostBurned_CornerLeft,
+        PostBurned_VerticalLeft,
+
+        //posts that only hammers can destroy
+        Post_HammerPost_Up,
+        Post_HammerPost_Down,
+
+        #endregion
+
+
+
+        #region Water Objects
+
+        //water objs
+        Water_2x2,
+        Water_RockUnderwater,
+        Water_LillyPad,
+        Water_Vine,
+        //coastlines
+        Coastline_Straight,
+        Coastline_Corner_Exterior,
+        Coastline_Corner_Interior,
+        Coastline_1x2_Animated,
+
+        #endregion
+
+
+        #region House Objects
 
         //interior
         House_Bookcase,
@@ -1093,59 +686,41 @@ namespace DungeonRun
         House_Roof_Chimney,
         House_Roof_Collapsing, //meta obj for collapsing roofs
 
-        //water objs
-        Water_2x2,
-        Water_RockUnderwater,
-        Water_LillyPad,
-        Water_Vine,
-        //coastlines
-        Coastline_Straight,
-        Coastline_Corner_Exterior,
-        Coastline_Corner_Interior,
-        Coastline_1x2_Animated,
-        
-        //ditch objs
-        Ditch_META, //becomes one of the ditch objs below upon placement
+        #endregion
 
-        Ditch_Empty_Single,
-        Ditch_Empty_4UP,
-        Ditch_Empty_Vertical,
-        Ditch_Empty_Horizontal,
 
-        Ditch_Empty_Corner_North,
-        Ditch_Empty_Corner_South,
-        Ditch_Empty_3UP_North,
-        Ditch_Empty_3UP_South,
 
-        Ditch_Empty_3UP_Horizontal,
-        Ditch_Empty_Endcap_South,
-        Ditch_Empty_Endcap_Horizontal,
-        Ditch_Empty_Endcap_North,
 
-        //posts
-        Post_VerticalRight,
-        Post_CornerRight,
-        Post_Horizontal,
-        Post_CornerLeft,
-        Post_VerticalLeft,
 
-        PostBurned_VerticalRight,
-        PostBurned_CornerRight,
-        PostBurned_Horizontal,
-        PostBurned_CornerLeft,
-        PostBurned_VerticalLeft,
 
-        //posts that only hammers can destroy
-        Post_HammerPost_Up,
-        Post_HammerPost_Down,
+        #region Vendors & NPCs
 
-        //dirt + transition objs
-        Dirt_Main,
-        Dirt_ToGrass_Straight,
-        Dirt_ToGrass_Corner_Exterior,
-        Dirt_ToGrass_Corner_Interior,
+        //Vendor NPCs
+        Vendor_Items,
+        Vendor_EnemyItems,
+
+        Vendor_Potions,
+        Vendor_Magic,
+        Vendor_Weapons,
+        Vendor_Armor,
+        Vendor_Equipment,
+
+        Vendor_Pets,
+
+        NPC_Story,
+
+        NPC_Farmer,
+        NPC_Farmer_Reward,
+        NPC_Farmer_EndDialog,
+
+        Vendor_Colliseum_Mob,
+        Judge_Colliseum,
 
         #endregion
+
+
+
+
 
 
         #region Colliseum Objects
@@ -1190,16 +765,17 @@ namespace DungeonRun
 
 
         #region Boat Objects
-        
+
+        Boat_Captain_Brandy,
+
         Boat_Stairs_Left,
         Boat_Stairs_Right,
         Boat_Floor,
-
-        Boat_Barrel,
+        
         Boat_Stairs_Cover,
 
         Boat_Bridge_Top,
-        Boat_Bridge_Bottom, //destructible?
+        Boat_Bridge_Bottom, 
 
         Boat_Pier_TopLeft,
         Boat_Pier_TopMiddle,
@@ -1221,44 +797,13 @@ namespace DungeonRun
 
 
 
-        #region Obj Enemies
+        #region Enemies/Pets/Living Objs
 
         Enemy_Turtle,
         Enemy_Crab,
         Enemy_Rat,
 
         Enemy_SeekerExploder, //seeks hero
-
-        #endregion
-
-
-        #region Vendors & NPCs
-
-        //Vendor NPCs
-        Vendor_Items,
-        Vendor_EnemyItems,
-
-        Vendor_Potions,
-        Vendor_Magic,
-        Vendor_Weapons,
-        Vendor_Armor,
-        Vendor_Equipment,
-
-        Vendor_Pets,
-
-        NPC_Story,
-
-        NPC_Farmer,
-        NPC_Farmer_Reward,
-        NPC_Farmer_EndDialog,
-
-        Vendor_Colliseum_Mob,
-        Judge_Colliseum,
-
-        #endregion
-
-
-        #region Pets
 
         Pet_None,
         Pet_Dog,
@@ -1267,12 +812,15 @@ namespace DungeonRun
         #endregion
 
 
-        #region Special/Magical objs
+        #region Unique Objs
 
-        IceTile,
         ExplodingObject, //creates explosion
 
         #endregion
+
+
+
+
 
 
         #region Dialog Objs
@@ -1295,23 +843,7 @@ namespace DungeonRun
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 
 
 
@@ -1427,9 +959,6 @@ namespace DungeonRun
     #endregion
 
 
-
-
-
     #region Magic Spells
 
     public enum SpellType
@@ -1459,11 +988,7 @@ namespace DungeonRun
     #endregion
 
 
-
-
-
-
-
+    #region MenuItemType
 
     public enum MenuItemType
     {
@@ -1610,5 +1135,10 @@ namespace DungeonRun
 
         
     }
+
+    #endregion
+
+
+
 
 }

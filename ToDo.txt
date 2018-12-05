@@ -66,26 +66,24 @@ Today:
 
 
 
-Prep for GameObject Split - The Great Deletion
 
-recorded videos of all level data, all room data.
-these videos will be used to rebuild some levels and rooms.
+Migrate Codebase
 
-added classes for indestructible and interactive objects.
+X we have migrated indestructible objs from gameObj.setType().
+X we have migrated interactive objs from gameObj.setType().
+X we removed gameObjs and gameObj enums.
+X data classes and enums are done.
+X migrated interaction functions to mostly use int objs.
+X migrated hero functions to use int objs.
+X all classes except widgetObjTools have been migrated.
+X migrated widgetObjTools. fixed last few errors.
 
-this is also a good time to rename objects, as they will
-be in different classes completely. dungeon objs for actual
-dungeon objs, and drop the world prefix for objects that
-aren't dungeon objs.
+migration complete, project building again.
+updated UWP project links.
+Dx and UWP projects now building.
 
-deleted all room data in all room xml files.
-deleted all room data in all room data asset files.
-this should thin the errors as much as possible prior
-to the gameObj defs and pool being removed.
-
-this is an over 50% reduction in codebase size, from 31k
-to just under 15k. that means the game's systems take up
-about 15,000 lines of code alone, without any room data.
+tested, items and projectiles and actor systems still
+working as expected. all ui working as well.
 
 
 
@@ -93,6 +91,49 @@ about 15,000 lines of code alone, without any room data.
 
 
 
+onto bug fixes, and indestructible objs.
+
+
+
+
+
+
+
+
+
+
+
+
+obj tools widget:
+this adds, moves, rotates, deletes interactive and indestructible objs.
+which means we need refs to do this for both obj types.
+
+this is a straight port to interactive objects, to get the
+codebase compiling. then, we will add indestructible objs in
+their own widget, and expand obj tools widget to handl inds
+later on.
+
+
+
+
+
+
+
+
+
+
+crack dungeon walls in destruction routines.
+
+
+
+pull all obj ai from functions_AI and put into
+interactive obj .Update().
+
+
+
+
+hero has no interactions with indestructible objs YET - this is
+ALL dungeon entrances, exits, coliseum entrance, etc...
 
 
 
@@ -106,11 +147,10 @@ about 15,000 lines of code alone, without any room data.
 
 now let the migration begin!
 
-step 1: seperate gameobjs into interactive and indestructible
-	this renders all room data corrupt
-	just delete all data within level/room files, keep header data
 
-step 1b: migrate entire codebase to using inds & ints
+all systems that use gameObjs need to be updated now
+
+step 1: migrate entire codebase to using inds & ints
 	this includes editor and widgets too
 	*start by creating func classes for ints and inds (set type, kill, game obj fns)
 	*create pool lists, removing main pool obj list
@@ -140,6 +180,19 @@ step 4: setup interactions
 	hero interaction rec vs inds (entrances mostly)
 	
 step 5: fix editor and xml savedata, then cs pipeline	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+	
+	
 	
 	
 	
@@ -248,6 +301,14 @@ tornado: spawns a tornado roomObj. (fire, ice, explosive, electrical tornados to
 
 
 
+
+
+
+
+Bombos spawns explosions, which leave behind groundfire pros.
+this is causing pro system overload. bombos explosions shouldn't
+create groundfires. just those explosions tho - so they need to
+be special or seperate from normal explosions.
 
 
 

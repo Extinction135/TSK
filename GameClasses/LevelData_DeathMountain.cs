@@ -14,7 +14,6 @@ namespace DungeonRun
 			#region DeathMountain_MainEntrance
 
 			DeathMountain_MainEntrance.type = RoomID.DeathMountain_MainEntrance;
-			DeathMountain_MainEntrance.objs = new List<ObjXmlData>();
 			#endregion
 
 		}

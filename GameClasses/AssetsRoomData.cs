@@ -22,8 +22,7 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.ForestIsland_BossRoom;
-				room.objs = new List<ObjXmlData>();
-				bossRooms.Add(room);
+                bossRooms.Add(room);
 			}
 			#endregion
 
@@ -33,7 +32,6 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.DeathMountain_BossRoom;
-				room.objs = new List<ObjXmlData>();
 				bossRooms.Add(room);
 			}
 			#endregion
@@ -44,7 +42,6 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.SwampIsland_BossRoom;
-				room.objs = new List<ObjXmlData>();
 				bossRooms.Add(room);
 			}
 			#endregion
@@ -55,7 +52,6 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Column;
-				room.objs = new List<ObjXmlData>();
 				columnRooms.Add(room);
 			}
 			#endregion
@@ -66,7 +62,6 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Column;
-				room.objs = new List<ObjXmlData>();
 				columnRooms.Add(room);
 			}
 			#endregion
@@ -77,7 +72,6 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Column;
-				room.objs = new List<ObjXmlData>();
 				columnRooms.Add(room);
 			}
 			#endregion
@@ -88,7 +82,6 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Column;
-				room.objs = new List<ObjXmlData>();
 				columnRooms.Add(room);
 			}
 			#endregion
@@ -99,7 +92,6 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Column;
-				room.objs = new List<ObjXmlData>();
 				columnRooms.Add(room);
 			}
 			#endregion
@@ -110,7 +102,6 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Column;
-				room.objs = new List<ObjXmlData>();
 				columnRooms.Add(room);
 			}
 			#endregion
@@ -121,7 +112,6 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Column;
-				room.objs = new List<ObjXmlData>();
 				columnRooms.Add(room);
 			}
 			#endregion
@@ -132,7 +122,6 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Column;
-				room.objs = new List<ObjXmlData>();
 				columnRooms.Add(room);
 			}
 			#endregion
@@ -143,7 +132,6 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Column;
-				room.objs = new List<ObjXmlData>();
 				columnRooms.Add(room);
 			}
 			#endregion
@@ -154,7 +142,6 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Column;
-				room.objs = new List<ObjXmlData>();
 				columnRooms.Add(room);
 			}
 			#endregion
@@ -165,7 +152,6 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Exit;
-				room.objs = new List<ObjXmlData>();
 				exitRooms.Add(room);
 			}
 			#endregion
@@ -176,7 +162,6 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Exit;
-				room.objs = new List<ObjXmlData>();
 				exitRooms.Add(room);
 			}
 			#endregion
@@ -187,7 +172,6 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Exit;
-				room.objs = new List<ObjXmlData>();
 				exitRooms.Add(room);
 			}
 			#endregion
@@ -198,7 +182,6 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.ForestIsland_HubRoom;
-				room.objs = new List<ObjXmlData>();
 				hubRooms.Add(room);
 			}
 			#endregion
@@ -209,7 +192,6 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.DeathMountain_HubRoom;
-				room.objs = new List<ObjXmlData>();
 				hubRooms.Add(room);
 			}
 			#endregion
@@ -220,7 +202,6 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.SwampIsland_HubRoom;
-				room.objs = new List<ObjXmlData>();
 				hubRooms.Add(room);
 			}
 			#endregion
@@ -231,7 +212,6 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Key;
-				room.objs = new List<ObjXmlData>();
 				keyRooms.Add(room);
 			}
 			#endregion
@@ -242,7 +222,6 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Key;
-				room.objs = new List<ObjXmlData>();
 				keyRooms.Add(room);
 			}
 			#endregion
@@ -253,7 +232,6 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Key;
-				room.objs = new List<ObjXmlData>();
 				keyRooms.Add(room);
 			}
 			#endregion
@@ -264,7 +242,6 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Key;
-				room.objs = new List<ObjXmlData>();
 				keyRooms.Add(room);
 			}
 			#endregion
@@ -275,7 +252,6 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Key;
-				room.objs = new List<ObjXmlData>();
 				keyRooms.Add(room);
 			}
 			#endregion
@@ -286,7 +262,6 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Key;
-				room.objs = new List<ObjXmlData>();
 				keyRooms.Add(room);
 			}
 			#endregion
@@ -297,7 +272,6 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Key;
-				room.objs = new List<ObjXmlData>();
 				keyRooms.Add(room);
 			}
 			#endregion
@@ -308,7 +282,6 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Key;
-				room.objs = new List<ObjXmlData>();
 				keyRooms.Add(room);
 			}
 			#endregion
@@ -319,7 +292,6 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Row;
-				room.objs = new List<ObjXmlData>();
 				rowRooms.Add(room);
 			}
 			#endregion
@@ -330,7 +302,6 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Row;
-				room.objs = new List<ObjXmlData>();
 				rowRooms.Add(room);
 			}
 			#endregion
@@ -341,7 +312,6 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Row;
-				room.objs = new List<ObjXmlData>();
 				rowRooms.Add(room);
 			}
 			#endregion
@@ -352,7 +322,6 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Row;
-				room.objs = new List<ObjXmlData>();
 				rowRooms.Add(room);
 			}
 			#endregion
@@ -363,7 +332,6 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Row;
-				room.objs = new List<ObjXmlData>();
 				rowRooms.Add(room);
 			}
 			#endregion
@@ -374,7 +342,6 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Row;
-				room.objs = new List<ObjXmlData>();
 				rowRooms.Add(room);
 			}
 			#endregion
@@ -385,7 +352,6 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Row;
-				room.objs = new List<ObjXmlData>();
 				rowRooms.Add(room);
 			}
 			#endregion
@@ -396,7 +362,6 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Row;
-				room.objs = new List<ObjXmlData>();
 				rowRooms.Add(room);
 			}
 			#endregion
@@ -407,7 +372,6 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Row;
-				room.objs = new List<ObjXmlData>();
 				rowRooms.Add(room);
 			}
 			#endregion
@@ -418,7 +382,6 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Row;
-				room.objs = new List<ObjXmlData>();
 				rowRooms.Add(room);
 			}
 			#endregion
@@ -429,7 +392,6 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Square;
-				room.objs = new List<ObjXmlData>();
 				squareRooms.Add(room);
 			}
 			#endregion
@@ -440,7 +402,6 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Square;
-				room.objs = new List<ObjXmlData>();
 				squareRooms.Add(room);
 			}
 			#endregion
@@ -451,7 +412,6 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Square;
-				room.objs = new List<ObjXmlData>();
 				squareRooms.Add(room);
 			}
 			#endregion
@@ -462,7 +422,6 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Square;
-				room.objs = new List<ObjXmlData>();
 				squareRooms.Add(room);
 			}
 			#endregion
@@ -473,7 +432,6 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Square;
-				room.objs = new List<ObjXmlData>();
 				squareRooms.Add(room);
 			}
 			#endregion
@@ -484,7 +442,6 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Square;
-				room.objs = new List<ObjXmlData>();
 				squareRooms.Add(room);
 			}
 			#endregion
@@ -495,7 +452,6 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Square;
-				room.objs = new List<ObjXmlData>();
 				squareRooms.Add(room);
 			}
 			#endregion
@@ -506,7 +462,6 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Square;
-				room.objs = new List<ObjXmlData>();
 				squareRooms.Add(room);
 			}
 			#endregion
@@ -517,7 +472,6 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Square;
-				room.objs = new List<ObjXmlData>();
 				squareRooms.Add(room);
 			}
 			#endregion
@@ -528,7 +482,6 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Square;
-				room.objs = new List<ObjXmlData>();
 				squareRooms.Add(room);
 			}
 			#endregion

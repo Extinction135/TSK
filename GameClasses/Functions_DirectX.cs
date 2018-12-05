@@ -69,23 +69,43 @@ namespace DungeonRun
                 csOutput += "\t\t\t#region " + Levels[i].type + "\n\n";
 
                 csOutput += "\t\t\t" + Levels[i].type + ".type = RoomID." + Levels[i].type + ";\n"; //lol
-                csOutput += "\t\t\t" + Levels[i].type + ".objs = new List<ObjXmlData>();\n";
+                //csOutput += "\t\t\t" + Levels[i].type + ".inds = new List<IndObjXmlData>();\n";
+                //csOutput += "\t\t\t" + Levels[i].type + ".ints = new List<IntObjXmlData>();\n";
 
-                for (int g = 0; g < Levels[i].objs.Count(); g++)
+                for (int g = 0; g < Levels[i].inds.Count(); g++)
                 {
                     csOutput += "\t\t\t{";
 
-                    csOutput += "ObjXmlData obj = new ObjXmlData(); ";
+                    csOutput += "IndObjXmlData obj = new IndObjXmlData(); ";
 
-                    csOutput += "obj.type = ObjType." + Levels[i].objs[g].type + "; ";
-                    csOutput += "obj.direction = Direction." + Levels[i].objs[g].direction + "; ";
-                    csOutput += "obj.posX = " + Levels[i].objs[g].posX + "; ";
-                    csOutput += "obj.posY = " + Levels[i].objs[g].posY + "; ";
+                    csOutput += "obj.type = IndestructibleType." + Levels[i].inds[g].type + "; ";
+                    csOutput += "obj.direction = Direction." + Levels[i].inds[g].direction + "; ";
+                    csOutput += "obj.posX = " + Levels[i].inds[g].posX + "; ";
+                    csOutput += "obj.posY = " + Levels[i].inds[g].posY + "; ";
 
-                    csOutput += "" + Levels[i].type + ".objs.Add(obj);";
+                    csOutput += "" + Levels[i].type + ".inds.Add(obj);";
 
                     csOutput += "}\n";
                 }
+
+                for (int g = 0; g < Levels[i].ints.Count(); g++)
+                {
+                    csOutput += "\t\t\t{";
+
+                    csOutput += "IntObjXmlData obj = new IntObjXmlData(); ";
+
+                    csOutput += "obj.type = InteractiveType." + Levels[i].ints[g].type + "; ";
+                    csOutput += "obj.direction = Direction." + Levels[i].ints[g].direction + "; ";
+                    csOutput += "obj.posX = " + Levels[i].ints[g].posX + "; ";
+                    csOutput += "obj.posY = " + Levels[i].ints[g].posY + "; ";
+
+                    csOutput += "" + Levels[i].type + ".ints.Add(obj);";
+
+                    csOutput += "}\n";
+                }
+
+
+
 
                 csOutput += "\t\t\t#endregion\n";
                 csOutput += "\n";
@@ -284,18 +304,35 @@ namespace DungeonRun
                     csOutput += "\t\t\t\t"; //transfer (preserve) RoomID - set this by hand in XML
                     csOutput += "room.type = RoomID." + roomData[i].type + ";\n";
 
-                    csOutput += "\t\t\t\troom.objs = new List<ObjXmlData>();\n";
-                    for (int g = 0; g < roomData[i].objs.Count(); g++)
+                    //csOutput += "\t\t\t\troom.inds = new List<IndObjXmlData>();\n";
+                    //csOutput += "\t\t\t\troom.ints = new List<IntObjXmlData>();\n";
+
+                    for (int g = 0; g < roomData[i].inds.Count(); g++)
                     {
                         csOutput += "\t\t\t\t{";
-                        csOutput += "ObjXmlData Obj = new ObjXmlData(); ";
-                        csOutput += "Obj.type = ObjType." + roomData[i].objs[g].type + "; ";
-                        csOutput += "Obj.direction = Direction." + roomData[i].objs[g].direction + "; ";
-                        csOutput += "Obj.posX = " + roomData[i].objs[g].posX + "; ";
-                        csOutput += "Obj.posY = " + roomData[i].objs[g].posY + "; ";
-                        csOutput += "room.objs.Add(Obj);";
+                        csOutput += "IndObjXmlData Obj = new IndObjXmlData(); ";
+                        csOutput += "Obj.type = IndestructibleType." + roomData[i].inds[g].type + "; ";
+                        csOutput += "Obj.direction = Direction." + roomData[i].inds[g].direction + "; ";
+                        csOutput += "Obj.posX = " + roomData[i].inds[g].posX + "; ";
+                        csOutput += "Obj.posY = " + roomData[i].inds[g].posY + "; ";
+                        csOutput += "room.inds.Add(Obj);";
                         csOutput += "}\n";
                     }
+
+                    for (int g = 0; g < roomData[i].ints.Count(); g++)
+                    {
+                        csOutput += "\t\t\t\t{";
+                        csOutput += "IntObjXmlData Obj = new IntObjXmlData(); ";
+                        csOutput += "Obj.type = InteractiveType." + roomData[i].ints[g].type + "; ";
+                        csOutput += "Obj.direction = Direction." + roomData[i].ints[g].direction + "; ";
+                        csOutput += "Obj.posX = " + roomData[i].ints[g].posX + "; ";
+                        csOutput += "Obj.posY = " + roomData[i].ints[g].posY + "; ";
+                        csOutput += "room.ints.Add(Obj);";
+                        csOutput += "}\n";
+                    }
+
+
+
 
                     if (
                         roomData[i].type == RoomID.ForestIsland_BossRoom ||

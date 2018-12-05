@@ -80,7 +80,7 @@ namespace DungeonRun
         }
 
         //spawns a particle of Type on RoomObject
-        public static void Spawn(ParticleType Type, GameObject Object)
+        public static void Spawn(ParticleType Type, InteractiveObject Object)
         {
             //set position reference to sprite position
             posRef.X = Object.compSprite.position.X;
@@ -89,7 +89,7 @@ namespace DungeonRun
 
             #region Pit
 
-            if (Object.type == ObjType.Dungeon_Pit)
+            if (Object.type == InteractiveType.Lava_Pit)
             {   //randomly offset where the bubble particle is placed
                 posRef.X += 4; posRef.Y += 4; //because bubble is 8x8 size
                 posRef.X += Functions_Random.Int(-3, 4);
@@ -101,7 +101,7 @@ namespace DungeonRun
 
             #region SpikeBlock
 
-            else if (Object.type == ObjType.Dungeon_BlockSpike)
+            else if (Object.type == InteractiveType.Dungeon_BlockSpike)
             {
                 posRef.X += 4; posRef.Y += 4;
                 //place particle along colliding edge

@@ -299,8 +299,8 @@ namespace DungeonRun
                 #region Setup counts for roomObjs, projectils, particles, actors, and floors
 
                 counter = 0;
-                for (i = 0; i < Pool.roomObjCount; i++) { if (Pool.roomObjPool[i].active) { counter++; } }
-                TopDebugMenu.DebugDisplay_PoolCounter.textComp.text = "OBJ: " + counter + "/" + Pool.roomObjCount;
+                for (i = 0; i < Pool.intObjCount; i++) { if (Pool.intObjPool[i].active) { counter++; } }
+                TopDebugMenu.DebugDisplay_PoolCounter.textComp.text = "INTS: " + counter + "/" + Pool.intObjCount;
 
                 counter = 0;
                 for (i = 0; i < Pool.projectileCount; i++) { if (Pool.projectilePool[i].active) { counter++; } }

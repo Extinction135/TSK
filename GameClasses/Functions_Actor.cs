@@ -463,7 +463,7 @@ namespace DungeonRun
                 Actor.compSprite.zOffset = -8;
                 Functions_Component.SetZdepth(Actor.compSprite);
                 //try to drop map
-                Functions_GameObject_Dungeon.DropMap(
+                Functions_InteractiveObjs.DropMap(
                     Actor.compSprite.position.X, 
                     Actor.compSprite.position.Y);
             }
@@ -487,7 +487,7 @@ namespace DungeonRun
                 Actor.compSprite.zOffset = -8;
                 Functions_Component.SetZdepth(Actor.compSprite);
                 //try to drop map
-                Functions_GameObject_Dungeon.DropMap(
+                Functions_InteractiveObjs.DropMap(
                     Actor.compSprite.position.X,
                     Actor.compSprite.position.Y);
             }
@@ -501,7 +501,7 @@ namespace DungeonRun
                 Actor.compSprite.zOffset = -8;
                 Functions_Component.SetZdepth(Actor.compSprite);
                 //try to drop map
-                Functions_GameObject_Dungeon.DropMap(
+                Functions_InteractiveObjs.DropMap(
                     Actor.compSprite.position.X,
                     Actor.compSprite.position.Y);
             }
@@ -519,7 +519,7 @@ namespace DungeonRun
             else//this is all other actor types: blob, angry eye, etc..
             {   //decorate actor's death with blast, loot, blood, skeleton
                 Functions_Particle.Spawn(ParticleType.Blast, Actor);
-                Functions_GameObject_Dungeon.DecorateEnemyDeath(Actor.compSprite);
+                Functions_InteractiveObjs.DecorateEnemyDeath(Actor.compSprite, true);
                 Functions_Pool.Release(Actor);
             }
 
@@ -1131,25 +1131,25 @@ namespace DungeonRun
                         //1 = climbing
                         //2 = finished climbing
                     
-                        for (i = 0; i < Pool.roomObjCount; i++)
+                        for (i = 0; i < Pool.intObjCount; i++)
                         {   //find an active foothold obj
-                            if (Pool.roomObjPool[i].active)
+                            if (Pool.intObjPool[i].active)
                             {
                                 //prove actor is nearby foothold to maintain grip
-                                if (Pool.roomObjPool[i].type == ObjType.Wor_MountainWall_Foothold ||
-                                    Pool.roomObjPool[i].type == ObjType.Wor_MountainWall_Ladder)
+                                if (Pool.intObjPool[i].type == InteractiveType.MountainWall_Foothold ||
+                                    Pool.intObjPool[i].type == InteractiveType.MountainWall_Ladder)
                                 {
                                     //if foothold does not contain center point of actor, actor loses grip and falls
-                                    if (Pool.roomObjPool[i].compCollision.rec.Contains(Actor.compSprite.position))
+                                    if (Pool.intObjPool[i].compCollision.rec.Contains(Actor.compSprite.position))
                                     {   //Actor.state = ActorState.Climbing;
                                         Actor.lockTotal = 1;
                                     }
                                 }
                             
                                 //actors touching top wall return to idle from climbing
-                                else if(Pool.roomObjPool[i].type == ObjType.Wor_MountainWall_Top)
+                                else if(Pool.intObjPool[i].type == InteractiveType.MountainWall_Top)
                                 {
-                                    if (Pool.roomObjPool[i].compCollision.rec.Contains(Actor.compSprite.position))
+                                    if (Pool.intObjPool[i].compCollision.rec.Contains(Actor.compSprite.position))
                                     {   //Actor.state = ActorState.Idle;
                                         Actor.lockTotal = 2; 
                                     }

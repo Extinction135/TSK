@@ -25,14 +25,14 @@ namespace DungeonRun
         static int n;
 
         static int i;
-        static List<GameObject> ditchesToUpdate;
+        static List<InteractiveObject> ditchesToUpdate;
 
         static ComponentSprite floorSprite;
 
 
-        public static void FillDitch(GameObject Ditch)
+        public static void FillDitch(InteractiveObject Ditch)
         {
-            Ditch.getsAI = true; //ditch is in filled state
+            Ditch.interacts = true; //ditch is in filled state
 
             //convert empty to filled
             if (Ditch.compAnim.currentAnimation == AnimationFrames.Wor_Ditch_Empty_3UP_Horizontal)
@@ -68,37 +68,37 @@ namespace DungeonRun
         }
  
 
-        public static void SetDitch(GameObject Ditch)
+        public static void SetDitch(InteractiveObject Ditch)
         {
             //reset neighbors
             nei[0] = false; nei[1] = false; nei[2] = false; nei[3] = false;
             //reset ditch meta
-            Functions_GameObject.SetType(Ditch, ObjType.Wor_Ditch_META);
+            Functions_InteractiveObjs.SetType(Ditch, InteractiveType.Ditch_META);
             Ditch.active = false; //set inactive for check below
             filledNeighbor = false; //assume no ditch neighbors are filled
 
 
             #region Set Neighbors
 
-            for (n = 0; n < Pool.roomObjCount; n++)
+            for (n = 0; n < Pool.intObjCount; n++)
             {
-                if (Pool.roomObjPool[n].active & Pool.roomObjPool[n].group == ObjGroup.Ditch)
+                if (Pool.intObjPool[n].active & Pool.intObjPool[n].group == InteractiveGroup.Ditch)
                 {
                     //expand horizontally
                     Ditch.compCollision.rec.Width = 22;
                     Ditch.compCollision.rec.X -= 4;
                     //set left/right neighbors
-                    if (Ditch.compCollision.rec.Intersects(Pool.roomObjPool[n].compCollision.rec))
+                    if (Ditch.compCollision.rec.Intersects(Pool.intObjPool[n].compCollision.rec))
                     {
                         //either left or right of new ditch
-                        if (Pool.roomObjPool[n].compSprite.position.X < Ditch.compSprite.position.X)
+                        if (Pool.intObjPool[n].compSprite.position.X < Ditch.compSprite.position.X)
                         { nei[3] = true; } //set L
-                        else if (Pool.roomObjPool[n].compSprite.position.X == Ditch.compSprite.position.X)
+                        else if (Pool.intObjPool[n].compSprite.position.X == Ditch.compSprite.position.X)
                         { } //nothing
                         else { nei[1] = true; } //set R
 
                         //check neighbor for filled state
-                        if (Pool.roomObjPool[n].getsAI) { filledNeighbor = true; }
+                        if (Pool.intObjPool[n].interacts) { filledNeighbor = true; }
                     }
                     //retract
                     Ditch.compCollision.rec.Width = 16;
@@ -108,16 +108,16 @@ namespace DungeonRun
                     Ditch.compCollision.rec.Height = 22;
                     Ditch.compCollision.rec.Y -= 4;
                     //set top/bottom neighbors
-                    if (Ditch.compCollision.rec.Intersects(Pool.roomObjPool[n].compCollision.rec))
+                    if (Ditch.compCollision.rec.Intersects(Pool.intObjPool[n].compCollision.rec))
                     {   //either above or below new ditch
-                        if (Pool.roomObjPool[n].compSprite.position.Y < Ditch.compSprite.position.Y)
+                        if (Pool.intObjPool[n].compSprite.position.Y < Ditch.compSprite.position.Y)
                         { nei[0] = true; } //set N
-                        else if (Pool.roomObjPool[n].compSprite.position.Y == Ditch.compSprite.position.Y)
+                        else if (Pool.intObjPool[n].compSprite.position.Y == Ditch.compSprite.position.Y)
                         { } //nothing
                         else { nei[2] = true; } //set S
 
                         //check neighbor for filled state
-                        if (Pool.roomObjPool[n].getsAI) { filledNeighbor = true; }
+                        if (Pool.intObjPool[n].interacts) { filledNeighbor = true; }
                     }
                     //retract
                     Ditch.compCollision.rec.Height = 16;
@@ -134,7 +134,7 @@ namespace DungeonRun
             //no connections - all false - single hole
             if (nei[0] == false & nei[1] == false & nei[2] == false & nei[3] == false)
             {
-                Functions_GameObject.SetType(Ditch, ObjType.Wor_Ditch_Empty_Single);
+                Functions_InteractiveObjs.SetType(Ditch, InteractiveType.Ditch_Empty_Single);
                 Ditch.compSprite.flipHorizontally = false;
             }
 
@@ -144,25 +144,25 @@ namespace DungeonRun
             //north
             else if (nei[0] == true & nei[1] == false & nei[2] == false & nei[3] == false)
             {
-                Functions_GameObject.SetType(Ditch, ObjType.Wor_Ditch_Empty_Endcap_South);
+                Functions_InteractiveObjs.SetType(Ditch, InteractiveType.Ditch_Empty_Endcap_South);
                 Ditch.compSprite.flipHorizontally = false;
             }
             //right
             else if (nei[0] == false & nei[1] == true & nei[2] == false & nei[3] == false)
             {
-                Functions_GameObject.SetType(Ditch, ObjType.Wor_Ditch_Empty_Endcap_Horizontal);
+                Functions_InteractiveObjs.SetType(Ditch, InteractiveType.Ditch_Empty_Endcap_Horizontal);
                 Ditch.compSprite.flipHorizontally = true;
             }
             //south
             else if (nei[0] == false & nei[1] == false & nei[2] == true & nei[3] == false)
             {
-                Functions_GameObject.SetType(Ditch, ObjType.Wor_Ditch_Empty_Endcap_North);
+                Functions_InteractiveObjs.SetType(Ditch, InteractiveType.Ditch_Empty_Endcap_North);
                 Ditch.compSprite.flipHorizontally = false;
             }
             //left
             else if (nei[0] == false & nei[1] == false & nei[2] == false & nei[3] == true)
             {
-                Functions_GameObject.SetType(Ditch, ObjType.Wor_Ditch_Empty_Endcap_Horizontal);
+                Functions_InteractiveObjs.SetType(Ditch, InteractiveType.Ditch_Empty_Endcap_Horizontal);
                 Ditch.compSprite.flipHorizontally = false;
             }
 
@@ -174,13 +174,13 @@ namespace DungeonRun
             //up down
             else if (nei[0] == true & nei[1] == false & nei[2] == true & nei[3] == false)
             {
-                Functions_GameObject.SetType(Ditch, ObjType.Wor_Ditch_Empty_Vertical);
+                Functions_InteractiveObjs.SetType(Ditch, InteractiveType.Ditch_Empty_Vertical);
                 Ditch.compSprite.flipHorizontally = false;
             }
             //left right
             else if (nei[0] == false & nei[1] == true & nei[2] == false & nei[3] == true)
             {
-                Functions_GameObject.SetType(Ditch, ObjType.Wor_Ditch_Empty_Horizontal);
+                Functions_InteractiveObjs.SetType(Ditch, InteractiveType.Ditch_Empty_Horizontal);
                 Ditch.compSprite.flipHorizontally = false;
             }
 
@@ -188,25 +188,25 @@ namespace DungeonRun
             //up right
             else if (nei[0] == true & nei[1] == true & nei[2] == false & nei[3] == false)
             {
-                Functions_GameObject.SetType(Ditch, ObjType.Wor_Ditch_Empty_Corner_South);
+                Functions_InteractiveObjs.SetType(Ditch, InteractiveType.Ditch_Empty_Corner_South);
                 Ditch.compSprite.flipHorizontally = true;
             }
             //up left
             else if (nei[0] == true & nei[1] == false & nei[2] == false & nei[3] == true)
             {
-                Functions_GameObject.SetType(Ditch, ObjType.Wor_Ditch_Empty_Corner_South);
+                Functions_InteractiveObjs.SetType(Ditch, InteractiveType.Ditch_Empty_Corner_South);
                 Ditch.compSprite.flipHorizontally = false;
             }
             //down right
             else if (nei[0] == false & nei[1] == true & nei[2] == true & nei[3] == false)
             {
-                Functions_GameObject.SetType(Ditch, ObjType.Wor_Ditch_Empty_Corner_North);
+                Functions_InteractiveObjs.SetType(Ditch, InteractiveType.Ditch_Empty_Corner_North);
                 Ditch.compSprite.flipHorizontally = false;
             }
             //down left
             else if (nei[0] == false & nei[1] == false & nei[2] == true & nei[3] == true)
             {
-                Functions_GameObject.SetType(Ditch, ObjType.Wor_Ditch_Empty_Corner_North);
+                Functions_InteractiveObjs.SetType(Ditch, InteractiveType.Ditch_Empty_Corner_North);
                 Ditch.compSprite.flipHorizontally = true;
             }
 
@@ -218,25 +218,25 @@ namespace DungeonRun
             //up down left
             else if (nei[0] == true & nei[1] == true & nei[2] == true & nei[3] == false)
             {
-                Functions_GameObject.SetType(Ditch, ObjType.Wor_Ditch_Empty_3UP_Horizontal);
+                Functions_InteractiveObjs.SetType(Ditch, InteractiveType.Ditch_Empty_3UP_Horizontal);
                 Ditch.compSprite.flipHorizontally = false;
             }
             //up down right
             else if (nei[0] == true & nei[1] == false & nei[2] == true & nei[3] == true)
             {
-                Functions_GameObject.SetType(Ditch, ObjType.Wor_Ditch_Empty_3UP_Horizontal);
+                Functions_InteractiveObjs.SetType(Ditch, InteractiveType.Ditch_Empty_3UP_Horizontal);
                 Ditch.compSprite.flipHorizontally = true;
             }
             //left right up
             else if (nei[0] == true & nei[1] == true & nei[2] == false & nei[3] == true)
             {
-                Functions_GameObject.SetType(Ditch, ObjType.Wor_Ditch_Empty_3UP_South);
+                Functions_InteractiveObjs.SetType(Ditch, InteractiveType.Ditch_Empty_3UP_South);
                 Ditch.compSprite.flipHorizontally = false;
             }
             //left right down
             else if (nei[0] == false & nei[1] == true & nei[2] == true & nei[3] == true)
             {
-                Functions_GameObject.SetType(Ditch, ObjType.Wor_Ditch_Empty_3UP_North);
+                Functions_InteractiveObjs.SetType(Ditch, InteractiveType.Ditch_Empty_3UP_North);
                 Ditch.compSprite.flipHorizontally = false;
             }
 
@@ -246,7 +246,7 @@ namespace DungeonRun
             //4 connections - all true - 4up
             else if (nei[0] == true & nei[1] == true & nei[2] == true & nei[3] == true)
             {
-                Functions_GameObject.SetType(Ditch, ObjType.Wor_Ditch_Empty_4UP);
+                Functions_InteractiveObjs.SetType(Ditch, InteractiveType.Ditch_Empty_4UP);
                 Ditch.compSprite.flipHorizontally = false;
             }
 
@@ -257,14 +257,14 @@ namespace DungeonRun
 
 
 
-        static GameObject objRef;
+        static InteractiveObject objRef;
         public static void Dig()
         {
             //set hero's interaction rec
             Functions_Hero.SetInteractionRec();
 
             //place obj aligned to 16x16 grid
-            objRef = Functions_Pool.GetRoomObj();
+            objRef = Functions_Pool.GetIntObj();
             //setup move position based on interaction point, aligned to 16px grid
             objRef.compMove.newPosition = Functions_Movement.AlignToGrid(
                 Functions_Hero.interactionPoint.X,
@@ -278,7 +278,7 @@ namespace DungeonRun
                 objRef.compMove.newPosition.Y);
             //switch to meta ditch obj
             objRef.compMove.direction = Direction.Down;
-            Functions_GameObject.SetType(objRef, ObjType.Wor_Ditch_META);
+            Functions_InteractiveObjs.SetType(objRef, InteractiveType.Ditch_META);
 
             //objRef.active is set to false to speed up roomObj loop below
             objRef.active = false;
@@ -288,10 +288,10 @@ namespace DungeonRun
 
             #region Check to see if ditch can be dug at this location
 
-            for (d = 0; d < Pool.roomObjCount; d++)
+            for (d = 0; d < Pool.intObjCount; d++)
             {   //check overlap for only active roomObjs
-                if (Pool.roomObjPool[d].active & //removes objRef from self-checking
-                    Pool.roomObjPool[d].compCollision.rec.Intersects(objRef.compCollision.rec))
+                if (Pool.intObjPool[d].active & //removes objRef from self-checking
+                    Pool.intObjPool[d].compCollision.rec.Intersects(objRef.compCollision.rec))
                 {
 
 
@@ -299,16 +299,16 @@ namespace DungeonRun
                     #region Blocking, Exits, Walls, and Doors
 
                     //if ditch touches any of these objs, release ditch & bail
-                    if (Pool.roomObjPool[d].compCollision.blocking)
+                    if (Pool.intObjPool[d].compCollision.blocking)
                     {
                         objRef.compSprite.visible = false;
                     }
                     //group checks
                     else if (
-                        Pool.roomObjPool[d].group == ObjGroup.Exit
-                        || Pool.roomObjPool[d].group == ObjGroup.Wall
-                        || Pool.roomObjPool[d].group == ObjGroup.Door
-                        || Pool.roomObjPool[d].group == ObjGroup.Wall_Climbable
+                        //Pool.intObjPool[d].group == InteractiveGroup.exit //this is indestructible!
+                        Pool.intObjPool[d].group == InteractiveGroup.Wall_Climbable
+                        || Pool.intObjPool[d].group == InteractiveGroup.Door_Dungeon
+                        || Pool.intObjPool[d].group == InteractiveGroup.Wall_Climbable
                         )
                     {
                         objRef.compSprite.visible = false;
@@ -322,34 +322,34 @@ namespace DungeonRun
                     else if //allow dig to remove these objects
                         (   
                         //grass decorations
-                        Pool.roomObjPool[d].type != ObjType.Wor_Grass_2
-                        & Pool.roomObjPool[d].type != ObjType.Wor_Grass_Cut
-                        & Pool.roomObjPool[d].type != ObjType.Wor_Grass_Tall
-                        & Pool.roomObjPool[d].type != ObjType.Wor_Flowers
+                        Pool.intObjPool[d].type != InteractiveType.Grass_2
+                        & Pool.intObjPool[d].type != InteractiveType.Grass_Cut
+                        & Pool.intObjPool[d].type != InteractiveType.Grass_Tall
+                        & Pool.intObjPool[d].type != InteractiveType.Flowers
                         //bush objects
-                        & Pool.roomObjPool[d].type != ObjType.Wor_Bush_Stump
+                        & Pool.intObjPool[d].type != InteractiveType.Bush_Stump
                         //coastline/water transition tiles
-                        & Pool.roomObjPool[d].type != ObjType.Wor_Coastline_Corner_Exterior
-                        & Pool.roomObjPool[d].type != ObjType.Wor_Coastline_Corner_Interior
-                        & Pool.roomObjPool[d].type != ObjType.Wor_Coastline_Straight
+                        & Pool.intObjPool[d].type != InteractiveType.Coastline_Corner_Exterior
+                        & Pool.intObjPool[d].type != InteractiveType.Coastline_Corner_Interior
+                        & Pool.intObjPool[d].type != InteractiveType.Coastline_Straight
                         //dirt tiles
-                        & Pool.roomObjPool[d].type != ObjType.Wor_Dirt
-                        & Pool.roomObjPool[d].type != ObjType.Wor_DirtToGrass_Corner_Exterior
-                        & Pool.roomObjPool[d].type != ObjType.Wor_DirtToGrass_Corner_Interior
-                        & Pool.roomObjPool[d].type != ObjType.Wor_DirtToGrass_Straight
+                        & Pool.intObjPool[d].type != InteractiveType.Dirt_Main
+                        & Pool.intObjPool[d].type != InteractiveType.Dirt_ToGrass_Corner_Exterior
+                        & Pool.intObjPool[d].type != InteractiveType.Dirt_ToGrass_Corner_Interior
+                        & Pool.intObjPool[d].type != InteractiveType.Dirt_ToGrass_Straight
                         //floor debris
-                        & Pool.roomObjPool[d].type != ObjType.Wor_Debris
-                        & Pool.roomObjPool[d].type != ObjType.Dungeon_FloorBlood
-                        & Pool.roomObjPool[d].type != ObjType.Dungeon_FloorStain
-                        & Pool.roomObjPool[d].type != ObjType.Dungeon_FloorSkeleton
-                        //& Pool.roomObjPool[d].type != ObjType.Dungeon_FloorDecal //nope
-                        & Pool.roomObjPool[d].type != ObjType.Wor_Colliseum_Outdoors_Floor
+                        & Pool.intObjPool[d].type != InteractiveType.Debris
+                        & Pool.intObjPool[d].type != InteractiveType.FloorBlood
+                        & Pool.intObjPool[d].type != InteractiveType.FloorStain
+                        & Pool.intObjPool[d].type != InteractiveType.FloorSkeleton
+                        //& Pool.roomObjPool[d].type != InteractiveType.Dungeon_FloorDecal //nope
+                        & Pool.intObjPool[d].type != InteractiveType.Coliseum_Shadow_Outdoors_Floor
                         //we do not allow boat floors to be dug out - they are also house floors
                         //this means NO DIGGING INSIDE, OR AT SEA, MISTER!
                         //& Pool.roomObjPool[d].type != ObjType.Wor_Boat_Floor
 
                         //can dig icetiles out tho
-                        & Pool.roomObjPool[d].type != ObjType.Dungeon_IceTile
+                        & Pool.intObjPool[d].type != InteractiveType.IceTile
                         )
                     {
                         objRef.compSprite.visible = false;
@@ -452,19 +452,19 @@ namespace DungeonRun
 
             #region Good to dig, remove any overlapping objects, spawn loot
 
-            for (d = 0; d < Pool.roomObjCount; d++)
+            for (d = 0; d < Pool.intObjCount; d++)
             {   //if this ditch contains the center of any active object's hitBox, release obj
-                if (Pool.roomObjPool[d].active &
-                    objRef.compCollision.rec.Contains(Pool.roomObjPool[d].compCollision.rec.Location))
+                if (Pool.intObjPool[d].active &
+                    objRef.compCollision.rec.Contains(Pool.intObjPool[d].compCollision.rec.Location))
                 {
                     //spawn loot with negative rate - why?
                     //if hero has ring equipped, his loot chances increase 25 points
                     //which means he could literally spam dig loot out of the ground
                     //we set this to -20 to curb the effects of this state..
                     //but hero can *still* dig loot right out of the ground if he wants to
-                    Functions_Loot.SpawnLoot(Pool.roomObjPool[d].compSprite.position, -20);
+                    Functions_Loot.SpawnLoot(Pool.intObjPool[d].compSprite.position, -20);
                     //release any obj that makes it here
-                    Functions_Pool.Release(Pool.roomObjPool[d]);
+                    Functions_Pool.Release(Pool.intObjPool[d]);
                 }
             }
 
@@ -493,16 +493,16 @@ namespace DungeonRun
             objRef.compCollision.offsetY = -20;
             Functions_Component.Align(objRef);
 
-            ditchesToUpdate = new List<GameObject>(); //clear the list
+            ditchesToUpdate = new List<InteractiveObject>(); //clear the list
             objRef.active = false; //remove objRef from check below
-            for (d = 0; d < Pool.roomObjCount; d++)
+            for (d = 0; d < Pool.intObjCount; d++)
             {   
-                if (Pool.roomObjPool[d].active & 
-                    objRef.compCollision.rec.Intersects(Pool.roomObjPool[d].compCollision.rec))
+                if (Pool.intObjPool[d].active & 
+                    objRef.compCollision.rec.Intersects(Pool.intObjPool[d].compCollision.rec))
                 {
                     //check to see if the new ditch touches a water tile
                     //in which case we need to fill the ditch with water
-                    if (Pool.roomObjPool[d].type == ObjType.Wor_Water)
+                    if (Pool.intObjPool[d].type == InteractiveType.Water_2x2)
                     {   //ditch becomes filled version
                         FillDitch(objRef);
 
@@ -517,9 +517,9 @@ namespace DungeonRun
                         //set zDepth above other floor tiles
                         floorSprite.zDepth = World.waterLayer;
                     }
-                    else if(Pool.roomObjPool[d].group == ObjGroup.Ditch)
+                    else if(Pool.intObjPool[d].group == InteractiveGroup.Ditch)
                     {   //if ditch touches any other ditches, update them
-                        ditchesToUpdate.Add(Pool.roomObjPool[d]);
+                        ditchesToUpdate.Add(Pool.intObjPool[d]);
                     }
                 }
             }

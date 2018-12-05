@@ -14,7 +14,7 @@ namespace DungeonRun
 {
     public class WidgetDialog : Widget
     {
-        public GameObject speaker;
+        public InteractiveObject speaker;
         public ComponentText dialog;
         public String dialogString;
         public int charCount;
@@ -24,8 +24,8 @@ namespace DungeonRun
         public WidgetDialog()
         {
             window = new MenuWindow(new Point(-100, -100), new Point(100, 100), "");
-            speaker = new GameObject();
-            Functions_GameObject.SetType(speaker, ObjType.NPC_Story);
+            speaker = new InteractiveObject();
+            Functions_InteractiveObjs.SetType(speaker, InteractiveType.NPC_Story);
             dialog = new ComponentText(Assets.font, "", new Vector2(0, 0), ColorScheme.textDark);
         }
 
@@ -71,12 +71,12 @@ namespace DungeonRun
 
 
         
-        public void DisplayDialog(ObjType SpeakerType, String Title, String Dialog)
-        {   
+        public void DisplayDialog(InteractiveType SpeakerType, String Title, String Dialog)
+        {
             //reset the speaker to the passed speakerType value
-            Functions_GameObject.Reset(speaker);
+            Functions_InteractiveObjs.Reset(speaker);
             speaker.direction = Direction.Down;
-            Functions_GameObject.SetType(speaker, SpeakerType);
+            Functions_InteractiveObjs.SetType(speaker, SpeakerType);
             Functions_Animation.Animate(speaker.compAnim, speaker.compSprite);
 
             //capture the dialog string, clear the dialog being drawn

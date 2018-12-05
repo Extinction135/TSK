@@ -48,7 +48,7 @@ namespace DungeonRun
             }
         }
 
-        public static void HideObj(GameObject Obj)
+        public static void HideObj(InteractiveObject Obj)
         {   //hide this widget object offscreen
             Functions_Movement.Teleport(Obj.compMove, 2048, 2048);
             Functions_Component.Align(Obj);
@@ -64,7 +64,7 @@ namespace DungeonRun
 
     public class WidgetObject : Widget
     {
-        public List<GameObject> objList;
+        public List<InteractiveObject> objList;
         public Boolean visible = false;
 
         public override void Reset(int X, int Y)
@@ -120,81 +120,81 @@ namespace DungeonRun
                 new Point(16 * 5, 16 * 15), //size
                 "Environment Objs"); //title
 
-            objList = new List<GameObject>();
+            objList = new List<InteractiveObject>();
             //4 per row, 12 rows total
-            for (i = 0; i < 4 * 12; i++) { objList.Add(new GameObject()); }
+            for (i = 0; i < 4 * 12; i++) { objList.Add(new InteractiveObject()); }
 
             //row 1
-            Functions_GameObject.SetType(objList[0], ObjType.Wor_Grass_Tall);
-            Functions_GameObject.SetType(objList[1], ObjType.Wor_Grass_Cut);
-            Functions_GameObject.SetType(objList[2], ObjType.Wor_Dirt);
-            Functions_GameObject.SetType(objList[3], ObjType.Wor_Grass_2);
+            Functions_InteractiveObjs.SetType(objList[0], InteractiveType.Grass_Tall);
+            Functions_InteractiveObjs.SetType(objList[1], InteractiveType.Grass_Cut);
+            Functions_InteractiveObjs.SetType(objList[2], InteractiveType.Dirt_Main);
+            Functions_InteractiveObjs.SetType(objList[3], InteractiveType.Grass_2);
 
             //row 2
-            Functions_GameObject.SetType(objList[4], ObjType.Wor_Bush);
-            Functions_GameObject.SetType(objList[5], ObjType.Wor_Bush_Stump);
-            Functions_GameObject.SetType(objList[6], ObjType.Wor_Pot);
-            Functions_GameObject.SetType(objList[7], ObjType.Wor_Flowers);
+            Functions_InteractiveObjs.SetType(objList[4], InteractiveType.Bush);
+            Functions_InteractiveObjs.SetType(objList[5], InteractiveType.Bush_Stump);
+            Functions_InteractiveObjs.SetType(objList[6], InteractiveType.Pot);
+            Functions_InteractiveObjs.SetType(objList[7], InteractiveType.Flowers);
 
             //row 3
-            Functions_GameObject.SetType(objList[8], ObjType.Wor_Tree);
-            Functions_GameObject.SetType(objList[9], ObjType.Wor_Tree_Burning);
-            Functions_GameObject.SetType(objList[10], ObjType.Wor_Tree_Burnt);
-            Functions_GameObject.SetType(objList[11], ObjType.Wor_Tree_Stump);
+            Functions_InteractiveObjs.SetType(objList[8], InteractiveType.Tree);
+            Functions_InteractiveObjs.SetType(objList[9], InteractiveType.Tree_Burning);
+            Functions_InteractiveObjs.SetType(objList[10], InteractiveType.Tree_Burnt);
+            Functions_InteractiveObjs.SetType(objList[11], InteractiveType.Tree_Stump);
 
             //row 4
-            Functions_GameObject.SetType(objList[12], ObjType.Unknown); //covered
-            Functions_GameObject.SetType(objList[13], ObjType.Unknown); //covered
-            Functions_GameObject.SetType(objList[14], ObjType.Unknown); //covered
-            Functions_GameObject.SetType(objList[15], ObjType.Unknown); //covered
+            Functions_InteractiveObjs.SetType(objList[12], InteractiveType.Unknown); //covered
+            Functions_InteractiveObjs.SetType(objList[13], InteractiveType.Unknown); //covered
+            Functions_InteractiveObjs.SetType(objList[14], InteractiveType.Unknown); //covered
+            Functions_InteractiveObjs.SetType(objList[15], InteractiveType.Unknown); //covered
 
             //row 5
-            Functions_GameObject.SetType(objList[16], ObjType.Wor_Water);
-            Functions_GameObject.SetType(objList[17], ObjType.Unknown); //covered
-            Functions_GameObject.SetType(objList[18], ObjType.Wor_Coastline_Corner_Exterior);
-            Functions_GameObject.SetType(objList[19], ObjType.Wor_Coastline_Corner_Interior);
+            Functions_InteractiveObjs.SetType(objList[16], InteractiveType.Water_2x2);
+            Functions_InteractiveObjs.SetType(objList[17], InteractiveType.Unknown); //covered
+            Functions_InteractiveObjs.SetType(objList[18], InteractiveType.Coastline_Corner_Exterior);
+            Functions_InteractiveObjs.SetType(objList[19], InteractiveType.Coastline_Corner_Interior);
 
             //row 6
-            Functions_GameObject.SetType(objList[20], ObjType.Unknown); //covered
-            Functions_GameObject.SetType(objList[21], ObjType.Unknown); //covered
-            Functions_GameObject.SetType(objList[22], ObjType.Wor_Coastline_Straight);
-            Functions_GameObject.SetType(objList[23], ObjType.Wor_DirtToGrass_Straight);
+            Functions_InteractiveObjs.SetType(objList[20], InteractiveType.Unknown); //covered
+            Functions_InteractiveObjs.SetType(objList[21], InteractiveType.Unknown); //covered
+            Functions_InteractiveObjs.SetType(objList[22], InteractiveType.Coastline_Straight);
+            Functions_InteractiveObjs.SetType(objList[23], InteractiveType.Dirt_ToGrass_Straight);
 
             //row 7
-            Functions_GameObject.SetType(objList[24], ObjType.Wor_Post_Vertical_Left);
-            Functions_GameObject.SetType(objList[25], ObjType.Wor_Debris);
-            Functions_GameObject.SetType(objList[26], ObjType.Wor_Post_Vertical_Right);
-            Functions_GameObject.SetType(objList[27], ObjType.Wor_DirtToGrass_Corner_Exterior);
+            Functions_InteractiveObjs.SetType(objList[24], InteractiveType.Post_VerticalLeft);
+            Functions_InteractiveObjs.SetType(objList[25], InteractiveType.Debris);
+            Functions_InteractiveObjs.SetType(objList[26], InteractiveType.Post_VerticalRight);
+            Functions_InteractiveObjs.SetType(objList[27], InteractiveType.Dirt_ToGrass_Corner_Exterior);
 
             //row 8
-            Functions_GameObject.SetType(objList[28], ObjType.Wor_Post_Corner_Left);
-            Functions_GameObject.SetType(objList[29], ObjType.Wor_Post_Horizontal);
-            Functions_GameObject.SetType(objList[30], ObjType.Wor_Post_Corner_Right);
-            Functions_GameObject.SetType(objList[31], ObjType.Wor_DirtToGrass_Corner_Interior);
+            Functions_InteractiveObjs.SetType(objList[28], InteractiveType.Post_CornerLeft);
+            Functions_InteractiveObjs.SetType(objList[29], InteractiveType.Post_Horizontal);
+            Functions_InteractiveObjs.SetType(objList[30], InteractiveType.Post_CornerRight);
+            Functions_InteractiveObjs.SetType(objList[31], InteractiveType.Dirt_ToGrass_Corner_Interior);
 
             //row 9
-            Functions_GameObject.SetType(objList[32], ObjType.Wor_Water_RockSm);
-            Functions_GameObject.SetType(objList[33], ObjType.Wor_Water_RockMed);
-            Functions_GameObject.SetType(objList[34], ObjType.Wor_Water_RockUnderwater);
-            Functions_GameObject.SetType(objList[35], ObjType.Wor_Tree_Big);
+            Functions_InteractiveObjs.SetType(objList[32], InteractiveType.Water_RockUnderwater);
+            //Functions_InteractiveObjs.SetType(objList[33], InteractiveType.Wor_Water_RockMed);
+            //Functions_InteractiveObjs.SetType(objList[34], InteractiveType.Wor_Water_RockUnderwater);
+            //Functions_InteractiveObjs.SetType(objList[35], InteractiveType.treeBig);
 
             //row 10
-            Functions_GameObject.SetType(objList[36], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[37], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[38], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[39], ObjType.Wor_Tree_Med_Stump);
+            Functions_InteractiveObjs.SetType(objList[36], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[37], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[38], InteractiveType.Unknown);
+            //Functions_InteractiveObjs.SetType(objList[39], InteractiveType.Wor_Tree_Med_Stump);
 
             //row 11
-            Functions_GameObject.SetType(objList[40], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[41], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[42], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[43], ObjType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[40], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[41], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[42], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[43], InteractiveType.Unknown);//
 
             //row 12
-            Functions_GameObject.SetType(objList[44], ObjType.Wor_Enemy_Turtle);
-            Functions_GameObject.SetType(objList[45], ObjType.Wor_Enemy_Crab);
-            Functions_GameObject.SetType(objList[46], ObjType.Wor_Enemy_Rat);
-            Functions_GameObject.SetType(objList[47], ObjType.Wor_Tree_Med);
+            Functions_InteractiveObjs.SetType(objList[44], InteractiveType.Enemy_Crab);
+            Functions_InteractiveObjs.SetType(objList[45], InteractiveType.Enemy_Rat);
+            Functions_InteractiveObjs.SetType(objList[46], InteractiveType.Enemy_Turtle);
+            //Functions_InteractiveObjs.SetType(objList[47], InteractiveType.Wor_Tree_Med);
 
             //position the objs relative to the window frame
             Functions_Widget.PositionObjs(this);
@@ -237,81 +237,81 @@ namespace DungeonRun
                 new Point(16 * 5, 16 * 15), //size
                 "Dungeon Objs"); //title
 
-            objList = new List<GameObject>();
+            objList = new List<InteractiveObject>();
             //4 per row, 12 rows total
-            for (i = 0; i < 4 * 12; i++) { objList.Add(new GameObject()); }
+            for (i = 0; i < 4 * 12; i++) { objList.Add(new InteractiveObject()); }
 
             //row 1
-            Functions_GameObject.SetType(objList[0], ObjType.Dungeon_BlockDark);
-            Functions_GameObject.SetType(objList[1], ObjType.Dungeon_BlockLight);
-            Functions_GameObject.SetType(objList[2], ObjType.Dungeon_BlockSpike);
-            Functions_GameObject.SetType(objList[3], ObjType.Dungeon_Fairy);
+            //Functions_InteractiveObjs.SetType(objList[0], InteractiveType.Dungeon_BlockDark);
+            Functions_InteractiveObjs.SetType(objList[1], InteractiveType.Dungeon_BlockLight);
+            Functions_InteractiveObjs.SetType(objList[2], InteractiveType.Dungeon_BlockSpike);
+            Functions_InteractiveObjs.SetType(objList[3], InteractiveType.Fairy);
 
             //row 2
-            Functions_GameObject.SetType(objList[4], ObjType.Dungeon_SwitchBlockBtn);
-            Functions_GameObject.SetType(objList[5], ObjType.Dungeon_SwitchBlockDown);
-            Functions_GameObject.SetType(objList[6], ObjType.Dungeon_SwitchBlockUp);
-            Functions_GameObject.SetType(objList[7], ObjType.Dungeon_IceTile);
+            Functions_InteractiveObjs.SetType(objList[4], InteractiveType.Dungeon_SwitchBlockBtn);
+            Functions_InteractiveObjs.SetType(objList[5], InteractiveType.Dungeon_SwitchBlockDown);
+            Functions_InteractiveObjs.SetType(objList[6], InteractiveType.Dungeon_SwitchBlockUp);
+            Functions_InteractiveObjs.SetType(objList[7], InteractiveType.IceTile);
 
             //row 3
-            Functions_GameObject.SetType(objList[8], ObjType.Dungeon_Pit);
-            Functions_GameObject.SetType(objList[9], ObjType.Dungeon_PitBridge);
-            Functions_GameObject.SetType(objList[10], ObjType.Dungeon_PitTeethTop);
-            Functions_GameObject.SetType(objList[11], ObjType.Dungeon_PitTeethBottom);
+            Functions_InteractiveObjs.SetType(objList[8], InteractiveType.Lava_Pit);
+            Functions_InteractiveObjs.SetType(objList[9], InteractiveType.Lava_PitBridge);
+            Functions_InteractiveObjs.SetType(objList[10], InteractiveType.Lava_PitTeethTop);
+            Functions_InteractiveObjs.SetType(objList[11], InteractiveType.Lava_PitTeethBottom);
 
             //row 4
-            Functions_GameObject.SetType(objList[12], ObjType.Dungeon_Bumper);
-            Functions_GameObject.SetType(objList[13], ObjType.Dungeon_Switch);
-            Functions_GameObject.SetType(objList[14], ObjType.Dungeon_SwitchDownPerm);
-            Functions_GameObject.SetType(objList[15], ObjType.Dungeon_Flamethrower);
+            Functions_InteractiveObjs.SetType(objList[12], InteractiveType.Bumper);
+            Functions_InteractiveObjs.SetType(objList[13], InteractiveType.Dungeon_Switch);
+            Functions_InteractiveObjs.SetType(objList[14], InteractiveType.Dungeon_SwitchDownPerm);
+            Functions_InteractiveObjs.SetType(objList[15], InteractiveType.Flamethrower);
 
             //row 5
-            Functions_GameObject.SetType(objList[16], ObjType.Dungeon_Barrel);
-            Functions_GameObject.SetType(objList[17], ObjType.Dungeon_Pot);
-            Functions_GameObject.SetType(objList[18], ObjType.Dungeon_Chest); 
-            Functions_GameObject.SetType(objList[19], ObjType.Dungeon_ChestEmpty);
+            Functions_InteractiveObjs.SetType(objList[16], InteractiveType.Barrel);
+            Functions_InteractiveObjs.SetType(objList[17], InteractiveType.Dungeon_Pot);
+            Functions_InteractiveObjs.SetType(objList[18], InteractiveType.Chest); 
+            Functions_InteractiveObjs.SetType(objList[19], InteractiveType.ChestEmpty);
 
             //row 6
-            Functions_GameObject.SetType(objList[20], ObjType.Dungeon_TorchUnlit);
-            Functions_GameObject.SetType(objList[21], ObjType.Dungeon_TorchLit);
-            Functions_GameObject.SetType(objList[22], ObjType.Dungeon_Statue);
-            Functions_GameObject.SetType(objList[23], ObjType.Wor_Post_Hammer_Up);
+            Functions_InteractiveObjs.SetType(objList[20], InteractiveType.TorchUnlit);
+            Functions_InteractiveObjs.SetType(objList[21], InteractiveType.TorchLit);
+            Functions_InteractiveObjs.SetType(objList[22], InteractiveType.Dungeon_Statue);
+            Functions_InteractiveObjs.SetType(objList[23], InteractiveType.Post_HammerPost_Up);
 
             //row 7
-            Functions_GameObject.SetType(objList[24], ObjType.Dungeon_SpikesFloorOn);
-            Functions_GameObject.SetType(objList[25], ObjType.Dungeon_SpikesFloorOff);
-            Functions_GameObject.SetType(objList[26], ObjType.Dungeon_ConveyorBeltOn);
-            Functions_GameObject.SetType(objList[27], ObjType.Dungeon_ConveyorBeltOff);
+            Functions_InteractiveObjs.SetType(objList[24], InteractiveType.Dungeon_SpikesFloorOn);
+            Functions_InteractiveObjs.SetType(objList[25], InteractiveType.Dungeon_SpikesFloorOff);
+            Functions_InteractiveObjs.SetType(objList[26], InteractiveType.ConveyorBeltOn);
+            Functions_InteractiveObjs.SetType(objList[27], InteractiveType.ConveyorBeltOff);
 
             //row 8
-            Functions_GameObject.SetType(objList[28], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[29], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[30], ObjType.Dungeon_Signpost);
-            Functions_GameObject.SetType(objList[31], ObjType.Dungeon_LeverOff);
+            Functions_InteractiveObjs.SetType(objList[28], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[29], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[30], InteractiveType.Signpost);
+            Functions_InteractiveObjs.SetType(objList[31], InteractiveType.LeverOff);
 
             //row 9
-            Functions_GameObject.SetType(objList[32], ObjType.Dungeon_SkullPillar);
-            Functions_GameObject.SetType(objList[33], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[34], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[35], ObjType.Unknown);
+            //Functions_InteractiveObjs.SetType(objList[32], InteractiveType.SkullPillar); //ind
+            Functions_InteractiveObjs.SetType(objList[33], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[34], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[35], InteractiveType.Unknown);
 
             //row 10
-            Functions_GameObject.SetType(objList[36], ObjType.Unknown); //hidden by skull pillar
-            Functions_GameObject.SetType(objList[37], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[38], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[39], ObjType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[36], InteractiveType.Unknown); //hidden by skull pillar
+            Functions_InteractiveObjs.SetType(objList[37], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[38], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[39], InteractiveType.Unknown);
 
             //row 11
-            Functions_GameObject.SetType(objList[40], ObjType.Dungeon_FloorStain);
-            Functions_GameObject.SetType(objList[41], ObjType.Dungeon_FloorBlood);
-            Functions_GameObject.SetType(objList[42], ObjType.Dungeon_FloorSkeleton);
-            Functions_GameObject.SetType(objList[43], ObjType.Dungeon_PitTrap);
+            Functions_InteractiveObjs.SetType(objList[40], InteractiveType.FloorStain);
+            Functions_InteractiveObjs.SetType(objList[41], InteractiveType.FloorBlood);
+            Functions_InteractiveObjs.SetType(objList[42], InteractiveType.FloorSkeleton);
+            Functions_InteractiveObjs.SetType(objList[43], InteractiveType.Lava_PitTrap);
 
             //row 12
-            Functions_GameObject.SetType(objList[44], ObjType.Dungeon_SpawnMob);
-            Functions_GameObject.SetType(objList[45], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[46], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[47], ObjType.Dungeon_Map);
+            Functions_InteractiveObjs.SetType(objList[44], InteractiveType.Dungeon_SpawnMob);
+            Functions_InteractiveObjs.SetType(objList[45], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[46], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[47], InteractiveType.Dungeon_Map);
 
             //position the objs relative to the window frame
             Functions_Widget.PositionObjs(this);
@@ -339,81 +339,81 @@ namespace DungeonRun
                 new Point(16 * 5, 16 * 15), //size
                 "Town Objects"); //title
 
-            objList = new List<GameObject>();
+            objList = new List<InteractiveObject>();
             //4 per row, 12 rows total
-            for (i = 0; i < 4 * 12; i++) { objList.Add(new GameObject()); }
+            for (i = 0; i < 4 * 12; i++) { objList.Add(new InteractiveObject()); }
 
             //row 1
-            Functions_GameObject.SetType(objList[0], ObjType.Wor_Build_Wall_Side_Left);
-            Functions_GameObject.SetType(objList[1], ObjType.Wor_Build_Wall_Back);
-            Functions_GameObject.SetType(objList[2], ObjType.Wor_Build_Door_Open);
-            Functions_GameObject.SetType(objList[3], ObjType.Wor_Build_Wall_Side_Right);
+            Functions_InteractiveObjs.SetType(objList[0], InteractiveType.House_Wall_Side_Left);
+            Functions_InteractiveObjs.SetType(objList[1], InteractiveType.House_Wall_Back);
+            Functions_InteractiveObjs.SetType(objList[2], InteractiveType.House_Door_Open);
+            Functions_InteractiveObjs.SetType(objList[3], InteractiveType.House_Wall_Side_Right);
 
             //row 2
-            Functions_GameObject.SetType(objList[4], ObjType.Wor_Build_Wall_FrontA);
-            Functions_GameObject.SetType(objList[5], ObjType.Wor_Build_Wall_FrontB);
-            Functions_GameObject.SetType(objList[6], ObjType.Wor_Build_Door_Shut);
-            Functions_GameObject.SetType(objList[7], ObjType.Wor_Build_Roof_Top);
+            Functions_InteractiveObjs.SetType(objList[4], InteractiveType.House_Wall_FrontA);
+            Functions_InteractiveObjs.SetType(objList[5], InteractiveType.House_Wall_FrontB);
+            Functions_InteractiveObjs.SetType(objList[6], InteractiveType.House_Door_Shut);
+            Functions_InteractiveObjs.SetType(objList[7], InteractiveType.House_Roof_Top);
 
             //row 3
-            Functions_GameObject.SetType(objList[8], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[9], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[10], ObjType.Wor_Build_Roof_Chimney);
-            Functions_GameObject.SetType(objList[11], ObjType.Wor_Build_Roof_Bottom);
+            Functions_InteractiveObjs.SetType(objList[8], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[9], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[10], InteractiveType.House_Roof_Chimney);
+            Functions_InteractiveObjs.SetType(objList[11], InteractiveType.House_Roof_Bottom);
 
             //row 4
-            Functions_GameObject.SetType(objList[12], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[13], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[14], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[15], ObjType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[12], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[13], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[14], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[15], InteractiveType.Unknown);
 
             //row 5
-            Functions_GameObject.SetType(objList[16], ObjType.NPC_Story);
-            Functions_GameObject.SetType(objList[17], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[18], ObjType.NPC_Farmer);
-            Functions_GameObject.SetType(objList[19], ObjType.NPC_Farmer_Reward);
+            Functions_InteractiveObjs.SetType(objList[16], InteractiveType.NPC_Story);
+            Functions_InteractiveObjs.SetType(objList[17], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[18], InteractiveType.NPC_Farmer);
+            Functions_InteractiveObjs.SetType(objList[19], InteractiveType.NPC_Farmer_Reward);
 
             //row 6
-            Functions_GameObject.SetType(objList[20], ObjType.Vendor_NPC_Armor);
-            Functions_GameObject.SetType(objList[21], ObjType.Vendor_NPC_Equipment);
-            Functions_GameObject.SetType(objList[22], ObjType.Vendor_NPC_Items);
-            Functions_GameObject.SetType(objList[23], ObjType.Vendor_NPC_Magic);
+            Functions_InteractiveObjs.SetType(objList[20], InteractiveType.Vendor_Armor);
+            Functions_InteractiveObjs.SetType(objList[21], InteractiveType.Vendor_Equipment);
+            Functions_InteractiveObjs.SetType(objList[22], InteractiveType.Vendor_Items);
+            Functions_InteractiveObjs.SetType(objList[23], InteractiveType.Vendor_Magic);
 
             //row 7
-            Functions_GameObject.SetType(objList[24], ObjType.Vendor_NPC_Pets);
-            Functions_GameObject.SetType(objList[25], ObjType.Vendor_NPC_Potions);
-            Functions_GameObject.SetType(objList[26], ObjType.Vendor_NPC_Weapons);
-            Functions_GameObject.SetType(objList[27], ObjType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[24], InteractiveType.Vendor_Pets);
+            Functions_InteractiveObjs.SetType(objList[25], InteractiveType.Vendor_Potions);
+            Functions_InteractiveObjs.SetType(objList[26], InteractiveType.Vendor_Weapons);
+            Functions_InteractiveObjs.SetType(objList[27], InteractiveType.Unknown);
 
             //row 8
-            Functions_GameObject.SetType(objList[28], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[29], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[30], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[31], ObjType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[28], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[29], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[30], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[31], InteractiveType.Unknown);
 
             //row 9
-            Functions_GameObject.SetType(objList[32], ObjType.Pet_Dog);
-            Functions_GameObject.SetType(objList[33], ObjType.Pet_Chicken);
-            Functions_GameObject.SetType(objList[34], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[35], ObjType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[32], InteractiveType.Pet_Dog);
+            Functions_InteractiveObjs.SetType(objList[33], InteractiveType.Pet_Chicken);
+            Functions_InteractiveObjs.SetType(objList[34], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[35], InteractiveType.Unknown);
 
             //row 10
-            Functions_GameObject.SetType(objList[36], ObjType.Wor_TableSingle);
-            Functions_GameObject.SetType(objList[37], ObjType.Wor_TableDoubleLeft);
-            Functions_GameObject.SetType(objList[38], ObjType.Wor_TableDoubleRight);
-            Functions_GameObject.SetType(objList[39], ObjType.Wor_Bed);
+            Functions_InteractiveObjs.SetType(objList[36], InteractiveType.House_TableSingle);
+            Functions_InteractiveObjs.SetType(objList[37], InteractiveType.House_TableDoubleLeft);
+            Functions_InteractiveObjs.SetType(objList[38], InteractiveType.House_TableDoubleRight);
+            Functions_InteractiveObjs.SetType(objList[39], InteractiveType.House_Bed);
 
             //row 11
-            Functions_GameObject.SetType(objList[40], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[41], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[42], ObjType.Wor_Chair);
-            Functions_GameObject.SetType(objList[43], ObjType.Unknown); //hidden by bed
+            Functions_InteractiveObjs.SetType(objList[40], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[41], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[42], InteractiveType.House_Chair);
+            Functions_InteractiveObjs.SetType(objList[43], InteractiveType.Unknown); //hidden by bed
 
             //row 12
-            Functions_GameObject.SetType(objList[44], ObjType.Wor_Bookcase);
-            Functions_GameObject.SetType(objList[45], ObjType.Wor_Shelf);
-            Functions_GameObject.SetType(objList[46], ObjType.Wor_Stove);
-            Functions_GameObject.SetType(objList[47], ObjType.Wor_Sink);
+            Functions_InteractiveObjs.SetType(objList[44], InteractiveType.House_Bookcase);
+            Functions_InteractiveObjs.SetType(objList[45], InteractiveType.House_Shelf);
+            Functions_InteractiveObjs.SetType(objList[46], InteractiveType.House_Stove);
+            Functions_InteractiveObjs.SetType(objList[47], InteractiveType.House_Sink);
 
             //position the objs relative to the window frame
             Functions_Widget.PositionObjs(this);
@@ -431,84 +431,84 @@ namespace DungeonRun
                 new Point(16 * 5, 16 * 15), //size
                 "Colliseum Objs"); //title
 
-            objList = new List<GameObject>();
+            objList = new List<InteractiveObject>();
             //4 per row, 12 rows total
-            for (i = 0; i < 4 * 12; i++) { objList.Add(new GameObject()); }
+            for (i = 0; i < 4 * 12; i++) { objList.Add(new InteractiveObject()); }
 
             //row 1
-            Functions_GameObject.SetType(objList[0], ObjType.Wor_Entrance_Colliseum);
-            Functions_GameObject.SetType(objList[1], ObjType.Unknown);//ent
-            Functions_GameObject.SetType(objList[2], ObjType.Unknown);//ent
-            Functions_GameObject.SetType(objList[3], ObjType.Wor_Colliseum_Pillar_Top);
+            //Functions_InteractiveObjs.SetType(objList[0], InteractiveType.Wor_Entrance_Colliseum);
+            Functions_InteractiveObjs.SetType(objList[1], InteractiveType.Unknown);//ent
+            Functions_InteractiveObjs.SetType(objList[2], InteractiveType.Unknown);//ent
+            //Functions_InteractiveObjs.SetType(objList[3], InteractiveType.Wor_Colliseum_Pillar_Top);
 
             //row 2
-            Functions_GameObject.SetType(objList[4], ObjType.Unknown);//ent
-            Functions_GameObject.SetType(objList[5], ObjType.Unknown);//ent
-            Functions_GameObject.SetType(objList[6], ObjType.Unknown);//ent
-            Functions_GameObject.SetType(objList[7], ObjType.Wor_Colliseum_Pillar_Middle);
+            Functions_InteractiveObjs.SetType(objList[4], InteractiveType.Unknown);//ent
+            Functions_InteractiveObjs.SetType(objList[5], InteractiveType.Unknown);//ent
+            Functions_InteractiveObjs.SetType(objList[6], InteractiveType.Unknown);//ent
+            //Functions_InteractiveObjs.SetType(objList[7], InteractiveType.Wor_Colliseum_Pillar_Middle);
 
             //row 3
-            Functions_GameObject.SetType(objList[8], ObjType.Unknown);//ent
-            Functions_GameObject.SetType(objList[9], ObjType.Unknown);//ent
-            Functions_GameObject.SetType(objList[10], ObjType.Unknown);//ent
-            Functions_GameObject.SetType(objList[11], ObjType.Wor_Colliseum_Pillar_Bottom);
+            Functions_InteractiveObjs.SetType(objList[8], InteractiveType.Unknown);//ent
+            Functions_InteractiveObjs.SetType(objList[9], InteractiveType.Unknown);//ent
+            Functions_InteractiveObjs.SetType(objList[10], InteractiveType.Unknown);//ent
+            //Functions_InteractiveObjs.SetType(objList[11], InteractiveType.Wor_Colliseum_Pillar_Bottom);
 
             //row 4
-            Functions_GameObject.SetType(objList[12], ObjType.Unknown);//ent
-            Functions_GameObject.SetType(objList[13], ObjType.Unknown);//ent
-            Functions_GameObject.SetType(objList[14], ObjType.Unknown);//ent
-            Functions_GameObject.SetType(objList[15], ObjType.Wor_Colliseum_Outdoors_Floor);
+            Functions_InteractiveObjs.SetType(objList[12], InteractiveType.Unknown);//ent
+            Functions_InteractiveObjs.SetType(objList[13], InteractiveType.Unknown);//ent
+            Functions_InteractiveObjs.SetType(objList[14], InteractiveType.Unknown);//ent
+            //Functions_InteractiveObjs.SetType(objList[15], InteractiveType.Wor_Colliseum_Outdoors_Floor);
 
             //row 5
-            Functions_GameObject.SetType(objList[16], ObjType.Wor_Colliseum_Bricks_Left);
-            Functions_GameObject.SetType(objList[17], ObjType.Wor_Colliseum_Bricks_Middle1);
-            Functions_GameObject.SetType(objList[18], ObjType.Wor_Colliseum_Bricks_Middle2);
-            Functions_GameObject.SetType(objList[19], ObjType.Wor_Colliseum_Bricks_Right);
+            //Functions_InteractiveObjs.SetType(objList[16], InteractiveType.Wor_Colliseum_Bricks_Left);
+            //Functions_InteractiveObjs.SetType(objList[17], InteractiveType.Wor_Colliseum_Bricks_Middle1);
+            //Functions_InteractiveObjs.SetType(objList[18], InteractiveType.Wor_Colliseum_Bricks_Middle2);
+            //Functions_InteractiveObjs.SetType(objList[19], InteractiveType.Wor_Colliseum_Bricks_Right);
 
             //row 6
-            Functions_GameObject.SetType(objList[20], ObjType.Unknown);//brix
-            Functions_GameObject.SetType(objList[21], ObjType.Unknown);//brix
-            Functions_GameObject.SetType(objList[22], ObjType.Unknown);//brix
-            Functions_GameObject.SetType(objList[23], ObjType.Unknown);//brix
+            Functions_InteractiveObjs.SetType(objList[20], InteractiveType.Unknown);//brix
+            Functions_InteractiveObjs.SetType(objList[21], InteractiveType.Unknown);//brix
+            Functions_InteractiveObjs.SetType(objList[22], InteractiveType.Unknown);//brix
+            Functions_InteractiveObjs.SetType(objList[23], InteractiveType.Unknown);//brix
 
 
 
 
             //row 7
-            Functions_GameObject.SetType(objList[24], ObjType.Wor_Colliseum_Spectator);
-            Functions_GameObject.SetType(objList[25], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[26], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[27], ObjType.Unknown);
+            //Functions_InteractiveObjs.SetType(objList[24], InteractiveType.Wor_Colliseum_Spectator);
+            Functions_InteractiveObjs.SetType(objList[25], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[26], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[27], InteractiveType.Unknown);
 
             //row 8
-            Functions_GameObject.SetType(objList[28], ObjType.Vendor_Colliseum_Mob);
-            Functions_GameObject.SetType(objList[29], ObjType.Vendor_NPC_EnemyItems);
-            Functions_GameObject.SetType(objList[30], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[31], ObjType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[28], InteractiveType.Vendor_Colliseum_Mob);
+            Functions_InteractiveObjs.SetType(objList[29], InteractiveType.Vendor_EnemyItems);
+            Functions_InteractiveObjs.SetType(objList[30], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[31], InteractiveType.Unknown);
 
             //row 9
-            Functions_GameObject.SetType(objList[32], ObjType.Wor_Colliseum_Stairs_Handrail_Top);
-            Functions_GameObject.SetType(objList[33], ObjType.Wor_Colliseum_Stairs_Left);
-            Functions_GameObject.SetType(objList[34], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[35], ObjType.Unknown);
+            //Functions_InteractiveObjs.SetType(objList[32], InteractiveType.Wor_Colliseum_Stairs_Handrail_Top);
+            Functions_InteractiveObjs.SetType(objList[33], InteractiveType.Coliseum_Shadow_Stairs_Left);
+            Functions_InteractiveObjs.SetType(objList[34], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[35], InteractiveType.Unknown);
 
             //row 10
-            Functions_GameObject.SetType(objList[36], ObjType.Wor_Colliseum_Stairs_Handrail_Middle);
-            Functions_GameObject.SetType(objList[37], ObjType.Wor_Colliseum_Stairs_Middle);
-            Functions_GameObject.SetType(objList[38], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[39], ObjType.Unknown);
+            //Functions_InteractiveObjs.SetType(objList[36], InteractiveType.Wor_Colliseum_Stairs_Handrail_Middle);
+            Functions_InteractiveObjs.SetType(objList[37], InteractiveType.Coliseum_Shadow_Stairs_Middle);
+            Functions_InteractiveObjs.SetType(objList[38], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[39], InteractiveType.Unknown);
 
             //row 11
-            Functions_GameObject.SetType(objList[40], ObjType.Wor_Colliseum_Stairs_Handrail_Bottom);
-            Functions_GameObject.SetType(objList[41], ObjType.Wor_Colliseum_Stairs_Right);
-            Functions_GameObject.SetType(objList[42], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[43], ObjType.Unknown);
+            //Functions_InteractiveObjs.SetType(objList[40], InteractiveType.Wor_Colliseum_Stairs_Handrail_Bottom);
+            Functions_InteractiveObjs.SetType(objList[41], InteractiveType.Coliseum_Shadow_Stairs_Right);
+            Functions_InteractiveObjs.SetType(objList[42], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[43], InteractiveType.Unknown);
 
             //row 12 - cheat and put these beyond widget bounds cause they big
-            Functions_GameObject.SetType(objList[44], ObjType.Wor_Colliseum_Gate_Pillar_Left);
-            Functions_GameObject.SetType(objList[45], ObjType.Unknown);//covered by left pillar
-            Functions_GameObject.SetType(objList[46], ObjType.Wor_Colliseum_Gate_Center);
-            Functions_GameObject.SetType(objList[47], ObjType.Wor_Colliseum_Gate_Pillar_Right);//
+            Functions_InteractiveObjs.SetType(objList[44], InteractiveType.Coliseum_Shadow_Gate_Pillar_Left);
+            Functions_InteractiveObjs.SetType(objList[45], InteractiveType.Unknown);//covered by left pillar
+            Functions_InteractiveObjs.SetType(objList[46], InteractiveType.Coliseum_Shadow_Gate_Center);
+            Functions_InteractiveObjs.SetType(objList[47], InteractiveType.Coliseum_Shadow_Gate_Pillar_Right);//
 
             //position the objs relative to the window frame
             Functions_Widget.PositionObjs(this);
@@ -559,81 +559,81 @@ namespace DungeonRun
                 new Point(16 * 5, 16 * 15), //size
                 "Boat Front Objs"); //title
 
-            objList = new List<GameObject>();
+            objList = new List<InteractiveObject>();
             //4 per row, 12 rows total
-            for (i = 0; i < 4 * 12; i++) { objList.Add(new GameObject()); }
+            for (i = 0; i < 4 * 12; i++) { objList.Add(new InteractiveObject()); }
 
             //row 1
-            Functions_GameObject.SetType(objList[0], ObjType.Wor_Boat_Front_Left);
-            Functions_GameObject.SetType(objList[1], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[2], ObjType.Wor_Boat_Front_Right);//
-            Functions_GameObject.SetType(objList[3], ObjType.Unknown);//
+            //Functions_InteractiveObjs.SetType(objList[0], InteractiveType.Boat_Front_Left); //ind
+            Functions_InteractiveObjs.SetType(objList[1], InteractiveType.Unknown);//
+            //Functions_InteractiveObjs.SetType(objList[2], InteractiveType.Boat_Front_Right);//ind
+            Functions_InteractiveObjs.SetType(objList[3], InteractiveType.Unknown);//
 
             //row 2
-            Functions_GameObject.SetType(objList[4], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[5], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[6], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[7], ObjType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[4], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[5], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[6], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[7], InteractiveType.Unknown);//
 
             //row 3
-            Functions_GameObject.SetType(objList[8], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[9], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[10], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[11], ObjType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[8], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[9], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[10], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[11], InteractiveType.Unknown);//
 
             //row 4
-            Functions_GameObject.SetType(objList[12], ObjType.Wor_Boat_Front_ConnectorLeft);
-            Functions_GameObject.SetType(objList[13], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[14], ObjType.Wor_Boat_Front_ConnectorRight);
-            Functions_GameObject.SetType(objList[15], ObjType.Unknown);//
+            //Functions_InteractiveObjs.SetType(objList[12], InteractiveType.Wor_Boat_Front_ConnectorLeft);
+            Functions_InteractiveObjs.SetType(objList[13], InteractiveType.Unknown);//
+            //Functions_InteractiveObjs.SetType(objList[14], InteractiveType.Wor_Boat_Front_ConnectorRight);
+            Functions_InteractiveObjs.SetType(objList[15], InteractiveType.Unknown);//
 
             //row 5
-            Functions_GameObject.SetType(objList[16], ObjType.Wor_Boat_Bannister_Left);
-            Functions_GameObject.SetType(objList[17], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[18], ObjType.Wor_Boat_Bannister_Right);
-            Functions_GameObject.SetType(objList[19], ObjType.Unknown);//
+            //Functions_InteractiveObjs.SetType(objList[16], InteractiveType.Wor_Boat_Bannister_Left);
+            Functions_InteractiveObjs.SetType(objList[17], InteractiveType.Unknown);//
+            //Functions_InteractiveObjs.SetType(objList[18], InteractiveType.Wor_Boat_Bannister_Right);
+            Functions_InteractiveObjs.SetType(objList[19], InteractiveType.Unknown);//
 
             //row 6
-            Functions_GameObject.SetType(objList[20], ObjType.Wor_Boat_Stairs_Top_Left);
-            Functions_GameObject.SetType(objList[21], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[22], ObjType.Wor_Boat_Stairs_Top_Right);
-            Functions_GameObject.SetType(objList[23], ObjType.Unknown);//
+            //Functions_InteractiveObjs.SetType(objList[20], InteractiveType.Wor_Boat_Stairs_Top_Left);
+            Functions_InteractiveObjs.SetType(objList[21], InteractiveType.Unknown);//
+            //Functions_InteractiveObjs.SetType(objList[22], InteractiveType.Wor_Boat_Stairs_Top_Right);
+            Functions_InteractiveObjs.SetType(objList[23], InteractiveType.Unknown);//
 
             //row 7
-            Functions_GameObject.SetType(objList[24], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[25], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[26], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[27], ObjType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[24], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[25], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[26], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[27], InteractiveType.Unknown);//
 
             //row 8
-            Functions_GameObject.SetType(objList[28], ObjType.Wor_Boat_Stairs_Left);
-            Functions_GameObject.SetType(objList[29], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[30], ObjType.Wor_Boat_Stairs_Right);
-            Functions_GameObject.SetType(objList[31], ObjType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[28], InteractiveType.Boat_Stairs_Left);
+            Functions_InteractiveObjs.SetType(objList[29], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[30], InteractiveType.Boat_Stairs_Right);
+            Functions_InteractiveObjs.SetType(objList[31], InteractiveType.Unknown);//
 
             //row 9
-            Functions_GameObject.SetType(objList[32], ObjType.Wor_Boat_Stairs_Bottom_Left);
-            Functions_GameObject.SetType(objList[33], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[34], ObjType.Wor_Boat_Stairs_Bottom_Right);
-            Functions_GameObject.SetType(objList[35], ObjType.Unknown);//
+            //Functions_InteractiveObjs.SetType(objList[32], InteractiveType.Wor_Boat_Stairs_Bottom_Left);
+            Functions_InteractiveObjs.SetType(objList[33], InteractiveType.Unknown);//
+            //Functions_InteractiveObjs.SetType(objList[34], InteractiveType.Wor_Boat_Stairs_Bottom_Right);
+            Functions_InteractiveObjs.SetType(objList[35], InteractiveType.Unknown);//
 
             //row 10
-            Functions_GameObject.SetType(objList[36], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[37], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[38], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[39], ObjType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[36], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[37], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[38], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[39], InteractiveType.Unknown);
 
             //row 11
-            Functions_GameObject.SetType(objList[40], ObjType.Wor_Boat_Floor);
-            Functions_GameObject.SetType(objList[41], ObjType.Wor_Boat_Barrel);
-            Functions_GameObject.SetType(objList[42], ObjType.Wor_Boat_Stairs_Cover);
-            Functions_GameObject.SetType(objList[43], ObjType.Wor_Boat_Captain_Brandy);
+            Functions_InteractiveObjs.SetType(objList[40], InteractiveType.Boat_Floor);
+            Functions_InteractiveObjs.SetType(objList[41], InteractiveType.Barrel);
+            Functions_InteractiveObjs.SetType(objList[42], InteractiveType.Boat_Stairs_Cover);
+            Functions_InteractiveObjs.SetType(objList[43], InteractiveType.Boat_Captain_Brandy);
 
             //row 12 - cheat and put these beyond widget bounds cause they big
-            Functions_GameObject.SetType(objList[44], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[45], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[46], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[47], ObjType.Wor_Boat_Front);
+            Functions_InteractiveObjs.SetType(objList[44], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[45], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[46], InteractiveType.Unknown);
+            //Functions_InteractiveObjs.SetType(objList[47], InteractiveType.Wor_Boat_Front);
 
             //position the objs relative to the window frame
             Functions_Widget.PositionObjs(this);
@@ -705,81 +705,81 @@ namespace DungeonRun
                 new Point(16 * 5, 16 * 15), //size
                 "Boat Back Objs"); //title
 
-            objList = new List<GameObject>();
+            objList = new List<InteractiveObject>();
             //4 per row, 12 rows total
-            for (i = 0; i < 4 * 12; i++) { objList.Add(new GameObject()); }
+            for (i = 0; i < 4 * 12; i++) { objList.Add(new InteractiveObject()); }
 
             //row 1
-            Functions_GameObject.SetType(objList[0], ObjType.Wor_Boat_Back_Left);
-            Functions_GameObject.SetType(objList[1], ObjType.Wor_Boat_Back_Left_Connector);
-            Functions_GameObject.SetType(objList[2], ObjType.Wor_Boat_Back_Right_Connector);
-            Functions_GameObject.SetType(objList[3], ObjType.Wor_Boat_Back_Right);
+            //Functions_InteractiveObjs.SetType(objList[0], InteractiveType.Wor_Boat_Back_Left);
+            //Functions_InteractiveObjs.SetType(objList[1], InteractiveType.Wor_Boat_Back_Left_Connector);
+            //Functions_InteractiveObjs.SetType(objList[2], InteractiveType.Wor_Boat_Back_Right_Connector);
+            //Functions_InteractiveObjs.SetType(objList[3], InteractiveType.Wor_Boat_Back_Right);
 
             //row 2
-            Functions_GameObject.SetType(objList[4], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[5], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[6], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[7], ObjType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[4], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[5], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[6], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[7], InteractiveType.Unknown);//
 
             //row 3
-            Functions_GameObject.SetType(objList[8], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[9], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[10], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[11], ObjType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[8], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[9], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[10], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[11], InteractiveType.Unknown);//
 
             //row 4
-            Functions_GameObject.SetType(objList[12], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[13], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[14], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[15], ObjType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[12], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[13], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[14], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[15], InteractiveType.Unknown);//
 
             //row 5
-            Functions_GameObject.SetType(objList[16], ObjType.Wor_Boat_Bridge_Top);
-            Functions_GameObject.SetType(objList[17], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[18], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[19], ObjType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[16], InteractiveType.Boat_Bridge_Top);
+            Functions_InteractiveObjs.SetType(objList[17], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[18], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[19], InteractiveType.Unknown);
 
             //row 6
-            Functions_GameObject.SetType(objList[20], ObjType.Wor_Boat_Bridge_Bottom);
-            Functions_GameObject.SetType(objList[21], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[22], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[23], ObjType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[20], InteractiveType.Boat_Bridge_Bottom);
+            Functions_InteractiveObjs.SetType(objList[21], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[22], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[23], InteractiveType.Unknown);
 
             //row 7
-            Functions_GameObject.SetType(objList[24], ObjType.Wor_Boat_Pier_TopLeft);
-            Functions_GameObject.SetType(objList[25], ObjType.Wor_Boat_Pier_TopMiddle);
-            Functions_GameObject.SetType(objList[26], ObjType.Wor_Boat_Pier_TopRight);
-            Functions_GameObject.SetType(objList[27], ObjType.Wor_Boat_Coastline);
+            Functions_InteractiveObjs.SetType(objList[24], InteractiveType.Boat_Pier_TopLeft);
+            Functions_InteractiveObjs.SetType(objList[25], InteractiveType.Boat_Pier_TopMiddle);
+            Functions_InteractiveObjs.SetType(objList[26], InteractiveType.Boat_Pier_TopRight);
+            Functions_InteractiveObjs.SetType(objList[27], InteractiveType.Coastline_1x2_Animated);
 
             //row 8
-            Functions_GameObject.SetType(objList[28], ObjType.Wor_Boat_Pier_Left);
-            Functions_GameObject.SetType(objList[29], ObjType.Wor_Boat_Pier_Middle);
-            Functions_GameObject.SetType(objList[30], ObjType.Wor_Boat_Pier_Right);
-            Functions_GameObject.SetType(objList[31], ObjType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[28], InteractiveType.Boat_Pier_Left);
+            Functions_InteractiveObjs.SetType(objList[29], InteractiveType.Boat_Pier_Middle);
+            Functions_InteractiveObjs.SetType(objList[30], InteractiveType.Boat_Pier_Right);
+            Functions_InteractiveObjs.SetType(objList[31], InteractiveType.Unknown);//
 
             //row 9
-            Functions_GameObject.SetType(objList[32], ObjType.Wor_Boat_Pier_BottomLeft);
-            Functions_GameObject.SetType(objList[33], ObjType.Wor_Boat_Pier_BottomMiddle);
-            Functions_GameObject.SetType(objList[34], ObjType.Wor_Boat_Pier_BottomRight);
-            Functions_GameObject.SetType(objList[35], ObjType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[32], InteractiveType.Boat_Pier_BottomLeft);
+            Functions_InteractiveObjs.SetType(objList[33], InteractiveType.Boat_Pier_BottomMiddle);
+            Functions_InteractiveObjs.SetType(objList[34], InteractiveType.Boat_Pier_BottomRight);
+            Functions_InteractiveObjs.SetType(objList[35], InteractiveType.Unknown);
 
             //row 10
-            Functions_GameObject.SetType(objList[36], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[37], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[38], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[39], ObjType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[36], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[37], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[38], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[39], InteractiveType.Unknown);
 
             //row 11
-            Functions_GameObject.SetType(objList[40], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[41], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[42], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[43], ObjType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[40], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[41], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[42], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[43], InteractiveType.Unknown);
 
             //row 12 - cheat and put these beyond widget bounds cause they big
-            Functions_GameObject.SetType(objList[44], ObjType.Wor_Boat_Back_Center);
-            Functions_GameObject.SetType(objList[45], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[46], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[47], ObjType.Wor_Boat_Engine); //engine
+            //Functions_InteractiveObjs.SetType(objList[44], InteractiveType.Wor_Boat_Back_Center);
+            Functions_InteractiveObjs.SetType(objList[45], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[46], InteractiveType.Unknown);
+            //Functions_InteractiveObjs.SetType(objList[47], InteractiveType.Wor_Boat_Engine); //engine
 
             //position the objs relative to the window frame
             Functions_Widget.PositionObjs(this);
@@ -837,83 +837,83 @@ namespace DungeonRun
                 new Point(16 * 5, 16 * 15), //size
                 "Forest Objects"); //title
 
-            objList = new List<GameObject>();
+            objList = new List<InteractiveObject>();
             //4 per row, 12 rows total
-            for (i = 0; i < 4 * 12; i++) { objList.Add(new GameObject()); }
+            for (i = 0; i < 4 * 12; i++) { objList.Add(new InteractiveObject()); }
 
             //row 1
 
             //this is a 3x4 * 16 sized sprite/obj
-            Functions_GameObject.SetType(objList[0], ObjType.Wor_Entrance_ForestDungeon);
-            Functions_GameObject.SetType(objList[1], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[2], ObjType.Wor_SkullToothInWater_Arch_Extension);
-            Functions_GameObject.SetType(objList[3], ObjType.Wor_SkullToothInWater_Arch_Left);
+            //Functions_InteractiveObjs.SetType(objList[0], InteractiveType.Wor_Entrance_ForestDungeon);
+            Functions_InteractiveObjs.SetType(objList[1], InteractiveType.Unknown);//
+            //Functions_InteractiveObjs.SetType(objList[2], InteractiveType.Wor_SkullToothInWater_Arch_Extension);
+            //Functions_InteractiveObjs.SetType(objList[3], InteractiveType.Wor_SkullToothInWater_Arch_Left);
 
             //row 2
-            Functions_GameObject.SetType(objList[4], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[5], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[6], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[7], ObjType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[4], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[5], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[6], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[7], InteractiveType.Unknown);
 
             //row 3
-            Functions_GameObject.SetType(objList[8], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[9], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[10], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[11], ObjType.Wor_SkullToothInWater_Arch_Right);
+            Functions_InteractiveObjs.SetType(objList[8], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[9], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[10], InteractiveType.Unknown);//
+            //Functions_InteractiveObjs.SetType(objList[11], InteractiveType.Wor_SkullToothInWater_Arch_Right);
 
             //row 4
-            Functions_GameObject.SetType(objList[12], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[13], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[14], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[15], ObjType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[12], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[13], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[14], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[15], InteractiveType.Unknown);
 
             //row 5
-            Functions_GameObject.SetType(objList[16], ObjType.Wor_SkullToothInWater_Left);
-            Functions_GameObject.SetType(objList[17], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[18], ObjType.Wor_SkullToothInWater_Right);
-            Functions_GameObject.SetType(objList[19], ObjType.Unknown);
+            //Functions_InteractiveObjs.SetType(objList[16], InteractiveType.Wor_SkullToothInWater_Left);
+            Functions_InteractiveObjs.SetType(objList[17], InteractiveType.Unknown);
+            //Functions_InteractiveObjs.SetType(objList[18], InteractiveType.Wor_SkullToothInWater_Right);
+            Functions_InteractiveObjs.SetType(objList[19], InteractiveType.Unknown);
 
             //row 6
-            Functions_GameObject.SetType(objList[20], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[21], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[22], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[23], ObjType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[20], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[21], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[22], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[23], InteractiveType.Unknown);
 
             //row 7
-            Functions_GameObject.SetType(objList[24], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[25], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[26], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[27], ObjType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[24], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[25], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[26], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[27], InteractiveType.Unknown);
 
             //row 8
-            Functions_GameObject.SetType(objList[28], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[29], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[30], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[31], ObjType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[28], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[29], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[30], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[31], InteractiveType.Unknown);
 
             //row 9
-            Functions_GameObject.SetType(objList[32], ObjType.Wor_SkullToothInWater_EndCap_Left);
-            Functions_GameObject.SetType(objList[33], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[34], ObjType.Wor_SkullToothInWater_EndCap_Right);
-            Functions_GameObject.SetType(objList[35], ObjType.Unknown);
+            //Functions_InteractiveObjs.SetType(objList[32], InteractiveType.Wor_SkullToothInWater_EndCap_Left);
+            Functions_InteractiveObjs.SetType(objList[33], InteractiveType.Unknown);
+            //Functions_InteractiveObjs.SetType(objList[34], InteractiveType.Wor_SkullToothInWater_EndCap_Right);
+            Functions_InteractiveObjs.SetType(objList[35], InteractiveType.Unknown);
 
             //row 10
-            Functions_GameObject.SetType(objList[36], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[37], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[38], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[39], ObjType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[36], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[37], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[38], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[39], InteractiveType.Unknown);
 
             //row 11
-            Functions_GameObject.SetType(objList[40], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[41], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[42], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[43], ObjType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[40], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[41], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[42], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[43], InteractiveType.Unknown);
 
             //row 12
-            Functions_GameObject.SetType(objList[44], ObjType.Wor_SkullToothInWater_Center);
-            Functions_GameObject.SetType(objList[45], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[46], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[47], ObjType.Unknown);
+            //Functions_InteractiveObjs.SetType(objList[44], InteractiveType.Wor_SkullToothInWater_Center);
+            Functions_InteractiveObjs.SetType(objList[45], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[46], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[47], InteractiveType.Unknown);
 
             //position the objs relative to the window frame
             Functions_Widget.PositionObjs(this);
@@ -974,83 +974,83 @@ namespace DungeonRun
                 new Point(16 * 5, 16 * 15), //size
                 "Mountain Objects"); //title
 
-            objList = new List<GameObject>();
+            objList = new List<InteractiveObject>();
             //4 per row, 12 rows total
-            for (i = 0; i < 4 * 12; i++) { objList.Add(new GameObject()); }
+            for (i = 0; i < 4 * 12; i++) { objList.Add(new InteractiveObject()); }
 
             //row 1
 
             //this is a 3x4 * 16 sized sprite/obj
-            Functions_GameObject.SetType(objList[0], ObjType.Wor_Entrance_MountainDungeon);
-            Functions_GameObject.SetType(objList[1], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[2], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[3], ObjType.Dungeon_Statue);
+            //Functions_InteractiveObjs.SetType(objList[0], InteractiveType.Wor_Entrance_MountainDungeon);
+            Functions_InteractiveObjs.SetType(objList[1], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[2], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[3], InteractiveType.Dungeon_Statue);
 
             //row 2
-            Functions_GameObject.SetType(objList[4], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[5], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[6], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[7], ObjType.Wor_SeekerExploder);
+            Functions_InteractiveObjs.SetType(objList[4], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[5], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[6], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[7], InteractiveType.Enemy_SeekerExploder);
 
             //row 3
-            Functions_GameObject.SetType(objList[8], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[9], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[10], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[11], ObjType.Dungeon_Statue);
+            Functions_InteractiveObjs.SetType(objList[8], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[9], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[10], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[11], InteractiveType.Dungeon_Statue);
 
             //row 4
-            Functions_GameObject.SetType(objList[12], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[13], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[14], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[15], ObjType.Dungeon_Statue);
+            Functions_InteractiveObjs.SetType(objList[12], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[13], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[14], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[15], InteractiveType.Dungeon_Statue);
 
             //row 5
-            Functions_GameObject.SetType(objList[16], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[17], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[18], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[19], ObjType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[16], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[17], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[18], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[19], InteractiveType.Unknown);
 
             //row 6
-            Functions_GameObject.SetType(objList[20], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[21], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[22], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[23], ObjType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[20], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[21], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[22], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[23], InteractiveType.Unknown);
 
             //row 7
-            Functions_GameObject.SetType(objList[24], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[25], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[26], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[27], ObjType.Wor_MountainWall_Cave_Covered);
+            Functions_InteractiveObjs.SetType(objList[24], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[25], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[26], InteractiveType.Unknown);
+            //Functions_InteractiveObjs.SetType(objList[27], InteractiveType.Wor_MountainWall_Cave_Covered);
 
             //row 8
-            Functions_GameObject.SetType(objList[28], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[29], ObjType.Wor_MountainWall_Cave_Bare);
-            Functions_GameObject.SetType(objList[30], ObjType.Unknown); //cov
-            Functions_GameObject.SetType(objList[31], ObjType.Unknown); //cov
+            Functions_InteractiveObjs.SetType(objList[28], InteractiveType.Unknown);
+            //Functions_InteractiveObjs.SetType(objList[29], InteractiveType.Wor_MountainWall_Cave_Bare);
+            Functions_InteractiveObjs.SetType(objList[30], InteractiveType.Unknown); //cov
+            Functions_InteractiveObjs.SetType(objList[31], InteractiveType.Unknown); //cov
 
             //row 9
-            Functions_GameObject.SetType(objList[32], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[33], ObjType.Unknown); //cov
-            Functions_GameObject.SetType(objList[34], ObjType.Unknown); //cov
-            Functions_GameObject.SetType(objList[35], ObjType.Wor_MountainWall_Top); //wall top
+            Functions_InteractiveObjs.SetType(objList[32], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[33], InteractiveType.Unknown); //cov
+            Functions_InteractiveObjs.SetType(objList[34], InteractiveType.Unknown); //cov
+            Functions_InteractiveObjs.SetType(objList[35], InteractiveType.MountainWall_Top); //wall top
 
             //row 10
-            Functions_GameObject.SetType(objList[36], ObjType.Wor_MountainWall_Ladder_Trap);
-            Functions_GameObject.SetType(objList[37], ObjType.Wor_MountainWall_Alcove_Right);
-            Functions_GameObject.SetType(objList[38], ObjType.Unknown); //covered
-            Functions_GameObject.SetType(objList[39], ObjType.Wor_MountainWall_Mid); //wall mid
+            Functions_InteractiveObjs.SetType(objList[36], InteractiveType.MountainWall_Ladder_Trap);
+            //Functions_InteractiveObjs.SetType(objList[37], InteractiveType.Wor_MountainWall_Alcove_Right);
+            Functions_InteractiveObjs.SetType(objList[38], InteractiveType.Unknown); //covered
+            Functions_InteractiveObjs.SetType(objList[39], InteractiveType.MountainWall_Mid); //wall mid
 
             //row 11
-            Functions_GameObject.SetType(objList[40], ObjType.Wor_MountainWall_Ladder);
-            Functions_GameObject.SetType(objList[41], ObjType.Unknown); //cov
-            Functions_GameObject.SetType(objList[42], ObjType.Unknown); //cov
-            Functions_GameObject.SetType(objList[43], ObjType.Unknown); //covered
+            Functions_InteractiveObjs.SetType(objList[40], InteractiveType.MountainWall_Ladder);
+            Functions_InteractiveObjs.SetType(objList[41], InteractiveType.Unknown); //cov
+            Functions_InteractiveObjs.SetType(objList[42], InteractiveType.Unknown); //cov
+            Functions_InteractiveObjs.SetType(objList[43], InteractiveType.Unknown); //covered
 
             //row 12
-            Functions_GameObject.SetType(objList[44], ObjType.Wor_MountainWall_Foothold);
-            Functions_GameObject.SetType(objList[45], ObjType.Wor_MountainWall_Alcove_Left);
-            Functions_GameObject.SetType(objList[46], ObjType.Unknown); //covered
-            Functions_GameObject.SetType(objList[47], ObjType.Wor_MountainWall_Bottom); //wall bottom
+            Functions_InteractiveObjs.SetType(objList[44], InteractiveType.MountainWall_Foothold);
+            //Functions_InteractiveObjs.SetType(objList[45], InteractiveType.Wor_MountainWall_Alcove_Left);
+            Functions_InteractiveObjs.SetType(objList[46], InteractiveType.Unknown); //covered
+            Functions_InteractiveObjs.SetType(objList[47], InteractiveType.MountainWall_Bottom); //wall bottom
 
             //position the objs relative to the window frame
             Functions_Widget.PositionObjs(this);
@@ -1100,83 +1100,83 @@ namespace DungeonRun
                 new Point(16 * 5, 16 * 15), //size
                 "Swamp Objects"); //title
 
-            objList = new List<GameObject>();
+            objList = new List<InteractiveObject>();
             //4 per row, 12 rows total
-            for (i = 0; i < 4 * 12; i++) { objList.Add(new GameObject()); }
+            for (i = 0; i < 4 * 12; i++) { objList.Add(new InteractiveObject()); }
 
             //row 1
 
             //this is a 3x4 * 16 sized sprite/obj
-            Functions_GameObject.SetType(objList[0], ObjType.Wor_Entrance_SwampDungeon);
-            Functions_GameObject.SetType(objList[1], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[2], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[3], ObjType.Dungeon_Statue);
+            //Functions_InteractiveObjs.SetType(objList[0], InteractiveType.Wor_Entrance_SwampDungeon);
+            Functions_InteractiveObjs.SetType(objList[1], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[2], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[3], InteractiveType.Dungeon_Statue);
 
             //row 2
-            Functions_GameObject.SetType(objList[4], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[5], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[6], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[7], ObjType.Wor_SeekerExploder);
+            Functions_InteractiveObjs.SetType(objList[4], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[5], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[6], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[7], InteractiveType.Enemy_SeekerExploder);
 
             //row 3
-            Functions_GameObject.SetType(objList[8], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[9], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[10], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[11], ObjType.Dungeon_Statue);
+            Functions_InteractiveObjs.SetType(objList[8], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[9], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[10], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[11], InteractiveType.Dungeon_Statue);
 
             //row 4
-            Functions_GameObject.SetType(objList[12], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[13], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[14], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[15], ObjType.Dungeon_Statue);
+            Functions_InteractiveObjs.SetType(objList[12], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[13], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[14], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[15], InteractiveType.Dungeon_Statue);
 
             //row 5
-            Functions_GameObject.SetType(objList[16], ObjType.Wor_Swamp_SmPlant);
-            Functions_GameObject.SetType(objList[17], ObjType.Wor_Swamp_BigPlant);
-            Functions_GameObject.SetType(objList[18], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[19], ObjType.Wor_Swamp_LillyPad);
+            //Functions_InteractiveObjs.SetType(objList[16], InteractiveType.Wor_Swamp_SmPlant);
+            //Functions_InteractiveObjs.SetType(objList[17], InteractiveType.Wor_Swamp_BigPlant);
+            Functions_InteractiveObjs.SetType(objList[18], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[19], InteractiveType.Water_LillyPad);
 
             //row 6
-            Functions_GameObject.SetType(objList[20], ObjType.Wor_Swamp_Bulb);
-            Functions_GameObject.SetType(objList[21], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[22], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[23], ObjType.Unknown);//
+            //Functions_InteractiveObjs.SetType(objList[20], InteractiveType.Wor_Swamp_Bulb);
+            Functions_InteractiveObjs.SetType(objList[21], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[22], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[23], InteractiveType.Unknown);//
 
             //row 7
-            Functions_GameObject.SetType(objList[24], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[25], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[26], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[27], ObjType.Wor_Swamp_Vine);
+            Functions_InteractiveObjs.SetType(objList[24], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[25], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[26], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[27], InteractiveType.Water_Vine);
 
             //row 8
-            Functions_GameObject.SetType(objList[28], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[29], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[30], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[31], ObjType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[28], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[29], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[30], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[31], InteractiveType.Unknown);
 
             //row 9
-            Functions_GameObject.SetType(objList[32], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[33], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[34], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[35], ObjType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[32], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[33], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[34], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[35], InteractiveType.Unknown);
 
             //row 10
-            Functions_GameObject.SetType(objList[36], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[37], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[38], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[39], ObjType.Unknown); 
+            Functions_InteractiveObjs.SetType(objList[36], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[37], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[38], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[39], InteractiveType.Unknown); 
 
             //row 11
-            Functions_GameObject.SetType(objList[40], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[41], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[42], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[43], ObjType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[40], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[41], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[42], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[43], InteractiveType.Unknown);
 
             //row 12
-            Functions_GameObject.SetType(objList[44], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[45], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[46], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[47], ObjType.Unknown); 
+            Functions_InteractiveObjs.SetType(objList[44], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[45], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[46], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[47], InteractiveType.Unknown); 
 
             //position the objs relative to the window frame
             Functions_Widget.PositionObjs(this);
@@ -1225,81 +1225,81 @@ namespace DungeonRun
                 new Point(16 * 5, 16 * 15), //size
                 "DEV Objs"); //title
 
-            objList = new List<GameObject>();
+            objList = new List<InteractiveObject>();
             //4 per row, 12 rows total
-            for (i = 0; i < 4 * 12; i++) { objList.Add(new GameObject()); }
+            for (i = 0; i < 4 * 12; i++) { objList.Add(new InteractiveObject()); }
 
             //row 1
-            Functions_GameObject.SetType(objList[0], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[1], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[2], ObjType.Wor_Shadow_Big);
-            Functions_GameObject.SetType(objList[3], ObjType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[0], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[1], InteractiveType.Unknown);
+            //Functions_InteractiveObjs.SetType(objList[2], InteractiveType.Wor_Shadow_Big);
+            Functions_InteractiveObjs.SetType(objList[3], InteractiveType.Unknown);//
 
             //row 2
-            Functions_GameObject.SetType(objList[4], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[5], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[6], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[7], ObjType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[4], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[5], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[6], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[7], InteractiveType.Unknown);//
 
             //row 3
-            Functions_GameObject.SetType(objList[8], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[9], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[10], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[11], ObjType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[8], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[9], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[10], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[11], InteractiveType.Unknown);//
 
             //row 4
-            Functions_GameObject.SetType(objList[12], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[13], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[14], ObjType.Unknown);//
-            Functions_GameObject.SetType(objList[15], ObjType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[12], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[13], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[14], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[15], InteractiveType.Unknown);//
 
             //row 5
-            Functions_GameObject.SetType(objList[16], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[17], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[18], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[19], ObjType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[16], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[17], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[18], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[19], InteractiveType.Unknown);
 
             //row 6
-            Functions_GameObject.SetType(objList[20], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[21], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[22], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[23], ObjType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[20], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[21], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[22], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[23], InteractiveType.Unknown);
 
             //row 7
-            Functions_GameObject.SetType(objList[24], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[25], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[26], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[27], ObjType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[24], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[25], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[26], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[27], InteractiveType.Unknown);
 
             //row 8
-            Functions_GameObject.SetType(objList[28], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[29], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[30], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[31], ObjType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[28], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[29], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[30], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[31], InteractiveType.Unknown);
 
             //row 9
-            Functions_GameObject.SetType(objList[32], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[33], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[34], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[35], ObjType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[32], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[33], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[34], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[35], InteractiveType.Unknown);
 
             //row 10
-            Functions_GameObject.SetType(objList[36], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[37], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[38], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[39], ObjType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[36], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[37], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[38], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[39], InteractiveType.Unknown);
 
             //row 11
-            Functions_GameObject.SetType(objList[40], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[41], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[42], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[43], ObjType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[40], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[41], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[42], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[43], InteractiveType.Unknown);
 
             //row 12
-            Functions_GameObject.SetType(objList[44], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[45], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[46], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[47], ObjType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[44], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[45], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[46], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[47], InteractiveType.Unknown);
 
             //position the objs relative to the window frame
             Functions_Widget.PositionObjs(this);

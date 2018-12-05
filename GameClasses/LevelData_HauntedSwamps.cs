@@ -14,7 +14,6 @@ namespace DungeonRun
 			#region SwampIsland_MainEntrance
 
 			SwampIsland_MainEntrance.type = RoomID.SwampIsland_MainEntrance;
-			SwampIsland_MainEntrance.objs = new List<ObjXmlData>();
 			#endregion
 
 		}

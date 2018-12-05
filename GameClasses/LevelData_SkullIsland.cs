@@ -17,28 +17,24 @@ namespace DungeonRun
 			#region SkullIsland_Colliseum
 
 			SkullIsland_Colliseum.type = RoomID.SkullIsland_Colliseum;
-			SkullIsland_Colliseum.objs = new List<ObjXmlData>();
 			#endregion
 
 
 			#region SkullIsland_ColliseumPit
 
 			SkullIsland_ColliseumPit.type = RoomID.SkullIsland_ColliseumPit;
-			SkullIsland_ColliseumPit.objs = new List<ObjXmlData>();
 			#endregion
 
 
 			#region SkullIsland_ShadowKing
 
 			SkullIsland_ShadowKing.type = RoomID.SkullIsland_ShadowKing;
-			SkullIsland_ShadowKing.objs = new List<ObjXmlData>();
 			#endregion
 
 
 			#region SkullIsland_Town
 
 			SkullIsland_Town.type = RoomID.SkullIsland_Town;
-			SkullIsland_Town.objs = new List<ObjXmlData>();
 			#endregion
 
 		}

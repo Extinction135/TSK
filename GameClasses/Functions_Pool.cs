@@ -16,7 +16,33 @@ namespace DungeonRun
     {
         static int i;
 
+        public static IndestructibleObject GetIndObj()
+        {
+            for (Pool.indObjCounter = 0; Pool.indObjCounter < Pool.indObjCount; Pool.indObjCounter++)
+            {   //found an inactive obj to return
+                if (Pool.indObjPool[Pool.indObjCounter].active == false)
+                {   //reset obj to default state, hide offscreen, return it
+                    Functions_IndestructibleObjs.Reset(Pool.indObjPool[Pool.indObjCounter]);
+                    Pool.indObjPool[Pool.indObjCounter].compSprite.position.X = -1000;
+                    return Pool.indObjPool[Pool.indObjCounter];
+                }
+            }
+            return Pool.indObjPool[Pool.indObjCounter - 1]; //ran out of indObjs
+        }
 
+        public static InteractiveObject GetIntObj()
+        {
+            for (Pool.intObjCounter = 0; Pool.intObjCounter < Pool.intObjCount; Pool.intObjCounter++)
+            {   //found an inactive obj to return
+                if (Pool.intObjPool[Pool.intObjCounter].active == false)
+                {   //reset obj to default state, hide offscreen, return it
+                    Functions_InteractiveObjs.Reset(Pool.intObjPool[Pool.intObjCounter]);
+                    Pool.intObjPool[Pool.intObjCounter].compSprite.position.X = -1000;
+                    return Pool.intObjPool[Pool.intObjCounter];
+                }
+            }
+            return Pool.intObjPool[Pool.intObjCounter - 1]; //ran out of indObjs
+        }
 
         public static Actor GetActor()
         {
@@ -33,20 +59,6 @@ namespace DungeonRun
                 return Pool.actorPool[Pool.actorIndex];
             }
             return Pool.actorPool[Pool.actorCount - 1]; //ran out of actors
-        }
-
-        public static GameObject GetRoomObj()
-        {   //skip roomObj 1, cause it's the hero's pet
-            for (Pool.roomObjCounter = 1; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
-            {   //found an inactive obj to return
-                if (Pool.roomObjPool[Pool.roomObjCounter].active == false)
-                {   //reset obj to default state, hide offscreen, return it
-                    Functions_GameObject.Reset(Pool.roomObjPool[Pool.roomObjCounter]);
-                    Pool.roomObjPool[Pool.roomObjCounter].compMove.newPosition.X = -1000;
-                    return Pool.roomObjPool[Pool.roomObjCounter];
-                }
-            }
-            return Pool.roomObjPool[Pool.roomObjCount - 1]; //ran out of roomObjs
         }
 
         public static Particle GetParticle()
@@ -125,7 +137,8 @@ namespace DungeonRun
         public static void Reset()
         {
             ResetActorPool();
-            ResetRoomObjPool();
+            ResetIndObjPool();
+            ResetIntObjPool();
             ResetParticlePool();
             ResetProjectilePool();
             ResetPickupPool();
@@ -133,17 +146,23 @@ namespace DungeonRun
             ResetLinePool();
         }
 
+        public static void ResetIndObjPool()
+        {
+            for (Pool.indObjCounter = 0; Pool.indObjCounter < Pool.indObjCount; Pool.indObjCounter++)
+            { Release(Pool.indObjPool[Pool.indObjCounter]); }
+        }
+
+        public static void ResetIntObjPool()
+        {
+            for (Pool.intObjCounter = 0; Pool.intObjCounter < Pool.intObjCount; Pool.intObjCounter++)
+            { Release(Pool.intObjPool[Pool.intObjCounter]); }
+        }
+
         public static void ResetActorPool()
         {   //skip resetting the hero & pet
             for (Pool.actorCounter = 1; Pool.actorCounter < Pool.actorCount; Pool.actorCounter++)
             { Release(Pool.actorPool[Pool.actorCounter]); }
             Pool.actorIndex = 1;
-        }
-
-        public static void ResetRoomObjPool()
-        {
-            for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
-            { Release(Pool.roomObjPool[Pool.roomObjCounter]); }
         }
 
         public static void ResetParticlePool()
@@ -192,24 +211,30 @@ namespace DungeonRun
 
 
 
-
-
-
         public static void ResetActorPoolInput()
         {
             for (Pool.actorCounter = 0; Pool.actorCounter < Pool.actorCount; Pool.actorCounter++)
             { Functions_Input.ResetInputData(Pool.actorPool[Pool.actorCounter].compInput); }
         }
 
+
+
+
+
+
+        public static void Release(IndestructibleObject Obj)
+        {
+            Obj.active = false;
+        }
+
+        public static void Release(InteractiveObject Obj)
+        {
+            Obj.active = false;
+        }
+
         public static void Release(Actor Actor)
         {
             Actor.active = false;
-        }
-
-        public static void Release(GameObject Obj)
-        {
-            Obj.active = false;
-            Obj.lifetime = 0;
         }
 
         public static void Release(Projectile Pro)
@@ -237,23 +262,98 @@ namespace DungeonRun
 
 
 
+
+
+        static int p;
+        public static void AlignIndObjs()
+        {   //align sprite + collision comps to move comp of all active objs
+            for (p = 0; p < Pool.indObjCount; p++)
+            {
+                if (Pool.indObjPool[p].active)
+                {   //align collision to sprite component
+                    Functions_Component.Align(
+                        Pool.indObjPool[p].compSprite,
+                        Pool.indObjPool[p].compCollision);
+                    //set the current animation frame, check the animation counter
+                    Functions_Animation.Animate(Pool.indObjPool[p].compAnim,
+                        Pool.indObjPool[i].compSprite);
+                    //set the rotation for the obj's sprite
+                    Functions_IndestructibleObjs.SetRotation(Pool.indObjPool[p]);
+                }
+            }
+        }
+
+        public static void AlignIntObjs()
+        {   //align sprite + collision comps to move comp of all active objs
+            for (p = 0; p < Pool.intObjCount; p++)
+            {
+                if (Pool.intObjPool[p].active)
+                {   //align the sprite and collision components to the move component
+                    Functions_Component.Align(
+                        Pool.intObjPool[p].compMove,
+                        Pool.intObjPool[p].compSprite,
+                        Pool.intObjPool[p].compCollision);
+                    //set the current animation frame, check the animation counter
+                    Functions_Animation.Animate(Pool.intObjPool[p].compAnim,
+                        Pool.intObjPool[i].compSprite);
+                    //set the rotation for the obj's sprite
+                    Functions_InteractiveObjs.SetRotation(Pool.intObjPool[p]);
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
         public static void Update()
         {
             Pool.collisionsCount = 0;
             Pool.interactionsCount = 0;
-
             //reset hero - assume hero is not under roof
             Functions_Hero.underRoof = false;
 
 
+            
 
-            //the following phases affect actors, room objects, and projectiles
 
-            #region Phase 1 - Get Input, Update, Animate, & Check Interactions
 
-            //check interactions(act v obj, act v proj, obj v obj, obj v proj)
 
-            //get input & interactions for actors
+
+            //OLD(): check interactions(act v obj, act v proj, obj v obj, obj v proj)
+
+            //interactions new: 
+            //acts vs ints, acts vs pros
+            //ints vs ints
+            //pros vs ints
+            //hero vs pickups
+            //hero intPoint vs ints & inds
+
+            //collisions new
+            //acts vs inds
+            //ints vs inds
+            //pros vs inds
+            //acts vs hero
+            //hero vs acts
+
+
+
+
+
+
+
+            //Phase 1 - Get Input, Update, Animate, & Check Interactions
+
+            #region Actors
+
             for (i = 0; i < Pool.actorCount; i++)
             {
                 if (Pool.actorPool[i].active)
@@ -308,54 +408,70 @@ namespace DungeonRun
                 }
             }
 
-            //roomObjs
-            for (i = 0; i < Pool.roomObjCount; i++)
+            #endregion
+
+
+            //indestructible objs?
+
+
+            #region Interactive Objects
+
+            for (i = 0; i < Pool.intObjCount; i++)
             {
-                if (Pool.roomObjPool[i].active)
+                if (Pool.intObjPool[i].active)
                 {
                     //set objects that are in the air to world air friction
-                    if (Pool.roomObjPool[i].compMove.grounded == false)
-                    { Pool.roomObjPool[i].compMove.friction = World.frictionAir; }
+                    if (Pool.intObjPool[i].compMove.grounded == false)
+                    { Pool.intObjPool[i].compMove.friction = World.frictionAir; }
                     //objects not in the air get set the world ground friction
-                    else { Pool.roomObjPool[i].compMove.friction = World.friction; }
+                    else { Pool.intObjPool[i].compMove.friction = World.friction; }
 
                     //reset water booleans for objects
-                    Pool.roomObjPool[i].inWater = false;
-                    Pool.roomObjPool[i].underWater = false;
+                    Pool.intObjPool[i].inWater = false;
+                    Pool.intObjPool[i].underWater = false;
 
                     //handle roomObjs that remove themselves upon overlap
-                    if (Pool.roomObjPool[i].selfCleans)
+                    if (Pool.intObjPool[i].selfCleans)
                     {   //clean yo self, then exit cleaning branch
-                        Functions_GameObject.Selfclean(Pool.roomObjPool[i]);
+                        Functions_InteractiveObjs.SelfClean(Pool.intObjPool[i]);
                     }
 
                     //check interactions for certain roomObjs
                     if (
                         //if roomObj is moving, check interactions - BIG optimization
-                        Pool.roomObjPool[i].compMove.moving
+                        Pool.intObjPool[i].compMove.moving
                         //nonblocking objs that dont move, but interact
-                        || Pool.roomObjPool[i].type == ObjType.Dungeon_ConveyorBeltOn
-                        || Pool.roomObjPool[i].type == ObjType.Dungeon_IceTile
+                        || Pool.intObjPool[i].type == InteractiveType.ConveyorBeltOn
+                        || Pool.intObjPool[i].type == InteractiveType.IceTile
                         //these roomObjs always get interaction checked
-                        || Pool.roomObjPool[i].type == ObjType.Dungeon_Fairy
-                        || Pool.roomObjPool[i].type == ObjType.Pet_Dog
+                        || Pool.intObjPool[i].type == InteractiveType.Fairy
+                        || Pool.intObjPool[i].type == InteractiveType.Pet_Dog
+
+                        /*EXITS ARE INDESTRUCTIBLE OBJS NOT INTERACTIVES!
                         //exits remove anything they touch
-                        || Pool.roomObjPool[i].type == ObjType.Dungeon_Exit
-                        || Pool.roomObjPool[i].type == ObjType.Dungeon_ExitPillarLeft
-                        || Pool.roomObjPool[i].type == ObjType.Dungeon_ExitPillarRight
+                        || Pool.intObjPool[i].type == InteractiveType.Dungeon_Exit
+                        || Pool.intObjPool[i].type == InteractiveType.Dungeon_ExitPillarLeft
+                        || Pool.intObjPool[i].type == InteractiveType.Dungeon_ExitPillarRight
+                        */
+
+
                         )
                     {   //Debug.WriteLine("pool update roomobj type: " + Pool.roomObjPool[i].type);
-                        Functions_Interaction.CheckObj_Obj(Pool.roomObjPool[i]);
+                        Functions_Interaction.CheckObj_Obj(Pool.intObjPool[i]);
                     }
 
                     //update, animate, scale
-                    Functions_GameObject.Update(Pool.roomObjPool[i]);
-                    Functions_Animation.Animate(Pool.roomObjPool[i].compAnim, Pool.roomObjPool[i].compSprite);
-                    Functions_Animation.ScaleSpriteDown(Pool.roomObjPool[i].compSprite);
+                    Functions_InteractiveObjs.Update(Pool.intObjPool[i]);
+                    Functions_Animation.Animate(Pool.intObjPool[i].compAnim, Pool.intObjPool[i].compSprite);
+                    Functions_Animation.ScaleSpriteDown(Pool.intObjPool[i].compSprite);
                 }
             }
 
-            //particles
+            #endregion
+
+
+            #region Particles
+
             for (i = 0; i < Pool.particleCount; i++)
             {
                 if (Pool.particlePool[i].active)
@@ -366,7 +482,11 @@ namespace DungeonRun
                 }
             }
 
-            //projectiles
+            #endregion
+
+
+            #region Projectiles
+
             for (i = 0; i < Pool.projectileCount; i++)
             {
                 if (Pool.projectilePool[i].active)
@@ -382,7 +502,11 @@ namespace DungeonRun
                 }
             }
 
-            //pickups
+            #endregion
+
+
+            #region Pickups
+
             for (i = 0; i < Pool.pickupCount; i++)
             {
                 if (Pool.pickupPool[i].active)
@@ -396,9 +520,21 @@ namespace DungeonRun
             #endregion
 
 
+
+
+
+
+            
+
+
+
+
+
+
             #region Phase 2 - Project Movement
 
             //project movement for actors, objects, particles, projectiles, pickups
+            //indestructible objs CANT move
 
             //actors
             for (i = 0; i < Pool.actorCount; i++)
@@ -407,11 +543,11 @@ namespace DungeonRun
                 { Functions_Movement.ProjectMovement(Pool.actorPool[i].compMove); }
             }
 
-            //roomObjs
-            for (i = 0; i < Pool.roomObjCount; i++)
+            //interactive objs
+            for (i = 0; i < Pool.intObjCount; i++)
             {
-                if (Pool.roomObjPool[i].active)
-                { Functions_Movement.ProjectMovement(Pool.roomObjPool[i].compMove); }
+                if (Pool.intObjPool[i].active)
+                { Functions_Movement.ProjectMovement(Pool.intObjPool[i].compMove); }
             }
 
             //particles
@@ -429,6 +565,14 @@ namespace DungeonRun
             }
 
             #endregion
+
+
+
+
+
+
+
+
 
 
             #region Phase 3 - Check Collisions
@@ -450,57 +594,57 @@ namespace DungeonRun
                             Functions_Collision.CheckCollisions(
                                 Pool.actorPool[i].compMove,
                                 Pool.actorPool[i].compCollision,
-                                false, false, false);
+                                false, false, false, false);
                         }
                         else
                         {
-                            //hero checks v roomObjs + enemies
+                            //hero checks v inds/ints + enemies
                             Functions_Collision.CheckCollisions(
                                 Pool.actorPool[i].compMove,
                                 Pool.actorPool[i].compCollision,
-                                true, true, false);
+                                true, true, true, false);
                         }
                     }
                     else
-                    {   //enemies check v roomObjs + hero
+                    {   //enemies check v inds/ints + hero
                         Functions_Collision.CheckCollisions(
                             Pool.actorPool[i].compMove,
                             Pool.actorPool[i].compCollision,
-                            true, false, true);
+                            true, true, false, true);
                     }
                 }
             }
 
-            //roomObjs
-            for (i = 0; i < Pool.roomObjCount; i++)
+            //interactive objects
+            for (i = 0; i < Pool.intObjCount; i++)
             {  
-                if(Pool.roomObjPool[i].active) //obj must be active
+                if(Pool.intObjPool[i].active) //obj must be active
                 {
                     //roomObj must be blocking to be collision checked
                     //it makes no sense to collision check non-blocking objs
-                    if (Pool.roomObjPool[i].compCollision.blocking)
+                    if (Pool.intObjPool[i].compCollision.blocking)
                     {   
                         //obj must be moving as well, otherwise we assume
                         //a non-moving obj is at rest and isn't overlapping
                         //any other roomObjs, either because it was placed
                         //by hand, or because it was moving, got interacted()
                         //with, and came to rest. this is an optimization.
-                        if (Pool.roomObjPool[i].compMove.moving)
+                        if (Pool.intObjPool[i].compMove.moving)
                         {
                             Functions_Collision.CheckCollisions(
-                                Pool.roomObjPool[i].compMove,
-                                Pool.roomObjPool[i].compCollision,
-                                true, true, true);
+                                Pool.intObjPool[i].compMove,
+                                Pool.intObjPool[i].compCollision,
+                                true, true, true, true);
                         }
                     }
                     else
                     {   //roomObj isn't blocking, but may be moving
                         //in this case, we dont check collisions,
                         //but we still need to update the obj.move.position
-                        if (Pool.roomObjPool[i].compMove.moving)
+                        if (Pool.intObjPool[i].compMove.moving)
                         {   //set the position equal to the newPosition, which was set using ProjectMovement()
-                            Pool.roomObjPool[i].compMove.position.X = Pool.roomObjPool[i].compMove.newPosition.X;
-                            Pool.roomObjPool[i].compMove.position.Y = Pool.roomObjPool[i].compMove.newPosition.Y;
+                            Pool.intObjPool[i].compMove.position.X = Pool.intObjPool[i].compMove.newPosition.X;
+                            Pool.intObjPool[i].compMove.position.Y = Pool.intObjPool[i].compMove.newPosition.Y;
                         }
                     }
                 }
@@ -509,6 +653,13 @@ namespace DungeonRun
             #endregion
 
             
+
+
+
+
+
+
+
             #region Phase 4 - Resolution, Align() Components
 
             //actors
@@ -519,10 +670,10 @@ namespace DungeonRun
             }
 
             //roomObjs
-            for (i = 0; i < Pool.roomObjCount; i++)
+            for (i = 0; i < Pool.intObjCount; i++)
             {
-                if (Pool.roomObjPool[i].active)
-                { Functions_Component.Align(Pool.roomObjPool[i]); }
+                if (Pool.intObjPool[i].active)
+                { Functions_Component.Align(Pool.intObjPool[i]); }
             }
 
             //particles
@@ -550,10 +701,12 @@ namespace DungeonRun
             #endregion
 
 
+
+
+
+
             //handle hero related updates (room checking, shadow match, pickup interactions)
             Functions_Hero.Update();
-
-
 
             //update lines
             for (Pool.lineCounter = 0; Pool.lineCounter < Pool.lineCount; Pool.lineCounter++)
@@ -568,9 +721,15 @@ namespace DungeonRun
             //line pool
             for (Pool.lineCounter = 0; Pool.lineCounter < Pool.lineCount; Pool.lineCounter++)
             { Functions_Draw.Draw(Pool.linePool[Pool.lineCounter]); }
-            //roomObj pool
-            for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
-            { Functions_Draw.Draw(Pool.roomObjPool[Pool.roomObjCounter]); }
+
+
+            //no longer drawing the gameObj pool
+            for (Pool.indObjCounter = 0; Pool.indObjCounter < Pool.indObjCount; Pool.indObjCounter++)
+            { Functions_Draw.Draw(Pool.indObjPool[Pool.indObjCounter]); }
+            for (Pool.intObjCounter = 0; Pool.intObjCounter < Pool.intObjCount; Pool.intObjCounter++)
+            { Functions_Draw.Draw(Pool.intObjPool[Pool.intObjCounter]); }
+
+
             //particles
             for (Pool.particleCounter = 0; Pool.particleCounter < Pool.particleCount; Pool.particleCounter++)
             { Functions_Draw.Draw(Pool.particlePool[Pool.particleCounter]); }

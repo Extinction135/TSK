@@ -236,7 +236,7 @@ namespace DungeonRun
 
 
 
-
+        int p;
         public void SaveCurrentRoom()
         {   //create RoomXmlData instance
             roomData = new RoomXmlData();
@@ -255,34 +255,64 @@ namespace DungeonRun
                 roomData.type = id;
             }
 
-            //transfer the levelID
+            //transfer the levelID - we code this by hand now
             //roomData.levelID = LevelSet.currentLevel.currentRoom.levelID;
 
-            //populate roomData with roomObjs
-            for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
-            { SaveObject(Pool.roomObjPool[Pool.roomObjCounter], roomData); }
+
+            //populate roomData with indestructible objects
+            for (p = 0; p < Pool.indObjCount; p++)
+            {
+                if (Pool.indObjPool[p].active)
+                {   
+                    //translate Obj to IndObjXmlData (always saved)
+                    IndObjXmlData objData = new IndObjXmlData();
+                    objData.type = Pool.indObjPool[p].type;
+                    objData.direction = Pool.indObjPool[p].direction;
+                    //set saved obj's position relative to room's top left corner
+                    objData.posX = Pool.indObjPool[p].compSprite.position.X - LevelSet.currentLevel.currentRoom.rec.X;
+                    objData.posY = Pool.indObjPool[p].compSprite.position.Y - LevelSet.currentLevel.currentRoom.rec.Y;
+                    roomData.inds.Add(objData);
+                }
+            }
+
+
+            //populate roomData with interactive objects
+            for (p = 0; p < Pool.intObjCount; p++)
+            {
+                if (Pool.intObjPool[p].active)
+                {   //if this object is active & can be saved
+                    if (Pool.intObjPool[p].canBeSaved)
+                    {   //translate Obj to IntObjXmlData
+                        IntObjXmlData objData = new IntObjXmlData();
+                        objData.type = Pool.intObjPool[p].type;
+                        objData.direction = Pool.intObjPool[p].direction;
+                        //set saved obj's position relative to room's top left corner
+                        objData.posX = Pool.intObjPool[p].compSprite.position.X - LevelSet.currentLevel.currentRoom.rec.X;
+                        objData.posY = Pool.intObjPool[p].compSprite.position.Y - LevelSet.currentLevel.currentRoom.rec.Y;
+                        roomData.ints.Add(objData);
+                    }
+                }
+            }
+
+
+
+            
             //send the new roomdata to be saved
             Functions_Backend.SaveRoomData(roomData);
         }
 
-        public void SaveObject(GameObject Obj, RoomXmlData RoomData)
-        {
-            if (Obj.active)
-            {   //if this object is active & can be saved
-                if (Obj.canBeSaved)
-                {   
-                    //translate Obj to ObjXmlData, add it to the roomData.objs list
-                    ObjXmlData objData = new ObjXmlData();
-                    objData.type = Obj.type;
-                    objData.direction = Obj.direction;
-                    //set saved obj's position relative to room's top left corner
-                    objData.posX = Obj.compSprite.position.X - LevelSet.currentLevel.currentRoom.rec.X;
-                    objData.posY = Obj.compSprite.position.Y - LevelSet.currentLevel.currentRoom.rec.Y;
-                    RoomData.objs.Add(objData);
-                }
-            }
-        }
         
+
+
+
+
+
+
+
+
+
+
+
         public void BuildFromFile(RoomXmlData RoomXmlData)
         {   //called at end of functions_backend (directx or uwp) 
             //after it's deserialized xml into Widgets.RoomTools.roomData

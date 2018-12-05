@@ -61,9 +61,9 @@ namespace DungeonRun
             else { return false; }
         }
 
-        public static void Bottle(GameObject Obj)
+        public static void Bottle(InteractiveObject Obj)
         {   //we can bottle fairys
-            if(Obj.type == ObjType.Dungeon_Fairy)
+            if(Obj.type == InteractiveType.Fairy)
             {
                 if (FillBottle(MenuItemType.BottleFairy))
                 {   //player has bottled fairy

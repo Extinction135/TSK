@@ -20,13 +20,13 @@ namespace DungeonRun
         public MenuItem previouslySelected;
         //simply visually tracks which menuItem is selected
         public ComponentSprite selectionBox;
-        public ObjType vendorRef;
+        public InteractiveType vendorRef;
 
         public String welcomeDialog;
 
 
 
-        public void SetVendor(ObjType vendor)
+        public void SetVendor(InteractiveType vendor)
         {
             vendorRef = vendor;
         }
@@ -39,7 +39,7 @@ namespace DungeonRun
         {
             this.name = "Vendor Screen";
             //needs a default value
-            vendorRef = ObjType.Vendor_NPC_Items;
+            vendorRef = InteractiveType.Vendor_Items;
 
             //create the selectionBox
             selectionBox = new ComponentSprite(Assets.uiItemsSheet,
@@ -67,49 +67,49 @@ namespace DungeonRun
             //set a default welcome dialog
             welcomeDialog = "i've got many useful goods for sale, adventurer!";
 
-            if (vendorRef == ObjType.Vendor_NPC_Armor)
+            if (vendorRef == InteractiveType.Vendor_Armor)
             {
                 Widgets.ForSale.window.title.text = "Tailor";
                 welcomeDialog = "A fine set of cloth? A sturdy set of armor?\n";
                 welcomeDialog += "A light and silent shawl? I'm quite busy with my designs..";
             }
-            else if (vendorRef == ObjType.Vendor_NPC_Equipment)
+            else if (vendorRef == InteractiveType.Vendor_Equipment)
             {
                 Widgets.ForSale.window.title.text = "Jewler";
                 welcomeDialog = "I'm working on expanding my selection..\n";
                 welcomeDialog += "but you should equip the ring if you haven't already.";
             }
-            else if (vendorRef == ObjType.Vendor_NPC_Items)
+            else if (vendorRef == InteractiveType.Vendor_Items)
             {
                 Widgets.ForSale.window.title.text = "Item Dealer";
                 welcomeDialog = "What I've got, you won't find anywhere else.\n";
                 welcomeDialog += "So pay my prices or kick dust. HaHaHa!";
             }
-            else if (vendorRef == ObjType.Vendor_NPC_Magic)
+            else if (vendorRef == InteractiveType.Vendor_Magic)
             {
                 Widgets.ForSale.window.title.text = "Lonely Kid";
                 welcomeDialog = "I found these while diving in the sea. Not sure what they do..\n";
                 welcomeDialog += "But I know they're worth something.. so don't play me cheap, mister!";
             }
-            else if (vendorRef == ObjType.Vendor_NPC_Potions)
+            else if (vendorRef == InteractiveType.Vendor_Potions)
             {
                 Widgets.ForSale.window.title.text = "Old Woman";
                 welcomeDialog = "I carefully craft all my potions from local, non-gmo plants\n";
                 welcomeDialog += "grown in my garden right here. Guaranteed no side effects!";
             }
-            else if (vendorRef == ObjType.Vendor_NPC_Weapons)
+            else if (vendorRef == InteractiveType.Vendor_Weapons)
             {
                 Widgets.ForSale.window.title.text = "Blacksmith";
                 welcomeDialog = "All I need is my forge and my bed. I keep it simple.\n";
                 welcomeDialog += "You'll need everything I make, if you want to beat him..";
             }
-            else if (vendorRef == ObjType.Vendor_NPC_Pets)
+            else if (vendorRef == InteractiveType.Vendor_Pets)
             {
                 Widgets.ForSale.window.title.text = "For Adoption";
                 welcomeDialog = "Please adopt a pet, mister! They all need good homes..\n";
                 welcomeDialog += "My dad says I can't keep all these puppies..";
             }
-            else if (vendorRef == ObjType.Vendor_NPC_EnemyItems)
+            else if (vendorRef == InteractiveType.Vendor_EnemyItems)
             {
                 Widgets.ForSale.window.title.text = "Secret Dungeon Vendor";
                 welcomeDialog = "don't tell mr.grak I let you play with these secret items..\n";
@@ -119,7 +119,7 @@ namespace DungeonRun
 
 
 
-            else if (vendorRef == ObjType.Vendor_Colliseum_Mob)
+            else if (vendorRef == InteractiveType.Vendor_Colliseum_Mob)
             {
                 welcomeDialog = "I have a few colliseum challenges for sale..\n";
                 welcomeDialog += "Win gold and prizes.. or... die.";

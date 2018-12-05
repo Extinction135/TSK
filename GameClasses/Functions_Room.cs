@@ -19,7 +19,10 @@ namespace DungeonRun
         public static int i;
         public static int j;
         public static ComponentSprite floorRef;
-        public static GameObject objRef;
+
+        public static InteractiveObject intRef;
+        public static IndestructibleObject indRef;
+
         public static Actor actorRef;
         public static Point pos;
         static int torchCount;
@@ -356,74 +359,138 @@ namespace DungeonRun
             { Debug.WriteLine("room " + Room.roomID + " built in " + time.Ticks + " ticks"); }
         }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         public static void BuildRoomXmlData(RoomXmlData RoomXmlData = null)
         {
             //note that RoomXmlData is an optional parameter
 
 
-            #region Create room objs & enemies
 
-            if (RoomXmlData != null && RoomXmlData.objs.Count > 0)
+            //we have two lists now, ints and inds
+            //which means we need to getObjs() diff, and put them on diff lists too
+
+
+            //create ints and ind objects based on room data xml
+            if(RoomXmlData != null)
             {
-                for (i = 0; i < RoomXmlData.objs.Count; i++)
+                //create indestructibles
+                if(RoomXmlData.inds.Count > 0)
                 {
-                    //we store roomObjs in roomXmlData
-                    objRef = Functions_Pool.GetRoomObj();
-
-                    //move roomObj to xmlObj's position (with room offset)
-                    Functions_Movement.Teleport(objRef.compMove,
-                        LevelSet.currentLevel.currentRoom.rec.X + RoomXmlData.objs[i].posX,
-                        LevelSet.currentLevel.currentRoom.rec.Y + RoomXmlData.objs[i].posY);
-                    //get obj direction
-                    objRef.direction = RoomXmlData.objs[i].direction;
-                    //finally, set roomObj.type to xmlObj.type
-                    Functions_GameObject.SetType(objRef, RoomXmlData.objs[i].type);
-
-                    //create enemies at enemySpawn obj locations
-                    if (objRef.group == ObjGroup.EnemySpawn)
+                    for (i = 0; i < RoomXmlData.inds.Count; i++)
                     {
-                        //here we check level.id to determine what
-                        //type of STANDARD enemy to spawn
-                        if (LevelSet.currentLevel.ID == LevelID.Forest_Dungeon)
-                        {
-                            Functions_Actor.SpawnActor(ActorType.Standard_AngryEye, objRef.compSprite.position);
-                        }
-                        else if (LevelSet.currentLevel.ID == LevelID.Mountain_Dungeon)
-                        {
-                            Functions_Actor.SpawnActor(ActorType.Standard_BeefyBat, objRef.compSprite.position);
-                        }
-                        else if (LevelSet.currentLevel.ID == LevelID.Swamp_Dungeon)
-                        {
-                            //we spawn blobs for now, but we need swamp standards SOON
-                            Functions_Actor.SpawnActor(ActorType.Blob, objRef.compSprite.position);
-                        }
+                        indRef = Functions_Pool.GetIndObj();
+                        //move roomObj to xmlObj's position (with room offset)
+                        indRef.compSprite.position.X = LevelSet.currentLevel.currentRoom.rec.X + RoomXmlData.inds[i].posX;
+                        indRef.compSprite.position.Y = LevelSet.currentLevel.currentRoom.rec.Y + RoomXmlData.inds[i].posY;
+                        Functions_Component.Align(indRef);
+                        indRef.direction = RoomXmlData.inds[i].direction;
+                        Functions_IndestructibleObjs.SetType(indRef, RoomXmlData.inds[i].type);
+                    }
+                }
+
+                //create interactives
+                if (RoomXmlData.ints.Count > 0)
+                {
+                    for (i = 0; i < RoomXmlData.ints.Count; i++)
+                    {
+                        intRef = Functions_Pool.GetIntObj();
+                        //move roomObj to xmlObj's position (with room offset)
+                        Functions_Movement.Teleport(intRef.compMove,
+                            LevelSet.currentLevel.currentRoom.rec.X + RoomXmlData.inds[i].posX,
+                            LevelSet.currentLevel.currentRoom.rec.Y + RoomXmlData.inds[i].posY);
+                        Functions_Component.Align(intRef);
+                        intRef.direction = RoomXmlData.ints[i].direction;
+                        Functions_InteractiveObjs.SetType(intRef, RoomXmlData.ints[i].type);
 
 
-                        else
-                        {   //any other dungeon spawns blobs
-                            Functions_Actor.SpawnActor(ActorType.Blob, objRef.compSprite.position);
+                        //create enemies at enemySpawn obj locations
+                        if (intRef.group == InteractiveGroup.EnemySpawn)
+                        {   //here we check level.id to determine what type of STANDARD enemy to spawn
+                            if (LevelSet.currentLevel.ID == LevelID.Forest_Dungeon)
+                            { Functions_Actor.SpawnActor(ActorType.Standard_AngryEye, intRef.compSprite.position); }
+
+                            else if (LevelSet.currentLevel.ID == LevelID.Mountain_Dungeon)
+                            { Functions_Actor.SpawnActor(ActorType.Standard_BeefyBat, intRef.compSprite.position); }
+
+                            else if (LevelSet.currentLevel.ID == LevelID.Swamp_Dungeon)
+                            { Functions_Actor.SpawnActor(ActorType.Blob, intRef.compSprite.position); }
+
+                            else //any other dungeon spawns blobs
+                            { Functions_Actor.SpawnActor(ActorType.Blob, intRef.compSprite.position); }
                         }
                     }
                 }
             }
 
-            #endregion
+
+
+
+
+            
 
 
             #region Check enemySpawn obj visibility
 
             if (Flags.ShowEnemySpawns == false)
             {   //find any spawnObj, set obj.active = false
-                for (i = 0; i < Pool.roomObjCount; i++)
+                for (i = 0; i < Pool.intObjCount; i++)
                 {
-                    if (Pool.roomObjPool[i].group == ObjGroup.EnemySpawn)
-                    { Pool.roomObjPool[i].active = false; }
+                    if (Pool.intObjPool[i].group == InteractiveGroup.EnemySpawn)
+                    { Pool.intObjPool[i].active = false; }
                 }
             }
 
             #endregion
 
+
+
+
+
+
+
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         public static void BuildEmptyRoom(Room Room)
         {
@@ -446,24 +513,24 @@ namespace DungeonRun
                     if (j == 0)
                     {
                         //top row
-                        Functions_GameObject.Spawn(
-                            ObjType.Dungeon_WallStraight,
+                        Functions_InteractiveObjs.Spawn(
+                            InteractiveType.Dungeon_WallStraight,
                             i * 16 + pos.X + 8,
                             0 * 16 - 16 + pos.Y + 8,
                             Direction.Down);
 
                         if (i == 0)
                         {   //topleft corner
-                            Functions_GameObject.Spawn(
-                                ObjType.Dungeon_WallInteriorCorner,
+                            Functions_InteractiveObjs.Spawn(
+                                InteractiveType.Dungeon_WallInteriorCorner,
                                 -16 + pos.X + 8,
                                 -16 + pos.Y + 8,
                                 Direction.Down);
                         }
                         else if (i == Room.size.X - 1)
                         {   //topright corner
-                            Functions_GameObject.Spawn(
-                                ObjType.Dungeon_WallInteriorCorner,
+                            Functions_InteractiveObjs.Spawn(
+                                InteractiveType.Dungeon_WallInteriorCorner,
                                 Room.size.X * 16 + pos.X + 8,
                                 -16 + pos.Y + 8,
                                 Direction.Left);
@@ -478,24 +545,24 @@ namespace DungeonRun
                     else if (j == Room.size.Y - 1)
                     {
                         //bottom row
-                        Functions_GameObject.Spawn(
-                            ObjType.Dungeon_WallStraight,
+                        Functions_InteractiveObjs.Spawn(
+                            InteractiveType.Dungeon_WallStraight,
                             i * 16 + pos.X + 8,
                             Room.size.Y * 16 + pos.Y + 8,
                             Direction.Up);
 
                         if (i == 0)
                         {   //bottom left corner
-                            Functions_GameObject.Spawn(
-                                ObjType.Dungeon_WallInteriorCorner,
+                            Functions_InteractiveObjs.Spawn(
+                                InteractiveType.Dungeon_WallInteriorCorner,
                                 -16 + pos.X + 8,
                                 Room.size.Y * 16 + pos.Y + 8,
                                 Direction.Right);
                         }
                         else if (i == Room.size.X - 1)
                         {   //bottom right corner
-                            Functions_GameObject.Spawn(
-                                ObjType.Dungeon_WallInteriorCorner,
+                            Functions_InteractiveObjs.Spawn(
+                                InteractiveType.Dungeon_WallInteriorCorner,
                                 Room.size.X * 16 + pos.X + 8,
                                 Room.size.Y * 16 + pos.Y + 8,
                                 Direction.Up);
@@ -509,16 +576,16 @@ namespace DungeonRun
 
                     if (i == 0)
                     {   //left side
-                        Functions_GameObject.Spawn(
-                            ObjType.Dungeon_WallStraight,
+                        Functions_InteractiveObjs.Spawn(
+                            InteractiveType.Dungeon_WallStraight,
                             i * 16 - 16 + pos.X + 8,
                             j * 16 + pos.Y + 8,
                             Direction.Right);
                     }
                     else if (i == Room.size.X - 1)
                     {   //right side
-                        Functions_GameObject.Spawn(
-                            ObjType.Dungeon_WallStraight,
+                        Functions_InteractiveObjs.Spawn(
+                            InteractiveType.Dungeon_WallStraight,
                             i * 16 + 16 + pos.X + 8,
                             j * 16 + pos.Y + 8,
                             Direction.Left);
@@ -574,34 +641,34 @@ namespace DungeonRun
 
         public static void SetDoors(Room Room)
         {
-            for (i = 0; i < Pool.roomObjCount; i++)
+            for (i = 0; i < Pool.intObjCount; i++)
             {
-                if (Pool.roomObjPool[i].active)
+                if (Pool.intObjPool[i].active)
                 {
-                    if (Pool.roomObjPool[i].group == ObjGroup.Wall)
+                    if (Pool.intObjPool[i].group == InteractiveGroup.Wall_Dungeon)
                     {   //check to see if wall collides with any door from dungeon
                         for (j = 0; j < LevelSet.currentLevel.doors.Count; j++)
                         {
-                            if (Pool.roomObjPool[i].compCollision.rec.Contains(LevelSet.currentLevel.doors[j].rec.Location))
+                            if (Pool.intObjPool[i].compCollision.rec.Contains(LevelSet.currentLevel.doors[j].rec.Location))
                             {
                                 //set the room's doors based on the dungeon.door.type
                                 if (LevelSet.currentLevel.doors[j].type == DoorType.Bombable)
-                                { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_DoorBombable); }
+                                { Functions_InteractiveObjs.SetType(Pool.intObjPool[i], InteractiveType.Dungeon_DoorBombable); }
 
                                 else if (LevelSet.currentLevel.doors[j].type == DoorType.Boss)
-                                { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_DoorBoss); }
+                                { Functions_InteractiveObjs.SetType(Pool.intObjPool[i], InteractiveType.Dungeon_DoorBoss); }
 
                                 else //all other doorTypes are Open
-                                { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_DoorOpen); }
+                                { Functions_InteractiveObjs.SetType(Pool.intObjPool[i], InteractiveType.Dungeon_DoorOpen); }
 
                                 //set the door decorations (bombed/bombable doors dont get decorations)
-                                if (Pool.roomObjPool[i].type == ObjType.Dungeon_DoorBoss)
+                                if (Pool.intObjPool[i].type == InteractiveType.Dungeon_DoorBoss)
                                 {
-                                    DecorateDoor(Pool.roomObjPool[i], ObjType.Dungeon_WallPillar);
+                                    DecorateDoor(Pool.intObjPool[i], InteractiveType.Dungeon_WallPillar);
                                 }
-                                else if (Pool.roomObjPool[i].type == ObjType.Dungeon_DoorOpen)
+                                else if (Pool.intObjPool[i].type == InteractiveType.Dungeon_DoorOpen)
                                 {
-                                    DecorateDoor(Pool.roomObjPool[i], ObjType.Dungeon_WallTorch);
+                                    DecorateDoor(Pool.intObjPool[i], InteractiveType.Dungeon_WallTorch);
                                 }
 
                                 //finally, override door types based on specific room.type
@@ -611,14 +678,14 @@ namespace DungeonRun
                                     )
                                 {
                                     //all doors inside boss room are trap doors (push hero + close)
-                                    Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_DoorTrap);
+                                    Functions_InteractiveObjs.SetType(Pool.intObjPool[i], InteractiveType.Dungeon_DoorTrap);
                                 }
 
                                 //sort door object
-                                Functions_Component.SetZdepth(Pool.roomObjPool[i].compSprite);
+                                Functions_Component.SetZdepth(Pool.intObjPool[i].compSprite);
                                 //place a floor tile underneath door
                                 floorRef = Functions_Pool.GetFloor();
-                                floorRef.position = Pool.roomObjPool[i].compSprite.position;
+                                floorRef.position = Pool.intObjPool[i].compSprite.position;
                             }
                         }
                     }
@@ -765,25 +832,26 @@ namespace DungeonRun
 
             //check to see if boss door exist in room, decorate
             Check_BossDoor();
-            Functions_GameObject.AlignRoomObjs();
+            Functions_Pool.AlignIndObjs();
+            Functions_Pool.AlignIntObjs();
         }
 
         public static void SetupPuzzle(Room Room)
         {
             //this is called at the end of a room build
             torchCount = 0;
-            for (i = 0; i < Pool.roomObjCount; i++)
+            for (i = 0; i < Pool.intObjCount; i++)
             {
-                if (Pool.roomObjPool[i].active)
+                if (Pool.intObjPool[i].active)
                 {   //if there is an active switch in the room - this is a switch puzzle
-                    if (Pool.roomObjPool[i].type == ObjType.Dungeon_Switch)
+                    if (Pool.intObjPool[i].type == InteractiveType.Dungeon_Switch)
                     {
                         //if autosolve cheat is enabled, convert switch to perm down version
                         if (Flags.AutoSolvePuzzle)
-                        { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_SwitchDownPerm); }
+                        { Functions_InteractiveObjs.SetType(Pool.intObjPool[i], InteractiveType.Dungeon_SwitchDownPerm); }
                         //if game isn't in hard mode, and we already visited this level, convert it too
                         else if (Flags.HardMode == false & Room.visited == true)
-                        { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_SwitchDownPerm); }
+                        { Functions_InteractiveObjs.SetType(Pool.intObjPool[i], InteractiveType.Dungeon_SwitchDownPerm); }
 
                         //if this room hasn't been visited, setup any puzzle it contains
                         //if (LevelSet.dungeon.currentRoom.visited == false) { }
@@ -792,12 +860,12 @@ namespace DungeonRun
                         else
                         {   //setup the switch puzzle
                             Room.puzzleType = PuzzleType.Switch;
-                            Functions_GameObject_Dungeon.CloseDoors(); //convert all openDoors to trapDoors
-                            i = Pool.roomObjCount; //end loop
+                            Functions_InteractiveObjs.CloseDoors(); //convert all openDoors to trapDoors
+                            i = Pool.intObjCount; //end loop
                         }
                     }
                     //count all the unlit torches
-                    else if (Pool.roomObjPool[i].type == ObjType.Dungeon_TorchUnlit)
+                    else if (Pool.intObjPool[i].type == InteractiveType.TorchUnlit)
                     { torchCount++; }
                 }
             }
@@ -808,23 +876,23 @@ namespace DungeonRun
             if (torchCount > 3)
             {   //convert all openDoors to trapDoors
                 Room.puzzleType = PuzzleType.Torches;
-                Functions_GameObject_Dungeon.CloseDoors();
+                Functions_InteractiveObjs.CloseDoors();
             }   //torches > switches
         }
 
         public static void PlaceExit(Room Room)
         {
             //create exit pillars
-            Functions_GameObject.Spawn(ObjType.Dungeon_ExitPillarLeft,
+            Functions_IndestructibleObjs.Spawn(IndestructibleType.Dungeon_ExitPillarLeft,
                 (Room.size.X / 2) * 16 + pos.X + 8 - 16,
                 Room.size.Y * 16 + pos.Y + 8 - 16 * 2,
                 Direction.Down);
-            Functions_GameObject.Spawn(ObjType.Dungeon_ExitPillarRight,
+            Functions_IndestructibleObjs.Spawn(IndestructibleType.Dungeon_ExitPillarRight,
                 (Room.size.X / 2) * 16 + pos.X + 8 + 16,
                 Room.size.Y * 16 + pos.Y + 8 - 16 * 2,
                 Direction.Down);
             //create exit light fx
-            Functions_GameObject.Spawn(ObjType.Dungeon_ExitLight,
+            Functions_IndestructibleObjs.Spawn(IndestructibleType.Dungeon_ExitLight,
                 (Room.size.X / 2) * 16 + pos.X + 8,
                 Room.size.Y * 16 + pos.Y - 16 * 1,
                 Direction.Down);
@@ -832,7 +900,7 @@ namespace DungeonRun
             //if we're developing an exit room, don't place real exit obj
             if (Room.roomID == RoomID.DEV_Exit) { return; }
             //create the actual dungeon exit
-            Functions_GameObject.Spawn(ObjType.Dungeon_Exit,
+            Functions_IndestructibleObjs.Spawn(IndestructibleType.Dungeon_Exit,
                 (Room.size.X / 2) * 16 + pos.X + 8,
                 Room.size.Y * 16 + pos.Y + 8 - 16 * 2,
                 Direction.Down);
@@ -852,7 +920,7 @@ namespace DungeonRun
                     //{ Functions_Interaction.ScatterRockDebris(Pool.floorPool[i].position, false); }
                     if (Functions_Random.Int(0, 100) > 80)
                     {
-                        Functions_GameObject.Spawn(ObjType.Dungeon_FloorStain,
+                        Functions_InteractiveObjs.Spawn(InteractiveType.FloorStain,
                             Pool.floorPool[i].position.X + Functions_Random.Int(-4, 4),
                             Pool.floorPool[i].position.Y + Functions_Random.Int(-4, 4),
                             Direction.Down);
@@ -863,12 +931,12 @@ namespace DungeonRun
 
         public static void AddCrackedWalls(Room Room)
         {   //randomly change straight walls into cracked walls
-            for (i = 0; i < Pool.roomObjCount; i++)
+            for (i = 0; i < Pool.intObjCount; i++)
             {
-                if (Pool.roomObjPool[i].active && Pool.roomObjPool[i].type == ObjType.Dungeon_WallStraight)
+                if (Pool.intObjPool[i].active && Pool.intObjPool[i].type == InteractiveType.Dungeon_WallStraight)
                 {
                     if (Functions_Random.Int(0, 100) > 85)
-                    { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_WallStraightCracked); }
+                    { Functions_InteractiveObjs.SetType(Pool.intObjPool[i], InteractiveType.Dungeon_WallStraightCracked); }
                 }
             }
         }
@@ -876,23 +944,23 @@ namespace DungeonRun
         public static void Check_BossDoor()
         {
             //can be ANY room, dungeon recipes can attach boss to any room
-            for (i = 0; i < Pool.roomObjCount; i++)
+            for (i = 0; i < Pool.intObjCount; i++)
             {   //loop thru all active roomObjects
-                if (Pool.roomObjPool[i].active)
+                if (Pool.intObjPool[i].active)
                 {
                     //create the boss welcome mat (zelda staple, grabs players attention)
-                    if (Pool.roomObjPool[i].type == ObjType.Dungeon_DoorBoss)
+                    if (Pool.intObjPool[i].type == InteractiveType.Dungeon_DoorBoss)
                     {   //build the boss welcome mat (left)
-                        Functions_GameObject.Spawn(ObjType.Dungeon_FloorDecal,
-                            Pool.roomObjPool[i].compSprite.position.X - 8,
-                            Pool.roomObjPool[i].compSprite.position.Y + 16,
+                        Functions_InteractiveObjs.Spawn(InteractiveType.Dungeon_FloorDecal,
+                            Pool.intObjPool[i].compSprite.position.X - 8,
+                            Pool.intObjPool[i].compSprite.position.Y + 16,
                             Direction.Down);
                         //build the boss welcome mat (right)
-                        objRef = Functions_GameObject.Spawn(ObjType.Dungeon_FloorDecal,
-                            Pool.roomObjPool[i].compSprite.position.X + 8,
-                            Pool.roomObjPool[i].compSprite.position.Y + 16,
+                        intRef = Functions_InteractiveObjs.Spawn(InteractiveType.Dungeon_FloorDecal,
+                            Pool.intObjPool[i].compSprite.position.X + 8,
+                            Pool.intObjPool[i].compSprite.position.Y + 16,
                             Direction.Down);
-                        objRef.compSprite.flipHorizontally = true;
+                        intRef.compSprite.flipHorizontally = true;
                     }
                 }
             }
@@ -906,16 +974,19 @@ namespace DungeonRun
 
         public static void FinishKeyRoom(Room Room)
         {
-            for (i = 0; i < Pool.roomObjCount; i++)
+            for (i = 0; i < Pool.intObjCount; i++)
             {   //loop thru all active roomObjects
-                if (Pool.roomObjPool[i].active)
+                if (Pool.intObjPool[i].active)
                 {   //find any chest objects in the key room
-                    if (Pool.roomObjPool[i].group == ObjGroup.Chest)
+                    if (
+                        Pool.intObjPool[i].type == InteractiveType.Chest
+                        || Pool.intObjPool[i].type == InteractiveType.ChestKey
+                        )
                     {   //check the dungeon.bigKey boolean to see if this chest should be filled
                         if (LevelSet.dungeon.bigKey)
-                        { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_ChestEmpty); }
+                        { Functions_InteractiveObjs.SetType(Pool.intObjPool[i], InteractiveType.ChestEmpty); }
                         else //if hero has found the map, this chest is empty, else it has a key
-                        { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_ChestKey); }
+                        { Functions_InteractiveObjs.SetType(Pool.intObjPool[i], InteractiveType.ChestKey); }
                     }
                 }
             }
@@ -978,7 +1049,7 @@ namespace DungeonRun
 
         static Vector2 posA = new Vector2();
         static Vector2 posB = new Vector2();
-        public static void DecorateDoor(GameObject Door, ObjType Type)
+        public static void DecorateDoor(InteractiveObject Door, InteractiveType Type)
         {   //decorates a door on left/right or top/bottom
             if (Door.direction == Direction.Up || Door.direction == Direction.Down)
             {   //build left/right decorations if Door.direction is Up or Down
@@ -995,9 +1066,9 @@ namespace DungeonRun
                 posB.Y = Door.compSprite.position.Y + 16;
             }
             //build wall decorationA torch/pillar/decoration
-            Functions_GameObject.Spawn(Type, posA.X, posA.Y, Door.direction);
+            Functions_InteractiveObjs.Spawn(Type, posA.X, posA.Y, Door.direction);
             //build wall decorationB torch/pillar/decoration
-            Functions_GameObject.Spawn(Type, posB.X, posB.Y, Door.direction);
+            Functions_InteractiveObjs.Spawn(Type, posB.X, posB.Y, Door.direction);
         }
 
 
@@ -1008,15 +1079,15 @@ namespace DungeonRun
         public static int g;
         public static void ShutDoors(Room Room)
         {   //convert ANY kind of door to a 1 way trap door in room
-            for (g = 0; g < Pool.roomObjCount; g++)
+            for (g = 0; g < Pool.intObjCount; g++)
             {
-                if (Pool.roomObjPool[g].active)
+                if (Pool.intObjPool[g].active)
                 {   //note this is a GROUP check, so even bombable doors convert
-                    if (Pool.roomObjPool[g].group == ObjGroup.Door)
+                    if (Pool.intObjPool[g].group == InteractiveGroup.Door_Dungeon)
                     {
-                        Functions_GameObject.SetType(
-                            Pool.roomObjPool[g],
-                            ObjType.Dungeon_DoorTrap);
+                        Functions_InteractiveObjs.SetType(
+                            Pool.intObjPool[g],
+                            InteractiveType.Dungeon_DoorTrap);
                     }
                 }
             }
@@ -1040,11 +1111,11 @@ namespace DungeonRun
         public static Boolean CountTorches()
         {   //count to see if there are more than 3 lit torches in the current room
             int torchCount = 0;
-            for (i = 0; i < Pool.roomObjCount; i++)
+            for (i = 0; i < Pool.intObjCount; i++)
             {
-                if (Pool.roomObjPool[i].active)
+                if (Pool.intObjPool[i].active)
                 {   //if there is an active switch in the room
-                    if (Pool.roomObjPool[i].type == ObjType.Dungeon_TorchLit)
+                    if (Pool.intObjPool[i].type == InteractiveType.TorchLit)
                     { torchCount++; } //count all the lit torches
                 }
             }
@@ -1054,17 +1125,17 @@ namespace DungeonRun
 
         public static void OpenTrapDoors()
         {
-            for (i = 0; i < Pool.roomObjCount; i++)
+            for (i = 0; i < Pool.intObjCount; i++)
             {   //loop thru all active roomObjects
-                if (Pool.roomObjPool[i].active)
+                if (Pool.intObjPool[i].active)
                 {   //convert trap doors to open doors
-                    if (Pool.roomObjPool[i].type == ObjType.Dungeon_DoorTrap)
+                    if (Pool.intObjPool[i].type == InteractiveType.Dungeon_DoorTrap)
                     {   //display an attention particle where the conversion happened
-                        Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_DoorOpen);
+                        Functions_InteractiveObjs.SetType(Pool.intObjPool[i], InteractiveType.Dungeon_DoorOpen);
                         Functions_Particle.Spawn(
                             ParticleType.Attention,
-                            Pool.roomObjPool[i].compSprite.position.X,
-                            Pool.roomObjPool[i].compSprite.position.Y);
+                            Pool.intObjPool[i].compSprite.position.X,
+                            Pool.intObjPool[i].compSprite.position.Y);
                     }
                 }
             }
@@ -1072,17 +1143,17 @@ namespace DungeonRun
 
         public static void CloseTrapDoors()
         {
-            for (i = 0; i < Pool.roomObjCount; i++)
+            for (i = 0; i < Pool.intObjCount; i++)
             {   //loop thru all active roomObjects
-                if (Pool.roomObjPool[i].active)
+                if (Pool.intObjPool[i].active)
                 {   //convert open doors to trap doors
-                    if (Pool.roomObjPool[i].type == ObjType.Dungeon_DoorOpen)
+                    if (Pool.intObjPool[i].type == InteractiveType.Dungeon_DoorOpen)
                     {   //display an attention particle where the conversion happened
-                        Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_DoorTrap);
+                        Functions_InteractiveObjs.SetType(Pool.intObjPool[i], InteractiveType.Dungeon_DoorTrap);
                         Functions_Particle.Spawn(
                             ParticleType.Attention,
-                            Pool.roomObjPool[i].compSprite.position.X,
-                            Pool.roomObjPool[i].compSprite.position.Y);
+                            Pool.intObjPool[i].compSprite.position.X,
+                            Pool.intObjPool[i].compSprite.position.Y);
                     }
                 }
             }

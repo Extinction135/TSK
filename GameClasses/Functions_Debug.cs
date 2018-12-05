@@ -19,13 +19,13 @@ namespace DungeonRun
 
         public static void Inspect()
         {   //check if any object or actor collide with cursor collision component, pass to Inspect()
-            //check mouse click position for any room objects
-            for (i = 0; i < Pool.roomObjCount; i++)
+            //check mouse click position for any interactive objects
+            for (i = 0; i < Pool.intObjCount; i++)
             {
-                if (Pool.roomObjPool[i].active)
+                if (Pool.intObjPool[i].active)
                 {
-                    if (Input.cursorColl.rec.Intersects(Pool.roomObjPool[i].compCollision.rec))
-                    { Inspect(Pool.roomObjPool[i]); }
+                    if (Input.cursorColl.rec.Intersects(Pool.intObjPool[i].compCollision.rec))
+                    { Inspect(Pool.intObjPool[i]); }
                 }
             }
             //check mouse click position for any projectiles
@@ -74,13 +74,13 @@ namespace DungeonRun
             Inspect(Actor.compSprite);
         }
 
-        public static void Inspect(GameObject Obj)
+        public static void Inspect(InteractiveObject Obj)
         {
             output = "\n\n\n---- Object (objGroup:" + Obj.group + ") (type:" + Obj.type + ") ----\n";
             output += "\tdirection:" + Obj.direction;
             output += "\tactive:" + Obj.active;
-            output += "\tlifetime:" + Obj.lifetime;
-            output += "\tlifeCounter:" + Obj.lifeCounter;
+            output += "\tlifetime:" + Obj.countTotal;
+            output += "\tlifeCounter:" + Obj.counter;
             Debug.WriteLine(output);
 
             //dump component info

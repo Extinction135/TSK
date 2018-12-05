@@ -14,7 +14,6 @@ namespace DungeonRun
 			#region ThievesDen_GateEntrance
 
 			ThievesDen_GateEntrance.type = RoomID.ThievesDen_GateEntrance;
-			ThievesDen_GateEntrance.objs = new List<ObjXmlData>();
 			#endregion
 
 		}

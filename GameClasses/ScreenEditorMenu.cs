@@ -174,15 +174,15 @@ namespace DungeonRun
                     clearRoofTiles.currentColor = ColorScheme.buttonDown;
 
                     //loop through all roomObjs, releasing any roof type
-                    for (int i = 0; i < Pool.roomObjCount; i++)
+                    for (int i = 0; i < Pool.intObjCount; i++)
                     {
                         if(
-                            Pool.roomObjPool[i].type == ObjType.Wor_Build_Roof_Bottom ||
-                            Pool.roomObjPool[i].type == ObjType.Wor_Build_Roof_Chimney ||
-                            Pool.roomObjPool[i].type == ObjType.Wor_Build_Roof_Top
+                            Pool.intObjPool[i].type == InteractiveType.House_Roof_Bottom ||
+                            Pool.intObjPool[i].type == InteractiveType.House_Roof_Chimney ||
+                            Pool.intObjPool[i].type == InteractiveType.House_Roof_Top
                             )
                         {
-                            Functions_Pool.Release(Pool.roomObjPool[i]);
+                            Functions_Pool.Release(Pool.intObjPool[i]);
                         }
                     }
 
@@ -393,8 +393,8 @@ namespace DungeonRun
             //actually update the dungeon texture and floors and objs
             Functions_Texture.UpdateDungeonTexture();
             Functions_Texture.SetFloorTextures();
-            for (int i = 0; i < Pool.roomObjCount; i++)
-            { Functions_GameObject.SetType(Pool.roomObjPool[i], Pool.roomObjPool[i].type); }
+            for (int i = 0; i < Pool.intObjCount; i++)
+            { Functions_InteractiveObjs.SetType(Pool.intObjPool[i], Pool.intObjPool[i].type); }
 
             //in the future, we will need to update the dungeon widget objects texture
             Functions_Texture.SetWOTexture(Widgets.WO_Dungeon);

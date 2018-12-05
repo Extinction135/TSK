@@ -23,18 +23,18 @@ namespace DungeonRun
 
         //Check Against RoomObj List
 
-        public static void CheckObj_Obj(GameObject Obj)
+        public static void CheckObj_Obj(InteractiveObject Obj)
         {   //this is an obj against the objects list
-            for (i = 0; i < Pool.roomObjCount; i++)
+            for (i = 0; i < Pool.intObjCount; i++)
             {
-                if (Pool.roomObjPool[i].active)
+                if (Pool.intObjPool[i].active)
                 {
-                    if (Obj.compCollision.rec.Intersects(Pool.roomObjPool[i].compCollision.rec))
+                    if (Obj.compCollision.rec.Intersects(Pool.intObjPool[i].compCollision.rec))
                     {   //perform self-check to prevent self overlap interaction
-                        if (Obj != Pool.roomObjPool[i])
+                        if (Obj != Pool.intObjPool[i])
                         {
                             Pool.interactionsCount++;
-                            Interact_ObjectObject(Pool.roomObjPool[i], Obj);
+                            Interact_ObjectObject(Pool.intObjPool[i], Obj);
                         }
                     }
                 }
@@ -43,15 +43,15 @@ namespace DungeonRun
 
 
         public static void CheckObj_Actor(Actor Actor)
-        {   //this is an actor against the object list, actor is active
-            for (i = 0; i < Pool.roomObjCount; i++)
+        {   //this is an actor against the interactive objects list, actor is active
+            for (i = 0; i < Pool.intObjCount; i++)
             {
-                if(Pool.roomObjPool[i].active)
+                if(Pool.intObjPool[i].active)
                 {
-                    if (Actor.compCollision.rec.Intersects(Pool.roomObjPool[i].compCollision.rec))
+                    if (Actor.compCollision.rec.Intersects(Pool.intObjPool[i].compCollision.rec))
                     {
                         Pool.interactionsCount++;
-                        Interact_ObjectActor(Pool.roomObjPool[i], Actor);
+                        Interact_ObjectActor(Pool.intObjPool[i], Actor);
                     }
                 }
             }
@@ -61,18 +61,20 @@ namespace DungeonRun
 
 
 
+
+
         //Check Against Projectiles List
 
         public static void CheckProjectile_Obj(Projectile Pro)
-        {   //this is a projectile against the objects list
-            for (i = 0; i < Pool.roomObjCount; i++)
+        {   //this is a projectile against the interactive objects list
+            for (i = 0; i < Pool.intObjCount; i++)
             {
-                if (Pool.roomObjPool[i].active)
+                if (Pool.intObjPool[i].active)
                 {
-                    if (Pro.compCollision.rec.Intersects(Pool.roomObjPool[i].compCollision.rec))
+                    if (Pro.compCollision.rec.Intersects(Pool.intObjPool[i].compCollision.rec))
                     {   //interaction between pro and obj
                         Pool.interactionsCount++;
-                        Interact_ProjectileRoomObj(Pro, Pool.roomObjPool[i]);
+                        Interact_ProjectileIntObj(Pro, Pool.intObjPool[i]);
                     }
                 }
             }
@@ -311,7 +313,7 @@ namespace DungeonRun
         }
 
 
-        public static void Interact_ProjectileRoomObj(Projectile Pro, GameObject RoomObj)
+        public static void Interact_ProjectileIntObj(Projectile Pro, InteractiveObject IntObj)
         {
             //ignored carried objects for all interactions
             if (Pro.type == ProjectileType.CarriedObject) { return; }
@@ -332,13 +334,13 @@ namespace DungeonRun
             #region Setup Special RoomObjs prior to Interaction
 
             //seekers dont block, but we want projectiles to kill them
-            if (RoomObj.type == ObjType.Wor_SeekerExploder)
-            { RoomObj.compCollision.blocking = true; }
+            if (IntObj.type == InteractiveType.Enemy_SeekerExploder)
+            { IntObj.compCollision.blocking = true; }
             //so we temporarily turn on their blocking, then check, then turn off
 
             //mountain walls dont block, but we'll to pretend they do for this check
-            if (RoomObj.group == ObjGroup.Wall_Climbable)
-            { RoomObj.compCollision.blocking = true; }
+            if (IntObj.group == InteractiveGroup.Wall_Climbable)
+            { IntObj.compCollision.blocking = true; }
 
             #endregion
 
@@ -350,7 +352,7 @@ namespace DungeonRun
 
             #region Blocking RoomObj vs Projectile
 
-            if (RoomObj.compCollision.blocking)
+            if (IntObj.compCollision.blocking)
             {
 
                 #region Arrow
@@ -359,18 +361,18 @@ namespace DungeonRun
                 {   
                     if(Pro.hitObj == null & Pro.hitActor == null) //set initial hitObj
                     {   //arrows push hit obj
-                        RoomObj.compMove.direction = Pro.compMove.direction;
+                        IntObj.compMove.direction = Pro.compMove.direction;
                         //cut enemies and roomObjs
-                        if (RoomObj.group == ObjGroup.Enemy)
-                        { Functions_GameObject_World.CutRoomEnemy(RoomObj); }
-                        else { Functions_GameObject_World.Cut(RoomObj); }
+                        if (IntObj.group == InteractiveGroup.Enemy)
+                        { Functions_InteractiveObjs.CutRoomEnemy(IntObj); }
+                        else { Functions_InteractiveObjs.Cut(IntObj); }
                         //stop arrows movement
                         Functions_Movement.StopMovement(Pro.compMove);
                         //stick into hitObj for remainder of life
-                        Pro.hitObj = RoomObj;
+                        Pro.hitObj = IntObj;
                         //set the initial hitoffset - move arrow closer to obj's center
-                        Pro.hitOffsetX = Pro.compMove.position.X - RoomObj.compMove.position.X;
-                        Pro.hitOffsetY = Pro.compMove.position.Y - RoomObj.compMove.position.Y;
+                        Pro.hitOffsetX = Pro.compMove.position.X - IntObj.compMove.position.X;
+                        Pro.hitOffsetY = Pro.compMove.position.Y - IntObj.compMove.position.Y;
                         //Debug.WriteLine("XY offset: " + Pro.hitOffsetX + ", " + Pro.hitOffsetY);
                         Functions_Projectile.SetArrowHitState(Pro);
 
@@ -393,11 +395,11 @@ namespace DungeonRun
 
                 if (Pro.type == ProjectileType.Bat)
                 {   //bats push hit obj
-                    RoomObj.compMove.direction = Pro.compMove.direction;
+                    IntObj.compMove.direction = Pro.compMove.direction;
                     //cut enemies and roomObjs
-                    if (RoomObj.group == ObjGroup.Enemy)
-                    { Functions_GameObject_World.CutRoomEnemy(RoomObj); }
-                    else { Functions_GameObject_World.Cut(RoomObj); }
+                    if (IntObj.group == InteractiveGroup.Enemy)
+                    { Functions_InteractiveObjs.CutRoomEnemy(IntObj); }
+                    else { Functions_InteractiveObjs.Cut(IntObj); }
                     //bats die upon collision
                     Functions_Projectile.Kill(Pro);
                 }
@@ -421,7 +423,7 @@ namespace DungeonRun
                 {   //fireball becomes explosion upon collision/death
                     Functions_Projectile.Kill(Pro);
                     //fireballs push hit objs, but death explosion will push the objs max
-                    Functions_Movement.Push(RoomObj.compMove, Pro.compMove.direction, 4.0f);
+                    Functions_Movement.Push(IntObj.compMove, Pro.compMove.direction, 4.0f);
                 }
 
                 #endregion
@@ -435,7 +437,7 @@ namespace DungeonRun
                     {   //stop movement
                         Functions_Movement.StopMovement(Pro.compMove);
                         //stick with hitObj for remainder of life
-                        Pro.hitObj = RoomObj;
+                        Pro.hitObj = IntObj;
                         //become iceblock, with obj ref
                         Functions_Projectile.SetType(Pro, ProjectileType.Iceblock);
                     }
@@ -453,21 +455,21 @@ namespace DungeonRun
                 {   //swords and shovels cause soundfx to blocking objects
                     if (Pro.lifeCounter == 2) //these events happen only at start
                     {   //bail if pro is hitting open door, else sparkle + hit sfx
-                        if (RoomObj.type == ObjType.Dungeon_DoorOpen) { return; }
+                        if (IntObj.type == InteractiveType.Dungeon_DoorOpen) { return; }
                         //center sparkle to sword/shovel
                         Functions_Particle.Spawn(ParticleType.Sparkle,
                             Pro.compSprite.position.X + 4,
                             Pro.compSprite.position.Y + 4);
-                        Assets.Play(RoomObj.sfx.hit);
+                        Assets.Play(IntObj.sfx.hit);
                     }
                     else if (Pro.lifeCounter == 4) //mid-swing
                     {
                         //set hit direction
-                        RoomObj.compMove.direction = Pro.compMove.direction;
+                        IntObj.compMove.direction = Pro.compMove.direction;
                         //cut enemies and roomObjs
-                        if (RoomObj.group == ObjGroup.Enemy)
-                        { Functions_GameObject_World.CutRoomEnemy(RoomObj); }
-                        else { Functions_GameObject_World.Cut(RoomObj); }
+                        if (IntObj.group == InteractiveGroup.Enemy)
+                        { Functions_InteractiveObjs.CutRoomEnemy(IntObj); }
+                        else { Functions_InteractiveObjs.Cut(IntObj); }
                     }
                 }
 
@@ -479,11 +481,11 @@ namespace DungeonRun
                 else if (Pro.type == ProjectileType.Bite)
                 {
                     //set hit direction
-                    RoomObj.compMove.direction = Pro.compMove.direction;
+                    IntObj.compMove.direction = Pro.compMove.direction;
                     //cut enemies and roomObjs
-                    if (RoomObj.group == ObjGroup.Enemy)
-                    { Functions_GameObject_World.CutRoomEnemy(RoomObj); }
-                    else { Functions_GameObject_World.Cut(RoomObj); }
+                    if (IntObj.group == InteractiveGroup.Enemy)
+                    { Functions_InteractiveObjs.CutRoomEnemy(IntObj); }
+                    else { Functions_InteractiveObjs.Cut(IntObj); }
                     //end projectile's life
                     Pro.lifeCounter = Pro.lifetime;
                 }
@@ -496,20 +498,20 @@ namespace DungeonRun
                 else if (Pro.type == ProjectileType.Boomerang)
                 {
                     //set hit direction
-                    RoomObj.compMove.direction = Pro.compMove.direction;
+                    IntObj.compMove.direction = Pro.compMove.direction;
 
                     //cue specific sfx
-                    if (RoomObj.group == ObjGroup.Wall)
+                    if (IntObj.group == InteractiveGroup.Wall_Dungeon)
                     { Assets.Play(Assets.sfxTapMetallic); }
-                    else if (RoomObj.group == ObjGroup.Door)
+                    else if (IntObj.group == InteractiveGroup.Door_Dungeon)
                     { Assets.Play(Assets.sfxTapHollow); }
-                    else if (RoomObj.type == ObjType.Dungeon_DoorBombable)
+                    else if (IntObj.type == InteractiveType.Dungeon_DoorBombable)
                     { Assets.Play(Assets.sfxTapHollow); }
 
                     //kill room enemies or bounce off objs
-                    if (RoomObj.group == ObjGroup.Enemy)
-                    { Functions_GameObject_World.CutRoomEnemy(RoomObj); }
-                    else { Functions_GameObject_World.Bounce(RoomObj); }
+                    if (IntObj.group == InteractiveGroup.Enemy)
+                    { Functions_InteractiveObjs.CutRoomEnemy(IntObj); }
+                    else { Functions_InteractiveObjs.Bounce(IntObj); }
 
                     //if this is the initial hit, set the boomerang
                     //into a return state, pop an attention particle
@@ -527,7 +529,7 @@ namespace DungeonRun
                     Functions_Movement.Push(Pro.compMove,
                         Functions_Direction.GetOppositeCardinal(
                             Pro.compSprite.position,
-                            RoomObj.compSprite.position), 4.0f);
+                            IntObj.compSprite.position), 4.0f);
                 }
 
                 #endregion
@@ -536,12 +538,12 @@ namespace DungeonRun
                 #region Thrown Objects
 
                 else if (Pro.type == ProjectileType.ThrownObject)
-                {   
-                    RoomObj.compMove.direction = Pro.compMove.direction;
+                {
+                    IntObj.compMove.direction = Pro.compMove.direction;
                     //cut enemies and roomObjs
-                    if (RoomObj.group == ObjGroup.Enemy)
-                    { Functions_GameObject_World.CutRoomEnemy(RoomObj); }
-                    else { Functions_GameObject_World.Cut(RoomObj); }
+                    if (IntObj.group == InteractiveGroup.Enemy)
+                    { Functions_InteractiveObjs.CutRoomEnemy(IntObj); }
+                    else { Functions_InteractiveObjs.Cut(IntObj); }
                     //thrown objs die upon blocking collision
                     Functions_Projectile.Kill(Pro);
                 }
@@ -555,18 +557,18 @@ namespace DungeonRun
                 {   //time this interaction to the hammer hitting the ground
                     if (Pro.compAnim.index == 3)
                     {   //hammers are only pro that alters hammer up posts
-                        if (RoomObj.type == ObjType.Wor_Post_Hammer_Up)
+                        if (IntObj.type == InteractiveType.Post_HammerPost_Up)
                         {
-                            Assets.Play(RoomObj.sfx.kill);
-                            Functions_GameObject.SetType(RoomObj, ObjType.Wor_Post_Hammer_Down);
+                            Assets.Play(IntObj.sfx.kill);
+                            Functions_InteractiveObjs.SetType(IntObj, InteractiveType.Post_HammerPost_Down);
                         }
                         else
                         {   //inherit hammer's direction for impact
-                            RoomObj.compMove.direction = Pro.compMove.direction;
-                            if (RoomObj.group == ObjGroup.Enemy)
-                            { Functions_GameObject_World.CutRoomEnemy(RoomObj); }
+                            IntObj.compMove.direction = Pro.compMove.direction;
+                            if (IntObj.group == InteractiveGroup.Enemy)
+                            { Functions_InteractiveObjs.CutRoomEnemy(IntObj); }
                             else //destroy roomObj
-                            { Functions_GameObject_World.Destroy(RoomObj); }
+                            { Functions_InteractiveObjs.Destroy(IntObj); }
                         }
                     }
                 }
@@ -586,9 +588,9 @@ namespace DungeonRun
                     }
                     else if (Pro.lifeCounter == 4) //mid-swing
                     {   //set hit direction
-                        RoomObj.compMove.direction = Pro.compMove.direction;
+                        IntObj.compMove.direction = Pro.compMove.direction;
                         //wands can bounce roomObjs
-                        Functions_GameObject_World.Bounce(RoomObj);
+                        Functions_InteractiveObjs.Bounce(IntObj);
                     }
                 }
 
@@ -605,44 +607,44 @@ namespace DungeonRun
                 {   //blocking objs only here, btw
 
                     //set objs push direction away from fire center
-                    RoomObj.compMove.direction =
+                    IntObj.compMove.direction =
                         Functions_Direction.GetOppositeDiagonal(
-                            RoomObj.compSprite.position, //to
+                            IntObj.compSprite.position, //to
                             Pro.compSprite.position); //from
 
                     //ground fires damage and kill roomEnemies
-                    if (RoomObj.group == ObjGroup.Enemy)
-                    { Functions_GameObject_World.CutRoomEnemy(RoomObj); }
+                    if (IntObj.group == InteractiveGroup.Enemy)
+                    { Functions_InteractiveObjs.CutRoomEnemy(IntObj); }
 
                     //ground fires spread to some room objs
                     else if (
                         //burn bushes
-                        RoomObj.type == ObjType.Wor_Bush
+                        IntObj.type == InteractiveType.Bush
                         //burn posts
-                        || RoomObj.type == ObjType.Wor_Post_Corner_Left
-                        || RoomObj.type == ObjType.Wor_Post_Corner_Right
-                        || RoomObj.type == ObjType.Wor_Post_Horizontal
-                        || RoomObj.type == ObjType.Wor_Post_Vertical_Left
-                        || RoomObj.type == ObjType.Wor_Post_Vertical_Right
+                        || IntObj.type == InteractiveType.PostBurned_CornerLeft
+                        || IntObj.type == InteractiveType.PostBurned_CornerRight
+                        || IntObj.type == InteractiveType.PostBurned_Horizontal
+                        || IntObj.type == InteractiveType.PostBurned_VerticalLeft
+                        || IntObj.type == InteractiveType.PostBurned_VerticalRight
                         //burn trees
-                        || RoomObj.type == ObjType.Wor_Tree
+                        || IntObj.type == InteractiveType.Tree
                         //light torches
-                        || RoomObj.type == ObjType.Dungeon_TorchUnlit
+                        || IntObj.type == InteractiveType.TorchUnlit
                         )
                     {
                         if (Pro.compCollision.rec.Contains(
-                                RoomObj.compSprite.position.X,
-                                RoomObj.compSprite.position.Y))
+                                IntObj.compSprite.position.X,
+                                IntObj.compSprite.position.Y))
                         {   //check against sprite center pos
-                            Functions_GameObject_World.Burn(RoomObj);
+                            Functions_InteractiveObjs.Burn(IntObj);
                         }   //this prevents immediate fire spread across verticals
                     }
 
                     //groundfires light explosive barrels too
-                    else if (RoomObj.type == ObjType.Dungeon_Barrel)
+                    else if (IntObj.type == InteractiveType.Barrel)
                     {   //dont push the barrel in any direction
-                        RoomObj.compMove.direction = Direction.None;
-                        Functions_GameObject_Dungeon.HitBarrel(RoomObj);
+                        IntObj.compMove.direction = Direction.None;
+                        Functions_InteractiveObjs.HitBarrel(IntObj);
                     }
                 }
 
@@ -661,16 +663,16 @@ namespace DungeonRun
                     {   //explosions call power level 2 destruction routines
 
                         //set explosion direction based on pro position
-                        RoomObj.compMove.direction =
+                        IntObj.compMove.direction =
                             Functions_Direction.GetOppositeDiagonal(
-                                RoomObj.compSprite.position, //to
+                                IntObj.compSprite.position, //to
                                 Pro.compSprite.position); //from
 
                         //blow up enemy
-                        if (RoomObj.group == ObjGroup.Enemy)
-                        { Functions_GameObject_World.CutRoomEnemy(RoomObj); }
+                        if (IntObj.group == InteractiveGroup.Enemy)
+                        { Functions_InteractiveObjs.CutRoomEnemy(IntObj); }
                         else //blow up the roomObj
-                        { Functions_GameObject_World.Explode(RoomObj); }
+                        { Functions_InteractiveObjs.Explode(IntObj); }
                     }
                 }
 
@@ -687,7 +689,7 @@ namespace DungeonRun
             else
             {
                 //group checks first
-                if (RoomObj.group == ObjGroup.Wall_Climbable)
+                if (IntObj.group == InteractiveGroup.Wall_Climbable)
                 {   //kill all projectiles for now
                     Functions_Projectile.Kill(Pro);
                 }
@@ -700,9 +702,9 @@ namespace DungeonRun
                 #region Roofs - collapse from explosions, hammers, etc..
 
                 if (
-                    RoomObj.type == ObjType.Wor_Build_Roof_Bottom
-                    || RoomObj.type == ObjType.Wor_Build_Roof_Top
-                    || RoomObj.type == ObjType.Wor_Build_Roof_Chimney
+                    IntObj.type == InteractiveType.House_Roof_Bottom
+                    || IntObj.type == InteractiveType.House_Roof_Top
+                    || IntObj.type == InteractiveType.House_Roof_Chimney
                     )
                 {
                     if (
@@ -711,7 +713,7 @@ namespace DungeonRun
                         || Pro.type == ProjectileType.Fireball
                         )
                     {   //begin cascading roof collapse
-                        Functions_GameObject_World.CollapseRoof(RoomObj);
+                        Functions_InteractiveObjs.CollapseRoof(IntObj);
                     }
                 }
 
@@ -720,7 +722,7 @@ namespace DungeonRun
 
                 #region Trap Doors bounce or kill pros
 
-                else if (RoomObj.type == ObjType.Dungeon_DoorTrap)
+                else if (IntObj.type == InteractiveType.Dungeon_DoorTrap)
                 {   //prevent obj from passing thru door
                     Functions_Movement.RevertPosition(Pro.compMove);
 
@@ -739,9 +741,9 @@ namespace DungeonRun
 
                 #region Bumpers bounce some pros
 
-                else if (RoomObj.type == ObjType.Dungeon_Bumper)
+                else if (IntObj.type == InteractiveType.Bumper)
                 {   //limit bumper to bouncing only if it's returned to 100% scale
-                    if (RoomObj.compSprite.scale != 1.0f) { return; }
+                    if (IntObj.compSprite.scale != 1.0f) { return; }
 
                     //specific projectiles cannot be bounced off bumper
                     if (Pro.type == ProjectileType.Explosion
@@ -752,10 +754,10 @@ namespace DungeonRun
 
                     //one of the two objects must be moving,
                     //in order to trigger a bounce interaction
-                    if (!RoomObj.compMove.moving & !Pro.compMove.moving)
+                    if (!IntObj.compMove.moving & !Pro.compMove.moving)
                     { return; }
                     //all other objects are bounced
-                    Functions_GameObject_Dungeon.BounceOffBumper(Pro.compMove, RoomObj);
+                    Functions_InteractiveObjs.BounceOffBumper(Pro.compMove, IntObj);
 
                     //rotate bounced projectiles
                     Pro.direction = Pro.compMove.direction;
@@ -767,7 +769,7 @@ namespace DungeonRun
 
                 #region Fairy can be captured by nets, collected by boomerangs, etc..
 
-                else if (RoomObj.type == ObjType.Dungeon_Fairy)
+                else if (IntObj.type == InteractiveType.Fairy)
                 {
                     if (Pro.type == ProjectileType.Net)
                     {
@@ -775,7 +777,7 @@ namespace DungeonRun
                         {
                             //a net has overlapped a fairy (and only a hero can create a net)
                             //attempt to bottle the fairy into one of hero's bottles
-                            Functions_Bottle.Bottle(RoomObj);
+                            Functions_Bottle.Bottle(IntObj);
                             //kill net NEXT frame, this allows it to be drawn
                             //while the dialog screen appears over the level screen
                             Pro.lifeCounter = Pro.lifetime;
@@ -791,7 +793,7 @@ namespace DungeonRun
                     //collect fairys with boomerang, hookshot, axe, etc...
                     else if(Pro.type == ProjectileType.Boomerang)
                     {   //pickup fairy
-                        Functions_GameObject_Dungeon.UseFairy(RoomObj);
+                        Functions_InteractiveObjs.UseFairy(IntObj);
                     }
                 }
 
@@ -800,19 +802,19 @@ namespace DungeonRun
 
                 #region Tall Grass
 
-                else if (RoomObj.type == ObjType.Wor_Grass_Tall)
+                else if (IntObj.type == InteractiveType.Grass_Tall)
                 {
                     if (Pro.type == ProjectileType.Sword)
                     {   //cutting
-                        Functions_GameObject_World.Destroy(RoomObj);
+                        Functions_InteractiveObjs.Destroy(IntObj);
                     }
                     else if (Pro.type == ProjectileType.GroundFire)
                     {   //burning
                         if (Pro.compCollision.rec.Contains(
-                                RoomObj.compSprite.position.X,
-                                RoomObj.compSprite.position.Y))
+                                IntObj.compSprite.position.X,
+                                IntObj.compSprite.position.Y))
                         {   //check against sprite center pos
-                            Functions_GameObject_World.Burn(RoomObj);
+                            Functions_InteractiveObjs.Burn(IntObj);
                         }   //this prevents immediate fire spread across verticals
                     }
                 }
@@ -822,14 +824,14 @@ namespace DungeonRun
 
                 #region Destroy Open House Doors
 
-                else if(RoomObj.type == ObjType.Wor_Build_Door_Open)
+                else if(IntObj.type == InteractiveType.House_Door_Open)
                 {
                     if (
                         Pro.type == ProjectileType.Explosion 
                         || Pro.type == ProjectileType.Hammer
                         || Pro.type == ProjectileType.Fireball
                         )
-                    { Functions_GameObject.Kill(RoomObj, false, true); }
+                    { Functions_InteractiveObjs.Kill(IntObj, false, true); }
                 }
 
                 #endregion
@@ -837,14 +839,14 @@ namespace DungeonRun
 
                 #region Ice Tiles
 
-                else if(RoomObj.type == ObjType.Dungeon_IceTile)
+                else if(IntObj.type == InteractiveType.IceTile)
                 {
                     if (
                         Pro.type == ProjectileType.Fireball
                         || Pro.type == ProjectileType.GroundFire
                         )
                     {   //melt icetiles
-                        Functions_GameObject_World.MeltIceTile(RoomObj);
+                        Functions_InteractiveObjs.MeltIceTile(IntObj);
                     }
                 }
 
@@ -870,11 +872,11 @@ namespace DungeonRun
 
             //projectile checks against these objects complete,
             //return them to their non-blocking state
-            if (RoomObj.type == ObjType.Wor_SeekerExploder)
-            { RoomObj.compCollision.blocking = false; }
+            if (IntObj.type == InteractiveType.Enemy_SeekerExploder)
+            { IntObj.compCollision.blocking = false; }
 
-            if (RoomObj.group == ObjGroup.Wall_Climbable)
-            { RoomObj.compCollision.blocking = false; }
+            if (IntObj.group == InteractiveGroup.Wall_Climbable)
+            { IntObj.compCollision.blocking = false; }
 
             #endregion
 
@@ -894,7 +896,7 @@ namespace DungeonRun
 
         //object interactions
 
-        public static void Interact_ObjectActor(GameObject RoomObj, Actor Actor)
+        public static void Interact_ObjectActor(InteractiveObject IntObj, Actor Actor)
         {
 
 
@@ -907,11 +909,15 @@ namespace DungeonRun
 
 
 
+
+
+                /*
+                EXITS ARE INDESTRUCTIBLE OBJS
                 #region Exit
 
-                if (RoomObj.group == ObjGroup.Exit)
+                if (IntObj.group == InteractiveGroup.Exit)
                 {
-                    if (RoomObj.type == ObjType.Dungeon_Exit)
+                    if (IntObj.type == InteractiveType.Dungeon_Exit)
                     {   //stop movement, prevents overlap with exit
                         Functions_Movement.StopMovement(Pool.hero.compMove);
                         Functions_Hero.ExitDungeon();
@@ -919,27 +925,30 @@ namespace DungeonRun
                     }
                 }
 
-
                 #endregion
+
+                */
+
+
 
 
                 #region Doors
 
-                else if (RoomObj.group == ObjGroup.Door)
+                if (IntObj.group == InteractiveGroup.Door_Dungeon)
                 {   //center Hero to Door horiontally or vertically
-                    if (RoomObj.direction == Direction.Up || RoomObj.direction == Direction.Down)
+                    if (IntObj.direction == Direction.Up || IntObj.direction == Direction.Down)
                     {   //gradually center hero to door
-                        Pool.hero.compMove.magnitude.X = (RoomObj.compSprite.position.X - Pool.hero.compMove.position.X) * 0.11f;
+                        Pool.hero.compMove.magnitude.X = (IntObj.compSprite.position.X - Pool.hero.compMove.position.X) * 0.11f;
                         //if hero is close to center of door, snap/lock hero to center of door
-                        if (Math.Abs(Pool.hero.compSprite.position.X - RoomObj.compSprite.position.X) < 2)
-                        { Pool.hero.compMove.newPosition.X = RoomObj.compSprite.position.X; }
+                        if (Math.Abs(Pool.hero.compSprite.position.X - IntObj.compSprite.position.X) < 2)
+                        { Pool.hero.compMove.newPosition.X = IntObj.compSprite.position.X; }
                     }
                     else
                     {   //gradually center hero to door
-                        Pool.hero.compMove.magnitude.Y = (RoomObj.compSprite.position.Y - Pool.hero.compMove.position.Y) * 0.11f;
+                        Pool.hero.compMove.magnitude.Y = (IntObj.compSprite.position.Y - Pool.hero.compMove.position.Y) * 0.11f;
                         //if hero is close to center of door, snap/lock hero to center of door
-                        if (Math.Abs(Pool.hero.compSprite.position.Y - RoomObj.compSprite.position.Y) < 2)
-                        { Pool.hero.compMove.newPosition.Y = RoomObj.compSprite.position.Y; }
+                        if (Math.Abs(Pool.hero.compSprite.position.Y - IntObj.compSprite.position.Y) < 2)
+                        { Pool.hero.compMove.newPosition.Y = IntObj.compSprite.position.Y; }
                     }
 
                 }
@@ -954,12 +963,12 @@ namespace DungeonRun
 
                 #region Map
 
-                if (RoomObj.type == ObjType.Dungeon_Map)
+                if (IntObj.type == InteractiveType.Dungeon_Map)
                 {
                     if (LevelSet.currentLevel.map == false) //make sure hero doesn't already have map
                     {
-                        Functions_Pool.Release(RoomObj); //hero collects map obj
-                        RoomObj.compSprite.visible = false; //hide map obj
+                        Functions_Pool.Release(IntObj); //hero collects map obj
+                        IntObj.compSprite.visible = false; //hide map obj
                         LevelSet.currentLevel.map = true; //flip map true
                         Functions_Hero.SetRewardState(ParticleType.RewardMap);
                         Functions_Actor.SetAnimationGroup(Pool.hero);
@@ -977,9 +986,9 @@ namespace DungeonRun
 
                 #region Fairy
 
-                else if (RoomObj.type == ObjType.Dungeon_Fairy)
+                else if (IntObj.type == InteractiveType.Fairy)
                 {
-                    Functions_GameObject_Dungeon.UseFairy(RoomObj);
+                    Functions_InteractiveObjs.UseFairy(IntObj);
                     return;
                 }
 
@@ -989,8 +998,8 @@ namespace DungeonRun
                 #region Roofs
 
                 else if (
-                    RoomObj.type == ObjType.Wor_Build_Roof_Bottom
-                    || RoomObj.type == ObjType.Wor_Build_Roof_Chimney
+                    IntObj.type == InteractiveType.House_Roof_Bottom
+                    || IntObj.type == InteractiveType.House_Roof_Chimney
                     //RoomObj.type == ObjType.Wor_Build_Roof_Top
                     //^ no peeking into houses from rear
                     )
@@ -1014,11 +1023,11 @@ namespace DungeonRun
 
             #region Doors
 
-            if (RoomObj.group == ObjGroup.Door)
+            if (IntObj.group == InteractiveGroup.Door_Dungeon)
             {
-                if (RoomObj.type == ObjType.Dungeon_DoorTrap)
+                if (IntObj.type == InteractiveType.Dungeon_DoorTrap)
                 {   //trap doors push ALL actors
-                    Functions_Movement.Push(Actor.compMove, RoomObj.direction, 1.0f);
+                    Functions_Movement.Push(Actor.compMove, IntObj.direction, 1.0f);
                 }
             }
 
@@ -1027,11 +1036,11 @@ namespace DungeonRun
 
             #region Ditches
 
-            else if (RoomObj.group == ObjGroup.Ditch)
+            else if (IntObj.group == InteractiveGroup.Ditch)
             {   //if the actor is flying, ignore interaction with ditch
                 if (Actor.compMove.grounded == false) { return; }
                 //if ditch getsAI, then ditch is in it's filled state
-                if (RoomObj.getsAI)
+                if (IntObj.interacts)
                 {   //display animated ripple at actor's feet
                     Functions_Actor.DisplayWetFeet(Actor);
                 }
@@ -1042,12 +1051,12 @@ namespace DungeonRun
 
             #region Climbable Walls
 
-            else if (RoomObj.group == ObjGroup.Wall_Climbable)
+            else if (IntObj.group == InteractiveGroup.Wall_Climbable)
             {
 
                 #region Mid Walls - THESE CAUSING FALLING TO HAPPEN
 
-                if (RoomObj.type == ObjType.Wor_MountainWall_Mid)
+                if (IntObj.type == InteractiveType.MountainWall_Mid)
                 {
                     //actor is climbing
                     if (Actor.state == ActorState.Climbing) { return; }
@@ -1089,7 +1098,7 @@ namespace DungeonRun
 
                 #region Bottom Walls
 
-                else if (RoomObj.type == ObjType.Wor_MountainWall_Bottom)
+                else if (IntObj.type == InteractiveType.MountainWall_Bottom)
                 {
                     if (Actor.state == ActorState.Climbing) { return; }
 
@@ -1127,12 +1136,12 @@ namespace DungeonRun
 
                 #region Trap Ladders
 
-                else if (RoomObj.type == ObjType.Wor_MountainWall_Ladder_Trap)
+                else if (IntObj.type == InteractiveType.MountainWall_Ladder_Trap)
                 {
                     //creates attention particle and removes itself
                     Functions_Particle.Spawn(ParticleType.Attention,
-                        RoomObj.compSprite.position.X, RoomObj.compSprite.position.Y, Direction.Down);
-                    Functions_Pool.Release(RoomObj);
+                        IntObj.compSprite.position.X, IntObj.compSprite.position.Y, Direction.Down);
+                    Functions_Pool.Release(IntObj);
                     Assets.Play(Assets.sfxShatter);
                 }
 
@@ -1145,15 +1154,15 @@ namespace DungeonRun
 
 
             //Objects
-            else if (RoomObj.group == ObjGroup.Object)
+            else if (IntObj.group == InteractiveGroup.Object)
             {
                 //Phase 1 - objects that interact with flying and grounded actors
 
                 #region SpikeBlocks
 
-                if (RoomObj.type == ObjType.Dungeon_BlockSpike)
+                if (IntObj.type == InteractiveType.Dungeon_BlockSpike)
                 {   //damage push actors (on ground or in air) away from spikes
-                    Functions_Battle.Damage(Actor, RoomObj);
+                    Functions_Battle.Damage(Actor, IntObj);
                 }
 
                 #endregion
@@ -1161,10 +1170,10 @@ namespace DungeonRun
 
                 #region Bumpers
 
-                else if (RoomObj.type == ObjType.Dungeon_Bumper)
+                else if (IntObj.type == InteractiveType.Bumper)
                 {   //limit bumper to bouncing only if it's returned to 100% scale
-                    if (RoomObj.compSprite.scale == 1.0f)
-                    { Functions_GameObject_Dungeon.BounceOffBumper(Actor.compMove, RoomObj); }
+                    if (IntObj.compSprite.scale == 1.0f)
+                    { Functions_InteractiveObjs.BounceOffBumper(Actor.compMove, IntObj); }
                 }
 
                 #endregion
@@ -1172,9 +1181,9 @@ namespace DungeonRun
 
                 #region SwitchBlock UP
 
-                else if (RoomObj.type == ObjType.Dungeon_SwitchBlockUp)
+                else if (IntObj.type == InteractiveType.Dungeon_SwitchBlockUp)
                 {   //if actor is colliding with up block, convert up to down
-                    Functions_GameObject.SetType(RoomObj, ObjType.Dungeon_SwitchBlockDown);
+                    Functions_InteractiveObjs.SetType(IntObj, InteractiveType.Dungeon_SwitchBlockDown);
                 }   //this is done because block just popped up and would block actor
 
                 #endregion
@@ -1189,9 +1198,9 @@ namespace DungeonRun
 
                 #region FloorSpikes
 
-                if (RoomObj.type == ObjType.Dungeon_SpikesFloorOn)
+                if (IntObj.type == InteractiveType.Dungeon_SpikesFloorOn)
                 {   //damage push actors (on ground) away from spikes
-                    Functions_Battle.Damage(Actor, RoomObj);
+                    Functions_Battle.Damage(Actor, IntObj);
                 }
 
                 #endregion
@@ -1199,13 +1208,13 @@ namespace DungeonRun
 
                 #region ConveyorBelts
 
-                else if (RoomObj.type == ObjType.Dungeon_ConveyorBeltOn)
+                else if (IntObj.type == InteractiveType.ConveyorBeltOn)
                 {
                     //halt actor movement based on certain states
                     if (Actor.state == ActorState.Reward)
                     { Functions_Movement.StopMovement(Actor.compMove); }
                     else
-                    { Functions_GameObject_Dungeon.ConveyorBeltPush(Actor.compMove, RoomObj); }
+                    { Functions_InteractiveObjs.ConveyorBeltPush(Actor.compMove, IntObj); }
 
                 }
 
@@ -1214,7 +1223,7 @@ namespace DungeonRun
 
                 #region Pits
 
-                else if (RoomObj.type == ObjType.Dungeon_Pit)
+                else if (IntObj.type == InteractiveType.Lava_Pit)
                 {   //hero throw()s any held object
                     if (Actor == Pool.hero & Functions_Hero.carrying) 
                     { Functions_Hero.Throw(); }
@@ -1233,12 +1242,12 @@ namespace DungeonRun
                     #region Continuous collision (each frame) - ALL ACTORS
 
                     //gradually pull actor into pit's center, manually update the actor's position
-                    Actor.compMove.magnitude = (RoomObj.compSprite.position - Actor.compSprite.position) * 0.25f;
+                    Actor.compMove.magnitude = (IntObj.compSprite.position - Actor.compSprite.position) * 0.25f;
 
                     //if actor is near to pit center, begin/continue falling state
-                    if (Math.Abs(Actor.compSprite.position.X - RoomObj.compSprite.position.X) < 2)
+                    if (Math.Abs(Actor.compSprite.position.X - IntObj.compSprite.position.X) < 2)
                     {
-                        if (Math.Abs(Actor.compSprite.position.Y - RoomObj.compSprite.position.Y) < 2)
+                        if (Math.Abs(Actor.compSprite.position.Y - IntObj.compSprite.position.Y) < 2)
                         {   //begin actor falling state
                             if (Actor.compSprite.scale == 1.0f) { Assets.Play(Assets.sfxActorFall); }
                             //continue falling state, scaling actor down
@@ -1253,7 +1262,7 @@ namespace DungeonRun
 
                     if (Actor.compSprite.scale < 0.8f)
                     {   //actor has reached scale, fallen into pit completely
-                        Functions_GameObject_Dungeon.PlayPitFx(RoomObj);
+                        Functions_InteractiveObjs.PlayPitFx(IntObj);
                         if (Actor == Pool.hero)
                         {   //send hero back to last door he passed thru
                             Assets.Play(Assets.sfxActorLand); //play actor land sfx
@@ -1275,9 +1284,9 @@ namespace DungeonRun
 
                 #region Ice Tiles
 
-                else if (RoomObj.type == ObjType.Dungeon_IceTile)
+                else if (IntObj.type == InteractiveType.IceTile)
                 {
-                    Functions_GameObject_Dungeon.SlideOnIce(Actor.compMove);
+                    Functions_InteractiveObjs.SlideOnIce(Actor.compMove);
                 }
 
                 #endregion
@@ -1285,7 +1294,7 @@ namespace DungeonRun
 
                 #region Tall grass
 
-                else if (RoomObj.type == ObjType.Wor_Grass_Tall)
+                else if (IntObj.type == InteractiveType.Grass_Tall)
                 {   //unhide + place grassy feet at actor's feet
                     Actor.feetFX.visible = true;
                     Actor.feetAnim.currentAnimation = AnimationFrames.ActorFX_GrassyFeet;
@@ -1301,7 +1310,7 @@ namespace DungeonRun
 
                 #region Water
 
-                else if (RoomObj.type == ObjType.Wor_Water)
+                else if (IntObj.type == InteractiveType.Water_2x2)
                 {
                     //if actor is flying, don't sink or swim in water
                     if (Actor.compMove.grounded == false) { return; }
@@ -1325,9 +1334,9 @@ namespace DungeonRun
                 #endregion
 
 
-                #region Swamp Vines
+                #region Water Vines
 
-                else if (RoomObj.type == ObjType.Wor_Swamp_Vine)
+                else if (IntObj.type == InteractiveType.Water_Vine)
                 {
 
                     if (Actor.underwater)
@@ -1342,7 +1351,7 @@ namespace DungeonRun
                             Actor.compMove,
                             Functions_Direction.GetOppositeCardinal(
                                 Actor.compCollision.rec.Center,
-                                RoomObj.compCollision.rec.Center),
+                                IntObj.compCollision.rec.Center),
                                 1.0f);
                         return;
                     }
@@ -1353,10 +1362,11 @@ namespace DungeonRun
 
                 #region Coastlines
 
-                else if (RoomObj.type == ObjType.Wor_Coastline_Corner_Exterior
-                    || RoomObj.type == ObjType.Wor_Coastline_Corner_Interior
-                    || RoomObj.type == ObjType.Wor_Coastline_Straight
-                    || RoomObj.type == ObjType.Wor_Boat_Coastline)
+                else if (
+                    IntObj.type == InteractiveType.Coastline_Corner_Exterior
+                    || IntObj.type == InteractiveType.Coastline_Corner_Interior
+                    || IntObj.type == InteractiveType.Coastline_Straight
+                    || IntObj.type == InteractiveType.Coastline_1x2_Animated)
                 {   //display animated ripple at actor's feet
                     Functions_Actor.DisplayWetFeet(Actor);
                 }
@@ -1366,25 +1376,25 @@ namespace DungeonRun
 
                 #region PitTrap
 
-                else if (RoomObj.type == ObjType.Dungeon_PitTrap)
+                else if (IntObj.type == InteractiveType.Lava_PitTrap)
                 {   //if hero collides with a PitTrapReady, it starts to open
-                    Functions_GameObject.SetType(RoomObj, ObjType.Dungeon_Pit);
+                    Functions_InteractiveObjs.SetType(IntObj, InteractiveType.Lava_Pit);
                     Assets.Play(Assets.sfxShatter); //play collapse sound
                     Functions_Particle.Spawn(ParticleType.Attention,
-                        RoomObj.compSprite.position.X,
-                        RoomObj.compSprite.position.Y);
+                        IntObj.compSprite.position.X,
+                        IntObj.compSprite.position.Y);
                     Functions_Particle.Spawn(ParticleType.ImpactDust,
-                        RoomObj.compSprite.position.X + 4,
-                        RoomObj.compSprite.position.Y - 8);
+                        IntObj.compSprite.position.X + 4,
+                        IntObj.compSprite.position.Y - 8);
                     //Functions_Particle.ScatterDebris(Obj.compSprite.position);
                     //create pit teeth over new pit obj
-                    Functions_GameObject.Spawn(ObjType.Dungeon_PitTeethTop,
-                        RoomObj.compSprite.position.X,
-                        RoomObj.compSprite.position.Y,
+                    Functions_InteractiveObjs.Spawn(InteractiveType.Lava_PitTeethTop,
+                        (int)IntObj.compSprite.position.X,
+                        (int)IntObj.compSprite.position.Y,
                         Direction.Down);
-                    Functions_GameObject.Spawn(ObjType.Dungeon_PitTeethBottom,
-                        RoomObj.compSprite.position.X,
-                        RoomObj.compSprite.position.Y,
+                    Functions_InteractiveObjs.Spawn(InteractiveType.Lava_PitTeethBottom,
+                        (int)IntObj.compSprite.position.X,
+                        (int)IntObj.compSprite.position.Y,
                         Direction.Down);
                     //note: this section of code must always come
                     //before dungeon_pit interaction code, otherwise
@@ -1400,7 +1410,7 @@ namespace DungeonRun
         }
 
 
-        public static void Interact_ObjectObject(GameObject RoomObj, GameObject Object)
+        public static void Interact_ObjectObject(InteractiveObject RoomObj, InteractiveObject Object)
         {
             //Debug.WriteLine("RoomObj: " + RoomObj.type + " + Object: " + Object.type);
 
@@ -1413,14 +1423,14 @@ namespace DungeonRun
 
             #region Pet / Animals
 
-            if (Object.type == ObjType.Pet_Dog)
+            if (Object.type == InteractiveType.Pet_Dog)
             {
                 //dogs can swim
-                if (RoomObj.type == ObjType.Wor_Water) { Object.inWater = true; }
+                if (RoomObj.type == InteractiveType.Water_2x2) { Object.inWater = true; }
 
                 //dogs bounce
-                else if (RoomObj.type == ObjType.Dungeon_Bumper)
-                { Functions_GameObject_Dungeon.BounceOffBumper(Object.compMove, RoomObj); }
+                else if (RoomObj.type == InteractiveType.Bumper)
+                { Functions_InteractiveObjs.BounceOffBumper(Object.compMove, RoomObj); }
             }
 
             #endregion
@@ -1428,10 +1438,10 @@ namespace DungeonRun
 
             #region ConveyorBelts
 
-            else if (Object.type == ObjType.Dungeon_ConveyorBeltOn)
+            else if (Object.type == InteractiveType.ConveyorBeltOn)
             {   //if obj is moveable and on ground, move it
                 if (RoomObj.compMove.moveable && RoomObj.compMove.grounded)
-                { Functions_GameObject_Dungeon.ConveyorBeltPush(RoomObj.compMove, Object); }
+                { Functions_InteractiveObjs.ConveyorBeltPush(RoomObj.compMove, Object); }
             }
 
             #endregion
@@ -1442,9 +1452,9 @@ namespace DungeonRun
 
 
 
-            
+            /*
             //objs that remove other objs (vips)
-
+            //THESE OBJS ARE INDESTRUCTIBLE
             #region Dungeon Exits
 
             else if (
@@ -1465,7 +1475,7 @@ namespace DungeonRun
 
             #endregion
 
-
+            */
 
             
 
@@ -1483,7 +1493,7 @@ namespace DungeonRun
 
                 #region ExplodingObject
 
-                if (Object.type == ObjType.ExplodingObject)
+                if (Object.type == InteractiveType.ExplodingObject)
                 {   //stop exploding object from moving thru blocking objects
                     Functions_Movement.StopMovement(Object.compMove);
                 }
@@ -1493,10 +1503,10 @@ namespace DungeonRun
 
                 #region SeekerExploders
 
-                else if (Object.type == ObjType.Wor_SeekerExploder)
+                else if (Object.type == InteractiveType.Enemy_SeekerExploder)
                 {
-                    Object.lifeCounter = Object.lifetime; //explode this frame
-                    Functions_GameObject_World.Bounce(Object);
+                    Object.counter = Object.countTotal; //explode this frame
+                    Functions_InteractiveObjs.Bounce(Object);
                 }
 
                 #endregion
@@ -1504,12 +1514,12 @@ namespace DungeonRun
 
                 #region SpikeBlock
 
-                else if (Object.type == ObjType.Dungeon_BlockSpike)
+                else if (Object.type == InteractiveType.Dungeon_BlockSpike)
                 {   //bounce spike blocks off blocking roomObjs
-                    Functions_GameObject_Dungeon.BounceSpikeBlock(Object); //rev direction
+                    Functions_InteractiveObjs.BounceSpikeBlock(Object); //rev direction
                     //spikeblocks trigger common obj interactions
                     RoomObj.compMove.direction = Object.compMove.direction;
-                    Functions_GameObject_World.Destroy(RoomObj); //destroys most things
+                    Functions_InteractiveObjs.Destroy(RoomObj); //destroys most things
                 }
 
                 #endregion
@@ -1517,11 +1527,11 @@ namespace DungeonRun
 
                 #region IceTiles - slides objs
 
-                else if (Object.type == ObjType.Dungeon_IceTile)
+                else if (Object.type == InteractiveType.IceTile)
                 {
                     if (RoomObj.compMove.grounded)
                     {   //only objects on the ground can slide on ice
-                        Functions_GameObject_Dungeon.SlideOnIce(RoomObj.compMove);
+                        Functions_InteractiveObjs.SlideOnIce(RoomObj.compMove);
                     }
                 }
 
@@ -1534,15 +1544,18 @@ namespace DungeonRun
                 
                 #region Water (objects that 'fall' into water - draggable objs)
 
-                if (RoomObj.type == ObjType.Wor_Water)
+                if (RoomObj.type == InteractiveType.Water_2x2)
                 {
                     //object groups not removed by water
                     if (
-                        Object.group == ObjGroup.Exit
-                        || Object.group == ObjGroup.Wall || Object.group == ObjGroup.Door
-                        || Object.group == ObjGroup.Vendor || Object.group == ObjGroup.NPC
-                        || Object.group == ObjGroup.EnemySpawn || Object.group == ObjGroup.Ditch
-                        || Object.group == ObjGroup.Wall_Climbable
+                        //Object.group == InteractiveGroup.exit
+                        Object.group == InteractiveGroup.Wall_Dungeon 
+                        || Object.group == InteractiveGroup.Door_Dungeon
+                        || Object.group == InteractiveGroup.Vendor 
+                        || Object.group == InteractiveGroup.NPC
+                        || Object.group == InteractiveGroup.EnemySpawn 
+                        || Object.group == InteractiveGroup.Ditch
+                        || Object.group == InteractiveGroup.Wall_Climbable
                         )
                     { return; }
 
@@ -1574,20 +1587,15 @@ namespace DungeonRun
 
                 #region Climbable Walls
 
-                else if (RoomObj.group == ObjGroup.Wall_Climbable)
+                else if (RoomObj.group == InteractiveGroup.Wall_Climbable)
                 {
                     //prevent certain wall objs from pulling any objects down the wall
-                    if (RoomObj.type == ObjType.Wor_MountainWall_Foothold
-                        || RoomObj.type == ObjType.Wor_MountainWall_Ladder
-                        || RoomObj.type == ObjType.Wor_MountainWall_Ladder_Trap)
+                    if (RoomObj.type == InteractiveType.MountainWall_Foothold
+                        || RoomObj.type == InteractiveType.MountainWall_Ladder
+                        || RoomObj.type == InteractiveType.MountainWall_Ladder_Trap)
                     { return; }
 
                     //if hero is climbing/landed with the object as pet, ignore push
-                    if (Object == Pool.herosPet)
-                    {
-                        if (Pool.hero.state == ActorState.Climbing || Pool.hero.state == ActorState.Landed)
-                        { return; }
-                    }
 
                     //wall moves obj fast, if obj is moving slow then this is initial fall
                     if (Object.compMove.magnitude.Y < 2.0f & Object.compMove.magnitude.Y > 0.5f)
@@ -1615,7 +1623,7 @@ namespace DungeonRun
 
                 #region Trap Door
 
-                else if (RoomObj.type == ObjType.Dungeon_DoorTrap)
+                else if (RoomObj.type == InteractiveType.Dungeon_DoorTrap)
                 {   //prevent obj from passing thru door
                     Functions_Movement.RevertPosition(Object.compMove);
 
@@ -1627,7 +1635,7 @@ namespace DungeonRun
 
                 #region Bumper
 
-                else if (RoomObj.type == ObjType.Dungeon_Bumper)
+                else if (RoomObj.type == InteractiveType.Bumper)
                 {   //limit bumper to bouncing only if it's returned to 100% scale
                     if (RoomObj.compSprite.scale != 1.0f) { return; }
 
@@ -1636,7 +1644,7 @@ namespace DungeonRun
                     if (!RoomObj.compMove.moving & !Object.compMove.moving)
                     { return; }
                     //all other objects are bounced
-                    Functions_GameObject_Dungeon.BounceOffBumper(Object.compMove, RoomObj);
+                    Functions_InteractiveObjs.BounceOffBumper(Object.compMove, RoomObj);
                 }
 
                 #endregion
@@ -1646,7 +1654,7 @@ namespace DungeonRun
 
                 #region FloorSpikes
 
-                if (RoomObj.type == ObjType.Dungeon_SpikesFloorOn)
+                if (RoomObj.type == InteractiveType.Dungeon_SpikesFloorOn)
                 {
                     if (Object.compMove.grounded)
                     {
@@ -1654,7 +1662,7 @@ namespace DungeonRun
                             Functions_Direction.GetOppositeCardinal(
                                     Object.compMove.position,
                                     RoomObj.compMove.position);
-                        Functions_GameObject_World.Destroy(Object);
+                        Functions_InteractiveObjs.Destroy(Object);
                     }
                 }
 
@@ -1663,9 +1671,9 @@ namespace DungeonRun
 
                 #region Pits
 
-                else if (RoomObj.type == ObjType.Dungeon_Pit)
+                else if (RoomObj.type == InteractiveType.Lava_Pit)
                 {   //drag any object into the pit
-                    Functions_GameObject_Dungeon.DragIntoPit(Object, RoomObj);
+                    Functions_InteractiveObjs.DragIntoPit(Object, RoomObj);
                 }
 
                 #endregion

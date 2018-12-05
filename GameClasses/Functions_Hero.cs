@@ -23,7 +23,7 @@ namespace DungeonRun
 
         //fields used in grab / push / pull
         public static Boolean grabbing = false;
-        public static GameObject grabbedObj = null;
+        public static InteractiveObject grabbedObj = null;
 
         //fields used in pickup / carry / throw
         public static Boolean carrying = false; //is hero holding pro above head?
@@ -72,14 +72,14 @@ namespace DungeonRun
 
             //if the hero is under a roof, then hide all roofs
             if (underRoof)
-            { Functions_GameObject_World.HideRoofs(); }
+            { Functions_InteractiveObjs.HideRoofs(); }
 
             //editor connection here - this can become a menu option
             else if (Flags.IgnoreRoofTiles)
-            { Functions_GameObject_World.HideRoofs(); }
+            { Functions_InteractiveObjs.HideRoofs(); }
 
             //else game should display all roofs
-            else { Functions_GameObject_World.ShowRoofs(); }
+            else { Functions_InteractiveObjs.ShowRoofs(); }
 
             #endregion
 
@@ -183,13 +183,13 @@ namespace DungeonRun
 
         //misc hero related methods
 
-        public static void SetFieldSpawnPos(GameObject Obj)
+        public static void SetFieldSpawnPos(IndestructibleObject Obj)
         {   //this assumes obj is a 2/3x4 dugneon entrance obj!
 
             //match obj X
             LevelSet.spawnPos_Field.X = Obj.compSprite.position.X; 
             //setup spawnPos X based on obj.type
-            if (Obj.type == ObjType.Wor_Entrance_MountainDungeon) //this is modeled as a 2x4 obj
+            if (Obj.type == IndestructibleType.MountainDungeon_Entrance) //this is modeled as a 2x4 obj
             {
                 LevelSet.spawnPos_Field.X += 8;
             }
@@ -203,6 +203,8 @@ namespace DungeonRun
             //^ start with obj.Y, add vertical south offset (place hero in front of obj)
         }
         
+
+
         public static void ResetFieldSpawnPos()
         {
             //starting Xpos + half width
@@ -304,18 +306,18 @@ namespace DungeonRun
 
                 #region Open/Close Doors for Hero
 
-                for (i = 0; i < Pool.roomObjCount; i++)
+                for (i = 0; i < Pool.intObjCount; i++)
                 {
-                    if (Pool.roomObjPool[i].active) //roomObj must be active
+                    if (Pool.intObjPool[i].active) //roomObj must be active
                     {
-                        if (Pool.roomObjPool[i].type == ObjType.Dungeon_DoorOpen)
+                        if (Pool.intObjPool[i].type == InteractiveType.Dungeon_DoorOpen)
                         {   //set open/bombed doors to blocking or non-blocking
-                            Pool.roomObjPool[i].compCollision.blocking = true; //set door blocking
+                            Pool.intObjPool[i].compCollision.blocking = true; //set door blocking
                             //compare hero to door positions, unblock door if hero is close enough
-                            if (Math.Abs(Pool.hero.compSprite.position.X - Pool.roomObjPool[i].compSprite.position.X) < 18)
+                            if (Math.Abs(Pool.hero.compSprite.position.X - Pool.intObjPool[i].compSprite.position.X) < 18)
                             {   //compare hero to door sprite positions, unblock door if hero is close enough
-                                if (Math.Abs(Pool.hero.compSprite.position.Y - Pool.roomObjPool[i].compSprite.position.Y) < 18)
-                                { Pool.roomObjPool[i].compCollision.blocking = false; }
+                                if (Math.Abs(Pool.hero.compSprite.position.Y - Pool.intObjPool[i].compSprite.position.Y) < 18)
+                                { Pool.intObjPool[i].compCollision.blocking = false; }
                             }
                         }
                     }
@@ -405,15 +407,15 @@ namespace DungeonRun
             SetInteractionRec();
             collision = false;
             //check to see if the interactionRec collides with any gameObjects
-            for (i = 0; i < Pool.roomObjCount; i++)
+            for (i = 0; i < Pool.intObjCount; i++)
             {
-                if (Pool.roomObjPool[i].active)
+                if (Pool.intObjPool[i].active)
                 {
-                    if (Pool.roomObjPool[i].compCollision.rec.Contains(interactionPoint))
+                    if (Pool.intObjPool[i].compCollision.rec.Contains(interactionPoint))
                     {
-                        if (Pool.roomObjPool[i].type == ObjType.Wor_Water
-                            || Pool.roomObjPool[i].type == ObjType.Wor_MountainWall_Mid
-                            || Pool.roomObjPool[i].type == ObjType.Wor_MountainWall_Bottom)
+                        if (Pool.intObjPool[i].type == InteractiveType.Water_2x2
+                            || Pool.intObjPool[i].type == InteractiveType.MountainWall_Mid
+                            || Pool.intObjPool[i].type == InteractiveType.MountainWall_Bottom)
                         { } //ignore these objects for hero rec interaction
                         else
                         {   //all other objects are tested for interaction
@@ -422,7 +424,7 @@ namespace DungeonRun
                             Pool.hero.lockTotal = 10; //required to show the pickup animation
                             collision = true;
                             //handle the hero interaction, may overwrite hero.lockTotal
-                            InteractRecWith(Pool.roomObjPool[i]);
+                            InteractRecWith(Pool.intObjPool[i]);
                             //we could bail here if we wanted only 1 interaction per frame
                             //but we allow overlapping obj interactions cause we cray'
                         }
@@ -507,7 +509,8 @@ namespace DungeonRun
         {   //spawn the hero's dog
             if (PlayerData.petType != MenuItemType.Unknown)
             {
-                Functions_GameObject.SetType(Pool.herosPet, ObjType.Pet_Dog);
+                /*
+                Functions_InteractiveObjs.SetType(Pool.herosPet, ObjType.Pet_Dog);
                 Pool.herosPet.compAnim.currentAnimation = AnimationFrames.Pet_Dog_Idle;
 
                 Pool.herosPet.compCollision.blocking = false; //pet doesn't block
@@ -517,6 +520,7 @@ namespace DungeonRun
                     Pool.hero.compMove.position.X,
                     Pool.hero.compMove.position.Y);
                 Functions_Component.Align(Pool.herosPet);
+                */
             }
         }
 
@@ -569,7 +573,7 @@ namespace DungeonRun
                 Direction.Down);
         }
 
-        public static void Pickup(GameObject Obj)
+        public static void Pickup(InteractiveObject Obj)
         {
             //decorate pickup
             Functions_Particle.Spawn(
@@ -578,10 +582,10 @@ namespace DungeonRun
                 Obj.compSprite.position.Y);
 
             //handle pickup effects
-            if (Obj.type == ObjType.Wor_Bush)
+            if (Obj.type == InteractiveType.Bush)
             {   //spawn a stump obj at bush location
-                Functions_GameObject.Spawn(
-                    ObjType.Wor_Bush_Stump,
+                Functions_InteractiveObjs.Spawn(
+                    InteractiveType.Bush_Stump,
                     Obj.compSprite.position.X,
                     Obj.compSprite.position.Y,
                     Direction.Down);
@@ -599,7 +603,7 @@ namespace DungeonRun
 
 
             //translate rat into the down animation for ease of use in code
-            if (Obj.type == ObjType.Wor_Enemy_Rat)
+            if (Obj.type == InteractiveType.Enemy_Rat)
             { carriedObj.compAnim.currentAnimation = AnimationFrames.Wor_Enemy_Rat_Down; }
 
 
@@ -711,13 +715,13 @@ namespace DungeonRun
             }
         }
 
-        public static void Grab(GameObject Obj)
+        public static void Grab(InteractiveObject Obj)
         {
             grabbing = true;
             grabbedObj = Obj;
         }
 
-        public static void ReadSign(GameObject Sign)
+        public static void ReadSign(InteractiveObject Sign)
         {
             //based on current roomid, signs point to diff dialogs
             //everything is based on currentRoom's ID, never levelID
@@ -766,11 +770,11 @@ namespace DungeonRun
                 Screens.Dialog.SetDialog(AssetsDialog.Signpost_Standard);
 
                 //loop over all roomObjs to find secret vendor obj
-                for (i = 0; i < Pool.roomObjCount; i++)
+                for (i = 0; i < Pool.intObjCount; i++)
                 {
-                    if (Pool.roomObjPool[i].active)
+                    if (Pool.intObjPool[i].active)
                     {
-                        if (Pool.roomObjPool[i].type == ObjType.Vendor_NPC_EnemyItems)
+                        if (Pool.intObjPool[i].type == InteractiveType.Vendor_EnemyItems)
                         {   //set the secret vendor dialog
                             Screens.Dialog.SetDialog(AssetsDialog.Signpost_SecretVendor);
                         }
@@ -801,7 +805,7 @@ namespace DungeonRun
         }
 
         //hero's special interact() method based on interaction point
-        public static void InteractRecWith(GameObject Obj)
+        public static void InteractRecWith(InteractiveObject Obj)
         {   //this is the hero's interactionRec colliding with Obj
             //we know this is hero, and hero is in ActorState.Interact
             //Objects that can be interacted with from Land & Water
@@ -810,27 +814,11 @@ namespace DungeonRun
             //obj.group checks
 
 
-            #region Chests
-
-            if (Obj.group == ObjGroup.Chest)
-            {
-                //Reward the hero with chest contents
-                if (Obj.type == ObjType.Dungeon_ChestKey)
-                {
-                    SetRewardState(ParticleType.RewardKey);
-                   //alter player data
-                    LevelSet.currentLevel.bigKey = true;
-                    //setup dialog
-                    Screens.Dialog.SetDialog(AssetsDialog.HeroGotKey);
-                    ScreenManager.AddScreen(Screens.Dialog);
-                }
-            }
-
-            #endregion
+            
 
 
             //Vendors
-            else if (Obj.group == ObjGroup.Vendor)
+            if (Obj.group == InteractiveGroup.Vendor)
             {
                 Screens.Vendor.SetVendor(Obj.type);
                 ScreenManager.AddScreen(Screens.Vendor);
@@ -838,13 +826,13 @@ namespace DungeonRun
 
 
             //NPCs
-            else if (Obj.group == ObjGroup.NPC)
+            else if (Obj.group == InteractiveGroup.NPC)
             {   //based on obj.type, select dialog
 
 
                 #region Story/Guide
 
-                if (Obj.type == ObjType.NPC_Story)
+                if (Obj.type == InteractiveType.NPC_Story)
                 {   //figure out what part of the story the hero is at, pass this dialog
                     Screens.Dialog.SetDialog(AssetsDialog.Guide);
                     ScreenManager.AddScreen(Screens.Dialog);
@@ -855,14 +843,14 @@ namespace DungeonRun
 
                 #region Farmer
 
-                else if (Obj.type == ObjType.NPC_Farmer)
+                else if (Obj.type == InteractiveType.NPC_Farmer)
                 {
                     Screens.Dialog.SetDialog(AssetsDialog.Farmer_Setup);
                     ScreenManager.AddScreen(Screens.Dialog);
                 }
-                else if (Obj.type == ObjType.NPC_Farmer_Reward)
+                else if (Obj.type == InteractiveType.NPC_Farmer_Reward)
                 {   //convert farmer to end state
-                    Functions_GameObject.SetType(Obj, ObjType.NPC_Farmer_EndDialog);
+                    Functions_InteractiveObjs.SetType(Obj, InteractiveType.NPC_Farmer_EndDialog);
                     //reward player
                     PlayerData.bombsCurrent += 10;
                     //play reward sfx
@@ -871,7 +859,7 @@ namespace DungeonRun
                     Screens.Dialog.SetDialog(AssetsDialog.Farmer_Reward);
                     ScreenManager.AddScreen(Screens.Dialog);
                 }
-                else if (Obj.type == ObjType.NPC_Farmer_EndDialog)
+                else if (Obj.type == InteractiveType.NPC_Farmer_EndDialog)
                 {
                     Screens.Dialog.SetDialog(AssetsDialog.Farmer_EndDialog);
                     ScreenManager.AddScreen(Screens.Dialog);
@@ -882,7 +870,7 @@ namespace DungeonRun
 
                 #region Colliseum Judge
 
-                else if (Obj.type == ObjType.Judge_Colliseum)
+                else if (Obj.type == InteractiveType.Judge_Colliseum)
                 {
                     Screens.Dialog.SetDialog(AssetsDialog.Colliseum_Judge);
                     ScreenManager.AddScreen(Screens.Dialog);
@@ -893,7 +881,7 @@ namespace DungeonRun
 
                 #region Brandy Ships Captain
 
-                else if (Obj.type == ObjType.Wor_Boat_Captain_Brandy)
+                else if (Obj.type == InteractiveType.Boat_Captain_Brandy)
                 {
                     //for now, brandy offers no useful advice
                     Screens.Dialog.SetDialog(AssetsDialog.Brandy_Default);
@@ -925,27 +913,46 @@ namespace DungeonRun
 
             //dungeon objects
 
+
+            #region Chests
+            
+            //Reward the hero with chest contents
+            if (Obj.type == InteractiveType.ChestKey)
+            {
+                SetRewardState(ParticleType.RewardKey);
+                //alter player data
+                LevelSet.currentLevel.bigKey = true;
+                //setup dialog
+                Screens.Dialog.SetDialog(AssetsDialog.HeroGotKey);
+                ScreenManager.AddScreen(Screens.Dialog);
+            }
+            
+
+            #endregion
+
+
+
             #region Torches, Levers, Switches
 
-            if (Obj.type == ObjType.Dungeon_TorchUnlit)
+            else if (Obj.type == InteractiveType.TorchUnlit)
             {   //light any unlit torch  //git lit *
-                Functions_GameObject_Dungeon.LightTorch(Obj);
+                Functions_InteractiveObjs.LightTorch(Obj);
             }
-            else if (Obj.type == ObjType.Dungeon_TorchLit)
+            else if (Obj.type == InteractiveType.TorchLit)
             {   //unlight any lit torch
-                Functions_GameObject_Dungeon.UnlightTorch(Obj);
+                Functions_InteractiveObjs.UnlightTorch(Obj);
             }
-            else if (Obj.type == ObjType.Dungeon_LeverOff || Obj.type == ObjType.Dungeon_LeverOn)
+            else if (Obj.type == InteractiveType.LeverOff || Obj.type == InteractiveType.LeverOn)
             {   //activate all lever objects (including lever), call attention to change
-                Functions_GameObject_Dungeon.ActivateLeverObjects();
+                Functions_InteractiveObjs.ActivateLeverObjects();
                 Functions_Particle.Spawn(
                         ParticleType.Attention,
                         Obj.compSprite.position.X,
                         Obj.compSprite.position.Y);
             }
-            else if (Obj.type == ObjType.Dungeon_SwitchBlockBtn)
+            else if (Obj.type == InteractiveType.Dungeon_SwitchBlockBtn)
             {
-                Functions_GameObject_Dungeon.FlipSwitchBlocks(Obj);
+                Functions_InteractiveObjs.FlipSwitchBlocks(Obj);
             }
 
             #endregion
@@ -953,11 +960,11 @@ namespace DungeonRun
 
             #region Boss Door
 
-            else if (Obj.type == ObjType.Dungeon_DoorBoss)
+            else if (Obj.type == InteractiveType.Dungeon_DoorBoss)
             {
                 if (LevelSet.currentLevel.bigKey)
                 {   //hero must have dungeon key to open boss door
-                    Functions_GameObject.SetType(Obj, ObjType.Dungeon_DoorOpen);
+                    Functions_InteractiveObjs.SetType(Obj, InteractiveType.Dungeon_DoorOpen);
                     Assets.Play(Assets.sfxDoorOpen);
                     Functions_Particle.Spawn(
                         ParticleType.Attention,
@@ -979,7 +986,7 @@ namespace DungeonRun
 
             #region Signposts
 
-            else if (Obj.type == ObjType.Dungeon_Signpost)
+            else if (Obj.type == InteractiveType.Signpost)
             {
                 if (LevelSet.currentLevel.currentRoom.roomID == RoomID.Exit)
                 {
@@ -997,6 +1004,12 @@ namespace DungeonRun
             #endregion
 
 
+
+
+
+
+            /*
+            
             #region World / Level Entrances
 
             else if (Obj.type == ObjType.Wor_Entrance_ForestDungeon)
@@ -1018,8 +1031,6 @@ namespace DungeonRun
                 SetFieldSpawnPos(Obj);
             }
 
-
-
             else if (Obj.type == ObjType.Wor_Entrance_Colliseum)
             {   //give player choice to enter
                 Screens.Dialog.SetDialog(AssetsDialog.Enter_Colliseum);
@@ -1028,13 +1039,23 @@ namespace DungeonRun
             }
 
             #endregion
+            
+            */
+
+
+
+
+
+
+
+
 
 
             #region House Doors
 
-            else if (Obj.type == ObjType.Wor_Build_Door_Shut)
+            else if (Obj.type == InteractiveType.House_Door_Shut)
             {
-                Functions_GameObject_World.OpenHouseDoor(Obj);
+                Functions_InteractiveObjs.OpenHouseDoor(Obj);
             }
 
             #endregion
@@ -1042,8 +1063,8 @@ namespace DungeonRun
 
             #region Climbing Footholds
 
-            else if (Obj.type == ObjType.Wor_MountainWall_Foothold
-                || Obj.type == ObjType.Wor_MountainWall_Ladder)
+            else if (Obj.type == InteractiveType.MountainWall_Foothold
+                || Obj.type == InteractiveType.MountainWall_Ladder)
             {   //only link and blob have anim frames for climbing
                 if (Pool.hero.type == ActorType.Hero || Pool.hero.type == ActorType.Blob)
                 {   //hero isnt in climbing state yet, but will be at end of this routine
@@ -1068,16 +1089,25 @@ namespace DungeonRun
 
 
 
+
+
+
+            /*
+
             //dev/editor/cheat interactions
 
             #region Dungeon Exit Obj
 
-            else if (Obj.type == ObjType.Dungeon_Exit)
+            else if (Obj.type == InteractiveType.Dungeon_Exit)
             {   //movement has already been stopped, hero is interacting
                 ExitDungeon();
             }
 
             #endregion
+
+            */
+
+
 
 
 
@@ -1091,15 +1121,15 @@ namespace DungeonRun
 
                 #region Carry-able Objects
 
-                if (Obj.group == ObjGroup.Enemy)
+                if (Obj.group == InteractiveGroup.Enemy)
                 {   //deny link ability to pickup some enemies
-                    if (Obj.type == ObjType.Wor_SeekerExploder) { return; }
+                    if (Obj.type == InteractiveType.Enemy_SeekerExploder) { return; }
                     Pickup(Obj);
                 }
 
-                if (Obj.type == ObjType.Dungeon_Pot
-                    || Obj.type == ObjType.Wor_Pot
-                    || Obj.type == ObjType.Wor_Bush)
+                if (Obj.type == InteractiveType.Dungeon_Pot
+                    || Obj.type == InteractiveType.Pot
+                    || Obj.type == InteractiveType.Bush)
                 {
                     Pickup(Obj);
                 }
@@ -1113,9 +1143,9 @@ namespace DungeonRun
                 if (Obj.compMove.moveable & Obj.compMove.grounded)
                 {
                     //some objects cannot be pushed
-                    if (Obj.type == ObjType.Dungeon_Pot
-                        || Obj.type == ObjType.Wor_Pot
-                        || Obj.type == ObjType.Dungeon_ChestKey)
+                    if (Obj.type == InteractiveType.Dungeon_Pot
+                        || Obj.type == InteractiveType.Pot
+                        || Obj.type == InteractiveType.ChestKey)
                     { return; }
                     //all other objects can be pushed
                     Grab(Obj);

@@ -20,7 +20,7 @@ namespace DungeonRun
         public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.79f; //the version of the game
-        public static BootRoutine bootRoutine = BootRoutine.Editor_Room; //boot to game or editor?
+        public static BootRoutine bootRoutine = BootRoutine.Editor_Level; //boot to game or editor?
 
         //dev/editor flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
@@ -477,7 +477,7 @@ namespace DungeonRun
 
 
 
-    #region levelset, level, room, XML and door data
+    #region levelset, level, room, and door data
 
     public static class LevelSet
     {
@@ -541,27 +541,46 @@ namespace DungeonRun
         public DoorType type = DoorType.Open;
     }
 
+    #endregion
 
 
+
+
+    #region XML RoomData / SaveData Classes
 
     public class RoomXmlData
     {
         public RoomID type = RoomID.Row;
         //needs: wind direction, wind intensity, wind frequency
-        public List<ObjXmlData> objs = new List<ObjXmlData>();
+        public List<IndObjXmlData> inds = new List<IndObjXmlData>();
+        public List<IntObjXmlData> ints = new List<IntObjXmlData>();
     }
-
-    public class ObjXmlData
+    public class IndObjXmlData
     {   //placed relative to room's XY pos
-        public ObjType type = ObjType.Dungeon_WallStraight;
+        public IndestructibleType type = IndestructibleType.Dungeon_BlockDark;
+        public Direction direction = Direction.Down;
+        public float posX = 0;
+        public float posY = 0;
+    }
+    public class IntObjXmlData
+    {   //placed relative to room's XY pos
+        public InteractiveType type = InteractiveType.Barrel;
         public Direction direction = Direction.Down;
         public float posX = 0;
         public float posY = 0;
     }
 
-
-
     #endregion
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1222,7 +1241,7 @@ namespace DungeonRun
 
     public class Dialog
     {
-        public ObjType speaker; //who is speaking
+        public InteractiveType speaker; //who is speaking
         public String title;
         public String text;
         
@@ -1231,7 +1250,7 @@ namespace DungeonRun
         public Boolean fadeForegroundIn;
 
         public Dialog(
-            ObjType Speaker, 
+            InteractiveType Speaker, 
             String Title, 
             String Text, 
             SoundEffectInstance Sfx, 
@@ -1282,27 +1301,6 @@ namespace DungeonRun
         public static int actorIndex;           //used to iterate thru the pool
         public static int actorCounter = 0;
 
-        //obj pool handles room objects, from dungeon & main sheet
-        public static int roomObjCount = 3000;
-        public static List<GameObject> roomObjPool = new List<GameObject>();
-        public static int roomObjIndex;
-        public static int roomObjCounter = 0;
-
-
-        //floor pool - dungeon sheet only
-        public static int floorCount = 500;
-        public static List<ComponentSprite> floorPool = new List<ComponentSprite>();
-        public static int floorIndex;
-        public static int floorCounter = 0;
-
-        //lines (for overworld map mostly)
-        public static int lineCount = 25;
-        public static List<Line> linePool = new List<Line>();
-        public static int lineCounter = 0;
-
-
-
-
         //projectile pool
         public static int projectileCount = 300;
         public static List<Projectile> projectilePool = new List<Projectile>();
@@ -1315,18 +1313,39 @@ namespace DungeonRun
         public static int pickupIndex;
         public static int pickupCounter = 0;
 
-
-
-
-
-
-
-
         //particle pool
         public static int particleCount = 750;
         public static List<Particle> particlePool = new List<Particle>();
         public static int particleIndex;
         public static int particleCounter = 0;
+
+        //floor pool - dungeon sheet only
+        public static int floorCount = 500;
+        public static List<ComponentSprite> floorPool = new List<ComponentSprite>();
+        public static int floorIndex;
+        public static int floorCounter = 0;
+
+        //lines (for overworld map mostly)
+        public static int lineCount = 25;
+        public static List<Line> linePool = new List<Line>();
+        public static int lineCounter = 0;
+
+        //indestructible objs
+        public static int indObjCount = 200;
+        public static List<IndestructibleObject> indObjPool = new List<IndestructibleObject>();
+        public static int indObjIndex;
+        public static int indObjCounter = 0;
+
+        //interactive objs
+        public static int intObjCount = 3000;
+        public static List<InteractiveObject> intObjPool = new List<InteractiveObject>();
+        public static int intObjIndex;
+        public static int intObjCounter = 0;
+
+
+
+
+
 
 
 
@@ -1334,7 +1353,6 @@ namespace DungeonRun
 
         public static int activeActor = 1; //tracks the current actor being handled by AI
         public static Actor hero; //points to actorPool[0]
-        public static GameObject herosPet; //points to roomObj[1]
 
         public static int collisionsCount = 0; //tracks collisions per frame
         public static int interactionsCount = 0; //tracks interactions per frame
@@ -1342,6 +1360,14 @@ namespace DungeonRun
 
         public static void Initialize()
         {
+            for (indObjCounter = 0; indObjCounter < indObjCount; indObjCounter++)
+            { indObjPool.Add(new IndestructibleObject()); }
+            indObjIndex = 1;
+
+            for (intObjCounter = 0; intObjCounter < intObjCount; intObjCounter++)
+            { intObjPool.Add(new InteractiveObject()); }
+            intObjIndex = 1;
+
             //actor pool
             for (actorCounter = 0; actorCounter < actorCount; actorCounter++)
             {
@@ -1351,11 +1377,6 @@ namespace DungeonRun
                 actorPool[actorCounter].active = false;
             }
             actorIndex = 1;
-
-            //room obj pool
-            for (roomObjCounter = 0; roomObjCounter < roomObjCount; roomObjCounter++)
-            { roomObjPool.Add(new GameObject()); }
-            roomObjIndex = 1;
 
             //particle pool
             for (particleCounter = 0; particleCounter < particleCount; particleCounter++)
@@ -1390,14 +1411,24 @@ namespace DungeonRun
 
 
 
+
+            
+            
+
+
+
+
+
+
+
+
+
             //reset all pools
             Functions_Pool.Reset();
-            //create easy to remember reference for hero & pet
+            //create easy to remember reference for hero
             hero = actorPool[0];
-            herosPet = roomObjPool[0];
             //setup hero and pet
             Functions_Actor.SetType(hero, ActorType.Hero);
-            Functions_GameObject.SetType(herosPet, ObjType.Pet_Dog);
         }
 
     }
@@ -1406,6 +1437,76 @@ namespace DungeonRun
 
 
 
+
+
+
+
+    #region Indestructible RoomObject
+
+    public class IndestructibleObject
+    {
+        public ComponentSprite compSprite;
+        public ComponentAnimation compAnim = new ComponentAnimation();
+        public ComponentCollision compCollision = new ComponentCollision();
+        //public ComponentSoundFX sfx = new ComponentSoundFX(); //always metallic tap hit sfx
+
+        public IndestructibleGroup group = IndestructibleGroup.Object;
+        public IndestructibleType type = IndestructibleType.Dungeon_BlockDark;
+        public Direction direction = Direction.Down; //direction obj/sprite is facing
+
+        public Boolean active = true; //does object draw, update?
+        public Boolean interacts = false; //obj has update behavior?
+        public int interactiveFrame = 0; //on this frame obj interacts
+        public int counter = 0; //generic counter for intFrame
+
+        public Boolean selfCleans = false; //some objs remove themselves upon overlap
+
+        public IndestructibleObject()
+        {   //initialize to default value - data is changed later
+            compSprite = new ComponentSprite(Assets.CommonObjsSheet,
+                new Vector2(50, 50), new Byte4(0, 0, 0, 0), new Point(16, 16));
+            Functions_IndestructibleObjs.SetType(this, type);
+        }
+    }
+
+    #endregion
+
+
+    #region Interactive RoomObject
+
+    public class InteractiveObject
+    {
+        public InteractiveType type = InteractiveType.Barrel;
+        public InteractiveGroup group = InteractiveGroup.Object;
+        public Direction direction = Direction.Down; //direction obj/sprite is facing
+
+        public ComponentSprite compSprite;
+        public ComponentAnimation compAnim = new ComponentAnimation();
+        public ComponentMovement compMove = new ComponentMovement();
+        public ComponentCollision compCollision = new ComponentCollision();
+        public ComponentSoundFX sfx = new ComponentSoundFX();
+
+        public Boolean active = true; //does object draw, update?
+        public Boolean canBeSaved = false; //can this obj be saved to RoomXMLData?
+
+        public Byte counter; //generic counter
+        public Byte countTotal; //generic total
+        public Boolean interacts = false; //obj has behavior in intObj.Update()
+        public int interactiveFrame = 0; //the frame interact behavior is called on
+
+        public Boolean underWater = false; //is obj underwater
+        public Boolean inWater = false; //is obj partially submerged in water? ex: swimming
+        public Boolean selfCleans = false; //some objs remove themselves upon overlap
+
+        public InteractiveObject()
+        {   //initialize to default value - data is changed later
+            compSprite = new ComponentSprite(Assets.CommonObjsSheet,
+                new Vector2(50, 50), new Byte4(0, 0, 0, 0), new Point(16, 16));
+            Functions_InteractiveObjs.SetType(this, type);
+        }
+    }
+
+    #endregion
 
 
     #region Actor 
@@ -1503,46 +1604,6 @@ namespace DungeonRun
     #endregion
 
 
-    #region GameObject
-
-    public class GameObject
-    {
-        public ComponentSprite compSprite;
-        public ComponentAnimation compAnim = new ComponentAnimation();
-        public ComponentMovement compMove = new ComponentMovement();
-        public ComponentCollision compCollision = new ComponentCollision();
-        public ComponentSoundFX sfx = new ComponentSoundFX();
-
-        public ObjGroup group = ObjGroup.Object;
-        public ObjType type = ObjType.Dungeon_WallStraight;
-        public Direction direction = Direction.Down; //direction obj/sprite is facing
-
-        public Boolean active = true; //does object draw, update?
-        public Boolean canBeSaved = false; //can this obj be saved to RoomXMLData?
-        public Byte lifetime; //how many frames this object exists for, 0 = forever/ignore
-        public Byte lifeCounter; //counts up to lifetime value
-
-        public Boolean getsAI = false; //obj goes to Functions_AI.HandleObj()
-        public int interactiveFrame = 0; 
-        //0 = always interactive, >0 = just that one # frame of interaction in ai.handleObj()
-
-        public Boolean underWater = false; //is obj underwater
-        public Boolean inWater = false; //is obj partially submerged in water? ex: swimming
-        public Boolean selfCleans = false; //some objs remove themselves upon overlap
-
-
-        public GameObject()
-        {   //initialize to default value - data is changed later
-            compSprite = new ComponentSprite(Assets.CommonObjsSheet, 
-                new Vector2(50, 50), new Byte4(0, 0, 0, 0), new Point(16, 16));
-            Functions_GameObject.SetType(this, type);
-        }
-
-    }
-
-    #endregion
-
-
     #region Particle, Pickup
 
     public class Particle
@@ -1608,10 +1669,9 @@ namespace DungeonRun
         public Actor caster = Pool.hero; //default caster to hero
 
         public Actor hitActor = null; //null means no hit
-        public GameObject hitObj = null; //null means no hit
+        public InteractiveObject hitObj = null; //null means no hit
         public float hitOffsetX = 0; //hit obj/act's newPost - pro.spritePos
         public float hitOffsetY = 0; //used to track pro onto obj/actor
-
 
         public ProjectileType type = ProjectileType.Arrow;
         public Direction direction = Direction.Down; //direction sprite is facing
@@ -1636,71 +1696,7 @@ namespace DungeonRun
 
 
 
-    #region Indestructible RoomObject
 
-    public class IndestructibleObject
-    {
-        public ComponentSprite compSprite;
-        public ComponentAnimation compAnim = new ComponentAnimation();
-        public ComponentCollision compCollision = new ComponentCollision();
-        //public ComponentSoundFX sfx = new ComponentSoundFX(); //always metallic tap hit sfx
-
-        public IndestructibleGroup group = IndestructibleGroup.Object;
-        public IndestructibleType type = IndestructibleType.Dungeon_BlockDark;
-        public Direction direction = Direction.Down; //direction obj/sprite is facing
-
-        public Boolean active = true; //does object draw, update?
-        public Boolean canBeSaved = false; //can this obj be saved to RoomXMLData?
-
-        public Boolean interacts = false; //obj has update behavior?
-        public int interactiveFrame = 0; //on this frame obj interacts
-
-        public IndestructibleObject()
-        {   //initialize to default value - data is changed later
-            compSprite = new ComponentSprite(Assets.CommonObjsSheet,
-                new Vector2(50, 50), new Byte4(0, 0, 0, 0), new Point(16, 16));
-            Functions_IndestructibleObjs.SetType(this, type);
-        }
-    }
-
-    #endregion
-
-
-    #region Interactive RoomObject
-
-    public class InteractiveObject
-    {
-        public InteractiveType type = InteractiveType.Barrel;
-        public InteractiveGroup group = InteractiveGroup.Object;
-        public Direction direction = Direction.Down; //direction obj/sprite is facing
-
-        public ComponentSprite compSprite;
-        public ComponentAnimation compAnim = new ComponentAnimation();
-        public ComponentMovement compMove = new ComponentMovement();
-        public ComponentCollision compCollision = new ComponentCollision();
-        public ComponentSoundFX sfx = new ComponentSoundFX();
-        
-        public Boolean active = true; //does object draw, update?
-        public Boolean canBeSaved = false; //can this obj be saved to RoomXMLData?
-
-        public Byte counter; //generic counter
-        public Byte countTotal; //generic total
-        public Boolean interacts = false; //obj has behavior in intObj.Update()
-        public int interactiveFrame = 0; //the frame interact behavior is called on
-
-        public Boolean underWater = false; //is obj underwater
-        public Boolean inWater = false; //is obj partially submerged in water? ex: swimming
-        public Boolean selfCleans = false; //some objs remove themselves upon overlap
-
-        public InteractiveObject()
-        {   //initialize to default value - data is changed later
-            compSprite = new ComponentSprite(Assets.CommonObjsSheet,
-                new Vector2(50, 50), new Byte4(0, 0, 0, 0), new Point(16, 16));
-            Functions_InteractiveObjs.SetType(this, type);
-        }
-    }
-
-    #endregion
 
 
 

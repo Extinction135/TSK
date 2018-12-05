@@ -14,7 +14,6 @@ namespace DungeonRun
 			#region LavaIsland_MainEntrance
 
 			LavaIsland_MainEntrance.type = RoomID.LavaIsland_MainEntrance;
-			LavaIsland_MainEntrance.objs = new List<ObjXmlData>();
 			#endregion
 
 		}

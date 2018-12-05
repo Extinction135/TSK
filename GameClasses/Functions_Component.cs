@@ -17,7 +17,6 @@ namespace DungeonRun
         static int textWidth;
 
         public static void Align(Actor Actor) { Align(Actor.compMove, Actor.compSprite, Actor.compCollision); }
-        public static void Align(GameObject Obj) { Align(Obj.compMove, Obj.compSprite, Obj.compCollision); }
         public static void Align(Projectile Pro) { Align(Pro.compMove, Pro.compSprite, Pro.compCollision); }
         public static void Align(Particle Part)
         {
@@ -26,7 +25,8 @@ namespace DungeonRun
             Part.compSprite.position.Y = (int)Part.compMove.newPosition.Y;
             SetZdepth(Part.compSprite);
         }
-
+        public static void Align(IndestructibleObject Obj) { Align(Obj.compSprite, Obj.compCollision); }
+        public static void Align(InteractiveObject Obj) { Align(Obj.compMove, Obj.compSprite, Obj.compCollision); }
 
         public static void Align(ComponentMovement Move, ComponentSprite Sprite, ComponentCollision Coll)
         {   //aligns the collision component and sprite component to the move component's newPosition
@@ -35,6 +35,13 @@ namespace DungeonRun
             SetZdepth(Sprite);
             Coll.rec.X = (int)Move.newPosition.X + Coll.offsetX;
             Coll.rec.Y = (int)Move.newPosition.Y + Coll.offsetY;
+        }
+
+        public static void Align(ComponentSprite Sprite, ComponentCollision Coll)
+        {   //aligns the collision component to sprite component
+            SetZdepth(Sprite);
+            Coll.rec.X = (int)Sprite.position.X + Coll.offsetX;
+            Coll.rec.Y = (int)Sprite.position.Y + Coll.offsetY;
         }
 
         public static void Align(ComponentAmountDisplay Display, ComponentSprite Sprite)

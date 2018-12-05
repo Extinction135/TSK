@@ -20,19 +20,58 @@ namespace DungeonRun
         static Boolean collisionXY;
 
 
-        public static Boolean CheckRoomObjs(ComponentCollision CompColl)
-        { 
-            for (i = 0; i < Pool.roomObjCount; i++)
+
+
+
+
+        //check against indestructible objects
+        public static Boolean CheckIndestructibles(ComponentCollision CompColl)
+        {
+            for (i = 0; i < Pool.indObjCount; i++)
             {   //target must be active AND blocking
-                if (Pool.roomObjPool[i].active && Pool.roomObjPool[i].compCollision.blocking) 
+                if (Pool.indObjPool[i].active && Pool.indObjPool[i].compCollision.blocking)
                 {   //count, check for overlap, return true on FIRST collision
                     Pool.collisionsCount++;
-                    if (CompColl.rec.Intersects(Pool.roomObjPool[i].compCollision.rec))
-                    { if (CompColl != Pool.roomObjPool[i].compCollision) { return true; } }
+                    if (CompColl.rec.Intersects(Pool.indObjPool[i].compCollision.rec))
+                    { if (CompColl != Pool.indObjPool[i].compCollision) { return true; } }
                 }
             }
             return false;
         }
+
+
+
+        //check against interactive objects
+        public static Boolean CheckInteractives(ComponentCollision CompColl)
+        {
+            for (i = 0; i < Pool.intObjCount; i++)
+            {   //target must be active AND blocking
+                if (Pool.intObjPool[i].active && Pool.intObjPool[i].compCollision.blocking)
+                {   //count, check for overlap, return true on FIRST collision
+                    Pool.collisionsCount++;
+                    if (CompColl.rec.Intersects(Pool.intObjPool[i].compCollision.rec))
+                    { if (CompColl != Pool.intObjPool[i].compCollision) { return true; } }
+                }
+            }
+            return false;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         public static Boolean CheckEnemies(ComponentCollision CompColl)
         {   //we skip hero (0) and hero's pet (1)
@@ -59,13 +98,17 @@ namespace DungeonRun
 
         public static void CheckCollisions(
             ComponentMovement CompMove, ComponentCollision CompColl,
-            Boolean checkRoomObjs, Boolean checkEnemies, Boolean checkHero)
+            Boolean checkIndestructibles,
+            Boolean checkInteractives,
+            Boolean checkEnemies, 
+            Boolean checkHero)
         {
             collisionXY = false; //project on both X and Y axis
             CompColl.rec.X = (int)CompMove.newPosition.X + CompColl.offsetX;
             CompColl.rec.Y = (int)CompMove.newPosition.Y + CompColl.offsetY;
             //check blocking collisions based on parameters
-            if (checkRoomObjs) { if (CheckRoomObjs(CompColl)) { collisionXY = true; } }
+            if (checkIndestructibles) { if (CheckIndestructibles(CompColl)) { collisionXY = true; } }
+            if (checkInteractives) { if (CheckInteractives(CompColl)) { collisionXY = true; } }
             if (checkEnemies) { if (CheckEnemies(CompColl)) { collisionXY = true; } }
             if (checkHero) { if (CheckHero(CompColl)) { collisionXY = true; } }
             //unproject on both X and Y axis
@@ -77,14 +120,16 @@ namespace DungeonRun
                 collisionX = false; collisionY = false;
                 //project, check collisions, unproject - X axis
                 CompColl.rec.X = (int)CompMove.newPosition.X + CompColl.offsetX;
-                if (checkRoomObjs) { if (CheckRoomObjs(CompColl)) { collisionX = true; } }
+                if (checkIndestructibles) { if (CheckIndestructibles(CompColl)) { collisionX = true; } }
+                if (checkInteractives) { if (CheckInteractives(CompColl)) { collisionX = true; } }
                 if (checkEnemies) { if (CheckEnemies(CompColl)) { collisionX = true; } }
                 if (checkHero) { if (CheckHero(CompColl)) { collisionX = true; } }
                 CompColl.rec.X = (int)CompMove.position.X + CompColl.offsetX;
 
                 //project, check collisions, unproject - Y axis
                 CompColl.rec.Y = (int)CompMove.newPosition.Y + CompColl.offsetY;
-                if (checkRoomObjs) { if (CheckRoomObjs(CompColl)) { collisionY = true; } }
+                if (checkIndestructibles) { if (CheckIndestructibles(CompColl)) { collisionY = true; } }
+                if (checkInteractives) { if (CheckInteractives(CompColl)) { collisionY = true; } }
                 if (checkEnemies) { if (CheckEnemies(CompColl)) { collisionY = true; } }
                 if (checkHero) { if (CheckHero(CompColl)) { collisionY = true; } }
                 CompColl.rec.Y = (int)CompMove.position.Y + CompColl.offsetY;

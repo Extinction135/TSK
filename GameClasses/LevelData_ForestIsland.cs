@@ -14,7 +14,6 @@ namespace DungeonRun
 			#region ForestIsland_MainEntrance
 
 			ForestIsland_MainEntrance.type = RoomID.ForestIsland_MainEntrance;
-			ForestIsland_MainEntrance.objs = new List<ObjXmlData>();
 			#endregion
 
 		}
