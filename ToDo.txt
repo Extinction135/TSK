@@ -65,25 +65,15 @@ Today:
 
 
 
-Editor++
-
-improved editor to handle moving between interactive objects
-and actors, via widget display sets. improved editor shortcut
-keys to be f12 to iterate widget display sets. so much more is
-available for selection upfront, reducing dev time considerably.
-
-
-
-
-
-display set 2: indestructible objects (need widget def for this)
--boat 1
--boat 2
--forest objs
--mountain objs
--swamp objs
--coliseum objs
--?
+Indestructible Object Widgets
+ 
+we are adding the first ind widget. get this working with the
+widget transitions in editor. then we grow it. working.
+added 6 ind widgets, with temp dark block ind object.
+selection working, but we need to rewrite how objs are
+added/managed in editor before we can add indObjs to the
+indestructible pool and actually start testing that system.
+moving on..
 
 
 
@@ -94,27 +84,87 @@ display set 2: indestructible objects (need widget def for this)
 
 
 
+when we place indObjs, we are placing the compSprite,
+then we update the collision rec, with offsets, to the
+compSprite. this should be an Align() that only accepts
+the INDestructible obj type. PLS.
 
 
 
 
-then we need to add indestructible objs to editor, so we can
-test collisions against them. 
+
+we are running into a problem with selecting indestructible
+objs - the obj widget assumes all objs are of an interactive type.
+so now, obj tools needs to expand to handle adding, moving, etc..
+for interactive objs, indestructible objs, and actors.
+
+we can accoplish this using enum value for each:
+current intObj, current indObj, currentActor
+-then we only need to display the sprite and animation on
+the widget, no longer using an interactive obj to model
+the visual state at all... (how are we doing this with
+actors? likely brittle)
+
+
+we need to rewrite how objs are added/managed in editor 
+before we can add indObjs to the indestructible pool and 
+actually start testing that system.
+
+
+
+
+
+
+Testing Indestructible Objs
+
+test and rebuild collision/interaction systems against them. 
+
+step 1: setup collisions
+	ints vs inds
+	act vs inds
+	pros vs inds
+	acts vs hero
+	hero vs acts
+	
+step 2: setup interactions
+	pros vs ints
+	pros vs acts
+	ints vs ints
+	ints vs acts
+	picks vs hero
+	hero interaction rec vs ints
+	hero interaction rec vs inds (entrances mostly)
+
+	
+	
+	
+UPW++
+relink uwp to widget int and inds classes.
+test that this builds to level editor like Dx.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 
 **please add a button over dungeon widgets to iterate it's
 textures so we can see diff dungeon sheets
-
-
-
-
-
-
-
-
-
 
 
 
@@ -172,21 +222,7 @@ ALL dungeon entrances, exits, coliseum entrance, etc...
 	
 
 
-step 1: setup collisions
-	ints vs inds
-	act vs inds
-	pros vs inds
-	acts vs hero
-	hero vs acts
-	
-step 2: setup interactions
-	pros vs ints
-	pros vs acts
-	ints vs ints
-	ints vs acts
-	picks vs hero
-	hero interaction rec vs ints
-	hero interaction rec vs inds (entrances mostly)
+
 	
 step 3: fix editor and xml savedata, then cs pipeline	
 	

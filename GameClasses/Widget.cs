@@ -42,6 +42,14 @@ namespace DungeonRun
         public static WidgetObjects_Dev WO_Dev = new WidgetObjects_Dev();
         public static WidgetObjects_Dungeon WO_Dungeon = new WidgetObjects_Dungeon();
 
+        //indestructible object widgets
+        public static WidgetIndestructibleObjs_BoatA WD_BoatA = new WidgetIndestructibleObjs_BoatA();
+        public static WidgetIndestructibleObjs_BoatB WD_BoatB = new WidgetIndestructibleObjs_BoatB();
+        public static WidgetIndestructibleObjs_Forest WD_Forest = new WidgetIndestructibleObjs_Forest();
+        public static WidgetIndestructibleObjs_Mountain WD_Mountain = new WidgetIndestructibleObjs_Mountain();
+        public static WidgetIndestructibleObjs_Swamp WD_Swamp = new WidgetIndestructibleObjs_Swamp();
+        public static WidgetIndestructibleObjs_Coliseum WD_Coliseum = new WidgetIndestructibleObjs_Coliseum();
+
         //actor widgets
         public static WidgetActors_Forest WA_Forest = new WidgetActors_Forest();
         public static WidgetActors_Mountain WA_Mountain = new WidgetActors_Mountain();

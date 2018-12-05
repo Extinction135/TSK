@@ -294,17 +294,20 @@
     <Compile Include="..\..\GameClasses\WidgetForSale.cs">
       <Link>Classes\WidgetForSale.cs</Link>
     </Compile>
+    <Compile Include="..\..\GameClasses\WidgetIndObjs.cs">
+      <Link>Classes\WidgetIndObjs.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\WidgetInfo.cs">
       <Link>Classes\WidgetInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\WidgetIntObjs.cs">
+      <Link>Classes\WidgetIntObjs.cs</Link>
     </Compile>
     <Compile Include="..\..\GameClasses\WidgetInventory.cs">
       <Link>Classes\WidgetInventory.cs</Link>
     </Compile>
     <Compile Include="..\..\GameClasses\WidgetLoadout.cs">
       <Link>Classes\WidgetLoadout.cs</Link>
-    </Compile>
-    <Compile Include="..\..\GameClasses\WidgetObjects.cs">
-      <Link>Classes\WidgetObjects.cs</Link>
     </Compile>
     <Compile Include="..\..\GameClasses\WidgetObjectTools.cs">
       <Link>Classes\WidgetObjectTools.cs</Link>

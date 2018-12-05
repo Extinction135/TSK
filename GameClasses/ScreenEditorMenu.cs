@@ -113,6 +113,16 @@ namespace DungeonRun
                     CheckActList(Widgets.WA_Thievs);
                     CheckActList(Widgets.WA_Shadow);
                 }
+
+                if (Widgets.WD_BoatA.visible)
+                {
+                    CheckIndestructibleObjList(Widgets.WD_BoatA);
+                    CheckIndestructibleObjList(Widgets.WD_BoatB);
+                    CheckIndestructibleObjList(Widgets.WD_Forest);
+                    CheckIndestructibleObjList(Widgets.WD_Mountain);
+                    CheckIndestructibleObjList(Widgets.WD_Swamp);
+                    CheckIndestructibleObjList(Widgets.WD_Coliseum);
+                }
             }
 
             #endregion
@@ -262,6 +272,20 @@ namespace DungeonRun
                 Widgets.WA_Shadow.Update(); Widgets.WA_Shadow.Draw();
             }
 
+            //update/draw indestructible obj widgets
+            if (Widgets.WD_BoatA.visible)
+            {
+                Widgets.WD_BoatA.Update(); Widgets.WD_BoatA.Draw();
+                Widgets.WD_BoatB.Update(); Widgets.WD_BoatB.Draw();
+                Widgets.WD_Forest.Update(); Widgets.WD_Forest.Draw();
+                Widgets.WD_Mountain.Update(); Widgets.WD_Mountain.Draw();
+                Widgets.WD_Swamp.Update(); Widgets.WD_Swamp.Draw();
+                Widgets.WD_Coliseum.Update(); Widgets.WD_Coliseum.Draw();
+            }
+
+
+
+
             //draw tool widgets
             Widgets.RoomTools.Update();
             Widgets.RoomTools.Draw();
@@ -326,6 +350,13 @@ namespace DungeonRun
             Widgets.WA_Cloud.visible = false;
             Widgets.WA_Thievs.visible = false;
             Widgets.WA_Shadow.visible = false;
+            //set all indestructible obj widgets to false
+            Widgets.WD_BoatA.visible = false;
+            Widgets.WD_BoatB.visible = false;
+            Widgets.WD_Forest.visible = false;
+            Widgets.WD_Mountain.visible = false;
+            Widgets.WD_Swamp.visible = false;
+            Widgets.WD_Coliseum.visible = false;
         }
 
 
@@ -335,9 +366,21 @@ namespace DungeonRun
         {
 
             if(Widgets.WO_Environment.visible)
-            {   //from int objs to actors
+            {
+                //from int objs to ind objs
                 HideWidgets();
-                //show actor widgets
+                Widgets.WD_BoatA.visible = true;
+                Widgets.WD_BoatB.visible = true;
+                Widgets.WD_Forest.visible = true;
+                Widgets.WD_Mountain.visible = true;
+                Widgets.WD_Swamp.visible = true;
+                Widgets.WD_Coliseum.visible = true;
+                widgetDisplaySet_Btn.compText.text = "indestructble objs";
+            }
+            else if(Widgets.WD_BoatA.visible)
+            {
+                //from ind objs to actors
+                HideWidgets();
                 Widgets.WA_Forest.visible = true;
                 Widgets.WA_Mountain.visible = true;
                 Widgets.WA_Swamp.visible = true;
@@ -345,8 +388,8 @@ namespace DungeonRun
                 Widgets.WA_Cloud.visible = true;
                 Widgets.WA_Thievs.visible = true;
                 Widgets.WA_Shadow.visible = true;
+                widgetDisplaySet_Btn.compText.text = "actors";
             }
-
             else if(Widgets.WA_Forest.visible)
             {   //just reset to entry point for this codebranch
                 ResetWidgets();
@@ -408,10 +451,16 @@ namespace DungeonRun
 
 
 
-        public void CheckObjList(WidgetObject WO)
+        public void CheckObjList(WidgetIntObject WO)
         {
             if (WO.visible & WO.window.interior.rec.Contains(Input.cursorPos))
             { Widgets.ObjectTools.CheckObjList(WO.objList); }
+        }
+
+        public void CheckIndestructibleObjList(WidgetIndObject WD)
+        {
+            if (WD.visible & WD.window.interior.rec.Contains(Input.cursorPos))
+            { Widgets.ObjectTools.CheckObjList(WD.objList); }
         }
 
         public void CheckActList(WidgetActor WA)

@@ -14,13 +14,13 @@ using Microsoft.Xna.Framework.Media;
 namespace DungeonRun
 {
 
-    public static class Functions_WidgetObject
+    public static class Functions_WidgetIntObjs
     {
         static int i = 0;
         static int row = 0;
         static int counter = 0;
 
-        public static void PositionObjs(WidgetObject WO)
+        public static void PositionObjs(WidgetIntObject WO)
         {
             counter = 0;
             for (row = 0; row < 12; row++)
@@ -62,7 +62,7 @@ namespace DungeonRun
 
 
 
-    public class WidgetObject : Widget
+    public class WidgetIntObject : Widget
     {
         public List<InteractiveObject> objList;
         public Boolean visible = false;
@@ -118,7 +118,7 @@ namespace DungeonRun
 
     //interactive objects display set
 
-    public class WidgetObjects_Environment : WidgetObject
+    public class WidgetObjects_Environment : WidgetIntObject
     {
         public WidgetObjects_Environment()
         {   //1st left
@@ -204,17 +204,17 @@ namespace DungeonRun
             Functions_InteractiveObjs.SetType(objList[47], InteractiveType.Unknown);
 
             //position the objs relative to the window frame
-            Functions_WidgetObject.PositionObjs(this);
+            Functions_WidgetIntObjs.PositionObjs(this);
 
             //manually set tree recs
             objList[8].compCollision.rec.Height = 16 * 2;
             objList[9].compCollision.rec.Height = 16 * 2;
 
             //hide objs that trees overlap
-            Functions_WidgetObject.HideObj(objList[12]);
-            Functions_WidgetObject.HideObj(objList[13]);
-            Functions_WidgetObject.HideObj(objList[14]);
-            Functions_WidgetObject.HideObj(objList[15]);
+            Functions_WidgetIntObjs.HideObj(objList[12]);
+            Functions_WidgetIntObjs.HideObj(objList[13]);
+            Functions_WidgetIntObjs.HideObj(objList[14]);
+            Functions_WidgetIntObjs.HideObj(objList[15]);
 
             //reset update all zdepths
             for (i = 0; i < 4 * 12; i++)
@@ -226,7 +226,7 @@ namespace DungeonRun
     }
 
 
-    public class WidgetObjects_Water : WidgetObject
+    public class WidgetObjects_Water : WidgetIntObject
     {
         public WidgetObjects_Water()
         {   //2nd left
@@ -312,22 +312,22 @@ namespace DungeonRun
             Functions_InteractiveObjs.SetType(objList[47], InteractiveType.Unknown);
 
             //position the objs relative to the window frame
-            Functions_WidgetObject.PositionObjs(this);
+            Functions_WidgetIntObjs.PositionObjs(this);
 
-            Functions_WidgetObject.HideObj(objList[1]);
-            Functions_WidgetObject.HideObj(objList[4]);
-            Functions_WidgetObject.HideObj(objList[5]);
-            Functions_WidgetObject.HideObj(objList[6]);
+            Functions_WidgetIntObjs.HideObj(objList[1]);
+            Functions_WidgetIntObjs.HideObj(objList[4]);
+            Functions_WidgetIntObjs.HideObj(objList[5]);
+            Functions_WidgetIntObjs.HideObj(objList[6]);
 
-            Functions_WidgetObject.HideObj(objList[10]);
-            Functions_WidgetObject.HideObj(objList[13]);
-            Functions_WidgetObject.HideObj(objList[14]);
+            Functions_WidgetIntObjs.HideObj(objList[10]);
+            Functions_WidgetIntObjs.HideObj(objList[13]);
+            Functions_WidgetIntObjs.HideObj(objList[14]);
 
-            Functions_WidgetObject.HideObj(objList[17]);
+            Functions_WidgetIntObjs.HideObj(objList[17]);
 
-            Functions_WidgetObject.HideObj(objList[19]);
-            Functions_WidgetObject.HideObj(objList[22]);
-            Functions_WidgetObject.HideObj(objList[23]);
+            Functions_WidgetIntObjs.HideObj(objList[19]);
+            Functions_WidgetIntObjs.HideObj(objList[22]);
+            Functions_WidgetIntObjs.HideObj(objList[23]);
 
             //reset update all zdepths
             for (i = 0; i < 4 * 12; i++)
@@ -339,7 +339,7 @@ namespace DungeonRun
     }
 
 
-    public class WidgetObjects_House : WidgetObject
+    public class WidgetObjects_House : WidgetIntObject
     {
         public WidgetObjects_House()
         {   //3rd left
@@ -425,9 +425,9 @@ namespace DungeonRun
             Functions_InteractiveObjs.SetType(objList[47], InteractiveType.House_Sink);
 
             //position the objs relative to the window frame
-            Functions_WidgetObject.PositionObjs(this);
+            Functions_WidgetIntObjs.PositionObjs(this);
 
-            Functions_WidgetObject.HideObj(objList[11]);
+            Functions_WidgetIntObjs.HideObj(objList[11]);
 
             //reset update all zdepths
             for (i = 0; i < 4 * 12; i++)
@@ -439,7 +439,7 @@ namespace DungeonRun
     }
 
 
-    public class WidgetObjects_NPCS : WidgetObject
+    public class WidgetObjects_NPCS : WidgetIntObject
     {
         public WidgetObjects_NPCS()
         {   //4th left
@@ -525,7 +525,7 @@ namespace DungeonRun
             Functions_InteractiveObjs.SetType(objList[47], InteractiveType.Unknown);
 
             //position the objs relative to the window frame
-            Functions_WidgetObject.PositionObjs(this);
+            Functions_WidgetIntObjs.PositionObjs(this);
 
             //Functions_WidgetObject.HideObj(objList[5]);
 
@@ -539,7 +539,7 @@ namespace DungeonRun
     }
 
 
-    public class WidgetObjects_Mountain : WidgetObject
+    public class WidgetObjects_Mountain : WidgetIntObject
     {
         public WidgetObjects_Mountain()
         {   //4th left
@@ -625,24 +625,24 @@ namespace DungeonRun
             Functions_InteractiveObjs.SetType(objList[47], InteractiveType.Unknown);
 
             //position the objs relative to the window frame
-            Functions_WidgetObject.PositionObjs(this);
+            Functions_WidgetIntObjs.PositionObjs(this);
 
-            Functions_WidgetObject.HideObj(objList[1]);
-            Functions_WidgetObject.HideObj(objList[2]);
-            Functions_WidgetObject.HideObj(objList[3]);
+            Functions_WidgetIntObjs.HideObj(objList[1]);
+            Functions_WidgetIntObjs.HideObj(objList[2]);
+            Functions_WidgetIntObjs.HideObj(objList[3]);
 
-            Functions_WidgetObject.HideObj(objList[5]);
-            Functions_WidgetObject.HideObj(objList[6]);
-            Functions_WidgetObject.HideObj(objList[7]);
+            Functions_WidgetIntObjs.HideObj(objList[5]);
+            Functions_WidgetIntObjs.HideObj(objList[6]);
+            Functions_WidgetIntObjs.HideObj(objList[7]);
 
-            Functions_WidgetObject.HideObj(objList[8]);
-            Functions_WidgetObject.HideObj(objList[9]);
-            Functions_WidgetObject.HideObj(objList[10]);
-            Functions_WidgetObject.HideObj(objList[11]);
+            Functions_WidgetIntObjs.HideObj(objList[8]);
+            Functions_WidgetIntObjs.HideObj(objList[9]);
+            Functions_WidgetIntObjs.HideObj(objList[10]);
+            Functions_WidgetIntObjs.HideObj(objList[11]);
 
-            Functions_WidgetObject.HideObj(objList[13]);
-            Functions_WidgetObject.HideObj(objList[14]);
-            Functions_WidgetObject.HideObj(objList[15]);
+            Functions_WidgetIntObjs.HideObj(objList[13]);
+            Functions_WidgetIntObjs.HideObj(objList[14]);
+            Functions_WidgetIntObjs.HideObj(objList[15]);
 
             //reset update all zdepths
             for (i = 0; i < 4 * 12; i++)
@@ -654,7 +654,7 @@ namespace DungeonRun
     }
 
 
-    public class WidgetObjects_Dev : WidgetObject
+    public class WidgetObjects_Dev : WidgetIntObject
     {
         public WidgetObjects_Dev()
         {   //4th left
@@ -740,7 +740,7 @@ namespace DungeonRun
             Functions_InteractiveObjs.SetType(objList[47], InteractiveType.Unknown);
 
             //position the objs relative to the window frame
-            Functions_WidgetObject.PositionObjs(this);
+            Functions_WidgetIntObjs.PositionObjs(this);
 
             //Functions_WidgetObject.HideObj(objList[5]);
 
@@ -755,7 +755,7 @@ namespace DungeonRun
 
     //NOTE: we can update dungeon widget object's texture to see diff dungeons
 
-    public class WidgetObjects_Dungeon : WidgetObject
+    public class WidgetObjects_Dungeon : WidgetIntObject
     {
         public WidgetObjects_Dungeon()
         {   //far right
@@ -841,7 +841,7 @@ namespace DungeonRun
             Functions_InteractiveObjs.SetType(objList[47], InteractiveType.Dungeon_Map);
 
             //position the objs relative to the window frame
-            Functions_WidgetObject.PositionObjs(this);
+            Functions_WidgetIntObjs.PositionObjs(this);
             
 
             //reset update all zdepths

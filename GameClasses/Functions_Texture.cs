@@ -41,8 +41,8 @@ namespace DungeonRun
 
 
 
-        //this method should be used to update the dungeon objects widget later
-        public static void SetWOTexture(WidgetObject WO)
+        //this method can be used to update the dungeon objects widget
+        public static void SetWOTexture(WidgetIntObject WO)
         {   //12 rows, with 4 objs per row
             for (i = 0; i < 12 * 4; i++)
             {
@@ -54,10 +54,5 @@ namespace DungeonRun
                 WO.objList[i].compCollision.rec.Y = (int)WO.objList[i].compSprite.position.Y - 8;
             }
         }
-
-
-
-
-
     }
 }

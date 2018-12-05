@@ -723,6 +723,10 @@ namespace DungeonRun
             GetActiveObjInfo();
         }
 
+
+
+
+
         public void CheckObjList(List<InteractiveObject> objList)
         {   //does any obj on the widget's objList contain the mouse position?
             for (int i = 0; i < objList.Count; i++)
@@ -738,6 +742,36 @@ namespace DungeonRun
 
                     //set a state to tell objtools to create obj
                     objMode = true;
+                }
+            }
+        }
+
+        public void CheckObjList(List<IndestructibleObject> objList)
+        {   //does any obj on the widget's objList contain the mouse position?
+            for (int i = 0; i < objList.Count; i++)
+            {   //if there is a collision, set the active object to the object clicked on
+                if (objList[i].compCollision.rec.Contains(Input.cursorPos))
+                {
+                    //set activeObj, update selection box scale + position
+
+                    /*
+                    //we cant set the indestructible object to the active obj
+                    //simply because the active obj is an interactive obj, not
+                    //an indestructible one
+                    activeObj = objList[i];
+
+                    selectionBoxObj.position = activeObj.compSprite.position;
+                    selectionBoxObj.scale = 2.0f;
+                    GetActiveObjInfo();
+                    if (TopDebugMenu.objToolState == ObjToolState.RotateObj) { RotateActiveObj(); }
+
+                    //set a state to tell objtools to create obj
+                    objMode = true;
+
+                    */
+
+                    Debug.WriteLine("indObj type selected: " + objList[i].type);
+
                 }
             }
         }
