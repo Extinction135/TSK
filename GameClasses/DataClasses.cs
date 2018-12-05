@@ -401,7 +401,6 @@ namespace DungeonRun
             enemyWeapon = MenuItemType.WeaponFang;
         }
 
-
     }
 
 
@@ -478,7 +477,7 @@ namespace DungeonRun
 
 
 
-    #region level data, room data, door data
+    #region levelset, level, room, XML and door data
 
     public static class LevelSet
     {
@@ -493,7 +492,6 @@ namespace DungeonRun
         public static Vector2 spawnPos_Dungeon = new Vector2();
         //^ entirely based on connecting doors and exit door in dungeon
 
-
         static LevelSet()
         {
             field = new Level();
@@ -503,7 +501,7 @@ namespace DungeonRun
     }
 
     public class Level
-    {
+    {   //a field is a level with one room, a dungeon is a level with many rooms
         public LevelID ID = LevelID.SkullIsland_Colliseum;
         public List<Room> rooms = new List<Room>();
         public Room currentRoom; //points to one in list above
@@ -515,11 +513,8 @@ namespace DungeonRun
         public int dungeonTrack = 0; //what music plays
     }
 
-
-
-
     public class Room
-    {
+    {   //a room can be big (field) or small (in dungeon)
         public Rectangle rec = new Rectangle(0, 0, 0, 0);
         public Boolean visited = false;
         public Byte2 size = new Byte2(0, 0); //in 16 pixel tiles
@@ -539,7 +534,7 @@ namespace DungeonRun
     }
 
     public class Door
-    {
+    {   //this is not a door gameObj, but a door data obj (never seen)
         public Rectangle rec = new Rectangle(0, 0, 16, 16);
         public Boolean visited = false;
         public Door(Point Pos) { rec.X = Pos.X; rec.Y = Pos.Y; }
@@ -552,6 +547,7 @@ namespace DungeonRun
     public class RoomXmlData
     {
         public RoomID type = RoomID.Row;
+        //needs: wind direction, wind intensity, wind frequency
         public List<ObjXmlData> objs = new List<ObjXmlData>();
     }
 
@@ -611,10 +607,6 @@ namespace DungeonRun
         public static Vector3 translateBody;
     }
 
-    
-
-    
-
     //used to contain the global inputs for player1, 2
     public static class Input
     {
@@ -660,10 +652,6 @@ namespace DungeonRun
             cursorColl.blocking = false;
         }
     }
-
-
-
-
 
     public static class WaterMark
     {
@@ -1093,8 +1081,6 @@ namespace DungeonRun
 
     #region Instanced Classes
 
-
-
     //models player input, used for player 1 and 2
     public class GameInput
     {   //direction values
@@ -1185,17 +1171,6 @@ namespace DungeonRun
         
         public AnimationGroup climbing;
     }
-
-
-
-
-    
-
-
-
-
-
-
 
     public class Scroll
     {
@@ -1430,7 +1405,10 @@ namespace DungeonRun
     #endregion
 
 
-    #region Actor, GameObject, Particle, Pickup
+
+
+
+    #region Actor 
 
     public class Actor
     {
@@ -1491,7 +1469,6 @@ namespace DungeonRun
         public Boolean underwaterEnemy = false;
 
 
-
         public Actor()
         {
             //setup sprite component
@@ -1520,7 +1497,13 @@ namespace DungeonRun
             Functions_Movement.Teleport(compMove, 
                 compSprite.position.X, compSprite.position.Y);
         }
+
     }
+
+    #endregion
+
+
+    #region GameObject
 
     public class GameObject
     {
@@ -1545,11 +1528,7 @@ namespace DungeonRun
 
         public Boolean underWater = false; //is obj underwater
         public Boolean inWater = false; //is obj partially submerged in water? ex: swimming
-
-
         public Boolean selfCleans = false; //some objs remove themselves upon overlap
-
-
 
 
         public GameObject()
@@ -1558,9 +1537,13 @@ namespace DungeonRun
                 new Vector2(50, 50), new Byte4(0, 0, 0, 0), new Point(16, 16));
             Functions_GameObject.SetType(this, type);
         }
+
     }
 
-    
+    #endregion
+
+
+    #region Particle, Pickup
 
     public class Particle
     {
@@ -1606,7 +1589,6 @@ namespace DungeonRun
             Functions_Pickup.SetType(this, type);
         }
     }
-
 
     #endregion
 
@@ -1655,112 +1637,6 @@ namespace DungeonRun
 
 
 
-
-
-
-    #region UI Classes
-
-
-    public class MenuItem
-    {
-        public ComponentSprite compSprite;
-        public ComponentAnimation compAnim = new ComponentAnimation();
-        public MenuItemType type;
-        public String name = "";
-        public String description = "";
-        public Byte price = 0;
-        //the cardinal neighbors this menuItem links with
-        public MenuItem neighborUp;
-        public MenuItem neighborDown;
-        public MenuItem neighborLeft;
-        public MenuItem neighborRight;
-        public int id; //menuItems go on a list
-
-        public MenuItem()
-        {   //default to ? sprite, hidden offscreen
-            compSprite = new ComponentSprite(Assets.uiItemsSheet,
-                new Vector2(-100, 1000),
-                new Byte4(11, 1, 0, 0),
-                new Point(16, 16));
-            Functions_MenuItem.SetType(MenuItemType.Unknown, this);
-            neighborUp = this; neighborDown = this;
-            neighborLeft = this; neighborRight = this;
-            id = 0;
-        }
-    }
-
-    public class MenuRectangle
-    {
-        public DisplayState displayState;
-        public int speedOpen = 5;
-        public int speedClose = 5;
-        public int animationCounter = 0;    //counts up to delay value
-        public int openDelay = 0;           //how many updates are ignored before open animation occurs
-        public Rectangle rec = new Rectangle(0, 0, 0, 0);
-        public Point position;
-        public Point size;
-        public Color color;
-
-        public MenuRectangle(Point Position, Point Size, Color Color)
-        {
-            position = Position; size = Size; color = Color;
-            Functions_MenuRectangle.Reset(this);
-        }
-    }
-
-    public class MenuWindow
-    {
-        public Point size;
-        public ComponentText title;
-        public MenuRectangle background;
-        public MenuRectangle border;
-        public MenuRectangle inset;
-        public MenuRectangle interior;
-        public List<MenuRectangle> lines;
-
-        public MenuWindow(Point Position, Point Size, String Title)
-        {
-            size = Size;
-            title = new ComponentText(Assets.font, "", new Vector2(0, 0), ColorScheme.textDark);
-            //create the window components
-            background = new MenuRectangle(
-                new Point(0, 0), new Point(0, 0), ColorScheme.windowBkg);
-            border = new MenuRectangle(
-                new Point(0, 0), new Point(0, 0), ColorScheme.windowBorder);
-            inset = new MenuRectangle(
-                new Point(0, 0), new Point(0, 0), ColorScheme.windowInset);
-            interior = new MenuRectangle(
-                new Point(0, 0), new Point(0, 0), ColorScheme.windowInterior);
-            lines = new List<MenuRectangle>();
-            lines.Add(new MenuRectangle(
-                new Point(0, 0), new Point(0, 0), ColorScheme.windowInset)); //header
-            lines.Add(new MenuRectangle(
-                new Point(0, 0), new Point(0, 0), ColorScheme.windowInset)); //footer
-            //set the openDelay to cascade in all the components
-            background.openDelay = 0;
-            border.openDelay = 2;
-            inset.openDelay = 2;
-            interior.openDelay = 8;
-            lines[0].openDelay = 12; //all lines will use this openDelay value
-            //align all the window components
-            Functions_MenuWindow.ResetAndMove(this, Position.X, Position.Y, Size, Title);
-        }
-    }
-
-    public class GameDisplayData
-    {   //this is used by LoadSaveNewScreen to display a game's data visually
-        public MenuItem menuItem = new MenuItem();
-        public ComponentSprite hero = new ComponentSprite(
-            Assets.heroSheet, new Vector2(-100, 1000),
-            new Byte4(0, 0, 0, 0), new Point(16, 16));
-        public ComponentText timeDateText = new ComponentText(
-            Assets.font, "time:/ndate:", new Vector2(-100, 1000),
-            ColorScheme.textDark);
-        public MenuItem lastStoryItem = new MenuItem();
-    }
-
-
-    #endregion
 
 
 
@@ -1848,17 +1724,112 @@ namespace DungeonRun
     }
 
     public class ComponentSoundFX
-    {   //actors / objs / projectiles can both be hit and killed
-
-        //act/obj is hit, pro hits
+    {   //most objs/actors have hit/kill sfx
         public SoundEffectInstance hit = Assets.sfxEnemyHit;
-        //act/obj/pro/pick dies
-        public SoundEffectInstance kill = Assets.sfxEnemyKill; 
+        public SoundEffectInstance kill = Assets.sfxEnemyKill;
     }
-
 
     #endregion
 
+
+
+
+
+
+
+
+
+    #region UI Classes - MenuItem, MenuRec, MenuWindow
+
+    public class MenuItem
+    {
+        public ComponentSprite compSprite;
+        public ComponentAnimation compAnim = new ComponentAnimation();
+        public MenuItemType type;
+        public String name = "";
+        public String description = "";
+        public Byte price = 0;
+        //the cardinal neighbors this menuItem links with
+        public MenuItem neighborUp;
+        public MenuItem neighborDown;
+        public MenuItem neighborLeft;
+        public MenuItem neighborRight;
+        public int id; //menuItems go on a list
+
+        public MenuItem()
+        {   //default to ? sprite, hidden offscreen
+            compSprite = new ComponentSprite(Assets.uiItemsSheet,
+                new Vector2(-100, 1000),
+                new Byte4(11, 1, 0, 0),
+                new Point(16, 16));
+            Functions_MenuItem.SetType(MenuItemType.Unknown, this);
+            neighborUp = this; neighborDown = this;
+            neighborLeft = this; neighborRight = this;
+            id = 0;
+        }
+    }
+
+    public class MenuRectangle
+    {
+        public DisplayState displayState;
+        public int speedOpen = 5;
+        public int speedClose = 5;
+        public int animationCounter = 0;    //counts up to delay value
+        public int openDelay = 0;           //how many updates are ignored before open animation occurs
+        public Rectangle rec = new Rectangle(0, 0, 0, 0);
+        public Point position;
+        public Point size;
+        public Color color;
+
+        public MenuRectangle(Point Position, Point Size, Color Color)
+        {
+            position = Position; size = Size; color = Color;
+            Functions_MenuRectangle.Reset(this);
+        }
+    }
+
+    public class MenuWindow
+    {
+        public Point size;
+        public ComponentText title;
+        public MenuRectangle background;
+        public MenuRectangle border;
+        public MenuRectangle inset;
+        public MenuRectangle interior;
+        public List<MenuRectangle> lines;
+
+        public MenuWindow(Point Position, Point Size, String Title)
+        {
+            size = Size;
+            title = new ComponentText(Assets.font, "", new Vector2(0, 0), ColorScheme.textDark);
+            //create the window components
+            background = new MenuRectangle(
+                new Point(0, 0), new Point(0, 0), ColorScheme.windowBkg);
+            border = new MenuRectangle(
+                new Point(0, 0), new Point(0, 0), ColorScheme.windowBorder);
+            inset = new MenuRectangle(
+                new Point(0, 0), new Point(0, 0), ColorScheme.windowInset);
+            interior = new MenuRectangle(
+                new Point(0, 0), new Point(0, 0), ColorScheme.windowInterior);
+            lines = new List<MenuRectangle>();
+            lines.Add(new MenuRectangle(
+                new Point(0, 0), new Point(0, 0), ColorScheme.windowInset)); //header
+            lines.Add(new MenuRectangle(
+                new Point(0, 0), new Point(0, 0), ColorScheme.windowInset)); //footer
+            //set the openDelay to cascade in all the components
+            background.openDelay = 0;
+            border.openDelay = 2;
+            inset.openDelay = 2;
+            interior.openDelay = 8;
+            lines[0].openDelay = 12; //all lines will use this openDelay value
+            //align all the window components
+            Functions_MenuWindow.ResetAndMove(this, Position.X, Position.Y, Size, Title);
+        }
+    }
+
+
+
+    #endregion
 
 
     #region UI COMPONENTS - text, button, amountDisplay
@@ -1920,7 +1891,12 @@ namespace DungeonRun
 
 
 
-    //misc
+
+
+
+
+    #region Map Related Classes (maplocation and map lines)
+
     public class MapLocation
     {
         public ComponentSprite compSprite;
@@ -1947,19 +1923,6 @@ namespace DungeonRun
         }
     }
 
-    public class ScreenRec
-    {
-        public Rectangle rec = new Rectangle(0, 0, 640, 360);
-        public float alpha = 0.0f;
-        public float maxAlpha = 1.0f;
-        public float fadeInSpeed = 0.05f;
-        public float fadeOutSpeed = 0.05f;
-        public FadeState fadeState = FadeState.FadeIn;
-        public Boolean fade = true;
-    }
-
-    
-
     public class Line
     {
         //this is a single pixel line drawn from posA to posB,
@@ -1983,4 +1946,21 @@ namespace DungeonRun
         public Rectangle texRec = new Rectangle(0, 0, 16, 16);
         public Vector2 texOrigin = new Vector2(0, 0);
     }
+
+    #endregion
+
+
+
+
+    public class ScreenRec
+    {   //used to fade black in/out
+        public Rectangle rec = new Rectangle(0, 0, 640, 360);
+        public float alpha = 0.0f;
+        public float maxAlpha = 1.0f;
+        public float fadeInSpeed = 0.05f;
+        public float fadeOutSpeed = 0.05f;
+        public FadeState fadeState = FadeState.FadeIn;
+        public Boolean fade = true;
+    }
+
 }

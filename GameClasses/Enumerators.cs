@@ -331,6 +331,16 @@ namespace DungeonRun
 
 
 
+
+
+
+
+
+
+
+    //this is getting split into ints and inds
+
+
     #region ObjGroup
 
     public enum ObjGroup
@@ -782,6 +792,535 @@ namespace DungeonRun
     }
 
     #endregion
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public enum IndestructibleGroup
+    {
+        Object,
+
+        Exit,
+        Wall,
+        Door,
+        EnemySpawn,
+    }
+
+    public enum IndestructibleType
+    {
+        Unknown,
+
+
+        #region Dungeon Objects
+
+        Dungeon_ExitPillarLeft,
+        Dungeon_ExitPillarRight,
+        Dungeon_Exit,
+        Dungeon_ExitLight,
+
+        Dungeon_DoorFake, //is just wall
+        Dungeon_WallInteriorCorner,
+        Dungeon_WallExteriorCorner,
+        Dungeon_WallPillar,
+        Dungeon_WallStatue,
+        Dungeon_WallTorch,
+        Dungeon_SkullPillar,
+        Dungeon_BlockDark,
+
+        #endregion
+
+
+        #region World Objects
+
+        //med & big trees
+        Wor_Tree_Med,
+        Wor_Tree_Med_Stump,
+        Wor_Tree_Big,
+
+        //big shadow cover
+        Wor_Shadow_Big,
+
+        //blocking water objects
+        Wor_Water_RockSm,
+        Wor_Water_RockMed,
+
+        #endregion
+
+
+        #region Colliseum Objects
+
+        Wor_Entrance_Colliseum,
+
+        Wor_Colliseum_Pillar_Top,
+        Wor_Colliseum_Pillar_Middle,
+        Wor_Colliseum_Pillar_Bottom,
+
+        Wor_Colliseum_Stairs_Handrail_Top,
+        Wor_Colliseum_Stairs_Handrail_Middle,
+        Wor_Colliseum_Stairs_Handrail_Bottom,
+
+        Wor_Colliseum_Bricks_Left,
+        Wor_Colliseum_Bricks_Middle1,
+        Wor_Colliseum_Bricks_Middle2,
+        Wor_Colliseum_Bricks_Right,
+
+        Wor_Colliseum_Spectator,
+
+        #endregion
+
+
+        #region Forest Objects
+
+        Wor_Entrance_ForestDungeon, //big shadow between teeth in water
+
+        //objects that build the skull teeth
+        Wor_SkullToothInWater_Left,
+        Wor_SkullToothInWater_Right,
+
+        Wor_SkullToothInWater_Arch_Left,
+        Wor_SkullToothInWater_Arch_Right,
+        Wor_SkullToothInWater_Arch_Extension,
+
+        Wor_SkullToothInWater_Center,
+
+        Wor_SkullToothInWater_EndCap_Left,
+        Wor_SkullToothInWater_EndCap_Right,
+
+        #endregion
+
+
+        #region Mountain Objects
+
+        Wor_Entrance_MountainDungeon,
+
+        Wor_MountainWall_Alcove_Left,
+        Wor_MountainWall_Alcove_Right,
+
+        Wor_MountainWall_Cave_Bare,
+        Wor_MountainWall_Cave_Covered,
+
+        #endregion
+
+
+        #region Swamp Objects
+
+        Wor_Entrance_SwampDungeon,
+        Wor_Swamp_BigPlant,
+        Wor_Swamp_Bulb,
+        Wor_Swamp_SmPlant,
+
+        #endregion
+
+
+        #region Boat Objects
+
+        Wor_Boat_Front,
+        Wor_Boat_Front_Left,
+        Wor_Boat_Front_Right,
+
+        Wor_Boat_Front_ConnectorLeft,
+        Wor_Boat_Front_ConnectorRight,
+
+        Wor_Boat_Bannister_Left,
+        Wor_Boat_Bannister_Right,
+
+        Wor_Boat_Stairs_Top_Left,
+        Wor_Boat_Stairs_Top_Right,
+
+        Wor_Boat_Stairs_Bottom_Left,
+        Wor_Boat_Stairs_Bottom_Right,
+
+        Wor_Boat_Back_Left,
+        Wor_Boat_Back_Left_Connector,
+        Wor_Boat_Back_Center,
+        Wor_Boat_Back_Right_Connector,
+        Wor_Boat_Back_Right,
+
+        Wor_Boat_Engine,
+        Wor_Boat_Captain_Brandy,
+        
+        #endregion
+
+
+    }
+
+
+
+    public enum InteractiveGroup
+    {
+        Object,
+
+        Vendor,
+        NPC,
+        Enemy,
+        Ditch,
+        Wall_Climbable,
+    }
+
+    public enum InteractiveType
+    {
+        Unknown,
+
+
+        #region Dungeon Objs
+
+        Dungeon_WallStraight,
+        Dungeon_WallStraightCracked,
+
+        Dungeon_DoorOpen,
+        Dungeon_DoorBombable,
+        Dungeon_DoorBoss,
+        Dungeon_DoorTrap,
+        Dungeon_DoorShut,
+
+        Dungeon_Pot, //skull
+        Dungeon_Map, //unlocks dungeon map
+        Dungeon_Statue,
+        Dungeon_FloorDecal, //floor icon for boss
+        Dungeon_FloorStain, //procedurally added
+        Dungeon_FloorBlood, //created by just-dead actors/objs
+        Dungeon_FloorSkeleton, //^ randomly becomes skeleton anim 1 or 2
+
+        Dungeon_Pit,
+        Dungeon_PitBridge,
+        Dungeon_PitTeethTop,
+        Dungeon_PitTeethBottom,
+        Dungeon_PitTrap,
+
+        Dungeon_BlockLight,
+        Dungeon_BlockSpike,
+        Dungeon_SpikesFloorOn,
+        Dungeon_SpikesFloorOff,
+        
+        Dungeon_Switch, //the up switch, becomes down
+        Dungeon_SwitchDown, //down requires obj or actor on it
+        Dungeon_SwitchDownPerm, //special, bypasses switch puzzle
+
+        Dungeon_SwitchBlockBtn,
+        Dungeon_SwitchBlockDown,
+        Dungeon_SwitchBlockUp,
+
+        Dungeon_SpawnMob, //spawn a standard enemy, based on dungeon type
+
+        #endregion
+
+
+        #region World Objects
+
+        TorchUnlit,
+        TorchLit,
+        Fairy,
+        Barrel,
+        Bumper,
+        Flamethrower,
+        ConveyorBeltOn,
+        ConveyorBeltOff,
+        LeverOn,
+        LeverOff,
+        Chest, //placeable in editor, becomes key chest
+        ChestKey, //not placeable, procedurally set
+        ChestEmpty, //just empty
+        Signpost,
+
+
+        //interior building objects
+        House_Bookcase,
+        House_Shelf,
+        House_TableSingle,
+        House_TableDoubleLeft,
+        House_TableDoubleRight,
+
+        House_Stove,
+        House_Sink,
+        House_Chair,
+
+        House_Bed,
+
+        //grass objects
+        Grass_Tall,
+        Grass_Cut,
+        Grass_2,
+        Flowers,
+
+        //foilage
+        Bush,
+        Bush_Stump,
+
+        Tree,
+        Tree_Stump,
+        Tree_Burning,
+        Tree_Burnt,
+
+        //debris
+        Debris,
+
+        //objects
+        Pot,
+
+        //water objs
+        Water2x2,
+        Coastline_Straight,
+        Coastline_Corner_Exterior,
+        Coastline_Corner_Interior,
+
+        //ditch objs
+        Ditch_META, //becomes one of the ditch objs below upon placement
+
+        Ditch_Empty_Single,
+        Ditch_Empty_4UP,
+        Ditch_Empty_Vertical,
+        Ditch_Empty_Horizontal,
+
+        Ditch_Empty_Corner_North,
+        Ditch_Empty_Corner_South,
+        Ditch_Empty_3UP_North,
+        Ditch_Empty_3UP_South,
+
+        Ditch_Empty_3UP_Horizontal,
+        Ditch_Empty_Endcap_South,
+        Ditch_Empty_Endcap_Horizontal,
+        Ditch_Empty_Endcap_North,
+
+        //building objs
+        House_Wall_FrontA,
+        House_Wall_FrontB,
+        House_Wall_Back,
+        House_Wall_Side_Left,
+        House_Wall_Side_Right,
+
+        House_Door_Shut,
+        House_Door_Open,
+
+        //roofs
+        House_Roof_Top,
+        House_Roof_Bottom,
+        House_Roof_Chimney,
+        House_Roof_Collapsing, //meta obj for collapsing roofs
+
+        //posts
+        Post_VerticalRight,
+        Post_CornerRight,
+        Post_Horizontal,
+        Post_CornerLeft,
+        Post_VerticalLeft,
+
+        PostBurned_VerticalRight,
+        PostBurned_CornerRight,
+        PostBurned_Horizontal,
+        PostBurned_CornerLeft,
+        PostBurned_VerticalLeft,
+
+        //dirt + transition objs
+        Dirt,
+        DirtToGrass_Straight,
+        DirtToGrass_Corner_Exterior,
+        DirtToGrass_Corner_Interior,
+
+        Water_RockUnderwater,
+
+        //posts that only hammers can destroy
+        Post_HammerPost_Up,
+        Post_HammerPost_Down,
+
+
+        #endregion
+
+
+        #region Colliseum Objects
+
+        Wor_Colliseum_Stairs_Left,
+        Wor_Colliseum_Stairs_Middle,
+        Wor_Colliseum_Stairs_Right,
+        Wor_Colliseum_Outdoors_Floor,
+        Wor_Colliseum_Gate_Center,
+        Wor_Colliseum_Gate_Pillar_Left,
+        Wor_Colliseum_Gate_Pillar_Right,
+
+        #endregion
+
+
+        #region Forest Objects
+
+        //none
+
+        #endregion
+
+
+        #region Mountain Objects
+
+        Wor_MountainWall_Top,
+        Wor_MountainWall_Mid,
+        Wor_MountainWall_Bottom,
+
+        Wor_MountainWall_Foothold,
+        Wor_MountainWall_Ladder,
+        Wor_MountainWall_Ladder_Trap,
+
+        #endregion
+
+
+        #region Swamp Objects
+
+        Wor_Swamp_LillyPad,
+        Wor_Swamp_Vine,
+
+        #endregion
+
+
+        #region Boat Objects
+        
+        Wor_Boat_Stairs_Left,
+        Wor_Boat_Stairs_Right,
+        Wor_Boat_Floor,
+
+        Wor_Boat_Barrel,
+        Wor_Boat_Stairs_Cover,
+
+        Wor_Boat_Bridge_Top,
+        Wor_Boat_Bridge_Bottom, //destructible?
+
+        Wor_Boat_Pier_TopLeft,
+        Wor_Boat_Pier_TopMiddle,
+        Wor_Boat_Pier_TopRight,
+
+        Wor_Boat_Pier_Left,
+        Wor_Boat_Pier_Middle,
+        Wor_Boat_Pier_Right,
+
+        Wor_Boat_Pier_BottomLeft,
+        Wor_Boat_Pier_BottomMiddle,
+        Wor_Boat_Pier_BottomRight,
+
+        Wor_Boat_Coastline,
+
+        #endregion
+
+
+
+
+
+
+
+        #region Obj Enemies
+
+        Wor_Enemy_Turtle,
+        Wor_Enemy_Crab,
+        Wor_Enemy_Rat,
+
+        Wor_SeekerExploder, //seeks hero
+
+        #endregion
+
+
+        #region Vendors & NPCs
+
+        //Vendor NPCs
+        Vendor_NPC_Items,
+        Vendor_NPC_EnemyItems,
+
+        Vendor_NPC_Potions,
+        Vendor_NPC_Magic,
+        Vendor_NPC_Weapons,
+        Vendor_NPC_Armor,
+        Vendor_NPC_Equipment,
+
+        Vendor_NPC_Pets,
+
+        NPC_Story,
+
+        NPC_Farmer,
+        NPC_Farmer_Reward,
+        NPC_Farmer_EndDialog,
+
+        Vendor_Colliseum_Mob,
+        Judge_Colliseum,
+
+        #endregion
+
+
+        #region Pets
+
+        Pet_None,
+        Pet_Dog,
+        Pet_Chicken,
+
+        #endregion
+
+
+        #region Special/Magical objs
+
+        IceTile,
+        ExplodingObject, //creates explosion
+
+        #endregion
+
+
+        #region Dialog Objs
+
+        //consider just using a sprite + animation component to
+        Hero_Idle, //model this better in dialog, just copy sprite+anim
+
+        #endregion
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

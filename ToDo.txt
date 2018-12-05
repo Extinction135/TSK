@@ -67,16 +67,13 @@ Today:
 
 
 
+Prep for GameObjs Split
 
+added indestructible and interactive objs types and groups,
+along with copying values from gameObj into these two enums.
 
-Fire Melts Ice (Systems++)
-
-ground fires + fireballs should 'melt' icetiles.
-this is a simple projectile vs roomObj interaction.
-ice tiles create rising smoke upon being melted.
-this is handled via func_obj_world.MeltIceTile().
-tested and working well.
-
+removed game display data class, because it's no longer being
+used in the game at all.
 
 
 
@@ -84,19 +81,69 @@ tested and working well.
 
 
 
-Ice Tile Melting++
-
-fire melting ice is good, but it needs polish.
-when we melt ice, we should create a wet spot particle,
-which lasts for 200 or so frames, and helps to ease 
-the ice tiles transition out of the world, since it
-just dissappears right now.
 
 
+this means we lose all level data and room data, unless we
+migrate that data by hand. so maybe take screenshots of each 
+room in the dungeons so you can remake them later on.
+
+this is also a good time to rename objects, as they will
+be in different classes completely. dungeon objs for actual
+dungeon objs, and drop the world prefix for objects that
+aren't dungeon objs.
 
 
 
+step 1: seperate gameobjs into interactive and indestructible
+	this renders all room data corrupt
+	just delete all data within level/room files, keep header data
 
+step 1b: migrate entire codebase to using inds & ints
+	this includes editor and widgets too
+	*start by creating func classes for ints and inds (set type, kill, game obj fns)
+	*create pool lists, removing main pool obj list
+	*migrate collisions
+	*migrate interactions
+	*update drawing routines
+	
+step 2: rebuild level and room data
+	build ship at sea base level
+	complete level rebuilds
+	complete roomData rebuilds
+
+step 3: setup collisions
+	ints vs inds
+	act vs inds
+	pros vs inds
+	acts vs hero
+	hero vs acts
+	
+step 4: setup interactions
+	pros vs ints
+	pros vs acts
+	ints vs ints
+	ints vs acts
+	picks vs hero
+	hero interaction rec vs ints
+	hero interaction rec vs inds (entrances mostly)
+	
+	
+	
+	
+	
+	
+	
+	
+Add Wind
+	wind vs ints
+	wind vs acts
+	wind vs pros
+	wind vs picks
+
+
+	
+	
+	
 
 
 
@@ -267,6 +314,24 @@ is and how it's used. for example, WIND counters.
 
 
 
+Ice Tile Melting++
+
+fire melting ice is good, but it needs polish.
+when we melt ice, we should create a wet spot particle,
+which lasts for 200 or so frames, and helps to ease 
+the ice tiles transition out of the world, since it
+just dissappears right now.
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -279,7 +344,7 @@ consider making these objects in their own pool, because they
 handle interactions and can be blocking / non-blocking.
 indestructible objs ONLY BLOCK, and NEVER INTERACT.
 
-
+all these house objs are on thier own sheet btw...
 
 
 

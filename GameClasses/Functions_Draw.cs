@@ -195,15 +195,7 @@ namespace DungeonRun
                 Assets.dummyTexture, Rec.rec,
                 ColorScheme.overlay * Rec.alpha);
         }
-
-        public static void Draw(GameDisplayData Display)
-        {
-            Draw(Display.menuItem.compSprite);
-            Draw(Display.hero);
-            Draw(Display.timeDateText);
-            Draw(Display.lastStoryItem.compSprite);
-        }
-
+        
         public static void Draw(DebugDisplay Display)
         {
             Functions_MenuRectangle.Update(Display.bkg);
