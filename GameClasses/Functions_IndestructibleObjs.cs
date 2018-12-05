@@ -327,50 +327,7 @@ namespace DungeonRun
 
             #endregion
 
-
-            #region Water Objs
-
-            else if (
-                Type == IndestructibleType.Water_RockSm 
-                || Type == IndestructibleType.Water_RockMed
-                )
-            {
-                IndObj.compSprite.zOffset = -7; //sort under hero
-                //setup hitbox
-                IndObj.compCollision.offsetX = -5; IndObj.compCollision.rec.Width = 10;
-                IndObj.compCollision.offsetY = -5; IndObj.compCollision.rec.Height = 10;
-                //setup animFrame
-                if (Type == IndestructibleType.Water_RockSm)
-                { IndObj.compAnim.currentAnimation = AnimationFrames.Wor_Water_RockSm; }
-                else
-                { IndObj.compAnim.currentAnimation = AnimationFrames.Wor_Water_RockMed; }
-            }
-
-            else if (Type == IndestructibleType.Water_BigPlant)
-            {   //nonstandard size
-                IndObj.compSprite.drawRec.Width = 16 * 2; IndObj.compSprite.drawRec.Height = 16 * 2;
-                IndObj.compCollision.rec.Width = 16 * 2; IndObj.compCollision.offsetX = -8;
-                IndObj.compCollision.rec.Height = 16 * 2; IndObj.compCollision.offsetY = -8;
-                IndObj.compAnim.currentAnimation = AnimationFrames.Wor_Swamp_BigPlant;
-                IndObj.compSprite.zOffset = 6; //has height
-            }
-            else if (Type == IndestructibleType.Water_Bulb)
-            {
-                IndObj.compCollision.rec.Width = 6; IndObj.compCollision.offsetX = -3;
-                IndObj.compCollision.rec.Height = 4; IndObj.compCollision.offsetY = 2;
-                IndObj.compAnim.currentAnimation = AnimationFrames.Wor_Swamp_Bulb;
-                IndObj.compSprite.zOffset = 1;
-            }
-            else if (Type == IndestructibleType.Water_SmPlant)
-            {
-                IndObj.compCollision.rec.Width = 10; IndObj.compCollision.offsetX = -5;
-                IndObj.compCollision.rec.Height = 4; IndObj.compCollision.offsetY = 2;
-                IndObj.compAnim.currentAnimation = AnimationFrames.Wor_Swamp_SmPlant;
-                IndObj.compSprite.zOffset = 1;
-            }
-
-            #endregion
-
+            
 
             #region Entrance Objects
 

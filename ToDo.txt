@@ -64,26 +64,17 @@ Today:
 
 
 
+Interactive Objects++
 
+tested interactive objects, working. 
+fixed small problem between barrels and boat barrels.
 
+EDITOR++
 
-Migrate Codebase
-
-X we have migrated indestructible objs from gameObj.setType().
-X we have migrated interactive objs from gameObj.setType().
-X we removed gameObjs and gameObj enums.
-X data classes and enums are done.
-X migrated interaction functions to mostly use int objs.
-X migrated hero functions to use int objs.
-X all classes except widgetObjTools have been migrated.
-X migrated widgetObjTools. fixed last few errors.
-
-migration complete, project building again.
-updated UWP project links.
-Dx and UWP projects now building.
-
-tested, items and projectiles and actor systems still
-working as expected. all ui working as well.
+created widget display sets for interactive objects.
+this makes selecting them extremely easy and fast. this
+in turn makes developing levels that much easier and
+faster, which will help coming up soon...
 
 
 
@@ -91,7 +82,37 @@ working as expected. all ui working as well.
 
 
 
-onto bug fixes, and indestructible objs.
+
+
+display set 1: interactive objects
+-common world objs
+-water objs
+-house objs
+-npcs + vendors + enemies
+-mountainwall objs
+-?
+-dungeon objs
+
+
+display set 2: indestructible objects (need widget def for this)
+-boat 1
+-boat 2
+-forest objs
+-mountain objs
+-swamp objs
+-coliseum objs
+-?
+
+
+
+display set 3: actors
+-forest
+-mountain
+-swamp
+-coliseum (blobs)
+-
+-
+-
 
 
 
@@ -99,6 +120,32 @@ onto bug fixes, and indestructible objs.
 
 
 
+
+
+
+
+
+
+
+
+then we need to add indestructible objs to editor, so we can
+test collisions against them. 
+
+then we need to make a default boat level (boat, brandy, water),
+so we can test ints and inds, plus have base level data for game.
+
+
+
+
+we lost the boat_barrle obj, and instead the explosive barrel,
+the dungeon barrel is being used instead. bring back the explosive
+barrel...
+
+
+
+
+create mockups for how we display ints + inds in the editor.
+we need to see MORE objects at once.
 
 
 
@@ -117,20 +164,17 @@ later on.
 
 
 
+Dungeon Build++
+
+when we build dungeons, we should be using indestructible
+objects for the walls, since we dont interact with them at all.
+this means explosions no longer crack walls, which is fine.
+but, we need to be getting and placing ind via pool.getIndObj(),
+not interactive objs.
 
 
 
-
-
-crack dungeon walls in destruction routines.
-
-
-
-pull all obj ai from functions_AI and put into
-interactive obj .Update().
-
-
-
+Indestructible Objs++
 
 hero has no interactions with indestructible objs YET - this is
 ALL dungeon entrances, exits, coliseum entrance, etc...
@@ -138,39 +182,17 @@ ALL dungeon entrances, exits, coliseum entrance, etc...
 
 
 
-
-
-
-
-
-
-
-now let the migration begin!
-
-
-all systems that use gameObjs need to be updated now
-
-step 1: migrate entire codebase to using inds & ints
-	this includes editor and widgets too
-	*start by creating func classes for ints and inds (set type, kill, game obj fns)
-	*create pool lists, removing main pool obj list
-	*migrate collisions
-	*migrate interactions
-	*update drawing routines
 	
-step 2: rebuild level and room data
-	build ship at sea base level
-	complete level rebuilds
-	complete roomData rebuilds
 
-step 3: setup collisions
+
+step 1: setup collisions
 	ints vs inds
 	act vs inds
 	pros vs inds
 	acts vs hero
 	hero vs acts
 	
-step 4: setup interactions
+step 2: setup interactions
 	pros vs ints
 	pros vs acts
 	ints vs ints
@@ -179,9 +201,12 @@ step 4: setup interactions
 	hero interaction rec vs ints
 	hero interaction rec vs inds (entrances mostly)
 	
-step 5: fix editor and xml savedata, then cs pipeline	
+step 3: fix editor and xml savedata, then cs pipeline	
 	
-	
+step 4: rebuild level and room data
+	build ship at sea base level
+	complete level rebuilds
+	complete roomData rebuilds	
 	
 	
 	

@@ -372,13 +372,6 @@ namespace DungeonRun
         //big shadow cover
         Shadow_Big,
 
-        //blocking water objects
-        Water_RockSm,
-        Water_RockMed,
-        Water_BigPlant,
-        Water_Bulb,
-        Water_SmPlant,
-
         #endregion
 
 
@@ -651,6 +644,12 @@ namespace DungeonRun
         Water_RockUnderwater,
         Water_LillyPad,
         Water_Vine,
+        //blocking water objects
+        Water_RockSm,
+        Water_RockMed,
+        Water_BigPlant,
+        Water_Bulb,
+        Water_SmPlant,
         //coastlines
         Coastline_Straight,
         Coastline_Corner_Exterior,
@@ -771,7 +770,8 @@ namespace DungeonRun
         Boat_Stairs_Left,
         Boat_Stairs_Right,
         Boat_Floor,
-        
+        Boat_Barrel,
+
         Boat_Stairs_Cover,
 
         Boat_Bridge_Top,

@@ -3124,6 +3124,44 @@ namespace DungeonRun
                 IntObj.compSprite.zOffset = -128; //same as water tiles
             }
 
+            else if (
+                Type == InteractiveType.Water_RockSm
+                || Type == InteractiveType.Water_RockMed
+                )
+            {
+                IntObj.compSprite.zOffset = -7; //sort under hero
+                //setup hitbox
+                IntObj.compCollision.offsetX = -5; IntObj.compCollision.rec.Width = 10;
+                IntObj.compCollision.offsetY = -5; IntObj.compCollision.rec.Height = 10;
+                //setup animFrame
+                if (Type == InteractiveType.Water_RockSm)
+                { IntObj.compAnim.currentAnimation = AnimationFrames.Wor_Water_RockSm; }
+                else
+                { IntObj.compAnim.currentAnimation = AnimationFrames.Wor_Water_RockMed; }
+            }
+
+            else if (Type == InteractiveType.Water_BigPlant)
+            {   //nonstandard size
+                IntObj.compSprite.drawRec.Width = 16 * 2; IntObj.compSprite.drawRec.Height = 16 * 2;
+                IntObj.compCollision.rec.Width = 16 * 2; IntObj.compCollision.offsetX = -8;
+                IntObj.compCollision.rec.Height = 16 * 2; IntObj.compCollision.offsetY = -8;
+                IntObj.compAnim.currentAnimation = AnimationFrames.Wor_Swamp_BigPlant;
+                IntObj.compSprite.zOffset = 6; //has height
+            }
+            else if (Type == InteractiveType.Water_Bulb)
+            {
+                IntObj.compCollision.rec.Width = 6; IntObj.compCollision.offsetX = -3;
+                IntObj.compCollision.rec.Height = 4; IntObj.compCollision.offsetY = 2;
+                IntObj.compAnim.currentAnimation = AnimationFrames.Wor_Swamp_Bulb;
+                IntObj.compSprite.zOffset = 1;
+            }
+            else if (Type == InteractiveType.Water_SmPlant)
+            {
+                IntObj.compCollision.rec.Width = 10; IntObj.compCollision.offsetX = -5;
+                IntObj.compCollision.rec.Height = 4; IntObj.compCollision.offsetY = 2;
+                IntObj.compAnim.currentAnimation = AnimationFrames.Wor_Swamp_SmPlant;
+                IntObj.compSprite.zOffset = 1;
+            }
 
             #endregion
 
@@ -3744,7 +3782,7 @@ namespace DungeonRun
                 IntObj.compCollision.blocking = false;
             }
 
-            else if (Type == InteractiveType.Barrel)
+            else if (Type == InteractiveType.Boat_Barrel)
             {
                 IntObj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Barrel;
                 IntObj.compCollision.rec.Width = 12; IntObj.compCollision.offsetX = -6;

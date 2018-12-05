@@ -30,6 +30,14 @@ namespace DungeonRun
 
         public ComponentButton ignoreBoatTiles;
 
+
+
+
+
+
+
+
+
         public ScreenEditorMenu()
         {
             this.name = "Editor Menu Screen";
@@ -39,9 +47,10 @@ namespace DungeonRun
             widgetDisplaySet_Btn.rec.Width = 16 * 5;
             //initialize to forest state
             ResetWidgets();
-            widgetDisplaySet_Btn.compText.text = "forest";
-            Widgets.WO_Forest.visible = true;
-            Widgets.WE_Forest.visible = true;
+            widgetDisplaySet_Btn.compText.text = "interactive objs";
+
+
+
 
             //setup ignore water tiles button
             ignoreWaterTiles = new ComponentButton("---", new Point(16 * 6 + 8, 16 + 2));
@@ -90,8 +99,13 @@ namespace DungeonRun
             if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
             {
                 if (Widgets.WO_Environment.visible) { CheckObjList(Widgets.WO_Environment); }
+                if (Widgets.WO_Water.visible) { CheckObjList(Widgets.WO_Water); }
+                if (Widgets.WO_House.visible) { CheckObjList(Widgets.WO_House); }
+                if (Widgets.WO_NPCS.visible) { CheckObjList(Widgets.WO_NPCS); }
+                if (Widgets.WO_Mtn.visible) { CheckObjList(Widgets.WO_Mtn); }
                 if (Widgets.WO_Dungeon.visible) { CheckObjList(Widgets.WO_Dungeon); }
 
+                /*
                 //unique WOs
                 if (Widgets.WO_Town.visible) { CheckObjList(Widgets.WO_Town); }
                 if (Widgets.WO_Colliseum.visible) { CheckObjList(Widgets.WO_Colliseum); }
@@ -106,15 +120,16 @@ namespace DungeonRun
 
                 //dev WO
                 if (Widgets.WO_DEV.visible) { CheckObjList(Widgets.WO_DEV); }
+                */
 
-
+                /*
                 //actor widgets
                 if (Widgets.WE_Forest.visible) { CheckActList(Widgets.WE_Forest); }
                 if (Widgets.WE_Mountain.visible) { CheckActList(Widgets.WE_Mountain); }
                 if (Widgets.WE_Swamp.visible) { CheckActList(Widgets.WE_Swamp); }
                 //
                 if (Widgets.WE_Town.visible) { CheckActList(Widgets.WE_Town); }
-
+                */
             }
 
             #endregion
@@ -239,8 +254,13 @@ namespace DungeonRun
 
             //update and draw obj widgets that are visible
             if (Widgets.WO_Environment.visible) { Widgets.WO_Environment.Update(); Widgets.WO_Environment.Draw(); }
+            if (Widgets.WO_Water.visible) { Widgets.WO_Water.Update(); Widgets.WO_Water.Draw(); }
+            if (Widgets.WO_House.visible) { Widgets.WO_House.Update(); Widgets.WO_House.Draw(); }
+            if (Widgets.WO_NPCS.visible) { Widgets.WO_NPCS.Update(); Widgets.WO_NPCS.Draw(); }
+            if (Widgets.WO_Mtn.visible) { Widgets.WO_Mtn.Update(); Widgets.WO_Mtn.Draw(); }
             if (Widgets.WO_Dungeon.visible) { Widgets.WO_Dungeon.Update(); Widgets.WO_Dungeon.Draw(); }
 
+            /*
             if (Widgets.WO_Forest.visible) { Widgets.WO_Forest.Update(); Widgets.WO_Forest.Draw(); }
             if (Widgets.WO_Mountain.visible) { Widgets.WO_Mountain.Update(); Widgets.WO_Mountain.Draw(); }
             if (Widgets.WO_Swamp.visible) { Widgets.WO_Swamp.Update(); Widgets.WO_Swamp.Draw(); }
@@ -251,13 +271,15 @@ namespace DungeonRun
             if (Widgets.WO_Boat_Back.visible) { Widgets.WO_Boat_Back.Update(); Widgets.WO_Boat_Back.Draw(); }
 
             if (Widgets.WO_DEV.visible) { Widgets.WO_DEV.Update(); Widgets.WO_DEV.Draw(); }
+            */
 
-
+            /*
             //update and draw actor widgets that are visible
             if (Widgets.WE_Forest.visible) { Widgets.WE_Forest.Update(); Widgets.WE_Forest.Draw(); }
             if (Widgets.WE_Mountain.visible) { Widgets.WE_Mountain.Update(); Widgets.WE_Mountain.Draw(); }
             if (Widgets.WE_Swamp.visible) { Widgets.WE_Swamp.Update(); Widgets.WE_Swamp.Draw(); }
             if (Widgets.WE_Town.visible) { Widgets.WE_Town.Update(); Widgets.WE_Town.Draw(); }
+            */
 
 
             //draw tool widgets
@@ -280,17 +302,29 @@ namespace DungeonRun
 
 
 
+
+
+
+
+
+
+
+
         public void CheckObjList(WidgetObject WO)
         {
             if (WO.visible & WO.window.interior.rec.Contains(Input.cursorPos))
             { Widgets.ObjectTools.CheckObjList(WO.objList); }
         }
 
-        public void CheckActList(WidgetActor WE)
+        public void CheckActList(WidgetActor WA)
         {
-            if (WE.visible & WE.window.interior.rec.Contains(Input.cursorPos))
-            { Widgets.ObjectTools.CheckActorsList(WE.actors); }
+            if (WA.visible & WA.window.interior.rec.Contains(Input.cursorPos))
+            { Widgets.ObjectTools.CheckActorsList(WA.actors); }
         }
+
+
+
+
 
 
         public void ResetWidgets()
@@ -299,8 +333,13 @@ namespace DungeonRun
 
             //set shared widgets to be visible
             Widgets.WO_Environment.visible = true;
+            Widgets.WO_Water.visible = true;
+            Widgets.WO_House.visible = true;
+            Widgets.WO_NPCS.visible = true;
+            Widgets.WO_Mtn.visible = true;
             Widgets.WO_Dungeon.visible = true;
 
+            /*
             //set all other widgets not visible
             Widgets.WO_Forest.visible = false;
             Widgets.WO_Mountain.visible = false;
@@ -309,22 +348,24 @@ namespace DungeonRun
             Widgets.WO_Colliseum.visible = false;
             Widgets.WO_Boat_Front.visible = false;
             Widgets.WO_Boat_Back.visible = false;
+            */
 
+            /*
             //set actor widgets not visible
             Widgets.WE_Forest.visible = false;
             Widgets.WE_Mountain.visible = false;
             Widgets.WE_Swamp.visible = false;
             Widgets.WE_Town.visible = false;
+            */
 
             //set dev widget to always be visible
-            Widgets.WO_DEV.visible = true;
+            //Widgets.WO_DEV.visible = true;
         }
-
-
 
         public void IterateWidgetSet()
         {
 
+            /*
 
             #region Iterate thru widget objs + widget enemy objs
 
@@ -404,6 +445,11 @@ namespace DungeonRun
             Widgets.ObjectTools.selectionBoxObj.position.X = 2048;
 
             #endregion
+
+            */
+
+
+
 
 
         }
