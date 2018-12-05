@@ -64,34 +64,16 @@ Today:
 
 
 
-Interactive Objects++
 
-tested interactive objects, working. 
-fixed small problem between barrels and boat barrels.
+Editor++
 
-EDITOR++
-
-created widget display sets for interactive objects.
-this makes selecting them extremely easy and fast. this
-in turn makes developing levels that much easier and
-faster, which will help coming up soon...
+improved editor to handle moving between interactive objects
+and actors, via widget display sets. improved editor shortcut
+keys to be f12 to iterate widget display sets. so much more is
+available for selection upfront, reducing dev time considerably.
 
 
 
-
-
-
-
-
-
-display set 1: interactive objects
--common world objs
--water objs
--house objs
--npcs + vendors + enemies
--mountainwall objs
--?
--dungeon objs
 
 
 display set 2: indestructible objects (need widget def for this)
@@ -102,18 +84,6 @@ display set 2: indestructible objects (need widget def for this)
 -swamp objs
 -coliseum objs
 -?
-
-
-
-display set 3: actors
--forest
--mountain
--swamp
--coliseum (blobs)
--
--
--
-
 
 
 
@@ -130,6 +100,23 @@ display set 3: actors
 
 then we need to add indestructible objs to editor, so we can
 test collisions against them. 
+
+
+
+
+**please add a button over dungeon widgets to iterate it's
+textures so we can see diff dungeon sheets
+
+
+
+
+
+
+
+
+
+
+
 
 then we need to make a default boat level (boat, brandy, water),
 so we can test ints and inds, plus have base level data for game.

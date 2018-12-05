@@ -28,44 +28,28 @@ namespace DungeonRun
         public static WidgetObjectTools ObjectTools = new WidgetObjectTools();
         public static WidgetRoomTools RoomTools = new WidgetRoomTools();
 
-        //shared object widgets
+
+
+
+
+
+        //interactive object widgets
         public static WidgetObjects_Environment WO_Environment = new WidgetObjects_Environment();
         public static WidgetObjects_Water WO_Water = new WidgetObjects_Water();
         public static WidgetObjects_House WO_House = new WidgetObjects_House();
         public static WidgetObjects_NPCS WO_NPCS = new WidgetObjects_NPCS();
         public static WidgetObjects_Mountain WO_Mtn = new WidgetObjects_Mountain();
-
+        public static WidgetObjects_Dev WO_Dev = new WidgetObjects_Dev();
         public static WidgetObjects_Dungeon WO_Dungeon = new WidgetObjects_Dungeon();
 
-
-
-        /*
-        //unique object widgets
-        
-        public static WidgetObjects_Colliseum WO_Colliseum = new WidgetObjects_Colliseum();
-        public static WidgetObjects_Boat_Front WO_Boat_Front = new WidgetObjects_Boat_Front();
-        public static WidgetObjects_Boat_Back WO_Boat_Back = new WidgetObjects_Boat_Back();
-
-        public static WidgetObjects_Forest WO_Forest = new WidgetObjects_Forest();
-        public static WidgetObjects_Mountain WO_Mountain = new WidgetObjects_Mountain();
-        public static WidgetObjects_Swamp WO_Swamp = new WidgetObjects_Swamp();
-
-        public static WidgetObjects_DEV WO_DEV = new WidgetObjects_DEV();
-        */
-
-
-
-        /*
         //actor widgets
-        public static WidgetActors_Forest WE_Forest = new WidgetActors_Forest();
-        public static WidgetActors_Mountain WE_Mountain = new WidgetActors_Mountain();
-        public static WidgetActors_Swamp WE_Swamp = new WidgetActors_Swamp();
-        public static WidgetActors_Town WE_Town = new WidgetActors_Town();
-        */
-
-
-
-
+        public static WidgetActors_Forest WA_Forest = new WidgetActors_Forest();
+        public static WidgetActors_Mountain WA_Mountain = new WidgetActors_Mountain();
+        public static WidgetActors_Swamp WA_Swamp = new WidgetActors_Swamp();
+        public static WidgetActors_Lava WA_Lava = new WidgetActors_Lava();
+        public static WidgetActors_Cloud WA_Cloud = new WidgetActors_Cloud();
+        public static WidgetActors_ThievesDen WA_Thievs = new WidgetActors_ThievesDen();
+        public static WidgetActors_Shadow WA_Shadow = new WidgetActors_Shadow();
     }
 
     public abstract class Widget
