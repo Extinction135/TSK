@@ -71,15 +71,29 @@ place ind objs via fn_component.align() - PLS.
 
 
 
-EditorState++
 
-cleaned up widget object tools, a sub section of the editor.
-editor state is now being modeled using an enum that more
-clearly maps to the idea of 3 different states: interactive
-objs, indestructible objs, and actors. rn, we just model
-ints and actors, and was done using a boolean, which was 
-not going to scale - at all.
 
+
+
+IndestructibleObjs++
+
+test that we can add indestructible dark blocks to levels.
+this simply means the indestructible pool is working, if it draws.
+indestructible objs can be added. working.
+
+actors completely implemented vs indestructibles. working.
+int obj collisions completely implemented vs act/ind/int/hero.
+
+inspected pool.update(), but honestly it's late.
+
+
+
+
+
+
+complete writing routine in pool.update() to collision
+check the projetile pool against the indestructiblel pool.
+this finishes indestructible obj implementation.
 
 
 
@@ -104,6 +118,18 @@ actors? likely brittle, likely via an actual actor obj -eww)
 ^above^ we need to rewrite how objs are added/managed in editor 
 before we can add indObjs to the indestructible pool and 
 actually start testing that system.
+
+
+
+
+the issue is the activeObj ref. what is this? this is used to
+store a reference to an int obj in the level. we can dupe this
+to have an int obj ref as well... most likely what will be done.
+
+
+
+
+
 
 
 

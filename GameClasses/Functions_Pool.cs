@@ -411,9 +411,6 @@ namespace DungeonRun
             #endregion
 
 
-            //indestructible objs?
-
-
             #region Interactive Objects
 
             for (i = 0; i < Pool.intObjCount; i++)
@@ -490,13 +487,10 @@ namespace DungeonRun
             for (i = 0; i < Pool.projectileCount; i++)
             {
                 if (Pool.projectilePool[i].active)
-                {
-                    //handle projectiles on their own, cause they have behaviors
+                {   
                     Functions_Projectile.Update(Pool.projectilePool[i]);
-                    //then animate scale
                     Functions_Animation.Animate(Pool.projectilePool[i].compAnim, Pool.projectilePool[i].compSprite);
                     Functions_Animation.ScaleSpriteDown(Pool.projectilePool[i].compSprite);
-
                     //interaction check projectiles (this may kill them, so we do it last)
                     Functions_Interaction.CheckProjectile_Obj(Pool.projectilePool[i]);
                 }
@@ -525,6 +519,9 @@ namespace DungeonRun
 
 
             
+
+
+
 
 
 
@@ -567,17 +564,8 @@ namespace DungeonRun
             #endregion
 
 
-
-
-
-
-
-
-
-
             #region Phase 3 - Check Collisions
 
-            //check collisions (act v act, act v obj)
             //this is also done last to ensure no overlaps
             //if there was a collision, the act/obj returns
             //to their original position (compMove.pos)
@@ -650,14 +638,19 @@ namespace DungeonRun
                 }
             }
 
+
+            //check projectiles against the indestructibles list
+            for(i = 0; i < Pool.projectileCount; i++)
+            {
+                if (Pool.projectilePool[i].active)
+                {
+                    //projectiles that collide with indestructibles stop movement, and usually die
+                }
+            }
+
+
+
             #endregion
-
-            
-
-
-
-
-
 
 
             #region Phase 4 - Resolution, Align() Components
@@ -669,7 +662,7 @@ namespace DungeonRun
                 { Functions_Component.Align(Pool.actorPool[i]); }
             }
 
-            //roomObjs
+            //interactive objs
             for (i = 0; i < Pool.intObjCount; i++)
             {
                 if (Pool.intObjPool[i].active)
@@ -699,10 +692,6 @@ namespace DungeonRun
             }
 
             #endregion
-
-
-
-
 
 
             //handle hero related updates (room checking, shadow match, pickup interactions)
