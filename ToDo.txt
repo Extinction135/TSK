@@ -65,29 +65,23 @@ Today:
 
 
 
-Indestructible Object Widgets
- 
-we are adding the first ind widget. get this working with the
-widget transitions in editor. then we grow it. working.
-added 6 ind widgets, with temp dark block ind object.
-selection working, but we need to rewrite how objs are
-added/managed in editor before we can add indObjs to the
-indestructible pool and actually start testing that system.
-moving on..
+
+
+place ind objs via fn_component.align() - PLS.
 
 
 
+EditorState++
+
+cleaned up widget object tools, a sub section of the editor.
+editor state is now being modeled using an enum that more
+clearly maps to the idea of 3 different states: interactive
+objs, indestructible objs, and actors. rn, we just model
+ints and actors, and was done using a boolean, which was 
+not going to scale - at all.
 
 
 
-
-
-
-
-when we place indObjs, we are placing the compSprite,
-then we update the collision rec, with offsets, to the
-compSprite. this should be an Align() that only accepts
-the INDestructible obj type. PLS.
 
 
 
@@ -97,16 +91,17 @@ we are running into a problem with selecting indestructible
 objs - the obj widget assumes all objs are of an interactive type.
 so now, obj tools needs to expand to handle adding, moving, etc..
 for interactive objs, indestructible objs, and actors.
+we can do this via the editorSTATE concept already present.
+expand this state to be an enum, defined in the editor class/screen.
 
 we can accoplish this using enum value for each:
 current intObj, current indObj, currentActor
 -then we only need to display the sprite and animation on
 the widget, no longer using an interactive obj to model
 the visual state at all... (how are we doing this with
-actors? likely brittle)
+actors? likely brittle, likely via an actual actor obj -eww)
 
-
-we need to rewrite how objs are added/managed in editor 
+^above^ we need to rewrite how objs are added/managed in editor 
 before we can add indObjs to the indestructible pool and 
 actually start testing that system.
 
@@ -165,37 +160,12 @@ test that this builds to level editor like Dx.
 
 **please add a button over dungeon widgets to iterate it's
 textures so we can see diff dungeon sheets
+**we need to test that room editor loads (does this require roomData?)
 
 
 
 then we need to make a default boat level (boat, brandy, water),
 so we can test ints and inds, plus have base level data for game.
-
-
-
-
-we lost the boat_barrle obj, and instead the explosive barrel,
-the dungeon barrel is being used instead. bring back the explosive
-barrel...
-
-
-
-
-create mockups for how we display ints + inds in the editor.
-we need to see MORE objects at once.
-
-
-
-
-
-obj tools widget:
-this adds, moves, rotates, deletes interactive and indestructible objs.
-which means we need refs to do this for both obj types.
-
-this is a straight port to interactive objects, to get the
-codebase compiling. then, we will add indestructible objs in
-their own widget, and expand obj tools widget to handl inds
-later on.
 
 
 
@@ -224,9 +194,7 @@ ALL dungeon entrances, exits, coliseum entrance, etc...
 
 
 	
-step 3: fix editor and xml savedata, then cs pipeline	
-	
-step 4: rebuild level and room data
+step 3: fix xml savedata & cs pipeline	
 	build ship at sea base level
 	complete level rebuilds
 	complete roomData rebuilds	
@@ -237,13 +205,6 @@ step 4: rebuild level and room data
 	
 	
 
-
-
-	
-	
-	
-	
-	
 	
 	
 	
@@ -253,12 +214,8 @@ Add Wind
 	wind vs pros
 	wind vs picks
 
-
 	
 	
-	
-
-
 
 Systems Redesign Time!!!
 
@@ -267,29 +224,7 @@ adding WIND! which is an entire element of magic too.
 
  
 Pool:
-new
-	indestructible objs - only block, never move, never interact
-	interactive objs - objs that interact, move, maybe block
-	wind - pushes: actors, pros, ints, pickups
-already done
-	projectiles - objs that damage and interact with ints and acts
-	pickups - interact with hero + pros (sprite + anim)
-	actors - enemies + hero
-	particles - decorate events in game
-
-
-	
-indestructible objs are their own class, with comps.
-with own setType() method in own class.
-they are on their own sheet too.
-they dont have move components, because they dont move.
-they are removed from interaction checks, because they only block.
-
-destructible objs exist in own class, with comps.
-with own setType() method, much more like gameObj.setType().
-they are on their own sheet too.
-they interact and check collisions. any obj that can move
-goes on this list.
+wind - pushes: actors, pros, ints, pickups
 
 wind objs are just projectiles, but they exist in their
 own pool - which is done to reduce the number of interaction
@@ -302,8 +237,6 @@ to give wind the final say over movement and magnitude.
 
 
 
-	
-	
 	
 	
 	
@@ -342,6 +275,14 @@ mass move: pushes all objs, actors, and pros in room in given direction.
 control wind: sets the level's wind direction, intensity, and frequency.
 tornado: spawns a tornado roomObj. (fire, ice, explosive, electrical tornados too)...
 ****wind should work in water as well*****
+
+
+
+
+
+
+
+
 
 
 

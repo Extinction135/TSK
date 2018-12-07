@@ -48,6 +48,22 @@ namespace DungeonRun
 
 
 
+
+
+
+
+
+
+        public enum EditorState { InteractiveObj, IndestructibleObj, Actor }
+        public EditorState editorState = EditorState.InteractiveObj;
+
+
+
+
+
+
+
+
         public WidgetObjectTools()
         {
             window = new MenuWindow(
@@ -481,7 +497,7 @@ namespace DungeonRun
 
         }
 
-        public void HandleInput_ActorMode()
+        public void HandleInput_ActorMode_FUK()
         {
             if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
             {
@@ -502,6 +518,18 @@ namespace DungeonRun
                 }
             }
         }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -534,6 +562,9 @@ namespace DungeonRun
                 Functions_Draw.Draw(selectionBoxTool);
             }
         }
+
+
+
 
 
 
@@ -803,6 +834,11 @@ namespace DungeonRun
                 }
             }
         }
+
+
+
+
+
 
 
 
