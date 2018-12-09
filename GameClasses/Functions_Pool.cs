@@ -639,11 +639,11 @@ namespace DungeonRun
             }
 
 
-            //check projectiles against the indestructibles list
+            //check projectiles against the indestructibles list only
             for(i = 0; i < Pool.projectileCount; i++)
             {
                 if (Pool.projectilePool[i].active)
-                {   //projectiles that collide with indestructibles stop movement/dont overlap
+                {   //projectiles that collide with indestructibles go back to prev position
                     if(Pool.projectilePool[i].compMove.moving)
                     {
                         Functions_Collision.CheckCollisions(

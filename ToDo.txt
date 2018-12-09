@@ -68,23 +68,50 @@ Today:
 
 
 
-Indestrutibles++
-
-complete writing routine in pool.update() to collision
-check the projetile pool against the indestructiblel pool.
-this finishes indestructible obj implementation. done, 
-tested - chain exlode is really fun to cast against inds.
-the emitter stops movement and just constantly spawns 
-explosions in a single tile, leading to a case where the
-player could get a boss against a wall and stack-up
-explosions, dealing 2 damage every few frames leading
-to lots of DPS, if the actor hit direction is controlled.
-this would have to be between two objs that cant be
-destroyed (pushable) or indestructible objs - so note:
-dont make boss or hub rooms with objects that can create
-traps for the bosses to be explosion-locked in. duh.
 
 
+
+Bombos + System Maximum Tests
+
+the current version of bombos creates explosions sequentially
+left to right across the screen. this screen space is projected
+down into world space (position XY), and an explosion is placed
+there. for each explosion, a ground fire is created during it's
+lifetime - and that ground fire creates rising smoke particles
+randomly during it's lifetime - leading to a cascading state
+where both the projectile and particle pools are overloaded.
+
+this means explosions dont spawn, fires dont spawn, smoke doesn't
+spawn - the pools fail gracefully, simply returning index 0
+for pros and parts, but the net result is that bombos 'cuts out'
+about halfway across the screen, not functioning properly.
+
+so the fix is easy, we'll just create fire particles instead,
+and explosions can burn objects in the interaction routines, 
+instead of relying on ground fires to handle burn for them.
+this is to ensure bombos functions properly and acts as the
+first (of what i hope are many) global magic spells that are
+large-scale, AND functions as a max system test as well. this will
+allow me to build a test level and optimize the pool interactions
+even more, so the game can smoothly run large scale destruction and
+interactions, which is the primary goal now that magic exists. 
+
+testing bombos using fire particles showed the pros and parts 
+pools hitting 90/70 during empty screen bombos. that's about 30%
+of projectile pool, and 10% of the particle pool - which is a
+minor upgrade from the semi-functioning version. :)
+
+
+
+
+
+
+
+
+
+
+bombos should create fire particles, not ground fires.
+this is too taxing on the system.
 
 
 
@@ -100,8 +127,7 @@ that are actually MOVING. explosions dont move, for example.
 
 
 
-bombos should create fire particles, not ground fires.
-this is too taxing on the system.
+
 
 
 

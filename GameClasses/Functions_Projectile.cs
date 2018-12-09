@@ -1070,11 +1070,18 @@ namespace DungeonRun
             else if (Pro.type == ProjectileType.Explosion)
             {   //create groundfire prior to death (before actual death, for taste)
                 if(Pro.lifeCounter == Pro.lifetime - 6)
-                {
+                {   //create a fire particle - much easier on system (bombos for example)
+                    Functions_Particle.Spawn(
+                        ParticleType.Fire,
+                        Pro.compMove.position.X,
+                        Pro.compMove.position.Y,
+                        Direction.None);
+                    /*
                     Spawn(ProjectileType.GroundFire, 
                         Pro.compMove.position.X, 
                         Pro.compMove.position.Y, 
                         Direction.None);
+                    */
                 }
             }
 
