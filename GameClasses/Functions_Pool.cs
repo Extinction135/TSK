@@ -643,8 +643,14 @@ namespace DungeonRun
             for(i = 0; i < Pool.projectileCount; i++)
             {
                 if (Pool.projectilePool[i].active)
-                {
-                    //projectiles that collide with indestructibles stop movement, and usually die
+                {   //projectiles that collide with indestructibles stop movement/dont overlap
+                    if(Pool.projectilePool[i].compMove.moving)
+                    {
+                        Functions_Collision.CheckCollisions(
+                                Pool.projectilePool[i].compMove,
+                                Pool.projectilePool[i].compCollision,
+                                true, false, false, false);
+                    }
                 }
             }
 

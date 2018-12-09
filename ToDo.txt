@@ -67,33 +67,42 @@ Today:
 
 
 
-place ind objs via fn_component.align() - PLS.
 
-
-
-
-
-
-
-IndestructibleObjs++
-
-test that we can add indestructible dark blocks to levels.
-this simply means the indestructible pool is working, if it draws.
-indestructible objs can be added. working.
-
-actors completely implemented vs indestructibles. working.
-int obj collisions completely implemented vs act/ind/int/hero.
-
-inspected pool.update(), but honestly it's late.
-
-
-
-
-
+Indestrutibles++
 
 complete writing routine in pool.update() to collision
 check the projetile pool against the indestructiblel pool.
-this finishes indestructible obj implementation.
+this finishes indestructible obj implementation. done, 
+tested - chain exlode is really fun to cast against inds.
+the emitter stops movement and just constantly spawns 
+explosions in a single tile, leading to a case where the
+player could get a boss against a wall and stack-up
+explosions, dealing 2 damage every few frames leading
+to lots of DPS, if the actor hit direction is controlled.
+this would have to be between two objs that cant be
+destroyed (pushable) or indestructible objs - so note:
+dont make boss or hub rooms with objects that can create
+traps for the bosses to be explosion-locked in. duh.
+
+
+
+
+
+
+
+
+
+
+pro.compMove.moving MUST be set properly for all projectiles
+that are actually MOVING. explosions dont move, for example.
+
+
+
+
+
+bombos should create fire particles, not ground fires.
+this is too taxing on the system.
+
 
 
 
