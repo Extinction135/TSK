@@ -348,7 +348,7 @@ namespace DungeonRun
             else if (Type == ProjectileType.Boomerang)
             {
                 Functions_Hero.boomerangInPlay = true;
-
+                pro.compMove.moving = true; //moves
                 //limit diagonal movement in favor of cardinal movement
                 //push lines will appear on cardinal direction slides
 
@@ -1076,12 +1076,6 @@ namespace DungeonRun
                         Pro.compMove.position.X,
                         Pro.compMove.position.Y,
                         Direction.None);
-                    /*
-                    Spawn(ProjectileType.GroundFire, 
-                        Pro.compMove.position.X, 
-                        Pro.compMove.position.Y, 
-                        Direction.None);
-                    */
                 }
             }
 
@@ -1185,9 +1179,7 @@ namespace DungeonRun
 
                 #region Explode as Bush
 
-                if(
-                    Pro.compAnim.currentAnimation == AnimationFrames.World_Bush
-                    )
+                if(Pro.compAnim.currentAnimation == AnimationFrames.World_Bush)
                 {   //pop leaf explosion for bushes
                     Functions_Particle.Spawn_Explosion(
                         ParticleType.LeafGreen,

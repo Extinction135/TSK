@@ -839,14 +839,7 @@ namespace DungeonRun
 
 
 
-
-
-
-
     
-
-
-
 
 
 
@@ -858,7 +851,6 @@ namespace DungeonRun
 
     public enum ProjectileType
     {
-
         //Projectiles - items
         Bomb,
         Boomerang,
@@ -893,13 +885,24 @@ namespace DungeonRun
         Bite,
         Bat,
 
-
         //Carried and Thrown Projectiles
         CarriedObject,
         ThrownObject,
     }
 
     #endregion
+
+
+
+
+
+
+    
+
+
+
+
+
 
 
     #region Pickup + Particle Types

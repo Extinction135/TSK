@@ -18,53 +18,36 @@ namespace DungeonRun
         //handles the selection, grabbing, dragging, releasing, adding, and deleting of objs + actors
         int j;
 
-
+        //editor 'buttons'
         public InteractiveObject moveObj;
         public InteractiveObject rotateObj;
         public InteractiveObject addObj;
         public InteractiveObject deleteObj;
 
-        //move these into Input class or Functions_Input
         public Point worldPos; //used to translate screen to world position
         public Point screenPos; //used to translate world to screen position
-
-
 
         //the 3 states the editor can be in, based on whats been selected
         public enum EditorState { InteractiveObj, IndestructibleObj, Actor }
         public EditorState editorState = EditorState.InteractiveObj;
 
-
-
-        
         //represents the obj/actor currently selected
         public ComponentSprite displaySprite;
         public ComponentAnimation displayAnim;
         public Direction displayDirection;
         public float displayRotation = 0.0f;
-
         public ComponentText currentObjDirectionText;
-        //default enum values
+
+        //values to model indestructible / interactive / actors that have been selected by editor
         public InteractiveType currentInteractiveType = InteractiveType.Barrel;
         public IndestructibleType currentIndestructibleType = IndestructibleType.Dungeon_BlockDark;
         public ActorType currentActorType = ActorType.Blob;
 
-
-
-
-        public ComponentSprite selectionBoxObj; //highlites the currently selected obj
+        public ComponentSprite selectionBoxObj; //highlites the currently selected obj/act
         public ComponentSprite selectionBoxTool; //highlites the currently selected tool
-
-
-        
-        public InteractiveObject activeObj; //points to Obj on objList OR on roomObj/entity list
-
-
-
-
-        public InteractiveObject grabbedObj; //obj/entity that is picked up/dragged/dropped in room
         public InteractiveObject activeTool; //points to a ToolObj on the obj list
 
+        //misc
         Boolean ignoreObj = false; //helper for modeling editor ignore state
 
 
@@ -75,9 +58,22 @@ namespace DungeonRun
 
 
 
-
+        public InteractiveObject activeObj; //points to Obj on objList OR on roomObj/entity list
 
         
+        public InteractiveObject grabbedIntObj;
+        public IndestructibleObject grabbedIndObj;
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -164,8 +160,10 @@ namespace DungeonRun
             //initialize the widget 
             SetActiveTool(moveObj);
             TopDebugMenu.objToolState = ObjToolState.MoveObj;
-            grabbedObj = null;
             Reset(16 * 1, 16 * 17 + 8); //bottom left
+            //null obj references
+            grabbedIntObj = null;
+            grabbedIndObj = null;
         }
 
         public override void Reset(int X, int Y)
@@ -190,7 +188,14 @@ namespace DungeonRun
             //place direction text in footer of window
             currentObjDirectionText.position.X = window.interior.rec.X + 5;
             currentObjDirectionText.position.Y = window.interior.rec.Y + 45;
+            //default obj references
+            grabbedIntObj = Pool.intObjPool[0];
+            grabbedIndObj = Pool.indObjPool[0];
         }
+
+
+
+
 
 
 
@@ -233,9 +238,13 @@ namespace DungeonRun
         }
 
         public void HandleInput_World()
-        {
-            //convert cursor Pos to world pos
+        {   //convert cursor Pos to world pos
             worldPos = Functions_Camera2D.ConvertScreenToWorld(Input.cursorPos.X, Input.cursorPos.Y);
+
+
+
+
+            #region Actor State
 
             if (editorState == EditorState.Actor)
             {
@@ -256,13 +265,19 @@ namespace DungeonRun
                     }
                 }
             }
+
+            #endregion
+
+
+            #region Indestructible State
+
             else if(editorState == EditorState.IndestructibleObj)
-            {
-                //tbi
-
-
+            {   //Handle Left Button CLICK (ind objs)
                 if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
                 {
+
+                    #region Handle Adding an Object to Room
+
                     if (TopDebugMenu.objToolState == ObjToolState.AddObj)
                     {
                         IndestructibleObject objRef;
@@ -275,17 +290,172 @@ namespace DungeonRun
                         //set animation frame
                         Functions_Animation.Animate(objRef.compAnim, objRef.compSprite);
                     }
+
+                    #endregion
+
+
+                    #region Handle Rotating an Object in Room
+
+                    //
+
+                    #endregion
+
+
+                    //grab indestructible obj
+                    if (TopDebugMenu.objToolState == ObjToolState.MoveObj) { GrabIndestructibleObject(); }
                 }
+                //Handle Left Button DOWN (dragging)
+                if (Functions_Input.IsMouseButtonDown(MouseButtons.LeftButton))
+                {
+
+                    #region Handle Dragging an Object in Room
+
+                    if (TopDebugMenu.objToolState == ObjToolState.MoveObj)
+                    {
+                        if (grabbedIndObj != null)
+                        {
+                            grabbedIndObj.compSprite.position = Functions_Movement.AlignToGrid(worldPos.X, worldPos.Y);
+                            Functions_Component.Align(grabbedIndObj);
+                            //update selectionBox position (convert world pos to screen pos)
+                            screenPos = Functions_Camera2D.ConvertWorldToScreen(
+                                (int)grabbedIndObj.compSprite.position.X,
+                                (int)grabbedIndObj.compSprite.position.Y);
+                            selectionBoxObj.position.X = screenPos.X;
+                            selectionBoxObj.position.Y = screenPos.Y;
+                        }
+                    }
+
+                    #endregion
+
+
+                    #region Handle Deleting Objects in Room
+
+                    else if (TopDebugMenu.objToolState == ObjToolState.DeleteObj)
+                    {   //check collisions between cursor worldPos and obj, release() any colliding objs
+
+                        //delete roomObjs
+                        for (Pool.intObjCounter = 0; Pool.intObjCounter < Pool.intObjCount; Pool.intObjCounter++)
+                        {
+                            if (Pool.intObjPool[Pool.intObjCounter].active)
+                            {
+                                if (Pool.intObjPool[Pool.intObjCounter].compCollision.rec.Contains(worldPos))
+                                {
+
+                                    ignoreObj = false;
+
+
+                                    #region Editor Based Selection Cases
+
+                                    //check for specific conditions, like ignoring water tiles
+                                    if (Flags.IgnoreWaterTiles & Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Water_2x2)
+                                    { ignoreObj = true; } //ignore this object
+
+                                    //ignoring roof tiles for deletion
+                                    if (Flags.IgnoreRoofTiles)
+                                    {
+                                        if (
+                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.House_Roof_Bottom ||
+                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.House_Roof_Chimney ||
+                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.House_Roof_Top
+                                            )
+                                        { ignoreObj = true; } //ignore this object
+                                    }
+
+                                    //boat tiles
+                                    if (Flags.IgnoreBoatTiles)
+                                    {
+                                        if (
+                                            //all the boat objs, in groups of 5 - should we model this as an obj.group value?
+
+                                            //these are all indestructible objects
+                                            /*
+                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Back_Center ||
+                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Back_Left ||
+                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Back_Left_Connector ||
+                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Back_Right ||
+                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Back_Right_Connector ||
+
+                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Bannister_Left ||
+                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Bannister_Right ||
+                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Bridge_Bottom ||
+                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Bridge_Top ||
+                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Engine ||
+
+                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Front ||
+                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Front_ConnectorLeft ||
+                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Front_ConnectorRight ||
+                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Front_Left ||
+                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Front_Right ||
+
+                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Stairs_Bottom_Left ||
+                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Stairs_Bottom_Right ||
+
+                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Stairs_Cover ||
+                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Stairs_Left ||
+                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Stairs_Right ||
+                                            */
+
+
+                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Boat_Stairs_Left ||
+                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Boat_Stairs_Right ||
+
+                                            //this one is special, because we use this obj as interior house floor
+                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Boat_Floor
+                                            //ignore boat button also ignores floors = easy to move furniture around
+                                            )
+                                        { ignoreObj = true; } //ignore this object
+                                    }
 
 
 
+
+
+
+
+
+                                    #endregion
+
+
+
+                                    if (ignoreObj == false)
+                                    {
+                                        //if we aren't ignoring the object, then release it
+                                        Functions_Pool.Release(Pool.intObjPool[Pool.intObjCounter]);
+                                    }
+                                }
+                            }
+                        }
+
+
+
+
+                        //delete indestructible objs? - against collision comps, yep
+                        for (Pool.projectileCounter = 0; Pool.projectileCounter < Pool.projectileCount; Pool.projectileCounter++)
+                        {
+                            if (Pool.projectilePool[Pool.projectileCounter].active)
+                            {
+                                if (Pool.projectilePool[Pool.projectileCounter].compCollision.rec.Contains(worldPos))
+                                { Functions_Pool.Release(Pool.projectilePool[Pool.projectileCounter]); }
+                            }
+                        }
+
+                    }
+
+                    #endregion
+
+                }
+                //Handle Mouse Button RELEASE
+                if (Functions_Input.IsNewMouseButtonRelease(MouseButtons.LeftButton))
+                { grabbedIndObj = null; } //release obj
             }
+
+            #endregion
+
+
+            #region Interactive State
+
             else
-            {
-                //mouse button states for int Obj mode
-
-                #region Handle Left Button CLICK
-
+            {   //Handle Left Button CLICK (int objs)
                 if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
                 {
 
@@ -365,53 +535,38 @@ namespace DungeonRun
 
                     else if (TopDebugMenu.objToolState == ObjToolState.RotateObj)
                     {
-                        if (GrabInteractiveObject()) { RotateRoomObj(); }
+                        if (editorState == EditorState.InteractiveObj)
+                        { if (GrabInteractiveObject()) { RotateIntObj(); } }
+
+                        else if (editorState == EditorState.IndestructibleObj)
+                        { if (GrabIndestructibleObject()) { RotateIndObj(); } }
                     }
 
                     #endregion
 
 
-                    #region Handle Grab/Move RoomObject State
-
+                    //Grab Interactive Obj
                     if (TopDebugMenu.objToolState == ObjToolState.MoveObj) { GrabInteractiveObject(); }
-
-                    //we handle grabbing roomObjs last because these roomObjs could be
-                    //anywhere on screen, including underneath a widget. by checking and
-                    //bailing from this method earlier (using widgets), we ensure that
-                    //the user has to be clicking on an object not covered by a widget.
-
-                    //we also want to allow the user the ability to temp store objects
-                    //outside of the room level, so we don't put this check into the
-                    //currentRoom collision check above. if we did, user couldn't grab
-                    //objs outside of the room's rec, but COULD drop them, which is dumb.
-
-                    #endregion
-
                 }
-
-                #endregion
-
-
-                #region Handle Left Button DOWN (dragging)
-
+                //Handle Left Button DOWN (dragging)
                 if (Functions_Input.IsMouseButtonDown(MouseButtons.LeftButton))
                 {
 
                     #region Handle Dragging an Object in Room
 
                     if (TopDebugMenu.objToolState == ObjToolState.MoveObj)
-                    {   //if we are in Move state,
-                        if (grabbedObj != null)
+                    { 
+                        if(grabbedIntObj != null)
                         {   //match grabbed Obj pos to worldPos, aligned to 16px grid
-                            grabbedObj.compMove.newPosition = Functions_Movement.AlignToGrid(worldPos.X, worldPos.Y);
-                            Functions_Movement.Teleport(grabbedObj.compMove,
-                                grabbedObj.compMove.newPosition.X, grabbedObj.compMove.newPosition.Y);
-                            Functions_Component.Align(grabbedObj.compMove,
-                                grabbedObj.compSprite, grabbedObj.compCollision);
+                            grabbedIntObj.compMove.newPosition = Functions_Movement.AlignToGrid(worldPos.X, worldPos.Y);
+                            Functions_Movement.Teleport(grabbedIntObj.compMove,
+                                grabbedIntObj.compMove.newPosition.X, grabbedIntObj.compMove.newPosition.Y);
+                            Functions_Component.Align(grabbedIntObj.compMove,
+                                grabbedIntObj.compSprite, grabbedIntObj.compCollision);
                             //update selectionBox position (convert world pos to screen pos)
                             screenPos = Functions_Camera2D.ConvertWorldToScreen(
-                                (int)activeObj.compSprite.position.X,
-                                (int)activeObj.compSprite.position.Y);
+                                (int)grabbedIntObj.compSprite.position.X,
+                                (int)grabbedIntObj.compSprite.position.Y);
                             selectionBoxObj.position.X = screenPos.X;
                             selectionBoxObj.position.Y = screenPos.Y;
                         }
@@ -536,20 +691,13 @@ namespace DungeonRun
                     #endregion
 
                 }
-
-                #endregion
-
-
-                #region Handle Left Button RELEASE
-
+                //Handle Mouse Button RELEASE
                 if (Functions_Input.IsNewMouseButtonRelease(MouseButtons.LeftButton))
-                {
-                    grabbedObj = null; //release grabbed obj
-                }
-
-                #endregion
-
+                { grabbedIntObj = null; } //release obj
             }
+
+            #endregion
+
         }
         
 
@@ -601,6 +749,13 @@ namespace DungeonRun
 
 
 
+
+
+
+
+
+
+
         public void SetActiveTool(InteractiveObject Tool)
         {
             activeTool = Tool;
@@ -623,17 +778,12 @@ namespace DungeonRun
 
 
 
-
-
-
-
-
-
+        
 
 
         
         public Boolean GrabInteractiveObject()
-        {   //grab roomObjs
+        {
             for (Pool.intObjCounter = 0; Pool.intObjCounter < Pool.intObjCount; Pool.intObjCounter++)
             {   //loop thru roomObj pool, checking collisions with cursor's worldPos
                 if (Pool.intObjPool[Pool.intObjCounter].active)
@@ -723,7 +873,48 @@ namespace DungeonRun
                     }
                 }
             }
-            return false; //no collision with roomObj
+            return false; //no collision with ints
+        }
+
+        public Boolean GrabIndestructibleObject()
+        {
+            for (Pool.indObjCounter = 0; Pool.indObjCounter < Pool.indObjCount; Pool.indObjCounter++)
+            {   //loop thru roomObj pool, checking collisions with cursor's worldPos
+                if (Pool.indObjPool[Pool.indObjCounter].active)
+                {   //check collisions between worldPos and obj, grab any colliding obj
+                    if (Pool.indObjPool[Pool.indObjCounter].compCollision.rec.Contains(worldPos))
+                    {
+                        ignoreObj = false;
+
+
+                        #region Editor Based Selection Cases
+
+                        //check for specific conditions, like ignoring water tiles
+                        /*
+                        if (Flags.IgnoreWaterTiles)
+                        {
+                            if (
+                                Pool.indObjPool[Pool.indObjCounter].type == IndestructibleType.Water_2x2
+                                )
+                            { ignoreObj = true; } //ignore this object
+                        }
+                        */
+
+                        #endregion
+
+
+                        //editor can ignore certain object types to make editing easier
+                        if (ignoreObj == false)
+                        {
+                            SelectObject(Pool.indObjPool[Pool.indObjCounter]);
+                            return true;
+                        }
+                        else { } //continue onto the next object
+                    }
+                }
+            }
+
+            return false; //no collision with inds
         }
 
 
@@ -731,7 +922,7 @@ namespace DungeonRun
 
 
 
-
+        
 
 
 
@@ -752,21 +943,54 @@ namespace DungeonRun
             currentObjDirectionText.text = "dir: " + displayDirection;
         }
 
+
+
+
+
+
+
+        
+
+
+
+        public void SelectObject(IndestructibleObject Obj)
+        {
+            if (editorState == EditorState.IndestructibleObj)
+            {
+                grabbedIndObj = Obj;
+                //activeObj = Obj;
+                //GetActiveObjInfo();
+                selectionBoxObj.position = Obj.compSprite.position;
+                selectionBoxObj.scale = 2.0f;
+                window.title.text = "IND Obj: " + Obj.type;
+                currentObjDirectionText.text = "dir: " + Obj.direction;
+            }
+        }
+
         public void SelectObject(InteractiveObject Obj)
         {
-            grabbedObj = Obj;
-            activeObj = Obj;
-            GetActiveObjInfo();
-            selectionBoxObj.position = Obj.compSprite.position;
-            selectionBoxObj.scale = 2.0f;
-            window.title.text = "Obj: " + Obj.type;
-            currentObjDirectionText.text = "dir: " + Obj.direction;
+            if (editorState == EditorState.InteractiveObj)
+            {
+                grabbedIntObj = Obj;
+                //activeObj = Obj;
+                //GetActiveObjInfo();
+                selectionBoxObj.position = Obj.compSprite.position;
+                selectionBoxObj.scale = 2.0f;
+                window.title.text = "INT Obj: " + Obj.type;
+                currentObjDirectionText.text = "dir: " + Obj.direction;
+            }
         }
 
 
 
 
-        public void RotateRoomObj()
+
+        
+
+
+
+
+        public void RotateIntObj()
         {   
             //set activeObj's obj.direction based on type
             if (currentInteractiveType == InteractiveType.Lava_PitBridge)
@@ -775,7 +999,6 @@ namespace DungeonRun
                 { displayDirection = Direction.Left; }
                 else { displayDirection = Direction.Down; }
             }
-
 
             //these are objects that we allow rotation upon
             else if (currentInteractiveType == InteractiveType.ConveyorBeltOn
@@ -815,9 +1038,10 @@ namespace DungeonRun
             //displaySprite.rotation = Rotation.None; //dont rotate the display sprite at all
         }
 
-
-
-
+        public void RotateIndObj()
+        {
+            //how/where do we target indestructible objs for reference?
+        }
 
 
 
@@ -899,6 +1123,12 @@ namespace DungeonRun
             }
         }
 
+
+
+
+
+
+
         public void CheckActorsList(List<Actor> actList)
         {
             for (int i = 0; i < actList.Count; i++)
@@ -931,11 +1161,7 @@ namespace DungeonRun
         }
 
 
-
-
-
-
-
+        
 
 
     }

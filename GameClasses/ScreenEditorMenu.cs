@@ -331,6 +331,8 @@ namespace DungeonRun
             Widgets.WO_Mtn.visible = true;
             Widgets.WO_Dev.visible = true;
             Widgets.WO_Dungeon.visible = true;
+            //set obj tools editor state to interactive objs
+            Widgets.ObjectTools.editorState = WidgetObjectTools.EditorState.InteractiveObj;
         }
 
         public void HideWidgets()
@@ -376,6 +378,8 @@ namespace DungeonRun
                 Widgets.WD_Swamp.visible = true;
                 Widgets.WD_Coliseum.visible = true;
                 widgetDisplaySet_Btn.compText.text = "indestructble objs";
+                //set obj tools editor state to indestructible objs
+                Widgets.ObjectTools.editorState = WidgetObjectTools.EditorState.IndestructibleObj;
             }
             else if(Widgets.WD_BoatA.visible)
             {
@@ -389,6 +393,8 @@ namespace DungeonRun
                 Widgets.WA_Thievs.visible = true;
                 Widgets.WA_Shadow.visible = true;
                 widgetDisplaySet_Btn.compText.text = "actors";
+                //set obj tools editor state to actors
+                Widgets.ObjectTools.editorState = WidgetObjectTools.EditorState.Actor;
             }
             else if(Widgets.WA_Forest.visible)
             {   //just reset to entry point for this codebranch
