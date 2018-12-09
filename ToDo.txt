@@ -75,24 +75,17 @@ Today:
 
 
 
-
-Implement Hero Interaction Point Interactions
-
-hero interaction rec vs ints. done.
-hero interaction rec vs inds. done.
-
-
-
-
-
-
 Editor++
 
-add more indestructible objs to widgets, pls.
+add dungeon entrances to widgets for testing the
+creation of dungeons. yeah, we need to massively
+update dungeon creation as well to handle exits as
+indestructible objs... that clean other objs upon
+creation as well.
 
-
-
-
+this is all in widgetIndObjs.cs.
+migrate the commented code back into ind objs, so
+we can see and use and interact with ind objs.
 
 
 
@@ -105,7 +98,7 @@ UPW++
 
 relink uwp to widget int and inds classes.
 test that this builds to level editor like Dx.
-
+done.
 
 
 
