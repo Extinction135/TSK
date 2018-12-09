@@ -54,12 +54,7 @@ namespace DungeonRun
 
 
 
-
-
-
-
-        public InteractiveObject activeObj; //points to Obj on objList OR on roomObj/entity list
-
+        
         
         public InteractiveObject grabbedIntObj;
         public IndestructibleObject grabbedIndObj;
@@ -243,15 +238,183 @@ namespace DungeonRun
 
 
 
+            //Grab/Set Ind and Int Objects
+            if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
+            {
+                GrabIndestructibleObject(); //sets editor state upon collision
+                GrabInteractiveObject(); //with inds, THEN ints - ints preffered
+            }
 
-            #region Actor State
 
-            if (editorState == EditorState.Actor)
+
+
+
+            //tool state checks
+
+            #region Dragging Objs
+
+            //note: this routine can drag both inds and ints at the same time
+            if (TopDebugMenu.objToolState == ObjToolState.MoveObj)
+            {
+                //drags obj - based on int/ind obj refs
+                if (Functions_Input.IsMouseButtonDown(MouseButtons.LeftButton))
+                {   //Indestructible Obj
+                    if (grabbedIndObj != null)
+                    {   //match grabbed Obj pos to worldPos, aligned to 16px grid
+                        grabbedIndObj.compSprite.position = Functions_Movement.AlignToGrid(worldPos.X, worldPos.Y);
+                        Functions_Component.Align(grabbedIndObj);
+                        //update selectionBox position (convert world pos to screen pos)
+                        screenPos = Functions_Camera2D.ConvertWorldToScreen(
+                            (int)grabbedIndObj.compSprite.position.X,
+                            (int)grabbedIndObj.compSprite.position.Y);
+                        selectionBoxObj.position.X = screenPos.X;
+                        selectionBoxObj.position.Y = screenPos.Y;
+                    }
+                    //Interactive Obj
+                    if (grabbedIntObj != null)
+                    {   //match grabbed Obj pos to worldPos, aligned to 16px grid
+                        grabbedIntObj.compMove.newPosition = Functions_Movement.AlignToGrid(worldPos.X, worldPos.Y);
+                        Functions_Movement.Teleport(grabbedIntObj.compMove,
+                            grabbedIntObj.compMove.newPosition.X, grabbedIntObj.compMove.newPosition.Y);
+                        Functions_Component.Align(grabbedIntObj.compMove,
+                            grabbedIntObj.compSprite, grabbedIntObj.compCollision);
+                        //update selectionBox position (convert world pos to screen pos)
+                        screenPos = Functions_Camera2D.ConvertWorldToScreen(
+                            (int)grabbedIntObj.compSprite.position.X,
+                            (int)grabbedIntObj.compSprite.position.Y);
+                        selectionBoxObj.position.X = screenPos.X;
+                        selectionBoxObj.position.Y = screenPos.Y;
+                    }
+                }
+            }
+
+            #endregion
+
+
+            #region Deleting Objs
+
+            else if(TopDebugMenu.objToolState == ObjToolState.DeleteObj)
+            {
+                if (Functions_Input.IsMouseButtonDown(MouseButtons.LeftButton))
+                {
+                    //loop both obj lists, delete any colliding objs
+
+                    #region Loop Interactive Objs
+
+                    for (Pool.intObjCounter = 0; Pool.intObjCounter < Pool.intObjCount; Pool.intObjCounter++)
+                    {
+                        if (Pool.intObjPool[Pool.intObjCounter].active)
+                        {
+                            if (Pool.intObjPool[Pool.intObjCounter].compCollision.rec.Contains(worldPos))
+                            {
+
+                                ignoreObj = false;
+
+
+                                #region Editor Based Selection Cases
+
+                                //check for specific conditions, like ignoring water tiles
+                                if (Flags.IgnoreWaterTiles & Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Water_2x2)
+                                { ignoreObj = true; } //ignore this object
+
+                                //ignoring roof tiles for deletion
+                                if (Flags.IgnoreRoofTiles)
+                                {
+                                    if (
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.House_Roof_Bottom ||
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.House_Roof_Chimney ||
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.House_Roof_Top
+                                        )
+                                    { ignoreObj = true; } //ignore this object
+                                }
+
+                                //boat tiles
+                                if (Flags.IgnoreBoatTiles)
+                                {
+                                    if (
+                                        //all the boat objs, in groups of 5 - should we model this as an obj.group value?
+
+                                        //these are all indestructible objects
+                                        /*
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Back_Center ||
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Back_Left ||
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Back_Left_Connector ||
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Back_Right ||
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Back_Right_Connector ||
+
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Bannister_Left ||
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Bannister_Right ||
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Bridge_Bottom ||
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Bridge_Top ||
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Engine ||
+
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Front ||
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Front_ConnectorLeft ||
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Front_ConnectorRight ||
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Front_Left ||
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Front_Right ||
+
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Stairs_Bottom_Left ||
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Stairs_Bottom_Right ||
+
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Stairs_Cover ||
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Stairs_Left ||
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Stairs_Right ||
+                                        */
+
+
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Boat_Stairs_Left ||
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Boat_Stairs_Right ||
+
+                                        //this one is special, because we use this obj as interior house floor
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Boat_Floor
+                                        //ignore boat button also ignores floors = easy to move furniture around
+                                        )
+                                    { ignoreObj = true; } //ignore this object
+                                }
+
+                                #endregion
+
+
+                                if (ignoreObj == false)
+                                {
+                                    //if we aren't ignoring the object, then release it
+                                    Functions_Pool.Release(Pool.intObjPool[Pool.intObjCounter]);
+                                }
+                            }
+                        }
+                    }
+
+                    #endregion
+
+
+                    #region Loop Indestructible Objs
+
+                    for (Pool.indObjCounter = 0; Pool.indObjCounter < Pool.indObjCount; Pool.indObjCounter++)
+                    {
+                        if (Pool.indObjPool[Pool.indObjCounter].active)
+                        {
+                            if (Pool.indObjPool[Pool.indObjCounter].compCollision.rec.Contains(worldPos))
+                            { Functions_Pool.Release(Pool.indObjPool[Pool.indObjCounter]); }
+                        }
+                    }
+
+                    #endregion
+
+                }
+            }
+
+            #endregion
+            
+
+            #region Adding Inds, Ints, and Actors to GameWorld
+
+            else if (TopDebugMenu.objToolState == ObjToolState.AddObj)
             {
                 if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
-                {   //add actor to room if in add state
-                    if (TopDebugMenu.objToolState == ObjToolState.AddObj)
-                    {
+                {
+                    if(editorState == EditorState.Actor)
+                    {   //create actor
                         Actor actorRef = Functions_Pool.GetActor();
                         //place currently selected obj in room, aligned to 16px grid
                         actorRef.compMove.newPosition = Functions_Movement.AlignToGrid(worldPos.X, worldPos.Y);
@@ -263,205 +426,18 @@ namespace DungeonRun
                         Functions_Actor.SetType(actorRef, currentActorType);
                         actorRef.state = ActorState.Idle;
                     }
-                }
-            }
-
-            #endregion
-
-
-            #region Indestructible State
-
-            else if(editorState == EditorState.IndestructibleObj)
-            {   //Handle Left Button CLICK (ind objs)
-                if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
-                {
-
-                    #region Handle Adding an Object to Room
-
-                    if (TopDebugMenu.objToolState == ObjToolState.AddObj)
-                    {
+                    else if (editorState == EditorState.IndestructibleObj)
+                    {   //create ind
                         IndestructibleObject objRef;
                         objRef = Functions_Pool.GetIndObj();
                         objRef.compSprite.position = Functions_Movement.AlignToGrid(worldPos.X, worldPos.Y);
                         //set obj direction + type from stored values
                         objRef.direction = displayDirection;
                         Functions_IndestructibleObjs.SetType(objRef, currentIndestructibleType);
-                        Functions_Component.Align(objRef); //align hitbox
-                        //set animation frame
+                        Functions_Component.Align(objRef); //align hitbox, set animation frame
                         Functions_Animation.Animate(objRef.compAnim, objRef.compSprite);
                     }
-
-                    #endregion
-
-
-                    #region Handle Rotating an Object in Room
-
-                    //
-
-                    #endregion
-
-
-                    //grab indestructible obj
-                    if (TopDebugMenu.objToolState == ObjToolState.MoveObj) { GrabIndestructibleObject(); }
-                }
-                //Handle Left Button DOWN (dragging)
-                if (Functions_Input.IsMouseButtonDown(MouseButtons.LeftButton))
-                {
-
-                    #region Handle Dragging an Object in Room
-
-                    if (TopDebugMenu.objToolState == ObjToolState.MoveObj)
-                    {
-                        if (grabbedIndObj != null)
-                        {
-                            grabbedIndObj.compSprite.position = Functions_Movement.AlignToGrid(worldPos.X, worldPos.Y);
-                            Functions_Component.Align(grabbedIndObj);
-                            //update selectionBox position (convert world pos to screen pos)
-                            screenPos = Functions_Camera2D.ConvertWorldToScreen(
-                                (int)grabbedIndObj.compSprite.position.X,
-                                (int)grabbedIndObj.compSprite.position.Y);
-                            selectionBoxObj.position.X = screenPos.X;
-                            selectionBoxObj.position.Y = screenPos.Y;
-                        }
-                    }
-
-                    #endregion
-
-
-                    #region Handle Deleting Objects in Room
-
-                    else if (TopDebugMenu.objToolState == ObjToolState.DeleteObj)
-                    {   //check collisions between cursor worldPos and obj, release() any colliding objs
-
-                        //delete roomObjs
-                        for (Pool.intObjCounter = 0; Pool.intObjCounter < Pool.intObjCount; Pool.intObjCounter++)
-                        {
-                            if (Pool.intObjPool[Pool.intObjCounter].active)
-                            {
-                                if (Pool.intObjPool[Pool.intObjCounter].compCollision.rec.Contains(worldPos))
-                                {
-
-                                    ignoreObj = false;
-
-
-                                    #region Editor Based Selection Cases
-
-                                    //check for specific conditions, like ignoring water tiles
-                                    if (Flags.IgnoreWaterTiles & Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Water_2x2)
-                                    { ignoreObj = true; } //ignore this object
-
-                                    //ignoring roof tiles for deletion
-                                    if (Flags.IgnoreRoofTiles)
-                                    {
-                                        if (
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.House_Roof_Bottom ||
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.House_Roof_Chimney ||
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.House_Roof_Top
-                                            )
-                                        { ignoreObj = true; } //ignore this object
-                                    }
-
-                                    //boat tiles
-                                    if (Flags.IgnoreBoatTiles)
-                                    {
-                                        if (
-                                            //all the boat objs, in groups of 5 - should we model this as an obj.group value?
-
-                                            //these are all indestructible objects
-                                            /*
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Back_Center ||
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Back_Left ||
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Back_Left_Connector ||
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Back_Right ||
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Back_Right_Connector ||
-
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Bannister_Left ||
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Bannister_Right ||
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Bridge_Bottom ||
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Bridge_Top ||
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Engine ||
-
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Front ||
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Front_ConnectorLeft ||
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Front_ConnectorRight ||
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Front_Left ||
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Front_Right ||
-
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Stairs_Bottom_Left ||
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Stairs_Bottom_Right ||
-
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Stairs_Cover ||
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Stairs_Left ||
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Stairs_Right ||
-                                            */
-
-
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Boat_Stairs_Left ||
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Boat_Stairs_Right ||
-
-                                            //this one is special, because we use this obj as interior house floor
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Boat_Floor
-                                            //ignore boat button also ignores floors = easy to move furniture around
-                                            )
-                                        { ignoreObj = true; } //ignore this object
-                                    }
-
-
-
-
-
-
-
-
-                                    #endregion
-
-
-
-                                    if (ignoreObj == false)
-                                    {
-                                        //if we aren't ignoring the object, then release it
-                                        Functions_Pool.Release(Pool.intObjPool[Pool.intObjCounter]);
-                                    }
-                                }
-                            }
-                        }
-
-
-
-
-                        //delete indestructible objs? - against collision comps, yep
-                        for (Pool.projectileCounter = 0; Pool.projectileCounter < Pool.projectileCount; Pool.projectileCounter++)
-                        {
-                            if (Pool.projectilePool[Pool.projectileCounter].active)
-                            {
-                                if (Pool.projectilePool[Pool.projectileCounter].compCollision.rec.Contains(worldPos))
-                                { Functions_Pool.Release(Pool.projectilePool[Pool.projectileCounter]); }
-                            }
-                        }
-
-                    }
-
-                    #endregion
-
-                }
-                //Handle Mouse Button RELEASE
-                if (Functions_Input.IsNewMouseButtonRelease(MouseButtons.LeftButton))
-                { grabbedIndObj = null; } //release obj
-            }
-
-            #endregion
-
-
-            #region Interactive State
-
-            else
-            {   //Handle Left Button CLICK (int objs)
-                if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
-                {
-
-                    #region Handle Adding an Object To Room
-
-                    if (TopDebugMenu.objToolState == ObjToolState.AddObj)
+                    else //add interactive obj state
                     {
 
                         #region Check to see if we can add this type of Obj to this type of Room
@@ -481,22 +457,8 @@ namespace DungeonRun
                                 ScreenManager.AddScreen(Screens.Dialog);
                                 return; //dont add chest
                             }
-                            /*
-                            //we cannot have more than one chest in a room - actually, yeah we can it's fun
-                            for (j = 0; j < Pool.intObjCount; j++)
-                            {   //check all roomObjs for an active chest
-                                if (Pool.intObjPool[j].active & Pool.intObjPool[j].group == InteractiveGroup.Chest)
-                                {
-                                    Screens.Dialog.SetDialog(AssetsDialog.CantAddChests);
-                                    ScreenManager.AddScreen(Screens.Dialog);
-                                    return; //dont add chest
-                                }
-                            }
-                            */
                         }
-                        
-
-                        if (currentInteractiveType == InteractiveType.Dungeon_Switch)
+                        else if (currentInteractiveType == InteractiveType.Dungeon_Switch)
                         {   //we cannot have more than one switch in a room
                             for (j = 0; j < Pool.intObjCount; j++)
                             {   //check all roomObjs for a dungeon switch
@@ -512,7 +474,7 @@ namespace DungeonRun
                         #endregion
 
 
-                        //we can only add roomObjects to the room, no particles/projectiles
+                        //create int
                         InteractiveObject objRef;
                         objRef = Functions_Pool.GetIntObj();
 
@@ -524,197 +486,41 @@ namespace DungeonRun
                         objRef.direction = displayDirection;
                         objRef.compMove.direction = displayDirection;
                         Functions_InteractiveObjs.SetType(objRef, currentInteractiveType);
-                        //set animation frame
                         Functions_Animation.Animate(objRef.compAnim, objRef.compSprite);
                     }
-
-                    #endregion
-
-
-                    #region Handle Rotating an Object in Room
-
-                    else if (TopDebugMenu.objToolState == ObjToolState.RotateObj)
-                    {
-                        if (editorState == EditorState.InteractiveObj)
-                        { if (GrabInteractiveObject()) { RotateIntObj(); } }
-
-                        else if (editorState == EditorState.IndestructibleObj)
-                        { if (GrabIndestructibleObject()) { RotateIndObj(); } }
-                    }
-
-                    #endregion
-
-
-                    //Grab Interactive Obj
-                    if (TopDebugMenu.objToolState == ObjToolState.MoveObj) { GrabInteractiveObject(); }
                 }
-                //Handle Left Button DOWN (dragging)
-                if (Functions_Input.IsMouseButtonDown(MouseButtons.LeftButton))
-                {
-
-                    #region Handle Dragging an Object in Room
-
-                    if (TopDebugMenu.objToolState == ObjToolState.MoveObj)
-                    { 
-                        if(grabbedIntObj != null)
-                        {   //match grabbed Obj pos to worldPos, aligned to 16px grid
-                            grabbedIntObj.compMove.newPosition = Functions_Movement.AlignToGrid(worldPos.X, worldPos.Y);
-                            Functions_Movement.Teleport(grabbedIntObj.compMove,
-                                grabbedIntObj.compMove.newPosition.X, grabbedIntObj.compMove.newPosition.Y);
-                            Functions_Component.Align(grabbedIntObj.compMove,
-                                grabbedIntObj.compSprite, grabbedIntObj.compCollision);
-                            //update selectionBox position (convert world pos to screen pos)
-                            screenPos = Functions_Camera2D.ConvertWorldToScreen(
-                                (int)grabbedIntObj.compSprite.position.X,
-                                (int)grabbedIntObj.compSprite.position.Y);
-                            selectionBoxObj.position.X = screenPos.X;
-                            selectionBoxObj.position.Y = screenPos.Y;
-                        }
-                    }
-
-                    #endregion
-
-
-                    #region Handle Deleting Objects in Room
-
-                    else if (TopDebugMenu.objToolState == ObjToolState.DeleteObj)
-                    {   //check collisions between cursor worldPos and obj, release() any colliding objs
-
-                        //delete roomObjs
-                        for (Pool.intObjCounter = 0; Pool.intObjCounter < Pool.intObjCount; Pool.intObjCounter++)
-                        {
-                            if (Pool.intObjPool[Pool.intObjCounter].active)
-                            {
-                                if (Pool.intObjPool[Pool.intObjCounter].compCollision.rec.Contains(worldPos))
-                                {
-
-                                    ignoreObj = false;
-
-
-                                    #region Editor Based Selection Cases
-
-                                    //check for specific conditions, like ignoring water tiles
-                                    if (Flags.IgnoreWaterTiles & Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Water_2x2)
-                                    { ignoreObj = true; } //ignore this object
-
-                                    //ignoring roof tiles for deletion
-                                    if (Flags.IgnoreRoofTiles)
-                                    {
-                                        if (
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.House_Roof_Bottom ||
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.House_Roof_Chimney ||
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.House_Roof_Top
-                                            )
-                                        { ignoreObj = true; } //ignore this object
-                                    }
-
-                                    //boat tiles
-                                    if (Flags.IgnoreBoatTiles)
-                                    {
-                                        if (
-                                            //all the boat objs, in groups of 5 - should we model this as an obj.group value?
-
-                                            //these are all indestructible objects
-                                            /*
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Back_Center ||
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Back_Left ||
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Back_Left_Connector ||
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Back_Right ||
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Back_Right_Connector ||
-
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Bannister_Left ||
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Bannister_Right ||
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Bridge_Bottom ||
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Bridge_Top ||
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Engine ||
-
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Front ||
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Front_ConnectorLeft ||
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Front_ConnectorRight ||
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Front_Left ||
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Front_Right ||
-
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Stairs_Bottom_Left ||
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Stairs_Bottom_Right ||
-
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Stairs_Cover ||
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Stairs_Left ||
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Wor_Boat_Stairs_Right ||
-                                            */
-
-
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Boat_Stairs_Left ||
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Boat_Stairs_Right ||
-
-                                            //this one is special, because we use this obj as interior house floor
-                                            Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Boat_Floor
-                                            //ignore boat button also ignores floors = easy to move furniture around
-                                            )
-                                        { ignoreObj = true; } //ignore this object
-                                    }
-
-
-
-
-
-
-
-
-                                    #endregion
-
-
-
-                                    if (ignoreObj == false)
-                                    {
-                                        //if we aren't ignoring the object, then release it
-                                        Functions_Pool.Release(Pool.intObjPool[Pool.intObjCounter]);
-                                    }
-                                }
-                            }
-                        }
-
-
-                        
-
-                        //delete indestructible objs? - against collision comps, yep
-                        for (Pool.projectileCounter = 0; Pool.projectileCounter < Pool.projectileCount; Pool.projectileCounter++)
-                        {
-                            if (Pool.projectilePool[Pool.projectileCounter].active)
-                            {
-                                if (Pool.projectilePool[Pool.projectileCounter].compCollision.rec.Contains(worldPos))
-                                { Functions_Pool.Release(Pool.projectilePool[Pool.projectileCounter]); }
-                            }
-                        }
-
-                    }
-
-                    #endregion
-
-                }
-                //Handle Mouse Button RELEASE
-                if (Functions_Input.IsNewMouseButtonRelease(MouseButtons.LeftButton))
-                { grabbedIntObj = null; } //release obj
             }
 
             #endregion
 
+
+            #region Rotate Inds and Ints
+
+            else if(TopDebugMenu.objToolState == ObjToolState.RotateObj)
+            {
+                if (editorState == EditorState.IndestructibleObj)
+                {
+                    if (GrabIndestructibleObject()) { RotateIndObj(); }
+                }
+                else //interactive objs state
+                {
+                    if (GrabInteractiveObject()) { RotateIntObj(); }
+                }
+            }
+
+            #endregion
+
+
+
+
+
+            //handle releasing of obj refs
+            if (Functions_Input.IsNewMouseButtonRelease(MouseButtons.LeftButton))
+            { grabbedIndObj = null; grabbedIntObj = null; }
+
+            if (!Functions_Input.IsMouseButtonDown(MouseButtons.LeftButton))
+            { grabbedIndObj = null; grabbedIntObj = null; }
         }
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         public override void Update()
         {
@@ -867,6 +673,7 @@ namespace DungeonRun
                         if (ignoreObj == false)
                         {
                             SelectObject(Pool.intObjPool[Pool.intObjCounter]);
+                            editorState = EditorState.InteractiveObj;
                             return true;
                         }
                         else { } //continue onto the next object
@@ -907,6 +714,7 @@ namespace DungeonRun
                         if (ignoreObj == false)
                         {
                             SelectObject(Pool.indObjPool[Pool.indObjCounter]);
+                            editorState = EditorState.IndestructibleObj;
                             return true;
                         }
                         else { } //continue onto the next object
@@ -917,68 +725,40 @@ namespace DungeonRun
             return false; //no collision with inds
         }
 
-
-
-
-
-
-        
-
-
-
-
-
-        public void GetActiveObjInfo()
-        {
-            currentInteractiveType = activeObj.type; //store type
-            displayDirection = activeObj.direction; //store direction value
-            displayRotation = activeObj.compSprite.rotationValue; //store rotation
-
-            //copy the sprite + anim component values
-            displayAnim = activeObj.compAnim;
-            displaySprite = activeObj.compSprite;
-
-            //update the currentObj text displays
-            window.title.text = "" + currentInteractiveType;
-            currentObjDirectionText.text = "dir: " + displayDirection;
-        }
-
-
-
-
-
-
-
-        
-
-
+        //^^ methods below used to grab
 
         public void SelectObject(IndestructibleObject Obj)
         {
-            if (editorState == EditorState.IndestructibleObj)
-            {
-                grabbedIndObj = Obj;
-                //activeObj = Obj;
-                //GetActiveObjInfo();
-                selectionBoxObj.position = Obj.compSprite.position;
-                selectionBoxObj.scale = 2.0f;
-                window.title.text = "IND Obj: " + Obj.type;
-                currentObjDirectionText.text = "dir: " + Obj.direction;
-            }
+            grabbedIndObj = Obj;
+            currentIndestructibleType = Obj.type; //store type
+            displayDirection = Obj.direction; //store direction value
+            displayRotation = Obj.compSprite.rotationValue; //rotation
+
+            //copy the sprite + anim component values
+            MatchObjSpriteAnim(Obj.compSprite, Obj.compAnim);
+
+            window.title.text = "IND Obj: " + Obj.type;
+            currentObjDirectionText.text = "dir: " + Obj.direction;
+            //selection box
+            selectionBoxObj.position = Obj.compSprite.position;
+            selectionBoxObj.scale = 2.0f;
         }
 
         public void SelectObject(InteractiveObject Obj)
         {
-            if (editorState == EditorState.InteractiveObj)
-            {
-                grabbedIntObj = Obj;
-                //activeObj = Obj;
-                //GetActiveObjInfo();
-                selectionBoxObj.position = Obj.compSprite.position;
-                selectionBoxObj.scale = 2.0f;
-                window.title.text = "INT Obj: " + Obj.type;
-                currentObjDirectionText.text = "dir: " + Obj.direction;
-            }
+            grabbedIntObj = Obj;
+            currentInteractiveType = Obj.type; //store type
+            displayDirection = Obj.direction; //store direction value
+            displayRotation = Obj.compSprite.rotationValue; //rotation
+
+            //copy the sprite + anim component values
+            MatchObjSpriteAnim(Obj.compSprite, Obj.compAnim);
+
+            window.title.text = "INT Obj: " + Obj.type;
+            currentObjDirectionText.text = "dir: " + Obj.direction;
+            //selection box
+            selectionBoxObj.position = Obj.compSprite.position;
+            selectionBoxObj.scale = 2.0f;
         }
 
 
@@ -1027,20 +807,22 @@ namespace DungeonRun
                 else { displayDirection = Direction.Up; }
             }
 
-
-
-            
-            //rotate active object (room obj) 
-            activeObj.direction = displayDirection;   
-            Functions_InteractiveObjs.SetRotation(activeObj);
-            //window.title.text = "" + activeObj.type;
-            //currentObjDirectionText.text = "dir: " + displayDirection;
-            //displaySprite.rotation = Rotation.None; //dont rotate the display sprite at all
+            //rotate int object
+            grabbedIntObj.direction = displayDirection;   
+            Functions_InteractiveObjs.SetRotation(grabbedIntObj);
         }
 
         public void RotateIndObj()
         {
-            //how/where do we target indestructible objs for reference?
+            //flip thru cardinal directions
+            displayDirection = Functions_Direction.GetCardinalDirection_LeftRight(displayDirection);
+            if (displayDirection == Direction.Up) { displayDirection = Direction.Left; }
+            else if (displayDirection == Direction.Left) { displayDirection = Direction.Down; }
+            else if (displayDirection == Direction.Down) { displayDirection = Direction.Right; }
+            else { displayDirection = Direction.Up; }
+
+            grabbedIndObj.direction = displayDirection;
+            Functions_IndestructibleObjs.SetRotation(grabbedIndObj);
         }
 
 
@@ -1053,7 +835,16 @@ namespace DungeonRun
 
 
 
-
+        public void MatchObjSpriteAnim(ComponentSprite compSprite, ComponentAnimation compAnim)
+        {
+            //match sprite and anim
+            displaySprite.texture = compSprite.texture;
+            displaySprite.drawRec.Width = compSprite.drawRec.Width;
+            displaySprite.drawRec.Height = compSprite.drawRec.Height;
+            displaySprite.currentFrame = compSprite.currentFrame;
+            displayAnim.currentAnimation = compAnim.currentAnimation;
+            displayAnim.index = 0;
+        }
 
         public void CheckObjList(List<InteractiveObject> objList)
         {   //does any obj on the widget's objList contain the mouse position?
@@ -1061,21 +852,12 @@ namespace DungeonRun
             {   //if there is a collision, set the active object to the object clicked on
                 if (objList[i].compCollision.rec.Contains(Input.cursorPos))
                 {
-                    //store the type
+                    //store type
                     currentInteractiveType = objList[i].type;
+                    SelectObject(objList[i]);
 
-                    //set activeObj, update selection box scale + position
-                    activeObj = objList[i];
-                    GetActiveObjInfo();
-
-                    //match actor sprite and anim
-                    displaySprite.texture = objList[i].compSprite.texture;
-                    displaySprite.drawRec.Width = objList[i].compSprite.drawRec.Width;
-                    displaySprite.drawRec.Height = objList[i].compSprite.drawRec.Height;
-                    displaySprite.currentFrame = objList[i].compSprite.currentFrame;
-                    //match anim, reset
-                    displayAnim.currentAnimation = objList[i].compAnim.currentAnimation;
-                    displayAnim.index = 0;
+                    //match sprite and anim
+                    MatchObjSpriteAnim(objList[i].compSprite, objList[i].compAnim);
 
                     //pop selection box on selected widget obj
                     selectionBoxObj.position = objList[i].compSprite.position;
@@ -1097,17 +879,12 @@ namespace DungeonRun
             {   //if there is a collision, set the active object to the object clicked on
                 if (objList[i].compCollision.rec.Contains(Input.cursorPos))
                 {
-                    //store the indObj type
+                    //store type
                     currentIndestructibleType = objList[i].type;
+                    SelectObject(objList[i]);
 
-                    //match actor sprite and anim
-                    displaySprite.texture = objList[i].compSprite.texture;
-                    displaySprite.drawRec.Width = objList[i].compSprite.drawRec.Width;
-                    displaySprite.drawRec.Height = objList[i].compSprite.drawRec.Height;
-                    displaySprite.currentFrame = objList[i].compSprite.currentFrame;
-                    //match anim, reset
-                    displayAnim.currentAnimation = objList[i].compAnim.currentAnimation;
-                    displayAnim.index = 0;
+                    //match sprite and anim
+                    MatchObjSpriteAnim(objList[i].compSprite, objList[i].compAnim);
 
                     //pop selection box on selected widget obj
                     selectionBoxObj.position = objList[i].compSprite.position;
@@ -1122,12 +899,6 @@ namespace DungeonRun
                 }
             }
         }
-
-
-
-
-
-
 
         public void CheckActorsList(List<Actor> actList)
         {
@@ -1159,10 +930,6 @@ namespace DungeonRun
                 }
             }
         }
-
-
-        
-
 
     }
 }

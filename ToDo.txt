@@ -73,57 +73,15 @@ Today:
 
 Editor++
 
-split grabbedObj into grabbedIndObj and grabbedIntObj.
-each of these target a different list, and are based on
-the editor state. only inds can be grabbed in ind state,
-for example.
-
-we should be able to drag ints and inds, depending on the
-editor state. where do we chang editor state? where do
-we display editor state? we need to see and be able to
-control this. this is controlled when we change widget
-displays in the editor menu screen. required here. objTools
-widget has been updated to handle int and ind dragging,
-and selection, and addition. BUT this is limited to the
-editor states for moving/grabbing, which i dont like.
-
-this means i have to open the editor screen and select
-the ind widget display before i can select and move 
-objs in the editor. instead i want to be able to select
-an int or ind directly from the editor world. this means
-i need to loop over int AND ind obj lists, and if we hit
-one - set the editor state to that type of obj. we will
-prefer INDS over INTS in a state where two objs are
-selectable. this means we will check INDS first, and 
-bail from the checking routine if we hit one. this will
-prevent any overlapping int obj to be ignored entirely.
-
-this will happen in the next commit.
+implemented adding, dragging, selection of interactive
+and indestructible objects. removed activeObj from editor.
+editor working very well now.
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-then we can inspect what activeObj is actually doing.
-
-
-
-
-
-the issue is the activeObj ref. what is this? this is used to
-store a reference to an int obj in the level. we can dupe this
-to have an int obj ref as well... most likely what will be done.
 
 
 
