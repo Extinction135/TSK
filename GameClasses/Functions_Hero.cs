@@ -202,8 +202,6 @@ namespace DungeonRun
             LevelSet.spawnPos_Field.Y = Obj.compSprite.position.Y + 16 * 3 + 10;
             //^ start with obj.Y, add vertical south offset (place hero in front of obj)
         }
-        
-
 
         public static void ResetFieldSpawnPos()
         {
@@ -327,7 +325,19 @@ namespace DungeonRun
 
             }
         }
-        
+
+
+
+
+
+
+
+
+
+        //interactio rec/point (via A input)
+
+        static Boolean collision = false;
+
         public static void ClearInteractionRec()
         {   //move the interaction point offscreen
             interactionPoint.X = -1000;
@@ -366,7 +376,409 @@ namespace DungeonRun
                 interactionPoint.X += 8;
             }
         }
-        
+
+        public static Boolean CheckInteractionRec()
+        {
+            //note this method happens once, on the frame player presses A button
+            SetInteractionRec();
+            collision = false;
+
+
+
+            #region Interactive Obj Pool
+
+            //check to see if the interactionRec collides with any ints
+            for (i = 0; i < Pool.intObjCount; i++)
+            {
+                if (Pool.intObjPool[i].active)
+                {
+                    if (Pool.intObjPool[i].compCollision.rec.Contains(interactionPoint))
+                    {
+                        if (Pool.intObjPool[i].type == InteractiveType.Water_2x2
+                            || Pool.intObjPool[i].type == InteractiveType.MountainWall_Mid
+                            || Pool.intObjPool[i].type == InteractiveType.MountainWall_Bottom)
+                        { } //ignore these objects for hero rec interaction
+                        else
+                        {   //all other objects are tested for interaction
+                            Functions_Movement.StopMovement(Pool.hero.compMove);
+                            Pool.hero.stateLocked = true;
+                            Pool.hero.lockTotal = 10; //required to show the pickup animation
+                            collision = true;
+                            //handle the hero interaction, may overwrite hero.lockTotal
+                            InteractRecWith(Pool.intObjPool[i]);
+                            //we could bail here if we wanted only 1 interaction per frame
+                            //but we allow overlapping obj interactions cause we cray'
+                        }
+                    }
+                }
+            }
+
+            #endregion
+
+
+            #region Indestructible Obj Pool
+
+            //check to see if the interactionRec collides with any inds
+            for (i = 0; i < Pool.indObjCount; i++)
+            {
+                if (Pool.indObjPool[i].active)
+                {
+                    if (Pool.indObjPool[i].compCollision.rec.Contains(interactionPoint))
+                    {   //all other objects are tested for interaction
+                        Functions_Movement.StopMovement(Pool.hero.compMove);
+                        Pool.hero.stateLocked = true;
+                        Pool.hero.lockTotal = 10; //required to show the pickup animation
+                        collision = true;
+                        //handle the hero interaction, may overwrite hero.lockTotal
+                        InteractRecWith(Pool.indObjPool[i]);
+                        //we could bail here if we wanted only 1 interaction per frame
+                        //but we allow overlapping obj interactions cause we cray'
+                    }
+                }
+            }
+
+            #endregion
+
+
+
+            //move the interaction rec offscreen
+            ClearInteractionRec();
+            return collision;
+        }
+
+
+
+
+        public static void InteractRecWith(IndestructibleObject Obj)
+        {
+
+
+            #region World / Level Entrances
+
+            if (Obj.type == IndestructibleType.ForestDungeon_Entrance)
+            {   //give player choice to enter
+                Screens.Dialog.SetDialog(AssetsDialog.Enter_ForestDungeon);
+                ScreenManager.AddScreen(Screens.Dialog);
+                SetFieldSpawnPos(Obj);
+            }
+            else if (Obj.type == IndestructibleType.MountainDungeon_Entrance)
+            {   //give player choice to enter
+                Screens.Dialog.SetDialog(AssetsDialog.Enter_MountainDungeon);
+                ScreenManager.AddScreen(Screens.Dialog);
+                SetFieldSpawnPos(Obj);
+            }
+            else if (Obj.type == IndestructibleType.SwampDungeon_Entrance)
+            {   //give player choice to enter
+                Screens.Dialog.SetDialog(AssetsDialog.Enter_SwampDungeon);
+                ScreenManager.AddScreen(Screens.Dialog);
+                SetFieldSpawnPos(Obj);
+            }
+
+            else if (Obj.type == IndestructibleType.Coliseum_Shadow_Entrance)
+            {   //give player choice to enter
+                Screens.Dialog.SetDialog(AssetsDialog.Enter_Colliseum);
+                ScreenManager.AddScreen(Screens.Dialog);
+                SetFieldSpawnPos(Obj);
+            }
+
+            #endregion
+
+            
+            #region Dungeon Exit Obj
+
+            else if (Obj.type == IndestructibleType.Dungeon_Exit)
+            {   //movement has already been stopped, hero is interacting
+                ExitDungeon();
+            }
+
+            #endregion
+
+        }
+
+        public static void InteractRecWith(InteractiveObject Obj)
+        {   //this is the hero's interactionRec colliding with Obj
+            //we know this is hero, and hero is in ActorState.Interact
+            //Objects that can be interacted with from Land & Water
+
+
+            //obj.group checks
+
+            //Vendors
+            if (Obj.group == InteractiveGroup.Vendor)
+            {
+                Screens.Vendor.SetVendor(Obj.type);
+                ScreenManager.AddScreen(Screens.Vendor);
+            }
+
+
+            //NPCs
+            else if (Obj.group == InteractiveGroup.NPC)
+            {   //based on obj.type, select dialog
+
+
+                #region Story/Guide
+
+                if (Obj.type == InteractiveType.NPC_Story)
+                {   //figure out what part of the story the hero is at, pass this dialog
+                    Screens.Dialog.SetDialog(AssetsDialog.Guide);
+                    ScreenManager.AddScreen(Screens.Dialog);
+                }
+
+                #endregion
+
+
+                #region Farmer
+
+                else if (Obj.type == InteractiveType.NPC_Farmer)
+                {
+                    Screens.Dialog.SetDialog(AssetsDialog.Farmer_Setup);
+                    ScreenManager.AddScreen(Screens.Dialog);
+                }
+                else if (Obj.type == InteractiveType.NPC_Farmer_Reward)
+                {   //convert farmer to end state
+                    Functions_InteractiveObjs.SetType(Obj, InteractiveType.NPC_Farmer_EndDialog);
+                    //reward player
+                    PlayerData.bombsCurrent += 10;
+                    //play reward sfx
+                    Assets.Play(Assets.sfxReward);
+                    //display reward dialog
+                    Screens.Dialog.SetDialog(AssetsDialog.Farmer_Reward);
+                    ScreenManager.AddScreen(Screens.Dialog);
+                }
+                else if (Obj.type == InteractiveType.NPC_Farmer_EndDialog)
+                {
+                    Screens.Dialog.SetDialog(AssetsDialog.Farmer_EndDialog);
+                    ScreenManager.AddScreen(Screens.Dialog);
+                }
+
+                #endregion
+
+
+                #region Colliseum Judge
+
+                else if (Obj.type == InteractiveType.Judge_Colliseum)
+                {
+                    Screens.Dialog.SetDialog(AssetsDialog.Colliseum_Judge);
+                    ScreenManager.AddScreen(Screens.Dialog);
+                }
+
+                #endregion
+
+
+                #region Brandy Ships Captain
+
+                else if (Obj.type == InteractiveType.Boat_Captain_Brandy)
+                {
+                    //for now, brandy offers no useful advice
+                    Screens.Dialog.SetDialog(AssetsDialog.Brandy_Default);
+
+                    //this advice is based on the current room.id,
+                    //and only overworld field levels have dialogs
+
+                    if (LevelSet.currentLevel.currentRoom.roomID == RoomID.DeathMountain_MainEntrance)
+                    { Screens.Dialog.SetDialog(AssetsDialog.Brandy_MountainEntrance); }
+
+                    else if (LevelSet.currentLevel.currentRoom.roomID == RoomID.ForestIsland_MainEntrance)
+                    { Screens.Dialog.SetDialog(AssetsDialog.Brandy_ForestEntrance); }
+
+                    //this is a hack for 0.77 - to be fixed in future commits
+                    else if (LevelSet.currentLevel.currentRoom.roomID == RoomID.SkullIsland_ShadowKing)
+                    { Screens.Dialog.SetDialog(AssetsDialog.Brandy_SwampEntrance); }
+
+                    //kick the dialog to the player
+                    ScreenManager.AddScreen(Screens.Dialog);
+                }
+
+                #endregion
+
+            }
+
+
+
+
+            //obj.type checks
+
+            #region Chests
+
+            //Reward the hero with chest contents
+            if (Obj.type == InteractiveType.ChestKey)
+            {
+                SetRewardState(ParticleType.RewardKey);
+                //alter player data
+                LevelSet.currentLevel.bigKey = true;
+                //setup dialog
+                Screens.Dialog.SetDialog(AssetsDialog.HeroGotKey);
+                ScreenManager.AddScreen(Screens.Dialog);
+            }
+
+
+            #endregion
+
+
+            #region Torches, Levers, Switches
+
+            else if (Obj.type == InteractiveType.TorchUnlit)
+            {   //light any unlit torch  //git lit *
+                Functions_InteractiveObjs.LightTorch(Obj);
+            }
+            else if (Obj.type == InteractiveType.TorchLit)
+            {   //unlight any lit torch
+                Functions_InteractiveObjs.UnlightTorch(Obj);
+            }
+            else if (Obj.type == InteractiveType.LeverOff || Obj.type == InteractiveType.LeverOn)
+            {   //activate all lever objects (including lever), call attention to change
+                Functions_InteractiveObjs.ActivateLeverObjects();
+                Functions_Particle.Spawn(
+                        ParticleType.Attention,
+                        Obj.compSprite.position.X,
+                        Obj.compSprite.position.Y);
+            }
+            else if (Obj.type == InteractiveType.Dungeon_SwitchBlockBtn)
+            {
+                Functions_InteractiveObjs.FlipSwitchBlocks(Obj);
+            }
+
+            #endregion
+
+
+            #region Boss Door
+
+            else if (Obj.type == InteractiveType.Dungeon_DoorBoss)
+            {
+                if (LevelSet.currentLevel.bigKey)
+                {   //hero must have dungeon key to open boss door
+                    Functions_InteractiveObjs.SetType(Obj, InteractiveType.Dungeon_DoorOpen);
+                    Assets.Play(Assets.sfxDoorOpen);
+                    Functions_Particle.Spawn(
+                        ParticleType.Attention,
+                        Obj.compSprite.position.X,
+                        Obj.compSprite.position.Y);
+                }
+                else
+                {   //if hero doesn't have the bigKey, throw a dialog screen telling player this
+                    Screens.Dialog.SetDialog(AssetsDialog.DoesNotHaveKey);
+                    ScreenManager.AddScreen(Screens.Dialog);
+                }
+            }
+
+            #endregion
+
+
+            #region Signposts
+
+            else if (Obj.type == InteractiveType.Signpost)
+            {
+                if (LevelSet.currentLevel.currentRoom.roomID == RoomID.Exit)
+                {
+                    //setup signpost title
+                    AssetsDialog.Signpost_ExitRoom[0].title = "...";
+                    //populate signpost text with level data
+                    AssetsDialog.Signpost_ExitRoom[0].text =
+                        "Dungeon: " + LevelSet.currentLevel.ID + ". " +
+                        "Size: " + LevelSet.currentLevel.rooms.Count + " rooms.\n" +
+                        "Head North 3 Rooms to find the map. Good luck!";
+                }
+                ReadSign(Obj); //read signpost from global dialogs
+            }
+
+            #endregion
+
+
+            #region House Doors
+
+            else if (Obj.type == InteractiveType.House_Door_Shut)
+            {
+                Functions_InteractiveObjs.OpenHouseDoor(Obj);
+            }
+
+            #endregion
+
+
+            #region Climbing Footholds
+
+            else if (Obj.type == InteractiveType.MountainWall_Foothold
+                || Obj.type == InteractiveType.MountainWall_Ladder)
+            {   //only link and blob have anim frames for climbing
+                if (Pool.hero.type == ActorType.Hero || Pool.hero.type == ActorType.Blob)
+                {   //hero isnt in climbing state yet, but will be at end of this routine
+                    //so this is the initial 'attach' to the wall from idle or falling
+                    if (Pool.hero.state != ActorState.Climbing)
+                    {   //help hero 'onto' the wall/foothold
+                        Functions_Movement.Teleport(Pool.hero.compMove,
+                            Pool.hero.compSprite.position.X, //keep X
+                            Obj.compSprite.position.Y + 6); //align on Y
+                        Functions_Component.Align(Pool.hero);
+                        //this was done to ensure heros' center sprite pos
+                        //overlaps with the foothold/ladder obj
+                        //which is required to keep actor in climbing state each frame
+                    }
+                    Pool.hero.state = ActorState.Climbing;
+                    Pool.hero.stateLocked = true;
+                }
+            }
+
+            #endregion
+
+
+
+
+
+            if (Pool.hero.swimming) { return; }
+
+            //Objects that can only be interacted with from Land, as link or blob
+            if (Pool.hero.type == ActorType.Hero || Pool.hero.type == ActorType.Blob)
+            {
+
+                #region Carry-able Objects
+
+                if (Obj.group == InteractiveGroup.Enemy)
+                {   //deny link ability to pickup some enemies
+                    if (Obj.type == InteractiveType.Enemy_SeekerExploder) { return; }
+                    Pickup(Obj);
+                }
+
+                if (Obj.type == InteractiveType.Dungeon_Pot
+                    || Obj.type == InteractiveType.Pot
+                    || Obj.type == InteractiveType.Bush)
+                {
+                    Pickup(Obj);
+                }
+
+                #endregion
+
+
+                #region Push-able Objects
+
+                //if an obj is moveable, hero should be able to push it, right?
+                if (Obj.compMove.moveable & Obj.compMove.grounded)
+                {
+                    //some objects cannot be pushed
+                    if (Obj.type == InteractiveType.Dungeon_Pot
+                        || Obj.type == InteractiveType.Pot
+                        || Obj.type == InteractiveType.ChestKey)
+                    { return; }
+                    //all other objects can be pushed
+                    Grab(Obj);
+                }
+
+                #endregion
+
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         public static void PushGrabbedObj()
         {
             if (Pool.hero.state == ActorState.Move)
@@ -400,42 +812,6 @@ namespace DungeonRun
             }
         }
         
-        static Boolean collision = false;
-        public static Boolean CheckInteractionRec()
-        {   
-            //note this method happens once, on the frame player presses A button
-            SetInteractionRec();
-            collision = false;
-            //check to see if the interactionRec collides with any gameObjects
-            for (i = 0; i < Pool.intObjCount; i++)
-            {
-                if (Pool.intObjPool[i].active)
-                {
-                    if (Pool.intObjPool[i].compCollision.rec.Contains(interactionPoint))
-                    {
-                        if (Pool.intObjPool[i].type == InteractiveType.Water_2x2
-                            || Pool.intObjPool[i].type == InteractiveType.MountainWall_Mid
-                            || Pool.intObjPool[i].type == InteractiveType.MountainWall_Bottom)
-                        { } //ignore these objects for hero rec interaction
-                        else
-                        {   //all other objects are tested for interaction
-                            Functions_Movement.StopMovement(Pool.hero.compMove);
-                            Pool.hero.stateLocked = true;
-                            Pool.hero.lockTotal = 10; //required to show the pickup animation
-                            collision = true;
-                            //handle the hero interaction, may overwrite hero.lockTotal
-                            InteractRecWith(Pool.intObjPool[i]);
-                            //we could bail here if we wanted only 1 interaction per frame
-                            //but we allow overlapping obj interactions cause we cray'
-                        }
-                    }
-                }
-            }
-            //move the interaction rec offscreen
-            ClearInteractionRec();
-            return collision;
-        }
-
         static MenuItemType itemSwap;
         public static void HandleDeath()
         {   //near the last frame of hero's death, create attention particles
@@ -801,358 +1177,6 @@ namespace DungeonRun
             {   //bare minimum, we pop a blank standard dialog
                 Screens.Dialog.SetDialog(AssetsDialog.Signpost_Standard);
                 ScreenManager.AddScreen(Screens.Dialog);
-            }
-        }
-
-        //hero's special interact() method based on interaction point
-        public static void InteractRecWith(InteractiveObject Obj)
-        {   //this is the hero's interactionRec colliding with Obj
-            //we know this is hero, and hero is in ActorState.Interact
-            //Objects that can be interacted with from Land & Water
-
-
-            //obj.group checks
-
-
-            
-
-
-            //Vendors
-            if (Obj.group == InteractiveGroup.Vendor)
-            {
-                Screens.Vendor.SetVendor(Obj.type);
-                ScreenManager.AddScreen(Screens.Vendor);
-            }
-
-
-            //NPCs
-            else if (Obj.group == InteractiveGroup.NPC)
-            {   //based on obj.type, select dialog
-
-
-                #region Story/Guide
-
-                if (Obj.type == InteractiveType.NPC_Story)
-                {   //figure out what part of the story the hero is at, pass this dialog
-                    Screens.Dialog.SetDialog(AssetsDialog.Guide);
-                    ScreenManager.AddScreen(Screens.Dialog);
-                }
-
-                #endregion
-
-
-                #region Farmer
-
-                else if (Obj.type == InteractiveType.NPC_Farmer)
-                {
-                    Screens.Dialog.SetDialog(AssetsDialog.Farmer_Setup);
-                    ScreenManager.AddScreen(Screens.Dialog);
-                }
-                else if (Obj.type == InteractiveType.NPC_Farmer_Reward)
-                {   //convert farmer to end state
-                    Functions_InteractiveObjs.SetType(Obj, InteractiveType.NPC_Farmer_EndDialog);
-                    //reward player
-                    PlayerData.bombsCurrent += 10;
-                    //play reward sfx
-                    Assets.Play(Assets.sfxReward);
-                    //display reward dialog
-                    Screens.Dialog.SetDialog(AssetsDialog.Farmer_Reward);
-                    ScreenManager.AddScreen(Screens.Dialog);
-                }
-                else if (Obj.type == InteractiveType.NPC_Farmer_EndDialog)
-                {
-                    Screens.Dialog.SetDialog(AssetsDialog.Farmer_EndDialog);
-                    ScreenManager.AddScreen(Screens.Dialog);
-                }
-
-                #endregion
-
-
-                #region Colliseum Judge
-
-                else if (Obj.type == InteractiveType.Judge_Colliseum)
-                {
-                    Screens.Dialog.SetDialog(AssetsDialog.Colliseum_Judge);
-                    ScreenManager.AddScreen(Screens.Dialog);
-                }
-
-                #endregion
-
-
-                #region Brandy Ships Captain
-
-                else if (Obj.type == InteractiveType.Boat_Captain_Brandy)
-                {
-                    //for now, brandy offers no useful advice
-                    Screens.Dialog.SetDialog(AssetsDialog.Brandy_Default);
-
-                    //this advice is based on the current room.id,
-                    //and only overworld field levels have dialogs
-
-                    if (LevelSet.currentLevel.currentRoom.roomID == RoomID.DeathMountain_MainEntrance)
-                    { Screens.Dialog.SetDialog(AssetsDialog.Brandy_MountainEntrance); }
-
-                    else if (LevelSet.currentLevel.currentRoom.roomID == RoomID.ForestIsland_MainEntrance)
-                    { Screens.Dialog.SetDialog(AssetsDialog.Brandy_ForestEntrance); }
-
-                    //this is a hack for 0.77 - to be fixed in future commits
-                    else if (LevelSet.currentLevel.currentRoom.roomID == RoomID.SkullIsland_ShadowKing)
-                    { Screens.Dialog.SetDialog(AssetsDialog.Brandy_SwampEntrance); }
-
-                    //kick the dialog to the player
-                    ScreenManager.AddScreen(Screens.Dialog);
-                }
-
-                #endregion
-
-            }
-
-
-
-            //obj.type checks
-
-            //dungeon objects
-
-
-            #region Chests
-            
-            //Reward the hero with chest contents
-            if (Obj.type == InteractiveType.ChestKey)
-            {
-                SetRewardState(ParticleType.RewardKey);
-                //alter player data
-                LevelSet.currentLevel.bigKey = true;
-                //setup dialog
-                Screens.Dialog.SetDialog(AssetsDialog.HeroGotKey);
-                ScreenManager.AddScreen(Screens.Dialog);
-            }
-            
-
-            #endregion
-
-
-
-            #region Torches, Levers, Switches
-
-            else if (Obj.type == InteractiveType.TorchUnlit)
-            {   //light any unlit torch  //git lit *
-                Functions_InteractiveObjs.LightTorch(Obj);
-            }
-            else if (Obj.type == InteractiveType.TorchLit)
-            {   //unlight any lit torch
-                Functions_InteractiveObjs.UnlightTorch(Obj);
-            }
-            else if (Obj.type == InteractiveType.LeverOff || Obj.type == InteractiveType.LeverOn)
-            {   //activate all lever objects (including lever), call attention to change
-                Functions_InteractiveObjs.ActivateLeverObjects();
-                Functions_Particle.Spawn(
-                        ParticleType.Attention,
-                        Obj.compSprite.position.X,
-                        Obj.compSprite.position.Y);
-            }
-            else if (Obj.type == InteractiveType.Dungeon_SwitchBlockBtn)
-            {
-                Functions_InteractiveObjs.FlipSwitchBlocks(Obj);
-            }
-
-            #endregion
-
-
-            #region Boss Door
-
-            else if (Obj.type == InteractiveType.Dungeon_DoorBoss)
-            {
-                if (LevelSet.currentLevel.bigKey)
-                {   //hero must have dungeon key to open boss door
-                    Functions_InteractiveObjs.SetType(Obj, InteractiveType.Dungeon_DoorOpen);
-                    Assets.Play(Assets.sfxDoorOpen);
-                    Functions_Particle.Spawn(
-                        ParticleType.Attention,
-                        Obj.compSprite.position.X,
-                        Obj.compSprite.position.Y);
-                }
-                else
-                {   //if hero doesn't have the bigKey, throw a dialog screen telling player this
-                    Screens.Dialog.SetDialog(AssetsDialog.DoesNotHaveKey);
-                    ScreenManager.AddScreen(Screens.Dialog);
-                }
-            }
-
-            #endregion
-
-
-
-            //world objects
-
-            #region Signposts
-
-            else if (Obj.type == InteractiveType.Signpost)
-            {
-                if (LevelSet.currentLevel.currentRoom.roomID == RoomID.Exit)
-                {
-                    //setup signpost title
-                    AssetsDialog.Signpost_ExitRoom[0].title = "...";
-                    //populate signpost text with level data
-                    AssetsDialog.Signpost_ExitRoom[0].text =
-                        "Dungeon: " + LevelSet.currentLevel.ID + ". " +
-                        "Size: " + LevelSet.currentLevel.rooms.Count + " rooms.\n" +
-                        "Head North 3 Rooms to find the map. Good luck!";
-                }
-                ReadSign(Obj); //read signpost from global dialogs
-            }
-
-            #endregion
-
-
-
-
-
-
-            /*
-            
-            #region World / Level Entrances
-
-            else if (Obj.type == ObjType.Wor_Entrance_ForestDungeon)
-            {   //give player choice to enter
-                Screens.Dialog.SetDialog(AssetsDialog.Enter_ForestDungeon);
-                ScreenManager.AddScreen(Screens.Dialog);
-                SetFieldSpawnPos(Obj);
-            }
-            else if (Obj.type == ObjType.Wor_Entrance_MountainDungeon)
-            {   //give player choice to enter
-                Screens.Dialog.SetDialog(AssetsDialog.Enter_MountainDungeon);
-                ScreenManager.AddScreen(Screens.Dialog);
-                SetFieldSpawnPos(Obj);
-            }
-            else if (Obj.type == ObjType.Wor_Entrance_SwampDungeon)
-            {   //give player choice to enter
-                Screens.Dialog.SetDialog(AssetsDialog.Enter_SwampDungeon);
-                ScreenManager.AddScreen(Screens.Dialog);
-                SetFieldSpawnPos(Obj);
-            }
-
-            else if (Obj.type == ObjType.Wor_Entrance_Colliseum)
-            {   //give player choice to enter
-                Screens.Dialog.SetDialog(AssetsDialog.Enter_Colliseum);
-                ScreenManager.AddScreen(Screens.Dialog);
-                SetFieldSpawnPos(Obj);
-            }
-
-            #endregion
-            
-            */
-
-
-
-
-
-
-
-
-
-
-            #region House Doors
-
-            else if (Obj.type == InteractiveType.House_Door_Shut)
-            {
-                Functions_InteractiveObjs.OpenHouseDoor(Obj);
-            }
-
-            #endregion
-
-
-            #region Climbing Footholds
-
-            else if (Obj.type == InteractiveType.MountainWall_Foothold
-                || Obj.type == InteractiveType.MountainWall_Ladder)
-            {   //only link and blob have anim frames for climbing
-                if (Pool.hero.type == ActorType.Hero || Pool.hero.type == ActorType.Blob)
-                {   //hero isnt in climbing state yet, but will be at end of this routine
-                    //so this is the initial 'attach' to the wall from idle or falling
-                    if (Pool.hero.state != ActorState.Climbing)
-                    {   //help hero 'onto' the wall/foothold
-                        Functions_Movement.Teleport(Pool.hero.compMove,
-                            Pool.hero.compSprite.position.X, //keep X
-                            Obj.compSprite.position.Y + 6); //align on Y
-                        Functions_Component.Align(Pool.hero);
-                        //this was done to ensure heros' center sprite pos
-                        //overlaps with the foothold/ladder obj
-                        //which is required to keep actor in climbing state each frame
-                    }
-                    Pool.hero.state = ActorState.Climbing;
-                    Pool.hero.stateLocked = true;
-                }
-            }
-
-            #endregion
-
-
-
-
-
-
-
-            /*
-
-            //dev/editor/cheat interactions
-
-            #region Dungeon Exit Obj
-
-            else if (Obj.type == InteractiveType.Dungeon_Exit)
-            {   //movement has already been stopped, hero is interacting
-                ExitDungeon();
-            }
-
-            #endregion
-
-            */
-
-
-
-
-
-
-
-            if (Pool.hero.swimming) { return; }
-
-            //Objects that can only be interacted with from Land, as link or blob
-            if (Pool.hero.type == ActorType.Hero || Pool.hero.type == ActorType.Blob)
-            {
-
-                #region Carry-able Objects
-
-                if (Obj.group == InteractiveGroup.Enemy)
-                {   //deny link ability to pickup some enemies
-                    if (Obj.type == InteractiveType.Enemy_SeekerExploder) { return; }
-                    Pickup(Obj);
-                }
-
-                if (Obj.type == InteractiveType.Dungeon_Pot
-                    || Obj.type == InteractiveType.Pot
-                    || Obj.type == InteractiveType.Bush)
-                {
-                    Pickup(Obj);
-                }
-
-                #endregion
-
-
-                #region Push-able Objects
-
-                //if an obj is moveable, hero should be able to push it, right?
-                if (Obj.compMove.moveable & Obj.compMove.grounded)
-                {
-                    //some objects cannot be pushed
-                    if (Obj.type == InteractiveType.Dungeon_Pot
-                        || Obj.type == InteractiveType.Pot
-                        || Obj.type == InteractiveType.ChestKey)
-                    { return; }
-                    //all other objects can be pushed
-                    Grab(Obj);
-                }
-
-                #endregion
-
             }
         }
 

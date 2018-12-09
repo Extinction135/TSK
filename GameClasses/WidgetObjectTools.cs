@@ -517,9 +517,8 @@ namespace DungeonRun
             //handle releasing of obj refs
             if (Functions_Input.IsNewMouseButtonRelease(MouseButtons.LeftButton))
             { grabbedIndObj = null; grabbedIntObj = null; }
-
-            if (!Functions_Input.IsMouseButtonDown(MouseButtons.LeftButton))
-            { grabbedIndObj = null; grabbedIntObj = null; }
+            //if (Functions_Input.IsMouseButtonDown(MouseButtons.LeftButton) == false) //lol
+            //{ grabbedIndObj = null; grabbedIntObj = null; }
         }
 
         public override void Update()

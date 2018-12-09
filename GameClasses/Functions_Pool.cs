@@ -325,34 +325,9 @@ namespace DungeonRun
             
 
 
-
-
-
-            //OLD(): check interactions(act v obj, act v proj, obj v obj, obj v proj)
-
-            //interactions new: 
-            //acts vs ints, acts vs pros
-            //ints vs ints
-            //pros vs ints
-            //hero vs pickups
-            //hero intPoint vs ints & inds
-
-            //collisions new
-            //acts vs inds
-            //ints vs inds
-            //pros vs inds
-            //acts vs hero
-            //hero vs acts
-
-
-
-
-
-
-
             //Phase 1 - Get Input, Update, Animate, & Check Interactions
 
-            #region Actors
+            #region Actors (vs ints and pros)
 
             for (i = 0; i < Pool.actorCount; i++)
             {
@@ -411,7 +386,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Interactive Objects
+            #region Interactive Objects (vs ints)
 
             for (i = 0; i < Pool.intObjCount; i++)
             {
@@ -467,6 +442,38 @@ namespace DungeonRun
             #endregion
 
 
+            #region Projectiles (vs ints)
+
+            for (i = 0; i < Pool.projectileCount; i++)
+            {
+                if (Pool.projectilePool[i].active)
+                {
+                    Functions_Projectile.Update(Pool.projectilePool[i]);
+                    Functions_Animation.Animate(Pool.projectilePool[i].compAnim, Pool.projectilePool[i].compSprite);
+                    Functions_Animation.ScaleSpriteDown(Pool.projectilePool[i].compSprite);
+                    //interaction check projectiles (this may kill them, so we do it last)
+                    Functions_Interaction.CheckProjectile_Obj(Pool.projectilePool[i]);
+                }
+            }
+
+            #endregion
+
+
+            #region Pickups (vs hero, in fn_hero)
+
+            for (i = 0; i < Pool.pickupCount; i++)
+            {
+                if (Pool.pickupPool[i].active)
+                {
+                    Functions_Pickup.Update(Pool.pickupPool[i]);
+                    Functions_Animation.Animate(Pool.pickupPool[i].compAnim, Pool.pickupPool[i].compSprite);
+                    Functions_Animation.ScaleSpriteDown(Pool.pickupPool[i].compSprite);
+                }
+            }
+
+            #endregion
+
+
             #region Particles
 
             for (i = 0; i < Pool.particleCount; i++)
@@ -482,50 +489,11 @@ namespace DungeonRun
             #endregion
 
 
-            #region Projectiles
-
-            for (i = 0; i < Pool.projectileCount; i++)
-            {
-                if (Pool.projectilePool[i].active)
-                {   
-                    Functions_Projectile.Update(Pool.projectilePool[i]);
-                    Functions_Animation.Animate(Pool.projectilePool[i].compAnim, Pool.projectilePool[i].compSprite);
-                    Functions_Animation.ScaleSpriteDown(Pool.projectilePool[i].compSprite);
-                    //interaction check projectiles (this may kill them, so we do it last)
-                    Functions_Interaction.CheckProjectile_Obj(Pool.projectilePool[i]);
-                }
-            }
-
-            #endregion
-
-
-            #region Pickups
-
-            for (i = 0; i < Pool.pickupCount; i++)
-            {
-                if (Pool.pickupPool[i].active)
-                {
-                    Functions_Pickup.Update(Pool.pickupPool[i]);
-                    Functions_Animation.Animate(Pool.pickupPool[i].compAnim, Pool.pickupPool[i].compSprite);
-                    Functions_Animation.ScaleSpriteDown(Pool.pickupPool[i].compSprite);
-                }
-            }
-
-            #endregion
-
-
-
-
-
-
             
 
 
 
-
-
-
-
+            
 
 
             #region Phase 2 - Project Movement

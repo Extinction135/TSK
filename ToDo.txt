@@ -71,11 +71,24 @@ Today:
 
 
 
+
+
+
+
+
+Implement Hero Interaction Point Interactions
+
+hero interaction rec vs ints. done.
+hero interaction rec vs inds. done.
+
+
+
+
+
+
 Editor++
 
-implemented adding, dragging, selection of interactive
-and indestructible objects. removed activeObj from editor.
-editor working very well now.
+add more indestructible objs to widgets, pls.
 
 
 
@@ -84,39 +97,12 @@ editor working very well now.
 
 
 
-
-
-
-
-
-
-
-
-
-Testing Indestructible Objs
-
-test and rebuild collision/interaction systems against them. 
-
-step 1: setup collisions
-	ints vs inds
-	act vs inds
-	pros vs inds
-	acts vs hero
-	hero vs acts
-	
-step 2: setup interactions
-	pros vs ints
-	pros vs acts
-	ints vs ints
-	ints vs acts
-	picks vs hero
-	hero interaction rec vs ints
-	hero interaction rec vs inds (entrances mostly)
 
 	
 	
 	
 UPW++
+
 relink uwp to widget int and inds classes.
 test that this builds to level editor like Dx.
 
@@ -125,6 +111,12 @@ test that this builds to level editor like Dx.
 
 
 
+DebugDisplay++
+
+count actor collisions and interactions
+count obj collisions and interactions
+count pro collisions and interactions
+count hero collisions and itneractions
 
 
 
