@@ -71,6 +71,15 @@ Today:
 
 
 
+Editor++
+
+added various coliseum ind objs for testing.
+all working. based on bombos testing vs these
+ind objs, explosions should sort above everything.
+done. tested.
+
+
+
 
 
 
@@ -91,14 +100,50 @@ we can see and use and interact with ind objs.
 
 
 
-	
-	
-	
-UPW++
 
-relink uwp to widget int and inds classes.
-test that this builds to level editor like Dx.
-done.
+add boat objects to the int widgets - floors,
+barrels, etc.....
+
+add boat objs to boat ind widgets
+
+
+
+
+
+
+
+
+
+
+
+
+
+bug with adding an int obj when clicking on an
+indestructible - selects the ind obj, the adds it.
+this is a logic branch that wasn't considered!!!
+
+
+bug with rotating int objs. likely prob with inds too.
+direction value flips out, wildly moving between 
+values upon mouse over. not even a click.
+
+
+
+
+
+
+
+
+
+
+	
+Fix Dungeon Creation to handle Ind Objs
+
+this means we aren't placing exits properly,
+simply because we dont have the routines to handle that.
+
+	
+
 
 
 

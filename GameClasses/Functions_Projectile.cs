@@ -1666,7 +1666,7 @@ namespace DungeonRun
 
             else if (Type == ProjectileType.Explosion)
             {
-                Pro.compSprite.zOffset = 16;
+                Pro.compSprite.zOffset = 1024; //explosions sort over all
                 Pro.compCollision.offsetX = -12; Pro.compCollision.offsetY = -13;
                 Pro.compCollision.rec.Width = 24; Pro.compCollision.rec.Height = 26;
                 Pro.lifetime = 24; //in frames

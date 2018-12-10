@@ -328,7 +328,6 @@ namespace DungeonRun
             #endregion
 
             
-
             #region Entrance Objects
 
             else if (Type == IndestructibleType.Coliseum_Shadow_Entrance)
