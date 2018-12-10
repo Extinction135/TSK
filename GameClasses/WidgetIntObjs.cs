@@ -377,7 +377,7 @@ namespace DungeonRun
             Functions_InteractiveObjs.SetType(objList[15], InteractiveType.Unknown);
 
             //row 5
-            Functions_InteractiveObjs.SetType(objList[16], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[16], InteractiveType.Boat_Floor);
             Functions_InteractiveObjs.SetType(objList[17], InteractiveType.Unknown);
             Functions_InteractiveObjs.SetType(objList[18], InteractiveType.Unknown);
             Functions_InteractiveObjs.SetType(objList[19], InteractiveType.Unknown);

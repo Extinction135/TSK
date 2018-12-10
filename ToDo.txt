@@ -70,31 +70,43 @@ Today:
 
 
 
-Editor Bugs--
 
-bug with adding an int obj when clicking on an
-indestructible - selects the ind obj, the adds it.
-this is a logic branch that wasn't considered!
-fixed now. tested too.
+Test Level & Interactions
 
-bug with rotating int objs. likely prob with inds too.
-direction value flips out, wildly moving between 
-values upon mouse over. not even a click.
-added click check into rotation routine. inspect.
+build a test house level for interaction testing.
+simple medium sized house with lawn, fence. full 
+test. done.
 
-rotation routines dont actually rotate the clicked
-world obj. plus, the rotation of the display sprite
-doesn't update either. both of these are pretty crucial.
-
-rotation of int objs now works.  this is actually
-the only obj that needs rotation, so this fixes the
-bug completely.
+added boat floors to editor, this allows house
+building in the expected manner. we now have a
+test level to test the new systems against.
 
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+explosions have to create ground fires. done.
+bombos simply has to use a different explosion
+type that doesn't create ground fires - or we
+create explosion particles across the frame and
+any obj thats near that spawn point gets turned into debris.
+
+the particle system is much larger and can handle
+the massive scale better.
 
 
 
@@ -106,10 +118,6 @@ bug completely.
 tables should burn, then collapse into debris.
 
 
-
-
-
-build a test house level for interaction testing.
 
 
 
