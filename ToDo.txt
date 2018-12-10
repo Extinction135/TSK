@@ -63,83 +63,20 @@ Today:
 
 
 
-
-
-
-
-
-
-
-
-Test Level & Interactions
-
-build a test house level for interaction testing.
-simple medium sized house with lawn, fence. full 
-test. done.
-
-added boat floors to editor, this allows house
-building in the expected manner. we now have a
-test level to test the new systems against.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-explosions have to create ground fires. done.
-bombos simply has to use a different explosion
-type that doesn't create ground fires - or we
-create explosion particles across the frame and
-any obj thats near that spawn point gets turned into debris.
-
-the particle system is much larger and can handle
-the massive scale better.
-
-
-
-
-
-
-
-
-tables should burn, then collapse into debris.
-
-
-
-
-
-
-
-
-
-
-explosions should burn ints.
-flowers should become grass version 2, or whatvs.
-not cut grass, but the one less than that.
-
-
-
-
-
-
-
 Editor++
 
-add dungeon entrances to widgets for testing the
-creation of dungeons. yeah, we need to massively
+added dungeon entrances to widgets for testing the
+creation of dungeons. they fit nicely.
+
+
+
+
+
+
+
+Dungeon Generation++
+
+yeah, we need to massively
 update dungeon creation as well to handle exits as
 indestructible objs... that clean other objs upon
 creation as well.
@@ -150,46 +87,28 @@ we can see and use and interact with ind objs.
 
 
 
-
-
-
-
-
-add boat objects to the int widgets - floors,
-barrels, etc.....
-
-add boat objs to boat ind widgets
-
-
-
-tall grass should self-clean - if it overlaps itself
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
 Fix Dungeon Creation to handle Ind Objs
 
 this means we aren't placing exits properly,
 simply because we dont have the routines to handle that.
 
-	
+
+
+
+
+
+
+
+
+add boat objects to the int widgets - barrels, etc.....
+
+add boat objs to boat ind widgets
+
+
+
+
+
+
 
 
 
@@ -198,10 +117,11 @@ simply because we dont have the routines to handle that.
 
 DebugDisplay++
 
-count actor collisions and interactions
-count obj collisions and interactions
-count pro collisions and interactions
-count hero collisions and itneractions
+count actor used/total, collisions. and interactions
+count ind obj used/total, collisions. and interactions
+count int obj used/total, collisions. and interactions
+count pro used/total, collisions. and interactions
+count hero interaction rec count + pickup count
 
 
 
@@ -231,6 +151,12 @@ so we can test ints and inds, plus have base level data for game.
 
 
 
+
+
+
+
+
+
 Dungeon Build++
 
 when we build dungeons, we should be using indestructible
@@ -243,16 +169,13 @@ not interactive objs.
 
 Indestructible Objs++
 
-hero has no interactions with indestructible objs YET - this is
-ALL dungeon entrances, exits, coliseum entrance, etc...
+hero should have interaction rec with main exit object, taking
+them outside the dungeon.
 
 
 
 
 	
-
-
-
 	
 step 3: fix xml savedata & cs pipeline	
 	build ship at sea base level
@@ -358,6 +281,38 @@ Bombos spawns explosions, which leave behind groundfire pros.
 this is causing pro system overload. bombos explosions shouldn't
 create groundfires. just those explosions tho - so they need to
 be special or seperate from normal explosions.
+
+
+Bombos++ (large scale destruction)
+
+bombos has to use a different explosion
+type that doesn't create ground fires - or we
+create explosion particles across the frame and
+any objs near spawn point get turned into debris.
+
+the particle system is much larger and can handle
+the massive scale better. this also keeps projectiles
+available for any gameplay during an environmental
+spell, which WILL happen in-game for sure.
+
+
+
+
+
+Fire Interactions++
+
+tables should burn, then collapse into debris.
+same with all interior house objs, like beds, stoves,
+etc...
+
+flowers should become grass version 2, or whatvs.
+not cut grass, but the one less than that, when they
+are burned.
+
+
+
+
+
 
 
 
