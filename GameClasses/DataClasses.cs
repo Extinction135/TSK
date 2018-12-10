@@ -1292,7 +1292,7 @@ namespace DungeonRun
         public static int actorCounter = 0;
 
         //projectile pool
-        public static int projectileCount = 300;
+        public static int projectileCount = 500;
         public static List<Projectile> projectilePool = new List<Projectile>();
         public static int projectileIndex;
         public static int projectileCounter = 0;
@@ -1304,13 +1304,13 @@ namespace DungeonRun
         public static int pickupCounter = 0;
 
         //particle pool
-        public static int particleCount = 750;
+        public static int particleCount = 1000;
         public static List<Particle> particlePool = new List<Particle>();
         public static int particleIndex;
         public static int particleCounter = 0;
 
         //floor pool - dungeon sheet only
-        public static int floorCount = 500;
+        public static int floorCount = 250;
         public static List<ComponentSprite> floorPool = new List<ComponentSprite>();
         public static int floorIndex;
         public static int floorCounter = 0;
@@ -1321,13 +1321,13 @@ namespace DungeonRun
         public static int lineCounter = 0;
 
         //indestructible objs
-        public static int indObjCount = 200;
+        public static int indObjCount = 250;
         public static List<IndestructibleObject> indObjPool = new List<IndestructibleObject>();
         public static int indObjIndex;
         public static int indObjCounter = 0;
 
         //interactive objs
-        public static int intObjCount = 3000;
+        public static int intObjCount = 2000;
         public static List<InteractiveObject> intObjPool = new List<InteractiveObject>();
         public static int intObjIndex;
         public static int intObjCounter = 0;
