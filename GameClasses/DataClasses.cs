@@ -135,7 +135,7 @@ namespace DungeonRun
         //holds all data related to player - was saved to xml (prior to v0.79)
 
 
-        #region PlayerData Definitions
+        #region Fields
 
         public static Stopwatch timer = new Stopwatch();
         public static DateTime dateTime = DateTime.Now; //game start time
@@ -1032,13 +1032,15 @@ namespace DungeonRun
 
         //right displays
         public static DebugDisplay DebugDisplay_Ram;
-
-        public static DebugDisplay DebugDisplay_Interactives;
-        public static DebugDisplay DebugDisplay_Actors;
-        public static DebugDisplay DebugDisplay_Projectiles;
-
         public static DebugDisplay DebugDisplay_PoolCounter;
+        public static DebugDisplay DebugDisplay_SysCounter;
+
+        //public static DebugDisplay DebugDisplay_Interactives;
+        //public static DebugDisplay DebugDisplay_Actors;
+        //public static DebugDisplay DebugDisplay_Projectiles;
+
         public static DebugDisplay DebugDisplay_BuildTimes;
+
 
         static TopDebugMenu()
         {
@@ -1083,19 +1085,14 @@ namespace DungeonRun
 
             #region Setup Debug Displays
 
-            //setup left displays
-            int Xpos = 16 * 1;
-            DebugDisplay_HeroState = new DebugDisplay(Xpos, 16 * 3 - 16 + 16 * 3 + 4);
-            DebugDisplay_Movement = new DebugDisplay(Xpos, DebugDisplay_HeroState.bkg.position.Y + 16 * 3 + 4);
-
-            //setup right displays
-            Xpos = 565;
+            int Xpos = 565;
             DebugDisplay_Ram = new DebugDisplay(Xpos, 16*3 - 16);
-            DebugDisplay_Interactives = new DebugDisplay(Xpos, DebugDisplay_Ram.bkg.position.Y + 16 * 3 + 4);
-            DebugDisplay_Actors = new DebugDisplay(Xpos, DebugDisplay_Interactives.bkg.position.Y + 16 * 3 + 4);
-            DebugDisplay_Projectiles = new DebugDisplay(Xpos, DebugDisplay_Actors.bkg.position.Y + 16 * 3 + 4);
-            DebugDisplay_PoolCounter = new DebugDisplay(Xpos, DebugDisplay_Projectiles.bkg.position.Y + 16 * 3 + 4);
-            DebugDisplay_BuildTimes = new DebugDisplay(Xpos, DebugDisplay_PoolCounter.bkg.position.Y + 16 * 3 + 4);
+            DebugDisplay_PoolCounter = new DebugDisplay(Xpos, DebugDisplay_Ram.bkg.position.Y + 16 * 3 + 4);
+            DebugDisplay_SysCounter = new DebugDisplay(Xpos, DebugDisplay_PoolCounter.bkg.position.Y + 16 * 3 + 4);
+            DebugDisplay_BuildTimes = new DebugDisplay(Xpos, DebugDisplay_SysCounter.bkg.position.Y + 16 * 3 + 4);
+            DebugDisplay_HeroState = new DebugDisplay(Xpos, DebugDisplay_BuildTimes.bkg.position.Y + 16 * 3 + 4);
+            DebugDisplay_HeroState.bkg.size.X = 16 * 4 - 2; //wider cause data string can be longer
+            DebugDisplay_Movement = new DebugDisplay(Xpos, DebugDisplay_HeroState.bkg.position.Y + 16 * 3 + 4);
 
             #endregion
 
@@ -1335,20 +1332,31 @@ namespace DungeonRun
         public static int intObjIndex;
         public static int intObjCounter = 0;
 
-
-
-
-
-
-
-
-
-
+        //reference fields
         public static int activeActor = 1; //tracks the current actor being handled by AI
         public static Actor hero; //points to actorPool[0]
 
-        public static int collisionsCount = 0; //tracks collisions per frame
-        public static int interactionsCount = 0; //tracks interactions per frame
+
+
+
+
+
+
+
+
+        //counts collisions between actors/inds/ints/pros
+        public static int collisions_ThisFrame = 0;
+        public static int collisions_Possible = 0;
+
+        //counts interactions between actors/pros/ints
+        public static int interactions_ThisFrame = 0;
+        public static int interactions_Possible = 0;
+
+        //counts hero's interaction point interactions only
+        public static int heroInts_ThisFrame = 0;
+        public static int heroInts_Possible = 0;
+
+
 
 
         public static void Initialize()

@@ -252,14 +252,8 @@ namespace DungeonRun
 
             #region Debug Info
 
-            if(Flags.EnableDebugInfo)
+            if(Flags.EnableDebugInfo) //setup debug display data
             {
-
-
-
-
-
-
 
                 #region Setup update, draw, total times, gametime and total ram
 
@@ -290,6 +284,65 @@ namespace DungeonRun
                 #endregion
 
 
+                #region Main Pool Counters
+
+                counter = 0; //indestructible objs
+                for (i = 0; i < Pool.indObjCount; i++) { if (Pool.indObjPool[i].active) { counter++; } }
+                TopDebugMenu.DebugDisplay_PoolCounter.stringBuilder.Append("ind " + counter + "/" + Pool.indObjCount);
+
+                counter = 0; //interactive objs
+                for (i = 0; i < Pool.intObjCount; i++) { if (Pool.intObjPool[i].active) { counter++; } }
+                TopDebugMenu.DebugDisplay_PoolCounter.stringBuilder.Append("\nint " + counter + "/" + Pool.intObjCount);
+
+                counter = 0;
+                for (i = 0; i < Pool.projectileCount; i++) { if (Pool.projectilePool[i].active) { counter++; } }
+                TopDebugMenu.DebugDisplay_PoolCounter.stringBuilder.Append("\npro " + counter + "/" + Pool.projectileCount);
+
+                counter = 0; //particles
+                for (i = 0; i < Pool.particleCount; i++) { if (Pool.particlePool[i].active) { counter++; } }
+                TopDebugMenu.DebugDisplay_PoolCounter.stringBuilder.Append("\npart " + counter + "/" + Pool.particleCount);
+
+                counter = 0; //floors
+                for (i = 0; i < Pool.floorCount; i++) { if (Pool.floorPool[i].visible) { counter++; } }
+                TopDebugMenu.DebugDisplay_PoolCounter.stringBuilder.Append("\nflrs " + counter + "/" + Pool.floorCount);
+
+                //write it
+                TopDebugMenu.DebugDisplay_PoolCounter.textComp.text = TopDebugMenu.DebugDisplay_PoolCounter.stringBuilder.ToString();
+                TopDebugMenu.DebugDisplay_PoolCounter.stringBuilder.Clear();
+
+                #endregion
+
+
+                #region Collisions and Interactions and Hero Interactions Counter
+
+                //display total possible checks vs actual processed - to determine system weaknesses
+                TopDebugMenu.DebugDisplay_SysCounter.stringBuilder.Append("collisions");
+                TopDebugMenu.DebugDisplay_SysCounter.stringBuilder.Append("\n" + Pool.collisions_ThisFrame + "/" + Pool.collisions_Possible);
+                TopDebugMenu.DebugDisplay_SysCounter.stringBuilder.Append("\ninteraxtns");
+                TopDebugMenu.DebugDisplay_SysCounter.stringBuilder.Append("\n" + Pool.interactions_ThisFrame + "/" + Pool.interactions_Possible);
+
+                TopDebugMenu.DebugDisplay_SysCounter.stringBuilder.Append("\nhro " + Pool.heroInts_ThisFrame + "/" + Pool.heroInts_Possible);
+
+                TopDebugMenu.DebugDisplay_SysCounter.textComp.text = TopDebugMenu.DebugDisplay_SysCounter.stringBuilder.ToString();
+                TopDebugMenu.DebugDisplay_SysCounter.stringBuilder.Clear();
+                
+
+                #endregion
+
+
+                #region Build Times Debug Display Setup
+
+                TopDebugMenu.DebugDisplay_BuildTimes.stringBuilder.Append("LVL: " + Functions_Level.time.Ticks);
+                TopDebugMenu.DebugDisplay_BuildTimes.stringBuilder.Append("\nRM: " + Functions_Room.time.Ticks);
+                TopDebugMenu.DebugDisplay_BuildTimes.stringBuilder.Append("\n...");
+                TopDebugMenu.DebugDisplay_BuildTimes.stringBuilder.Append("\n...");
+                TopDebugMenu.DebugDisplay_BuildTimes.stringBuilder.Append("\n...");
+                TopDebugMenu.DebugDisplay_BuildTimes.textComp.text = TopDebugMenu.DebugDisplay_BuildTimes.stringBuilder.ToString();
+                TopDebugMenu.DebugDisplay_BuildTimes.stringBuilder.Clear();
+
+                #endregion
+
+
                 #region Setup Hero State/Move Displays
 
                 TopDebugMenu.DebugDisplay_HeroState.stringBuilder.Append("IN: " + Pool.hero.inputState);
@@ -314,60 +367,17 @@ namespace DungeonRun
 
 
 
+                #region Call Draw()
 
-                #region Setup counts for roomObjs, projectils, particles, actors, and floors
-
-                counter = 0;
-                for (i = 0; i < Pool.intObjCount; i++) { if (Pool.intObjPool[i].active) { counter++; } }
-                TopDebugMenu.DebugDisplay_PoolCounter.textComp.text = "INTS: " + counter + "/" + Pool.intObjCount;
-
-                counter = 0;
-                for (i = 0; i < Pool.projectileCount; i++) { if (Pool.projectilePool[i].active) { counter++; } }
-                TopDebugMenu.DebugDisplay_PoolCounter.textComp.text += "\nPRO: " + counter + "/" + Pool.projectileCount;
-
-                counter = 0;
-                for (i = 0; i < Pool.particleCount; i++) { if (Pool.particlePool[i].active) { counter++; } }
-                TopDebugMenu.DebugDisplay_PoolCounter.textComp.text += "\nPAR: " + counter + "/" + Pool.particleCount;
-
-                counter = 0;
-                for (i = 0; i < Pool.actorCount; i++) { if (Pool.actorPool[i].active) { counter++; } }
-                TopDebugMenu.DebugDisplay_PoolCounter.textComp.text += "\nACT: " + counter + "/" + Pool.actorCount;
-
-                counter = 0;
-                for (i = 0; i < Pool.floorCount; i++) { if (Pool.floorPool[i].visible) { counter++; } }
-                TopDebugMenu.DebugDisplay_PoolCounter.textComp.text += "\nFLR: " + counter + "/" + Pool.floorCount;
+                Functions_Draw.Draw(TopDebugMenu.DebugDisplay_Ram);
+                Functions_Draw.Draw(TopDebugMenu.DebugDisplay_PoolCounter);
+                Functions_Draw.Draw(TopDebugMenu.DebugDisplay_SysCounter);
+                Functions_Draw.Draw(TopDebugMenu.DebugDisplay_BuildTimes);
+                Functions_Draw.Draw(TopDebugMenu.DebugDisplay_HeroState);
+                Functions_Draw.Draw(TopDebugMenu.DebugDisplay_Movement);
 
                 #endregion
 
-                
-                TopDebugMenu.DebugDisplay_BuildTimes.stringBuilder.Append("LVL: " + Functions_Level.time.Ticks);
-                TopDebugMenu.DebugDisplay_BuildTimes.stringBuilder.Append("\nRM: " + Functions_Room.time.Ticks);
-                TopDebugMenu.DebugDisplay_BuildTimes.stringBuilder.Append("\nT: " + PlayerData.timer.Elapsed.ToString(@"hh\:mm\:ss"));
-                TopDebugMenu.DebugDisplay_BuildTimes.stringBuilder.Append("\nENMY: " + PlayerData.enemiesKilled);
-                TopDebugMenu.DebugDisplay_BuildTimes.stringBuilder.Append("\nDMG: " + PlayerData.damageTaken);
-                TopDebugMenu.DebugDisplay_BuildTimes.textComp.text = TopDebugMenu.DebugDisplay_BuildTimes.stringBuilder.ToString();
-                TopDebugMenu.DebugDisplay_BuildTimes.stringBuilder.Clear();
-
-
-                
-                
-
-
-
-
-
-
-                
-                //draw all our debug info like this from now on:
-                Functions_Draw.Draw(TopDebugMenu.DebugDisplay_HeroState);
-                Functions_Draw.Draw(TopDebugMenu.DebugDisplay_Movement);
-                //right side
-                Functions_Draw.Draw(TopDebugMenu.DebugDisplay_Ram);
-                Functions_Draw.Draw(TopDebugMenu.DebugDisplay_Interactives);
-                Functions_Draw.Draw(TopDebugMenu.DebugDisplay_Actors);
-                Functions_Draw.Draw(TopDebugMenu.DebugDisplay_Projectiles);
-                Functions_Draw.Draw(TopDebugMenu.DebugDisplay_PoolCounter);
-                Functions_Draw.Draw(TopDebugMenu.DebugDisplay_BuildTimes);
             }
 
             #endregion

@@ -384,7 +384,6 @@ namespace DungeonRun
             collision = false;
 
 
-
             #region Interactive Obj Pool
 
             //check to see if the interactionRec collides with any ints
@@ -392,6 +391,7 @@ namespace DungeonRun
             {
                 if (Pool.intObjPool[i].active)
                 {
+                    Pool.heroInts_Possible++; //possible interaction up next
                     if (Pool.intObjPool[i].compCollision.rec.Contains(interactionPoint))
                     {
                         if (Pool.intObjPool[i].type == InteractiveType.Water_2x2
@@ -404,6 +404,7 @@ namespace DungeonRun
                             Pool.hero.stateLocked = true;
                             Pool.hero.lockTotal = 10; //required to show the pickup animation
                             collision = true;
+                            Pool.heroInts_ThisFrame++; //count it
                             //handle the hero interaction, may overwrite hero.lockTotal
                             InteractRecWith(Pool.intObjPool[i]);
                             //we could bail here if we wanted only 1 interaction per frame
@@ -423,12 +424,14 @@ namespace DungeonRun
             {
                 if (Pool.indObjPool[i].active)
                 {
+                    Pool.heroInts_Possible++; //possible interaction up next
                     if (Pool.indObjPool[i].compCollision.rec.Contains(interactionPoint))
                     {   //all other objects are tested for interaction
                         Functions_Movement.StopMovement(Pool.hero.compMove);
                         Pool.hero.stateLocked = true;
                         Pool.hero.lockTotal = 10; //required to show the pickup animation
                         collision = true;
+                        Pool.heroInts_ThisFrame++; //count it
                         //handle the hero interaction, may overwrite hero.lockTotal
                         InteractRecWith(Pool.indObjPool[i]);
                         //we could bail here if we wanted only 1 interaction per frame
@@ -438,7 +441,6 @@ namespace DungeonRun
             }
 
             #endregion
-
 
 
             //move the interaction rec offscreen

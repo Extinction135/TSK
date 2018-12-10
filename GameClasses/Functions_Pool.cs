@@ -316,8 +316,26 @@ namespace DungeonRun
 
         public static void Update()
         {
-            Pool.collisionsCount = 0;
-            Pool.interactionsCount = 0;
+
+            #region  Reset Info Counters
+
+            Pool.collisions_Possible = 0;
+            Pool.collisions_ThisFrame = 0;
+
+            Pool.interactions_Possible = 0;
+            Pool.interactions_ThisFrame = 0;
+
+            #endregion
+
+
+
+
+
+
+
+
+
+
             //reset hero - assume hero is not under roof
             Functions_Hero.underRoof = false;
 

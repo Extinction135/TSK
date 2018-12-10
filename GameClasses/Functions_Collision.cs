@@ -30,10 +30,13 @@ namespace DungeonRun
             for (i = 0; i < Pool.indObjCount; i++)
             {   //target must be active AND blocking
                 if (Pool.indObjPool[i].active && Pool.indObjPool[i].compCollision.blocking)
-                {   //count, check for overlap, return true on FIRST collision
-                    Pool.collisionsCount++;
+                {   //check for overlap, return true on FIRST collision
+                    Pool.collisions_Possible++; //possible collision up next
                     if (CompColl.rec.Intersects(Pool.indObjPool[i].compCollision.rec))
-                    { if (CompColl != Pool.indObjPool[i].compCollision) { return true; } }
+                    {   //count this as a completed collision check
+                        if (CompColl != Pool.indObjPool[i].compCollision)
+                        { Pool.collisions_ThisFrame++; return true; }
+                    }
                 }
             }
             return false;
@@ -47,10 +50,13 @@ namespace DungeonRun
             for (i = 0; i < Pool.intObjCount; i++)
             {   //target must be active AND blocking
                 if (Pool.intObjPool[i].active && Pool.intObjPool[i].compCollision.blocking)
-                {   //count, check for overlap, return true on FIRST collision
-                    Pool.collisionsCount++;
+                {   //check for overlap, return true on FIRST collision
+                    Pool.collisions_Possible++; //possible collision up next
                     if (CompColl.rec.Intersects(Pool.intObjPool[i].compCollision.rec))
-                    { if (CompColl != Pool.intObjPool[i].compCollision) { return true; } }
+                    {
+                        if (CompColl != Pool.intObjPool[i].compCollision)
+                        { Pool.collisions_ThisFrame++; return true; }
+                    }
                 }
             }
             return false;
@@ -79,9 +85,11 @@ namespace DungeonRun
             {   //target must be active AND blocking
                 if (Pool.actorPool[i].active && Pool.actorPool[i].compCollision.blocking)
                 {   //count, check for overlap, return true on FIRST collision
-                    Pool.collisionsCount++;
+                    Pool.collisions_Possible++; //possible collision up next
                     if (CompColl.rec.Intersects(Pool.actorPool[i].compCollision.rec))
-                    { if (CompColl != Pool.actorPool[i].compCollision) { return true; } }
+                    { if (CompColl != Pool.actorPool[i].compCollision)
+                        { Pool.collisions_ThisFrame++; return true; }
+                    }
                 }
             }
             return false;
@@ -89,10 +97,19 @@ namespace DungeonRun
 
         public static Boolean CheckHero(ComponentCollision CompColl)
         {
-            Pool.collisionsCount++;
+            Pool.collisions_Possible++; //possible collision up next
             if (CompColl.rec.Intersects(Pool.hero.compCollision.rec))
-            { return true; } else { return false; }
+            { Pool.collisions_ThisFrame++; return true; }
+            else { return false; }
         }
+
+
+
+
+
+
+
+
 
 
 

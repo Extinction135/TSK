@@ -29,11 +29,12 @@ namespace DungeonRun
             {
                 if (Pool.intObjPool[i].active)
                 {
+                    Pool.interactions_Possible++; //possible interaction up next
                     if (Obj.compCollision.rec.Intersects(Pool.intObjPool[i].compCollision.rec))
                     {   //perform self-check to prevent self overlap interaction
                         if (Obj != Pool.intObjPool[i])
                         {
-                            Pool.interactionsCount++;
+                            Pool.interactions_ThisFrame++; //count it
                             Interact_ObjectObject(Pool.intObjPool[i], Obj);
                         }
                     }
@@ -48,9 +49,10 @@ namespace DungeonRun
             {
                 if(Pool.intObjPool[i].active)
                 {
+                    Pool.interactions_Possible++; //possible interaction up next
                     if (Actor.compCollision.rec.Intersects(Pool.intObjPool[i].compCollision.rec))
                     {
-                        Pool.interactionsCount++;
+                        Pool.interactions_ThisFrame++; //count it
                         Interact_ObjectActor(Pool.intObjPool[i], Actor);
                     }
                 }
@@ -71,9 +73,10 @@ namespace DungeonRun
             {
                 if (Pool.intObjPool[i].active)
                 {
+                    Pool.interactions_Possible++; //possible interaction up next
                     if (Pro.compCollision.rec.Intersects(Pool.intObjPool[i].compCollision.rec))
                     {   //interaction between pro and obj
-                        Pool.interactionsCount++;
+                        Pool.interactions_ThisFrame++; //count it
                         Interact_ProjectileIntObj(Pro, Pool.intObjPool[i]);
                     }
                 }
@@ -87,9 +90,10 @@ namespace DungeonRun
             {
                 if(Pool.projectilePool[i].active)
                 {
+                    Pool.interactions_Possible++; //possible interaction up next
                     if (Actor.compCollision.rec.Intersects(Pool.projectilePool[i].compCollision.rec))
                     {   //interaction between pro and actor
-                        Pool.interactionsCount++;
+                        Pool.interactions_ThisFrame++; //count it
                         Interact_ProjectileActor(Pool.projectilePool[i], Actor);
                     }
                 }
@@ -907,31 +911,6 @@ namespace DungeonRun
                 //group checks
 
 
-
-
-
-
-                /*
-                EXITS ARE INDESTRUCTIBLE OBJS
-                #region Exit
-
-                if (IntObj.group == InteractiveGroup.Exit)
-                {
-                    if (IntObj.type == InteractiveType.Dungeon_Exit)
-                    {   //stop movement, prevents overlap with exit
-                        Functions_Movement.StopMovement(Pool.hero.compMove);
-                        Functions_Hero.ExitDungeon();
-                        return;
-                    }
-                }
-
-                #endregion
-
-                */
-
-
-
-
                 #region Doors
 
                 if (IntObj.group == InteractiveGroup.Door_Dungeon)
@@ -957,8 +936,6 @@ namespace DungeonRun
 
 
                 //type checks
-
-                
 
 
                 #region Map
@@ -1009,7 +986,6 @@ namespace DungeonRun
                 }
 
                 #endregion
-
 
             }
 

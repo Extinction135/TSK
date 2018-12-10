@@ -66,33 +66,37 @@ Today:
 
 
 
-Debug Displays++
+Debug++
 
-improved placement of debug displays in prep for
-improving the collection of info about the gameworld.
-proper counts for ints/actors/projectiles, looking
-at their used/total, collisions, and interactions
-each frame. also, improved debug displays to handle
-text via stringBuilder, which is slightly faster.
-
-
-
+all debug displays have been vastly improved to
+provide me with the information i want about the
+game. this info will allow me to find and test
+weakness or bugs in various game systems. very
+important update here, as i have added counters
+for total possible vs total actual, to see how
+various strategies reduce overall computations.
 
 
 
 
 
 
-Complete DebugDisplay Upgrade
 
-finish the debug displays on right:
 
-times / ram
-ints used/total, collisions. and interactions
-actors used/total, collisions. and interactions
-projectiles used/total, collisions. and interactions
-inds/parts/flrs/leveltime/roomtime
-5th is empty
+
+inds 0/200
+ints 0/3000
+pro 0/300
+part 0/750
+flrs 0/500
+
+
+hero ints
+hero 0/1300
+
+
+
+
 
 
 we need to be counting hero rec interactions too.
