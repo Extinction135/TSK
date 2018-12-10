@@ -63,34 +63,31 @@ Today:
 
 
 
-Editor++
-
-added dungeon entrances to widgets for testing the
-creation of dungeons. they fit nicely.
 
 
 
 
+Self-Cleaning
+
+exits are placed properly. what about overlaps?
+walls and doors should self-clean. done. walls
+also clean against wall torches and wall pillars.
+that is an int vs int overlap check. turns out
+ind objs dont need to self-clean, only ints do.
 
 
 
-Dungeon Generation++
-
-yeah, we need to massively
-update dungeon creation as well to handle exits as
-indestructible objs... that clean other objs upon
-creation as well.
-
-this is all in widgetIndObjs.cs.
-migrate the commented code back into ind objs, so
-we can see and use and interact with ind objs.
 
 
 
-Fix Dungeon Creation to handle Ind Objs
 
-this means we aren't placing exits properly,
-simply because we dont have the routines to handle that.
+
+we need a test level that contains all the dungeon
+entrances. linked to shadow level pls.
+
+
+
+
 
 
 

@@ -150,9 +150,7 @@ namespace DungeonRun
 
         public static void SelfClean(IndestructibleObject IndObj)
         {
-            //walls + doors self clean if they overlap exits
-            //ref interactive objs's selfClean() method for wall vs exit routines
-
+            //currently, no ind objs clean themselves
             IndObj.selfCleans = false; //exit routine
         }
 
@@ -204,8 +202,6 @@ namespace DungeonRun
                 if (Type == IndestructibleType.Dungeon_ExitPillarLeft)
                 { IndObj.compAnim.currentAnimation = AnimationFrames.Dungeon_ExitPillarLeft; }
                 else { IndObj.compAnim.currentAnimation = AnimationFrames.Dungeon_ExitPillarRight; }
-                //these objs clean themselves up in interactions, set this state
-                IndObj.selfCleans = true;
             }
             else if (Type == IndestructibleType.Dungeon_Exit)
             {
@@ -216,8 +212,6 @@ namespace DungeonRun
                 IndObj.compCollision.rec.Height = 8;
                 IndObj.compCollision.offsetY = 32;
                 IndObj.compAnim.currentAnimation = AnimationFrames.Dungeon_Exit;
-                //these objs clean themselves up in interactions, set this state
-                IndObj.selfCleans = true;
             }
             else if (Type == IndestructibleType.Dungeon_ExitLight)
             {

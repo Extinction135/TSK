@@ -1635,49 +1635,12 @@ namespace DungeonRun
                 if (Pool.indObjPool[g].active)
                 {   //ensure roomObjs are overlapping
                     if (IntObj.compCollision.rec.Intersects(Pool.indObjPool[g].compCollision.rec))
-                    {
-                        //remove interactive obj upon overlapping an indestructible obj
-                        Functions_Pool.Release(IntObj);
+                    {   //any int obj that overlaps an exit obj gets removed
+                        if (Pool.indObjPool[g].group == IndestructibleGroup.Exit)
+                        { Functions_Pool.Release(IntObj); }
 
-                        #region Code Refs
-
-                        /*
-                        if (//walls are built first, then doors/decor are added, remove walls that overlap
-                            IntObj.type == InteractiveType.Dungeon_WallStraight
-                            || IntObj.type == InteractiveType.Dungeon_WallStraightCracked
-                        )
-                        {
-                            //if a wall overlaps a copy of itself, remove wall
-                            if (Pool.intObjPool[g].type == IntObj.type)
-                            { Functions_Pool.Release(IntObj); }
-                            //walls cannot overlap these objects
-                            if (
-                                //exits
-                                Pool.intObjPool[g].type == InteractiveType.Dungeon_Exit
-                                || Pool.intObjPool[g].type == InteractiveType.Dungeon_ExitPillarLeft
-                                || Pool.intObjPool[g].type == InteractiveType.Dungeon_ExitPillarRight
-                                //other wall objs
-                                || Pool.intObjPool[g].type == InteractiveType.Dungeon_WallPillar
-                                || Pool.intObjPool[g].type == InteractiveType.Dungeon_WallStatue
-                                || Pool.intObjPool[g].type == InteractiveType.Dungeon_WallTorch
-                                || Pool.intObjPool[g].type == InteractiveType.Dungeon_WallExteriorCorner
-                                || Pool.intObjPool[g].type == InteractiveType.Dungeon_WallInteriorCorner
-                                )
-                            { Functions_Pool.Release(IntObj); }
-                        }
-                        */
-
-
-                        /*
-                        if (//allow these interactive objs to overlap indestructible objs
-                            IntObj.type == InteractiveType.Grass_Tall
-                            )
-                        { }
-                        else { Functions_Pool.Release(IntObj); }
-                        */
-
-                        #endregion
-
+                        //all other int vs ind overlaps are allowed
+                        else { }
                     }
                 }
             }
@@ -1690,10 +1653,27 @@ namespace DungeonRun
                     if (IntObj.compCollision.rec.Intersects(Pool.intObjPool[g].compCollision.rec))
                     {
 
+                        #region Dungeon Walls
+
+                        if(
+                            IntObj.type == InteractiveType.Dungeon_WallStraight
+                            || IntObj.type == InteractiveType.Dungeon_WallStraightCracked
+                            )
+                        {   //walls remove overlap with pillars/torches/wall decor objs
+                            if (
+                                Pool.intObjPool[g].type == InteractiveType.Dungeon_WallTorch
+                                || Pool.intObjPool[g].type == InteractiveType.Dungeon_WallPillar
+                                )
+                            { Functions_Pool.Release(IntObj); }
+                        }
+
+                        #endregion
+
+
                         #region Floor Decorations - debris, stain, blood, skeletons
 
                         //if a floor decoration overlaps an obj, prolly remove it
-                        if (
+                        else if (
                             IntObj.type == InteractiveType.Debris
                             || IntObj.type == InteractiveType.FloorStain
                             || IntObj.type == InteractiveType.FloorBlood
@@ -2140,6 +2120,7 @@ namespace DungeonRun
                 IntObj.compSprite.zOffset = -32; //sort very low (behind hero)
                 IntObj.group = InteractiveGroup.Wall_Dungeon;
                 IntObj.compAnim.currentAnimation = AnimationFrames.Dungeon_WallPillar;
+                IntObj.selfCleans = true;
             }
             else if (Type == InteractiveType.Dungeon_WallStatue)
             {
@@ -2155,6 +2136,7 @@ namespace DungeonRun
                 IntObj.compSprite.zOffset = -16; //sort low, but over walls
                 IntObj.group = InteractiveGroup.Wall_Dungeon;
                 IntObj.compAnim.currentAnimation = AnimationFrames.Dungeon_WallTorch;
+                IntObj.selfCleans = true;
             }
 
             #endregion
@@ -2181,6 +2163,7 @@ namespace DungeonRun
                 IntObj.compSprite.zOffset = +32; //sort very high (over / in front of hero)
                 IntObj.group = InteractiveGroup.Door_Dungeon;
                 IntObj.compAnim.currentAnimation = AnimationFrames.Dungeon_DoorOpen;
+                IntObj.selfCleans = true;
             }
             else if (Type == InteractiveType.Dungeon_DoorTrap)
             {
@@ -2215,6 +2198,7 @@ namespace DungeonRun
                 IntObj.group = InteractiveGroup.Door_Dungeon;
                 IntObj.compAnim.currentAnimation = AnimationFrames.Dungeon_DoorShut;
                 IntObj.sfx.hit = Assets.sfxTapMetallic;
+                IntObj.selfCleans = true;
             }
 
             #endregion
