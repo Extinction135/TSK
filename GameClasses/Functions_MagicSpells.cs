@@ -25,8 +25,8 @@ namespace DungeonRun
 
         //bombos fields
         static Boolean Casting_Bombos = false; //master flag
-        static Point Bombos_ActiveCounter = new Point(0, 6); //counter, total (processes bombos routine)
-        static int Bombos_lifetime = 40; //entire screen of destruction
+        static Point Bombos_ActiveCounter = new Point(0, 8); //counter, total (processes bombos routine)
+        static int Bombos_lifetime = 39; //X many 'columns' of explosions left to right (in 16px increments)
         static int Bombos_counter = 0; //counts up to lifetime
         static Point Bombos_spawnPos = new Point(); //used to place explosions on screen
         static int Bombos_ExpCounter = 0; //explosion counter
@@ -56,7 +56,8 @@ namespace DungeonRun
                     //check overlaps with hero (prevent spawns), then spawn exps.
                     //this works for both fields and dungeons and isn't too complicated
                     //plus it limits explosions produced by bombos to be onscreen
-                    for (Bombos_ExpCounter = 0; Bombos_ExpCounter < Total_ScreenSize.Y + 1; Bombos_ExpCounter++)
+                    //taste: skip top two rows of explosions on screen (prev: Bombos_ExpCounter = 0)
+                    for (Bombos_ExpCounter = 2; Bombos_ExpCounter < Total_ScreenSize.Y; Bombos_ExpCounter++)
                     {   //sequentially cover screen
                         Bombos_spawnPos.X = Bombos_counter * 16; //row id
                         Bombos_spawnPos.Y = Bombos_ExpCounter * 16; //column id
@@ -267,12 +268,18 @@ namespace DungeonRun
             #region Bombos
 
             else if (Spell == SpellType.Explosive_Bombos)
-            {   //reset counters, flip flag
-                Bombos_counter = 0;
-                //Bombos_spread = 0;
-                Bombos_ActiveCounter.X = 0; //start process this frame
-                Casting_Bombos = true; //flip flag
-                Assets.Play(Assets.sfxExplosionsMultiple); //play sfx
+            {   //prevent casting parallel
+                if(Casting_Bombos == false)
+                {   //reset counters, flip flag
+                    Bombos_counter = 2; //optimization (be smart)
+                    Bombos_ActiveCounter.X = 0; //start process this frame
+                    Casting_Bombos = true; //flip flag
+                    Assets.Play(Assets.sfxExplosionsMultiple); //play sfx
+                }
+                else
+                {   //..and take their magic for being greedy
+                    Assets.Play(Assets.sfxError);
+                }
             }
 
             #endregion

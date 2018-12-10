@@ -1224,8 +1224,6 @@ namespace DungeonRun
             #endregion
 
 
-
-
             #region GroundFire
 
             else if (Pro.type == ProjectileType.GroundFire)
@@ -1237,9 +1235,6 @@ namespace DungeonRun
             }
 
             #endregion
-
-
-
 
 
             //all objects are released upon death
@@ -1685,8 +1680,8 @@ namespace DungeonRun
                 Pro.compSprite.zOffset = 1024; //explosions sort over all
                 Pro.compCollision.offsetX = -12; Pro.compCollision.offsetY = -13;
                 Pro.compCollision.rec.Width = 24; Pro.compCollision.rec.Height = 26;
-                Pro.lifetime = 24; //in frames
-                Pro.compAnim.speed = 5; //in frames
+                Pro.lifetime = 20; //in frames
+                Pro.compAnim.speed = 4; //in frames
                 Pro.compAnim.loop = false;
                 Pro.compMove.grounded = false; //obj is airborne
                 Pro.compAnim.currentAnimation = AnimationFrames.Projectile_Explosion;
