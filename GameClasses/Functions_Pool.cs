@@ -386,6 +386,24 @@ namespace DungeonRun
             #endregion
 
 
+            #region Indestructible Objs (anims only)
+
+            for (i = 0; i < Pool.indObjCount; i++)
+            {
+                if (Pool.indObjPool[i].active)
+                {   //handle inds that remove themselves upon overlap
+                    if (Pool.indObjPool[i].selfCleans)
+                    {   //clean yo self, then exit cleaning branch
+                        Functions_IndestructibleObjs.SelfClean(Pool.indObjPool[i]);
+                    }
+                    Functions_IndestructibleObjs.Update(Pool.indObjPool[i]); //update & animate
+                    Functions_Animation.Animate(Pool.indObjPool[i].compAnim, Pool.indObjPool[i].compSprite);
+                }
+            }
+
+            #endregion
+
+
             #region Interactive Objects (vs ints)
 
             for (i = 0; i < Pool.intObjCount; i++)
@@ -435,7 +453,7 @@ namespace DungeonRun
                     //update, animate, scale
                     Functions_InteractiveObjs.Update(Pool.intObjPool[i]);
                     Functions_Animation.Animate(Pool.intObjPool[i].compAnim, Pool.intObjPool[i].compSprite);
-                    Functions_Animation.ScaleSpriteDown(Pool.intObjPool[i].compSprite);
+                    Functions_Animation.ScaleSpriteDown(Pool.intObjPool[i].compSprite); 
                 }
             }
 

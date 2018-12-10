@@ -79,7 +79,7 @@ namespace DungeonRun
         {
             if(IndObj.interacts)
             {
-                //perform indestructible obj interactions here
+                //perform indestructible obj behaviors here
 
 
 
@@ -152,6 +152,8 @@ namespace DungeonRun
         {
             //walls + doors self clean if they overlap exits
             //ref interactive objs's selfClean() method for wall vs exit routines
+
+            IndObj.selfCleans = false; //exit routine
         }
 
 

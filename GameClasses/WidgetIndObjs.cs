@@ -687,10 +687,10 @@ namespace DungeonRun
             Functions_IndestructibleObjs.SetType(objList[23], IndestructibleType.Coliseum_Shadow_Stairs_Handrail_Bottom);
 
             //row 7
-            Functions_IndestructibleObjs.SetType(objList[24], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[25], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[26], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[27], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[24], IndestructibleType.Coliseum_Shadow_Spectator);
+            Functions_IndestructibleObjs.SetType(objList[25], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[26], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[27], IndestructibleType.Dungeon_BlockDark);//
 
             //row 8
             Functions_IndestructibleObjs.SetType(objList[28], IndestructibleType.Dungeon_BlockDark);
@@ -725,9 +725,14 @@ namespace DungeonRun
             //position the objs relative to the window frame
             Functions_WidgetIndObjs.PositionObjs(this);
 
-            //manually set recs
-            objList[0].compCollision.rec.Height = 16 * 3;
+            //set recs for entrance
+            objList[0].compCollision.rec.Width = 16 * 3;
             objList[0].compCollision.rec.Height = 16 * 4;
+            //spectators
+            objList[24].compCollision.rec.Width = 16 * 4;
+
+
+
 
             //hide objs that trees overlap
             Functions_WidgetIndObjs.HideObj(objList[1]);
@@ -745,6 +750,9 @@ namespace DungeonRun
             Functions_WidgetIndObjs.HideObj(objList[13]);
             Functions_WidgetIndObjs.HideObj(objList[14]);
 
+            Functions_WidgetIndObjs.HideObj(objList[25]);
+            Functions_WidgetIndObjs.HideObj(objList[26]);
+            Functions_WidgetIndObjs.HideObj(objList[27]);
 
             //reset update all zdepths
             for (i = 0; i < 4 * 12; i++)

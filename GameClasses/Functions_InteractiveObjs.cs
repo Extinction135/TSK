@@ -1636,30 +1636,10 @@ namespace DungeonRun
                 {   //ensure roomObjs are overlapping
                     if (IntObj.compCollision.rec.Intersects(Pool.indObjPool[g].compCollision.rec))
                     {
+                        //remove interactive obj upon overlapping an indestructible obj
+                        Functions_Pool.Release(IntObj);
 
-                        if (//allow these interactive objs to overlap indestructible objs
-                            IntObj.type == InteractiveType.Grass_Tall
-                            )
-                        { }
-                        else
-                        {   //any other interactive obj overlapping an indestructible obj is removed
-                            Functions_Pool.Release(Pool.indObjPool[g]);
-                        }
-
-                    }
-                }
-            }
-
-            //loop over interactive objs, removing int based on types
-            for (g = 0; g < Pool.intObjCount; g++)
-            {   //ensure intObj is active and not self-checking
-                if (Pool.intObjPool[g].active & Pool.intObjPool[g] != IntObj)
-                {   //ensure roomObjs are overlapping
-                    if (IntObj.compCollision.rec.Intersects(Pool.intObjPool[g].compCollision.rec))
-                    {
-
-
-                        #region Dungeon Walls
+                        #region Code Refs
 
                         /*
                         if (//walls are built first, then doors/decor are added, remove walls that overlap
@@ -1687,8 +1667,28 @@ namespace DungeonRun
                         }
                         */
 
+
+                        /*
+                        if (//allow these interactive objs to overlap indestructible objs
+                            IntObj.type == InteractiveType.Grass_Tall
+                            )
+                        { }
+                        else { Functions_Pool.Release(IntObj); }
+                        */
+
                         #endregion
 
+                    }
+                }
+            }
+
+            //loop over interactive objs, removing int based on types
+            for (g = 0; g < Pool.intObjCount; g++)
+            {   //ensure intObj is active and not self-checking
+                if (Pool.intObjPool[g].active & Pool.intObjPool[g] != IntObj)
+                {   //ensure roomObjs are overlapping
+                    if (IntObj.compCollision.rec.Intersects(Pool.intObjPool[g].compCollision.rec))
+                    {
 
                         #region Floor Decorations - debris, stain, blood, skeletons
 
@@ -1799,13 +1799,9 @@ namespace DungeonRun
 
                         #endregion
 
-
-
-
                     }
                 }
-            }
-                
+            }   
         }
 
 

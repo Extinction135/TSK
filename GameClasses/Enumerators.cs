@@ -388,10 +388,10 @@ namespace DungeonRun
         Coliseum_Shadow_Stairs_Handrail_Middle,
         Coliseum_Shadow_Stairs_Handrail_Bottom,
 
-        Coliseum_Shadow_Bricks_Left,
-        Coliseum_Shadow_Bricks_Middle1,
-        Coliseum_Shadow_Bricks_Middle2,
-        Coliseum_Shadow_Bricks_Right,
+        Coliseum_Shadow_Bricks_Left, //not added to editor yet
+        Coliseum_Shadow_Bricks_Middle1, //not added to editor yet
+        Coliseum_Shadow_Bricks_Middle2, //not added to editor yet
+        Coliseum_Shadow_Bricks_Right, //not added to editor yet
 
         Coliseum_Shadow_Spectator,
 

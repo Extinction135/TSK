@@ -67,16 +67,24 @@ Today:
 
 
 
+Editor + Inds++
+
+added more coliseum objects to editor.
+indestructible objs now get animated via pool.update().
+
+fixed bug where int objs overlapping ind objs
+mistakenly were removing the ind objs, which is the
+opposite of what i wanted. the interactive objs
+should remove themselves if they overlap any kind
+of indestructible object.
+
+coliseum basic ind objs complete.
 
 
 
 
-Editor++
 
-added various coliseum ind objs for testing.
-all working. based on bombos testing vs these
-ind objs, explosions should sort above everything.
-done. tested.
+
 
 
 
@@ -95,6 +103,8 @@ creation as well.
 this is all in widgetIndObjs.cs.
 migrate the commented code back into ind objs, so
 we can see and use and interact with ind objs.
+
+
 
 
 
