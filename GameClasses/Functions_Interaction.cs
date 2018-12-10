@@ -620,16 +620,16 @@ namespace DungeonRun
                     if (IntObj.group == InteractiveGroup.Enemy)
                     { Functions_InteractiveObjs.CutRoomEnemy(IntObj); }
 
-                    //ground fires spread to some room objs
+                    //ground fires spread to some int objs
                     else if (
                         //burn bushes
                         IntObj.type == InteractiveType.Bush
                         //burn posts
-                        || IntObj.type == InteractiveType.PostBurned_CornerLeft
-                        || IntObj.type == InteractiveType.PostBurned_CornerRight
-                        || IntObj.type == InteractiveType.PostBurned_Horizontal
-                        || IntObj.type == InteractiveType.PostBurned_VerticalLeft
-                        || IntObj.type == InteractiveType.PostBurned_VerticalRight
+                        || IntObj.type == InteractiveType.Post_CornerLeft
+                        || IntObj.type == InteractiveType.Post_CornerRight
+                        || IntObj.type == InteractiveType.Post_Horizontal
+                        || IntObj.type == InteractiveType.Post_VerticalLeft
+                        || IntObj.type == InteractiveType.Post_VerticalRight
                         //burn trees
                         || IntObj.type == InteractiveType.Tree
                         //light torches
@@ -874,8 +874,6 @@ namespace DungeonRun
                 }
 
                 #endregion
-
-
 
 
             }

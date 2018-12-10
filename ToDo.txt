@@ -65,23 +65,20 @@ Today:
 
 
 
-
-
-
-Stop and Smell the Flowers
-
-flowers now become grass upon contact with an explosion.
-flowers now burn as grass does. tested.
-
-
-
-
-
-
-
-
+Posts++
 
 posts do not burn. they are blocking ints, and should burn.
+
+ah yes, ground fire interaction routines were targeting burned
+posts instead of unburned posts - to burn. which makes no sense
+as burned posts are already burned and cannot complete the
+burning conversion branch that ground fire is attempting to 
+start via Burn(). fixed. tested and working.
+
+
+
+
+
 
 
 
