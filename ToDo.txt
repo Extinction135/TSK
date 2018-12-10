@@ -70,39 +70,40 @@ Today:
 
 
 
-
-Save/Load Systems++
-
-while testing the new save/load systems it was
-discovered that creating interactive objs from
-xml save data was referencing ind objs causing 
-an index out of bounds error. this has been
-corrected.
-
-saving and loading of inds/ints field data working.
-we have a forest test level using the new systems.
-
-
-
-
-
-
-
-
-
 Editor Bugs--
 
 bug with adding an int obj when clicking on an
 indestructible - selects the ind obj, the adds it.
-this is a logic branch that wasn't considered!!!
-
+this is a logic branch that wasn't considered!
+fixed now. tested too.
 
 bug with rotating int objs. likely prob with inds too.
 direction value flips out, wildly moving between 
 values upon mouse over. not even a click.
+added click check into rotation routine. inspect.
+
+rotation routines dont actually rotate the clicked
+world obj. plus, the rotation of the display sprite
+doesn't update either. both of these are pretty crucial.
+
+rotation of int objs now works.  this is actually
+the only obj that needs rotation, so this fixes the
+bug completely.
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+tables should burn, then collapse into debris.
 
 
 

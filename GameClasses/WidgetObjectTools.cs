@@ -238,6 +238,114 @@ namespace DungeonRun
 
 
 
+
+
+
+
+            #region Add Actors and Objs to Room
+
+            //why is this done first? because of how the logic is structured below it.
+            //if this was done after the grab check, then adding an object would grab
+            //any room ind/int cursor overlapped first, save its type, then we would
+            //add that type of obj instead of the obj type we had selected from widget
+
+            if (TopDebugMenu.objToolState == ObjToolState.AddObj)
+            {
+                if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
+                {
+                    if (editorState == EditorState.Actor)
+                    {   //create actor
+                        Actor actorRef = Functions_Pool.GetActor();
+                        //place currently selected obj in room, aligned to 16px grid
+                        actorRef.compMove.newPosition = Functions_Movement.AlignToGrid(worldPos.X, worldPos.Y);
+                        Functions_Movement.Teleport(
+                            actorRef.compMove,
+                            actorRef.compMove.newPosition.X,
+                            actorRef.compMove.newPosition.Y);
+                        //set type and initial state
+                        Functions_Actor.SetType(actorRef, currentActorType);
+                        actorRef.state = ActorState.Idle;
+                        return; //BAIL
+                    }
+                    else if (editorState == EditorState.IndestructibleObj)
+                    {   //create ind
+                        IndestructibleObject objRef;
+                        objRef = Functions_Pool.GetIndObj();
+                        objRef.compSprite.position =
+                            Functions_Movement.AlignToGrid(
+                                worldPos.X,
+                                worldPos.Y);
+                        //set obj direction + type from stored values
+                        objRef.direction = displayDirection;
+                        Functions_IndestructibleObjs.SetType(objRef, currentIndestructibleType);
+                        Functions_Component.Align(objRef); //align hitbox, set animation frame
+                        Functions_Animation.Animate(objRef.compAnim, objRef.compSprite);
+                        return; //BAIL
+                    }
+                    else //add interactive obj state
+                    {
+
+                        #region Check to see if we can add this type of Obj to this type of Room
+
+                        if (currentInteractiveType == InteractiveType.Chest)
+                        {
+                            //we convert the 'safe' chest into a key or hub chest here
+                            if (LevelSet.currentLevel.currentRoom.roomID == RoomID.Key ||
+                                LevelSet.currentLevel.currentRoom.roomID == RoomID.DEV_Key)
+                            {   //convert to key chest
+                                currentInteractiveType = InteractiveType.ChestKey;
+
+                            }
+                            else
+                            {   //tell user we cant add a chest to this type of room
+                                Screens.Dialog.SetDialog(AssetsDialog.CantAddChests);
+                                ScreenManager.AddScreen(Screens.Dialog);
+                                return; //dont add chest
+                            }
+                        }
+                        else if (currentInteractiveType == InteractiveType.Dungeon_Switch)
+                        {   //we cannot have more than one switch in a room
+                            for (j = 0; j < Pool.intObjCount; j++)
+                            {   //check all roomObjs for a dungeon switch
+                                if (Pool.intObjPool[j].active && Pool.intObjPool[j].type == InteractiveType.Dungeon_Switch)
+                                {
+                                    Screens.Dialog.SetDialog(AssetsDialog.CantAddMoreSwitches);
+                                    ScreenManager.AddScreen(Screens.Dialog);
+                                    return; //dont add switch
+                                }
+                            }
+                        }
+
+                        #endregion
+
+
+                        //create int
+                        InteractiveObject objRef;
+                        objRef = Functions_Pool.GetIntObj();
+                        //place currently selected obj in room, aligned to 16px grid
+                        objRef.compMove.newPosition = Functions_Movement.AlignToGrid(worldPos.X, worldPos.Y);
+                        Functions_Movement.Teleport(
+                            objRef.compMove,
+                            objRef.compMove.newPosition.X,
+                            objRef.compMove.newPosition.Y);
+                        //set obj direction + type from stored values
+                        objRef.direction = displayDirection;
+                        objRef.compMove.direction = displayDirection;
+                        Functions_InteractiveObjs.SetType(objRef, currentInteractiveType);
+                        Functions_Animation.Animate(objRef.compAnim, objRef.compSprite);
+                        return; //BAIL
+                    }
+                }
+            }
+
+            #endregion
+
+
+
+
+
+
+
             //Grab/Set Ind and Int Objects
             if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
             {
@@ -405,106 +513,38 @@ namespace DungeonRun
             }
 
             #endregion
-            
-
-            #region Adding Inds, Ints, and Actors to GameWorld
-
-            else if (TopDebugMenu.objToolState == ObjToolState.AddObj)
-            {
-                if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
-                {
-                    if(editorState == EditorState.Actor)
-                    {   //create actor
-                        Actor actorRef = Functions_Pool.GetActor();
-                        //place currently selected obj in room, aligned to 16px grid
-                        actorRef.compMove.newPosition = Functions_Movement.AlignToGrid(worldPos.X, worldPos.Y);
-                        Functions_Movement.Teleport(
-                            actorRef.compMove,
-                            actorRef.compMove.newPosition.X,
-                            actorRef.compMove.newPosition.Y);
-                        //set type and initial state
-                        Functions_Actor.SetType(actorRef, currentActorType);
-                        actorRef.state = ActorState.Idle;
-                    }
-                    else if (editorState == EditorState.IndestructibleObj)
-                    {   //create ind
-                        IndestructibleObject objRef;
-                        objRef = Functions_Pool.GetIndObj();
-                        objRef.compSprite.position = Functions_Movement.AlignToGrid(worldPos.X, worldPos.Y);
-                        //set obj direction + type from stored values
-                        objRef.direction = displayDirection;
-                        Functions_IndestructibleObjs.SetType(objRef, currentIndestructibleType);
-                        Functions_Component.Align(objRef); //align hitbox, set animation frame
-                        Functions_Animation.Animate(objRef.compAnim, objRef.compSprite);
-                    }
-                    else //add interactive obj state
-                    {
-
-                        #region Check to see if we can add this type of Obj to this type of Room
-
-                        if (currentInteractiveType == InteractiveType.Chest)
-                        {
-                            //we convert the 'safe' chest into a key or hub chest here
-                            if (LevelSet.currentLevel.currentRoom.roomID == RoomID.Key ||
-                                LevelSet.currentLevel.currentRoom.roomID == RoomID.DEV_Key)
-                            {   //convert to key chest
-                                currentInteractiveType = InteractiveType.ChestKey;
-
-                            }
-                            else
-                            {   //tell user we cant add a chest to this type of room
-                                Screens.Dialog.SetDialog(AssetsDialog.CantAddChests);
-                                ScreenManager.AddScreen(Screens.Dialog);
-                                return; //dont add chest
-                            }
-                        }
-                        else if (currentInteractiveType == InteractiveType.Dungeon_Switch)
-                        {   //we cannot have more than one switch in a room
-                            for (j = 0; j < Pool.intObjCount; j++)
-                            {   //check all roomObjs for a dungeon switch
-                                if (Pool.intObjPool[j].active && Pool.intObjPool[j].type == InteractiveType.Dungeon_Switch)
-                                {
-                                    Screens.Dialog.SetDialog(AssetsDialog.CantAddMoreSwitches);
-                                    ScreenManager.AddScreen(Screens.Dialog);
-                                    return; //dont add switch
-                                }
-                            }
-                        }
-
-                        #endregion
 
 
-                        //create int
-                        InteractiveObject objRef;
-                        objRef = Functions_Pool.GetIntObj();
-
-                        //place currently selected obj in room, aligned to 16px grid
-                        objRef.compMove.newPosition = Functions_Movement.AlignToGrid(worldPos.X, worldPos.Y);
-                        Functions_Movement.Teleport(objRef.compMove,
-                            objRef.compMove.newPosition.X, objRef.compMove.newPosition.Y);
-                        //set obj direction + type from stored values
-                        objRef.direction = displayDirection;
-                        objRef.compMove.direction = displayDirection;
-                        Functions_InteractiveObjs.SetType(objRef, currentInteractiveType);
-                        Functions_Animation.Animate(objRef.compAnim, objRef.compSprite);
-                    }
-                }
-            }
-
-            #endregion
-
-
-            #region Rotate Inds and Ints
+            #region Rotate Interactive Objs (no rotating indestructibles/actors)
 
             else if(TopDebugMenu.objToolState == ObjToolState.RotateObj)
             {
-                if (editorState == EditorState.IndestructibleObj)
-                {
-                    if (GrabIndestructibleObject()) { RotateIndObj(); }
-                }
-                else //interactive objs state
-                {
-                    if (GrabInteractiveObject()) { RotateIntObj(); }
+                if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
+                {   //loop ints, rotating any obj
+                    for (Pool.intObjCounter = 0; Pool.intObjCounter < Pool.intObjCount; Pool.intObjCounter++)
+                    {   //loop thru roomObj pool, checking collisions with cursor's worldPos
+                        if (Pool.intObjPool[Pool.intObjCounter].active)
+                        {   //check collisions between worldPos and obj, grab any colliding obj
+                            if (Pool.intObjPool[Pool.intObjCounter].compCollision.rec.Contains(worldPos))
+                            {
+                                //set int obj ref into grabbed obj ref
+                                grabbedIntObj = Pool.intObjPool[Pool.intObjCounter];
+                                //loop thru a clockwise rotation
+                                if (grabbedIntObj.compSprite.rotation == Rotation.None)
+                                { grabbedIntObj.compSprite.rotation = Rotation.Clockwise90; }
+                                else if (grabbedIntObj.compSprite.rotation == Rotation.Clockwise90)
+                                { grabbedIntObj.compSprite.rotation = Rotation.Clockwise180; }
+                                else if (grabbedIntObj.compSprite.rotation == Rotation.Clockwise180)
+                                { grabbedIntObj.compSprite.rotation = Rotation.Clockwise270; }
+                                else { grabbedIntObj.compSprite.rotation = Rotation.None; }
+                                //update the rotation
+                                Functions_InteractiveObjs.SetRotation(grabbedIntObj);
+                                //display the selected objs new values
+                                SelectObject(grabbedIntObj);
+                                editorState = EditorState.InteractiveObj;
+                            }
+                        }
+                    }
                 }
             }
 
@@ -766,65 +806,7 @@ namespace DungeonRun
 
         
 
-
-
-
-        public void RotateIntObj()
-        {   
-            //set activeObj's obj.direction based on type
-            if (currentInteractiveType == InteractiveType.Lava_PitBridge)
-            {   //flip between horizontal and vertical directions
-                if (displayDirection == Direction.Up || displayDirection == Direction.Down)
-                { displayDirection = Direction.Left; }
-                else { displayDirection = Direction.Down; }
-            }
-
-            //these are objects that we allow rotation upon
-            else if (currentInteractiveType == InteractiveType.ConveyorBeltOn
-                || currentInteractiveType == InteractiveType.ConveyorBeltOff
-                || currentInteractiveType == InteractiveType.Dungeon_BlockSpike)
-            {   //flip thru cardinal directions
-                displayDirection = Functions_Direction.GetCardinalDirection_LeftRight(displayDirection);
-                if (displayDirection == Direction.Up) { displayDirection = Direction.Left; }
-                else if (displayDirection == Direction.Left) { displayDirection = Direction.Down; }
-                else if (displayDirection == Direction.Down) { displayDirection = Direction.Right; }
-                else { displayDirection = Direction.Up; }
-
-                //set object's move component direction based on type
-                //if (currentInteractiveType == InteractiveType.Dungeon_BlockSpike)
-                //{ activeObj.compMove.direction = displayDirection; }
-            }
-
-            //rotate all other objects thru clockwise rotation
-            else
-            {
-                //flip thru cardinal directions
-                displayDirection = Functions_Direction.GetCardinalDirection_LeftRight(displayDirection);
-                if (displayDirection == Direction.Up) { displayDirection = Direction.Left; }
-                else if (displayDirection == Direction.Left) { displayDirection = Direction.Down; }
-                else if (displayDirection == Direction.Down) { displayDirection = Direction.Right; }
-                else { displayDirection = Direction.Up; }
-            }
-
-            //rotate int object
-            grabbedIntObj.direction = displayDirection;   
-            Functions_InteractiveObjs.SetRotation(grabbedIntObj);
-        }
-
-        public void RotateIndObj()
-        {
-            //flip thru cardinal directions
-            displayDirection = Functions_Direction.GetCardinalDirection_LeftRight(displayDirection);
-            if (displayDirection == Direction.Up) { displayDirection = Direction.Left; }
-            else if (displayDirection == Direction.Left) { displayDirection = Direction.Down; }
-            else if (displayDirection == Direction.Down) { displayDirection = Direction.Right; }
-            else { displayDirection = Direction.Up; }
-
-            grabbedIndObj.direction = displayDirection;
-            Functions_IndestructibleObjs.SetRotation(grabbedIndObj);
-        }
-
-
+        
 
 
 
