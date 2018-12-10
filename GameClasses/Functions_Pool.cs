@@ -325,6 +325,9 @@ namespace DungeonRun
             Pool.interactions_Possible = 0;
             Pool.interactions_ThisFrame = 0;
 
+            Pool.heroInts_Possible = 0;
+            Pool.heroInts_ThisFrame = 0;
+
             #endregion
 
 
@@ -534,7 +537,7 @@ namespace DungeonRun
 
             #region Phase 2 - Project Movement
 
-            //project movement for actors, objects, particles, projectiles, pickups
+            //project movement for actors, objects, particles, projectiles
             //indestructible objs CANT move
 
             //actors
@@ -657,8 +660,6 @@ namespace DungeonRun
                     }
                 }
             }
-
-
 
             #endregion
 

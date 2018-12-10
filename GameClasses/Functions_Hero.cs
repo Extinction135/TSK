@@ -58,8 +58,10 @@ namespace DungeonRun
             {
                 if (Pool.pickupPool[i].active)
                 {
+                    Pool.heroInts_Possible++; //possible interaction up next
                     if (Pool.hero.compCollision.rec.Intersects(Pool.pickupPool[i].compCollision.rec))
                     {
+                        Pool.heroInts_ThisFrame++; //count it
                         Functions_Pickup.HandleEffect(Pool.pickupPool[i]);
                     }
                 }

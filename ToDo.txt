@@ -65,41 +65,30 @@ Today:
 
 
 
+Design Optimization
 
-Debug++
+Pickups should not be moved by interactive objs
+or wind (coming up next). Once a pickup drops to the
+game floor, it stays exactly where it spawns until
+it dies, unless it's update() behavior moves the
+pickup around (potentially allowing fairies to be
+pickups instead of int objs or pros, because they
+only collide with the hero...).
 
-all debug displays have been vastly improved to
-provide me with the information i want about the
-game. this info will allow me to find and test
-weakness or bugs in various game systems. very
-important update here, as i have added counters
-for total possible vs total actual, to see how
-various strategies reduce overall computations.
+System Inspection
 
+pickups do not get interactions with anything from 
+pool.Update(). pickups movement not projected either.
+pickups are never aligned or collision checked.
+hero checks himself against pickup pool, and now
+counts that towards hero interactions possible and
+hero interactions total (this frame), which are displayed
+in the new debug system. so debug got more accurate.
 
-
-
-
-
-
-
-
-inds 0/200
-ints 0/3000
-pro 0/300
-part 0/750
-flrs 0/500
-
-
-hero ints
-hero 0/1300
-
-
-
-
-
-
-we need to be counting hero rec interactions too.
+recorded bombos destruction vs house example level
+for max systems test and debug test. stepped thru
+video frame by frame to see accurate (and expected)
+view of systems handling bombos across frames.
 
 
 
@@ -109,10 +98,29 @@ we need to be counting hero rec interactions too.
 
 
 
+Systems Tuning
 
-we need a test level that contains all the dungeon
-entrances. linked to shadow level pls. we should be
-able to build the game and test it.
+based on bombos testing vs house example level,
+pool sizes need to be tuned to allow for large scale
+interactions. currently, the pool sizes are:
+indestructibles: 200
+interactives: 3000
+projectiles: 300
+particles: 750
+floors: 500
+
+my thoughts are simple: 
+inds should be around 250, pretty close to perf.
+ints should be smaller, as much as possible.
+pros need to be bigger, but not by much.
+particles could be smaller, but they don't cost alot.
+floors can be drsatically smaller (hubs are the max used).
+
+inds/ints/pros will be tuned. when we get into
+dungeons, we will retune floor pool sizes. overall,
+this will reduce frametimes by optimizing the
+maximum checks the game has to do each frame against
+the various obj pools.
 
 
 
@@ -125,42 +133,45 @@ able to build the game and test it.
 
 
 
-Indestructible Objs++
-
-hero should have interaction rec with main exit object, taking
-them outside the dungeon.
 
 
 
 
-	
-	
 
-	
-	
-	
-	
-	
-	
 
-	
-	
-	
+
+Fixing Bombos
+
+Projectile_Explosion
+Projectile_Explosion_NoFire - bombos casts this
+
+no fire is an explosion that doesn't leave behind
+a ground fire, instead it leaves behind a fire particle.
+only bombos uses these projectiles, because it overloads
+the systems otherwise.
+
+
+
+
+
+
+
+
+
+
+
+
 Add Wind
 	wind vs ints
 	wind vs acts
 	wind vs pros
-	wind vs picks
+
+	
 
 	
 	
-
-Systems Redesign Time!!!
-
-this is a HUGE speed gain and system simplification, while also
-adding WIND! which is an entire element of magic too.
-
- 
+	
+	
 Pool:
 wind - pushes: actors, pros, ints, pickups
 
@@ -219,14 +230,76 @@ tornado: spawns a tornado roomObj. (fire, ice, explosive, electrical tornados to
 
 
 
-Floors -> Particles
-
-we can put the 'floors' into the particle pool, since
-they do they exact same thing - plus this allows the
-floors to be animated, for future ideas... this removes
-the floor pool and the concept of floors from the game.
 
 
+
+
+
+
+
+
+
+
+
+
+
+Moar Optimizations!
+
+boat floor objs need to be actual floor objs.
+when we add them, we should be adding them from
+the floors pool. cut grass and small grass, and
+dirt tiles can all be floor objects, reducing the
+strain on interactive obj pool more. these floor
+objects are not actually interactive either.
+we don't use floor objs in field levels, and thats
+a waste of a useful budget for displaying certain
+types of game objects that fields def do need.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+we need a test level that contains all the dungeon
+entrances. linked to shadow level pls. we should be
+able to build the game and test it.
+
+
+
+
+
+
+Indestructible Objs++
+
+hero should have interaction rec with main exit object, taking
+them outside the dungeon.
+
+
+
+
+	
+	
+
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
 
 
 
