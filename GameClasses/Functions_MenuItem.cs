@@ -678,12 +678,21 @@ namespace DungeonRun
             #endregion
 
 
-            #region Explosive spells
+            #region Explosive/Fire spells
 
+            else if (Type == MenuItemType.Fire)
+            {
+                MenuItem.name = "Fire";
+                MenuItem.description = "Casts a ground fire \nfacing direction.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Projectile_FireGround;
+                MenuItem.compSprite.texture = Assets.entitiesSheet;
+                MenuItem.compAnim.loop = true;
+                MenuItem.compAnim.speed = 8;
+            }
             else if (Type == MenuItemType.Fire_Walk)
             {
                 MenuItem.name = "Fire Walk";
-                MenuItem.description = "Fires created where \ncaster walks.";
+                MenuItem.description = "Creates fire where \ncaster walks.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Projectile_FireGround;
                 MenuItem.compSprite.texture = Assets.entitiesSheet;
                 MenuItem.compAnim.loop = true;
@@ -692,7 +701,7 @@ namespace DungeonRun
             else if (Type == MenuItemType.Explosive_Single)
             {
                 MenuItem.name = "Explode";
-                MenuItem.description = "Places an explosion \nin front of the caster.";
+                MenuItem.description = "Casts an explosion \nin front of the caster.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Projectile_Explosion;
                 MenuItem.compSprite.texture = Assets.entitiesSheet;
                 MenuItem.compAnim.loop = true;
@@ -701,7 +710,7 @@ namespace DungeonRun
             else if (Type == MenuItemType.Explosive_Line)
             {
                 MenuItem.name = "Chain Explosions";
-                MenuItem.description = "Places explosions \nin front of the caster.";
+                MenuItem.description = "Casts a series of \nexplosions..be careful.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Projectile_Explosion;
                 MenuItem.compSprite.texture = Assets.entitiesSheet;
                 MenuItem.compAnim.loop = true;

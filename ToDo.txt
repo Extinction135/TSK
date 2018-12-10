@@ -69,71 +69,22 @@ Today:
 
 
 
+Ground Fire Spell
 
+We need this to test ground fires, which are basic
+to the game world, so create ground fire spell.
 
-
-
-
-Systems Tuning
-
-after watching the max system test video frame by
-frame, one really great thing was apparent: the pools
-fail before the frametime exceeds 16.6ms. the pools
-fail at 9-11ms, never going over 11ms for bombos full
-screen explosions.
-
-based on bombos testing vs house example level,
-pool sizes can be tuned better to allow for more
-interactions. currently, the pool sizes are:
-
-indestructibles: 200
-interactives: 3000
-projectiles: 300
-particles: 750
-floors: 500
-
-my thoughts are simple: 
-inds should be around 250, pretty close to perf.
-ints should be smaller, as much as possible.
-pros need to be bigger, but not by much.
-particles could be smaller, but they don't cost alot.
-floors can be drsatically smaller (hubs are the max used).
-
-inds/ints/pros will be tuned. when we get into
-dungeons, we will retune floor pool sizes. overall,
-this will reduce frametimes by optimizing the
-maximum checks the game has to do each frame against
-the various obj pools.
-
-new pool sizes and frame times vs bombos:
-
-indestructibles: 250 (+50)
-interactives: 2000 (-1000)
-projectiles: 350 (+50)
-particles: 1000 (+250)
-floors: 250 (-250)
-
-fails at: 9-11ms too, because projectiles pool
-quickly hits 350 limit. how about 500?
-
-projectiles: 500 (+150)
-fails at: 12ms.
-
-i don't think we should go past 500 for the pro
-pool, and now we should focus on optimizing bombos
-to allow for better performance.
-
-
-
-
-
-
+added fire spell menuitem. added ground fire spell.
+fires can now be cast in the facing direction of the
+caster, allowing me to exactly test fires in game.
 
 
 Debug Displays++
 
 increase size of debug displays for pool counter,
-colls + ints too.
+colls + ints too. done.
+
+
 
 
 

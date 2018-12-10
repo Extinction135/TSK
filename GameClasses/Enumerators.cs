@@ -971,6 +971,7 @@ namespace DungeonRun
         //wind
 
         //explosive/fire
+        Fire,
         Fire_Walk,
         Explosive_Single,
         Explosive_Line,
@@ -1047,6 +1048,7 @@ namespace DungeonRun
 
 
         //explosive
+        Fire,
         Fire_Walk,
         Explosive_Single,
         Explosive_Line,

@@ -113,14 +113,17 @@ namespace DungeonRun
 
             #region Explode/Fire Spells
 
-            labels[1].text = "fire\nwalk";
-            Functions_MenuItem.SetType(MenuItemType.Fire_Walk, menuItems[1]);
+            labels[1].text = "fire";
+            Functions_MenuItem.SetType(MenuItemType.Fire, menuItems[1]);
 
-            labels[6].text = "single\nexplode";
-            Functions_MenuItem.SetType(MenuItemType.Explosive_Single, menuItems[6]);
+            labels[6].text = "fire\nwalk";
+            Functions_MenuItem.SetType(MenuItemType.Fire_Walk, menuItems[6]);
 
-            labels[11].text = "chain\nexplode";
-            Functions_MenuItem.SetType(MenuItemType.Explosive_Line, menuItems[11]);
+            labels[11].text = "single\nexplode";
+            Functions_MenuItem.SetType(MenuItemType.Explosive_Single, menuItems[11]);
+
+            labels[16].text = "chain\nexplode";
+            Functions_MenuItem.SetType(MenuItemType.Explosive_Line, menuItems[16]);
 
             #endregion
 
@@ -251,7 +254,9 @@ namespace DungeonRun
 
 
                 //explosive/fire spells
-                if (currentlySelected.type == MenuItemType.Fire_Walk)
+                if (currentlySelected.type == MenuItemType.Fire)
+                { PlayerData.currentSpell = SpellType.Fire; }
+                else if (currentlySelected.type == MenuItemType.Fire_Walk)
                 { PlayerData.currentSpell = SpellType.Fire_Walk; }
                 else if(currentlySelected.type == MenuItemType.Explosive_Single)
                 { PlayerData.currentSpell = SpellType.Explosive_Single; }

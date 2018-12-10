@@ -332,8 +332,8 @@ namespace DungeonRun
 
                 #region Build Times Debug Display Setup
 
-                TopDebugMenu.DebugDisplay_BuildTimes.stringBuilder.Append("LVL: " + Functions_Level.time.Ticks);
-                TopDebugMenu.DebugDisplay_BuildTimes.stringBuilder.Append("\nRM: " + Functions_Room.time.Ticks);
+                TopDebugMenu.DebugDisplay_BuildTimes.stringBuilder.Append("lvlbld " + Functions_Level.time.Ticks);
+                TopDebugMenu.DebugDisplay_BuildTimes.stringBuilder.Append("\nrm bld " + Functions_Room.time.Ticks);
                 TopDebugMenu.DebugDisplay_BuildTimes.stringBuilder.Append("\n...");
                 TopDebugMenu.DebugDisplay_BuildTimes.stringBuilder.Append("\n...");
                 TopDebugMenu.DebugDisplay_BuildTimes.stringBuilder.Append("\n...");

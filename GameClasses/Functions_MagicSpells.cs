@@ -126,7 +126,50 @@ namespace DungeonRun
 
 
 
-            //explosive spells
+            //explosive/fire spells
+
+            #region Fire
+
+            else if (Spell == SpellType.Fire)
+            {
+                Assets.Play(Assets.sfxLightFire);
+                //as close as possible on the offsets
+                if (Caster.direction == Direction.Up)
+                {
+                    Functions_Projectile.Spawn(
+                        ProjectileType.GroundFire,
+                        Caster.compCollision.rec.Center.X,
+                        Caster.compCollision.rec.Center.Y - 16,
+                        Direction.Down);
+                }
+                else if (Caster.direction == Direction.Down)
+                {
+                    Functions_Projectile.Spawn(
+                        ProjectileType.GroundFire,
+                        Caster.compCollision.rec.Center.X,
+                        Caster.compCollision.rec.Center.Y + 16,
+                        Direction.Down);
+                }
+                else if (Caster.direction == Direction.Right)
+                {
+                    Functions_Projectile.Spawn(
+                        ProjectileType.GroundFire,
+                        Caster.compCollision.rec.Center.X + 16,
+                        Caster.compCollision.rec.Center.Y,
+                        Direction.Down);
+                }
+                else if (Caster.direction == Direction.Left)
+                {
+                    Functions_Projectile.Spawn(
+                        ProjectileType.GroundFire,
+                        Caster.compCollision.rec.Center.X - 16,
+                        Caster.compCollision.rec.Center.Y,
+                        Direction.Down);
+                }
+            }
+
+            #endregion
+
 
             #region Firewalk
 

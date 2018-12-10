@@ -1088,8 +1088,11 @@ namespace DungeonRun
             int Xpos = 565;
             DebugDisplay_Ram = new DebugDisplay(Xpos, 16*3 - 16);
             DebugDisplay_PoolCounter = new DebugDisplay(Xpos, DebugDisplay_Ram.bkg.position.Y + 16 * 3 + 4);
+            DebugDisplay_PoolCounter.bkg.size.X = 16 * 4 - 2; //wider cause data string can be longer
             DebugDisplay_SysCounter = new DebugDisplay(Xpos, DebugDisplay_PoolCounter.bkg.position.Y + 16 * 3 + 4);
+            DebugDisplay_SysCounter.bkg.size.X = 16 * 4 - 2; //wider cause data string can be longer
             DebugDisplay_BuildTimes = new DebugDisplay(Xpos, DebugDisplay_SysCounter.bkg.position.Y + 16 * 3 + 4);
+            DebugDisplay_BuildTimes.bkg.size.X = 16 * 4 - 2; //wider cause data string can be longer
             DebugDisplay_HeroState = new DebugDisplay(Xpos, DebugDisplay_BuildTimes.bkg.position.Y + 16 * 3 + 4);
             DebugDisplay_HeroState.bkg.size.X = 16 * 4 - 2; //wider cause data string can be longer
             DebugDisplay_Movement = new DebugDisplay(Xpos, DebugDisplay_HeroState.bkg.position.Y + 16 * 3 + 4);
