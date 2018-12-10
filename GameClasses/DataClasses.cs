@@ -1026,13 +1026,19 @@ namespace DungeonRun
         public static List<ComponentButton> buttons;
         public static int counter;
 
-
-        public static DebugDisplay DebugDisplay_Ram;
+        //left displays
         public static DebugDisplay DebugDisplay_HeroState;
         public static DebugDisplay DebugDisplay_Movement;
+
+        //right displays
+        public static DebugDisplay DebugDisplay_Ram;
+
+        public static DebugDisplay DebugDisplay_Interactives;
+        public static DebugDisplay DebugDisplay_Actors;
+        public static DebugDisplay DebugDisplay_Projectiles;
+
         public static DebugDisplay DebugDisplay_PoolCounter;
         public static DebugDisplay DebugDisplay_BuildTimes;
-        public static DebugDisplay DebugDisplay_Collisions;
 
         static TopDebugMenu()
         {
@@ -1077,14 +1083,19 @@ namespace DungeonRun
 
             #region Setup Debug Displays
 
-            int Xpos = 565;
-
-            DebugDisplay_Ram = new DebugDisplay(Xpos, 16*3 - 16);
-            DebugDisplay_HeroState = new DebugDisplay(Xpos, DebugDisplay_Ram.bkg.position.Y + 16 * 3 + 4);
+            //setup left displays
+            int Xpos = 16 * 1;
+            DebugDisplay_HeroState = new DebugDisplay(Xpos, 16 * 3 - 16 + 16 * 3 + 4);
             DebugDisplay_Movement = new DebugDisplay(Xpos, DebugDisplay_HeroState.bkg.position.Y + 16 * 3 + 4);
-            DebugDisplay_PoolCounter = new DebugDisplay(Xpos, DebugDisplay_Movement.bkg.position.Y + 16 * 3 + 4);
+
+            //setup right displays
+            Xpos = 565;
+            DebugDisplay_Ram = new DebugDisplay(Xpos, 16*3 - 16);
+            DebugDisplay_Interactives = new DebugDisplay(Xpos, DebugDisplay_Ram.bkg.position.Y + 16 * 3 + 4);
+            DebugDisplay_Actors = new DebugDisplay(Xpos, DebugDisplay_Interactives.bkg.position.Y + 16 * 3 + 4);
+            DebugDisplay_Projectiles = new DebugDisplay(Xpos, DebugDisplay_Actors.bkg.position.Y + 16 * 3 + 4);
+            DebugDisplay_PoolCounter = new DebugDisplay(Xpos, DebugDisplay_Projectiles.bkg.position.Y + 16 * 3 + 4);
             DebugDisplay_BuildTimes = new DebugDisplay(Xpos, DebugDisplay_PoolCounter.bkg.position.Y + 16 * 3 + 4);
-            DebugDisplay_Collisions = new DebugDisplay(Xpos, DebugDisplay_BuildTimes.bkg.position.Y + 16 * 3 + 4);
 
             #endregion
 
@@ -1262,24 +1273,6 @@ namespace DungeonRun
             sfx = Sfx;
             fadeBackgroundIn = FadeBkg;
             fadeForegroundIn = FadeFrg;
-        }
-    }
-
-    public class DebugDisplay
-    {
-        public MenuRectangle bkg;
-        public ComponentText textComp;
-
-        public DebugDisplay(int X, int Y)
-        {
-            bkg = new MenuRectangle(
-                new Point(X, Y),
-                new Point(16 * 3, 16 * 3),
-                ColorScheme.windowBkg);
-            textComp = new ComponentText(Assets.font,
-                "test\ntest\ntest\ntest\ntest",
-                new Vector2(bkg.position.X + 2, bkg.position.Y - 2),
-                ColorScheme.textLight);
         }
     }
 
@@ -2024,6 +2017,27 @@ namespace DungeonRun
         public float fadeOutSpeed = 0.05f;
         public FadeState fadeState = FadeState.FadeIn;
         public Boolean fade = true;
+    }
+
+
+    public class DebugDisplay
+    {
+        public MenuRectangle bkg;
+        public ComponentText textComp;
+        public StringBuilder stringBuilder;
+
+        public DebugDisplay(int X, int Y)
+        {
+            bkg = new MenuRectangle(
+                new Point(X, Y),
+                new Point(16 * 3, 16 * 3),
+                ColorScheme.windowBkg);
+            textComp = new ComponentText(Assets.font,
+                "test\ntest\ntest\ntest\ntest",
+                new Vector2(bkg.position.X + 2, bkg.position.Y - 2),
+                ColorScheme.textLight);
+            stringBuilder = new StringBuilder();
+        }
     }
 
 }

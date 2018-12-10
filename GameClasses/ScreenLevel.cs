@@ -255,6 +255,12 @@ namespace DungeonRun
             if(Flags.EnableDebugInfo)
             {
 
+
+
+
+
+
+
                 #region Setup update, draw, total times, gametime and total ram
 
                 frameCounter++;
@@ -273,26 +279,39 @@ namespace DungeonRun
                 updateTicks += Timing.updateTime.Ticks;
                 drawTicks += Timing.drawTime.Ticks;
 
-                TopDebugMenu.DebugDisplay_Ram.textComp.text = "U: " + updateAvg;
-                TopDebugMenu.DebugDisplay_Ram.textComp.text += "\nD: " + drawAvg;
-                TopDebugMenu.DebugDisplay_Ram.textComp.text += "\nT: " + Timing.totalTime.Milliseconds + " ms";
-                TopDebugMenu.DebugDisplay_Ram.textComp.text += "\n" + ScreenManager.gameTime.TotalGameTime.ToString(@"hh\:mm\:ss");
-                TopDebugMenu.DebugDisplay_Ram.textComp.text += "\n" + Functions_Backend.GetRam() + " mb";
+                TopDebugMenu.DebugDisplay_Ram.stringBuilder.Append("U: " + updateAvg);
+                TopDebugMenu.DebugDisplay_Ram.stringBuilder.Append("\nD: " + drawAvg);
+                TopDebugMenu.DebugDisplay_Ram.stringBuilder.Append("\nT: " + Timing.totalTime.Milliseconds + " ms");
+                TopDebugMenu.DebugDisplay_Ram.stringBuilder.Append("\n" + ScreenManager.gameTime.TotalGameTime.ToString(@"hh\:mm\:ss"));
+                TopDebugMenu.DebugDisplay_Ram.stringBuilder.Append("\n" + Functions_Backend.GetRam() + " mb");
+                TopDebugMenu.DebugDisplay_Ram.textComp.text = TopDebugMenu.DebugDisplay_Ram.stringBuilder.ToString();
+                TopDebugMenu.DebugDisplay_Ram.stringBuilder.Clear();
 
                 #endregion
 
 
-                TopDebugMenu.DebugDisplay_HeroState.textComp.text = "IN: " + Pool.hero.inputState;
-                TopDebugMenu.DebugDisplay_HeroState.textComp.text += "\nST: " + Pool.hero.state;
-                TopDebugMenu.DebugDisplay_HeroState.textComp.text += "\nLCK: " + Pool.hero.stateLocked;
-                TopDebugMenu.DebugDisplay_HeroState.textComp.text += "\nMDIR: " + Pool.hero.compMove.direction;
-                TopDebugMenu.DebugDisplay_HeroState.textComp.text += "\nFDIR: " + Pool.hero.direction;
+                #region Setup Hero State/Move Displays
 
-                TopDebugMenu.DebugDisplay_Movement.textComp.text = "PX: " + Pool.hero.compSprite.position.X;
-                TopDebugMenu.DebugDisplay_Movement.textComp.text += "\nPY: " + Pool.hero.compSprite.position.Y;
-                TopDebugMenu.DebugDisplay_Movement.textComp.text += "\nFRIC: " + Pool.hero.compMove.friction;
-                TopDebugMenu.DebugDisplay_Movement.textComp.text += "\nMX:" + Pool.hero.compMove.magnitude.X.ToString("0.####");
-                TopDebugMenu.DebugDisplay_Movement.textComp.text += "\nMY:" + Pool.hero.compMove.magnitude.Y.ToString("0.####");
+                TopDebugMenu.DebugDisplay_HeroState.stringBuilder.Append("IN: " + Pool.hero.inputState);
+                TopDebugMenu.DebugDisplay_HeroState.stringBuilder.Append("\nST: " + Pool.hero.state);
+                TopDebugMenu.DebugDisplay_HeroState.stringBuilder.Append("\nLCK: " + Pool.hero.stateLocked);
+                TopDebugMenu.DebugDisplay_HeroState.stringBuilder.Append("\nMDIR: " + Pool.hero.compMove.direction);
+                TopDebugMenu.DebugDisplay_HeroState.stringBuilder.Append("\nFDIR: " + Pool.hero.direction);
+                TopDebugMenu.DebugDisplay_HeroState.textComp.text = TopDebugMenu.DebugDisplay_HeroState.stringBuilder.ToString();
+                TopDebugMenu.DebugDisplay_HeroState.stringBuilder.Clear();
+
+                TopDebugMenu.DebugDisplay_Movement.stringBuilder.Append("PX: " + Pool.hero.compSprite.position.X);
+                TopDebugMenu.DebugDisplay_Movement.stringBuilder.Append("\nPY: " + Pool.hero.compSprite.position.Y);
+                TopDebugMenu.DebugDisplay_Movement.stringBuilder.Append("\nFRIC: " + Pool.hero.compMove.friction);
+                TopDebugMenu.DebugDisplay_Movement.stringBuilder.Append("\nMX:" + Pool.hero.compMove.magnitude.X.ToString("0.####"));
+                TopDebugMenu.DebugDisplay_Movement.stringBuilder.Append("\nMY:" + Pool.hero.compMove.magnitude.Y.ToString("0.####"));
+                TopDebugMenu.DebugDisplay_Movement.textComp.text = TopDebugMenu.DebugDisplay_Movement.stringBuilder.ToString();
+                TopDebugMenu.DebugDisplay_Movement.stringBuilder.Clear();
+
+                #endregion
+
+
+
 
 
 
@@ -320,26 +339,35 @@ namespace DungeonRun
 
                 #endregion
 
+                
+                TopDebugMenu.DebugDisplay_BuildTimes.stringBuilder.Append("LVL: " + Functions_Level.time.Ticks);
+                TopDebugMenu.DebugDisplay_BuildTimes.stringBuilder.Append("\nRM: " + Functions_Room.time.Ticks);
+                TopDebugMenu.DebugDisplay_BuildTimes.stringBuilder.Append("\nT: " + PlayerData.timer.Elapsed.ToString(@"hh\:mm\:ss"));
+                TopDebugMenu.DebugDisplay_BuildTimes.stringBuilder.Append("\nENMY: " + PlayerData.enemiesKilled);
+                TopDebugMenu.DebugDisplay_BuildTimes.stringBuilder.Append("\nDMG: " + PlayerData.damageTaken);
+                TopDebugMenu.DebugDisplay_BuildTimes.textComp.text = TopDebugMenu.DebugDisplay_BuildTimes.stringBuilder.ToString();
+                TopDebugMenu.DebugDisplay_BuildTimes.stringBuilder.Clear();
 
-                TopDebugMenu.DebugDisplay_BuildTimes.textComp.text = "LVL: " + Functions_Level.time.Ticks;
-                TopDebugMenu.DebugDisplay_BuildTimes.textComp.text += "\nRM: " + Functions_Room.time.Ticks;
-                TopDebugMenu.DebugDisplay_BuildTimes.textComp.text += "\nT: " + PlayerData.timer.Elapsed.ToString(@"hh\:mm\:ss");
-                TopDebugMenu.DebugDisplay_BuildTimes.textComp.text += "\nENMY: " + PlayerData.enemiesKilled;
-                TopDebugMenu.DebugDisplay_BuildTimes.textComp.text += "\nDMG: " + PlayerData.damageTaken;
 
-                TopDebugMenu.DebugDisplay_Collisions.textComp.text = "COL: " + Pool.collisionsCount;
-                TopDebugMenu.DebugDisplay_Collisions.textComp.text += "\nINT: " + Pool.interactionsCount;
-                TopDebugMenu.DebugDisplay_Collisions.textComp.text += "\n-";
-                TopDebugMenu.DebugDisplay_Collisions.textComp.text += "\n-";
-                TopDebugMenu.DebugDisplay_Collisions.textComp.text += "\n-";
+                
+                
 
+
+
+
+
+
+                
                 //draw all our debug info like this from now on:
-                Functions_Draw.Draw(TopDebugMenu.DebugDisplay_Ram);
                 Functions_Draw.Draw(TopDebugMenu.DebugDisplay_HeroState);
                 Functions_Draw.Draw(TopDebugMenu.DebugDisplay_Movement);
+                //right side
+                Functions_Draw.Draw(TopDebugMenu.DebugDisplay_Ram);
+                Functions_Draw.Draw(TopDebugMenu.DebugDisplay_Interactives);
+                Functions_Draw.Draw(TopDebugMenu.DebugDisplay_Actors);
+                Functions_Draw.Draw(TopDebugMenu.DebugDisplay_Projectiles);
                 Functions_Draw.Draw(TopDebugMenu.DebugDisplay_PoolCounter);
                 Functions_Draw.Draw(TopDebugMenu.DebugDisplay_BuildTimes);
-                Functions_Draw.Draw(TopDebugMenu.DebugDisplay_Collisions);
             }
 
             #endregion

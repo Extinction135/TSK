@@ -66,14 +66,38 @@ Today:
 
 
 
+Debug Displays++
 
-Self-Cleaning
+improved placement of debug displays in prep for
+improving the collection of info about the gameworld.
+proper counts for ints/actors/projectiles, looking
+at their used/total, collisions, and interactions
+each frame. also, improved debug displays to handle
+text via stringBuilder, which is slightly faster.
 
-exits are placed properly. what about overlaps?
-walls and doors should self-clean. done. walls
-also clean against wall torches and wall pillars.
-that is an int vs int overlap check. turns out
-ind objs dont need to self-clean, only ints do.
+
+
+
+
+
+
+
+
+Complete DebugDisplay Upgrade
+
+finish the debug displays on right:
+
+times / ram
+ints used/total, collisions. and interactions
+actors used/total, collisions. and interactions
+projectiles used/total, collisions. and interactions
+inds/parts/flrs/leveltime/roomtime
+5th is empty
+
+
+we need to be counting hero rec interactions too.
+
+
 
 
 
@@ -83,7 +107,8 @@ ind objs dont need to self-clean, only ints do.
 
 
 we need a test level that contains all the dungeon
-entrances. linked to shadow level pls.
+entrances. linked to shadow level pls. we should be
+able to build the game and test it.
 
 
 
@@ -93,74 +118,6 @@ entrances. linked to shadow level pls.
 
 
 
-
-
-
-
-add boat objects to the int widgets - barrels, etc.....
-
-add boat objs to boat ind widgets
-
-
-
-
-
-
-
-
-
-
-
-
-DebugDisplay++
-
-count actor used/total, collisions. and interactions
-count ind obj used/total, collisions. and interactions
-count int obj used/total, collisions. and interactions
-count pro used/total, collisions. and interactions
-count hero interaction rec count + pickup count
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-**please add a button over dungeon widgets to iterate it's
-textures so we can see diff dungeon sheets
-**we need to test that room editor loads (does this require roomData?)
-
-
-
-then we need to make a default boat level (boat, brandy, water),
-so we can test ints and inds, plus have base level data for game.
-
-
-
-
-
-
-
-
-
-
-
-Dungeon Build++
-
-when we build dungeons, we should be using indestructible
-objects for the walls, since we dont interact with them at all.
-this means explosions no longer crack walls, which is fine.
-but, we need to be getting and placing ind via pool.getIndObj(),
-not interactive objs.
 
 
 
@@ -174,10 +131,7 @@ them outside the dungeon.
 
 	
 	
-step 3: fix xml savedata & cs pipeline	
-	build ship at sea base level
-	complete level rebuilds
-	complete roomData rebuilds	
+
 	
 	
 	
@@ -260,6 +214,34 @@ tornado: spawns a tornado roomObj. (fire, ice, explosive, electrical tornados to
 
 
 
+
+Floors -> Particles
+
+we can put the 'floors' into the particle pool, since
+they do they exact same thing - plus this allows the
+floors to be animated, for future ideas... this removes
+the floor pool and the concept of floors from the game.
+
+
+
+
+
+
+
+
+
+
+
+Levels++
+
+add boat objects to the int widgets - barrels, etc.....
+
+add boat objs to boat ind widgets
+
+	
+build ship at sea base level
+complete level rebuilds
+complete roomData rebuilds	
 
 
 
