@@ -826,9 +826,28 @@ namespace DungeonRun
                 #endregion
 
 
+                #region Flowers
+
+                else if (IntObj.type == InteractiveType.Flowers)
+                {
+                    if (Pro.type == ProjectileType.Explosion)
+                    { Functions_InteractiveObjs.Explode(IntObj); }
+
+                    else if (Pro.type == ProjectileType.GroundFire)
+                    {   //burning
+                        if (Pro.compCollision.rec.Contains(
+                                IntObj.compSprite.position.X,
+                                IntObj.compSprite.position.Y))
+                        { Functions_InteractiveObjs.Burn(IntObj); }   
+                    }
+                }
+
+                #endregion
+
+
                 #region Destroy Open House Doors
 
-                else if(IntObj.type == InteractiveType.House_Door_Open)
+                else if (IntObj.type == InteractiveType.House_Door_Open)
                 {
                     if (
                         Pro.type == ProjectileType.Explosion 

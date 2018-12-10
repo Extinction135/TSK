@@ -1338,6 +1338,21 @@ namespace DungeonRun
             #endregion
 
 
+            #region Flowers
+
+            else if (Obj.type == InteractiveType.Flowers)
+            {   //switch to least grass
+                SetType(Obj, InteractiveType.Grass_2);
+                //attention pop
+                Functions_Particle.Spawn(
+                        ParticleType.Attention,
+                        Obj.compSprite.position.X + 2,
+                        Obj.compSprite.position.Y - 4);
+            }
+
+            #endregion
+
+
             else
             {   //call all lower levels of destruction on obj
                 Destroy(Obj);
@@ -1365,6 +1380,22 @@ namespace DungeonRun
                     Obj.compSprite.position.Y - 3,
                     Direction.None);
                 Destroy(Obj); //destroy grass as normal
+            }
+
+            #endregion
+
+
+            #region Flowers
+
+            else if (Obj.type == InteractiveType.Flowers)
+            {   //switch to least grass
+                SetType(Obj, InteractiveType.Grass_2);
+                //spread the fire
+                Functions_Projectile.Spawn(
+                    ProjectileType.GroundFire,
+                    Obj.compSprite.position.X,
+                    Obj.compSprite.position.Y - 3,
+                    Direction.None);
             }
 
             #endregion
@@ -1443,6 +1474,10 @@ namespace DungeonRun
             #endregion
 
         }
+
+
+
+
 
 
 

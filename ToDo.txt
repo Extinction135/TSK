@@ -68,61 +68,10 @@ Today:
 
 
 
-Interactions++
+Stop and Smell the Flowers
 
-if an explosion interacts with a roof, the roof
-should collapse that frame. this happens as expected.
-posts should become debris upon explosions. they do.
-
-Interactions--
-
-trees no longer create ground fires when they explode.
-posts no longer spawn ground fires when they explode.
-explosions already create the fire. this reduces pressure
-on the pro pool when bombos is happening too.
-
-explode() no longer calls burn(). now explosions
-only explode and their resultant fires handle all
-aspects of the burning code routines.
-
-simplified explosion routines (removing post checks).
-only trees are handled specially by explode(), which
-converts them to stumps. all posts are handled via
-destroy(), which explode() calls after tree objs have
-been handled. this is a cascading method call, starting
-at a higher power level (3) and cascade calling down to
-power level 0. each power level handles their own set
-of destruction routines. thats a very simplfied explanation
-of how the destruction routines work together to manage
-the gameworld's interactions.
-
-Floor Decor++
-
-debris collision recs should be smaller.
-same with other floor decor. this allows them
-to pass self clean tests easier. net result is
-more debris from explosions altering int objs.
-done.
-
-Debris++
-
-debris is not being placed at front of house walls upon collapse.
-posts aren't collapsing into debris. from hammer,
-from explosions. posts aren't being burned either.
-from fire casts.
-only roofs collapsing are creating debris.
-no object destruction with hammer is creating debris.
-it should. *fixed a blunderous error in int.Kill(),
-where the int obj being processed was released()
-at the start of the routine. why? i have no idea.
-literally no idea why that call would be there at 
-all, which completely prevents interactive objs from
-becoming debris.
-
-Brown Debris++
-
-improve debris sprite (remove leaf lines on top of it).
-done. sync'd uwp project and content.
+flowers now become grass upon contact with an explosion.
+flowers now burn as grass does. tested.
 
 
 
@@ -132,36 +81,7 @@ done. sync'd uwp project and content.
 
 
 
-
-
-
-
-
-
-
-
-
-
-Explode/Fire Interactions++
-
-flowers should become grass version 2, or whatvs.
-not cut grass, but the one less than that, when they
-are burned/cut. 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+posts do not burn. they are blocking ints, and should burn.
 
 
 
