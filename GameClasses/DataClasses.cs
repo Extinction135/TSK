@@ -1026,20 +1026,12 @@ namespace DungeonRun
         public static List<ComponentButton> buttons;
         public static int counter;
 
-        //left displays
-        public static DebugDisplay DebugDisplay_HeroState;
-        public static DebugDisplay DebugDisplay_Movement;
-
-        //right displays
         public static DebugDisplay DebugDisplay_Ram;
         public static DebugDisplay DebugDisplay_PoolCounter;
         public static DebugDisplay DebugDisplay_SysCounter;
-
-        //public static DebugDisplay DebugDisplay_Interactives;
-        //public static DebugDisplay DebugDisplay_Actors;
-        //public static DebugDisplay DebugDisplay_Projectiles;
-
         public static DebugDisplay DebugDisplay_BuildTimes;
+        public static DebugDisplay DebugDisplay_HeroState;
+        public static DebugDisplay DebugDisplay_Movement;
 
 
         static TopDebugMenu()
@@ -1295,24 +1287,24 @@ namespace DungeonRun
         public static int actorCounter = 0;
 
         //projectile pool
-        public static int projectileCount = 500;
+        public static int projectileCount = 999;
         public static List<Projectile> projectilePool = new List<Projectile>();
         public static int projectileIndex;
         public static int projectileCounter = 0;
 
-        //pickups are modeled as projectiles - we can consolidate this into proPool above later
-        public static int pickupCount = 50;
+        //pickup pool
+        public static int pickupCount = 30;
         public static List<Pickup> pickupPool = new List<Pickup>();
         public static int pickupIndex;
         public static int pickupCounter = 0;
 
         //particle pool
-        public static int particleCount = 1000;
+        public static int particleCount = 999;
         public static List<Particle> particlePool = new List<Particle>();
         public static int particleIndex;
         public static int particleCounter = 0;
 
-        //floor pool - dungeon sheet only
+        //floor pool
         public static int floorCount = 250;
         public static List<ComponentSprite> floorPool = new List<ComponentSprite>();
         public static int floorIndex;
@@ -1330,7 +1322,7 @@ namespace DungeonRun
         public static int indObjCounter = 0;
 
         //interactive objs
-        public static int intObjCount = 2000;
+        public static int intObjCount = 999;
         public static List<InteractiveObject> intObjPool = new List<InteractiveObject>();
         public static int intObjIndex;
         public static int intObjCounter = 0;

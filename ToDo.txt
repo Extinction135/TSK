@@ -69,72 +69,7 @@ Today:
 
 
 
-Bombos Tuning (max interaction test)
 
-improved bombos to prevent recasting it.
-this allows bombos to finish in the expected
-manner everytime. also, if bombos is already
-happening, an error sound now plays, but also
-the hero's magic is still used. i could prevent
-that or refund it, but if someone spams bombos
-without cheats, then they just deserve to lose
-their magic.. so less work for me.
-
-bombos spawns lines of explosions every 8 frames,
-instead of every 6 frames. this reduces pressure
-on the projectile pool.
-
-bombos now skips the first and second spawn
-positions for explosions on screen.
-
-bombos now ends at the end of the screen's y
-size, instead of going y+1. the y+1 was for
-visual taste, but since we're skipping the
-first two now, we can spare this row that's
-almost offscreen.
-
-centered bombos better to screen, limiting
-it's explosion lines on left and moving the
-rest of the lines to the right by 1.
-
-the result of these tuning is:
-around 300 pros, less than 400 particles, for 
-an empty screen bombos cast. improvement!
-
-
-
-Moar Tunings!
-
-increase the animation speed of explosions,
-then reduce the lifetime of explosions overall.
-this reduce pressure on the projectile pool,
-because explosions will live for less, removing
-themselves sooner, allowing for more available
-pros sooner for the next line of bombos casting.
-
-old values:
-anim speed = 5 frames of wait.
-lifetime = 24 frames total.
-
-new values
-anim speed = 4 frames of wait.
-lifetime = 20 frames total.
-
-the result of these tuning is:
-less than 300 pros, less than 360 particles, for 
-an empty screen bombos cast. improvement!
-
-
-
-
-Test vs House Level
-
-DID NOT FAIL. and it looked awesome. recorded too.
-new infos: 20 explosions per line, so easy calculations.
-max frametime: 11ms. good.
-projectile pool max pull: 468/500. this is too much.
-we need to increase the projectile pool more to allow
-for gameplay projectiles ontop of bombos being cast.
 
 
 
@@ -143,10 +78,49 @@ for gameplay projectiles ontop of bombos being cast.
 
 Moar Optimizations!
 
-increase inds to 300. (?)
-increase projectile pool to 600.
-decrease interactive objs to 999. (!?!?!)
-decrease particles to 999.
+increased inds to 300. (?)
+increased projectile pool to 600.
+decreased interactive objs to 999. (!?!?!)
+decreased particles to 999.
+decreased pickup pool to 40.
+
+this should keep bombos useage around 60-75%.
+
+max frametime: 7-8ms.
+projectile pull: <500/600.
+interactive pull: 520/999.
+it's good. but...
+
+hmm... maybe we can have 999 projectiles?
+this allow for larger scale magic...
+let's see..
+
+increased projectile pool to 999. (!)
+reduced pickup count to 30. (?)
+
+max frametime: once @ 10ms.
+projectile pull: <500/600.
+interactive pull: *interesting*.
+
+*interesting*
+
+there is an interesting consequence going on here
+with bombos and interactive objects and the pull on
+the interactive obj pool. as bombos spreads left to
+right, it destroys() some interactive objs, removing
+them from the gameworld and putting them back into
+the pool, reducing pull on the ints. simultaneously,
+explosions also cause interactions, which can create
+interactive objs, and projectiles and particles.
+the net effect is that the house test level's int
+count actually DROPS as a result of bombos spreading
+across it. this reduces frametimes while bombos also
+increases frametimes, so bombos in a way mitigates
+it's own 'cost' to the pool.
+
+this places bombos (on test level) at a useage of 
+less than 50% of game system resources. this allows
+normal gameplay ontop of bombos being cast.
 
 
 
@@ -154,29 +128,6 @@ decrease particles to 999.
 
 
 
-
-
-
-
-
-
-
-we could even trigger bombos each frame, going down
-the line sequentially instead of all at once. we
-could then add a timer to that sequential spawn,
-allowing the pools to process the explosions across
-frames instead of all at once.
-
-projectile_explosion_maybeFire - is a pro just like
-explosion that spawns a fire PARTICLE or PROJECTILE
-randomly 50/50 split. this varies how many ground
-fires bombos leaves behind, while also creating a 
-unique pattern of fire behind the explosions.
-
-we need to get bombos down to 60-75% of pool useage.
-because we have to consider that actors and gameworld
-will be adding pros and interactions ontop of bombos
-at crazier moments of future gameplay.
 
 
 
@@ -203,6 +154,11 @@ etc...
 flowers should become grass version 2, or whatvs.
 not cut grass, but the one less than that, when they
 are burned.
+
+posts should become debris upon explosions.
+
+
+
 
 
 
@@ -399,7 +355,13 @@ complete roomData rebuilds
 
 
 
+Environmental Spell Bug
 
+there is a state coming up soon where two environmental
+spells may be cast against each other. this cannot happen
+simply because the pools cant handle that. so, instead, we
+need to have a environmental spell boolean that protects
+against this dual-env spell cast state.
 
 
 
