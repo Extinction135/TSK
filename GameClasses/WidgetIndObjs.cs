@@ -336,16 +336,16 @@ namespace DungeonRun
             for (i = 0; i < 4 * 12; i++) { objList.Add(new IndestructibleObject()); }
 
             //row 1
-            Functions_IndestructibleObjs.SetType(objList[0], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[1], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[2], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[3], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[0], IndestructibleType.Tree_Med);
+            Functions_IndestructibleObjs.SetType(objList[1], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[2], IndestructibleType.Tree_Med_Stump);
+            Functions_IndestructibleObjs.SetType(objList[3], IndestructibleType.Dungeon_BlockDark);//
 
             //row 2
-            Functions_IndestructibleObjs.SetType(objList[4], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[5], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[6], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[7], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[4], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[5], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[6], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[7], IndestructibleType.Dungeon_BlockDark);//
 
             //row 3
             Functions_IndestructibleObjs.SetType(objList[8], IndestructibleType.Dungeon_BlockDark);
@@ -411,11 +411,19 @@ namespace DungeonRun
             Functions_WidgetIndObjs.PositionObjs(this);
 
             //manually set recs
-            //objList[8].compCollision.rec.Height = 16 * 2;
-            //objList[9].compCollision.rec.Height = 16 * 2;
+            objList[0].compCollision.rec.Height = objList[0].compCollision.rec.Width = 16 * 2;
+            objList[2].compCollision.rec.Height = objList[2].compCollision.rec.Width = 16 * 2;
 
             //hide objs that trees overlap
-            //Functions_WidgetIndObjs.HideObj(objList[12]);
+            Functions_WidgetIndObjs.HideObj(objList[1]);
+            Functions_WidgetIndObjs.HideObj(objList[3]);
+
+            Functions_WidgetIndObjs.HideObj(objList[4]);
+            Functions_WidgetIndObjs.HideObj(objList[5]);
+            Functions_WidgetIndObjs.HideObj(objList[6]);
+            Functions_WidgetIndObjs.HideObj(objList[7]);
+
+
 
             //reset update all zdepths
             for (i = 0; i < 4 * 12; i++)

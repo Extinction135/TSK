@@ -106,7 +106,7 @@ namespace DungeonRun
 
 
 
-        //Dungeon Room Building Methods
+        //Dungeon Room Building Method
 
         public static void BuildRoom(Room Room, RoomXmlData RoomXmlData = null)
         {
@@ -361,29 +361,13 @@ namespace DungeonRun
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+        //Field Room Building Method
 
         public static void BuildRoomXmlData(RoomXmlData RoomXmlData = null)
         {
             //note that RoomXmlData is an optional parameter
-
-
-
             //we have two lists now, ints and inds
             //which means we need to getObjs() diff, and put them on diff lists too
-
 
             //create ints and ind objects based on room data xml
             if(RoomXmlData != null)
@@ -411,8 +395,8 @@ namespace DungeonRun
                         intRef = Functions_Pool.GetIntObj();
                         //move roomObj to xmlObj's position (with room offset)
                         Functions_Movement.Teleport(intRef.compMove,
-                            LevelSet.currentLevel.currentRoom.rec.X + RoomXmlData.inds[i].posX,
-                            LevelSet.currentLevel.currentRoom.rec.Y + RoomXmlData.inds[i].posY);
+                            LevelSet.currentLevel.currentRoom.rec.X + RoomXmlData.ints[i].posX,
+                            LevelSet.currentLevel.currentRoom.rec.Y + RoomXmlData.ints[i].posY);
                         Functions_Component.Align(intRef);
                         intRef.direction = RoomXmlData.ints[i].direction;
                         Functions_InteractiveObjs.SetType(intRef, RoomXmlData.ints[i].type);
@@ -439,11 +423,6 @@ namespace DungeonRun
 
 
 
-
-
-            
-
-
             #region Check enemySpawn obj visibility
 
             if (Flags.ShowEnemySpawns == false)
@@ -456,12 +435,6 @@ namespace DungeonRun
             }
 
             #endregion
-
-
-
-
-
-
 
         }
 

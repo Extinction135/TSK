@@ -258,7 +258,6 @@ namespace DungeonRun
             //transfer the levelID - we code this by hand now
             //roomData.levelID = LevelSet.currentLevel.currentRoom.levelID;
 
-
             //populate roomData with indestructible objects
             for (p = 0; p < Pool.indObjCount; p++)
             {
@@ -274,7 +273,6 @@ namespace DungeonRun
                     roomData.inds.Add(objData);
                 }
             }
-
 
             //populate roomData with interactive objects
             for (p = 0; p < Pool.intObjCount; p++)
@@ -293,25 +291,12 @@ namespace DungeonRun
                     }
                 }
             }
-
-
-
             
             //send the new roomdata to be saved
             Functions_Backend.SaveRoomData(roomData);
         }
 
-        
-
-
-
-
-
-
-
-
-
-
+       
 
         public void BuildFromFile(RoomXmlData RoomXmlData)
         {   //called at end of functions_backend (directx or uwp) 
@@ -328,7 +313,6 @@ namespace DungeonRun
                 LevelSet.currentLevel.doors = new List<Door>();
 
                 //reset the level flags
-
                 LevelSet.currentLevel.bigKey = false;
                 LevelSet.currentLevel.map = false;
 
@@ -381,6 +365,10 @@ namespace DungeonRun
             Screens.Editor.Draw(ScreenManager.gameTime);
             Flags.Paused = true;
         }
+
+
+
+
 
     }
 }

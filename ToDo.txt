@@ -67,24 +67,59 @@ Today:
 
 
 
-Editor + Inds++
-
-added more coliseum objects to editor.
-indestructible objs now get animated via pool.update().
-
-fixed bug where int objs overlapping ind objs
-mistakenly were removing the ind objs, which is the
-opposite of what i wanted. the interactive objs
-should remove themselves if they overlap any kind
-of indestructible object.
-
-coliseum basic ind objs complete.
 
 
 
 
+Save/Load Systems++
+
+while testing the new save/load systems it was
+discovered that creating interactive objs from
+xml save data was referencing ind objs causing 
+an index out of bounds error. this has been
+corrected.
+
+saving and loading of inds/ints field data working.
+we have a forest test level using the new systems.
 
 
+
+
+
+
+
+
+
+Editor Bugs--
+
+bug with adding an int obj when clicking on an
+indestructible - selects the ind obj, the adds it.
+this is a logic branch that wasn't considered!!!
+
+
+bug with rotating int objs. likely prob with inds too.
+direction value flips out, wildly moving between 
+values upon mouse over. not even a click.
+
+
+
+
+
+
+
+
+build a test house level for interaction testing.
+
+
+
+
+
+
+
+
+explosions should burn ints.
+flowers should become grass version 2, or whatvs.
+not cut grass, but the one less than that.
 
 
 
@@ -118,6 +153,7 @@ add boat objs to boat ind widgets
 
 
 
+tall grass should self-clean - if it overlaps itself
 
 
 
@@ -128,14 +164,6 @@ add boat objs to boat ind widgets
 
 
 
-bug with adding an int obj when clicking on an
-indestructible - selects the ind obj, the adds it.
-this is a logic branch that wasn't considered!!!
-
-
-bug with rotating int objs. likely prob with inds too.
-direction value flips out, wildly moving between 
-values upon mouse over. not even a click.
 
 
 
