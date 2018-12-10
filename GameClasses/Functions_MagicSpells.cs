@@ -155,7 +155,7 @@ namespace DungeonRun
                     Functions_Projectile.Spawn(
                         ProjectileType.GroundFire,
                         Caster.compCollision.rec.Center.X + 16,
-                        Caster.compCollision.rec.Center.Y,
+                        Caster.compCollision.rec.Center.Y - 4,
                         Direction.Down);
                 }
                 else if (Caster.direction == Direction.Left)
@@ -163,7 +163,7 @@ namespace DungeonRun
                     Functions_Projectile.Spawn(
                         ProjectileType.GroundFire,
                         Caster.compCollision.rec.Center.X - 16,
-                        Caster.compCollision.rec.Center.Y,
+                        Caster.compCollision.rec.Center.Y - 4,
                         Direction.Down);
                 }
             }

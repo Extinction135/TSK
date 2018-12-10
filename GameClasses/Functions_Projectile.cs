@@ -1036,11 +1036,11 @@ namespace DungeonRun
 
             else if (Pro.type == ProjectileType.GroundFire)
             {
-                if (Functions_Random.Int(0, 101) > 86)
+                if (Functions_Random.Int(0, 101) > 95)
                 {   //often place randomly offset rising smoke
                     Functions_Particle.Spawn(ParticleType.RisingSmoke,
                         Pro.compSprite.position.X + 5 + Functions_Random.Int(-4, 4),
-                        Pro.compSprite.position.Y + 1 + Functions_Random.Int(-8, 2));
+                        Pro.compSprite.position.Y - 4 + Functions_Random.Int(-9, 0));
                 }
 
                 //expand groundfires hitbox to cause interactions with room objs
@@ -1223,7 +1223,24 @@ namespace DungeonRun
 
             #endregion
 
-            
+
+
+
+            #region GroundFire
+
+            else if (Pro.type == ProjectileType.GroundFire)
+            {   //note death of ground fire
+                Functions_Particle.Spawn(
+                    ParticleType.Attention,
+                    Pro.compSprite.position.X + 0,
+                    Pro.compSprite.position.Y + 0);
+            }
+
+            #endregion
+
+
+
+
 
             //all objects are released upon death
             if (Pro.sfx.kill != null) { Assets.Play(Pro.sfx.kill); }

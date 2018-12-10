@@ -67,26 +67,31 @@ Today:
 
 
 
+Ground Fire Tuning
 
+reduce the chance of ground fires spawning rising
+smoke particles. this reduces pressure on the particle
+pool during bombos. inspection: there is a 14% chance
+that ground fires will spawn rising smoke each frame.
+cut that in half. now 7% chance. test. looks good.
 
-Ground Fire Spell
+rising smoke particles could move up a little bit
+to improve visuals. done. test. more. done. test.
+increase vertical spread. done. test. looks good.
+can reduce smoke chance more. now 5% chance.
 
-We need this to test ground fires, which are basic
-to the game world, so create ground fire spell.
+Fire Spell++
 
-added fire spell menuitem. added ground fire spell.
-fires can now be cast in the facing direction of the
-caster, allowing me to exactly test fires in game.
+improved placement of ground fire magic spell on 
+hero when casting left and right. lines up better
+with hero's center of mass so it looks more centered
+visually, allowing for more accurate casts, since
+other projectiles center themselves to the hero in
+a similar way.
 
-
-Debug Displays++
-
-increase size of debug displays for pool counter,
-colls + ints too. done.
-
-
-
-
+add an attention particle pop at the end of ground fire
+life. done. this adds some pressure on the particle
+system, but is a nice visual effect too.
 
 
 
@@ -102,15 +107,10 @@ colls + ints too. done.
 
 Bombos Tuning (max interaction test)
 
-reduce the chance of ground fires spawning rising
-smoke particles. this reduces pressure on the particle
-pool during bombos.
 
-reduce the lifetime of explosions + ground fires,
+
+reduce the lifetime of explosions.
 this helps to keep bombo's branch quick.
-
-randomly choose to create an explosion at that spawn
-pos, during bombos active phase.
 
 dont spawn explosions along top of screen, or bottom
 of screen. dont spawn offscreen left or right. this
@@ -128,6 +128,13 @@ explosion that spawns a fire PARTICLE or PROJECTILE
 randomly 50/50 split. this varies how many ground
 fires bombos leaves behind, while also creating a 
 unique pattern of fire behind the explosions.
+
+
+we need to get bombos down to 60-75% of pool useage.
+because we have to consider that actors and gameworld
+will be adding pros and interactions ontop of bombos
+at crazier moments of future gameplay.
+
 
 
 
