@@ -68,94 +68,88 @@ Today:
 
 
 
-
-
-
-
-
-
-
-
-Moar Optimizations!
-
-increased inds to 300. (?)
-increased projectile pool to 600.
-decreased interactive objs to 999. (!?!?!)
-decreased particles to 999.
-decreased pickup pool to 40.
-
-this should keep bombos useage around 60-75%.
-
-max frametime: 7-8ms.
-projectile pull: <500/600.
-interactive pull: 520/999.
-it's good. but...
-
-hmm... maybe we can have 999 projectiles?
-this allow for larger scale magic...
-let's see..
-
-increased projectile pool to 999. (!)
-reduced pickup count to 30. (?)
-
-max frametime: once @ 10ms.
-projectile pull: <500/600.
-interactive pull: *interesting*.
-
-*interesting*
-
-there is an interesting consequence going on here
-with bombos and interactive objects and the pull on
-the interactive obj pool. as bombos spreads left to
-right, it destroys() some interactive objs, removing
-them from the gameworld and putting them back into
-the pool, reducing pull on the ints. simultaneously,
-explosions also cause interactions, which can create
-interactive objs, and projectiles and particles.
-the net effect is that the house test level's int
-count actually DROPS as a result of bombos spreading
-across it. this reduces frametimes while bombos also
-increases frametimes, so bombos in a way mitigates
-it's own 'cost' to the pool.
-
-this places bombos (on test level) at a useage of 
-less than 50% of game system resources. this allows
-normal gameplay ontop of bombos being cast.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Interactions++
 
 if an explosion interacts with a roof, the roof
-should collapse that frame.
+should collapse that frame. this happens as expected.
+posts should become debris upon explosions. they do.
 
-Fire Interactions++
+Interactions--
 
-tables should burn, then collapse into debris.
-same with all interior house objs, like beds, stoves,
-etc...
+trees no longer create ground fires when they explode.
+posts no longer spawn ground fires when they explode.
+explosions already create the fire. this reduces pressure
+on the pro pool when bombos is happening too.
+
+explode() no longer calls burn(). now explosions
+only explode and their resultant fires handle all
+aspects of the burning code routines.
+
+simplified explosion routines (removing post checks).
+only trees are handled specially by explode(), which
+converts them to stumps. all posts are handled via
+destroy(), which explode() calls after tree objs have
+been handled. this is a cascading method call, starting
+at a higher power level (3) and cascade calling down to
+power level 0. each power level handles their own set
+of destruction routines. thats a very simplfied explanation
+of how the destruction routines work together to manage
+the gameworld's interactions.
+
+Floor Decor++
+
+debris collision recs should be smaller.
+same with other floor decor. this allows them
+to pass self clean tests easier. net result is
+more debris from explosions altering int objs.
+done.
+
+Debris++
+
+debris is not being placed at front of house walls upon collapse.
+posts aren't collapsing into debris. from hammer,
+from explosions. posts aren't being burned either.
+from fire casts.
+only roofs collapsing are creating debris.
+no object destruction with hammer is creating debris.
+it should. *fixed a blunderous error in int.Kill(),
+where the int obj being processed was released()
+at the start of the routine. why? i have no idea.
+literally no idea why that call would be there at 
+all, which completely prevents interactive objs from
+becoming debris.
+
+Brown Debris++
+
+improve debris sprite (remove leaf lines on top of it).
+done. sync'd uwp project and content.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Explode/Fire Interactions++
 
 flowers should become grass version 2, or whatvs.
 not cut grass, but the one less than that, when they
-are burned.
+are burned/cut. 
 
-posts should become debris upon explosions.
+
+
 
 
 

@@ -90,8 +90,6 @@ namespace DungeonRun
 
         public static void Kill(InteractiveObject IntObj, Boolean spawnLoot, Boolean becomeDebris)
         {
-            Functions_Pool.Release(IntObj);
-
             //pop an attention particle
             Functions_Particle.Spawn(
                 ParticleType.Attention,
@@ -595,16 +593,11 @@ namespace DungeonRun
                         }
                     }
 
-                    //pop attention and debris
+                    //pop attention
                     Functions_Particle.Spawn(
                         ParticleType.Attention,
                         IntObj.compSprite.position.X,
                         IntObj.compSprite.position.Y);
-                    Functions_Particle.Spawn_Explosion(
-                        ParticleType.DebrisBrown,
-                        IntObj.compSprite.position.X,
-                        IntObj.compSprite.position.Y, false);
-
                     //turn this roof obj into debris
                     BecomeDebris(IntObj);
                 }
@@ -1304,7 +1297,7 @@ namespace DungeonRun
             }
         }
 
-        //level 3 caused by: explosions, bolts
+        //level 3 caused by: explosions
         public static void Explode(InteractiveObject Obj)
         {
 
@@ -1340,39 +1333,6 @@ namespace DungeonRun
                         Obj.compSprite.position.X + 2,
                         Obj.compSprite.position.Y + 0, false);
                 }
-                //spawn groundfire upon explosion
-                Functions_Projectile.Spawn(
-                    ProjectileType.GroundFire,
-                    Obj.compSprite.position.X,
-                    Obj.compSprite.position.Y - 3,
-                    Direction.None);
-            }
-
-            #endregion
-
-
-            #region Posts
-
-            else if (//burned and unburned
-                Obj.type == InteractiveType.Post_VerticalRight
-                || Obj.type == InteractiveType.Post_CornerRight
-                || Obj.type == InteractiveType.Post_Horizontal
-                || Obj.type == InteractiveType.Post_CornerLeft
-                || Obj.type == InteractiveType.Post_VerticalLeft
-
-                || Obj.type == InteractiveType.PostBurned_VerticalRight
-                || Obj.type == InteractiveType.PostBurned_CornerRight
-                || Obj.type == InteractiveType.PostBurned_Horizontal
-                || Obj.type == InteractiveType.PostBurned_CornerLeft
-                || Obj.type == InteractiveType.PostBurned_VerticalLeft
-                )
-            {   //spawn groundfires upon explosion
-                Functions_Projectile.Spawn(
-                    ProjectileType.GroundFire,
-                    Obj.compSprite.position.X,
-                    Obj.compSprite.position.Y - 3,
-                    Direction.None);
-                Destroy(Obj);
             }
 
             #endregion
@@ -1382,8 +1342,6 @@ namespace DungeonRun
             {   //call all lower levels of destruction on obj
                 Destroy(Obj);
             }
-
-            Burn(Obj); //all objs are then burned
         }
 
 
@@ -1588,12 +1546,8 @@ namespace DungeonRun
         //various interaction methods
 
         public static void BecomeDebris(InteractiveObject IntObj)
-        {   //become permanent debris w/ 14x14 collisions
+        {   //become debris
             SetType(IntObj, InteractiveType.Debris);
-            IntObj.compCollision.rec.Width = 14;
-            IntObj.compCollision.rec.Height = 14;
-            IntObj.compCollision.rec.X = (int)IntObj.compSprite.position.X - 7;
-            IntObj.compCollision.rec.Y = (int)IntObj.compSprite.position.Y - 7;
         }
 
         public static void DecorateEnemyDeath(ComponentSprite compSprite, Boolean dropSkeleton)
@@ -1649,7 +1603,8 @@ namespace DungeonRun
             for (g = 0; g < Pool.intObjCount; g++)
             {   //ensure intObj is active and not self-checking
                 if (Pool.intObjPool[g].active & Pool.intObjPool[g] != IntObj)
-                {   //ensure roomObjs are overlapping
+                {   
+                    //ensure roomObjs are overlapping
                     if (IntObj.compCollision.rec.Intersects(Pool.intObjPool[g].compCollision.rec))
                     {
 
@@ -1711,10 +1666,6 @@ namespace DungeonRun
                                 || Pool.intObjPool[g].type == InteractiveType.Boat_Pier_BottomMiddle
                                 || Pool.intObjPool[g].type == InteractiveType.Boat_Pier_BottomRight
                                 )
-                            { Functions_Pool.Release(IntObj); }
-
-                            //some decor cant overlap other decor, like debris cant overlap skeletons for example
-                            if (IntObj.type == InteractiveType.Debris & Pool.intObjPool[g].type == InteractiveType.FloorSkeleton)
                             { Functions_Pool.Release(IntObj); }
                         }
 
@@ -2577,48 +2528,6 @@ namespace DungeonRun
             #endregion
 
 
-            #region Floor Decorations (stain, blood, skeletons)
-
-            else if (
-                Type == InteractiveType.FloorStain
-                || Type == InteractiveType.FloorBlood
-                || Type == InteractiveType.FloorSkeleton
-                )
-            {   //collision rec is smaller so more debris is left when room is cleanedUp()
-                //also allows for more blood, skeletons, etc.. upon deaths
-                IntObj.compCollision.offsetX = -5; IntObj.compCollision.offsetY = -5;
-                IntObj.compCollision.rec.Width = 10; IntObj.compCollision.rec.Height = 10;
-                IntObj.compCollision.blocking = false;
-
-                //default is floor stain
-                IntObj.compAnim.currentAnimation = AnimationFrames.Dungeon_FloorStain;
-                IntObj.compSprite.zOffset = -32; //sort over floors
-                //if (Type == InteractiveType.Dungeon_FloorStain)
-                //{ IntObj.compAnim.currentAnimation = AnimationFrames.Dungeon_FloorStain; }
-
-                if (Type == InteractiveType.FloorBlood)
-                {
-                    IntObj.compAnim.currentAnimation = AnimationFrames.Dungeon_FloorBlood;
-                    IntObj.compSprite.zOffset = -31; //sort over stains
-                }
-                else if (Type == InteractiveType.FloorSkeleton)
-                {   //randomly choose skeleton anim frame to draw
-                    IntObj.compAnim.currentAnimation = AnimationFrames.Dungeon_FloorSkeleton1;
-                    if (Functions_Random.Int(0, 101) > 50)
-                    { IntObj.compAnim.currentAnimation = AnimationFrames.Dungeon_FloorSkeleton2; }
-                    IntObj.compSprite.zOffset = -30; //sort over blood
-                }
-
-                //randomly horizontally flip for more variation
-                if (Functions_Random.Int(0, 101) > 50)
-                { IntObj.compSprite.flipHorizontally = true; }
-
-                IntObj.selfCleans = true; //selfclean next frame
-            }
-
-            #endregion
-
-
             #region LAVA Pit, Pit Bridge, Trap Pit
 
             else if (Type == InteractiveType.Lava_Pit)
@@ -2671,7 +2580,83 @@ namespace DungeonRun
 
 
 
-            
+
+
+
+            #region Floor Decorations (stain, blood, skeletons, debris)
+
+            else if (
+                Type == InteractiveType.FloorStain
+                || Type == InteractiveType.FloorBlood
+                || Type == InteractiveType.FloorSkeleton
+                )
+            {   
+                //collision rec is smaller so more debris is left when room is cleanedUp()
+                //also allows for more blood, skeletons, etc.. upon deaths
+                IntObj.compCollision.offsetX = -2; IntObj.compCollision.offsetY = -2;
+                IntObj.compCollision.rec.Width = 4; IntObj.compCollision.rec.Height = 4;
+                IntObj.compCollision.blocking = false;
+
+                //reset cell size
+                IntObj.compSprite.drawRec.Width = 16 * 1;
+                IntObj.compSprite.drawRec.Height = 16 * 1;
+
+                //default is floor stain
+                IntObj.compAnim.currentAnimation = AnimationFrames.Dungeon_FloorStain;
+                IntObj.compSprite.zOffset = -32; //sort over floors
+
+                if (Type == InteractiveType.FloorBlood)
+                {
+                    IntObj.compAnim.currentAnimation = AnimationFrames.Dungeon_FloorBlood;
+                    IntObj.compSprite.zOffset = -31; //sort over stains
+                }
+                else if (Type == InteractiveType.FloorSkeleton)
+                {   //randomly choose skeleton anim frame to draw
+                    IntObj.compAnim.currentAnimation = AnimationFrames.Dungeon_FloorSkeleton1;
+                    if (Functions_Random.Int(0, 101) > 50)
+                    { IntObj.compAnim.currentAnimation = AnimationFrames.Dungeon_FloorSkeleton2; }
+                    IntObj.compSprite.zOffset = -30; //sort over blood
+                }
+
+                //randomly horizontally flip for more variation
+                if (Functions_Random.Int(0, 101) > 50)
+                { IntObj.compSprite.flipHorizontally = true; }
+
+                IntObj.selfCleans = true; //selfclean next frame
+                IntObj.canBeSaved = true;
+            }
+            else if (Type == InteractiveType.Debris)
+            {
+                //collision rec is smaller so more debris is left when room is cleanedUp()
+                //also allows for more blood, skeletons, etc.. upon deaths
+                IntObj.compCollision.offsetX = -2; IntObj.compCollision.offsetY = -2;
+                IntObj.compCollision.rec.Width = 4; IntObj.compCollision.rec.Height = 4;
+                IntObj.compCollision.blocking = false;
+
+                //reset cell size
+                IntObj.compSprite.drawRec.Width = 16 * 1;
+                IntObj.compSprite.drawRec.Height = 16 * 1;
+                
+                //sort over blood and skeletons
+                IntObj.compSprite.zOffset = -29;
+                //randomly choose animFrame
+                if (Functions_Random.Int(0, 100) < 50)
+                { IntObj.compAnim.currentAnimation = AnimationFrames.World_Debris1; }
+                else { IntObj.compAnim.currentAnimation = AnimationFrames.World_Debris2; }
+                //randomly flip sprite horizontally
+                if (Functions_Random.Int(0, 100) < 50)
+                { IntObj.compSprite.flipHorizontally = true; }
+                else { IntObj.compSprite.flipHorizontally = false; }
+
+                IntObj.selfCleans = true; //selfclean next frame
+                IntObj.canBeSaved = true;
+            }
+
+            #endregion
+
+
+
+
 
 
 
@@ -2791,40 +2776,6 @@ namespace DungeonRun
                 IntObj.compCollision.offsetX = -5; IntObj.compCollision.offsetY = 15;
                 IntObj.compCollision.rec.Width = 10; IntObj.compCollision.rec.Height = 8;
                 IntObj.sfx.hit = Assets.sfxTapMetallic;
-            }
-
-            #endregion
-
-
-            #region Debris
-
-            else if (Type == InteractiveType.Debris)
-            {
-                //reset cell size
-                IntObj.compSprite.drawRec.Width = 16 * 1;
-                IntObj.compSprite.drawRec.Height = 16 * 1;
-
-                //reset hitbox
-                IntObj.compCollision.rec.Width = 16;
-                IntObj.compCollision.rec.Height = 16;
-                IntObj.compCollision.offsetX = -8;
-                IntObj.compCollision.offsetY = -8;
-
-                IntObj.canBeSaved = true;
-                //sort over blood, same level as skeletons
-                IntObj.compSprite.zOffset = -30;
-                IntObj.compCollision.blocking = false;
-                IntObj.compMove.moveable = true;
-                //randomly choose animFrame
-                if (Functions_Random.Int(0, 100) < 50)
-                { IntObj.compAnim.currentAnimation = AnimationFrames.World_Debris1; }
-                else { IntObj.compAnim.currentAnimation = AnimationFrames.World_Debris2; }
-                //randomly flip sprite horizontally
-                if (Functions_Random.Int(0, 100) < 50)
-                { IntObj.compSprite.flipHorizontally = true; }
-                else { IntObj.compSprite.flipHorizontally = false; }
-
-                IntObj.selfCleans = true; //selfclean next frame
             }
 
             #endregion
