@@ -384,28 +384,28 @@ namespace DungeonRun
             Functions_IndestructibleObjs.SetType(objList[31], IndestructibleType.Dungeon_BlockDark);
 
             //row 9
-            Functions_IndestructibleObjs.SetType(objList[32], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[33], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[34], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[35], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[32], IndestructibleType.Tree_Big);
+            Functions_IndestructibleObjs.SetType(objList[33], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[34], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[35], IndestructibleType.Dungeon_BlockDark);//
 
             //row 10
-            Functions_IndestructibleObjs.SetType(objList[36], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[37], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[38], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[39], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[36], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[37], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[38], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[39], IndestructibleType.Dungeon_BlockDark);//
 
             //row 11
-            Functions_IndestructibleObjs.SetType(objList[40], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[41], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[42], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[43], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[40], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[41], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[42], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[43], IndestructibleType.Dungeon_BlockDark);//
 
             //row 12
-            Functions_IndestructibleObjs.SetType(objList[44], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[45], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[46], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[47], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[44], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[45], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[46], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[47], IndestructibleType.Dungeon_BlockDark);//
 
             //position the objs relative to the window frame
             Functions_WidgetIndObjs.PositionObjs(this);
@@ -429,6 +429,31 @@ namespace DungeonRun
             Functions_WidgetIndObjs.HideObj(objList[12]);
             Functions_WidgetIndObjs.HideObj(objList[13]);
             Functions_WidgetIndObjs.HideObj(objList[14]);
+
+
+
+            //manually set big tree rec
+            objList[32].compCollision.rec.Width = 16 * 4;
+            objList[32].compCollision.rec.Height = 16 * 5;
+            //big tree hides these objs
+            Functions_WidgetIndObjs.HideObj(objList[33]);
+            Functions_WidgetIndObjs.HideObj(objList[34]);
+            Functions_WidgetIndObjs.HideObj(objList[35]);
+            Functions_WidgetIndObjs.HideObj(objList[36]);
+            Functions_WidgetIndObjs.HideObj(objList[37]);
+            Functions_WidgetIndObjs.HideObj(objList[38]);
+            Functions_WidgetIndObjs.HideObj(objList[39]);
+            Functions_WidgetIndObjs.HideObj(objList[40]);
+            Functions_WidgetIndObjs.HideObj(objList[41]);
+            Functions_WidgetIndObjs.HideObj(objList[42]);
+            Functions_WidgetIndObjs.HideObj(objList[43]);
+            Functions_WidgetIndObjs.HideObj(objList[44]);
+            Functions_WidgetIndObjs.HideObj(objList[45]);
+            Functions_WidgetIndObjs.HideObj(objList[46]);
+            Functions_WidgetIndObjs.HideObj(objList[47]);
+
+
+
 
             //reset update all zdepths
             for (i = 0; i < 4 * 12; i++)

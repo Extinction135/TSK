@@ -69,48 +69,76 @@ Today:
 
 
 
-More Wind!
-
-I want to be able to have tornado like conditions in the game.
-that is what the 'Fury' wind spell should model. this means more
-wind objs in the wind pool, and possibly a higher level of wind
-intensity for level spawn routines..
-
-increased size of wind pool to 75, from 50. allows for more wind
-on screen at once, causing push interactions. added another state
-branch to wind update method, making level 3 less powerful, to 
-allow for a new level 4 type of wind intensity, which only the
-fury spell can set. this makes the fury spell the strongest 
-environmental spell in the game, simply because the wind objs
-will not stop once fury is cast. the only way to stop them is
-via calm or stop wind spells.
-
-
-increase wind to 125 count.
-increase fury spawn rate to 50.
-looking good, working well.
 
 
 
 
 
-
-
+Inds++
 
 we need BIG trees back in the game. add these to house test level.
+done and done. house level is looking much better.
+
+
+to rebuild levels, we need dungeon entrances.
+to rebuild dungeons, we need roomdata. otherwise they should be empty.
+
+
+
+
+
+Rebuild Level and Room Data
+
+all level and room data that looks and plays well from prev version.
+
+
+
+Levels++
+
+add boat objects to the int widgets - barrels, etc.....
+add boat objs to boat ind widgets
+build ship at sea base level
+
+
+
+
+relink level data to game. dungeon data can remain empty for now.
+dungeons should build with empty rooms.
+
+
+
+Indestructible Objs++
+
+hero should have interaction rec with main exit object, taking
+them outside the dungeon.
+
+
+
+Mountain Dungeon Climb
+
+wind pushes the player while they are trying to climb the mountain to the dungeon
+entrance. the wind is an obj, with animated action lines, so the player can 'see' the
+wind and it coming towards them - allowing them to dodge.
 
 
 
 
 
 
-Level Wind
 
-this means level and room data has to have wind values.
-manually copy them into all roomData XML files.
 
-test that room wind works. at this point, we can rebuild levels
-and rooms, and actually test the game with new systems + wind.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -140,23 +168,6 @@ fire spreading, if we dont want something to burn, for example.
 
 
 
-Rebuild Level and Room Data
-
-all level and room data that looks and plays well from prev version.
-
-
-
-Levels++
-
-add boat objects to the int widgets - barrels, etc.....
-add boat objs to boat ind widgets
-build ship at sea base level
-
-
-
-
-relink level data to game. dungeon data can remain empty for now.
-dungeons should build with empty rooms.
 
 
 
@@ -164,22 +175,6 @@ dungeons should build with empty rooms.
 
 
 
-
-
-
-Indestructible Objs++
-
-hero should have interaction rec with main exit object, taking
-them outside the dungeon.
-
-
-
-
-Mountain Dungeon Climb
-
-wind pushes the player while they are trying to climb the mountain to the dungeon
-entrance. the wind is an obj, with animated action lines, so the player can 'see' the
-wind and it coming towards them - allowing them to dodge.
 
 
 
