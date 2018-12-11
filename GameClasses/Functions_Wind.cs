@@ -137,10 +137,21 @@ namespace DungeonRun
                 LevelSet.currentLevel.currentRoom.windDirection = 
                     Functions_Direction.GetCardinalDirection_LeftRight(LevelSet.currentLevel.currentRoom.windDirection);
 
-                //randomly spawn a gust of wind on SCREEN, then project it down into gameworld
-                spawnPt = Functions_Camera2D.ConvertScreenToWorld(
-                    Functions_Random.Int(0, 640), //random X on screen
-                    Functions_Random.Int(0, 360)); //random Y on screen
+                //grab a random screen position
+                spawnPt.X = Functions_Random.Int(0, 640);
+                spawnPt.Y = Functions_Random.Int(0, 360);
+                //bias this position against the wind direction (so we dont spawn wind that goes off screen next frame)
+                if(LevelSet.currentLevel.currentRoom.windDirection == Direction.Down)
+                { spawnPt.Y -= 100; } //spawn more above, moving down
+                else if (LevelSet.currentLevel.currentRoom.windDirection == Direction.Up)
+                { spawnPt.Y += 100; } //spawn more below, moving up
+                else if (LevelSet.currentLevel.currentRoom.windDirection == Direction.Left)
+                { spawnPt.X += 100; } //spawn more right, moving left
+                else if (LevelSet.currentLevel.currentRoom.windDirection == Direction.Right)
+                { spawnPt.X -= 100; } //spawn more left, moving right
+
+                //project spawnpoint down into gameworld & spawn
+                spawnPt = Functions_Camera2D.ConvertScreenToWorld(spawnPt.X, spawnPt.Y);
                 Spawn(WindType.Gust, spawnPt.X, spawnPt.Y,
                     LevelSet.currentLevel.currentRoom.windDirection);
             }

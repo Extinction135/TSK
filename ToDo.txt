@@ -70,30 +70,17 @@ Today:
 
 
 
+WindSpawns++
+
+bias wind spawns in the direction they are coming from.
+for example, dont spawn wind traveling left at the right 
+side of the screen, simply because it travels off screen
+in a few frames and is a waste of wind resources. done.
 
 
 
 
-Room Wind - Part 2
 
-now we need to write spawn routines for the level, in wind functions.
-wind functions completely describe and handle all wind related code.
-
-in wind.update(), we will be checking level wind values to determine
-if a wind obj should spawn. for now, we are only looking at wind frequency
-and wind direction. we spawn gusts of wind in direction, based on frequency,
-at random positions in the level. that's it. this has been added.
-
-in addition, a check is done prior to spawning wind in the level, that
-sees if the level wind direction is actually a valid value (not none).
-if the direction is none, then the direction is randomly set to a
-cardinal one. a check is also done to resolve a diagonal wind direction
-to a cardinal one, because wind cannot move diagonally. this just makes
-the wind spawn systems a bit tolerant to bad directional data, since
-it can only really use 4 values of the possible 9 directional values.
-
-wind is working and tested. and quite fun. setting fire to grass and
-watching the wind blow it across the level is awesome...
 
 
 
