@@ -2,6 +2,34 @@
 
 
 
+
+
+
+
+
+infinity gauntlet.
+has to be done. when all 5 stones are collected, the gauntlet unlocks
+the snap power, which kills half the actors in the current room. up to
+that, the gauntlet has powers based on what stones have been added to it.
+these powers (much like the wand) are available from a spellbook type magic
+menu, and are related to the infinity stone powers in the avengers movies.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Spell
 blackhole - pulls everything into it (via wind), releases any actor or roomObj
 it touches, killing hero too, then animates closed. explodes. leaves behind

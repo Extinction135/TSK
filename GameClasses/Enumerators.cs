@@ -893,16 +893,6 @@ namespace DungeonRun
     #endregion
 
 
-
-    /*
-    public enum WindType
-    {
-        Gentle, //lvl1
-        Medium, //lvl2
-        Gust,   //lvl3
-    }
-    */
-
     
 
 
@@ -976,6 +966,9 @@ namespace DungeonRun
 
         //wind
         Wind_Gust,
+        Wind_Calm,
+        Wind_Fury,
+        Wind_Dir,
 
         //explosive/fire
         Fire,
@@ -1053,6 +1046,9 @@ namespace DungeonRun
 
         //wind
         Wind_Gust,
+        Wind_Calm,
+        Wind_Fury,
+        Wind_Dir,
 
         //explosive
         Fire,

@@ -128,7 +128,7 @@ namespace DungeonRun
 
             //wind spells
 
-            #region Gust
+            #region Gust Wind
 
             else if (Spell == SpellType.Wind_Gust)
             {   //as close as possible on the offsets
@@ -164,6 +164,46 @@ namespace DungeonRun
 
             #endregion
 
+
+            #region Calm Winds
+
+            else if (Spell == SpellType.Wind_Calm)
+            {   //change current room intensity and frequency to breezy
+                LevelSet.currentLevel.currentRoom.windIntensity = 1; //breezy
+                LevelSet.currentLevel.currentRoom.windFrequency = 1; //rarely
+                Assets.Play(Assets.sfxNet); //decent
+            }
+
+            #endregion
+
+
+            #region Fury Winds
+
+            else if (Spell == SpellType.Wind_Fury)
+            {   
+                //sane
+                LevelSet.currentLevel.currentRoom.windIntensity = 3; //gale
+                LevelSet.currentLevel.currentRoom.windFrequency = 25; //rarely
+
+                //insane
+                //LevelSet.currentLevel.currentRoom.windIntensity += 1; //sure
+                //LevelSet.currentLevel.currentRoom.windFrequency += 10; //wat?
+
+                Assets.Play(Assets.sfxNet); //decent
+            }
+
+            #endregion
+
+
+            #region Set Room Wind Direction
+
+            else if (Spell == SpellType.Wind_Dir)
+            {
+                LevelSet.currentLevel.currentRoom.windDirection = Caster.direction;
+                Assets.Play(Assets.sfxNet); //decent
+            }
+
+            #endregion
 
 
 

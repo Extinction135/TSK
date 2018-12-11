@@ -680,7 +680,34 @@ namespace DungeonRun
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Wind_Gust;
                 MenuItem.compSprite.texture = Assets.entitiesSheet;
                 MenuItem.compAnim.loop = true;
-                MenuItem.compAnim.speed = 8;
+                MenuItem.compAnim.speed = 6; //speed up for power
+            }
+            else if (Type == MenuItemType.Wind_Calm)
+            {
+                MenuItem.name = "Calm";
+                MenuItem.description = "Calms nearby winds, \nmakes climbing fun.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Wind_Gust;
+                MenuItem.compSprite.texture = Assets.entitiesSheet;
+                MenuItem.compAnim.loop = true;
+                MenuItem.compAnim.speed = 12; //slow down for calming fx
+            }
+            else if (Type == MenuItemType.Wind_Fury)
+            {
+                MenuItem.name = "Fury";
+                MenuItem.description = "Enrages nearby winds.\n";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Wind_Gust;
+                MenuItem.compSprite.texture = Assets.entitiesSheet;
+                MenuItem.compAnim.loop = true;
+                MenuItem.compAnim.speed = 3; //speed up for power
+            }
+            else if (Type == MenuItemType.Wind_Dir)
+            {
+                MenuItem.name = "Wind Direction";
+                MenuItem.description = "Changes wind direction\nbased on caster.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Wind_Gust;
+                MenuItem.compSprite.texture = Assets.entitiesSheet;
+                MenuItem.compAnim.loop = true;
+                MenuItem.compAnim.speed = 10; //speed up for power
             }
 
             #endregion

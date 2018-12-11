@@ -76,20 +76,20 @@ namespace DungeonRun
 
             #region  Wind Spells - has left neighbors to last column
 
-            labels[0].text = "gust\nwind";
+            labels[0].text = "gust\n";
             Functions_MenuItem.SetType(MenuItemType.Wind_Gust, menuItems[0]);
             menuItems[0].neighborLeft = menuItems[4]; //connect left
 
-            //labels[5].text = "shield\nwind";
-            //Functions_MenuItem.SetType(MenuItemType.Explosive_Line, menuItems[5]);
+            labels[5].text = "calm\nwind";
+            Functions_MenuItem.SetType(MenuItemType.Wind_Calm, menuItems[5]);
             menuItems[5].neighborLeft = menuItems[9]; //connect left
 
-            //labels[10].text = "";
-            //Functions_MenuItem.SetType(MenuItemType.Spells_Explosive_Bombos, menuItems[10]);
+            labels[10].text = "fury/nwind";
+            Functions_MenuItem.SetType(MenuItemType.Wind_Fury, menuItems[10]);
             menuItems[10].neighborLeft = menuItems[14]; //connect left
 
-            //labels[15].text = "";
-            //Functions_MenuItem.SetType(MenuItemType.Spells_Explosive_Bombos, menuItems[15]);
+            labels[15].text = "dir/nwind";
+            Functions_MenuItem.SetType(MenuItemType.Wind_Dir, menuItems[15]);
             menuItems[15].neighborLeft = menuItems[19]; //connect left
 
             //labels[20].text = "";
@@ -253,6 +253,12 @@ namespace DungeonRun
                 //wind spells
                 if (currentlySelected.type == MenuItemType.Wind_Gust)
                 { PlayerData.currentSpell = SpellType.Wind_Gust; }
+                else if (currentlySelected.type == MenuItemType.Wind_Calm)
+                { PlayerData.currentSpell = SpellType.Wind_Calm; }
+                else if (currentlySelected.type == MenuItemType.Wind_Fury)
+                { PlayerData.currentSpell = SpellType.Wind_Fury; }
+                else if (currentlySelected.type == MenuItemType.Wind_Dir)
+                { PlayerData.currentSpell = SpellType.Wind_Dir; }
 
                 //explosive/fire spells
                 else if (currentlySelected.type == MenuItemType.Fire)
