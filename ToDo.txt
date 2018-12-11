@@ -66,18 +66,13 @@ Today:
 
 
 
+Wind Spells++
 
+stop wind has been added, which allows the player to completely
+stop the spawning of all wind in the room. this can completely
+defeat some environmental puzzles, so this spell should be very
+late game, if not endgame, or optional entirely.
 
-
-Wind Spells
-
-now we need spells to control the level wind.
-spell: calm. (intensity = 0). added and done.
-spell: fury. (intensity += 10) - to a max or let systems overload? ovrload.
-this is done, and i'm slightly scared of how crazy multiple casts of
-fury will be, simply because the wind will become overpowering against all.
-spell: direction (changes level wind dir to casters facing dir). done.
-now to test all these spells. they work. very well.
 
 
 
@@ -88,7 +83,7 @@ now to test all these spells. they work. very well.
 put room wind intensity + percentage chance below wind in debug display
 
 
-spell to stop all wind (int and freq = 0).
+
 
 
 

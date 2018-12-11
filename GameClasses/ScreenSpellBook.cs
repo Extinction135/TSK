@@ -84,16 +84,16 @@ namespace DungeonRun
             Functions_MenuItem.SetType(MenuItemType.Wind_Calm, menuItems[5]);
             menuItems[5].neighborLeft = menuItems[9]; //connect left
 
-            labels[10].text = "fury/nwind";
+            labels[10].text = "fury\nwind";
             Functions_MenuItem.SetType(MenuItemType.Wind_Fury, menuItems[10]);
             menuItems[10].neighborLeft = menuItems[14]; //connect left
 
-            labels[15].text = "dir/nwind";
+            labels[15].text = "dir\nwind";
             Functions_MenuItem.SetType(MenuItemType.Wind_Dir, menuItems[15]);
             menuItems[15].neighborLeft = menuItems[19]; //connect left
 
-            //labels[20].text = "";
-            //Functions_MenuItem.SetType(MenuItemType.Spells_Explosive_Bombos, menuItems[20]);
+            labels[20].text = "stop\nwind";
+            Functions_MenuItem.SetType(MenuItemType.Wind_Stop, menuItems[20]);
             menuItems[20].neighborLeft = menuItems[24]; //connect left
 
             //labels[25].text = "";
@@ -259,6 +259,8 @@ namespace DungeonRun
                 { PlayerData.currentSpell = SpellType.Wind_Fury; }
                 else if (currentlySelected.type == MenuItemType.Wind_Dir)
                 { PlayerData.currentSpell = SpellType.Wind_Dir; }
+                else if (currentlySelected.type == MenuItemType.Wind_Stop)
+                { PlayerData.currentSpell = SpellType.Wind_Stop; }
 
                 //explosive/fire spells
                 else if (currentlySelected.type == MenuItemType.Fire)

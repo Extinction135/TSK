@@ -969,6 +969,7 @@ namespace DungeonRun
         Wind_Calm,
         Wind_Fury,
         Wind_Dir,
+        Wind_Stop,
 
         //explosive/fire
         Fire,
@@ -1049,6 +1050,7 @@ namespace DungeonRun
         Wind_Calm,
         Wind_Fury,
         Wind_Dir,
+        Wind_Stop,
 
         //explosive
         Fire,

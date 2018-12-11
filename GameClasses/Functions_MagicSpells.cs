@@ -206,6 +206,18 @@ namespace DungeonRun
             #endregion
 
 
+            #region Set Room Wind Direction
+
+            else if (Spell == SpellType.Wind_Stop)
+            {
+                LevelSet.currentLevel.currentRoom.windIntensity = 0; //none
+                LevelSet.currentLevel.currentRoom.windFrequency = 0; //none
+                Assets.Play(Assets.sfxNet); //decent
+            }
+
+            #endregion
+
+
 
 
 

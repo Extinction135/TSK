@@ -709,6 +709,15 @@ namespace DungeonRun
                 MenuItem.compAnim.loop = true;
                 MenuItem.compAnim.speed = 10; //speed up for power
             }
+            else if (Type == MenuItemType.Wind_Stop)
+            {
+                MenuItem.name = "Stop Wind";
+                MenuItem.description = "Ceases nearby winds.\n";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Wind_Gust;
+                MenuItem.compSprite.texture = Assets.entitiesSheet;
+                MenuItem.compAnim.loop = true;
+                MenuItem.compAnim.speed = 24; //very slow
+            }
 
             #endregion
 
