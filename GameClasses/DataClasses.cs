@@ -1334,7 +1334,7 @@ namespace DungeonRun
         public static int intObjCounter = 0;
 
         //wind objs
-        public static int windObjCount = 50;
+        public static int windObjCount = 125;
         public static List<WindObject> windObjPool = new List<WindObject>();
         public static int windObjIndex;
         public static int windObjCounter = 0;

@@ -150,8 +150,11 @@ namespace DungeonRun
                 { Spawn(spawnPt.X, spawnPt.Y, LevelSet.currentLevel.currentRoom.windDirection, 1.0f, 0.01f); }
                 else if (LevelSet.currentLevel.currentRoom.windIntensity == 2)
                 { Spawn(spawnPt.X, spawnPt.Y, LevelSet.currentLevel.currentRoom.windDirection, 2.0f, 0.02f); }
-                //anything greater than 2 gets gusty objs
-                else if (LevelSet.currentLevel.currentRoom.windIntensity > 2)
+                else if (LevelSet.currentLevel.currentRoom.windIntensity == 3)
+                { Spawn(spawnPt.X, spawnPt.Y, LevelSet.currentLevel.currentRoom.windDirection, 3.0f, 0.03f); }
+
+                //this is 'fury' wind spell settings - rarely reached normally in-game
+                else if (LevelSet.currentLevel.currentRoom.windIntensity > 3)
                 { Spawn(spawnPt.X, spawnPt.Y, LevelSet.currentLevel.currentRoom.windDirection, 4.0f, 0.04f); }
             }
 

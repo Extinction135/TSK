@@ -69,20 +69,6 @@ Today:
 
 
 
-
-
-
-Debug Displays++
-
-put room wind intensity + percentage chance below wind in 
-debug displays. done. now we can see the room wind intensity
-and spawn percentage.
-
-
-
-
-
-
 More Wind!
 
 I want to be able to have tornado like conditions in the game.
@@ -90,6 +76,19 @@ that is what the 'Fury' wind spell should model. this means more
 wind objs in the wind pool, and possibly a higher level of wind
 intensity for level spawn routines..
 
+increased size of wind pool to 75, from 50. allows for more wind
+on screen at once, causing push interactions. added another state
+branch to wind update method, making level 3 less powerful, to 
+allow for a new level 4 type of wind intensity, which only the
+fury spell can set. this makes the fury spell the strongest 
+environmental spell in the game, simply because the wind objs
+will not stop once fury is cast. the only way to stop them is
+via calm or stop wind spells.
+
+
+increase wind to 125 count.
+increase fury spawn rate to 50.
+looking good, working well.
 
 
 
@@ -98,13 +97,7 @@ intensity for level spawn routines..
 
 
 
-
-
-Anti-Wind Item
-
-we need to way to remove hero from wind pushing routines.
-this can be using an item, making items useful besides the ring.
-theres so much to do there.
+we need BIG trees back in the game. add these to house test level.
 
 
 
@@ -124,6 +117,20 @@ and rooms, and actually test the game with new systems + wind.
 
 
 
+Burned Grass
+
+we need burned grass sprites. when grass burns, it becomes this
+obj, which randomly chooses it's burned grass sprite frame. this is
+darker brown short grass on normal ground.
+
+
+
+
+Stop Fire Spell
+
+this is a fire spell that kills all ground fires in the room.
+simply calls Kill() on them all. this allows for control of
+fire spreading, if we dont want something to burn, for example.
 
 
 
@@ -173,6 +180,26 @@ Mountain Dungeon Climb
 wind pushes the player while they are trying to climb the mountain to the dungeon
 entrance. the wind is an obj, with animated action lines, so the player can 'see' the
 wind and it coming towards them - allowing them to dodge.
+
+
+
+
+
+Anti-Wind Item - Gravity Boots
+
+we need to way to remove hero from wind pushing routines.
+this can be using an item, making items useful besides the ring.
+theres so much to do there.
+
+these need to be boots. increases friction immensely.
+but also increases magnitude to max value in moving direction.
+this should negate the effects of wind, while allowing the user
+to move very slowly. we can slow the walk anim down too.
+this can be done for the hero in his update routine, which
+has processed after the collisions, which it actually shouldn't.
+it ishould process before, that way we can alter the magnitude / newPos * currPos
+using the boots, then collisions can resolve, bypassing wind entirely.
+
 
 
 

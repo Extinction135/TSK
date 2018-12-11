@@ -177,18 +177,13 @@ namespace DungeonRun
             #endregion
 
 
-            #region Fury Winds
+            #region Fury Winds - lots of very strong winds
 
             else if (Spell == SpellType.Wind_Fury)
             {   
                 //sane
-                LevelSet.currentLevel.currentRoom.windIntensity = 3; //gale
-                LevelSet.currentLevel.currentRoom.windFrequency = 25; //rarely
-
-                //insane
-                //LevelSet.currentLevel.currentRoom.windIntensity += 1; //sure
-                //LevelSet.currentLevel.currentRoom.windFrequency += 10; //wat?
-
+                LevelSet.currentLevel.currentRoom.windIntensity = 4; //'fury' setting
+                LevelSet.currentLevel.currentRoom.windFrequency = 50; //very often
                 Assets.Play(Assets.sfxNet); //decent
             }
 
