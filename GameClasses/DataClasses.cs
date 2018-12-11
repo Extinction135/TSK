@@ -516,11 +516,15 @@ namespace DungeonRun
     public class Room
     {   //a room can be big (field) or small (in dungeon)
         public Rectangle rec = new Rectangle(0, 0, 0, 0);
-        public Boolean visited = false;
         public Byte2 size = new Byte2(0, 0); //in 16 pixel tiles
         public Point center = new Point(0, 0);
         public RoomID roomID;
         public LevelID levelID = LevelID.Forest_Dungeon;
+        public Direction windDirection = Direction.None;
+        public int windFrequency = 10;
+        public int windIntensity = 10;
+        //dungeon room specific fields
+        public Boolean visited = false;
         public PuzzleType puzzleType = PuzzleType.None; //most rooms aren't puzzles
         public int dataIndex; //if dungeon room, what roomData index is used to populate?
 
@@ -551,7 +555,9 @@ namespace DungeonRun
     public class RoomXmlData
     {
         public RoomID type = RoomID.Row;
-        //needs: wind direction, wind intensity, wind frequency
+        public Direction windDirection = Direction.None;
+        public int windFrequency = 10;
+        public int windIntensity = 10;
         public List<IndObjXmlData> inds = new List<IndObjXmlData>();
         public List<IntObjXmlData> ints = new List<IntObjXmlData>();
     }

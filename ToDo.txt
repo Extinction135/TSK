@@ -67,78 +67,16 @@ Today:
 
 
 
+Room Wind - Part 1
 
-Wind FTW
+added wind direction, intensity, and frequency values to
+roomXML data obj and room data obj. roomXML is much smaller
+than room data, and it doesn't take values in it's constructor,
+so it can be serialized easily to a small xml file. this sets the
+stage for rooms spawning wind based on direction, intensity, etc.
 
-created wind object class def.
-created wind functions class.
-linked wind functions to Dx.
-created wind enum values.
-created animated wind sprite on entities sheet.
-created animation frames for wind.
-completed routines for wind functions class.
-created wind pool list, and pool functions.
-created Wind_Gust spellType value.
-gust wind spell menuitem added to spellbook.
-gust wind spell type added.
-
-and now wind implementation..
-
-Functions_Wind.Update() completely
-handles wind implementation. how is this done?
-first, we loop the wind pool finding only active
-wind objs. we check to see if wind is inside the
-current room, and if so eval the wind. otherwise,
-the wind obj is released via pool.release().
-
-wind eval = increment wind frame counter..
-if their frame counter exceeds their interactive
-frame value, then this wind object is compared
-against the interactive obj pool, the actor pool,
-and finally the projectile pool. we use the interactive
-frame approach to spread out wind comparisons 
-across frames - for example we can create wind objs
-that randomly push, so wind objs dont evaluate all
-on the same frame.
-
-added debug info about wind objects to debug info.
-can now see how many wind objs are active vs total.
-
-wind objects are spawning properly and moving.
-now onto their interactions with the pools.
-
-right now, wind pushes every kind of int, act, and pro.
-this doesn't logically make sense, but now we can at
-least test wind against level objs..
-
-tested, working. updated wind systems to use 
-obj.compMove.moveable boolean, which limits wind to only
-pushing draggable interactive objects, like: explosive
-barrels, skull pots, pots, floor torches, dungeon statues,
-switch block buttons, etc.. also tested pushing ground fire
-projectiles with wind: working! which means fireballs can
-be reflected by casting gust of wind in line against the
-fireball.
-
-wind cannot push ice blocks (cracking or not) because
-the projectile is not moveable, among other objs.
-
-wind can push pros: bombs, boomerangs, fireballs, iceballs,
-arrows, ground fires, bats... and explosion emitters. which
-means that chain explosion's 'chain' can be altered by wind
-objects.. and soon each level will have global wind randomly
-created, so...
-
-- closing notes -
-wind is the only defensive magic, as it can alter the
-movement of projectiles/objs/actors, but not directly kill 
-or damage them. this sets up a strategic counter to fire,
-explode, and ice spells keeping them balanced and in check.
-
-wind pops attention particle upon death.
-wind is implemented and working quite well.
-
-sync'd uwp project to Dx content and game classes.
+updated test house level data with wind values.
+tested loading and saving of level data with wind values.
 
 
 
@@ -146,6 +84,22 @@ sync'd uwp project to Dx content and game classes.
 
 
 
+Room Wind - Part 2
+
+now we need to write spawn routines for the level, in wind functions.
+wind functions completely describe and handle all wind related code.
+
+in wind.update(), we will be checking level wind values to determine
+if a wind obj should spawn. for now, we are only looking at wind frequency
+and wind direction. we spawn gusts of wind in direction, based on frequency,
+at random positions in the level. that's it.
+
+improving level wind
+we need to have more than one type of wind obj, or we need to be able
+to control the wind push/speed travel values. we can create a gust with
+parameters to control it's speed, and push amount, and this seems like 
+the best solution to keep wind as simple as possible while still allowing
+for a greater degree of control.
 
 
 
@@ -169,6 +123,14 @@ and rooms, and actually test the game with new systems + wind.
 
 
 
+
+
+
+
+
+
+
+
 Rebuild Level and Room Data
 
 all level and room data that looks and plays well from prev version.
@@ -180,6 +142,19 @@ Levels++
 add boat objects to the int widgets - barrels, etc.....
 add boat objs to boat ind widgets
 build ship at sea base level
+
+
+
+
+relink level data to game. dungeon data can remain empty for now.
+dungeons should build with empty rooms.
+
+
+
+
+
+
+
 
 
 
