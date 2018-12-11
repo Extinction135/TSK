@@ -16,6 +16,10 @@ namespace DungeonRun
     {
         static int i;
         static WindObject windRef;
+        static Point spawnPt;
+
+
+
 
 
 
@@ -63,6 +67,19 @@ namespace DungeonRun
 
 
 
+        public static void SetRotation(WindObject Wind)
+        {   //rotate wind sprite to moving direction
+            if (Wind.compMove.direction == Direction.Down)
+            { Wind.compSprite.rotation = Rotation.None; }
+            else if (Wind.compMove.direction == Direction.Left)
+            { Wind.compSprite.rotation = Rotation.Clockwise90; }
+            else if (Wind.compMove.direction == Direction.Up)
+            { Wind.compSprite.rotation = Rotation.Clockwise180; }
+            else if (Wind.compMove.direction == Direction.Right)
+            { Wind.compSprite.rotation = Rotation.Clockwise270; }
+            //update the sprites rotation
+            Functions_Component.SetSpriteRotation(Wind.compSprite, Wind.direction);
+        }
 
 
 
@@ -102,9 +119,36 @@ namespace DungeonRun
 
         //per-frame logic, after pool's interactions(), before projectMovement()
         public static void Update()
-        {   //reset the wind interaction pool counters
+        {   
+            //reset the wind interaction pool counters
             Pool.windInts_ThisFrame = 0;
             Pool.windInts_Possible = 0;
+
+
+            #region Spawn Level Wind
+
+            //spawn wind based on level values
+            if(Functions_Random.Int(0, 101) < LevelSet.currentLevel.currentRoom.windFrequency)
+            {
+                //ensure level has a real wind direction (randomly set direction cardinal if direction = none)
+                if (LevelSet.currentLevel.currentRoom.windDirection == Direction.None)
+                { LevelSet.currentLevel.currentRoom.windDirection = Functions_Direction.GetRandomCardinal(); }
+                //resolve any diagonal wind directions to cardinals, left/right preferred due to window ratio
+                LevelSet.currentLevel.currentRoom.windDirection = 
+                    Functions_Direction.GetCardinalDirection_LeftRight(LevelSet.currentLevel.currentRoom.windDirection);
+
+                //randomly spawn a gust of wind on SCREEN, then project it down into gameworld
+                spawnPt = Functions_Camera2D.ConvertScreenToWorld(
+                    Functions_Random.Int(0, 640), //random X on screen
+                    Functions_Random.Int(0, 360)); //random Y on screen
+                Spawn(WindType.Gust, spawnPt.X, spawnPt.Y,
+                    LevelSet.currentLevel.currentRoom.windDirection);
+            }
+
+            #endregion
+
+
+            #region Proces Wind Object Lifetime, Animations, and Interactions with Ints/Acts/Objs
 
             //loop over the pool.wind list, find active wind objs
             for (i = 0; i < Pool.windObjCount; i++)
@@ -112,7 +156,6 @@ namespace DungeonRun
                 if (Pool.windObjPool[i].active)
                 {   //shorten ref
                     windRef = Pool.windObjPool[i]; 
-
 
 
                     //Death conditions
@@ -237,7 +280,13 @@ namespace DungeonRun
                     }
                 }
             }
+
+            #endregion
+
+
         }
+
+
 
         //death events
         public static void Kill(WindObject Wind)
@@ -250,30 +299,7 @@ namespace DungeonRun
         }
 
 
-
-
         
-
-
-        public static void SetRotation(WindObject Wind)
-        {   //rotate wind sprite to moving direction
-            if(Wind.compMove.direction == Direction.Down)
-            { Wind.compSprite.rotation = Rotation.None; }
-            else if (Wind.compMove.direction == Direction.Left)
-            { Wind.compSprite.rotation = Rotation.Clockwise90; }
-            else if (Wind.compMove.direction == Direction.Up)
-            { Wind.compSprite.rotation = Rotation.Clockwise180; }
-            else if (Wind.compMove.direction == Direction.Right)
-            { Wind.compSprite.rotation = Rotation.Clockwise270; }
-            //update the sprites rotation
-            Functions_Component.SetSpriteRotation(Wind.compSprite, Wind.direction);
-        }
-        
-
-
-
-
-
 
 
         public static void Push(InteractiveObject Obj)

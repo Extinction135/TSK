@@ -521,8 +521,8 @@ namespace DungeonRun
         public RoomID roomID;
         public LevelID levelID = LevelID.Forest_Dungeon;
         public Direction windDirection = Direction.None;
-        public int windFrequency = 10;
-        public int windIntensity = 10;
+        public byte windFrequency = 10; //default 10% chance
+        public byte windIntensity = 1;
         //dungeon room specific fields
         public Boolean visited = false;
         public PuzzleType puzzleType = PuzzleType.None; //most rooms aren't puzzles
@@ -556,8 +556,8 @@ namespace DungeonRun
     {
         public RoomID type = RoomID.Row;
         public Direction windDirection = Direction.None;
-        public int windFrequency = 10;
-        public int windIntensity = 10;
+        public byte windFrequency = 10; //default 10% chance
+        public byte windIntensity = 1;
         public List<IndObjXmlData> inds = new List<IndObjXmlData>();
         public List<IntObjXmlData> ints = new List<IntObjXmlData>();
     }

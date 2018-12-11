@@ -67,16 +67,6 @@ Today:
 
 
 
-Room Wind - Part 1
-
-added wind direction, intensity, and frequency values to
-roomXML data obj and room data obj. roomXML is much smaller
-than room data, and it doesn't take values in it's constructor,
-so it can be serialized easily to a small xml file. this sets the
-stage for rooms spawning wind based on direction, intensity, etc.
-
-updated test house level data with wind values.
-tested loading and saving of level data with wind values.
 
 
 
@@ -92,9 +82,30 @@ wind functions completely describe and handle all wind related code.
 in wind.update(), we will be checking level wind values to determine
 if a wind obj should spawn. for now, we are only looking at wind frequency
 and wind direction. we spawn gusts of wind in direction, based on frequency,
-at random positions in the level. that's it.
+at random positions in the level. that's it. this has been added.
 
-improving level wind
+in addition, a check is done prior to spawning wind in the level, that
+sees if the level wind direction is actually a valid value (not none).
+if the direction is none, then the direction is randomly set to a
+cardinal one. a check is also done to resolve a diagonal wind direction
+to a cardinal one, because wind cannot move diagonally. this just makes
+the wind spawn systems a bit tolerant to bad directional data, since
+it can only really use 4 values of the possible 9 directional values.
+
+wind is working and tested. and quite fun. setting fire to grass and
+watching the wind blow it across the level is awesome...
+
+
+
+
+
+
+
+
+
+
+Room Wind - Part 3
+
 we need to have more than one type of wind obj, or we need to be able
 to control the wind push/speed travel values. we can create a gust with
 parameters to control it's speed, and push amount, and this seems like 
@@ -107,17 +118,16 @@ for a greater degree of control.
 
 
 
+
 Level Wind
 
-levels need wind direction, wind intensity, wind birth.
-this is fed into routines that randomly spawn gusts of wind on screen
-in level direction, with level intensity(magnitude), at level birth rate.
-
-this means level and room data has to have these values.
+this means level and room data has to have wind values.
 manually copy them into all roomData XML files.
 
 test that room wind works. at this point, we can rebuild levels
 and rooms, and actually test the game with new systems + wind.
+
+
 
 
 
