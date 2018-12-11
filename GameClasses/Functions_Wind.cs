@@ -15,9 +15,8 @@ namespace DungeonRun
     public static class Functions_Wind
     {
         static int i;
-        static WindObject windRef;
-        static Point spawnPt;
-
+        
+        
 
 
 
@@ -25,8 +24,7 @@ namespace DungeonRun
 
         //resets the projectile to a default state
         public static void Reset(WindObject Wind)
-        {   //reset object to GUST
-            Wind.type = WindType.Gust; //reset the type
+        {   //reset wind
             Wind.direction = Direction.Down;
             Wind.active = true; //assume this object should draw / animate
             Wind.lifeTotal = 255; //live for this long
@@ -59,10 +57,11 @@ namespace DungeonRun
             //reset the move component
             Wind.compMove.magnitude.X = 0; //discard any previous magnitude
             Wind.compMove.magnitude.Y = 0; //
-            Wind.compMove.speed = 0.03f; //wind moves
-            Wind.compMove.friction = 0.99f; //no friction
             Wind.compMove.moveable = false; //unused
             Wind.compMove.grounded = false; //unused
+
+            Wind.compMove.speed = 0.03f; //wind moves
+            Wind.compMove.friction = 0.99f; //slight friction
         }
 
 
@@ -82,12 +81,11 @@ namespace DungeonRun
         }
 
 
-
+        static Point spawnPt;
         static WindObject spawnRef;
-        public static void Spawn(WindType Type, float X, float Y, Direction Dir)
+        public static void Spawn(float X, float Y, Direction Dir, float PushAmnt, float Speed)
         {
             spawnRef = Functions_Pool.GetWind();
-
             spawnRef.direction = Dir;
             spawnRef.compMove.direction = Dir;
             //put wind into position
@@ -96,27 +94,21 @@ namespace DungeonRun
                 spawnRef.compMove,
                 spawnRef.compSprite,
                 spawnRef.compCollision);
-
-            //define wind characteristics
-            spawnRef.lifeTotal = 60; //1 second for gusts
-            spawnRef.lifeCounter = 0;
-            spawnRef.compMove.speed = 0.03f; //wind moves
-            spawnRef.compMove.friction = 0.99f; //no friction
-            Functions_Movement.Push(spawnRef.compMove, Dir, 7.0f);
-
+            spawnRef.compMove.speed = Speed;
+            Functions_Movement.Push(spawnRef.compMove, Dir, PushAmnt);
             //prep sprite for display
             SetRotation(spawnRef);
             spawnRef.compCollision.blocking = false;
             spawnRef.compSprite.currentFrame = spawnRef.compAnim.currentAnimation[0]; //goto 1st anim frame
             Assets.Play(Assets.sfxArrowShoot); //to be replaced
         }
-        
 
 
 
 
 
 
+        static WindObject windRef;
         //per-frame logic, after pool's interactions(), before projectMovement()
         public static void Update()
         {   
@@ -152,8 +144,15 @@ namespace DungeonRun
 
                 //project spawnpoint down into gameworld & spawn
                 spawnPt = Functions_Camera2D.ConvertScreenToWorld(spawnPt.X, spawnPt.Y);
-                Spawn(WindType.Gust, spawnPt.X, spawnPt.Y,
-                    LevelSet.currentLevel.currentRoom.windDirection);
+
+                //calculate wind intensity - note omitted 0 case allows 0 to prevent wind spawn 
+                if (LevelSet.currentLevel.currentRoom.windIntensity == 1)
+                { Spawn(spawnPt.X, spawnPt.Y, LevelSet.currentLevel.currentRoom.windDirection, 1.0f, 0.01f); }
+                else if (LevelSet.currentLevel.currentRoom.windIntensity == 2)
+                { Spawn(spawnPt.X, spawnPt.Y, LevelSet.currentLevel.currentRoom.windDirection, 2.0f, 0.02f); }
+                //anything greater than 2 gets gusty objs
+                else if (LevelSet.currentLevel.currentRoom.windIntensity > 2)
+                { Spawn(spawnPt.X, spawnPt.Y, LevelSet.currentLevel.currentRoom.windDirection, 4.0f, 0.04f); }
             }
 
             #endregion
@@ -237,7 +236,14 @@ namespace DungeonRun
                                 {   //wind pushes this obj
                                     Pool.windInts_ThisFrame++; //count it
                                     Pool.intObjPool[Pool.intObjCounter].compMove.direction = windRef.compMove.direction;
-                                    Push(Pool.intObjPool[Pool.intObjCounter]);
+                                    //push it real good
+                                    if (Pool.intObjPool[Pool.intObjCounter].compMove.moveable)
+                                    {   //wind is hitting moveable obj, push obj
+                                        Functions_Movement.Push(
+                                            Pool.intObjPool[Pool.intObjCounter].compMove,
+                                            windRef.compMove.direction,
+                                            windRef.compMove.speed * 33);
+                                    }
                                 }
                             }
                         }
@@ -257,7 +263,11 @@ namespace DungeonRun
                                 {   //wind pushes this actor
                                     Pool.windInts_ThisFrame++; //count it
                                     Pool.actorPool[Pool.actorCounter].compMove.direction = windRef.compMove.direction;
-                                    Push(Pool.actorPool[Pool.actorCounter]);
+                                    //push it real good
+                                    Functions_Movement.Push(
+                                        Pool.actorPool[Pool.actorCounter].compMove, 
+                                        windRef.compMove.direction, 
+                                        windRef.compMove.speed * 33);
                                 }
                             }
                         }
@@ -265,7 +275,7 @@ namespace DungeonRun
                         #endregion
 
 
-                        #region PUSH Projectiles
+                        #region PUSH Projectiles (alot)
 
                         for (Pool.projectileCounter = 0; Pool.projectileCounter < Pool.projectileCount; Pool.projectileCounter++)
                         {   //active check
@@ -277,7 +287,14 @@ namespace DungeonRun
                                 {   //wind pushes this object
                                     Pool.windInts_ThisFrame++; //count it
                                     Pool.projectilePool[Pool.projectileCounter].compMove.direction = windRef.compMove.direction;
-                                    Push(Pool.projectilePool[Pool.projectileCounter]);
+                                    //push it real good
+                                    if (Pool.projectilePool[Pool.projectileCounter].compMove.moveable)
+                                    {   //wind is overlapping pro, handle per pro pushes with gust
+                                        Functions_Movement.Push(
+                                            Pool.projectilePool[Pool.projectileCounter].compMove, 
+                                            windRef.compMove.direction,
+                                            windRef.compMove.speed * 99); //alot
+                                    }
                                 }
                             }
                         }
@@ -310,30 +327,5 @@ namespace DungeonRun
         }
 
 
-        
-
-
-        public static void Push(InteractiveObject Obj)
-        {
-            if(Obj.compMove.moveable)
-            {   //wind is hitting moveable obj, push obj
-                Functions_Movement.Push(Obj.compMove, Obj.compMove.direction, 1.0f);
-            }
-        }
-
-        public static void Push(Actor Act)
-        {
-            //wind is overlapping actor, handle per actor pushes with gust
-            Functions_Movement.Push(Act.compMove, Act.compMove.direction, 1.0f);
-        }
-
-        public static void Push(Projectile Pro)
-        {
-            if (Pro.compMove.moveable)
-            {   //wind is overlapping pro, handle per pro pushes with gust
-                Functions_Movement.Push(Pro.compMove, Pro.compMove.direction, 1.0f);
-            }
-        }
-       
     }
 }

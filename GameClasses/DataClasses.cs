@@ -521,8 +521,8 @@ namespace DungeonRun
         public RoomID roomID;
         public LevelID levelID = LevelID.Forest_Dungeon;
         public Direction windDirection = Direction.None;
-        public byte windFrequency = 10; //default 10% chance
-        public byte windIntensity = 1;
+        public byte windFrequency = 2; //default 2% chance
+        public byte windIntensity = 0; //no wind
         //dungeon room specific fields
         public Boolean visited = false;
         public PuzzleType puzzleType = PuzzleType.None; //most rooms aren't puzzles
@@ -556,8 +556,8 @@ namespace DungeonRun
     {
         public RoomID type = RoomID.Row;
         public Direction windDirection = Direction.None;
-        public byte windFrequency = 10; //default 10% chance
-        public byte windIntensity = 1;
+        public byte windFrequency = 2; //default 2% chance
+        public byte windIntensity = 0; //no wind
         public List<IndObjXmlData> inds = new List<IndObjXmlData>();
         public List<IntObjXmlData> ints = new List<IntObjXmlData>();
     }
@@ -1713,7 +1713,6 @@ namespace DungeonRun
         public ComponentCollision compCollision = new ComponentCollision();
 
         public Boolean active = true; //does object draw, update?
-        public WindType type = WindType.Gust;
         public Direction direction = Direction.Down; //direction sprite is facing
         public int lifeTotal = 0;
         public int lifeCounter = 0;

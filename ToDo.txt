@@ -67,30 +67,6 @@ Today:
 
 
 
-
-
-
-WindSpawns++
-
-bias wind spawns in the direction they are coming from.
-for example, dont spawn wind traveling left at the right 
-side of the screen, simply because it travels off screen
-in a few frames and is a waste of wind resources. done.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Room Wind - Part 3
 
 we need to have more than one type of wind obj, or we need to be able
@@ -99,6 +75,48 @@ parameters to control it's speed, and push amount, and this seems like
 the best solution to keep wind as simple as possible while still allowing
 for a greater degree of control.
 
+added push amount to wind. based on assessment, wind type enum is no
+longer needed. wind will always have the same sprite, it's only the
+initial push that changes wind's character, plus the frequency by which
+it is spawned.
+
+consolidated push() methods in wind functions into the update(),
+instead of passing the wind obj as a ref, which is much slower.
+based on the wind ref's movement speed, we push the resulting
+actors / objects / projectiles. the net result is hopefully faster
+moving wind has more pushing power, while slower wind has less
+pushing power - as one would expect.
+
+upgraded wind spawn() with additional value to control the per frame
+speed applied to the wind. this allows for even more control over the
+speed of the wind once it's pushed. the level can now make 3 distinct
+types of wind: gentle breezes, medium gusts, and very strong gale like
+winds, all independent of frequency, entirely based on a single byte,
+which is using 4 values to model these states:
+0 - no wind spawns, 1 - gentle, 2 - gust, 3 - gale.
+
+wind is working really well now.
+house test level is setup to have wind moving right, with 2% spawn rate,
+at a 1 intensity, or gentle breezes.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Wind Spells
+
+now we need spells to control the level wind.
+spell: calm. (intensity = 0)
+spell: fury. (intensity += 10) - to a max or let systems overload? ovrload
+spell: direction (changes level wind dir to casters facing dir).
 
 
 

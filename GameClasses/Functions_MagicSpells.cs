@@ -135,34 +135,30 @@ namespace DungeonRun
                 if (Caster.direction == Direction.Up)
                 {
                     Functions_Wind.Spawn(
-                        WindType.Gust,
                         Caster.compCollision.rec.Center.X,
                         Caster.compCollision.rec.Center.Y - 16,
-                        Direction.Up);
+                        Direction.Up, 7.0f, 0.03f);
                 }
                 else if (Caster.direction == Direction.Down)
                 {
                     Functions_Wind.Spawn(
-                        WindType.Gust,
                         Caster.compCollision.rec.Center.X,
                         Caster.compCollision.rec.Center.Y + 16,
-                        Direction.Down);
+                        Direction.Down, 7.0f, 0.03f);
                 }
                 else if (Caster.direction == Direction.Right)
                 {
                     Functions_Wind.Spawn(
-                        WindType.Gust,
                         Caster.compCollision.rec.Center.X + 16,
                         Caster.compCollision.rec.Center.Y - 4,
-                        Direction.Right);
+                        Direction.Right, 7.0f, 0.03f);
                 }
                 else if (Caster.direction == Direction.Left)
                 {
                     Functions_Wind.Spawn(
-                        WindType.Gust,
                         Caster.compCollision.rec.Center.X - 16,
                         Caster.compCollision.rec.Center.Y - 4,
-                        Direction.Left);
+                        Direction.Left, 7.0f, 0.03f);
                 }
             }
 

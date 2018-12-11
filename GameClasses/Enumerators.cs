@@ -894,12 +894,14 @@ namespace DungeonRun
 
 
 
-
+    /*
     public enum WindType
     {
-        Gust
+        Gentle, //lvl1
+        Medium, //lvl2
+        Gust,   //lvl3
     }
-
+    */
 
     
 
