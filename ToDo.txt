@@ -66,23 +66,29 @@ Today:
 
 
 
-Wind Spells++
-
-stop wind has been added, which allows the player to completely
-stop the spawning of all wind in the room. this can completely
-defeat some environmental puzzles, so this spell should be very
-late game, if not endgame, or optional entirely.
 
 
 
 
 
 
+Debug Displays++
+
+put room wind intensity + percentage chance below wind in 
+debug displays. done. now we can see the room wind intensity
+and spawn percentage.
 
 
-put room wind intensity + percentage chance below wind in debug display
 
 
+
+
+More Wind!
+
+I want to be able to have tornado like conditions in the game.
+that is what the 'Fury' wind spell should model. this means more
+wind objs in the wind pool, and possibly a higher level of wind
+intensity for level spawn routines..
 
 
 
