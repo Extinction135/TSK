@@ -895,6 +895,10 @@ namespace DungeonRun
 
 
 
+    public enum WindType
+    {
+        Gust
+    }
 
 
     
@@ -969,6 +973,7 @@ namespace DungeonRun
         None,
 
         //wind
+        Wind_Gust,
 
         //explosive/fire
         Fire,
@@ -1045,7 +1050,7 @@ namespace DungeonRun
         #region Spells
 
         //wind
-
+        Wind_Gust,
 
         //explosive
         Fire,

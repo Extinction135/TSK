@@ -77,10 +77,10 @@ namespace DungeonRun
             #region  Wind Spells - has left neighbors to last column
 
             labels[0].text = "gust\nwind";
-            //Functions_MenuItem.SetType(MenuItemType.Explosive_Single, menuItems[0]);
+            Functions_MenuItem.SetType(MenuItemType.Wind_Gust, menuItems[0]);
             menuItems[0].neighborLeft = menuItems[4]; //connect left
 
-            labels[5].text = "shield\nwind";
+            //labels[5].text = "shield\nwind";
             //Functions_MenuItem.SetType(MenuItemType.Explosive_Line, menuItems[5]);
             menuItems[5].neighborLeft = menuItems[9]; //connect left
 
@@ -251,10 +251,11 @@ namespace DungeonRun
                 #region Set Hero's Current Spell (map MenuItemType to SpellType)
 
                 //wind spells
-
+                if (currentlySelected.type == MenuItemType.Wind_Gust)
+                { PlayerData.currentSpell = SpellType.Wind_Gust; }
 
                 //explosive/fire spells
-                if (currentlySelected.type == MenuItemType.Fire)
+                else if (currentlySelected.type == MenuItemType.Fire)
                 { PlayerData.currentSpell = SpellType.Fire; }
                 else if (currentlySelected.type == MenuItemType.Fire_Walk)
                 { PlayerData.currentSpell = SpellType.Fire_Walk; }

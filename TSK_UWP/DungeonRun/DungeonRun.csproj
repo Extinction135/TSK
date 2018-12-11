@@ -238,6 +238,9 @@
     <Compile Include="..\..\GameClasses\Functions_UWP.cs">
       <Link>Classes\Functions_UWP.cs</Link>
     </Compile>
+    <Compile Include="..\..\GameClasses\Functions_Wind.cs">
+      <Link>Classes\Functions_Wind.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\Functions_WorldUI.cs">
       <Link>Classes\Functions_WorldUI.cs</Link>
     </Compile>

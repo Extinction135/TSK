@@ -2547,21 +2547,6 @@ namespace DungeonRun
             #endregion
 
 
-            #region Ice Tiles
-
-            else if (Type == InteractiveType.IceTile)
-            {
-                IntObj.compCollision.offsetX = -6; IntObj.compCollision.offsetY = -6;
-                IntObj.compCollision.rec.Width = 12; IntObj.compCollision.rec.Height = 12;
-                IntObj.compSprite.zOffset = -28; //sort over most floor decor
-                IntObj.compCollision.blocking = false;
-                IntObj.canBeSaved = true;
-                IntObj.compAnim.currentAnimation = AnimationFrames.Dungeon_IceTile;
-                IntObj.selfCleans = true; //selfclean next frame
-            }
-
-            #endregion
-
 
             #region LAVA Pit, Pit Bridge, Trap Pit
 
@@ -2689,6 +2674,22 @@ namespace DungeonRun
 
             #endregion
 
+
+            #region Ice Tiles
+
+            else if (Type == InteractiveType.IceTile)
+            {
+                IntObj.compCollision.offsetX = -6; IntObj.compCollision.offsetY = -6;
+                IntObj.compCollision.rec.Width = 12; IntObj.compCollision.rec.Height = 12;
+                IntObj.compSprite.zOffset = -28; //sort over most floor decor
+                IntObj.compCollision.blocking = false;
+                IntObj.canBeSaved = true;
+                IntObj.compAnim.currentAnimation = AnimationFrames.Dungeon_IceTile;
+                IntObj.selfCleans = true; //selfclean next frame
+                IntObj.compMove.moveable = false; //cannot be moved by wind/belts ever
+            }
+
+            #endregion
 
 
 

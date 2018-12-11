@@ -531,6 +531,21 @@ namespace DungeonRun
 
 
 
+        #region Wind Animations
+
+        public static List<Byte4> Wind_Gust = new List<Byte4> //16x16
+        {   //pingpong animation
+            new Byte4(13, 0, 0, 0), new Byte4(13, 1, 0, 0), new Byte4(13, 2, 0, 0),
+            new Byte4(13, 3, 0, 0), new Byte4(13, 4, 0, 0), new Byte4(13, 3, 0, 0),
+            new Byte4(13, 2, 0, 0), new Byte4(13, 1, 0, 0)
+        };
+
+        #endregion
+
+
+
+
+
 
         #region Pickups
 

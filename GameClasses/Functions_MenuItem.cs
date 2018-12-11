@@ -673,7 +673,15 @@ namespace DungeonRun
 
             #region Wind Spells
 
-
+            else if (Type == MenuItemType.Wind_Gust)
+            {
+                MenuItem.name = "Gust";
+                MenuItem.description = "Casts gust of wind \nin facing direction.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Wind_Gust;
+                MenuItem.compSprite.texture = Assets.entitiesSheet;
+                MenuItem.compAnim.loop = true;
+                MenuItem.compAnim.speed = 8;
+            }
 
             #endregion
 

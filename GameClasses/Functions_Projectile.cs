@@ -66,7 +66,7 @@ namespace DungeonRun
             Pro.compMove.magnitude.Y = 0; //
             Pro.compMove.speed = 0.0f; //assume this object doesn't move
             Pro.compMove.friction = 0.75f; //normal friction
-            Pro.compMove.moveable = false; //most objects cant be moved
+            Pro.compMove.moveable = false; //most pros cant be moved by WIND/BELTS
             Pro.compMove.grounded = true; //most objects exist on the ground
 
             //reset the sfx component
@@ -1478,7 +1478,6 @@ namespace DungeonRun
                 Pro.lifetime = 18; //in frames
                 Pro.compAnim.speed = 2; //in frames
                 Pro.compAnim.loop = false;
-                Pro.compMove.moveable = true;
                 Pro.compMove.grounded = false; //is flying, cant fall into pit
                 Pro.compSprite.texture = Assets.entitiesSheet;
                 Pro.compAnim.currentAnimation = AnimationFrames.Projectile_Sword;
@@ -1517,7 +1516,6 @@ namespace DungeonRun
                 Pro.lifetime = 18; //in frames
                 Pro.compAnim.speed = 2; //in frames
                 Pro.compAnim.loop = false;
-                Pro.compMove.moveable = true;
                 Pro.compMove.grounded = false; //is flying, cant fall into pit
                 Pro.compSprite.texture = Assets.entitiesSheet;
                 Pro.compAnim.currentAnimation = AnimationFrames.Projectile_Shovel;
@@ -1555,7 +1553,6 @@ namespace DungeonRun
                 Pro.lifetime = 25; //match hero's lock for this item
                 Pro.compAnim.speed = 2; //in frames
                 Pro.compAnim.loop = false;
-                Pro.compMove.moveable = true;
                 Pro.compMove.grounded = false; //is flying, cant fall into pit
                 Pro.compSprite.texture = Assets.entitiesSheet;
                 Pro.compAnim.currentAnimation = AnimationFrames.Projectile_Hammer_Down;
@@ -1621,7 +1618,6 @@ namespace DungeonRun
                 Pro.lifetime = 18; //in frames
                 Pro.compAnim.speed = 2; //in frames
                 Pro.compAnim.loop = false;
-                Pro.compMove.moveable = true;
                 Pro.compMove.grounded = false; //obj is airborne
                 Pro.compAnim.currentAnimation = AnimationFrames.Projectile_Net;
                 Pro.compSprite.texture = Assets.entitiesSheet;
@@ -1661,7 +1657,6 @@ namespace DungeonRun
                 Pro.lifetime = 18; //in frames
                 Pro.compAnim.speed = 3; //in frames
                 Pro.compAnim.loop = false;
-                Pro.compMove.moveable = true;
                 Pro.compMove.grounded = false; //is flying, cant fall into pit
                 Pro.compSprite.texture = Assets.entitiesSheet;
                 if (Type == ProjectileType.Firerod)
@@ -1700,6 +1695,7 @@ namespace DungeonRun
                 Pro.interactiveFrame = 60; //early in life = quick spread
                 Pro.interactiveFrame += Functions_Random.Int(-15, 15);
                 //add a random -/+ offset to stagger the spread
+                Pro.compMove.moveable = true; //wind/belts can push
             }
 
             #endregion
@@ -1719,7 +1715,6 @@ namespace DungeonRun
                 Pro.lifetime = 15; //in frames
                 Pro.compAnim.speed = 1; //in frames
                 Pro.compAnim.loop = false;
-                Pro.compMove.moveable = true;
                 Pro.compMove.grounded = false; //obj is airborne
                 Pro.compSprite.texture = Assets.entitiesSheet; //null / doesn't matter cause..
                 Pro.compSprite.visible = false; //..this projectile isnt drawn
@@ -1736,7 +1731,7 @@ namespace DungeonRun
                 Pro.lifetime = 200; //in frames
                 Pro.compAnim.speed = 10; //in frames
                 Pro.compMove.friction = 1.0f; //no air friction
-                Pro.compMove.moveable = true;
+                Pro.compMove.moveable = true; //can be pushed by wind
                 Pro.compMove.grounded = false; //obj is airborne
                 Pro.compAnim.currentAnimation = AnimationFrames.Projectile_Bat;
                 Pro.compSprite.texture = Assets.EnemySheet;
@@ -1777,7 +1772,6 @@ namespace DungeonRun
                 Pro.lifetime = 12; //match hero's lock for this item
                 Pro.compAnim.speed = 2; //in frames
                 Pro.compAnim.loop = false;
-                Pro.compMove.moveable = true;
                 Pro.compMove.grounded = false; //is flying, cant fall into pit
                 Pro.compSprite.texture = Assets.entitiesSheet;
                 Pro.compAnim.currentAnimation = AnimationFrames.Projectile_Wand;

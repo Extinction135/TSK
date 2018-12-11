@@ -334,8 +334,12 @@ namespace DungeonRun
 
                 TopDebugMenu.DebugDisplay_BuildTimes.stringBuilder.Append("lvlbld " + Functions_Level.time.Ticks);
                 TopDebugMenu.DebugDisplay_BuildTimes.stringBuilder.Append("\nrm bld " + Functions_Room.time.Ticks);
-                TopDebugMenu.DebugDisplay_BuildTimes.stringBuilder.Append("\n...");
-                TopDebugMenu.DebugDisplay_BuildTimes.stringBuilder.Append("\n...");
+
+                counter = 0; //display active wind objs
+                for (i = 0; i < Pool.windObjCount; i++) { if (Pool.windObjPool[i].active) { counter++; } }
+                TopDebugMenu.DebugDisplay_BuildTimes.stringBuilder.Append("\nwind " + counter + "/" + Pool.windObjCount);
+                TopDebugMenu.DebugDisplay_BuildTimes.stringBuilder.Append("\n" + Pool.windInts_ThisFrame + "/" + Pool.windInts_Possible);
+                
                 TopDebugMenu.DebugDisplay_BuildTimes.stringBuilder.Append("\n...");
                 TopDebugMenu.DebugDisplay_BuildTimes.textComp.text = TopDebugMenu.DebugDisplay_BuildTimes.stringBuilder.ToString();
                 TopDebugMenu.DebugDisplay_BuildTimes.stringBuilder.Clear();

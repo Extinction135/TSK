@@ -1327,17 +1327,19 @@ namespace DungeonRun
         public static int intObjIndex;
         public static int intObjCounter = 0;
 
+        //wind objs
+        public static int windObjCount = 50;
+        public static List<WindObject> windObjPool = new List<WindObject>();
+        public static int windObjIndex;
+        public static int windObjCounter = 0;
+
         //reference fields
         public static int activeActor = 1; //tracks the current actor being handled by AI
         public static Actor hero; //points to actorPool[0]
 
 
 
-
-
-
-
-
+        
 
         //counts collisions between actors/inds/ints/pros
         public static int collisions_ThisFrame = 0;
@@ -1350,6 +1352,10 @@ namespace DungeonRun
         //counts hero's interaction point interactions only
         public static int heroInts_ThisFrame = 0;
         public static int heroInts_Possible = 0;
+
+        //counts wind interactions
+        public static int windInts_ThisFrame = 0;
+        public static int windInts_Possible = 0;
 
 
 
@@ -1406,10 +1412,13 @@ namespace DungeonRun
             }
 
 
+            //wind pool
+            for (windObjCounter = 0; windObjCounter < windObjCount; windObjCounter++)
+            { windObjPool.Add(new WindObject()); }
+            windObjIndex = 0;
 
 
-            
-            
+
 
 
 
@@ -1685,8 +1694,34 @@ namespace DungeonRun
         }
     }
 
+    #endregion
+
+
+    #region Wind
+
+    public class WindObject
+    {
+        public ComponentSprite compSprite;
+        public ComponentAnimation compAnim = new ComponentAnimation();
+        public ComponentMovement compMove = new ComponentMovement();
+        public ComponentCollision compCollision = new ComponentCollision();
+
+        public Boolean active = true; //does object draw, update?
+        public WindType type = WindType.Gust;
+        public Direction direction = Direction.Down; //direction sprite is facing
+        public int lifeTotal = 0;
+        public int lifeCounter = 0;
+
+        public WindObject()
+        {   //initialize to default value - data is changed later
+            compSprite = new ComponentSprite(Assets.entitiesSheet,
+                new Vector2(50, 50), new Byte4(0, 0, 0, 0), new Point(16, 16));
+            Functions_Wind.Reset(this);
+        }
+    }
 
     #endregion
+
 
 
 

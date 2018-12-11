@@ -127,6 +127,21 @@ namespace DungeonRun
             return Pool.floorPool[Pool.floorIndex];
         }
 
+        public static WindObject GetWind()
+        {
+            for (Pool.windObjCounter = 0; Pool.windObjCounter < Pool.windObjCount; Pool.windObjCounter++)
+            {
+                Pool.windObjIndex++;
+                if (Pool.windObjIndex >= Pool.windObjCount) { Pool.windObjIndex = 0; }
+                if (Pool.windObjPool[Pool.windObjIndex].active == false)
+                {   //found an inactive to return
+                    //reset to default state, return it
+                    Functions_Wind.Reset(Pool.windObjPool[Pool.windObjIndex]);
+                    return Pool.windObjPool[Pool.windObjIndex];
+                }
+            }
+            return Pool.windObjPool[0]; //ran out
+        }
 
 
 
@@ -159,10 +174,10 @@ namespace DungeonRun
         }
 
         public static void ResetActorPool()
-        {   //skip resetting the hero & pet
+        {
             for (Pool.actorCounter = 1; Pool.actorCounter < Pool.actorCount; Pool.actorCounter++)
             { Release(Pool.actorPool[Pool.actorCounter]); }
-            Pool.actorIndex = 1;
+            Pool.actorIndex = 1; //skip hero as returnable actor
         }
 
         public static void ResetParticlePool()
@@ -206,7 +221,12 @@ namespace DungeonRun
             }
         }
 
-
+        public static void ResetWindPool()
+        {
+            for (Pool.windObjCounter = 0; Pool.windObjCounter < Pool.windObjCount; Pool.windObjCounter++)
+            { Release(Pool.windObjPool[Pool.windObjCounter]); }
+            Pool.windObjIndex = 0;
+        }
 
 
 
@@ -255,7 +275,10 @@ namespace DungeonRun
             Pick.lifetime = 0;
         }
 
-
+        public static void Release(WindObject Wind)
+        {
+            Wind.active = false;
+        }
 
 
 
@@ -310,9 +333,7 @@ namespace DungeonRun
 
 
 
-
-
-
+        
 
         public static void Update()
         {
@@ -528,11 +549,13 @@ namespace DungeonRun
             #endregion
 
 
-            
 
 
 
-            
+            //wind pushes ints, actors, projectiles last, has final say over magnitude
+            Functions_Wind.Update();
+
+
 
 
             #region Phase 2 - Project Movement
@@ -742,7 +765,11 @@ namespace DungeonRun
             //actor pool
             for (Pool.actorCounter = 0; Pool.actorCounter < Pool.actorCount; Pool.actorCounter++)
             { Functions_Draw.Draw(Pool.actorPool[Pool.actorCounter]); }
-            
+
+            //wind pool
+            for (Pool.windObjCounter = 0; Pool.windObjCounter < Pool.windObjCount; Pool.windObjCounter++)
+            { Functions_Draw.Draw(Pool.windObjPool[Pool.windObjCounter]); }
+
             //handle hero specific drawing last
             Functions_Hero.Draw();
         }

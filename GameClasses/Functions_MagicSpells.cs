@@ -123,7 +123,54 @@ namespace DungeonRun
 
 
 
+
+
+
             //wind spells
+
+            #region Gust
+
+            else if (Spell == SpellType.Wind_Gust)
+            {   //as close as possible on the offsets
+                if (Caster.direction == Direction.Up)
+                {
+                    Functions_Wind.Spawn(
+                        WindType.Gust,
+                        Caster.compCollision.rec.Center.X,
+                        Caster.compCollision.rec.Center.Y - 16,
+                        Direction.Up);
+                }
+                else if (Caster.direction == Direction.Down)
+                {
+                    Functions_Wind.Spawn(
+                        WindType.Gust,
+                        Caster.compCollision.rec.Center.X,
+                        Caster.compCollision.rec.Center.Y + 16,
+                        Direction.Down);
+                }
+                else if (Caster.direction == Direction.Right)
+                {
+                    Functions_Wind.Spawn(
+                        WindType.Gust,
+                        Caster.compCollision.rec.Center.X + 16,
+                        Caster.compCollision.rec.Center.Y - 4,
+                        Direction.Right);
+                }
+                else if (Caster.direction == Direction.Left)
+                {
+                    Functions_Wind.Spawn(
+                        WindType.Gust,
+                        Caster.compCollision.rec.Center.X - 16,
+                        Caster.compCollision.rec.Center.Y - 4,
+                        Direction.Left);
+                }
+            }
+
+            #endregion
+
+
+
+
 
 
 

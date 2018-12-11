@@ -65,18 +65,80 @@ Today:
 
 
 
-Posts++
-
-posts do not burn. they are blocking ints, and should burn.
-
-ah yes, ground fire interaction routines were targeting burned
-posts instead of unburned posts - to burn. which makes no sense
-as burned posts are already burned and cannot complete the
-burning conversion branch that ground fire is attempting to 
-start via Burn(). fixed. tested and working.
 
 
 
+Wind FTW
+
+created wind object class def.
+created wind functions class.
+linked wind functions to Dx.
+created wind enum values.
+created animated wind sprite on entities sheet.
+created animation frames for wind.
+completed routines for wind functions class.
+created wind pool list, and pool functions.
+created Wind_Gust spellType value.
+gust wind spell menuitem added to spellbook.
+gust wind spell type added.
+
+and now wind implementation..
+
+Functions_Wind.Update() completely
+handles wind implementation. how is this done?
+first, we loop the wind pool finding only active
+wind objs. we check to see if wind is inside the
+current room, and if so eval the wind. otherwise,
+the wind obj is released via pool.release().
+
+wind eval = increment wind frame counter..
+if their frame counter exceeds their interactive
+frame value, then this wind object is compared
+against the interactive obj pool, the actor pool,
+and finally the projectile pool. we use the interactive
+frame approach to spread out wind comparisons 
+across frames - for example we can create wind objs
+that randomly push, so wind objs dont evaluate all
+on the same frame.
+
+added debug info about wind objects to debug info.
+can now see how many wind objs are active vs total.
+
+wind objects are spawning properly and moving.
+now onto their interactions with the pools.
+
+right now, wind pushes every kind of int, act, and pro.
+this doesn't logically make sense, but now we can at
+least test wind against level objs..
+
+tested, working. updated wind systems to use 
+obj.compMove.moveable boolean, which limits wind to only
+pushing draggable interactive objects, like: explosive
+barrels, skull pots, pots, floor torches, dungeon statues,
+switch block buttons, etc.. also tested pushing ground fire
+projectiles with wind: working! which means fireballs can
+be reflected by casting gust of wind in line against the
+fireball.
+
+wind cannot push ice blocks (cracking or not) because
+the projectile is not moveable, among other objs.
+
+wind can push pros: bombs, boomerangs, fireballs, iceballs,
+arrows, ground fires, bats... and explosion emitters. which
+means that chain explosion's 'chain' can be altered by wind
+objects.. and soon each level will have global wind randomly
+created, so...
+
+- closing notes -
+wind is the only defensive magic, as it can alter the
+movement of projectiles/objs/actors, but not directly kill 
+or damage them. this sets up a strategic counter to fire,
+explode, and ice spells keeping them balanced and in check.
+
+wind pops attention particle upon death.
+wind is implemented and working quite well.
+
+sync'd uwp project to Dx content and game classes.
 
 
 
@@ -86,68 +148,112 @@ start via Burn(). fixed. tested and working.
 
 
 
-Add Wind
-	wind vs ints
-	wind vs acts
-	wind vs pros
-
-	
-
-	
-	
-	
-	
-Pool:
-wind - pushes: actors, pros, ints, pickups
-
-wind objs are just projectiles, but they exist in their
-own pool - which is done to reduce the number of interaction
-checks wind does and simplify it's implementation. wind
-interacts (pushes) everything, based on the wind projectiles
-speed or magnitude value. this is acts, pros, ints.
-
-wind should interact with everything last, prior to movement,
-to give wind the final say over movement and magnitude.
 
 
 
-	
-	
-	
-	
 
 
-WIND! objects
+Level Wind
 
-wind projectiles push actors and roomObjs (and other projectiles?)
-hold up! wind projectiles should be in their own pool, so we can
-check them against the main projectile pool, allowing wind to push
-projectiles, making wind the only defense against projectiles - useful!
-
-levels have wind direction, wind intensity, wind birth.
-this is fed into routines that randomly spawn wind pros on screen
+levels need wind direction, wind intensity, wind birth.
+this is fed into routines that randomly spawn gusts of wind on screen
 in level direction, with level intensity(magnitude), at level birth rate.
+
+this means level and room data has to have these values.
+manually copy them into all roomData XML files.
+
+test that room wind works. at this point, we can rebuild levels
+and rooms, and actually test the game with new systems + wind.
+
+
+
+
+
+Rebuild Level and Room Data
+
+all level and room data that looks and plays well from prev version.
+
+
+
+Levels++
+
+add boat objects to the int widgets - barrels, etc.....
+add boat objs to boat ind widgets
+build ship at sea base level
+
+
+
+Indestructible Objs++
+
+hero should have interaction rec with main exit object, taking
+them outside the dungeon.
+
+
+
+
+Mountain Dungeon Climb
+
+wind pushes the player while they are trying to climb the mountain to the dungeon
+entrance. the wind is an obj, with animated action lines, so the player can 'see' the
+wind and it coming towards them - allowing them to dodge.
+
+
+
+Wind in Levels
+
+wind should occasionally blow thru overworld levels
+this is a bombos like wind sweep across the entire screen in a direction.
+hero would be pushed. all pushable things would be pushed. 
+this would also be a global spell cast.
+
+
+Wind Polish
+
+wind should interact specially with some objects, for example
+leaves should fly out from trees that haven't been burned/stumps.
+leaves can fly out of bushes too, just much less of them.
+tall grass can alternate it's frame randomly, as if the wind was
+tickling the grass as it passed by. 
+it's a very environmental thing, but adds life.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Spells - round 2
 
-spell to cast gust of wind (max magnitude).
 spell to cast gusts of wind away from the caster all directions.
+spell to cast wind like bombos across screen globally.
 
 
 
 Wind spells
 
-*wind projectiles exist in their own pool, because they interact with
-roomObjs, actors, AND projectiles - allowing wind to push EVERYTHING.
-this allows wind to COUNTER projectiles. which make wind spells the most
-powerful, but also limited because they dont do direct damage. so it 
-takes intelligence and skill to use them.
-gust: wind pro in casters direction.
 repel: wind pros from casters center out, constantly across frames.
+
 fly: pushes caster in facing direction each frame, in flying state.
+
 mass move: pushes all objs, actors, and pros in room in given direction.
+
 control wind: sets the level's wind direction, intensity, and frequency.
+
 tornado: spawns a tornado roomObj. (fire, ice, explosive, electrical tornados too)...
+
 ****wind should work in water as well*****
 
 
@@ -159,10 +265,12 @@ tornado: spawns a tornado roomObj. (fire, ice, explosive, electrical tornados to
 
 
 
+Pros++
 
-
-
-
+projectiles MUST check collisions against indestructibles,
+and inds must kill() colliding pros. otherwise, arrows just hand
+in the air against inds, waiting for something to collide with them.
+which is weird.
 
 
 
@@ -179,85 +287,6 @@ objects are not actually interactive either.
 we don't use floor objs in field levels, and thats
 a waste of a useful budget for displaying certain
 types of game objects that fields def do need.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-we need a test level that contains all the dungeon
-entrances. linked to shadow level pls. we should be
-able to build the game and test it.
-
-
-
-
-
-
-Indestructible Objs++
-
-hero should have interaction rec with main exit object, taking
-them outside the dungeon.
-
-
-
-
-	
-	
-
-	
-	
-	
-	
-	
-	
-
-	
-	
-	
-
-
-
-
-
-
-
-
-
-Levels++
-
-add boat objects to the int widgets - barrels, etc.....
-
-add boat objs to boat ind widgets
-
-	
-build ship at sea base level
-complete level rebuilds
-complete roomData rebuilds	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -406,16 +435,7 @@ fire tornado magic is unlocked - or something else. i dunno.
 
 LEVEL WIND
 
-Mountain Dungeon Climb
-wind pushes the player while they are trying to climb the mountain to the dungeon
-entrance. the wind is an obj, with animated action lines, so the player can 'see' the
-wind and it coming towards them - allowing them to dodge.
 
-wind should occasionally blow thru overworld levels
-this is a global push() on all objs and actors.
-link would be pushed a bit.
-leaves would fly out from trees, etc..
-it's a very environmental thing, but adds life.
 
 The Kusanagi Sword
 this sword creates gusts of wind, which push objects

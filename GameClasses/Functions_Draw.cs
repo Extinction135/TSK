@@ -38,8 +38,6 @@ namespace DungeonRun
 
 
 
-
-        
         public static void Draw(IndestructibleObject Obj)
         {
             if (Obj.active)
@@ -59,14 +57,6 @@ namespace DungeonRun
                 { Draw(Obj.compCollision); }
             }
         }
-
-
-
-
-
-
-
-
 
         public static void Draw(Actor Actor)
         {
@@ -109,6 +99,15 @@ namespace DungeonRun
             if (Pick.active)
             {
                 Draw(Pick.compSprite);
+            }
+        }
+
+        public static void Draw(WindObject Wind)
+        {
+            if (Wind.active)
+            {
+                Draw(Wind.compSprite);
+                if (Flags.DrawCollisions) { Draw(Wind.compCollision); }
             }
         }
 
@@ -227,10 +226,7 @@ namespace DungeonRun
         }
 
 
-
-
-
-
+        
 
 
         public static void Draw(Line Line)
