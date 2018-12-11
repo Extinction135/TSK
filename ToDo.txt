@@ -68,21 +68,7 @@ Today:
 
 
 
-Game Playtesting
 
-updated all roomData with default wind values.
-added dungeon entrances to shadow king level.
-compiled level xml. compiled room xml.
-
-booting to game working, levels loading / exiting
-fine. 
-
-fixed some issues to get dungeons building properly,
-and fixed an issue where dungeons exit light fx
-prevented hero from moving once in a dungeon room.
-
-increase the floor pool to 400 - we dont have enough 
-floors to make the hub room. lol. done. 
 
 
 
@@ -92,8 +78,29 @@ floors to make the hub room. lol. done.
 
 Dungeon Building Issues
 
-walls are not created. why?
-door neither. disable self-clean routines to rule them out.
+fixed all dungeon building issues - they work again.
+however, there is no room data to populate rooms with,
+so all rooms are empty, exccept the hub and boss rooms.
+those have the mini and boss in them, as expected.
+
+dungeons work again, and entering/exiting them is
+only done via an interaction check, forcing player
+to press A button to enter or exit.
+
+
+
+
+
+
+
+
+
+
+Dungeons++
+
+in mountain dungeon, the wall torch sprite needs to be 
+mirrorable. it is not, and looks wrong in dungeons.
+
 
 
 

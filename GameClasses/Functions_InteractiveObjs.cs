@@ -82,8 +82,9 @@ namespace DungeonRun
             intObjRef = Functions_Pool.GetIntObj();
             intObjRef.direction = Dir;
 
-            intObjRef.compSprite.position.X = X;
-            intObjRef.compSprite.position.Y = Y;
+            Functions_Movement.Teleport(intObjRef.compMove, X, Y);
+            Functions_Component.Align(intObjRef);
+
             SetType(intObjRef, Type);
             return intObjRef;
         }
@@ -994,17 +995,19 @@ namespace DungeonRun
                 )
             {   //some objects only face Direction.Down
                 IntObj.direction = Direction.Down;
+                IntObj.compSprite.rotation = Rotation.None;
             }
 
             //room enemies only face down
             else if (IntObj.group == InteractiveGroup.Enemy)
             {
-                IntObj.compSprite.rotation = Rotation.None;
                 IntObj.direction = Direction.Down;
-
-                //set sprite's rotation based on direction & flipHorizontally boolean
-                Functions_Component.SetSpriteRotation(IntObj.compSprite, IntObj.direction);
+                IntObj.compSprite.rotation = Rotation.None;
             }
+            
+
+            //set sprite's rotation based on direction & flipHorizontally boolean
+            Functions_Component.SetSpriteRotation(IntObj.compSprite, IntObj.direction);
         }
 
 
@@ -1616,8 +1619,6 @@ namespace DungeonRun
         static int g;
         public static void SelfClean(InteractiveObject IntObj)
         {
-            IntObj.selfCleans = false; //this is only run once
-
             //loop over indestructible objs, removing int based on types
             for (g = 0; g < Pool.indObjCount; g++)
             {   //ensure roomObj is active and not self-comparing
@@ -1767,7 +1768,9 @@ namespace DungeonRun
 
                     }
                 }
-            }   
+            }
+
+            IntObj.selfCleans = false; //this is only run once 
         }
 
 
