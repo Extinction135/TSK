@@ -22,7 +22,7 @@ namespace DungeonRun
 			{
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.ForestIsland_BossRoom;
-                bossRooms.Add(room);
+				bossRooms.Add(room);
 			}
 			#endregion
 

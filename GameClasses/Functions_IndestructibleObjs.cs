@@ -209,8 +209,8 @@ namespace DungeonRun
                 IndObj.compSprite.drawRec.Height = 16 * 3; //nonstandard size
                 IndObj.compSprite.zOffset = -32; //sort to floor
                 IndObj.group = IndestructibleGroup.Exit;
-                IndObj.compCollision.rec.Height = 8;
-                IndObj.compCollision.offsetY = 32;
+                IndObj.compCollision.rec.Height = 11;
+                IndObj.compCollision.offsetY = 30;
                 IndObj.compAnim.currentAnimation = AnimationFrames.Dungeon_Exit;
             }
             else if (Type == IndestructibleType.Dungeon_ExitLight)
@@ -220,6 +220,9 @@ namespace DungeonRun
                 IndObj.compCollision.offsetY = 0;
                 IndObj.compSprite.zOffset = 256; //sort above everything
                 IndObj.compAnim.currentAnimation = AnimationFrames.Dungeon_ExitLight;
+
+                IndObj.compCollision.rec.Height = 11;
+                IndObj.compCollision.offsetY = 30;
             }
 
             #endregion

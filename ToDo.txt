@@ -68,20 +68,36 @@ Today:
 
 
 
+Game Playtesting
+
+updated all roomData with default wind values.
+added dungeon entrances to shadow king level.
+compiled level xml. compiled room xml.
+
+booting to game working, levels loading / exiting
+fine. 
+
+fixed some issues to get dungeons building properly,
+and fixed an issue where dungeons exit light fx
+prevented hero from moving once in a dungeon room.
+
+increase the floor pool to 400 - we dont have enough 
+floors to make the hub room. lol. done. 
 
 
 
 
 
 
-Inds++
 
-we need BIG trees back in the game. add these to house test level.
-done and done. house level is looking much better.
+Dungeon Building Issues
+
+walls are not created. why?
+door neither. disable self-clean routines to rule them out.
 
 
-to rebuild levels, we need dungeon entrances.
-to rebuild dungeons, we need roomdata. otherwise they should be empty.
+
+
 
 
 
@@ -136,7 +152,11 @@ wind and it coming towards them - allowing them to dodge.
 
 
 
+Boomerang Bug
 
+if hero exits a room without the boomerang, while
+in a dungeon, then his boomerang is gone until he
+reloads a level.
 
 
 

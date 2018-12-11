@@ -673,7 +673,7 @@ namespace DungeonRun
             objList[0].compCollision.rec.Width = 16 * 3;
             objList[0].compCollision.rec.Height = 16 * 4;
 
-            //hide objs that trees overlap
+            //hide objs that overlap
             Functions_WidgetIndObjs.HideObj(objList[1]);
             Functions_WidgetIndObjs.HideObj(objList[2]);
 

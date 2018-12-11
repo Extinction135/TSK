@@ -299,7 +299,7 @@ namespace DungeonRun
                         Pool.indObjPool[p].compCollision);
                     //set the current animation frame, check the animation counter
                     Functions_Animation.Animate(Pool.indObjPool[p].compAnim,
-                        Pool.indObjPool[i].compSprite);
+                        Pool.indObjPool[p].compSprite);
                     //set the rotation for the obj's sprite
                     Functions_IndestructibleObjs.SetRotation(Pool.indObjPool[p]);
                 }
@@ -318,7 +318,7 @@ namespace DungeonRun
                         Pool.intObjPool[p].compCollision);
                     //set the current animation frame, check the animation counter
                     Functions_Animation.Animate(Pool.intObjPool[p].compAnim,
-                        Pool.intObjPool[i].compSprite);
+                        Pool.intObjPool[p].compSprite);
                     //set the rotation for the obj's sprite
                     Functions_InteractiveObjs.SetRotation(Pool.intObjPool[p]);
                 }

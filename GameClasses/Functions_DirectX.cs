@@ -22,7 +22,6 @@ namespace DungeonRun
         static string localFolder = AppDomain.CurrentDomain.BaseDirectory;
         //static string localFolder = Environment.CurrentDirectory; //same address
 
-        //static string filename; //not used anymore
         static string repoDir = @"C:\Users\Gx000000\Desktop\REPOs\TheShadowKing\TSK";
         static XmlSerializer serializer = new XmlSerializer(typeof(RoomXmlData));
 
@@ -339,24 +338,24 @@ namespace DungeonRun
                         roomData[i].type == RoomID.DeathMountain_BossRoom ||
                         roomData[i].type == RoomID.SwampIsland_BossRoom
                         )
-                    { csOutput += "\t\t\t\t bossRooms.Add(room);\n"; }
+                    { csOutput += "\t\t\t\tbossRooms.Add(room);\n"; }
                     else if (
                         roomData[i].type == RoomID.ForestIsland_HubRoom ||
                         roomData[i].type == RoomID.DeathMountain_HubRoom ||
                         roomData[i].type == RoomID.SwampIsland_HubRoom
                         )
-                    { csOutput += "\t\t\t\t hubRooms.Add(room);\n"; }
+                    { csOutput += "\t\t\t\thubRooms.Add(room);\n"; }
 
                     else if (roomData[i].type == RoomID.Column)
-                    { csOutput += "\t\t\t\t columnRooms.Add(room);\n"; }
+                    { csOutput += "\t\t\t\tcolumnRooms.Add(room);\n"; }
                     else if (roomData[i].type == RoomID.Exit)
-                    { csOutput += "\t\t\t\t exitRooms.Add(room);\n"; }
+                    { csOutput += "\t\t\t\texitRooms.Add(room);\n"; }
                     else if (roomData[i].type == RoomID.Key)
-                    { csOutput += "\t\t\t\t keyRooms.Add(room);\n"; }
+                    { csOutput += "\t\t\t\tkeyRooms.Add(room);\n"; }
                     else if (roomData[i].type == RoomID.Row)
-                    { csOutput += "\t\t\t\t rowRooms.Add(room);\n"; }
+                    { csOutput += "\t\t\t\trowRooms.Add(room);\n"; }
                     else if (roomData[i].type == RoomID.Square)
-                    { csOutput += "\t\t\t\t squareRooms.Add(room);\n"; }
+                    { csOutput += "\t\t\t\tsquareRooms.Add(room);\n"; }
 
                     csOutput += "\t\t\t}\n";
                     csOutput += "\t\t\t#endregion\n\n";
@@ -366,8 +365,7 @@ namespace DungeonRun
                 csOutput += "\t}\n";
                 csOutput += "}";
 
-                string roomAddress = @"C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\GameClasses\AssetsRoomData.cs";
-                //string csFile = @"C:\Users\Gx000000\Desktop\AssetsRoomData.cs";
+                string roomAddress = repoDir + @"\GameClasses\AssetsRoomData.cs";
                 //File.Create(roomAddress).Dispose();
                 File.WriteAllText(roomAddress, csOutput);
 

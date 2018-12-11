@@ -29,6 +29,11 @@ namespace DungeonRun
 			#region SkullIsland_ShadowKing
 
 			SkullIsland_ShadowKing.type = RoomID.SkullIsland_ShadowKing;
+			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.ForestDungeon_Entrance; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 472; SkullIsland_ShadowKing.inds.Add(obj);}
+			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.MountainDungeon_Entrance; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 472; SkullIsland_ShadowKing.inds.Add(obj);}
+			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.SwampDungeon_Entrance; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 456; SkullIsland_ShadowKing.inds.Add(obj);}
+			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Coliseum_Shadow_Spectator; obj.direction = Direction.Down; obj.posX = 792; obj.posY = 520; SkullIsland_ShadowKing.inds.Add(obj);}
+			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Coliseum_Shadow_Entrance; obj.direction = Direction.Down; obj.posX = 792; obj.posY = 456; SkullIsland_ShadowKing.inds.Add(obj);}
 			#endregion
 
 
