@@ -37,21 +37,21 @@ Shadow Dungeon, TSK Fight complete
 	X removed savedata and load/saving
 	X wand & spellbook
 	
-	split pool into more efficient lists
+	X split pool into more efficient lists
 	
-	wind pros - on their own pool list, interact with ints, acts, pros
-	level data ++ - wind direction, intensity, frequency
-	WIND magic
-	ICE magic
-	EXPLODE/BURN magic
-	ELEC magic
-	SUMMON magic
+	X wind pros - on their own pool list, interact with ints, acts, pros
+	X level data ++ - wind direction, intensity, frequency
+	X WIND magic
+	X ICE magic
+	X EXPLODE/BURN magic
+	X ELEC magic
+	X SUMMON magic
 	
 	EARTH magic - quake
 	
 	+ option for loading level data 'fresh' each time for sandboxing
 	(items: hookshot, axe, beans)
-	(interactions: WIND, acts/objs in water)
+	(interactions: X WIND, acts/objs in water)
 	(dungeon: marked map PLS, working puzzles, per dungeon roomdata)
 	(X smaller ram: title image is complete, can be own sheet, no big text)
 	(pets: stable, more pet variety, multiple pets (actor mini pool in fun_hero)
@@ -72,20 +72,116 @@ Today:
 
 
 
+Editor Expansion to v1.0 scale
+
+this simply means i'm defining and allocating widgets for each of the
+7 islands: forest, mtn, swamp, lava, cloud, thieves den, shadow. in
+addition, other widgets for both int and ind objs will remain, including
+the world obj, water obj, house obj, npc obj, dev obj, and dungeon obj
+widgets. so, we're going from 1 set of widgets for ints and inds to two
+sets, so we can just drop in the objs when they have been defined and
+test them in the editor.
+
+moved int objs around in prep.
+created two sets of 7 widgets, for interactive objs and indestructible
+objs, themed to islands and general world sets. iterating these sets
+was tested and refined until working properly. there is ALOT of space
+for objects in the editor now.
 
 
 
 
-Dungeon Building Issues
 
-fixed all dungeon building issues - they work again.
-however, there is no room data to populate rooms with,
-so all rooms are empty, exccept the hub and boss rooms.
-those have the mini and boss in them, as expected.
 
-dungeons work again, and entering/exiting them is
-only done via an interaction check, forcing player
-to press A button to enter or exit.
+Widgets++
+
+add boat objs to boat ind widgets
+along with all other ind objs defined so far.
+
+are we missing any int objs in int widget?
+
+
+
+
+
+
+
+
+
+
+
+Rebuild Level Data - dont do this actually!
+
+all level and room data that looks and plays well from prev version
+needs to be migrated to the new systems. FIRST we need base levels:
+
+link spawns on boat, surrounded by water. (this is based level for all water levels)
+coliseum 
+coliseum pit 
+shadow town 
+shadow dungeon ent 
+mtn dung ent 
+forest dung ent
+
+Mountain Dungeon Climb
+
+wind pushes the player while they are trying to climb the mountain to the dungeon
+entrance. the wind is an obj, with animated action lines, so the player can 'see' the
+wind and it coming towards them - allowing them to dodge.
+
+Wind Sprite
+
+we need a sprite here that looks windy! like curly lines.
+
+
+
+
+
+
+
+
+
+
+
+DUNGEONS!
+
+Improve RoomData +++++++
+
+add long narrow rooms to dungeons.
+add wide short rooms to dungeons.
+breaks up square room repetition.
+makes dungeons feel different too.
+
+
+split up between dungeons now! we want forest to have
+it's own set of forest room data (diff folder), than
+mountain than swamp. this means we have ALOT of roomData
+now which is fine. BUT we also need to be writing these
+rooms to their .cs file specific to forest, mtn, swamp.
+this includes expanding the Dx backend writing methods 
+to handle this.
+
+this allows us to theme roomData to the dungeon it will
+exist in, for example - bushes and trees in the forest
+dungeon. lava obj errywhere in the lava dungeon. slime
+specific to the swamp dungeon... etc...
+
+plus, we already know what dungeons will exist, so can
+go ahead and create these .cs files and routines now:
+forest, mountain, swamp - +lava, +cloud, +den, +shadow
+*those are the 7 primary dungeons in the game.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -99,60 +195,7 @@ to press A button to enter or exit.
 Dungeons++
 
 in mountain dungeon, the wall torch sprite needs to be 
-mirrorable. it is not, and looks wrong in dungeons.
-
-
-
-
-
-
-
-
-
-
-Rebuild Level and Room Data
-
-all level and room data that looks and plays well from prev version.
-
-
-
-Levels++
-
-add boat objects to the int widgets - barrels, etc.....
-add boat objs to boat ind widgets
-build ship at sea base level
-
-
-
-
-relink level data to game. dungeon data can remain empty for now.
-dungeons should build with empty rooms.
-
-
-
-Indestructible Objs++
-
-hero should have interaction rec with main exit object, taking
-them outside the dungeon.
-
-
-
-Mountain Dungeon Climb
-
-wind pushes the player while they are trying to climb the mountain to the dungeon
-entrance. the wind is an obj, with animated action lines, so the player can 'see' the
-wind and it coming towards them - allowing them to dodge.
-
-
-
-
-
-
-
-
-
-
-
+mirrorable. it is not, and looks bad in dungeons.
 
 
 
@@ -164,9 +207,6 @@ Boomerang Bug
 if hero exits a room without the boomerang, while
 in a dungeon, then his boomerang is gone until he
 reloads a level.
-
-
-
 
 
 
@@ -186,6 +226,9 @@ Stop Fire Spell
 this is a fire spell that kills all ground fires in the room.
 simply calls Kill() on them all. this allows for control of
 fire spreading, if we dont want something to burn, for example.
+
+
+
 
 
 
@@ -259,29 +302,11 @@ it's a very environmental thing, but adds life.
 
 
 
-
-
-Spells - round 2
-
-spell to cast gusts of wind away from the caster all directions.
-spell to cast wind like bombos across screen globally.
-
-
-
 Wind spells
-
-repel: wind pros from casters center out, constantly across frames.
 
 fly: pushes caster in facing direction each frame, in flying state.
 
-mass move: pushes all objs, actors, and pros in room in given direction.
-
-control wind: sets the level's wind direction, intensity, and frequency.
-
 tornado: spawns a tornado roomObj. (fire, ice, explosive, electrical tornados too)...
-
-****wind should work in water as well*****
-
 
 
 
@@ -459,35 +484,9 @@ fire tornado magic is unlocked - or something else. i dunno.
 
 
 
-LEVEL WIND
-
-
-
-The Kusanagi Sword
-this sword creates gusts of wind, which push objects
-actors and projectiles (specifically ground fires).
-this sword is used in a challenge where link must
-push fire across a field to kill a rival warlod, via
-the kusanagi legend in japan. alsoknown as the sword 
-of gathering clouds.
-
-
-
-
-
-
-
-
-
-
-
-
-
 Grass++
 cut grass should grow into tall grass if near coastlines,
 or filled ditches.
-
-
 
 
 
@@ -514,11 +513,6 @@ rip this from lttps sprites.
 
 
 
-
-
-
-
-
 comet magic
 
 bombos should make non-hero actors explode via explosions
@@ -528,8 +522,6 @@ quake shakes the screen and deals level 2 damage to everything
 in the level. so it's very powerful. BUT flying objects and actors
 are completely immune to it. this also means we need to write a
 camera shake routine like we did in th.
-
-
 
 
 
@@ -546,7 +538,6 @@ sheet. this default sheet should be thought of as the 'world'
 dungeon sheet - these pits will appear on the overworld against the
 expected green bkg color. so the default pit teeth need to be green,
 leading into brown as they go down into the ground. 
-
 
 
 
@@ -577,9 +568,6 @@ well.
 
 
 
- 
-
-
 
 
 
@@ -596,14 +584,12 @@ and can be used to further decorate piers.
 
 
 
-
 Implement Cane of Somara (or whatever)
 this is the cane that creates blocks that are pushable.
 this makes it MUCH easier to get thru dungeons, as many
 rooms rely on floor switches, which link can simply
 create a block over. if a block is created ontop of
 a blocking roomObject, the block ...
-
 
 
 

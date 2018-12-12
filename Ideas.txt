@@ -7,6 +7,62 @@
 
 
 
+
+
+
+add a 2nd PNG to overworld that contains sprites that overlap link.
+we dont need full zdepth here, we can do it with two layers - background
+and foreground. this allows link to pass under and behind map sprites.
+complete link entering / exiting theives den.
+
+
+reduce hold time for picking up the map. we pop a dialog anyway, so
+player has all the time to read and recognize. pop a dialog for fairy 
+bottles too - so player knows what happened, but reduce their time,
+because once the screen closes they will want to return to action fast.
+we can do this for blob bottles too - explaining whats happening.
+
+
+
+we could have sprites for normal, burned, frozen, and destroyed objects.
+these would be special objects, like house objs or posts.
+
+
+
+need a medallion to freeze the entire ground and snow. a global event.
+freezes enemies. ice block should last (possibly) forever. when it is
+destroyed, it creates the ice tiles on the ground. not on a timer.
+
+only interactive objs fall into pits. only bomb projectile
+falls into pits. all other grounded projectiles are killed().
+
+dog should be a blocking obj just like any other, exactly like
+chicken, and can fall into pits and be released.
+
+
+display all achievements in summary screen.
+at start of title screen, wipe all data.
+
+
+
+
+display global game time above world ui.
+add option to hide world ui to options menu.
+
+
+new partile type: a smoky little skull that animatedly
+floats up and into nothing. spawn these when an enemy is killed.
+signifys a living thing dying. can be used for vendor deaths too.
+
+should be able to kill vendors. gore drop too.
+
+
+use ditches to move water to empty resevoirs or dry ponds.
+this can refill them, completing a level puzzle.
+
+
+
+
 infinity gauntlet.
 has to be done. when all 5 stones are collected, the gauntlet unlocks
 the snap power, which kills half the actors in the current room. up to
@@ -17,17 +73,46 @@ menu, and are related to the infinity stone powers in the avengers movies.
 
 
 
+achievements:
+building objs destroyed
+roofs collapsed
+damage taken
+damage dealt
+total deaths
+dungeon completions
+dungeon exits
+objs/enemies thrown
+enemies killed
+enemies frozen
+exemies exploded
+gold spent
+gold dropped
+gold collected
+items collected 10/24
+coliseums beaten
+coliseum wins
+coliseum deaths
+grass cut
+bushes cut
+dreams had
+nightmares had
+meditations completed
 
 
 
 
 
+spikeblocks that initially move quickly, then stop, then slowly
+return too their starting position. allows for easy traps.
 
 
 
 
-
-
+skeletons - shadow dungeon standard enemies.
+hitting them simply collapses them for a timer amount.
+they can't die or take damage.
+summon skeletons spell - dont know why, but summons 4 skeletons around link.
+and they are enemies. skeletons will attack any nearby actor, btw, not just hero.
 
 
 Spell
@@ -76,7 +161,35 @@ puzzles where many objs must be pushed at once.
 
 
 
+minigames - we need places to do archery and whatnot, where the
+player can win gold for competing in games. games cost gold of
+course, and the return isn't as much as a coliseum win.
 
+
+cloud enemies use wind magic.
+
+
+player should have to find a key to unlock cloud castle.
+
+player should have to physically blow up theives den entrance
+to gain access. this can be done via the boat cannon, which can 
+be an upgrade once all the parts are collected. then player can fire
+cannon as boat in the water on overworld map.
+
+
+1x1 and 3x3 and 4x4 water tiles, to optimize how many int objs
+we use when creating water levels or just making water features
+in room dungeons. should work the exact same as water 2x2.
+
+
+
+full 2nd player along for ride: instead of another link or a dog/pet,
+we can have the 2nd player choose from a list of predefined actors
+with set loadouts, that 2nd player can't change. no inventory or pickup,
+just another actor on screen, that can take damage from hero or deal
+damage to hero - so it's up to the 2ndn player how they want to be.
+they would have 3 hearst and a weapon/item display + a character face square.
+teleports to hero upon a room build.
 
 
 

@@ -1005,7 +1005,6 @@ namespace DungeonRun
                 IntObj.compSprite.rotation = Rotation.None;
             }
             
-
             //set sprite's rotation based on direction & flipHorizontally boolean
             Functions_Component.SetSpriteRotation(IntObj.compSprite, IntObj.direction);
         }

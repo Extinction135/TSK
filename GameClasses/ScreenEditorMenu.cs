@@ -91,19 +91,50 @@ namespace DungeonRun
             #region Handle obj/actor selection for widgets
 
             if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
-            {
-                if (Widgets.WO_Environment.visible)
+            {   //int widgets
+                if (Widgets.WO_Forest.visible)
                 {
-                    CheckObjList(Widgets.WO_Environment);
-                    CheckObjList(Widgets.WO_Water);
-                    CheckObjList(Widgets.WO_House);
-                    CheckObjList(Widgets.WO_NPCS);
-                    CheckObjList(Widgets.WO_Mtn);
-                    CheckObjList(Widgets.WO_Dev);
-                    CheckObjList(Widgets.WO_Dungeon);
+                    CheckIntObjList(Widgets.WO_Forest);
+                    CheckIntObjList(Widgets.WO_Mountain);
+                    CheckIntObjList(Widgets.WO_Swamp);
+                    CheckIntObjList(Widgets.WO_Lava);
+                    CheckIntObjList(Widgets.WO_Cloud);
+                    CheckIntObjList(Widgets.WO_Den);
+                    CheckIntObjList(Widgets.WO_Shadow);
                 }
-
-                if (Widgets.WA_Forest.visible)
+                else if (Widgets.WO_Environment.visible)
+                {
+                    CheckIntObjList(Widgets.WO_Environment);
+                    CheckIntObjList(Widgets.WO_Water);
+                    CheckIntObjList(Widgets.WO_House);
+                    CheckIntObjList(Widgets.WO_NPCS);
+                    CheckIntObjList(Widgets.WO_Dev1);
+                    CheckIntObjList(Widgets.WO_Dev2);
+                    CheckIntObjList(Widgets.WO_Dungeon);
+                }
+                //ind widgets
+                else if (Widgets.WD_Forest.visible)
+                {
+                    CheckIndObjList(Widgets.WD_Forest);
+                    CheckIndObjList(Widgets.WD_Mountain);
+                    CheckIndObjList(Widgets.WD_Swamp);
+                    CheckIndObjList(Widgets.WD_Lava);
+                    CheckIndObjList(Widgets.WD_Cloud);
+                    CheckIndObjList(Widgets.WD_Den);
+                    CheckIndObjList(Widgets.WD_Shadow);
+                }
+                else if (Widgets.WD_BoatA.visible)
+                {
+                    CheckIndObjList(Widgets.WD_BoatA);
+                    CheckIndObjList(Widgets.WD_BoatB);
+                    CheckIndObjList(Widgets.WD_Coliseum);
+                    CheckIndObjList(Widgets.WD_Dev1);
+                    CheckIndObjList(Widgets.WD_Dev2);
+                    CheckIndObjList(Widgets.WD_Dev3);
+                    CheckIndObjList(Widgets.WD_Dev4);
+                }
+                //actor widget
+                else if (Widgets.WA_Forest.visible)
                 {
                     CheckActList(Widgets.WA_Forest);
                     CheckActList(Widgets.WA_Mountain);
@@ -112,16 +143,6 @@ namespace DungeonRun
                     CheckActList(Widgets.WA_Cloud);
                     CheckActList(Widgets.WA_Thievs);
                     CheckActList(Widgets.WA_Shadow);
-                }
-
-                if (Widgets.WD_BoatA.visible)
-                {
-                    CheckIndestructibleObjList(Widgets.WD_BoatA);
-                    CheckIndestructibleObjList(Widgets.WD_BoatB);
-                    CheckIndestructibleObjList(Widgets.WD_Forest);
-                    CheckIndestructibleObjList(Widgets.WD_Mountain);
-                    CheckIndestructibleObjList(Widgets.WD_Swamp);
-                    CheckIndestructibleObjList(Widgets.WD_Coliseum);
                 }
             }
 
@@ -249,19 +270,54 @@ namespace DungeonRun
             Functions_Draw.Draw(bkgRec);
 
             //update/draw interactive obj widgets
-            if (Widgets.WO_Environment.visible)
+            if (Widgets.WO_Forest.visible)
+            {
+                Widgets.WO_Forest.Update(); Widgets.WO_Forest.Draw();
+                Widgets.WO_Mountain.Update(); Widgets.WO_Mountain.Draw();
+                Widgets.WO_Swamp.Update(); Widgets.WO_Swamp.Draw();
+                Widgets.WO_Lava.Update(); Widgets.WO_Lava.Draw();
+                Widgets.WO_Cloud.Update(); Widgets.WO_Cloud.Draw();
+                Widgets.WO_Den.Update(); Widgets.WO_Den.Draw();
+                Widgets.WO_Shadow.Update(); Widgets.WO_Shadow.Draw();
+            }
+            else if(Widgets.WO_Environment.visible)
             {
                 Widgets.WO_Environment.Update(); Widgets.WO_Environment.Draw();
                 Widgets.WO_Water.Update(); Widgets.WO_Water.Draw();
                 Widgets.WO_House.Update(); Widgets.WO_House.Draw();
                 Widgets.WO_NPCS.Update(); Widgets.WO_NPCS.Draw();
-                Widgets.WO_Mtn.Update(); Widgets.WO_Mtn.Draw();
-                Widgets.WO_Dev.Update(); Widgets.WO_Dev.Draw();
+                Widgets.WO_Dev1.Update(); Widgets.WO_Dev1.Draw();
+                Widgets.WO_Dev2.Update(); Widgets.WO_Dev2.Draw();
                 Widgets.WO_Dungeon.Update(); Widgets.WO_Dungeon.Draw();
             }
 
+
+
+            //update/draw indestructible obj widgets
+            else if (Widgets.WD_Forest.visible)
+            {
+                Widgets.WD_Forest.Update(); Widgets.WD_Forest.Draw();
+                Widgets.WD_Mountain.Update(); Widgets.WD_Mountain.Draw();
+                Widgets.WD_Swamp.Update(); Widgets.WD_Swamp.Draw();
+                Widgets.WD_Lava.Update(); Widgets.WD_Lava.Draw();
+                Widgets.WD_Cloud.Update(); Widgets.WD_Cloud.Draw();
+                Widgets.WD_Den.Update(); Widgets.WD_Den.Draw();
+                Widgets.WD_Shadow.Update(); Widgets.WD_Shadow.Draw();
+            }
+            else if (Widgets.WD_BoatA.visible)
+            {
+                Widgets.WD_BoatA.Update(); Widgets.WD_BoatA.Draw();
+                Widgets.WD_BoatB.Update(); Widgets.WD_BoatB.Draw();
+                Widgets.WD_Coliseum.Update(); Widgets.WD_Coliseum.Draw();
+                Widgets.WD_Dev1.Update(); Widgets.WD_Dev1.Draw();
+                Widgets.WD_Dev2.Update(); Widgets.WD_Dev2.Draw();
+                Widgets.WD_Dev3.Update(); Widgets.WD_Dev3.Draw();
+                Widgets.WD_Dev4.Update(); Widgets.WD_Dev4.Draw();
+            }
+
+            
             //update/draw actor widgets
-            if (Widgets.WA_Forest.visible)
+            else if (Widgets.WA_Forest.visible)
             {
                 Widgets.WA_Forest.Update(); Widgets.WA_Forest.Draw();
                 Widgets.WA_Mountain.Update(); Widgets.WA_Mountain.Draw();
@@ -272,20 +328,9 @@ namespace DungeonRun
                 Widgets.WA_Shadow.Update(); Widgets.WA_Shadow.Draw();
             }
 
-            //update/draw indestructible obj widgets
-            if (Widgets.WD_BoatA.visible)
-            {
-                Widgets.WD_BoatA.Update(); Widgets.WD_BoatA.Draw();
-                Widgets.WD_BoatB.Update(); Widgets.WD_BoatB.Draw();
-                Widgets.WD_Forest.Update(); Widgets.WD_Forest.Draw();
-                Widgets.WD_Mountain.Update(); Widgets.WD_Mountain.Draw();
-                Widgets.WD_Swamp.Update(); Widgets.WD_Swamp.Draw();
-                Widgets.WD_Coliseum.Update(); Widgets.WD_Coliseum.Draw();
-            }
+            
 
-
-
-
+            
             //draw tool widgets
             Widgets.RoomTools.Update();
             Widgets.RoomTools.Draw();
@@ -323,27 +368,53 @@ namespace DungeonRun
         {
             widgetDisplaySet_Btn.compText.text = "interactive objs";
             HideWidgets();
-            //set interactive object widgets to be visible
-            Widgets.WO_Environment.visible = true;
-            Widgets.WO_Water.visible = true;
-            Widgets.WO_House.visible = true;
-            Widgets.WO_NPCS.visible = true;
-            Widgets.WO_Mtn.visible = true;
-            Widgets.WO_Dev.visible = true;
-            Widgets.WO_Dungeon.visible = true;
+            //set to dungeon int objs state
+            Widgets.WO_Forest.visible = true;
+            Widgets.WO_Mountain.visible = true;
+            Widgets.WO_Swamp.visible = true;
+            Widgets.WO_Lava.visible = true;
+            Widgets.WO_Cloud.visible = true;
+            Widgets.WO_Den.visible = true;
+            Widgets.WO_Shadow.visible = true;
             //set obj tools editor state to interactive objs
             Widgets.ObjectTools.editorState = WidgetObjectTools.EditorState.InteractiveObj;
         }
 
         public void HideWidgets()
         {   //set all widgets visible to false
+            Widgets.WO_Forest.visible = false;
+            Widgets.WO_Mountain.visible = false;
+            Widgets.WO_Swamp.visible = false;
+            Widgets.WO_Lava.visible = false;
+            Widgets.WO_Cloud.visible = false;
+            Widgets.WO_Den.visible = false;
+            Widgets.WO_Shadow.visible = false;
+            //int set 2
             Widgets.WO_Environment.visible = false;
             Widgets.WO_Water.visible = false;
             Widgets.WO_House.visible = false;
             Widgets.WO_NPCS.visible = false;
-            Widgets.WO_Mtn.visible = false;
-            Widgets.WO_Dev.visible = false;
+            Widgets.WO_Dev1.visible = false;
+            Widgets.WO_Dev2.visible = false;
             Widgets.WO_Dungeon.visible = false;
+
+            //set all indestructible obj widgets to false
+            Widgets.WD_Forest.visible = false;
+            Widgets.WD_Mountain.visible = false;
+            Widgets.WD_Swamp.visible = false;
+            Widgets.WD_Lava.visible = false;
+            Widgets.WD_Cloud.visible = false;
+            Widgets.WD_Den.visible = false;
+            Widgets.WD_Shadow.visible = false;
+            //ind set 2
+            Widgets.WD_BoatA.visible = false;
+            Widgets.WD_BoatB.visible = false;
+            Widgets.WD_Coliseum.visible = false;
+            Widgets.WD_Dev1.visible = false;
+            Widgets.WD_Dev2.visible = false;
+            Widgets.WD_Dev3.visible = false;
+            Widgets.WD_Dev4.visible = false;
+
             //set all actor widgets to false
             Widgets.WA_Forest.visible = false;
             Widgets.WA_Mountain.visible = false;
@@ -352,13 +423,6 @@ namespace DungeonRun
             Widgets.WA_Cloud.visible = false;
             Widgets.WA_Thievs.visible = false;
             Widgets.WA_Shadow.visible = false;
-            //set all indestructible obj widgets to false
-            Widgets.WD_BoatA.visible = false;
-            Widgets.WD_BoatB.visible = false;
-            Widgets.WD_Forest.visible = false;
-            Widgets.WD_Mountain.visible = false;
-            Widgets.WD_Swamp.visible = false;
-            Widgets.WD_Coliseum.visible = false;
         }
 
 
@@ -367,23 +431,48 @@ namespace DungeonRun
         public void IterateWidgetSet()
         {
 
-            if(Widgets.WO_Environment.visible)
-            {
-                //from int objs to ind objs
+            if(Widgets.WO_Forest.visible)
+            {   //goto int set 2
                 HideWidgets();
-                Widgets.WD_BoatA.visible = true;
-                Widgets.WD_BoatB.visible = true;
+                Widgets.WO_Environment.visible = true;
+                Widgets.WO_Water.visible = true;
+                Widgets.WO_House.visible = true;
+                Widgets.WO_NPCS.visible = true;
+                Widgets.WO_Dev1.visible = true;
+                Widgets.WO_Dev2.visible = true;
+                Widgets.WO_Dungeon.visible = true;
+                widgetDisplaySet_Btn.compText.text = "int objs 2";
+                Widgets.ObjectTools.editorState = WidgetObjectTools.EditorState.InteractiveObj;
+            }
+            else if(Widgets.WO_Environment.visible)
+            {   //from int set 2 to ind set 1
+                HideWidgets();
                 Widgets.WD_Forest.visible = true;
                 Widgets.WD_Mountain.visible = true;
                 Widgets.WD_Swamp.visible = true;
+                Widgets.WD_Lava.visible = true;
+                Widgets.WD_Cloud.visible = true;
+                Widgets.WD_Den.visible = true;
+                Widgets.WD_Shadow.visible = true;
+                widgetDisplaySet_Btn.compText.text = "ind objs 1";
+                Widgets.ObjectTools.editorState = WidgetObjectTools.EditorState.IndestructibleObj;
+            }
+
+            else if (Widgets.WD_Forest.visible)
+            {   //from ind set 1 to ind set 2
+                HideWidgets();
+                Widgets.WD_BoatA.visible = true;
+                Widgets.WD_BoatB.visible = true;
                 Widgets.WD_Coliseum.visible = true;
-                widgetDisplaySet_Btn.compText.text = "indestructble objs";
-                //set obj tools editor state to indestructible objs
+                Widgets.WD_Dev1.visible = true;
+                Widgets.WD_Dev2.visible = true;
+                Widgets.WD_Dev3.visible = true;
+                Widgets.WD_Dev4.visible = true;
+                widgetDisplaySet_Btn.compText.text = "ind objs 2";
                 Widgets.ObjectTools.editorState = WidgetObjectTools.EditorState.IndestructibleObj;
             }
             else if(Widgets.WD_BoatA.visible)
-            {
-                //from ind objs to actors
+            {   //from ind set 2 to actors
                 HideWidgets();
                 Widgets.WA_Forest.visible = true;
                 Widgets.WA_Mountain.visible = true;
@@ -400,7 +489,6 @@ namespace DungeonRun
             {   //just reset to entry point for this codebranch
                 ResetWidgets();
             }
-
 
 
 
@@ -440,15 +528,6 @@ namespace DungeonRun
             #endregion
 
             */
-
-
-
-
-
-
-
-
-
         }
 
 
@@ -457,13 +536,13 @@ namespace DungeonRun
 
 
 
-        public void CheckObjList(WidgetIntObject WO)
+        public void CheckIntObjList(WidgetIntObject WO)
         {
             if (WO.visible & WO.window.interior.rec.Contains(Input.cursorPos))
             { Widgets.ObjectTools.CheckObjList(WO.objList); }
         }
 
-        public void CheckIndestructibleObjList(WidgetIndObject WD)
+        public void CheckIndObjList(WidgetIndObject WD)
         {
             if (WD.visible & WD.window.interior.rec.Contains(Input.cursorPos))
             { Widgets.ObjectTools.CheckObjList(WD.objList); }

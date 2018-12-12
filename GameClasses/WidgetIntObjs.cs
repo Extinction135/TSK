@@ -108,6 +108,805 @@ namespace DungeonRun
 
 
 
+    //set 1 - island related objs
+
+    public class WidgetObjects_Forest : WidgetIntObject
+    {
+        public WidgetObjects_Forest()
+        {   //1st
+            window = new MenuWindow(
+                new Point(16 * 1, 16 * 2),
+                new Point(16 * 5, 16 * 15), //size
+                "Forest"); //title
+
+            objList = new List<InteractiveObject>();
+            //4 per row, 12 rows total
+            for (i = 0; i < 4 * 12; i++) { objList.Add(new InteractiveObject()); }
+
+            //row 1
+            Functions_InteractiveObjs.SetType(objList[0], InteractiveType.MountainWall_Top);
+            Functions_InteractiveObjs.SetType(objList[1], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[2], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[3], InteractiveType.Unknown);//
+
+            //row 2
+            Functions_InteractiveObjs.SetType(objList[4], InteractiveType.MountainWall_Mid);
+            Functions_InteractiveObjs.SetType(objList[5], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[6], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[7], InteractiveType.Unknown);//
+
+            //row 3
+            Functions_InteractiveObjs.SetType(objList[8], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[9], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[10], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[11], InteractiveType.Unknown);//
+
+            //row 4
+            Functions_InteractiveObjs.SetType(objList[12], InteractiveType.MountainWall_Bottom);
+            Functions_InteractiveObjs.SetType(objList[13], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[14], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[15], InteractiveType.Unknown);//
+
+            //row 5
+            Functions_InteractiveObjs.SetType(objList[16], InteractiveType.MountainWall_Foothold);
+            Functions_InteractiveObjs.SetType(objList[17], InteractiveType.MountainWall_Ladder);
+            Functions_InteractiveObjs.SetType(objList[18], InteractiveType.MountainWall_Ladder_Trap);
+            Functions_InteractiveObjs.SetType(objList[19], InteractiveType.Unknown);
+
+            //row 6
+            Functions_InteractiveObjs.SetType(objList[20], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[21], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[22], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[23], InteractiveType.Unknown);
+
+            //row 7
+            Functions_InteractiveObjs.SetType(objList[24], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[25], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[26], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[27], InteractiveType.Unknown);
+
+            //row 8
+            Functions_InteractiveObjs.SetType(objList[28], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[29], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[30], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[31], InteractiveType.Unknown);
+
+            //row 9
+            Functions_InteractiveObjs.SetType(objList[32], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[33], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[34], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[35], InteractiveType.Unknown);
+
+            //row 10
+            Functions_InteractiveObjs.SetType(objList[36], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[37], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[38], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[39], InteractiveType.Unknown);
+
+            //row 11
+            Functions_InteractiveObjs.SetType(objList[40], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[41], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[42], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[43], InteractiveType.Unknown);
+
+            //row 12
+            Functions_InteractiveObjs.SetType(objList[44], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[45], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[46], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[47], InteractiveType.Unknown);
+
+            //position the objs relative to the window frame
+            Functions_WidgetIntObjs.PositionObjs(this);
+
+            Functions_WidgetIntObjs.HideObj(objList[1]);
+            Functions_WidgetIntObjs.HideObj(objList[2]);
+            Functions_WidgetIntObjs.HideObj(objList[3]);
+
+            Functions_WidgetIntObjs.HideObj(objList[5]);
+            Functions_WidgetIntObjs.HideObj(objList[6]);
+            Functions_WidgetIntObjs.HideObj(objList[7]);
+
+            Functions_WidgetIntObjs.HideObj(objList[8]);
+            Functions_WidgetIntObjs.HideObj(objList[9]);
+            Functions_WidgetIntObjs.HideObj(objList[10]);
+            Functions_WidgetIntObjs.HideObj(objList[11]);
+
+            Functions_WidgetIntObjs.HideObj(objList[13]);
+            Functions_WidgetIntObjs.HideObj(objList[14]);
+            Functions_WidgetIntObjs.HideObj(objList[15]);
+
+            //reset update all zdepths
+            for (i = 0; i < 4 * 12; i++)
+            {
+                objList[i].compSprite.zOffset = 0;
+                Functions_Component.SetZdepth(objList[i].compSprite);
+            }
+        }
+    }
+
+    public class WidgetObjects_Mountain : WidgetIntObject
+    {
+        public WidgetObjects_Mountain()
+        {   //2nd
+            window = new MenuWindow(
+                new Point(16 * 6 + 8, 16 * 2),
+                new Point(16 * 5, 16 * 15), //size
+                "Mountain"); //title
+
+            objList = new List<InteractiveObject>();
+            //4 per row, 12 rows total
+            for (i = 0; i < 4 * 12; i++) { objList.Add(new InteractiveObject()); }
+
+            //row 1
+            Functions_InteractiveObjs.SetType(objList[0], InteractiveType.MountainWall_Top);
+            Functions_InteractiveObjs.SetType(objList[1], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[2], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[3], InteractiveType.Unknown);//
+
+            //row 2
+            Functions_InteractiveObjs.SetType(objList[4], InteractiveType.MountainWall_Mid);
+            Functions_InteractiveObjs.SetType(objList[5], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[6], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[7], InteractiveType.Unknown);//
+
+            //row 3
+            Functions_InteractiveObjs.SetType(objList[8], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[9], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[10], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[11], InteractiveType.Unknown);//
+
+            //row 4
+            Functions_InteractiveObjs.SetType(objList[12], InteractiveType.MountainWall_Bottom);
+            Functions_InteractiveObjs.SetType(objList[13], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[14], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[15], InteractiveType.Unknown);//
+
+            //row 5
+            Functions_InteractiveObjs.SetType(objList[16], InteractiveType.MountainWall_Foothold);
+            Functions_InteractiveObjs.SetType(objList[17], InteractiveType.MountainWall_Ladder);
+            Functions_InteractiveObjs.SetType(objList[18], InteractiveType.MountainWall_Ladder_Trap);
+            Functions_InteractiveObjs.SetType(objList[19], InteractiveType.Unknown);
+
+            //row 6
+            Functions_InteractiveObjs.SetType(objList[20], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[21], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[22], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[23], InteractiveType.Unknown);
+
+            //row 7
+            Functions_InteractiveObjs.SetType(objList[24], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[25], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[26], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[27], InteractiveType.Unknown);
+
+            //row 8
+            Functions_InteractiveObjs.SetType(objList[28], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[29], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[30], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[31], InteractiveType.Unknown);
+
+            //row 9
+            Functions_InteractiveObjs.SetType(objList[32], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[33], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[34], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[35], InteractiveType.Unknown);
+
+            //row 10
+            Functions_InteractiveObjs.SetType(objList[36], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[37], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[38], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[39], InteractiveType.Unknown);
+
+            //row 11
+            Functions_InteractiveObjs.SetType(objList[40], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[41], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[42], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[43], InteractiveType.Unknown);
+
+            //row 12
+            Functions_InteractiveObjs.SetType(objList[44], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[45], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[46], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[47], InteractiveType.Unknown);
+
+            //position the objs relative to the window frame
+            Functions_WidgetIntObjs.PositionObjs(this);
+
+            Functions_WidgetIntObjs.HideObj(objList[1]);
+            Functions_WidgetIntObjs.HideObj(objList[2]);
+            Functions_WidgetIntObjs.HideObj(objList[3]);
+
+            Functions_WidgetIntObjs.HideObj(objList[5]);
+            Functions_WidgetIntObjs.HideObj(objList[6]);
+            Functions_WidgetIntObjs.HideObj(objList[7]);
+
+            Functions_WidgetIntObjs.HideObj(objList[8]);
+            Functions_WidgetIntObjs.HideObj(objList[9]);
+            Functions_WidgetIntObjs.HideObj(objList[10]);
+            Functions_WidgetIntObjs.HideObj(objList[11]);
+
+            Functions_WidgetIntObjs.HideObj(objList[13]);
+            Functions_WidgetIntObjs.HideObj(objList[14]);
+            Functions_WidgetIntObjs.HideObj(objList[15]);
+
+            //reset update all zdepths
+            for (i = 0; i < 4 * 12; i++)
+            {
+                objList[i].compSprite.zOffset = 0;
+                Functions_Component.SetZdepth(objList[i].compSprite);
+            }
+        }
+    }
+
+    public class WidgetObjects_Swamp : WidgetIntObject
+    {
+        public WidgetObjects_Swamp()
+        {   //3rd
+            window = new MenuWindow(
+                new Point(16 * 12, 16 * 2),
+                new Point(16 * 5, 16 * 15), //size
+                "Swamp"); //title
+
+            objList = new List<InteractiveObject>();
+            //4 per row, 12 rows total
+            for (i = 0; i < 4 * 12; i++) { objList.Add(new InteractiveObject()); }
+
+            //row 1
+            Functions_InteractiveObjs.SetType(objList[0], InteractiveType.MountainWall_Top);
+            Functions_InteractiveObjs.SetType(objList[1], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[2], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[3], InteractiveType.Unknown);//
+
+            //row 2
+            Functions_InteractiveObjs.SetType(objList[4], InteractiveType.MountainWall_Mid);
+            Functions_InteractiveObjs.SetType(objList[5], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[6], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[7], InteractiveType.Unknown);//
+
+            //row 3
+            Functions_InteractiveObjs.SetType(objList[8], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[9], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[10], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[11], InteractiveType.Unknown);//
+
+            //row 4
+            Functions_InteractiveObjs.SetType(objList[12], InteractiveType.MountainWall_Bottom);
+            Functions_InteractiveObjs.SetType(objList[13], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[14], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[15], InteractiveType.Unknown);//
+
+            //row 5
+            Functions_InteractiveObjs.SetType(objList[16], InteractiveType.MountainWall_Foothold);
+            Functions_InteractiveObjs.SetType(objList[17], InteractiveType.MountainWall_Ladder);
+            Functions_InteractiveObjs.SetType(objList[18], InteractiveType.MountainWall_Ladder_Trap);
+            Functions_InteractiveObjs.SetType(objList[19], InteractiveType.Unknown);
+
+            //row 6
+            Functions_InteractiveObjs.SetType(objList[20], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[21], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[22], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[23], InteractiveType.Unknown);
+
+            //row 7
+            Functions_InteractiveObjs.SetType(objList[24], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[25], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[26], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[27], InteractiveType.Unknown);
+
+            //row 8
+            Functions_InteractiveObjs.SetType(objList[28], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[29], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[30], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[31], InteractiveType.Unknown);
+
+            //row 9
+            Functions_InteractiveObjs.SetType(objList[32], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[33], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[34], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[35], InteractiveType.Unknown);
+
+            //row 10
+            Functions_InteractiveObjs.SetType(objList[36], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[37], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[38], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[39], InteractiveType.Unknown);
+
+            //row 11
+            Functions_InteractiveObjs.SetType(objList[40], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[41], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[42], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[43], InteractiveType.Unknown);
+
+            //row 12
+            Functions_InteractiveObjs.SetType(objList[44], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[45], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[46], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[47], InteractiveType.Unknown);
+
+            //position the objs relative to the window frame
+            Functions_WidgetIntObjs.PositionObjs(this);
+
+            Functions_WidgetIntObjs.HideObj(objList[1]);
+            Functions_WidgetIntObjs.HideObj(objList[2]);
+            Functions_WidgetIntObjs.HideObj(objList[3]);
+
+            Functions_WidgetIntObjs.HideObj(objList[5]);
+            Functions_WidgetIntObjs.HideObj(objList[6]);
+            Functions_WidgetIntObjs.HideObj(objList[7]);
+
+            Functions_WidgetIntObjs.HideObj(objList[8]);
+            Functions_WidgetIntObjs.HideObj(objList[9]);
+            Functions_WidgetIntObjs.HideObj(objList[10]);
+            Functions_WidgetIntObjs.HideObj(objList[11]);
+
+            Functions_WidgetIntObjs.HideObj(objList[13]);
+            Functions_WidgetIntObjs.HideObj(objList[14]);
+            Functions_WidgetIntObjs.HideObj(objList[15]);
+
+            //reset update all zdepths
+            for (i = 0; i < 4 * 12; i++)
+            {
+                objList[i].compSprite.zOffset = 0;
+                Functions_Component.SetZdepth(objList[i].compSprite);
+            }
+        }
+    }
+
+    public class WidgetObjects_Lava : WidgetIntObject
+    {
+        public WidgetObjects_Lava()
+        {   //4th left
+            window = new MenuWindow(
+                new Point(16 * 17+8, 16 * 2),
+                new Point(16 * 5, 16 * 15), //size
+                "Lava"); //title
+
+            objList = new List<InteractiveObject>();
+            //4 per row, 12 rows total
+            for (i = 0; i < 4 * 12; i++) { objList.Add(new InteractiveObject()); }
+
+            //row 1
+            Functions_InteractiveObjs.SetType(objList[0], InteractiveType.MountainWall_Top);
+            Functions_InteractiveObjs.SetType(objList[1], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[2], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[3], InteractiveType.Unknown);//
+
+            //row 2
+            Functions_InteractiveObjs.SetType(objList[4], InteractiveType.MountainWall_Mid);
+            Functions_InteractiveObjs.SetType(objList[5], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[6], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[7], InteractiveType.Unknown);//
+
+            //row 3
+            Functions_InteractiveObjs.SetType(objList[8], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[9], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[10], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[11], InteractiveType.Unknown);//
+
+            //row 4
+            Functions_InteractiveObjs.SetType(objList[12], InteractiveType.MountainWall_Bottom);
+            Functions_InteractiveObjs.SetType(objList[13], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[14], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[15], InteractiveType.Unknown);//
+
+            //row 5
+            Functions_InteractiveObjs.SetType(objList[16], InteractiveType.MountainWall_Foothold);
+            Functions_InteractiveObjs.SetType(objList[17], InteractiveType.MountainWall_Ladder);
+            Functions_InteractiveObjs.SetType(objList[18], InteractiveType.MountainWall_Ladder_Trap);
+            Functions_InteractiveObjs.SetType(objList[19], InteractiveType.Unknown);
+
+            //row 6
+            Functions_InteractiveObjs.SetType(objList[20], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[21], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[22], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[23], InteractiveType.Unknown);
+
+            //row 7
+            Functions_InteractiveObjs.SetType(objList[24], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[25], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[26], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[27], InteractiveType.Unknown);
+
+            //row 8
+            Functions_InteractiveObjs.SetType(objList[28], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[29], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[30], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[31], InteractiveType.Unknown);
+
+            //row 9
+            Functions_InteractiveObjs.SetType(objList[32], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[33], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[34], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[35], InteractiveType.Unknown);
+
+            //row 10
+            Functions_InteractiveObjs.SetType(objList[36], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[37], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[38], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[39], InteractiveType.Unknown);
+
+            //row 11
+            Functions_InteractiveObjs.SetType(objList[40], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[41], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[42], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[43], InteractiveType.Unknown);
+
+            //row 12
+            Functions_InteractiveObjs.SetType(objList[44], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[45], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[46], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[47], InteractiveType.Unknown);
+
+            //position the objs relative to the window frame
+            Functions_WidgetIntObjs.PositionObjs(this);
+
+            Functions_WidgetIntObjs.HideObj(objList[1]);
+            Functions_WidgetIntObjs.HideObj(objList[2]);
+            Functions_WidgetIntObjs.HideObj(objList[3]);
+
+            Functions_WidgetIntObjs.HideObj(objList[5]);
+            Functions_WidgetIntObjs.HideObj(objList[6]);
+            Functions_WidgetIntObjs.HideObj(objList[7]);
+
+            Functions_WidgetIntObjs.HideObj(objList[8]);
+            Functions_WidgetIntObjs.HideObj(objList[9]);
+            Functions_WidgetIntObjs.HideObj(objList[10]);
+            Functions_WidgetIntObjs.HideObj(objList[11]);
+
+            Functions_WidgetIntObjs.HideObj(objList[13]);
+            Functions_WidgetIntObjs.HideObj(objList[14]);
+            Functions_WidgetIntObjs.HideObj(objList[15]);
+
+            //reset update all zdepths
+            for (i = 0; i < 4 * 12; i++)
+            {
+                objList[i].compSprite.zOffset = 0;
+                Functions_Component.SetZdepth(objList[i].compSprite);
+            }
+        }
+    }
+
+    public class WidgetObjects_Cloud : WidgetIntObject
+    {
+        public WidgetObjects_Cloud()
+        {   //5th
+            window = new MenuWindow(
+                new Point(16 * 23, 16 * 2),
+                new Point(16 * 5, 16 * 15), //size
+                "Cloud"); //title
+
+            objList = new List<InteractiveObject>();
+            //4 per row, 12 rows total
+            for (i = 0; i < 4 * 12; i++) { objList.Add(new InteractiveObject()); }
+
+            //row 1
+            Functions_InteractiveObjs.SetType(objList[0], InteractiveType.MountainWall_Top);
+            Functions_InteractiveObjs.SetType(objList[1], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[2], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[3], InteractiveType.Unknown);//
+
+            //row 2
+            Functions_InteractiveObjs.SetType(objList[4], InteractiveType.MountainWall_Mid);
+            Functions_InteractiveObjs.SetType(objList[5], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[6], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[7], InteractiveType.Unknown);//
+
+            //row 3
+            Functions_InteractiveObjs.SetType(objList[8], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[9], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[10], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[11], InteractiveType.Unknown);//
+
+            //row 4
+            Functions_InteractiveObjs.SetType(objList[12], InteractiveType.MountainWall_Bottom);
+            Functions_InteractiveObjs.SetType(objList[13], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[14], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[15], InteractiveType.Unknown);//
+
+            //row 5
+            Functions_InteractiveObjs.SetType(objList[16], InteractiveType.MountainWall_Foothold);
+            Functions_InteractiveObjs.SetType(objList[17], InteractiveType.MountainWall_Ladder);
+            Functions_InteractiveObjs.SetType(objList[18], InteractiveType.MountainWall_Ladder_Trap);
+            Functions_InteractiveObjs.SetType(objList[19], InteractiveType.Unknown);
+
+            //row 6
+            Functions_InteractiveObjs.SetType(objList[20], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[21], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[22], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[23], InteractiveType.Unknown);
+
+            //row 7
+            Functions_InteractiveObjs.SetType(objList[24], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[25], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[26], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[27], InteractiveType.Unknown);
+
+            //row 8
+            Functions_InteractiveObjs.SetType(objList[28], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[29], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[30], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[31], InteractiveType.Unknown);
+
+            //row 9
+            Functions_InteractiveObjs.SetType(objList[32], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[33], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[34], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[35], InteractiveType.Unknown);
+
+            //row 10
+            Functions_InteractiveObjs.SetType(objList[36], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[37], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[38], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[39], InteractiveType.Unknown);
+
+            //row 11
+            Functions_InteractiveObjs.SetType(objList[40], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[41], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[42], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[43], InteractiveType.Unknown);
+
+            //row 12
+            Functions_InteractiveObjs.SetType(objList[44], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[45], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[46], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[47], InteractiveType.Unknown);
+
+            //position the objs relative to the window frame
+            Functions_WidgetIntObjs.PositionObjs(this);
+
+            Functions_WidgetIntObjs.HideObj(objList[1]);
+            Functions_WidgetIntObjs.HideObj(objList[2]);
+            Functions_WidgetIntObjs.HideObj(objList[3]);
+
+            Functions_WidgetIntObjs.HideObj(objList[5]);
+            Functions_WidgetIntObjs.HideObj(objList[6]);
+            Functions_WidgetIntObjs.HideObj(objList[7]);
+
+            Functions_WidgetIntObjs.HideObj(objList[8]);
+            Functions_WidgetIntObjs.HideObj(objList[9]);
+            Functions_WidgetIntObjs.HideObj(objList[10]);
+            Functions_WidgetIntObjs.HideObj(objList[11]);
+
+            Functions_WidgetIntObjs.HideObj(objList[13]);
+            Functions_WidgetIntObjs.HideObj(objList[14]);
+            Functions_WidgetIntObjs.HideObj(objList[15]);
+
+            //reset update all zdepths
+            for (i = 0; i < 4 * 12; i++)
+            {
+                objList[i].compSprite.zOffset = 0;
+                Functions_Component.SetZdepth(objList[i].compSprite);
+            }
+        }
+    }
+
+    public class WidgetObjects_ThievesDen : WidgetIntObject
+    {
+        public WidgetObjects_ThievesDen()
+        {   //6th
+            window = new MenuWindow(
+                new Point(16 * 28 + 8, 16 * 2),
+                new Point(16 * 5, 16 * 15), //size
+                "ThievesDen"); //title
+
+            objList = new List<InteractiveObject>();
+            //4 per row, 12 rows total
+            for (i = 0; i < 4 * 12; i++) { objList.Add(new InteractiveObject()); }
+
+            //row 1
+            Functions_InteractiveObjs.SetType(objList[0], InteractiveType.MountainWall_Top);
+            Functions_InteractiveObjs.SetType(objList[1], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[2], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[3], InteractiveType.Unknown);//
+
+            //row 2
+            Functions_InteractiveObjs.SetType(objList[4], InteractiveType.MountainWall_Mid);
+            Functions_InteractiveObjs.SetType(objList[5], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[6], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[7], InteractiveType.Unknown);//
+
+            //row 3
+            Functions_InteractiveObjs.SetType(objList[8], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[9], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[10], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[11], InteractiveType.Unknown);//
+
+            //row 4
+            Functions_InteractiveObjs.SetType(objList[12], InteractiveType.MountainWall_Bottom);
+            Functions_InteractiveObjs.SetType(objList[13], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[14], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[15], InteractiveType.Unknown);//
+
+            //row 5
+            Functions_InteractiveObjs.SetType(objList[16], InteractiveType.MountainWall_Foothold);
+            Functions_InteractiveObjs.SetType(objList[17], InteractiveType.MountainWall_Ladder);
+            Functions_InteractiveObjs.SetType(objList[18], InteractiveType.MountainWall_Ladder_Trap);
+            Functions_InteractiveObjs.SetType(objList[19], InteractiveType.Unknown);
+
+            //row 6
+            Functions_InteractiveObjs.SetType(objList[20], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[21], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[22], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[23], InteractiveType.Unknown);
+
+            //row 7
+            Functions_InteractiveObjs.SetType(objList[24], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[25], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[26], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[27], InteractiveType.Unknown);
+
+            //row 8
+            Functions_InteractiveObjs.SetType(objList[28], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[29], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[30], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[31], InteractiveType.Unknown);
+
+            //row 9
+            Functions_InteractiveObjs.SetType(objList[32], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[33], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[34], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[35], InteractiveType.Unknown);
+
+            //row 10
+            Functions_InteractiveObjs.SetType(objList[36], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[37], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[38], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[39], InteractiveType.Unknown);
+
+            //row 11
+            Functions_InteractiveObjs.SetType(objList[40], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[41], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[42], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[43], InteractiveType.Unknown);
+
+            //row 12
+            Functions_InteractiveObjs.SetType(objList[44], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[45], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[46], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[47], InteractiveType.Unknown);
+
+            //position the objs relative to the window frame
+            Functions_WidgetIntObjs.PositionObjs(this);
+
+            Functions_WidgetIntObjs.HideObj(objList[1]);
+            Functions_WidgetIntObjs.HideObj(objList[2]);
+            Functions_WidgetIntObjs.HideObj(objList[3]);
+
+            Functions_WidgetIntObjs.HideObj(objList[5]);
+            Functions_WidgetIntObjs.HideObj(objList[6]);
+            Functions_WidgetIntObjs.HideObj(objList[7]);
+
+            Functions_WidgetIntObjs.HideObj(objList[8]);
+            Functions_WidgetIntObjs.HideObj(objList[9]);
+            Functions_WidgetIntObjs.HideObj(objList[10]);
+            Functions_WidgetIntObjs.HideObj(objList[11]);
+
+            Functions_WidgetIntObjs.HideObj(objList[13]);
+            Functions_WidgetIntObjs.HideObj(objList[14]);
+            Functions_WidgetIntObjs.HideObj(objList[15]);
+
+            //reset update all zdepths
+            for (i = 0; i < 4 * 12; i++)
+            {
+                objList[i].compSprite.zOffset = 0;
+                Functions_Component.SetZdepth(objList[i].compSprite);
+            }
+        }
+    }
+
+    public class WidgetObjects_Shadow : WidgetIntObject
+    {
+        public WidgetObjects_Shadow()
+        {   //7th
+            window = new MenuWindow(
+                new Point(16 * 34, 16 * 2),
+                new Point(16 * 5, 16 * 15), //size
+                "Shadow"); //title
+
+            objList = new List<InteractiveObject>();
+            //4 per row, 12 rows total
+            for (i = 0; i < 4 * 12; i++) { objList.Add(new InteractiveObject()); }
+
+            //row 1
+            Functions_InteractiveObjs.SetType(objList[0], InteractiveType.MountainWall_Top);
+            Functions_InteractiveObjs.SetType(objList[1], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[2], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[3], InteractiveType.Unknown);//
+
+            //row 2
+            Functions_InteractiveObjs.SetType(objList[4], InteractiveType.MountainWall_Mid);
+            Functions_InteractiveObjs.SetType(objList[5], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[6], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[7], InteractiveType.Unknown);//
+
+            //row 3
+            Functions_InteractiveObjs.SetType(objList[8], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[9], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[10], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[11], InteractiveType.Unknown);//
+
+            //row 4
+            Functions_InteractiveObjs.SetType(objList[12], InteractiveType.MountainWall_Bottom);
+            Functions_InteractiveObjs.SetType(objList[13], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[14], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[15], InteractiveType.Unknown);//
+
+            //row 5
+            Functions_InteractiveObjs.SetType(objList[16], InteractiveType.MountainWall_Foothold);
+            Functions_InteractiveObjs.SetType(objList[17], InteractiveType.MountainWall_Ladder);
+            Functions_InteractiveObjs.SetType(objList[18], InteractiveType.MountainWall_Ladder_Trap);
+            Functions_InteractiveObjs.SetType(objList[19], InteractiveType.Unknown);
+
+            //row 6
+            Functions_InteractiveObjs.SetType(objList[20], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[21], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[22], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[23], InteractiveType.Unknown);
+
+            //row 7
+            Functions_InteractiveObjs.SetType(objList[24], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[25], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[26], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[27], InteractiveType.Unknown);
+
+            //row 8
+            Functions_InteractiveObjs.SetType(objList[28], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[29], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[30], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[31], InteractiveType.Unknown);
+
+            //row 9
+            Functions_InteractiveObjs.SetType(objList[32], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[33], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[34], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[35], InteractiveType.Unknown);
+
+            //row 10
+            Functions_InteractiveObjs.SetType(objList[36], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[37], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[38], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[39], InteractiveType.Unknown);
+
+            //row 11
+            Functions_InteractiveObjs.SetType(objList[40], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[41], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[42], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[43], InteractiveType.Unknown);
+
+            //row 12
+            Functions_InteractiveObjs.SetType(objList[44], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[45], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[46], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[47], InteractiveType.Unknown);
+
+            //position the objs relative to the window frame
+            Functions_WidgetIntObjs.PositionObjs(this);
+
+            Functions_WidgetIntObjs.HideObj(objList[1]);
+            Functions_WidgetIntObjs.HideObj(objList[2]);
+            Functions_WidgetIntObjs.HideObj(objList[3]);
+
+            Functions_WidgetIntObjs.HideObj(objList[5]);
+            Functions_WidgetIntObjs.HideObj(objList[6]);
+            Functions_WidgetIntObjs.HideObj(objList[7]);
+
+            Functions_WidgetIntObjs.HideObj(objList[8]);
+            Functions_WidgetIntObjs.HideObj(objList[9]);
+            Functions_WidgetIntObjs.HideObj(objList[10]);
+            Functions_WidgetIntObjs.HideObj(objList[11]);
+
+            Functions_WidgetIntObjs.HideObj(objList[13]);
+            Functions_WidgetIntObjs.HideObj(objList[14]);
+            Functions_WidgetIntObjs.HideObj(objList[15]);
+
+            //reset update all zdepths
+            for (i = 0; i < 4 * 12; i++)
+            {
+                objList[i].compSprite.zOffset = 0;
+                Functions_Component.SetZdepth(objList[i].compSprite);
+            }
+        }
+    }
 
 
 
@@ -116,7 +915,14 @@ namespace DungeonRun
 
 
 
-    //interactive objects display set
+
+
+
+
+
+
+
+    //set 2 - general world related objs
 
     public class WidgetObjects_Environment : WidgetIntObject
     {
@@ -224,7 +1030,6 @@ namespace DungeonRun
             }
         }
     }
-
 
     public class WidgetObjects_Water : WidgetIntObject
     {
@@ -338,7 +1143,6 @@ namespace DungeonRun
         }
     }
 
-
     public class WidgetObjects_House : WidgetIntObject
     {
         public WidgetObjects_House()
@@ -378,9 +1182,9 @@ namespace DungeonRun
 
             //row 5
             Functions_InteractiveObjs.SetType(objList[16], InteractiveType.Boat_Floor);
-            Functions_InteractiveObjs.SetType(objList[17], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[18], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[19], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[17], InteractiveType.Coliseum_Shadow_Stairs_Left);
+            Functions_InteractiveObjs.SetType(objList[18], InteractiveType.Coliseum_Shadow_Stairs_Middle);
+            Functions_InteractiveObjs.SetType(objList[19], InteractiveType.Coliseum_Shadow_Stairs_Right);
 
             //row 6
             Functions_InteractiveObjs.SetType(objList[20], InteractiveType.Unknown);
@@ -438,7 +1242,6 @@ namespace DungeonRun
         }
     }
 
-
     public class WidgetObjects_NPCS : WidgetIntObject
     {
         public WidgetObjects_NPCS()
@@ -495,8 +1298,8 @@ namespace DungeonRun
             Functions_InteractiveObjs.SetType(objList[27], InteractiveType.Unknown);
 
             //row 8
-            Functions_InteractiveObjs.SetType(objList[28], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[29], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[28], InteractiveType.Vendor_Colliseum_Mob);
+            Functions_InteractiveObjs.SetType(objList[29], InteractiveType.Vendor_EnemyItems);
             Functions_InteractiveObjs.SetType(objList[30], InteractiveType.Unknown);
             Functions_InteractiveObjs.SetType(objList[31], InteractiveType.Unknown);
 
@@ -538,130 +1341,14 @@ namespace DungeonRun
         }
     }
 
-
-    public class WidgetObjects_Mountain : WidgetIntObject
+    public class WidgetObjects_Dev1 : WidgetIntObject
     {
-        public WidgetObjects_Mountain()
-        {   //4th left
+        public WidgetObjects_Dev1()
+        {   //5th
             window = new MenuWindow(
                 new Point(16 * 23, 16 * 2),
                 new Point(16 * 5, 16 * 15), //size
-                "Mtn Objects"); //title
-
-            objList = new List<InteractiveObject>();
-            //4 per row, 12 rows total
-            for (i = 0; i < 4 * 12; i++) { objList.Add(new InteractiveObject()); }
-
-            //row 1
-            Functions_InteractiveObjs.SetType(objList[0], InteractiveType.MountainWall_Top);
-            Functions_InteractiveObjs.SetType(objList[1], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[2], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[3], InteractiveType.Unknown);//
-
-            //row 2
-            Functions_InteractiveObjs.SetType(objList[4], InteractiveType.MountainWall_Mid);
-            Functions_InteractiveObjs.SetType(objList[5], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[6], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[7], InteractiveType.Unknown);//
-
-            //row 3
-            Functions_InteractiveObjs.SetType(objList[8], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[9], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[10], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[11], InteractiveType.Unknown);//
-
-            //row 4
-            Functions_InteractiveObjs.SetType(objList[12], InteractiveType.MountainWall_Bottom);
-            Functions_InteractiveObjs.SetType(objList[13], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[14], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[15], InteractiveType.Unknown);//
-
-            //row 5
-            Functions_InteractiveObjs.SetType(objList[16], InteractiveType.MountainWall_Foothold);
-            Functions_InteractiveObjs.SetType(objList[17], InteractiveType.MountainWall_Ladder);
-            Functions_InteractiveObjs.SetType(objList[18], InteractiveType.MountainWall_Ladder_Trap);
-            Functions_InteractiveObjs.SetType(objList[19], InteractiveType.Unknown);
-
-            //row 6
-            Functions_InteractiveObjs.SetType(objList[20], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[21], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[22], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[23], InteractiveType.Unknown);
-
-            //row 7
-            Functions_InteractiveObjs.SetType(objList[24], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[25], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[26], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[27], InteractiveType.Unknown);
-
-            //row 8
-            Functions_InteractiveObjs.SetType(objList[28], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[29], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[30], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[31], InteractiveType.Unknown);
-
-            //row 9
-            Functions_InteractiveObjs.SetType(objList[32], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[33], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[34], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[35], InteractiveType.Unknown);
-
-            //row 10
-            Functions_InteractiveObjs.SetType(objList[36], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[37], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[38], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[39], InteractiveType.Unknown);
-
-            //row 11
-            Functions_InteractiveObjs.SetType(objList[40], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[41], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[42], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[43], InteractiveType.Unknown);
-
-            //row 12
-            Functions_InteractiveObjs.SetType(objList[44], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[45], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[46], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[47], InteractiveType.Unknown);
-
-            //position the objs relative to the window frame
-            Functions_WidgetIntObjs.PositionObjs(this);
-
-            Functions_WidgetIntObjs.HideObj(objList[1]);
-            Functions_WidgetIntObjs.HideObj(objList[2]);
-            Functions_WidgetIntObjs.HideObj(objList[3]);
-
-            Functions_WidgetIntObjs.HideObj(objList[5]);
-            Functions_WidgetIntObjs.HideObj(objList[6]);
-            Functions_WidgetIntObjs.HideObj(objList[7]);
-
-            Functions_WidgetIntObjs.HideObj(objList[8]);
-            Functions_WidgetIntObjs.HideObj(objList[9]);
-            Functions_WidgetIntObjs.HideObj(objList[10]);
-            Functions_WidgetIntObjs.HideObj(objList[11]);
-
-            Functions_WidgetIntObjs.HideObj(objList[13]);
-            Functions_WidgetIntObjs.HideObj(objList[14]);
-            Functions_WidgetIntObjs.HideObj(objList[15]);
-
-            //reset update all zdepths
-            for (i = 0; i < 4 * 12; i++)
-            {
-                objList[i].compSprite.zOffset = 0;
-                Functions_Component.SetZdepth(objList[i].compSprite);
-            }
-        }
-    }
-
-
-    public class WidgetObjects_Dev : WidgetIntObject
-    {
-        public WidgetObjects_Dev()
-        {   //4th left
-            window = new MenuWindow(
-                new Point(16 * 28 + 8, 16 * 2),
-                new Point(16 * 5, 16 * 15), //size
-                "Dev Int Objs"); //title
+                "Dev1"); //title
 
             objList = new List<InteractiveObject>();
             //4 per row, 12 rows total
@@ -733,16 +1420,18 @@ namespace DungeonRun
             Functions_InteractiveObjs.SetType(objList[42], InteractiveType.Unknown);
             Functions_InteractiveObjs.SetType(objList[43], InteractiveType.Unknown);
 
-            //row 12
-            Functions_InteractiveObjs.SetType(objList[44], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[45], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[46], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[47], InteractiveType.Unknown);
+            //row 12 - cheat and put these beyond widget bounds cause they big
+            Functions_InteractiveObjs.SetType(objList[44], InteractiveType.Coliseum_Shadow_Gate_Pillar_Left);
+            Functions_InteractiveObjs.SetType(objList[45], InteractiveType.Unknown);//covered by left pillar
+            Functions_InteractiveObjs.SetType(objList[46], InteractiveType.Coliseum_Shadow_Gate_Center);
+            Functions_InteractiveObjs.SetType(objList[47], InteractiveType.Coliseum_Shadow_Gate_Pillar_Right);//
+
 
             //position the objs relative to the window frame
             Functions_WidgetIntObjs.PositionObjs(this);
 
-            //Functions_WidgetObject.HideObj(objList[5]);
+            //hide covered objs
+            Functions_WidgetIntObjs.HideObj(objList[45]);
 
             //reset update all zdepths
             for (i = 0; i < 4 * 12; i++)
@@ -753,10 +1442,109 @@ namespace DungeonRun
         }
     }
 
-    //NOTE: we can update dungeon widget object's texture to see diff dungeons
+    public class WidgetObjects_Dev2 : WidgetIntObject
+    {
+        public WidgetObjects_Dev2()
+        {   //5th
+            window = new MenuWindow(
+                new Point(16 * 28 + 8, 16 * 2),
+                new Point(16 * 5, 16 * 15), //size
+                "Dev2"); //title
+
+            objList = new List<InteractiveObject>();
+            //4 per row, 12 rows total
+            for (i = 0; i < 4 * 12; i++) { objList.Add(new InteractiveObject()); }
+
+            //row 1
+            Functions_InteractiveObjs.SetType(objList[0], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[1], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[2], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[3], InteractiveType.Unknown);
+
+            //row 2
+            Functions_InteractiveObjs.SetType(objList[4], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[5], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[6], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[7], InteractiveType.Unknown);
+
+            //row 3
+            Functions_InteractiveObjs.SetType(objList[8], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[9], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[10], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[11], InteractiveType.Unknown);
+
+            //row 4
+            Functions_InteractiveObjs.SetType(objList[12], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[13], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[14], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[15], InteractiveType.Unknown);
+
+            //row 5
+            Functions_InteractiveObjs.SetType(objList[16], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[17], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[18], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[19], InteractiveType.Unknown);
+
+            //row 6
+            Functions_InteractiveObjs.SetType(objList[20], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[21], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[22], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[23], InteractiveType.Unknown);
+
+            //row 7
+            Functions_InteractiveObjs.SetType(objList[24], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[25], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[26], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[27], InteractiveType.Unknown);
+
+            //row 8
+            Functions_InteractiveObjs.SetType(objList[28], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[29], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[30], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[31], InteractiveType.Unknown);
+
+            //row 9
+            Functions_InteractiveObjs.SetType(objList[32], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[33], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[34], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[35], InteractiveType.Unknown);
+
+            //row 10
+            Functions_InteractiveObjs.SetType(objList[36], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[37], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[38], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[39], InteractiveType.Unknown);
+
+            //row 11
+            Functions_InteractiveObjs.SetType(objList[40], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[41], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[42], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[43], InteractiveType.Unknown);
+
+            //row 12 - cheat and put these beyond widget bounds cause they big
+            Functions_InteractiveObjs.SetType(objList[44], InteractiveType.Coliseum_Shadow_Gate_Pillar_Left);
+            Functions_InteractiveObjs.SetType(objList[45], InteractiveType.Unknown);//covered by left pillar
+            Functions_InteractiveObjs.SetType(objList[46], InteractiveType.Coliseum_Shadow_Gate_Center);
+            Functions_InteractiveObjs.SetType(objList[47], InteractiveType.Coliseum_Shadow_Gate_Pillar_Right);//
+
+
+            //position the objs relative to the window frame
+            Functions_WidgetIntObjs.PositionObjs(this);
+
+            //hide covered objs
+            Functions_WidgetIntObjs.HideObj(objList[45]);
+
+            //reset update all zdepths
+            for (i = 0; i < 4 * 12; i++)
+            {
+                objList[i].compSprite.zOffset = 0;
+                Functions_Component.SetZdepth(objList[i].compSprite);
+            }
+        }
+    }
 
     public class WidgetObjects_Dungeon : WidgetIntObject
-    {
+    {   //NOTE: we can update dungeon widget object's texture to see diff dungeons
         public WidgetObjects_Dungeon()
         {   //far right
             window = new MenuWindow(
@@ -852,6 +1640,11 @@ namespace DungeonRun
             }
         }
     }
+
+
+
+
+
 
 
 

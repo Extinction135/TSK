@@ -110,224 +110,14 @@ namespace DungeonRun
 
 
 
-    //interactive objects display set
-
-    public class WidgetIndestructibleObjs_BoatA : WidgetIndObject
-    {
-        public WidgetIndestructibleObjs_BoatA()
-        {   //1st left
-            window = new MenuWindow(
-                new Point(16 * 1, 16 * 2), //position
-                new Point(16 * 5, 16 * 15), //size
-                "Boat A"); //title
-
-            objList = new List<IndestructibleObject>();
-            //4 per row, 12 rows total
-            for (i = 0; i < 4 * 12; i++) { objList.Add(new IndestructibleObject()); }
-
-            //row 1
-            Functions_IndestructibleObjs.SetType(objList[0], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[1], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[2], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[3], IndestructibleType.Dungeon_BlockDark);
-
-            //row 2
-            Functions_IndestructibleObjs.SetType(objList[4], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[5], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[6], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[7], IndestructibleType.Dungeon_BlockDark);
-
-            //row 3
-            Functions_IndestructibleObjs.SetType(objList[8], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[9], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[10], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[11], IndestructibleType.Dungeon_BlockDark);
-
-            //row 4
-            Functions_IndestructibleObjs.SetType(objList[12], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[13], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[14], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[15], IndestructibleType.Dungeon_BlockDark);
-
-            //row 5
-            Functions_IndestructibleObjs.SetType(objList[16], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[17], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[18], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[19], IndestructibleType.Dungeon_BlockDark);
-
-            //row 6
-            Functions_IndestructibleObjs.SetType(objList[20], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[21], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[22], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[23], IndestructibleType.Dungeon_BlockDark);
-
-            //row 7
-            Functions_IndestructibleObjs.SetType(objList[24], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[25], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[26], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[27], IndestructibleType.Dungeon_BlockDark);
-
-            //row 8
-            Functions_IndestructibleObjs.SetType(objList[28], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[29], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[30], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[31], IndestructibleType.Dungeon_BlockDark);
-
-            //row 9
-            Functions_IndestructibleObjs.SetType(objList[32], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[33], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[34], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[35], IndestructibleType.Dungeon_BlockDark);
-
-            //row 10
-            Functions_IndestructibleObjs.SetType(objList[36], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[37], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[38], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[39], IndestructibleType.Dungeon_BlockDark);
-
-            //row 11
-            Functions_IndestructibleObjs.SetType(objList[40], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[41], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[42], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[43], IndestructibleType.Dungeon_BlockDark);
-
-            //row 12
-            Functions_IndestructibleObjs.SetType(objList[44], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[45], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[46], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[47], IndestructibleType.Dungeon_BlockDark);
-
-            //position the objs relative to the window frame
-            Functions_WidgetIndObjs.PositionObjs(this);
-
-            //manually set recs
-            //objList[8].compCollision.rec.Height = 16 * 2;
-            //objList[9].compCollision.rec.Height = 16 * 2;
-
-            //hide objs that trees overlap
-            Functions_WidgetIndObjs.HideObj(objList[12]);
-
-            //reset update all zdepths
-            for (i = 0; i < 4 * 12; i++)
-            {
-                objList[i].compSprite.zOffset = 0;
-                Functions_Component.SetZdepth(objList[i].compSprite);
-            }
-        }
-    }
-
-
-    public class WidgetIndestructibleObjs_BoatB : WidgetIndObject
-    {
-        public WidgetIndestructibleObjs_BoatB()
-        {   //1st left
-            window = new MenuWindow(
-                new Point(16 * 6 + 8, 16 * 2), //position
-                new Point(16 * 5, 16 * 15), //size
-                "Boat B"); //title
-
-            objList = new List<IndestructibleObject>();
-            //4 per row, 12 rows total
-            for (i = 0; i < 4 * 12; i++) { objList.Add(new IndestructibleObject()); }
-
-            //row 1
-            Functions_IndestructibleObjs.SetType(objList[0], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[1], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[2], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[3], IndestructibleType.Dungeon_BlockDark);
-
-            //row 2
-            Functions_IndestructibleObjs.SetType(objList[4], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[5], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[6], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[7], IndestructibleType.Dungeon_BlockDark);
-
-            //row 3
-            Functions_IndestructibleObjs.SetType(objList[8], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[9], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[10], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[11], IndestructibleType.Dungeon_BlockDark);
-
-            //row 4
-            Functions_IndestructibleObjs.SetType(objList[12], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[13], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[14], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[15], IndestructibleType.Dungeon_BlockDark);
-
-            //row 5
-            Functions_IndestructibleObjs.SetType(objList[16], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[17], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[18], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[19], IndestructibleType.Dungeon_BlockDark);
-
-            //row 6
-            Functions_IndestructibleObjs.SetType(objList[20], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[21], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[22], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[23], IndestructibleType.Dungeon_BlockDark);
-
-            //row 7
-            Functions_IndestructibleObjs.SetType(objList[24], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[25], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[26], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[27], IndestructibleType.Dungeon_BlockDark);
-
-            //row 8
-            Functions_IndestructibleObjs.SetType(objList[28], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[29], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[30], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[31], IndestructibleType.Dungeon_BlockDark);
-
-            //row 9
-            Functions_IndestructibleObjs.SetType(objList[32], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[33], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[34], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[35], IndestructibleType.Dungeon_BlockDark);
-
-            //row 10
-            Functions_IndestructibleObjs.SetType(objList[36], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[37], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[38], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[39], IndestructibleType.Dungeon_BlockDark);
-
-            //row 11
-            Functions_IndestructibleObjs.SetType(objList[40], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[41], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[42], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[43], IndestructibleType.Dungeon_BlockDark);
-
-            //row 12
-            Functions_IndestructibleObjs.SetType(objList[44], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[45], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[46], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[47], IndestructibleType.Dungeon_BlockDark);
-
-            //position the objs relative to the window frame
-            Functions_WidgetIndObjs.PositionObjs(this);
-
-            //manually set recs
-            //objList[8].compCollision.rec.Height = 16 * 2;
-            //objList[9].compCollision.rec.Height = 16 * 2;
-
-            //hide objs that trees overlap
-            //Functions_WidgetIndObjs.HideObj(objList[12]);
-
-            //reset update all zdepths
-            for (i = 0; i < 4 * 12; i++)
-            {
-                objList[i].compSprite.zOffset = 0;
-                Functions_Component.SetZdepth(objList[i].compSprite);
-            }
-        }
-    }
-
+    //set 1 - island related objs
 
     public class WidgetIndestructibleObjs_Forest : WidgetIndObject
     {
         public WidgetIndestructibleObjs_Forest()
-        {   //1st left
+        {   
             window = new MenuWindow(
-                new Point(16 * 12, 16 * 2), //position
+                new Point(16 * 1, 16 * 2), //position
                 new Point(16 * 5, 16 * 15), //size
                 "Forest"); //title
 
@@ -372,16 +162,16 @@ namespace DungeonRun
             Functions_IndestructibleObjs.SetType(objList[23], IndestructibleType.Dungeon_BlockDark);
 
             //row 7
-            Functions_IndestructibleObjs.SetType(objList[24], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[25], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[26], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[27], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[24], IndestructibleType.Tree_Med);
+            Functions_IndestructibleObjs.SetType(objList[25], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[26], IndestructibleType.Tree_Med_Stump);
+            Functions_IndestructibleObjs.SetType(objList[27], IndestructibleType.Dungeon_BlockDark);//
 
             //row 8
-            Functions_IndestructibleObjs.SetType(objList[28], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[29], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[30], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[31], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[28], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[29], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[30], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[31], IndestructibleType.Dungeon_BlockDark);//
 
             //row 9
             Functions_IndestructibleObjs.SetType(objList[32], IndestructibleType.Tree_Big);
@@ -430,6 +220,15 @@ namespace DungeonRun
             Functions_WidgetIndObjs.HideObj(objList[13]);
             Functions_WidgetIndObjs.HideObj(objList[14]);
 
+            //cov by trees
+            Functions_WidgetIndObjs.HideObj(objList[25]);
+            Functions_WidgetIndObjs.HideObj(objList[27]);
+
+            Functions_WidgetIndObjs.HideObj(objList[28]);
+            Functions_WidgetIndObjs.HideObj(objList[29]);
+            Functions_WidgetIndObjs.HideObj(objList[30]);
+            Functions_WidgetIndObjs.HideObj(objList[31]);
+
 
 
             //manually set big tree rec
@@ -464,13 +263,12 @@ namespace DungeonRun
         }
     }
 
-
     public class WidgetIndestructibleObjs_Mountain : WidgetIndObject
     {
         public WidgetIndestructibleObjs_Mountain()
-        {   //1st left
+        {   
             window = new MenuWindow(
-                new Point(16 * 17 + 8, 16 * 2), //position
+                new Point(16 * 6 + 8, 16 * 2), //position
                 new Point(16 * 5, 16 * 15), //size
                 "Mountain"); //title
 
@@ -580,13 +378,12 @@ namespace DungeonRun
         }
     }
 
-
     public class WidgetIndestructibleObjs_Swamp : WidgetIndObject
     {
         public WidgetIndestructibleObjs_Swamp()
-        {   //1st left
+        {   
             window = new MenuWindow(
-                new Point(16 * 23, 16 * 2), //position
+                new Point(16 * 12, 16 * 2), //position
                 new Point(16 * 5, 16 * 15), //size
                 "Swamp"); //title
 
@@ -698,15 +495,1205 @@ namespace DungeonRun
         }
     }
 
+    public class WidgetIndestructibleObjs_Lava : WidgetIndObject
+    {
+        public WidgetIndestructibleObjs_Lava()
+        {
+            window = new MenuWindow(
+                new Point(16 * 17 + 8, 16 * 2), //position
+                new Point(16 * 5, 16 * 15), //size
+                "Lava"); //title
+
+            objList = new List<IndestructibleObject>();
+            //4 per row, 12 rows total
+            for (i = 0; i < 4 * 12; i++) { objList.Add(new IndestructibleObject()); }
+
+            //row 1
+            Functions_IndestructibleObjs.SetType(objList[0], IndestructibleType.SwampDungeon_Entrance);
+            Functions_IndestructibleObjs.SetType(objList[1], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[2], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[3], IndestructibleType.Dungeon_BlockDark);
+
+            //row 2
+            Functions_IndestructibleObjs.SetType(objList[4], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[5], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[6], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[7], IndestructibleType.Dungeon_BlockDark);
+
+            //row 3
+            Functions_IndestructibleObjs.SetType(objList[8], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[9], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[10], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[11], IndestructibleType.Dungeon_BlockDark);
+
+            //row 4
+            Functions_IndestructibleObjs.SetType(objList[12], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[13], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[14], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[15], IndestructibleType.Dungeon_BlockDark);
+
+            //row 5
+            Functions_IndestructibleObjs.SetType(objList[16], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[17], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[18], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[19], IndestructibleType.Dungeon_BlockDark);
+
+            //row 6
+            Functions_IndestructibleObjs.SetType(objList[20], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[21], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[22], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[23], IndestructibleType.Dungeon_BlockDark);
+
+            //row 7
+            Functions_IndestructibleObjs.SetType(objList[24], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[25], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[26], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[27], IndestructibleType.Dungeon_BlockDark);
+
+            //row 8
+            Functions_IndestructibleObjs.SetType(objList[28], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[29], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[30], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[31], IndestructibleType.Dungeon_BlockDark);
+
+            //row 9
+            Functions_IndestructibleObjs.SetType(objList[32], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[33], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[34], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[35], IndestructibleType.Dungeon_BlockDark);
+
+            //row 10
+            Functions_IndestructibleObjs.SetType(objList[36], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[37], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[38], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[39], IndestructibleType.Dungeon_BlockDark);
+
+            //row 11
+            Functions_IndestructibleObjs.SetType(objList[40], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[41], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[42], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[43], IndestructibleType.Dungeon_BlockDark);
+
+            //row 12
+            Functions_IndestructibleObjs.SetType(objList[44], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[45], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[46], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[47], IndestructibleType.Dungeon_BlockDark);
+
+            //position the objs relative to the window frame
+            Functions_WidgetIndObjs.PositionObjs(this);
+
+            //manually set recs
+            objList[0].compCollision.rec.Width = 16 * 3;
+            objList[0].compCollision.rec.Height = 16 * 4;
+
+            //hide objs that overlap
+            Functions_WidgetIndObjs.HideObj(objList[1]);
+            Functions_WidgetIndObjs.HideObj(objList[2]);
+
+            Functions_WidgetIndObjs.HideObj(objList[4]);
+            Functions_WidgetIndObjs.HideObj(objList[5]);
+            Functions_WidgetIndObjs.HideObj(objList[6]);
+
+            Functions_WidgetIndObjs.HideObj(objList[8]);
+            Functions_WidgetIndObjs.HideObj(objList[9]);
+            Functions_WidgetIndObjs.HideObj(objList[10]);
+
+            Functions_WidgetIndObjs.HideObj(objList[12]);
+            Functions_WidgetIndObjs.HideObj(objList[13]);
+            Functions_WidgetIndObjs.HideObj(objList[14]);
+
+            //reset update all zdepths
+            for (i = 0; i < 4 * 12; i++)
+            {
+                objList[i].compSprite.zOffset = 0;
+                Functions_Component.SetZdepth(objList[i].compSprite);
+            }
+        }
+    }
+
+    public class WidgetIndestructibleObjs_Cloud : WidgetIndObject
+    {
+        public WidgetIndestructibleObjs_Cloud()
+        {
+            window = new MenuWindow(
+                new Point(16 * 23, 16 * 2), //position
+                new Point(16 * 5, 16 * 15), //size
+                "Cloud"); //title
+
+            objList = new List<IndestructibleObject>();
+            //4 per row, 12 rows total
+            for (i = 0; i < 4 * 12; i++) { objList.Add(new IndestructibleObject()); }
+
+            //row 1
+            Functions_IndestructibleObjs.SetType(objList[0], IndestructibleType.SwampDungeon_Entrance);
+            Functions_IndestructibleObjs.SetType(objList[1], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[2], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[3], IndestructibleType.Dungeon_BlockDark);
+
+            //row 2
+            Functions_IndestructibleObjs.SetType(objList[4], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[5], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[6], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[7], IndestructibleType.Dungeon_BlockDark);
+
+            //row 3
+            Functions_IndestructibleObjs.SetType(objList[8], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[9], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[10], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[11], IndestructibleType.Dungeon_BlockDark);
+
+            //row 4
+            Functions_IndestructibleObjs.SetType(objList[12], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[13], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[14], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[15], IndestructibleType.Dungeon_BlockDark);
+
+            //row 5
+            Functions_IndestructibleObjs.SetType(objList[16], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[17], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[18], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[19], IndestructibleType.Dungeon_BlockDark);
+
+            //row 6
+            Functions_IndestructibleObjs.SetType(objList[20], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[21], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[22], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[23], IndestructibleType.Dungeon_BlockDark);
+
+            //row 7
+            Functions_IndestructibleObjs.SetType(objList[24], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[25], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[26], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[27], IndestructibleType.Dungeon_BlockDark);
+
+            //row 8
+            Functions_IndestructibleObjs.SetType(objList[28], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[29], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[30], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[31], IndestructibleType.Dungeon_BlockDark);
+
+            //row 9
+            Functions_IndestructibleObjs.SetType(objList[32], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[33], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[34], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[35], IndestructibleType.Dungeon_BlockDark);
+
+            //row 10
+            Functions_IndestructibleObjs.SetType(objList[36], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[37], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[38], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[39], IndestructibleType.Dungeon_BlockDark);
+
+            //row 11
+            Functions_IndestructibleObjs.SetType(objList[40], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[41], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[42], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[43], IndestructibleType.Dungeon_BlockDark);
+
+            //row 12
+            Functions_IndestructibleObjs.SetType(objList[44], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[45], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[46], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[47], IndestructibleType.Dungeon_BlockDark);
+
+            //position the objs relative to the window frame
+            Functions_WidgetIndObjs.PositionObjs(this);
+
+            //manually set recs
+            objList[0].compCollision.rec.Width = 16 * 3;
+            objList[0].compCollision.rec.Height = 16 * 4;
+
+            //hide objs that overlap
+            Functions_WidgetIndObjs.HideObj(objList[1]);
+            Functions_WidgetIndObjs.HideObj(objList[2]);
+
+            Functions_WidgetIndObjs.HideObj(objList[4]);
+            Functions_WidgetIndObjs.HideObj(objList[5]);
+            Functions_WidgetIndObjs.HideObj(objList[6]);
+
+            Functions_WidgetIndObjs.HideObj(objList[8]);
+            Functions_WidgetIndObjs.HideObj(objList[9]);
+            Functions_WidgetIndObjs.HideObj(objList[10]);
+
+            Functions_WidgetIndObjs.HideObj(objList[12]);
+            Functions_WidgetIndObjs.HideObj(objList[13]);
+            Functions_WidgetIndObjs.HideObj(objList[14]);
+
+            //reset update all zdepths
+            for (i = 0; i < 4 * 12; i++)
+            {
+                objList[i].compSprite.zOffset = 0;
+                Functions_Component.SetZdepth(objList[i].compSprite);
+            }
+        }
+    }
+
+    public class WidgetIndestructibleObjs_ThievesDen : WidgetIndObject
+    {
+        public WidgetIndestructibleObjs_ThievesDen()
+        {
+            window = new MenuWindow(
+                new Point(16 * 28 + 8, 16 * 2), //position
+                new Point(16 * 5, 16 * 15), //size
+                "ThievesDen"); //title
+
+            objList = new List<IndestructibleObject>();
+            //4 per row, 12 rows total
+            for (i = 0; i < 4 * 12; i++) { objList.Add(new IndestructibleObject()); }
+
+            //row 1
+            Functions_IndestructibleObjs.SetType(objList[0], IndestructibleType.SwampDungeon_Entrance);
+            Functions_IndestructibleObjs.SetType(objList[1], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[2], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[3], IndestructibleType.Dungeon_BlockDark);
+
+            //row 2
+            Functions_IndestructibleObjs.SetType(objList[4], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[5], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[6], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[7], IndestructibleType.Dungeon_BlockDark);
+
+            //row 3
+            Functions_IndestructibleObjs.SetType(objList[8], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[9], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[10], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[11], IndestructibleType.Dungeon_BlockDark);
+
+            //row 4
+            Functions_IndestructibleObjs.SetType(objList[12], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[13], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[14], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[15], IndestructibleType.Dungeon_BlockDark);
+
+            //row 5
+            Functions_IndestructibleObjs.SetType(objList[16], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[17], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[18], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[19], IndestructibleType.Dungeon_BlockDark);
+
+            //row 6
+            Functions_IndestructibleObjs.SetType(objList[20], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[21], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[22], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[23], IndestructibleType.Dungeon_BlockDark);
+
+            //row 7
+            Functions_IndestructibleObjs.SetType(objList[24], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[25], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[26], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[27], IndestructibleType.Dungeon_BlockDark);
+
+            //row 8
+            Functions_IndestructibleObjs.SetType(objList[28], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[29], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[30], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[31], IndestructibleType.Dungeon_BlockDark);
+
+            //row 9
+            Functions_IndestructibleObjs.SetType(objList[32], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[33], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[34], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[35], IndestructibleType.Dungeon_BlockDark);
+
+            //row 10
+            Functions_IndestructibleObjs.SetType(objList[36], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[37], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[38], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[39], IndestructibleType.Dungeon_BlockDark);
+
+            //row 11
+            Functions_IndestructibleObjs.SetType(objList[40], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[41], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[42], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[43], IndestructibleType.Dungeon_BlockDark);
+
+            //row 12
+            Functions_IndestructibleObjs.SetType(objList[44], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[45], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[46], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[47], IndestructibleType.Dungeon_BlockDark);
+
+            //position the objs relative to the window frame
+            Functions_WidgetIndObjs.PositionObjs(this);
+
+            //manually set recs
+            objList[0].compCollision.rec.Width = 16 * 3;
+            objList[0].compCollision.rec.Height = 16 * 4;
+
+            //hide objs that overlap
+            Functions_WidgetIndObjs.HideObj(objList[1]);
+            Functions_WidgetIndObjs.HideObj(objList[2]);
+
+            Functions_WidgetIndObjs.HideObj(objList[4]);
+            Functions_WidgetIndObjs.HideObj(objList[5]);
+            Functions_WidgetIndObjs.HideObj(objList[6]);
+
+            Functions_WidgetIndObjs.HideObj(objList[8]);
+            Functions_WidgetIndObjs.HideObj(objList[9]);
+            Functions_WidgetIndObjs.HideObj(objList[10]);
+
+            Functions_WidgetIndObjs.HideObj(objList[12]);
+            Functions_WidgetIndObjs.HideObj(objList[13]);
+            Functions_WidgetIndObjs.HideObj(objList[14]);
+
+            //reset update all zdepths
+            for (i = 0; i < 4 * 12; i++)
+            {
+                objList[i].compSprite.zOffset = 0;
+                Functions_Component.SetZdepth(objList[i].compSprite);
+            }
+        }
+    }
+
+    public class WidgetIndestructibleObjs_Shadow : WidgetIndObject
+    {
+        public WidgetIndestructibleObjs_Shadow()
+        {
+            window = new MenuWindow(
+                new Point(16 * 34, 16 * 2), //position
+                new Point(16 * 5, 16 * 15), //size
+                "Shadow"); //title
+
+            objList = new List<IndestructibleObject>();
+            //4 per row, 12 rows total
+            for (i = 0; i < 4 * 12; i++) { objList.Add(new IndestructibleObject()); }
+
+            //row 1
+            Functions_IndestructibleObjs.SetType(objList[0], IndestructibleType.SwampDungeon_Entrance);
+            Functions_IndestructibleObjs.SetType(objList[1], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[2], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[3], IndestructibleType.Dungeon_BlockDark);
+
+            //row 2
+            Functions_IndestructibleObjs.SetType(objList[4], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[5], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[6], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[7], IndestructibleType.Dungeon_BlockDark);
+
+            //row 3
+            Functions_IndestructibleObjs.SetType(objList[8], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[9], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[10], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[11], IndestructibleType.Dungeon_BlockDark);
+
+            //row 4
+            Functions_IndestructibleObjs.SetType(objList[12], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[13], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[14], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[15], IndestructibleType.Dungeon_BlockDark);
+
+            //row 5
+            Functions_IndestructibleObjs.SetType(objList[16], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[17], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[18], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[19], IndestructibleType.Dungeon_BlockDark);
+
+            //row 6
+            Functions_IndestructibleObjs.SetType(objList[20], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[21], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[22], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[23], IndestructibleType.Dungeon_BlockDark);
+
+            //row 7
+            Functions_IndestructibleObjs.SetType(objList[24], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[25], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[26], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[27], IndestructibleType.Dungeon_BlockDark);
+
+            //row 8
+            Functions_IndestructibleObjs.SetType(objList[28], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[29], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[30], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[31], IndestructibleType.Dungeon_BlockDark);
+
+            //row 9
+            Functions_IndestructibleObjs.SetType(objList[32], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[33], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[34], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[35], IndestructibleType.Dungeon_BlockDark);
+
+            //row 10
+            Functions_IndestructibleObjs.SetType(objList[36], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[37], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[38], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[39], IndestructibleType.Dungeon_BlockDark);
+
+            //row 11
+            Functions_IndestructibleObjs.SetType(objList[40], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[41], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[42], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[43], IndestructibleType.Dungeon_BlockDark);
+
+            //row 12
+            Functions_IndestructibleObjs.SetType(objList[44], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[45], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[46], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[47], IndestructibleType.Dungeon_BlockDark);
+
+            //position the objs relative to the window frame
+            Functions_WidgetIndObjs.PositionObjs(this);
+
+            //manually set recs
+            objList[0].compCollision.rec.Width = 16 * 3;
+            objList[0].compCollision.rec.Height = 16 * 4;
+
+            //hide objs that overlap
+            Functions_WidgetIndObjs.HideObj(objList[1]);
+            Functions_WidgetIndObjs.HideObj(objList[2]);
+
+            Functions_WidgetIndObjs.HideObj(objList[4]);
+            Functions_WidgetIndObjs.HideObj(objList[5]);
+            Functions_WidgetIndObjs.HideObj(objList[6]);
+
+            Functions_WidgetIndObjs.HideObj(objList[8]);
+            Functions_WidgetIndObjs.HideObj(objList[9]);
+            Functions_WidgetIndObjs.HideObj(objList[10]);
+
+            Functions_WidgetIndObjs.HideObj(objList[12]);
+            Functions_WidgetIndObjs.HideObj(objList[13]);
+            Functions_WidgetIndObjs.HideObj(objList[14]);
+
+            //reset update all zdepths
+            for (i = 0; i < 4 * 12; i++)
+            {
+                objList[i].compSprite.zOffset = 0;
+                Functions_Component.SetZdepth(objList[i].compSprite);
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+    //set 2 - general world related / dev objs
+
+    public class WidgetIndestructibleObjs_BoatA : WidgetIndObject
+    {
+        public WidgetIndestructibleObjs_BoatA()
+        {   
+            window = new MenuWindow(
+                new Point(16 * 1, 16 * 2), //position
+                new Point(16 * 5, 16 * 15), //size
+                "Boat A"); //title
+
+            objList = new List<IndestructibleObject>();
+            //4 per row, 12 rows total
+            for (i = 0; i < 4 * 12; i++) { objList.Add(new IndestructibleObject()); }
+
+            //row 1
+            Functions_IndestructibleObjs.SetType(objList[0], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[1], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[2], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[3], IndestructibleType.Dungeon_BlockDark);
+
+            //row 2
+            Functions_IndestructibleObjs.SetType(objList[4], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[5], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[6], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[7], IndestructibleType.Dungeon_BlockDark);
+
+            //row 3
+            Functions_IndestructibleObjs.SetType(objList[8], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[9], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[10], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[11], IndestructibleType.Dungeon_BlockDark);
+
+            //row 4
+            Functions_IndestructibleObjs.SetType(objList[12], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[13], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[14], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[15], IndestructibleType.Dungeon_BlockDark);
+
+            //row 5
+            Functions_IndestructibleObjs.SetType(objList[16], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[17], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[18], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[19], IndestructibleType.Dungeon_BlockDark);
+
+            //row 6
+            Functions_IndestructibleObjs.SetType(objList[20], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[21], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[22], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[23], IndestructibleType.Dungeon_BlockDark);
+
+            //row 7
+            Functions_IndestructibleObjs.SetType(objList[24], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[25], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[26], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[27], IndestructibleType.Dungeon_BlockDark);
+
+            //row 8
+            Functions_IndestructibleObjs.SetType(objList[28], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[29], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[30], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[31], IndestructibleType.Dungeon_BlockDark);
+
+            //row 9
+            Functions_IndestructibleObjs.SetType(objList[32], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[33], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[34], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[35], IndestructibleType.Dungeon_BlockDark);
+
+            //row 10
+            Functions_IndestructibleObjs.SetType(objList[36], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[37], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[38], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[39], IndestructibleType.Dungeon_BlockDark);
+
+            //row 11
+            Functions_IndestructibleObjs.SetType(objList[40], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[41], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[42], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[43], IndestructibleType.Dungeon_BlockDark);
+
+            //row 12
+            Functions_IndestructibleObjs.SetType(objList[44], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[45], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[46], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[47], IndestructibleType.Dungeon_BlockDark);
+
+            //position the objs relative to the window frame
+            Functions_WidgetIndObjs.PositionObjs(this);
+
+            //manually set recs
+            //objList[8].compCollision.rec.Height = 16 * 2;
+            //objList[9].compCollision.rec.Height = 16 * 2;
+
+            //hide objs that trees overlap
+            Functions_WidgetIndObjs.HideObj(objList[12]);
+
+            //reset update all zdepths
+            for (i = 0; i < 4 * 12; i++)
+            {
+                objList[i].compSprite.zOffset = 0;
+                Functions_Component.SetZdepth(objList[i].compSprite);
+            }
+        }
+    }
+
+    public class WidgetIndestructibleObjs_BoatB : WidgetIndObject
+    {
+        public WidgetIndestructibleObjs_BoatB()
+        {   
+            window = new MenuWindow(
+                new Point(16 * 6 + 8, 16 * 2), //position
+                new Point(16 * 5, 16 * 15), //size
+                "Boat B"); //title
+
+            objList = new List<IndestructibleObject>();
+            //4 per row, 12 rows total
+            for (i = 0; i < 4 * 12; i++) { objList.Add(new IndestructibleObject()); }
+
+            //row 1
+            Functions_IndestructibleObjs.SetType(objList[0], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[1], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[2], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[3], IndestructibleType.Dungeon_BlockDark);
+
+            //row 2
+            Functions_IndestructibleObjs.SetType(objList[4], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[5], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[6], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[7], IndestructibleType.Dungeon_BlockDark);
+
+            //row 3
+            Functions_IndestructibleObjs.SetType(objList[8], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[9], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[10], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[11], IndestructibleType.Dungeon_BlockDark);
+
+            //row 4
+            Functions_IndestructibleObjs.SetType(objList[12], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[13], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[14], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[15], IndestructibleType.Dungeon_BlockDark);
+
+            //row 5
+            Functions_IndestructibleObjs.SetType(objList[16], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[17], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[18], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[19], IndestructibleType.Dungeon_BlockDark);
+
+            //row 6
+            Functions_IndestructibleObjs.SetType(objList[20], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[21], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[22], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[23], IndestructibleType.Dungeon_BlockDark);
+
+            //row 7
+            Functions_IndestructibleObjs.SetType(objList[24], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[25], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[26], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[27], IndestructibleType.Dungeon_BlockDark);
+
+            //row 8
+            Functions_IndestructibleObjs.SetType(objList[28], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[29], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[30], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[31], IndestructibleType.Dungeon_BlockDark);
+
+            //row 9
+            Functions_IndestructibleObjs.SetType(objList[32], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[33], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[34], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[35], IndestructibleType.Dungeon_BlockDark);
+
+            //row 10
+            Functions_IndestructibleObjs.SetType(objList[36], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[37], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[38], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[39], IndestructibleType.Dungeon_BlockDark);
+
+            //row 11
+            Functions_IndestructibleObjs.SetType(objList[40], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[41], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[42], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[43], IndestructibleType.Dungeon_BlockDark);
+
+            //row 12
+            Functions_IndestructibleObjs.SetType(objList[44], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[45], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[46], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[47], IndestructibleType.Dungeon_BlockDark);
+
+            //position the objs relative to the window frame
+            Functions_WidgetIndObjs.PositionObjs(this);
+
+            //manually set recs
+            //objList[8].compCollision.rec.Height = 16 * 2;
+            //objList[9].compCollision.rec.Height = 16 * 2;
+
+            //hide objs that trees overlap
+            //Functions_WidgetIndObjs.HideObj(objList[12]);
+
+            //reset update all zdepths
+            for (i = 0; i < 4 * 12; i++)
+            {
+                objList[i].compSprite.zOffset = 0;
+                Functions_Component.SetZdepth(objList[i].compSprite);
+            }
+        }
+    }
 
     public class WidgetIndestructibleObjs_Coliseum : WidgetIndObject
     {
         public WidgetIndestructibleObjs_Coliseum()
-        {   //1st left
+        {   
+            window = new MenuWindow(
+                new Point(16 * 12, 16 * 2), //position
+                new Point(16 * 5, 16 * 15), //size
+                "Coliseum"); //title
+
+            objList = new List<IndestructibleObject>();
+            //4 per row, 12 rows total
+            for (i = 0; i < 4 * 12; i++) { objList.Add(new IndestructibleObject()); }
+
+            //row 1
+            Functions_IndestructibleObjs.SetType(objList[0], IndestructibleType.Coliseum_Shadow_Entrance);
+            Functions_IndestructibleObjs.SetType(objList[1], IndestructibleType.Dungeon_BlockDark);//ent
+            Functions_IndestructibleObjs.SetType(objList[2], IndestructibleType.Dungeon_BlockDark);//ent
+            Functions_IndestructibleObjs.SetType(objList[3], IndestructibleType.Coliseum_Shadow_Pillar_Top);
+
+            //row 2
+            Functions_IndestructibleObjs.SetType(objList[4], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[5], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[6], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[7], IndestructibleType.Coliseum_Shadow_Pillar_Middle);
+
+            //row 3
+            Functions_IndestructibleObjs.SetType(objList[8], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[9], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[10], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[11], IndestructibleType.Coliseum_Shadow_Pillar_Bottom);
+
+            //row 4
+            Functions_IndestructibleObjs.SetType(objList[12], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[13], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[14], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[15], IndestructibleType.Coliseum_Shadow_Stairs_Handrail_Top);
+
+            //row 5
+            Functions_IndestructibleObjs.SetType(objList[16], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[17], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[18], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[19], IndestructibleType.Coliseum_Shadow_Stairs_Handrail_Middle);
+
+            //row 6
+            Functions_IndestructibleObjs.SetType(objList[20], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[21], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[22], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[23], IndestructibleType.Coliseum_Shadow_Stairs_Handrail_Bottom);
+
+            //row 7
+            Functions_IndestructibleObjs.SetType(objList[24], IndestructibleType.Coliseum_Shadow_Spectator);
+            Functions_IndestructibleObjs.SetType(objList[25], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[26], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[27], IndestructibleType.Dungeon_BlockDark);//
+
+            //row 8
+            Functions_IndestructibleObjs.SetType(objList[28], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[29], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[30], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[31], IndestructibleType.Dungeon_BlockDark);
+
+            //row 9
+            Functions_IndestructibleObjs.SetType(objList[32], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[33], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[34], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[35], IndestructibleType.Dungeon_BlockDark);
+
+            //row 10
+            Functions_IndestructibleObjs.SetType(objList[36], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[37], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[38], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[39], IndestructibleType.Dungeon_BlockDark);
+
+            //row 11
+            Functions_IndestructibleObjs.SetType(objList[40], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[41], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[42], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[43], IndestructibleType.Dungeon_BlockDark);
+
+            //row 12
+            Functions_IndestructibleObjs.SetType(objList[44], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[45], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[46], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[47], IndestructibleType.Dungeon_BlockDark);
+
+            //position the objs relative to the window frame
+            Functions_WidgetIndObjs.PositionObjs(this);
+
+            //set recs for entrance
+            objList[0].compCollision.rec.Width = 16 * 3;
+            objList[0].compCollision.rec.Height = 16 * 4;
+            //spectators
+            objList[24].compCollision.rec.Width = 16 * 4;
+
+
+
+
+            //hide objs that trees overlap
+            Functions_WidgetIndObjs.HideObj(objList[1]);
+            Functions_WidgetIndObjs.HideObj(objList[2]);
+
+            Functions_WidgetIndObjs.HideObj(objList[4]);
+            Functions_WidgetIndObjs.HideObj(objList[5]);
+            Functions_WidgetIndObjs.HideObj(objList[6]);
+
+            Functions_WidgetIndObjs.HideObj(objList[8]);
+            Functions_WidgetIndObjs.HideObj(objList[9]);
+            Functions_WidgetIndObjs.HideObj(objList[10]);
+
+            Functions_WidgetIndObjs.HideObj(objList[12]);
+            Functions_WidgetIndObjs.HideObj(objList[13]);
+            Functions_WidgetIndObjs.HideObj(objList[14]);
+
+            Functions_WidgetIndObjs.HideObj(objList[25]);
+            Functions_WidgetIndObjs.HideObj(objList[26]);
+            Functions_WidgetIndObjs.HideObj(objList[27]);
+
+            //reset update all zdepths
+            for (i = 0; i < 4 * 12; i++)
+            {
+                objList[i].compSprite.zOffset = 0;
+                Functions_Component.SetZdepth(objList[i].compSprite);
+            }
+        }
+    }
+
+    public class WidgetIndestructibleObjs_Dev1 : WidgetIndObject
+    {
+        public WidgetIndestructibleObjs_Dev1()
+        {
+            window = new MenuWindow(
+                new Point(16 * 17 + 8, 16 * 2), //position
+                new Point(16 * 5, 16 * 15), //size
+                "Dev1"); //title
+
+            objList = new List<IndestructibleObject>();
+            //4 per row, 12 rows total
+            for (i = 0; i < 4 * 12; i++) { objList.Add(new IndestructibleObject()); }
+
+            //row 1
+            Functions_IndestructibleObjs.SetType(objList[0], IndestructibleType.Coliseum_Shadow_Entrance);
+            Functions_IndestructibleObjs.SetType(objList[1], IndestructibleType.Dungeon_BlockDark);//ent
+            Functions_IndestructibleObjs.SetType(objList[2], IndestructibleType.Dungeon_BlockDark);//ent
+            Functions_IndestructibleObjs.SetType(objList[3], IndestructibleType.Coliseum_Shadow_Pillar_Top);
+
+            //row 2
+            Functions_IndestructibleObjs.SetType(objList[4], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[5], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[6], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[7], IndestructibleType.Coliseum_Shadow_Pillar_Middle);
+
+            //row 3
+            Functions_IndestructibleObjs.SetType(objList[8], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[9], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[10], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[11], IndestructibleType.Coliseum_Shadow_Pillar_Bottom);
+
+            //row 4
+            Functions_IndestructibleObjs.SetType(objList[12], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[13], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[14], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[15], IndestructibleType.Coliseum_Shadow_Stairs_Handrail_Top);
+
+            //row 5
+            Functions_IndestructibleObjs.SetType(objList[16], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[17], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[18], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[19], IndestructibleType.Coliseum_Shadow_Stairs_Handrail_Middle);
+
+            //row 6
+            Functions_IndestructibleObjs.SetType(objList[20], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[21], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[22], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[23], IndestructibleType.Coliseum_Shadow_Stairs_Handrail_Bottom);
+
+            //row 7
+            Functions_IndestructibleObjs.SetType(objList[24], IndestructibleType.Coliseum_Shadow_Spectator);
+            Functions_IndestructibleObjs.SetType(objList[25], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[26], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[27], IndestructibleType.Dungeon_BlockDark);//
+
+            //row 8
+            Functions_IndestructibleObjs.SetType(objList[28], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[29], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[30], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[31], IndestructibleType.Dungeon_BlockDark);
+
+            //row 9
+            Functions_IndestructibleObjs.SetType(objList[32], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[33], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[34], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[35], IndestructibleType.Dungeon_BlockDark);
+
+            //row 10
+            Functions_IndestructibleObjs.SetType(objList[36], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[37], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[38], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[39], IndestructibleType.Dungeon_BlockDark);
+
+            //row 11
+            Functions_IndestructibleObjs.SetType(objList[40], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[41], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[42], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[43], IndestructibleType.Dungeon_BlockDark);
+
+            //row 12
+            Functions_IndestructibleObjs.SetType(objList[44], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[45], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[46], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[47], IndestructibleType.Dungeon_BlockDark);
+
+            //position the objs relative to the window frame
+            Functions_WidgetIndObjs.PositionObjs(this);
+
+            //set recs for entrance
+            objList[0].compCollision.rec.Width = 16 * 3;
+            objList[0].compCollision.rec.Height = 16 * 4;
+            //spectators
+            objList[24].compCollision.rec.Width = 16 * 4;
+
+
+
+
+            //hide objs that trees overlap
+            Functions_WidgetIndObjs.HideObj(objList[1]);
+            Functions_WidgetIndObjs.HideObj(objList[2]);
+
+            Functions_WidgetIndObjs.HideObj(objList[4]);
+            Functions_WidgetIndObjs.HideObj(objList[5]);
+            Functions_WidgetIndObjs.HideObj(objList[6]);
+
+            Functions_WidgetIndObjs.HideObj(objList[8]);
+            Functions_WidgetIndObjs.HideObj(objList[9]);
+            Functions_WidgetIndObjs.HideObj(objList[10]);
+
+            Functions_WidgetIndObjs.HideObj(objList[12]);
+            Functions_WidgetIndObjs.HideObj(objList[13]);
+            Functions_WidgetIndObjs.HideObj(objList[14]);
+
+            Functions_WidgetIndObjs.HideObj(objList[25]);
+            Functions_WidgetIndObjs.HideObj(objList[26]);
+            Functions_WidgetIndObjs.HideObj(objList[27]);
+
+            //reset update all zdepths
+            for (i = 0; i < 4 * 12; i++)
+            {
+                objList[i].compSprite.zOffset = 0;
+                Functions_Component.SetZdepth(objList[i].compSprite);
+            }
+        }
+    }
+
+    public class WidgetIndestructibleObjs_Dev2 : WidgetIndObject
+    {
+        public WidgetIndestructibleObjs_Dev2()
+        {
+            window = new MenuWindow(
+                new Point(16 * 23, 16 * 2), //position
+                new Point(16 * 5, 16 * 15), //size
+                "Dev2"); //title
+
+            objList = new List<IndestructibleObject>();
+            //4 per row, 12 rows total
+            for (i = 0; i < 4 * 12; i++) { objList.Add(new IndestructibleObject()); }
+
+            //row 1
+            Functions_IndestructibleObjs.SetType(objList[0], IndestructibleType.Coliseum_Shadow_Entrance);
+            Functions_IndestructibleObjs.SetType(objList[1], IndestructibleType.Dungeon_BlockDark);//ent
+            Functions_IndestructibleObjs.SetType(objList[2], IndestructibleType.Dungeon_BlockDark);//ent
+            Functions_IndestructibleObjs.SetType(objList[3], IndestructibleType.Coliseum_Shadow_Pillar_Top);
+
+            //row 2
+            Functions_IndestructibleObjs.SetType(objList[4], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[5], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[6], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[7], IndestructibleType.Coliseum_Shadow_Pillar_Middle);
+
+            //row 3
+            Functions_IndestructibleObjs.SetType(objList[8], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[9], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[10], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[11], IndestructibleType.Coliseum_Shadow_Pillar_Bottom);
+
+            //row 4
+            Functions_IndestructibleObjs.SetType(objList[12], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[13], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[14], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[15], IndestructibleType.Coliseum_Shadow_Stairs_Handrail_Top);
+
+            //row 5
+            Functions_IndestructibleObjs.SetType(objList[16], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[17], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[18], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[19], IndestructibleType.Coliseum_Shadow_Stairs_Handrail_Middle);
+
+            //row 6
+            Functions_IndestructibleObjs.SetType(objList[20], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[21], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[22], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[23], IndestructibleType.Coliseum_Shadow_Stairs_Handrail_Bottom);
+
+            //row 7
+            Functions_IndestructibleObjs.SetType(objList[24], IndestructibleType.Coliseum_Shadow_Spectator);
+            Functions_IndestructibleObjs.SetType(objList[25], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[26], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[27], IndestructibleType.Dungeon_BlockDark);//
+
+            //row 8
+            Functions_IndestructibleObjs.SetType(objList[28], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[29], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[30], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[31], IndestructibleType.Dungeon_BlockDark);
+
+            //row 9
+            Functions_IndestructibleObjs.SetType(objList[32], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[33], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[34], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[35], IndestructibleType.Dungeon_BlockDark);
+
+            //row 10
+            Functions_IndestructibleObjs.SetType(objList[36], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[37], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[38], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[39], IndestructibleType.Dungeon_BlockDark);
+
+            //row 11
+            Functions_IndestructibleObjs.SetType(objList[40], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[41], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[42], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[43], IndestructibleType.Dungeon_BlockDark);
+
+            //row 12
+            Functions_IndestructibleObjs.SetType(objList[44], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[45], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[46], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[47], IndestructibleType.Dungeon_BlockDark);
+
+            //position the objs relative to the window frame
+            Functions_WidgetIndObjs.PositionObjs(this);
+
+            //set recs for entrance
+            objList[0].compCollision.rec.Width = 16 * 3;
+            objList[0].compCollision.rec.Height = 16 * 4;
+            //spectators
+            objList[24].compCollision.rec.Width = 16 * 4;
+
+
+
+
+            //hide objs that trees overlap
+            Functions_WidgetIndObjs.HideObj(objList[1]);
+            Functions_WidgetIndObjs.HideObj(objList[2]);
+
+            Functions_WidgetIndObjs.HideObj(objList[4]);
+            Functions_WidgetIndObjs.HideObj(objList[5]);
+            Functions_WidgetIndObjs.HideObj(objList[6]);
+
+            Functions_WidgetIndObjs.HideObj(objList[8]);
+            Functions_WidgetIndObjs.HideObj(objList[9]);
+            Functions_WidgetIndObjs.HideObj(objList[10]);
+
+            Functions_WidgetIndObjs.HideObj(objList[12]);
+            Functions_WidgetIndObjs.HideObj(objList[13]);
+            Functions_WidgetIndObjs.HideObj(objList[14]);
+
+            Functions_WidgetIndObjs.HideObj(objList[25]);
+            Functions_WidgetIndObjs.HideObj(objList[26]);
+            Functions_WidgetIndObjs.HideObj(objList[27]);
+
+            //reset update all zdepths
+            for (i = 0; i < 4 * 12; i++)
+            {
+                objList[i].compSprite.zOffset = 0;
+                Functions_Component.SetZdepth(objList[i].compSprite);
+            }
+        }
+    }
+
+    public class WidgetIndestructibleObjs_Dev3 : WidgetIndObject
+    {
+        public WidgetIndestructibleObjs_Dev3()
+        {
             window = new MenuWindow(
                 new Point(16 * 28 + 8, 16 * 2), //position
                 new Point(16 * 5, 16 * 15), //size
-                "Coliseum"); //title
+                "Dev3"); //title
+
+            objList = new List<IndestructibleObject>();
+            //4 per row, 12 rows total
+            for (i = 0; i < 4 * 12; i++) { objList.Add(new IndestructibleObject()); }
+
+            //row 1
+            Functions_IndestructibleObjs.SetType(objList[0], IndestructibleType.Coliseum_Shadow_Entrance);
+            Functions_IndestructibleObjs.SetType(objList[1], IndestructibleType.Dungeon_BlockDark);//ent
+            Functions_IndestructibleObjs.SetType(objList[2], IndestructibleType.Dungeon_BlockDark);//ent
+            Functions_IndestructibleObjs.SetType(objList[3], IndestructibleType.Coliseum_Shadow_Pillar_Top);
+
+            //row 2
+            Functions_IndestructibleObjs.SetType(objList[4], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[5], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[6], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[7], IndestructibleType.Coliseum_Shadow_Pillar_Middle);
+
+            //row 3
+            Functions_IndestructibleObjs.SetType(objList[8], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[9], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[10], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[11], IndestructibleType.Coliseum_Shadow_Pillar_Bottom);
+
+            //row 4
+            Functions_IndestructibleObjs.SetType(objList[12], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[13], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[14], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[15], IndestructibleType.Coliseum_Shadow_Stairs_Handrail_Top);
+
+            //row 5
+            Functions_IndestructibleObjs.SetType(objList[16], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[17], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[18], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[19], IndestructibleType.Coliseum_Shadow_Stairs_Handrail_Middle);
+
+            //row 6
+            Functions_IndestructibleObjs.SetType(objList[20], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[21], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[22], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[23], IndestructibleType.Coliseum_Shadow_Stairs_Handrail_Bottom);
+
+            //row 7
+            Functions_IndestructibleObjs.SetType(objList[24], IndestructibleType.Coliseum_Shadow_Spectator);
+            Functions_IndestructibleObjs.SetType(objList[25], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[26], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[27], IndestructibleType.Dungeon_BlockDark);//
+
+            //row 8
+            Functions_IndestructibleObjs.SetType(objList[28], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[29], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[30], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[31], IndestructibleType.Dungeon_BlockDark);
+
+            //row 9
+            Functions_IndestructibleObjs.SetType(objList[32], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[33], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[34], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[35], IndestructibleType.Dungeon_BlockDark);
+
+            //row 10
+            Functions_IndestructibleObjs.SetType(objList[36], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[37], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[38], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[39], IndestructibleType.Dungeon_BlockDark);
+
+            //row 11
+            Functions_IndestructibleObjs.SetType(objList[40], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[41], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[42], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[43], IndestructibleType.Dungeon_BlockDark);
+
+            //row 12
+            Functions_IndestructibleObjs.SetType(objList[44], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[45], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[46], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[47], IndestructibleType.Dungeon_BlockDark);
+
+            //position the objs relative to the window frame
+            Functions_WidgetIndObjs.PositionObjs(this);
+
+            //set recs for entrance
+            objList[0].compCollision.rec.Width = 16 * 3;
+            objList[0].compCollision.rec.Height = 16 * 4;
+            //spectators
+            objList[24].compCollision.rec.Width = 16 * 4;
+
+
+
+
+            //hide objs that trees overlap
+            Functions_WidgetIndObjs.HideObj(objList[1]);
+            Functions_WidgetIndObjs.HideObj(objList[2]);
+
+            Functions_WidgetIndObjs.HideObj(objList[4]);
+            Functions_WidgetIndObjs.HideObj(objList[5]);
+            Functions_WidgetIndObjs.HideObj(objList[6]);
+
+            Functions_WidgetIndObjs.HideObj(objList[8]);
+            Functions_WidgetIndObjs.HideObj(objList[9]);
+            Functions_WidgetIndObjs.HideObj(objList[10]);
+
+            Functions_WidgetIndObjs.HideObj(objList[12]);
+            Functions_WidgetIndObjs.HideObj(objList[13]);
+            Functions_WidgetIndObjs.HideObj(objList[14]);
+
+            Functions_WidgetIndObjs.HideObj(objList[25]);
+            Functions_WidgetIndObjs.HideObj(objList[26]);
+            Functions_WidgetIndObjs.HideObj(objList[27]);
+
+            //reset update all zdepths
+            for (i = 0; i < 4 * 12; i++)
+            {
+                objList[i].compSprite.zOffset = 0;
+                Functions_Component.SetZdepth(objList[i].compSprite);
+            }
+        }
+    }
+
+    public class WidgetIndestructibleObjs_Dev4 : WidgetIndObject
+    {
+        public WidgetIndestructibleObjs_Dev4()
+        {
+            window = new MenuWindow(
+                new Point(16 * 34, 16 * 2), //position
+                new Point(16 * 5, 16 * 15), //size
+                "Dev4"); //title
 
             objList = new List<IndestructibleObject>();
             //4 per row, 12 rows total
@@ -835,142 +1822,10 @@ namespace DungeonRun
 
 
 
-
     /*
 
 
-
-
-
     
-
-    public class WidgetObjects_Colliseum : WidgetObject
-    {
-        public WidgetObjects_Colliseum()
-        {   //create and set the position of the window frame
-            window = new MenuWindow(
-                new Point(16 * 12, 16 * 2), //position
-                new Point(16 * 5, 16 * 15), //size
-                "Colliseum Objs"); //title
-
-            objList = new List<InteractiveObject>();
-            //4 per row, 12 rows total
-            for (i = 0; i < 4 * 12; i++) { objList.Add(new InteractiveObject()); }
-
-            //row 1
-            //Functions_InteractiveObjs.SetType(objList[0], InteractiveType.Wor_Entrance_Colliseum);
-            Functions_InteractiveObjs.SetType(objList[1], InteractiveType.Unknown);//ent
-            Functions_InteractiveObjs.SetType(objList[2], InteractiveType.Unknown);//ent
-            //Functions_InteractiveObjs.SetType(objList[3], InteractiveType.Wor_Colliseum_Pillar_Top);
-
-            //row 2
-            Functions_InteractiveObjs.SetType(objList[4], InteractiveType.Unknown);//ent
-            Functions_InteractiveObjs.SetType(objList[5], InteractiveType.Unknown);//ent
-            Functions_InteractiveObjs.SetType(objList[6], InteractiveType.Unknown);//ent
-            //Functions_InteractiveObjs.SetType(objList[7], InteractiveType.Wor_Colliseum_Pillar_Middle);
-
-            //row 3
-            Functions_InteractiveObjs.SetType(objList[8], InteractiveType.Unknown);//ent
-            Functions_InteractiveObjs.SetType(objList[9], InteractiveType.Unknown);//ent
-            Functions_InteractiveObjs.SetType(objList[10], InteractiveType.Unknown);//ent
-            //Functions_InteractiveObjs.SetType(objList[11], InteractiveType.Wor_Colliseum_Pillar_Bottom);
-
-            //row 4
-            Functions_InteractiveObjs.SetType(objList[12], InteractiveType.Unknown);//ent
-            Functions_InteractiveObjs.SetType(objList[13], InteractiveType.Unknown);//ent
-            Functions_InteractiveObjs.SetType(objList[14], InteractiveType.Unknown);//ent
-            //Functions_InteractiveObjs.SetType(objList[15], InteractiveType.Wor_Colliseum_Outdoors_Floor);
-
-            //row 5
-            //Functions_InteractiveObjs.SetType(objList[16], InteractiveType.Wor_Colliseum_Bricks_Left);
-            //Functions_InteractiveObjs.SetType(objList[17], InteractiveType.Wor_Colliseum_Bricks_Middle1);
-            //Functions_InteractiveObjs.SetType(objList[18], InteractiveType.Wor_Colliseum_Bricks_Middle2);
-            //Functions_InteractiveObjs.SetType(objList[19], InteractiveType.Wor_Colliseum_Bricks_Right);
-
-            //row 6
-            Functions_InteractiveObjs.SetType(objList[20], InteractiveType.Unknown);//brix
-            Functions_InteractiveObjs.SetType(objList[21], InteractiveType.Unknown);//brix
-            Functions_InteractiveObjs.SetType(objList[22], InteractiveType.Unknown);//brix
-            Functions_InteractiveObjs.SetType(objList[23], InteractiveType.Unknown);//brix
-
-
-
-
-            //row 7
-            //Functions_InteractiveObjs.SetType(objList[24], InteractiveType.Wor_Colliseum_Spectator);
-            Functions_InteractiveObjs.SetType(objList[25], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[26], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[27], InteractiveType.Unknown);
-
-            //row 8
-            Functions_InteractiveObjs.SetType(objList[28], InteractiveType.Vendor_Colliseum_Mob);
-            Functions_InteractiveObjs.SetType(objList[29], InteractiveType.Vendor_EnemyItems);
-            Functions_InteractiveObjs.SetType(objList[30], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[31], InteractiveType.Unknown);
-
-            //row 9
-            //Functions_InteractiveObjs.SetType(objList[32], InteractiveType.Wor_Colliseum_Stairs_Handrail_Top);
-            Functions_InteractiveObjs.SetType(objList[33], InteractiveType.Coliseum_Shadow_Stairs_Left);
-            Functions_InteractiveObjs.SetType(objList[34], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[35], InteractiveType.Unknown);
-
-            //row 10
-            //Functions_InteractiveObjs.SetType(objList[36], InteractiveType.Wor_Colliseum_Stairs_Handrail_Middle);
-            Functions_InteractiveObjs.SetType(objList[37], InteractiveType.Coliseum_Shadow_Stairs_Middle);
-            Functions_InteractiveObjs.SetType(objList[38], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[39], InteractiveType.Unknown);
-
-            //row 11
-            //Functions_InteractiveObjs.SetType(objList[40], InteractiveType.Wor_Colliseum_Stairs_Handrail_Bottom);
-            Functions_InteractiveObjs.SetType(objList[41], InteractiveType.Coliseum_Shadow_Stairs_Right);
-            Functions_InteractiveObjs.SetType(objList[42], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[43], InteractiveType.Unknown);
-
-            //row 12 - cheat and put these beyond widget bounds cause they big
-            Functions_InteractiveObjs.SetType(objList[44], InteractiveType.Coliseum_Shadow_Gate_Pillar_Left);
-            Functions_InteractiveObjs.SetType(objList[45], InteractiveType.Unknown);//covered by left pillar
-            Functions_InteractiveObjs.SetType(objList[46], InteractiveType.Coliseum_Shadow_Gate_Center);
-            Functions_InteractiveObjs.SetType(objList[47], InteractiveType.Coliseum_Shadow_Gate_Pillar_Right);//
-
-            //position the objs relative to the window frame
-            Functions_WidgetObject.PositionObjs(this);
-
-
-
-            //manually set the dungeon entrances collision rec
-            objList[0].compCollision.rec.Width = 16 * 3;
-            objList[0].compCollision.rec.Height = 16 * 4;
-
-
-
-
-            //hide the dungeon objs covered by dungeon entrance
-            Functions_WidgetObject.HideObj(objList[1]);
-            Functions_WidgetObject.HideObj(objList[2]);
-            Functions_WidgetObject.HideObj(objList[4]);
-            Functions_WidgetObject.HideObj(objList[5]);
-            Functions_WidgetObject.HideObj(objList[6]);
-            Functions_WidgetObject.HideObj(objList[8]);
-            Functions_WidgetObject.HideObj(objList[9]);
-            Functions_WidgetObject.HideObj(objList[10]);
-            Functions_WidgetObject.HideObj(objList[12]);
-            Functions_WidgetObject.HideObj(objList[13]);
-            Functions_WidgetObject.HideObj(objList[14]);
-
-            //hide objs covered by brix
-            Functions_WidgetObject.HideObj(objList[20]);
-            Functions_WidgetObject.HideObj(objList[21]);
-            Functions_WidgetObject.HideObj(objList[22]);
-            Functions_WidgetObject.HideObj(objList[23]);
-
-            //hide objs covered by gates
-            Functions_WidgetObject.HideObj(objList[45]);
-
-
-
-
-        }
-    }
 
     public class WidgetObjects_Boat_Front : WidgetObject
     {

@@ -33,22 +33,39 @@ namespace DungeonRun
 
 
 
-        //interactive object widgets
+        //interactive object widgets - set 1
+        public static WidgetObjects_Forest WO_Forest = new WidgetObjects_Forest();
+        public static WidgetObjects_Mountain WO_Mountain = new WidgetObjects_Mountain();
+        public static WidgetObjects_Swamp WO_Swamp = new WidgetObjects_Swamp();
+        public static WidgetObjects_Lava WO_Lava = new WidgetObjects_Lava();
+        public static WidgetObjects_Cloud WO_Cloud = new WidgetObjects_Cloud();
+        public static WidgetObjects_ThievesDen WO_Den= new WidgetObjects_ThievesDen();
+        public static WidgetObjects_Shadow WO_Shadow = new WidgetObjects_Shadow();
+        //interactive object widgets - set 2
         public static WidgetObjects_Environment WO_Environment = new WidgetObjects_Environment();
         public static WidgetObjects_Water WO_Water = new WidgetObjects_Water();
         public static WidgetObjects_House WO_House = new WidgetObjects_House();
         public static WidgetObjects_NPCS WO_NPCS = new WidgetObjects_NPCS();
-        public static WidgetObjects_Mountain WO_Mtn = new WidgetObjects_Mountain();
-        public static WidgetObjects_Dev WO_Dev = new WidgetObjects_Dev();
+        public static WidgetObjects_Dev1 WO_Dev1 = new WidgetObjects_Dev1();
+        public static WidgetObjects_Dev2 WO_Dev2 = new WidgetObjects_Dev2();
         public static WidgetObjects_Dungeon WO_Dungeon = new WidgetObjects_Dungeon();
 
-        //indestructible object widgets
-        public static WidgetIndestructibleObjs_BoatA WD_BoatA = new WidgetIndestructibleObjs_BoatA();
-        public static WidgetIndestructibleObjs_BoatB WD_BoatB = new WidgetIndestructibleObjs_BoatB();
+        //indestructible object widgets - set 1
         public static WidgetIndestructibleObjs_Forest WD_Forest = new WidgetIndestructibleObjs_Forest();
         public static WidgetIndestructibleObjs_Mountain WD_Mountain = new WidgetIndestructibleObjs_Mountain();
         public static WidgetIndestructibleObjs_Swamp WD_Swamp = new WidgetIndestructibleObjs_Swamp();
+        public static WidgetIndestructibleObjs_Lava WD_Lava = new WidgetIndestructibleObjs_Lava();
+        public static WidgetIndestructibleObjs_Cloud WD_Cloud = new WidgetIndestructibleObjs_Cloud();
+        public static WidgetIndestructibleObjs_ThievesDen WD_Den = new WidgetIndestructibleObjs_ThievesDen();
+        public static WidgetIndestructibleObjs_Shadow WD_Shadow = new WidgetIndestructibleObjs_Shadow();
+        //indestructible object widgets - set 2
+        public static WidgetIndestructibleObjs_BoatA WD_BoatA = new WidgetIndestructibleObjs_BoatA();
+        public static WidgetIndestructibleObjs_BoatB WD_BoatB = new WidgetIndestructibleObjs_BoatB();
         public static WidgetIndestructibleObjs_Coliseum WD_Coliseum = new WidgetIndestructibleObjs_Coliseum();
+        public static WidgetIndestructibleObjs_Dev1 WD_Dev1 = new WidgetIndestructibleObjs_Dev1();
+        public static WidgetIndestructibleObjs_Dev2 WD_Dev2 = new WidgetIndestructibleObjs_Dev2();
+        public static WidgetIndestructibleObjs_Dev3 WD_Dev3 = new WidgetIndestructibleObjs_Dev3();
+        public static WidgetIndestructibleObjs_Dev4 WD_Dev4 = new WidgetIndestructibleObjs_Dev4();
 
         //actor widgets
         public static WidgetActors_Forest WA_Forest = new WidgetActors_Forest();
