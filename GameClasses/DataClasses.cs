@@ -20,7 +20,7 @@ namespace DungeonRun
         public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.79f; //the version of the game
-        public static BootRoutine bootRoutine = BootRoutine.Game; //boot to game or editor?
+        public static BootRoutine bootRoutine = BootRoutine.Editor_Level; //boot to game or editor?
 
         //dev/editor flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
@@ -1322,7 +1322,7 @@ namespace DungeonRun
         public static int lineCounter = 0;
 
         //indestructible objs
-        public static int indObjCount = 500;
+        public static int indObjCount = 600;
         public static List<IndestructibleObject> indObjPool = new List<IndestructibleObject>();
         public static int indObjIndex;
         public static int indObjCounter = 0;

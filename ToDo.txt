@@ -65,6 +65,15 @@ Today:
 
 
 
+Editor++
+
+All indestructible boat objects added.
+created shadow king base level, using boat and water 2x2 objects.
+a full water level plus boat objs takes up about 50% of the
+interactive objects pool, and 50/600 of the indestructibles.
+we can simply increase these pools if we need to, but i'd rather
+optimize objects (3x3 water objs, 4x4, etc..).
+increased ind obj count to 600 in pool.
 
 
 
@@ -79,40 +88,16 @@ Today:
 
 
 
-Testable Game Setup
-
-make the coliseum level contain all the dungeon entrances
-and the coliseum entrance. this requires increasing the size
-of the ind pool. created dev versions of town for testing.
-
-rebuild the coliseum pit, so we can test challenges + monsters.
-done. can test all dungeons, basic town + NPCS, and coliseum.
 
 
 
 
+Sprites++
 
-
-
-
-
-
-
-Widgets++
-
-add boat objs to boat ind widgets
-along with all other ind objs defined so far.
-
-are we missing any int objs in int widget?
-
-we need to have a boat level to test, this is
-shadow kings default level.
-
-
-
-
-
-
+fix bottom stairs boat sprite. the round top of the bannister
+intersects the stairs sprite above, which draws under hero.
+this causes top of bannister to draw under hero. bannister shold
+be constrained to it's cell.
 
 
 
