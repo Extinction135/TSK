@@ -72,21 +72,26 @@ Today:
 
 
 
-Editor Expansion to v1.0 scale
 
-this simply means i'm defining and allocating widgets for each of the
-7 islands: forest, mtn, swamp, lava, cloud, thieves den, shadow. in
-addition, other widgets for both int and ind objs will remain, including
-the world obj, water obj, house obj, npc obj, dev obj, and dungeon obj
-widgets. so, we're going from 1 set of widgets for ints and inds to two
-sets, so we can just drop in the objs when they have been defined and
-test them in the editor.
 
-moved int objs around in prep.
-created two sets of 7 widgets, for interactive objs and indestructible
-objs, themed to islands and general world sets. iterating these sets
-was tested and refined until working properly. there is ALOT of space
-for objects in the editor now.
+
+
+
+
+
+Testable Game Setup
+
+make the coliseum level contain all the dungeon entrances
+and the coliseum entrance. this requires increasing the size
+of the ind pool. created dev versions of town for testing.
+
+rebuild the coliseum pit, so we can test challenges + monsters.
+done. can test all dungeons, basic town + NPCS, and coliseum.
+
+
+
+
+
 
 
 
@@ -100,6 +105,8 @@ along with all other ind objs defined so far.
 
 are we missing any int objs in int widget?
 
+we need to have a boat level to test, this is
+shadow kings default level.
 
 
 
@@ -110,7 +117,9 @@ are we missing any int objs in int widget?
 
 
 
-Rebuild Level Data - dont do this actually!
+
+
+Rebuild Level Data - dont do this actually! slows dev actually!
 
 all level and room data that looks and plays well from prev version
 needs to be migrated to the new systems. FIRST we need base levels:

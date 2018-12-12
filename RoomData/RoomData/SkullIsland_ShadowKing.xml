@@ -4,37 +4,6 @@
   <windDirection>None</windDirection>
   <windFrequency>2</windFrequency>
   <windIntensity>0</windIntensity>
-  <inds>
-    <IndObjXmlData>
-      <type>ForestDungeon_Entrance</type>
-      <direction>Down</direction>
-      <posX>536</posX>
-      <posY>472</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>MountainDungeon_Entrance</type>
-      <direction>Down</direction>
-      <posX>616</posX>
-      <posY>472</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>SwampDungeon_Entrance</type>
-      <direction>Down</direction>
-      <posX>696</posX>
-      <posY>456</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Spectator</type>
-      <direction>Down</direction>
-      <posX>792</posX>
-      <posY>520</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Entrance</type>
-      <direction>Down</direction>
-      <posX>792</posX>
-      <posY>456</posY>
-    </IndObjXmlData>
-  </inds>
+  <inds />
   <ints />
 </RoomXmlData>
