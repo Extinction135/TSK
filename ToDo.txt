@@ -74,21 +74,50 @@ Today:
 
 
 
+Sprites++
+
+improved ice block to look more icy.
+improve wind sprite to look more windy.
+improved mountain dungeon wall torch to be mirrorable,
+and look much better, imo.
 
 
 
 
 
 
-Bugs--
 
-blocking water objs weren't saved? fixed.
 
-burned grass sprite should look better, more rounded
-towards center, uses dark spots, not like grass sprite.
-done. still doesn't look good. returning to burned grass.
+Ditches shouldn't have green around edges.
+new ditches will sort over objs underneath them, and remove 
+some others to be efficient (but they must stack visually).
 
-updated town to have a gentle wind pass through it.
+
+
+
+
+
+
+
+
+
+Water++
+
+*we could have animated floating lily pads, much like the animated
+flowers that sit over the grass levels. this would add some decoration
+to the otherwise bland sea water.
+*need to make boat anchor object - this is already in common objs,
+and can be used to further decorate piers.
+
+we need 1x1, and 3x3 water tiles, so we can more efficiently use the
+int pool budget. this also allows us to build dungeon room data using
+single water tiles, which fit into the dungeon rooms bettter. this will
+also allow us to build levels and fields more effiecently, using the 3x3
+and 2x2 water tiles.
+
+
+
+
 
 
 
@@ -129,27 +158,6 @@ freezeable - can be frozen by ice
 
 
 
-
-
-
-
-
-
-Wind Sprite
-
-improve wind sprite to look windy! like curly lines.
-
-
-Dungeons++
-in mountain dungeon, the wall torch sprite needs to be 
-mirrorable. it is not, and looks bad in dungeons.
-
-
-
-
-
-
-
 TallCoastlines++
 
 tall coastline animation should just be a seperate obj.
@@ -162,27 +170,6 @@ wave would.
 
 
 
-
-
-
-
-
-
-
-
-Water++
-
-*we could have animated floating lily pads, much like the animated
-flowers that sit over the grass levels. this would add some decoration
-to the otherwise bland sea water.
-*need to make boat anchor object - this is already in common objs,
-and can be used to further decorate piers.
-
-we need 1x1, and 3x3 water tiles, so we can more efficiently use the
-int pool budget. this also allows us to build dungeon room data using
-single water tiles, which fit into the dungeon rooms bettter. this will
-also allow us to build levels and fields more effiecently, using the 3x3
-and 2x2 water tiles.
 
 
 

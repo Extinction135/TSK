@@ -31,8 +31,8 @@ namespace DungeonRun
             Wind.lifeCounter = 0;
 
             //reset the sprite component
-            Wind.compSprite.drawRec.Width = 16 * 1; //assume cell size is 16x16 (most are)
-            Wind.compSprite.drawRec.Height = 16 * 1;
+            Wind.compSprite.drawRec.Width = 16 * 1;
+            Wind.compSprite.drawRec.Height = 16 * 2;
             Wind.compSprite.zOffset = 1024; //wind is globally over everything
             Wind.compSprite.flipHorizontally = false;
             Wind.compSprite.rotation = Rotation.None;
@@ -49,15 +49,15 @@ namespace DungeonRun
 
             //reset the collision component
             Wind.compCollision.blocking = false;
-            Wind.compCollision.rec.Width = 16; //assume collisionRec is 16x16
-            Wind.compCollision.rec.Height = 16; //(most are)
+            Wind.compCollision.rec.Width = 16; //keep it sq for ease of use
+            Wind.compCollision.rec.Height = 16; //
             Wind.compCollision.offsetX = -8; //assume collisionRec offset is -8x-8
             Wind.compCollision.offsetY = -8; //(most are)
 
             //reset the move component
             Wind.compMove.magnitude.X = 0; //discard any previous magnitude
             Wind.compMove.magnitude.Y = 0; //
-            Wind.compMove.moveable = false; //unused
+            Wind.compMove.moveable = true; //wind moves
             Wind.compMove.grounded = false; //unused
 
             Wind.compMove.speed = 0.03f; //wind moves
@@ -68,15 +68,11 @@ namespace DungeonRun
 
         public static void SetRotation(WindObject Wind)
         {   //rotate wind sprite to moving direction
-            if (Wind.compMove.direction == Direction.Down)
+            if (Wind.compMove.direction == Direction.Down
+                || Wind.compMove.direction == Direction.Up)
             { Wind.compSprite.rotation = Rotation.None; }
-            else if (Wind.compMove.direction == Direction.Left)
-            { Wind.compSprite.rotation = Rotation.Clockwise90; }
-            else if (Wind.compMove.direction == Direction.Up)
-            { Wind.compSprite.rotation = Rotation.Clockwise180; }
-            else if (Wind.compMove.direction == Direction.Right)
-            { Wind.compSprite.rotation = Rotation.Clockwise270; }
-            //update the sprites rotation
+            else { Wind.compSprite.rotation = Rotation.Clockwise90; }
+            //update sprites rotation
             Functions_Component.SetSpriteRotation(Wind.compSprite, Wind.direction);
         }
 
@@ -88,6 +84,7 @@ namespace DungeonRun
             spawnRef = Functions_Pool.GetWind();
             spawnRef.direction = Dir;
             spawnRef.compMove.direction = Dir;
+
             //put wind into position
             Functions_Movement.Teleport(spawnRef.compMove, X, Y);
             Functions_Component.Align(
