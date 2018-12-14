@@ -1187,7 +1187,7 @@ namespace DungeonRun
             Functions_InteractiveObjs.SetType(objList[19], InteractiveType.Coliseum_Shadow_Stairs_Right);
 
             //row 6
-            Functions_InteractiveObjs.SetType(objList[20], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[20], InteractiveType.Boat_Floor_Burned);
             Functions_InteractiveObjs.SetType(objList[21], InteractiveType.Unknown);
             Functions_InteractiveObjs.SetType(objList[22], InteractiveType.Unknown);
             Functions_InteractiveObjs.SetType(objList[23], InteractiveType.Unknown);

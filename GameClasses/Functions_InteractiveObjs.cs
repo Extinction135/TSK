@@ -1374,30 +1374,25 @@ namespace DungeonRun
 
             #region Grass
 
-            if (Obj.type == InteractiveType.Grass_Tall)
+            if (
+                Obj.type == InteractiveType.Grass_Tall
+                || Obj.type == InteractiveType.Grass_Cut
+                || Obj.type == InteractiveType.Grass_2
+                || Obj.type == InteractiveType.Flowers
+                )
             {   //spread the fire 
                 Functions_Projectile.Spawn(
                     ProjectileType.GroundFire,
                     Obj.compSprite.position.X,
                     Obj.compSprite.position.Y - 3,
                     Direction.None);
-                Destroy(Obj); //destroy grass as normal
-            }
-
-            #endregion
-
-
-            #region Flowers
-
-            else if (Obj.type == InteractiveType.Flowers)
-            {   //switch to least grass
-                SetType(Obj, InteractiveType.Grass_2);
-                //spread the fire
-                Functions_Projectile.Spawn(
-                    ProjectileType.GroundFire,
+                //pop an attention particle on grass pos
+                Functions_Particle.Spawn(ParticleType.Attention,
                     Obj.compSprite.position.X,
-                    Obj.compSprite.position.Y - 3,
-                    Direction.None);
+                    Obj.compSprite.position.Y);
+                //convert to burned version
+                SetType(Obj, InteractiveType.Grass_Burned);
+                Assets.Play(Assets.sfxLightFire);
             }
 
             #endregion
@@ -1471,6 +1466,23 @@ namespace DungeonRun
             else if (Obj.type == InteractiveType.TorchUnlit)
             {
                 LightTorch(Obj);
+            }
+
+            #endregion
+
+
+            #region Floors - house, boat
+
+            else if (Obj.type == InteractiveType.Boat_Floor)
+            {   //spread the fire 
+                Functions_Projectile.Spawn(
+                    ProjectileType.GroundFire,
+                    Obj.compSprite.position.X,
+                    Obj.compSprite.position.Y - 3,
+                    Direction.None);
+                Assets.Play(Assets.sfxLightFire);
+                //convert to burned version
+                SetType(Obj, InteractiveType.Boat_Floor_Burned);
             }
 
             #endregion
@@ -2707,6 +2719,17 @@ namespace DungeonRun
 
 
 
+
+
+
+
+
+
+
+
+
+
+
             //World Objs
 
             #region Grass Objects
@@ -2716,6 +2739,7 @@ namespace DungeonRun
                 || Type == InteractiveType.Grass_Cut 
                 || Type == InteractiveType.Grass_Tall
                 || Type == InteractiveType.Flowers
+                || Type == InteractiveType.Grass_Burned
                 )
             {
                 IntObj.compSprite.zOffset = -32;
@@ -2742,6 +2766,10 @@ namespace DungeonRun
                     IntObj.compAnim.currentAnimation = AnimationFrames.World_Flowers;
                     //randomly set the starting frame for flowers, so their animations dont sync up
                     IntObj.compAnim.index = (byte)Functions_Random.Int(0, IntObj.compAnim.currentAnimation.Count);
+                }
+                else if(Type == InteractiveType.Grass_Burned)
+                {
+                    IntObj.compAnim.currentAnimation = AnimationFrames.World_Grass_Burned;
                 }
 
                 //randomly flip sprite horizontally
@@ -3754,6 +3782,14 @@ namespace DungeonRun
             else if (Type == InteractiveType.Boat_Floor)
             {
                 IntObj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Floor;
+                //-33 is minimum layer setting for a floor object
+                IntObj.compSprite.zOffset = -40; //sort above water
+                IntObj.canBeSaved = true;
+                IntObj.compCollision.blocking = false;
+            }
+            else if (Type == InteractiveType.Boat_Floor_Burned)
+            {
+                IntObj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Floor_Burned;
                 //-33 is minimum layer setting for a floor object
                 IntObj.compSprite.zOffset = -40; //sort above water
                 IntObj.canBeSaved = true;

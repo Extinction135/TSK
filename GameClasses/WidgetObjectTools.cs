@@ -475,7 +475,8 @@ namespace DungeonRun
                                         Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Boat_Stairs_Right ||
 
                                         //this one is special, because we use this obj as interior house floor
-                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Boat_Floor
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Boat_Floor ||
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Boat_Floor_Burned
                                         //ignore boat button also ignores floors = easy to move furniture around
                                         )
                                     { ignoreObj = true; } //ignore this object
@@ -701,7 +702,8 @@ namespace DungeonRun
                                 
 
                                 //this one is special, because we use this obj as interior house floor
-                                Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Boat_Floor
+                                Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Boat_Floor ||
+                                Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Boat_Floor_Burned
                                 //ignore boat button also ignores floors = easy to move furniture around
                                 )
                             { ignoreObj = true; } //ignore this object

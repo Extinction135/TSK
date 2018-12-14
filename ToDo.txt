@@ -76,20 +76,57 @@ Today:
 
 
 
-IceTiles++
-
-ice tiles cannot be created outside of current room rec! pls
-same with any kind of debris, skeleton, stain, blood.. 
-bug in intObj.selfClean()
 
 
 
 
 Sprites++
+
+Boat++
 fix bottom stairs boat sprite. the round top of the bannister
 intersects the stairs sprite above, which draws under hero.
 this causes top of bannister to draw under hero. bannister shold
-be constrained to it's cell.
+be constrained to it's cell. done.
+
+Burned Grass++
+we need burned grass sprites. when grass burns, it becomes this
+obj, which randomly chooses it's burned grass sprite frame. this is
+darker brown short grass on normal ground. done.
+*we should also have burned boat floor sprites, so house floors can
+get charred too. done.
+
+repacked boat floor objects. burned boat floors added to game.
+
+added interaction between fires and boat/house floors. they now
+become the burned version and spread the fire like other objs do.
+
+burned grass objs should become the burned grass sprite,
+randomly horizontally flipped. done. this happens for all
+grass objects now when burned - they become burned grass.
+
+improved burned grass sprite to be darker with a better
+burned pattern.
+
+add more test objs to town, compiled level data.
+onto more testing...
+
+
+
+
+
+
+
+
+
+blocking water objs weren't saved?
+
+
+trees dont catch fire from neighboring groundfires.
+
+
+
+
+
 
 
 Water++
@@ -115,12 +152,7 @@ in mountain dungeon, the wall torch sprite needs to be
 mirrorable. it is not, and looks bad in dungeons.
 
 
-Burned Grass
-we need burned grass sprites. when grass burns, it becomes this
-obj, which randomly chooses it's burned grass sprite frame. this is
-darker brown short grass on normal ground.
-*we should also have burned boat floor sprites, so house floors can
-get charred too.
+
 
 
 Boomerang Bug
@@ -129,7 +161,10 @@ in a dungeon, then his boomerang is gone until he
 reloads a level.
 
 
+
+
 DITCHES++
+
 Fix bug with ditches - they start off empty but self
 fill, which makes no sense. they need to be empty, then fill
 once connected to a water source. this water source should include
@@ -137,6 +172,9 @@ all coastlines. when a ditch is added over a coastline, the coastline
 should not be removed - the ditch just sits over it. *this is only for
 1x2 tall coastlines, small coastlines 1x1 can be removed for int obj
 budget efficiencies.
+explosions can leave behind ditches where they happen.
+then, ditches can connect like they would via shovel digging.
+inspect how ditches are being handled.
 
 
 Grass++

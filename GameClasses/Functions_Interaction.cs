@@ -621,18 +621,19 @@ namespace DungeonRun
 
                     //ground fires spread to some int objs
                     else if (
-                        //burn bushes
+                        //bushes / trees
                         IntObj.type == InteractiveType.Bush
+                        || IntObj.type == InteractiveType.Tree
                         //burn posts
                         || IntObj.type == InteractiveType.Post_CornerLeft
                         || IntObj.type == InteractiveType.Post_CornerRight
                         || IntObj.type == InteractiveType.Post_Horizontal
                         || IntObj.type == InteractiveType.Post_VerticalLeft
                         || IntObj.type == InteractiveType.Post_VerticalRight
-                        //burn trees
-                        || IntObj.type == InteractiveType.Tree
                         //light torches
                         || IntObj.type == InteractiveType.TorchUnlit
+                        //burn house/boat floors
+                        || IntObj.type == InteractiveType.Boat_Floor
                         )
                     {
                         if (Pro.compCollision.rec.Contains(
@@ -803,13 +804,37 @@ namespace DungeonRun
                 #endregion
 
 
-                #region Tall Grass
+                #region Grass & Tall Grass
 
+                else if (
+                    //Flowers
+                    IntObj.type == InteractiveType.Flowers
+                    || IntObj.type == InteractiveType.Grass_Cut
+                    || IntObj.type == InteractiveType.Grass_2
+                    )
+                {
+                    if (Pro.type == ProjectileType.Explosion)
+                    { Functions_InteractiveObjs.Explode(IntObj); }
+
+                    else if (Pro.type == ProjectileType.GroundFire)
+                    {   //burning
+                        if (Pro.compCollision.rec.Contains(
+                                IntObj.compSprite.position.X,
+                                IntObj.compSprite.position.Y))
+                        {   //check against sprite center pos
+                            Functions_InteractiveObjs.Burn(IntObj);
+                        }   //this prevents immediate fire spread across verticals
+                    }
+                }
                 else if (IntObj.type == InteractiveType.Grass_Tall)
                 {
                     if (Pro.type == ProjectileType.Sword)
                     {   //cutting
                         Functions_InteractiveObjs.Destroy(IntObj);
+                    }
+                    else if (Pro.type == ProjectileType.Explosion)
+                    {
+                        Functions_InteractiveObjs.Explode(IntObj);
                     }
                     else if (Pro.type == ProjectileType.GroundFire)
                     {   //burning
@@ -824,24 +849,7 @@ namespace DungeonRun
 
                 #endregion
 
-
-                #region Flowers
-
-                else if (IntObj.type == InteractiveType.Flowers)
-                {
-                    if (Pro.type == ProjectileType.Explosion)
-                    { Functions_InteractiveObjs.Explode(IntObj); }
-
-                    else if (Pro.type == ProjectileType.GroundFire)
-                    {   //burning
-                        if (Pro.compCollision.rec.Contains(
-                                IntObj.compSprite.position.X,
-                                IntObj.compSprite.position.Y))
-                        { Functions_InteractiveObjs.Burn(IntObj); }   
-                    }
-                }
-
-                #endregion
+                
 
 
                 #region Destroy Open House Doors

@@ -547,6 +547,7 @@ namespace DungeonRun
         Grass_Cut,
         Grass_2,
         Flowers,
+        Grass_Burned,
         Bush,
         Bush_Stump,
         Tree,
@@ -769,7 +770,11 @@ namespace DungeonRun
 
         Boat_Stairs_Left,
         Boat_Stairs_Right,
+
+
         Boat_Floor,
+        Boat_Floor_Burned,
+
         Boat_Barrel,
 
         Boat_Stairs_Cover,

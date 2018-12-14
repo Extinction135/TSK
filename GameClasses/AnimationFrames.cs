@@ -126,9 +126,10 @@ namespace DungeonRun
         public static List<Byte4> World_Grass_Tall = new List<Byte4> { new Byte4(0, 8, 0, 0) };
         public static List<Byte4> World_Grass_Short = new List<Byte4> { new Byte4(0, 9, 0, 0) };
         public static List<Byte4> World_Grass_Minimum = new List<Byte4> { new Byte4(1, 9, 0, 0) };
-
+        public static List<Byte4> World_Grass_Burned = new List<Byte4> { new Byte4(3, 11, 0, 0) };
         public static List<Byte4> World_Flowers = new List<Byte4>
         { new Byte4(0, 10, 0, 0), new Byte4(1, 10, 0, 0), new Byte4(2, 10, 0, 0), new Byte4(3, 10, 0, 0) };
+
 
         //debris
         public static List<Byte4> World_Debris1 = new List<Byte4> { new Byte4(1, 11, 0, 0) };
@@ -360,10 +361,20 @@ namespace DungeonRun
         public static List<Byte4> Wor_Boat_Back_Right = new List<Byte4> { new Byte4(5, 7, 0, 0) };
 
 
+        //FLOORS
+        public static List<Byte4> Wor_Boat_Floor = new List<Byte4> { new Byte4(2, 22, 0, 0) };
+        public static List<Byte4> Wor_Boat_Floor_Burned = new List<Byte4> { new Byte4(3, 22, 0, 0) };
 
-        public static List<Byte4> Wor_Boat_Floor = new List<Byte4> { new Byte4(2, 25, 0, 0) };
+        public static List<Byte4> Wor_Boat_Stairs_Cover = new List<Byte4> { new Byte4(3, 21, 0, 0) };
+
+
+
+
+
+
+
         public static List<Byte4> Wor_Boat_Barrel = new List<Byte4> { new Byte4(3, 26, 0, 0) };
-        public static List<Byte4> Wor_Boat_Stairs_Cover = new List<Byte4> { new Byte4(2, 26, 0, 0) };
+        
         //missing boat stairs anim frame
         public static List<Byte4> Wor_Boat_Engine = new List<Byte4> { new Byte4(1, 5, 0, 0) };
 
