@@ -141,6 +141,51 @@ reward fire spells. that coliseum in the water? caused by a
 comet that EXPLODED the island, and rewards explosive spells...
 
 
+Mountain Dungeon Climb
+
+wind pushes the player while they are trying to climb the mountain to the dungeon
+entrance. the wind is an obj, with animated action lines, so the player can 'see' the
+wind and it coming towards them - allowing them to dodge.
+
+
+
+
+
+Anti-Wind Item - Gravity Boots
+
+we need to way to remove hero from wind pushing routines.
+this can be using an item, making items useful besides the ring.
+theres so much to do there.
+
+these need to be boots. increases friction immensely.
+but also increases magnitude to max value in moving direction.
+this should negate the effects of wind, while allowing the user
+to move very slowly. we can slow the walk anim down too.
+this can be done for the hero in his update routine, which
+has processed after the collisions, which it actually shouldn't.
+it ishould process before, that way we can alter the magnitude / newPos * currPos
+using the boots, then collisions can resolve, bypassing wind entirely.
+
+
+
+
+Wind in Levels
+
+wind should occasionally blow thru overworld levels
+this is a bombos like wind sweep across the entire screen in a direction.
+hero would be pushed. all pushable things would be pushed. 
+this would also be a global spell cast.
+
+
+Wind Polish
+
+wind should interact specially with some objects, for example
+leaves should fly out from trees that haven't been burned/stumps.
+leaves can fly out of bushes too, just much less of them.
+tall grass can alternate it's frame randomly, as if the wind was
+tickling the grass as it passed by. 
+it's a very environmental thing, but adds life.
+
 
 
 

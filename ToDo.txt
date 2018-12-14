@@ -65,15 +65,46 @@ Today:
 
 
 
+
+
+
+
 Editor++
 
-All indestructible boat objects added.
-created shadow king base level, using boat and water 2x2 objects.
-a full water level plus boat objs takes up about 50% of the
-interactive objects pool, and 50/600 of the indestructibles.
-we can simply increase these pools if we need to, but i'd rather
-optimize objects (3x3 water objs, 4x4, etc..).
-increased ind obj count to 600 in pool.
+We cannot rotate int objects in the editor, which means we cant
+properly build levels right now. fix pls. we likely cannot rotate
+ind objs either, so we need to fix this basic functionality now.
+test via town level coastlines + dirt to grass transition tiles.
+tested and done. rotation works again.
+
+
+
+
+
+
+
+SkullIsland++
+
+create better level data for skullisland. make sure editor works completely.
+disable all other island levels, and focus on just these for dev.
+
+coliseum entrance should look right, not contain all dungeon entrances.
+instead we can move those to shadow king level.
+town should be expanded to have a pond, with all NPCs, for testing.
+no other levels are linked to by overworld than shadow island.
+
+coliseum should have big windows, big skulls, look awesome. custom bricks.
+shadowking should have animated shadow ppillars throughout the water.
+the entrance to the shadow dungeon should be animated. there should be fires
+burning in the water around the shadow entrance.
+
+there should be massive skulls around shadow town. we also need ind and int
+skulls that link can interact with or block him. we dont have enough for this
+town. also, the visuals for this town should be redesign on the overworld map
+to have more skulls around and in it. these skulls are made of rock and are brown.
+those skulls are ind objs. the skulls that are white are interactive objs that link
+can pickup and throw and carry. consider making those skull sprites a bit fuller
+in the cellsize, so they fill their frames up better.
 
 
 
@@ -82,6 +113,33 @@ increased ind obj count to 600 in pool.
 
 
 
+
+
+
+
+Dungeon Walls, Doors++
+fireballs push dungeon walls. all kinds of dungeon walls.
+dungeon walls and doors, and all kinds of objs, should not
+be able to be pushed, by any projectile or int or actor.
+is this compMove.moveable = false? inspect.
+
+
+
+
+
+Pros++
+projectiles MUST check collisions against indestructibles,
+and inds must set colliding pros to end of life value. otherwise, 
+arrows just hang in the air against inds, waiting for something to 
+collide with them. which is weird. boomerang doesn't bounce either.
+just end of life any colliding pro, then let Kill() handle the 
+pro's death/return state.
+
+
+Bug IceTiles
+ice tiles cannot be created outside of current room rec! pls
+same with any kind of debris, skeleton, stain, blood.. 
+bug in intObj.selfClean()
 
 
 
@@ -93,39 +151,128 @@ increased ind obj count to 600 in pool.
 
 
 Sprites++
-
 fix bottom stairs boat sprite. the round top of the bannister
 intersects the stairs sprite above, which draws under hero.
 this causes top of bannister to draw under hero. bannister shold
 be constrained to it's cell.
 
+*what if we had a captains quarters instead of the engine obj?
+*single obj for roof, upon collision with hero, hides itself. not destructible.
+(boat generally isn't destructible).
 
 
 
 
-
-Rebuild Level Data - dont do this actually! slows dev actually!
-
-all level and room data that looks and plays well from prev version
-needs to be migrated to the new systems. FIRST we need base levels:
-
-link spawns on boat, surrounded by water. (this is based level for all water levels)
-coliseum 
-coliseum pit 
-shadow town 
-shadow dungeon ent 
-mtn dung ent 
-forest dung ent
-
-Mountain Dungeon Climb
-
-wind pushes the player while they are trying to climb the mountain to the dungeon
-entrance. the wind is an obj, with animated action lines, so the player can 'see' the
-wind and it coming towards them - allowing them to dodge.
 
 Wind Sprite
+improve wind sprite to look windy! like curly lines.
 
-we need a sprite here that looks windy! like curly lines.
+
+Dungeons++
+in mountain dungeon, the wall torch sprite needs to be 
+mirrorable. it is not, and looks bad in dungeons.
+
+
+Burned Grass
+we need burned grass sprites. when grass burns, it becomes this
+obj, which randomly chooses it's burned grass sprite frame. this is
+darker brown short grass on normal ground.
+*we should also have burned boat floor sprites, so house floors can
+get charred too.
+
+
+Stop Fire Spell
+this is a fire spell that kills all ground fires in the room.
+simply calls Kill() on them all. this allows for control of
+fire spreading, if we dont want something to burn, for example.
+
+
+
+DungeonCompletion++
+when we beat a boss - it swiftly kicks us to the overworld map.
+we should instead pop a dialog telling player what happened! then
+kick to overworld. later we can replace this dialog with a cutscene.
+
+
+Boomerang Bug
+if hero exits a room without the boomerang, while
+in a dungeon, then his boomerang is gone until he
+reloads a level.
+
+
+
+Ice Tile Melting++
+
+fire melting ice is good, but it needs polish.
+when we melt ice, we should create a wet spot particle,
+which lasts for 200 or so frames, and helps to ease 
+the ice tiles transition out of the world, since it
+just dissappears right now. this can just be stain obj.
+
+
+
+
+BURN HOUSES
+
+as in, have burned versions of each house obj that randomly
+smoke and rarely collapse (like roofs randomly collapsing).
+this should apply to a certain set of objects only.
+consider making these objects in their own pool, because they
+handle interactions and can be blocking / non-blocking.
+indestructible objs ONLY BLOCK, and NEVER INTERACT.
+
+all these house objs are on thier own sheet btw...
+
+
+Grass++
+cut grass should grow into tall grass if near coastlines,
+or filled ditches.
+
+DITCHES++
+Fix bug with ditches - they start off empty but self
+fill, which makes no sense. they need to be empty, then fill
+once connected to a water source. this water source should include
+all coastlines. when a ditch is added over a coastline, the coastline
+should not be removed - the ditch just sits over it. *this is only for
+1x2 tall coastlines, small coastlines 1x1 can be removed for int obj
+budget efficiencies.
+
+
+Big Magic Container + Frozen Smashing Damage Bonus
+
+implement the hammer + ice bonus damage, plus the big magic
+refill loot spawn. this is a special call in functions_loot,
+specially made for hammers destroying iceblocks with actor or
+object refs! with this check, we always spawn a big magic container.
+which means, we need a big magic container.. lol..
+
+rip this from lttps sprites.
+
+
+Water++
+*we could have animated floating lily pads, much like the animated
+flowers that sit over the grass levels. this would add some decoration
+to the otherwise bland sea water.
+*need to make boat anchor object - this is already in common objs,
+and can be used to further decorate piers.
+
+Implement Cane of Somara (or whatever)
+this is the cane that creates blocks that are pushable.
+this makes it MUCH easier to get thru dungeons, as many
+rooms rely on floor switches, which link can simply
+create a block over. if a block is created ontop of
+a blocking roomObject, the block ... pops out of existence,
+self-cleaning.
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -146,14 +293,15 @@ add wide short rooms to dungeons.
 breaks up square room repetition.
 makes dungeons feel different too.
 
-
 split up between dungeons now! we want forest to have
 it's own set of forest room data (diff folder), than
 mountain than swamp. this means we have ALOT of roomData
 now which is fine. BUT we also need to be writing these
 rooms to their .cs file specific to forest, mtn, swamp.
 this includes expanding the Dx backend writing methods 
-to handle this.
+to handle this. we will also be keeping this xml data
+seperate, and hopefully smaller andn easier for VS to
+parse when it does so.
 
 this allows us to theme roomData to the dungeon it will
 exist in, for example - bushes and trees in the forest
@@ -165,6 +313,7 @@ go ahead and create these .cs files and routines now:
 forest, mountain, swamp - +lava, +cloud, +den, +shadow
 *those are the 7 primary dungeons in the game.
 
+**we need 1x1 water objs for better dungeon room design.
 
 
 
@@ -177,161 +326,6 @@ forest, mountain, swamp - +lava, +cloud, +den, +shadow
 
 
 
-
-
-
-
-
-
-
-
-
-Dungeons++
-
-in mountain dungeon, the wall torch sprite needs to be 
-mirrorable. it is not, and looks bad in dungeons.
-
-
-
-
-
-
-Boomerang Bug
-
-if hero exits a room without the boomerang, while
-in a dungeon, then his boomerang is gone until he
-reloads a level.
-
-
-
-
-
-Burned Grass
-
-we need burned grass sprites. when grass burns, it becomes this
-obj, which randomly chooses it's burned grass sprite frame. this is
-darker brown short grass on normal ground.
-
-
-
-
-Stop Fire Spell
-
-this is a fire spell that kills all ground fires in the room.
-simply calls Kill() on them all. this allows for control of
-fire spreading, if we dont want something to burn, for example.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Anti-Wind Item - Gravity Boots
-
-we need to way to remove hero from wind pushing routines.
-this can be using an item, making items useful besides the ring.
-theres so much to do there.
-
-these need to be boots. increases friction immensely.
-but also increases magnitude to max value in moving direction.
-this should negate the effects of wind, while allowing the user
-to move very slowly. we can slow the walk anim down too.
-this can be done for the hero in his update routine, which
-has processed after the collisions, which it actually shouldn't.
-it ishould process before, that way we can alter the magnitude / newPos * currPos
-using the boots, then collisions can resolve, bypassing wind entirely.
-
-
-
-
-Wind in Levels
-
-wind should occasionally blow thru overworld levels
-this is a bombos like wind sweep across the entire screen in a direction.
-hero would be pushed. all pushable things would be pushed. 
-this would also be a global spell cast.
-
-
-Wind Polish
-
-wind should interact specially with some objects, for example
-leaves should fly out from trees that haven't been burned/stumps.
-leaves can fly out of bushes too, just much less of them.
-tall grass can alternate it's frame randomly, as if the wind was
-tickling the grass as it passed by. 
-it's a very environmental thing, but adds life.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Wind spells
-
-fly: pushes caster in facing direction each frame, in flying state.
-
-tornado: spawns a tornado roomObj. (fire, ice, explosive, electrical tornados too)...
-
-
-
-
-
-
-
-
-
-Pros++
-
-projectiles MUST check collisions against indestructibles,
-and inds must kill() colliding pros. otherwise, arrows just hand
-in the air against inds, waiting for something to collide with them.
-which is weird.
-
-
-
-
-
-Moar Optimizations!
-
-boat floor objs need to be actual floor objs.
-when we add them, we should be adding them from
-the floors pool. cut grass and small grass, and
-dirt tiles can all be floor objects, reducing the
-strain on interactive obj pool more. these floor
-objects are not actually interactive either.
-we don't use floor objs in field levels, and thats
-a waste of a useful budget for displaying certain
-types of game objects that fields def do need.
 
 
 
@@ -424,13 +418,6 @@ is and how it's used. for example, WIND counters.
 
 
 
-Ice Tile Melting++
-
-fire melting ice is good, but it needs polish.
-when we melt ice, we should create a wet spot particle,
-which lasts for 200 or so frames, and helps to ease 
-the ice tiles transition out of the world, since it
-just dissappears right now.
 
 
 
@@ -445,16 +432,7 @@ just dissappears right now.
 
 
 
-BURN HOUSES
 
-as in, have burned versions of each house obj that randomly
-smoke and rarely collapse (like roofs randomly collapsing).
-this should apply to a certain set of objects only.
-consider making these objects in their own pool, because they
-handle interactions and can be blocking / non-blocking.
-indestructible objs ONLY BLOCK, and NEVER INTERACT.
-
-all these house objs are on thier own sheet btw...
 
 
 
@@ -478,44 +456,11 @@ fire tornado magic is unlocked - or something else. i dunno.
 
 
 
-Grass++
-cut grass should grow into tall grass if near coastlines,
-or filled ditches.
-
-
-
-
-
-
-
-Big Magic Container + Frozen Smashing Damage Bonus
-
-implement the hammer + ice bonus damage, plus the big magic
-refill loot spawn. this is a special call in functions_loot,
-specially made for hammers destroying iceblocks with actor or
-object refs! with this check, we always spawn a big magic container.
-which means, we need a big magic container.. lol..
-
-rip this from lttps sprites.
-
-
-
-
-
-
-
-
 
 
 comet magic
 
-bombos should make non-hero actors explode via explosions
-simultaneously, along with bomb circle around link.
 
-quake shakes the screen and deals level 2 damage to everything
-in the level. so it's very powerful. BUT flying objects and actors
-are completely immune to it. this also means we need to write a
-camera shake routine like we did in th.
 
 
 
@@ -565,41 +510,13 @@ well.
 
 
 
-Water++
-
-*we could have animated floating lily pads, much like the animated
-flowers that sit over the grass levels. this would add some decoration
-to the otherwise bland sea water.
-
-*need to make boat anchor object - this is already in common objs,
-and can be used to further decorate piers.
 
 
 
 
 
-Implement Cane of Somara (or whatever)
-this is the cane that creates blocks that are pushable.
-this makes it MUCH easier to get thru dungeons, as many
-rooms rely on floor switches, which link can simply
-create a block over. if a block is created ontop of
-a blocking roomObject, the block ...
 
 
-
-
-
-Tall Coastlines
-there is a problem with the tall coastline objs - we should be
-able to dig over them, but doing so will remove the entire obj,
-leaving a 16x16 ditch, instad of a 16x32 ditch to match the coastline
-objs size. the green bkg will show, instead of water, breaking 
-immersion. they are immune to digs for now. the solution is to 
-break them up into two 16x16 objects, replace them in level,
-then allow digging on the top object that transitions to land..
-this trans should be based on the dirtcolor, not green, because
-water doesn't transition directly to grass on islands. 
--for now tall coastlines are immune to dig-
 
 
 

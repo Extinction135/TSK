@@ -526,17 +526,19 @@ namespace DungeonRun
                         if (Pool.intObjPool[Pool.intObjCounter].active)
                         {   //check collisions between worldPos and obj, grab any colliding obj
                             if (Pool.intObjPool[Pool.intObjCounter].compCollision.rec.Contains(worldPos))
-                            {
-                                //set int obj ref into grabbed obj ref
+                            {   //set int obj ref into grabbed obj ref
                                 grabbedIntObj = Pool.intObjPool[Pool.intObjCounter];
-                                //loop thru a clockwise rotation
-                                if (grabbedIntObj.compSprite.rotation == Rotation.None)
-                                { grabbedIntObj.compSprite.rotation = Rotation.Clockwise90; }
-                                else if (grabbedIntObj.compSprite.rotation == Rotation.Clockwise90)
-                                { grabbedIntObj.compSprite.rotation = Rotation.Clockwise180; }
-                                else if (grabbedIntObj.compSprite.rotation == Rotation.Clockwise180)
-                                { grabbedIntObj.compSprite.rotation = Rotation.Clockwise270; }
-                                else { grabbedIntObj.compSprite.rotation = Rotation.None; }
+
+                                //set the direction
+                                if (grabbedIntObj.direction == Direction.Down)
+                                { grabbedIntObj.direction = Direction.Left; }
+                                else if (grabbedIntObj.direction == Direction.Left)
+                                { grabbedIntObj.direction = Direction.Up; }
+                                else if (grabbedIntObj.direction == Direction.Up)
+                                { grabbedIntObj.direction = Direction.Right; }
+                                else if (grabbedIntObj.direction == Direction.Right)
+                                { grabbedIntObj.direction = Direction.Down; }
+
                                 //update the rotation
                                 Functions_InteractiveObjs.SetRotation(grabbedIntObj);
                                 //display the selected objs new values
