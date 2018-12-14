@@ -17,19 +17,23 @@ namespace DungeonRun
         static float maxMagnitude = 10.0f;
 
         public static void Push(ComponentMovement Move, Direction Direction, float Amount)
-        {   //modify move component's magnitude based on direction by amount
-            if (Direction == Direction.Down) { Move.magnitude.Y += Amount; }
-            else if (Direction == Direction.Left) { Move.magnitude.X -= Amount; }
-            else if (Direction == Direction.Right) { Move.magnitude.X += Amount; }
-            else if (Direction == Direction.Up) { Move.magnitude.Y -= Amount; }
-            else if (Direction == Direction.DownLeft)
-            { Move.magnitude.Y += Amount * 0.75f; Move.magnitude.X -= Amount * 0.75f; }
-            else if (Direction == Direction.DownRight)
-            { Move.magnitude.Y += Amount * 0.75f; Move.magnitude.X += Amount * 0.75f; }
-            else if (Direction == Direction.UpLeft)
-            { Move.magnitude.Y -= Amount * 0.75f; Move.magnitude.X -= Amount * 0.75f; }
-            else if (Direction == Direction.UpRight)
-            { Move.magnitude.Y -= Amount * 0.75f; Move.magnitude.X += Amount * 0.75f; }
+        {   
+            if(Move.moveable)
+            {
+                //modify move component's magnitude based on direction by amount
+                if (Direction == Direction.Down) { Move.magnitude.Y += Amount; }
+                else if (Direction == Direction.Left) { Move.magnitude.X -= Amount; }
+                else if (Direction == Direction.Right) { Move.magnitude.X += Amount; }
+                else if (Direction == Direction.Up) { Move.magnitude.Y -= Amount; }
+                else if (Direction == Direction.DownLeft)
+                { Move.magnitude.Y += Amount * 0.75f; Move.magnitude.X -= Amount * 0.75f; }
+                else if (Direction == Direction.DownRight)
+                { Move.magnitude.Y += Amount * 0.75f; Move.magnitude.X += Amount * 0.75f; }
+                else if (Direction == Direction.UpLeft)
+                { Move.magnitude.Y -= Amount * 0.75f; Move.magnitude.X -= Amount * 0.75f; }
+                else if (Direction == Direction.UpRight)
+                { Move.magnitude.Y -= Amount * 0.75f; Move.magnitude.X += Amount * 0.75f; }
+            }
         }
 
         public static void ProjectMovement(ComponentMovement Move)

@@ -32,6 +32,7 @@ namespace DungeonRun
             Actor.direction = Direction.Down;
             Actor.compMove.direction = Direction.None;
             Actor.compMove.grounded = true; //most actors move on ground
+            Actor.compMove.moveable = true; //all actors can move
             //reset actor's collisions
             Actor.compCollision.blocking = true;
             //reset actor's sprite 

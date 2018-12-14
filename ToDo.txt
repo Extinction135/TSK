@@ -69,13 +69,130 @@ Today:
 
 
 
-Editor++
 
-We cannot rotate int objects in the editor, which means we cant
-properly build levels right now. fix pls. we likely cannot rotate
-ind objs either, so we need to fix this basic functionality now.
-test via town level coastlines + dirt to grass transition tiles.
-tested and done. rotation works again.
+
+
+
+
+
+
+
+
+
+
+
+Dungeon Walls, Doors++
+
+fireballs push dungeon walls. all kinds of dungeon walls.
+dungeon walls and doors, and all kinds of objs, should not
+be able to be pushed, by any projectile or int or actor.
+is this compMove.moveable = false? inspect.
+
+updated Push() to only allow routine to operate on a move
+component that has it's moveable boolean set to true.
+that should fix the pushing of dungeon walls by ALL projectiles,
+not just fireballs. in addition, this likely makes the
+moveable check from wind irrelevant too. let's see...
+
+it does, they are now removed. tested dugneons, working.
+
+
+
+
+
+
+
+
+
+
+Pros++
+projectiles MUST check collisions against indestructibles,
+and inds must set colliding pros to end of life value. otherwise, 
+arrows just hang in the air against inds, waiting for something to 
+collide with them. which is weird. boomerang doesn't bounce either.
+just end of life any colliding pro, then let Kill() handle the 
+pro's death/return state.
+
+
+Bug IceTiles
+ice tiles cannot be created outside of current room rec! pls
+same with any kind of debris, skeleton, stain, blood.. 
+bug in intObj.selfClean()
+
+
+Sprites++
+fix bottom stairs boat sprite. the round top of the bannister
+intersects the stairs sprite above, which draws under hero.
+this causes top of bannister to draw under hero. bannister shold
+be constrained to it's cell.
+
+
+Water++
+*we could have animated floating lily pads, much like the animated
+flowers that sit over the grass levels. this would add some decoration
+to the otherwise bland sea water.
+*need to make boat anchor object - this is already in common objs,
+and can be used to further decorate piers.
+
+we need 1x1, and 3x3 water tiles, so we can more efficiently use the
+int pool budget. this also allows us to build dungeon room data using
+single water tiles, which fit into the dungeon rooms bettter. this will
+also allow us to build levels and fields more effiecently, using the 3x3
+and 2x2 water tiles.
+
+
+Wind Sprite
+improve wind sprite to look windy! like curly lines.
+
+
+Dungeons++
+in mountain dungeon, the wall torch sprite needs to be 
+mirrorable. it is not, and looks bad in dungeons.
+
+
+Burned Grass
+we need burned grass sprites. when grass burns, it becomes this
+obj, which randomly chooses it's burned grass sprite frame. this is
+darker brown short grass on normal ground.
+*we should also have burned boat floor sprites, so house floors can
+get charred too.
+
+
+Boomerang Bug
+if hero exits a room without the boomerang, while
+in a dungeon, then his boomerang is gone until he
+reloads a level.
+
+
+DITCHES++
+Fix bug with ditches - they start off empty but self
+fill, which makes no sense. they need to be empty, then fill
+once connected to a water source. this water source should include
+all coastlines. when a ditch is added over a coastline, the coastline
+should not be removed - the ditch just sits over it. *this is only for
+1x2 tall coastlines, small coastlines 1x1 can be removed for int obj
+budget efficiencies.
+
+
+Grass++
+cut grass should grow into tall grass if near coastlines,
+or filled ditches.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -94,7 +211,7 @@ town should be expanded to have a pond, with all NPCs, for testing.
 no other levels are linked to by overworld than shadow island.
 
 coliseum should have big windows, big skulls, look awesome. custom bricks.
-shadowking should have animated shadow ppillars throughout the water.
+shadowking should have animated shadow pillars throughout the water.
 the entrance to the shadow dungeon should be animated. there should be fires
 burning in the water around the shadow entrance.
 
@@ -117,68 +234,12 @@ in the cellsize, so they fill their frames up better.
 
 
 
-Dungeon Walls, Doors++
-fireballs push dungeon walls. all kinds of dungeon walls.
-dungeon walls and doors, and all kinds of objs, should not
-be able to be pushed, by any projectile or int or actor.
-is this compMove.moveable = false? inspect.
-
-
-
-
-
-Pros++
-projectiles MUST check collisions against indestructibles,
-and inds must set colliding pros to end of life value. otherwise, 
-arrows just hang in the air against inds, waiting for something to 
-collide with them. which is weird. boomerang doesn't bounce either.
-just end of life any colliding pro, then let Kill() handle the 
-pro's death/return state.
-
-
-Bug IceTiles
-ice tiles cannot be created outside of current room rec! pls
-same with any kind of debris, skeleton, stain, blood.. 
-bug in intObj.selfClean()
-
-
-
-
-
-
-
-
-
-
-Sprites++
-fix bottom stairs boat sprite. the round top of the bannister
-intersects the stairs sprite above, which draws under hero.
-this causes top of bannister to draw under hero. bannister shold
-be constrained to it's cell.
+Ships Captain's Quarters
 
 *what if we had a captains quarters instead of the engine obj?
 *single obj for roof, upon collision with hero, hides itself. not destructible.
 (boat generally isn't destructible).
 
-
-
-
-
-Wind Sprite
-improve wind sprite to look windy! like curly lines.
-
-
-Dungeons++
-in mountain dungeon, the wall torch sprite needs to be 
-mirrorable. it is not, and looks bad in dungeons.
-
-
-Burned Grass
-we need burned grass sprites. when grass burns, it becomes this
-obj, which randomly chooses it's burned grass sprite frame. this is
-darker brown short grass on normal ground.
-*we should also have burned boat floor sprites, so house floors can
-get charred too.
 
 
 Stop Fire Spell
@@ -192,12 +253,6 @@ DungeonCompletion++
 when we beat a boss - it swiftly kicks us to the overworld map.
 we should instead pop a dialog telling player what happened! then
 kick to overworld. later we can replace this dialog with a cutscene.
-
-
-Boomerang Bug
-if hero exits a room without the boomerang, while
-in a dungeon, then his boomerang is gone until he
-reloads a level.
 
 
 
@@ -224,18 +279,6 @@ indestructible objs ONLY BLOCK, and NEVER INTERACT.
 all these house objs are on thier own sheet btw...
 
 
-Grass++
-cut grass should grow into tall grass if near coastlines,
-or filled ditches.
-
-DITCHES++
-Fix bug with ditches - they start off empty but self
-fill, which makes no sense. they need to be empty, then fill
-once connected to a water source. this water source should include
-all coastlines. when a ditch is added over a coastline, the coastline
-should not be removed - the ditch just sits over it. *this is only for
-1x2 tall coastlines, small coastlines 1x1 can be removed for int obj
-budget efficiencies.
 
 
 Big Magic Container + Frozen Smashing Damage Bonus
@@ -249,12 +292,7 @@ which means, we need a big magic container.. lol..
 rip this from lttps sprites.
 
 
-Water++
-*we could have animated floating lily pads, much like the animated
-flowers that sit over the grass levels. this would add some decoration
-to the otherwise bland sea water.
-*need to make boat anchor object - this is already in common objs,
-and can be used to further decorate piers.
+
 
 Implement Cane of Somara (or whatever)
 this is the cane that creates blocks that are pushable.

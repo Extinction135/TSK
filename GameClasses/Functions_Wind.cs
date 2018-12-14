@@ -240,13 +240,10 @@ namespace DungeonRun
                                     Pool.windInts_ThisFrame++; //count it
                                     Pool.intObjPool[Pool.intObjCounter].compMove.direction = windRef.compMove.direction;
                                     //push it real good
-                                    if (Pool.intObjPool[Pool.intObjCounter].compMove.moveable)
-                                    {   //wind is hitting moveable obj, push obj
-                                        Functions_Movement.Push(
-                                            Pool.intObjPool[Pool.intObjCounter].compMove,
-                                            windRef.compMove.direction,
-                                            windRef.compMove.speed * 33);
-                                    }
+                                    Functions_Movement.Push(
+                                        Pool.intObjPool[Pool.intObjCounter].compMove,
+                                        windRef.compMove.direction,
+                                        windRef.compMove.speed * 33);
                                 }
                             }
                         }
@@ -290,14 +287,11 @@ namespace DungeonRun
                                 {   //wind pushes this object
                                     Pool.windInts_ThisFrame++; //count it
                                     Pool.projectilePool[Pool.projectileCounter].compMove.direction = windRef.compMove.direction;
-                                    //push it real good
-                                    if (Pool.projectilePool[Pool.projectileCounter].compMove.moveable)
-                                    {   //wind is overlapping pro, handle per pro pushes with gust
-                                        Functions_Movement.Push(
-                                            Pool.projectilePool[Pool.projectileCounter].compMove, 
-                                            windRef.compMove.direction,
-                                            windRef.compMove.speed * 99); //alot
-                                    }
+                                    //wind is overlapping pro, handle per pro pushes with gust
+                                    Functions_Movement.Push(
+                                        Pool.projectilePool[Pool.projectileCounter].compMove, 
+                                        windRef.compMove.direction,
+                                        windRef.compMove.speed * 99); //alot
                                 }
                             }
                         }
