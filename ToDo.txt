@@ -76,44 +76,13 @@ Today:
 
 
 
+IceTiles++
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Pros++
-
-projectiles MUST check collisions against indestructibles,
-and inds must set colliding pros to end of life value. otherwise, 
-arrows just hang in the air against inds, waiting for something to 
-collide with them. which is weird. boomerang doesn't bounce either.
-
-there were many consequences of this change.
-one of them, is that arrows now stick into indestructible objs.
-
-
-
-
-
-
-
-
-
-
-Bug IceTiles
 ice tiles cannot be created outside of current room rec! pls
 same with any kind of debris, skeleton, stain, blood.. 
 bug in intObj.selfClean()
+
+
 
 
 Sprites++

@@ -1669,8 +1669,13 @@ namespace DungeonRun
                             || IntObj.type == InteractiveType.FloorBlood
                             || IntObj.type == InteractiveType.FloorSkeleton
                             )
-                        {   //if decor overlaps a copy of itself, remove decor
-                            if (IntObj.type == Pool.intObjPool[g].type)
+                        {
+                            //remove obj if it is outside of current room rec
+                            if (!LevelSet.currentLevel.currentRoom.rec.Intersects(IntObj.compCollision.rec))
+                            { Functions_Pool.Release(IntObj); }
+
+                            //if decor overlaps a copy of itself, remove decor
+                            else if (IntObj.type == Pool.intObjPool[g].type)
                             { Functions_Pool.Release(IntObj); }
 
                             //decor cannot overlap blocking objects, obvs
@@ -1711,8 +1716,12 @@ namespace DungeonRun
 
                         else if (IntObj.type == InteractiveType.IceTile)
                         {
+                            //remove obj if it is outside of current room rec
+                            if (!LevelSet.currentLevel.currentRoom.rec.Intersects(IntObj.compCollision.rec))
+                            { Functions_Pool.Release(IntObj); }
+
                             //remove icetile if blocking roomObj overlaps
-                            if (Pool.intObjPool[g].compCollision.blocking)
+                            else if (Pool.intObjPool[g].compCollision.blocking)
                             {   //but allow some blocking objs, like posts
                                 if (
                                     //burned posts
