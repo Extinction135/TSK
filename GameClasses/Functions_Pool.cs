@@ -334,7 +334,7 @@ namespace DungeonRun
 
 
         
-
+        static int g;
         public static void Update()
         {
 
@@ -673,13 +673,21 @@ namespace DungeonRun
             for(i = 0; i < Pool.projectileCount; i++)
             {
                 if (Pool.projectilePool[i].active)
-                {   //projectiles that collide with indestructibles go back to prev position
+                {   //most moving projectiles that collide with indestructibles get passed to pro.kill()
                     if(Pool.projectilePool[i].compMove.moving)
-                    {
-                        Functions_Collision.CheckCollisions(
-                                Pool.projectilePool[i].compMove,
-                                Pool.projectilePool[i].compCollision,
-                                true, false, false, false);
+                    {   //loop indestructibles, handling projectiles that collide
+                        for (g = 0; g < Pool.indObjCount; g++)
+                        {
+                            if (Pool.indObjPool[g].active)
+                            {
+                                Pool.collisions_Possible++; //possible interaction up next
+                                if (Pool.projectilePool[i].compCollision.rec.Intersects(Pool.indObjPool[g].compCollision.rec))
+                                {  
+                                    Pool.collisions_ThisFrame++; //count it
+                                    Functions_IndestructibleObjs.HandleProCollision(Pool.indObjPool[g], Pool.projectilePool[i]);
+                                }
+                            }
+                        }
                     }
                 }
             }

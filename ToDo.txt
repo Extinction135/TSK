@@ -81,20 +81,6 @@ Today:
 
 
 
-Dungeon Walls, Doors++
-
-fireballs push dungeon walls. all kinds of dungeon walls.
-dungeon walls and doors, and all kinds of objs, should not
-be able to be pushed, by any projectile or int or actor.
-is this compMove.moveable = false? inspect.
-
-updated Push() to only allow routine to operate on a move
-component that has it's moveable boolean set to true.
-that should fix the pushing of dungeon walls by ALL projectiles,
-not just fireballs. in addition, this likely makes the
-moveable check from wind irrelevant too. let's see...
-
-it does, they are now removed. tested dugneons, working.
 
 
 
@@ -106,12 +92,22 @@ it does, they are now removed. tested dugneons, working.
 
 
 Pros++
+
 projectiles MUST check collisions against indestructibles,
 and inds must set colliding pros to end of life value. otherwise, 
 arrows just hang in the air against inds, waiting for something to 
 collide with them. which is weird. boomerang doesn't bounce either.
-just end of life any colliding pro, then let Kill() handle the 
-pro's death/return state.
+
+there were many consequences of this change.
+one of them, is that arrows now stick into indestructible objs.
+
+
+
+
+
+
+
+
 
 
 Bug IceTiles

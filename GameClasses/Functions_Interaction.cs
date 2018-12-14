@@ -144,6 +144,10 @@ namespace DungeonRun
             //ignore thrown projectile obj and hero interactions (allow overlap)
             else if (Pro.type == ProjectileType.ThrownObject & Actor == Pool.hero)
             { return; }
+            //ignore arrows that have already hit something
+            else if(Pro.type == ProjectileType.Arrow &
+                Pro.compAnim.currentAnimation == AnimationFrames.Projectile_ArrowHit)
+            { return; }
 
             #endregion
 
@@ -324,8 +328,9 @@ namespace DungeonRun
             else if (Pro.type == ProjectileType.Iceblock) { return; }
             else if (Pro.type == ProjectileType.IceblockCracking) { return; }
 
-
-
+            else if (Pro.type == ProjectileType.Arrow &
+                Pro.compAnim.currentAnimation == AnimationFrames.Projectile_ArrowHit)
+            { return; }
 
 
 
@@ -527,13 +532,7 @@ namespace DungeonRun
                             Pro.compSprite.position.X + 4,
                             Pro.compSprite.position.Y + 4);
                     }
-
-                    //stop all boomerang movement, bounce off object
-                    Functions_Movement.StopMovement(Pro.compMove);
-                    Functions_Movement.Push(Pro.compMove,
-                        Functions_Direction.GetOppositeCardinal(
-                            Pro.compSprite.position,
-                            IntObj.compSprite.position), 4.0f);
+                    Functions_Projectile.BoomerangBounce(Pro, IntObj.compSprite.position);
                 }
 
                 #endregion

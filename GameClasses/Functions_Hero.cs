@@ -1020,8 +1020,7 @@ namespace DungeonRun
                 Functions_Actor.SetAnimationGroup(Pool.hero);
 
                 //resolve hero.direction to cardinal - no diagonal throwing
-                Pool.hero.direction =
-                    Functions_Direction.GetCardinalDirection_LeftRight(Pool.hero.direction);
+                Pool.hero.direction = Functions_Direction.GetCardinalDirection_LeftRight(Pool.hero.direction);
 
 
                 #region Setup hero's thrown projectile object
@@ -1045,6 +1044,7 @@ namespace DungeonRun
 
                 thrownObj.compMove.direction = Pool.hero.direction;
                 thrownObj.compMove.grounded = false; //obj is airborne
+                thrownObj.compMove.moveable = true; //can be thrown
                 thrownObj.compMove.friction = 0.984f; //some air friction
 
                 thrownObj.compCollision.offsetX = -6; thrownObj.compCollision.offsetY = -8;

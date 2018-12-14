@@ -51,7 +51,7 @@ namespace DungeonRun
             Part.compMove.magnitude.Y = 0; //
             Part.compMove.speed = 0.0f; //assume this object doesn't move
             Part.compMove.friction = 0.75f; //normal friction
-            Part.compMove.moveable = false; //most objects cant be moved
+            Part.compMove.moveable = true; //
             Part.compMove.grounded = true; //most objects exist on the ground
         }
 

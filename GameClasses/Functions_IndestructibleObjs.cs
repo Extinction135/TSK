@@ -159,6 +159,62 @@ namespace DungeonRun
 
 
 
+        public static void HandleProCollision(IndestructibleObject IndObj, Projectile Pro)
+        {
+
+            #region Arrow
+
+            if (Pro.type == ProjectileType.Arrow)
+            {
+                if (Pro.compAnim.currentAnimation == AnimationFrames.Projectile_Arrow)
+                {   //flip animFrame to hit, rendering arrow unable to hit other actors/objs
+                    Functions_Movement.StopMovement(Pro.compMove);
+                    Functions_Projectile.SetArrowHitState(Pro); //change anim frame to hit arrow
+                }
+            }
+
+            #endregion
+
+
+            #region Boomerang
+
+            else if (Pro.type == ProjectileType.Boomerang)
+            {
+                if (Pro.lifeCounter < 200)
+                {   //set boomerang into return mode only once
+                    Pro.lifeCounter = 200;
+                    Functions_Particle.Spawn(
+                        ParticleType.Attention,
+                        Pro.compSprite.position.X + 4,
+                        Pro.compSprite.position.Y + 4);
+                }
+                Functions_Projectile.BoomerangBounce(Pro,
+                    IndObj.compSprite.position);
+                Assets.Play(Assets.sfxTapMetallic); //always metallic
+            }
+
+            #endregion
+
+
+            #region Bomb
+
+            else if (Pro.type == ProjectileType.Bomb)
+            {
+                Functions_Movement.StopMovement(Pro.compMove);
+            }
+
+            #endregion
+
+
+            else
+            {   //all other (moving) projectiles are killed
+                Functions_Projectile.Kill(Pro);
+            }
+        }
+
+
+
+
 
 
         public static void SetType(IndestructibleObject IndObj, IndestructibleType Type)

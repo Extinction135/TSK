@@ -1311,6 +1311,15 @@ namespace DungeonRun
                 Arrow.compSprite.position.Y + 0);
         }
 
+        public static void BoomerangBounce(Projectile Boomerang, Vector2 hitPos)
+        {   //stop all boomerang movement, bounce away from hitPos
+            Functions_Movement.StopMovement(Boomerang.compMove);
+            Functions_Movement.Push(Boomerang.compMove,
+                Functions_Direction.GetOppositeCardinal(
+                    Boomerang.compSprite.position, hitPos), 4.0f);
+        }
+
+
 
 
 
