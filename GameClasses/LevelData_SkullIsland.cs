@@ -1701,10 +1701,10 @@ namespace DungeonRun
 			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Dungeon_SwitchBlockBtn; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 344; SkullIsland_Town.ints.Add(obj);}
 			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Dungeon_SwitchBlockBtn; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 312; SkullIsland_Town.ints.Add(obj);}
 			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Post_HammerPost_Up; obj.direction = Direction.Down; obj.posX = 456; obj.posY = 408; SkullIsland_Town.ints.Add(obj);}
-			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Enemy_Turtle; obj.direction = Direction.Down; obj.posX = 582; obj.posY = 302; SkullIsland_Town.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Enemy_Turtle; obj.direction = Direction.Down; obj.posX = 575; obj.posY = 306; SkullIsland_Town.ints.Add(obj);}
 			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Post_HammerPost_Up; obj.direction = Direction.Down; obj.posX = 440; obj.posY = 408; SkullIsland_Town.ints.Add(obj);}
-			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Enemy_Crab; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 296; SkullIsland_Town.ints.Add(obj);}
-			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Enemy_Rat; obj.direction = Direction.Up; obj.posX = 535; obj.posY = 310; SkullIsland_Town.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Enemy_Crab; obj.direction = Direction.Down; obj.posX = 575; obj.posY = 298; SkullIsland_Town.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Enemy_Rat; obj.direction = Direction.Left; obj.posX = 533; obj.posY = 315; SkullIsland_Town.ints.Add(obj);}
 			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Lava_Pit; obj.direction = Direction.Down; obj.posX = 280; obj.posY = 392; SkullIsland_Town.ints.Add(obj);}
 			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Lava_Pit; obj.direction = Direction.Down; obj.posX = 296; obj.posY = 392; SkullIsland_Town.ints.Add(obj);}
 			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Lava_Pit; obj.direction = Direction.Down; obj.posX = 280; obj.posY = 408; SkullIsland_Town.ints.Add(obj);}
@@ -1818,6 +1818,11 @@ namespace DungeonRun
 			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Dungeon_Statue; obj.direction = Direction.Down; obj.posX = 280; obj.posY = 344; SkullIsland_Town.ints.Add(obj);}
 			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Dungeon_BlockLight; obj.direction = Direction.Down; obj.posX = 440; obj.posY = 440; SkullIsland_Town.ints.Add(obj);}
 			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Bumper; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 264; SkullIsland_Town.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Water_BigPlant; obj.direction = Direction.Down; obj.posX = 936; obj.posY = 568; SkullIsland_Town.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Water_RockMed; obj.direction = Direction.Down; obj.posX = 888; obj.posY = 520; SkullIsland_Town.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Water_RockSm; obj.direction = Direction.Down; obj.posX = 888; obj.posY = 536; SkullIsland_Town.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Water_SmPlant; obj.direction = Direction.Down; obj.posX = 888; obj.posY = 552; SkullIsland_Town.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Water_Bulb; obj.direction = Direction.Down; obj.posX = 888; obj.posY = 568; SkullIsland_Town.ints.Add(obj);}
 			#endregion
 
 		}

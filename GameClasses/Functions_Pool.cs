@@ -479,13 +479,6 @@ namespace DungeonRun
                         || Pool.intObjPool[i].type == InteractiveType.Fairy
                         || Pool.intObjPool[i].type == InteractiveType.Pet_Dog
 
-                        /*EXITS ARE INDESTRUCTIBLE OBJS NOT INTERACTIVES!
-                        //exits remove anything they touch
-                        || Pool.intObjPool[i].type == InteractiveType.Dungeon_Exit
-                        || Pool.intObjPool[i].type == InteractiveType.Dungeon_ExitPillarLeft
-                        || Pool.intObjPool[i].type == InteractiveType.Dungeon_ExitPillarRight
-                        */
-
 
                         )
                     {   //Debug.WriteLine("pool update roomobj type: " + Pool.roomObjPool[i].type);

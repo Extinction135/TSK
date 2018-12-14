@@ -80,35 +80,15 @@ Today:
 
 
 
-Sprites++
+Bugs--
 
-Boat++
-fix bottom stairs boat sprite. the round top of the bannister
-intersects the stairs sprite above, which draws under hero.
-this causes top of bannister to draw under hero. bannister shold
-be constrained to it's cell. done.
+blocking water objs weren't saved? fixed.
 
-Burned Grass++
-we need burned grass sprites. when grass burns, it becomes this
-obj, which randomly chooses it's burned grass sprite frame. this is
-darker brown short grass on normal ground. done.
-*we should also have burned boat floor sprites, so house floors can
-get charred too. done.
+burned grass sprite should look better, more rounded
+towards center, uses dark spots, not like grass sprite.
+done. still doesn't look good. returning to burned grass.
 
-repacked boat floor objects. burned boat floors added to game.
-
-added interaction between fires and boat/house floors. they now
-become the burned version and spread the fire like other objs do.
-
-burned grass objs should become the burned grass sprite,
-randomly horizontally flipped. done. this happens for all
-grass objects now when burned - they become burned grass.
-
-improved burned grass sprite to be darker with a better
-burned pattern.
-
-add more test objs to town, compiled level data.
-onto more testing...
+updated town to have a gentle wind pass through it.
 
 
 
@@ -118,10 +98,71 @@ onto more testing...
 
 
 
-blocking water objs weren't saved?
 
 
-trees dont catch fire from neighboring groundfires.
+
+
+
+
+
+
+
+
+
+
+
+Grass++
+
+cut grass should grow into tall grass if near coastlines,
+or filled ditches.
+*this actually means we need to look into how water and
+fire objs spread across objs. 
+with water spreading, we should be using water objs to expand
+and spread - not individual objs vs water tiles.
+
+waterable - can be regrown by water
+burnable - can be altered by fire
+freezeable - can be frozen by ice
+
+
+
+
+
+
+
+
+
+
+
+
+Wind Sprite
+
+improve wind sprite to look windy! like curly lines.
+
+
+Dungeons++
+in mountain dungeon, the wall torch sprite needs to be 
+mirrorable. it is not, and looks bad in dungeons.
+
+
+
+
+
+
+
+TallCoastlines++
+
+tall coastline animation should just be a seperate obj.
+this way we preserve coastlines and water objs. the wave
+is an int obj that sits on top of the coastline and water
+objs. this wave pushes objs/actors out to sea, like a real
+wave would.
+
+
+
+
+
+
 
 
 
@@ -130,6 +171,7 @@ trees dont catch fire from neighboring groundfires.
 
 
 Water++
+
 *we could have animated floating lily pads, much like the animated
 flowers that sit over the grass levels. this would add some decoration
 to the otherwise bland sea water.
@@ -143,13 +185,7 @@ also allow us to build levels and fields more effiecently, using the 3x3
 and 2x2 water tiles.
 
 
-Wind Sprite
-improve wind sprite to look windy! like curly lines.
 
-
-Dungeons++
-in mountain dungeon, the wall torch sprite needs to be 
-mirrorable. it is not, and looks bad in dungeons.
 
 
 
@@ -177,9 +213,7 @@ then, ditches can connect like they would via shovel digging.
 inspect how ditches are being handled.
 
 
-Grass++
-cut grass should grow into tall grass if near coastlines,
-or filled ditches.
+
 
 
 

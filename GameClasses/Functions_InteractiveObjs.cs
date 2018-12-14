@@ -3144,6 +3144,7 @@ namespace DungeonRun
                 { IntObj.compAnim.currentAnimation = AnimationFrames.Wor_Water_RockSm; }
                 else
                 { IntObj.compAnim.currentAnimation = AnimationFrames.Wor_Water_RockMed; }
+                IntObj.canBeSaved = true;
             }
 
             else if (Type == InteractiveType.Water_BigPlant)
@@ -3153,6 +3154,7 @@ namespace DungeonRun
                 IntObj.compCollision.rec.Height = 16 * 2; IntObj.compCollision.offsetY = -8;
                 IntObj.compAnim.currentAnimation = AnimationFrames.Wor_Swamp_BigPlant;
                 IntObj.compSprite.zOffset = 6; //has height
+                IntObj.canBeSaved = true;
             }
             else if (Type == InteractiveType.Water_Bulb)
             {
@@ -3160,6 +3162,7 @@ namespace DungeonRun
                 IntObj.compCollision.rec.Height = 4; IntObj.compCollision.offsetY = 2;
                 IntObj.compAnim.currentAnimation = AnimationFrames.Wor_Swamp_Bulb;
                 IntObj.compSprite.zOffset = 1;
+                IntObj.canBeSaved = true;
             }
             else if (Type == InteractiveType.Water_SmPlant)
             {
@@ -3167,6 +3170,7 @@ namespace DungeonRun
                 IntObj.compCollision.rec.Height = 4; IntObj.compCollision.offsetY = 2;
                 IntObj.compAnim.currentAnimation = AnimationFrames.Wor_Swamp_SmPlant;
                 IntObj.compSprite.zOffset = 1;
+                IntObj.canBeSaved = true;
             }
 
             #endregion
