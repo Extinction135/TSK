@@ -1124,7 +1124,7 @@ namespace DungeonRun
             else if (
                 Obj.type == InteractiveType.Pot
                 || Obj.type == InteractiveType.Dungeon_Pot
-                || Obj.type == InteractiveType.Barrel
+                || Obj.type == InteractiveType.Boat_Barrel
                 )
             {   //pop debris explosion
                 Functions_Particle.Spawn_Explosion(
@@ -1884,8 +1884,7 @@ namespace DungeonRun
         }
 
         public static void HitBarrel(InteractiveObject Barrel)
-        {
-            //turn into exploding barrel
+        {   //turn into exploding barrel
             Barrel.compAnim.currentAnimation = AnimationFrames.Dungeon_BarrelExploding;
             //if barrel has a hit direction, push in that direction
             if (Barrel.compMove.direction != Direction.None)
@@ -3809,6 +3808,7 @@ namespace DungeonRun
                 IntObj.compSprite.zOffset = 0; //sort above water
                 IntObj.canBeSaved = true;
                 IntObj.compCollision.blocking = true;
+                IntObj.compMove.moveable = true;
                 IntObj.sfx.hit = Assets.sfxEnemyHit;
                 IntObj.sfx.kill = Assets.sfxShatter;
             }

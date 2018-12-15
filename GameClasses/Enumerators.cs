@@ -771,7 +771,6 @@ namespace DungeonRun
         Boat_Stairs_Left,
         Boat_Stairs_Right,
 
-
         Boat_Floor,
         Boat_Floor_Burned,
 

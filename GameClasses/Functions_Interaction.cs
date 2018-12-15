@@ -646,8 +646,10 @@ namespace DungeonRun
 
                     //groundfires light explosive barrels too
                     else if (IntObj.type == InteractiveType.Barrel)
-                    {   //dont push the barrel in any direction
-                        IntObj.compMove.direction = Direction.None;
+                    {   //dont push barrel away from fire
+                        IntObj.compMove.direction = Functions_Direction.GetOppositeCardinal(
+                            IntObj.compSprite.position,
+                            Pro.compSprite.position);
                         Functions_InteractiveObjs.HitBarrel(IntObj);
                     }
                 }

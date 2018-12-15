@@ -68,24 +68,25 @@ Today:
 
 
 
-Dungeons++
-
-We need basic room data to be able to build dungeons. Make this,
-then test that dungeons use it properly. this one type of room for
-each room type. done.
 
 
 
+Dungeons & Objs++
 
+improved dungeon room data so all rooms are solvable.
 
-
+boat barrels cannot be destroyed. this has been fixed.
+this fix also fixed an issue where explosive barrels were
+not getting triggered by the sword, or any projectiles that
+dealt above Bounce() damage.
 
 only interactive objs should trigger the floor switch.
+this was done to ensure that switch puzzles are completed
+in the expected manner, and enemies dont just stand on the
+switch, prematurely completing the puzzle for the player.
 
 
-added various objs to editor for room design purposes.
 
-swords dont trigger barrels to become explosive barrels.
 
 
 

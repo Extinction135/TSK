@@ -20,10 +20,10 @@
   </inds>
   <ints>
     <IntObjXmlData>
-      <type>ConveyorBeltOn</type>
-      <direction>Up</direction>
+      <type>Dungeon_BlockLight</type>
+      <direction>Down</direction>
       <posX>88</posX>
-      <posY>152</posY>
+      <posY>168</posY>
     </IntObjXmlData>
     <IntObjXmlData>
       <type>Dungeon_SpawnMob</type>
@@ -32,16 +32,16 @@
       <posY>152</posY>
     </IntObjXmlData>
     <IntObjXmlData>
+      <type>Dungeon_BlockLight</type>
+      <direction>Down</direction>
+      <posX>88</posX>
+      <posY>88</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
       <type>Dungeon_Switch</type>
       <direction>Down</direction>
       <posX>88</posX>
       <posY>136</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Dungeon_Statue</type>
-      <direction>Down</direction>
-      <posX>88</posX>
-      <posY>168</posY>
     </IntObjXmlData>
     <IntObjXmlData>
       <type>Dungeon_SwitchBlockUp</type>
@@ -112,32 +112,8 @@
     <IntObjXmlData>
       <type>FloorStain</type>
       <direction>Down</direction>
-      <posX>40</posX>
-      <posY>37</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>FloorStain</type>
-      <direction>Down</direction>
-      <posX>37</posX>
-      <posY>88</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>FloorStain</type>
-      <direction>Down</direction>
       <posX>54</posX>
       <posY>7</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>FloorStain</type>
-      <direction>Down</direction>
-      <posX>55</posX>
-      <posY>72</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>FloorStain</type>
-      <direction>Down</direction>
-      <posX>56</posX>
-      <posY>107</posY>
     </IntObjXmlData>
     <IntObjXmlData>
       <type>FloorStain</type>
@@ -164,34 +140,10 @@
       <posY>56</posY>
     </IntObjXmlData>
     <IntObjXmlData>
-      <type>FloorStain</type>
-      <direction>Down</direction>
-      <posX>74</posX>
-      <posY>70</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>FloorStain</type>
-      <direction>Down</direction>
-      <posX>75</posX>
-      <posY>216</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>FloorStain</type>
-      <direction>Down</direction>
-      <posX>88</posX>
-      <posY>22</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
       <type>Lava_PitBridge</type>
       <direction>Down</direction>
       <posX>88</posX>
       <posY>40</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>FloorStain</type>
-      <direction>Down</direction>
-      <posX>91</posX>
-      <posY>180</posY>
     </IntObjXmlData>
     <IntObjXmlData>
       <type>Coliseum_Shadow_Stairs_Middle</type>
@@ -208,30 +160,6 @@
     <IntObjXmlData>
       <type>FloorStain</type>
       <direction>Down</direction>
-      <posX>105</posX>
-      <posY>26</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>FloorStain</type>
-      <direction>Down</direction>
-      <posX>100</posX>
-      <posY>122</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>FloorStain</type>
-      <direction>Down</direction>
-      <posX>103</posX>
-      <posY>151</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>FloorStain</type>
-      <direction>Down</direction>
-      <posX>104</posX>
-      <posY>215</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>FloorStain</type>
-      <direction>Down</direction>
       <posX>117</posX>
       <posY>89</posY>
     </IntObjXmlData>
@@ -244,32 +172,14 @@
     <IntObjXmlData>
       <type>FloorStain</type>
       <direction>Down</direction>
-      <posX>119</posX>
-      <posY>151</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>FloorStain</type>
-      <direction>Down</direction>
       <posX>120</posX>
       <posY>203</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>FloorStain</type>
-      <direction>Down</direction>
-      <posX>117</posX>
-      <posY>215</posY>
     </IntObjXmlData>
     <IntObjXmlData>
       <type>Coliseum_Shadow_Stairs_Middle</type>
       <direction>Down</direction>
       <posX>88</posX>
       <posY>248</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>FloorStain</type>
-      <direction>Down</direction>
-      <posX>138</posX>
-      <posY>203</posY>
     </IntObjXmlData>
     <IntObjXmlData>
       <type>FloorStain</type>
@@ -288,12 +198,6 @@
       <direction>Down</direction>
       <posX>150</posX>
       <posY>54</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>FloorStain</type>
-      <direction>Down</direction>
-      <posX>151</posX>
-      <posY>86</posY>
     </IntObjXmlData>
     <IntObjXmlData>
       <type>FloorStain</type>
@@ -384,12 +288,6 @@
       <direction>Down</direction>
       <posX>88</posX>
       <posY>104</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Post_Horizontal</type>
-      <direction>Down</direction>
-      <posX>88</posX>
-      <posY>88</posY>
     </IntObjXmlData>
     <IntObjXmlData>
       <type>Post_VerticalLeft</type>
@@ -884,12 +782,6 @@
       <posY>72</posY>
     </IntObjXmlData>
     <IntObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>56</posX>
-      <posY>152</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
       <type>Pot</type>
       <direction>Down</direction>
       <posX>88</posX>
@@ -912,36 +804,6 @@
       <direction>Down</direction>
       <posX>136</posX>
       <posY>24</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>120</posX>
-      <posY>152</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>120</posX>
-      <posY>136</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>56</posX>
-      <posY>136</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>56</posX>
-      <posY>168</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>120</posX>
-      <posY>168</posY>
     </IntObjXmlData>
     <IntObjXmlData>
       <type>Dungeon_BlockLight</type>
@@ -1032,6 +894,138 @@
       <direction>Down</direction>
       <posX>24</posX>
       <posY>136</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>FloorStain</type>
+      <direction>Down</direction>
+      <posX>9</posX>
+      <posY>116</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>FloorStain</type>
+      <direction>Down</direction>
+      <posX>6</posX>
+      <posY>139</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>FloorStain</type>
+      <direction>Down</direction>
+      <posX>11</posX>
+      <posY>214</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>FloorStain</type>
+      <direction>Down</direction>
+      <posX>20</posX>
+      <posY>132</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>FloorStain</type>
+      <direction>Down</direction>
+      <posX>58</posX>
+      <posY>104</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>FloorStain</type>
+      <direction>Down</direction>
+      <posX>55</posX>
+      <posY>202</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>FloorStain</type>
+      <direction>Down</direction>
+      <posX>68</posX>
+      <posY>280</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>FloorStain</type>
+      <direction>Down</direction>
+      <posX>89</posX>
+      <posY>134</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>FloorStain</type>
+      <direction>Down</direction>
+      <posX>87</posX>
+      <posY>246</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>FloorStain</type>
+      <direction>Down</direction>
+      <posX>107</posX>
+      <posY>214</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>FloorStain</type>
+      <direction>Down</direction>
+      <posX>104</posX>
+      <posY>232</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>FloorStain</type>
+      <direction>Down</direction>
+      <posX>105</posX>
+      <posY>247</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>FloorStain</type>
+      <direction>Down</direction>
+      <posX>106</posX>
+      <posY>295</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>FloorStain</type>
+      <direction>Down</direction>
+      <posX>116</posX>
+      <posY>6</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>FloorStain</type>
+      <direction>Down</direction>
+      <posX>121</posX>
+      <posY>87</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>FloorStain</type>
+      <direction>Down</direction>
+      <posX>119</posX>
+      <posY>154</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>FloorStain</type>
+      <direction>Down</direction>
+      <posX>119</posX>
+      <posY>216</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>FloorStain</type>
+      <direction>Down</direction>
+      <posX>123</posX>
+      <posY>283</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>FloorStain</type>
+      <direction>Down</direction>
+      <posX>133</posX>
+      <posY>6</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>FloorStain</type>
+      <direction>Down</direction>
+      <posX>150</posX>
+      <posY>88</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>FloorStain</type>
+      <direction>Down</direction>
+      <posX>155</posX>
+      <posY>298</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>FloorStain</type>
+      <direction>Down</direction>
+      <posX>166</posX>
+      <posY>230</posY>
     </IntObjXmlData>
   </ints>
 </RoomXmlData>
