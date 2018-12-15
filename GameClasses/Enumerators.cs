@@ -648,15 +648,19 @@ namespace DungeonRun
         Water_1x1,
         Water_2x2,
         Water_3x3,
+
         Water_RockUnderwater,
         Water_LillyPad,
+        Water_LillyPad_Mini,
         Water_Vine,
+
         //blocking water objects
         Water_RockSm,
         Water_RockMed,
         Water_BigPlant,
         Water_Bulb,
         Water_SmPlant,
+
         //coastlines
         Coastline_Straight,
         Coastline_Corner_Exterior,
@@ -784,6 +788,7 @@ namespace DungeonRun
 
         Boat_Stairs_Cover,
 
+        Boat_Anchor,
         Boat_Bridge_Top,
         Boat_Bridge_Bottom, 
 

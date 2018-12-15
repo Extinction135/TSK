@@ -1047,13 +1047,13 @@ namespace DungeonRun
             //row 1
             Functions_InteractiveObjs.SetType(objList[0], InteractiveType.Water_2x2);
             Functions_InteractiveObjs.SetType(objList[1], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[2], InteractiveType.Coastline_1x2_Animated);
+            Functions_InteractiveObjs.SetType(objList[2], InteractiveType.Unknown);
             Functions_InteractiveObjs.SetType(objList[3], InteractiveType.Coastline_Corner_Exterior);
 
             //row 2
             Functions_InteractiveObjs.SetType(objList[4], InteractiveType.Unknown);//
             Functions_InteractiveObjs.SetType(objList[5], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[6], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[6], InteractiveType.Unknown);
             Functions_InteractiveObjs.SetType(objList[7], InteractiveType.Coastline_Corner_Interior);
 
             //row 3
@@ -1099,22 +1099,22 @@ namespace DungeonRun
             Functions_InteractiveObjs.SetType(objList[35], InteractiveType.Unknown);//
 
             //row 10
-            Functions_InteractiveObjs.SetType(objList[36], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[37], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[38], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[39], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[36], InteractiveType.Boat_Stairs_Left);
+            Functions_InteractiveObjs.SetType(objList[37], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[38], InteractiveType.Boat_Stairs_Right);
+            Functions_InteractiveObjs.SetType(objList[39], InteractiveType.Unknown);//
 
             //row 11
-            Functions_InteractiveObjs.SetType(objList[40], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[41], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[42], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[43], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[40], InteractiveType.Boat_Anchor);
+            Functions_InteractiveObjs.SetType(objList[41], InteractiveType.Water_LillyPad_Mini);
+            Functions_InteractiveObjs.SetType(objList[42], InteractiveType.Boat_Bridge_Top);
+            Functions_InteractiveObjs.SetType(objList[43], InteractiveType.Unknown);//
 
             //row 12
             Functions_InteractiveObjs.SetType(objList[44], InteractiveType.Unknown);
             Functions_InteractiveObjs.SetType(objList[45], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[46], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[47], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[46], InteractiveType.Boat_Bridge_Bottom);
+            Functions_InteractiveObjs.SetType(objList[47], InteractiveType.Unknown);//
 
             //position the objs relative to the window frame
             Functions_WidgetIntObjs.PositionObjs(this);
@@ -1125,14 +1125,15 @@ namespace DungeonRun
             objList[18].compCollision.rec.Height = objList[18].compCollision.rec.Width = 16 * 2;
             objList[24].compCollision.rec.Height = objList[24].compCollision.rec.Width = 16 * 3;
 
-            objList[31].compCollision.rec.Width = 16 * 2;
-
-
+            objList[31].compCollision.rec.Height = 16 * 2;
+            objList[36].compCollision.rec.Width = 16 * 2;
+            objList[38].compCollision.rec.Width = 16 * 2;
+            objList[42].compCollision.rec.Width = 16 * 2;
+            objList[47].compCollision.rec.Width = 16 * 2;
 
             Functions_WidgetIntObjs.HideObj(objList[1]);
             Functions_WidgetIntObjs.HideObj(objList[4]);
             Functions_WidgetIntObjs.HideObj(objList[5]);
-            Functions_WidgetIntObjs.HideObj(objList[6]);
 
             Functions_WidgetIntObjs.HideObj(objList[10]);
             Functions_WidgetIntObjs.HideObj(objList[13]);
@@ -1149,13 +1150,18 @@ namespace DungeonRun
 
             Functions_WidgetIntObjs.HideObj(objList[28]);
             Functions_WidgetIntObjs.HideObj(objList[29]);
-            Functions_WidgetIntObjs.HideObj(objList[30]);
 
+            Functions_WidgetIntObjs.HideObj(objList[30]);
             Functions_WidgetIntObjs.HideObj(objList[32]);
             Functions_WidgetIntObjs.HideObj(objList[33]);
             Functions_WidgetIntObjs.HideObj(objList[34]);
-
             Functions_WidgetIntObjs.HideObj(objList[35]);
+            Functions_WidgetIntObjs.HideObj(objList[37]);
+            Functions_WidgetIntObjs.HideObj(objList[39]);
+
+            Functions_WidgetIntObjs.HideObj(objList[43]);
+            Functions_WidgetIntObjs.HideObj(objList[47]);
+
 
             //reset update all zdepths
             for (i = 0; i < 4 * 12; i++)
@@ -1479,21 +1485,21 @@ namespace DungeonRun
             for (i = 0; i < 4 * 12; i++) { objList.Add(new InteractiveObject()); }
 
             //row 1
-            Functions_InteractiveObjs.SetType(objList[0], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[1], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[2], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[0], InteractiveType.Boat_Pier_TopLeft);
+            Functions_InteractiveObjs.SetType(objList[1], InteractiveType.Boat_Pier_TopMiddle);
+            Functions_InteractiveObjs.SetType(objList[2], InteractiveType.Boat_Pier_TopRight);
             Functions_InteractiveObjs.SetType(objList[3], InteractiveType.Unknown);
 
             //row 2
-            Functions_InteractiveObjs.SetType(objList[4], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[5], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[6], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[4], InteractiveType.Boat_Pier_Left);
+            Functions_InteractiveObjs.SetType(objList[5], InteractiveType.Boat_Pier_Middle);
+            Functions_InteractiveObjs.SetType(objList[6], InteractiveType.Boat_Pier_Right);
             Functions_InteractiveObjs.SetType(objList[7], InteractiveType.Unknown);
 
             //row 3
-            Functions_InteractiveObjs.SetType(objList[8], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[9], InteractiveType.Unknown);
-            Functions_InteractiveObjs.SetType(objList[10], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[8], InteractiveType.Boat_Pier_BottomLeft);
+            Functions_InteractiveObjs.SetType(objList[9], InteractiveType.Boat_Pier_BottomMiddle);
+            Functions_InteractiveObjs.SetType(objList[10], InteractiveType.Boat_Pier_BottomRight);
             Functions_InteractiveObjs.SetType(objList[11], InteractiveType.Unknown);
 
             //row 4
@@ -1545,17 +1551,17 @@ namespace DungeonRun
             Functions_InteractiveObjs.SetType(objList[43], InteractiveType.Unknown);
 
             //row 12 - cheat and put these beyond widget bounds cause they big
-            Functions_InteractiveObjs.SetType(objList[44], InteractiveType.Coliseum_Shadow_Gate_Pillar_Left);
-            Functions_InteractiveObjs.SetType(objList[45], InteractiveType.Unknown);//covered by left pillar
-            Functions_InteractiveObjs.SetType(objList[46], InteractiveType.Coliseum_Shadow_Gate_Center);
-            Functions_InteractiveObjs.SetType(objList[47], InteractiveType.Coliseum_Shadow_Gate_Pillar_Right);//
+            Functions_InteractiveObjs.SetType(objList[44], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[45], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[46], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[47], InteractiveType.Unknown);
 
 
             //position the objs relative to the window frame
             Functions_WidgetIntObjs.PositionObjs(this);
 
             //hide covered objs
-            Functions_WidgetIntObjs.HideObj(objList[45]);
+            //Functions_WidgetIntObjs.HideObj(objList[45]);
 
             //reset update all zdepths
             for (i = 0; i < 4 * 12; i++)

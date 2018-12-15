@@ -126,7 +126,7 @@ namespace DungeonRun
         public static List<Byte4> World_Grass_Tall = new List<Byte4> { new Byte4(0, 8, 0, 0) };
         public static List<Byte4> World_Grass_Short = new List<Byte4> { new Byte4(0, 9, 0, 0) };
         public static List<Byte4> World_Grass_Minimum = new List<Byte4> { new Byte4(1, 9, 0, 0) };
-        public static List<Byte4> World_Grass_Burned = new List<Byte4> { new Byte4(3, 11, 0, 0) };
+        public static List<Byte4> World_Grass_Burned = new List<Byte4> { new Byte4(2, 9, 0, 0) };
         public static List<Byte4> World_Flowers = new List<Byte4>
         { new Byte4(0, 10, 0, 0), new Byte4(1, 10, 0, 0), new Byte4(2, 10, 0, 0), new Byte4(3, 10, 0, 0) };
 
@@ -185,11 +185,14 @@ namespace DungeonRun
             new Byte4(13, 9, 0, 0), new Byte4(14, 9, 0, 0)
         };
 
-        //water rocks
-        public static List<Byte4> Wor_Water_RockSm = new List<Byte4> { new Byte4(10, 8, 0, 0) };
-        public static List<Byte4> Wor_Water_RockMed = new List<Byte4> { new Byte4(10, 9, 0, 0) };
+        //water objs
+        public static List<Byte4> Wor_Water_RockSm = new List<Byte4> { new Byte4(10, 22, 0, 0) };
+        public static List<Byte4> Wor_Water_RockMed = new List<Byte4> { new Byte4(11, 22, 0, 0) };
         public static List<Byte4> Wor_Water_RockUnderwater = new List<Byte4>
-        { new Byte4(9, 9, 0, 0), new Byte4(9, 9, 1, 0) };
+        { new Byte4(9, 22, 0, 0), new Byte4(9, 22, 1, 0) };
+
+        public static List<Byte4> Wor_Water_LillyPad_Mini = new List<Byte4> //8x8
+        { new Byte4(14, 34, 0, 0), new Byte4(15, 34, 0, 0) };
 
         //swamp water objs
         public static List<Byte4> Wor_Swamp_LillyPad = new List<Byte4> { new Byte4(4, 8, 0, 0) };
@@ -292,16 +295,20 @@ namespace DungeonRun
 
         #endregion
 
-        
 
 
-        //dirt + dirt to grass transitions
-        public static List<Byte4> Wor_Dirt_A = new List<Byte4> { new Byte4(2, 8, 0, 0) };
-        public static List<Byte4> Wor_Dirt_B = new List<Byte4> { new Byte4(2, 9, 0, 0) };
-        public static List<Byte4> Wor_DirtToGrass_Straight_A = new List<Byte4> { new Byte4(3, 8, 0, 0) };
-        public static List<Byte4> Wor_DirtToGrass_Straight_B = new List<Byte4> { new Byte4(3, 9, 0, 0) };
-        public static List<Byte4> Wor_DirtToGrass_Corner_Interior = new List<Byte4> { new Byte4(6, 8, 0, 0) };
-        public static List<Byte4> Wor_DirtToGrass_Corner_Exterior = new List<Byte4> { new Byte4(6, 9, 0, 0) };
+
+        #region Dirt + dirt to grass transitions
+
+        public static List<Byte4> Wor_Dirt_A = new List<Byte4> { new Byte4(5, 8, 0, 0) };
+        public static List<Byte4> Wor_Dirt_B = new List<Byte4> { new Byte4(5, 9, 0, 0) };
+        public static List<Byte4> Wor_DirtToGrass_Straight_A = new List<Byte4> { new Byte4(6, 8, 0, 0) };
+        public static List<Byte4> Wor_DirtToGrass_Straight_B = new List<Byte4> { new Byte4(6, 9, 0, 0) };
+        public static List<Byte4> Wor_DirtToGrass_Corner_Interior = new List<Byte4> { new Byte4(7, 8, 0, 0) };
+        public static List<Byte4> Wor_DirtToGrass_Corner_Exterior = new List<Byte4> { new Byte4(7, 9, 0, 0) };
+
+        #endregion
+
 
         //med + big trees
         public static List<Byte4> Wor_Tree_Med = new List<Byte4> { new Byte4(7, 8, 0, 0) };
@@ -455,6 +462,15 @@ namespace DungeonRun
         {
             new Byte4(25, 26, 0, 0), new Byte4(27, 26, 0, 0), new Byte4(25, 26, 0, 0), new Byte4(27, 26, 0, 0)
         };
+
+
+
+
+        
+        public static List<Byte4> Wor_Boat_Anchor = new List<Byte4> { new Byte4(11, 20, 0, 0) };
+
+
+
 
         #endregion
 

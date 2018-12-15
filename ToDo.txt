@@ -75,49 +75,27 @@ Today:
 
 
 
-
-Water++
-
-we need 1x1, and 3x3 water tiles, so we can more efficiently use the
-int pool budget. this also allows us to build dungeon room data using
-single water tiles, which fit into the dungeon rooms bettter. this will
-also allow us to build levels and fields more effiecently, using the 3x3
-and 2x2 water tiles.
-
-this included various repacking of the common objs sheet for better water
-presentation and grouping. work done to town for example obj setups.
-
-
-
-
-
-
-
-
-
-
-
+Water Objs++
 
 the water splash sprite is pushed to low for hero.
+fixed a sorting issue with underwater rocks sorting 
+over hero when hero went underwater.
+
+added various int objs to editor widgets and levels.
+
+added mini-lillies to common objs sheet, based on the
+flowers animation, this was done to add life to the 
+water areas, like flowers do to the grass areas.
+
+lillies should randomize their anim frame like flowers do.
+lillies should slow down anim. done. flowers now randomize
+their animation speed a little bit too. improved big lillies
+to give them depth and look like they are floating over water.
+
+randomly flip vines horizontally. done.
 
 
 
-
-
-
-
-
-
-
-
-Water++
-
-*we could have animated floating lily pads, much like the animated
-flowers that sit over the grass levels. this would add some decoration
-to the otherwise bland sea water.
-
-*need to make boat anchor object - this is already in common objs,
-and can be used to further decorate piers.
 
 
 
@@ -133,11 +111,11 @@ and can be used to further decorate piers.
 
 TallCoastlines++
 
-tall coastline animation should just be a seperate obj.
-this way we preserve coastlines and water objs. the wave
-is an int obj that sits on top of the coastline and water
+this an int obj that sits on top of the coastline and water
 objs. this wave pushes objs/actors out to sea, like a real
-wave would.
+wave would. simple interaction here. gentle push per frame.
+
+
 
 
 

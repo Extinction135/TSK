@@ -646,7 +646,7 @@ namespace DungeonRun
                 Functions_Particle.Spawn(
                     ParticleType.Splash,
                     Actor.compSprite.position.X,
-                    Actor.compSprite.position.Y + 2);
+                    Actor.compSprite.position.Y - 2);
             }
         }
 

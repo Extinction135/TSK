@@ -2572,8 +2572,8 @@
     <IntObjXmlData>
       <type>Enemy_Turtle</type>
       <direction>Down</direction>
-      <posX>563</posX>
-      <posY>312</posY>
+      <posX>588</posX>
+      <posY>310</posY>
     </IntObjXmlData>
     <IntObjXmlData>
       <type>Post_HammerPost_Up</type>
@@ -2584,13 +2584,13 @@
     <IntObjXmlData>
       <type>Enemy_Crab</type>
       <direction>Down</direction>
-      <posX>558</posX>
-      <posY>271</posY>
+      <posX>550</posX>
+      <posY>265</posY>
     </IntObjXmlData>
     <IntObjXmlData>
       <type>Enemy_Rat</type>
-      <direction>Right</direction>
-      <posX>635</posX>
+      <direction>Up</direction>
+      <posX>533</posX>
       <posY>261</posY>
     </IntObjXmlData>
     <IntObjXmlData>
@@ -3390,6 +3390,12 @@
       <direction>Down</direction>
       <posX>872</posX>
       <posY>456</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Boat_Anchor</type>
+      <direction>Down</direction>
+      <posX>1000</posX>
+      <posY>584</posY>
     </IntObjXmlData>
   </ints>
 </RoomXmlData>

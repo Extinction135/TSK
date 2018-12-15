@@ -2751,6 +2751,7 @@ namespace DungeonRun
                     IntObj.compAnim.currentAnimation = AnimationFrames.World_Flowers;
                     //randomly set the starting frame for flowers, so their animations dont sync up
                     IntObj.compAnim.index = (byte)Functions_Random.Int(0, IntObj.compAnim.currentAnimation.Count);
+                    IntObj.compAnim.speed = (byte)Functions_Random.Int(10, 12); //vary anim speed as well
                 }
                 else if(Type == InteractiveType.Grass_Burned)
                 {
@@ -3098,6 +3099,10 @@ namespace DungeonRun
                     if (Functions_Random.Int(0, 100) > 50) //randomly choose coastline
                     { IntObj.compAnim.currentAnimation = AnimationFrames.Wor_Coastline_Straight_A; }
                     else { IntObj.compAnim.currentAnimation = AnimationFrames.Wor_Coastline_Straight_B; }
+                    //randomly flip sprite horizontally
+                    if (Functions_Random.Int(0, 100) < 50)
+                    { IntObj.compSprite.flipHorizontally = true; }
+                    else { IntObj.compSprite.flipHorizontally = false; }
                 }
                 else if (Type == InteractiveType.Coastline_Corner_Exterior)
                 {
@@ -3112,19 +3117,45 @@ namespace DungeonRun
             {
                 IntObj.compAnim.currentAnimation = AnimationFrames.Wor_Water_RockUnderwater;
                 IntObj.canBeSaved = true;
-                IntObj.compSprite.zOffset = -12; //sort under hero
+                IntObj.compSprite.zOffset = -99; //over coastlines
                 IntObj.compCollision.blocking = false; //just decoration
             }
+
+
+
+
+
+            //lilly pads
             else if (Type == InteractiveType.Water_LillyPad)
             {   //nonstandard size
                 IntObj.compSprite.drawRec.Width = 16 * 2; IntObj.compSprite.drawRec.Height = 16 * 2;
                 IntObj.compCollision.rec.Width = 16 * 2; IntObj.compCollision.offsetX = -8;
                 IntObj.compCollision.rec.Height = 16 * 2; IntObj.compCollision.offsetY = -8;
                 IntObj.compAnim.currentAnimation = AnimationFrames.Wor_Swamp_LillyPad;
-                IntObj.compSprite.zOffset = -39; //sorts just above water (-40)
+                IntObj.compSprite.zOffset = -99; //sorts just above water
                 IntObj.canBeSaved = true;
                 IntObj.compCollision.blocking = false;
             }
+            else if (Type == InteractiveType.Water_LillyPad_Mini)
+            {   //nonstandard size
+                IntObj.compSprite.drawRec.Width = 8; IntObj.compSprite.drawRec.Height = 8;
+                IntObj.compCollision.rec.Width = 8; IntObj.compCollision.offsetX = -4;
+                IntObj.compCollision.rec.Height = 8; IntObj.compCollision.offsetY = -4;
+                IntObj.compAnim.currentAnimation = AnimationFrames.Wor_Water_LillyPad_Mini;
+                IntObj.compSprite.zOffset = -99; //sorts just above water
+                IntObj.canBeSaved = true;
+                IntObj.compCollision.blocking = false;
+                //randomly set the starting frame for lillies, so their animations dont sync up
+                IntObj.compAnim.index = (byte)Functions_Random.Int(0, IntObj.compAnim.currentAnimation.Count);
+                IntObj.compAnim.speed = (byte)Functions_Random.Int(20, 30); //vary speed as well
+            }
+
+
+
+
+
+
+
             else if (Type == InteractiveType.Water_Vine)
             {   //nonstandard size
                 IntObj.compSprite.drawRec.Width = 16 * 2; IntObj.compSprite.drawRec.Height = 16 * 1;
@@ -3134,6 +3165,10 @@ namespace DungeonRun
                 IntObj.compSprite.zOffset = 0;
                 IntObj.canBeSaved = true;
                 IntObj.compCollision.blocking = false;
+                //randomly flip sprite horizontally
+                if (Functions_Random.Int(0, 100) < 50)
+                { IntObj.compSprite.flipHorizontally = true; }
+                else { IntObj.compSprite.flipHorizontally = false; }
             }
 
 
@@ -3182,6 +3217,10 @@ namespace DungeonRun
                 IntObj.compAnim.currentAnimation = AnimationFrames.Wor_Swamp_Bulb;
                 IntObj.compSprite.zOffset = 1;
                 IntObj.canBeSaved = true;
+                //randomly flip sprite horizontally
+                if (Functions_Random.Int(0, 100) < 50)
+                { IntObj.compSprite.flipHorizontally = true; }
+                else { IntObj.compSprite.flipHorizontally = false; }
             }
             else if (Type == InteractiveType.Water_SmPlant)
             {
@@ -3867,7 +3906,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Boat Bridge, Pier
+            #region Boat Bridge, Pier, Anchor Decoration
 
             else if (Type == InteractiveType.Boat_Bridge_Top)
             {   //nonstandard size
@@ -3931,9 +3970,20 @@ namespace DungeonRun
                 { IntObj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Pier_BottomRight; }
             }
 
+
+
+            else if (Type == InteractiveType.Boat_Anchor)
+            {   
+                IntObj.compCollision.rec.Width = 16; IntObj.compCollision.offsetX = -8;
+                IntObj.compCollision.rec.Height = 8; IntObj.compCollision.offsetY = 0;
+                IntObj.compAnim.currentAnimation = AnimationFrames.Wor_Boat_Anchor;
+                IntObj.compSprite.zOffset = 8;
+                IntObj.canBeSaved = true;
+                IntObj.compCollision.blocking = true;
+            }
             #endregion
 
-            
+
 
 
 
