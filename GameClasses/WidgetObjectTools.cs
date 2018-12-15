@@ -540,6 +540,8 @@ namespace DungeonRun
                                 else if (grabbedIntObj.direction == Direction.Right)
                                 { grabbedIntObj.direction = Direction.Down; }
 
+                                //update the move direction too
+                                grabbedIntObj.compMove.direction = grabbedIntObj.direction;
                                 //update the rotation
                                 Functions_InteractiveObjs.SetRotation(grabbedIntObj);
                                 //display the selected objs new values

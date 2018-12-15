@@ -68,18 +68,11 @@ Today:
 
 
 
+Dungeons++
 
-
-
-
-
-
-Sprites++
-
-improved ice block to look more icy.
-improve wind sprite to look more windy.
-improved mountain dungeon wall torch to be mirrorable,
-and look much better, imo.
+We need basic room data to be able to build dungeons. Make this,
+then test that dungeons use it properly. this one type of room for
+each room type. done.
 
 
 
@@ -87,11 +80,12 @@ and look much better, imo.
 
 
 
+only interactive objs should trigger the floor switch.
 
-Ditches shouldn't have green around edges.
-new ditches will sort over objs underneath them, and remove 
-some others to be efficient (but they must stack visually).
 
+added various objs to editor for room design purposes.
+
+swords dont trigger barrels to become explosive barrels.
 
 
 
@@ -125,39 +119,6 @@ and 2x2 water tiles.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Grass++
-
-cut grass should grow into tall grass if near coastlines,
-or filled ditches.
-*this actually means we need to look into how water and
-fire objs spread across objs. 
-with water spreading, we should be using water objs to expand
-and spread - not individual objs vs water tiles.
-
-waterable - can be regrown by water
-burnable - can be altered by fire
-freezeable - can be frozen by ice
-
-
-
-
-
-
 TallCoastlines++
 
 tall coastline animation should just be a seperate obj.
@@ -165,13 +126,6 @@ this way we preserve coastlines and water objs. the wave
 is an int obj that sits on top of the coastline and water
 objs. this wave pushes objs/actors out to sea, like a real
 wave would.
-
-
-
-
-
-
-
 
 
 
@@ -186,6 +140,32 @@ reloads a level.
 
 
 
+
+
+
+
+
+
+
+
+
+Ditches shouldn't have green around edges.
+new ditches will sort over objs underneath them, and remove 
+some others to be efficient (but they must stack visually).
+
+Grass++
+
+cut grass should grow into tall grass if near coastlines,
+or filled ditches.
+*this actually means we need to look into how water and
+fire objs spread across objs. 
+with water spreading, we should be using water objs to expand
+and spread - not individual objs vs water tiles.
+
+waterable - can be regrown by water
+burnable - can be altered by fire
+freezeable - can be frozen by ice
+
 DITCHES++
 
 Fix bug with ditches - they start off empty but self
@@ -198,16 +178,6 @@ budget efficiencies.
 explosions can leave behind ditches where they happen.
 then, ditches can connect like they would via shovel digging.
 inspect how ditches are being handled.
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -246,6 +216,12 @@ to have more skulls around and in it. these skulls are made of rock and are brow
 those skulls are ind objs. the skulls that are white are interactive objs that link
 can pickup and throw and carry. consider making those skull sprites a bit fuller
 in the cellsize, so they fill their frames up better.
+
+
+
+
+
+
 
 
 

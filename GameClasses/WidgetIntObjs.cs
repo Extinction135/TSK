@@ -1557,7 +1557,7 @@ namespace DungeonRun
             for (i = 0; i < 4 * 12; i++) { objList.Add(new InteractiveObject()); }
 
             //row 1
-            Functions_InteractiveObjs.SetType(objList[0], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[0], InteractiveType.Boat_Barrel);
             Functions_InteractiveObjs.SetType(objList[1], InteractiveType.Dungeon_BlockLight);
             Functions_InteractiveObjs.SetType(objList[2], InteractiveType.Dungeon_BlockSpike);
             Functions_InteractiveObjs.SetType(objList[3], InteractiveType.Fairy);
