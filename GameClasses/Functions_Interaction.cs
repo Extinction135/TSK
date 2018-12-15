@@ -1312,7 +1312,11 @@ namespace DungeonRun
 
                 #region Water
 
-                else if (IntObj.type == InteractiveType.Water_2x2)
+                else if (
+                    IntObj.type == InteractiveType.Water_1x1
+                    || IntObj.type == InteractiveType.Water_2x2
+                    || IntObj.type == InteractiveType.Water_3x3
+                    )
                 {
                     //if actor is flying, don't sink or swim in water
                     if (Actor.compMove.grounded == false) { return; }
@@ -1428,7 +1432,12 @@ namespace DungeonRun
             if (Object.type == InteractiveType.Pet_Dog)
             {
                 //dogs can swim
-                if (RoomObj.type == InteractiveType.Water_2x2) { Object.inWater = true; }
+                if (
+                    RoomObj.type == InteractiveType.Water_1x1
+                    || RoomObj.type == InteractiveType.Water_2x2
+                    || RoomObj.type == InteractiveType.Water_3x3
+                    )
+                { Object.inWater = true; }
 
                 //dogs bounce
                 else if (RoomObj.type == InteractiveType.Bumper)
@@ -1546,7 +1555,11 @@ namespace DungeonRun
                 
                 #region Water (objects that 'fall' into water - draggable objs)
 
-                if (RoomObj.type == InteractiveType.Water_2x2)
+                if (
+                    RoomObj.type == InteractiveType.Water_1x1
+                    || RoomObj.type == InteractiveType.Water_2x2
+                    || RoomObj.type == InteractiveType.Water_3x3
+                    )
                 {
                     //object groups not removed by water
                     if (

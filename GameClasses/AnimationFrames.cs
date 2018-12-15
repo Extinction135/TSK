@@ -154,20 +154,61 @@ namespace DungeonRun
         //objects
         public static List<Byte4> Wor_Pot = new List<Byte4> { new Byte4(8, 10, 0, 0) };
 
+
+
+
+        #endregion
+
+
+
+
+
+
+
+
+
+        #region Water Objs
+
         //water tiles
-        public static List<Byte4> Wor_Water = new List<Byte4> { new Byte4(2, 4, 0, 0) };
-        public static List<Byte4> Wor_Coastline_Straight_A = new List<Byte4> { new Byte4(7, 8, 0, 0) };
-        public static List<Byte4> Wor_Coastline_Straight_B = new List<Byte4> { new Byte4(7, 9, 0, 0) };
-        public static List<Byte4> Wor_Coastline_Corner_Exterior = new List<Byte4> { new Byte4(8, 8, 0, 0) };
-        public static List<Byte4> Wor_Coastline_Corner_Interior = new List<Byte4> { new Byte4(8, 9, 0, 0) };
+        public static List<Byte4> Wor_Water_1x1 = new List<Byte4> { new Byte4(6, 21, 0, 0) };
+        public static List<Byte4> Wor_Water_2x2 = new List<Byte4> { new Byte4(3, 11, 0, 0) };
+        public static List<Byte4> Wor_Water_3x3 = new List<Byte4> { new Byte4(2, 7, 0, 0) };
+
+        public static List<Byte4> Wor_Coastline_Straight_A = new List<Byte4> { new Byte4(0, 16, 0, 0) };
+        public static List<Byte4> Wor_Coastline_Straight_B = new List<Byte4> { new Byte4(0, 17, 0, 0) };
+        public static List<Byte4> Wor_Coastline_Corner_Exterior = new List<Byte4> { new Byte4(1, 16, 0, 0) };
+        public static List<Byte4> Wor_Coastline_Corner_Interior = new List<Byte4> { new Byte4(1, 17, 0, 0) };
 
         public static List<Byte4> Wor_Coastline_Long = new List<Byte4>
         {
-            new Byte4(11, 5, 0, 0), new Byte4(12, 5, 0, 0),
-            new Byte4(13, 5, 0, 0), new Byte4(14, 5, 0, 0)
+            new Byte4(11, 9, 0, 0), new Byte4(12, 9, 0, 0),
+            new Byte4(13, 9, 0, 0), new Byte4(14, 9, 0, 0)
         };
 
+        //water rocks
+        public static List<Byte4> Wor_Water_RockSm = new List<Byte4> { new Byte4(10, 8, 0, 0) };
+        public static List<Byte4> Wor_Water_RockMed = new List<Byte4> { new Byte4(10, 9, 0, 0) };
+        public static List<Byte4> Wor_Water_RockUnderwater = new List<Byte4>
+        { new Byte4(9, 9, 0, 0), new Byte4(9, 9, 1, 0) };
 
+        //swamp water objs
+        public static List<Byte4> Wor_Swamp_LillyPad = new List<Byte4> { new Byte4(4, 8, 0, 0) };
+        public static List<Byte4> Wor_Swamp_BigPlant = new List<Byte4> { new Byte4(5, 8, 0, 0) };
+        public static List<Byte4> Wor_Swamp_Vine = new List<Byte4> { new Byte4(4, 18, 0, 0) };
+
+        public static List<Byte4> Wor_Swamp_Bulb = new List<Byte4> { new Byte4(6, 18, 0, 0) };
+        public static List<Byte4> Wor_Swamp_SmPlant = new List<Byte4> { new Byte4(7, 18, 0, 0) };
+
+
+        #endregion
+
+
+
+
+
+
+
+        #region Ditches
 
         //ditches - empty
         public static List<Byte4> Wor_Ditch_Empty_Single = new List<Byte4> { new Byte4(20, 8, 0, 0) };
@@ -202,7 +243,11 @@ namespace DungeonRun
         public static List<Byte4> Wor_Ditch_Filled_Endcap_North = new List<Byte4> { new Byte4(31, 9, 0, 0) };
 
 
-        
+
+        #endregion
+
+
+        #region Houses Objs
 
         //building objs
         public static List<Byte4> Wor_Build_Wall_FrontA = new List<Byte4> { new Byte4(15, 10, 0, 0) };
@@ -219,6 +264,11 @@ namespace DungeonRun
         public static List<Byte4> Wor_Build_Roof_Top = new List<Byte4> { new Byte4(16, 8, 0, 0) };
         public static List<Byte4> Wor_Build_Roof_Bottom = new List<Byte4> { new Byte4(16, 9, 0, 0) };
         public static List<Byte4> Wor_Build_Roof_Chimney = new List<Byte4> { new Byte4(17, 8, 0, 0) };
+
+        #endregion
+
+
+        #region Posts, Hammer Posts, Signpost
 
         //posts
         public static List<Byte4> Wor_Post_Vertical_Left = new List<Byte4> { new Byte4(9, 10, 0, 0) };
@@ -240,6 +290,11 @@ namespace DungeonRun
         //signpost
         public static List<Byte4> Signpost = new List<Byte4> { new Byte4(10, 10, 0, 0) };
 
+        #endregion
+
+        
+
+
         //dirt + dirt to grass transitions
         public static List<Byte4> Wor_Dirt_A = new List<Byte4> { new Byte4(2, 8, 0, 0) };
         public static List<Byte4> Wor_Dirt_B = new List<Byte4> { new Byte4(2, 9, 0, 0) };
@@ -256,16 +311,8 @@ namespace DungeonRun
         //big shadow
         public static List<Byte4> Wor_Shadow_Big = new List<Byte4> { new Byte4(0, 0, 0, 0) }; //3x4 obj
 
-        //water rocks
-        public static List<Byte4> Wor_Water_RockSm = new List<Byte4> { new Byte4(10, 8, 0, 0) };
-        public static List<Byte4> Wor_Water_RockMed = new List<Byte4> { new Byte4(10, 9, 0, 0) };
-        public static List<Byte4> Wor_Water_RockUnderwater = new List<Byte4>
-        { new Byte4(9, 9, 0, 0), new Byte4(9, 9, 1, 0) };
-
-
-        #endregion
-
-
+        
+        
 
 
 
@@ -320,12 +367,7 @@ namespace DungeonRun
         //big shadow
         public static List<Byte4> Wor_Entrance_SwampDungeon = new List<Byte4> { new Byte4(0, 1, 0, 0) }; //3x4 obj
 
-        public static List<Byte4> Wor_Swamp_LillyPad = new List<Byte4> { new Byte4(4, 8, 0, 0) };
-        public static List<Byte4> Wor_Swamp_BigPlant = new List<Byte4> { new Byte4(3, 8, 0, 0) };
-        public static List<Byte4> Wor_Swamp_Vine = new List<Byte4> { new Byte4(4, 18, 0, 0) };
-
-        public static List<Byte4> Wor_Swamp_Bulb = new List<Byte4> { new Byte4(6, 18, 0, 0) };
-        public static List<Byte4> Wor_Swamp_SmPlant = new List<Byte4> { new Byte4(7, 18, 0, 0) };
+        
 
         #endregion
 
@@ -380,23 +422,25 @@ namespace DungeonRun
 
 
         //bridge and pier
-        public static List<Byte4> Wor_Boat_Bridge_Top = new List<Byte4> { new Byte4(3, 20, 0, 0) };
-        public static List<Byte4> Wor_Boat_Bridge_Bottom = new List<Byte4> { new Byte4(3, 21, 0, 0) };
+        public static List<Byte4> Wor_Boat_Bridge_Top = new List<Byte4> { new Byte4(3, 19, 0, 0) };
+        public static List<Byte4> Wor_Boat_Bridge_Bottom = new List<Byte4> { new Byte4(3, 20, 0, 0) };
 
-        public static List<Byte4> Wor_Boat_Pier_TopLeft = new List<Byte4> { new Byte4(8, 19, 0, 0) };
-        public static List<Byte4> Wor_Boat_Pier_TopMiddle = new List<Byte4> { new Byte4(9, 19, 0, 0) };
-        public static List<Byte4> Wor_Boat_Pier_TopRight = new List<Byte4> { new Byte4(8, 19, 1, 0) };
+        public static List<Byte4> Wor_Boat_Pier_TopLeft = new List<Byte4> { new Byte4(9, 19, 0, 0) };
+        public static List<Byte4> Wor_Boat_Pier_TopMiddle = new List<Byte4> { new Byte4(10, 19, 0, 0) };
+        public static List<Byte4> Wor_Boat_Pier_TopRight = new List<Byte4> { new Byte4(9, 19, 1, 0) };
 
-        public static List<Byte4> Wor_Boat_Pier_Left = new List<Byte4> { new Byte4(8, 20, 0, 0) };
-        public static List<Byte4> Wor_Boat_Pier_Middle = new List<Byte4> { new Byte4(9, 20, 0, 0) };
-        public static List<Byte4> Wor_Boat_Pier_Right = new List<Byte4> { new Byte4(8, 20, 1, 0) };
+        public static List<Byte4> Wor_Boat_Pier_Left = new List<Byte4> { new Byte4(9, 20, 0, 0) };
+        public static List<Byte4> Wor_Boat_Pier_Middle = new List<Byte4> { new Byte4(10, 20, 0, 0) };
+        public static List<Byte4> Wor_Boat_Pier_Right = new List<Byte4> { new Byte4(9, 20, 1, 0) };
 
-        public static List<Byte4> Wor_Boat_Pier_BottomMiddle = new List<Byte4> { new Byte4(9, 21, 0, 0) };
+        public static List<Byte4> Wor_Boat_Pier_BottomMiddle = new List<Byte4> { new Byte4(10, 21, 0, 0) };
         public static List<Byte4> Wor_Boat_Pier_BottomLeft = new List<Byte4>
-        { new Byte4(8, 21, 0, 0), new Byte4(10, 21, 1, 0) };
+        { new Byte4(9, 21, 0, 0), new Byte4(11, 21, 1, 0) };
 
         public static List<Byte4> Wor_Boat_Pier_BottomRight = new List<Byte4>
-        { new Byte4(8, 21, 1, 0), new Byte4(10, 21, 0, 0) };
+        { new Byte4(9, 21, 1, 0), new Byte4(11, 21, 0, 0) };
+
+        public static List<Byte4> Wor_Boat_Pier_Anchor = new List<Byte4> { new Byte4(11, 20, 0, 0) };
 
 
 

@@ -345,19 +345,8 @@ namespace DungeonRun
             {
                 //only if a level is a switch puzzle type do we enable switches
                 if (LevelSet.currentLevel.currentRoom.puzzleType == PuzzleType.Switch)
-                {
+                {   //loop over all active blocking roomObjs
                     overlap = false; //assume no hit
-
-                    //loop over all active actors
-                    for (i = 0; i < Pool.actorCount; i++)
-                    {   //allow dead actor corpses to activate switches
-                        if (Pool.actorPool[i].active &
-                            Pool.actorPool[i].compCollision.blocking &
-                            Pool.actorPool[i].compCollision.rec.Intersects(IntObj.compCollision.rec))
-                        { overlap = true; }
-                    }
-
-                    //loop over all active blocking roomObjs
                     for (i = 0; i < Pool.intObjCount; i++)
                     {   //only blocking objs can activate switches
                         if (Pool.intObjPool[i].active &
@@ -365,10 +354,8 @@ namespace DungeonRun
                             Pool.intObjPool[i].compCollision.rec.Intersects(IntObj.compCollision.rec))
                         { overlap = true; }
                     }
-
-                    //if any actors/objs overlap switch, openTrap doors
                     if (overlap)
-                    {
+                    {   //if any objs overlap switch, openTrap doors
                         Functions_Room.OpenTrapDoors();
                         //bail if we already did this
                         if (IntObj.type == InteractiveType.Dungeon_SwitchDown) { return; }
@@ -379,9 +366,8 @@ namespace DungeonRun
                             IntObj.compSprite.position.Y);
                         Assets.Play(Assets.sfxSwitch);
                     }
-                    //else close all open doors to trap doors
                     else
-                    {
+                    {   //else close all open doors to trap doors
                         Functions_Room.CloseTrapDoors();
                         //bail if we already did this
                         if (IntObj.type == InteractiveType.Dungeon_Switch) { return; }
@@ -3050,12 +3036,26 @@ namespace DungeonRun
 
             #region Water Objects
 
-            else if (Type == InteractiveType.Water_2x2)
-            {   //use less pool objs by making water tiles 2x2
+            else if (Type == InteractiveType.Water_1x1)
+            {
                 IntObj.compSprite.zOffset = -128;
                 IntObj.compCollision.blocking = false;
                 IntObj.canBeSaved = true;
-                IntObj.compAnim.currentAnimation = AnimationFrames.Wor_Water;
+                IntObj.compAnim.currentAnimation = AnimationFrames.Wor_Water_1x1;
+                //double size
+                IntObj.compSprite.drawRec.Width = 16 * 1;
+                IntObj.compSprite.drawRec.Height = 16 * 1;
+                IntObj.compCollision.rec.Width = 16 * 1;
+                IntObj.compCollision.rec.Height = 16 * 1;
+                IntObj.compCollision.offsetX = -8;
+                IntObj.compCollision.offsetY = -8;
+            }
+            else if (Type == InteractiveType.Water_2x2)
+            {   //use less pool objs by being bigger
+                IntObj.compSprite.zOffset = -128;
+                IntObj.compCollision.blocking = false;
+                IntObj.canBeSaved = true;
+                IntObj.compAnim.currentAnimation = AnimationFrames.Wor_Water_2x2;
                 //double size
                 IntObj.compSprite.drawRec.Width = 16 * 2;
                 IntObj.compSprite.drawRec.Height = 16 * 2;
@@ -3064,6 +3064,23 @@ namespace DungeonRun
                 IntObj.compCollision.offsetX = -8;
                 IntObj.compCollision.offsetY = -8;
             }
+            else if (Type == InteractiveType.Water_3x3)
+            {   //use less pool objs by being bigger
+                IntObj.compSprite.zOffset = -128;
+                IntObj.compCollision.blocking = false;
+                IntObj.canBeSaved = true;
+                IntObj.compAnim.currentAnimation = AnimationFrames.Wor_Water_3x3;
+                //triple size
+                IntObj.compSprite.drawRec.Width = 16 * 3;
+                IntObj.compSprite.drawRec.Height = 16 * 3;
+                IntObj.compCollision.rec.Width = 16 * 3;
+                IntObj.compCollision.rec.Height = 16 * 3;
+                IntObj.compCollision.offsetX = -8;
+                IntObj.compCollision.offsetY = -8;
+            }
+
+
+            
 
             else if (
                 Type == InteractiveType.Coastline_Straight
@@ -3071,7 +3088,7 @@ namespace DungeonRun
                 || Type == InteractiveType.Coastline_Corner_Interior
                 )
             {
-                IntObj.compSprite.zOffset = -40;
+                IntObj.compSprite.zOffset = -100;
                 IntObj.compCollision.blocking = false;
                 IntObj.canBeSaved = true;
                 IntObj.compAnim.loop = true;
@@ -3118,6 +3135,8 @@ namespace DungeonRun
                 IntObj.canBeSaved = true;
                 IntObj.compCollision.blocking = false;
             }
+
+
             else if (Type == InteractiveType.Coastline_1x2_Animated)
             {   //nonstandard size
                 IntObj.compSprite.drawRec.Width = 16 * 1; IntObj.compSprite.drawRec.Height = 16 * 2;
@@ -3126,8 +3145,9 @@ namespace DungeonRun
                 IntObj.compAnim.currentAnimation = AnimationFrames.Wor_Coastline_Long;
                 IntObj.canBeSaved = true;
                 IntObj.compCollision.blocking = false;
-                IntObj.compSprite.zOffset = -128; //same as water tiles
+                IntObj.compSprite.zOffset = -64; //over water, coastline objs
             }
+
 
             else if (
                 Type == InteractiveType.Water_RockSm

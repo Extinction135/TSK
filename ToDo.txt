@@ -71,20 +71,34 @@ Today:
 
 
 
-Dungeons & Objs++
 
-improved dungeon room data so all rooms are solvable.
 
-boat barrels cannot be destroyed. this has been fixed.
-this fix also fixed an issue where explosive barrels were
-not getting triggered by the sword, or any projectiles that
-dealt above Bounce() damage.
 
-only interactive objs should trigger the floor switch.
-this was done to ensure that switch puzzles are completed
-in the expected manner, and enemies dont just stand on the
-switch, prematurely completing the puzzle for the player.
 
+
+Water++
+
+we need 1x1, and 3x3 water tiles, so we can more efficiently use the
+int pool budget. this also allows us to build dungeon room data using
+single water tiles, which fit into the dungeon rooms bettter. this will
+also allow us to build levels and fields more effiecently, using the 3x3
+and 2x2 water tiles.
+
+this included various repacking of the common objs sheet for better water
+presentation and grouping. work done to town for example obj setups.
+
+
+
+
+
+
+
+
+
+
+
+
+the water splash sprite is pushed to low for hero.
 
 
 
@@ -101,14 +115,11 @@ Water++
 *we could have animated floating lily pads, much like the animated
 flowers that sit over the grass levels. this would add some decoration
 to the otherwise bland sea water.
+
 *need to make boat anchor object - this is already in common objs,
 and can be used to further decorate piers.
 
-we need 1x1, and 3x3 water tiles, so we can more efficiently use the
-int pool budget. this also allows us to build dungeon room data using
-single water tiles, which fit into the dungeon rooms bettter. this will
-also allow us to build levels and fields more effiecently, using the 3x3
-and 2x2 water tiles.
+
 
 
 

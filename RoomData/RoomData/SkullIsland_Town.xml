@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RoomXmlData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <type>SkullIsland_Town</type>
-  <windDirection>Right</windDirection>
+  <windDirection>None</windDirection>
   <windFrequency>2</windFrequency>
-  <windIntensity>1</windIntensity>
+  <windIntensity>0</windIntensity>
   <inds>
     <IndObjXmlData>
       <type>Tree_Med</type>
@@ -2170,13 +2170,13 @@
     <IntObjXmlData>
       <type>Coastline_1x2_Animated</type>
       <direction>Down</direction>
-      <posX>936</posX>
+      <posX>984</posX>
       <posY>456</posY>
     </IntObjXmlData>
     <IntObjXmlData>
       <type>Coastline_1x2_Animated</type>
       <direction>Down</direction>
-      <posX>952</posX>
+      <posX>1000</posX>
       <posY>456</posY>
     </IntObjXmlData>
     <IntObjXmlData>
@@ -2572,8 +2572,8 @@
     <IntObjXmlData>
       <type>Enemy_Turtle</type>
       <direction>Down</direction>
-      <posX>575</posX>
-      <posY>306</posY>
+      <posX>563</posX>
+      <posY>312</posY>
     </IntObjXmlData>
     <IntObjXmlData>
       <type>Post_HammerPost_Up</type>
@@ -2584,14 +2584,14 @@
     <IntObjXmlData>
       <type>Enemy_Crab</type>
       <direction>Down</direction>
-      <posX>575</posX>
-      <posY>298</posY>
+      <posX>558</posX>
+      <posY>271</posY>
     </IntObjXmlData>
     <IntObjXmlData>
       <type>Enemy_Rat</type>
-      <direction>Left</direction>
-      <posX>533</posX>
-      <posY>315</posY>
+      <direction>Right</direction>
+      <posX>635</posX>
+      <posY>261</posY>
     </IntObjXmlData>
     <IntObjXmlData>
       <type>Lava_Pit</type>
@@ -3300,6 +3300,96 @@
       <direction>Down</direction>
       <posX>888</posX>
       <posY>568</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Water_2x2</type>
+      <direction>Down</direction>
+      <posX>936</posX>
+      <posY>472</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coastline_Straight</type>
+      <direction>Down</direction>
+      <posX>952</posX>
+      <posY>456</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coastline_Straight</type>
+      <direction>Down</direction>
+      <posX>936</posX>
+      <posY>456</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Water_1x1</type>
+      <direction>Down</direction>
+      <posX>1112</posX>
+      <posY>504</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Water_1x1</type>
+      <direction>Down</direction>
+      <posX>1112</posX>
+      <posY>520</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Water_1x1</type>
+      <direction>Down</direction>
+      <posX>1112</posX>
+      <posY>536</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Water_3x3</type>
+      <direction>Down</direction>
+      <posX>1112</posX>
+      <posY>584</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coastline_1x2_Animated</type>
+      <direction>Down</direction>
+      <posX>1016</posX>
+      <posY>456</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coastline_1x2_Animated</type>
+      <direction>Down</direction>
+      <posX>968</posX>
+      <posY>456</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coastline_1x2_Animated</type>
+      <direction>Down</direction>
+      <posX>952</posX>
+      <posY>456</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coastline_1x2_Animated</type>
+      <direction>Down</direction>
+      <posX>936</posX>
+      <posY>456</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coastline_1x2_Animated</type>
+      <direction>Down</direction>
+      <posX>920</posX>
+      <posY>456</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coastline_1x2_Animated</type>
+      <direction>Down</direction>
+      <posX>904</posX>
+      <posY>456</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coastline_1x2_Animated</type>
+      <direction>Down</direction>
+      <posX>888</posX>
+      <posY>456</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coastline_1x2_Animated</type>
+      <direction>Down</direction>
+      <posX>872</posX>
+      <posY>456</posY>
     </IntObjXmlData>
   </ints>
 </RoomXmlData>

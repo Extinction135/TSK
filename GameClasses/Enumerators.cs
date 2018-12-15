@@ -638,10 +638,16 @@ namespace DungeonRun
 
 
 
+
+
+
+
         #region Water Objects
 
         //water objs
+        Water_1x1,
         Water_2x2,
+        Water_3x3,
         Water_RockUnderwater,
         Water_LillyPad,
         Water_Vine,

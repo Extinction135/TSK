@@ -1634,8 +1634,8 @@ namespace DungeonRun
 			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Coastline_Straight; obj.direction = Direction.Down; obj.posX = 888; obj.posY = 456; SkullIsland_Town.ints.Add(obj);}
 			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Coastline_Straight; obj.direction = Direction.Down; obj.posX = 904; obj.posY = 456; SkullIsland_Town.ints.Add(obj);}
 			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Coastline_Straight; obj.direction = Direction.Down; obj.posX = 920; obj.posY = 456; SkullIsland_Town.ints.Add(obj);}
-			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Coastline_1x2_Animated; obj.direction = Direction.Down; obj.posX = 936; obj.posY = 456; SkullIsland_Town.ints.Add(obj);}
-			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Coastline_1x2_Animated; obj.direction = Direction.Down; obj.posX = 952; obj.posY = 456; SkullIsland_Town.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Coastline_1x2_Animated; obj.direction = Direction.Down; obj.posX = 984; obj.posY = 456; SkullIsland_Town.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Coastline_1x2_Animated; obj.direction = Direction.Down; obj.posX = 1000; obj.posY = 456; SkullIsland_Town.ints.Add(obj);}
 			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Water_LillyPad; obj.direction = Direction.Down; obj.posX = 936; obj.posY = 600; SkullIsland_Town.ints.Add(obj);}
 			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Water_Vine; obj.direction = Direction.Down; obj.posX = 984; obj.posY = 536; SkullIsland_Town.ints.Add(obj);}
 			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Water_RockUnderwater; obj.direction = Direction.Down; obj.posX = 936; obj.posY = 520; SkullIsland_Town.ints.Add(obj);}
@@ -1701,10 +1701,10 @@ namespace DungeonRun
 			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Dungeon_SwitchBlockBtn; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 344; SkullIsland_Town.ints.Add(obj);}
 			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Dungeon_SwitchBlockBtn; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 312; SkullIsland_Town.ints.Add(obj);}
 			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Post_HammerPost_Up; obj.direction = Direction.Down; obj.posX = 456; obj.posY = 408; SkullIsland_Town.ints.Add(obj);}
-			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Enemy_Turtle; obj.direction = Direction.Down; obj.posX = 575; obj.posY = 306; SkullIsland_Town.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Enemy_Turtle; obj.direction = Direction.Down; obj.posX = 563; obj.posY = 312; SkullIsland_Town.ints.Add(obj);}
 			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Post_HammerPost_Up; obj.direction = Direction.Down; obj.posX = 440; obj.posY = 408; SkullIsland_Town.ints.Add(obj);}
-			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Enemy_Crab; obj.direction = Direction.Down; obj.posX = 575; obj.posY = 298; SkullIsland_Town.ints.Add(obj);}
-			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Enemy_Rat; obj.direction = Direction.Left; obj.posX = 533; obj.posY = 315; SkullIsland_Town.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Enemy_Crab; obj.direction = Direction.Down; obj.posX = 558; obj.posY = 271; SkullIsland_Town.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Enemy_Rat; obj.direction = Direction.Right; obj.posX = 635; obj.posY = 261; SkullIsland_Town.ints.Add(obj);}
 			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Lava_Pit; obj.direction = Direction.Down; obj.posX = 280; obj.posY = 392; SkullIsland_Town.ints.Add(obj);}
 			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Lava_Pit; obj.direction = Direction.Down; obj.posX = 296; obj.posY = 392; SkullIsland_Town.ints.Add(obj);}
 			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Lava_Pit; obj.direction = Direction.Down; obj.posX = 280; obj.posY = 408; SkullIsland_Town.ints.Add(obj);}
@@ -1823,6 +1823,21 @@ namespace DungeonRun
 			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Water_RockSm; obj.direction = Direction.Down; obj.posX = 888; obj.posY = 536; SkullIsland_Town.ints.Add(obj);}
 			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Water_SmPlant; obj.direction = Direction.Down; obj.posX = 888; obj.posY = 552; SkullIsland_Town.ints.Add(obj);}
 			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Water_Bulb; obj.direction = Direction.Down; obj.posX = 888; obj.posY = 568; SkullIsland_Town.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Water_2x2; obj.direction = Direction.Down; obj.posX = 936; obj.posY = 472; SkullIsland_Town.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Coastline_Straight; obj.direction = Direction.Down; obj.posX = 952; obj.posY = 456; SkullIsland_Town.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Coastline_Straight; obj.direction = Direction.Down; obj.posX = 936; obj.posY = 456; SkullIsland_Town.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Water_1x1; obj.direction = Direction.Down; obj.posX = 1112; obj.posY = 504; SkullIsland_Town.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Water_1x1; obj.direction = Direction.Down; obj.posX = 1112; obj.posY = 520; SkullIsland_Town.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Water_1x1; obj.direction = Direction.Down; obj.posX = 1112; obj.posY = 536; SkullIsland_Town.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Water_3x3; obj.direction = Direction.Down; obj.posX = 1112; obj.posY = 584; SkullIsland_Town.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Coastline_1x2_Animated; obj.direction = Direction.Down; obj.posX = 1016; obj.posY = 456; SkullIsland_Town.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Coastline_1x2_Animated; obj.direction = Direction.Down; obj.posX = 968; obj.posY = 456; SkullIsland_Town.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Coastline_1x2_Animated; obj.direction = Direction.Down; obj.posX = 952; obj.posY = 456; SkullIsland_Town.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Coastline_1x2_Animated; obj.direction = Direction.Down; obj.posX = 936; obj.posY = 456; SkullIsland_Town.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Coastline_1x2_Animated; obj.direction = Direction.Down; obj.posX = 920; obj.posY = 456; SkullIsland_Town.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Coastline_1x2_Animated; obj.direction = Direction.Down; obj.posX = 904; obj.posY = 456; SkullIsland_Town.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Coastline_1x2_Animated; obj.direction = Direction.Down; obj.posX = 888; obj.posY = 456; SkullIsland_Town.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Coastline_1x2_Animated; obj.direction = Direction.Down; obj.posX = 872; obj.posY = 456; SkullIsland_Town.ints.Add(obj);}
 			#endregion
 
 		}

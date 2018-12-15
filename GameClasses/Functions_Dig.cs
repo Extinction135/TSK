@@ -26,8 +26,7 @@ namespace DungeonRun
 
         static int i;
         static List<InteractiveObject> ditchesToUpdate;
-
-        static ComponentSprite floorSprite;
+        //static ComponentSprite floorSprite;
 
 
         public static void FillDitch(InteractiveObject Ditch)
@@ -500,6 +499,7 @@ namespace DungeonRun
                 if (Pool.intObjPool[d].active & 
                     objRef.compCollision.rec.Intersects(Pool.intObjPool[d].compCollision.rec))
                 {
+                    /*
                     //check to see if the new ditch touches a water tile
                     //in which case we need to fill the ditch with water
                     if (Pool.intObjPool[d].type == InteractiveType.Water_2x2)
@@ -517,7 +517,11 @@ namespace DungeonRun
                         //set zDepth above other floor tiles
                         floorSprite.zDepth = World.waterLayer;
                     }
-                    else if(Pool.intObjPool[d].group == InteractiveGroup.Ditch)
+                    */ 
+                    
+                    
+                    
+                    if(Pool.intObjPool[d].group == InteractiveGroup.Ditch)
                     {   //if ditch touches any other ditches, update them
                         ditchesToUpdate.Add(Pool.intObjPool[d]);
                     }

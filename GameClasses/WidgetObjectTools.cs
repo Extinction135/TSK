@@ -422,8 +422,18 @@ namespace DungeonRun
                                 #region Editor Based Selection Cases
 
                                 //check for specific conditions, like ignoring water tiles
-                                if (Flags.IgnoreWaterTiles & Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Water_2x2)
-                                { ignoreObj = true; } //ignore this object
+                                if(Flags.IgnoreWaterTiles)
+                                {
+                                    if(
+                                        Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Water_2x2
+                                        || Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Water_1x1
+                                        )
+                                    { ignoreObj = true; } //ignore this object
+                                }
+
+
+
+
 
                                 //ignoring roof tiles for deletion
                                 if (Flags.IgnoreRoofTiles)
@@ -648,12 +658,13 @@ namespace DungeonRun
                         //check for specific conditions, like ignoring water tiles
                         if (Flags.IgnoreWaterTiles)
                         {
-                            if(
-                                Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Water_2x2 ||
-                                Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Coastline_1x2_Animated
+                            if (
+                                Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Water_2x2
+                                || Pool.intObjPool[Pool.intObjCounter].type == InteractiveType.Water_1x1
                                 )
                             { ignoreObj = true; } //ignore this object
                         }
+
 
                         //ignoring roof tiles for selection
                         if (Flags.IgnoreRoofTiles)
