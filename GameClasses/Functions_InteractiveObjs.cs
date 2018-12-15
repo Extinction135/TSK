@@ -3176,7 +3176,7 @@ namespace DungeonRun
             {   //nonstandard size
                 IntObj.compSprite.drawRec.Width = 16 * 1; IntObj.compSprite.drawRec.Height = 16 * 2;
                 IntObj.compCollision.rec.Width = 16 * 1; IntObj.compCollision.offsetX = -8;
-                IntObj.compCollision.rec.Height = 16 * 2; IntObj.compCollision.offsetY = -8;
+                IntObj.compCollision.rec.Height = 16 + 8; IntObj.compCollision.offsetY = 0;
                 IntObj.compAnim.currentAnimation = AnimationFrames.Wor_Coastline_Long;
                 IntObj.canBeSaved = true;
                 IntObj.compCollision.blocking = false;

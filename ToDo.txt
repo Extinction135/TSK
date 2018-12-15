@@ -69,51 +69,21 @@ Today:
 
 
 
-
-
-
-
-
-
-Water Objs++
-
-the water splash sprite is pushed to low for hero.
-fixed a sorting issue with underwater rocks sorting 
-over hero when hero went underwater.
-
-added various int objs to editor widgets and levels.
-
-added mini-lillies to common objs sheet, based on the
-flowers animation, this was done to add life to the 
-water areas, like flowers do to the grass areas.
-
-lillies should randomize their anim frame like flowers do.
-lillies should slow down anim. done. flowers now randomize
-their animation speed a little bit too. improved big lillies
-to give them depth and look like they are floating over water.
-
-randomly flip vines horizontally. done.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 TallCoastlines++
 
 this an int obj that sits on top of the coastline and water
 objs. this wave pushes objs/actors out to sea, like a real
 wave would. simple interaction here. gentle push per frame.
+done.
+
+
+
+
+
+Swimming dash particle doesn't directionally line up with
+the way hero dash swims. it should. it defaults to down.
+
+
 
 
 

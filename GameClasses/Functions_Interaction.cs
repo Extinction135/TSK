@@ -1158,6 +1158,8 @@ namespace DungeonRun
             //Objects
             else if (IntObj.group == InteractiveGroup.Object)
             {
+
+
                 //Phase 1 - objects that interact with flying and grounded actors
 
                 #region SpikeBlocks
@@ -1191,12 +1193,18 @@ namespace DungeonRun
                 #endregion
 
 
+
+
                 //Phase 2 - all flying actors bail from method - they're done
                 if (Actor.compMove.grounded == false) { return; }
 
 
 
+
+
+
                 //Phase 3 - objects that interact with grounded actors only (all remaining)
+
 
                 #region FloorSpikes
 
@@ -1344,15 +1352,10 @@ namespace DungeonRun
 
                 else if (IntObj.type == InteractiveType.Water_Vine)
                 {
-
-                    if (Actor.underwater)
-                    {
-                        //ignore interactions with vine
-                        return;
-                    }
+                    if (Actor.underwater) //ignore interactions with vine
+                    { return; }
                     else
-                    {
-                        //just prevent overlap (push opposite direction)
+                    {   //just prevent overlap (push opposite direction)
                         Functions_Movement.Push(
                             Actor.compMove,
                             Functions_Direction.GetOppositeCardinal(
@@ -1371,8 +1374,7 @@ namespace DungeonRun
                 else if (
                     IntObj.type == InteractiveType.Coastline_Corner_Exterior
                     || IntObj.type == InteractiveType.Coastline_Corner_Interior
-                    || IntObj.type == InteractiveType.Coastline_Straight
-                    || IntObj.type == InteractiveType.Coastline_1x2_Animated)
+                    || IntObj.type == InteractiveType.Coastline_Straight)
                 {   //display animated ripple at actor's feet
                     Functions_Actor.DisplayWetFeet(Actor);
                 }
@@ -1408,6 +1410,20 @@ namespace DungeonRun
                 }
 
                 #endregion
+
+
+                #region Coastline waves
+
+                else if (IntObj.type == InteractiveType.Coastline_1x2_Animated)
+                {   //push away from shore a little bit each frame
+                    Functions_Movement.Push(Actor.compMove, Direction.Down, 0.01f);
+                }
+
+                #endregion
+
+
+
+
 
 
                 //bridge just doesn't cause actor to fall into pit
