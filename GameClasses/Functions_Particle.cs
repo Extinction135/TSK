@@ -141,12 +141,6 @@ namespace DungeonRun
             part.direction = Dir;
             part.compMove.direction = Dir;
 
-            //properly rotate water kick particles
-            if (Type == ParticleType.WaterKick)
-            {
-                part.direction = Functions_Direction.GetOppositeDirection(Dir);
-            }
-
             //teleport the object to the proper location
             Functions_Movement.Teleport(part.compMove, X, Y);
             //set the type, rotation, cellsize, & alignment
@@ -185,8 +179,17 @@ namespace DungeonRun
                 { part.compSprite.rotation = Rotation.Clockwise270; }
             }
             else if (Type == ParticleType.WaterKick)
-            {
+            {   //trails behind actor dashing in water in cardinal direction
                 Functions_Movement.Push(part.compMove, part.compMove.direction, 1.0f);
+                //down is no rotation
+                part.compSprite.rotation = Rotation.None;
+                //set up, left, right
+                if (Dir == Direction.Up)
+                { part.compSprite.rotation = Rotation.Clockwise180; }
+                else if (Dir == Direction.Left)
+                { part.compSprite.rotation = Rotation.Clockwise90; }
+                else if (Dir == Direction.Right)
+                { part.compSprite.rotation = Rotation.Clockwise270; }
             }
 
             //these are individual pieces of an explosion that is circular or random
@@ -199,12 +202,14 @@ namespace DungeonRun
             #endregion
 
 
+            //update sprite rotation
+            Functions_Component.SetSpriteRotation(part.compSprite, part.direction);
             //Debug.WriteLine("particle made: " + Type + " - location: " + X + ", " + Y);
         }
 
 
 
-
+        
 
         
         //per-frame logic
@@ -291,6 +296,14 @@ namespace DungeonRun
         {
             Part.type = Type;
 
+            //randomly flip the sprite horizontally for variation
+            if (Functions_Random.Int(0, 101) > 50)
+            { Part.compSprite.flipHorizontally = true; }
+            else { Part.compSprite.flipHorizontally = false; }
+
+
+
+
 
 
             //Particles
@@ -325,10 +338,6 @@ namespace DungeonRun
                 Part.compAnim.loop = false;
                 Part.compAnim.currentAnimation = AnimationFrames.Particle_RisingSmoke;
                 Part.compSprite.texture = Assets.entitiesSheet;
-                //randomly flip the smoke sprite horizontally for variation
-                if (Functions_Random.Int(0, 101) > 50)
-                { Part.compSprite.flipHorizontally = true; }
-                else { Part.compSprite.flipHorizontally = false; }
             }
             else if (Type == ParticleType.ImpactDust)
             {
@@ -462,9 +471,9 @@ namespace DungeonRun
 
             else if (Type == ParticleType.WaterKick)
             {
-                Part.compSprite.zOffset = 0;
+                Part.compSprite.zOffset = -33; //sort under hero/most objs
                 Part.compAnim.speed = 7; //in frames
-                Part.lifetime = 7 * 4 + 5; //speed * animTotal + holdFrame
+                Part.lifetime = 7 * 4 + 2; //speed * animTotal + holdFrame
                 Part.compMove.friction = World.frictionWater;
                 Part.compAnim.currentAnimation = AnimationFrames.Particle_WaterKick;
                 Part.compSprite.texture = Assets.entitiesSheet;
@@ -540,16 +549,14 @@ namespace DungeonRun
                 Part.compAnim.loop = true;
                 Part.compAnim.currentAnimation = AnimationFrames.Particle_LightningBolt;
                 Part.compSprite.texture = Assets.entitiesSheet;
+                Part.compSprite.flipHorizontally = false;
             }
 
             #endregion
 
 
 
-
-
-
-
+            
 
             #region Overworld / Map - misc
 
@@ -561,6 +568,7 @@ namespace DungeonRun
                 Part.compAnim.currentAnimation = AnimationFrames.Particle_Map_Flag;
                 Part.compSprite.texture = Assets.entitiesSheet;
                 Part.lifetime = 0; //lives forever
+                Part.compSprite.flipHorizontally = false;
             }
             else if (Type == ParticleType.Map_Wave)
             {
@@ -585,10 +593,10 @@ namespace DungeonRun
 
 
 
-            //based on type, we can flip horizontally/rotate
-            Part.compSprite.flipHorizontally = false;
+            
+            
+            //default to no rotation value
             Part.compSprite.rotation = Rotation.None;
-
             //set animframe to 0
             Part.compSprite.currentFrame = Part.compAnim.currentAnimation[0];
             //align particles sprite and movecomp

@@ -69,20 +69,16 @@ Today:
 
 
 
-TallCoastlines++
-
-this an int obj that sits on top of the coastline and water
-objs. this wave pushes objs/actors out to sea, like a real
-wave would. simple interaction here. gentle push per frame.
-done.
 
 
 
 
+
+SwimDash++
 
 Swimming dash particle doesn't directionally line up with
 the way hero dash swims. it should. it defaults to down.
-
+fixed, looking much better.
 
 
 
