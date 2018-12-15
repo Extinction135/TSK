@@ -275,6 +275,9 @@ namespace DungeonRun
                                 Functions_Pool.Release(carriedObj);
                             }
 
+                            //boomerang might be in play, and we just left that room, so reset it
+                            boomerangInPlay = false;
+
                             //transition between rooms, build room, set new room as visited
                             LevelSet.currentLevel.currentRoom = LevelSet.currentLevel.rooms[i];
                             Functions_Room.BuildRoom(LevelSet.currentLevel.rooms[i]);

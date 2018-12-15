@@ -74,11 +74,6 @@ Today:
 
 
 
-SwimDash++
-
-Swimming dash particle doesn't directionally line up with
-the way hero dash swims. it should. it defaults to down.
-fixed, looking much better.
 
 
 
@@ -89,9 +84,16 @@ fixed, looking much better.
 
 
 Boomerang Bug
+
 if hero exits a room without the boomerang, while
 in a dungeon, then his boomerang is gone until he
-reloads a level.
+reloads a level. when hero changes rooms, reset the
+hero.boomerang in play to true boolean. done.
+
+
+
+
+
 
 
 
