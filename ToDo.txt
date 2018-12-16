@@ -83,15 +83,83 @@ Today:
 
 
 
-Boomerang Bug
-
-if hero exits a room without the boomerang, while
-in a dungeon, then his boomerang is gone until he
-reloads a level. when hero changes rooms, reset the
-hero.boomerang in play to true boolean. done.
 
 
 
+Managing Codebase Scale
+
+we need to be able to link and unlink all roomdata from project
+without breaking the codebase. this allows us to test and dev
+faster, without A TON of roomData. how to accomplish? have two
+sets of roomData, one empty and one filled. class names are the
+same, filenames are different. link to the data you want to for
+testing and development, then link to level data for releases.
+this doesn't affect the xml to cs pipeline, because we're going
+to manually create these empty files, with _empty suffixes. this
+prevents visual studio from slowing down when it has to process
+15,000 lines of level data, plus this reduces the number of errors
+displayed in the error list, allowing me to keep abusing it for
+the rest of development. being smart is rewarding and fun.
+
+i fully expect dungeon room data and field room data to reach
+over a million lines alone, when game reaches version 1.0, so
+being able to still build the project quickly will become vital.
+empty levels still allow for testing of all game systems, via
+the editor. think of this as the 'light-weight' vresion of the
+codebase. we link the roomData then test and release.
+
+lets actually do this.
+
+created empty version of all level data files as .cs files in
+the main gameclasses folder. migrated directx to use empty
+level data files. building fine. sitting at 16.6K. now, the
+uwp project MIGHT ACTUALLY BE USEFUL because i'm going to link
+it to the actual level data, then run a code analysis on it
+to determine it's size. i will continue to do this as development
+progresses, so i can chart leveldata growth and observe any
+useful events that might occur or influence the codebase design.
+because - the codebase is about to get really big for the UWP
+project, and i will finally get to experience visual studio
+attempting to manage large amounts of code. the last time, vs
+took me by suprise - and i had to change my codebase to work
+around it's limitations. this time, i fully expect visual 
+studio to fail in some way, and i'm ready for it. 
+
+updated notes in uwp project folder to explain what the uwp
+projects role is in the development process - as a release
+testing setup only. uwp's loc is 20.3K.
+
+comparison:
+DirectX - 16.6K LoC
+UWP - 20.3K LoC
+(about 4K level data)
+
+
+
+
+
+
+
+
+
+
+
+Dialogs++
+
+when we beat a boss - it swiftly kicks us to the overworld map.
+we should instead pop a dialog telling player what happened! then
+kick to overworld. later we can replace this dialog with a cutscene.
+
+reduce hold time for picking up the map. we pop a dialog anyway, so
+player has all the time to read and recognize. 
+
+pop dialogs for all bottle uses
+-health, magic, combo, fairy, blob.
+simply explain whats happening.
+
+when hero runs over a map, it puts hero into a reward state.
+this should not happen, instead just pop a dialog and dont mess
+with hero at all - because he may be in the middle of battle.
 
 
 
@@ -106,6 +174,11 @@ hero.boomerang in play to true boolean. done.
 
 
 
+
+
+
+
+Fix Ditches and Digging
 
 Ditches shouldn't have green around edges.
 new ditches will sort over objs underneath them, and remove 
@@ -137,7 +210,7 @@ explosions can leave behind ditches where they happen.
 then, ditches can connect like they would via shovel digging.
 inspect how ditches are being handled.
 
-
+objs that regrow: grass & bushes
 
 
 
@@ -192,6 +265,30 @@ in the cellsize, so they fill their frames up better.
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Ships Captain's Quarters
 
 *what if we had a captains quarters instead of the engine obj?
@@ -207,10 +304,7 @@ fire spreading, if we dont want something to burn, for example.
 
 
 
-DungeonCompletion++
-when we beat a boss - it swiftly kicks us to the overworld map.
-we should instead pop a dialog telling player what happened! then
-kick to overworld. later we can replace this dialog with a cutscene.
+
 
 
 
@@ -454,14 +548,6 @@ fire tornado magic is unlocked - or something else. i dunno.
 
 
 
-comet magic
-
-
-
-
-
-
-
 Default Dungeon
 
 the default dungeon sheet is the one we use for all
@@ -566,9 +652,6 @@ up the clouds later! awesome.
 
 
 
-
-
-
 Summary Screen++
 
 Summary Screen is not properly displaying player data,
@@ -581,16 +664,10 @@ completion too.
 
 
 
-
 Display Playtime (in inventory?) keep this offscreen.
 
 need to add timespan to playerdata to track playtime,
 so we ca display it under repo name on right.
-
-
-
-
-
 
 
 

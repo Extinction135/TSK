@@ -11,3 +11,11 @@ the UWP method that is called is empty and will remain empty for the time being.
 
 6 months later - this will remain true for the time being.
 
++2 months later - the uwp project is now only linked to full level data.
+this means it's really big, and only going to get bigger, so whatever ide is
+trying to work with it is going to have a hard time. the directx version is 
+the primary dev version, and it's linked to the empty leveldata files, which
+allows the project to build faster and dev easier. in other words, the uwp
+project is not setup to be developer friendly. it's setup for release testing.
+use the Dx project if you want a dev friendly setup that makes understanding
+the codebase much easier.

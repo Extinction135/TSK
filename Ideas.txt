@@ -16,11 +16,7 @@ and foreground. this allows link to pass under and behind map sprites.
 complete link entering / exiting theives den.
 
 
-reduce hold time for picking up the map. we pop a dialog anyway, so
-player has all the time to read and recognize. pop a dialog for fairy 
-bottles too - so player knows what happened, but reduce their time,
-because once the screen closes they will want to return to action fast.
-we can do this for blob bottles too - explaining whats happening.
+
 
 
 
@@ -62,13 +58,6 @@ this can refill them, completing a level puzzle.
 
 
 
-
-infinity gauntlet.
-has to be done. when all 5 stones are collected, the gauntlet unlocks
-the snap power, which kills half the actors in the current room. up to
-that, the gauntlet has powers based on what stones have been added to it.
-these powers (much like the wand) are available from a spellbook type magic
-menu, and are related to the infinity stone powers in the avengers movies.
 
 
 
@@ -1507,11 +1496,6 @@ to the level.
 
 
 
-Editor++
-
-remove roofs button in top menu
-
-
 
 
 
@@ -1523,16 +1507,6 @@ we can add these into dungeon rooms as well.
 
 
 
-
-
-
-
-
-add a 'clean room' button - removes all roomObjs
-not of group wall or door. thats it.
-leaves us with a blank room with walls, doors,
-statues, and floors.
-add this button to a new widget.. somewhere..
 
 
 
