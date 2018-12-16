@@ -14,6 +14,9 @@ namespace DungeonRun
 			#region ForestIsland_MainEntrance
 
 			ForestIsland_MainEntrance.type = RoomID.ForestIsland_MainEntrance;
+			ForestIsland_MainEntrance.windDirection = Direction.None;
+			ForestIsland_MainEntrance.windFrequency = 2;
+			ForestIsland_MainEntrance.windIntensity = 0;
 			#endregion
 
 		}

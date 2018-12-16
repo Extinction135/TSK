@@ -14,6 +14,9 @@ namespace DungeonRun
 			#region CloudIsland_MainEntrance
 
 			CloudIsland_MainEntrance.type = RoomID.CloudIsland_MainEntrance;
+			CloudIsland_MainEntrance.windDirection = Direction.None;
+			CloudIsland_MainEntrance.windFrequency = 2;
+			CloudIsland_MainEntrance.windIntensity = 0;
 			#endregion
 
 		}

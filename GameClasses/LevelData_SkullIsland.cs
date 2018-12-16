@@ -17,6 +17,9 @@ namespace DungeonRun
 			#region SkullIsland_Colliseum
 
 			SkullIsland_Colliseum.type = RoomID.SkullIsland_Colliseum;
+			SkullIsland_Colliseum.windDirection = Direction.None;
+			SkullIsland_Colliseum.windFrequency = 2;
+			SkullIsland_Colliseum.windIntensity = 0;
 			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Coliseum_Shadow_Entrance; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 456; SkullIsland_Colliseum.inds.Add(obj);}
 			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Coliseum_Shadow_Pillar_Top; obj.direction = Direction.Down; obj.posX = 744; obj.posY = 440; SkullIsland_Colliseum.inds.Add(obj);}
 			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Coliseum_Shadow_Pillar_Top; obj.direction = Direction.Down; obj.posX = 808; obj.posY = 440; SkullIsland_Colliseum.inds.Add(obj);}
@@ -93,6 +96,9 @@ namespace DungeonRun
 			#region SkullIsland_ColliseumPit
 
 			SkullIsland_ColliseumPit.type = RoomID.SkullIsland_ColliseumPit;
+			SkullIsland_ColliseumPit.windDirection = Direction.None;
+			SkullIsland_ColliseumPit.windFrequency = 2;
+			SkullIsland_ColliseumPit.windIntensity = 0;
 			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Coliseum_Shadow_Stairs_Handrail_Top; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 632; SkullIsland_ColliseumPit.inds.Add(obj);}
 			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Coliseum_Shadow_Stairs_Handrail_Top; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 632; SkullIsland_ColliseumPit.inds.Add(obj);}
 			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Coliseum_Shadow_Stairs_Handrail_Middle; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 680; SkullIsland_ColliseumPit.inds.Add(obj);}
@@ -704,6 +710,9 @@ namespace DungeonRun
 			#region SkullIsland_ShadowKing
 
 			SkullIsland_ShadowKing.type = RoomID.SkullIsland_ShadowKing;
+			SkullIsland_ShadowKing.windDirection = Direction.None;
+			SkullIsland_ShadowKing.windFrequency = 2;
+			SkullIsland_ShadowKing.windIntensity = 0;
 			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Boat_Engine; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 584; SkullIsland_ShadowKing.inds.Add(obj);}
 			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Boat_Stairs_Bottom_Left; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 616; SkullIsland_ShadowKing.inds.Add(obj);}
 			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Boat_Bannister_Left; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 632; SkullIsland_ShadowKing.inds.Add(obj);}
@@ -1380,6 +1389,9 @@ namespace DungeonRun
 			#region SkullIsland_Town
 
 			SkullIsland_Town.type = RoomID.SkullIsland_Town;
+			SkullIsland_Town.windDirection = Direction.None;
+			SkullIsland_Town.windFrequency = 2;
+			SkullIsland_Town.windIntensity = 0;
 			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Tree_Med; obj.direction = Direction.Down; obj.posX = 360; obj.posY = 648; SkullIsland_Town.inds.Add(obj);}
 			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Tree_Med_Stump; obj.direction = Direction.Down; obj.posX = 328; obj.posY = 648; SkullIsland_Town.inds.Add(obj);}
 			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Tree_Big; obj.direction = Direction.Down; obj.posX = 248; obj.posY = 584; SkullIsland_Town.inds.Add(obj);}

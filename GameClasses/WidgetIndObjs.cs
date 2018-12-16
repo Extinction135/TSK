@@ -301,28 +301,28 @@ namespace DungeonRun
             Functions_IndestructibleObjs.SetType(objList[15], IndestructibleType.Dungeon_BlockDark);
 
             //row 5
-            Functions_IndestructibleObjs.SetType(objList[16], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[17], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[18], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[19], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[16], IndestructibleType.MountainWall_Alcove_Left);
+            Functions_IndestructibleObjs.SetType(objList[17], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[18], IndestructibleType.MountainWall_Alcove_Right);
+            Functions_IndestructibleObjs.SetType(objList[19], IndestructibleType.Dungeon_BlockDark);//
 
             //row 6
-            Functions_IndestructibleObjs.SetType(objList[20], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[21], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[22], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[23], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[20], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[21], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[22], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[23], IndestructibleType.Dungeon_BlockDark);//
 
             //row 7
-            Functions_IndestructibleObjs.SetType(objList[24], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[25], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[26], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[27], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[24], IndestructibleType.MountainWall_Cave_Bare);
+            Functions_IndestructibleObjs.SetType(objList[25], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[26], IndestructibleType.MountainWall_Cave_Covered);
+            Functions_IndestructibleObjs.SetType(objList[27], IndestructibleType.Dungeon_BlockDark);//
 
             //row 8
-            Functions_IndestructibleObjs.SetType(objList[28], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[29], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[30], IndestructibleType.Dungeon_BlockDark);
-            Functions_IndestructibleObjs.SetType(objList[31], IndestructibleType.Dungeon_BlockDark);
+            Functions_IndestructibleObjs.SetType(objList[28], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[29], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[30], IndestructibleType.Dungeon_BlockDark);//
+            Functions_IndestructibleObjs.SetType(objList[31], IndestructibleType.Dungeon_BlockDark);//
 
             //row 9
             Functions_IndestructibleObjs.SetType(objList[32], IndestructibleType.Dungeon_BlockDark);
@@ -354,6 +354,15 @@ namespace DungeonRun
             //manually set recs
             objList[0].compCollision.rec.Width = 16 * 2;
             objList[0].compCollision.rec.Height = 16 * 4;
+            
+            objList[16].compCollision.rec.Height = objList[16].compCollision.rec.Width = 16 * 2;
+            objList[18].compCollision.rec.Height = objList[18].compCollision.rec.Width = 16 * 2;
+
+            objList[24].compCollision.rec.Height = objList[24].compCollision.rec.Width = 16 * 2;
+            objList[26].compCollision.rec.Height = objList[26].compCollision.rec.Width = 16 * 2;
+
+
+
 
             //hide objs that entrance overlaps
             Functions_WidgetIndObjs.HideObj(objList[1]);
@@ -366,6 +375,25 @@ namespace DungeonRun
 
             Functions_WidgetIndObjs.HideObj(objList[12]);
             Functions_WidgetIndObjs.HideObj(objList[13]);
+
+            Functions_WidgetIndObjs.HideObj(objList[17]);
+            Functions_WidgetIndObjs.HideObj(objList[19]);
+
+            Functions_WidgetIndObjs.HideObj(objList[20]);
+            Functions_WidgetIndObjs.HideObj(objList[21]);
+            Functions_WidgetIndObjs.HideObj(objList[22]);
+            Functions_WidgetIndObjs.HideObj(objList[23]);
+
+            Functions_WidgetIndObjs.HideObj(objList[25]);
+            Functions_WidgetIndObjs.HideObj(objList[27]);
+
+            Functions_WidgetIndObjs.HideObj(objList[28]);
+            Functions_WidgetIndObjs.HideObj(objList[29]);
+            Functions_WidgetIndObjs.HideObj(objList[30]);
+            Functions_WidgetIndObjs.HideObj(objList[31]);
+
+
+
 
 
 

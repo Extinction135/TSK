@@ -14,6 +14,9 @@ namespace DungeonRun
 			#region ThievesDen_GateEntrance
 
 			ThievesDen_GateEntrance.type = RoomID.ThievesDen_GateEntrance;
+			ThievesDen_GateEntrance.windDirection = Direction.None;
+			ThievesDen_GateEntrance.windFrequency = 2;
+			ThievesDen_GateEntrance.windIntensity = 0;
 			#endregion
 
 		}

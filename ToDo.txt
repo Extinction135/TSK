@@ -68,6 +68,45 @@ Today:
 
 
 
+Scaling Up
+
+now i'm going to test visual studios ability to handle
+large amounts of roomdata and we're going to see just
+where it fails..
+
+designed mountain dungeon climb level.
+expanded dungeon room data, for scale test 1.
+
+scale test 1: how much roomData can we pack into a .cs
+file before visual studio crashes, like last time?
+
+*converted xml to cs routines to use stringBuilder,
+instead of just string concatenation (+=), because it's
+measurably faster. and now writing c# data happens in
+a second using stringbuilder. wow. updated writing of
+level / field data to include wind fields. 
+
+Uwp=32K, Dx=16K LoC.
+
+
+
+
+
+
+
+divide up room data, include wind fields from level
+writing method, which we can likely use for room data as well.
+if we are clever.
+
+this hasn't
+been added to dungeon room writing routines yet, but
+will be soon, because they need to be split up into
+their respective island sets. this allows us to theme
+dungeon rooms to the dungeon they will exist in.
+
+
+
+7 divisions of room data.
 
 
 
@@ -86,53 +125,18 @@ Today:
 
 
 
-Managing Codebase Scale
 
-we need to be able to link and unlink all roomdata from project
-without breaking the codebase. this allows us to test and dev
-faster, without A TON of roomData. how to accomplish? have two
-sets of roomData, one empty and one filled. class names are the
-same, filenames are different. link to the data you want to for
-testing and development, then link to level data for releases.
-this doesn't affect the xml to cs pipeline, because we're going
-to manually create these empty files, with _empty suffixes. this
-prevents visual studio from slowing down when it has to process
-15,000 lines of level data, plus this reduces the number of errors
-displayed in the error list, allowing me to keep abusing it for
-the rest of development. being smart is rewarding and fun.
 
-i fully expect dungeon room data and field room data to reach
-over a million lines alone, when game reaches version 1.0, so
-being able to still build the project quickly will become vital.
-empty levels still allow for testing of all game systems, via
-the editor. think of this as the 'light-weight' vresion of the
-codebase. we link the roomData then test and release.
 
-lets actually do this.
 
-created empty version of all level data files as .cs files in
-the main gameclasses folder. migrated directx to use empty
-level data files. building fine. sitting at 16.6K. now, the
-uwp project MIGHT ACTUALLY BE USEFUL because i'm going to link
-it to the actual level data, then run a code analysis on it
-to determine it's size. i will continue to do this as development
-progresses, so i can chart leveldata growth and observe any
-useful events that might occur or influence the codebase design.
-because - the codebase is about to get really big for the UWP
-project, and i will finally get to experience visual studio
-attempting to manage large amounts of code. the last time, vs
-took me by suprise - and i had to change my codebase to work
-around it's limitations. this time, i fully expect visual 
-studio to fail in some way, and i'm ready for it. 
 
-updated notes in uwp project folder to explain what the uwp
-projects role is in the development process - as a release
-testing setup only. uwp's loc is 20.3K.
 
-comparison:
-DirectX - 16.6K LoC
-UWP - 20.3K LoC
-(about 4K level data)
+*should be using string builder for xml to cs conversion.
++= is likely whats slowing it down later on.
+
+
+
+we also need to add wind fields to level conversion proess.
 
 
 
@@ -144,22 +148,71 @@ UWP - 20.3K LoC
 
 
 
-Dialogs++
 
-when we beat a boss - it swiftly kicks us to the overworld map.
-we should instead pop a dialog telling player what happened! then
-kick to overworld. later we can replace this dialog with a cutscene.
 
-reduce hold time for picking up the map. we pop a dialog anyway, so
-player has all the time to read and recognize. 
 
-pop dialogs for all bottle uses
--health, magic, combo, fairy, blob.
-simply explain whats happening.
 
-when hero runs over a map, it puts hero into a reward state.
-this should not happen, instead just pop a dialog and dont mess
-with hero at all - because he may be in the middle of battle.
+
+
+Entrances++
+
+instead of 3x4 ind objs, we will be using a massive 
+sprite, with invisible ind objs to complete it's hitbox.
+hitbox is based entirely on how the sprite looks.
+for entering these levels, we will stick with the large
+black shadow. it's cool.
+
+
+
+
+
+
+
+
+
+
+
+forest island
+
+
+
+
+
+
+
+
+
+
+CREATIVITY++++
+
+
+SkullIsland++
+
+create better level data for skullisland. make sure editor works completely.
+
+coliseum entrance should look right, not contain all dungeon entrances.
+instead we can move those to shadow king level.
+town should be expanded to have a pond, with all NPCs, for testing.
+
+coliseum should have big windows, big skulls, look awesome. custom bricks.
+shadowking should have animated shadow pillars throughout the water.
+the entrance to the shadow dungeon should be animated. there should be fires
+burning in the water around the shadow entrance.
+
+there should be massive skulls around shadow town. we also need ind and int
+skulls that link can interact with or block him. we dont have enough for this
+town. also, the visuals for this town should be redesign on the overworld map
+to have more skulls around and in it. these skulls are made of rock and are brown.
+those skulls are ind objs. the skulls that are white are interactive objs that link
+can pickup and throw and carry. consider making those skull sprites a bit fuller
+in the cellsize, so they fill their frames up better.
+
+
+
+
+
+
+
 
 
 
@@ -225,28 +278,44 @@ objs that regrow: grass & bushes
 
 
 
-SkullIsland++
 
-create better level data for skullisland. make sure editor works completely.
-disable all other island levels, and focus on just these for dev.
 
-coliseum entrance should look right, not contain all dungeon entrances.
-instead we can move those to shadow king level.
-town should be expanded to have a pond, with all NPCs, for testing.
-no other levels are linked to by overworld than shadow island.
 
-coliseum should have big windows, big skulls, look awesome. custom bricks.
-shadowking should have animated shadow pillars throughout the water.
-the entrance to the shadow dungeon should be animated. there should be fires
-burning in the water around the shadow entrance.
 
-there should be massive skulls around shadow town. we also need ind and int
-skulls that link can interact with or block him. we dont have enough for this
-town. also, the visuals for this town should be redesign on the overworld map
-to have more skulls around and in it. these skulls are made of rock and are brown.
-those skulls are ind objs. the skulls that are white are interactive objs that link
-can pickup and throw and carry. consider making those skull sprites a bit fuller
-in the cellsize, so they fill their frames up better.
+
+
+
+
+
+
+Dialogs++
+
+when we beat a boss - it swiftly kicks us to the overworld map.
+we should instead pop a dialog telling player what happened! then
+kick to overworld. later we can replace this dialog with a cutscene.
+
+reduce hold time for picking up the map. we pop a dialog anyway, so
+player has all the time to read and recognize. 
+
+pop dialogs for all bottle uses
+-health, magic, combo, fairy, blob.
+simply explain whats happening.
+
+when hero runs over a map, it puts hero into a reward state.
+this should not happen, instead just pop a dialog and dont mess
+with hero at all - because he may be in the middle of battle.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

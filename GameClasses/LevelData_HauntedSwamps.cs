@@ -14,6 +14,9 @@ namespace DungeonRun
 			#region SwampIsland_MainEntrance
 
 			SwampIsland_MainEntrance.type = RoomID.SwampIsland_MainEntrance;
+			SwampIsland_MainEntrance.windDirection = Direction.None;
+			SwampIsland_MainEntrance.windFrequency = 2;
+			SwampIsland_MainEntrance.windIntensity = 0;
 			#endregion
 
 		}
