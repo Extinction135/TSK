@@ -44,11 +44,14 @@ namespace DungeonRun
         public static Texture2D EnemySheet;
         //dungeon sheets
         public static Texture2D Dungeon_CurrentSheet; //points to one below
-        public static Texture2D Dungeon_DefaultSheet;
+        public static Texture2D Dungeon_DefaultSheet; //also blob dungeon
         public static Texture2D Dungeon_ForestSheet;
         public static Texture2D Dungeon_MountainSheet;
         public static Texture2D Dungeon_SwampSheet;
-
+        public static Texture2D Dungeon_CloudSheet;
+        public static Texture2D Dungeon_LavaSheet;
+        public static Texture2D Dungeon_ThievesSheet;
+        public static Texture2D Dungeon_ShadowSheet;
 
 
 
@@ -237,6 +240,10 @@ namespace DungeonRun
             Dungeon_ForestSheet = content.Load<Texture2D>(@"Sprites_Dungeon_Forest");
             Dungeon_MountainSheet = content.Load<Texture2D>(@"Sprites_Dungeon_Mountain");
             Dungeon_SwampSheet = content.Load<Texture2D>(@"Sprites_Dungeon_Swamp");
+            Dungeon_CloudSheet = content.Load<Texture2D>(@"Sprites_Dungeon_Cloud");
+            Dungeon_LavaSheet = content.Load<Texture2D>(@"Sprites_Dungeon_Lava");
+            Dungeon_ThievesSheet = content.Load<Texture2D>(@"Sprites_Dungeon_ThievesDen");
+            Dungeon_ShadowSheet = content.Load<Texture2D>(@"Sprites_Dungeon_Shadow");
 
             //points to default sheet upon creation
             Dungeon_CurrentSheet = Dungeon_DefaultSheet;

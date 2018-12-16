@@ -68,41 +68,82 @@ Today:
 
 
 
-Playtesting & Scaling
-
-when the release boolean is set true, dungeons will
-build column, row, square, and key rooms from a list
-of roomdata for each of those types. this assumes 
-roomdata exists for those types, and no room data
-exists for these types in the EMPTY versions of the
-room data class files. this is done to keep codebase
-size small for systems development.
-
-make forest entrance at skull island level. done.
-updated mountain dungeon entrance to be inaccessible
-for now. updated shadow coliseum to look better.
-compiled new level data for dungeon testing.
-
-forest dungeon builds as expected using new system
-and pipeline. now it's time for alot of expansion.
-
-Polish++
-
-do not save floor stains. (make unsaveable pls).
-remove floor stains from room data. pls. done.
-
-floor stain hitboxes need to be 12x12, so they
-self clean better and appear visually in a more
-pleasing manner. this was done for floor stains,
-blood, and skeletons.
 
 
 
 
 
+Scale Test 2
+
+scale up to include all dungeon roomData.
+
+we need dungeon textures for all dungeons.
+this is for Dx and Uwp. sheets exported.
+linked to dx. linked to uwp. (content).
+loaded into assets and ready for game use.
+
+created enum values for all dungeons for
+roomID and islandID.
+
+updated xml to cs pipeline to write classes
+for all 7 dungeon roomData sets (5), for a
+total of 35 classes just for dungeon data.
+rn there are 7 classes for overworld level
+data, for comparison.
+
+we need roomdata in xml format now. done,
+with proper roomIDs. that took awhile.
+
+now we compile the new dungeon room data classes,
+then create empty versions of them. done.
+
+linked Dx to the empty cs files.
+linked UWP to the full cs files.
+
+lines of code count:
+Dx @ 16.7K. UWP @ 25.7K.
 
 
 
+
+
+
+
+
+
+
+
+Dungeons++
+
+we need to update dungeon / room building
+to reference proper room data based on roomID.
+this is where-ever forest dungeon data is.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Version 1.0 Scale Test
+
+copy+paste columns, rows, squares, and keys x10
+for all island sets (including default dungeon, 
+which is blob dungeon). this is the minimum scale
+the game should be playtested at, and will include 
+more dungeon roomdata for version 1 release.
+
+what is the size of the uwp vs dX projects?
+how much room data did we just make?
 
 
 

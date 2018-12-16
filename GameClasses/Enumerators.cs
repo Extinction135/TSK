@@ -86,21 +86,57 @@ namespace DungeonRun
         #region IslandID
 
         //overworld level data classes
-        LevelData_SkullIsland,
         LevelData_ForestIsland,
-        LevelData_ThievesHideout,
         LevelData_DeathMountain,
         LevelData_HauntedSwamps,
-        LevelData_CloudIsland,
+        LevelData_ThievesHideout,
         LevelData_LavaIsland,
+        LevelData_CloudIsland,
+        LevelData_SkullIsland,
+
 
         //dungeon room data classes
+        RoomData_ForestIsland_Columns,
+        RoomData_ForestIsland_Row,
+        RoomData_ForestIsland_Square,
+        RoomData_ForestIsland_Key,
+        RoomData_ForestIsland_ExitBossHub,
+
+        RoomData_DeathMountain_Columns,
+        RoomData_DeathMountain_Row,
+        RoomData_DeathMountain_Square,
+        RoomData_DeathMountain_Key,
+        RoomData_DeathMountain_ExitBossHub,
+
+        RoomData_HauntedSwamps_Columns,
+        RoomData_HauntedSwamps_Row,
+        RoomData_HauntedSwamps_Square,
+        RoomData_HauntedSwamps_Key,
+        RoomData_HauntedSwamps_ExitBossHub,
+
+        RoomData_ThievesHideout_Columns,
+        RoomData_ThievesHideout_Row,
+        RoomData_ThievesHideout_Square,
+        RoomData_ThievesHideout_Key,
+        RoomData_ThievesHideout_ExitBossHub,
+
+        RoomData_LavaIsland_Columns,
+        RoomData_LavaIsland_Row,
+        RoomData_LavaIsland_Square,
+        RoomData_LavaIsland_Key,
+        RoomData_LavaIsland_ExitBossHub,
+
+        RoomData_CloudIsland_Columns,
+        RoomData_CloudIsland_Row,
+        RoomData_CloudIsland_Square,
+        RoomData_CloudIsland_Key,
+        RoomData_CloudIsland_ExitBossHub,
+
         RoomData_SkullIsland_Columns,
         RoomData_SkullIsland_Row,
         RoomData_SkullIsland_Square,
         RoomData_SkullIsland_Key,
         RoomData_SkullIsland_ExitBossHub,
-
 
         #endregion
     }
@@ -156,13 +192,6 @@ namespace DungeonRun
     {
         #region RoomID
 
-
-        //alot of work needs to be done here
-
-
-        //procedural/empty rooms
-        Secret,
-
         //handmade rooms (per island)
         ForestIsland_ColumnRoom, 
         ForestIsland_RowRoom, //default for room class*
@@ -172,7 +201,59 @@ namespace DungeonRun
         ForestIsland_BossRoom,
         ForestIsland_HubRoom,
 
-        
+        DeathMountain_ColumnRoom,
+        DeathMountain_RowRoom,
+        DeathMountain_SquareRoom,
+        DeathMountain_KeyRoom,
+        DeathMountain_ExitRoom,
+        DeathMountain_BossRoom,
+        DeathMountain_HubRoom,
+
+        HauntedSwamps_ColumnRoom,
+        HauntedSwamps_RowRoom,
+        HauntedSwamps_SquareRoom,
+        HauntedSwamps_KeyRoom,
+        HauntedSwamps_ExitRoom,
+        HauntedSwamps_BossRoom,
+        HauntedSwamps_HubRoom,
+
+        ThievesHideout_ColumnRoom,
+        ThievesHideout_RowRoom,
+        ThievesHideout_SquareRoom,
+        ThievesHideout_KeyRoom,
+        ThievesHideout_ExitRoom,
+        ThievesHideout_BossRoom,
+        ThievesHideout_HubRoom,
+
+        LavaIsland_ColumnRoom,
+        LavaIsland_RowRoom,
+        LavaIsland_SquareRoom,
+        LavaIsland_KeyRoom,
+        LavaIsland_ExitRoom,
+        LavaIsland_BossRoom,
+        LavaIsland_HubRoom,
+
+        CloudIsland_ColumnRoom,
+        CloudIsland_RowRoom,
+        CloudIsland_SquareRoom,
+        CloudIsland_KeyRoom,
+        CloudIsland_ExitRoom,
+        CloudIsland_BossRoom,
+        CloudIsland_HubRoom,
+
+        SkullIsland_ColumnRoom,
+        SkullIsland_RowRoom,
+        SkullIsland_SquareRoom,
+        SkullIsland_KeyRoom,
+        SkullIsland_ExitRoom,
+        SkullIsland_BossRoom,
+        SkullIsland_HubRoom,
+
+        //procedural/empty rooms
+        Secret,
+
+
+
 
 
 
@@ -222,6 +303,11 @@ namespace DungeonRun
         //dungeon rooms that are built empty, for adding objs (development)
         DEV_Exit, DEV_Hub, DEV_Boss, DEV_Key,
         DEV_Column, DEV_Row, DEV_Square
+
+
+
+
+
 
         #endregion
     }

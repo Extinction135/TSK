@@ -230,11 +230,52 @@ namespace DungeonRun
             List<RoomXmlData> LavaIsland_Data = new List<RoomXmlData>();
 
             //dungeon room data lists
+            List<RoomXmlData> ForestIsland_RoomData_Column = new List<RoomXmlData>();
+            List<RoomXmlData> ForestIsland_RoomData_Row = new List<RoomXmlData>();
+            List<RoomXmlData> ForestIsland_RoomData_Square = new List<RoomXmlData>();
+            List<RoomXmlData> ForestIsland_RoomData_Key = new List<RoomXmlData>();
+            List<RoomXmlData> ForestIsland_RoomData_ExitBossHub = new List<RoomXmlData>();
+
+            List<RoomXmlData> DeathMountain_RoomData_Column = new List<RoomXmlData>();
+            List<RoomXmlData> DeathMountain_RoomData_Row = new List<RoomXmlData>();
+            List<RoomXmlData> DeathMountain_RoomData_Square = new List<RoomXmlData>();
+            List<RoomXmlData> DeathMountain_RoomData_Key = new List<RoomXmlData>();
+            List<RoomXmlData> DeathMountain_RoomData_ExitBossHub = new List<RoomXmlData>();
+
+            List<RoomXmlData> HauntedSwamps_RoomData_Column = new List<RoomXmlData>();
+            List<RoomXmlData> HauntedSwamps_RoomData_Row = new List<RoomXmlData>();
+            List<RoomXmlData> HauntedSwamps_RoomData_Square = new List<RoomXmlData>();
+            List<RoomXmlData> HauntedSwamps_RoomData_Key = new List<RoomXmlData>();
+            List<RoomXmlData> HauntedSwamps_RoomData_ExitBossHub = new List<RoomXmlData>();
+
+            List<RoomXmlData> ThievesHideout_RoomData_Column = new List<RoomXmlData>();
+            List<RoomXmlData> ThievesHideout_RoomData_Row = new List<RoomXmlData>();
+            List<RoomXmlData> ThievesHideout_RoomData_Square = new List<RoomXmlData>();
+            List<RoomXmlData> ThievesHideout_RoomData_Key = new List<RoomXmlData>();
+            List<RoomXmlData> ThievesHideout_RoomData_ExitBossHub = new List<RoomXmlData>();
+
+            List<RoomXmlData> LavaIsland_RoomData_Column = new List<RoomXmlData>();
+            List<RoomXmlData> LavaIsland_RoomData_Row = new List<RoomXmlData>();
+            List<RoomXmlData> LavaIsland_RoomData_Square = new List<RoomXmlData>();
+            List<RoomXmlData> LavaIsland_RoomData_Key = new List<RoomXmlData>();
+            List<RoomXmlData> LavaIsland_RoomData_ExitBossHub = new List<RoomXmlData>();
+
+            List<RoomXmlData> CloudIsland_RoomData_Column = new List<RoomXmlData>();
+            List<RoomXmlData> CloudIsland_RoomData_Row = new List<RoomXmlData>();
+            List<RoomXmlData> CloudIsland_RoomData_Square = new List<RoomXmlData>();
+            List<RoomXmlData> CloudIsland_RoomData_Key = new List<RoomXmlData>();
+            List<RoomXmlData> CloudIsland_RoomData_ExitBossHub = new List<RoomXmlData>();
+
             List<RoomXmlData> SkullIsland_RoomData_Column = new List<RoomXmlData>();
             List<RoomXmlData> SkullIsland_RoomData_Row = new List<RoomXmlData>();
             List<RoomXmlData> SkullIsland_RoomData_Square = new List<RoomXmlData>();
             List<RoomXmlData> SkullIsland_RoomData_Key = new List<RoomXmlData>();
             List<RoomXmlData> SkullIsland_RoomData_ExitBossHub = new List<RoomXmlData>();
+
+
+
+
+
 
 
             #region Get all the data from roomData folder
@@ -309,18 +350,127 @@ namespace DungeonRun
 
                     #region Dungeon RoomData Sorting
 
+                    //forest set
                     else if (RoomData.type == RoomID.ForestIsland_ColumnRoom)
-                    { SkullIsland_RoomData_Column.Add(RoomData); }
+                    { ForestIsland_RoomData_Column.Add(RoomData); }
                     else if (RoomData.type == RoomID.ForestIsland_RowRoom)
-                    { SkullIsland_RoomData_Row.Add(RoomData); }
+                    { ForestIsland_RoomData_Row.Add(RoomData); }
                     else if (RoomData.type == RoomID.ForestIsland_SquareRoom)
-                    { SkullIsland_RoomData_Square.Add(RoomData); }
+                    { ForestIsland_RoomData_Square.Add(RoomData); }
                     else if (RoomData.type == RoomID.ForestIsland_KeyRoom)
-                    { SkullIsland_RoomData_Key.Add(RoomData); }
+                    { ForestIsland_RoomData_Key.Add(RoomData); }
                     else if (
                         RoomData.type == RoomID.ForestIsland_BossRoom
                         || RoomData.type == RoomID.ForestIsland_HubRoom
                         || RoomData.type == RoomID.ForestIsland_ExitRoom
+                        )
+                    {
+                        ForestIsland_RoomData_ExitBossHub.Add(RoomData);
+                    }
+
+                    //death mountain set
+                    else if (RoomData.type == RoomID.DeathMountain_ColumnRoom)
+                    { DeathMountain_RoomData_Column.Add(RoomData); }
+                    else if (RoomData.type == RoomID.DeathMountain_RowRoom)
+                    { DeathMountain_RoomData_Row.Add(RoomData); }
+                    else if (RoomData.type == RoomID.DeathMountain_SquareRoom)
+                    { DeathMountain_RoomData_Square.Add(RoomData); }
+                    else if (RoomData.type == RoomID.DeathMountain_KeyRoom)
+                    { DeathMountain_RoomData_Key.Add(RoomData); }
+                    else if (
+                        RoomData.type == RoomID.DeathMountain_BossRoom
+                        || RoomData.type == RoomID.DeathMountain_HubRoom
+                        || RoomData.type == RoomID.DeathMountain_ExitRoom
+                        )
+                    {
+                        DeathMountain_RoomData_ExitBossHub.Add(RoomData);
+                    }
+
+                    //haunted swamps set
+                    else if (RoomData.type == RoomID.HauntedSwamps_ColumnRoom)
+                    { HauntedSwamps_RoomData_Column.Add(RoomData); }
+                    else if (RoomData.type == RoomID.HauntedSwamps_RowRoom)
+                    { HauntedSwamps_RoomData_Row.Add(RoomData); }
+                    else if (RoomData.type == RoomID.HauntedSwamps_SquareRoom)
+                    { HauntedSwamps_RoomData_Square.Add(RoomData); }
+                    else if (RoomData.type == RoomID.HauntedSwamps_KeyRoom)
+                    { HauntedSwamps_RoomData_Key.Add(RoomData); }
+                    else if (
+                        RoomData.type == RoomID.HauntedSwamps_BossRoom
+                        || RoomData.type == RoomID.HauntedSwamps_HubRoom
+                        || RoomData.type == RoomID.HauntedSwamps_ExitRoom
+                        )
+                    {
+                        HauntedSwamps_RoomData_ExitBossHub.Add(RoomData);
+                    }
+
+                    //thieves hideout set
+                    else if (RoomData.type == RoomID.ThievesHideout_ColumnRoom)
+                    { ThievesHideout_RoomData_Column.Add(RoomData); }
+                    else if (RoomData.type == RoomID.ThievesHideout_RowRoom)
+                    { ThievesHideout_RoomData_Row.Add(RoomData); }
+                    else if (RoomData.type == RoomID.ThievesHideout_SquareRoom)
+                    { ThievesHideout_RoomData_Square.Add(RoomData); }
+                    else if (RoomData.type == RoomID.ThievesHideout_KeyRoom)
+                    { ThievesHideout_RoomData_Key.Add(RoomData); }
+                    else if (
+                        RoomData.type == RoomID.ThievesHideout_BossRoom
+                        || RoomData.type == RoomID.ThievesHideout_HubRoom
+                        || RoomData.type == RoomID.ThievesHideout_ExitRoom
+                        )
+                    {
+                        ThievesHideout_RoomData_ExitBossHub.Add(RoomData);
+                    }
+
+                    //lava island set
+                    else if (RoomData.type == RoomID.LavaIsland_ColumnRoom)
+                    { LavaIsland_RoomData_Column.Add(RoomData); }
+                    else if (RoomData.type == RoomID.LavaIsland_RowRoom)
+                    { LavaIsland_RoomData_Row.Add(RoomData); }
+                    else if (RoomData.type == RoomID.LavaIsland_SquareRoom)
+                    { LavaIsland_RoomData_Square.Add(RoomData); }
+                    else if (RoomData.type == RoomID.LavaIsland_KeyRoom)
+                    { LavaIsland_RoomData_Key.Add(RoomData); }
+                    else if (
+                        RoomData.type == RoomID.LavaIsland_BossRoom
+                        || RoomData.type == RoomID.LavaIsland_HubRoom
+                        || RoomData.type == RoomID.LavaIsland_ExitRoom
+                        )
+                    {
+                        LavaIsland_RoomData_ExitBossHub.Add(RoomData);
+                    }
+
+                    //cloud island set
+                    else if (RoomData.type == RoomID.CloudIsland_ColumnRoom)
+                    { CloudIsland_RoomData_Column.Add(RoomData); }
+                    else if (RoomData.type == RoomID.CloudIsland_RowRoom)
+                    { CloudIsland_RoomData_Row.Add(RoomData); }
+                    else if (RoomData.type == RoomID.CloudIsland_SquareRoom)
+                    { CloudIsland_RoomData_Square.Add(RoomData); }
+                    else if (RoomData.type == RoomID.CloudIsland_KeyRoom)
+                    { CloudIsland_RoomData_Key.Add(RoomData); }
+                    else if (
+                        RoomData.type == RoomID.CloudIsland_BossRoom
+                        || RoomData.type == RoomID.CloudIsland_HubRoom
+                        || RoomData.type == RoomID.CloudIsland_ExitRoom
+                        )
+                    {
+                        CloudIsland_RoomData_ExitBossHub.Add(RoomData);
+                    }
+
+                    //skull island set
+                    else if (RoomData.type == RoomID.SkullIsland_ColumnRoom)
+                    { SkullIsland_RoomData_Column.Add(RoomData); }
+                    else if (RoomData.type == RoomID.SkullIsland_RowRoom)
+                    { SkullIsland_RoomData_Row.Add(RoomData); }
+                    else if (RoomData.type == RoomID.SkullIsland_SquareRoom)
+                    { SkullIsland_RoomData_Square.Add(RoomData); }
+                    else if (RoomData.type == RoomID.SkullIsland_KeyRoom)
+                    { SkullIsland_RoomData_Key.Add(RoomData); }
+                    else if (
+                        RoomData.type == RoomID.SkullIsland_BossRoom
+                        || RoomData.type == RoomID.SkullIsland_HubRoom
+                        || RoomData.type == RoomID.SkullIsland_ExitRoom
                         )
                     {
                         SkullIsland_RoomData_ExitBossHub.Add(RoomData);
@@ -335,6 +485,10 @@ namespace DungeonRun
             #endregion
 
 
+
+
+
+
             //write level data (save wind)
             writeXMLtoCS(SkullIsland_LevelData, IslandID.LevelData_SkullIsland, true);
             writeXMLtoCS(ForestIsland_Data, IslandID.LevelData_ForestIsland, true);
@@ -345,12 +499,47 @@ namespace DungeonRun
             writeXMLtoCS(LavaIsland_Data, IslandID.LevelData_LavaIsland, true);
 
             //write room data (reset wind)
+            writeXMLtoCS(ForestIsland_RoomData_Column, IslandID.RoomData_ForestIsland_Columns, false);
+            writeXMLtoCS(ForestIsland_RoomData_Row, IslandID.RoomData_ForestIsland_Row, false);
+            writeXMLtoCS(ForestIsland_RoomData_Square, IslandID.RoomData_ForestIsland_Square, false);
+            writeXMLtoCS(ForestIsland_RoomData_Key, IslandID.RoomData_ForestIsland_Key, false);
+            writeXMLtoCS(ForestIsland_RoomData_ExitBossHub, IslandID.RoomData_ForestIsland_ExitBossHub, false);
+
+            writeXMLtoCS(DeathMountain_RoomData_Column, IslandID.RoomData_DeathMountain_Columns, false);
+            writeXMLtoCS(DeathMountain_RoomData_Row, IslandID.RoomData_DeathMountain_Row, false);
+            writeXMLtoCS(DeathMountain_RoomData_Square, IslandID.RoomData_DeathMountain_Square, false);
+            writeXMLtoCS(DeathMountain_RoomData_Key, IslandID.RoomData_DeathMountain_Key, false);
+            writeXMLtoCS(DeathMountain_RoomData_ExitBossHub, IslandID.RoomData_DeathMountain_ExitBossHub, false);
+
+            writeXMLtoCS(HauntedSwamps_RoomData_Column, IslandID.RoomData_HauntedSwamps_Columns, false);
+            writeXMLtoCS(HauntedSwamps_RoomData_Row, IslandID.RoomData_HauntedSwamps_Row, false);
+            writeXMLtoCS(HauntedSwamps_RoomData_Square, IslandID.RoomData_HauntedSwamps_Square, false);
+            writeXMLtoCS(HauntedSwamps_RoomData_Key, IslandID.RoomData_HauntedSwamps_Key, false);
+            writeXMLtoCS(HauntedSwamps_RoomData_ExitBossHub, IslandID.RoomData_HauntedSwamps_ExitBossHub, false);
+
+            writeXMLtoCS(ThievesHideout_RoomData_Column, IslandID.RoomData_ThievesHideout_Columns, false);
+            writeXMLtoCS(ThievesHideout_RoomData_Row, IslandID.RoomData_ThievesHideout_Row, false);
+            writeXMLtoCS(ThievesHideout_RoomData_Square, IslandID.RoomData_ThievesHideout_Square, false);
+            writeXMLtoCS(ThievesHideout_RoomData_Key, IslandID.RoomData_ThievesHideout_Key, false);
+            writeXMLtoCS(ThievesHideout_RoomData_ExitBossHub, IslandID.RoomData_ThievesHideout_ExitBossHub, false);
+
+            writeXMLtoCS(LavaIsland_RoomData_Column, IslandID.RoomData_LavaIsland_Columns, false);
+            writeXMLtoCS(LavaIsland_RoomData_Row, IslandID.RoomData_LavaIsland_Row, false);
+            writeXMLtoCS(LavaIsland_RoomData_Square, IslandID.RoomData_LavaIsland_Square, false);
+            writeXMLtoCS(LavaIsland_RoomData_Key, IslandID.RoomData_LavaIsland_Key, false);
+            writeXMLtoCS(LavaIsland_RoomData_ExitBossHub, IslandID.RoomData_LavaIsland_ExitBossHub, false);
+
+            writeXMLtoCS(CloudIsland_RoomData_Column, IslandID.RoomData_CloudIsland_Columns, false);
+            writeXMLtoCS(CloudIsland_RoomData_Row, IslandID.RoomData_CloudIsland_Row, false);
+            writeXMLtoCS(CloudIsland_RoomData_Square, IslandID.RoomData_CloudIsland_Square, false);
+            writeXMLtoCS(CloudIsland_RoomData_Key, IslandID.RoomData_CloudIsland_Key, false);
+            writeXMLtoCS(CloudIsland_RoomData_ExitBossHub, IslandID.RoomData_CloudIsland_ExitBossHub, false);
+
             writeXMLtoCS(SkullIsland_RoomData_Column, IslandID.RoomData_SkullIsland_Columns, false);
             writeXMLtoCS(SkullIsland_RoomData_Row, IslandID.RoomData_SkullIsland_Row, false);
             writeXMLtoCS(SkullIsland_RoomData_Square, IslandID.RoomData_SkullIsland_Square, false);
             writeXMLtoCS(SkullIsland_RoomData_Key, IslandID.RoomData_SkullIsland_Key, false);
             writeXMLtoCS(SkullIsland_RoomData_ExitBossHub, IslandID.RoomData_SkullIsland_ExitBossHub, false);
-
 
             Debug.WriteLine("Xml to CS conversion done.");
         }

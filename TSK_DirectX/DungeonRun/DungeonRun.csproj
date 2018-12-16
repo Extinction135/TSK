@@ -237,6 +237,81 @@
     <Compile Include="..\..\GameClasses\LevelData_ThievesHideout_EMPTY.cs">
       <Link>Classes\LevelData_ThievesHideout_EMPTY.cs</Link>
     </Compile>
+    <Compile Include="..\..\GameClasses\RoomData_CloudIsland_Columns_EMPTY.cs">
+      <Link>Classes\RoomData_CloudIsland_Columns_EMPTY.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\RoomData_CloudIsland_ExitBossHub_EMPTY.cs">
+      <Link>Classes\RoomData_CloudIsland_ExitBossHub_EMPTY.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\RoomData_CloudIsland_Key_EMPTY.cs">
+      <Link>Classes\RoomData_CloudIsland_Key_EMPTY.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\RoomData_CloudIsland_Row_EMPTY.cs">
+      <Link>Classes\RoomData_CloudIsland_Row_EMPTY.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\RoomData_CloudIsland_Square_EMPTY.cs">
+      <Link>Classes\RoomData_CloudIsland_Square_EMPTY.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\RoomData_DeathMountain_Columns_EMPTY.cs">
+      <Link>Classes\RoomData_DeathMountain_Columns_EMPTY.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\RoomData_DeathMountain_ExitBossHub_EMPTY.cs">
+      <Link>Classes\RoomData_DeathMountain_ExitBossHub_EMPTY.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\RoomData_DeathMountain_Key_EMPTY.cs">
+      <Link>Classes\RoomData_DeathMountain_Key_EMPTY.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\RoomData_DeathMountain_Row_EMPTY.cs">
+      <Link>Classes\RoomData_DeathMountain_Row_EMPTY.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\RoomData_DeathMountain_Square_EMPTY.cs">
+      <Link>Classes\RoomData_DeathMountain_Square_EMPTY.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\RoomData_ForestIsland_Columns_EMPTY.cs">
+      <Link>Classes\RoomData_ForestIsland_Columns_EMPTY.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\RoomData_ForestIsland_ExitBossHub_EMPTY.cs">
+      <Link>Classes\RoomData_ForestIsland_ExitBossHub_EMPTY.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\RoomData_ForestIsland_Key_EMPTY.cs">
+      <Link>Classes\RoomData_ForestIsland_Key_EMPTY.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\RoomData_ForestIsland_Row_EMPTY.cs">
+      <Link>Classes\RoomData_ForestIsland_Row_EMPTY.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\RoomData_ForestIsland_Square_EMPTY.cs">
+      <Link>Classes\RoomData_ForestIsland_Square_EMPTY.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\RoomData_HauntedSwamps_Columns_EMPTY.cs">
+      <Link>Classes\RoomData_HauntedSwamps_Columns_EMPTY.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\RoomData_HauntedSwamps_ExitBossHub_EMPTY.cs">
+      <Link>Classes\RoomData_HauntedSwamps_ExitBossHub_EMPTY.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\RoomData_HauntedSwamps_Key_EMPTY.cs">
+      <Link>Classes\RoomData_HauntedSwamps_Key_EMPTY.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\RoomData_HauntedSwamps_Row_EMPTY.cs">
+      <Link>Classes\RoomData_HauntedSwamps_Row_EMPTY.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\RoomData_HauntedSwamps_Square_EMPTY.cs">
+      <Link>Classes\RoomData_HauntedSwamps_Square_EMPTY.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\RoomData_LavaIsland_Columns_EMPTY.cs">
+      <Link>Classes\RoomData_LavaIsland_Columns_EMPTY.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\RoomData_LavaIsland_ExitBossHub_EMPTY.cs">
+      <Link>Classes\RoomData_LavaIsland_ExitBossHub_EMPTY.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\RoomData_LavaIsland_Key_EMPTY.cs">
+      <Link>Classes\RoomData_LavaIsland_Key_EMPTY.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\RoomData_LavaIsland_Row_EMPTY.cs">
+      <Link>Classes\RoomData_LavaIsland_Row_EMPTY.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\RoomData_LavaIsland_Square_EMPTY.cs">
+      <Link>Classes\RoomData_LavaIsland_Square_EMPTY.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\RoomData_SkullIsland_Columns_EMPTY.cs">
       <Link>Classes\RoomData_SkullIsland_Columns_EMPTY.cs</Link>
     </Compile>
@@ -251,6 +326,21 @@
     </Compile>
     <Compile Include="..\..\GameClasses\RoomData_SkullIsland_Square_EMPTY.cs">
       <Link>Classes\RoomData_SkullIsland_Square_EMPTY.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\RoomData_ThievesHideout_Columns_EMPTY.cs">
+      <Link>Classes\RoomData_ThievesHideout_Columns_EMPTY.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\RoomData_ThievesHideout_ExitBossHub_EMPTY.cs">
+      <Link>Classes\RoomData_ThievesHideout_ExitBossHub_EMPTY.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\RoomData_ThievesHideout_Key_EMPTY.cs">
+      <Link>Classes\RoomData_ThievesHideout_Key_EMPTY.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\RoomData_ThievesHideout_Row_EMPTY.cs">
+      <Link>Classes\RoomData_ThievesHideout_Row_EMPTY.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\RoomData_ThievesHideout_Square_EMPTY.cs">
+      <Link>Classes\RoomData_ThievesHideout_Square_EMPTY.cs</Link>
     </Compile>
     <Compile Include="..\..\GameClasses\Screen.cs">
       <Link>Classes\Screen.cs</Link>

@@ -18,9 +18,10 @@ namespace DungeonRun
     {   
         // **********************************************************************************************************
         public static Boolean Release = false; //puts game in release mode, overwrites other flags
+        //VERY IMPORTANT NOTE: Release requires populated roomData classes to be linked to current project
         // **********************************************************************************************************
         public static float Version = 0.79f; //the version of the game
-        public static BootRoutine bootRoutine = BootRoutine.Editor_Room; //boot to game or editor?
+        public static BootRoutine bootRoutine = BootRoutine.Editor_Level; //boot to game or editor?
 
         //dev/editor flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)

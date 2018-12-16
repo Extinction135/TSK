@@ -12,10 +12,10 @@ namespace DungeonRun
 		static RoomData_SkullIsland_Key()
 		{
 
-			#region ForestIsland_KeyRoom
+			#region SkullIsland_KeyRoom
 
 			dataRef = new RoomXmlData();
-			dataRef.type = RoomID.ForestIsland_KeyRoom;
+			dataRef.type = RoomID.SkullIsland_KeyRoom;
 			dataRef.windDirection = Direction.None;
 			dataRef.windFrequency = 2;
 			dataRef.windIntensity = 0;
@@ -95,6 +95,32 @@ namespace DungeonRun
 			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Dungeon_BlockDark; obj.direction = Direction.Down; obj.posX = 56; obj.posY = 88; dataRef.inds.Add(obj);}
 			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Dungeon_BlockDark; obj.direction = Direction.Down; obj.posX = 72; obj.posY = 120; dataRef.inds.Add(obj);}
 			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Dungeon_BlockDark; obj.direction = Direction.Down; obj.posX = 88; obj.posY = 120; dataRef.inds.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.FloorStain; obj.direction = Direction.Down; obj.posX = 5; obj.posY = 6; dataRef.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.FloorStain; obj.direction = Direction.Down; obj.posX = 24; obj.posY = 22; dataRef.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.FloorStain; obj.direction = Direction.Down; obj.posX = 22; obj.posY = 120; dataRef.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.FloorStain; obj.direction = Direction.Down; obj.posX = 20; obj.posY = 171; dataRef.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.FloorStain; obj.direction = Direction.Down; obj.posX = 37; obj.posY = 41; dataRef.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.FloorStain; obj.direction = Direction.Down; obj.posX = 72; obj.posY = 87; dataRef.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.FloorStain; obj.direction = Direction.Down; obj.posX = 84; obj.posY = 20; dataRef.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.FloorStain; obj.direction = Direction.Down; obj.posX = 100; obj.posY = 153; dataRef.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.FloorStain; obj.direction = Direction.Down; obj.posX = 132; obj.posY = 43; dataRef.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.FloorStain; obj.direction = Direction.Down; obj.posX = 155; obj.posY = 139; dataRef.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.FloorStain; obj.direction = Direction.Down; obj.posX = 166; obj.posY = 101; dataRef.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.FloorStain; obj.direction = Direction.Down; obj.posX = 185; obj.posY = 86; dataRef.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.FloorStain; obj.direction = Direction.Down; obj.posX = 183; obj.posY = 102; dataRef.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.FloorStain; obj.direction = Direction.Down; obj.posX = 228; obj.posY = 151; dataRef.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.FloorStain; obj.direction = Direction.Down; obj.posX = 249; obj.posY = 5; dataRef.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.FloorStain; obj.direction = Direction.Down; obj.posX = 246; obj.posY = 54; dataRef.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.FloorStain; obj.direction = Direction.Down; obj.posX = 247; obj.posY = 72; dataRef.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.FloorStain; obj.direction = Direction.Down; obj.posX = 245; obj.posY = 88; dataRef.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.FloorStain; obj.direction = Direction.Down; obj.posX = 264; obj.posY = 20; dataRef.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.FloorStain; obj.direction = Direction.Down; obj.posX = 263; obj.posY = 37; dataRef.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.FloorStain; obj.direction = Direction.Down; obj.posX = 261; obj.posY = 120; dataRef.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.FloorStain; obj.direction = Direction.Down; obj.posX = 298; obj.posY = 7; dataRef.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.FloorStain; obj.direction = Direction.Down; obj.posX = 298; obj.posY = 101; dataRef.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.FloorStain; obj.direction = Direction.Down; obj.posX = 295; obj.posY = 133; dataRef.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.FloorStain; obj.direction = Direction.Down; obj.posX = 295; obj.posY = 164; dataRef.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.FloorStain; obj.direction = Direction.Down; obj.posX = -10; obj.posY = 90; dataRef.ints.Add(obj);}
 			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.ChestKey; obj.direction = Direction.Down; obj.posX = 152; obj.posY = 88; dataRef.ints.Add(obj);}
 			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Dungeon_SpawnMob; obj.direction = Direction.Down; obj.posX = 152; obj.posY = 40; dataRef.ints.Add(obj);}
 			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Dungeon_SwitchBlockUp; obj.direction = Direction.Down; obj.posX = 264; obj.posY = 120; dataRef.ints.Add(obj);}
