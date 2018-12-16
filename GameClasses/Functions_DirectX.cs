@@ -194,6 +194,8 @@ namespace DungeonRun
 
                         csOutput.Append("}\n");
                     }
+                    csOutput.Append("\t\t\t//add the ref to the data list\n");
+                    csOutput.Append("\t\t\tData.Add(dataRef);\n");
 
                     csOutput.Append("\t\t\t#endregion\n");
                     csOutput.Append("\n");

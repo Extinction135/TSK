@@ -376,19 +376,22 @@ namespace DungeonRun
 
             for (b = 0; b < LevelSet.dungeon.rooms.Count; b++)
             {
-                //based on type, set room's data index to random roomData ref
-                //this allows the room to build with the same roomData each time hero enters it
-                //but this can also build the same room multiple times in a dungeon
-                
-                //we id these rooms so they build from the same data upon re-entry
-                if (LevelSet.dungeon.rooms[b].roomID == RoomID.ForestIsland_ColumnRoom)
-                { LevelSet.dungeon.rooms[b].dataIndex = Functions_Random.Int(0, RoomData_SkullIsland_Columns.Data.Count); }
-                else if (LevelSet.dungeon.rooms[b].roomID == RoomID.ForestIsland_KeyRoom)
-                { LevelSet.dungeon.rooms[b].dataIndex = Functions_Random.Int(0, RoomData_SkullIsland_Key.Data.Count); }
-                else if (LevelSet.dungeon.rooms[b].roomID == RoomID.ForestIsland_RowRoom)
-                { LevelSet.dungeon.rooms[b].dataIndex = Functions_Random.Int(0, RoomData_SkullIsland_Row.Data.Count); }
-                else if (LevelSet.dungeon.rooms[b].roomID == RoomID.ForestIsland_SquareRoom)
-                { LevelSet.dungeon.rooms[b].dataIndex = Functions_Random.Int(0, RoomData_SkullIsland_Square.Data.Count); }
+                LevelSet.dungeon.rooms[b].dataIndex = 0; //default to 0
+
+                if (Flags.Release) //release mode assumes level/room data is linked and correct
+                {   
+                    //based on type, set room's data index to random roomData ref
+                    //this allows the room to build with the same roomData each time hero enters it
+                    //but this can also build the same room multiple times in a dungeon
+                    if (LevelSet.dungeon.rooms[b].roomID == RoomID.ForestIsland_ColumnRoom)
+                    { LevelSet.dungeon.rooms[b].dataIndex = Functions_Random.Int(0, RoomData_SkullIsland_Columns.Data.Count); }
+                    else if (LevelSet.dungeon.rooms[b].roomID == RoomID.ForestIsland_KeyRoom)
+                    { LevelSet.dungeon.rooms[b].dataIndex = Functions_Random.Int(0, RoomData_SkullIsland_Key.Data.Count); }
+                    else if (LevelSet.dungeon.rooms[b].roomID == RoomID.ForestIsland_RowRoom)
+                    { LevelSet.dungeon.rooms[b].dataIndex = Functions_Random.Int(0, RoomData_SkullIsland_Row.Data.Count); }
+                    else if (LevelSet.dungeon.rooms[b].roomID == RoomID.ForestIsland_SquareRoom)
+                    { LevelSet.dungeon.rooms[b].dataIndex = Functions_Random.Int(0, RoomData_SkullIsland_Square.Data.Count); }
+                }
             }
 
             #endregion

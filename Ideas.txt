@@ -3,7 +3,9 @@
 
 
 
-
+we need pushing coastline waves to be 4x4 objs to save on
+the int obj budget. they will always take up a large horizontal
+amount of space.
 
 
 

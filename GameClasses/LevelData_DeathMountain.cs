@@ -17,7 +17,7 @@ namespace DungeonRun
 			DeathMountain_MainEntrance.windDirection = Direction.None;
 			DeathMountain_MainEntrance.windFrequency = 2;
 			DeathMountain_MainEntrance.windIntensity = 0;
-			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.MountainDungeon_Entrance; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 264; DeathMountain_MainEntrance.inds.Add(obj);}
+			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.MountainDungeon_Entrance; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 88; DeathMountain_MainEntrance.inds.Add(obj);}
 			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.MountainWall_Alcove_Left; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 328; DeathMountain_MainEntrance.inds.Add(obj);}
 			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.MountainWall_Alcove_Right; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 328; DeathMountain_MainEntrance.inds.Add(obj);}
 			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Dungeon_SkullPillar; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 296; DeathMountain_MainEntrance.inds.Add(obj);}

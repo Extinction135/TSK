@@ -129,7 +129,7 @@ namespace DungeonRun
 
 
 
-
+        
 
 
         public static void Update(InteractiveObject IntObj)
@@ -2614,8 +2614,8 @@ namespace DungeonRun
             {   
                 //collision rec is smaller so more debris is left when room is cleanedUp()
                 //also allows for more blood, skeletons, etc.. upon deaths
-                IntObj.compCollision.offsetX = -2; IntObj.compCollision.offsetY = -2;
-                IntObj.compCollision.rec.Width = 4; IntObj.compCollision.rec.Height = 4;
+                IntObj.compCollision.offsetX = -6; IntObj.compCollision.offsetY = -6;
+                IntObj.compCollision.rec.Width = 12; IntObj.compCollision.rec.Height = 12;
                 IntObj.compCollision.blocking = false;
 
                 //reset cell size
@@ -2625,11 +2625,13 @@ namespace DungeonRun
                 //default is floor stain
                 IntObj.compAnim.currentAnimation = AnimationFrames.Dungeon_FloorStain;
                 IntObj.compSprite.zOffset = -32; //sort over floors
+                IntObj.canBeSaved = false;
 
                 if (Type == InteractiveType.FloorBlood)
                 {
                     IntObj.compAnim.currentAnimation = AnimationFrames.Dungeon_FloorBlood;
                     IntObj.compSprite.zOffset = -31; //sort over stains
+                    IntObj.canBeSaved = true;
                 }
                 else if (Type == InteractiveType.FloorSkeleton)
                 {   //randomly choose skeleton anim frame to draw
@@ -2637,14 +2639,12 @@ namespace DungeonRun
                     if (Functions_Random.Int(0, 101) > 50)
                     { IntObj.compAnim.currentAnimation = AnimationFrames.Dungeon_FloorSkeleton2; }
                     IntObj.compSprite.zOffset = -30; //sort over blood
+                    IntObj.canBeSaved = true;
                 }
-
                 //randomly horizontally flip for more variation
                 if (Functions_Random.Int(0, 101) > 50)
                 { IntObj.compSprite.flipHorizontally = true; }
-
                 IntObj.selfCleans = true; //selfclean next frame
-                IntObj.canBeSaved = true;
             }
             else if (Type == InteractiveType.Debris)
             {

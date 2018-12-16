@@ -68,44 +68,44 @@ Today:
 
 
 
-Scaling Up via Divide and Conquer Design
+Playtesting & Scaling
 
-divide up room data, include wind fields from level
-writing method, which we can likely use for room data 
-as well. 
+when the release boolean is set true, dungeons will
+build column, row, square, and key rooms from a list
+of roomdata for each of those types. this assumes 
+roomdata exists for those types, and no room data
+exists for these types in the EMPTY versions of the
+room data class files. this is done to keep codebase
+size small for systems development.
 
-lots of updates done to the directX backend functions
-to change how it handles/sorts/writes the roomdata.
-this is to allow for a larger scale and variety of
-levels and dungeon rooms.
+make forest entrance at skull island level. done.
+updated mountain dungeon entrance to be inaccessible
+for now. updated shadow coliseum to look better.
+compiled new level data for dungeon testing.
 
-we only have forest dungeon available now.
-all dungeon recipes create forest dungeons.
-we can only test the forest dungeon rn.
-this should be linked to from the shadow king
-entrance - this is the only link to it.
+forest dungeon builds as expected using new system
+and pipeline. now it's time for alot of expansion.
 
-all other dungeon entrances need to be unlinked
-from hero interaction routines. done.
+Polish++
 
-completely removed all dungeons except for
-forest dungeon. migrated all dungeon room data
-to new format, with new xml to cs routine, in
-the forest dungeon set. this is actually how
-dungeon level data will saved and accessed in
-game, allowing for themeing and scaling.
+do not save floor stains. (make unsaveable pls).
+remove floor stains from room data. pls. done.
 
-at this migrated scale, the UWP project sits
-at 20K LoC. this is only 1 version of each of
-the forest room types, and the dungeon entrance
-levels, plus skullisland.
+floor stain hitboxes need to be 12x12, so they
+self clean better and appear visually in a more
+pleasing manner. this was done for floor stains,
+blood, and skeletons.
 
-the directX project is linked to the empty
-level data classes, which brings it's LoC to
-16.5K LoC. keep in mind the only dungeon available
-is the forest dungeon, and that has only 1
-version of each square, column, row, and key
-room available to build the dungeon from.
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -122,6 +122,7 @@ the room xml data at all because the dungeons are not
 expected to function in this developer mode.
 
 
+when we build dungeons, we require 1 room of each type?
 
 
 
@@ -136,22 +137,6 @@ expected to function in this developer mode.
 
 
 
-
-
-
-we need to relink directX and uwp projects to the new
-roomData, and we need empty versions for the Dx to link
-against after that. 
-
-instead of roomData, the prefix is
-RoomData_SkullIsland_Columns
-RoomData_SkullIsland_Row
-RoomData_SkullIsland_Square
-RoomData_SkullIsland_Key
-RoomData_SkullIsland_ExitBossHub
-
-
-ok, so. the roomData format has to be different.
 
 
 
