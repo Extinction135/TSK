@@ -68,35 +68,126 @@ Today:
 
 
 
-Scaling Up
-
-now i'm going to test visual studios ability to handle
-large amounts of roomdata and we're going to see just
-where it fails..
-
-designed mountain dungeon climb level.
-expanded dungeon room data, for scale test 1.
-
-scale test 1: how much roomData can we pack into a .cs
-file before visual studio crashes, like last time?
-
-*converted xml to cs routines to use stringBuilder,
-instead of just string concatenation (+=), because it's
-measurably faster. and now writing c# data happens in
-a second using stringbuilder. wow. updated writing of
-level / field data to include wind fields. 
-
-Uwp=32K, Dx=16K LoC.
-
-
-
-
-
-
+Scaling Up via Divide and Conquer Design
 
 divide up room data, include wind fields from level
-writing method, which we can likely use for room data as well.
-if we are clever.
+writing method, which we can likely use for room data 
+as well. 
+
+lots of updates done to the directX backend functions
+to change how it handles/sorts/writes the roomdata.
+this is to allow for a larger scale and variety of
+levels and dungeon rooms.
+
+we only have forest dungeon available now.
+all dungeon recipes create forest dungeons.
+we can only test the forest dungeon rn.
+this should be linked to from the shadow king
+entrance - this is the only link to it.
+
+all other dungeon entrances need to be unlinked
+from hero interaction routines. done.
+
+completely removed all dungeons except for
+forest dungeon. migrated all dungeon room data
+to new format, with new xml to cs routine, in
+the forest dungeon set. this is actually how
+dungeon level data will saved and accessed in
+game, allowing for themeing and scaling.
+
+at this migrated scale, the UWP project sits
+at 20K LoC. this is only 1 version of each of
+the forest room types, and the dungeon entrance
+levels, plus skullisland.
+
+the directX project is linked to the empty
+level data classes, which brings it's LoC to
+16.5K LoC. keep in mind the only dungeon available
+is the forest dungeon, and that has only 1
+version of each square, column, row, and key
+room available to build the dungeon from.
+
+
+
+
+
+
+
+
+when we build dungeons, we need to be checking to
+see that the count of the roomData list we are targeting
+is greater than 0 - if it isn't then we are making
+dungeons with empty room data and we dont need to build
+the room xml data at all because the dungeons are not
+expected to function in this developer mode.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+we need to relink directX and uwp projects to the new
+roomData, and we need empty versions for the Dx to link
+against after that. 
+
+instead of roomData, the prefix is
+RoomData_SkullIsland_Columns
+RoomData_SkullIsland_Row
+RoomData_SkullIsland_Square
+RoomData_SkullIsland_Key
+RoomData_SkullIsland_ExitBossHub
+
+
+ok, so. the roomData format has to be different.
+
+
+
+
+we only have skullisland dungeon for now.
+this needs to be reflected in dungeon building routines.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+this means room building routines target skullisland
+exclusively now. and we need to update the enum values
+for roomIDs, we dont have generic room types anymore.
+bonus: we can now set the room texture based on it's
+type, forcing forest types to use the forest texture,
+and so forth, making loading and displaying of roomdata
+correct in the editor/preview.
+
+
+
+
+
+
+
+
 
 this hasn't
 been added to dungeon room writing routines yet, but
@@ -131,12 +222,42 @@ dungeon rooms to the dungeon they will exist in.
 
 
 
-*should be using string builder for xml to cs conversion.
-+= is likely whats slowing it down later on.
 
 
 
-we also need to add wind fields to level conversion proess.
+
+
+
+
+
+
+
+
+
+
+note to future-self: this room data is designed for one floor
+only, so when we add a floor above and below this, we will need
+to go through all room data and add tags around the ground floor
+int/ind obj lists, or remake the data again. 
+the visualization for this is simple, ground floor displays the basement
+floor at 50-10% opacity, so we can still kinda 'see' whats going on.
+enemies still move, etc.. top floor displays the ground floor plus 
+the basement, giving the player a total view of the puzzle to
+be solved.
+
+
+
+wind should be ignored for all dungeon rooms. wind will be set 
+in the cloud dungeons, and possibly by a dungeon objects or two.
+also, the player can set the direction and intensity via spells.
+but most of the time, there will be no wind in the dungeon.
+
+
+
+
+
+
+
 
 
 

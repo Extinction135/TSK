@@ -191,19 +191,5 @@ namespace DungeonRun
             else if (value == 4) { output += "fairy"; }
         }
 
-        public static void InspectRoomData()
-        {
-            int total = 0;
-            String output = "";
-            output += "" + RoomData.bossRooms.Count + "boss.."; total += RoomData.bossRooms.Count;
-            output += "" + RoomData.columnRooms.Count + "clmn.."; total += RoomData.columnRooms.Count;
-            output += "" + RoomData.hubRooms.Count + "hub.."; total += RoomData.hubRooms.Count;
-            output += "" + RoomData.keyRooms.Count + "key.."; total += RoomData.keyRooms.Count;
-            output += "" + RoomData.rowRooms.Count + "row.."; total += RoomData.rowRooms.Count;
-            output += "" + RoomData.squareRooms.Count + "sqr.."; total += RoomData.squareRooms.Count;
-            output += "total: " + total;
-            Debug.WriteLine(output);
-        }
-
     }
 }

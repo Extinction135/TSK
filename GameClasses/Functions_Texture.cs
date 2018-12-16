@@ -23,11 +23,18 @@ namespace DungeonRun
             Assets.Dungeon_CurrentSheet = Assets.Dungeon_DefaultSheet;
             //based on the dungeon level loaded, set the dungeon texture
             if (LevelSet.dungeon.ID == LevelID.Forest_Dungeon)
-            { Assets.Dungeon_CurrentSheet = Assets.Dungeon_ForestSheet; }
+            {
+                Assets.Dungeon_CurrentSheet = Assets.Dungeon_ForestSheet;
+                //for testing
+                //Assets.Dungeon_CurrentSheet = Assets.Dungeon_MountainSheet;
+                //Assets.Dungeon_CurrentSheet = Assets.Dungeon_SwampSheet;
+            }
+            /*
             else if (LevelSet.dungeon.ID == LevelID.Mountain_Dungeon)
             { Assets.Dungeon_CurrentSheet = Assets.Dungeon_MountainSheet; }
             else if (LevelSet.dungeon.ID == LevelID.Swamp_Dungeon)
             { Assets.Dungeon_CurrentSheet = Assets.Dungeon_SwampSheet; }
+            */
         }
 
         //called just after a dungeon is built

@@ -290,8 +290,10 @@ namespace DungeonRun
                         if (currentInteractiveType == InteractiveType.Chest)
                         {
                             //we convert the 'safe' chest into a key or hub chest here
-                            if (LevelSet.currentLevel.currentRoom.roomID == RoomID.Key ||
-                                LevelSet.currentLevel.currentRoom.roomID == RoomID.DEV_Key)
+                            if (
+                                LevelSet.currentLevel.currentRoom.roomID == RoomID.DEV_Key ||
+                                LevelSet.currentLevel.currentRoom.roomID == RoomID.ForestIsland_KeyRoom
+                                )
                             {   //convert to key chest
                                 currentInteractiveType = InteractiveType.ChestKey;
 

@@ -4,10 +4,10 @@ namespace DungeonRun
 {
 	public static class LevelData_CloudIsland
 	{
-		//levels specific to this island
+		//levelData specific to this island
 		public static RoomXmlData CloudIsland_MainEntrance = new RoomXmlData();
 
-		//level data
+		//data is added here
 		static LevelData_CloudIsland()
 		{
 

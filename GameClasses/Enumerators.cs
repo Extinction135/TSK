@@ -85,15 +85,22 @@ namespace DungeonRun
     {
         #region IslandID
 
+        //overworld level data classes
         LevelData_SkullIsland,
         LevelData_ForestIsland,
         LevelData_ThievesHideout,
         LevelData_DeathMountain,
         LevelData_HauntedSwamps,
         LevelData_CloudIsland,
-        LevelData_LavaIsland
+        LevelData_LavaIsland,
 
-        //expand this to handle the smaller map islands too
+        //dungeon room data classes
+        RoomData_SkullIsland_Columns,
+        RoomData_SkullIsland_Row,
+        RoomData_SkullIsland_Square,
+        RoomData_SkullIsland_Key,
+        RoomData_SkullIsland_ExitBossHub,
+
 
         #endregion
     }
@@ -137,8 +144,8 @@ namespace DungeonRun
 
         //dungeons, series of rooms - not overworld accessible
         Forest_Dungeon,
-        Mountain_Dungeon,
-        Swamp_Dungeon,
+        //Mountain_Dungeon,
+        //Swamp_Dungeon,
 
         //dev (hidden) unreachable locations from game
         DEV_Field, //single room without walls/doors
@@ -149,24 +156,27 @@ namespace DungeonRun
     {
         #region RoomID
 
-        //these DUNGEON rooms have procedural objs added to them
-        Exit,
-        Key,
 
-        //these DUNGEON rooms are mostly non-procedural and handmade
-        Column,
-        Row,
-        Square,
+        //alot of work needs to be done here
+
+
+        //procedural/empty rooms
         Secret,
 
-        //these dungeon rooms are specific to dungeon and handmade
+        //handmade rooms (per island)
+        ForestIsland_ColumnRoom, 
+        ForestIsland_RowRoom, //default for room class*
+        ForestIsland_SquareRoom, 
+        ForestIsland_KeyRoom, 
+        ForestIsland_ExitRoom, 
         ForestIsland_BossRoom,
-        DeathMountain_BossRoom,
-        SwampIsland_BossRoom,
-
         ForestIsland_HubRoom,
-        DeathMountain_HubRoom,
-        SwampIsland_HubRoom,
+
+        
+
+
+
+
 
 
 
@@ -197,6 +207,10 @@ namespace DungeonRun
 
         //thieves den island
         ThievesDen_GateEntrance,
+
+
+
+
 
 
 

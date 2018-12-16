@@ -347,10 +347,10 @@ namespace DungeonRun
             {   //track enemy deaths per dungeon
                 if(LevelSet.dungeon.ID == LevelID.Forest_Dungeon)
                 { PlayerData.ForestRecord.enemyCount++; }
-                else if (LevelSet.dungeon.ID == LevelID.Mountain_Dungeon)
-                { PlayerData.MountainRecord.enemyCount++; }
-                else if (LevelSet.dungeon.ID == LevelID.Swamp_Dungeon)
-                { PlayerData.SwampRecord.enemyCount++; }
+                //else if (LevelSet.dungeon.ID == LevelID.Mountain_Dungeon)
+                //{ PlayerData.MountainRecord.enemyCount++; }
+                //else if (LevelSet.dungeon.ID == LevelID.Swamp_Dungeon)
+                //{ PlayerData.SwampRecord.enemyCount++; }
 
                 PlayerData.enemiesKilled++;
             }
@@ -426,6 +426,7 @@ namespace DungeonRun
                     Functions_Level.CloseLevel(ExitAction.Overworld);
                     Assets.Play(Assets.sfxBeatDungeon);
                 }
+                /*
                 else if(Actor.type == ActorType.Boss_BigBat &
                     LevelSet.currentLevel.currentRoom.roomID == RoomID.DeathMountain_BossRoom)
                 {
@@ -442,6 +443,7 @@ namespace DungeonRun
                     Functions_Level.CloseLevel(ExitAction.Overworld);
                     Assets.Play(Assets.sfxBeatDungeon);
                 }
+                */
 
                 #endregion
 

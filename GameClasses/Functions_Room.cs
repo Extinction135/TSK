@@ -37,41 +37,37 @@ namespace DungeonRun
             Room.roomID = ID;
             
             //set room size based on type - sizes should be odd, so doors/exits can be centered
-            if (ID == RoomID.Exit || ID == RoomID.DEV_Exit)
+            if (ID == RoomID.ForestIsland_ExitRoom || ID == RoomID.DEV_Exit)
             {
                 Room.size.X = 11; Room.size.Y = 11;
             }
             else if (
                 ID == RoomID.ForestIsland_HubRoom ||
-                ID == RoomID.DeathMountain_HubRoom ||
-                ID == RoomID.SwampIsland_HubRoom ||
                 ID == RoomID.DEV_Hub)
             {
                 Room.size.X = 19; Room.size.Y = 19;
             }
             else if (
                 ID == RoomID.ForestIsland_BossRoom ||
-                ID == RoomID.DeathMountain_BossRoom ||
-                ID == RoomID.SwampIsland_BossRoom ||
                 ID == RoomID.DEV_Boss)
             {
                 Room.size.X = 19; Room.size.Y = 11;
             }
-            else if (ID == RoomID.Key || ID == RoomID.DEV_Key)
+            else if (ID == RoomID.ForestIsland_KeyRoom || ID == RoomID.DEV_Key)
             {
                 Room.size.X = 19; Room.size.Y = 11;
             }
             
             //dungeon rooms
-            else if (ID == RoomID.Column || ID == RoomID.DEV_Column)
+            else if (ID == RoomID.ForestIsland_ColumnRoom || ID == RoomID.DEV_Column)
             {
                 Room.size.X = 11; Room.size.Y = 19;
             }
-            else if (ID == RoomID.Row || ID == RoomID.DEV_Row)
+            else if (ID == RoomID.ForestIsland_RowRoom || ID == RoomID.DEV_Row)
             {
                 Room.size.X = 19; Room.size.Y = 11;
             }
-            else if (ID == RoomID.Square || ID == RoomID.DEV_Square)
+            else if (ID == RoomID.ForestIsland_SquareRoom || ID == RoomID.DEV_Square)
             {
                 Room.size.X = 11; Room.size.Y = 11;
             }
@@ -219,76 +215,42 @@ namespace DungeonRun
 
                 //dungeon rooms
 
-                #region Specific RoomData (Hub and Boss rooms)
+                #region Forest Roomdata
 
-                //boss rooms
-                else if (Room.roomID == RoomID.ForestIsland_BossRoom
-                    || Room.roomID == RoomID.DeathMountain_BossRoom
-                    || Room.roomID == RoomID.SwampIsland_BossRoom)
+                //load the xml room data from it's dataIndex, or basd on it's ID for exit/hub/boss
+                else if (Room.roomID == RoomID.ForestIsland_ColumnRoom)
                 {
-                    //set boss room to default to something
-                    RoomXmlData = RoomData.bossRooms[0];
+                    RoomXmlData = RoomData_SkullIsland_Columns.Data[Room.dataIndex];
                     LevelSet.currentLevel.isField = false;
+                }
+                else if (Room.roomID == RoomID.ForestIsland_KeyRoom)
+                {
+                    RoomXmlData = RoomData_SkullIsland_Key.Data[Room.dataIndex];
+                    LevelSet.currentLevel.isField = false;
+                }
+                else if (Room.roomID == RoomID.ForestIsland_RowRoom)
+                {
+                    RoomXmlData = RoomData_SkullIsland_Row.Data[Room.dataIndex];
+                    LevelSet.currentLevel.isField = false;
+                }
+                else if (Room.roomID == RoomID.ForestIsland_SquareRoom)
+                {
+                    RoomXmlData = RoomData_SkullIsland_Square.Data[Room.dataIndex];
+                    LevelSet.currentLevel.isField = false;
+                }
 
-                    //manually set the dungeon room's spawnpos to center of room
-                    LevelSet.spawnPos_Dungeon.X = Room.center.X + 8;
-                    LevelSet.spawnPos_Dungeon.Y = Room.center.Y;
-                    //set to bottom center of room, north of door
-                    LevelSet.spawnPos_Dungeon.Y += 5 * 16;
-
-                    //loop over all boss rooms
-                    for (i = 0; i < RoomData.bossRooms.Count; i++)
-                    {   //find the proper bossRoom to use based on roomID
-                        if (RoomData.bossRooms[i].type == Room.roomID)
-                        { RoomXmlData = RoomData.bossRooms[i]; }
+                else if (
+                    Room.roomID == RoomID.ForestIsland_ExitRoom
+                    || Room.roomID == RoomID.ForestIsland_BossRoom
+                    || Room.roomID == RoomID.ForestIsland_HubRoom
+                    )
+                {
+                    LevelSet.currentLevel.isField = false;
+                    for (i = 0; i < RoomData_SkullIsland_ExitBossHub.Data.Count; i++)
+                    {   //match room to it's ID
+                        if (RoomData_SkullIsland_ExitBossHub.Data[i].type == Room.roomID)
+                        { RoomXmlData = RoomData_SkullIsland_ExitBossHub.Data[i]; }
                     }
-                }
-                //hub rooms
-                else if (Room.roomID == RoomID.ForestIsland_HubRoom
-                    || Room.roomID == RoomID.DeathMountain_HubRoom
-                    || Room.roomID == RoomID.SwampIsland_HubRoom)
-                {
-                    //set hub room to default to something
-                    RoomXmlData = RoomData.hubRooms[0];
-                    LevelSet.currentLevel.isField = false;
-
-                    //loop over all hub rooms
-                    for (i = 0; i < RoomData.hubRooms.Count; i++)
-                    {   //find the proper hubRoom to use based on roomID
-                        if (RoomData.hubRooms[i].type == Room.roomID)
-                        { RoomXmlData = RoomData.hubRooms[i]; }
-                    }
-                }
-
-                #endregion
-
-
-                #region Generic Roomdata (for now)
-
-                else if (Room.roomID == RoomID.Column)
-                {
-                    RoomXmlData = RoomData.columnRooms[Room.dataIndex];
-                    LevelSet.currentLevel.isField = false;
-                }
-                else if (Room.roomID == RoomID.Exit)
-                {
-                    RoomXmlData = RoomData.exitRooms[Room.dataIndex];
-                    LevelSet.currentLevel.isField = false;
-                }
-                else if (Room.roomID == RoomID.Key)
-                {
-                    RoomXmlData = RoomData.keyRooms[Room.dataIndex];
-                    LevelSet.currentLevel.isField = false;
-                }
-                else if (Room.roomID == RoomID.Row)
-                {
-                    RoomXmlData = RoomData.rowRooms[Room.dataIndex];
-                    LevelSet.currentLevel.isField = false;
-                }
-                else if (Room.roomID == RoomID.Square)
-                {
-                    RoomXmlData = RoomData.squareRooms[Room.dataIndex];
-                    LevelSet.currentLevel.isField = false;
                 }
 
                 #endregion
@@ -341,9 +303,7 @@ namespace DungeonRun
             #region Handle room specific initial events (like setting music)
 
             if (
-                Room.roomID == RoomID.ForestIsland_BossRoom ||
-                Room.roomID == RoomID.DeathMountain_BossRoom ||
-                Room.roomID == RoomID.SwampIsland_BossRoom
+                Room.roomID == RoomID.ForestIsland_BossRoom
                 )
             {
                 Assets.Play(Assets.sfxBossIntro);
@@ -408,11 +368,12 @@ namespace DungeonRun
                             if (LevelSet.currentLevel.ID == LevelID.Forest_Dungeon)
                             { Functions_Actor.SpawnActor(ActorType.Standard_AngryEye, intRef.compSprite.position); }
 
+                            /*
                             else if (LevelSet.currentLevel.ID == LevelID.Mountain_Dungeon)
                             { Functions_Actor.SpawnActor(ActorType.Standard_BeefyBat, intRef.compSprite.position); }
-
                             else if (LevelSet.currentLevel.ID == LevelID.Swamp_Dungeon)
                             { Functions_Actor.SpawnActor(ActorType.Blob, intRef.compSprite.position); }
+                            */
 
                             else //any other dungeon spawns blobs
                             { Functions_Actor.SpawnActor(ActorType.Blob, intRef.compSprite.position); }
@@ -597,16 +558,14 @@ namespace DungeonRun
                 Pool.floorPool[i].currentFrame = AnimationFrames.Dungeon_FloorNormal[0];
                 //based on type, change the default floor sprite to special or boss
                 if (
-                    Room.roomID == RoomID.Key ||
-                    Room.roomID == RoomID.ForestIsland_HubRoom ||
-                    Room.roomID == RoomID.DeathMountain_HubRoom ||
-                    Room.roomID == RoomID.SwampIsland_HubRoom
+                    Room.roomID == RoomID.DEV_Key ||
+                    Room.roomID == RoomID.ForestIsland_KeyRoom ||
+                    Room.roomID == RoomID.ForestIsland_HubRoom
                     )
                 { Pool.floorPool[i].currentFrame = AnimationFrames.Dungeon_FloorSpecial[0]; }
                 else if (
-                    Room.roomID == RoomID.ForestIsland_BossRoom ||
-                    Room.roomID == RoomID.DeathMountain_BossRoom ||
-                    Room.roomID == RoomID.SwampIsland_BossRoom
+                    Room.roomID == RoomID.DEV_Boss ||
+                    Room.roomID == RoomID.ForestIsland_BossRoom
                     )
                 { Pool.floorPool[i].currentFrame = AnimationFrames.Dungeon_FloorBoss[0]; }
             }
@@ -645,9 +604,8 @@ namespace DungeonRun
                                 }
 
                                 //finally, override door types based on specific room.type
-                                if (Room.roomID == RoomID.ForestIsland_BossRoom ||
-                                    Room.roomID == RoomID.DeathMountain_BossRoom ||
-                                    Room.roomID == RoomID.SwampIsland_BossRoom
+                                if (
+                                    Room.roomID == RoomID.ForestIsland_BossRoom
                                     )
                                 {
                                     //all doors inside boss room are trap doors (push hero + close)
@@ -693,52 +651,47 @@ namespace DungeonRun
 
         public static void ProcedurallyFinish(Room Room)
         {   //Pass the room to the appropriate method for completion
-
-
-            #region Special Rooms
-
-            if (Room.roomID == RoomID.Exit)
-            {
-                PlaceExit(Room);
-            }
-            else if (Room.roomID == RoomID.Secret)
+            
+            if (Room.roomID == RoomID.Secret)
             {
                 FinishSecretRoom(Room);
             }
 
 
-            #endregion
+            #region Critical Rooms (exit, key, hub, boss)
 
+            else if (
+                Room.roomID == RoomID.DEV_Exit
+                || Room.roomID == RoomID.ForestIsland_ExitRoom
+                )
+            {
+                PlaceExit(Room);
+            }
 
-            #region Critical Rooms (key, hub, boss)
-
-            else if (Room.roomID == RoomID.Key)
+            else if (
+                Room.roomID == RoomID.DEV_Key
+                || Room.roomID == RoomID.ForestIsland_KeyRoom
+                )
             {
                 FinishKeyRoom(Room);
-                //this room's focus is the puzzle
-                //AddWallStatues(Room);
                 AddCrackedWalls(Room);
                 ScatterDebris(Room);
             }
             else if (
-                Room.roomID == RoomID.ForestIsland_HubRoom ||
-                Room.roomID == RoomID.DeathMountain_HubRoom ||
-                Room.roomID == RoomID.SwampIsland_HubRoom
+                Room.roomID == RoomID.DEV_Hub
+                || Room.roomID == RoomID.ForestIsland_HubRoom
                 )
             {
                 //we dont want the miniboss to spawn in the editor
                 //we can manually spawn him - he destroys the room
                 if (Flags.bootRoutine == BootRoutine.Game) { SpawnMiniBoss(Room); }
 
-                //dont add wall statues, cause they damage miniboss
-                //AddWallStatues(Room);
                 AddCrackedWalls(Room);
                 ScatterDebris(Room);
             }
             else if (
-                Room.roomID == RoomID.ForestIsland_BossRoom ||
-                Room.roomID == RoomID.DeathMountain_BossRoom ||
-                Room.roomID == RoomID.SwampIsland_BossRoom
+                Room.roomID == RoomID.DEV_Boss
+                || Room.roomID == RoomID.ForestIsland_BossRoom 
                 )
             {
                 ShutDoors(Room);
@@ -756,17 +709,26 @@ namespace DungeonRun
 
             #region Standard Rooms (column, row, square)
 
-            else if (Room.roomID == RoomID.Column)
+            else if (
+                Room.roomID == RoomID.DEV_Column
+                || Room.roomID == RoomID.ForestIsland_ColumnRoom
+                )
             {
                 AddCrackedWalls(Room);
                 ScatterDebris(Room);
             }
-            else if (Room.roomID == RoomID.Row)
+            else if (
+                Room.roomID == RoomID.DEV_Row
+                || Room.roomID == RoomID.ForestIsland_RowRoom
+                )
             {
                 AddCrackedWalls(Room);
                 ScatterDebris(Room);
             }
-            else if (Room.roomID == RoomID.Square)
+            else if (
+                Room.roomID == RoomID.DEV_Square
+                || Room.roomID == RoomID.ForestIsland_SquareRoom
+                )
             {
                 AddCrackedWalls(Room);
                 ScatterDebris(Room);
@@ -974,6 +936,8 @@ namespace DungeonRun
                     Room.center.X + 8,
                     Room.center.Y + 8);
             }
+
+            /*
             else if (LevelSet.dungeon.ID == LevelID.Mountain_Dungeon)
             {
                 Functions_Actor.SpawnActor(
@@ -988,6 +952,8 @@ namespace DungeonRun
                     Room.center.X + 8,
                     Room.center.Y + 8);
             }
+            */
+
         }
 
         public static void SpawnMiniBoss(Room Room)
@@ -999,6 +965,8 @@ namespace DungeonRun
                     Room.center.X + 8,
                     Room.center.Y + 8);
             }
+
+            /*
             else if (LevelSet.dungeon.ID == LevelID.Mountain_Dungeon)
             {
                 Functions_Actor.SpawnActor(
@@ -1017,6 +985,9 @@ namespace DungeonRun
                         Room.center.X + 8,
                         Room.center.Y + 8);
             }
+            */
+
+
         }
 
 

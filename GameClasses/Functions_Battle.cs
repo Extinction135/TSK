@@ -299,13 +299,15 @@ namespace DungeonRun
                 else { Actor.health -= Damage; }
                 //if projectile damaged hero, track the damage dealt
                 if (Actor == Pool.hero)
-                {   //if hero takes damage in a dungeon, track it
+                {   
+                    //if hero takes damage in a dungeon, track it
                     if (LevelSet.dungeon.ID == LevelID.Forest_Dungeon)
                     { PlayerData.ForestRecord.totalDamage += Damage; }
-                    else if (LevelSet.dungeon.ID == LevelID.Mountain_Dungeon)
-                    { PlayerData.MountainRecord.totalDamage += Damage; }
-                    else if (LevelSet.dungeon.ID == LevelID.Swamp_Dungeon)
-                    { PlayerData.SwampRecord.totalDamage += Damage; }
+                    //else if (LevelSet.dungeon.ID == LevelID.Mountain_Dungeon)
+                    //{ PlayerData.MountainRecord.totalDamage += Damage; }
+                    //else if (LevelSet.dungeon.ID == LevelID.Swamp_Dungeon)
+                    //{ PlayerData.SwampRecord.totalDamage += Damage; }
+
                     //track global damage done as well
                     PlayerData.damageTaken += Damage;
                 }

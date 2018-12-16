@@ -100,27 +100,35 @@ namespace DungeonRun
                 }
                 //add the mapRoom to rooms list
                 rooms.Add(mapRoom);
-                //display map icons, if we are map cheating (or debugging)
-                if (Flags.MapCheat)
-                {   //check to see if this room gets an icon
+
+                //'visit' allrooms if map cheating
+                if (Flags.MapCheat) { mapRoom.visited = true; }
+                //display map icons if room visited (keep track while exploring)
+                if (mapRoom.visited)
+                {   
                     iconPos = new Vector2( //the center of the current mapRoom
                         mapRoom.rec.X + (mapRoom.rec.Width / 2) - 1,
                         mapRoom.rec.Y + (mapRoom.rec.Height / 2) - 7);
                     if (
-                        dungeonRoom.roomID == RoomID.ForestIsland_BossRoom ||
-                        dungeonRoom.roomID == RoomID.DeathMountain_BossRoom ||
-                        dungeonRoom.roomID == RoomID.SwampIsland_BossRoom
+                        dungeonRoom.roomID == RoomID.DEV_Boss ||
+                        dungeonRoom.roomID == RoomID.ForestIsland_BossRoom
                         )
                     { bossIcon.position = iconPos; }
                     else if (
-                        dungeonRoom.roomID == RoomID.ForestIsland_HubRoom ||
-                        dungeonRoom.roomID == RoomID.DeathMountain_HubRoom ||
-                        dungeonRoom.roomID == RoomID.SwampIsland_HubRoom
+                        dungeonRoom.roomID == RoomID.DEV_Hub ||
+                        dungeonRoom.roomID == RoomID.ForestIsland_HubRoom
                         )
                     { hubIcon.position = iconPos; }
-
-                    else if (dungeonRoom.roomID == RoomID.Key) { keyIcon.position = iconPos; }
-                    else if (dungeonRoom.roomID == RoomID.Exit) { exitIcon.position = iconPos; }
+                    else if (
+                        dungeonRoom.roomID == RoomID.DEV_Key ||
+                        dungeonRoom.roomID == RoomID.ForestIsland_KeyRoom
+                        )
+                    { keyIcon.position = iconPos; }
+                    else if (
+                        dungeonRoom.roomID == RoomID.DEV_Exit ||
+                        dungeonRoom.roomID == RoomID.ForestIsland_ExitRoom
+                        )
+                    { exitIcon.position = iconPos; }
                 }
             }
 

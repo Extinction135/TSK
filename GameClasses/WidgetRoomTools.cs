@@ -244,12 +244,12 @@ namespace DungeonRun
             
             //convert DEV room types into proper GAME room types
             if (id == RoomID.DEV_Boss) { roomData.type = RoomID.ForestIsland_BossRoom; }
-            else if (id == RoomID.DEV_Column) { roomData.type = RoomID.Column; }
-            else if (id == RoomID.DEV_Exit) { roomData.type = RoomID.Exit; }
+            else if (id == RoomID.DEV_Column) { roomData.type = RoomID.ForestIsland_ColumnRoom; }
+            else if (id == RoomID.DEV_Exit) { roomData.type = RoomID.ForestIsland_ExitRoom; }
             else if (id == RoomID.DEV_Hub) { roomData.type = RoomID.ForestIsland_HubRoom; }
-            else if (id == RoomID.DEV_Key) { roomData.type = RoomID.Key; }
-            else if (id == RoomID.DEV_Row) { roomData.type = RoomID.Row; }
-            else if (id == RoomID.DEV_Square) { roomData.type = RoomID.Square; }
+            else if (id == RoomID.DEV_Key) { roomData.type = RoomID.ForestIsland_KeyRoom; }
+            else if (id == RoomID.DEV_Row) { roomData.type = RoomID.ForestIsland_RowRoom; }
+            else if (id == RoomID.DEV_Square) { roomData.type = RoomID.ForestIsland_SquareRoom; }
             else
             {   //we may be saving a proper GAME room/level or field
                 roomData.type = id;

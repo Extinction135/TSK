@@ -4,10 +4,10 @@ namespace DungeonRun
 {
 	public static class LevelData_LavaIsland
 	{
-		//levels specific to this island
+		//levelData specific to this island
 		public static RoomXmlData LavaIsland_MainEntrance = new RoomXmlData();
 
-		//level data
+		//data is added here
 		static LevelData_LavaIsland()
 		{
 

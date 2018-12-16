@@ -14,6 +14,7 @@ namespace DungeonRun
 			#region CloudIsland_MainEntrance
 
 			CloudIsland_MainEntrance.type = RoomID.CloudIsland_MainEntrance;
+
 			#endregion
 
 		}

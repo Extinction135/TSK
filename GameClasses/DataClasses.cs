@@ -554,7 +554,7 @@ namespace DungeonRun
 
     public class RoomXmlData
     {
-        public RoomID type = RoomID.Row;
+        public RoomID type = RoomID.ForestIsland_RowRoom;
         public Direction windDirection = Direction.None;
         public byte windFrequency = 2; //default 2% chance
         public byte windIntensity = 0; //no wind

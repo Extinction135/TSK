@@ -112,9 +112,6 @@
     <Compile Include="..\..\GameClasses\AssetsDialog.cs">
       <Link>Classes\AssetsDialog.cs</Link>
     </Compile>
-    <Compile Include="..\..\GameClasses\AssetsRoomData.cs">
-      <Link>Classes\AssetsRoomData.cs</Link>
-    </Compile>
     <Compile Include="..\..\GameClasses\DataClasses.cs">
       <Link>Classes\DataClasses.cs</Link>
     </Compile>
@@ -264,6 +261,21 @@
     </Compile>
     <Compile Include="..\..\GameClasses\LevelData_ThievesHideout.cs">
       <Link>Classes\LevelData_ThievesHideout.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\RoomData_SkullIsland_Columns.cs">
+      <Link>Classes\RoomData_SkullIsland_Columns.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\RoomData_SkullIsland_ExitBossHub.cs">
+      <Link>Classes\RoomData_SkullIsland_ExitBossHub.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\RoomData_SkullIsland_Key.cs">
+      <Link>Classes\RoomData_SkullIsland_Key.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\RoomData_SkullIsland_Row.cs">
+      <Link>Classes\RoomData_SkullIsland_Row.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\RoomData_SkullIsland_Square.cs">
+      <Link>Classes\RoomData_SkullIsland_Square.cs</Link>
     </Compile>
     <Compile Include="..\..\GameClasses\Screen.cs">
       <Link>Classes\Screen.cs</Link>

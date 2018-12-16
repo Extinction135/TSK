@@ -4,10 +4,10 @@ namespace DungeonRun
 {
 	public static class LevelData_DeathMountain
 	{
-		//levels specific to this island
+		//levelData specific to this island
 		public static RoomXmlData DeathMountain_MainEntrance = new RoomXmlData();
 
-		//level data
+		//data is added here
 		static LevelData_DeathMountain()
 		{
 

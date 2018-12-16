@@ -45,9 +45,11 @@ namespace DungeonRun
             LevelSet.field.isField = true;
 
             //handle DUNGEON setup
-            if (levelID == LevelID.Forest_Dungeon
-                || levelID == LevelID.Mountain_Dungeon
-                || levelID == LevelID.Swamp_Dungeon)
+            if (
+                levelID == LevelID.Forest_Dungeon
+                //|| levelID == LevelID.Mountain_Dungeon
+                //|| levelID == LevelID.Swamp_Dungeon
+                )
             {
                 //reset dungeon data
                 ResetLevel(LevelSet.dungeon);
@@ -57,10 +59,10 @@ namespace DungeonRun
                 //set background color
                 if (levelID == LevelID.Forest_Dungeon)
                 { ColorScheme.background = ColorScheme.bkg_dungeon_forest; }
-                else if (levelID == LevelID.Mountain_Dungeon)
-                { ColorScheme.background = ColorScheme.bkg_dungeon_mountain; }
-                else if (levelID == LevelID.Swamp_Dungeon)
-                { ColorScheme.background = ColorScheme.bkg_dungeon_swamp; }
+                //else if (levelID == LevelID.Mountain_Dungeon)
+                //{ ColorScheme.background = ColorScheme.bkg_dungeon_mountain; }
+                //else if (levelID == LevelID.Swamp_Dungeon)
+                //{ ColorScheme.background = ColorScheme.bkg_dungeon_swamp; }
             }
 
             //handle FIELD setup
@@ -267,6 +269,8 @@ namespace DungeonRun
             {
                 Functions_Dungeon.BuildDungeon_Forest();
             }
+
+            /*
             else if (LevelSet.currentLevel.ID == LevelID.Mountain_Dungeon)
             {
                 Functions_Dungeon.BuildDungeon_Mountain();
@@ -275,6 +279,8 @@ namespace DungeonRun
             {
                 Functions_Dungeon.BuildDungeon_Swamp();
             }
+            */
+
 
             #endregion
 
@@ -375,8 +381,22 @@ namespace DungeonRun
         static void Poke(Direction Dir, Room Parent, Room Child)
         {   
             //no room can connect/build a south door to exit
-            if (Parent.roomID == RoomID.Exit && Dir == Direction.Down) { return; }
-            if (Child.roomID == RoomID.Exit && Dir == Direction.Up) { return; }
+            if (
+                (
+                    Parent.roomID == RoomID.DEV_Exit ||
+                    Parent.roomID == RoomID.ForestIsland_ExitRoom
+                )
+                & 
+                Dir == Direction.Down
+                ) { return; }
+            if (
+                (
+                    Child.roomID == RoomID.DEV_Exit ||
+                    Parent.roomID == RoomID.ForestIsland_ExitRoom
+                )
+                & 
+                Dir == Direction.Up
+                ) { return; }
 
             List<Point> doorPos = new List<Point>(); //a list of possible door positions
 
@@ -459,14 +479,15 @@ namespace DungeonRun
             //randomly convert some open doors to bombable doors
             if (Functions_Random.Int(0, 101) > 70) { door.type = DoorType.Bombable; }
             //convert doors based on parent and child room types
-            if (Parent.roomID == RoomID.ForestIsland_BossRoom ||
-                Parent.roomID == RoomID.DeathMountain_BossRoom ||
-                Parent.roomID == RoomID.SwampIsland_BossRoom)
+            if (
+                Parent.roomID == RoomID.DEV_Boss ||
+                Parent.roomID == RoomID.ForestIsland_BossRoom
+                )
             { door.type = DoorType.Boss; }
             else if (
-                Child.roomID == RoomID.ForestIsland_BossRoom ||
-                Child.roomID == RoomID.DeathMountain_BossRoom ||
-                Child.roomID == RoomID.SwampIsland_BossRoom)
+                Child.roomID == RoomID.DEV_Boss ||
+                Child.roomID == RoomID.ForestIsland_BossRoom
+                )
             { door.type = DoorType.Boss; }
 
             if (Parent.roomID == RoomID.Secret) { door.type = DoorType.Bombable; }
@@ -476,13 +497,22 @@ namespace DungeonRun
             LevelSet.currentLevel.doors.Add(door);
         }
 
-        public static RoomID GetRandomRoomType()
+
+
+
+
+        public static RoomID GetRandomRoomType_Forest()
         {   //return a column, row, or square RoomType
             int random = Functions_Random.Int(0, 3);
-            if (random == 0) { return RoomID.Column; }
-            else if (random == 1) { return RoomID.Row; }
-            else { return RoomID.Square; }
+            if (random == 0) { return RoomID.ForestIsland_ColumnRoom; }
+            else if (random == 1) { return RoomID.ForestIsland_RowRoom; }
+            else { return RoomID.ForestIsland_SquareRoom; }
         }
+
+
+
+
+
 
         public static Boolean AddRoom(Room Parent, Room Child, int Attempts, Boolean ignoreSouth)
         {
@@ -542,15 +572,24 @@ namespace DungeonRun
             int coreRoomCount = LevelSet.currentLevel.rooms.Count;
             for (int i = 0; i < coreRoomCount; i++)
             {
-                if (LevelSet.currentLevel.rooms[i].roomID == RoomID.Exit) { }
-                else if (LevelSet.currentLevel.rooms[i].roomID == RoomID.ForestIsland_BossRoom ||
-                    LevelSet.currentLevel.rooms[i].roomID == RoomID.DeathMountain_BossRoom ||
-                    LevelSet.currentLevel.rooms[i].roomID == RoomID.SwampIsland_BossRoom)
+                if (
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.DEV_Exit ||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.ForestIsland_ExitRoom
+                    )
+                { } //do nothing
+                else if (
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.DEV_Boss ||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.ForestIsland_BossRoom
+                    )
                 { } //only one entrance to boss rooms
-                else if (LevelSet.currentLevel.rooms[i].roomID == RoomID.Key) { }
+                else if (
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.DEV_Key ||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.ForestIsland_KeyRoom
+                    )
+                { }
                 else
                 {
-                    Room room = new Room(new Point(0, 0), GetRandomRoomType());
+                    Room room = new Room(new Point(0, 0), GetRandomRoomType_Forest());
                     AddRoom(LevelSet.currentLevel.rooms[i], room, 10, false);
                 }
             }
@@ -561,16 +600,24 @@ namespace DungeonRun
             int coreRoomCount = LevelSet.currentLevel.rooms.Count;
             for (int i = 0; i < coreRoomCount; i++)
             {
-                if (LevelSet.currentLevel.rooms[i].roomID == RoomID.Exit) { }
-                else if (LevelSet.currentLevel.rooms[i].roomID == RoomID.ForestIsland_BossRoom ||
-                    LevelSet.currentLevel.rooms[i].roomID == RoomID.DeathMountain_BossRoom ||
-                    LevelSet.currentLevel.rooms[i].roomID == RoomID.SwampIsland_BossRoom)
+                if (
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.DEV_Exit ||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.ForestIsland_ExitRoom
+                    )
                 { }
-                else if (LevelSet.currentLevel.rooms[i].roomID == RoomID.Secret) { }
-                else if (LevelSet.currentLevel.rooms[i].roomID == RoomID.ForestIsland_HubRoom ||
-                    LevelSet.currentLevel.rooms[i].roomID == RoomID.DeathMountain_HubRoom ||
-                    LevelSet.currentLevel.rooms[i].roomID == RoomID.SwampIsland_HubRoom)
+                else if (
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.DEV_Boss ||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.ForestIsland_BossRoom
+                    )
                 { }
+                
+                else if (
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.DEV_Hub ||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.ForestIsland_HubRoom
+                    )
+                { }
+                else if (LevelSet.currentLevel.rooms[i].roomID == RoomID.Secret)
+                { } //why? because secret rooms would build to nowhere, and we want them to connect existing rooms
                 else
                 {
                     Room room = new Room(new Point(0, 0), RoomID.Secret);

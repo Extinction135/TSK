@@ -468,6 +468,7 @@ namespace DungeonRun
                 ScreenManager.AddScreen(Screens.Dialog);
                 SetFieldSpawnPos(Obj);
             }
+            /*
             else if (Obj.type == IndestructibleType.MountainDungeon_Entrance)
             {   //give player choice to enter
                 Screens.Dialog.SetDialog(AssetsDialog.Enter_MountainDungeon);
@@ -480,6 +481,7 @@ namespace DungeonRun
                 ScreenManager.AddScreen(Screens.Dialog);
                 SetFieldSpawnPos(Obj);
             }
+            */
 
             else if (Obj.type == IndestructibleType.Coliseum_Shadow_Entrance)
             {   //give player choice to enter
@@ -675,7 +677,10 @@ namespace DungeonRun
 
             else if (Obj.type == InteractiveType.Signpost)
             {
-                if (LevelSet.currentLevel.currentRoom.roomID == RoomID.Exit)
+                if (
+                    LevelSet.currentLevel.currentRoom.roomID == RoomID.DEV_Exit ||
+                    LevelSet.currentLevel.currentRoom.roomID == RoomID.ForestIsland_ExitRoom
+                    )
                 {
                     //setup signpost title
                     AssetsDialog.Signpost_ExitRoom[0].title = "...";
@@ -913,10 +918,10 @@ namespace DungeonRun
             {   //clear any dungeon data upon exit
                 if (LevelSet.dungeon.ID == LevelID.Forest_Dungeon)
                 { PlayerData.ForestRecord.Clear(); }
-                else if (LevelSet.dungeon.ID == LevelID.Mountain_Dungeon)
-                { PlayerData.MountainRecord.Clear(); }
-                else if (LevelSet.dungeon.ID == LevelID.Swamp_Dungeon)
-                { PlayerData.SwampRecord.Clear(); }
+                //else if (LevelSet.dungeon.ID == LevelID.Mountain_Dungeon)
+                //{ PlayerData.MountainRecord.Clear(); }
+                //else if (LevelSet.dungeon.ID == LevelID.Swamp_Dungeon)
+                //{ PlayerData.SwampRecord.Clear(); }
 
                 Assets.Play(Assets.sfxDoorOpen);
                 //return hero to last field level
@@ -1140,34 +1145,15 @@ namespace DungeonRun
             }
 
             //dungeon signposts
-            else if (LevelSet.currentLevel.currentRoom.roomID == RoomID.Exit)
+            else if (
+                LevelSet.currentLevel.currentRoom.roomID == RoomID.DEV_Exit ||
+                LevelSet.currentLevel.currentRoom.roomID == RoomID.ForestIsland_ExitRoom
+                )
             {
                 Screens.Dialog.SetDialog(AssetsDialog.Signpost_ExitRoom);
                 ScreenManager.AddScreen(Screens.Dialog);
             }
-
-            //hack for 0.77 - secret vendor exists in column room, find him, set signpost dialog
-            else if (LevelSet.currentLevel.currentRoom.roomID == RoomID.Column)
-            {
-                //default dialog
-                Screens.Dialog.SetDialog(AssetsDialog.Signpost_Standard);
-
-                //loop over all roomObjs to find secret vendor obj
-                for (i = 0; i < Pool.intObjCount; i++)
-                {
-                    if (Pool.intObjPool[i].active)
-                    {
-                        if (Pool.intObjPool[i].type == InteractiveType.Vendor_EnemyItems)
-                        {   //set the secret vendor dialog
-                            Screens.Dialog.SetDialog(AssetsDialog.Signpost_SecretVendor);
-                        }
-                    }
-                }
-
-                //either add default dialog or secret vendor dialog
-                ScreenManager.AddScreen(Screens.Dialog);
-            }
-
+            
             //editor dialogs
             else if (LevelSet.currentLevel.currentRoom.roomID == RoomID.DEV_Field)
             {

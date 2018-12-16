@@ -4,10 +4,10 @@ namespace DungeonRun
 {
 	public static class LevelData_ThievesHideout
 	{
-		//levels specific to this island
+		//levelData specific to this island
 		public static RoomXmlData ThievesDen_GateEntrance = new RoomXmlData();
 
-		//level data
+		//data is added here
 		static LevelData_ThievesHideout()
 		{
 

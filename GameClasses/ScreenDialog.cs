@@ -111,6 +111,7 @@ namespace DungeonRun
                             ExitDialog(); Assets.Play(Assets.sfxEnterDungeon);
                         }
 
+                        /*
                         else if (dialogs == AssetsDialog.Enter_MountainDungeon)
                         {
                             LevelSet.dungeon.ID = LevelID.Mountain_Dungeon;
@@ -122,6 +123,8 @@ namespace DungeonRun
                             LevelSet.dungeon.ID = LevelID.Swamp_Dungeon;
                             ExitDialog(); Assets.Play(Assets.sfxEnterDungeon);
                         }
+                        */
+
 
                         #endregion
 

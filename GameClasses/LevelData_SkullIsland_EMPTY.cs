@@ -17,6 +17,7 @@ namespace DungeonRun
 			#region SkullIsland_Colliseum
 
 			SkullIsland_Colliseum.type = RoomID.SkullIsland_Colliseum;
+
 			#endregion
 
 
