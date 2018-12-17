@@ -68,46 +68,48 @@ Today:
 
 
 
-Progress++
-
-we can remove alot of stuff from the common objs sheet:
-all tooth in water sprites, all coliseum walls. done.
-
-we need to add big shadow cover back into game.
-is this an ind or an int? i think it's an ind.
-added back in as an ind, tested and working.
-
-improved skull island coliseum level data.
-
-cleared all int objs from forest, swamp, lava,
-cloud, theives dun, and shadow int widgets.
-
-
-
-
-
-
-
-
-
-
 Editor++
 
-put lava objects in the lava int objs widget. huh.
+put lava objects in the lava int objs widget. huh. done.
 
-lava, bridge, pit teeth top + bottom.
-
+stains should not be available in dungeon objs widget.
+they cannot be saved, so we should not be able to decorate
+with them. it's pointless. done.
 
 put boat barrels into world/end objs int widget, bottom row slot 1.
-next, put world barrel. then pot. then skull pot (dungeon pot).
+next, put world barrel. then pot. then skull pot (dungeon pot). done.
 
-
-move fairy into NPC objects section.
+move fairy to last row -1. left of blood stain.
 seperate unique dungeon objs from common dungeon
-objs in the dungeon objs widget.
+objs in the dungeon objs widget. this is the start
+of that seperation. done.
 
 floor torches go above stains in dungeon objs sheet.
-these are common objs. unique objs go up top.
+these are common objs. unique objs go up top. done.
+
+drastically improved the mountain wall sprite.
+tested, looking great actually.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+move batcave entrance in common objs sheet.
+update it's animFrames. in fact, we can better
+pack footholds, caves, etc.. because we aren't
+even using the gray caves below.
 
 
 
@@ -129,6 +131,21 @@ make larger lava objects/sprites too - we will be
 filling levels up with lava soon. lava should damage
 hero for 1 heart and respawn him back at last point (it
 already does this, but lava 2x2 will need to as well).
+
+we also need to migrate the lava bubble to the entities
+sheet, and make it more apparent. possibly spawn more
+lava bubbles as well, since we have decided upon this
+object representing lava.
+
+
+
+
+
+
+
+
+
+
 
 
 
