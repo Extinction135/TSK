@@ -17,7 +17,7 @@ namespace DungeonRun
     public static class Flags
     {   
         // **********************************************************************************************************
-        public static Boolean Release = true; //puts game in release mode, overwrites other flags
+        public static Boolean Release = false; //puts game in release mode, overwrites other flags
         //VERY IMPORTANT NOTE: Release requires populated roomData classes to be linked to current project
         // **********************************************************************************************************
         public static float Version = 0.79f; //the version of the game

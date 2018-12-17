@@ -65,61 +65,127 @@ Today:
 
 
 
+Level Presentation Ideas
 
+themeing levels using objects + massive sprites.
+these are ints and inds, plus a sprite component.
+this sprite component sits along the TOP of the level,
+sitting above the middle of the level, so it presents
+nicely to the player. it is the width of the level, plus
+16*2 pixels. since this will become square in the process,
+we should go ahead and make this square in photoshop.
+this allows us to also have custom sprites that look
+like objects south of the entrance. at this point, we're
+basically painting the entrance and it's custom surrounding
+objects, then layering on inds to complete the hitboxes,
+then adding more inds and int objects that the player can
+interact with to complete the level.
 
+where do we store the massive sprite? level screen? pool?
+what is this big sprite called? 
 
-Editor++
+PresentationSprite
 
-put lava objects in the lava int objs widget. huh. done.
+this is the big sprite's name, as it also describes it's
+purpose. it's meant to present the level, whatever it may
+be, in a grand and breath-taking 1995 nintendo style way.
+but just a little bit further than that, because they were
+working with hardware limitations and time constraints,
+whereas i don't have either of those.
 
-stains should not be available in dungeon objs widget.
-they cannot be saved, so we should not be able to decorate
-with them. it's pointless. done.
+screenshotted field level width to a photoshop file,
+cropped and setup file for creating presentation sprite.
+this is a 1300x400 sprite. this allows for about half of the
+level to be custom hand-painted pixel art, with additional
+objects layered on top (with a system designed to handle
+an entire levels worth of interactive objects). so, things
+are looking good....
 
-put boat barrels into world/end objs int widget, bottom row slot 1.
-next, put world barrel. then pot. then skull pot (dungeon pot). done.
-
-move fairy to last row -1. left of blood stain.
-seperate unique dungeon objs from common dungeon
-objs in the dungeon objs widget. this is the start
-of that seperation. done.
-
-floor torches go above stains in dungeon objs sheet.
-these are common objs. unique objs go up top. done.
-
-drastically improved the mountain wall sprite.
-tested, looking great actually.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-move batcave entrance in common objs sheet.
-update it's animFrames. in fact, we can better
-pack footholds, caves, etc.. because we aren't
-even using the gray caves below.
-
-
-
-
+where does this sprite go? this is a single sprite
+component, always placed at the same position on a level.
+i think it should be part of level, that way we dont
+expand room data. the sprite can change based on the 
+field id. we would never draw the sprite or use it in
+a dungeon room, for now (unless we resize boss rooms
+to be very wide and then use the sprite to add even more
+flavor to the battle). which, we could do that. sure.
+note of this idea added to ideas.
 
 
 
 
 
-PitTeeth++
+
+
+
+
+
+
+
+Presentation Sprite v1
+
+handled by level, this is a 1300x400 texture that sits at
+the same location in every room. for dungeeons, this
+presentation sprite is only drawn in the hub and boss rooms.
+for field levels, this presentation sprite is drawn for every
+level. it's not always needed, but it can be used.
+
+we will use a reference that points to a texture instance,
+based on room.id, when the room is built. we need 1 sprite
+component in level screen that draws before the ind objs.
+when the level builds, we will swap it's texture based on
+the roomID we're using the build the room. this works for
+fields and dungeon rooms, like hub and boss rooms.
+
+
+
+
+
+
+
+
+
+
+
+
+Caves++
+
+batcave doesnt lead to the cave dungeon anymore.
+cave dungeon uses the big shadow sprite like other
+dungeon entrances do. we need to create an obj for batcave,
+copy it's values there, then update cave entrance obj
+to just be the 3x4 shadow sprite. this is because the
+mountain dungeon climb will be up into a massive sprite
+with ind objs defining it's hitbox.
+
+instead the batcave is not interact-able right now, and
+is just decoration like the other caves we have already.
+
+move footholds next to their ladder counterparts.
+
+how do we use these 2x2 caves? bare and covered objs.
+we also have 1x1 cave and bombale cave objs we need
+to define and add to the mountain int objs widget.
+an explosion should interact with bombable mountain
+wall obj to become cave 1x1 obj. where does this 1x1
+cave obj lead to? this depends on the current field level
+that hero is on. so, we can only have one 1x1 cave
+per field level. this will likely be the same case
+with bare cave, and covered cave too. but for now,
+all caves are just decoration.
+
+
+
+
+
+
+
+
+
+
+
+
+Lava & PitTeeth++
 
 pit teeth should be part of common objs sheet.
 pit teeth should sort to be gray/dark red.
@@ -137,6 +203,39 @@ sheet, and make it more apparent. possibly spawn more
 lava bubbles as well, since we have decided upon this
 object representing lava.
 
+lava flows! these are conveyor belts + lava objs, 
+conceptually. they are animated like conveyor belts,
+are common objs, and give lava a unique ability: the
+ability to move objects that it can't burn. this would
+include large black platform rocks.
+
+when link interaction checks with these lava pits and
+flows, they want to put him into a hitstate and pull him
+in. this may not be the right way to model this, because
+we want to be able to overlap these lava objs with the
+dark rock platforms, so link can remain standing 'on top'
+of the dark rock. we also want link to move with the
+dark rock, centered to it, but still able to easily walk
+away - so we need to only center if the hero's input
+is none (no direcitonal input), otherwise we dont process
+the pull/centering routine for the dark platform obj.
+*if a dark platform obj overlaps a lava pit obj, then we
+need to capture and model this somehow in code. we can
+make the lava obj inactive, or prevent a hit state on the
+hero - but both are bad solutions. we want the lava to process
+first, then the platforms. or we want the lava to not process 
+when the platforms are overlapping, but we need to
+do this before the actor checks are done against the int objs.
+so it's a tricky sequence to get right.. likely need to model
+this some other way - using a boolean like onPlatform
+that we can set false each frame, then set true if hero is on
+a platform, prior to any interaction checks. then the lava
+objs could ignore any pulling if the onPlatform boolean was
+true. we would set this true when the actor collided with
+the platform, and pulled to the center. we would check the
+platforms per actor, prior to checking the int objs. do
+they go on their own list because of this? that increases
+complexity, but fits into the design well.
 
 
 
@@ -146,6 +245,22 @@ object representing lava.
 
 
 
+
+
+
+Clouds
+
+these are small, med, large objs (like water) that
+are "fluffy", gently push/bounce player like bumper does,
+and create unique zDepth stacking (because they have height).
+these cloud objs form the blocking int cloud objs.
+
+ind cloud objs are large decorations that only block,
+and would always be surrounded by smaller bouncy int clouds.
+together, these describe a cloud field, which should look like 
+link is ontop of large clouds, walking around. we will need
+a large floor cloud sprite/obj to make this visual appearance
+display with the correct perspective.
 
 
 

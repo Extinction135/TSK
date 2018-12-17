@@ -1,6 +1,19 @@
 
 
 
+
+resize boss rooms to be very wide and then use the 
+presentation sprite to add even more flavor to the battles.
+this is just adding some ind objs to fill out the custom
+sprite's hitbox.
+
+
+
+
+
+
+
+
 Dungeon Floors
 
 dungeons should have 3 room lists, one for basement, ground,
