@@ -465,13 +465,24 @@ namespace DungeonRun
                 IndObj.compSprite.zOffset = +16 * 3 - 2;
             }
 
-
-
-
-
-
-
             #endregion
+
+
+
+
+
+
+
+            //big shadow extension
+            else if (Type == IndestructibleType.Wor_ShadowEntrance_Extension)
+            {
+                IndObj.compSprite.drawRec.Width = 16 * 3; //nonstandard size
+                IndObj.compSprite.drawRec.Height = 16 * 4; //nonstandard size
+                IndObj.compAnim.currentAnimation = AnimationFrames.Wor_Shadow_Big;
+                IndObj.compCollision.rec.Width = 16 * 3; IndObj.compCollision.offsetX = -8;
+                IndObj.compCollision.rec.Height = 16 * 4; IndObj.compCollision.offsetY = -8;
+                IndObj.compSprite.zOffset = +16 * 3 - 2;
+            }
 
 
 

@@ -124,33 +124,33 @@ namespace DungeonRun
             for (i = 0; i < 4 * 12; i++) { objList.Add(new InteractiveObject()); }
 
             //row 1
-            Functions_InteractiveObjs.SetType(objList[0], InteractiveType.MountainWall_Top);
-            Functions_InteractiveObjs.SetType(objList[1], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[2], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[3], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[0], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[1], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[2], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[3], InteractiveType.Unknown);
 
             //row 2
-            Functions_InteractiveObjs.SetType(objList[4], InteractiveType.MountainWall_Mid);
-            Functions_InteractiveObjs.SetType(objList[5], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[6], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[7], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[4], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[5], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[6], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[7], InteractiveType.Unknown);
 
             //row 3
-            Functions_InteractiveObjs.SetType(objList[8], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[9], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[10], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[11], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[8], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[9], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[10], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[11], InteractiveType.Unknown);
 
             //row 4
-            Functions_InteractiveObjs.SetType(objList[12], InteractiveType.MountainWall_Bottom);
-            Functions_InteractiveObjs.SetType(objList[13], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[14], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[15], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[12], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[13], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[14], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[15], InteractiveType.Unknown);
 
             //row 5
-            Functions_InteractiveObjs.SetType(objList[16], InteractiveType.MountainWall_Foothold);
-            Functions_InteractiveObjs.SetType(objList[17], InteractiveType.MountainWall_Ladder);
-            Functions_InteractiveObjs.SetType(objList[18], InteractiveType.MountainWall_Ladder_Trap);
+            Functions_InteractiveObjs.SetType(objList[16], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[17], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[18], InteractiveType.Unknown);
             Functions_InteractiveObjs.SetType(objList[19], InteractiveType.Unknown);
 
             //row 6
@@ -198,22 +198,7 @@ namespace DungeonRun
             //position the objs relative to the window frame
             Functions_WidgetIntObjs.PositionObjs(this);
 
-            Functions_WidgetIntObjs.HideObj(objList[1]);
-            Functions_WidgetIntObjs.HideObj(objList[2]);
-            Functions_WidgetIntObjs.HideObj(objList[3]);
-
-            Functions_WidgetIntObjs.HideObj(objList[5]);
-            Functions_WidgetIntObjs.HideObj(objList[6]);
-            Functions_WidgetIntObjs.HideObj(objList[7]);
-
-            Functions_WidgetIntObjs.HideObj(objList[8]);
-            Functions_WidgetIntObjs.HideObj(objList[9]);
-            Functions_WidgetIntObjs.HideObj(objList[10]);
-            Functions_WidgetIntObjs.HideObj(objList[11]);
-
-            Functions_WidgetIntObjs.HideObj(objList[13]);
-            Functions_WidgetIntObjs.HideObj(objList[14]);
-            Functions_WidgetIntObjs.HideObj(objList[15]);
+            //Functions_WidgetIntObjs.HideObj(objList[1]);
 
             //reset update all zdepths
             for (i = 0; i < 4 * 12; i++)
@@ -352,33 +337,33 @@ namespace DungeonRun
             for (i = 0; i < 4 * 12; i++) { objList.Add(new InteractiveObject()); }
 
             //row 1
-            Functions_InteractiveObjs.SetType(objList[0], InteractiveType.MountainWall_Top);
-            Functions_InteractiveObjs.SetType(objList[1], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[2], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[3], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[0], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[1], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[2], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[3], InteractiveType.Unknown);
 
             //row 2
-            Functions_InteractiveObjs.SetType(objList[4], InteractiveType.MountainWall_Mid);
-            Functions_InteractiveObjs.SetType(objList[5], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[6], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[7], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[4], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[5], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[6], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[7], InteractiveType.Unknown);
 
             //row 3
-            Functions_InteractiveObjs.SetType(objList[8], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[9], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[10], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[11], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[8], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[9], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[10], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[11], InteractiveType.Unknown);
 
             //row 4
-            Functions_InteractiveObjs.SetType(objList[12], InteractiveType.MountainWall_Bottom);
-            Functions_InteractiveObjs.SetType(objList[13], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[14], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[15], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[12], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[13], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[14], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[15], InteractiveType.Unknown);
 
             //row 5
-            Functions_InteractiveObjs.SetType(objList[16], InteractiveType.MountainWall_Foothold);
-            Functions_InteractiveObjs.SetType(objList[17], InteractiveType.MountainWall_Ladder);
-            Functions_InteractiveObjs.SetType(objList[18], InteractiveType.MountainWall_Ladder_Trap);
+            Functions_InteractiveObjs.SetType(objList[16], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[17], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[18], InteractiveType.Unknown);
             Functions_InteractiveObjs.SetType(objList[19], InteractiveType.Unknown);
 
             //row 6
@@ -426,22 +411,7 @@ namespace DungeonRun
             //position the objs relative to the window frame
             Functions_WidgetIntObjs.PositionObjs(this);
 
-            Functions_WidgetIntObjs.HideObj(objList[1]);
-            Functions_WidgetIntObjs.HideObj(objList[2]);
-            Functions_WidgetIntObjs.HideObj(objList[3]);
-
-            Functions_WidgetIntObjs.HideObj(objList[5]);
-            Functions_WidgetIntObjs.HideObj(objList[6]);
-            Functions_WidgetIntObjs.HideObj(objList[7]);
-
-            Functions_WidgetIntObjs.HideObj(objList[8]);
-            Functions_WidgetIntObjs.HideObj(objList[9]);
-            Functions_WidgetIntObjs.HideObj(objList[10]);
-            Functions_WidgetIntObjs.HideObj(objList[11]);
-
-            Functions_WidgetIntObjs.HideObj(objList[13]);
-            Functions_WidgetIntObjs.HideObj(objList[14]);
-            Functions_WidgetIntObjs.HideObj(objList[15]);
+            //Functions_WidgetIntObjs.HideObj(objList[1]);
 
             //reset update all zdepths
             for (i = 0; i < 4 * 12; i++)
@@ -466,33 +436,33 @@ namespace DungeonRun
             for (i = 0; i < 4 * 12; i++) { objList.Add(new InteractiveObject()); }
 
             //row 1
-            Functions_InteractiveObjs.SetType(objList[0], InteractiveType.MountainWall_Top);
-            Functions_InteractiveObjs.SetType(objList[1], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[2], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[3], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[0], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[1], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[2], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[3], InteractiveType.Unknown);
 
             //row 2
-            Functions_InteractiveObjs.SetType(objList[4], InteractiveType.MountainWall_Mid);
-            Functions_InteractiveObjs.SetType(objList[5], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[6], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[7], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[4], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[5], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[6], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[7], InteractiveType.Unknown);
 
             //row 3
-            Functions_InteractiveObjs.SetType(objList[8], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[9], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[10], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[11], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[8], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[9], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[10], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[11], InteractiveType.Unknown);
 
             //row 4
-            Functions_InteractiveObjs.SetType(objList[12], InteractiveType.MountainWall_Bottom);
-            Functions_InteractiveObjs.SetType(objList[13], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[14], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[15], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[12], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[13], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[14], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[15], InteractiveType.Unknown);
 
             //row 5
-            Functions_InteractiveObjs.SetType(objList[16], InteractiveType.MountainWall_Foothold);
-            Functions_InteractiveObjs.SetType(objList[17], InteractiveType.MountainWall_Ladder);
-            Functions_InteractiveObjs.SetType(objList[18], InteractiveType.MountainWall_Ladder_Trap);
+            Functions_InteractiveObjs.SetType(objList[16], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[17], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[18], InteractiveType.Unknown);
             Functions_InteractiveObjs.SetType(objList[19], InteractiveType.Unknown);
 
             //row 6
@@ -540,22 +510,7 @@ namespace DungeonRun
             //position the objs relative to the window frame
             Functions_WidgetIntObjs.PositionObjs(this);
 
-            Functions_WidgetIntObjs.HideObj(objList[1]);
-            Functions_WidgetIntObjs.HideObj(objList[2]);
-            Functions_WidgetIntObjs.HideObj(objList[3]);
-
-            Functions_WidgetIntObjs.HideObj(objList[5]);
-            Functions_WidgetIntObjs.HideObj(objList[6]);
-            Functions_WidgetIntObjs.HideObj(objList[7]);
-
-            Functions_WidgetIntObjs.HideObj(objList[8]);
-            Functions_WidgetIntObjs.HideObj(objList[9]);
-            Functions_WidgetIntObjs.HideObj(objList[10]);
-            Functions_WidgetIntObjs.HideObj(objList[11]);
-
-            Functions_WidgetIntObjs.HideObj(objList[13]);
-            Functions_WidgetIntObjs.HideObj(objList[14]);
-            Functions_WidgetIntObjs.HideObj(objList[15]);
+            //Functions_WidgetIntObjs.HideObj(objList[1]);
 
             //reset update all zdepths
             for (i = 0; i < 4 * 12; i++)
@@ -580,33 +535,33 @@ namespace DungeonRun
             for (i = 0; i < 4 * 12; i++) { objList.Add(new InteractiveObject()); }
 
             //row 1
-            Functions_InteractiveObjs.SetType(objList[0], InteractiveType.MountainWall_Top);
-            Functions_InteractiveObjs.SetType(objList[1], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[2], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[3], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[0], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[1], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[2], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[3], InteractiveType.Unknown);
 
             //row 2
-            Functions_InteractiveObjs.SetType(objList[4], InteractiveType.MountainWall_Mid);
-            Functions_InteractiveObjs.SetType(objList[5], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[6], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[7], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[4], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[5], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[6], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[7], InteractiveType.Unknown);
 
             //row 3
-            Functions_InteractiveObjs.SetType(objList[8], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[9], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[10], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[11], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[8], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[9], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[10], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[11], InteractiveType.Unknown);
 
             //row 4
-            Functions_InteractiveObjs.SetType(objList[12], InteractiveType.MountainWall_Bottom);
-            Functions_InteractiveObjs.SetType(objList[13], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[14], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[15], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[12], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[13], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[14], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[15], InteractiveType.Unknown);
 
             //row 5
-            Functions_InteractiveObjs.SetType(objList[16], InteractiveType.MountainWall_Foothold);
-            Functions_InteractiveObjs.SetType(objList[17], InteractiveType.MountainWall_Ladder);
-            Functions_InteractiveObjs.SetType(objList[18], InteractiveType.MountainWall_Ladder_Trap);
+            Functions_InteractiveObjs.SetType(objList[16], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[17], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[18], InteractiveType.Unknown);
             Functions_InteractiveObjs.SetType(objList[19], InteractiveType.Unknown);
 
             //row 6
@@ -654,22 +609,7 @@ namespace DungeonRun
             //position the objs relative to the window frame
             Functions_WidgetIntObjs.PositionObjs(this);
 
-            Functions_WidgetIntObjs.HideObj(objList[1]);
-            Functions_WidgetIntObjs.HideObj(objList[2]);
-            Functions_WidgetIntObjs.HideObj(objList[3]);
-
-            Functions_WidgetIntObjs.HideObj(objList[5]);
-            Functions_WidgetIntObjs.HideObj(objList[6]);
-            Functions_WidgetIntObjs.HideObj(objList[7]);
-
-            Functions_WidgetIntObjs.HideObj(objList[8]);
-            Functions_WidgetIntObjs.HideObj(objList[9]);
-            Functions_WidgetIntObjs.HideObj(objList[10]);
-            Functions_WidgetIntObjs.HideObj(objList[11]);
-
-            Functions_WidgetIntObjs.HideObj(objList[13]);
-            Functions_WidgetIntObjs.HideObj(objList[14]);
-            Functions_WidgetIntObjs.HideObj(objList[15]);
+            //Functions_WidgetIntObjs.HideObj(objList[1]);
 
             //reset update all zdepths
             for (i = 0; i < 4 * 12; i++)
@@ -694,33 +634,33 @@ namespace DungeonRun
             for (i = 0; i < 4 * 12; i++) { objList.Add(new InteractiveObject()); }
 
             //row 1
-            Functions_InteractiveObjs.SetType(objList[0], InteractiveType.MountainWall_Top);
-            Functions_InteractiveObjs.SetType(objList[1], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[2], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[3], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[0], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[1], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[2], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[3], InteractiveType.Unknown);
 
             //row 2
-            Functions_InteractiveObjs.SetType(objList[4], InteractiveType.MountainWall_Mid);
-            Functions_InteractiveObjs.SetType(objList[5], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[6], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[7], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[4], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[5], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[6], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[7], InteractiveType.Unknown);
 
             //row 3
-            Functions_InteractiveObjs.SetType(objList[8], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[9], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[10], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[11], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[8], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[9], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[10], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[11], InteractiveType.Unknown);
 
             //row 4
-            Functions_InteractiveObjs.SetType(objList[12], InteractiveType.MountainWall_Bottom);
-            Functions_InteractiveObjs.SetType(objList[13], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[14], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[15], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[12], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[13], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[14], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[15], InteractiveType.Unknown);
 
             //row 5
-            Functions_InteractiveObjs.SetType(objList[16], InteractiveType.MountainWall_Foothold);
-            Functions_InteractiveObjs.SetType(objList[17], InteractiveType.MountainWall_Ladder);
-            Functions_InteractiveObjs.SetType(objList[18], InteractiveType.MountainWall_Ladder_Trap);
+            Functions_InteractiveObjs.SetType(objList[16], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[17], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[18], InteractiveType.Unknown);
             Functions_InteractiveObjs.SetType(objList[19], InteractiveType.Unknown);
 
             //row 6
@@ -768,22 +708,8 @@ namespace DungeonRun
             //position the objs relative to the window frame
             Functions_WidgetIntObjs.PositionObjs(this);
 
-            Functions_WidgetIntObjs.HideObj(objList[1]);
-            Functions_WidgetIntObjs.HideObj(objList[2]);
-            Functions_WidgetIntObjs.HideObj(objList[3]);
-
-            Functions_WidgetIntObjs.HideObj(objList[5]);
-            Functions_WidgetIntObjs.HideObj(objList[6]);
-            Functions_WidgetIntObjs.HideObj(objList[7]);
-
-            Functions_WidgetIntObjs.HideObj(objList[8]);
-            Functions_WidgetIntObjs.HideObj(objList[9]);
-            Functions_WidgetIntObjs.HideObj(objList[10]);
-            Functions_WidgetIntObjs.HideObj(objList[11]);
-
-            Functions_WidgetIntObjs.HideObj(objList[13]);
-            Functions_WidgetIntObjs.HideObj(objList[14]);
-            Functions_WidgetIntObjs.HideObj(objList[15]);
+            //Functions_WidgetIntObjs.HideObj(objList[1]);
+            
 
             //reset update all zdepths
             for (i = 0; i < 4 * 12; i++)
@@ -808,33 +734,33 @@ namespace DungeonRun
             for (i = 0; i < 4 * 12; i++) { objList.Add(new InteractiveObject()); }
 
             //row 1
-            Functions_InteractiveObjs.SetType(objList[0], InteractiveType.MountainWall_Top);
-            Functions_InteractiveObjs.SetType(objList[1], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[2], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[3], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[0], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[1], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[2], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[3], InteractiveType.Unknown);
 
             //row 2
-            Functions_InteractiveObjs.SetType(objList[4], InteractiveType.MountainWall_Mid);
-            Functions_InteractiveObjs.SetType(objList[5], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[6], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[7], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[4], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[5], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[6], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[7], InteractiveType.Unknown);
 
             //row 3
-            Functions_InteractiveObjs.SetType(objList[8], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[9], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[10], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[11], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[8], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[9], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[10], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[11], InteractiveType.Unknown);
 
             //row 4
-            Functions_InteractiveObjs.SetType(objList[12], InteractiveType.MountainWall_Bottom);
-            Functions_InteractiveObjs.SetType(objList[13], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[14], InteractiveType.Unknown);//
-            Functions_InteractiveObjs.SetType(objList[15], InteractiveType.Unknown);//
+            Functions_InteractiveObjs.SetType(objList[12], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[13], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[14], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[15], InteractiveType.Unknown);
 
             //row 5
-            Functions_InteractiveObjs.SetType(objList[16], InteractiveType.MountainWall_Foothold);
-            Functions_InteractiveObjs.SetType(objList[17], InteractiveType.MountainWall_Ladder);
-            Functions_InteractiveObjs.SetType(objList[18], InteractiveType.MountainWall_Ladder_Trap);
+            Functions_InteractiveObjs.SetType(objList[16], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[17], InteractiveType.Unknown);
+            Functions_InteractiveObjs.SetType(objList[18], InteractiveType.Unknown);
             Functions_InteractiveObjs.SetType(objList[19], InteractiveType.Unknown);
 
             //row 6
@@ -882,22 +808,8 @@ namespace DungeonRun
             //position the objs relative to the window frame
             Functions_WidgetIntObjs.PositionObjs(this);
 
-            Functions_WidgetIntObjs.HideObj(objList[1]);
-            Functions_WidgetIntObjs.HideObj(objList[2]);
-            Functions_WidgetIntObjs.HideObj(objList[3]);
-
-            Functions_WidgetIntObjs.HideObj(objList[5]);
-            Functions_WidgetIntObjs.HideObj(objList[6]);
-            Functions_WidgetIntObjs.HideObj(objList[7]);
-
-            Functions_WidgetIntObjs.HideObj(objList[8]);
-            Functions_WidgetIntObjs.HideObj(objList[9]);
-            Functions_WidgetIntObjs.HideObj(objList[10]);
-            Functions_WidgetIntObjs.HideObj(objList[11]);
-
-            Functions_WidgetIntObjs.HideObj(objList[13]);
-            Functions_WidgetIntObjs.HideObj(objList[14]);
-            Functions_WidgetIntObjs.HideObj(objList[15]);
+            //Functions_WidgetIntObjs.HideObj(objList[1]);
+            
 
             //reset update all zdepths
             for (i = 0; i < 4 * 12; i++)

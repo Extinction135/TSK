@@ -67,18 +67,68 @@ Today:
 
 
 
-Dungeon Scale Test
 
-copy+paste columns, rows, squares, and keys x10
-for all island sets. this is the minimum scale
-the game should be playtested at, and will include 
-more dungeon roomdata for version 1 release.
+Progress++
 
-what is the size of the uwp vs dX projects?
-how much room data did we just make?
+we can remove alot of stuff from the common objs sheet:
+all tooth in water sprites, all coliseum walls. done.
 
-Dx:17.1K. UWP:74.1K. 
-about 57,000 lines of levelData.
+we need to add big shadow cover back into game.
+is this an ind or an int? i think it's an ind.
+added back in as an ind, tested and working.
+
+improved skull island coliseum level data.
+
+cleared all int objs from forest, swamp, lava,
+cloud, theives dun, and shadow int widgets.
+
+
+
+
+
+
+
+
+
+
+Editor++
+
+put lava objects in the lava int objs widget. huh.
+
+lava, bridge, pit teeth top + bottom.
+
+
+put boat barrels into world/end objs int widget, bottom row slot 1.
+next, put world barrel. then pot. then skull pot (dungeon pot).
+
+
+move fairy into NPC objects section.
+seperate unique dungeon objs from common dungeon
+objs in the dungeon objs widget.
+
+floor torches go above stains in dungeon objs sheet.
+these are common objs. unique objs go up top.
+
+
+
+
+
+
+
+
+
+PitTeeth++
+
+pit teeth should be part of common objs sheet.
+pit teeth should sort to be gray/dark red.
+pit teeth are no longer dungeon objs, remove them
+from dungeon objs sheet.
+
+make left and right pit teeth.
+make larger lava objects/sprites too - we will be
+filling levels up with lava soon. lava should damage
+hero for 1 heart and respawn him back at last point (it
+already does this, but lava 2x2 will need to as well).
 
 
 
@@ -101,6 +151,19 @@ all coliseums.
 all dungeon entrances.
 coliseums go with the island set. not in it's own
 class.
+
+this means we need over world paths to the coliseums.
+this means we need ind widgets dedicated to coliseums.
+this is a 2nd display set for IND objs.
+move boat and all dev widgets to 3rd IND display set.
+we will also need to create a dev0 ind widget, to replace
+the shadow coliseum widget we will be losing.
+all coliseum widgets should follow shadow coliseum's
+format (copy + paste it). including hidden objs, and entrance
+collision rec changes.
+
+
+
 
 
 
@@ -125,6 +188,39 @@ hitbox is based entirely on how the sprite looks.
 for entering these levels, we will stick with the large
 black shadow. it's cool.
 
+we will be using massive sprites for dungeon entrances 
+and coliseums. lots of invs ind objs will complete their
+hitboxes.
+
+
+we need various sized ind objs to do this properly:
+1x1, 2x1, 1x2, 2x2, 4x4.
+
+
+then we design massive sprites for the following:
+forest
+death mountain
+thieves den
+lava
+cloud 
+swamp
+shadow skull
+
+then we make massive sprites for the coliseums:
+forest
+death mountain
+thieves den
+lava
+cloud 
+swamp
+shadow skull
+
+
+
+*need cloud objs
+*need slime objs
+*need more lava objs
+(this is to help theme the island levels better).
 
 
 
@@ -132,44 +228,36 @@ black shadow. it's cool.
 
 
 
-
-
-
-forest island
-
-
-
-
-
-
-
-
-
-
-CREATIVITY++++
-
-
-SkullIsland++
-
-create better level data for skullisland. make sure editor works completely.
-
-coliseum entrance should look right, not contain all dungeon entrances.
-instead we can move those to shadow king level.
-town should be expanded to have a pond, with all NPCs, for testing.
+Coliseums & Towns++
 
 coliseum should have big windows, big skulls, look awesome. custom bricks.
 shadowking should have animated shadow pillars throughout the water.
 the entrance to the shadow dungeon should be animated. there should be fires
 burning in the water around the shadow entrance.
 
-there should be massive skulls around shadow town. we also need ind and int
-skulls that link can interact with or block him. we dont have enough for this
-town. also, the visuals for this town should be redesign on the overworld map
+there should be massive skulls around levels. 
+we also need ind and int skulls that link can interact with or block him. 
+
+the visuals for shadow town should be redesigned on the overworld map
 to have more skulls around and in it. these skulls are made of rock and are brown.
 those skulls are ind objs. the skulls that are white are interactive objs that link
 can pickup and throw and carry. consider making those skull sprites a bit fuller
-in the cellsize, so they fill their frames up better.
+in the cellsize, so they fill their frames up better. this is across all
+dungeon sheets too.
 
+
+
+
+
+
+
+
+
+
+Dungeon Sheets++
+
+*we still need custom dungeon sheets for lava, cloud, thieves den,
+and shadow dungeon. diff sprites, with proper color pallette.
 
 
 
