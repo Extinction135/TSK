@@ -18,23 +18,23 @@ namespace DungeonRun
 
         //called just after a dungeon is built
         public static void UpdateDungeonTexture()
-        {
-            //default dungeon texture to base sheet
+        {   //default dungeon texture to base sheet
             Assets.Dungeon_CurrentSheet = Assets.Dungeon_DefaultSheet;
             //based on the dungeon level loaded, set the dungeon texture
             if (LevelSet.dungeon.ID == LevelID.Forest_Dungeon)
-            {
-                Assets.Dungeon_CurrentSheet = Assets.Dungeon_ForestSheet;
-                //for testing
-                //Assets.Dungeon_CurrentSheet = Assets.Dungeon_MountainSheet;
-                //Assets.Dungeon_CurrentSheet = Assets.Dungeon_SwampSheet;
-            }
-            /*
-            else if (LevelSet.dungeon.ID == LevelID.Mountain_Dungeon)
+            { Assets.Dungeon_CurrentSheet = Assets.Dungeon_ForestSheet; }
+            else if (LevelSet.dungeon.ID == LevelID.DeathMountain_Dungeon)
             { Assets.Dungeon_CurrentSheet = Assets.Dungeon_MountainSheet; }
-            else if (LevelSet.dungeon.ID == LevelID.Swamp_Dungeon)
+            else if (LevelSet.dungeon.ID == LevelID.HauntedSwamp_Dungeon)
             { Assets.Dungeon_CurrentSheet = Assets.Dungeon_SwampSheet; }
-            */
+            else if (LevelSet.dungeon.ID == LevelID.ThievesHideout_Dungeon)
+            { Assets.Dungeon_CurrentSheet = Assets.Dungeon_ThievesSheet; }
+            else if (LevelSet.dungeon.ID == LevelID.Lava_Dungeon)
+            { Assets.Dungeon_CurrentSheet = Assets.Dungeon_LavaSheet; }
+            else if (LevelSet.dungeon.ID == LevelID.Cloud_Dungeon)
+            { Assets.Dungeon_CurrentSheet = Assets.Dungeon_CloudSheet; }
+            else if (LevelSet.dungeon.ID == LevelID.Skull_Dungeon)
+            { Assets.Dungeon_CurrentSheet = Assets.Dungeon_ShadowSheet; }
         }
 
         //called just after a dungeon is built

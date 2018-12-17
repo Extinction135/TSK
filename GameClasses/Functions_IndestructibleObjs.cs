@@ -383,17 +383,15 @@ namespace DungeonRun
             #endregion
 
             
-            #region Entrance Objects
+            #region Dungeon and Coliseum Entrance Objects
 
             else if (Type == IndestructibleType.Coliseum_Shadow_Entrance)
             {
                 IndObj.compSprite.drawRec.Width = 16 * 3; //nonstandard size
                 IndObj.compSprite.drawRec.Height = 16 * 4; //nonstandard size
                 IndObj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_Coliseum_SkullIsland;
-                //set collision rec to full size
                 IndObj.compCollision.rec.Width = 16 * 3; IndObj.compCollision.offsetX = -8;
                 IndObj.compCollision.rec.Height = 16 * 4; IndObj.compCollision.offsetY = -8;
-                //sort save and block
                 IndObj.compSprite.zOffset = +16 * 3 - 2;
             }
             else if (Type == IndestructibleType.ForestDungeon_Entrance)
@@ -401,10 +399,8 @@ namespace DungeonRun
                 IndObj.compSprite.drawRec.Width = 16 * 3; //nonstandard size
                 IndObj.compSprite.drawRec.Height = 16 * 4; //nonstandard size
                 IndObj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_ForestDungeon;
-                //set collision rec to full size
                 IndObj.compCollision.rec.Width = 16 * 3; IndObj.compCollision.offsetX = -8;
                 IndObj.compCollision.rec.Height = 16 * 4; IndObj.compCollision.offsetY = -8;
-                //sort save and block
                 IndObj.compSprite.zOffset = +16 * 3 - 2;
             }
             else if (Type == IndestructibleType.MountainDungeon_Entrance)
@@ -412,11 +408,9 @@ namespace DungeonRun
                 IndObj.compSprite.drawRec.Width = 16 * 2; //nonstandard size
                 IndObj.compSprite.drawRec.Height = 16 * 4; //nonstandard size
                 IndObj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_MountainDungeon;
-
                 //set collision rec near bottom of entrance
                 IndObj.compCollision.rec.Width = 16 * 2; IndObj.compCollision.offsetX = -8;
                 IndObj.compCollision.rec.Height = 16 * 2; IndObj.compCollision.offsetY = +8 + 16;
-                //sort save and block
                 IndObj.compSprite.zOffset = +16 * 3 - 2;
             }
 
@@ -424,16 +418,62 @@ namespace DungeonRun
             {
                 IndObj.compSprite.drawRec.Width = 16 * 3; //nonstandard size
                 IndObj.compSprite.drawRec.Height = 16 * 4; //nonstandard size
-                IndObj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_SwampDungeon;
-                //set collision rec near bottom of entrance
+                IndObj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_ForestDungeon;
                 IndObj.compCollision.offsetX = -8; IndObj.compCollision.rec.Width = 16 * 3;
-                //let link overlap the shadow bottom a little bit..
                 IndObj.compCollision.offsetY = -8; IndObj.compCollision.rec.Height = 16 * 4 - 4; //..by -4
-                //sort save and block
                 IndObj.compSprite.zOffset = +16 * 3 - 2;
             }
 
+
+
+
+
+            else if (Type == IndestructibleType.ThievesDungeon_Entrance)
+            {
+                IndObj.compSprite.drawRec.Width = 16 * 3; //nonstandard size
+                IndObj.compSprite.drawRec.Height = 16 * 4; //nonstandard size
+                IndObj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_ForestDungeon;
+                IndObj.compCollision.rec.Width = 16 * 3; IndObj.compCollision.offsetX = -8;
+                IndObj.compCollision.rec.Height = 16 * 4; IndObj.compCollision.offsetY = -8;
+                IndObj.compSprite.zOffset = +16 * 3 - 2;
+            }
+            else if (Type == IndestructibleType.LavaDungeon_Entrance)
+            {
+                IndObj.compSprite.drawRec.Width = 16 * 3; //nonstandard size
+                IndObj.compSprite.drawRec.Height = 16 * 4; //nonstandard size
+                IndObj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_ForestDungeon;
+                IndObj.compCollision.rec.Width = 16 * 3; IndObj.compCollision.offsetX = -8;
+                IndObj.compCollision.rec.Height = 16 * 4; IndObj.compCollision.offsetY = -8;
+                IndObj.compSprite.zOffset = +16 * 3 - 2;
+            }
+            else if (Type == IndestructibleType.CloudDungeon_Entrance)
+            {
+                IndObj.compSprite.drawRec.Width = 16 * 3; //nonstandard size
+                IndObj.compSprite.drawRec.Height = 16 * 4; //nonstandard size
+                IndObj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_ForestDungeon;
+                IndObj.compCollision.rec.Width = 16 * 3; IndObj.compCollision.offsetX = -8;
+                IndObj.compCollision.rec.Height = 16 * 4; IndObj.compCollision.offsetY = -8;
+                IndObj.compSprite.zOffset = +16 * 3 - 2;
+            }
+            else if (Type == IndestructibleType.SkullDungeon_Entrance)
+            {
+                IndObj.compSprite.drawRec.Width = 16 * 3; //nonstandard size
+                IndObj.compSprite.drawRec.Height = 16 * 4; //nonstandard size
+                IndObj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_ForestDungeon;
+                IndObj.compCollision.rec.Width = 16 * 3; IndObj.compCollision.offsetX = -8;
+                IndObj.compCollision.rec.Height = 16 * 4; IndObj.compCollision.offsetY = -8;
+                IndObj.compSprite.zOffset = +16 * 3 - 2;
+            }
+
+
+
+
+
+
+
             #endregion
+
+
 
 
 
@@ -673,92 +713,7 @@ namespace DungeonRun
 
 
 
-
-            //Forest Dungeon Entrance Objs
-
-            #region Big Skull Teeth in Water
-
-            else if (Type == IndestructibleType.ForestDungeon_SkullToothInWater_Left ||
-                Type == IndestructibleType.ForestDungeon_SkullToothInWater_Right)
-            {
-                IndObj.compSprite.drawRec.Width = 16 * 3; //nonstandard size
-                IndObj.compSprite.drawRec.Height = 16 * 4; //nonstandard size
-                //sort save and block
-                IndObj.compSprite.zOffset = +16 * 3 - 2; //based on hero sorting
-                IndObj.compCollision.rec.Height = 16 * 4 - 4; IndObj.compCollision.offsetY = -8;
-                IndObj.compCollision.rec.Width = 16 * 3 - 4;
-
-                if (Type == IndestructibleType.ForestDungeon_SkullToothInWater_Left)
-                {   //left
-                    IndObj.compAnim.currentAnimation = AnimationFrames.Wor_SkullToothInWater_Left;
-                    IndObj.compCollision.offsetX = -4;
-                }
-                else
-                {   //right
-                    IndObj.compAnim.currentAnimation = AnimationFrames.Wor_SkullToothInWater_Right;
-                    IndObj.compCollision.offsetX = -8;
-                }
-            }
-            else if (Type == IndestructibleType.ForestDungeon_SkullToothInWater_EndCap_Left ||
-                Type == IndestructibleType.ForestDungeon_SkullToothInWater_EndCap_Right)
-            {
-                IndObj.compSprite.drawRec.Width = 16 * 3; //nonstandard size
-                IndObj.compSprite.drawRec.Height = 16 * 4; //nonstandard size
-                //sort save and block
-                IndObj.compSprite.zOffset = +16 * 20; //top most
-                IndObj.compCollision.rec.Height = 16 * 4; IndObj.compCollision.offsetY = -8;
-                IndObj.compCollision.rec.Width = 16 * 3; IndObj.compCollision.offsetX = -8;
-                IndObj.compCollision.rec.Width = 16 * 3 - 4;
-
-                if (Type == IndestructibleType.ForestDungeon_SkullToothInWater_EndCap_Left)
-                {
-                    IndObj.compAnim.currentAnimation = AnimationFrames.Wor_SkullToothInWater_EndCap_Left;
-                    IndObj.compCollision.offsetX = -4;
-                }
-                else
-                {
-                    IndObj.compAnim.currentAnimation = AnimationFrames.Wor_SkullToothInWater_EndCap_Right;
-                    IndObj.compCollision.offsetX = -8;
-                }
-            }
-
-            else if (Type == IndestructibleType.ForestDungeon_SkullToothInWater_Arch_Left ||
-                Type == IndestructibleType.ForestDungeon_SkullToothInWater_Arch_Right)
-            {
-                IndObj.compSprite.drawRec.Width = 16 * 4; //nonstandard size
-                IndObj.compSprite.drawRec.Height = 16 * 1; //nonstandard size
-                //sort save and block
-                IndObj.compSprite.zOffset = +16 * 20; //top most
-                IndObj.compCollision.rec.Height = 16 * 1; IndObj.compCollision.offsetY = -8;
-                IndObj.compCollision.rec.Width = 16 * 4; IndObj.compCollision.offsetX = -8;
-
-                if (Type == IndestructibleType.ForestDungeon_SkullToothInWater_Arch_Left)
-                { IndObj.compAnim.currentAnimation = AnimationFrames.Wor_SkullToothInWater_Arch_Left; }
-                else
-                { IndObj.compAnim.currentAnimation = AnimationFrames.Wor_SkullToothInWater_Arch_Right; }
-            }
-
-            else if (Type == IndestructibleType.ForestDungeon_SkullToothInWater_Center)
-            {
-                IndObj.compSprite.drawRec.Width = 16 * 4; //nonstandard size
-                IndObj.compSprite.drawRec.Height = 16 * 3; //nonstandard size
-                //sort save and block
-                IndObj.compSprite.zOffset = +16 * 9; //under arch extensions
-                IndObj.compCollision.rec.Height = 16 * 3; IndObj.compCollision.offsetY = -8;
-                IndObj.compCollision.rec.Width = 16 * 4; IndObj.compCollision.offsetX = -8;
-                IndObj.compAnim.currentAnimation = AnimationFrames.Wor_SkullToothInWater_Center;
-            }
-
-            else if (Type == IndestructibleType.ForestDungeon_SkullToothInWater_Arch_Extension)
-            {   //sort save and block
-                IndObj.compSprite.zOffset = +16 * 10; //under most other teeth objs
-                IndObj.compCollision.rec.Height = 16 * 1; IndObj.compCollision.offsetY = -8;
-                IndObj.compCollision.rec.Width = 16 * 1; IndObj.compCollision.offsetX = -8;
-                IndObj.compAnim.currentAnimation = AnimationFrames.Wor_SkullToothInWater_Arch_Extension;
-            }
-
-            #endregion
-
+            
 
 
 
@@ -803,35 +758,6 @@ namespace DungeonRun
                 { IndObj.compAnim.currentAnimation = AnimationFrames.Wor_Colliseum_Pillar_Middle; }
                 else if (Type == IndestructibleType.Coliseum_Shadow_Pillar_Bottom)
                 { IndObj.compAnim.currentAnimation = AnimationFrames.Wor_Colliseum_Pillar_Bottom; }
-            }
-
-            #endregion
-
-
-            #region Bricks
-
-            else if (
-                Type == IndestructibleType.Coliseum_Shadow_Bricks_Left
-                || Type == IndestructibleType.Coliseum_Shadow_Bricks_Middle1
-                || Type == IndestructibleType.Coliseum_Shadow_Bricks_Middle2
-                || Type == IndestructibleType.Coliseum_Shadow_Bricks_Right
-                )
-            {
-                IndObj.compSprite.drawRec.Width = 16 * 1; //nonstandard size
-                IndObj.compSprite.drawRec.Height = 16 * 2; //nonstandard size
-                IndObj.compCollision.rec.Width = 16; IndObj.compCollision.offsetX = -8;
-                IndObj.compCollision.rec.Height = 16 * 2; IndObj.compCollision.offsetY = -8;
-
-                if (Type == IndestructibleType.Coliseum_Shadow_Bricks_Left)
-                { IndObj.compAnim.currentAnimation = AnimationFrames.Wor_Colliseum_Bricks_Left; }
-                else if (Type == IndestructibleType.Coliseum_Shadow_Bricks_Middle1)
-                { IndObj.compAnim.currentAnimation = AnimationFrames.Wor_Colliseum_Bricks_Middle1; }
-                else if (Type == IndestructibleType.Coliseum_Shadow_Bricks_Middle2)
-                { IndObj.compAnim.currentAnimation = AnimationFrames.Wor_Colliseum_Bricks_Middle2; }
-                else if (Type == IndestructibleType.Coliseum_Shadow_Bricks_Right)
-                { IndObj.compAnim.currentAnimation = AnimationFrames.Wor_Colliseum_Bricks_Right; }
-
-                IndObj.compSprite.zOffset = -18;
             }
 
             #endregion

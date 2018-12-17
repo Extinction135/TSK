@@ -292,7 +292,13 @@ namespace DungeonRun
                             //we convert the 'safe' chest into a key or hub chest here
                             if (
                                 LevelSet.currentLevel.currentRoom.roomID == RoomID.DEV_Key ||
-                                LevelSet.currentLevel.currentRoom.roomID == RoomID.ForestIsland_KeyRoom
+                                LevelSet.currentLevel.currentRoom.roomID == RoomID.ForestIsland_KeyRoom ||
+                                LevelSet.currentLevel.currentRoom.roomID == RoomID.DeathMountain_KeyRoom ||
+                                LevelSet.currentLevel.currentRoom.roomID == RoomID.HauntedSwamps_KeyRoom ||
+                                LevelSet.currentLevel.currentRoom.roomID == RoomID.ThievesHideout_KeyRoom ||
+                                LevelSet.currentLevel.currentRoom.roomID == RoomID.LavaIsland_KeyRoom ||
+                                LevelSet.currentLevel.currentRoom.roomID == RoomID.CloudIsland_KeyRoom ||
+                                LevelSet.currentLevel.currentRoom.roomID == RoomID.SkullIsland_KeyRoom
                                 )
                             {   //convert to key chest
                                 currentInteractiveType = InteractiveType.ChestKey;

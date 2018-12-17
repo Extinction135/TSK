@@ -301,8 +301,8 @@ namespace DungeonRun
                 if (Actor == Pool.hero)
                 {   
                     //if hero takes damage in a dungeon, track it
-                    if (LevelSet.dungeon.ID == LevelID.Forest_Dungeon)
-                    { PlayerData.ForestRecord.totalDamage += Damage; }
+                    //if (LevelSet.dungeon.ID == LevelID.Forest_Dungeon)
+                    //{ PlayerData.ForestRecord.totalDamage += Damage; }
                     //else if (LevelSet.dungeon.ID == LevelID.Mountain_Dungeon)
                     //{ PlayerData.MountainRecord.totalDamage += Damage; }
                     //else if (LevelSet.dungeon.ID == LevelID.Swamp_Dungeon)

@@ -71,53 +71,80 @@ Today:
 
 
 
-
-
-Scale Test 2
-
-scale up to include all dungeon roomData.
-
-we need dungeon textures for all dungeons.
-this is for Dx and Uwp. sheets exported.
-linked to dx. linked to uwp. (content).
-loaded into assets and ready for game use.
-
-created enum values for all dungeons for
-roomID and islandID.
-
-updated xml to cs pipeline to write classes
-for all 7 dungeon roomData sets (5), for a
-total of 35 classes just for dungeon data.
-rn there are 7 classes for overworld level
-data, for comparison.
-
-we need roomdata in xml format now. done,
-with proper roomIDs. that took awhile.
-
-now we compile the new dungeon room data classes,
-then create empty versions of them. done.
-
-linked Dx to the empty cs files.
-linked UWP to the full cs files.
-
-lines of code count:
-Dx @ 16.7K. UWP @ 25.7K.
-
-
-
-
-
-
-
-
-
-
-
 Dungeons++
 
 we need to update dungeon / room building
 to reference proper room data based on roomID.
 this is where-ever forest dungeon data is.
+this has been done, along with the supporting
+changes. recompiled all room data.
+
+all dungeons are ready to be tested.
+we need dungeon entrances to properly
+test though - and we need to change the
+dungeon sheets so we have a visual diff.
+
+we can use the black shadow animFrame for
+all dungeon entrances for testing purposes.
+dun ents should be located at the shadow king
+level for easy testing rn.
+
+all forest related big teeth sprites and
+ind objs have been removed.coliseum bricks
+have been removed as well.
+
+we have dungeon entrances for forest, mountain,
+and swamp. we need cloud, lava, thieves den, and
+shadow. these are all the big shadows rn for dev.
+we have these. they are now in editor, however we
+need to setup their hitboxes and hide the other
+objs that they cover. done.
+
+then we need to add all the dungeon entrances
+to the shadowking level, and build little shrines
+around them so we know which ones are which.
+save shadowking level. done.
+
+then we need to recompile room data and test
+that we can enter and explore each dungeon type.
+we need to have hero interaction rec with all
+dungeon entrances and exits. done. tested and
+working. very good.
+
+
+
+
+
+
+
+
+
+
+
+
+we need dungeon recipes for lava, cloud,
+theives den, and shadow. these are all
+size 3 dungeons. swamp dungeon is a size 2.
+forest is a size 2 as well. size 1 dungeons
+will be reserved for smaller quests.
+*size 3 dungeons should be smaller*
+
+
+
+
+dungeon signposts are not accurate, and instead
+target some previous dungeon room count? larger
+dungeons dont get accurate room counts.
+
+
+
+then we can modify the dungeon sheets to visually
+see the dungeon differences. these should just be
+hue shifts for now.
+
+
+
+
 
 
 

@@ -47,8 +47,12 @@ namespace DungeonRun
             //handle DUNGEON setup
             if (
                 levelID == LevelID.Forest_Dungeon
-                //|| levelID == LevelID.Mountain_Dungeon
-                //|| levelID == LevelID.Swamp_Dungeon
+                || levelID == LevelID.DeathMountain_Dungeon
+                || levelID == LevelID.HauntedSwamp_Dungeon
+                || levelID == LevelID.ThievesHideout_Dungeon
+                || levelID == LevelID.Lava_Dungeon
+                || levelID == LevelID.Cloud_Dungeon
+                || levelID == LevelID.Skull_Dungeon
                 )
             {
                 //reset dungeon data
@@ -59,10 +63,18 @@ namespace DungeonRun
                 //set background color
                 if (levelID == LevelID.Forest_Dungeon)
                 { ColorScheme.background = ColorScheme.bkg_dungeon_forest; }
-                //else if (levelID == LevelID.Mountain_Dungeon)
-                //{ ColorScheme.background = ColorScheme.bkg_dungeon_mountain; }
-                //else if (levelID == LevelID.Swamp_Dungeon)
-                //{ ColorScheme.background = ColorScheme.bkg_dungeon_swamp; }
+                else if (levelID == LevelID.DeathMountain_Dungeon)
+                { ColorScheme.background = ColorScheme.bkg_dungeon_mountain; }
+                else if (levelID == LevelID.HauntedSwamp_Dungeon)
+                { ColorScheme.background = ColorScheme.bkg_dungeon_swamp; }
+                else if (levelID == LevelID.ThievesHideout_Dungeon)
+                { ColorScheme.background = ColorScheme.bkg_dungeon_forest; }
+                else if (levelID == LevelID.Lava_Dungeon)
+                { ColorScheme.background = ColorScheme.bkg_dungeon_forest; }
+                else if (levelID == LevelID.Cloud_Dungeon)
+                { ColorScheme.background = ColorScheme.bkg_dungeon_forest; }
+                else if (levelID == LevelID.Skull_Dungeon)
+                { ColorScheme.background = ColorScheme.bkg_dungeon_forest; }
             }
 
             //handle FIELD setup
@@ -266,21 +278,19 @@ namespace DungeonRun
             #region Build Dungeons
 
             else if (LevelSet.currentLevel.ID == LevelID.Forest_Dungeon)
-            {
-                Functions_Dungeon.BuildDungeon_Forest();
-            }
-
-            /*
-            else if (LevelSet.currentLevel.ID == LevelID.Mountain_Dungeon)
-            {
-                Functions_Dungeon.BuildDungeon_Mountain();
-            }
-            else if (LevelSet.currentLevel.ID == LevelID.Swamp_Dungeon)
-            {
-                Functions_Dungeon.BuildDungeon_Swamp();
-            }
-            */
-
+            { Functions_Dungeon.BuildDungeon_Forest(); }
+            else if (LevelSet.currentLevel.ID == LevelID.DeathMountain_Dungeon)
+            { Functions_Dungeon.BuildDungeon_Mountain(); }
+            else if (LevelSet.currentLevel.ID == LevelID.HauntedSwamp_Dungeon)
+            { Functions_Dungeon.BuildDungeon_Swamp(); }
+            else if (LevelSet.currentLevel.ID == LevelID.ThievesHideout_Dungeon)
+            { Functions_Dungeon.BuildDungeon_Thieves(); }
+            else if (LevelSet.currentLevel.ID == LevelID.Lava_Dungeon)
+            { Functions_Dungeon.BuildDungeon_Lava(); }
+            else if (LevelSet.currentLevel.ID == LevelID.Cloud_Dungeon)
+            { Functions_Dungeon.BuildDungeon_Cloud(); }
+            else if (LevelSet.currentLevel.ID == LevelID.Skull_Dungeon)
+            { Functions_Dungeon.BuildDungeon_Skull(); }
 
             #endregion
 
@@ -384,7 +394,13 @@ namespace DungeonRun
             if (
                 (
                     Parent.roomID == RoomID.DEV_Exit ||
-                    Parent.roomID == RoomID.ForestIsland_ExitRoom
+                    Parent.roomID == RoomID.ForestIsland_ExitRoom ||
+                    Parent.roomID == RoomID.DeathMountain_ExitRoom ||
+                    Parent.roomID == RoomID.HauntedSwamps_ExitRoom ||
+                    Parent.roomID == RoomID.ThievesHideout_ExitRoom ||
+                    Parent.roomID == RoomID.LavaIsland_ExitRoom ||
+                    Parent.roomID == RoomID.CloudIsland_ExitRoom ||
+                    Parent.roomID == RoomID.SkullIsland_ExitRoom
                 )
                 & 
                 Dir == Direction.Down
@@ -392,7 +408,13 @@ namespace DungeonRun
             if (
                 (
                     Child.roomID == RoomID.DEV_Exit ||
-                    Parent.roomID == RoomID.ForestIsland_ExitRoom
+                    Child.roomID == RoomID.ForestIsland_ExitRoom ||
+                    Child.roomID == RoomID.DeathMountain_ExitRoom ||
+                    Child.roomID == RoomID.HauntedSwamps_ExitRoom ||
+                    Child.roomID == RoomID.ThievesHideout_ExitRoom ||
+                    Child.roomID == RoomID.LavaIsland_ExitRoom ||
+                    Child.roomID == RoomID.CloudIsland_ExitRoom ||
+                    Child.roomID == RoomID.SkullIsland_ExitRoom
                 )
                 & 
                 Dir == Direction.Up
@@ -481,12 +503,24 @@ namespace DungeonRun
             //convert doors based on parent and child room types
             if (
                 Parent.roomID == RoomID.DEV_Boss ||
-                Parent.roomID == RoomID.ForestIsland_BossRoom
+                Parent.roomID == RoomID.ForestIsland_BossRoom ||
+                Parent.roomID == RoomID.DeathMountain_BossRoom ||
+                Parent.roomID == RoomID.HauntedSwamps_BossRoom ||
+                Parent.roomID == RoomID.ThievesHideout_BossRoom ||
+                Parent.roomID == RoomID.LavaIsland_BossRoom ||
+                Parent.roomID == RoomID.CloudIsland_BossRoom ||
+                Parent.roomID == RoomID.SkullIsland_BossRoom
                 )
             { door.type = DoorType.Boss; }
             else if (
                 Child.roomID == RoomID.DEV_Boss ||
-                Child.roomID == RoomID.ForestIsland_BossRoom
+                Child.roomID == RoomID.ForestIsland_BossRoom ||
+                Child.roomID == RoomID.DeathMountain_BossRoom ||
+                Child.roomID == RoomID.HauntedSwamps_BossRoom ||
+                Child.roomID == RoomID.ThievesHideout_BossRoom ||
+                Child.roomID == RoomID.LavaIsland_BossRoom ||
+                Child.roomID == RoomID.CloudIsland_BossRoom ||
+                Child.roomID == RoomID.SkullIsland_BossRoom
                 )
             { door.type = DoorType.Boss; }
 
@@ -501,13 +535,60 @@ namespace DungeonRun
 
 
 
-        public static RoomID GetRandomRoomType_Forest()
+        public static RoomID GetRandomRoomType()
         {   //return a column, row, or square RoomType
             int random = Functions_Random.Int(0, 3);
-            if (random == 0) { return RoomID.ForestIsland_ColumnRoom; }
-            else if (random == 1) { return RoomID.ForestIsland_RowRoom; }
-            else { return RoomID.ForestIsland_SquareRoom; }
+
+            if (LevelSet.dungeon.ID == LevelID.Forest_Dungeon)
+            {
+                if (random == 0) { return RoomID.ForestIsland_ColumnRoom; }
+                else if (random == 1) { return RoomID.ForestIsland_RowRoom; }
+                else { return RoomID.ForestIsland_SquareRoom; }
+            }
+            else if (LevelSet.dungeon.ID == LevelID.DeathMountain_Dungeon)
+            {
+                if (random == 0) { return RoomID.DeathMountain_ColumnRoom; }
+                else if (random == 1) { return RoomID.DeathMountain_RowRoom; }
+                else { return RoomID.DeathMountain_SquareRoom; }
+            }
+            else if (LevelSet.dungeon.ID == LevelID.HauntedSwamp_Dungeon)
+            {
+                if (random == 0) { return RoomID.HauntedSwamps_ColumnRoom; }
+                else if (random == 1) { return RoomID.HauntedSwamps_RowRoom; }
+                else { return RoomID.HauntedSwamps_SquareRoom; }
+            }
+            else if (LevelSet.dungeon.ID == LevelID.ThievesHideout_Dungeon)
+            {
+                if (random == 0) { return RoomID.ThievesHideout_ColumnRoom; }
+                else if (random == 1) { return RoomID.ThievesHideout_RowRoom; }
+                else { return RoomID.ThievesHideout_SquareRoom; }
+            }
+            else if (LevelSet.dungeon.ID == LevelID.Lava_Dungeon)
+            {
+                if (random == 0) { return RoomID.LavaIsland_ColumnRoom; }
+                else if (random == 1) { return RoomID.LavaIsland_RowRoom; }
+                else { return RoomID.LavaIsland_SquareRoom; }
+            }
+            else if (LevelSet.dungeon.ID == LevelID.Cloud_Dungeon)
+            {
+                if (random == 0) { return RoomID.CloudIsland_ColumnRoom; }
+                else if (random == 1) { return RoomID.CloudIsland_RowRoom; }
+                else { return RoomID.CloudIsland_SquareRoom; }
+            }
+            else if (LevelSet.dungeon.ID == LevelID.Skull_Dungeon)
+            {
+                if (random == 0) { return RoomID.SkullIsland_ColumnRoom; }
+                else if (random == 1) { return RoomID.SkullIsland_RowRoom; }
+                else { return RoomID.SkullIsland_SquareRoom; }
+            }
+
+            //code should never get here
+            return RoomID.ForestIsland_ColumnRoom;
         }
+
+
+
+
 
 
 
@@ -574,22 +655,40 @@ namespace DungeonRun
             {
                 if (
                     LevelSet.currentLevel.rooms[i].roomID == RoomID.DEV_Exit ||
-                    LevelSet.currentLevel.rooms[i].roomID == RoomID.ForestIsland_ExitRoom
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.ForestIsland_ExitRoom ||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.DeathMountain_ExitRoom ||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.HauntedSwamps_ExitRoom ||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.ThievesHideout_ExitRoom ||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.LavaIsland_ExitRoom ||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.CloudIsland_ExitRoom ||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.SkullIsland_ExitRoom
                     )
                 { } //do nothing
                 else if (
                     LevelSet.currentLevel.rooms[i].roomID == RoomID.DEV_Boss ||
-                    LevelSet.currentLevel.rooms[i].roomID == RoomID.ForestIsland_BossRoom
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.ForestIsland_BossRoom||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.DeathMountain_BossRoom ||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.HauntedSwamps_BossRoom ||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.ThievesHideout_BossRoom ||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.LavaIsland_BossRoom ||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.CloudIsland_BossRoom ||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.SkullIsland_BossRoom 
                     )
                 { } //only one entrance to boss rooms
                 else if (
                     LevelSet.currentLevel.rooms[i].roomID == RoomID.DEV_Key ||
-                    LevelSet.currentLevel.rooms[i].roomID == RoomID.ForestIsland_KeyRoom
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.ForestIsland_KeyRoom ||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.DeathMountain_KeyRoom ||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.HauntedSwamps_KeyRoom ||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.ThievesHideout_KeyRoom ||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.LavaIsland_KeyRoom ||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.CloudIsland_KeyRoom ||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.SkullIsland_KeyRoom
                     )
                 { }
                 else
                 {
-                    Room room = new Room(new Point(0, 0), GetRandomRoomType_Forest());
+                    Room room = new Room(new Point(0, 0), GetRandomRoomType());
                     AddRoom(LevelSet.currentLevel.rooms[i], room, 10, false);
                 }
             }
@@ -602,18 +701,36 @@ namespace DungeonRun
             {
                 if (
                     LevelSet.currentLevel.rooms[i].roomID == RoomID.DEV_Exit ||
-                    LevelSet.currentLevel.rooms[i].roomID == RoomID.ForestIsland_ExitRoom
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.ForestIsland_ExitRoom || 
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.DeathMountain_ExitRoom ||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.HauntedSwamps_ExitRoom ||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.ThievesHideout_ExitRoom ||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.LavaIsland_ExitRoom ||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.CloudIsland_ExitRoom ||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.SkullIsland_ExitRoom
                     )
                 { }
                 else if (
                     LevelSet.currentLevel.rooms[i].roomID == RoomID.DEV_Boss ||
-                    LevelSet.currentLevel.rooms[i].roomID == RoomID.ForestIsland_BossRoom
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.ForestIsland_BossRoom ||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.DeathMountain_BossRoom ||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.HauntedSwamps_BossRoom ||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.ThievesHideout_BossRoom ||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.LavaIsland_BossRoom ||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.CloudIsland_BossRoom ||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.SkullIsland_BossRoom
                     )
                 { }
                 
                 else if (
                     LevelSet.currentLevel.rooms[i].roomID == RoomID.DEV_Hub ||
-                    LevelSet.currentLevel.rooms[i].roomID == RoomID.ForestIsland_HubRoom
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.ForestIsland_HubRoom ||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.DeathMountain_HubRoom ||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.HauntedSwamps_HubRoom ||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.ThievesHideout_HubRoom ||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.LavaIsland_HubRoom ||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.CloudIsland_HubRoom ||
+                    LevelSet.currentLevel.rooms[i].roomID == RoomID.SkullIsland_HubRoom
                     )
                 { }
                 else if (LevelSet.currentLevel.rooms[i].roomID == RoomID.Secret)

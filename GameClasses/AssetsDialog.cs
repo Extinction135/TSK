@@ -134,18 +134,6 @@ namespace DungeonRun
 
         #region Dungeon/Level Entrance Dialogs
 
-        //dont fade in the foreground on these dialogs, because
-        //they exit the level, which fades the foreground in
-        //if we set foreground fade parameter to true (in Dialog()),
-        //then a 'double-fade' happens, and it looks really bad
-
-        public static List<Dialog> Enter_ForestDungeon = new List<Dialog>
-        {
-            new Dialog(InteractiveType.DialogObj_Hero_Idle, "Hmm..",
-                "theres something really evil in here..\n" +
-                "A) enter carefully    B) no thanks..",
-                Assets.sfxTextLetter, false, false)
-        };
 
         public static List<Dialog> Enter_Colliseum = new List<Dialog>
         {
@@ -155,21 +143,65 @@ namespace DungeonRun
                 Assets.sfxTextLetter, false, false)
         };
 
-        public static List<Dialog> Enter_MountainDungeon = new List<Dialog>
-        {
-            new Dialog(InteractiveType.DialogObj_Hero_Idle, "Hmm..",
-                "this dark cave smells terrible..\n" +
-                "A) enter anyway    B) i don't like dark caves..",
-                Assets.sfxTextLetter, false, false)
-        };
 
-        public static List<Dialog> Enter_SwampDungeon = new List<Dialog>
+
+
+        //dungeon entrance dialogs
+        public static List<Dialog> Enter_ForestDungeon = new List<Dialog>
         {
             new Dialog(InteractiveType.DialogObj_Hero_Idle, "Hmm..",
-                "this shadow stretches for as far as i can see, luring me in..\n" +
+                "forest dungeon entrance\n" +
                 "A) enter    B) leave",
                 Assets.sfxTextLetter, false, false)
         };
+        public static List<Dialog> Enter_MountainDungeon = new List<Dialog>
+        {
+            new Dialog(InteractiveType.DialogObj_Hero_Idle, "Hmm..",
+                "mountain dungeon entrance\n" +
+                "A) enter    B) leave",
+                Assets.sfxTextLetter, false, false)
+        };
+        public static List<Dialog> Enter_SwampDungeon = new List<Dialog>
+        {
+            new Dialog(InteractiveType.DialogObj_Hero_Idle, "Hmm..",
+                "swamp dungeon entrance..\n" +
+                "A) enter    B) leave",
+                Assets.sfxTextLetter, false, false)
+        };
+        public static List<Dialog> Enter_ThievesDungeon = new List<Dialog>
+        {
+            new Dialog(InteractiveType.DialogObj_Hero_Idle, "Hmm..",
+                "thieves dungeon entrance\n" +
+                "A) enter    B) leave",
+                Assets.sfxTextLetter, false, false)
+        };
+        public static List<Dialog> Enter_LavaDungeon = new List<Dialog>
+        {
+            new Dialog(InteractiveType.DialogObj_Hero_Idle, "Hmm..",
+                "lava dungeon entrance\n" +
+                "A) enter    B) leave",
+                Assets.sfxTextLetter, false, false)
+        };
+        public static List<Dialog> Enter_CloudDungeon = new List<Dialog>
+        {
+            new Dialog(InteractiveType.DialogObj_Hero_Idle, "Hmm..",
+                "cloud dungeon entrance\n" +
+                "A) enter    B) leave",
+                Assets.sfxTextLetter, false, false)
+        };
+        public static List<Dialog> Enter_SkullDungeon = new List<Dialog>
+        {
+            new Dialog(InteractiveType.DialogObj_Hero_Idle, "Hmm..",
+                "shadow dungeon entrance\n" +
+                "A) enter    B) leave",
+                Assets.sfxTextLetter, false, false)
+        };
+
+
+
+
+
+
 
         #endregion
 

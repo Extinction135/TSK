@@ -19,7 +19,7 @@ namespace DungeonRun
         public static void BuildDungeon_Forest()
         {
             //recipe for size 1 dungeon - very easy
-
+            LevelSet.dungeon.ID = LevelID.Forest_Dungeon;
             //base dungeon
             BuildDungeon_ExitToHub(1); //short
             BuildDungeon_AddBossRoom();
@@ -35,11 +35,7 @@ namespace DungeonRun
 
         public static void BuildDungeon_Mountain()
         {
-            //for migration
-            BuildDungeon_Forest();
-            return;
-
-            /*
+            LevelSet.dungeon.ID = LevelID.DeathMountain_Dungeon;
             //recipe for size 2 dungeon - normal challenge
 
             //base dungeon
@@ -53,16 +49,11 @@ namespace DungeonRun
 
             PlayerData.MountainRecord.Clear();
             PlayerData.MountainRecord.timer.Restart(); //start timer
-            */
         }
 
         public static void BuildDungeon_Swamp()
         {
-            //for migration
-            BuildDungeon_Forest();
-            return;
-
-            /*
+            LevelSet.dungeon.ID = LevelID.HauntedSwamp_Dungeon;
             //recipe for size 3 dungeon: warning - very big
 
             //base dungeon
@@ -83,8 +74,6 @@ namespace DungeonRun
 
             PlayerData.SwampRecord.Clear();
             PlayerData.SwampRecord.timer.Restart(); //start timer
-            */
-
 
             /*
             //test idea: can we hide the key path behind a secret room?
@@ -128,6 +117,30 @@ namespace DungeonRun
 
         }
 
+        public static void BuildDungeon_Thieves()
+        {
+            BuildDungeon_Forest();
+        }
+
+        public static void BuildDungeon_Lava()
+        {
+            BuildDungeon_Forest();
+        }
+
+        public static void BuildDungeon_Cloud()
+        {
+            BuildDungeon_Forest();
+        }
+
+        public static void BuildDungeon_Skull()
+        {
+            BuildDungeon_Forest();
+        }
+
+
+
+
+
 
 
 
@@ -147,6 +160,23 @@ namespace DungeonRun
         {
             //create the exit room at the build position
             Room exitRoom = new Room(new Point(0, 0), RoomID.ForestIsland_ExitRoom);
+            //set exit based on type
+            if(LevelSet.dungeon.ID == LevelID.Forest_Dungeon)
+            { exitRoom = new Room(new Point(0, 0), RoomID.ForestIsland_ExitRoom); }
+            else if (LevelSet.dungeon.ID == LevelID.DeathMountain_Dungeon)
+            { exitRoom = new Room(new Point(0, 0), RoomID.DeathMountain_ExitRoom); }
+            else if (LevelSet.dungeon.ID == LevelID.HauntedSwamp_Dungeon)
+            { exitRoom = new Room(new Point(0, 0), RoomID.HauntedSwamps_ExitRoom); }
+            else if (LevelSet.dungeon.ID == LevelID.ThievesHideout_Dungeon)
+            { exitRoom = new Room(new Point(0, 0), RoomID.ThievesHideout_ExitRoom); }
+            else if (LevelSet.dungeon.ID == LevelID.Lava_Dungeon)
+            { exitRoom = new Room(new Point(0, 0), RoomID.LavaIsland_ExitRoom); }
+            else if (LevelSet.dungeon.ID == LevelID.Cloud_Dungeon)
+            { exitRoom = new Room(new Point(0, 0), RoomID.CloudIsland_ExitRoom); }
+            else if (LevelSet.dungeon.ID == LevelID.Skull_Dungeon)
+            { exitRoom = new Room(new Point(0, 0), RoomID.SkullIsland_ExitRoom); }
+
+            //move exit room
             Functions_Room.MoveRoom(exitRoom, 
                 Functions_Level.buildPosition.X, 
                 Functions_Level.buildPosition.Y);
@@ -161,7 +191,7 @@ namespace DungeonRun
             for (b = 0; b < numOfRoomsBetween; b++)
             {
                 lastRoom = LevelSet.dungeon.rooms.Count() - 1;
-                Room room = new Room(new Point(0, 0), Functions_Level.GetRandomRoomType_Forest());
+                Room room = new Room(new Point(0, 0), Functions_Level.GetRandomRoomType());
                 Functions_Room.MoveRoom(room,
                     LevelSet.dungeon.rooms[lastRoom].rec.X,
                     LevelSet.dungeon.rooms[lastRoom].rec.Y - (16 * room.size.Y) - 16);
@@ -170,14 +200,23 @@ namespace DungeonRun
 
             //create hub north of last room
             lastRoom = LevelSet.dungeon.rooms.Count() - 1;
-            RoomID hubType = RoomID.ForestIsland_HubRoom;
+
             //set hubType based on dungeon type
+            RoomID hubType = RoomID.ForestIsland_HubRoom; //default to forest
             if (LevelSet.dungeon.ID == LevelID.Forest_Dungeon)
             { hubType = RoomID.ForestIsland_HubRoom; }
-            //else if (LevelSet.dungeon.ID == LevelID.Mountain_Dungeon)
-            //{ hubType = RoomID.DeathMountain_HubRoom; }
-            //else if (LevelSet.dungeon.ID == LevelID.Swamp_Dungeon)
-            //{ hubType = RoomID.SwampIsland_HubRoom; }
+            else if (LevelSet.dungeon.ID == LevelID.DeathMountain_Dungeon)
+            { hubType = RoomID.DeathMountain_HubRoom; }
+            else if (LevelSet.dungeon.ID == LevelID.HauntedSwamp_Dungeon)
+            { hubType = RoomID.HauntedSwamps_HubRoom; }
+            else if (LevelSet.dungeon.ID == LevelID.ThievesHideout_Dungeon)
+            { hubType = RoomID.ThievesHideout_HubRoom; }
+            else if (LevelSet.dungeon.ID == LevelID.Lava_Dungeon)
+            { hubType = RoomID.LavaIsland_HubRoom; }
+            else if (LevelSet.dungeon.ID == LevelID.Cloud_Dungeon)
+            { hubType = RoomID.CloudIsland_HubRoom; }
+            else if (LevelSet.dungeon.ID == LevelID.Skull_Dungeon)
+            { hubType = RoomID.SkullIsland_HubRoom; }
 
             //create and move hub room
             Room hubRoom = new Room(new Point(0, 0), hubType);
@@ -199,10 +238,18 @@ namespace DungeonRun
             //determine what boss room to load based on current level id
             if (LevelSet.dungeon.ID == LevelID.Forest_Dungeon)
             { bossID = RoomID.ForestIsland_BossRoom; }
-            //else if (LevelSet.dungeon.ID == LevelID.Mountain_Dungeon)
-            //{ bossID = RoomID.DeathMountain_BossRoom; }
-            //else if (LevelSet.dungeon.ID == LevelID.Swamp_Dungeon)
-            //{ bossID = RoomID.SwampIsland_BossRoom; }
+            else if (LevelSet.dungeon.ID == LevelID.DeathMountain_Dungeon)
+            { bossID = RoomID.DeathMountain_BossRoom; }
+            else if (LevelSet.dungeon.ID == LevelID.HauntedSwamp_Dungeon)
+            { bossID = RoomID.HauntedSwamps_BossRoom; }
+            else if (LevelSet.dungeon.ID == LevelID.ThievesHideout_Dungeon)
+            { bossID = RoomID.ThievesHideout_BossRoom; }
+            else if (LevelSet.dungeon.ID == LevelID.Lava_Dungeon)
+            { bossID = RoomID.LavaIsland_BossRoom; }
+            else if (LevelSet.dungeon.ID == LevelID.Cloud_Dungeon)
+            { bossID = RoomID.CloudIsland_BossRoom; }
+            else if (LevelSet.dungeon.ID == LevelID.Skull_Dungeon)
+            { bossID = RoomID.SkullIsland_BossRoom; }
 
             //create and move boss room
             Room bossRoom = new Room(new Point(0, 0), bossID);
@@ -219,7 +266,7 @@ namespace DungeonRun
             //create the start of key path from a room that isn't exit / boss / hub
 
             //create a starting room for this path
-            Room keyPathStart = new Room(new Point(0, 0), Functions_Level.GetRandomRoomType_Forest());
+            Room keyPathStart = new Room(new Point(0, 0), Functions_Level.GetRandomRoomType());
             
             //randomly select a room that isn't exit(0), boss(count-1), or hub(count-2)
             //*this only works if it follows exit to hub, then add boss path...
@@ -236,13 +283,31 @@ namespace DungeonRun
             for (b = 0; b < numOfRoomsBetween; b++)
             {
                 lastRoom = LevelSet.dungeon.rooms.Count() - 1;
-                Room room = new Room(new Point(0, 0), Functions_Level.GetRandomRoomType_Forest());
+                Room room = new Room(new Point(0, 0), Functions_Level.GetRandomRoomType());
                 Functions_Level.AddRoom(LevelSet.dungeon.rooms[lastRoom], room, 20, false);
             }
 
             //create key randomly around last room
             lastRoom = LevelSet.dungeon.rooms.Count() - 1;
+
+            //setup keyroom to default to forest
             Room keyRoom = new Room(new Point(0, 0), RoomID.ForestIsland_KeyRoom);
+            //set keyroom based on dungeon level id
+            if (LevelSet.dungeon.ID == LevelID.Forest_Dungeon)
+            { keyRoom = new Room(new Point(0, 0), RoomID.ForestIsland_KeyRoom); }
+            else if (LevelSet.dungeon.ID == LevelID.DeathMountain_Dungeon)
+            { keyRoom = new Room(new Point(0, 0), RoomID.DeathMountain_KeyRoom); }
+            else if (LevelSet.dungeon.ID == LevelID.HauntedSwamp_Dungeon)
+            { keyRoom = new Room(new Point(0, 0), RoomID.HauntedSwamps_KeyRoom); }
+            else if (LevelSet.dungeon.ID == LevelID.ThievesHideout_Dungeon)
+            { keyRoom = new Room(new Point(0, 0), RoomID.ThievesHideout_KeyRoom); }
+            else if (LevelSet.dungeon.ID == LevelID.Lava_Dungeon)
+            { keyRoom = new Room(new Point(0, 0), RoomID.LavaIsland_KeyRoom); }
+            else if (LevelSet.dungeon.ID == LevelID.Cloud_Dungeon)
+            { keyRoom = new Room(new Point(0, 0), RoomID.CloudIsland_KeyRoom); }
+            else if (LevelSet.dungeon.ID == LevelID.Skull_Dungeon)
+            { keyRoom = new Room(new Point(0, 0), RoomID.SkullIsland_KeyRoom); }
+            //add keyroom to dungeon
             Functions_Level.AddRoom(LevelSet.dungeon.rooms[lastRoom], keyRoom, 20, true);
         }
 
@@ -253,7 +318,7 @@ namespace DungeonRun
             for (b = 0; b < 2; b++)
             {
                 lastRoom = LevelSet.dungeon.rooms.Count() - 1;
-                Room room = new Room(new Point(0, 0), Functions_Level.GetRandomRoomType_Forest());
+                Room room = new Room(new Point(0, 0), Functions_Level.GetRandomRoomType());
                 Functions_Level.AddRoom(LevelSet.dungeon.rooms[0], room, 20, true);
             }
         }
@@ -318,22 +383,28 @@ namespace DungeonRun
 
                     #region Boss Rooms can only connect to Hub Rooms, for now
 
-                    //forest boss room can only connect to forest hub room
+                    //only connect boss to hub rooms of the same dungeon type
                     if(buildList[0].roomID == RoomID.ForestIsland_BossRoom & 
                         buildList[b].roomID != RoomID.ForestIsland_HubRoom)
                     { connectRooms = false; }
-
-                    /*
-                    //cave boss room can only connect to cave hub room
                     else if (buildList[0].roomID == RoomID.DeathMountain_BossRoom &
                         buildList[b].roomID != RoomID.DeathMountain_HubRoom)
                     { connectRooms = false; }
-
-                    //swamp boss room can only connect to swamp hub room
-                    if (buildList[0].roomID == RoomID.SwampIsland_BossRoom &
-                        buildList[b].roomID != RoomID.SwampIsland_HubRoom)
+                    else if (buildList[0].roomID == RoomID.HauntedSwamps_BossRoom &
+                        buildList[b].roomID != RoomID.HauntedSwamps_HubRoom)
                     { connectRooms = false; }
-                    */
+                    else if (buildList[0].roomID == RoomID.ThievesHideout_BossRoom &
+                        buildList[b].roomID != RoomID.ThievesHideout_HubRoom)
+                    { connectRooms = false; }
+                    else if (buildList[0].roomID == RoomID.LavaIsland_BossRoom &
+                        buildList[b].roomID != RoomID.LavaIsland_HubRoom)
+                    { connectRooms = false; }
+                    else if (buildList[0].roomID == RoomID.CloudIsland_BossRoom &
+                        buildList[b].roomID != RoomID.CloudIsland_HubRoom)
+                    { connectRooms = false; }
+                    else if (buildList[0].roomID == RoomID.SkullIsland_BossRoom &
+                        buildList[b].roomID != RoomID.SkullIsland_HubRoom)
+                    { connectRooms = false; }
 
                     #endregion
 
@@ -383,13 +454,75 @@ namespace DungeonRun
                     //based on type, set room's data index to random roomData ref
                     //this allows the room to build with the same roomData each time hero enters it
                     //but this can also build the same room multiple times in a dungeon
+
+                    //forest
                     if (LevelSet.dungeon.rooms[b].roomID == RoomID.ForestIsland_ColumnRoom)
-                    { LevelSet.dungeon.rooms[b].dataIndex = Functions_Random.Int(0, RoomData_SkullIsland_Columns.Data.Count); }
+                    { LevelSet.dungeon.rooms[b].dataIndex = Functions_Random.Int(0, RoomData_ForestIsland_Columns.Data.Count); }
                     else if (LevelSet.dungeon.rooms[b].roomID == RoomID.ForestIsland_KeyRoom)
-                    { LevelSet.dungeon.rooms[b].dataIndex = Functions_Random.Int(0, RoomData_SkullIsland_Key.Data.Count); }
+                    { LevelSet.dungeon.rooms[b].dataIndex = Functions_Random.Int(0, RoomData_ForestIsland_Key.Data.Count); }
                     else if (LevelSet.dungeon.rooms[b].roomID == RoomID.ForestIsland_RowRoom)
-                    { LevelSet.dungeon.rooms[b].dataIndex = Functions_Random.Int(0, RoomData_SkullIsland_Row.Data.Count); }
+                    { LevelSet.dungeon.rooms[b].dataIndex = Functions_Random.Int(0, RoomData_ForestIsland_Row.Data.Count); }
                     else if (LevelSet.dungeon.rooms[b].roomID == RoomID.ForestIsland_SquareRoom)
+                    { LevelSet.dungeon.rooms[b].dataIndex = Functions_Random.Int(0, RoomData_ForestIsland_Square.Data.Count); }
+
+                    //death mountain
+                    if (LevelSet.dungeon.rooms[b].roomID == RoomID.DeathMountain_ColumnRoom)
+                    { LevelSet.dungeon.rooms[b].dataIndex = Functions_Random.Int(0, RoomData_DeathMountain_Columns.Data.Count); }
+                    else if (LevelSet.dungeon.rooms[b].roomID == RoomID.DeathMountain_KeyRoom)
+                    { LevelSet.dungeon.rooms[b].dataIndex = Functions_Random.Int(0, RoomData_DeathMountain_Key.Data.Count); }
+                    else if (LevelSet.dungeon.rooms[b].roomID == RoomID.DeathMountain_RowRoom)
+                    { LevelSet.dungeon.rooms[b].dataIndex = Functions_Random.Int(0, RoomData_DeathMountain_Row.Data.Count); }
+                    else if (LevelSet.dungeon.rooms[b].roomID == RoomID.DeathMountain_SquareRoom)
+                    { LevelSet.dungeon.rooms[b].dataIndex = Functions_Random.Int(0, RoomData_DeathMountain_Square.Data.Count); }
+
+                    //haunted swamps
+                    if (LevelSet.dungeon.rooms[b].roomID == RoomID.HauntedSwamps_ColumnRoom)
+                    { LevelSet.dungeon.rooms[b].dataIndex = Functions_Random.Int(0, RoomData_HauntedSwamps_Columns.Data.Count); }
+                    else if (LevelSet.dungeon.rooms[b].roomID == RoomID.HauntedSwamps_KeyRoom)
+                    { LevelSet.dungeon.rooms[b].dataIndex = Functions_Random.Int(0, RoomData_HauntedSwamps_Key.Data.Count); }
+                    else if (LevelSet.dungeon.rooms[b].roomID == RoomID.HauntedSwamps_RowRoom)
+                    { LevelSet.dungeon.rooms[b].dataIndex = Functions_Random.Int(0, RoomData_HauntedSwamps_Row.Data.Count); }
+                    else if (LevelSet.dungeon.rooms[b].roomID == RoomID.HauntedSwamps_SquareRoom)
+                    { LevelSet.dungeon.rooms[b].dataIndex = Functions_Random.Int(0, RoomData_HauntedSwamps_Square.Data.Count); }
+
+                    //ThievesHideout
+                    if (LevelSet.dungeon.rooms[b].roomID == RoomID.ThievesHideout_ColumnRoom)
+                    { LevelSet.dungeon.rooms[b].dataIndex = Functions_Random.Int(0, RoomData_ThievesHideout_Columns.Data.Count); }
+                    else if (LevelSet.dungeon.rooms[b].roomID == RoomID.ThievesHideout_KeyRoom)
+                    { LevelSet.dungeon.rooms[b].dataIndex = Functions_Random.Int(0, RoomData_ThievesHideout_Key.Data.Count); }
+                    else if (LevelSet.dungeon.rooms[b].roomID == RoomID.ThievesHideout_RowRoom)
+                    { LevelSet.dungeon.rooms[b].dataIndex = Functions_Random.Int(0, RoomData_ThievesHideout_Row.Data.Count); }
+                    else if (LevelSet.dungeon.rooms[b].roomID == RoomID.ThievesHideout_SquareRoom)
+                    { LevelSet.dungeon.rooms[b].dataIndex = Functions_Random.Int(0, RoomData_ThievesHideout_Square.Data.Count); }
+
+                    //LavaIsland
+                    if (LevelSet.dungeon.rooms[b].roomID == RoomID.LavaIsland_ColumnRoom)
+                    { LevelSet.dungeon.rooms[b].dataIndex = Functions_Random.Int(0, RoomData_LavaIsland_Columns.Data.Count); }
+                    else if (LevelSet.dungeon.rooms[b].roomID == RoomID.LavaIsland_KeyRoom)
+                    { LevelSet.dungeon.rooms[b].dataIndex = Functions_Random.Int(0, RoomData_LavaIsland_Key.Data.Count); }
+                    else if (LevelSet.dungeon.rooms[b].roomID == RoomID.LavaIsland_RowRoom)
+                    { LevelSet.dungeon.rooms[b].dataIndex = Functions_Random.Int(0, RoomData_LavaIsland_Row.Data.Count); }
+                    else if (LevelSet.dungeon.rooms[b].roomID == RoomID.LavaIsland_SquareRoom)
+                    { LevelSet.dungeon.rooms[b].dataIndex = Functions_Random.Int(0, RoomData_LavaIsland_Square.Data.Count); }
+
+                    //CloudIsland
+                    if (LevelSet.dungeon.rooms[b].roomID == RoomID.CloudIsland_ColumnRoom)
+                    { LevelSet.dungeon.rooms[b].dataIndex = Functions_Random.Int(0, RoomData_CloudIsland_Columns.Data.Count); }
+                    else if (LevelSet.dungeon.rooms[b].roomID == RoomID.CloudIsland_KeyRoom)
+                    { LevelSet.dungeon.rooms[b].dataIndex = Functions_Random.Int(0, RoomData_CloudIsland_Key.Data.Count); }
+                    else if (LevelSet.dungeon.rooms[b].roomID == RoomID.CloudIsland_RowRoom)
+                    { LevelSet.dungeon.rooms[b].dataIndex = Functions_Random.Int(0, RoomData_CloudIsland_Row.Data.Count); }
+                    else if (LevelSet.dungeon.rooms[b].roomID == RoomID.CloudIsland_SquareRoom)
+                    { LevelSet.dungeon.rooms[b].dataIndex = Functions_Random.Int(0, RoomData_CloudIsland_Square.Data.Count); }
+
+                    //SkullIsland
+                    if (LevelSet.dungeon.rooms[b].roomID == RoomID.SkullIsland_ColumnRoom)
+                    { LevelSet.dungeon.rooms[b].dataIndex = Functions_Random.Int(0, RoomData_SkullIsland_Columns.Data.Count); }
+                    else if (LevelSet.dungeon.rooms[b].roomID == RoomID.SkullIsland_KeyRoom)
+                    { LevelSet.dungeon.rooms[b].dataIndex = Functions_Random.Int(0, RoomData_SkullIsland_Key.Data.Count); }
+                    else if (LevelSet.dungeon.rooms[b].roomID == RoomID.SkullIsland_RowRoom)
+                    { LevelSet.dungeon.rooms[b].dataIndex = Functions_Random.Int(0, RoomData_SkullIsland_Row.Data.Count); }
+                    else if (LevelSet.dungeon.rooms[b].roomID == RoomID.SkullIsland_SquareRoom)
                     { LevelSet.dungeon.rooms[b].dataIndex = Functions_Random.Int(0, RoomData_SkullIsland_Square.Data.Count); }
                 }
             }

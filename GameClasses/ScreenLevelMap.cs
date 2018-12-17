@@ -111,22 +111,46 @@ namespace DungeonRun
                         mapRoom.rec.Y + (mapRoom.rec.Height / 2) - 7);
                     if (
                         dungeonRoom.roomID == RoomID.DEV_Boss ||
-                        dungeonRoom.roomID == RoomID.ForestIsland_BossRoom
+                        dungeonRoom.roomID == RoomID.ForestIsland_BossRoom ||
+                        dungeonRoom.roomID == RoomID.DeathMountain_BossRoom ||
+                        dungeonRoom.roomID == RoomID.HauntedSwamps_BossRoom ||
+                        dungeonRoom.roomID == RoomID.ThievesHideout_BossRoom ||
+                        dungeonRoom.roomID == RoomID.LavaIsland_BossRoom ||
+                        dungeonRoom.roomID == RoomID.CloudIsland_BossRoom ||
+                        dungeonRoom.roomID == RoomID.SkullIsland_BossRoom
                         )
                     { bossIcon.position = iconPos; }
                     else if (
                         dungeonRoom.roomID == RoomID.DEV_Hub ||
-                        dungeonRoom.roomID == RoomID.ForestIsland_HubRoom
+                        dungeonRoom.roomID == RoomID.ForestIsland_HubRoom ||
+                        dungeonRoom.roomID == RoomID.DeathMountain_HubRoom ||
+                        dungeonRoom.roomID == RoomID.HauntedSwamps_HubRoom ||
+                        dungeonRoom.roomID == RoomID.ThievesHideout_HubRoom ||
+                        dungeonRoom.roomID == RoomID.LavaIsland_HubRoom ||
+                        dungeonRoom.roomID == RoomID.CloudIsland_HubRoom ||
+                        dungeonRoom.roomID == RoomID.SkullIsland_HubRoom
                         )
                     { hubIcon.position = iconPos; }
                     else if (
                         dungeonRoom.roomID == RoomID.DEV_Key ||
-                        dungeonRoom.roomID == RoomID.ForestIsland_KeyRoom
+                        dungeonRoom.roomID == RoomID.ForestIsland_KeyRoom ||
+                        dungeonRoom.roomID == RoomID.DeathMountain_KeyRoom ||
+                        dungeonRoom.roomID == RoomID.HauntedSwamps_KeyRoom ||
+                        dungeonRoom.roomID == RoomID.ThievesHideout_KeyRoom ||
+                        dungeonRoom.roomID == RoomID.LavaIsland_KeyRoom ||
+                        dungeonRoom.roomID == RoomID.CloudIsland_KeyRoom ||
+                        dungeonRoom.roomID == RoomID.SkullIsland_KeyRoom
                         )
                     { keyIcon.position = iconPos; }
                     else if (
                         dungeonRoom.roomID == RoomID.DEV_Exit ||
-                        dungeonRoom.roomID == RoomID.ForestIsland_ExitRoom
+                        dungeonRoom.roomID == RoomID.ForestIsland_ExitRoom ||
+                        dungeonRoom.roomID == RoomID.DeathMountain_ExitRoom ||
+                        dungeonRoom.roomID == RoomID.HauntedSwamps_ExitRoom ||
+                        dungeonRoom.roomID == RoomID.ThievesHideout_ExitRoom ||
+                        dungeonRoom.roomID == RoomID.LavaIsland_ExitRoom ||
+                        dungeonRoom.roomID == RoomID.CloudIsland_ExitRoom ||
+                        dungeonRoom.roomID == RoomID.SkullIsland_ExitRoom
                         )
                     { exitIcon.position = iconPos; }
                 }

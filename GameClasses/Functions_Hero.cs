@@ -468,7 +468,6 @@ namespace DungeonRun
                 ScreenManager.AddScreen(Screens.Dialog);
                 SetFieldSpawnPos(Obj);
             }
-            /*
             else if (Obj.type == IndestructibleType.MountainDungeon_Entrance)
             {   //give player choice to enter
                 Screens.Dialog.SetDialog(AssetsDialog.Enter_MountainDungeon);
@@ -481,7 +480,35 @@ namespace DungeonRun
                 ScreenManager.AddScreen(Screens.Dialog);
                 SetFieldSpawnPos(Obj);
             }
-            */
+            else if (Obj.type == IndestructibleType.ThievesDungeon_Entrance)
+            {   //give player choice to enter
+                Screens.Dialog.SetDialog(AssetsDialog.Enter_ThievesDungeon);
+                ScreenManager.AddScreen(Screens.Dialog);
+                SetFieldSpawnPos(Obj);
+            }
+            else if (Obj.type == IndestructibleType.LavaDungeon_Entrance)
+            {   //give player choice to enter
+                Screens.Dialog.SetDialog(AssetsDialog.Enter_LavaDungeon);
+                ScreenManager.AddScreen(Screens.Dialog);
+                SetFieldSpawnPos(Obj);
+            }
+            else if (Obj.type == IndestructibleType.CloudDungeon_Entrance)
+            {   //give player choice to enter
+                Screens.Dialog.SetDialog(AssetsDialog.Enter_CloudDungeon);
+                ScreenManager.AddScreen(Screens.Dialog);
+                SetFieldSpawnPos(Obj);
+            }
+            else if (Obj.type == IndestructibleType.SkullDungeon_Entrance)
+            {   //give player choice to enter
+                Screens.Dialog.SetDialog(AssetsDialog.Enter_SkullDungeon);
+                ScreenManager.AddScreen(Screens.Dialog);
+                SetFieldSpawnPos(Obj);
+            }
+
+            #endregion
+
+
+            #region Coliseum Entrances
 
             else if (Obj.type == IndestructibleType.Coliseum_Shadow_Entrance)
             {   //give player choice to enter
@@ -492,7 +519,14 @@ namespace DungeonRun
 
             #endregion
 
-            
+
+
+
+
+
+
+
+
             #region Dungeon Exit Obj
 
             else if (Obj.type == IndestructibleType.Dungeon_Exit)
@@ -916,8 +950,8 @@ namespace DungeonRun
         {
             if (Screens.Level.displayState == DisplayState.Opened)
             {   //clear any dungeon data upon exit
-                if (LevelSet.dungeon.ID == LevelID.Forest_Dungeon)
-                { PlayerData.ForestRecord.Clear(); }
+                //if (LevelSet.dungeon.ID == LevelID.Forest_Dungeon)
+                //{ PlayerData.ForestRecord.Clear(); }
                 //else if (LevelSet.dungeon.ID == LevelID.Mountain_Dungeon)
                 //{ PlayerData.MountainRecord.Clear(); }
                 //else if (LevelSet.dungeon.ID == LevelID.Swamp_Dungeon)
@@ -1136,18 +1170,18 @@ namespace DungeonRun
                 Screens.Dialog.SetDialog(AssetsDialog.Signpost_MountainEntrance);
                 ScreenManager.AddScreen(Screens.Dialog);
             }
-
-            //this is a temp hack for 0.77 release and will change in future commits
-            else if (LevelSet.currentLevel.currentRoom.roomID == RoomID.SkullIsland_ShadowKing)
-            {
-                Screens.Dialog.SetDialog(AssetsDialog.Signpost_SwampEntrance);
-                ScreenManager.AddScreen(Screens.Dialog);
-            }
+            
 
             //dungeon signposts
             else if (
                 LevelSet.currentLevel.currentRoom.roomID == RoomID.DEV_Exit ||
-                LevelSet.currentLevel.currentRoom.roomID == RoomID.ForestIsland_ExitRoom
+                LevelSet.currentLevel.currentRoom.roomID == RoomID.ForestIsland_ExitRoom ||
+                LevelSet.currentLevel.currentRoom.roomID == RoomID.DeathMountain_ExitRoom ||
+                LevelSet.currentLevel.currentRoom.roomID == RoomID.HauntedSwamps_ExitRoom ||
+                LevelSet.currentLevel.currentRoom.roomID == RoomID.ThievesHideout_ExitRoom ||
+                LevelSet.currentLevel.currentRoom.roomID == RoomID.LavaIsland_ExitRoom ||
+                LevelSet.currentLevel.currentRoom.roomID == RoomID.CloudIsland_ExitRoom ||
+                LevelSet.currentLevel.currentRoom.roomID == RoomID.SkullIsland_ExitRoom
                 )
             {
                 Screens.Dialog.SetDialog(AssetsDialog.Signpost_ExitRoom);

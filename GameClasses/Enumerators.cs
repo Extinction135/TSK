@@ -140,6 +140,8 @@ namespace DungeonRun
 
         #endregion
     }
+
+
     public enum LevelID
     {
         #region LevelID
@@ -180,14 +182,20 @@ namespace DungeonRun
 
         //dungeons, series of rooms - not overworld accessible
         Forest_Dungeon,
-        //Mountain_Dungeon,
-        //Swamp_Dungeon,
+        DeathMountain_Dungeon,
+        HauntedSwamp_Dungeon,
+        ThievesHideout_Dungeon,
+        Lava_Dungeon,
+        Cloud_Dungeon,
+        Skull_Dungeon,
 
         //dev (hidden) unreachable locations from game
         DEV_Field, //single room without walls/doors
 
         #endregion    }
     }
+
+
     public enum RoomID
     {
         #region RoomID
@@ -200,7 +208,7 @@ namespace DungeonRun
         ForestIsland_ExitRoom, 
         ForestIsland_BossRoom,
         ForestIsland_HubRoom,
-
+        
         DeathMountain_ColumnRoom,
         DeathMountain_RowRoom,
         DeathMountain_SquareRoom,
@@ -488,40 +496,15 @@ namespace DungeonRun
         Coliseum_Shadow_Stairs_Handrail_Middle,
         Coliseum_Shadow_Stairs_Handrail_Bottom,
 
-        Coliseum_Shadow_Bricks_Left, //not added to editor yet
-        Coliseum_Shadow_Bricks_Middle1, //not added to editor yet
-        Coliseum_Shadow_Bricks_Middle2, //not added to editor yet
-        Coliseum_Shadow_Bricks_Right, //not added to editor yet
-
         Coliseum_Shadow_Spectator,
 
         #endregion
 
-
-        #region Forest Objects
-
-        ForestDungeon_Entrance, //big shadow between teeth in water
-
-        //objects that build the skull teeth
-        ForestDungeon_SkullToothInWater_Left,
-        ForestDungeon_SkullToothInWater_Right,
-
-        ForestDungeon_SkullToothInWater_Arch_Left,
-        ForestDungeon_SkullToothInWater_Arch_Right,
-        ForestDungeon_SkullToothInWater_Arch_Extension,
-
-        ForestDungeon_SkullToothInWater_Center,
-
-        ForestDungeon_SkullToothInWater_EndCap_Left,
-        ForestDungeon_SkullToothInWater_EndCap_Right,
-
-        #endregion
+        
 
 
         #region Mountain Objects
         
-        MountainDungeon_Entrance, //batcave
-
         MountainWall_Alcove_Left,
         MountainWall_Alcove_Right,
 
@@ -529,13 +512,23 @@ namespace DungeonRun
         MountainWall_Cave_Covered,
 
         #endregion
+        
 
-
-        #region Swamp Objects
-
+        //Dungeon Entrances
+        ForestDungeon_Entrance,
+        MountainDungeon_Entrance, //batcave
         SwampDungeon_Entrance,
+        ThievesDungeon_Entrance,
+        LavaDungeon_Entrance,
+        CloudDungeon_Entrance,
+        SkullDungeon_Entrance,
 
-        #endregion
+
+
+
+
+
+
 
 
         #region Boat Objects

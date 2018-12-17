@@ -37,37 +37,96 @@ namespace DungeonRun
             Room.roomID = ID;
             
             //set room size based on type - sizes should be odd, so doors/exits can be centered
-            if (ID == RoomID.ForestIsland_ExitRoom || ID == RoomID.DEV_Exit)
+            if (
+                ID == RoomID.DEV_Exit ||
+                ID == RoomID.ForestIsland_ExitRoom ||
+                ID == RoomID.DeathMountain_ExitRoom ||
+                ID == RoomID.HauntedSwamps_ExitRoom ||
+                ID == RoomID.ThievesHideout_ExitRoom ||
+                ID == RoomID.LavaIsland_ExitRoom ||
+                ID == RoomID.CloudIsland_ExitRoom ||
+                ID == RoomID.SkullIsland_ExitRoom
+                )
             {
                 Room.size.X = 11; Room.size.Y = 11;
             }
             else if (
+                ID == RoomID.DEV_Hub ||
                 ID == RoomID.ForestIsland_HubRoom ||
-                ID == RoomID.DEV_Hub)
+                ID == RoomID.DeathMountain_HubRoom ||
+                ID == RoomID.HauntedSwamps_HubRoom ||
+                ID == RoomID.ThievesHideout_HubRoom ||
+                ID == RoomID.LavaIsland_HubRoom ||
+                ID == RoomID.CloudIsland_HubRoom ||
+                ID == RoomID.SkullIsland_HubRoom
+                )
             {
                 Room.size.X = 19; Room.size.Y = 19;
             }
             else if (
+                ID == RoomID.DEV_Boss ||
                 ID == RoomID.ForestIsland_BossRoom ||
-                ID == RoomID.DEV_Boss)
+                ID == RoomID.DeathMountain_BossRoom ||
+                ID == RoomID.HauntedSwamps_BossRoom ||
+                ID == RoomID.ThievesHideout_BossRoom ||
+                ID == RoomID.LavaIsland_BossRoom ||
+                ID == RoomID.CloudIsland_BossRoom ||
+                ID == RoomID.SkullIsland_BossRoom
+                )
             {
                 Room.size.X = 19; Room.size.Y = 11;
             }
-            else if (ID == RoomID.ForestIsland_KeyRoom || ID == RoomID.DEV_Key)
+            else if (
+                ID == RoomID.DEV_Key ||
+                ID == RoomID.ForestIsland_KeyRoom ||
+                ID == RoomID.DeathMountain_KeyRoom ||
+                ID == RoomID.HauntedSwamps_KeyRoom ||
+                ID == RoomID.ThievesHideout_KeyRoom ||
+                ID == RoomID.LavaIsland_KeyRoom ||
+                ID == RoomID.CloudIsland_KeyRoom ||
+                ID == RoomID.SkullIsland_KeyRoom
+                )
             {
                 Room.size.X = 19; Room.size.Y = 11;
             }
             
             //dungeon rooms
-            else if (ID == RoomID.ForestIsland_ColumnRoom || ID == RoomID.DEV_Column)
+            else if (
+                ID == RoomID.DEV_Column ||
+                ID == RoomID.ForestIsland_ColumnRoom ||
+                ID == RoomID.DeathMountain_ColumnRoom ||
+                ID == RoomID.HauntedSwamps_ColumnRoom ||
+                ID == RoomID.ThievesHideout_ColumnRoom ||
+                ID == RoomID.LavaIsland_ColumnRoom ||
+                ID == RoomID.CloudIsland_ColumnRoom ||
+                ID == RoomID.SkullIsland_ColumnRoom
+                )
             {
                 Room.size.X = 11; Room.size.Y = 19;
             }
-            else if (ID == RoomID.ForestIsland_RowRoom || ID == RoomID.DEV_Row)
+            else if (
+                ID == RoomID.DEV_Row ||
+                ID == RoomID.ForestIsland_RowRoom ||
+                ID == RoomID.DeathMountain_RowRoom ||
+                ID == RoomID.HauntedSwamps_RowRoom ||
+                ID == RoomID.ThievesHideout_RowRoom ||
+                ID == RoomID.LavaIsland_RowRoom ||
+                ID == RoomID.CloudIsland_RowRoom ||
+                ID == RoomID.SkullIsland_RowRoom
+                )
             {
                 Room.size.X = 19; Room.size.Y = 11;
             }
-            else if (ID == RoomID.ForestIsland_SquareRoom || ID == RoomID.DEV_Square)
+            else if (
+                ID == RoomID.DEV_Square ||
+                ID == RoomID.ForestIsland_SquareRoom ||
+                ID == RoomID.DeathMountain_SquareRoom ||
+                ID == RoomID.HauntedSwamps_SquareRoom ||
+                ID == RoomID.ThievesHideout_SquareRoom ||
+                ID == RoomID.LavaIsland_SquareRoom ||
+                ID == RoomID.CloudIsland_SquareRoom ||
+                ID == RoomID.SkullIsland_SquareRoom
+                )
             {
                 Room.size.X = 11; Room.size.Y = 11;
             }
@@ -219,30 +278,184 @@ namespace DungeonRun
 
                 //load the xml room data from it's dataIndex, or basd on it's ID for exit/hub/boss
                 else if (Room.roomID == RoomID.ForestIsland_ColumnRoom)
-                {
-                    RoomXmlData = RoomData_SkullIsland_Columns.Data[Room.dataIndex];
-                    LevelSet.currentLevel.isField = false;
-                }
+                { RoomXmlData = RoomData_ForestIsland_Columns.Data[Room.dataIndex]; LevelSet.currentLevel.isField = false; }
                 else if (Room.roomID == RoomID.ForestIsland_KeyRoom)
-                {
-                    RoomXmlData = RoomData_SkullIsland_Key.Data[Room.dataIndex];
-                    LevelSet.currentLevel.isField = false;
-                }
+                { RoomXmlData = RoomData_ForestIsland_Key.Data[Room.dataIndex]; LevelSet.currentLevel.isField = false; }
                 else if (Room.roomID == RoomID.ForestIsland_RowRoom)
-                {
-                    RoomXmlData = RoomData_SkullIsland_Row.Data[Room.dataIndex];
-                    LevelSet.currentLevel.isField = false;
-                }
+                { RoomXmlData = RoomData_ForestIsland_Row.Data[Room.dataIndex]; LevelSet.currentLevel.isField = false; }
                 else if (Room.roomID == RoomID.ForestIsland_SquareRoom)
-                {
-                    RoomXmlData = RoomData_SkullIsland_Square.Data[Room.dataIndex];
-                    LevelSet.currentLevel.isField = false;
-                }
-
+                { RoomXmlData = RoomData_ForestIsland_Square.Data[Room.dataIndex]; LevelSet.currentLevel.isField = false; }
                 else if (
                     Room.roomID == RoomID.ForestIsland_ExitRoom
                     || Room.roomID == RoomID.ForestIsland_BossRoom
                     || Room.roomID == RoomID.ForestIsland_HubRoom
+                    )
+                {   LevelSet.currentLevel.isField = false;
+                    for (i = 0; i < RoomData_ForestIsland_ExitBossHub.Data.Count; i++)
+                    {   //match room to it's ID
+                        if (RoomData_ForestIsland_ExitBossHub.Data[i].type == Room.roomID)
+                        { RoomXmlData = RoomData_ForestIsland_ExitBossHub.Data[i]; }
+                    }
+                }
+
+                #endregion
+
+
+                #region DeathMountain Roomdata
+
+                //load the xml room data from it's dataIndex, or basd on it's ID for exit/hub/boss
+                else if (Room.roomID == RoomID.DeathMountain_ColumnRoom)
+                { RoomXmlData = RoomData_DeathMountain_Columns.Data[Room.dataIndex]; LevelSet.currentLevel.isField = false; }
+                else if (Room.roomID == RoomID.DeathMountain_KeyRoom)
+                { RoomXmlData = RoomData_DeathMountain_Key.Data[Room.dataIndex]; LevelSet.currentLevel.isField = false; }
+                else if (Room.roomID == RoomID.DeathMountain_RowRoom)
+                { RoomXmlData = RoomData_DeathMountain_Row.Data[Room.dataIndex]; LevelSet.currentLevel.isField = false; }
+                else if (Room.roomID == RoomID.DeathMountain_SquareRoom)
+                { RoomXmlData = RoomData_DeathMountain_Square.Data[Room.dataIndex]; LevelSet.currentLevel.isField = false; }
+                else if (
+                    Room.roomID == RoomID.DeathMountain_ExitRoom
+                    || Room.roomID == RoomID.DeathMountain_BossRoom
+                    || Room.roomID == RoomID.DeathMountain_HubRoom
+                    )
+                {
+                    LevelSet.currentLevel.isField = false;
+                    for (i = 0; i < RoomData_DeathMountain_ExitBossHub.Data.Count; i++)
+                    {   //match room to it's ID
+                        if (RoomData_DeathMountain_ExitBossHub.Data[i].type == Room.roomID)
+                        { RoomXmlData = RoomData_DeathMountain_ExitBossHub.Data[i]; }
+                    }
+                }
+
+                #endregion
+
+
+                #region HauntedSwamps Roomdata
+
+                //load the xml room data from it's dataIndex, or basd on it's ID for exit/hub/boss
+                else if (Room.roomID == RoomID.HauntedSwamps_ColumnRoom)
+                { RoomXmlData = RoomData_HauntedSwamps_Columns.Data[Room.dataIndex]; LevelSet.currentLevel.isField = false; }
+                else if (Room.roomID == RoomID.HauntedSwamps_KeyRoom)
+                { RoomXmlData = RoomData_HauntedSwamps_Key.Data[Room.dataIndex]; LevelSet.currentLevel.isField = false; }
+                else if (Room.roomID == RoomID.HauntedSwamps_RowRoom)
+                { RoomXmlData = RoomData_HauntedSwamps_Row.Data[Room.dataIndex]; LevelSet.currentLevel.isField = false; }
+                else if (Room.roomID == RoomID.HauntedSwamps_SquareRoom)
+                { RoomXmlData = RoomData_HauntedSwamps_Square.Data[Room.dataIndex]; LevelSet.currentLevel.isField = false; }
+                else if (
+                    Room.roomID == RoomID.HauntedSwamps_ExitRoom
+                    || Room.roomID == RoomID.HauntedSwamps_BossRoom
+                    || Room.roomID == RoomID.HauntedSwamps_HubRoom
+                    )
+                {
+                    LevelSet.currentLevel.isField = false;
+                    for (i = 0; i < RoomData_HauntedSwamps_ExitBossHub.Data.Count; i++)
+                    {   //match room to it's ID
+                        if (RoomData_HauntedSwamps_ExitBossHub.Data[i].type == Room.roomID)
+                        { RoomXmlData = RoomData_HauntedSwamps_ExitBossHub.Data[i]; }
+                    }
+                }
+
+                #endregion
+
+
+                #region ThievesHideout Roomdata
+
+                //load the xml room data from it's dataIndex, or basd on it's ID for exit/hub/boss
+                else if (Room.roomID == RoomID.ThievesHideout_ColumnRoom)
+                { RoomXmlData = RoomData_ThievesHideout_Columns.Data[Room.dataIndex]; LevelSet.currentLevel.isField = false; }
+                else if (Room.roomID == RoomID.ThievesHideout_KeyRoom)
+                { RoomXmlData = RoomData_ThievesHideout_Key.Data[Room.dataIndex]; LevelSet.currentLevel.isField = false; }
+                else if (Room.roomID == RoomID.ThievesHideout_RowRoom)
+                { RoomXmlData = RoomData_ThievesHideout_Row.Data[Room.dataIndex]; LevelSet.currentLevel.isField = false; }
+                else if (Room.roomID == RoomID.ThievesHideout_SquareRoom)
+                { RoomXmlData = RoomData_ThievesHideout_Square.Data[Room.dataIndex]; LevelSet.currentLevel.isField = false; }
+                else if (
+                    Room.roomID == RoomID.ThievesHideout_ExitRoom
+                    || Room.roomID == RoomID.ThievesHideout_BossRoom
+                    || Room.roomID == RoomID.ThievesHideout_HubRoom
+                    )
+                {
+                    LevelSet.currentLevel.isField = false;
+                    for (i = 0; i < RoomData_ThievesHideout_ExitBossHub.Data.Count; i++)
+                    {   //match room to it's ID
+                        if (RoomData_ThievesHideout_ExitBossHub.Data[i].type == Room.roomID)
+                        { RoomXmlData = RoomData_ThievesHideout_ExitBossHub.Data[i]; }
+                    }
+                }
+
+                #endregion
+
+
+                #region LavaIsland Roomdata
+
+                //load the xml room data from it's dataIndex, or basd on it's ID for exit/hub/boss
+                else if (Room.roomID == RoomID.LavaIsland_ColumnRoom)
+                { RoomXmlData = RoomData_LavaIsland_Columns.Data[Room.dataIndex]; LevelSet.currentLevel.isField = false; }
+                else if (Room.roomID == RoomID.LavaIsland_KeyRoom)
+                { RoomXmlData = RoomData_LavaIsland_Key.Data[Room.dataIndex]; LevelSet.currentLevel.isField = false; }
+                else if (Room.roomID == RoomID.LavaIsland_RowRoom)
+                { RoomXmlData = RoomData_LavaIsland_Row.Data[Room.dataIndex]; LevelSet.currentLevel.isField = false; }
+                else if (Room.roomID == RoomID.LavaIsland_SquareRoom)
+                { RoomXmlData = RoomData_LavaIsland_Square.Data[Room.dataIndex]; LevelSet.currentLevel.isField = false; }
+                else if (
+                    Room.roomID == RoomID.LavaIsland_ExitRoom
+                    || Room.roomID == RoomID.LavaIsland_BossRoom
+                    || Room.roomID == RoomID.LavaIsland_HubRoom
+                    )
+                {
+                    LevelSet.currentLevel.isField = false;
+                    for (i = 0; i < RoomData_LavaIsland_ExitBossHub.Data.Count; i++)
+                    {   //match room to it's ID
+                        if (RoomData_LavaIsland_ExitBossHub.Data[i].type == Room.roomID)
+                        { RoomXmlData = RoomData_LavaIsland_ExitBossHub.Data[i]; }
+                    }
+                }
+
+                #endregion
+
+
+                #region CloudIsland Roomdata
+
+                //load the xml room data from it's dataIndex, or basd on it's ID for exit/hub/boss
+                else if (Room.roomID == RoomID.CloudIsland_ColumnRoom)
+                { RoomXmlData = RoomData_CloudIsland_Columns.Data[Room.dataIndex]; LevelSet.currentLevel.isField = false; }
+                else if (Room.roomID == RoomID.CloudIsland_KeyRoom)
+                { RoomXmlData = RoomData_CloudIsland_Key.Data[Room.dataIndex]; LevelSet.currentLevel.isField = false; }
+                else if (Room.roomID == RoomID.CloudIsland_RowRoom)
+                { RoomXmlData = RoomData_CloudIsland_Row.Data[Room.dataIndex]; LevelSet.currentLevel.isField = false; }
+                else if (Room.roomID == RoomID.CloudIsland_SquareRoom)
+                { RoomXmlData = RoomData_CloudIsland_Square.Data[Room.dataIndex]; LevelSet.currentLevel.isField = false; }
+                else if (
+                    Room.roomID == RoomID.CloudIsland_ExitRoom
+                    || Room.roomID == RoomID.CloudIsland_BossRoom
+                    || Room.roomID == RoomID.CloudIsland_HubRoom
+                    )
+                {
+                    LevelSet.currentLevel.isField = false;
+                    for (i = 0; i < RoomData_CloudIsland_ExitBossHub.Data.Count; i++)
+                    {   //match room to it's ID
+                        if (RoomData_CloudIsland_ExitBossHub.Data[i].type == Room.roomID)
+                        { RoomXmlData = RoomData_CloudIsland_ExitBossHub.Data[i]; }
+                    }
+                }
+
+                #endregion
+
+
+                #region SkullIsland Roomdata
+
+                //load the xml room data from it's dataIndex, or basd on it's ID for exit/hub/boss
+                else if (Room.roomID == RoomID.SkullIsland_ColumnRoom)
+                { RoomXmlData = RoomData_SkullIsland_Columns.Data[Room.dataIndex]; LevelSet.currentLevel.isField = false; }
+                else if (Room.roomID == RoomID.SkullIsland_KeyRoom)
+                { RoomXmlData = RoomData_SkullIsland_Key.Data[Room.dataIndex]; LevelSet.currentLevel.isField = false; }
+                else if (Room.roomID == RoomID.SkullIsland_RowRoom)
+                { RoomXmlData = RoomData_SkullIsland_Row.Data[Room.dataIndex]; LevelSet.currentLevel.isField = false; }
+                else if (Room.roomID == RoomID.SkullIsland_SquareRoom)
+                { RoomXmlData = RoomData_SkullIsland_Square.Data[Room.dataIndex]; LevelSet.currentLevel.isField = false; }
+                else if (
+                    Room.roomID == RoomID.SkullIsland_ExitRoom
+                    || Room.roomID == RoomID.SkullIsland_BossRoom
+                    || Room.roomID == RoomID.SkullIsland_HubRoom
                     )
                 {
                     LevelSet.currentLevel.isField = false;
@@ -303,7 +516,13 @@ namespace DungeonRun
             #region Handle room specific initial events (like setting music)
 
             if (
-                Room.roomID == RoomID.ForestIsland_BossRoom
+                Room.roomID == RoomID.ForestIsland_BossRoom ||
+                Room.roomID == RoomID.DeathMountain_BossRoom ||
+                Room.roomID == RoomID.HauntedSwamps_BossRoom ||
+                Room.roomID == RoomID.ThievesHideout_BossRoom ||
+                Room.roomID == RoomID.LavaIsland_BossRoom ||
+                Room.roomID == RoomID.CloudIsland_BossRoom ||
+                Room.roomID == RoomID.SkullIsland_BossRoom
                 )
             {
                 Assets.Play(Assets.sfxBossIntro);
@@ -365,15 +584,21 @@ namespace DungeonRun
                         //create enemies at enemySpawn obj locations
                         if (intRef.group == InteractiveGroup.EnemySpawn)
                         {   //here we check level.id to determine what type of STANDARD enemy to spawn
+
                             if (LevelSet.currentLevel.ID == LevelID.Forest_Dungeon)
                             { Functions_Actor.SpawnActor(ActorType.Standard_AngryEye, intRef.compSprite.position); }
-
-                            /*
-                            else if (LevelSet.currentLevel.ID == LevelID.Mountain_Dungeon)
+                            else if (LevelSet.currentLevel.ID == LevelID.DeathMountain_Dungeon)
                             { Functions_Actor.SpawnActor(ActorType.Standard_BeefyBat, intRef.compSprite.position); }
-                            else if (LevelSet.currentLevel.ID == LevelID.Swamp_Dungeon)
+                            else if (LevelSet.currentLevel.ID == LevelID.HauntedSwamp_Dungeon)
+                            { Functions_Actor.SpawnActor(ActorType.Standard_AngryEye, intRef.compSprite.position); }
+                            else if (LevelSet.currentLevel.ID == LevelID.ThievesHideout_Dungeon)
                             { Functions_Actor.SpawnActor(ActorType.Blob, intRef.compSprite.position); }
-                            */
+                            else if (LevelSet.currentLevel.ID == LevelID.Lava_Dungeon)
+                            { Functions_Actor.SpawnActor(ActorType.Blob, intRef.compSprite.position); }
+                            else if (LevelSet.currentLevel.ID == LevelID.Cloud_Dungeon)
+                            { Functions_Actor.SpawnActor(ActorType.Blob, intRef.compSprite.position); }
+                            else if (LevelSet.currentLevel.ID == LevelID.Skull_Dungeon)
+                            { Functions_Actor.SpawnActor(ActorType.Blob, intRef.compSprite.position); }
 
                             else //any other dungeon spawns blobs
                             { Functions_Actor.SpawnActor(ActorType.Blob, intRef.compSprite.position); }
@@ -560,12 +785,34 @@ namespace DungeonRun
                 if (
                     Room.roomID == RoomID.DEV_Key ||
                     Room.roomID == RoomID.ForestIsland_KeyRoom ||
-                    Room.roomID == RoomID.ForestIsland_HubRoom
+                    Room.roomID == RoomID.DeathMountain_KeyRoom ||
+                    Room.roomID == RoomID.HauntedSwamps_KeyRoom ||
+                    Room.roomID == RoomID.ThievesHideout_KeyRoom ||
+                    Room.roomID == RoomID.LavaIsland_KeyRoom ||
+                    Room.roomID == RoomID.CloudIsland_KeyRoom ||
+                    Room.roomID == RoomID.SkullIsland_KeyRoom
+                    )
+                { Pool.floorPool[i].currentFrame = AnimationFrames.Dungeon_FloorSpecial[0]; }
+                else if(
+                    Room.roomID == RoomID.DEV_Hub ||
+                    Room.roomID == RoomID.ForestIsland_HubRoom ||
+                    Room.roomID == RoomID.DeathMountain_HubRoom ||
+                    Room.roomID == RoomID.HauntedSwamps_HubRoom ||
+                    Room.roomID == RoomID.ThievesHideout_HubRoom ||
+                    Room.roomID == RoomID.LavaIsland_HubRoom ||
+                    Room.roomID == RoomID.CloudIsland_HubRoom ||
+                    Room.roomID == RoomID.SkullIsland_HubRoom
                     )
                 { Pool.floorPool[i].currentFrame = AnimationFrames.Dungeon_FloorSpecial[0]; }
                 else if (
                     Room.roomID == RoomID.DEV_Boss ||
-                    Room.roomID == RoomID.ForestIsland_BossRoom
+                    Room.roomID == RoomID.ForestIsland_BossRoom ||
+                    Room.roomID == RoomID.DeathMountain_BossRoom ||
+                    Room.roomID == RoomID.HauntedSwamps_BossRoom ||
+                    Room.roomID == RoomID.ThievesHideout_BossRoom ||
+                    Room.roomID == RoomID.LavaIsland_BossRoom ||
+                    Room.roomID == RoomID.CloudIsland_BossRoom ||
+                    Room.roomID == RoomID.SkullIsland_BossRoom
                     )
                 { Pool.floorPool[i].currentFrame = AnimationFrames.Dungeon_FloorBoss[0]; }
             }
@@ -605,7 +852,13 @@ namespace DungeonRun
 
                                 //finally, override door types based on specific room.type
                                 if (
-                                    Room.roomID == RoomID.ForestIsland_BossRoom
+                                    Room.roomID == RoomID.ForestIsland_BossRoom ||
+                                    Room.roomID == RoomID.DeathMountain_BossRoom ||
+                                    Room.roomID == RoomID.HauntedSwamps_BossRoom ||
+                                    Room.roomID == RoomID.ThievesHideout_BossRoom ||
+                                    Room.roomID == RoomID.LavaIsland_BossRoom ||
+                                    Room.roomID == RoomID.CloudIsland_BossRoom ||
+                                    Room.roomID == RoomID.SkullIsland_BossRoom
                                     )
                                 {
                                     //all doors inside boss room are trap doors (push hero + close)
@@ -663,6 +916,12 @@ namespace DungeonRun
             else if (
                 Room.roomID == RoomID.DEV_Exit
                 || Room.roomID == RoomID.ForestIsland_ExitRoom
+                || Room.roomID == RoomID.DeathMountain_ExitRoom
+                || Room.roomID == RoomID.HauntedSwamps_ExitRoom
+                || Room.roomID == RoomID.ThievesHideout_ExitRoom
+                || Room.roomID == RoomID.LavaIsland_ExitRoom
+                || Room.roomID == RoomID.CloudIsland_ExitRoom
+                || Room.roomID == RoomID.SkullIsland_ExitRoom
                 )
             {
                 PlaceExit(Room);
@@ -671,6 +930,12 @@ namespace DungeonRun
             else if (
                 Room.roomID == RoomID.DEV_Key
                 || Room.roomID == RoomID.ForestIsland_KeyRoom
+                || Room.roomID == RoomID.DeathMountain_KeyRoom
+                || Room.roomID == RoomID.HauntedSwamps_KeyRoom
+                || Room.roomID == RoomID.ThievesHideout_KeyRoom
+                || Room.roomID == RoomID.LavaIsland_KeyRoom
+                || Room.roomID == RoomID.CloudIsland_KeyRoom
+                || Room.roomID == RoomID.SkullIsland_KeyRoom
                 )
             {
                 FinishKeyRoom(Room);
@@ -680,6 +945,12 @@ namespace DungeonRun
             else if (
                 Room.roomID == RoomID.DEV_Hub
                 || Room.roomID == RoomID.ForestIsland_HubRoom
+                || Room.roomID == RoomID.DeathMountain_HubRoom
+                || Room.roomID == RoomID.HauntedSwamps_HubRoom
+                || Room.roomID == RoomID.ThievesHideout_HubRoom
+                || Room.roomID == RoomID.LavaIsland_HubRoom
+                || Room.roomID == RoomID.CloudIsland_HubRoom
+                || Room.roomID == RoomID.SkullIsland_HubRoom
                 )
             {
                 //we dont want the miniboss to spawn in the editor
@@ -691,7 +962,13 @@ namespace DungeonRun
             }
             else if (
                 Room.roomID == RoomID.DEV_Boss
-                || Room.roomID == RoomID.ForestIsland_BossRoom 
+                || Room.roomID == RoomID.ForestIsland_BossRoom
+                || Room.roomID == RoomID.DeathMountain_BossRoom
+                || Room.roomID == RoomID.HauntedSwamps_BossRoom
+                || Room.roomID == RoomID.ThievesHideout_BossRoom
+                || Room.roomID == RoomID.LavaIsland_BossRoom
+                || Room.roomID == RoomID.CloudIsland_BossRoom
+                || Room.roomID == RoomID.SkullIsland_BossRoom
                 )
             {
                 ShutDoors(Room);
@@ -712,6 +989,12 @@ namespace DungeonRun
             else if (
                 Room.roomID == RoomID.DEV_Column
                 || Room.roomID == RoomID.ForestIsland_ColumnRoom
+                || Room.roomID == RoomID.DeathMountain_ColumnRoom
+                || Room.roomID == RoomID.HauntedSwamps_ColumnRoom
+                || Room.roomID == RoomID.ThievesHideout_ColumnRoom
+                || Room.roomID == RoomID.LavaIsland_ColumnRoom
+                || Room.roomID == RoomID.CloudIsland_ColumnRoom
+                || Room.roomID == RoomID.SkullIsland_ColumnRoom
                 )
             {
                 AddCrackedWalls(Room);
@@ -720,6 +1003,12 @@ namespace DungeonRun
             else if (
                 Room.roomID == RoomID.DEV_Row
                 || Room.roomID == RoomID.ForestIsland_RowRoom
+                || Room.roomID == RoomID.DeathMountain_RowRoom
+                || Room.roomID == RoomID.HauntedSwamps_RowRoom
+                || Room.roomID == RoomID.ThievesHideout_RowRoom
+                || Room.roomID == RoomID.LavaIsland_RowRoom
+                || Room.roomID == RoomID.CloudIsland_RowRoom
+                || Room.roomID == RoomID.SkullIsland_RowRoom
                 )
             {
                 AddCrackedWalls(Room);
@@ -728,6 +1017,12 @@ namespace DungeonRun
             else if (
                 Room.roomID == RoomID.DEV_Square
                 || Room.roomID == RoomID.ForestIsland_SquareRoom
+                || Room.roomID == RoomID.DeathMountain_SquareRoom
+                || Room.roomID == RoomID.HauntedSwamps_SquareRoom
+                || Room.roomID == RoomID.ThievesHideout_SquareRoom
+                || Room.roomID == RoomID.LavaIsland_SquareRoom
+                || Room.roomID == RoomID.CloudIsland_SquareRoom
+                || Room.roomID == RoomID.SkullIsland_SquareRoom
                 )
             {
                 AddCrackedWalls(Room);
@@ -936,24 +1231,50 @@ namespace DungeonRun
                     Room.center.X + 8,
                     Room.center.Y + 8);
             }
-
-            /*
-            else if (LevelSet.dungeon.ID == LevelID.Mountain_Dungeon)
+            else if (LevelSet.dungeon.ID == LevelID.DeathMountain_Dungeon)
             {
                 Functions_Actor.SpawnActor(
                     ActorType.Boss_BigBat,
                     Room.center.X + 8,
                     Room.center.Y + 8);
             }
-            else if (LevelSet.dungeon.ID == LevelID.Swamp_Dungeon)
+            else if (LevelSet.dungeon.ID == LevelID.HauntedSwamp_Dungeon)
             {
                 Functions_Actor.SpawnActor(
                     ActorType.Boss_OctoHead,
                     Room.center.X + 8,
                     Room.center.Y + 8);
             }
-            */
 
+            //these dungeons dont have unique bosses yet
+            else if (LevelSet.dungeon.ID == LevelID.ThievesHideout_Dungeon)
+            {
+                Functions_Actor.SpawnActor(
+                    ActorType.Boss_BigBat,
+                    Room.center.X + 8,
+                    Room.center.Y + 8);
+            }
+            else if (LevelSet.dungeon.ID == LevelID.Lava_Dungeon)
+            {
+                Functions_Actor.SpawnActor(
+                    ActorType.Boss_BigBat,
+                    Room.center.X + 8,
+                    Room.center.Y + 8);
+            }
+            else if (LevelSet.dungeon.ID == LevelID.Cloud_Dungeon)
+            {
+                Functions_Actor.SpawnActor(
+                    ActorType.Boss_BigBat,
+                    Room.center.X + 8,
+                    Room.center.Y + 8);
+            }
+            else if (LevelSet.dungeon.ID == LevelID.Skull_Dungeon)
+            {
+                Functions_Actor.SpawnActor(
+                    ActorType.Boss_BigBat,
+                    Room.center.X + 8,
+                    Room.center.Y + 8);
+            }
         }
 
         public static void SpawnMiniBoss(Room Room)
@@ -965,9 +1286,7 @@ namespace DungeonRun
                     Room.center.X + 8,
                     Room.center.Y + 8);
             }
-
-            /*
-            else if (LevelSet.dungeon.ID == LevelID.Mountain_Dungeon)
+            else if (LevelSet.dungeon.ID == LevelID.DeathMountain_Dungeon)
             {
                 Functions_Actor.SpawnActor(
                         ActorType.MiniBoss_Spider_Armored,
@@ -978,16 +1297,45 @@ namespace DungeonRun
                         Room.center.X + 8,
                         Room.center.Y + 8);
             }
-            else if (LevelSet.dungeon.ID == LevelID.Swamp_Dungeon)
+            else if (LevelSet.dungeon.ID == LevelID.HauntedSwamp_Dungeon)
             {
                 Functions_Actor.SpawnActor(
                         ActorType.MiniBoss_OctoMouth,
                         Room.center.X + 8,
                         Room.center.Y + 8);
             }
-            */
+            
 
 
+            //these dungeons dont have unique bosses yet
+            else if (LevelSet.dungeon.ID == LevelID.ThievesHideout_Dungeon)
+            {
+                Functions_Actor.SpawnActor(
+                    ActorType.MiniBoss_BlackEye,
+                    Room.center.X + 8,
+                    Room.center.Y + 8);
+            }
+            else if (LevelSet.dungeon.ID == LevelID.Lava_Dungeon)
+            {
+                Functions_Actor.SpawnActor(
+                    ActorType.MiniBoss_BlackEye,
+                    Room.center.X + 8,
+                    Room.center.Y + 8);
+            }
+            else if (LevelSet.dungeon.ID == LevelID.Cloud_Dungeon)
+            {
+                Functions_Actor.SpawnActor(
+                    ActorType.MiniBoss_BlackEye,
+                    Room.center.X + 8,
+                    Room.center.Y + 8);
+            }
+            else if (LevelSet.dungeon.ID == LevelID.Skull_Dungeon)
+            {
+                Functions_Actor.SpawnActor(
+                    ActorType.MiniBoss_BlackEye,
+                    Room.center.X + 8,
+                    Room.center.Y + 8);
+            }
         }
 
 

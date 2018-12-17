@@ -345,8 +345,8 @@ namespace DungeonRun
             //and switching hero back also makes it easy to track enemy deaths
             else
             {   //track enemy deaths per dungeon
-                if(LevelSet.dungeon.ID == LevelID.Forest_Dungeon)
-                { PlayerData.ForestRecord.enemyCount++; }
+                //if(LevelSet.dungeon.ID == LevelID.Forest_Dungeon)
+                //{ PlayerData.ForestRecord.enemyCount++; }
                 //else if (LevelSet.dungeon.ID == LevelID.Mountain_Dungeon)
                 //{ PlayerData.MountainRecord.enemyCount++; }
                 //else if (LevelSet.dungeon.ID == LevelID.Swamp_Dungeon)
@@ -417,7 +417,6 @@ namespace DungeonRun
                 #region Handle Dungeon Progress / Boss Death Events
 
                 //specific boss must die in specific boss room to end dungeon/advance progress
-
                 if (Actor.type == ActorType.Boss_BigEye &
                     LevelSet.currentLevel.currentRoom.roomID == RoomID.ForestIsland_BossRoom)
                 {
@@ -426,7 +425,6 @@ namespace DungeonRun
                     Functions_Level.CloseLevel(ExitAction.Overworld);
                     Assets.Play(Assets.sfxBeatDungeon);
                 }
-                /*
                 else if(Actor.type == ActorType.Boss_BigBat &
                     LevelSet.currentLevel.currentRoom.roomID == RoomID.DeathMountain_BossRoom)
                 {
@@ -436,14 +434,30 @@ namespace DungeonRun
                     Assets.Play(Assets.sfxBeatDungeon);
                 }
                 else if(Actor.type == ActorType.Boss_OctoHead &
-                    LevelSet.currentLevel.currentRoom.roomID == RoomID.SwampIsland_BossRoom)
+                    LevelSet.currentLevel.currentRoom.roomID == RoomID.HauntedSwamps_BossRoom)
                 {
                     PlayerData.SwampRecord.timer.Stop();
                     PlayerData.story_swampDungeon = true;
                     Functions_Level.CloseLevel(ExitAction.Overworld);
                     Assets.Play(Assets.sfxBeatDungeon);
                 }
-                */
+
+                //handle additional bosses dying in dungeon boss rooms here
+                //for now we just use bigBat to model all other dungeon bosses
+                //this is just a catch all until we have real bosses for these dungeons
+                else if(Actor.type == ActorType.Boss_BigBat)
+                {
+                    if(
+                        LevelSet.currentLevel.currentRoom.roomID == RoomID.ThievesHideout_BossRoom ||
+                        LevelSet.currentLevel.currentRoom.roomID == RoomID.LavaIsland_BossRoom ||
+                        LevelSet.currentLevel.currentRoom.roomID == RoomID.CloudIsland_BossRoom ||
+                        LevelSet.currentLevel.currentRoom.roomID == RoomID.SkullIsland_BossRoom
+                        )
+                    {
+                        Functions_Level.CloseLevel(ExitAction.Overworld);
+                        Assets.Play(Assets.sfxBeatDungeon);
+                    }
+                }
 
                 #endregion
 

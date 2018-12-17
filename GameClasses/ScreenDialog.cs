@@ -53,22 +53,8 @@ namespace DungeonRun
             Functions_Actor.SetAnimationDirection(Pool.hero);
             Functions_Animation.Animate(Pool.hero.compAnim, Pool.hero.compSprite);
 
-
             //reset exit action to just exit this dialog screen
             exitAction = ExitAction.ExitScreen;
-
-            if (dialogs == AssetsDialog.GameCreated)
-            { exitAction = ExitAction.GameCreated; }
-
-            else if (
-                dialogs == AssetsDialog.Enter_ForestDungeon
-                || dialogs == AssetsDialog.Enter_MountainDungeon
-                || dialogs == AssetsDialog.Enter_SwampDungeon
-                )
-            { exitAction = ExitAction.Dungeon; }
-
-            else if(dialogs == AssetsDialog.Enter_Colliseum)
-            { exitAction = ExitAction.Field; }
         }
 
         public override void HandleInput(GameTime GameTime)
@@ -84,11 +70,14 @@ namespace DungeonRun
                     || dialogs == AssetsDialog.Enter_ForestDungeon
                     || dialogs == AssetsDialog.Enter_MountainDungeon
                     || dialogs == AssetsDialog.Enter_SwampDungeon
+                    || dialogs == AssetsDialog.Enter_ThievesDungeon
+                    || dialogs == AssetsDialog.Enter_CloudDungeon
+                    || dialogs == AssetsDialog.Enter_LavaDungeon
+                    || dialogs == AssetsDialog.Enter_SkullDungeon
                     //coliseum entrance dialogs
                     || dialogs == AssetsDialog.Enter_Colliseum
                     )
                 {
-
                     //process dialog forward 
                     if (Input.Player1.A & Input.Player1.A_Prev == false)
                     {   //exiting to title from inventory + dialog screens
@@ -107,24 +96,46 @@ namespace DungeonRun
 
                         else if (dialogs == AssetsDialog.Enter_ForestDungeon)
                         {
+                            exitAction = ExitAction.Dungeon;
                             LevelSet.dungeon.ID = LevelID.Forest_Dungeon;
                             ExitDialog(); Assets.Play(Assets.sfxEnterDungeon);
                         }
-
-                        /*
                         else if (dialogs == AssetsDialog.Enter_MountainDungeon)
                         {
-                            LevelSet.dungeon.ID = LevelID.Mountain_Dungeon;
+                            exitAction = ExitAction.Dungeon;
+                            LevelSet.dungeon.ID = LevelID.DeathMountain_Dungeon;
                             ExitDialog(); Assets.Play(Assets.sfxEnterDungeon);
                         }
-
                         else if (dialogs == AssetsDialog.Enter_SwampDungeon)
                         {
-                            LevelSet.dungeon.ID = LevelID.Swamp_Dungeon;
+                            exitAction = ExitAction.Dungeon;
+                            LevelSet.dungeon.ID = LevelID.HauntedSwamp_Dungeon;
                             ExitDialog(); Assets.Play(Assets.sfxEnterDungeon);
                         }
-                        */
-
+                        else if (dialogs == AssetsDialog.Enter_ThievesDungeon)
+                        {
+                            exitAction = ExitAction.Dungeon;
+                            LevelSet.dungeon.ID = LevelID.ThievesHideout_Dungeon;
+                            ExitDialog(); Assets.Play(Assets.sfxEnterDungeon);
+                        }
+                        else if (dialogs == AssetsDialog.Enter_LavaDungeon)
+                        {
+                            exitAction = ExitAction.Dungeon;
+                            LevelSet.dungeon.ID = LevelID.Lava_Dungeon;
+                            ExitDialog(); Assets.Play(Assets.sfxEnterDungeon);
+                        }
+                        else if (dialogs == AssetsDialog.Enter_CloudDungeon)
+                        {
+                            exitAction = ExitAction.Dungeon;
+                            LevelSet.dungeon.ID = LevelID.Cloud_Dungeon;
+                            ExitDialog(); Assets.Play(Assets.sfxEnterDungeon);
+                        }
+                        else if (dialogs == AssetsDialog.Enter_SkullDungeon)
+                        {
+                            exitAction = ExitAction.Dungeon;
+                            LevelSet.dungeon.ID = LevelID.Skull_Dungeon;
+                            ExitDialog(); Assets.Play(Assets.sfxEnterDungeon);
+                        }
 
                         #endregion
 
@@ -134,6 +145,7 @@ namespace DungeonRun
                         //enter colliseum from exterior colliseum field level
                         else if (dialogs == AssetsDialog.Enter_Colliseum)
                         {
+                            exitAction = ExitAction.Field;
                             LevelSet.field.ID = LevelID.SkullIsland_ColliseumPit;
                             ExitDialog(); Assets.Play(Assets.sfxEnterDungeon);
                         }
@@ -161,6 +173,11 @@ namespace DungeonRun
                     {
                         if (dialogIndex >= dialogs.Count)
                         {   //no more dialogs, close dialog screen
+                            if (dialogs == AssetsDialog.GameCreated)
+                            { exitAction = ExitAction.GameCreated; }
+                            else
+                            { exitAction = ExitAction.ExitScreen; }
+                            //close the dialog screen
                             ExitDialog();
                         }
                         else
@@ -224,8 +241,7 @@ namespace DungeonRun
             #region Closed
 
             else if (displayState == DisplayState.Closed)
-            {   
-                //from lsn screen to overworld
+            {   //from title screen to overworld
                 if(exitAction == ExitAction.GameCreated)
                 {   //exit all screens, start new game
                     ScreenManager.ExitAndLoad(Screens.Overworld_ShadowKing);
