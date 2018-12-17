@@ -52,7 +52,7 @@ Shadow Dungeon, TSK Fight complete
 	+ option for loading level data 'fresh' each time for sandboxing
 	(items: hookshot, axe, beans)
 	(interactions: X WIND, acts/objs in water)
-	(dungeon: marked map PLS, working puzzles, per dungeon roomdata)
+	(dungeon: X marked map PLS, working puzzles, X per dungeon roomdata)
 	(X smaller ram: title image is complete, can be own sheet, no big text)
 	(pets: stable, more pet variety, multiple pets (actor mini pool in fun_hero)
 	better coliseum - uniq objs + enemies
@@ -66,76 +66,19 @@ Today:
 
 
 
-Dungeons++
 
-we need dungeon recipes for lava, cloud,
-theives den, and shadow. done. modified
-size 3 dungeons to be smaller, added special
-shadow dungeon recipe.
-
-dungeon signposts are not accurate, and instead
-target some previous dungeon room count? larger
-dungeons dont get accurate room counts.
-
-fixed a bug where theives dungeon data wasn't linked
-to uwp project properly. increased loc.
-
-all 7 dungeons tested and working, each with
-their own recipe. shadow dungeon hides the key
-room behind a secret room, for example.
-
-then we can modify the dungeon sheets to visually
-see the dungeon differences. these should just be
-hue shifts for now. done. improved floor textures
-for forest dungeon. tested all dungeons again,
-working and looking visually distinct. good for now.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Version 1.0 Scale Test
+Dungeon Scale Test
 
 copy+paste columns, rows, squares, and keys x10
-for all island sets (including default dungeon, 
-which is blob dungeon). this is the minimum scale
+for all island sets. this is the minimum scale
 the game should be playtested at, and will include 
 more dungeon roomdata for version 1 release.
 
 what is the size of the uwp vs dX projects?
 how much room data did we just make?
 
+Dx:17.1K. UWP:74.1K. 
+about 57,000 lines of levelData.
 
 
 
@@ -146,136 +89,18 @@ how much room data did we just make?
 
 
 
-when we build dungeons, we need to be checking to
-see that the count of the roomData list we are targeting
-is greater than 0 - if it isn't then we are making
-dungeons with empty room data and we dont need to build
-the room xml data at all because the dungeons are not
-expected to function in this developer mode.
 
 
-when we build dungeons, we require 1 room of each type?
 
 
 
 
+we need as more locations and level data files now.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-we only have skullisland dungeon for now.
-this needs to be reflected in dungeon building routines.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-this means room building routines target skullisland
-exclusively now. and we need to update the enum values
-for roomIDs, we dont have generic room types anymore.
-bonus: we can now set the room texture based on it's
-type, forcing forest types to use the forest texture,
-and so forth, making loading and displaying of roomdata
-correct in the editor/preview.
-
-
-
-
-
-
-
-
-
-this hasn't
-been added to dungeon room writing routines yet, but
-will be soon, because they need to be split up into
-their respective island sets. this allows us to theme
-dungeon rooms to the dungeon they will exist in.
-
-
-
-7 divisions of room data.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-note to future-self: this room data is designed for one floor
-only, so when we add a floor above and below this, we will need
-to go through all room data and add tags around the ground floor
-int/ind obj lists, or remake the data again. 
-the visualization for this is simple, ground floor displays the basement
-floor at 50-10% opacity, so we can still kinda 'see' whats going on.
-enemies still move, etc.. top floor displays the ground floor plus 
-the basement, giving the player a total view of the puzzle to
-be solved.
-
-
-
-wind should be ignored for all dungeon rooms. wind will be set 
-in the cloud dungeons, and possibly by a dungeon objects or two.
-also, the player can set the direction and intensity via spells.
-but most of the time, there will be no wind in the dungeon.
-
-
-
-
-
-
-
-
+all coliseums.
+all dungeon entrances.
+coliseums go with the island set. not in it's own
+class.
 
 
 

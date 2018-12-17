@@ -1,6 +1,47 @@
 
 
 
+Dungeon Floors
+
+dungeons should have 3 room lists, one for basement, ground,
+and top floors. we dont store floor data with roomdata.
+
+build a top floor set of rooms.
+build a ground floor set of rooms. (done)
+build a basement floor set of rooms.
+
+then see which rooms overlap between the
+three lists, and this is where we can place
+stairs up or down to the other floors. once this
+works, we can move the keyroom to the basement and
+the hub room to the top floor, along with the boss room.
+now we have multi-level dungeons just like lttp.
+
+then we can implement pits that drop the player down a level.
+
+stairs that take the player up a level (lock state, push slow
+like conveyor belt in stairs direction, time state lock and push
+to end when dungeon floor changes).
+
+ladders that take the player up a level (we already have
+climbing too).
+
+we can do this by storing a current floor byte in playerdata.
+when hero is 'exiting' the room, we inc/dec the floor byte,
+which targets the dungeon rooms lists, which then hero runs
+a room rec collision check with, setting the room to the current
+room, building it fresh each time.
+
+
+
+
+
+
+
+
+
+
+
 
 
 we need pushing coastline waves to be 4x4 objs to save on
