@@ -66,81 +66,45 @@ Today:
 
 
 
-
-
-
-
-
 Dungeons++
 
-we need to update dungeon / room building
-to reference proper room data based on roomID.
-this is where-ever forest dungeon data is.
-this has been done, along with the supporting
-changes. recompiled all room data.
-
-all dungeons are ready to be tested.
-we need dungeon entrances to properly
-test though - and we need to change the
-dungeon sheets so we have a visual diff.
-
-we can use the black shadow animFrame for
-all dungeon entrances for testing purposes.
-dun ents should be located at the shadow king
-level for easy testing rn.
-
-all forest related big teeth sprites and
-ind objs have been removed.coliseum bricks
-have been removed as well.
-
-we have dungeon entrances for forest, mountain,
-and swamp. we need cloud, lava, thieves den, and
-shadow. these are all the big shadows rn for dev.
-we have these. they are now in editor, however we
-need to setup their hitboxes and hide the other
-objs that they cover. done.
-
-then we need to add all the dungeon entrances
-to the shadowking level, and build little shrines
-around them so we know which ones are which.
-save shadowking level. done.
-
-then we need to recompile room data and test
-that we can enter and explore each dungeon type.
-we need to have hero interaction rec with all
-dungeon entrances and exits. done. tested and
-working. very good.
-
-
-
-
-
-
-
-
-
-
-
-
 we need dungeon recipes for lava, cloud,
-theives den, and shadow. these are all
-size 3 dungeons. swamp dungeon is a size 2.
-forest is a size 2 as well. size 1 dungeons
-will be reserved for smaller quests.
-*size 3 dungeons should be smaller*
-
-
-
+theives den, and shadow. done. modified
+size 3 dungeons to be smaller, added special
+shadow dungeon recipe.
 
 dungeon signposts are not accurate, and instead
 target some previous dungeon room count? larger
 dungeons dont get accurate room counts.
 
+fixed a bug where theives dungeon data wasn't linked
+to uwp project properly. increased loc.
 
+all 7 dungeons tested and working, each with
+their own recipe. shadow dungeon hides the key
+room behind a secret room, for example.
 
 then we can modify the dungeon sheets to visually
 see the dungeon differences. these should just be
-hue shifts for now.
+hue shifts for now. done. improved floor textures
+for forest dungeon. tested all dungeons again,
+working and looking visually distinct. good for now.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -14,13 +14,12 @@ namespace DungeonRun
 {
     public static class Functions_Dungeon
     {
-        //Dungeon Generation Recipes
+        //Dungeon Generation Methods (recipes)
 
         public static void BuildDungeon_Forest()
         {
-            //recipe for size 1 dungeon - very easy
             LevelSet.dungeon.ID = LevelID.Forest_Dungeon;
-            //base dungeon
+            //recipe for size 1 dungeon - very easy
             BuildDungeon_ExitToHub(1); //short
             BuildDungeon_AddBossRoom();
             //small size
@@ -28,17 +27,13 @@ namespace DungeonRun
             BuildDungeon_ImproveExit();
             BuildDungeon_Expand(1); //small, secrets++
             BuildDungeon_Finalize();
-
-            PlayerData.ForestRecord.Clear();
-            PlayerData.ForestRecord.timer.Restart(); //start timer
+            //PlayerData.ForestRecord.Clear();
+            //PlayerData.ForestRecord.timer.Restart(); //start timer
         }
-
         public static void BuildDungeon_Mountain()
         {
             LevelSet.dungeon.ID = LevelID.DeathMountain_Dungeon;
-            //recipe for size 2 dungeon - normal challenge
-
-            //base dungeon
+            //recipe for size 2 dungeon: medium size
             BuildDungeon_ExitToHub(1); //short
             BuildDungeon_AddBossRoom();
             //medium size
@@ -46,24 +41,36 @@ namespace DungeonRun
             BuildDungeon_ImproveExit();
             BuildDungeon_Expand(2); //med size/secrets
             BuildDungeon_Finalize();
-
-            PlayerData.MountainRecord.Clear();
-            PlayerData.MountainRecord.timer.Restart(); //start timer
+            //PlayerData.MountainRecord.Clear();
+            //PlayerData.MountainRecord.timer.Restart(); //start timer
         }
-
         public static void BuildDungeon_Swamp()
         {
             LevelSet.dungeon.ID = LevelID.HauntedSwamp_Dungeon;
-            //recipe for size 3 dungeon: warning - very big
+            //recipe for size 2 dungeon: medium size
+            BuildDungeon_ExitToHub(1); //short
+            BuildDungeon_AddBossRoom();
+            //medium size
+            BuildDungeon_KeyPath(2); //med size
+            BuildDungeon_ImproveExit();
+            BuildDungeon_Expand(2); //med size/secrets
+            BuildDungeon_Finalize();
+            //PlayerData.SwampRecord.Clear();
+            //PlayerData.SwampRecord.timer.Restart(); //start timer
+        }
 
-            //base dungeon
+
+        #region Size 3 Dungeon Methods
+
+        public static void BuildDungeon_Thieves()
+        {
+            LevelSet.dungeon.ID = LevelID.ThievesHideout_Dungeon;
+            //recipe for size 3 dungeon: big
             BuildDungeon_ExitToHub(2); //med
             BuildDungeon_AddBossRoom();
-
-            //huge size
-            BuildDungeon_KeyPath(3); //med size
+            //big size
+            BuildDungeon_KeyPath(2); //med size
             BuildDungeon_ImproveExit();
-            BuildDungeon_Expand(2);
             BuildDungeon_Expand(2);
             //lots of secrets
             Functions_Level.AddSecretRooms();
@@ -71,15 +78,60 @@ namespace DungeonRun
             Functions_Level.AddSecretRooms();
             //ok stop
             BuildDungeon_Finalize();
+            //PlayerData.SwampRecord.Clear();
+            //PlayerData.SwampRecord.timer.Restart(); //start timer
+        }
 
-            PlayerData.SwampRecord.Clear();
-            PlayerData.SwampRecord.timer.Restart(); //start timer
+        public static void BuildDungeon_Lava()
+        {
+            LevelSet.dungeon.ID = LevelID.Lava_Dungeon;
+            //recipe for size 3 dungeon: big
+            BuildDungeon_ExitToHub(2); //med
+            BuildDungeon_AddBossRoom();
+            //big size
+            BuildDungeon_KeyPath(2); //med size
+            BuildDungeon_ImproveExit();
+            BuildDungeon_Expand(2);
+            //lots of secrets
+            Functions_Level.AddSecretRooms();
+            Functions_Level.AddSecretRooms();
+            Functions_Level.AddSecretRooms();
+            //ok stop
+            BuildDungeon_Finalize();
+            //PlayerData.SwampRecord.Clear();
+            //PlayerData.SwampRecord.timer.Restart(); //start timer
+        }
 
-            /*
-            //test idea: can we hide the key path behind a secret room?
-            //YES WE CAN!
-            //base dungeon
-            BuildDungeon_ExitToHub(3); //long
+        public static void BuildDungeon_Cloud()
+        {
+            LevelSet.dungeon.ID = LevelID.Cloud_Dungeon;
+            //recipe for size 3 dungeon: big
+            BuildDungeon_ExitToHub(2); //med
+            BuildDungeon_AddBossRoom();
+            //big size
+            BuildDungeon_KeyPath(2); //med size
+            BuildDungeon_ImproveExit();
+            BuildDungeon_Expand(2);
+            //lots of secrets
+            Functions_Level.AddSecretRooms();
+            Functions_Level.AddSecretRooms();
+            Functions_Level.AddSecretRooms();
+            //ok stop
+            BuildDungeon_Finalize();
+            //PlayerData.SwampRecord.Clear();
+            //PlayerData.SwampRecord.timer.Restart(); //start timer
+        }
+
+        #endregion
+
+
+        #region Special Skull Dungeon Method
+
+        public static void BuildDungeon_Skull()
+        {
+            LevelSet.dungeon.ID = LevelID.Skull_Dungeon;
+            //special recipe: hide the key path behind a secret room
+            BuildDungeon_ExitToHub(3); //lrg
             BuildDungeon_AddBossRoom();
 
             //lots of secret rooms
@@ -111,31 +163,15 @@ namespace DungeonRun
 
             //ok stop
             BuildDungeon_Finalize();
-            */
 
-
-
+            //PlayerData.SwampRecord.Clear();
+            //PlayerData.SwampRecord.timer.Restart(); //start timer
         }
 
-        public static void BuildDungeon_Thieves()
-        {
-            BuildDungeon_Forest();
-        }
+        #endregion
 
-        public static void BuildDungeon_Lava()
-        {
-            BuildDungeon_Forest();
-        }
 
-        public static void BuildDungeon_Cloud()
-        {
-            BuildDungeon_Forest();
-        }
 
-        public static void BuildDungeon_Skull()
-        {
-            BuildDungeon_Forest();
-        }
 
 
 

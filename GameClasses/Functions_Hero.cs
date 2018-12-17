@@ -713,7 +713,13 @@ namespace DungeonRun
             {
                 if (
                     LevelSet.currentLevel.currentRoom.roomID == RoomID.DEV_Exit ||
-                    LevelSet.currentLevel.currentRoom.roomID == RoomID.ForestIsland_ExitRoom
+                    LevelSet.currentLevel.currentRoom.roomID == RoomID.ForestIsland_ExitRoom ||
+                    LevelSet.currentLevel.currentRoom.roomID == RoomID.DeathMountain_ExitRoom ||
+                    LevelSet.currentLevel.currentRoom.roomID == RoomID.HauntedSwamps_ExitRoom ||
+                    LevelSet.currentLevel.currentRoom.roomID == RoomID.ThievesHideout_ExitRoom ||
+                    LevelSet.currentLevel.currentRoom.roomID == RoomID.LavaIsland_ExitRoom ||
+                    LevelSet.currentLevel.currentRoom.roomID == RoomID.CloudIsland_ExitRoom ||
+                    LevelSet.currentLevel.currentRoom.roomID == RoomID.SkullIsland_ExitRoom
                     )
                 {
                     //setup signpost title
