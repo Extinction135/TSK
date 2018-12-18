@@ -65,62 +65,6 @@ Today:
 
 
 
-Level Presentation Ideas
-
-themeing levels using objects + massive sprites.
-these are ints and inds, plus a sprite component.
-this sprite component sits along the TOP of the level,
-sitting above the middle of the level, so it presents
-nicely to the player. it is the width of the level, plus
-16*2 pixels. since this will become square in the process,
-we should go ahead and make this square in photoshop.
-this allows us to also have custom sprites that look
-like objects south of the entrance. at this point, we're
-basically painting the entrance and it's custom surrounding
-objects, then layering on inds to complete the hitboxes,
-then adding more inds and int objects that the player can
-interact with to complete the level.
-
-where do we store the massive sprite? level screen? pool?
-what is this big sprite called? 
-
-PresentationSprite
-
-this is the big sprite's name, as it also describes it's
-purpose. it's meant to present the level, whatever it may
-be, in a grand and breath-taking 1995 nintendo style way.
-but just a little bit further than that, because they were
-working with hardware limitations and time constraints,
-whereas i don't have either of those.
-
-screenshotted field level width to a photoshop file,
-cropped and setup file for creating presentation sprite.
-this is a 1300x400 sprite. this allows for about half of the
-level to be custom hand-painted pixel art, with additional
-objects layered on top (with a system designed to handle
-an entire levels worth of interactive objects). so, things
-are looking good....
-
-where does this sprite go? this is a single sprite
-component, always placed at the same position on a level.
-i think it should be part of level, that way we dont
-expand room data. the sprite can change based on the 
-field id. we would never draw the sprite or use it in
-a dungeon room, for now (unless we resize boss rooms
-to be very wide and then use the sprite to add even more
-flavor to the battle). which, we could do that. sure.
-note of this idea added to ideas.
-
-
-
-
-
-
-
-
-
-
-
 
 Presentation Sprite v1
 
@@ -136,6 +80,47 @@ component in level screen that draws before the ind objs.
 when the level builds, we will swap it's texture based on
 the roomID we're using the build the room. this works for
 fields and dungeon rooms, like hub and boss rooms.
+
+so, based on the testing for presentation sprite, it
+kinda makes more sense to call it a background sprite,
+because we layer everything on top of it. this sprite
+cannot contain objects that have depth, tho, so we can
+do far north walls, and then middle area ground effects,
+or objects that have height that extend to the wall,
+or objs that have height that are covered above somehow.
+we can also have objs that sit over the bkgsprite that
+cover link, so it appears he is 'inside' the bkg sprite,
+but that is very specific to the level. overall testing
+is good.
+
+we dev tested on a mountin wall, and this will work.
+so let's make the coliseum entrance as an in-game test.
+
+made dev test coliseum entrance based on current coliseum
+entrance shrine. exported to png, added to dx project for
+testing in the shadow coliseum level.
+
+tested and working for the coliseum level. the bkg
+sprite is basic but shows the new direction important
+levels need to take.
+
+bkg sprite has been moved to levelset class for easier
+organization. working as expected.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

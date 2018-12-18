@@ -160,8 +160,7 @@ namespace DungeonRun
 
 
 
-
-        //Dungeon Room Building Method
+        
 
         public static void BuildRoom(Room Room, RoomXmlData RoomXmlData = null)
         {
@@ -170,9 +169,13 @@ namespace DungeonRun
             stopWatch.Reset(); stopWatch.Start();
 
 
+            
 
-            //Setup RoomData OR DevRooms
+            
 
+
+
+            //0: if we aren't loading xml data, then use existing cs roomData
             if (RoomXmlData == null)
             {
 
@@ -471,9 +474,20 @@ namespace DungeonRun
 
 
             }
+            else
+            {
+                //we have passed room xml data into the method, so we
+                //are loading a file from the editor
+            }
 
 
-            #region Setup DEV ROOMS
+            
+
+
+
+
+
+            #region Handle Editor RoomTypes
 
             if (Room.roomID == RoomID.DEV_Boss || Room.roomID == RoomID.DEV_Column ||
                 Room.roomID == RoomID.DEV_Exit || Room.roomID == RoomID.DEV_Hub ||
@@ -496,6 +510,13 @@ namespace DungeonRun
             #endregion
 
 
+
+
+            
+
+
+
+
             #region Build the room + roomData
 
             if (LevelSet.currentLevel.isField)
@@ -506,15 +527,21 @@ namespace DungeonRun
             }
             else
             {   //else, we are building an interior dungeon room
-                BuildRoomFrom(RoomXmlData);
+                Build_DUNGEON_RoomFrom(RoomXmlData);
                 //current room is set by hero in this case
             }
 
             #endregion
 
 
-            #region Handle room specific initial events (like setting music)
 
+
+            
+
+
+            #region Handle room specific initial events (like setting music, bkg sprite visibility)
+
+            //setup boss music
             if (
                 Room.roomID == RoomID.ForestIsland_BossRoom ||
                 Room.roomID == RoomID.DeathMountain_BossRoom ||
@@ -529,9 +556,22 @@ namespace DungeonRun
                 Functions_Music.PlayMusic(Music.Boss);
             }
 
+            //setup bkg sprite
+            if (Room.roomID == RoomID.SkullIsland_Colliseum)
+            {
+                LevelSet.BkgSprite.texture = Assets.BkgSp_Shadow_Coliseum;
+                LevelSet.BkgSprite.visible = true;
+            }
+            else
+            {
+                LevelSet.BkgSprite.visible = false;
+            }
+
             #endregion
 
 
+
+            
 
             stopWatch.Stop(); time = stopWatch.Elapsed;
             if (Flags.PrintOutput)
@@ -539,9 +579,7 @@ namespace DungeonRun
         }
 
 
-
-        //Field Room Building Method
-
+        
         public static void BuildRoomXmlData(RoomXmlData RoomXmlData = null)
         {
             //note that RoomXmlData is an optional parameter
@@ -651,7 +689,7 @@ namespace DungeonRun
 
         //procedural room methods
 
-        public static void BuildEmptyRoom(Room Room)
+        public static void Build_DUNGEON_EmptyRoom(Room Room)
         {
             Functions_Pool.Reset(); //reset the pools + counter
             pos = Room.rec.Location; //shorten room's position reference
@@ -756,10 +794,10 @@ namespace DungeonRun
             }
         }
 
-        public static void BuildRoomFrom(RoomXmlData RoomXmlData)
+        public static void Build_DUNGEON_RoomFrom(RoomXmlData RoomXmlData)
         {
             //reset pool, get blank room, fill with floors + walls
-            BuildEmptyRoom(LevelSet.dungeon.currentRoom);
+            Build_DUNGEON_EmptyRoom(LevelSet.dungeon.currentRoom);
             //set the floortile frames properly based on room.type
             SetFloors(LevelSet.dungeon.currentRoom);
             //change certain walls to doors based on collisions with Level.doors
@@ -1455,6 +1493,13 @@ namespace DungeonRun
 
 
 
+
+
+
+
+
+
+        
 
     }
 }

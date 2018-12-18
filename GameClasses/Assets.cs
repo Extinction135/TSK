@@ -42,6 +42,7 @@ namespace DungeonRun
         //level sheets
         public static Texture2D CommonObjsSheet;
         public static Texture2D EnemySheet;
+
         //dungeon sheets
         public static Texture2D Dungeon_CurrentSheet; //points to one below
         public static Texture2D Dungeon_DefaultSheet; //also blob dungeon
@@ -52,6 +53,22 @@ namespace DungeonRun
         public static Texture2D Dungeon_LavaSheet;
         public static Texture2D Dungeon_ThievesSheet;
         public static Texture2D Dungeon_ShadowSheet;
+
+
+
+
+
+        //bkg sprite textures
+        public static Texture2D BkgSp_Shadow_Coliseum;
+
+
+
+
+
+
+
+
+
 
 
 
@@ -248,9 +265,25 @@ namespace DungeonRun
             //points to default sheet upon creation
             Dungeon_CurrentSheet = Dungeon_DefaultSheet;
 
-
             petsSheet = content.Load<Texture2D>(@"Sprites_Pets");
             uiItemsSheet = content.Load<Texture2D>(@"Sprites_Ui");
+
+
+
+
+
+            //load the bkg sprite textures
+            BkgSp_Shadow_Coliseum = content.Load<Texture2D>(@"BkgSprite_Shadow_Coliseum");
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -739,21 +739,19 @@ namespace DungeonRun
         
         public static void Draw()
         {
+            //first, draw the bkg sprite
+            Functions_Draw.Draw(LevelSet.BkgSprite);
             //floor pool
             for (Pool.floorCounter = 0; Pool.floorCounter < Pool.floorCount; Pool.floorCounter++)
             { Functions_Draw.Draw(Pool.floorPool[Pool.floorCounter]); }
             //line pool
             for (Pool.lineCounter = 0; Pool.lineCounter < Pool.lineCount; Pool.lineCounter++)
             { Functions_Draw.Draw(Pool.linePool[Pool.lineCounter]); }
-
-
-            //no longer drawing the gameObj pool
+            //draw inds, then ints
             for (Pool.indObjCounter = 0; Pool.indObjCounter < Pool.indObjCount; Pool.indObjCounter++)
             { Functions_Draw.Draw(Pool.indObjPool[Pool.indObjCounter]); }
             for (Pool.intObjCounter = 0; Pool.intObjCounter < Pool.intObjCount; Pool.intObjCounter++)
             { Functions_Draw.Draw(Pool.intObjPool[Pool.intObjCounter]); }
-
-
             //particles
             for (Pool.particleCounter = 0; Pool.particleCounter < Pool.particleCount; Pool.particleCounter++)
             { Functions_Draw.Draw(Pool.particlePool[Pool.particleCounter]); }
@@ -766,11 +764,9 @@ namespace DungeonRun
             //actor pool
             for (Pool.actorCounter = 0; Pool.actorCounter < Pool.actorCount; Pool.actorCounter++)
             { Functions_Draw.Draw(Pool.actorPool[Pool.actorCounter]); }
-
             //wind pool
             for (Pool.windObjCounter = 0; Pool.windObjCounter < Pool.windObjCount; Pool.windObjCounter++)
             { Functions_Draw.Draw(Pool.windObjPool[Pool.windObjCounter]); }
-
             //handle hero specific drawing last
             Functions_Hero.Draw();
         }

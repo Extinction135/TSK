@@ -17,8 +17,8 @@ namespace DungeonRun
     public static class Flags
     {   
         // **********************************************************************************************************
-        public static Boolean Release = false; //puts game in release mode, overwrites other flags
-        //VERY IMPORTANT NOTE: Release requires populated roomData classes to be linked to current project
+        public static Boolean Release = true; //puts game in release mode, overwrites other flags
+        ////IMPORTANT NOTE: Release requires populated roomData classes to be linked to current project
         // **********************************************************************************************************
         public static float Version = 0.79f; //the version of the game
         public static BootRoutine bootRoutine = BootRoutine.Editor_Level; //boot to game or editor?
@@ -493,11 +493,24 @@ namespace DungeonRun
         public static Vector2 spawnPos_Dungeon = new Vector2();
         //^ entirely based on connecting doors and exit door in dungeon
 
+        public static ComponentSprite BkgSprite;
+        //bkg sprite for awesome massive pixel art, pls
+
         static LevelSet()
         {
             field = new Level();
             dungeon = new Level();
             currentLevel = field;
+
+            BkgSprite = new ComponentSprite(
+                Assets.BkgSp_Shadow_Coliseum,
+                new Vector2(16 * 10, 16 * 200), //matches level's build pos
+                new Byte4(0, 0, 0, 0),
+                new Point(1300, 400));
+            //set sprite at top center of level
+            BkgSprite.position.X += (1300 / 2);
+            BkgSprite.position.Y += (400 / 2);
+            BkgSprite.visible = false;
         }
     }
 
@@ -1010,6 +1023,12 @@ namespace DungeonRun
             autosaveText.position.Y = 81;
         }
     }
+
+    
+
+
+
+
 
     public static class Timing
     {

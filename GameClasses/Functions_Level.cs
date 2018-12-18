@@ -38,13 +38,32 @@ namespace DungeonRun
         }
 
 
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
         public static void BuildLevel(LevelID levelID)
         {
             //reset these booleans in case we changed them via levelSet.currentLevel
             LevelSet.dungeon.isField = false;
             LevelSet.field.isField = true;
 
-            //handle DUNGEON setup
+
+
+
+            #region Dungeon Build
+
             if (
                 levelID == LevelID.Forest_Dungeon
                 || levelID == LevelID.DeathMountain_Dungeon
@@ -77,7 +96,15 @@ namespace DungeonRun
                 { ColorScheme.background = ColorScheme.bkg_dungeon_forest; }
             }
 
-            //handle FIELD setup
+
+            #endregion
+
+
+            //or
+
+
+            #region Field Build
+
             else
             {   //reset field data
                 ResetLevel(LevelSet.field);
@@ -87,7 +114,11 @@ namespace DungeonRun
                 //set bkg color: green, as most levels occur on land
                 ColorScheme.background = ColorScheme.bkg_level_room;
             }
-            
+
+            #endregion
+
+
+
 
 
 
@@ -101,16 +132,6 @@ namespace DungeonRun
                 output += "dungeon: " + LevelSet.dungeon.ID + "\n";
                 Debug.WriteLine("" + output);
             }
-
-
-
-
-
-
-
-
-
-            
             //start building levels
             stopWatch.Reset(); stopWatch.Start();
             //setup the room (level), or series of rooms (dungeon)
@@ -126,6 +147,8 @@ namespace DungeonRun
                 }
                 else
                 {
+
+
 
                     if (
                     //check to see if editor just built a new dungeon room to work on
@@ -158,15 +181,20 @@ namespace DungeonRun
                         LevelSet.currentLevel.currentRoom = LevelSet.currentLevel.rooms[0];
                         Functions_Hero.ResetFieldSpawnPos();
                     }
+
+
+
                 }
-            } 
+            }
 
             //that's all the editor builds, if we load a level in the editor thats
             //not a dev level, it will build and interact normally, as in game.
 
             #endregion
 
-            //or
+
+
+
 
             //Build Overworld Field Levels
 

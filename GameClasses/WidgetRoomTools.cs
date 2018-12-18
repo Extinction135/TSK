@@ -302,29 +302,33 @@ namespace DungeonRun
         {   //called at end of functions_backend (directx or uwp) 
             //after it's deserialized xml into Widgets.RoomTools.roomData
 
+
+
+
+
+
+
             if (state == WidgetRoomToolsState.Room)
             {
                 //set level to dungeon
                 LevelSet.currentLevel = LevelSet.dungeon;
-
-                //defaults to forest dungeon level
-                LevelSet.currentLevel.ID = LevelID.Forest_Dungeon;
+                LevelSet.currentLevel.ID = LevelID.Forest_Dungeon; //default to forest dungeon
                 LevelSet.currentLevel.rooms = new List<Room>();
                 LevelSet.currentLevel.doors = new List<Door>();
+                LevelSet.currentLevel.isField = false;
 
                 //reset the level flags
                 LevelSet.currentLevel.bigKey = false;
                 LevelSet.currentLevel.map = false;
 
-                //constructor takes TYPE - transforms into RoomID
+                //create and set the room
                 Room room = new Room(Functions_Level.buildPosition, RoomXmlData.type);
-
                 LevelSet.currentLevel.rooms.Add(room);
                 LevelSet.currentLevel.currentRoom = room;
-                Functions_Room.AddDevDoors(room);
 
+                Functions_Room.AddDevDoors(room);
                 //build walled empty room with floors, add xml objs, etc...
-                Functions_Room.BuildRoomFrom(RoomXmlData);
+                Functions_Room.Build_DUNGEON_RoomFrom(RoomXmlData);
 
                 //set spawnPos outside TopLeft of new dev room
                 LevelSet.spawnPos_Dungeon.X = LevelSet.currentLevel.currentRoom.rec.X - 32;
@@ -339,18 +343,24 @@ namespace DungeonRun
             {
                 //set level to field
                 LevelSet.currentLevel = LevelSet.field;
+                //LevelSet.currentLevel.ID = LevelID.SkullIsland_Colliseum; //default to skull coliseum
+                LevelSet.currentLevel.rooms = new List<Room>();
+                LevelSet.currentLevel.isField = true;
 
-                //FIELD: clear all objs, add xml objs
-                Functions_Pool.Reset();
-                Functions_Room.BuildRoomXmlData(RoomXmlData);
+                //create and set the room
+                Room room = new Room(Functions_Level.buildPosition, RoomXmlData.type);
+                LevelSet.currentLevel.rooms.Add(room); //index0
+                LevelSet.currentLevel.rooms[0].visited = true;
+                LevelSet.currentLevel.currentRoom = LevelSet.currentLevel.rooms[0];
+                //LevelSet.currentLevel.currentRoom = LevelSet.field.rooms[0]; //= room;
+                //Functions_Room.BuildRoom(LevelSet.currentLevel.currentRoom);
+                //build the room with the xml data
+                Functions_Room.BuildRoom(LevelSet.currentLevel.currentRoom, RoomXmlData);
 
-                //pass the room type into the built room
-                LevelSet.currentLevel.currentRoom.roomID = RoomXmlData.type;
 
                 //set spawnPos
                 Functions_Hero.ResetFieldSpawnPos();
                 Functions_Hero.SpawnInCurrentRoom(); //spawn hero in room
-
                 //set camera to room spawnpos (where hero just spawned)
                 Camera2D.targetPosition.X = LevelSet.spawnPos_Dungeon.X;
                 Camera2D.targetPosition.Y = LevelSet.spawnPos_Dungeon.Y;

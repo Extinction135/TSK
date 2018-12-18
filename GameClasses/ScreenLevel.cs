@@ -29,9 +29,15 @@ namespace DungeonRun
         int i;
 
 
+        
+        
 
 
-        public ScreenLevel() { this.name = "LevelScreen"; }
+
+        public ScreenLevel()
+        {
+            this.name = "LevelScreen";
+        }
 
         public override void Open()
         {   
@@ -231,8 +237,9 @@ namespace DungeonRun
                         SamplerState.PointClamp,
                         null, null, null, Camera2D.view);
 
-            Functions_Pool.Draw();
 
+            Functions_Pool.Draw();
+            //then draw hitboxes if we need to see em'
             if (Flags.DrawCollisions)
             {
                 Functions_Draw.Draw(Input.cursorColl);

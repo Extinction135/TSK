@@ -124,8 +124,8 @@ namespace DungeonRun
         {
             if (Sprite.visible)
             {   //set draw rec
-                Sprite.drawRec.X = (int)(Sprite.drawRec.Width * Sprite.currentFrame.X);
-                Sprite.drawRec.Y = (int)(Sprite.drawRec.Height * Sprite.currentFrame.Y);
+                Sprite.drawRec.X = (Sprite.drawRec.Width * Sprite.currentFrame.X);
+                Sprite.drawRec.Y = (Sprite.drawRec.Height * Sprite.currentFrame.Y);
                 //update rotationValue based on rotation enum
                 if (Sprite.rotation == Rotation.Clockwise90)
                 { Sprite.rotationValue = 1.575f; }
