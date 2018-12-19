@@ -8,772 +8,304 @@
     <IndObjXmlData>
       <type>Coliseum_Shadow_Entrance</type>
       <direction>Down</direction>
-      <posX>616</posX>
-      <posY>440</posY>
+      <posX>488</posX>
+      <posY>296</posY>
     </IndObjXmlData>
     <IndObjXmlData>
-      <type>Coliseum_Shadow_Entrance</type>
+      <type>Coliseum_Shadow_Stairs_Handrail_Top</type>
       <direction>Down</direction>
-      <posX>568</posX>
-      <posY>440</posY>
+      <posX>472</posX>
+      <posY>344</posY>
     </IndObjXmlData>
     <IndObjXmlData>
-      <type>Coliseum_Shadow_Entrance</type>
+      <type>Coliseum_Shadow_Stairs_Handrail_Middle</type>
       <direction>Down</direction>
-      <posX>664</posX>
-      <posY>440</posY>
+      <posX>472</posX>
+      <posY>360</posY>
     </IndObjXmlData>
     <IndObjXmlData>
-      <type>Coliseum_Shadow_Entrance</type>
+      <type>Coliseum_Shadow_Stairs_Handrail_Bottom</type>
       <direction>Down</direction>
-      <posX>520</posX>
-      <posY>440</posY>
+      <posX>472</posX>
+      <posY>408</posY>
     </IndObjXmlData>
     <IndObjXmlData>
-      <type>Coliseum_Shadow_Entrance</type>
+      <type>Dungeon_SkullPillar</type>
       <direction>Down</direction>
-      <posX>712</posX>
+      <posX>472</posX>
       <posY>440</posY>
     </IndObjXmlData>
     <IndObjXmlData>
       <type>Coliseum_Shadow_Stairs_Handrail_Top</type>
       <direction>Down</direction>
-      <posX>760</posX>
-      <posY>488</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Stairs_Handrail_Top</type>
-      <direction>Down</direction>
-      <posX>504</posX>
-      <posY>488</posY>
+      <posX>728</posX>
+      <posY>344</posY>
     </IndObjXmlData>
     <IndObjXmlData>
       <type>Coliseum_Shadow_Stairs_Handrail_Middle</type>
       <direction>Down</direction>
-      <posX>760</posX>
-      <posY>504</posY>
+      <posX>728</posX>
+      <posY>360</posY>
+    </IndObjXmlData>
+    <IndObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Handrail_Bottom</type>
+      <direction>Down</direction>
+      <posX>728</posX>
+      <posY>408</posY>
     </IndObjXmlData>
     <IndObjXmlData>
       <type>Coliseum_Shadow_Stairs_Handrail_Middle</type>
       <direction>Down</direction>
-      <posX>504</posX>
-      <posY>504</posY>
+      <posX>472</posX>
+      <posY>376</posY>
     </IndObjXmlData>
     <IndObjXmlData>
-      <type>Coliseum_Shadow_Stairs_Handrail_Bottom</type>
+      <type>Coliseum_Shadow_Stairs_Handrail_Middle</type>
       <direction>Down</direction>
-      <posX>760</posX>
-      <posY>520</posY>
+      <posX>472</posX>
+      <posY>392</posY>
     </IndObjXmlData>
     <IndObjXmlData>
-      <type>Coliseum_Shadow_Stairs_Handrail_Bottom</type>
+      <type>Coliseum_Shadow_Stairs_Handrail_Middle</type>
       <direction>Down</direction>
-      <posX>504</posX>
-      <posY>520</posY>
+      <posX>728</posX>
+      <posY>376</posY>
     </IndObjXmlData>
     <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Middle</type>
+      <type>Coliseum_Shadow_Stairs_Handrail_Middle</type>
       <direction>Down</direction>
-      <posX>760</posX>
-      <posY>472</posY>
+      <posX>728</posX>
+      <posY>392</posY>
     </IndObjXmlData>
     <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Middle</type>
+      <type>Dungeon_SkullPillar</type>
       <direction>Down</direction>
-      <posX>504</posX>
-      <posY>472</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Middle</type>
-      <direction>Down</direction>
-      <posX>760</posX>
-      <posY>456</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Middle</type>
-      <direction>Down</direction>
-      <posX>760</posX>
+      <posX>728</posX>
       <posY>440</posY>
     </IndObjXmlData>
     <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Middle</type>
-      <direction>Down</direction>
-      <posX>504</posX>
-      <posY>456</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Middle</type>
-      <direction>Down</direction>
-      <posX>504</posX>
-      <posY>440</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Top</type>
-      <direction>Down</direction>
-      <posX>504</posX>
-      <posY>424</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Top</type>
-      <direction>Down</direction>
-      <posX>520</posX>
-      <posY>424</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Top</type>
+      <type>Coliseum_Shadow_Entrance</type>
       <direction>Down</direction>
       <posX>536</posX>
-      <posY>424</posY>
+      <posY>296</posY>
     </IndObjXmlData>
     <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Top</type>
-      <direction>Down</direction>
-      <posX>552</posX>
-      <posY>424</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Top</type>
-      <direction>Down</direction>
-      <posX>568</posX>
-      <posY>424</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Top</type>
+      <type>Coliseum_Shadow_Entrance</type>
       <direction>Down</direction>
       <posX>584</posX>
-      <posY>424</posY>
+      <posY>296</posY>
     </IndObjXmlData>
     <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Top</type>
-      <direction>Down</direction>
-      <posX>600</posX>
-      <posY>424</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Top</type>
-      <direction>Down</direction>
-      <posX>616</posX>
-      <posY>424</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Top</type>
+      <type>Coliseum_Shadow_Entrance</type>
       <direction>Down</direction>
       <posX>632</posX>
-      <posY>424</posY>
+      <posY>296</posY>
     </IndObjXmlData>
     <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Top</type>
-      <direction>Down</direction>
-      <posX>648</posX>
-      <posY>424</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Top</type>
-      <direction>Down</direction>
-      <posX>664</posX>
-      <posY>424</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Top</type>
+      <type>Coliseum_Shadow_Entrance</type>
       <direction>Down</direction>
       <posX>680</posX>
-      <posY>424</posY>
+      <posY>296</posY>
     </IndObjXmlData>
     <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Top</type>
+      <type>Tree_Med</type>
       <direction>Down</direction>
-      <posX>696</posX>
-      <posY>424</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Top</type>
-      <direction>Down</direction>
-      <posX>712</posX>
-      <posY>424</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Top</type>
-      <direction>Down</direction>
-      <posX>728</posX>
-      <posY>424</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Top</type>
-      <direction>Down</direction>
-      <posX>744</posX>
-      <posY>424</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Top</type>
-      <direction>Down</direction>
-      <posX>760</posX>
-      <posY>424</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Dungeon_SkullPillar</type>
-      <direction>Down</direction>
-      <posX>520</posX>
-      <posY>408</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Dungeon_SkullPillar</type>
-      <direction>Down</direction>
-      <posX>536</posX>
-      <posY>408</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Dungeon_SkullPillar</type>
-      <direction>Down</direction>
-      <posX>552</posX>
-      <posY>408</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Dungeon_SkullPillar</type>
-      <direction>Down</direction>
-      <posX>568</posX>
-      <posY>408</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Dungeon_SkullPillar</type>
-      <direction>Down</direction>
-      <posX>584</posX>
-      <posY>408</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Dungeon_SkullPillar</type>
-      <direction>Down</direction>
-      <posX>600</posX>
-      <posY>408</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Dungeon_SkullPillar</type>
-      <direction>Down</direction>
-      <posX>616</posX>
-      <posY>408</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Dungeon_SkullPillar</type>
-      <direction>Down</direction>
-      <posX>632</posX>
-      <posY>408</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Dungeon_SkullPillar</type>
-      <direction>Down</direction>
-      <posX>648</posX>
-      <posY>408</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Dungeon_SkullPillar</type>
-      <direction>Down</direction>
-      <posX>664</posX>
-      <posY>408</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Dungeon_SkullPillar</type>
-      <direction>Down</direction>
-      <posX>680</posX>
-      <posY>408</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Dungeon_SkullPillar</type>
-      <direction>Down</direction>
-      <posX>696</posX>
-      <posY>408</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Dungeon_SkullPillar</type>
-      <direction>Down</direction>
-      <posX>712</posX>
-      <posY>408</posY>
+      <posX>1016</posX>
+      <posY>264</posY>
     </IndObjXmlData>
     <IndObjXmlData>
       <type>Dungeon_SkullPillar</type>
       <direction>Down</direction>
       <posX>728</posX>
-      <posY>408</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Dungeon_SkullPillar</type>
-      <direction>Down</direction>
-      <posX>744</posX>
-      <posY>408</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Dungeon_SkullPillar</type>
-      <direction>Down</direction>
-      <posX>760</posX>
-      <posY>408</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Dungeon_SkullPillar</type>
-      <direction>Down</direction>
-      <posX>504</posX>
-      <posY>408</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Spectator</type>
-      <direction>Down</direction>
-      <posX>504</posX>
-      <posY>392</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Spectator</type>
-      <direction>Down</direction>
-      <posX>504</posX>
-      <posY>376</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Spectator</type>
-      <direction>Down</direction>
-      <posX>568</posX>
-      <posY>392</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Spectator</type>
-      <direction>Down</direction>
-      <posX>568</posX>
-      <posY>376</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Spectator</type>
-      <direction>Down</direction>
-      <posX>648</posX>
-      <posY>376</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Spectator</type>
-      <direction>Down</direction>
-      <posX>648</posX>
-      <posY>392</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Spectator</type>
-      <direction>Down</direction>
-      <posX>712</posX>
-      <posY>392</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Spectator</type>
-      <direction>Down</direction>
-      <posX>712</posX>
-      <posY>376</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Middle</type>
-      <direction>Down</direction>
-      <posX>760</posX>
-      <posY>408</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Middle</type>
-      <direction>Down</direction>
-      <posX>744</posX>
-      <posY>408</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Middle</type>
-      <direction>Down</direction>
-      <posX>728</posX>
-      <posY>408</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Middle</type>
-      <direction>Down</direction>
-      <posX>712</posX>
-      <posY>408</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Middle</type>
-      <direction>Down</direction>
-      <posX>696</posX>
-      <posY>408</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Middle</type>
-      <direction>Down</direction>
-      <posX>680</posX>
-      <posY>408</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Middle</type>
-      <direction>Down</direction>
-      <posX>664</posX>
-      <posY>408</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Middle</type>
-      <direction>Down</direction>
-      <posX>648</posX>
-      <posY>408</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Middle</type>
-      <direction>Down</direction>
-      <posX>616</posX>
-      <posY>408</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Middle</type>
-      <direction>Down</direction>
-      <posX>504</posX>
-      <posY>408</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Middle</type>
-      <direction>Down</direction>
-      <posX>520</posX>
-      <posY>408</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Middle</type>
-      <direction>Down</direction>
-      <posX>536</posX>
-      <posY>408</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Middle</type>
-      <direction>Down</direction>
-      <posX>552</posX>
-      <posY>408</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Middle</type>
-      <direction>Down</direction>
-      <posX>568</posX>
-      <posY>408</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Middle</type>
-      <direction>Down</direction>
-      <posX>584</posX>
-      <posY>408</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Middle</type>
-      <direction>Down</direction>
-      <posX>600</posX>
-      <posY>408</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Middle</type>
-      <direction>Down</direction>
-      <posX>632</posX>
-      <posY>408</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Middle</type>
-      <direction>Down</direction>
-      <posX>632</posX>
-      <posY>392</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Top</type>
-      <direction>Down</direction>
-      <posX>632</posX>
-      <posY>376</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Bottom</type>
-      <direction>Down</direction>
-      <posX>776</posX>
       <posY>488</posY>
     </IndObjXmlData>
     <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Bottom</type>
+      <type>Dungeon_SkullPillar</type>
       <direction>Down</direction>
-      <posX>488</posX>
+      <posX>472</posX>
       <posY>488</posY>
     </IndObjXmlData>
     <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Middle</type>
+      <type>Dungeon_SkullPillar</type>
       <direction>Down</direction>
-      <posX>488</posX>
-      <posY>472</posY>
+      <posX>472</posX>
+      <posY>536</posY>
     </IndObjXmlData>
     <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Middle</type>
+      <type>Dungeon_SkullPillar</type>
       <direction>Down</direction>
-      <posX>488</posX>
-      <posY>456</posY>
+      <posX>728</posX>
+      <posY>536</posY>
     </IndObjXmlData>
     <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Middle</type>
+      <type>Dungeon_SkullPillar</type>
       <direction>Down</direction>
-      <posX>488</posX>
-      <posY>440</posY>
+      <posX>472</posX>
+      <posY>584</posY>
     </IndObjXmlData>
     <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Middle</type>
+      <type>Dungeon_SkullPillar</type>
       <direction>Down</direction>
-      <posX>488</posX>
+      <posX>728</posX>
+      <posY>584</posY>
+    </IndObjXmlData>
+    <IndObjXmlData>
+      <type>Dungeon_SkullPillar</type>
+      <direction>Down</direction>
+      <posX>472</posX>
+      <posY>632</posY>
+    </IndObjXmlData>
+    <IndObjXmlData>
+      <type>Dungeon_SkullPillar</type>
+      <direction>Down</direction>
+      <posX>728</posX>
+      <posY>632</posY>
+    </IndObjXmlData>
+    <IndObjXmlData>
+      <type>Tree_Med</type>
+      <direction>Down</direction>
+      <posX>56</posX>
       <posY>424</posY>
     </IndObjXmlData>
     <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Middle</type>
+      <type>Tree_Med</type>
       <direction>Down</direction>
-      <posX>488</posX>
-      <posY>408</posY>
+      <posX>264</posX>
+      <posY>296</posY>
     </IndObjXmlData>
     <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Middle</type>
+      <type>Tree_Med</type>
       <direction>Down</direction>
-      <posX>488</posX>
+      <posX>72</posX>
+      <posY>600</posY>
+    </IndObjXmlData>
+    <IndObjXmlData>
+      <type>Tree_Med</type>
+      <direction>Down</direction>
+      <posX>24</posX>
+      <posY>520</posY>
+    </IndObjXmlData>
+    <IndObjXmlData>
+      <type>Tree_Med</type>
+      <direction>Down</direction>
+      <posX>8</posX>
+      <posY>312</posY>
+    </IndObjXmlData>
+    <IndObjXmlData>
+      <type>Tree_Med</type>
+      <direction>Down</direction>
+      <posX>1224</posX>
+      <posY>216</posY>
+    </IndObjXmlData>
+    <IndObjXmlData>
+      <type>Tree_Med</type>
+      <direction>Down</direction>
+      <posX>1208</posX>
       <posY>392</posY>
     </IndObjXmlData>
     <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Middle</type>
+      <type>Tree_Med</type>
       <direction>Down</direction>
-      <posX>776</posX>
-      <posY>392</posY>
+      <posX>1256</posX>
+      <posY>552</posY>
     </IndObjXmlData>
     <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Middle</type>
+      <type>Tree_Med</type>
       <direction>Down</direction>
-      <posX>776</posX>
-      <posY>408</posY>
+      <posX>1176</posX>
+      <posY>680</posY>
     </IndObjXmlData>
     <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Middle</type>
+      <type>Tree_Med_Stump</type>
       <direction>Down</direction>
-      <posX>776</posX>
-      <posY>424</posY>
+      <posX>952</posX>
+      <posY>488</posY>
     </IndObjXmlData>
     <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Middle</type>
+      <type>Tree_Med_Stump</type>
       <direction>Down</direction>
-      <posX>776</posX>
-      <posY>440</posY>
-    </IndObjXmlData>
-    <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Middle</type>
-      <direction>Down</direction>
-      <posX>776</posX>
+      <posX>1256</posX>
       <posY>456</posY>
     </IndObjXmlData>
     <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Middle</type>
+      <type>Tree_Med_Stump</type>
       <direction>Down</direction>
-      <posX>776</posX>
-      <posY>472</posY>
+      <posX>1256</posX>
+      <posY>312</posY>
     </IndObjXmlData>
     <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Top</type>
+      <type>Tree_Med_Stump</type>
       <direction>Down</direction>
-      <posX>776</posX>
-      <posY>376</posY>
+      <posX>264</posX>
+      <posY>440</posY>
     </IndObjXmlData>
     <IndObjXmlData>
-      <type>Coliseum_Shadow_Pillar_Top</type>
+      <type>Tree_Med_Stump</type>
       <direction>Down</direction>
-      <posX>488</posX>
-      <posY>376</posY>
+      <posX>200</posX>
+      <posY>568</posY>
+    </IndObjXmlData>
+    <IndObjXmlData>
+      <type>Tree_Med</type>
+      <direction>Down</direction>
+      <posX>24</posX>
+      <posY>696</posY>
     </IndObjXmlData>
   </inds>
   <ints>
     <IntObjXmlData>
-      <type>Coliseum_Shadow_Stairs_Left</type>
+      <type>Dirt_ToGrass_Straight</type>
       <direction>Down</direction>
       <posX>520</posX>
-      <posY>488</posY>
+      <posY>680</posY>
     </IntObjXmlData>
     <IntObjXmlData>
-      <type>Coliseum_Shadow_Stairs_Left</type>
-      <direction>Down</direction>
-      <posX>520</posX>
-      <posY>504</posY>
+      <type>Dirt_ToGrass_Straight</type>
+      <direction>Right</direction>
+      <posX>552</posX>
+      <posY>648</posY>
     </IntObjXmlData>
     <IntObjXmlData>
-      <type>Coliseum_Shadow_Stairs_Left</type>
+      <type>Tree</type>
       <direction>Down</direction>
-      <posX>520</posX>
+      <posX>856</posX>
+      <posY>632</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Tree</type>
+      <direction>Down</direction>
+      <posX>376</posX>
+      <posY>456</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Tree</type>
+      <direction>Down</direction>
+      <posX>312</posX>
+      <posY>552</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Tree</type>
+      <direction>Down</direction>
+      <posX>376</posX>
+      <posY>632</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Tree</type>
+      <direction>Down</direction>
+      <posX>840</posX>
+      <posY>408</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Tree</type>
+      <direction>Down</direction>
+      <posX>936</posX>
       <posY>520</posY>
     </IntObjXmlData>
     <IntObjXmlData>
-      <type>Coliseum_Shadow_Stairs_Right</type>
+      <type>Tree</type>
       <direction>Down</direction>
-      <posX>744</posX>
-      <posY>488</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Coliseum_Shadow_Stairs_Right</type>
-      <direction>Down</direction>
-      <posX>744</posX>
-      <posY>504</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Coliseum_Shadow_Stairs_Right</type>
-      <direction>Down</direction>
-      <posX>744</posX>
-      <posY>520</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Coliseum_Shadow_Stairs_Middle</type>
-      <direction>Down</direction>
-      <posX>536</posX>
-      <posY>488</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Coliseum_Shadow_Stairs_Middle</type>
-      <direction>Down</direction>
-      <posX>552</posX>
-      <posY>488</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Coliseum_Shadow_Stairs_Middle</type>
-      <direction>Down</direction>
-      <posX>552</posX>
-      <posY>504</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Coliseum_Shadow_Stairs_Middle</type>
-      <direction>Down</direction>
-      <posX>536</posX>
-      <posY>504</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Coliseum_Shadow_Stairs_Middle</type>
-      <direction>Down</direction>
-      <posX>568</posX>
-      <posY>488</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Coliseum_Shadow_Stairs_Middle</type>
-      <direction>Down</direction>
-      <posX>568</posX>
-      <posY>504</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Coliseum_Shadow_Stairs_Middle</type>
-      <direction>Down</direction>
-      <posX>584</posX>
-      <posY>504</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Coliseum_Shadow_Stairs_Middle</type>
-      <direction>Down</direction>
-      <posX>584</posX>
-      <posY>488</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Coliseum_Shadow_Stairs_Middle</type>
-      <direction>Down</direction>
-      <posX>600</posX>
-      <posY>488</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Coliseum_Shadow_Stairs_Middle</type>
-      <direction>Down</direction>
-      <posX>600</posX>
-      <posY>504</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Coliseum_Shadow_Stairs_Middle</type>
-      <direction>Down</direction>
-      <posX>616</posX>
-      <posY>504</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Coliseum_Shadow_Stairs_Middle</type>
-      <direction>Down</direction>
-      <posX>616</posX>
-      <posY>488</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Coliseum_Shadow_Stairs_Middle</type>
-      <direction>Down</direction>
-      <posX>632</posX>
-      <posY>488</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Coliseum_Shadow_Stairs_Middle</type>
-      <direction>Down</direction>
-      <posX>632</posX>
-      <posY>504</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Coliseum_Shadow_Stairs_Middle</type>
-      <direction>Down</direction>
-      <posX>648</posX>
-      <posY>504</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Coliseum_Shadow_Stairs_Middle</type>
-      <direction>Down</direction>
-      <posX>648</posX>
-      <posY>488</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Coliseum_Shadow_Stairs_Middle</type>
-      <direction>Down</direction>
-      <posX>664</posX>
-      <posY>488</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Coliseum_Shadow_Stairs_Middle</type>
-      <direction>Down</direction>
-      <posX>664</posX>
-      <posY>504</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Coliseum_Shadow_Stairs_Middle</type>
-      <direction>Down</direction>
-      <posX>680</posX>
-      <posY>504</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Coliseum_Shadow_Gate_Pillar_Left</type>
-      <direction>Down</direction>
-      <posX>552</posX>
-      <posY>584</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Coliseum_Shadow_Gate_Center</type>
-      <direction>Down</direction>
-      <posX>584</posX>
-      <posY>584</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Coliseum_Shadow_Gate_Pillar_Right</type>
-      <direction>Down</direction>
-      <posX>696</posX>
-      <posY>584</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Coliseum_Shadow_Gate_Center</type>
-      <direction>Down</direction>
-      <posX>600</posX>
-      <posY>584</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Coliseum_Shadow_Gate_Center</type>
-      <direction>Down</direction>
-      <posX>616</posX>
-      <posY>584</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Coliseum_Shadow_Gate_Center</type>
-      <direction>Down</direction>
-      <posX>632</posX>
-      <posY>584</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Coliseum_Shadow_Gate_Center</type>
-      <direction>Down</direction>
-      <posX>648</posX>
-      <posY>584</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Coliseum_Shadow_Gate_Center</type>
-      <direction>Down</direction>
-      <posX>664</posX>
-      <posY>584</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Coliseum_Shadow_Gate_Center</type>
-      <direction>Down</direction>
-      <posX>680</posX>
-      <posY>584</posY>
+      <posX>920</posX>
+      <posY>568</posY>
     </IntObjXmlData>
     <IntObjXmlData>
       <type>Dirt_Main</type>
@@ -896,15 +428,15 @@
       <posY>680</posY>
     </IntObjXmlData>
     <IntObjXmlData>
-      <type>Dirt_Main</type>
+      <type>Dirt_ToGrass_Straight</type>
       <direction>Down</direction>
-      <posX>664</posX>
+      <posX>680</posX>
       <posY>680</posY>
     </IntObjXmlData>
     <IntObjXmlData>
-      <type>Dirt_Main</type>
+      <type>Dirt_ToGrass_Straight</type>
       <direction>Down</direction>
-      <posX>680</posX>
+      <posX>696</posX>
       <posY>680</posY>
     </IntObjXmlData>
     <IntObjXmlData>
@@ -1115,49 +647,49 @@
       <type>Dirt_ToGrass_Straight</type>
       <direction>Down</direction>
       <posX>600</posX>
-      <posY>664</posY>
+      <posY>456</posY>
     </IntObjXmlData>
     <IntObjXmlData>
       <type>Dirt_ToGrass_Straight</type>
       <direction>Down</direction>
-      <posX>552</posX>
+      <posX>504</posX>
       <posY>680</posY>
     </IntObjXmlData>
     <IntObjXmlData>
-      <type>Dirt_ToGrass_Straight</type>
+      <type>Dirt_ToGrass_Corner_Exterior</type>
       <direction>Down</direction>
-      <posX>584</posX>
+      <posX>552</posX>
       <posY>664</posY>
     </IntObjXmlData>
     <IntObjXmlData>
       <type>Dirt_ToGrass_Straight</type>
-      <direction>Down</direction>
-      <posX>616</posX>
-      <posY>664</posY>
+      <direction>Left</direction>
+      <posX>648</posX>
+      <posY>648</posY>
     </IntObjXmlData>
     <IntObjXmlData>
-      <type>Dirt_ToGrass_Straight</type>
-      <direction>Down</direction>
-      <posX>632</posX>
-      <posY>664</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Dirt_ToGrass_Straight</type>
-      <direction>Down</direction>
+      <type>Dirt_ToGrass_Corner_Exterior</type>
+      <direction>Left</direction>
       <posX>648</posX>
       <posY>664</posY>
     </IntObjXmlData>
     <IntObjXmlData>
-      <type>Dirt_ToGrass_Straight</type>
-      <direction>Down</direction>
-      <posX>664</posX>
-      <posY>664</posY>
+      <type>Dirt_ToGrass_Corner_Exterior</type>
+      <direction>Left</direction>
+      <posX>632</posX>
+      <posY>600</posY>
     </IntObjXmlData>
     <IntObjXmlData>
-      <type>Dirt_ToGrass_Straight</type>
+      <type>Dirt_Main</type>
       <direction>Down</direction>
-      <posX>680</posX>
-      <posY>664</posY>
+      <posX>568</posX>
+      <posY>680</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>552</posX>
+      <posY>680</posY>
     </IntObjXmlData>
     <IntObjXmlData>
       <type>Dirt_ToGrass_Straight</type>
@@ -1184,27 +716,27 @@
       <posY>712</posY>
     </IntObjXmlData>
     <IntObjXmlData>
+      <type>Tree</type>
+      <direction>Down</direction>
+      <posX>408</posX>
+      <posY>536</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
       <type>Dirt_ToGrass_Straight</type>
       <direction>Down</direction>
-      <posX>520</posX>
+      <posX>440</posX>
       <posY>696</posY>
     </IntObjXmlData>
     <IntObjXmlData>
       <type>Dirt_ToGrass_Straight</type>
       <direction>Down</direction>
-      <posX>504</posX>
-      <posY>696</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Dirt_ToGrass_Straight</type>
-      <direction>Down</direction>
-      <posX>472</posX>
+      <posX>408</posX>
       <posY>712</posY>
     </IntObjXmlData>
     <IntObjXmlData>
       <type>Dirt_ToGrass_Straight</type>
       <direction>Right</direction>
-      <posX>456</posX>
+      <posX>392</posX>
       <posY>728</posY>
     </IntObjXmlData>
     <IntObjXmlData>
@@ -1216,31 +748,31 @@
     <IntObjXmlData>
       <type>Dirt_ToGrass_Corner_Interior</type>
       <direction>Down</direction>
-      <posX>568</posX>
+      <posX>536</posX>
       <posY>664</posY>
     </IntObjXmlData>
     <IntObjXmlData>
       <type>Dirt_ToGrass_Corner_Interior</type>
       <direction>Down</direction>
-      <posX>536</posX>
+      <posX>472</posX>
       <posY>680</posY>
     </IntObjXmlData>
     <IntObjXmlData>
       <type>Dirt_ToGrass_Corner_Interior</type>
       <direction>Down</direction>
-      <posX>488</posX>
+      <posX>424</posX>
       <posY>696</posY>
     </IntObjXmlData>
     <IntObjXmlData>
       <type>Dirt_ToGrass_Corner_Interior</type>
       <direction>Down</direction>
-      <posX>456</posX>
+      <posX>392</posX>
       <posY>712</posY>
     </IntObjXmlData>
     <IntObjXmlData>
       <type>Dirt_ToGrass_Corner_Interior</type>
       <direction>Left</direction>
-      <posX>696</posX>
+      <posX>664</posX>
       <posY>664</posY>
     </IntObjXmlData>
     <IntObjXmlData>
@@ -1264,25 +796,25 @@
     <IntObjXmlData>
       <type>Dirt_ToGrass_Corner_Exterior</type>
       <direction>Down</direction>
-      <posX>568</posX>
+      <posX>536</posX>
       <posY>680</posY>
     </IntObjXmlData>
     <IntObjXmlData>
       <type>Dirt_ToGrass_Corner_Exterior</type>
       <direction>Down</direction>
-      <posX>536</posX>
+      <posX>472</posX>
       <posY>696</posY>
     </IntObjXmlData>
     <IntObjXmlData>
       <type>Dirt_ToGrass_Corner_Exterior</type>
       <direction>Down</direction>
-      <posX>488</posX>
+      <posX>424</posX>
       <posY>712</posY>
     </IntObjXmlData>
     <IntObjXmlData>
       <type>Dirt_ToGrass_Corner_Exterior</type>
       <direction>Left</direction>
-      <posX>696</posX>
+      <posX>664</posX>
       <posY>680</posY>
     </IntObjXmlData>
     <IntObjXmlData>
@@ -1298,196 +830,1690 @@
       <posY>712</posY>
     </IntObjXmlData>
     <IntObjXmlData>
-      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <type>Coliseum_Shadow_Stairs_Left</type>
       <direction>Down</direction>
-      <posX>680</posX>
-      <posY>488</posY>
+      <posX>488</posX>
+      <posY>344</posY>
     </IntObjXmlData>
     <IntObjXmlData>
-      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <type>Coliseum_Shadow_Stairs_Left</type>
       <direction>Down</direction>
-      <posX>696</posX>
-      <posY>488</posY>
+      <posX>488</posX>
+      <posY>360</posY>
     </IntObjXmlData>
     <IntObjXmlData>
-      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <type>Coliseum_Shadow_Stairs_Left</type>
       <direction>Down</direction>
-      <posX>696</posX>
-      <posY>504</posY>
+      <posX>488</posX>
+      <posY>376</posY>
     </IntObjXmlData>
     <IntObjXmlData>
-      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <type>Coliseum_Shadow_Stairs_Right</type>
       <direction>Down</direction>
       <posX>712</posX>
-      <posY>504</posY>
+      <posY>344</posY>
     </IntObjXmlData>
     <IntObjXmlData>
-      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <type>Coliseum_Shadow_Stairs_Right</type>
       <direction>Down</direction>
       <posX>712</posX>
-      <posY>488</posY>
+      <posY>360</posY>
     </IntObjXmlData>
     <IntObjXmlData>
-      <type>Coliseum_Shadow_Stairs_Middle</type>
-      <direction>Down</direction>
-      <posX>728</posX>
-      <posY>488</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Coliseum_Shadow_Stairs_Middle</type>
-      <direction>Down</direction>
-      <posX>728</posX>
-      <posY>504</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Coliseum_Shadow_Stairs_Middle</type>
-      <direction>Down</direction>
-      <posX>728</posX>
-      <posY>520</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <type>Coliseum_Shadow_Stairs_Right</type>
       <direction>Down</direction>
       <posX>712</posX>
-      <posY>520</posY>
+      <posY>376</posY>
     </IntObjXmlData>
     <IntObjXmlData>
       <type>Coliseum_Shadow_Stairs_Middle</type>
       <direction>Down</direction>
-      <posX>696</posX>
-      <posY>520</posY>
+      <posX>504</posX>
+      <posY>344</posY>
     </IntObjXmlData>
     <IntObjXmlData>
       <type>Coliseum_Shadow_Stairs_Middle</type>
       <direction>Down</direction>
-      <posX>680</posX>
-      <posY>520</posY>
+      <posX>504</posX>
+      <posY>360</posY>
     </IntObjXmlData>
     <IntObjXmlData>
       <type>Coliseum_Shadow_Stairs_Middle</type>
       <direction>Down</direction>
-      <posX>664</posX>
-      <posY>520</posY>
+      <posX>504</posX>
+      <posY>376</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>520</posX>
+      <posY>376</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>520</posX>
+      <posY>360</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>520</posX>
+      <posY>344</posY>
     </IntObjXmlData>
     <IntObjXmlData>
       <type>Coliseum_Shadow_Stairs_Middle</type>
       <direction>Down</direction>
       <posX>536</posX>
-      <posY>520</posY>
+      <posY>344</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>536</posX>
+      <posY>360</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>536</posX>
+      <posY>376</posY>
     </IntObjXmlData>
     <IntObjXmlData>
       <type>Coliseum_Shadow_Stairs_Middle</type>
       <direction>Down</direction>
       <posX>552</posX>
-      <posY>520</posY>
+      <posY>376</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>552</posX>
+      <posY>360</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>552</posX>
+      <posY>344</posY>
     </IntObjXmlData>
     <IntObjXmlData>
       <type>Coliseum_Shadow_Stairs_Middle</type>
       <direction>Down</direction>
       <posX>568</posX>
-      <posY>520</posY>
+      <posY>344</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>568</posX>
+      <posY>360</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>568</posX>
+      <posY>376</posY>
     </IntObjXmlData>
     <IntObjXmlData>
       <type>Coliseum_Shadow_Stairs_Middle</type>
       <direction>Down</direction>
       <posX>584</posX>
-      <posY>520</posY>
+      <posY>376</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>584</posX>
+      <posY>360</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>584</posX>
+      <posY>344</posY>
     </IntObjXmlData>
     <IntObjXmlData>
       <type>Coliseum_Shadow_Stairs_Middle</type>
       <direction>Down</direction>
       <posX>600</posX>
-      <posY>520</posY>
+      <posY>344</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>600</posX>
+      <posY>360</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>600</posX>
+      <posY>376</posY>
     </IntObjXmlData>
     <IntObjXmlData>
       <type>Coliseum_Shadow_Stairs_Middle</type>
       <direction>Down</direction>
       <posX>616</posX>
-      <posY>520</posY>
+      <posY>376</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>616</posX>
+      <posY>360</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>616</posX>
+      <posY>344</posY>
     </IntObjXmlData>
     <IntObjXmlData>
       <type>Coliseum_Shadow_Stairs_Middle</type>
       <direction>Down</direction>
       <posX>632</posX>
-      <posY>520</posY>
+      <posY>344</posY>
     </IntObjXmlData>
     <IntObjXmlData>
       <type>Coliseum_Shadow_Stairs_Middle</type>
       <direction>Down</direction>
       <posX>648</posX>
-      <posY>520</posY>
+      <posY>344</posY>
     </IntObjXmlData>
     <IntObjXmlData>
-      <type>TorchLit</type>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>664</posX>
+      <posY>344</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>680</posX>
+      <posY>344</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>696</posX>
+      <posY>344</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>696</posX>
+      <posY>360</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>680</posX>
+      <posY>360</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>664</posX>
+      <posY>360</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>648</posX>
+      <posY>360</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>632</posX>
+      <posY>360</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>648</posX>
+      <posY>376</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>632</posX>
+      <posY>376</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>664</posX>
+      <posY>376</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>680</posX>
+      <posY>376</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>696</posX>
+      <posY>376</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Right</type>
+      <direction>Down</direction>
+      <posX>712</posX>
+      <posY>392</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Right</type>
+      <direction>Down</direction>
+      <posX>712</posX>
+      <posY>408</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Left</type>
       <direction>Down</direction>
       <posX>488</posX>
+      <posY>392</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Left</type>
+      <direction>Down</direction>
+      <posX>488</posX>
+      <posY>408</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>504</posX>
+      <posY>392</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>504</posX>
+      <posY>408</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>520</posX>
+      <posY>408</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>520</posX>
+      <posY>392</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>536</posX>
+      <posY>392</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>536</posX>
+      <posY>408</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>552</posX>
+      <posY>408</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>552</posX>
+      <posY>392</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>568</posX>
+      <posY>392</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>568</posX>
+      <posY>408</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>584</posX>
+      <posY>408</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>584</posX>
+      <posY>392</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>600</posX>
+      <posY>392</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>600</posX>
+      <posY>408</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>616</posX>
+      <posY>408</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>616</posX>
+      <posY>392</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>632</posX>
+      <posY>392</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>632</posX>
+      <posY>408</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>648</posX>
+      <posY>408</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>648</posX>
+      <posY>392</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>664</posX>
+      <posY>392</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>664</posX>
+      <posY>408</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>680</posX>
+      <posY>408</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>680</posX>
+      <posY>392</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>696</posX>
+      <posY>392</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coliseum_Shadow_Stairs_Middle</type>
+      <direction>Down</direction>
+      <posX>696</posX>
+      <posY>408</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Tree</type>
+      <direction>Down</direction>
+      <posX>312</posX>
+      <posY>392</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_ToGrass_Straight</type>
+      <direction>Down</direction>
+      <posX>456</posX>
+      <posY>696</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_ToGrass_Straight</type>
+      <direction>Down</direction>
+      <posX>488</posX>
+      <posY>680</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_ToGrass_Corner_Exterior</type>
+      <direction>Down</direction>
+      <posX>568</posX>
+      <posY>616</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Tree</type>
+      <direction>Down</direction>
+      <posX>824</posX>
+      <posY>568</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Tree</type>
+      <direction>Down</direction>
+      <posX>872</posX>
+      <posY>456</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Tree</type>
+      <direction>Down</direction>
+      <posX>936</posX>
+      <posY>712</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>536</posX>
+      <posY>696</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>520</posX>
+      <posY>696</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>504</posX>
+      <posY>696</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>488</posX>
+      <posY>696</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>488</posX>
+      <posY>712</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>472</posX>
+      <posY>712</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>456</posX>
+      <posY>712</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>456</posX>
+      <posY>728</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>440</posX>
+      <posY>712</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Tree</type>
+      <direction>Down</direction>
+      <posX>264</posX>
+      <posY>664</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Tree</type>
+      <direction>Down</direction>
+      <posX>120</posX>
+      <posY>488</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>408</posX>
+      <posY>728</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Tree</type>
+      <direction>Down</direction>
+      <posX>216</posX>
       <posY>520</posY>
     </IntObjXmlData>
     <IntObjXmlData>
-      <type>TorchLit</type>
+      <type>Tree</type>
       <direction>Down</direction>
-      <posX>776</posX>
-      <posY>520</posY>
+      <posX>136</posX>
+      <posY>648</posY>
     </IntObjXmlData>
     <IntObjXmlData>
-      <type>TorchLit</type>
+      <type>Dirt_Main</type>
       <direction>Down</direction>
-      <posX>776</posX>
+      <posX>424</posX>
+      <posY>728</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>440</posX>
+      <posY>728</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Tree</type>
+      <direction>Down</direction>
+      <posX>184</posX>
+      <posY>344</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Tree</type>
+      <direction>Down</direction>
+      <posX>72</posX>
+      <posY>312</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Tree</type>
+      <direction>Down</direction>
+      <posX>168</posX>
+      <posY>456</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Tree</type>
+      <direction>Down</direction>
+      <posX>1096</posX>
+      <posY>696</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Tree</type>
+      <direction>Down</direction>
+      <posX>968</posX>
+      <posY>616</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Tree</type>
+      <direction>Down</direction>
+      <posX>1112</posX>
+      <posY>584</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Tree</type>
+      <direction>Down</direction>
+      <posX>1080</posX>
+      <posY>488</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Tree</type>
+      <direction>Down</direction>
+      <posX>1176</posX>
       <posY>504</posY>
     </IntObjXmlData>
     <IntObjXmlData>
-      <type>TorchLit</type>
+      <type>Tree</type>
       <direction>Down</direction>
-      <posX>488</posX>
-      <posY>504</posY>
+      <posX>1256</posX>
+      <posY>632</posY>
     </IntObjXmlData>
     <IntObjXmlData>
-      <type>Dungeon_Pot</type>
+      <type>Tree</type>
       <direction>Down</direction>
-      <posX>488</posX>
+      <posX>1208</posX>
+      <posY>312</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Tree</type>
+      <direction>Down</direction>
+      <posX>984</posX>
+      <posY>360</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Tree</type>
+      <direction>Down</direction>
+      <posX>1144</posX>
+      <posY>424</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Bush</type>
+      <direction>Down</direction>
+      <posX>1048</posX>
+      <posY>312</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Bush</type>
+      <direction>Down</direction>
+      <posX>1064</posX>
+      <posY>312</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Bush</type>
+      <direction>Down</direction>
+      <posX>1192</posX>
+      <posY>344</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Bush</type>
+      <direction>Down</direction>
+      <posX>1304</posX>
+      <posY>264</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Bush</type>
+      <direction>Down</direction>
+      <posX>1288</posX>
+      <posY>264</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Bush</type>
+      <direction>Down</direction>
+      <posX>1272</posX>
+      <posY>280</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Bush</type>
+      <direction>Down</direction>
+      <posX>1256</posX>
+      <posY>296</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Bush</type>
+      <direction>Down</direction>
+      <posX>1240</posX>
+      <posY>296</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Bush</type>
+      <direction>Down</direction>
+      <posX>1160</posX>
+      <posY>280</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Bush</type>
+      <direction>Down</direction>
+      <posX>760</posX>
+      <posY>408</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Bush</type>
+      <direction>Down</direction>
+      <posX>776</posX>
+      <posY>408</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Bush</type>
+      <direction>Down</direction>
+      <posX>792</posX>
+      <posY>392</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Bush</type>
+      <direction>Down</direction>
+      <posX>808</posX>
+      <posY>392</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Bush</type>
+      <direction>Down</direction>
+      <posX>824</posX>
+      <posY>376</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Bush</type>
+      <direction>Down</direction>
+      <posX>920</posX>
+      <posY>328</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Bush</type>
+      <direction>Down</direction>
+      <posX>936</posX>
+      <posY>328</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Bush</type>
+      <direction>Down</direction>
+      <posX>952</posX>
+      <posY>328</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Bush</type>
+      <direction>Down</direction>
+      <posX>968</posX>
+      <posY>312</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Bush</type>
+      <direction>Down</direction>
+      <posX>872</posX>
+      <posY>344</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Bush</type>
+      <direction>Down</direction>
+      <posX>1112</posX>
+      <posY>296</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Bush</type>
+      <direction>Down</direction>
+      <posX>1208</posX>
+      <posY>280</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Bush</type>
+      <direction>Down</direction>
+      <posX>360</posX>
+      <posY>376</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Bush</type>
+      <direction>Down</direction>
+      <posX>376</posX>
+      <posY>376</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Bush</type>
+      <direction>Down</direction>
+      <posX>392</posX>
+      <posY>408</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Bush</type>
+      <direction>Down</direction>
+      <posX>408</posX>
+      <posY>408</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Bush</type>
+      <direction>Down</direction>
+      <posX>440</posX>
+      <posY>424</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Bush</type>
+      <direction>Down</direction>
+      <posX>360</posX>
+      <posY>312</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Bush</type>
+      <direction>Down</direction>
+      <posX>328</posX>
+      <posY>312</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Bush</type>
+      <direction>Down</direction>
+      <posX>248</posX>
+      <posY>328</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Bush</type>
+      <direction>Down</direction>
+      <posX>232</posX>
+      <posY>328</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Bush</type>
+      <direction>Down</direction>
+      <posX>88</posX>
+      <posY>296</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Bush</type>
+      <direction>Down</direction>
+      <posX>72</posX>
+      <posY>296</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Bush</type>
+      <direction>Down</direction>
+      <posX>24</posX>
+      <posY>248</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Bush</type>
+      <direction>Down</direction>
+      <posX>8</posX>
+      <posY>248</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Bush</type>
+      <direction>Down</direction>
+      <posX>136</posX>
+      <posY>328</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Bush</type>
+      <direction>Down</direction>
+      <posX>312</posX>
+      <posY>312</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Bush</type>
+      <direction>Down</direction>
+      <posX>376</posX>
+      <posY>344</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Grass_2</type>
+      <direction>Down</direction>
+      <posX>376</posX>
+      <posY>392</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Grass_2</type>
+      <direction>Down</direction>
+      <posX>440</posX>
+      <posY>456</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Grass_2</type>
+      <direction>Down</direction>
+      <posX>168</posX>
+      <posY>376</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Grass_2</type>
+      <direction>Down</direction>
+      <posX>328</posX>
+      <posY>488</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Grass_2</type>
+      <direction>Down</direction>
+      <posX>248</posX>
       <posY>552</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Grass_2</type>
+      <direction>Down</direction>
+      <posX>296</posX>
+      <posY>360</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Grass_2</type>
+      <direction>Down</direction>
+      <posX>104</posX>
+      <posY>328</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Grass_2</type>
+      <direction>Down</direction>
+      <posX>56</posX>
+      <posY>472</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Grass_2</type>
+      <direction>Down</direction>
+      <posX>152</posX>
+      <posY>488</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Grass_2</type>
+      <direction>Down</direction>
+      <posX>56</posX>
+      <posY>568</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Grass_2</type>
+      <direction>Down</direction>
+      <posX>152</posX>
+      <posY>648</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Grass_2</type>
+      <direction>Down</direction>
+      <posX>360</posX>
+      <posY>584</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Grass_2</type>
+      <direction>Down</direction>
+      <posX>296</posX>
+      <posY>648</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Grass_2</type>
+      <direction>Down</direction>
+      <posX>456</posX>
+      <posY>648</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Grass_2</type>
+      <direction>Down</direction>
+      <posX>456</posX>
+      <posY>552</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Grass_2</type>
+      <direction>Down</direction>
+      <posX>744</posX>
+      <posY>472</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Grass_2</type>
+      <direction>Down</direction>
+      <posX>872</posX>
+      <posY>680</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Grass_2</type>
+      <direction>Down</direction>
+      <posX>760</posX>
+      <posY>616</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Grass_2</type>
+      <direction>Down</direction>
+      <posX>792</posX>
+      <posY>552</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Grass_2</type>
+      <direction>Down</direction>
+      <posX>824</posX>
+      <posY>392</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Grass_2</type>
+      <direction>Down</direction>
+      <posX>984</posX>
+      <posY>536</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Grass_2</type>
+      <direction>Down</direction>
+      <posX>872</posX>
+      <posY>536</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Grass_2</type>
+      <direction>Down</direction>
+      <posX>984</posX>
+      <posY>680</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Grass_2</type>
+      <direction>Down</direction>
+      <posX>1064</posX>
+      <posY>632</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Grass_2</type>
+      <direction>Down</direction>
+      <posX>1208</posX>
+      <posY>552</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Grass_2</type>
+      <direction>Down</direction>
+      <posX>1208</posX>
+      <posY>616</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Grass_2</type>
+      <direction>Down</direction>
+      <posX>1144</posX>
+      <posY>680</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Grass_2</type>
+      <direction>Down</direction>
+      <posX>1208</posX>
+      <posY>456</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Grass_2</type>
+      <direction>Down</direction>
+      <posX>1096</posX>
+      <posY>440</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Grass_2</type>
+      <direction>Down</direction>
+      <posX>1080</posX>
+      <posY>536</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Grass_2</type>
+      <direction>Down</direction>
+      <posX>968</posX>
+      <posY>440</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Grass_2</type>
+      <direction>Down</direction>
+      <posX>936</posX>
+      <posY>376</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Grass_2</type>
+      <direction>Down</direction>
+      <posX>1144</posX>
+      <posY>328</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Grass_2</type>
+      <direction>Down</direction>
+      <posX>1048</posX>
+      <posY>376</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Grass_2</type>
+      <direction>Down</direction>
+      <posX>1240</posX>
+      <posY>360</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Grass_2</type>
+      <direction>Down</direction>
+      <posX>1240</posX>
+      <posY>264</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>TorchLit</type>
+      <direction>Down</direction>
+      <posX>472</posX>
+      <posY>568</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>TorchLit</type>
+      <direction>Down</direction>
+      <posX>472</posX>
+      <posY>520</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>TorchLit</type>
+      <direction>Down</direction>
+      <posX>472</posX>
+      <posY>472</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>TorchLit</type>
+      <direction>Down</direction>
+      <posX>728</posX>
+      <posY>472</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>TorchLit</type>
+      <direction>Down</direction>
+      <posX>728</posX>
+      <posY>520</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>TorchLit</type>
+      <direction>Down</direction>
+      <posX>728</posX>
+      <posY>568</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>TorchLit</type>
+      <direction>Down</direction>
+      <posX>728</posX>
+      <posY>616</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>TorchLit</type>
+      <direction>Down</direction>
+      <posX>472</posX>
+      <posY>616</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Signpost</type>
+      <direction>Down</direction>
+      <posX>520</posX>
+      <posY>632</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Vendor_EnemyItems</type>
+      <direction>Down</direction>
+      <posX>680</posX>
+      <posY>488</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Vendor_Items</type>
+      <direction>Down</direction>
+      <posX>520</posX>
+      <posY>472</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>House_TableDoubleLeft</type>
+      <direction>Down</direction>
+      <posX>520</posX>
+      <posY>488</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>House_TableDoubleRight</type>
+      <direction>Down</direction>
+      <posX>536</posX>
+      <posY>488</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>House_Shelf</type>
+      <direction>Down</direction>
+      <posX>536</posX>
+      <posY>456</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>House_Shelf</type>
+      <direction>Down</direction>
+      <posX>520</posX>
+      <posY>456</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>House_Shelf</type>
+      <direction>Down</direction>
+      <posX>504</posX>
+      <posY>456</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>House_Chair</type>
+      <direction>Down</direction>
+      <posX>504</posX>
+      <posY>488</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_ToGrass_Corner_Interior</type>
+      <direction>Left</direction>
+      <posX>616</posX>
+      <posY>456</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_ToGrass_Corner_Interior</type>
+      <direction>Down</direction>
+      <posX>584</posX>
+      <posY>456</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_ToGrass_Straight</type>
+      <direction>Left</direction>
+      <posX>616</posX>
+      <posY>472</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_ToGrass_Straight</type>
+      <direction>Right</direction>
+      <posX>584</posX>
+      <posY>472</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_ToGrass_Straight</type>
+      <direction>Right</direction>
+      <posX>584</posX>
+      <posY>488</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_ToGrass_Straight</type>
+      <direction>Right</direction>
+      <posX>584</posX>
+      <posY>504</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_ToGrass_Straight</type>
+      <direction>Left</direction>
+      <posX>616</posX>
+      <posY>488</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_ToGrass_Straight</type>
+      <direction>Left</direction>
+      <posX>616</posX>
+      <posY>504</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_ToGrass_Straight</type>
+      <direction>Left</direction>
+      <posX>616</posX>
+      <posY>520</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_ToGrass_Straight</type>
+      <direction>Left</direction>
+      <posX>616</posX>
+      <posY>536</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_ToGrass_Corner_Interior</type>
+      <direction>Left</direction>
+      <posX>632</posX>
+      <posY>552</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_ToGrass_Straight</type>
+      <direction>Left</direction>
+      <posX>632</posX>
+      <posY>568</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_ToGrass_Straight</type>
+      <direction>Left</direction>
+      <posX>632</posX>
+      <posY>584</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_ToGrass_Corner_Interior</type>
+      <direction>Left</direction>
+      <posX>648</posX>
+      <posY>600</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_ToGrass_Straight</type>
+      <direction>Left</direction>
+      <posX>648</posX>
+      <posY>616</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_ToGrass_Straight</type>
+      <direction>Left</direction>
+      <posX>648</posX>
+      <posY>632</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_ToGrass_Corner_Exterior</type>
+      <direction>Left</direction>
+      <posX>616</posX>
+      <posY>552</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_ToGrass_Corner_Interior</type>
+      <direction>Down</direction>
+      <posX>568</posX>
+      <posY>520</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_ToGrass_Straight</type>
+      <direction>Right</direction>
+      <posX>568</posX>
+      <posY>536</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_ToGrass_Straight</type>
+      <direction>Right</direction>
+      <posX>568</posX>
+      <posY>552</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_ToGrass_Straight</type>
+      <direction>Right</direction>
+      <posX>568</posX>
+      <posY>568</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_ToGrass_Straight</type>
+      <direction>Right</direction>
+      <posX>568</posX>
+      <posY>584</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_ToGrass_Straight</type>
+      <direction>Right</direction>
+      <posX>568</posX>
+      <posY>600</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_ToGrass_Corner_Interior</type>
+      <direction>Down</direction>
+      <posX>552</posX>
+      <posY>616</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_ToGrass_Straight</type>
+      <direction>Right</direction>
+      <posX>552</posX>
+      <posY>632</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_ToGrass_Corner_Exterior</type>
+      <direction>Down</direction>
+      <posX>584</posX>
+      <posY>520</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>568</posX>
+      <posY>632</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>600</posX>
+      <posY>488</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>600</posX>
+      <posY>472</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>600</posX>
+      <posY>504</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>600</posX>
+      <posY>520</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>600</posX>
+      <posY>536</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>600</posX>
+      <posY>552</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>584</posX>
+      <posY>536</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>584</posX>
+      <posY>552</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>584</posX>
+      <posY>568</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>584</posX>
+      <posY>584</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>600</posX>
+      <posY>568</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>600</posX>
+      <posY>584</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>600</posX>
+      <posY>600</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>616</posX>
+      <posY>568</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>616</posX>
+      <posY>584</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>616</posX>
+      <posY>616</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>616</posX>
+      <posY>632</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>616</posX>
+      <posY>600</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>632</posX>
+      <posY>616</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>632</posX>
+      <posY>632</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>632</posX>
+      <posY>648</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>616</posX>
+      <posY>648</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>600</posX>
+      <posY>632</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>600</posX>
+      <posY>616</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>584</posX>
+      <posY>600</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>584</posX>
+      <posY>616</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>584</posX>
+      <posY>632</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>568</posX>
+      <posY>648</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>568</posX>
+      <posY>664</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>584</posX>
+      <posY>664</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>584</posX>
+      <posY>648</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>600</posX>
+      <posY>648</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>600</posX>
+      <posY>664</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>616</posX>
+      <posY>664</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Dirt_Main</type>
+      <direction>Down</direction>
+      <posX>632</posX>
+      <posY>664</posY>
     </IntObjXmlData>
     <IntObjXmlData>
       <type>Dungeon_Pot</type>
       <direction>Down</direction>
       <posX>504</posX>
-      <posY>552</posY>
+      <posY>632</posY>
     </IntObjXmlData>
     <IntObjXmlData>
-      <type>Dungeon_Pot</type>
+      <type>Boat_Floor</type>
       <direction>Down</direction>
       <posX>504</posX>
+      <posY>472</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Boat_Floor</type>
+      <direction>Down</direction>
+      <posX>520</posX>
+      <posY>472</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Boat_Floor</type>
+      <direction>Down</direction>
+      <posX>536</posX>
+      <posY>472</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Boat_Floor</type>
+      <direction>Down</direction>
+      <posX>536</posX>
+      <posY>488</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Boat_Floor</type>
+      <direction>Down</direction>
+      <posX>520</posX>
+      <posY>488</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Boat_Floor</type>
+      <direction>Down</direction>
+      <posX>504</posX>
+      <posY>488</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Boat_Floor</type>
+      <direction>Down</direction>
+      <posX>504</posX>
+      <posY>456</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Boat_Floor</type>
+      <direction>Down</direction>
+      <posX>520</posX>
+      <posY>456</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Boat_Floor</type>
+      <direction>Down</direction>
+      <posX>536</posX>
+      <posY>456</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>House_Chair</type>
+      <direction>Down</direction>
+      <posX>696</posX>
+      <posY>488</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Grass_2</type>
+      <direction>Down</direction>
+      <posX>712</posX>
+      <posY>456</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Grass_2</type>
+      <direction>Down</direction>
+      <posX>648</posX>
+      <posY>472</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Grass_2</type>
+      <direction>Down</direction>
+      <posX>696</posX>
+      <posY>648</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Grass_2</type>
+      <direction>Down</direction>
+      <posX>664</posX>
+      <posY>552</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Grass_2</type>
+      <direction>Down</direction>
+      <posX>696</posX>
       <posY>568</posY>
     </IntObjXmlData>
     <IntObjXmlData>
-      <type>Dungeon_Pot</type>
+      <type>Grass_2</type>
+      <direction>Down</direction>
+      <posX>536</posX>
+      <posY>520</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Grass_2</type>
       <direction>Down</direction>
       <posX>488</posX>
-      <posY>568</posY>
+      <posY>584</posY>
     </IntObjXmlData>
     <IntObjXmlData>
-      <type>Dungeon_Pot</type>
+      <type>Grass_2</type>
       <direction>Down</direction>
-      <posX>776</posX>
-      <posY>552</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Dungeon_Pot</type>
-      <direction>Down</direction>
-      <posX>760</posX>
-      <posY>552</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Dungeon_Pot</type>
-      <direction>Down</direction>
-      <posX>760</posX>
-      <posY>568</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Dungeon_Pot</type>
-      <direction>Down</direction>
-      <posX>776</posX>
-      <posY>568</posY>
+      <posX>408</posX>
+      <posY>600</posY>
     </IntObjXmlData>
   </ints>
 </RoomXmlData>

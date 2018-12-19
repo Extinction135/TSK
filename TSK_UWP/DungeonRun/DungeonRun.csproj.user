@@ -10,7 +10,8 @@
     <AuthenticationMode>Universal</AuthenticationMode>
     <CreateCleanLayout>true</CreateCleanLayout>
     <RemoteDebugMachine>192.168.0.6</RemoteDebugMachine>
-    <LayoutDir>C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRunUWP\DungeonRun\bin\WindowsUniversal\x64\Debug\AppX</LayoutDir>
+    <LayoutDir>
+    </LayoutDir>
     <AllowLocalNetworkLoopback>false</AllowLocalNetworkLoopback>
   </PropertyGroup>
   <PropertyGroup>

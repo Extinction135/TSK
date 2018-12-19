@@ -36,9 +36,7 @@ Shadow Dungeon, TSK Fight complete
 0.79 goals:
 	X removed savedata and load/saving
 	X wand & spellbook
-	
 	X split pool into more efficient lists
-	
 	X wind pros - on their own pool list, interact with ints, acts, pros
 	X level data ++ - wind direction, intensity, frequency
 	X WIND magic
@@ -46,70 +44,69 @@ Shadow Dungeon, TSK Fight complete
 	X EXPLODE/BURN magic
 	X ELEC magic
 	X SUMMON magic
-	
 	EARTH magic - quake
 	
-	+ option for loading level data 'fresh' each time for sandboxing
+	working summary screen, displaying all dungeons record data
 	(items: hookshot, axe, beans)
 	(interactions: X WIND, acts/objs in water)
-	(dungeon: X marked map PLS, working puzzles, X per dungeon roomdata)
+	(dungeon: X marked map PLS, X per dungeon roomdata)
 	(X smaller ram: title image is complete, can be own sheet, no big text)
-	(pets: stable, more pet variety, multiple pets (actor mini pool in fun_hero)
 	better coliseum - uniq objs + enemies
-	better overworld - more skulls, waves, cluds, vfx @skullIsland
-	working summary screen, displaying all dungeons record data
+	better overworld - more skulls, waves, clouds, vfx @skullIsland
+	
+	to scale presentation of coliseum
+	to scale presentation of shadow dungeon
+	to scale presentation of skull town
+	
+	
 	
 Today:
 
 
 
 
+BkgSprite++
 
+we need a grid on the bkg sprite master file.
+this needs to line up to the level EXACTLY.
+so we need to print screen and position until
+we have the grid lined up perfectly. we also need
+to place some objs in the scene and print screen
+them into the bkg sprite master file, so we can
+build the grid based on the game world grid,
+making sure they are aligned, because then we
+can remove the stair refs and merge the bkg sprite
+with the int objs we have already to make the coliseum
+actually functioning and working visually too.
 
-Presentation Sprite v1
+done, working and looking great.
 
-handled by level, this is a 1300x400 texture that sits at
-the same location in every room. for dungeeons, this
-presentation sprite is only drawn in the hub and boss rooms.
-for field levels, this presentation sprite is drawn for every
-level. it's not always needed, but it can be used.
-
-we will use a reference that points to a texture instance,
-based on room.id, when the room is built. we need 1 sprite
-component in level screen that draws before the ind objs.
-when the level builds, we will swap it's texture based on
-the roomID we're using the build the room. this works for
-fields and dungeon rooms, like hub and boss rooms.
-
-so, based on the testing for presentation sprite, it
-kinda makes more sense to call it a background sprite,
-because we layer everything on top of it. this sprite
-cannot contain objects that have depth, tho, so we can
-do far north walls, and then middle area ground effects,
-or objects that have height that extend to the wall,
-or objs that have height that are covered above somehow.
-we can also have objs that sit over the bkgsprite that
-cover link, so it appears he is 'inside' the bkg sprite,
-but that is very specific to the level. overall testing
-is good.
-
-we dev tested on a mountin wall, and this will work.
-so let's make the coliseum entrance as an in-game test.
-
-made dev test coliseum entrance based on current coliseum
-entrance shrine. exported to png, added to dx project for
-testing in the shadow coliseum level.
-
-tested and working for the coliseum level. the bkg
-sprite is basic but shows the new direction important
-levels need to take.
-
-bkg sprite has been moved to levelset class for easier
-organization. working as expected.
+fixed a debug path bug with uwp too.
 
 
 
 
+
+
+
+
+
+
+
+then we add invisible ind objs to describe the
+coliseum hitbox. 
+
+we need various sized ind objs to do this efficently:
+1x1, 2x1, 1x2, 2x2, 4x4.
+
+how do we display these in the editor vs in game?
+in game they do not draw, which is s simple .visible 
+to false operation, based on the Release boolean in
+the Flags. global access point object. if flags.release
+is true, then we set the visibles to false for all the
+invs ind objects. otherwise, we draw them above everything
+else, so we know where they are and how they are defining
+the bkg sprites hitbox.
 
 
 
@@ -296,23 +293,7 @@ collision rec changes.
 
 
 
-
-Entrances++
-
-instead of 3x4 ind objs, we will be using a massive 
-sprite, with invisible ind objs to complete it's hitbox.
-hitbox is based entirely on how the sprite looks.
-for entering these levels, we will stick with the large
-black shadow. it's cool.
-
-we will be using massive sprites for dungeon entrances 
-and coliseums. lots of invs ind objs will complete their
-hitboxes.
-
-
-we need various sized ind objs to do this properly:
-1x1, 2x1, 1x2, 2x2, 4x4.
-
+Bkg Sprites++
 
 then we design massive sprites for the following:
 forest
