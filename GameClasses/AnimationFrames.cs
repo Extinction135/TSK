@@ -23,6 +23,36 @@ namespace DungeonRun
         public static List<Byte4> Dungeon_FloorBoss = new List<Byte4> { new Byte4(7, 2, 0, 0) };
 
 
+
+
+
+        #region Invisible Indestructible Objs
+
+        //these are used to describe the bkg sprite, for widescreen large scale custom pixel background objs
+        public static List<Byte4> Invs_1x1 = new List<Byte4> { new Byte4(1, 3, 0, 0) };
+
+        public static List<Byte4> Invs_1x2 = new List<Byte4> { new Byte4(2, 0, 0, 0) };
+        public static List<Byte4> Invs_2x1 = new List<Byte4> { new Byte4(1, 2, 0, 0) };
+
+        public static List<Byte4> Invs_1x3 = new List<Byte4> { new Byte4(1, 0, 0, 0) };
+        public static List<Byte4> Invs_3x1 = new List<Byte4> { new Byte4(1, 1, 0, 0) };
+
+        public static List<Byte4> Invs_1x4 = new List<Byte4> { new Byte4(0, 0, 0, 0) };
+        public static List<Byte4> Invs_4x1 = new List<Byte4> { new Byte4(1, 0, 0, 0) };
+
+
+        #endregion
+
+
+
+
+
+
+
+
+
+
+
         #region Dungeon Objects
 
         //dungeon objs on 128x128 dungeon sheet

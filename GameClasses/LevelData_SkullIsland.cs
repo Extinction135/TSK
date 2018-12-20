@@ -61,6 +61,43 @@ namespace DungeonRun
 			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Tree_Med_Stump; obj.direction = Direction.Down; obj.posX = 264; obj.posY = 440; SkullIsland_Colliseum.inds.Add(obj);}
 			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Tree_Med_Stump; obj.direction = Direction.Down; obj.posX = 200; obj.posY = 568; SkullIsland_Colliseum.inds.Add(obj);}
 			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Tree_Med; obj.direction = Direction.Down; obj.posX = 24; obj.posY = 696; SkullIsland_Colliseum.inds.Add(obj);}
+			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Invs_3x1; obj.direction = Direction.Down; obj.posX = 744; obj.posY = 376; SkullIsland_Colliseum.inds.Add(obj);}
+			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Invs_1x4; obj.direction = Direction.Down; obj.posX = 264; obj.posY = 248; SkullIsland_Colliseum.inds.Add(obj);}
+			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Invs_1x4; obj.direction = Direction.Down; obj.posX = 408; obj.posY = 328; SkullIsland_Colliseum.inds.Add(obj);}
+			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Invs_4x1; obj.direction = Direction.Down; obj.posX = 408; obj.posY = 264; SkullIsland_Colliseum.inds.Add(obj);}
+			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Invs_4x1; obj.direction = Direction.Down; obj.posX = 344; obj.posY = 264; SkullIsland_Colliseum.inds.Add(obj);}
+			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Invs_4x1; obj.direction = Direction.Down; obj.posX = 280; obj.posY = 264; SkullIsland_Colliseum.inds.Add(obj);}
+			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Invs_1x3; obj.direction = Direction.Down; obj.posX = 408; obj.posY = 280; SkullIsland_Colliseum.inds.Add(obj);}
+			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Invs_2x1; obj.direction = Direction.Down; obj.posX = 120; obj.posY = 280; SkullIsland_Colliseum.inds.Add(obj);}
+			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Invs_1x2; obj.direction = Direction.Down; obj.posX = 40; obj.posY = 248; SkullIsland_Colliseum.inds.Add(obj);}
+			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Invs_3x1; obj.direction = Direction.Down; obj.posX = 216; obj.posY = 296; SkullIsland_Colliseum.inds.Add(obj);}
+			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Invs_4x1; obj.direction = Direction.Down; obj.posX = 152; obj.posY = 280; SkullIsland_Colliseum.inds.Add(obj);}
+			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Invs_4x1; obj.direction = Direction.Down; obj.posX = 56; obj.posY = 264; SkullIsland_Colliseum.inds.Add(obj);}
+			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Invs_1x2; obj.direction = Direction.Down; obj.posX = 56; obj.posY = 216; SkullIsland_Colliseum.inds.Add(obj);}
+			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Invs_4x1; obj.direction = Direction.Down; obj.posX = -8; obj.posY = 216; SkullIsland_Colliseum.inds.Add(obj);}
+			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Invs_3x1; obj.direction = Direction.Down; obj.posX = 424; obj.posY = 376; SkullIsland_Colliseum.inds.Add(obj);}
+			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Invs_1x4; obj.direction = Direction.Down; obj.posX = 776; obj.posY = 312; SkullIsland_Colliseum.inds.Add(obj);}
+			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Invs_1x3; obj.direction = Direction.Down; obj.posX = 776; obj.posY = 264; SkullIsland_Colliseum.inds.Add(obj);}
+			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Invs_4x1; obj.direction = Direction.Down; obj.posX = 792; obj.posY = 264; SkullIsland_Colliseum.inds.Add(obj);}
+			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Invs_4x1; obj.direction = Direction.Down; obj.posX = 856; obj.posY = 264; SkullIsland_Colliseum.inds.Add(obj);}
+			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Invs_2x1; obj.direction = Direction.Down; obj.posX = 920; obj.posY = 264; SkullIsland_Colliseum.inds.Add(obj);}
+			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Invs_2x1; obj.direction = Direction.Down; obj.posX = 936; obj.posY = 280; SkullIsland_Colliseum.inds.Add(obj);}
+			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Invs_1x1; obj.direction = Direction.Down; obj.posX = 952; obj.posY = 296; SkullIsland_Colliseum.inds.Add(obj);}
+			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Invs_2x1; obj.direction = Direction.Down; obj.posX = 968; obj.posY = 296; SkullIsland_Colliseum.inds.Add(obj);}
+			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Invs_1x2; obj.direction = Direction.Down; obj.posX = 984; obj.posY = 264; SkullIsland_Colliseum.inds.Add(obj);}
+			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Invs_3x1; obj.direction = Direction.Down; obj.posX = 984; obj.posY = 248; SkullIsland_Colliseum.inds.Add(obj);}
+			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Invs_2x1; obj.direction = Direction.Down; obj.posX = 1048; obj.posY = 280; SkullIsland_Colliseum.inds.Add(obj);}
+			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Invs_2x1; obj.direction = Direction.Down; obj.posX = 1080; obj.posY = 280; SkullIsland_Colliseum.inds.Add(obj);}
+			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Invs_1x1; obj.direction = Direction.Down; obj.posX = 1128; obj.posY = 264; SkullIsland_Colliseum.inds.Add(obj);}
+			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Invs_1x1; obj.direction = Direction.Down; obj.posX = 1112; obj.posY = 280; SkullIsland_Colliseum.inds.Add(obj);}
+			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Invs_1x1; obj.direction = Direction.Down; obj.posX = 1128; obj.posY = 248; SkullIsland_Colliseum.inds.Add(obj);}
+			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Invs_1x1; obj.direction = Direction.Down; obj.posX = 1144; obj.posY = 232; SkullIsland_Colliseum.inds.Add(obj);}
+			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Invs_1x1; obj.direction = Direction.Down; obj.posX = 1160; obj.posY = 248; SkullIsland_Colliseum.inds.Add(obj);}
+			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Invs_2x1; obj.direction = Direction.Down; obj.posX = 1176; obj.posY = 264; SkullIsland_Colliseum.inds.Add(obj);}
+			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Invs_1x2; obj.direction = Direction.Down; obj.posX = 1208; obj.posY = 232; SkullIsland_Colliseum.inds.Add(obj);}
+			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Invs_1x1; obj.direction = Direction.Down; obj.posX = 1208; obj.posY = 216; SkullIsland_Colliseum.inds.Add(obj);}
+			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Invs_4x1; obj.direction = Direction.Down; obj.posX = 1224; obj.posY = 216; SkullIsland_Colliseum.inds.Add(obj);}
+			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Invs_3x1; obj.direction = Direction.Down; obj.posX = 1288; obj.posY = 200; SkullIsland_Colliseum.inds.Add(obj);}
 			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Dirt_ToGrass_Straight; obj.direction = Direction.Down; obj.posX = 520; obj.posY = 680; SkullIsland_Colliseum.ints.Add(obj);}
 			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Dirt_ToGrass_Straight; obj.direction = Direction.Right; obj.posX = 552; obj.posY = 648; SkullIsland_Colliseum.ints.Add(obj);}
 			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Tree; obj.direction = Direction.Down; obj.posX = 856; obj.posY = 632; SkullIsland_Colliseum.ints.Add(obj);}

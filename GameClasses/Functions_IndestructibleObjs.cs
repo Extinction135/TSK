@@ -805,6 +805,79 @@ namespace DungeonRun
 
 
 
+            #region Invisible Objs
+
+            else if (Type == IndestructibleType.Invs_1x1)
+            {
+                IndObj.compAnim.currentAnimation = AnimationFrames.Invs_1x1;
+                IndObj.compSprite.drawRec.Width = 16 * 1; IndObj.compSprite.drawRec.Height = 16 * 1;
+                IndObj.compCollision.rec.Width = 16 * 1; IndObj.compCollision.rec.Height = 16 * 1;
+                IndObj.compCollision.offsetX = -8; IndObj.compCollision.offsetY = -8;
+                IndObj.compSprite.zOffset = 1024;
+            }
+            //2
+            else if (Type == IndestructibleType.Invs_1x2)
+            {
+                IndObj.compAnim.currentAnimation = AnimationFrames.Invs_1x2;
+                IndObj.compSprite.drawRec.Width = 16 * 1; IndObj.compSprite.drawRec.Height = 16 * 2;
+                IndObj.compCollision.rec.Width = 16 * 1; IndObj.compCollision.rec.Height = 16 * 2;
+                IndObj.compCollision.offsetX = -8; IndObj.compCollision.offsetY = -8;
+                IndObj.compSprite.zOffset = 1024;
+            }
+            else if (Type == IndestructibleType.Invs_2x1)
+            {
+                IndObj.compAnim.currentAnimation = AnimationFrames.Invs_2x1;
+                IndObj.compSprite.drawRec.Width = 16 * 2; IndObj.compSprite.drawRec.Height = 16 * 1;
+                IndObj.compCollision.rec.Width = 16 * 2; IndObj.compCollision.rec.Height = 16 * 1;
+                IndObj.compCollision.offsetX = -8; IndObj.compCollision.offsetY = -8;
+                IndObj.compSprite.zOffset = 1024;
+            }
+            //3
+            else if (Type == IndestructibleType.Invs_1x3)
+            {
+                IndObj.compAnim.currentAnimation = AnimationFrames.Invs_1x3;
+                IndObj.compSprite.drawRec.Width = 16 * 1; IndObj.compSprite.drawRec.Height = 16 * 3;
+                IndObj.compCollision.rec.Width = 16 * 1; IndObj.compCollision.rec.Height = 16 * 3;
+                IndObj.compCollision.offsetX = -8; IndObj.compCollision.offsetY = -8;
+                IndObj.compSprite.zOffset = 1024;
+            }
+            else if (Type == IndestructibleType.Invs_3x1)
+            {
+                IndObj.compAnim.currentAnimation = AnimationFrames.Invs_3x1;
+                IndObj.compSprite.drawRec.Width = 16 * 3; IndObj.compSprite.drawRec.Height = 16 * 1;
+                IndObj.compCollision.rec.Width = 16 * 3; IndObj.compCollision.rec.Height = 16 * 1;
+                IndObj.compCollision.offsetX = -8; IndObj.compCollision.offsetY = -8;
+                IndObj.compSprite.zOffset = 1024;
+            }
+            //4
+            else if (Type == IndestructibleType.Invs_1x4)
+            {
+                IndObj.compAnim.currentAnimation = AnimationFrames.Invs_1x4;
+                IndObj.compSprite.drawRec.Width = 16 * 1; IndObj.compSprite.drawRec.Height = 16 * 4;
+                IndObj.compCollision.rec.Width = 16 * 1; IndObj.compCollision.rec.Height = 16 * 4;
+                IndObj.compCollision.offsetX = -8; IndObj.compCollision.offsetY = -8;
+                IndObj.compSprite.zOffset = 1024;
+            }
+            else if (Type == IndestructibleType.Invs_4x1)
+            {
+                IndObj.compAnim.currentAnimation = AnimationFrames.Invs_4x1;
+                IndObj.compSprite.drawRec.Width = 16 * 4; IndObj.compSprite.drawRec.Height = 16 * 1;
+                IndObj.compCollision.rec.Width = 16 * 4; IndObj.compCollision.rec.Height = 16 * 1;
+                IndObj.compCollision.offsetX = -8; IndObj.compCollision.offsetY = -8;
+                IndObj.compSprite.zOffset = 1024;
+            }
+
+            #endregion
+
+
+
+
+
+
+
+
+
+
 
             //all indestructible objs have metallic tap sfx
             //IndObj.sfx.hit = Assets.sfxTapMetallic;

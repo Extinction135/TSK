@@ -65,39 +65,45 @@ Today:
 
 
 
-BkgSprite++
-
-we need a grid on the bkg sprite master file.
-this needs to line up to the level EXACTLY.
-so we need to print screen and position until
-we have the grid lined up perfectly. we also need
-to place some objs in the scene and print screen
-them into the bkg sprite master file, so we can
-build the grid based on the game world grid,
-making sure they are aligned, because then we
-can remove the stair refs and merge the bkg sprite
-with the int objs we have already to make the coliseum
-actually functioning and working visually too.
-
-done, working and looking great.
-
-fixed a debug path bug with uwp too.
 
 
+Coliseum Hitbox
 
-
-
-
-
-
-
-
-
-then we add invisible ind objs to describe the
-coliseum hitbox. 
+now, we add invisible ind objs to describe the
+coliseums hitbox. 
 
 we need various sized ind objs to do this efficently:
-1x1, 2x1, 1x2, 2x2, 4x4.
+1x1, 2x1, 1x2, 1x3, 3x1, 1x4, 4x1. that should do it.
+added to widgets and tested on coliseum level.
+
+
+
+
+
+
+
+
+Polish++
+
+
+
+we need to work on the pixel art of the coliseum,
+making sure the objects that touch the ground line up
+with the grid that we have established. this makes it much
+easier to describe the hitbox of the pixel art.
+
+for objs that touch the ground in a diagonal fashion,
+we need 8x16 and 16x8 pixel invs objs. this is
+specifically for describing objects that touch
+the ground that the hero should be able to collide
+with in a very specific manner.
+
+
+
+
+
+
+
 
 how do we display these in the editor vs in game?
 in game they do not draw, which is s simple .visible 
@@ -109,6 +115,34 @@ else, so we know where they are and how they are defining
 the bkg sprites hitbox.
 
 
+
+
+
+
+
+
+
+
+Coliseum++
+
+Test that inds properly prevent hero from crossing
+over coliseum bkg sprite according to visual design.
+
+Now, polish the coliseum entrance bkg sprite to look
+really good.
+
+Then update the overworld shadow coliseum to look
+more like the in-level version, and add more skulls
+around it.
+
+
+
+
+Now we need a unique boss enemy for the coliseum.
+Something with multiple moving parts, so we can 
+do the multiple hitboxes idea. ref sprites for an
+idea, then develop. focus on making the coliseum
+unique and awesome right now.
 
 
 

@@ -557,8 +557,23 @@ namespace DungeonRun
         Boat_Back_Right,
 
         Boat_Engine,
-        
+
         #endregion
+
+
+
+        #region Invisible Objs - used for bkg sprite hitboxes
+
+        Invs_1x1,
+        Invs_2x1,
+        Invs_1x2,
+        Invs_1x3,
+        Invs_3x1,
+        Invs_1x4,
+        Invs_4x1
+
+        #endregion
+
 
 
     }
