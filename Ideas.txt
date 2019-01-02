@@ -2,6 +2,145 @@
 
 
 
+Refs++
+
+Merge insp images into one insp PSD outside
+of main branch folder, for future use and ref.
+
+
+what we're looking at building here are prototypes
+for the following:
+
+vendor screens (could be vending machine or person, or thing as pixel art)
+important places in the world (film 2.1:1 ratio or nah? lol)
+(dungeons, coliseums, challenges, and secrets)
+
+dialog screens (for all npcs, which could goo npc->vendor, once npc quest complete).
+so this would be two sets of pixel art for 1 npc. all npcs are important to
+the story and advancement of the game and are helpful - consistently - in some way.
+
+
+**we need a dialog mockup
+*we need more polish on the test vendor
+*we can use the test vendor for all vendors, for now.
+**vendor sprite should animate in right, just like windows
+do - this is done via the drawRec width property. animate it.
+
+
+
+
+
+
+
+
+
+Phone Notes
+
+Make a foreground sprite, that can cover link.
+clouds, aroch of rocks, cave, etc..
+
+
+spawn explosive barrel spell. more spells or 
+a machine that can create room objs to play with
+or solve puzzles with. specific vending machines
+for specific room objs, can do the same with
+potions and items in dungeons, which would be
+more expensive. thats awesome.
+
+explosive barrels must animate faster. really
+flash and grab the players attention. increase
+or change color differences between active and
+notactive for emphasis.
+
+explosive bombs should flash at same speed, with
+same active color as explosive barrels. to reinforce
+that this object is about to explode.
+
+some dungeon rooms feel alive because they are filled
+with engines that power them, like the spike block and
+lever combo. more of these, in the thieves den dungeon.
+thieves den enginneers should be the hooded oompa loompas
+who act as killable npcs. if hero talks to them, they 
+give him a hint about how to solve machine puzzles.
+this makes thieves den a "steampunky nightmare treefort
+madmax thunderdome" style place.
+
+slowdown spreading of fire. allow player ability to 
+stop fire with water projectiles or stop fire or general
+counter spell for all current magic projectiles. we
+need more control over fire. we need to be able to sculpt
+it. if two ground fire pros overlap, remove one of them.
+this causes wind to push fire into each other, self-cleaning.
+they shouldn't overlap water objs either. this sets the
+stage for house burning too. as many overlapping fires
+created inefficiently in the process. improves bombos efficiency
+too.
+
+
+editor++
+right click to grab an obj temporarily?
+right click to delete obj always?
+not using Rclick at all. should.
+
+
+
+
+
+clouds (in level)
+large roomObj, semi - transparent. floats slowly across field.
+creates rain projectiles as they travel. rain pro looks like many rain
+drops (a small shower, animated), and interacts with certain objs.
+cut grass is regrown and made soggy. bushes are regrown. torches are
+unlit. fires are extinguished. these clouds are specifically placed
+to solve some puzzles, and randomly placed as environmental fx.
+*wind can push clouds, obvs*
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+title screen notes
+
+we need animated flowers/petals/fallingdust
+thngs going across the scvreen, there is a tute
+on this in img inspirations
+
+we can also do the doom fire effect based on 
+link in msgs. this fire effect can be combined
+with screen space vector fields to describe a
+skull object that the fire can move around. we
+can also add wind here, and have the skull image
+be over blue water, so the big4 elements of the game
+are represented: fire, wind, water, death/undead.
+ideally, this should be framed by link facing
+the skull, in a large landscape, where we dont see
+links face, just his outline and sword.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 resize boss rooms to be very wide and then use the 
 presentation sprite to add even more flavor to the battles.
 this is just adding some ind objs to fill out the custom

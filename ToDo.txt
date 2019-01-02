@@ -67,30 +67,53 @@ Today:
 
 
 
-Coliseum Hitbox
-
-now, we add invisible ind objs to describe the
-coliseums hitbox. 
-
-we need various sized ind objs to do this efficently:
-1x1, 2x1, 1x2, 1x3, 3x1, 1x4, 4x1. that should do it.
-added to widgets and tested on coliseum level.
 
 
 
+Coliseum++
+
+updated coliseum bkg sprite.
+update coliseum outdoor entrance level.
+recompiled level data.
+playtested game. working well.
 
 
 
 
 
-Polish++
 
 
 
-we need to work on the pixel art of the coliseum,
-making sure the objects that touch the ground line up
-with the grid that we have established. this makes it much
-easier to describe the hitbox of the pixel art.
+
+
+
+
+
+
+
+COLISEUM BOSS!!!
+
+Now we need a unique boss enemy for the coliseum.
+Something with multiple moving parts, so we can 
+do the multiple hitboxes idea. ref sprites for an
+idea, then develop. focus on making the coliseum
+unique and awesome right now.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Coliseum Polish++
 
 for objs that touch the ground in a diagonal fashion,
 we need 8x16 and 16x8 pixel invs objs. this is
@@ -100,49 +123,47 @@ with in a very specific manner.
 
 
 
-
-
-
-
-
-how do we display these in the editor vs in game?
-in game they do not draw, which is s simple .visible 
-to false operation, based on the Release boolean in
-the Flags. global access point object. if flags.release
-is true, then we set the visibles to false for all the
-invs ind objects. otherwise, we draw them above everything
-else, so we know where they are and how they are defining
-the bkg sprites hitbox.
-
-
-
-
-
-
-
-
-
-
 Coliseum++
 
-Test that inds properly prevent hero from crossing
-over coliseum bkg sprite according to visual design.
-
-Now, polish the coliseum entrance bkg sprite to look
-really good.
-
-Then update the overworld shadow coliseum to look
+Update the overworld shadow coliseum to look
 more like the in-level version, and add more skulls
 around it.
 
 
 
 
-Now we need a unique boss enemy for the coliseum.
-Something with multiple moving parts, so we can 
-do the multiple hitboxes idea. ref sprites for an
-idea, then develop. focus on making the coliseum
-unique and awesome right now.
+
+
+
+
+
+
+
+
+KeyChest
+
+*when hero opens a key chest the chest doesn't convert
+to an empty chest, allowing for spamming of key pickup.
+indeed, we dont check to see if the hero has a key already,
+and we allow him to pickup as many keys as he wants from
+this key chest. lol. thats very wrong.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
