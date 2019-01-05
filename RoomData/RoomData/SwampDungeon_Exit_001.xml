@@ -29,306 +29,420 @@
       <posX>88</posX>
       <posY>152</posY>
     </IndObjXmlData>
+    <IndObjXmlData>
+      <type>Dungeon_ExitPillarLeft</type>
+      <direction>Down</direction>
+      <posX>72</posX>
+      <posY>152</posY>
+    </IndObjXmlData>
+    <IndObjXmlData>
+      <type>Dungeon_ExitPillarRight</type>
+      <direction>Down</direction>
+      <posX>104</posX>
+      <posY>152</posY>
+    </IndObjXmlData>
+    <IndObjXmlData>
+      <type>Dungeon_ExitLight</type>
+      <direction>Down</direction>
+      <posX>88</posX>
+      <posY>160</posY>
+    </IndObjXmlData>
+    <IndObjXmlData>
+      <type>Dungeon_Exit</type>
+      <direction>Down</direction>
+      <posX>88</posX>
+      <posY>152</posY>
+    </IndObjXmlData>
   </inds>
   <ints>
     <IntObjXmlData>
-      <type>Boat_Barrel</type>
+      <type>Water_LillyPad</type>
       <direction>Down</direction>
-      <posX>40</posX>
-      <posY>40</posY>
+      <posX>88</posX>
+      <posY>120</posY>
     </IntObjXmlData>
     <IntObjXmlData>
-      <type>Boat_Barrel</type>
+      <type>Water_LillyPad</type>
       <direction>Down</direction>
-      <posX>8</posX>
-      <posY>8</posY>
+      <posX>72</posX>
+      <posY>88</posY>
     </IntObjXmlData>
     <IntObjXmlData>
-      <type>Boat_Barrel</type>
+      <type>Water_LillyPad</type>
+      <direction>Down</direction>
+      <posX>88</posX>
+      <posY>56</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Water_LillyPad</type>
+      <direction>Down</direction>
+      <posX>72</posX>
+      <posY>24</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Water_1x1</type>
+      <direction>Down</direction>
+      <posX>72</posX>
+      <posY>72</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Water_2x2</type>
+      <direction>Down</direction>
+      <posX>104</posX>
+      <posY>24</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Water_2x2</type>
+      <direction>Down</direction>
+      <posX>136</posX>
+      <posY>24</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Water_2x2</type>
       <direction>Down</direction>
       <posX>40</posX>
       <posY>24</posY>
     </IntObjXmlData>
     <IntObjXmlData>
-      <type>Boat_Barrel</type>
-      <direction>Down</direction>
-      <posX>8</posX>
-      <posY>40</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Boat_Barrel</type>
-      <direction>Down</direction>
-      <posX>24</posX>
-      <posY>56</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Boat_Barrel</type>
-      <direction>Down</direction>
-      <posX>24</posX>
-      <posY>72</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Boat_Barrel</type>
-      <direction>Down</direction>
-      <posX>136</posX>
-      <posY>56</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Boat_Barrel</type>
-      <direction>Down</direction>
-      <posX>136</posX>
-      <posY>72</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Boat_Barrel</type>
-      <direction>Down</direction>
-      <posX>120</posX>
-      <posY>88</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Boat_Barrel</type>
-      <direction>Down</direction>
-      <posX>136</posX>
-      <posY>136</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Boat_Barrel</type>
-      <direction>Down</direction>
-      <posX>152</posX>
-      <posY>120</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Boat_Barrel</type>
-      <direction>Down</direction>
-      <posX>168</posX>
-      <posY>104</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Boat_Barrel</type>
-      <direction>Down</direction>
-      <posX>152</posX>
-      <posY>168</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Boat_Barrel</type>
-      <direction>Down</direction>
-      <posX>120</posX>
-      <posY>168</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Boat_Barrel</type>
-      <direction>Down</direction>
-      <posX>120</posX>
-      <posY>152</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Boat_Barrel</type>
-      <direction>Down</direction>
-      <posX>56</posX>
-      <posY>120</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Boat_Barrel</type>
-      <direction>Down</direction>
-      <posX>56</posX>
-      <posY>136</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Boat_Barrel</type>
+      <type>Water_2x2</type>
       <direction>Down</direction>
       <posX>40</posX>
-      <posY>168</posY>
+      <posY>56</posY>
     </IntObjXmlData>
     <IntObjXmlData>
-      <type>Boat_Barrel</type>
+      <type>Water_2x2</type>
       <direction>Down</direction>
-      <posX>8</posX>
-      <posY>120</posY>
+      <posX>120</posX>
+      <posY>56</posY>
     </IntObjXmlData>
     <IntObjXmlData>
-      <type>Boat_Barrel</type>
+      <type>Water_2x2</type>
       <direction>Down</direction>
-      <posX>8</posX>
-      <posY>136</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Boat_Barrel</type>
-      <direction>Down</direction>
-      <posX>8</posX>
-      <posY>168</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Boat_Barrel</type>
-      <direction>Down</direction>
-      <posX>24</posX>
-      <posY>152</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Boat_Barrel</type>
-      <direction>Down</direction>
-      <posX>24</posX>
-      <posY>104</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Boat_Barrel</type>
-      <direction>Down</direction>
-      <posX>24</posX>
+      <posX>104</posX>
       <posY>88</posY>
     </IntObjXmlData>
     <IntObjXmlData>
-      <type>Boat_Barrel</type>
+      <type>Water_2x2</type>
+      <direction>Down</direction>
+      <posX>40</posX>
+      <posY>88</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Water_2x2</type>
       <direction>Down</direction>
       <posX>136</posX>
+      <posY>88</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Water_2x2</type>
+      <direction>Down</direction>
+      <posX>120</posX>
       <posY>120</posY>
     </IntObjXmlData>
     <IntObjXmlData>
-      <type>Boat_Barrel</type>
+      <type>Water_2x2</type>
       <direction>Down</direction>
-      <posX>136</posX>
-      <posY>40</posY>
+      <posX>56</posX>
+      <posY>120</posY>
     </IntObjXmlData>
     <IntObjXmlData>
-      <type>Boat_Barrel</type>
+      <type>Water_2x2</type>
       <direction>Down</direction>
-      <posX>152</posX>
-      <posY>8</posY>
+      <posX>24</posX>
+      <posY>120</posY>
     </IntObjXmlData>
     <IntObjXmlData>
-      <type>Boat_Barrel</type>
+      <type>Water_2x2</type>
       <direction>Down</direction>
-      <posX>152</posX>
+      <posX>40</posX>
+      <posY>152</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Water_2x2</type>
+      <direction>Down</direction>
+      <posX>120</posX>
+      <posY>152</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Water_1x1</type>
+      <direction>Down</direction>
+      <posX>24</posX>
       <posY>24</posY>
     </IntObjXmlData>
     <IntObjXmlData>
-      <type>Boat_Barrel</type>
+      <type>Water_1x1</type>
       <direction>Down</direction>
-      <posX>168</posX>
+      <posX>24</posX>
       <posY>40</posY>
     </IntObjXmlData>
     <IntObjXmlData>
-      <type>Boat_Barrel</type>
+      <type>Water_1x1</type>
       <direction>Down</direction>
-      <posX>168</posX>
+      <posX>24</posX>
       <posY>56</posY>
     </IntObjXmlData>
     <IntObjXmlData>
-      <type>Boat_Barrel</type>
+      <type>Water_1x1</type>
       <direction>Down</direction>
-      <posX>56</posX>
-      <posY>8</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Boat_Barrel</type>
-      <direction>Down</direction>
-      <posX>120</posX>
-      <posY>8</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Boat_Barrel</type>
-      <direction>Down</direction>
-      <posX>56</posX>
+      <posX>24</posX>
       <posY>72</posY>
     </IntObjXmlData>
     <IntObjXmlData>
-      <type>Boat_Barrel</type>
+      <type>Water_1x1</type>
       <direction>Down</direction>
-      <posX>56</posX>
+      <posX>24</posX>
       <posY>88</posY>
     </IntObjXmlData>
     <IntObjXmlData>
-      <type>Boat_Barrel</type>
+      <type>Water_1x1</type>
+      <direction>Down</direction>
+      <posX>24</posX>
+      <posY>104</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Water_1x1</type>
+      <direction>Down</direction>
+      <posX>24</posX>
+      <posY>152</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Water_1x1</type>
+      <direction>Down</direction>
+      <posX>24</posX>
+      <posY>168</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Water_1x1</type>
+      <direction>Down</direction>
+      <posX>152</posX>
+      <posY>56</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Water_1x1</type>
+      <direction>Down</direction>
+      <posX>152</posX>
+      <posY>72</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Water_1x1</type>
+      <direction>Down</direction>
+      <posX>152</posX>
+      <posY>120</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Water_1x1</type>
+      <direction>Down</direction>
+      <posX>152</posX>
+      <posY>136</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Water_1x1</type>
+      <direction>Down</direction>
+      <posX>152</posX>
+      <posY>152</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Water_1x1</type>
+      <direction>Down</direction>
+      <posX>152</posX>
+      <posY>168</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Water_1x1</type>
+      <direction>Down</direction>
+      <posX>72</posX>
+      <posY>56</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coastline_Straight</type>
+      <direction>Down</direction>
+      <posX>24</posX>
+      <posY>8</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coastline_Straight</type>
+      <direction>Down</direction>
+      <posX>40</posX>
+      <posY>8</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coastline_Straight</type>
+      <direction>Down</direction>
+      <posX>56</posX>
+      <posY>8</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coastline_Straight</type>
+      <direction>Down</direction>
+      <posX>72</posX>
+      <posY>8</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coastline_Straight</type>
+      <direction>Down</direction>
+      <posX>88</posX>
+      <posY>8</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coastline_Straight</type>
+      <direction>Down</direction>
+      <posX>104</posX>
+      <posY>8</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coastline_Straight</type>
       <direction>Down</direction>
       <posX>120</posX>
-      <posY>120</posY>
+      <posY>8</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coastline_Straight</type>
+      <direction>Down</direction>
+      <posX>136</posX>
+      <posY>8</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coastline_Straight</type>
+      <direction>Down</direction>
+      <posX>152</posX>
+      <posY>8</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coastline_Straight</type>
+      <direction>Right</direction>
+      <posX>8</posX>
+      <posY>24</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coastline_Straight</type>
+      <direction>Left</direction>
+      <posX>168</posX>
+      <posY>24</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coastline_Straight</type>
+      <direction>Right</direction>
+      <posX>8</posX>
+      <posY>40</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coastline_Straight</type>
+      <direction>Right</direction>
+      <posX>8</posX>
+      <posY>56</posY>
     </IntObjXmlData>
     <IntObjXmlData>
       <type>Signpost</type>
       <direction>Down</direction>
-      <posX>88</posX>
+      <posX>72</posX>
+      <posY>56</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coastline_Straight</type>
+      <direction>Right</direction>
+      <posX>8</posX>
       <posY>72</posY>
     </IntObjXmlData>
     <IntObjXmlData>
-      <type>Barrel</type>
-      <direction>Down</direction>
-      <posX>152</posX>
-      <posY>40</posY>
+      <type>Coastline_Straight</type>
+      <direction>Right</direction>
+      <posX>8</posX>
+      <posY>88</posY>
     </IntObjXmlData>
     <IntObjXmlData>
-      <type>Barrel</type>
-      <direction>Down</direction>
-      <posX>152</posX>
+      <type>Coastline_Straight</type>
+      <direction>Right</direction>
+      <posX>8</posX>
+      <posY>104</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coastline_Straight</type>
+      <direction>Right</direction>
+      <posX>8</posX>
+      <posY>120</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coastline_Straight</type>
+      <direction>Right</direction>
+      <posX>8</posX>
       <posY>136</posY>
     </IntObjXmlData>
     <IntObjXmlData>
-      <type>Barrel</type>
-      <direction>Down</direction>
-      <posX>24</posX>
-      <posY>40</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Barrel</type>
-      <direction>Down</direction>
-      <posX>24</posX>
-      <posY>136</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Boat_Barrel</type>
-      <direction>Down</direction>
-      <posX>152</posX>
+      <type>Coastline_Straight</type>
+      <direction>Right</direction>
+      <posX>8</posX>
       <posY>152</posY>
     </IntObjXmlData>
     <IntObjXmlData>
-      <type>Boat_Barrel</type>
-      <direction>Down</direction>
-      <posX>40</posX>
+      <type>Coastline_Straight</type>
+      <direction>Right</direction>
+      <posX>8</posX>
+      <posY>168</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coastline_Straight</type>
+      <direction>Left</direction>
+      <posX>168</posX>
+      <posY>40</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coastline_Straight</type>
+      <direction>Left</direction>
+      <posX>168</posX>
+      <posY>56</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coastline_Straight</type>
+      <direction>Left</direction>
+      <posX>168</posX>
+      <posY>72</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coastline_Straight</type>
+      <direction>Left</direction>
+      <posX>168</posX>
+      <posY>88</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coastline_Straight</type>
+      <direction>Left</direction>
+      <posX>168</posX>
+      <posY>104</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coastline_Straight</type>
+      <direction>Left</direction>
+      <posX>168</posX>
+      <posY>120</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coastline_Straight</type>
+      <direction>Left</direction>
+      <posX>168</posX>
       <posY>136</posY>
     </IntObjXmlData>
     <IntObjXmlData>
-      <type>FloorBlood</type>
+      <type>Coastline_Straight</type>
+      <direction>Left</direction>
+      <posX>168</posX>
+      <posY>152</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coastline_Straight</type>
+      <direction>Left</direction>
+      <posX>168</posX>
+      <posY>168</posY>
+    </IntObjXmlData>
+    <IntObjXmlData>
+      <type>Coastline_Corner_Exterior</type>
       <direction>Down</direction>
-      <posX>72</posX>
+      <posX>8</posX>
       <posY>8</posY>
     </IntObjXmlData>
     <IntObjXmlData>
-      <type>FloorBlood</type>
-      <direction>Down</direction>
-      <posX>104</posX>
-      <posY>8</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Dungeon_Pot</type>
-      <direction>Down</direction>
-      <posX>72</posX>
-      <posY>72</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Dungeon_Pot</type>
-      <direction>Down</direction>
-      <posX>104</posX>
-      <posY>72</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Enemy_Rat</type>
-      <direction>Down</direction>
-      <posX>40</posX>
-      <posY>56</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>Enemy_Rat</type>
-      <direction>Down</direction>
-      <posX>152</posX>
-      <posY>56</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>FloorSkeleton</type>
-      <direction>Down</direction>
-      <posX>72</posX>
-      <posY>8</posY>
-    </IntObjXmlData>
-    <IntObjXmlData>
-      <type>FloorSkeleton</type>
-      <direction>Down</direction>
-      <posX>104</posX>
+      <type>Coastline_Corner_Exterior</type>
+      <direction>Left</direction>
+      <posX>168</posX>
       <posY>8</posY>
     </IntObjXmlData>
   </ints>

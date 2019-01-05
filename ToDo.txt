@@ -69,35 +69,14 @@ Today:
 
 
 
+LevelData++
 
-Coliseum++
+updated exit, hub, and boss rooms to be properly
+themed according to their dungeon. so much work to
+do in the level data.
 
-updated coliseum bkg sprite.
-update coliseum outdoor entrance level.
-recompiled level data.
-playtested game. working well.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-COLISEUM BOSS!!!
-
-Now we need a unique boss enemy for the coliseum.
-Something with multiple moving parts, so we can 
-do the multiple hitboxes idea. ref sprites for an
-idea, then develop. focus on making the coliseum
-unique and awesome right now.
+changed default dungeon sheet to mountain sheet,
+so my eyes dont hurt looking at all the green.
 
 
 
@@ -113,13 +92,37 @@ unique and awesome right now.
 
 
 
-Coliseum Polish++
 
-for objs that touch the ground in a diagonal fashion,
-we need 8x16 and 16x8 pixel invs objs. this is
-specifically for describing objects that touch
-the ground that the hero should be able to collide
-with in a very specific manner.
+COLISEUM BOSS
+
+the shad coliseum boss is the skull reaper with
+horns that spawns floating skulls (actors) which
+move towards the player (they dont explode) and
+use fang weapon to attack player if he is nearby.
+
+in phase 1, he is aggressive, moving randomly,
+dashing towards player if player is nearby.
+uses fang to attack player if he is near, no spawns
+of skulls. in phase 2, he spawns many more skulls
+and attempts to run away, flee from player.
+
+this should be the 1st and only coliseum challenge
+right now.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -128,6 +131,28 @@ Coliseum++
 Update the overworld shadow coliseum to look
 more like the in-level version, and add more skulls
 around it.
+
+
+**we need big red flags on the top of the coliseum,
+just like the overworld displays on the shad coliseum.
+anywhere we use the map flag sprite, we can add the world
+flag object too. likely, for all coliseums.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

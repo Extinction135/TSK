@@ -21,51 +21,28 @@ namespace DungeonRun
 			dataRef.windIntensity = 0;
 			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Tree_Med; obj.direction = Direction.Down; obj.posX = 248; obj.posY = 120; dataRef.inds.Add(obj);}
 			{IndObjXmlData obj = new IndObjXmlData(); obj.type = IndestructibleType.Tree_Med_Stump; obj.direction = Direction.Down; obj.posX = 40; obj.posY = 120; dataRef.inds.Add(obj);}
-			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Tree; obj.direction = Direction.Down; obj.posX = 56; obj.posY = 40; dataRef.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Boat_Barrel; obj.direction = Direction.Down; obj.posX = 24; obj.posY = 56; dataRef.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Boat_Barrel; obj.direction = Direction.Down; obj.posX = 24; obj.posY = 152; dataRef.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Boat_Barrel; obj.direction = Direction.Down; obj.posX = 24; obj.posY = 136; dataRef.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Boat_Barrel; obj.direction = Direction.Down; obj.posX = 280; obj.posY = 152; dataRef.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Boat_Barrel; obj.direction = Direction.Down; obj.posX = 280; obj.posY = 136; dataRef.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Boat_Barrel; obj.direction = Direction.Down; obj.posX = 248; obj.posY = 40; dataRef.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Boat_Barrel; obj.direction = Direction.Down; obj.posX = 88; obj.posY = 136; dataRef.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Boat_Barrel; obj.direction = Direction.Down; obj.posX = 88; obj.posY = 152; dataRef.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Tree; obj.direction = Direction.Down; obj.posX = 40; obj.posY = 24; dataRef.ints.Add(obj);}
 			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Tree; obj.direction = Direction.Down; obj.posX = 280; obj.posY = 24; dataRef.ints.Add(obj);}
 			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Tree; obj.direction = Direction.Down; obj.posX = 216; obj.posY = 136; dataRef.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Bush; obj.direction = Direction.Down; obj.posX = 24; obj.posY = 40; dataRef.ints.Add(obj);}
 			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Bush; obj.direction = Direction.Down; obj.posX = 40; obj.posY = 56; dataRef.ints.Add(obj);}
-			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Bush; obj.direction = Direction.Down; obj.posX = 40; obj.posY = 72; dataRef.ints.Add(obj);}
-			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Bush; obj.direction = Direction.Down; obj.posX = 56; obj.posY = 72; dataRef.ints.Add(obj);}
-			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Bush; obj.direction = Direction.Down; obj.posX = 72; obj.posY = 72; dataRef.ints.Add(obj);}
-			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Bush; obj.direction = Direction.Down; obj.posX = 72; obj.posY = 56; dataRef.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Bush; obj.direction = Direction.Down; obj.posX = 56; obj.posY = 40; dataRef.ints.Add(obj);}
 			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Bush; obj.direction = Direction.Down; obj.posX = 264; obj.posY = 40; dataRef.ints.Add(obj);}
 			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Bush; obj.direction = Direction.Down; obj.posX = 264; obj.posY = 56; dataRef.ints.Add(obj);}
 			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Bush; obj.direction = Direction.Down; obj.posX = 280; obj.posY = 56; dataRef.ints.Add(obj);}
 			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Bush; obj.direction = Direction.Down; obj.posX = 200; obj.posY = 152; dataRef.ints.Add(obj);}
-			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Bush; obj.direction = Direction.Down; obj.posX = 232; obj.posY = 152; dataRef.ints.Add(obj);}
 			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Bush; obj.direction = Direction.Down; obj.posX = 248; obj.posY = 152; dataRef.ints.Add(obj);}
+			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Bush; obj.direction = Direction.Down; obj.posX = 264; obj.posY = 152; dataRef.ints.Add(obj);}
 			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Bush; obj.direction = Direction.Down; obj.posX = 40; obj.posY = 152; dataRef.ints.Add(obj);}
 			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Bush; obj.direction = Direction.Down; obj.posX = 56; obj.posY = 152; dataRef.ints.Add(obj);}
-			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Grass_Tall; obj.direction = Direction.Down; obj.posX = 72; obj.posY = 168; dataRef.ints.Add(obj);}
-			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Grass_Tall; obj.direction = Direction.Down; obj.posX = 56; obj.posY = 168; dataRef.ints.Add(obj);}
-			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Grass_Tall; obj.direction = Direction.Down; obj.posX = 40; obj.posY = 168; dataRef.ints.Add(obj);}
-			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Grass_Tall; obj.direction = Direction.Down; obj.posX = 24; obj.posY = 168; dataRef.ints.Add(obj);}
-			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Grass_Tall; obj.direction = Direction.Down; obj.posX = 8; obj.posY = 168; dataRef.ints.Add(obj);}
-			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Grass_Tall; obj.direction = Direction.Down; obj.posX = 8; obj.posY = 152; dataRef.ints.Add(obj);}
-			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Grass_Tall; obj.direction = Direction.Down; obj.posX = 24; obj.posY = 152; dataRef.ints.Add(obj);}
-			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Grass_Cut; obj.direction = Direction.Down; obj.posX = 8; obj.posY = 136; dataRef.ints.Add(obj);}
-			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Grass_Cut; obj.direction = Direction.Down; obj.posX = 24; obj.posY = 136; dataRef.ints.Add(obj);}
-			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Grass_Cut; obj.direction = Direction.Down; obj.posX = 72; obj.posY = 152; dataRef.ints.Add(obj);}
-			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Grass_Cut; obj.direction = Direction.Down; obj.posX = 88; obj.posY = 168; dataRef.ints.Add(obj);}
-			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Grass_Cut; obj.direction = Direction.Down; obj.posX = 296; obj.posY = 136; dataRef.ints.Add(obj);}
-			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Grass_Cut; obj.direction = Direction.Down; obj.posX = 280; obj.posY = 88; dataRef.ints.Add(obj);}
-			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Grass_Cut; obj.direction = Direction.Down; obj.posX = 200; obj.posY = 40; dataRef.ints.Add(obj);}
-			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Grass_Cut; obj.direction = Direction.Down; obj.posX = 184; obj.posY = 40; dataRef.ints.Add(obj);}
-			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Grass_Cut; obj.direction = Direction.Down; obj.posX = 56; obj.posY = 24; dataRef.ints.Add(obj);}
-			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Grass_Cut; obj.direction = Direction.Down; obj.posX = 24; obj.posY = 24; dataRef.ints.Add(obj);}
-			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Grass_Tall; obj.direction = Direction.Down; obj.posX = 296; obj.posY = 8; dataRef.ints.Add(obj);}
-			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Grass_Tall; obj.direction = Direction.Down; obj.posX = 280; obj.posY = 8; dataRef.ints.Add(obj);}
-			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Grass_Tall; obj.direction = Direction.Down; obj.posX = 264; obj.posY = 8; dataRef.ints.Add(obj);}
-			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Grass_Tall; obj.direction = Direction.Down; obj.posX = 296; obj.posY = 24; dataRef.ints.Add(obj);}
-			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Grass_Cut; obj.direction = Direction.Down; obj.posX = 248; obj.posY = 8; dataRef.ints.Add(obj);}
-			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Grass_Cut; obj.direction = Direction.Down; obj.posX = 264; obj.posY = 24; dataRef.ints.Add(obj);}
-			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Grass_Cut; obj.direction = Direction.Down; obj.posX = 296; obj.posY = 40; dataRef.ints.Add(obj);}
-			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Flowers; obj.direction = Direction.Down; obj.posX = 40; obj.posY = 24; dataRef.ints.Add(obj);}
-			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Flowers; obj.direction = Direction.Down; obj.posX = 264; obj.posY = 152; dataRef.ints.Add(obj);}
-			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Tree_Stump; obj.direction = Direction.Down; obj.posX = 168; obj.posY = 72; dataRef.ints.Add(obj);}
-			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Bush_Stump; obj.direction = Direction.Down; obj.posX = 168; obj.posY = 72; dataRef.ints.Add(obj);}
-			{IntObjXmlData obj = new IntObjXmlData(); obj.type = InteractiveType.Bush_Stump; obj.direction = Direction.Down; obj.posX = 136; obj.posY = 88; dataRef.ints.Add(obj);}
 			//add the ref to the data list
 			Data.Add(dataRef);
 			#endregion
